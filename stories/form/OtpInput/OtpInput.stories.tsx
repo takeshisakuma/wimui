@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { OtpInput } from "@/components/form/OtpInput/OtpInput";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { OtpInput } from "wimui";
 
 
 const meta: Meta<typeof OtpInput> = {

@@ -53,7 +53,19 @@
     "std_header_unified_icon": "Estrutura de Ícone Unificada",
     "std_header_unified_sizing": "Dimensionamento Unificado",
     "std_header_unified_variants": "Variantes Unificadas",
-    "std_header_value_type": "Tipo de Valor"
+    "std_header_value_type": "Tipo de Valor",
+    "std_value_single": "Único",
+    "std_value_single_or_multiple": "Único / Múltiplo",
+    "std_value_number": "Número",
+    "std_value_number_array": "Número[]",
+    "std_value_date": "Data",
+    "std_value_date_array": "Data[]",
+    "numeric_std_browser_safari": "Safari (Desktop/iOS)",
+    "numeric_std_browser_chrome_firefox": "Chrome / Firefox",
+    "display_std_label_value_pairs": "Pares Rótulo/Valor",
+    "display_std_items": "Itens",
+    "display_std_often_in_card": "Frequentemente em Card",
+    "display_std_value_label_trend": "Valor/Rótulo/Tendência"
   },
   "guide": {
     "action_std_affected_components": "Componentes Afetados",

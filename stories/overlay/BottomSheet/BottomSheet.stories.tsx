@@ -1,19 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  BottomSheet,
-  BottomSheetTrigger,
-  BottomSheetContent,
-  BottomSheetHeader,
-  BottomSheetFooter,
-  BottomSheetTitle,
-  BottomSheetDescription,
-  BottomSheetClose,
-  BottomSheetBody,
-} from "@/components/overlay/BottomSheet/BottomSheet";
-import { Button } from "@/components/form/Button/Button";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { BottomSheet, BottomSheetBody, BottomSheetClose, BottomSheetContent, BottomSheetDescription, BottomSheetFooter, BottomSheetHeader, BottomSheetTitle, BottomSheetTrigger, Button } from "wimui";
 
 
 const meta: Meta<typeof BottomSheet> = {

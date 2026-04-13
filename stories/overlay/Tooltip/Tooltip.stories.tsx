@@ -1,13 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "@/components/overlay/Tooltip/Tooltip";
-import { Button } from "@/components/form/Button/Button";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Tooltip, TooltipContent, TooltipTrigger } from "wimui";
 
 
 const meta: Meta<typeof Tooltip> = {

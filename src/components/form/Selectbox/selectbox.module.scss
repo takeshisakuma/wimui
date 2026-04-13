@@ -3,7 +3,7 @@
     position: relative;
     width: 100%;
     min-width: 0;
-    max-width: 280px;
+    max-width: var(--wim-width-md);
     font-family: var(--wim-font-family-default);
 
     &.fullWidth {
@@ -107,7 +107,7 @@
     left: 0;
     z-index: var(--wim-z-overlay);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-lg);
   }
@@ -122,7 +122,7 @@
     padding: var(--wim-spacing-sm);
     font-size: 0.9rem;
     outline: none;
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-sm);
     transition: border-color var(--wim-transition-fast);
 
@@ -136,8 +136,8 @@
   }
 
   .list {
-    max-height: 240px;
-    padding: 4px 0;
+    max-height: calc(var(--wim-height-md) * 6);
+    padding: var(--wim-spacing-xs) 0;
     margin: 0;
     overflow-y: auto;
     list-style: none;

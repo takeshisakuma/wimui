@@ -22,7 +22,7 @@ export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
   onMenuOpenChange?: (isOpen: boolean) => void;
 }
 
-export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
+const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
   (
     {
       className,
@@ -70,7 +70,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
   },
 );
 
-Navbar.displayName = "Navbar";
+NavbarRoot.displayName = "Navbar";
 
 export type NavbarBrandProps = React.ComponentPropsWithoutRef<"div">;
 
@@ -256,7 +256,7 @@ export const NavbarMenuItem = React.forwardRef<
 
 NavbarMenuItem.displayName = "Navbar.MenuItem";
 
-export default Object.assign(Navbar, {
+export const Navbar = Object.assign(NavbarRoot, {
   Brand: NavbarBrand,
   Content: NavbarContent,
   Item: NavbarItem,
@@ -265,3 +265,5 @@ export default Object.assign(Navbar, {
   Menu: NavbarMenu,
   MenuItem: NavbarMenuItem,
 });
+
+export default Navbar;

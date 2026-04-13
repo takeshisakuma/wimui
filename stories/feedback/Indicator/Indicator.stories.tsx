@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Indicator } from "@/components/feedback/Indicator/Indicator";
-import { Avatar } from "@/components/data-display/Avatar/Avatar";
-import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Avatar, Icon, Indicator } from "wimui";
 
 
 const meta: Meta<typeof Indicator> = {

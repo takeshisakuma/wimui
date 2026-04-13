@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FocusTrap } from "@/components/overlay/FocusTrap/FocusTrap";
-import { Button } from "@/components/form/Button/Button";
-import { Input } from "@/components/form/Input/Input";
-import { Stack } from "@/components/layout/Stack/Stack";
-import { Card } from "@/components/data-display/Card/Card";
-import { Container } from "@/components/layout/Container/Container";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Card, Container, FocusTrap, Input, Stack } from "wimui";
 
 
 const meta: Meta<typeof FocusTrap> = {

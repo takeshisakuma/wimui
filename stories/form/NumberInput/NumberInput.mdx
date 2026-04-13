@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as NumberInputStories from "./NumberInput.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={NumberInputStories} />
 
@@ -59,25 +59,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.numberinput_anatomy_input_label" /></b></td>
-      <td><T k="doc.numberinput_anatomy_input" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.numberinput_anatomy_steppers_label" /></b></td>
-      <td><T k="doc.numberinput_anatomy_steppers" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="NumberInput" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -118,7 +100,7 @@ import { T } from "../../T";
 
 <Primary />
 
-<Controls of={NumberInputStories.NumericMode} />
+<Docgen componentName="NumberInput" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -127,7 +109,7 @@ import { T } from "../../T";
 
 <Canvas of={NumberInputStories.NumericMode} />
 
-<Controls of={NumberInputStories.NumericMode} />
+
 
 ### <T k="story.numberinput_text_mode" />
 <p><T k="story.numberinput_text_mode_desc" /></p>
@@ -144,8 +126,7 @@ import { T } from "../../T";
 
 <Canvas of={NumberInputStories.DecimalAndNegative} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="NumberInput" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -156,10 +137,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.numberinput_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- NumberInput
-```
+<Docgen componentName="NumberInput" section="test" />
 
 <Stories />

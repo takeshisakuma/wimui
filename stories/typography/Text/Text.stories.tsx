@@ -1,8 +1,8 @@
 import React from "react";
 import { fn } from "storybook/test";
-import { Text } from "@/components/typography/Text/Text";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Text } from "wimui";
 
 
 export default {

@@ -11,11 +11,11 @@
     align-self: flex-start;
     width: 100%;
     min-width: 200px;
-    max-width: var(--wim-input-width, 280px);
+    max-width: var(--wim-input-width, var(--wim-width-md));
     font-family: var(--wim-font-family);
 
-    @container (max-width: 480px) {
-      min-width: 160px;
+    @container (max-width: var(--wim-width-lg)) {
+      min-width: var(--wim-width-sm);
     }
 
     &.fullWidth {
@@ -26,8 +26,8 @@
 
   .label {
     display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
     font-weight: 500;
     color: var(--wim-color-text-primary);
   }
@@ -37,8 +37,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: 40px;
-    padding: 8px 12px;
+    min-height: var(--wim-height-md);
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     cursor: pointer;
     background: transparent;
     border: none;
@@ -76,7 +76,7 @@
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);
     white-space: nowrap;
 
@@ -117,8 +117,8 @@
     margin-top: 4px;
     overflow: hidden auto;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
 
     @media (forced-colors: active) {

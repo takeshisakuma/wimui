@@ -74,6 +74,7 @@
     "naming_conv_title": "命名の標準化",
     "naming_conv_desc": "アイコン名は `[Name]Icon` 形式（例: SettingsIcon）で統一し、コード内での予測可能性を向上させます。",
     "accessibility_title": "非テキスト情報の補完",
-    "accessibility_desc": "アイコン単体では意味が曖昧になる可能性があるため、`aria-label` やツールチップによる情報の補完を検討します。"
+    "accessibility_desc": "アイコン単体では意味が曖昧になる可能性があるため、`aria-label` やツールチップによる情報の補完を検討します。",
+    "page_title": "アイコン"
   }
 }

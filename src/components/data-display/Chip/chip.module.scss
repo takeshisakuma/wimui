@@ -21,7 +21,7 @@
       .avatar {
         width: 2rem;
         height: 2rem;
-        margin-left: calc(-1 * var(--wim-spacing-md) - 1px);
+        margin-left: calc(-1 * var(--wim-spacing-md) - var(--wim-border-width-thin));
       }
     }
   
@@ -33,7 +33,7 @@
       .avatar {
         width: 1.6rem;
         height: 1.6rem;
-        margin-left: calc(-1 * var(--wim-spacing-sm) - 1px);
+        margin-left: calc(-1 * var(--wim-spacing-sm) - var(--wim-border-width-thin));
       }
     }
   
@@ -45,7 +45,7 @@
       .avatar {
         width: 2.4rem;
         height: 2.4rem;
-        margin-left: calc(-1 * var(--wim-spacing-lg) - 1px);
+        margin-left: calc(-1 * var(--wim-spacing-lg) - var(--wim-border-width-thin));
       }
     }
   
@@ -66,8 +66,8 @@
   
     &.solid.selected {
       box-shadow:
-        0 0 0 2px white,
-        0 0 0 4px currentcolor;
+        0 0 0 var(--wim-border-width-thick) white,
+        0 0 0 var(--wim-border-width-extra-thick) currentcolor;
     }
   
     &:disabled,
@@ -108,7 +108,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1px;
+    padding: var(--wim-border-width-thin);
     margin-right: -var(--wim-spacing-xs);
     cursor: pointer;
     border-radius: var(--wim-radius-full);

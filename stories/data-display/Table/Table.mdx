@@ -1,6 +1,7 @@
-import { Canvas, Meta, Controls, Primary, Title, Stories } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TableStories from "./Table.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={TableStories} />
 
@@ -50,25 +51,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.table_anatomy_root_label" /></b></td>
-      <td><T k="doc.table_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.table_anatomy_content_label" /></b></td>
-      <td><T k="doc.table_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Table" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -109,7 +92,25 @@ import { T } from "../../T";
 
 <Primary />
 
-<Controls />
+<Docgen componentName="Table" section="props" />
+
+### <T k="doc.table_header_props" />
+<Docgen componentName="Table.Header" section="props" />
+
+### <T k="doc.table_body_props" />
+<Docgen componentName="Table.Body" section="props" />
+
+### <T k="doc.table_footer_props" />
+<Docgen componentName="Table.Footer" section="props" />
+
+### <T k="doc.table_row_props" />
+<Docgen componentName="Table.Row" section="props" />
+
+### <T k="doc.table_head_props" />
+<Docgen componentName="Table.Head" section="props" />
+
+### <T k="doc.table_cell_props" />
+<Docgen componentName="Table.Cell" section="props" />
 
 ## <T k="doc.polymorphism_title" />
 
@@ -329,8 +330,7 @@ const { sortedData } = useTableSort<User>(users);
   <li><code>Table.Cell</code> (<code>&lt;td&gt;</code>)</li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Table" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -341,10 +341,6 @@ const { sortedData } = useTableSort<User>(users);
 ## <T k="doc.i18n_title" />
 <p><T k="doc.table_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Table
-```
+<Docgen componentName="Table" section="test" />
 
 <Stories />

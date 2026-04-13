@@ -1,35 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Input } from "@/components/form/Input/Input";
-import { Button } from "@/components/form/Button/Button";
-import { Card } from "@/components/data-display/Card/Card";
-import { Checkbox } from "@/components/form/Checkbox/Checkbox";
-import { Link } from "@/components/navigation/Link/Link";
-import { Title } from "@/components/typography/Title/Title";
-import { Stack } from "@/components/layout/Stack/Stack";
-import { Center } from "@/components/layout/Center/Center";
-import { Container } from "@/components/layout/Container/Container";
-import Header from "@/components/layout/Header/Header";
-import { Avatar } from "@/components/data-display/Avatar/Avatar";
-import { AvatarGroup } from "@/components/data-display/AvatarGroup/AvatarGroup";
-import { Badge } from "@/components/data-display/Badge/Badge";
-import { Divider } from "@/components/layout/Divider/Divider";
-import { Selectbox } from "@/components/form/Selectbox/Selectbox";
-import { RadioGroup } from "@/components/form/RadioGroup/RadioGroup";
-import { Textarea } from "@/components/form/Textarea/Textarea";
-import { Switch } from "@/components/form/Switch/Switch";
-import { Grid } from "@/components/layout/Grid/Grid";
-import { Text } from "@/components/typography/Text/Text";
-import { Alert } from "@/components/feedback/Alert/Alert";
-import { Icon } from "@/components/media/Icon/Icon";
-import { Label } from "@/components/typography/Label/Label";
-import { Stats } from "@/components/data-display/Stats/Stats";
-import { List, ListItem } from "@/components/data-display/List/List";
-import { Sidebar } from "@/components/layout/Sidebar/Sidebar";
-import { Skeleton } from "@/components/feedback/Skeleton/Skeleton";
-import { Group } from "@/components/layout/Group/Group";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
+import { Alert, Avatar, AvatarGroup, Badge, Button, Card, Center, Checkbox, Container, Divider, Grid, Group, Header, Icon, Input, Label, Link, List, ListItem, RadioGroup, Selectbox, Sidebar, Skeleton, Stack, Stats, Switch, Text, Textarea, Title } from "wimui";
 
 const meta: Meta = {
   title: "Patterns/Recipes",

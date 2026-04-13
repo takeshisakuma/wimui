@@ -1,21 +1,10 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-} from "@/components/overlay/Dialog/Dialog";
-import { Button } from "@/components/form/Button/Button";
-import { Input } from "@/components/form/Input/Input";
-import { Label } from "@/components/typography/Label/Label";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from "wimui";
 
 
 const meta: Meta<typeof Dialog> = {

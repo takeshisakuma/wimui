@@ -280,7 +280,19 @@
     "std_header_unified_icon": "Unified Icon Structure",
     "std_header_unified_sizing": "Unified Sizing",
     "std_header_unified_variants": "Unified Variants",
-    "std_header_value_type": "Value Type"
+    "std_header_value_type": "Value Type",
+    "std_value_single": "Single",
+    "std_value_single_or_multiple": "Single / Multiple",
+    "std_value_number": "Number",
+    "std_value_number_array": "Number[]",
+    "std_value_date": "Date",
+    "std_value_date_array": "Date[]",
+    "numeric_std_browser_safari": "Safari (Desktop/iOS)",
+    "numeric_std_browser_chrome_firefox": "Chrome / Firefox",
+    "display_std_label_value_pairs": "Label/Value pairs",
+    "display_std_items": "Items",
+    "display_std_often_in_card": "Often in Card",
+    "display_std_value_label_trend": "Value/Label/Trend"
   },
   "table": {
     "header_token_type": "Token Type",

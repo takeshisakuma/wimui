@@ -9,7 +9,7 @@ export interface FooterProps extends React.ComponentPropsWithoutRef<"footer"> {
   background?: "primary" | "secondary" | "dark";
 }
 
-export const Footer = React.forwardRef<HTMLElement, FooterProps>(
+const FooterRoot = React.forwardRef<HTMLElement, FooterProps>(
   (
     { className, children, bordered, background = "primary", ...props },
     ref,
@@ -32,7 +32,7 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
   },
 );
 
-Footer.displayName = "Footer";
+FooterRoot.displayName = "Footer";
 
 export interface FooterSectionProps extends React.ComponentPropsWithoutRef<"div"> {
   title?: string;
@@ -74,7 +74,9 @@ export const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
 
 FooterBottom.displayName = "Footer.Bottom";
 
-export default Object.assign(Footer, {
+export const Footer = Object.assign(FooterRoot, {
   Section: FooterSection,
   Bottom: FooterBottom,
 });
+
+export default Footer;

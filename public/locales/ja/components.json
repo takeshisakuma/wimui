@@ -469,6 +469,7 @@
     "item_rem_desc": "ルート要素（html）のフォントサイズに対する相対単位。アクセシビリティ（ユーザーのブラウザ設定）を尊重するために最も推奨される単位です。",
     "item_viewport_desc": "画面（ビューポート）の幅や高さに対する相対単位。フルスクリーン表示や動的な配置に使用します。",
     "responsive_desc": "レイアウトの骨組みには相対単位を使用し、デバイスサイズに応じた柔軟な変化を許容します。",
+    "rem_label": "rem",
     "responsive_title": "比率の維持（%, vh, vw）",
     "selection_points": "選定のポイント",
     "usage_details": "境界線（Border）、角丸（Radius）、極小のアイコン、ヘアライン",
@@ -512,7 +513,12 @@
     "transition_usage_desc": "出現・消失時の CSS アニメーションを一括管理したい場合。",
     "usage_points": "使用ポイント",
     "vh_usage_desc": "視覚的には見せたくないが、スクリーンリーダー等には情報を伝えたい、操作のヒントなどを埋め込む場合。",
-    "visual_utilities": "視覚的ユーティリティ"
+    "visual_utilities": "視覚的ユーティリティ",
+    "focus_trap_label": "フォーカストラップ",
+    "error_boundary_label": "エラーバウンダリ",
+    "visually_hidden_label": "視覚的に非表示",
+    "scroll_area_label": "スクロールエリア",
+    "infinite_scroll_label": "無限スクロール"
   },
   "utility": {
     "guide": "WIM UI は、UI の構築を支える低レイヤーの補助コンポーネントを多数提供しています。これらは直接的な UI パーツではありませんが、機能性と操作性を高めるために不可欠です。"

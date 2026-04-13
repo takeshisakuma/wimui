@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AreaChart } from "@/components/charts/AreaChart/AreaChart";
+import { AreaChart } from "wimui";
 
 const meta: Meta<typeof AreaChart> = {
   title: "Components/Visualization/AreaChart",

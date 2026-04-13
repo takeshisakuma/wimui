@@ -1,6 +1,7 @@
-import { Meta, Primary, Controls, Canvas, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Primary, Canvas, Title, Stories } from "@storybook/addon-docs/blocks";
 import * as CarouselStories from "./Carousel.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={CarouselStories} />
 
@@ -48,33 +49,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.carousel_anatomy_viewport_label" /></b></td>
-      <td><T k="doc.carousel_anatomy_viewport" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.carousel_anatomy_slide_label" /></b></td>
-      <td><T k="doc.carousel_anatomy_slide" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.carousel_anatomy_nav_buttons_label" /></b></td>
-      <td><T k="doc.carousel_anatomy_nav_buttons" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.carousel_anatomy_indicators_label" /></b></td>
-      <td><T k="doc.carousel_anatomy_indicators" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Carousel" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -191,9 +166,7 @@ import { T } from "../../T";
 
 <Canvas of={CarouselStories.AspectRatioCheck} />
 
-## Props
-
-<Controls />
+<Docgen componentName="Carousel" section="props" />
 
 ## <T k="doc.accessibility" />
 
@@ -386,8 +359,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Carousel" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -398,8 +370,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.carousel_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Carousel
-```
+<Docgen componentName="Carousel" section="test" />

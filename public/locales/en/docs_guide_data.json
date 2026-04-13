@@ -121,6 +121,7 @@
     "tree_features": "Visual representation of hierarchical (parent-child) data with folding/unfolding capabilities, like directory structures.",
     "tree_usage": "Directory structures like a file manager, organizational charts, category trees across multiple tiers.",
     "usecase": "Use Cases",
-    "vertical_list": "Vertical Single Column"
+    "vertical_list": "Vertical Single Column",
+    "row_column_annotation": "(Row/Column)"
   }
 }

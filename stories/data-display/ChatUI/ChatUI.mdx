@@ -1,6 +1,7 @@
-import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as ChatUIStories from "./ChatUI.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={ChatUIStories} />
 
@@ -147,25 +148,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.chatui_anatomy_root_label" /></b></td>
-      <td><T k="doc.chatui_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.chatui_anatomy_content_label" /></b></td>
-      <td><T k="doc.chatui_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="ChatUI" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -204,8 +187,21 @@ import { T } from "../../T";
   <li><T k="doc.chatui_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="ChatContainer" section="props" />
+
+### <T k="doc.chatui_msglist_props" />
+<Docgen componentName="ChatMessageList" section="props" />
+
+### <T k="doc.chatui_message_props" />
+<Docgen componentName="ChatMessage" section="props" />
+
+### <T k="doc.chatui_input_props" />
+<Docgen componentName="ChatInput" section="props" />
+
+### <T k="doc.chatui_avatar_props" />
+<Docgen componentName="ChatAvatar" section="props" />
+
+<Docgen componentName="ChatUI" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -216,9 +212,5 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.chatui_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- ChatUI
-```
+<Docgen componentName="ChatUI" section="test" />
 

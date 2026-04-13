@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Fieldset } from "@/components/form/Fieldset/Fieldset";
-import { Legend } from "@/components/typography/Legend/Legend";
-import { Label } from "@/components/typography/Label/Label";
-import { Input } from "@/components/form/Input/Input";
-import { CheckboxGroup } from "@/components/form/CheckboxGroup/CheckboxGroup";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { CheckboxGroup, Fieldset, Input, Label, Legend } from "wimui";
 
 
 const meta: Meta<typeof Fieldset> = {

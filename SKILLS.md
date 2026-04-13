@@ -101,6 +101,26 @@ padding: var(--wim-spacing-md);
 3. `src/tokens/generated/` および `src/types/generated-tokens.ts` が自動更新されたことを確認します。
 4. コンポーネントで `var(--wim-[カテゴリ]-[意味])` を使用します。
 
+---
+
+## z-index トークンの使い分け基準
+
+スタッキングコンテキストをまたいで競合しうる要素には、必ず以下の `--wim-z-*` トークンを使用してください。
+
+| トークン | 値 | 主な用途 |
+|---|---|---|
+| `--wim-z-sidebar` | 900 | 非オーバーレイ時のサイドバー。メインコンテンツより上に表示。 |
+| `--wim-z-header` | 1000 | 固定ヘッダー。 |
+| `--wim-z-overlay` | 1000 | Dialog, Dropdown, Popover, Tooltip 等の一般的なオーバーレイ。 |
+| `--wim-z-overlay-panel` | 1001 | オーバーレイの上にさらに重なるパネル類。 |
+| `--wim-z-overlay-step` | 1002 | Tour（ガイド）のステップバブル。 |
+| `--wim-z-navbar` | 1020 | モバイル用ボトムナビゲーション等。 |
+| `--wim-z-mask` | 1500 | ローディングマスク、背景のクリック遮断用。 |
+| `--wim-z-drawer` | 2000 | Drawer（サイドからスライドするパネル）。Dialog より優先される場合に使用。 |
+| `--wim-z-toast` | 9999 | Toast, Notification など、常に最前面に表示すべき通知。 |
+
+**注意：** コンポーネント内部（Slider のサムブ、Table の固定列など）での相対的な順序指定には、生値（`z-index: 10` 等）を使用して構いません。
+
 ### 新しいカテゴリ自体が必要な場合
 
 既存カテゴリに収まらない場合は `RULES.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。
@@ -273,16 +293,18 @@ import { Docgen } from "../../Docgen";
 // すべての情報（Tokens, Anatomy, Props）をまとめて表示
 <Docgen componentName="Button" />
 
-// 特定のセクションのみ表示
+// 特定のセクションのみ表示（見出し込みで出力されます）
 <Docgen componentName="Button" section="tokens" />
 <Docgen componentName="Button" section="anatomy" />
 <Docgen componentName="Button" section="props" />
+<Docgen componentName="Button" section="test" />
 ```
 
 ### 自動抽出の仕組み
 - **Props**: `react-docgen` を使用して TypeScript の型定義から抽出します。
 - **Tokens**: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
 - **Anatomy**: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules では、`.root` や共通修飾子を除いたクラス名が自動抽出されます。
+- **Test**: コンポーネントに対応するテストファイルの実行コマンド（`npm run test -- path/to/Test.tsx`）を自動生成します。
 - **更新タイミング**: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen.json` が自動更新されます。
 
 ---

@@ -121,6 +121,7 @@
     "tree_features": "ディレクトリ構造などの階層（親子関係）を持つデータの折りたたみ・展開と視覚的表現。",
     "tree_usage": "ファイラーのようなディレクトリ構成の表示、組織図、多階層にわたるカテゴリツリーの表示。",
     "usecase": "ユースケース",
-    "vertical_list": "垂直一列"
+    "vertical_list": "垂直一列",
+    "row_column_annotation": "(行/列)"
   }
 }

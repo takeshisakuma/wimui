@@ -1,6 +1,7 @@
 import { Canvas, Meta, Controls, Source, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as RangeCalendarStories from "./RangeCalendar.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={RangeCalendarStories} />
 
@@ -121,8 +122,6 @@ import { T } from "../../T";
 
 <Canvas of={RangeCalendarStories.Disabled} />
 
-## <T k="doc.props" />
-
 <Controls />
 
 ## <T k="doc.implementation_example" />
@@ -146,10 +145,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.rangecalendar_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- RangeCalendar
-```
+<Docgen componentName="RangeCalendar" section="test" />
 
 <Stories />

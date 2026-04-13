@@ -54,10 +54,10 @@
 
     // Glassmorphism effect — auto-switches via glass tokens
     background: var(--wim-color-glass-bg);
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-glass);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--wim-spacing-lg));
   }
 
   .icon {
@@ -100,8 +100,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: var(--wim-height-xs);
+    height: var(--wim-height-xs);
     padding: 0;
     margin: 0;
     color: inherit;
@@ -173,7 +173,7 @@
 
   .enterFrom {
     opacity: 0;
-    transform: translateY(12px) scale(0.98);
+    transform: translateY(var(--wim-spacing-lg)) scale(0.98);
   }
 
   .enterTo {
@@ -194,6 +194,6 @@
 
   .leaveTo {
     opacity: 0;
-    transform: translateY(12px) scale(0.98);
+    transform: translateY(var(--wim-spacing-lg)) scale(0.98);
   }
 }

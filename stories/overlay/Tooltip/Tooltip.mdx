@@ -1,28 +1,19 @@
-import { Canvas, Meta, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
-import { T } from "../../T";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TooltipStories from "./Tooltip.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={TooltipStories} />
 
 <Title />
 
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.tooltip_title" />
-</p>
 
 
 <p><T k="doc.tooltip_long_desc" /></p>
 
 <Primary />
 
-<Controls />
+<Docgen componentName="Tooltip" section="props" />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.tooltip_design_intent" /></p>
@@ -53,25 +44,7 @@ import * as TooltipStories from "./Tooltip.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.tooltip_anatomy_trigger_label" /></b></td>
-      <td><T k="doc.tooltip_anatomy_trigger" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.tooltip_anatomy_content_label" /></b></td>
-      <td><T k="doc.tooltip_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Tooltip" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -131,8 +104,7 @@ import * as TooltipStories from "./Tooltip.stories";
 <p><T k="doc.tooltip_delay_desc" /></p>
 <Canvas of={TooltipStories.WithDelay} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Tooltip" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -143,10 +115,6 @@ import * as TooltipStories from "./Tooltip.stories";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.tooltip_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Tooltip
-```
+<Docgen componentName="Tooltip" section="test" />
 
 <Stories />

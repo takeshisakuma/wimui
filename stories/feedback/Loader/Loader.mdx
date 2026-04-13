@@ -1,21 +1,11 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as LoaderStories from "./Loader.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={LoaderStories} />
 
-# Loader
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.loader_title" />
-</p>
+<Title />
 
 <p><T k="doc.loader_long_desc" /></p>
 
@@ -57,25 +47,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.loader_anatomy_root_label" /></b></td>
-      <td><T k="doc.loader_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.loader_anatomy_content_label" /></b></td>
-      <td><T k="doc.loader_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Loader" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -116,8 +88,7 @@ import { T } from "../../T";
 
 <Canvas of={LoaderStories.Default} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Loader" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -128,15 +99,9 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.loader_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
+<Docgen componentName="Loader" section="test" />
 
-```bash
-npm run test -- Loader
-```
-
-## <T k="doc.props" />
-
-<Controls />
+<Docgen componentName="Loader" section="props" />
 
 ## <T k="doc.variants" />
 

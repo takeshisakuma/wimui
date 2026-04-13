@@ -1,21 +1,11 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as FocusTrapStories from "./FocusTrap.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={FocusTrapStories} />
 
-# FocusTrap
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.focustrap_title" />
-</p>
+<Title />
 
 <p><T k="doc.focustrap_long_desc" /></p>
 
@@ -55,25 +45,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.focustrap_anatomy_root_label" /></b></td>
-      <td><T k="doc.focustrap_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.focustrap_anatomy_content_label" /></b></td>
-      <td><T k="doc.focustrap_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="FocusTrap" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -120,12 +92,9 @@ import { T } from "../../T";
 
 <Canvas of={FocusTrapStories.InitialFocus} />
 
-## Props
+<Docgen componentName="FocusTrap" section="props" />
 
-<Controls />
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="FocusTrap" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -136,8 +105,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.focustrap_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- FocusTrap
-```
+<Docgen componentName="FocusTrap" section="test" />

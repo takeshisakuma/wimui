@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RadarChart } from "@/components/charts/RadarChart/RadarChart";
+import { RadarChart } from "wimui";
 
 const meta: Meta<typeof RadarChart> = {
   title: "Components/Visualization/RadarChart",

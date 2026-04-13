@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Navbar from "@/components/layout/Navbar/Navbar";
-import { Button } from "@/components/form/Button/Button";
+import { Navbar } from "wimui";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button } from "wimui";
 
 
 const meta: Meta<typeof Navbar> = {

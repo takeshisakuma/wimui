@@ -5,7 +5,7 @@ import './docgen.scss';
 
 interface DocgenProps {
   componentName: string;
-  section?: 'tokens' | 'anatomy' | 'props';
+  section?: 'tokens' | 'anatomy' | 'props' | 'test';
 }
 
 interface PropInfo {
@@ -34,7 +34,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
 
     return (
       <section id="props">
-        <h2>Props</h2>
+        <h2><T k="doc.props_title" /></h2>
         <table className="docgen-table">
           <thead>
             <tr>
@@ -103,15 +103,31 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
     );
   };
 
+  const renderTest = () => {
+    return (
+      <section id="test">
+        <h2><T k="doc.test_title" /></h2>
+        <p><T k="doc.test_description" /></p>
+        <div className="docgen-code-block">
+          <pre>
+            <code>npm run test -- {componentName}</code>
+          </pre>
+        </div>
+      </section>
+    );
+  };
+
   if (section === 'tokens') return renderTokens();
   if (section === 'anatomy') return renderAnatomy();
   if (section === 'props') return renderProps();
+  if (section === 'test') return renderTest();
 
   return (
     <div className="docgen-container">
       {renderTokens()}
       {renderAnatomy()}
       {renderProps()}
+      {renderTest()}
     </div>
   );
 };

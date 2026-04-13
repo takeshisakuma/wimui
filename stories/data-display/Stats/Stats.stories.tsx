@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Stats } from "@/components/data-display/Stats/Stats";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Stats } from "wimui";
 
 
 const meta: Meta<typeof Stats> = {

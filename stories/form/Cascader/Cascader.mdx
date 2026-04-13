@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as CascaderStories from "./Cascader.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={CascaderStories} />
 
@@ -48,25 +49,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.cascader_anatomy_root_label" /></b></td>
-      <td><T k="doc.cascader_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.cascader_anatomy_content_label" /></b></td>
-      <td><T k="doc.cascader_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Cascader" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -109,9 +92,7 @@ import { T } from "../../T";
 
 <Primary />
 
-## Props
-
-<Controls of={CascaderStories.Default} />
+<Docgen componentName="Cascader" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -133,8 +114,7 @@ import { T } from "../../T";
 
 <Canvas of={CascaderStories.CustomSeparator} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Cascader" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -145,10 +125,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.cascader_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Cascader
-```
+<Docgen componentName="Cascader" section="test" />
 
 <Stories />

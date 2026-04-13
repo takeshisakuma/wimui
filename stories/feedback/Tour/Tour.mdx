@@ -1,28 +1,17 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as TourStories from "./Tour.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={TourStories} />
 
 <Title />
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.tour_long_desc" />
-</p>
 
 <Description>
   <p><T k="doc.tour_feature_desc" /></p>
@@ -53,25 +42,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.tour_anatomy_root_label" /></b></td>
-      <td><T k="doc.tour_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.tour_anatomy_content_label" /></b></td>
-      <td><T k="doc.tour_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Tour" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -112,19 +83,20 @@ import { T } from "../../T";
 
 <Primary />
 
-<h2><T k="doc.usage" /></h2>
+<Docgen componentName="Tour" section="props" />
+
+## <T k="doc.usage" />
 <p>
   <T k="doc.tour_usage_desc" />
 </p>
 
 <Canvas of={TourStories.Default} />
 
-<Controls />
+<Canvas of={TourStories.Default} />
 
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Tour" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -135,8 +107,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.tour_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Tour
-```
+<Docgen componentName="Tour" section="test" />

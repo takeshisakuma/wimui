@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { PhoneInput } from "@/components/form/PhoneInput/PhoneInput";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { PhoneInput } from "wimui";
 
 const meta: Meta<typeof PhoneInput> = {
   title: "Components/Basic Inputs/PhoneInput",

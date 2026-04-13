@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SegmentedControl } from "@/components/form/SegmentedControl/SegmentedControl";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { SegmentedControl } from "wimui";
 
 
 const meta: Meta<typeof SegmentedControl> = {

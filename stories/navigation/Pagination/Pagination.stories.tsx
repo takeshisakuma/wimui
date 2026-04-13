@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Pagination } from "@/components/navigation/Pagination/Pagination";
 import React, { useState } from "react";
+import { Pagination } from "wimui";
 
 const meta: Meta<typeof Pagination> = {
   title: "Components/Navigation Elements/Pagination",

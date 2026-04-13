@@ -40,7 +40,13 @@
     "suitable_graph": "適したグラフ",
     "technical_impl_title": "技術的な実装",
     "treemap_data_desc": "階層構造を持つデータの割合。全体への寄与度など。",
-    "what_to_express": "表現したいこと"
+    "what_to_express": "表現したいこと",
+    "line_chart": "折れ線グラフ",
+    "bar_chart": "棒グラフ",
+    "pie_chart": "円グラフ",
+    "comparison_trend_annotation": "比較 & トレンド",
+    "proportions_annotation": "割合",
+    "correlation_annotation": "相関 & 分布"
   },
   "guide": {
     "visualization_title": "可視化コンポーネントの使い分けガイド",

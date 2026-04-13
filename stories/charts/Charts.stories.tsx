@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { BarChart } from "@/components/charts/BarChart/BarChart";
-import { LineChart } from "@/components/charts/LineChart/LineChart";
-import { PieChart } from "@/components/charts/PieChart/PieChart";
-import { Stack } from "@/components/layout/Stack/Stack";
-import { Title } from "@/components/typography/Title/Title";
+import { BarChart, LineChart, PieChart, Stack, Title } from "wimui";
 
 const meta: Meta = {
   title: "Components/Visualization/Charts",

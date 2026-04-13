@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as MarqueeStories from "./Marquee.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={MarqueeStories} />
 
@@ -48,25 +48,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.marquee_anatomy_root_label" /></b></td>
-      <td><T k="doc.marquee_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.marquee_anatomy_content_label" /></b></td>
-      <td><T k="doc.marquee_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Marquee" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -106,7 +88,8 @@ import { T } from "../../T";
 </ul>
 
 <Canvas of={MarqueeStories.Default} />
-<Controls />
+
+<Docgen componentName="Marquee" section="props" />
 
 ## <T k="doc.overview" />
 
@@ -142,8 +125,7 @@ import { T } from "../../T";
 </ul>
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Marquee" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -154,8 +136,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.marquee_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Marquee
-```
+<Docgen componentName="Marquee" section="test" />

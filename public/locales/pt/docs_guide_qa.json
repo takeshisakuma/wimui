@@ -41,6 +41,9 @@
     "summary_tool2_desc": "`npm run test:check` (`scripts/generate-missing-tests-report.cjs`) detecta automaticamente componentes sem arquivos de teste.",
     "summary_tool2_title": "Verificação de Testes Ausentes",
     "summary_tool3_desc": "`npm run test:report` executa medição de cobertura e verificações automatizadas juntos.",
-    "summary_tool3_title": "Relatório Integrado"
+    "summary_tool3_title": "Relatório Integrado",
+    "table_tool_header": "Ferramenta",
+    "table_feature_header": "Funcionalidade",
+    "table_detail_header": "Detalhe"
   }
 }

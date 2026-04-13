@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as GridStories from "./Grid.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={GridStories} />
 
@@ -17,7 +17,7 @@ import { T } from "../../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.grid_subtitle" />
@@ -25,7 +25,7 @@ import { T } from "../../T";
 
 <p><T k="doc.grid_long_desc" /></p>
 
-<h2><T k="doc.features" /></h2>
+## <T k="doc.features" />
 <table>
   <tr>
     <td><T k="doc.grid_feat_flex" /></td>
@@ -36,8 +36,6 @@ import { T } from "../../T";
     <td><T k="doc.grid_feat_semantic_desc" /></td>
   </tr>
 </table>
-
-<h2><T k="doc.props" /></h2>
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.grid_design_intent" /></p>
@@ -63,25 +61,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.grid_anatomy_root_label" /></b></td>
-      <td><T k="doc.grid_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.grid_anatomy_content_label" /></b></td>
-      <td><T k="doc.grid_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Grid" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -120,21 +100,22 @@ import { T } from "../../T";
   <li><T k="doc.grid_best_practice_2" /></li>
 </ul>
 
-<Controls />
+<Primary />
 
-<h2><T k="doc.basic_usage" /></h2>
+<Docgen componentName="Grid" section="props" />
+
+## <T k="doc.basic_usage" />
 <Canvas of={GridStories.Basic} />
 
-<h2><T k="doc.grid_custom_columns" /></h2>
+## <T k="doc.grid_custom_columns" />
 <p><T k="doc.grid_custom_columns_desc" /></p>
 <Canvas of={GridStories.CustomColumns} />
 
-<h2><T k="doc.grid_responsive" /></h2>
+## <T k="doc.grid_responsive" />
 <p><T k="doc.grid_responsive_desc" /></p>
 <Canvas of={GridStories.Responsive} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Grid" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -145,10 +126,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.grid_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Grid
-```
+<Docgen componentName="Grid" section="test" />
 
 <Stories />

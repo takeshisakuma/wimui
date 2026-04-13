@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RangeSlider } from "@/components/form/RangeSlider/RangeSlider";
 import { useState } from "react";
+import { RangeSlider } from "wimui";
 
 const MetaData: Meta<typeof RangeSlider> = {
   title: "Components/Pickers & Sliders/RangeSlider",

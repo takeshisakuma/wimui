@@ -1,11 +1,13 @@
 import {
   Meta,
   Title,
-  Controls,
+  Primary,
+  Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as VirtualListStories from "./VirtualList.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={VirtualListStories} />
 
@@ -54,29 +56,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Root</b></td>
-      <td><T k="doc.virtuallist_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b>Inner</b></td>
-      <td><T k="doc.virtuallist_anatomy_inner" /></td>
-    </tr>
-    <tr>
-      <td><b>Item</b></td>
-      <td><T k="doc.virtuallist_anatomy_item" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="VirtualList" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -132,11 +112,10 @@ import { T } from "../../T";
 <p><T k="doc.virtuallist_overscan_desc" /></p>
 <Canvas of={VirtualListStories.WithOverscan} />
 
-<Controls />
+<Docgen componentName="VirtualList" section="props" />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="VirtualList" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -147,8 +126,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.virtuallist_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- VirtualList
-```
+<Docgen componentName="VirtualList" section="test" />

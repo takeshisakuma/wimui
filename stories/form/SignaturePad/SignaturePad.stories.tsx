@@ -2,8 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SignaturePad } from "../../../src/components/form/SignaturePad/SignaturePad";
 import { useTranslation } from "react-i18next";
-import { Label } from "@/components/typography/Label/Label";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Label } from "wimui";
 
 
 const meta: Meta<typeof SignaturePad> = {

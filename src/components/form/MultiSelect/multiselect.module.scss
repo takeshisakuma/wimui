@@ -3,7 +3,7 @@
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    max-width: 280px;
+    max-width: var(--wim-width-md);
     font-family: var(--wim-font-family-default);
 
     &.fullWidth {
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: 42px;
+    min-height: var(--wim-height-md);
     padding: var(--wim-spacing-md) var(--wim-spacing-sm);
     font-size: 1rem;
     line-height: 1.5;
@@ -74,13 +74,13 @@
     position: absolute;
     z-index: var(--wim-z-overlay);
     width: 100%;
-    max-height: 280px;
-    padding: 4px 0;
+    max-height: var(--wim-width-md);
+    padding: var(--wim-spacing-xs) 0;
     margin: var(--wim-spacing-xs) 0 0;
     overflow-y: auto;
     list-style: none;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
   }

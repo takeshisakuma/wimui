@@ -29,7 +29,14 @@
     "pccs_customization_file_path": "File Path:",
     "pccs_customization_note": "* Changing this file will update semantic colors (Primary, Success, etc.) and component colors that reference these colors all at once.",
     "pccs_customization_title": "Customization",
-    "pccs_desc": "A list of the PCCS color palette, which forms the basis of WIM UI's color design. Categorized by tone (combination of lightness and saturation) to support intuitive color design."
+    "pccs_desc": "A list of the PCCS color palette, which forms the basis of WIM UI's color design. Categorized by tone (combination of lightness and saturation) to support intuitive color design.",
+    "colors_special_styles_title": "Special Styles (Ghost, Glass, Skeleton)",
+    "colors_special_styles_desc": "Used for specialized visual effects such as semi-transparency and placeholder states.",
+    "colors_interaction_title": "Interaction & Overlays",
+    "colors_interaction_desc": "Colors for interactive states and overlay elements.",
+    "colors_component_specific_title": "Component Specific",
+    "colors_component_specific_desc": "Predefined colors for avatars, chat bubbles, and other UI elements.",
+    "pccs_page_title": "PCCS (Practical Color Co-ordinate System)"
   },
   "pccs": {
     "tone_gy_desc": "Achromatic",

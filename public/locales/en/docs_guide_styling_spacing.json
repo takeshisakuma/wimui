@@ -17,7 +17,13 @@
     "spacings_scale": "Spacing Scale",
     "spacings_title": "Spacings & Radius",
     "tokens_title": "Design Tokens",
-    "usage": "Usage Guide"
+    "usage": "Usage Guide",
+    "spacings_border_width_title": "Border Width",
+    "spacings_header_name": "Name",
+    "spacings_header_value": "Value",
+    "spacings_header_token": "Token",
+    "spacings_thin": "Thin",
+    "spacings_thick": "Thick"
   },
   "perf": {
     "tips_title": "Performance Tips",

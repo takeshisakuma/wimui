@@ -1,13 +1,13 @@
 import {
   Canvas,
   Meta,
-  Controls,
   Title,
   Primary,
   Stories,
 } from "@storybook/addon-docs/blocks";
 import * as AvatarGroupStories from "./AvatarGroup.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={AvatarGroupStories} />
 
@@ -52,25 +52,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.avatargroup_anatomy_items_label" /></b></td>
-      <td><T k="doc.avatargroup_anatomy_items" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.avatargroup_anatomy_excess_label" /></b></td>
-      <td><T k="doc.avatargroup_anatomy_excess" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="AvatarGroup" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -118,9 +100,7 @@ import { T } from "../../T";
 
 <Primary />
 
-## Props
-
-<Controls />
+<Docgen componentName="AvatarGroup" section="props" />
 
 ## <T k="doc.usage_examples" />
 
@@ -142,8 +122,7 @@ import { T } from "../../T";
 
 <Canvas of={AvatarGroupStories.TotalCount} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="AvatarGroup" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -154,10 +133,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.avatargroup_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- AvatarGroup
-```
+<Docgen componentName="AvatarGroup" section="test" />
 
 <Stories />

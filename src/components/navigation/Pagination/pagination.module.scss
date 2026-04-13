@@ -54,7 +54,7 @@
       cursor: pointer;
       user-select: none;
       background: transparent;
-      border: 1px solid transparent;
+      border: var(--wim-border-width-thin) solid transparent;
       border-radius: var(--wim-radius-md);
       transition: all var(--wim-transition-base);
 
@@ -131,7 +131,7 @@
       cursor: pointer;
       outline: none;
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-secondary);
+      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
       border-radius: var(--wim-radius-md);
       transition: all var(--wim-transition-base);
 
@@ -161,7 +161,7 @@
       text-align: center;
       outline: none;
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-secondary);
+      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
       border-radius: var(--wim-radius-md);
       transition: all var(--wim-transition-base);
 

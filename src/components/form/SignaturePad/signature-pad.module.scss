@@ -4,7 +4,7 @@
   box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--wim-spacing-md);
   max-width: 90vw;
   font-family: var(--wim-font-family);
 
@@ -16,8 +16,8 @@
     touch-action: none; // Prevent scrolling while signing
     cursor: crosshair;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
   }
 
   &__canvas {
@@ -28,7 +28,7 @@
 
   &__footer {
     display: flex;
-    gap: 8px;
+    gap: var(--wim-spacing-md);
     justify-content: flex-end;
   }
 

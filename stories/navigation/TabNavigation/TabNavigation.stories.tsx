@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import TabNavigation from "@/components/navigation/TabNavigation/TabNavigation";
-import { Icon } from "@/components/media/Icon/Icon";
+import { TabNavigation } from "wimui";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Icon } from "wimui";
 
 
 const meta: Meta<typeof TabNavigation> = {

@@ -53,7 +53,19 @@
     "std_header_unified_icon": "統合アイコン構造",
     "std_header_unified_sizing": "統合サイズ設定",
     "std_header_unified_variants": "統合バリエーション",
-    "std_header_value_type": "値の型"
+    "std_header_value_type": "値の型",
+    "std_value_single": "単一",
+    "std_value_single_or_multiple": "単一 / 複数",
+    "std_value_number": "数値",
+    "std_value_number_array": "数値[]",
+    "std_value_date": "日付",
+    "std_value_date_array": "日付[]",
+    "numeric_std_browser_safari": "Safari (デスクトップ/iOS)",
+    "numeric_std_browser_chrome_firefox": "Chrome / Firefox",
+    "display_std_label_value_pairs": "ラベル/値のペア",
+    "display_std_items": "アイテム",
+    "display_std_often_in_card": "カード内に配置されることが多い",
+    "display_std_value_label_trend": "値/ラベル/トレンド"
   },
   "guide": {
     "action_std_affected_components": "対象コンポーネント",

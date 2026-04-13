@@ -1,11 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InteractiveArea } from "@/components/layout/InteractiveArea/InteractiveArea";
-import { Icon } from "@/components/media/Icon/Icon";
-import { Button } from "@/components/form/Button/Button";
-import { ContextMenu, ContextMenuItem } from "@/components/overlay/ContextMenu/ContextMenu";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, ContextMenu, ContextMenuItem, Icon, InteractiveArea } from "wimui";
 
 
 const meta: Meta<typeof InteractiveArea> = {

@@ -1,17 +1,17 @@
-import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as AppShellStories from "./AppShell.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={AppShellStories} />
 
-# AppShell
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.appshell_desc" />
@@ -165,7 +165,6 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.appshell_design_intent" /></p>
 
@@ -190,25 +189,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.appshell_anatomy_root_label" /></b></td>
-      <td><T k="doc.appshell_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.appshell_anatomy_content_label" /></b></td>
-      <td><T k="doc.appshell_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="AppShell" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -246,6 +227,8 @@ import { T } from "../../T";
   <li><T k="doc.appshell_best_practice_1" /></li>
   <li><T k="doc.appshell_best_practice_2" /></li>
 </ul>
+
+<Primary />
 
 ## <T k="doc.appshell_composition_title" />
 
@@ -300,10 +283,11 @@ import { T } from "../../T";
   </tbody>
 </table>
 
+<Docgen componentName="AppShell" section="props" />
 
+<Stories />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="AppShell" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -314,8 +298,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.appshell_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- AppShell
-```
+<Docgen componentName="AppShell" section="test" />

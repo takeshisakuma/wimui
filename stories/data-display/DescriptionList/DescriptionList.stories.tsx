@@ -1,12 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  DescriptionList,
-  DescriptionListItem,
-  DescriptionListTerm,
-  DescriptionListDetails,
-} from "@/components/data-display/DescriptionList/DescriptionList";
+import { DescriptionList, DescriptionListDetails, DescriptionListItem, DescriptionListTerm } from "wimui";
+
 
 const meta: Meta<typeof DescriptionList> = {
   title: "Components/Data Structures/DescriptionList",

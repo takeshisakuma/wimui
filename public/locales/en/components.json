@@ -449,7 +449,12 @@
     "transition_usage_desc": "Centralized management for entry/exit CSS animations.",
     "usage_points": "Usage Scenarios",
     "vh_usage_desc": "Hiding elements visually while keeping them read by screen readers.",
-    "visual_utilities": "Visual Utilities"
+    "visual_utilities": "Visual Utilities",
+    "focus_trap_label": "Focus Trap",
+    "error_boundary_label": "Error Boundary",
+    "visually_hidden_label": "Visually Hidden",
+    "scroll_area_label": "Scroll Area",
+    "infinite_scroll_label": "Infinite Scroll"
   },
   "utility": {
     "guide": "WIM UI provides many low-level auxiliary components that support UI construction. Though not direct UI parts, they are essential for enhancing functionality and operability."
@@ -490,7 +495,8 @@
     "fixed_title": "Graphic Accuracy (px)",
     "fixed_desc": "Use `px` for elements that should not blur or lose their proportions due to scaling, such as 1px borders or small corner radii.",
     "responsive_title": "Ratio Maintenance (%, vh, vw)",
-    "responsive_desc": "Use relative units for the layout framework to allow flexible changes according to device size."
+    "responsive_desc": "Use relative units for the layout framework to allow flexible changes according to device size.",
+    "rem_label": "rem"
   },
   "query": {
     "builder.rule_added": "Rule added",

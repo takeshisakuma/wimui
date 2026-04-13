@@ -2,11 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
+  Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as RichTextEditorStories from "./RichTextEditor.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={RichTextEditorStories} />
 
@@ -53,29 +54,11 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.richTextEditor_anatomy_toolbar_label" /></b></td>
-      <td><T k="doc.richTextEditor_anatomy_toolbar" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.richTextEditor_anatomy_editor_label" /></b></td>
-      <td><T k="doc.richTextEditor_anatomy_editor" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="RichTextEditor" section="anatomy" />
 
 <Canvas of={RichTextEditorStories.Basic} />
 
-<Controls of={RichTextEditorStories.Basic} />
+<Docgen componentName="RichTextEditor" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -171,8 +154,7 @@ const [value, setValue] = useState("");
 ```
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="RichTextEditor" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -183,8 +165,4 @@ const [value, setValue] = useState("");
 ## <T k="doc.i18n_title" />
 <p><T k="doc.richtexteditor_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- RichTextEditor
-```
+<Docgen componentName="RichTextEditor" section="test" />

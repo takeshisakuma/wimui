@@ -11,10 +11,10 @@
     align-items: center;
     width: 100%;
     min-width: 0;
-    max-width: var(--wim-input-width, 280px);
+    max-width: var(--wim-input-width, var(--wim-width-md));
     min-height: var(--wim-height-md);
     background-color: var(--wim-color-bg-component);
-    border: var(--wim-input-base-border, 1px solid var(--wim-color-secondary));
+    border: var(--wim-input-base-border, var(--wim-border-width-thin) solid var(--wim-color-secondary));
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
@@ -80,23 +80,23 @@
 
     // Icons padding
     &.hasLeftIcon {
-      --wim-input-offset-left: calc(var(--wim-spacing-2xl) + var(--wim-spacing-3xl, 24px));
+      --wim-input-offset-left: calc(var(--wim-spacing-2xl) + var(--wim-spacing-xl));
     }
 
     &.hasRightIcon {
-      --wim-input-offset-right: calc(var(--wim-spacing-2xl) + var(--wim-spacing-3xl, 24px));
+      --wim-input-offset-right: calc(var(--wim-spacing-2xl) + var(--wim-spacing-xl));
     }
 
     &.hasMultipleRightIcons {
-      --wim-input-offset-right: calc(var(--wim-spacing-md) + var(--wim-spacing-4xl, 32px) + var(--wim-spacing-sm) + var(--wim-spacing-md, 8px));
+      --wim-input-offset-right: calc(var(--wim-spacing-md) + var(--wim-spacing-4xl) + var(--wim-spacing-sm) + var(--wim-spacing-md));
     }
 
     // Semantic sizes
-    &.widthXs { --wim-input-width: 80px; }
-    &.widthSm { --wim-input-width: 160px; }
-    &.widthMd { --wim-input-width: 280px; }
-    &.widthLg { --wim-input-width: 480px; }
-    &.widthXl { --wim-input-width: 640px; }
+    &.widthXs { --wim-input-width: var(--wim-width-xs); }
+    &.widthSm { --wim-input-width: var(--wim-width-sm); }
+    &.widthMd { --wim-input-width: var(--wim-width-md); }
+    &.widthLg { --wim-input-width: var(--wim-width-lg); }
+    &.widthXl { --wim-input-width: var(--wim-width-xl); }
 
     &.hasCustomWidth,
     [class*="width"] {

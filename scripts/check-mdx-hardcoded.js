@@ -23,6 +23,7 @@ const inlineIgnorePatterns = [
   /<T\s+.*?\/>/g,                       // 翻訳コンポーネント
   /`[^`]*`/g,                           // インラインコード
   /--[a-zA-Z0-9-]+/g,                   // CSS変数名 (--wim-...)
+  /"#[0-9a-fA-F]{3,8}"/g,              // クォートされた16進カラー値 ("#{hex}")
   /[a-zA-Z0-9]+=[\{]?['"].*?['"][\}]?/g, // JSX属性 (name="Small", duration={...} など)
   /style=\{\{[\s\S]*?\}\}/g,            // インラインスタイルオブジェクト (1行内)
   /https?:\/\/[^\s)]+/g,               // URL
@@ -49,7 +50,19 @@ const excludeWords = [
   'span', 'div', 'p', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'small', 'br', 'hr', 'img', 'video', 'audio', 'iframe', 'canvas', 'svg', 'path', 'g', 'circle', 'rect', 'line', 'polyline', 'polygon', 'text', 'tspan', 'defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop', 'use', 'symbol', 'marker', 'mask', 'pattern', 'filter', 'feGaussianBlur', 'feOffset', 'feMerge', 'feMergeNode', 'feComponentTransfer', 'feFuncR', 'feFuncG', 'feFuncB', 'feFuncA', 'feComposite', 'feColorMatrix', 'feFlood', 'feTile', 'feSpecularLighting', 'feDiffuseLighting', 'fePointLight', 'feDistantLight', 'feSpotLight', 'feTurbulence', 'feDisplacementMap', 'feMorphology', 'feConvolveMatrix', 'feImage', 'feDropShadow',
   'React', 'TypeScript', 'Vite', 'SCSS', 'HTML', 'CSS', 'JS', 'Storybook', 'Vitest', 'Playwright', 'ESLint', 'Stylelint', 'Prettier', 'Husky', 'i18next', 'Node', 'npm', 'yarn', 'git', 'GitHub', 'Special', 'Styles', 'Interaction', 'Overlays', 'Interaction & Overlays', 'Specific', 'Standard', 'Detail', 'Used', 'Predefined', 'Specifications', 'Refer', 'Follows', 'Global', 'Breakpoint', 'Responsive', 'Behavior', 'Detail', 'States', 'Visual', 'Effects', 'Transparency', 'Placeholder', 'Interactive', 'Overlay', 'Elements', 'Avatars', 'Bubbles', 'Follows', 'Specifications', 'Refer', 'Pages', 'Specialized', 'Semi', 'Chat', 'Other', 'Such', 'For', 'And', 'The', 'With', 'From', 'Pages', 'Components',
   'marginLeft', 'marginRight', 'marginTop', 'marginBottom', 'paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom', 'shapeRendering', 'verticalAlign', 'fill', 'currentColor', 'inherit', 'middle', 'center', 'none', 'absolute', 'relative', 'fixed', 'sticky', 'visible', 'hidden', 'auto', 'scroll', 'pointer', 'default', 'uppercase', 'lowercase', 'capitalize', 'normal', 'italic', 'nowrap', 'pre', 'wrap', 'break', 'word', 'all',
-  'Ghost', 'Glass', 'Skeleton', 'Used', 'Specialized'
+  'Ghost', 'Glass', 'Skeleton', 'Used', 'Specialized',
+  // Missing component names
+  'SegmentedControl', 'CommandPalette', 'HamburgerMenu', 'AvatarGroup', 'Masonry', 'IndicatorBase', 'TypographyVisualizer',
+  // Compound component name parts
+  'Range', 'Aspect', 'Ratio', 'Bento',
+  // HTML entity names
+  'nbsp',
+  // PCCS/JS data: property names and JS keywords in JSX expressions
+  'hex', 'map', 'symbol', 'colors', 'tone', 'key',
+  // PCCS notation codes
+  'ltg', 'dkg',
+  // PCCS tone names used as JS data values (translated via T component)
+  'vivid', 'bright', 'strong', 'deep', 'light', 'soft', 'dull', 'dark', 'pale', 'grayish',
 ];
 
 function checkFile(filePath) {

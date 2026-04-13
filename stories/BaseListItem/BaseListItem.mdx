@@ -1,10 +1,11 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as Stories from "./BaseListItem.stories";
+import { Docgen } from "../Docgen";
 
 <Meta of={Stories} />
 
-# BaseListItem
+<Title />
 
 <p><T k="doc.baseListItem_long_desc" /></p>
 
@@ -34,25 +35,7 @@ import * as Stories from "./BaseListItem.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.baseListItem_anatomy_root_label" /></b></td>
-      <td><T k="doc.baseListItem_anatomy_root_desc" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.baseListItem_anatomy_content_label" /></b></td>
-      <td><T k="doc.baseListItem_anatomy_content_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="BaseListItem" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -82,8 +65,7 @@ import * as Stories from "./BaseListItem.stories";
   <li><T k="doc.baseListItem_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.baseListItem_tokens_desc" /></p>
+<Docgen componentName="BaseListItem" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.baseListItem_responsive_desc" /></p>
@@ -94,20 +76,11 @@ import * as Stories from "./BaseListItem.stories";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.baseListItem_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- BaseListItem
-```
+<Docgen componentName="BaseListItem" section="test" />
 
 ---
 
-## <T k="doc.usage" />
-
-<T k="doc.baseListItem_usage_desc" />
-
-<Canvas of={Stories.Default} />
-<Controls of={Stories.Default} />
+<Docgen componentName="BaseListItem" section="props" />
 
 ---
 
@@ -130,5 +103,3 @@ npm run test -- BaseListItem
 
 ---
 
-## <T k="doc.api_reference" />
-<Controls />

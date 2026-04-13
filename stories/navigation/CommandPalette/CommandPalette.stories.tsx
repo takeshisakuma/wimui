@@ -1,19 +1,9 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  CommandPalette,
-  CommandPaletteInput,
-  CommandPaletteList,
-  CommandPaletteGroup,
-  CommandPaletteItem,
-  CommandPaletteEmpty,
-  CommandPaletteFooter,
-  CommandPaletteTrigger,
-  CommandPaletteContent,
-} from "@/components/navigation/CommandPalette/CommandPalette";
-import { Icon } from "@/components/media/Icon/Icon";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { CommandPalette, CommandPaletteContent, CommandPaletteEmpty, CommandPaletteFooter, CommandPaletteGroup, CommandPaletteInput, CommandPaletteItem, CommandPaletteList, CommandPaletteTrigger, Icon } from "wimui";
 
 
 const meta: Meta<typeof CommandPalette> = {

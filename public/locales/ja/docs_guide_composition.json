@@ -9,6 +9,16 @@
     "composition_map_desc": "主要なコンポーネントが内部的にどのコンポーネントを使用（ラップ）しているかの対応表です。下位 Tier のコンポーネントを組み合わせることで、一貫した機能を提供します。",
     "composition_map_title": "コンポジション・マップ (Composition Map)",
     "principles_desc": "WIM UI では、DOM管理やモーションの整合性を保つために以下の原則に従っています。",
-    "principles_title": "ポータルとアニメーションの原則"
+    "principles_title": "ポータルとアニメーションの原則",
+    "tier1_label": "ティア 1",
+    "tier2_label": "ティア 2",
+    "tier3_label": "ティア 3",
+    "tier4_label": "ティア 4",
+    "tier_foundations": "基盤 (Foundations)",
+    "tier_atoms": "アトム (Atoms)",
+    "tier_molecules": "モレキュール (Molecules)",
+    "tier_organisms": "オーガニズム (Organisms)",
+    "tier_internal_label": "内部",
+    "composition_uses_internally": "構成 (内部で使用)"
   }
 }

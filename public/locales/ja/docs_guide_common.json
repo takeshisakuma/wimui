@@ -144,12 +144,14 @@
   },
   "guide": {
     "do": "よい例 (Do)",
-    "dont": "悪い例 (Don't)"
+    "dont": "悪い例 (Don't)",
+    "refer_to_component_pages": "詳細は各コンポーネントのページを参照してください。"
   },
   "table": {
     "header_component": "コンポーネント",
     "header_usage": "利用シーン / 推奨される用途",
-    "header_item": "項目"
+    "header_item": "項目",
+    "header_tier": "ティア"
   },
   "important": {
     "rule": "重要ルール"

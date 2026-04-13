@@ -3,6 +3,7 @@ export * from "./components/data-display/Avatar/Avatar";
 export * from "./components/data-display/AvatarGroup/AvatarGroup";
 export * from "./components/data-display/Badge/Badge";
 export * from "./components/data-display/Calendar/Calendar";
+export * from "./components/data-display/Calendar/RangeCalendar";
 export * from "./components/data-display/Card/Card";
 export * from "./components/data-display/Carousel/Carousel";
 export * from "./components/data-display/ChatUI/ChatUI";

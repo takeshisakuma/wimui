@@ -3,12 +3,12 @@ import {
   Title,
   Description,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as QRCodeStories from "./QRCode.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={QRCodeStories} />
 
@@ -53,25 +53,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.qrcode_anatomy_root_label" /></b></td>
-      <td><T k="doc.qrcode_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.qrcode_anatomy_content_label" /></b></td>
-      <td><T k="doc.qrcode_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="QRCode" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -128,11 +110,10 @@ import { T } from "../../T";
 <p><T k="doc.qrcode_var_logo_desc" /></p>
 <Canvas of={QRCodeStories.WithImage} />
 
-<Controls />
+<Docgen componentName="QRCode" section="props" />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="QRCode" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -143,8 +124,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.qrcode_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- QRCode
-```
+<Docgen componentName="QRCode" section="test" />

@@ -12,8 +12,8 @@
     input {
       flex: 1;
       min-width: 0;
-      padding: 8px 12px;
-      font-size: 14px;
+      padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+      font-size: var(--wim-font-size-sm);
       line-height: 1.5;
       color: var(--wim-color-text-primary);
       outline: none;
@@ -38,12 +38,12 @@
     z-index: var(--wim-z-overlay);
     width: 100%;
     max-height: 280px;
-    padding: 4px 0;
-    margin-top: 4px;
+    padding: var(--wim-spacing-xs) 0;
+    margin-top: var(--wim-spacing-xs);
     overflow-y: auto;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
   }
 
@@ -67,8 +67,8 @@
   }
 
   .empty {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-secondary);
     text-align: center;
   }

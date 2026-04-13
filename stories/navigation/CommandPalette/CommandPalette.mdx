@@ -1,21 +1,11 @@
-import { Canvas, Meta, Controls, Primary } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as CommandPaletteStories from "./CommandPalette.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={CommandPaletteStories} />
 
-# Command Palette
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.commandpalette_title" />
-</p>
+<Title />
 
 <p>
   <T k="doc.commandpalette_long_desc_1" />
@@ -123,25 +113,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.commandpalette_anatomy_root_label" /></b></td>
-      <td><T k="doc.commandpalette_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.commandpalette_anatomy_content_label" /></b></td>
-      <td><T k="doc.commandpalette_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="CommandPalette" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -215,17 +187,12 @@ return (
 );
 ```
 
-## <T k="doc.preview" />
-
 <Primary />
 
-## <T k="doc.properties" />
-
-<Controls />
+<Docgen componentName="CommandPalette" section="props" />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="CommandPalette" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -236,8 +203,4 @@ return (
 ## <T k="doc.i18n_title" />
 <p><T k="doc.commandpalette_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- CommandPalette
-```
+<Docgen componentName="CommandPalette" section="test" />

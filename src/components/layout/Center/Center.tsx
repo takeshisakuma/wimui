@@ -4,6 +4,10 @@ import { Box, BoxProps } from "../../layout/Box/Box";
 import styles from "./center.module.scss";
 
 export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
+  /**
+   * If true, the center will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Whether to use inline-flex */
   inline?: boolean;
 };
@@ -13,7 +17,7 @@ export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
  */
 export const Center = React.forwardRef(
   <C extends React.ElementType = "div">(
-    { as, inline = false, style, className, children, ...props }: CenterProps<C>,
+    { as, asChild, inline = false, style, className, children, ...props }: CenterProps<C>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ref: React.Ref<any>,
   ) => {
@@ -22,6 +26,7 @@ export const Center = React.forwardRef(
     return (
       <BoxComponent
         as={as}
+        asChild={asChild}
         ref={ref}
         display={inline ? "inline-flex" : "flex"}
         className={classNames(styles.root, className)}

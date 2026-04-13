@@ -469,6 +469,7 @@
     "item_rem_desc": "Relativo ao tamanho da fonte do elemento raiz (html). A unidade mais recomendada para garantir a acessibilidade.",
     "item_viewport_desc": "Relativo à largura ou altura da viewport. Usado para exibições em tela cheia e posicionamento dinâmico.",
     "responsive_desc": "Use unidades relativas para a estrutura do layout para permitir mudanças flexíveis de acordo com o tamanho do dispositivo.",
+    "rem_label": "rem",
     "responsive_title": "Manutenção de Proporção (%, vh, vw)",
     "selection_points": "Pontos de Seleção",
     "usage_details": "Bordas, raio da borda, micro-ícones, linhas finas",
@@ -512,7 +513,12 @@
     "transition_usage_desc": "Gerenciamento centralizado para animações CSS de entrada/saída.",
     "usage_points": "Cenários de Uso",
     "vh_usage_desc": "Ocultação visual de elementos mantendo-os lidos pelos leitores de tela.",
-    "visual_utilities": "Utilidades Visuais"
+    "visual_utilities": "Utilidades Visuais",
+    "focus_trap_label": "Captura de Foco",
+    "error_boundary_label": "Limite de Erro",
+    "visually_hidden_label": "Visualmente Oculto",
+    "scroll_area_label": "Área de Rolagem",
+    "infinite_scroll_label": "Rolagem Infinita"
   },
   "utility": {
     "guide": "O WIM UI providencia vários componentes auxiliares de baixo nível que gerenciam a construção do IU. Sendo eles essenciais para o enriquecimento da facilidade."

@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InputBase } from "@/components/form/InputBase/InputBase";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { InputBase } from "wimui";
 
 
 const meta: Meta<typeof InputBase> = {

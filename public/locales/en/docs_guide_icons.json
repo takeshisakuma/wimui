@@ -74,6 +74,7 @@
     "naming_conv_title": "Standardized Naming",
     "naming_conv_desc": "Unify naming as `[Name]Icon` (e.g., SettingsIcon) to improve predictability within the codebase.",
     "accessibility_title": "Information Supplement",
-    "accessibility_desc": "Consider using `aria-label` or tooltips since icons alone may sometimes be ambiguous."
+    "accessibility_desc": "Consider using `aria-label` or tooltips since icons alone may sometimes be ambiguous.",
+    "page_title": "Icons"
   }
 }

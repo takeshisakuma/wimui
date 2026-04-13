@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Switch } from "@/components/form/Switch/Switch";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Switch } from "wimui";
 
 
 const meta: Meta<typeof Switch> = {

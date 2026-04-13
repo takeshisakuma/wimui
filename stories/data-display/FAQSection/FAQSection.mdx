@@ -1,13 +1,12 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as FAQSectionStories from "./FAQSection.stories";
 import { FAQSection } from "@/components/data-display/FAQSection/FAQSection";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={FAQSectionStories} />
 
-# FAQSection
-
-# FAQSection
+<Title />
 
 <p><T k="doc.faq_section_long_desc" /></p>
 
@@ -40,21 +39,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-
-<ul>
-  <li><T k="doc.faq_section_anatomy_header" /></li>
-  <li><T k="doc.faq_section_anatomy_accordion" />
-    <ul>
-      <li><T k="doc.faq_section_anatomy_item" />
-        <ul>
-          <li><T k="doc.faq_section_anatomy_trigger" /></li>
-          <li><T k="doc.faq_section_anatomy_content" /></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+<Docgen componentName="FAQSection" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 
@@ -78,9 +63,7 @@ import { T } from "../../T";
 
 <Canvas of={FAQSectionStories.LayoutLeft} />
 
-## <T k="doc.props" />
-
-<Controls of={FAQSectionStories.Default} />
+<Docgen componentName="FAQSection" section="props" />
 
 ## <T k="doc.a11y_spec_title" />
 
@@ -98,8 +81,7 @@ import { T } from "../../T";
   <li><T k="doc.faq_section_best_practices_3" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="FAQSection" section="tokens" />
 
 ## <T k="doc.keyboard_nav_title" />
 
@@ -118,9 +100,5 @@ import { T } from "../../T";
 
 <Canvas of={FAQSectionStories.WithoutHeader} />
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- FAQSection
-```
+<Docgen componentName="FAQSection" section="test" />
 

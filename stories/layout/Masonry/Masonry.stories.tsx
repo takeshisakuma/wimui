@@ -1,7 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Masonry } from "@/components/layout/Masonry/Masonry";
-import { Box } from "@/components/layout/Box/Box";
+import { Box, Masonry } from "wimui";
 
 const meta: Meta<typeof Masonry> = {
   title: "Components/Layout/Masonry",

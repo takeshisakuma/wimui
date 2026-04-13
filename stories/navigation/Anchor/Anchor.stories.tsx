@@ -1,8 +1,8 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { Anchor } from "@/components/navigation/Anchor/Anchor";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Anchor } from "wimui";
 
 
 const meta: Meta<typeof Anchor> = {

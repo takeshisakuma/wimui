@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Card } from "@/components/data-display/Card/Card";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Card } from "wimui";
 
 
 const meta: Meta<typeof Card> = {

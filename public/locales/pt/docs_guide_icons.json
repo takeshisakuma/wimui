@@ -74,6 +74,7 @@
     "naming_conv_title": "Nomenclatura Padronizada",
     "naming_conv_desc": "Unifique a nomenclatura como `[Name]Icon` (ex: SettingsIcon) para melhorar a previsibilidade na base de código.",
     "accessibility_title": "Suplemento de Informação",
-    "accessibility_desc": "Considere o uso de `aria-label` ou tooltips, pois ícones isolados podem às vezes ser ambíguos."
+    "accessibility_desc": "Considere o uso de `aria-label` ou tooltips, pois ícones isolados podem às vezes ser ambíguos.",
+    "page_title": "Ícones"
   }
 }

@@ -1,11 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Table } from "@/components/data-display/Table/Table";
-import { Badge } from "@/components/data-display/Badge/Badge";
-import { Checkbox } from "@/components/form/Checkbox/Checkbox";
-import { IconButton } from "@/components/form/IconButton/IconButton";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Badge, Checkbox, IconButton, Table } from "wimui";
 
 
 const meta: Meta<typeof Table> = {

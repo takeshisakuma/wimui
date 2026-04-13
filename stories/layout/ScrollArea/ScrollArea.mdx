@@ -1,14 +1,13 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as ScrollAreaStories from "./ScrollArea.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={ScrollAreaStories} />
 
@@ -18,7 +17,7 @@ import { T } from "../../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.scrollarea_long_desc" />
@@ -49,25 +48,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.scrollarea_anatomy_root_label" /></b></td>
-      <td><T k="doc.scrollarea_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.scrollarea_anatomy_content_label" /></b></td>
-      <td><T k="doc.scrollarea_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="ScrollArea" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -117,9 +98,11 @@ import { T } from "../../T";
 </ScrollArea>;
 ```
 
+<Primary />
+
 <Canvas of={ScrollAreaStories.Default} />
 
-<Controls />
+<Docgen componentName="ScrollArea" section="props" />
 
 ## <T k="doc.variants" />
 
@@ -165,9 +148,7 @@ import { T } from "../../T";
 
 <Canvas of={ScrollAreaStories.WithChildren} />
 
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="ScrollArea" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -178,8 +159,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.scrollarea_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
+<Docgen componentName="ScrollArea" section="test" />
 
-```bash
-npm run test -- ScrollArea
-```
+<Stories />

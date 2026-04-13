@@ -1,23 +1,21 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as MasonryStories from "./Masonry.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={MasonryStories} />
 
-# Masonry
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.masonry_title" />
 </p>
-
-
 
 <p><T k="doc.masonry_long_desc" /></p>
 
@@ -46,25 +44,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.masonry_anatomy_root_label" /></b></td>
-      <td><T k="doc.masonry_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.masonry_anatomy_content_label" /></b></td>
-      <td><T k="doc.masonry_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Masonry" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -103,6 +83,8 @@ import { T } from "../../T";
   <li><T k="doc.masonry_best_practice_2" /></li>
 </ul>
 
+<Primary />
+
 ## <T k="doc.usage" />
 
 ```tsx
@@ -111,18 +93,10 @@ import { Box } from "../Box/Box";
 
 const Demo = () => (
   <Masonry columns={3} spacing={16}>
-    <Box h={150} bg="lightblue">
-      1
-    </Box>
-    <Box h={200} bg="lightgreen">
-      2
-    </Box>
-    <Box h={100} bg="lightpink">
-      3
-    </Box>
-    <Box h={250} bg="lightyellow">
-      4
-    </Box>
+    <Box h={150} bg="lightblue">1</Box>
+    <Box h={200} bg="lightgreen">2</Box>
+    <Box h={100} bg="lightpink">3</Box>
+    <Box h={250} bg="lightyellow">4</Box>
   </Masonry>
 );
 ```
@@ -154,9 +128,7 @@ const Demo = () => (
   </tbody>
 </table>
 
-## <T k="doc.api_reference" />
-
-<Controls />
+<Docgen componentName="Masonry" section="props" />
 
 ## <T k="doc.masonry_columns_adj" />
 
@@ -170,9 +142,9 @@ const Demo = () => (
 
 <Canvas of={MasonryStories.LargeSpacing} />
 
+<Stories />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Masonry" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -183,8 +155,4 @@ const Demo = () => (
 ## <T k="doc.i18n_title" />
 <p><T k="doc.masonry_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Masonry
-```
+<Docgen componentName="Masonry" section="test" />

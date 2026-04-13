@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import Header, { HeaderProps } from "@/components/layout/Header/Header";
+import { Header } from "wimui";
+import type { HeaderProps } from "wimui";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 

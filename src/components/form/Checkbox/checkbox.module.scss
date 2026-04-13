@@ -18,13 +18,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--wim-checkbox-size, 20px);
-    height: var(--wim-checkbox-size, 20px);
+    width: var(--wim-checkbox-size, var(--wim-height-xs));
+    height: var(--wim-checkbox-size, var(--wim-height-xs));
     margin: 0 var(--wim-spacing-sm) 0 0;
     appearance: none;
     cursor: pointer;
     background-color: var(--wim-color-bg-component);
-    border: var(--wim-border-width-thick, 2px) solid var(--wim-color-text-tertiary);
+    border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-sm);
     transition: all var(--wim-duration-fast) var(--wim-easing-standard);
 
@@ -44,7 +44,7 @@
         width: var(--wim-checkbox-check-width, 5px);
         height: var(--wim-checkbox-check-height, 9px);
         border: solid var(--wim-color-text-white);
-        border-width: 0 var(--wim-border-width-thick, 2px) var(--wim-border-width-thick, 2px) 0;
+        border-width: 0 var(--wim-border-width-thick) var(--wim-border-width-thick) 0;
         opacity: 1;
         transform: rotate(45deg) scale(1) translate(-1px, -1px);
       }
@@ -56,10 +56,10 @@
       border-color: var(--wim-color-primary);
 
       &::after {
-        width: var(--wim-checkbox-indeterminate-width, 10px);
-        height: var(--wim-border-width-thick, 2px);
+        width: var(--wim-checkbox-indeterminate-width, var(--wim-spacing-xs));
+        height: var(--wim-border-width-thick);
         background-color: var(--wim-color-text-white);
-        border-radius: var(--wim-radius-3xs, 1px);
+        border-radius: var(--wim-radius-3xs, var(--wim-border-width-thin));
         opacity: 1;
         transform: scale(1);
       }
@@ -67,8 +67,8 @@
 
     // Focus state
     &:focus-visible {
-      outline: var(--wim-border-width-thick, 2px) solid var(--wim-color-primary);
-      outline-offset: var(--wim-border-width-thick, 2px);
+      outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
+      outline-offset: var(--wim-border-width-thick);
       box-shadow: var(--wim-shadow-focus);
     }
 

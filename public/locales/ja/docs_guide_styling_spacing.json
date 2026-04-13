@@ -17,7 +17,13 @@
     "spacings_scale": "スペーシング・スケール",
     "spacings_title": "余白と角丸 (Spacings & Radius)",
     "tokens_title": "デザイントークン",
-    "usage": "使い分けの基準"
+    "usage": "使い分けの基準",
+    "spacings_border_width_title": "ボーダー幅",
+    "spacings_header_name": "名前",
+    "spacings_header_value": "値",
+    "spacings_header_token": "トークン",
+    "spacings_thin": "細 (Thin)",
+    "spacings_thick": "太 (Thick)"
   },
   "perf": {
     "tips_title": "パフォーマンスのヒント",

@@ -1,11 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DataGrid, type DataGridColumn, type DataGridProps } from "@/components/data-display/DataGrid/DataGrid";
-import { Badge } from "@/components/data-display/Badge/Badge";
-import { Button } from "@/components/form/Button/Button";
-import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Badge, Button, DataGrid, Icon, type DataGridColumn, type DataGridProps } from "wimui";
 
 
 const meta: Meta<typeof DataGrid> = {

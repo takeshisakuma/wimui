@@ -1,6 +1,7 @@
 import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import * as ChartsStories from "./Charts.stories";
 import { T } from "../T";
+import { Docgen } from "../Docgen";
 
 <Meta title="Components/Visualization/Charts" of={ChartsStories} />
 
@@ -139,7 +140,4 @@ import { T } from "../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.charts_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-```bash
-npm run test -- Chart
-```
+<Docgen componentName="Chart" section="test" />

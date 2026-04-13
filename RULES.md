@@ -21,7 +21,7 @@
 - en / ja / pt すべてのリソースファイルで漏れなく定義されているか、`npm run i18n:sync` でチェックしてください。
 - i18nキーは **ネスト構造** で命名してください（例: `a11y.close`, `button.clear`, `fileupload.button`）。JSONファイルはネストオブジェクト形式で管理し、コード側は `.` 区切りのドット記法を使用します。新規キーは同じ prefix グループに追加してください。
 - 新しいネームスペース（新しいJSONファイル）を追加した場合は、Vite/Storybook のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。開発者が手動で更新する必要はありません。
-- **ドキュメントの自動化（Docgen）**: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）は、Vite プラグインによって `src/data/docgen.json` へ自動抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、これらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
+- **ドキュメントの自動化（Docgen）**: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）、テスト実行方法は、Vite プラグインによって `src/data/docgen.json` へ自動抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、**見出し（H2）を含めて**これらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
 - MDXや TSX/Stories で `<T k="..." />` や `t("...")` を使うキーを新規追加・変更した場合は、必ず en / ja / pt の**すべて**のロケールファイルに同じキーを追加してください。1言語だけ追加して他を忘れると翻訳キーがそのまま表示されます。
 - 既存の汎用キー（`doc.scenario.*` など）を MDX で使う場合は、**事前にロケールファイルに存在するか検索して確認**してください。存在しなければ追加してください。`doc.scenario.filter_title` は存在するが `doc.scenario.faq_title` は存在しない、といった漏れが起きやすいです。
 
@@ -40,7 +40,13 @@
   - **`intent` prop は視覚・意味的状態のみを表します。** 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
     - **例外（Resultコンポーネント）**: 意味的な状態（success, error等）は `intent` プロパティ、HTTPステータスコード（404, 500等）は `status` プロパティとして使い分けます。
   - **`size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
-  - **ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。** 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。
+  - **ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。** 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。現在、以下のコンポーネントで実装済みです。
+    - **Typography**: Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote
+    - **Overlay**: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet
+    - **Navigation**: Link, CommandPalette
+    - **Form**: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker
+    - **Layout**: Box, Flex, Stack, Group
+    - **Data Display**: Badge, Chip, Tag, Card, Table, List, Kanban
   - **共通 prop 型は `src/types/tokens.ts` の型を使用してください。** インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
     - `ComponentSize` — `"sm" | "md" | "lg"`（`size` prop 共通）
     - `ButtonVariant` — `"solid" | "outline" | "ghost"`（Button・ButtonGroup・LinkButton）
@@ -271,20 +277,35 @@ Q2. このコンポーネント自身が他の多くのコンポーネントか�
 
 ## mdxに記載すること
 
-Storybookのmdxは以下のセクション構成で記載してください。
+Storybookのmdxは以下のセクション構成で記載してください。**必須セクションは15**（見出しなし概要 1 + 見出しあり 14）で、うち4つは `<Docgen />` による自動挿入です。
 
-- コンポーネントの概要
-- Props (自動抽出)
-- Design Intent（デザイン意図）
-- Choice Matrix（使い分け基準）
-- Anatomy（構成要素、自動抽出可能）
-- Content Guidelines（コンテンツ指針）
-- Motion Spec（モーション仕様）
-- A11y Spec（アクセシビリティ仕様）
-- Real World Scenarios（ユースケース）
-- Best Practices（ベストプラクティス）
-- デザイントークンを使用している箇所 (自動抽出)
-- レスポンシブデザインへの対応
-- キーボードナビゲーション
-- テストの実行方法 (自動生成)
-- 多言語化の対応
+**必須セクション（この順序で記載）:**
+
+| # | セクション | 備考 |
+|---|---|---|
+| 1 | コンポーネントの概要 | 見出しなし。ページ冒頭の説明文 |
+| 2 | Design Intent（デザイン意図） | `## <T k="doc.design_intent_title" />` |
+| 3 | Choice Matrix（使い分け基準） | `## <T k="doc.choice_matrix_title" />` |
+| 4 | Anatomy（構成要素） | `<Docgen section="anatomy" />` により見出し込みで自動挿入 |
+| 5 | Content Guidelines（コンテンツ指針） | `## <T k="doc.content_guidelines_title" />` |
+| 6 | Motion Spec（モーション仕様） | `## <T k="doc.motion_spec_title" />` |
+| 7 | A11y Spec（アクセシビリティ仕様） | `## <T k="doc.a11y_spec_title" />` |
+| 8 | Real World Scenarios（ユースケース） | `## <T k="doc.real_world_scenarios_title" />` |
+| 9 | Best Practices（ベストプラクティス） | `## <T k="doc.best_practices_title" />` |
+| 10 | Props（プロパティ一覧） | `<Docgen section="props" />` により見出し込みで自動挿入 |
+| 11 | デザイントークンの活用 | `<Docgen section="tokens" />` により見出し込みで自動挿入 |
+| 12 | レスポンシブデザインへの対応 | `## <T k="doc.responsive_title" />` |
+| 13 | キーボードナビゲーション | `## <T k="doc.keyboard_nav_title" />` |
+| 14 | 多言語化の対応 | `## <T k="doc.i18n_title" />` |
+| 15 | テストの実行方法 | `<Docgen section="test" />` により見出し込みで自動生成 |
+
+**任意セクション（コンポーネントの特性に応じて挿入）:**
+
+Best Practices と Props の間、または Props の後に必要なセクションを追加できます。
+
+| セクション | 用途 | 例 |
+|---|---|---|
+| Usage（使い方） | 基本的な使い方を示す | `## <T k="doc.usage" />` |
+| Example（実装例） | サンプルコード・Canvas を掲載 | `## <T k="doc.example" />` |
+| Variations（バリエーション） | 見た目・動作のバリエーション一覧 | `## <T k="doc.variations" />` |
+| コンポーネント固有のセクション | 特殊な注意事項など | 例: Dialog の「Why not modal?」|

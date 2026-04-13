@@ -14,7 +14,8 @@
     "isolatedModules": true, // 各ファイルを独立したモジュールとしてコンパイルする (バンドラーで推奨)
     "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "wimui": ["./src/index.ts"]
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
     "types": ["vitest/globals", "@testing-library/jest-dom", "vite/client"]

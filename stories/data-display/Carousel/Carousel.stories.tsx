@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Carousel } from "@/components/data-display/Carousel/Carousel";
 import SampleImage from "@/media/imagesanple.webp";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Carousel } from "wimui";
 
 
 const meta: Meta<typeof Carousel> = {

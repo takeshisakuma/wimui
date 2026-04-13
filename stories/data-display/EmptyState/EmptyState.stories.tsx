@@ -1,10 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EmptyState } from "@/components/data-display/EmptyState/EmptyState";
-import { Icon } from "@/components/media/Icon/Icon";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, EmptyState, Icon } from "wimui";
 
 
 const meta: Meta<typeof EmptyState> = {

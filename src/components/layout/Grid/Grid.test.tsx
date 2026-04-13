@@ -182,6 +182,20 @@ describe("Grid", () => {
     render(<Grid aria-label="grid layout" data-testid="grid" />);
     expect(screen.getByTestId("grid")).toHaveAttribute("aria-label", "grid layout");
   });
+
+  it("renders as child element when asChild is true", () => {
+    render(
+      <Grid cols={3} asChild>
+        <section data-testid="grid-child">Slotted Grid</section>
+      </Grid>,
+    );
+    const el = screen.getByTestId("grid-child");
+    expect(el.tagName).toBe("SECTION");
+    expect(el).toHaveStyle({
+      display: "grid",
+      "--wim-grid-cols": "repeat(3, minmax(0, 1fr))",
+    });
+  });
 });
 
 describe("generateResponsiveVars", () => {

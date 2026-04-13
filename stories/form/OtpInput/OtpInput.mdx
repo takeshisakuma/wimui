@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as OtpInputStories from "./OtpInput.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={OtpInputStories} />
 
@@ -20,25 +21,11 @@ import { T } from "../../T";
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.otpinput_design_intent" /></p>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.otpinput_anatomy_fields_label" /></b></td>
-      <td><T k="doc.otpinput_anatomy_fields" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="OtpInput" section="anatomy" />
 
 <Canvas of={OtpInputStories.Default} />
 
-<Controls of={OtpInputStories.Default} />
+<Docgen componentName="OtpInput" section="props" />
 
 ## <T k="doc.otpinput_length_change" />
 <p><T k="doc.otpinput_length_change_desc" /></p>
@@ -107,8 +94,6 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.a11y_spec_title" />
-<p><T k="doc.otpinput_a11y_desc" /></p>
 
 ## <T k="doc.best_practices_title" />
 <ul>
@@ -125,8 +110,7 @@ import { OtpInput } from "@/components/form/OtpInput/OtpInput";
 ```
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="OtpInput" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -137,8 +121,4 @@ import { OtpInput } from "@/components/form/OtpInput/OtpInput";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.otpinput_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- OtpInput
-```
+<Docgen componentName="OtpInput" section="test" />

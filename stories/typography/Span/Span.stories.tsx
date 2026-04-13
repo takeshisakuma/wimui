@@ -1,7 +1,7 @@
 import { fn } from "storybook/test";
-import { Span } from "@/components/typography/Span/Span";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Span } from "wimui";
 
 
 export default {

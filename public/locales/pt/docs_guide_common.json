@@ -144,12 +144,14 @@
   },
   "guide": {
     "do": "Fazer (Do)",
-    "dont": "Não Fazer (Don't)"
+    "dont": "Não Fazer (Don't)",
+    "refer_to_component_pages": "Consulte as páginas específicas de cada componente para detalhes."
   },
   "table": {
     "header_component": "Componente",
     "header_usage": "Uso / Cenas Recomendadas",
-    "header_item": "Item"
+    "header_item": "Item",
+    "header_tier": "Nível"
   },
   "important": {
     "rule": "Regra Importante"

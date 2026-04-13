@@ -1,11 +1,17 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot } from "@radix-ui/react-slot";
 import styles from "./grid.module.scss";
 
 import { generateResponsiveVars, ResponsiveProp } from "./grid-utils";
 import { getSpacingValue } from "../../../utilities/style-utils";
 
 type GridProps = React.ComponentPropsWithoutRef<"div"> & {
+  /**
+   * If true, the grid will be rendered as its child, merging its props onto that child.
+   * The container-query wrapper div is preserved to maintain responsive column behaviour.
+   */
+  asChild?: boolean;
   cols?: ResponsiveProp<number | string>;
   rows?: number | string;
   gap?: ResponsiveProp<number | string>;
@@ -17,9 +23,10 @@ type GridProps = React.ComponentPropsWithoutRef<"div"> & {
   inline?: boolean;
 };
 
-export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
+export const Grid = React.forwardRef(
   (
     {
+      asChild = false,
       cols,
       rows,
       gap,
@@ -33,9 +40,11 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       style,
       children,
       ...props
-    },
-    ref,
+    }: GridProps,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.Ref<any>,
   ) => {
+    const Component = asChild ? Slot : "div";
     const colsStyle = generateResponsiveVars(cols, "--wim-grid-cols", (v) =>
       typeof v === "number" ? `repeat(${v}, minmax(0, 1fr))` : String(v),
     );
@@ -108,14 +117,14 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
 
     return (
       <div className={styles.container}>
-        <div
+        <Component
           ref={ref}
           className={classNames(styles.root, className)}
           style={gridStyle}
           {...props}
         >
           {children}
-        </div>
+        </Component>
       </div>
     );
   },

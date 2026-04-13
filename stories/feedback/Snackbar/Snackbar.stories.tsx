@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
-import { Snackbar } from "@/components/feedback/Snackbar/Snackbar";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Snackbar } from "wimui";
 
 
 const meta: Meta<typeof Snackbar> = {

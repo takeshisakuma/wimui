@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SearchInput } from "@/components/form/SearchInput/SearchInput";
-import { Label } from "@/components/typography/Label/Label";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Label, SearchInput } from "wimui";
 
 
 const meta: Meta<typeof SearchInput> = {

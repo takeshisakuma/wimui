@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Progress } from "@/components/feedback/Progress/Progress";
+import { Progress } from "wimui";
 
 const meta: Meta<typeof Progress> = {
   title: "Components/Loading States/Progress",

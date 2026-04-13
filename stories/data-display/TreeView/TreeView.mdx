@@ -1,6 +1,7 @@
-import { Meta, Story, Canvas, Controls, Title, Stories } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TreeViewStories from "./TreeView.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={TreeViewStories} />
 
@@ -59,25 +60,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.treeview_anatomy_root_label" /></b></td>
-      <td><T k="doc.treeview_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.treeview_anatomy_content_label" /></b></td>
-      <td><T k="doc.treeview_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="TreeView" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -235,181 +218,11 @@ const [checked, setChecked] = useState([]);
 </TreeView>;
 ```
 
-## <T k="doc.component_api" />
+<Docgen componentName="TreeView" section="props" />
 
-### TreeView
+### <T k="doc.treeview_item_props" />
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.prop" /></th>
-      <th><T k="doc.type" /></th>
-      <th><T k="doc.default" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code>width</code>
-      </td>
-      <td>
-        <code>string | number</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_width" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>multiSelect</code>
-      </td>
-      <td>
-        <code>boolean</code>
-      </td>
-      <td>
-        <code>false</code>
-      </td>
-      <td><T k="doc.treeview_api_multiselect" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>checkable</code>
-      </td>
-      <td>
-        <code>boolean</code>
-      </td>
-      <td>
-        <code>false</code>
-      </td>
-      <td><T k="doc.treeview_api_checkable" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>searchable</code>
-      </td>
-      <td>
-        <code>boolean</code>
-      </td>
-      <td>
-        <code>false</code>
-      </td>
-      <td><T k="doc.treeview_api_searchable" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>defaultExpandedValues</code>
-      </td>
-      <td>
-        <code>string[]</code>
-      </td>
-      <td>
-        <code>[]</code>
-      </td>
-      <td><T k="doc.treeview_api_default_expanded" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>defaultSelectedValues</code>
-      </td>
-      <td>
-        <code>string[]</code>
-      </td>
-      <td>
-        <code>[]</code>
-      </td>
-      <td><T k="doc.treeview_api_default_selected" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>defaultCheckedValues</code>
-      </td>
-      <td>
-        <code>string[]</code>
-      </td>
-      <td>
-        <code>[]</code>
-      </td>
-      <td><T k="doc.treeview_api_default_checked" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>onCheckedChange</code>
-      </td>
-      <td>
-        <code>(checked: string[]) =&gt; void</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_oncheckedchange" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### TreeView.Item
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.prop" /></th>
-      <th><T k="doc.type" /></th>
-      <th><T k="doc.default" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code>value</code>
-      </td>
-      <td>
-        <code>string</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_item_value" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>label</code>
-      </td>
-      <td>
-        <code>ReactNode</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_item_label" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>icon</code>
-      </td>
-      <td>
-        <code>ReactNode</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_item_icon" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>disabled</code>
-      </td>
-      <td>
-        <code>boolean</code>
-      </td>
-      <td>
-        <code>false</code>
-      </td>
-      <td><T k="doc.treeview_api_item_disabled" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>children</code>
-      </td>
-      <td>
-        <code>ReactNode</code>
-      </td>
-      <td>-</td>
-      <td><T k="doc.treeview_api_item_children" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="TreeView.Item" section="props" />
 
 ## <T k="doc.keyboard_navigation" />
 
@@ -472,8 +285,7 @@ import { T } from "../../T";
 </TreeView>;
 ```
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="TreeView" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -484,10 +296,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.treeview_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- TreeView
-```
+<Docgen componentName="TreeView" section="test" />
 
 <Stories />

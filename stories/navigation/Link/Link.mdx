@@ -1,21 +1,11 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
 import * as LinkStories from "./Link.stories";
+import { Docgen } from "../../Docgen";
 
 <Meta of={LinkStories} />
 
-# <T k="doc.link_title" />
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.link_long_desc" />
-</p>
+<Title />
 
 <p><T k="doc.guide" />: <T k="doc.link_vs_button_guide_desc" /></p>
 
@@ -48,25 +38,7 @@ import * as LinkStories from "./Link.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.link_anatomy_root_label" /></b></td>
-      <td><T k="doc.link_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.link_anatomy_content_label" /></b></td>
-      <td><T k="doc.link_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Link" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -113,9 +85,7 @@ import { Link } from "@/components/navigation/Link/Link";
 <Link label="Go to Home" href="/" variant="solid" />;
 ```
 
-## <T k="doc.props" />
-
-<Controls />
+<Docgen componentName="Link" section="props" />
 
 ## <T k="doc.variants" />
 
@@ -170,8 +140,7 @@ import { Link } from "@/components/navigation/Link/Link";
 <Canvas of={LinkStories.Large} />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Link" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -182,8 +151,4 @@ import { Link } from "@/components/navigation/Link/Link";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.link_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Link
-```
+<Docgen componentName="Link" section="test" />

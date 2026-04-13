@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { VirtualList } from "@/components/data-display/VirtualList/VirtualList";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { VirtualList } from "wimui";
 
 const meta: Meta<typeof VirtualList> = {
   title: "Components/Data Structures/VirtualList",

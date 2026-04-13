@@ -1,16 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelinePoint,
-  TimelineContent,
-  TimelineOppositeContent,
-} from "@/components/data-display/Timeline/Timeline";
-import { Icon } from "@/components/media/Icon/Icon";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Icon, Timeline, TimelineConnector, TimelineContent, TimelineItem, TimelineOppositeContent, TimelinePoint, TimelineSeparator } from "wimui";
 
 
 const meta: Meta<typeof Timeline> = {

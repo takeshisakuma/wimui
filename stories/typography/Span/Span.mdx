@@ -1,21 +1,11 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as SpanStories from "./Span.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={SpanStories} />
 
-# Span
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.span_title" />
-</p>
+<Title />
 
 <p><T k="doc.span_long_desc" /></p>
 
@@ -46,25 +36,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.span_anatomy_root_label" /></b></td>
-      <td><T k="doc.span_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.span_anatomy_content_label" /></b></td>
-      <td><T k="doc.span_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Span" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -103,8 +75,7 @@ import { T } from "../../T";
   <li><T k="doc.span_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.span_tokens_desc" /></p>
+<Docgen componentName="Span" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.span_responsive_desc" /></p>
@@ -112,10 +83,7 @@ import { T } from "../../T";
 ## <T k="doc.keyboard_nav_title" />
 <p><T k="doc.span_keyboard_desc" /></p>
 
-## <T k="doc.test_title" />
-```bash
-npm run test -- Span
-```
+<Docgen componentName="Span" section="test" />
 
 ## <T k="doc.i18n_title" />
 <p><T k="doc.span_i18n_desc" /></p>
@@ -169,6 +137,4 @@ npm run test -- Span
 </Span>
 ```
 
-## <T k="doc.props" />
-
-<Controls />
+<Docgen componentName="Span" section="props" />

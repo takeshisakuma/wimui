@@ -1,10 +1,11 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
 import * as LabelStories from "./Label.stories";
+import { Docgen } from "../../Docgen";
 
 <Meta of={LabelStories} />
 
-# Label
+<Title />
 
 <p><T k="doc.label_long_desc" /></p>
 
@@ -34,25 +35,7 @@ import * as LabelStories from "./Label.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.label_anatomy_root_label" /></b></td>
-      <td><T k="doc.label_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.label_anatomy_content_label" /></b></td>
-      <td><T k="doc.label_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Label" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -81,8 +64,7 @@ import * as LabelStories from "./Label.stories";
   <li><T k="doc.label_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.label_tokens_desc" /></p>
+<Docgen componentName="Label" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.label_responsive_desc" /></p>
@@ -93,18 +75,11 @@ import * as LabelStories from "./Label.stories";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.label_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Label
-```
+<Docgen componentName="Label" section="test" />
 
 ---
 
-## <T k="doc.usage" />
-
-<Canvas of={LabelStories.Default} />
-<Controls of={LabelStories.Default} />
+<Docgen componentName="Label" section="props" />
 
 ---
 
@@ -121,5 +96,3 @@ npm run test -- Label
 
 ---
 
-## <T k="doc.api_reference" />
-<Controls />

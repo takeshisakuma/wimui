@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as StepperStories from "./Stepper.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={StepperStories} />
 
@@ -48,25 +48,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.stepper_anatomy_root_label" /></b></td>
-      <td><T k="doc.stepper_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.stepper_anatomy_content_label" /></b></td>
-      <td><T k="doc.stepper_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Stepper" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -107,10 +89,9 @@ import { T } from "../../T";
 
 <Primary />
 
-<h2><T k="doc.props" /></h2>
-<Controls />
+<Docgen componentName="Stepper" section="props" />
 
-<h2><T k="doc.stepper_guide" /></h2>
+## <T k="doc.stepper_guide" />
 
 <h3><T k="doc.stepper_role_benefit" /></h3>
 <table>
@@ -175,7 +156,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-<h2><T k="doc.stepper_best" /></h2>
+## <T k="doc.stepper_best" />
 
 <table>
   <thead>
@@ -232,7 +213,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-<h2><T k="doc.variations" /></h2>
+## <T k="doc.variations" />
 
 ### <T k="doc.stepper_var_ver" />
 <p><T k="doc.stepper_var_ver_desc" /></p>
@@ -259,8 +240,7 @@ import { T } from "../../T";
 
 <Canvas of={StepperStories.Interactive} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Stepper" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -271,10 +251,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.stepper_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Stepper
-```
+<Docgen componentName="Stepper" section="test" />
 
 <Stories />

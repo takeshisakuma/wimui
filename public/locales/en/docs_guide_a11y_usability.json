@@ -37,7 +37,8 @@
     "lvb_tag_button_comp": "`<Button>`",
     "lvb_tag_button_native": "`<button>`",
     "lvb_tag_link": "`<Link>`",
-    "lvb_title": "Link vs Button"
+    "lvb_title": "Link vs Button",
+    "lvb_keyboard_screen_readers": "Keyboard & Screen Readers"
   },
   "loading": {
     "component_location": "Location",

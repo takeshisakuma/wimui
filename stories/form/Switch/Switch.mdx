@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as SwitchStories from "./Switch.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={SwitchStories} />
 
@@ -51,25 +51,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.switch_anatomy_track_label" /></b></td>
-      <td><T k="doc.switch_anatomy_track" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.switch_anatomy_thumb_label" /></b></td>
-      <td><T k="doc.switch_anatomy_thumb" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Switch" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <p><T k="doc.switch_content_labels" /></p>
@@ -111,7 +93,7 @@ import { T } from "../../T";
 
 <Primary />
 
-<Controls />
+<Docgen componentName="Switch" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -124,8 +106,7 @@ import { T } from "../../T";
 ### <T k="doc.disabled" />
 <Canvas of={SwitchStories.Disabled} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Switch" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -136,10 +117,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.switch_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Switch
-```
+<Docgen componentName="Switch" section="test" />
 
 <Stories />

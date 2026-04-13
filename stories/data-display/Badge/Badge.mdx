@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
-import * as BadgeStories from "./Badge.stories";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+import * as BadgeStories from "./Badge.stories";
 
 <Meta of={BadgeStories} />
 
@@ -20,8 +21,6 @@ import { T } from "../../T";
 <p><T k="doc.badge_long_desc" /></p>
 
 <Primary />
-
-<Controls />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.badge_design_intent" /></p>
@@ -52,29 +51,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.badge_anatomy_container_label" /></b></td>
-      <td><T k="doc.badge_anatomy_container" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.badge_anatomy_label_label" /></b></td>
-      <td><T k="doc.badge_anatomy_label" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.badge_anatomy_icon_label" /></b></td>
-      <td><T k="doc.badge_anatomy_icon" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Badge" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -116,6 +93,8 @@ import { T } from "../../T";
   <li><T k="doc.badge_best_practice_2" /></li>
 </ul>
 
+<Docgen componentName="Badge" section="props" />
+
 ## <T k="doc.variations" />
 
 <p><T k="doc.badge_variants_desc" /></p>
@@ -137,8 +116,7 @@ import { T } from "../../T";
 <p><T k="doc.badge_icon_only_desc" /></p>
 <Canvas of={BadgeStories.IconOnly} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Badge" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -149,10 +127,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.badge_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Badge
-```
+<Docgen componentName="Badge" section="test" />
 
 <Stories />

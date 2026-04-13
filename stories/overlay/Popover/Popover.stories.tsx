@@ -1,16 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/overlay/Popover/Popover";
-import { Button } from "@/components/form/Button/Button";
-import { Input } from "@/components/form/Input/Input";
-import { Label } from "@/components/typography/Label/Label";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from "wimui";
 
 
 const meta: Meta<typeof Popover> = {

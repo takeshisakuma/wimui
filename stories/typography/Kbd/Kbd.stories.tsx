@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Kbd } from "@/components/typography/Kbd/Kbd";
+import { Kbd } from "wimui";
 
 const meta: Meta<typeof Kbd> = {
   title: "Components/Typography & Icons/Kbd",

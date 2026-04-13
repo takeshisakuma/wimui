@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  FloatButton,
-  FloatButtonProps,
-} from "@/components/form/FloatButton/FloatButton";
+
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { FloatButton, FloatButtonProps } from "wimui";
 
 
 const meta: Meta<typeof FloatButton> = {

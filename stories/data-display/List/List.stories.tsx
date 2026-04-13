@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { List, ListItem } from "@/components/data-display/List/List";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { List, ListItem } from "wimui";
 
 
 const meta: Meta<typeof List> = {

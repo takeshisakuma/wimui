@@ -121,6 +121,7 @@
     "tree_features": "Representação visual de dados hierárquicos (pai-filho) com capacidades de dobragem/desdobramento, como estruturas de diretório.",
     "tree_usage": "Estruturas de diretório como um gerenciador de arquivos, organogramas, árvores de categorias em várias camadas.",
     "usecase": "Casos de Uso",
-    "vertical_list": "Coluna Única Vertical"
+    "vertical_list": "Coluna Única Vertical",
+    "row_column_annotation": "(Linha/Coluna)"
   }
 }

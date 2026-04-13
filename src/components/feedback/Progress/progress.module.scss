@@ -32,19 +32,19 @@
   // Sizes
   .sm {
     .track {
-      height: var(--progress-height-sm, 4px);
+      height: var(--progress-height-sm, var(--wim-spacing-xs));
     }
   }
 
   .md {
     .track {
-      height: var(--progress-height-md, 8px);
+      height: var(--progress-height-md, var(--wim-spacing-md));
     }
   }
 
   .lg {
     .track {
-      height: var(--progress-height-lg, 12px);
+      height: var(--progress-height-lg, var(--wim-spacing-lg));
     }
   }
 

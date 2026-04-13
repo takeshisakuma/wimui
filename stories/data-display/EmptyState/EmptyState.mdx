@@ -1,10 +1,11 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as EmptyStateStories from "./EmptyState.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={EmptyStateStories} />
 
-# EmptyState
+<Title />
 
 <p
   style={{
@@ -48,33 +49,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.emptystate_anatomy_visual_label" /></b></td>
-      <td><T k="doc.emptystate_anatomy_visual" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.emptystate_anatomy_title_label" /></b></td>
-      <td><T k="doc.emptystate_anatomy_title" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.emptystate_anatomy_description_label" /></b></td>
-      <td><T k="doc.emptystate_anatomy_description" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.emptystate_anatomy_action_label" /></b></td>
-      <td><T k="doc.emptystate_anatomy_action" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="EmptyState" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -140,8 +115,7 @@ import { T } from "../../T";
 
 <Canvas of={EmptyStateStories.CustomAction} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="EmptyState" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -152,13 +126,7 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.emptystate_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
+<Docgen componentName="EmptyState" section="test" />
 
-```bash
-npm run test -- EmptyState
-```
-
-## Props
-
-<Controls />
+<Docgen componentName="EmptyState" section="props" />
 

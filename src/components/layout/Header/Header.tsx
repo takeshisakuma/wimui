@@ -15,7 +15,7 @@ export interface HeaderProps extends React.ComponentPropsWithoutRef<"header"> {
   background?: "primary" | "secondary" | "transparent";
 }
 
-export const Header = React.forwardRef<HTMLElement, HeaderProps>(
+const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
   (
     {
       className,
@@ -52,7 +52,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
   },
 );
 
-Header.displayName = "Header";
+HeaderRoot.displayName = "Header";
 
 export interface HeaderSectionProps extends React.ComponentPropsWithoutRef<"div"> {
   align?: "start" | "center" | "end";
@@ -79,6 +79,8 @@ export const HeaderSection = React.forwardRef<
 
 HeaderSection.displayName = "Header.Section";
 
-export default Object.assign(Header, {
+export const Header = Object.assign(HeaderRoot, {
   Section: HeaderSection,
 });
+
+export default Header;

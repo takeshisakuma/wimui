@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RichTextEditor } from "@/components/form/RichTextEditor/RichTextEditor";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { RichTextEditor } from "wimui";
 
 const meta: Meta<typeof RichTextEditor> = {
   title: "Components/Basic Inputs/RichTextEditor",

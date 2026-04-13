@@ -5,6 +5,10 @@ import styles from "./container.module.scss";
 
 export type ContainerProps<C extends React.ElementType = "div"> =
   BoxProps<C> & {
+    /**
+     * If true, the container will be rendered as its child, merging its props onto that child.
+     */
+    asChild?: boolean;
     /** Container max-width */
     size?: "xs" | "sm" | "md" | "lg" | "xl" | number | string;
     /** Whether the container should be fluid (100% width) */
@@ -26,6 +30,7 @@ export const Container = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
       as,
+      asChild,
       size = "lg",
       fluid = false,
       style,
@@ -46,6 +51,7 @@ export const Container = React.forwardRef(
     return (
       <BoxComponent
         as={as}
+        asChild={asChild}
         ref={ref}
         className={classNames(styles.root, className)}
         mx="auto"

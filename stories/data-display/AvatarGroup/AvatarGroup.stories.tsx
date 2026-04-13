@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AvatarGroup } from "@/components/data-display/AvatarGroup/AvatarGroup";
-import { Avatar } from "@/components/data-display/Avatar/Avatar";
+import { Avatar, AvatarGroup } from "wimui";
 
 const meta: Meta<typeof AvatarGroup> = {
   title: "Components/Data Indicators/AvatarGroup",

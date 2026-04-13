@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Result } from "@/components/feedback/Result/Result";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Result } from "wimui";
 
 
 const meta: Meta<typeof Result> = {

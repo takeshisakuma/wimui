@@ -1,5 +1,6 @@
-import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 import * as AccordionStories from "./Accordion.stories";
 
 <Meta of={AccordionStories} />
@@ -48,33 +49,7 @@ import * as AccordionStories from "./Accordion.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.accordion_anatomy_item_label" /></b></td>
-      <td><T k="doc.accordion_anatomy_item" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.accordion_anatomy_trigger_label" /></b></td>
-      <td><T k="doc.accordion_anatomy_trigger" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.accordion_anatomy_icon_label" /></b></td>
-      <td><T k="doc.accordion_anatomy_icon" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.accordion_anatomy_content_label" /></b></td>
-      <td><T k="doc.accordion_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Accordion" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -174,9 +149,19 @@ import { Accordion } from "@/components/data-display/Accordion/Accordion";
 
 <Primary />
 
-## <T k="doc.props" />
+<Docgen componentName="Accordion" section="props" />
 
-<Controls of={AccordionStories.Single} />
+### <T k="doc.accordion_item_props" />
+
+<Docgen componentName="Accordion.Item" section="props" />
+
+### <T k="doc.accordion_trigger_props" />
+
+<Docgen componentName="Accordion.Trigger" section="props" />
+
+### <T k="doc.accordion_content_props" />
+
+<Docgen componentName="Accordion.Content" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -192,8 +177,7 @@ import { Accordion } from "@/components/data-display/Accordion/Accordion";
 
 <Canvas of={AccordionStories.Disabled} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Accordion" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -204,10 +188,6 @@ import { Accordion } from "@/components/data-display/Accordion/Accordion";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.accordion_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Accordion
-```
+<Docgen componentName="Accordion" section="test" />
 
 <Stories />

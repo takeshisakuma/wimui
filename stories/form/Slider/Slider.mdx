@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as SliderStories from "./Slider.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={SliderStories} />
 
@@ -43,33 +44,11 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.slider_anatomy_track_label" /></b></td>
-      <td><T k="doc.slider_anatomy_track" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.slider_anatomy_thumb_label" /></b></td>
-      <td><T k="doc.slider_anatomy_thumb" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.slider_anatomy_marks_label" /></b></td>
-      <td><T k="doc.slider_anatomy_marks" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Slider" section="anatomy" />
 
 <Canvas of={SliderStories.Default} />
 
-<Controls of={SliderStories.Default} />
+<Docgen componentName="Slider" section="props" />
 
 ## <T k="doc.usage_examples" />
 
@@ -96,8 +75,6 @@ import { T } from "../../T";
 <p><T k="doc.slider_motion_slide" /></p>
 
 
-## <T k="doc.a11y_spec_title" />
-<p><T k="doc.slider_a11y_desc" /></p>
 
 ## <T k="doc.best_practices_title" />
 <ul>
@@ -124,8 +101,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Slider" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -136,8 +112,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.slider_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Slider
-```
+<Docgen componentName="Slider" section="test" />

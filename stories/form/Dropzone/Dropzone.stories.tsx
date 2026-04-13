@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Dropzone } from "@/components/form/Dropzone/Dropzone";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Dropzone } from "wimui";
 
 
 const meta: Meta<typeof Dropzone> = {

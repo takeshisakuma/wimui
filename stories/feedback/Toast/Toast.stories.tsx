@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Toast, ToastProvider, useToast } from "@/components/feedback/Toast/Toast";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Toast, ToastProvider, useToast } from "wimui";
 
 
 const meta: Meta<typeof Toast> = {

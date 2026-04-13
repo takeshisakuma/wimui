@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Skeleton } from "@/components/feedback/Skeleton/Skeleton";
 
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Skeleton } from "wimui";
 
 
 const meta: Meta<typeof Skeleton> = {

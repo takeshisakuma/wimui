@@ -2,12 +2,12 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as AnchorStories from "./Anchor.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={AnchorStories} />
 
@@ -56,25 +56,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.anchor_anatomy_item_label" /></b></td>
-      <td><T k="doc.anchor_anatomy_item" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.anchor_anatomy_ink_label" /></b></td>
-      <td><T k="doc.anchor_anatomy_ink" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Anchor" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <p><T k="doc.anchor_content_guidelines" /></p>
@@ -116,8 +98,7 @@ import { T } from "../../T";
   <li><T k="doc.anchor_best_practice_2" /></li>
 </ul>
 
-## Props
-<Controls />
+<Docgen componentName="Anchor" section="props" />
 
 ## <T k="doc.anchor_considerations" />
 <table>
@@ -154,8 +135,7 @@ import { T } from "../../T";
 
 <Canvas of={AnchorStories.Default} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Anchor" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -166,10 +146,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.anchor_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Anchor
-```
+<Docgen componentName="Anchor" section="test" />
 
 <Stories />

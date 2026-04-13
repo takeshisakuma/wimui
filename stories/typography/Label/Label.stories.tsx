@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Label } from "@/components/typography/Label/Label";
-import { Input } from "@/components/form/Input/Input";
+import { Input, Label } from "wimui";
 
 const meta: Meta<typeof Label> = {
   title: "Components/Form Layout/Label",

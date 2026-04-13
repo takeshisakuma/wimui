@@ -144,12 +144,14 @@
   },
   "guide": {
     "do": "Do",
-    "dont": "Don't"
+    "dont": "Don't",
+    "refer_to_component_pages": "Refer to specific component pages for detail."
   },
   "table": {
     "header_component": "Component",
     "header_usage": "Usage / Recommended Scene",
-    "header_item": "Item"
+    "header_item": "Item",
+    "header_tier": "Tier"
   },
   "important": {
     "rule": "Important Rule"

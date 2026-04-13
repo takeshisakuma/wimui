@@ -1,15 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-} from "@/components/overlay/Dropdown/Dropdown";
-import { Button } from "@/components/form/Button/Button";
-import { Icon } from "@/components/media/Icon/Icon";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Icon } from "wimui";
 
 
 const meta: Meta<typeof Dropdown> = {

@@ -1,19 +1,10 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerClose,
-} from "@/components/overlay/Drawer/Drawer";
-import { Button } from "@/components/form/Button/Button";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button, Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "wimui";
 
 
 const meta: Meta<typeof Drawer> = {

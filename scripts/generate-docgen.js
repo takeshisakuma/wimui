@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { parse } from 'react-docgen';
+import { parse, builtinResolvers } from 'react-docgen';
 import { glob } from 'glob';
 
 /**
@@ -55,11 +55,19 @@ async function generate() {
     const componentName = path.basename(componentPath, '.tsx');
     process.stdout.write(`Processing ${componentName}... `);
     const componentDir = path.dirname(componentPath);
+    const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     let scssPath = path.join(componentDir, `${componentName.toLowerCase()}.scss`);
     
     if (!fs.existsSync(scssPath)) {
-      // CSS Modules 用のパスも確認
       scssPath = path.join(componentDir, `${componentName.toLowerCase()}.module.scss`);
+    }
+    
+    if (!fs.existsSync(scssPath)) {
+      scssPath = path.join(componentDir, `${kebabName}.scss`);
+    }
+
+    if (!fs.existsSync(scssPath)) {
+      scssPath = path.join(componentDir, `${kebabName}.module.scss`);
     }
 
     let tokens = [];
@@ -75,23 +83,46 @@ async function generate() {
       const tsxContent = fs.readFileSync(componentPath, 'utf8');
       const docgen = parse(tsxContent, {
         filename: componentPath,
+        resolver: new builtinResolvers.FindAllDefinitionsResolver(),
       });
       
-      data[componentName] = {
-        name: componentName,
-        tokens,
-        anatomy,
-        props: docgen[0]?.props || {}
-      };
+      docgen.forEach(componentDoc => {
+        let name = componentDoc.displayName || componentDoc.name;
+        if (!name) return;
+        
+        // AppShell.Main などのドットを含む名前をそのままキーにする
+        // ただし、ファイル名と異なる場合は tokens や anatomy が異なる可能性がある
+        // 現状はファイル単位で SCSS を取得しているので、サブコンポーネントも同じ tokens/anatomy を持つとする
+        
+        data[name] = {
+          name: name,
+          tokens,
+          anatomy,
+          props: componentDoc.props || {}
+        };
+      });
+      
+      // ファイル名（componentName）に一致するものがなければ、フォールバックとして作成
+      if (!data[componentName]) {
+         data[componentName] = {
+          name: componentName,
+          tokens,
+          anatomy,
+          props: {}
+        };
+      }
+
     } catch (e) {
       console.error(`Error parsing ${componentPath}:`, e.message);
-      // Fallback if docgen fails
-      data[componentName] = {
-        name: componentName,
-        tokens,
-        anatomy,
-        props: {}
-      };
+      // Fallback
+      if (!data[componentName]) {
+        data[componentName] = {
+          name: componentName,
+          tokens,
+          anatomy,
+          props: {}
+        };
+      }
     }
   }
 

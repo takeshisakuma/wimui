@@ -5,7 +5,7 @@
     display: block;
     width: 100%;
     min-width: 0;
-    max-width: var(--wim-input-width, 280px);
+    max-width: var(--wim-input-width, var(--wim-width-md));
 
     /* Allow vertical resizing by default */
     min-height: 80px;
@@ -17,7 +17,7 @@
     color: var(--wim-color-text-primary);
     resize: vertical;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
@@ -78,11 +78,11 @@
     }
 
     // Semantic widths
-    &.widthXs { --wim-input-width: 80px; }
-    &.widthSm { --wim-input-width: 160px; }
-    &.widthMd { --wim-input-width: 280px; }
-    &.widthLg { --wim-input-width: 480px; }
-    &.widthXl { --wim-input-width: 640px; }
+    &.widthXs { --wim-input-width: var(--wim-width-xs); }
+    &.widthSm { --wim-input-width: var(--wim-width-sm); }
+    &.widthMd { --wim-input-width: var(--wim-width-md); }
+    &.widthLg { --wim-input-width: var(--wim-width-lg); }
+    &.widthXl { --wim-input-width: var(--wim-width-xl); }
 
     &.hasCustomWidth {
       width: 100%;

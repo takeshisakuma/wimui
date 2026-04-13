@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Affix } from "@/components/navigation/Affix/Affix";
-import { Button } from "@/components/form/Button/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Affix, Button } from "wimui";
 
 
 const meta: Meta<typeof Affix> = {

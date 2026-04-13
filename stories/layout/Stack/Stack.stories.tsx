@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Stack } from "@/components/layout/Stack/Stack";
-import { Box } from "@/components/layout/Box/Box";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Box, Stack } from "wimui";
 
 
 const meta: Meta<typeof Stack> = {

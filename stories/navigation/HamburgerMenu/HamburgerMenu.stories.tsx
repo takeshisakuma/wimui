@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  HamburgerMenu,
-  HamburgerMenuProps,
-} from "@/components/navigation/HamburgerMenu/HamburgerMenu";
+
 import React, { useState, useEffect } from "react";
+import { HamburgerMenu, HamburgerMenuProps } from "wimui";
 
 const meta: Meta<typeof HamburgerMenu> = {
   title: "Components/Navigation Elements/HamburgerMenu",

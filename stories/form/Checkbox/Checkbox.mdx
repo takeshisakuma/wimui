@@ -2,16 +2,16 @@ import {
   Meta,
   Title,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as CheckboxStories from "./Checkbox.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={CheckboxStories} />
 
-# Checkbox
+<Title />
 
 <p><T k="doc.checkbox_long_desc" /></p>
 
@@ -45,29 +45,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.checkbox_anatomy_input_label" /></b></td>
-      <td><T k="doc.checkbox_anatomy_input" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.checkbox_anatomy_box_label" /></b></td>
-      <td><T k="doc.checkbox_anatomy_box" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.checkbox_anatomy_label_label" /></b></td>
-      <td><T k="doc.checkbox_anatomy_label" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Checkbox" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -116,7 +94,7 @@ import { T } from "../../T";
 
 <Primary />
 
-<Controls />
+<Docgen componentName="Checkbox" section="props" />
 
 ## <T k="doc.polymorphism_title" />
 
@@ -146,8 +124,7 @@ import { T } from "../../T";
 <Canvas of={CheckboxStories.Disabled} />
 <Canvas of={CheckboxStories.DisabledChecked} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Checkbox" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -158,10 +135,6 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.checkbox_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Checkbox
-```
+<Docgen componentName="Checkbox" section="test" />
 
 <Stories />

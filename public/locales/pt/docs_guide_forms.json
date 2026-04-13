@@ -157,6 +157,7 @@
     "char_limit": "Limite de Caracteres e Formatos",
     "char_limit_details": "Indique limites (ex: \"Máx 100\") e mostre contagens em tempo real.",
     "char_limit_effect": "Previne correções pós-entrada e dá segurança.",
+    "call_to_action_annotation": "(Chamada para Ação)",
     "clear_cta": "CTA Claro",
     "clear_cta_details": "Use rótulos específicos como \"Enviar\" ou \"Próximo\" com ênfase visual.",
     "clear_cta_effect": "Os usuários podem executar a próxima ação sem hesitação.",
@@ -264,7 +265,8 @@
     "v_input_desc": "Entrada numérica vs. Deslizador?",
     "v_slider_title": "Selecionador vs Deslizador",
     "v_text_desc": "Campo de texto vs. Selecionador de sobreposição?",
-    "visual_preview": "Visualização Prévia"
+    "visual_preview": "Visualização Prévia",
+    "call_to_action_annotation": "(Chamada para Ação)"
   },
   "placeholder": {
     "as_label": "Substituto para rótulo",
@@ -386,6 +388,11 @@
     "visibility": "Visibilidade",
     "want_confirm": "Confirmar via botão 'Salvar' ou 'Enviar'",
     "want_immediate": "Aplicar configurações imediatamente",
-    "when_segmented_best": "Quando o SegmentedControl é melhor"
+    "when_segmented_best": "Quando o SegmentedControl é melhor",
+    "seg_vs_btn_group_title": "SegmentedControl vs Grupo de Botões (unidos)",
+    "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
+    "seg_vs_tabs_title": "SegmentedControl vs Abas",
+    "segmented_control_label": "SegmentedControl",
+    "btn_group_joined_label": "Grupo de Botões (unidos)"
   }
 }

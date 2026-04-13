@@ -1,13 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/overlay/HoverCard/HoverCard";
+
 import React from "react";
-import { Avatar } from "@/components/data-display/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Avatar, HoverCard, HoverCardContent, HoverCardTrigger } from "wimui";
 
 
 const meta: Meta<typeof HoverCard> = {

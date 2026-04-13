@@ -32,9 +32,9 @@
       font-size: var(--wim-font-size-xs, 0.75rem);
 
       &.iconOnly {
-        width: var(--wim-badge-dot-md, 10px);
+        width: var(--wim-badge-dot-md, var(--wim-spacing-xs));
         min-width: 0;
-        height: var(--wim-badge-dot-md, 10px);
+        height: var(--wim-badge-dot-md, var(--wim-spacing-xs));
         padding: 0;
       }
     }
@@ -46,9 +46,9 @@
       font-size: var(--wim-font-size-sm, 0.875rem);
 
       &.iconOnly {
-        width: var(--wim-badge-dot-lg, 12px);
+        width: var(--wim-badge-dot-lg, var(--wim-spacing-md));
         min-width: 0;
-        height: var(--wim-badge-dot-lg, 12px);
+        height: var(--wim-badge-dot-lg, var(--wim-spacing-md));
         padding: 0;
       }
     }

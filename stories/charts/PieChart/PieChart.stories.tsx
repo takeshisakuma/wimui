@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { PieChart } from "@/components/charts/PieChart/PieChart";
+import { PieChart } from "wimui";
 
 const meta: Meta<typeof PieChart> = {
   title: "Components/Visualization/PieChart",

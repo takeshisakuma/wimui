@@ -25,7 +25,7 @@
     display: block;
     align-self: stretch;
     width: 100%;
-    min-width: 40px;
+    min-width: var(--wim-height-md);
     height: auto;
     min-height: 100%;
     padding: 0;
@@ -60,10 +60,10 @@
 
   // Shell overrides
   .inputBase {
-    width: 120px;
-    min-width: 120px;
-    max-width: 120px;
-    min-height: 42px;
+    width: var(--wim-width-md);
+    min-width: var(--wim-width-md);
+    max-width: var(--wim-width-md);
+    min-height: var(--wim-height-md);
     overflow: hidden;
 
     &:hover:not([class*="disabled"]) {

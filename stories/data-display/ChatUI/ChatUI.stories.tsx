@@ -1,15 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  ChatContainer,
-  ChatMessageList,
-  ChatMessage,
-  ChatInput,
-  ChatAvatar,
-} from "@/components/data-display/ChatUI/ChatUI";
-import { Icon } from "@/components/media/Icon/Icon";
+
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ChatAvatar, ChatContainer, ChatInput, ChatMessage, ChatMessageList, Icon } from "wimui";
 
 
 

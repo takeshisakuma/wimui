@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ColorInput } from "@/components/form/ColorInput/ColorInput";
 import { useTranslation } from "react-i18next";
-import { Label } from "@/components/typography/Label/Label";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ColorInput, Label } from "wimui";
 
 const meta: Meta<typeof ColorInput> = {
   title: "Components/Pickers & Sliders/ColorInput",

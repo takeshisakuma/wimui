@@ -29,7 +29,14 @@
     "pccs_customization_file_path": "ファイルパス:",
     "pccs_customization_note": "※ このファイルを変更すると、その色を参照しているセマンティックカラー（Primary, Success等）や各コンポーネントの色も一括で変更されます。",
     "pccs_customization_title": "カスタマイズ (Customization)",
-    "pccs_desc": "WIM UI の色彩設計の基盤となっている PCCS カラーパレットの一覧です。トーン（明度と彩度の組み合わせ）ごとに分類されており、直感的な色彩設計をサポートします。"
+    "pccs_desc": "WIM UI の色彩設計の基盤となっている PCCS カラーパレットの一覧です。トーン（明度と彩度の組み合わせ）ごとに分類されており、直感的な色彩設計をサポートします。",
+    "colors_special_styles_title": "特殊スタイル (Ghost、Glass、Skeleton)",
+    "colors_special_styles_desc": "半透明やプレースホルダー状態などの特殊な視覚効果に使用します。",
+    "colors_interaction_title": "インタラクション & オーバーレイ",
+    "colors_interaction_desc": "インタラクティブな状態やオーバーレイ要素の色です。",
+    "colors_component_specific_title": "コンポーネント固有",
+    "colors_component_specific_desc": "アバター、チャットバブル、その他のUI要素に使用する定義済みの色です。",
+    "pccs_page_title": "PCCS（実用色彩座標系）"
   },
   "pccs": {
     "tone_gy_desc": "無彩色",

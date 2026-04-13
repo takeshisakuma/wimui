@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Combobox } from "@/components/form/Combobox/Combobox";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { expect, userEvent, within } from "storybook/test";
+import { Combobox } from "wimui";
 
 
 const meta: Meta<typeof Combobox> = {

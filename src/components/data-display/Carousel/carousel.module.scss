@@ -6,7 +6,7 @@
     outline: none;
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
     }
   }
 
@@ -55,8 +55,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: var(--wim-height-md);
+    height: var(--wim-height-md);
     color: var(--wim-color-text-on-primary);
     cursor: pointer;
     background-color: var(--wim-color-carousel-control-bg);
@@ -95,8 +95,8 @@
   }
 
   .indicator {
-    width: 8px;
-    height: 8px;
+    width: var(--wim-spacing-xs);
+    height: var(--wim-spacing-xs);
     padding: 0;
     cursor: pointer;
     background-color: var(--wim-color-carousel-indicator-bg);
@@ -107,9 +107,9 @@
       width var(--wim-transition-fast);
   
     &.active {
-      width: 24px;
+      width: var(--wim-spacing-4xl);
       background-color: var(--wim-color-primary);
-      border-radius: 4px;
+      border-radius: var(--wim-radius-sm);
     }
   
     &:hover:not(.active) {

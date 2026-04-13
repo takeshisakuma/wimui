@@ -1,21 +1,11 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
 import * as FieldErrorStories from "./FieldError.stories";
+import { Docgen } from "../../Docgen";
 
 <Meta of={FieldErrorStories} />
 
-# FieldError
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.fielderror_title" />
-</p>
+<Title />
 
 <p><T k="doc.fielderror_long_desc" /></p>
 
@@ -52,25 +42,7 @@ import * as FieldErrorStories from "./FieldError.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.fielderror_anatomy_root_label" /></b></td>
-      <td><T k="doc.fielderror_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.fielderror_anatomy_content_label" /></b></td>
-      <td><T k="doc.fielderror_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="FieldError" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -117,9 +89,7 @@ import { FieldError } from "@/components/form/FieldError/FieldError";
 <FieldError content="The email address format is incorrect." />;
 ```
 
-## <T k="doc.props" />
-
-<Controls />
+<Docgen componentName="FieldError" section="props" />
 
 ## <T k="doc.variants" />
 
@@ -132,8 +102,7 @@ import { FieldError } from "@/components/form/FieldError/FieldError";
 <Canvas of={FieldErrorStories.ShortMessage} />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="FieldError" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -144,8 +113,4 @@ import { FieldError } from "@/components/form/FieldError/FieldError";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.fielderror_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- FieldError
-```
+<Docgen componentName="FieldError" section="test" />

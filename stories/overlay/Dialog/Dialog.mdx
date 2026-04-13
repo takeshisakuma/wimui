@@ -1,28 +1,18 @@
 import {
   Meta,
   Canvas,
-  Controls,
   Title,
   Primary,
   Stories,
 } from "@storybook/addon-docs/blocks";
 import * as DialogStories from "./Dialog.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={DialogStories} />
 
 <Title />
 
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.dialog_title" />
-</p>
 
 
 <p><T k="doc.dialog_long_desc" /></p>
@@ -56,29 +46,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.dialog_anatomy_backdrop_label" /></b></td>
-      <td><T k="doc.dialog_anatomy_backdrop" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.dialog_anatomy_header_label" /></b></td>
-      <td><T k="doc.dialog_anatomy_header" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.dialog_anatomy_footer_label" /></b></td>
-      <td><T k="doc.dialog_anatomy_footer" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Dialog" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <p><T k="doc.dialog_content_button_labels" /></p>
@@ -121,8 +89,7 @@ import { T } from "../../T";
 ## <T k="doc.dialog_why_not_modal" />
 <p><T k="doc.dialog_why_not_modal_desc" /></p>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Dialog" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -133,14 +100,10 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.dialog_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Dialog
-```
+<Docgen componentName="Dialog" section="test" />
 
 <Primary />
 
-<Controls />
+<Docgen componentName="Dialog" section="props" />
 
 <Stories />

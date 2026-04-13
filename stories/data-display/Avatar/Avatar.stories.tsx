@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Avatar } from "@/components/data-display/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Avatar } from "wimui";
 
 
 const meta: Meta<typeof Avatar> = {

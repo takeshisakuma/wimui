@@ -1,7 +1,7 @@
 import React from "react";
-import { Blockquote } from "@/components/typography/Blockquote/Blockquote";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Blockquote } from "wimui";
 
 
 export default {

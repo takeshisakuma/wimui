@@ -1,19 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Portal } from "@/components/overlay/Portal/Portal";
-import { Button } from "@/components/form/Button/Button";
-import { Icon } from "@/components/media/Icon/Icon";
-import { Card } from "@/components/data-display/Card/Card";
-import { Stack } from "@/components/layout/Stack/Stack";
-import { Textarea } from "@/components/form/Textarea/Textarea";
-import { Badge } from "@/components/data-display/Badge/Badge";
-import { Container } from "@/components/layout/Container/Container";
-import { Box } from "@/components/layout/Box/Box";
-import { Grid } from "@/components/layout/Grid/Grid";
-import { SimpleGrid } from "@/components/layout/SimpleGrid/SimpleGrid";
-import { Alert } from "@/components/feedback/Alert/Alert";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Alert, Badge, Box, Button, Card, Container, Grid, Icon, Portal, SimpleGrid, Stack, Textarea } from "wimui";
 
 
 const meta: Meta<typeof Portal> = {

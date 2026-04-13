@@ -1,21 +1,11 @@
-import { Meta, Canvas, Controls, Description } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as BackTopStories from "./BackTop.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={BackTopStories} />
 
-# BackTop
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.backtop_desc" />
-</p>
+<Title />
 
 
 ## <T k="doc.design_intent_title" />
@@ -47,25 +37,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.backtop_anatomy_button_label" /></b></td>
-      <td><T k="doc.backtop_anatomy_button" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.backtop_anatomy_icon_label" /></b></td>
-      <td><T k="doc.backtop_anatomy_icon" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="BackTop" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <p><T k="doc.backtop_content_guidelines" /></p>
@@ -113,8 +85,7 @@ import { T } from "../../T";
   <li><T k="doc.backtop_usage_2" /></li>
 </ul>
 
-## <T k="doc.props" />
-<Controls of={BackTopStories.Basic} />
+<Docgen componentName="BackTop" section="props" />
 
 ## <T k="doc.variations" />
 
@@ -131,8 +102,7 @@ import { T } from "../../T";
 <Canvas of={BackTopStories.SpecificTarget} />
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="BackTop" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -143,8 +113,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.backtop_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- BackTop
-```
+<Docgen componentName="BackTop" section="test" />

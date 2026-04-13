@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InfiniteScroll } from "@/components/data-display/InfiniteScroll/InfiniteScroll";
-import { Card } from "@/components/data-display/Card/Card";
-import { Stack } from "@/components/layout/Stack/Stack";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Card, InfiniteScroll, Stack } from "wimui";
 
 
 const meta: Meta<typeof InfiniteScroll> = {

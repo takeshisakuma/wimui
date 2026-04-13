@@ -6,7 +6,7 @@
     font-family: var(--wim-font-family-default);
     user-select: none;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
   
@@ -33,13 +33,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--wim-calendar-nav-size, var(--wim-spacing-4xl, 32px));
-    height: var(--wim-calendar-nav-size, var(--wim-spacing-4xl, 32px));
+    width: var(--wim-calendar-nav-size, var(--wim-spacing-5xl));
+    height: var(--wim-calendar-nav-size, var(--wim-spacing-5xl));
     padding: 0;
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     background: transparent;
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-sm);
     transition:
       background-color var(--wim-duration-base) var(--wim-easing-standard),
@@ -69,7 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: var(--wim-calendar-weekday-height, 32px);
+    height: var(--wim-calendar-weekday-height, var(--wim-spacing-5xl));
     font-size: var(--wim-font-size-xs);
     font-weight: 600;
     color: var(--wim-color-text-tertiary);
@@ -88,13 +88,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: var(--wim-calendar-day-height, 30px);
+    height: var(--wim-calendar-day-height, var(--wim-height-xs));
     padding: 0;
     font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
     cursor: pointer;
     background: transparent;
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-sm);
     transition:
       background-color var(--wim-duration-base) var(--wim-easing-standard),

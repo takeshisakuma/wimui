@@ -1,28 +1,17 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
-  Controls,
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
 import * as MenuStories from "./Menu.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={MenuStories} />
 
 <Title />
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.menu_title" />
-</p>
 
 <p><T k="doc.menu_long_desc" /></p>
 
@@ -51,25 +40,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.menu_anatomy_root_label" /></b></td>
-      <td><T k="doc.menu_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.menu_anatomy_content_label" /></b></td>
-      <td><T k="doc.menu_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Menu" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -125,45 +96,7 @@ import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
 
 <Primary />
 
-## <T k="doc.components" />
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.table_header_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Menu</strong></td>
-      <td>
-        <T k="doc.menu_comp_menu_desc" /><br />
-        <code>mode</code>: <T k="doc.menu_props_mode" /> (<code>"vertical"</code> | <code>"horizontal"</code> | <code>"inline"</code>)<br />
-        <code>defaultOpenKeys</code>: <T k="doc.menu_props_default_open_keys" />
-      </td>
-    </tr>
-    <tr>
-      <td><strong>MenuItem</strong></td>
-      <td><T k="doc.menu_comp_menuitem_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>SubMenu</strong></td>
-      <td><T k="doc.menu_comp_submenu_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>MenuItemGroup</strong></td>
-      <td><T k="doc.menu_comp_itemgroup_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>MenuDivider</strong></td>
-      <td><T k="doc.menu_comp_divider_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## <T k="doc.props" />
-<Controls />
+<Docgen componentName="Menu" section="props" />
 
 ## <T k="doc.examples" />
 
@@ -206,8 +139,7 @@ import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
   <li><T k="doc.menu_a11y_4" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Menu" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -218,9 +150,5 @@ import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.menu_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Menu
-```
+<Docgen componentName="Menu" section="test" />
 

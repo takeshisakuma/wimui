@@ -1,10 +1,11 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
 import * as Stories from "./InputBase.stories";
+import { Docgen } from "../../Docgen";
 
 <Meta of={Stories} />
 
-# InputBase
+<Title />
 
 <p><T k="doc.inputBase_long_desc" /></p>
 
@@ -34,25 +35,7 @@ import * as Stories from "./InputBase.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.inputBase_anatomy_root_label" /></b></td>
-      <td><T k="doc.inputBase_anatomy_root_desc" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.inputBase_anatomy_content_label" /></b></td>
-      <td><T k="doc.inputBase_anatomy_content_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="InputBase" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -82,8 +65,7 @@ import * as Stories from "./InputBase.stories";
   <li><T k="doc.inputBase_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.inputBase_tokens_desc" /></p>
+<Docgen componentName="InputBase" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.inputBase_responsive_desc" /></p>
@@ -94,11 +76,7 @@ import * as Stories from "./InputBase.stories";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.inputBase_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- InputBase
-```
+<Docgen componentName="InputBase" section="test" />
 
 ---
 
@@ -106,7 +84,8 @@ npm run test -- InputBase
 <p><T k="doc.inputBase_usage_desc" /></p>
 
 <Canvas of={Stories.Default} />
-<Controls of={Stories.Default} />
+
+<Docgen componentName="InputBase" section="props" />
 
 ---
 
@@ -132,5 +111,3 @@ npm run test -- InputBase
 
 ---
 
-## <T k="doc.api_reference" />
-<Controls />

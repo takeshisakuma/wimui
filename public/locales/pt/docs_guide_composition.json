@@ -9,6 +9,16 @@
     "composition_map_desc": "Mapeamento de quais componentes os componentes principais usam (envolvem) internamente. Ao combinar componentes de nível inferior, fornecemos funcionalidade consistente.",
     "composition_map_title": "Mapa de Composição",
     "principles_desc": "No WIM UI, seguimos estes princípios para manter a consistência no gerenciamento de DOM e movimento.",
-    "principles_title": "Princípios de Portais e Animações"
+    "principles_title": "Princípios de Portais e Animações",
+    "tier1_label": "Nível 1",
+    "tier2_label": "Nível 2",
+    "tier3_label": "Nível 3",
+    "tier4_label": "Nível 4",
+    "tier_foundations": "Fundações",
+    "tier_atoms": "Átomos",
+    "tier_molecules": "Moléculas",
+    "tier_organisms": "Organismos",
+    "tier_internal_label": "Interno",
+    "composition_uses_internally": "Composição (Usado internamente)"
   }
 }

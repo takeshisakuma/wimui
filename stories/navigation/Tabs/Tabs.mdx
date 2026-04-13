@@ -1,21 +1,12 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TabsStories from "./Tabs.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={TabsStories} />
 
 <Title />
 
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.tabs_title" />
-</p>
 
 <p><T k="doc.tabs_long_desc" /></p>
 
@@ -47,33 +38,11 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.tabs_anatomy_list_label" /></b></td>
-      <td><T k="doc.tabs_anatomy_list" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.tabs_anatomy_trigger_label" /></b></td>
-      <td><T k="doc.tabs_anatomy_trigger" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.tabs_anatomy_panel_label" /></b></td>
-      <td><T k="doc.tabs_anatomy_panel" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Tabs" section="anatomy" />
 
 <Canvas of={TabsStories.Default} />
 
-<Controls of={TabsStories.Default} />
+<Docgen componentName="Tabs" section="props" />
 
 ## <T k="doc.tabs_vertical_alignment" />
 
@@ -165,11 +134,6 @@ import { T } from "../../T";
   <li><T k="doc.tabs_best_practice_2" /></li>
 </ul>
 
-## <T k="doc.a11y_spec_title" />
-<ul>
-  <li><T k="doc.tabs_a11y_keyboard_nav" /></li>
-  <li><T k="doc.tabs_a11y_focus" /></li>
-</ul>
 
 ## <T k="doc.real_world_scenarios_title" />
 <table>
@@ -191,8 +155,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Tabs" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -203,8 +166,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.tabs_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Tabs
-```
+<Docgen componentName="Tabs" section="test" />

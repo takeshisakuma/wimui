@@ -9,10 +9,10 @@
     
     // Glassmorphism effect base
     background: var(--wim-color-frosted-bg);
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-sm);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--wim-spacing-lg));
     transition: var(--wim-transition-fast);
   }
 

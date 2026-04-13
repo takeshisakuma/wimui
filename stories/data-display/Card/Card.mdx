@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as CardStories from "./Card.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={CardStories} />
 
@@ -48,33 +49,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.card_anatomy_header_label" /></b></td>
-      <td><T k="doc.card_anatomy_header" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.card_anatomy_body_label" /></b></td>
-      <td><T k="doc.card_anatomy_body" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.card_anatomy_footer_label" /></b></td>
-      <td><T k="doc.card_anatomy_footer" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.card_anatomy_media_label" /></b></td>
-      <td><T k="doc.card_anatomy_media" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Card" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -162,8 +137,7 @@ import { Card } from "@/components/data-display/Card/Card";
 
 <Canvas of={CardStories.Flat} />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Card" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -174,39 +148,18 @@ import { Card } from "@/components/data-display/Card/Card";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.card_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
+<Docgen componentName="Card" section="test" />
 
-```bash
-npm run test -- Card
-```
+<Docgen componentName="Card" section="props" />
 
-## <T k="doc.props" />
+### <T k="doc.card_header_props" />
 
-<Controls />
+<Docgen componentName="Card.Header" section="props" />
 
-## <T k="doc.subcomponents" />
+### <T k="doc.card_body_props" />
 
-<p><T k="doc.card_subcomponent_desc" /></p>
+<Docgen componentName="Card.Body" section="props" />
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Card.Header</strong></td>
-      <td><T k="doc.card_header_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Card.Body</strong></td>
-      <td><T k="doc.card_body_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Card.Footer</strong></td>
-      <td><T k="doc.card_footer_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+### <T k="doc.card_footer_props" />
+
+<Docgen componentName="Card.Footer" section="props" />

@@ -157,6 +157,7 @@
     "char_limit": "文字数・フォーマットの明示",
     "char_limit_details": "「100文字以内」などの制限を事前に伝え、リアルタイムで文字数カウントを表示します。",
     "char_limit_effect": "入力後の修正作業を防ぎ、ユーザーに安心感を与えます。",
+    "call_to_action_annotation": "(コール・トゥ・アクション)",
     "clear_cta": "明確なCTA",
     "clear_cta_details": "「送信」「次へ」など、具体的で分かりやすい文言を採用し、視覚的に目立つデザインにします。",
     "clear_cta_effect": "ユーザーが迷わず次のアクションを実行できるようになります。",
@@ -264,7 +265,8 @@
     "v_input_desc": "数値入力か、スライダーか？",
     "v_slider_title": "ピッカーとスライダーの使い分け",
     "v_text_desc": "入力フィールドか、ピッカーか？",
-    "visual_preview": "プレビュー"
+    "visual_preview": "プレビュー",
+    "call_to_action_annotation": "(Call To Action)"
   },
   "placeholder": {
     "as_label": "ラベルの代用",
@@ -386,6 +388,11 @@
     "visibility": "選択肢",
     "want_confirm": "「保存」や「送信」ボタンで確定させたい",
     "want_immediate": "設定を即座に反映させたい",
-    "when_segmented_best": "SegmentedControl が適しているケース"
+    "when_segmented_best": "SegmentedControl が適しているケース",
+    "seg_vs_btn_group_title": "SegmentedControl vs Button Group (joined)",
+    "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
+    "seg_vs_tabs_title": "SegmentedControl vs Tabs",
+    "segmented_control_label": "SegmentedControl",
+    "btn_group_joined_label": "Button Group (joined)"
   }
 }

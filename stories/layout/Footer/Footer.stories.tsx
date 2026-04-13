@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Footer from "@/components/layout/Footer/Footer";
-import { SimpleGrid } from "@/components/layout/SimpleGrid/SimpleGrid";
+import { Footer } from "wimui";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { SimpleGrid } from "wimui";
 
 
 const meta: Meta<typeof Footer> = {

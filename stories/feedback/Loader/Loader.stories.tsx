@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Loader } from "@/components/feedback/Loader/Loader";
+import { Loader } from "wimui";
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loading States/Loader",

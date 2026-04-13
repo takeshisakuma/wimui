@@ -18,8 +18,8 @@
     flex-shrink: 0;
     align-items: center;
     width: 44px;
-    height: 24px;
-    padding: 2px;
+    height: var(--wim-height-xs);
+    padding: var(--wim-spacing-3xs);
     appearance: none;
     cursor: pointer;
     background-color: var(--wim-color-border-secondary);
@@ -40,8 +40,8 @@
     }
 
     &::after {
-      width: 20px;
-      height: 20px;
+      width: var(--wim-height-xs);
+      height: var(--wim-height-xs);
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
@@ -57,28 +57,28 @@
     }
 
     &:focus-visible {
-      outline: 2px solid var(--wim-color-primary);
-      outline-offset: 2px;
+      outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
+      outline-offset: var(--wim-border-width-thick);
       box-shadow: var(--wim-shadow-focus);
     }
 
     &.sm {
       width: 36px;
-      height: 20px;
+      height: var(--wim-height-xs);
 
       &::after {
-        width: 16px;
-        height: 16px;
+        width: var(--wim-spacing-lg);
+        height: var(--wim-spacing-lg);
       }
     }
 
     &.lg {
       width: 52px;
-      height: 28px;
+      height: var(--wim-spacing-2xl);
 
       &::after {
-        width: 24px;
-        height: 24px;
+        width: var(--wim-spacing-xl);
+        height: var(--wim-spacing-xl);
       }
     }
 

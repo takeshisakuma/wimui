@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Title, type TitleProps } from "@/components/typography/Title/Title";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Title, type TitleProps } from "wimui";
 
 
 const meta: Meta<TitleProps> = {

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Slider } from "@/components/form/Slider/Slider";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Slider } from "wimui";
 
 
 const MetaData: Meta<typeof Slider> = {

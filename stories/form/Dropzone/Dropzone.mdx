@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as DropzoneStories from "./Dropzone.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={DropzoneStories} />
 
@@ -22,29 +23,11 @@ import { T } from "../../T";
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.dropzone_design_intent" /></p>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.dropzone_anatomy_area_label" /></b></td>
-      <td><T k="doc.dropzone_anatomy_area" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.dropzone_anatomy_text_label" /></b></td>
-      <td><T k="doc.dropzone_anatomy_text" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Dropzone" section="anatomy" />
 
 <Canvas of={DropzoneStories.Default} />
 
-<Controls of={DropzoneStories.Default} />
+<Docgen componentName="Dropzone" section="props" />
 
 ## <T k="doc.example" />
 
@@ -92,8 +75,6 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.a11y_spec_title" />
-<p><T k="doc.dropzone_a11y_desc" /></p>
 
 ## <T k="doc.best_practices_title" />
 <ul>
@@ -124,8 +105,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Dropzone" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -136,8 +116,4 @@ import { T } from "../../T";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.dropzone_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Dropzone
-```
+<Docgen componentName="Dropzone" section="test" />

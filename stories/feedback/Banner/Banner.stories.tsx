@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Banner } from "@/components/feedback/Banner/Banner";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Banner, Button } from "wimui";
 
 
 const meta: Meta<typeof Banner> = {

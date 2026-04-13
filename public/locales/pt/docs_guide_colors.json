@@ -29,7 +29,14 @@
     "pccs_customization_file_path": "Caminho do Arquivo:",
     "pccs_customization_note": "* Alterar este arquivo atualizará as cores semânticas (Primária, Sucesso, etc.) e as cores dos componentes que referenciam essas cores de uma só vez.",
     "pccs_customization_title": "Customização",
-    "pccs_desc": "Uma lista da paleta de cores PCCS, que forma a base do design de cores do WIM UI. Categorizada por tom (combinação de luminosidade e saturação) para apoiar um design de cores intuitivo."
+    "pccs_desc": "Uma lista da paleta de cores PCCS, que forma a base do design de cores do WIM UI. Categorizada por tom (combinação de luminosidade e saturação) para apoiar um design de cores intuitivo.",
+    "colors_special_styles_title": "Estilos Especiais (Ghost, Glass, Skeleton)",
+    "colors_special_styles_desc": "Usado para efeitos visuais especializados como semi-transparência e estados de placeholder.",
+    "colors_interaction_title": "Interação e Sobreposições",
+    "colors_interaction_desc": "Cores para estados interativos e elementos de sobreposição.",
+    "colors_component_specific_title": "Específico do Componente",
+    "colors_component_specific_desc": "Cores predefinidas para avatares, balões de chat e outros elementos de UI.",
+    "pccs_page_title": "PCCS (Sistema Prático de Coordenadas de Cores)"
   },
   "pccs": {
     "tone_gy_desc": "Acromático",

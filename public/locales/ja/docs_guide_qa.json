@@ -41,6 +41,9 @@
     "summary_tool2_desc": "`npm run test:check` (`scripts/generate-missing-tests-report.cjs`) により、テストファイルのないコンポーネントを自動検出します。",
     "summary_tool2_title": "テスト欠落チェック",
     "summary_tool3_desc": "`npm run test:report` により、カバレッジ測定と自動チェックを一括実行します。",
-    "summary_tool3_title": "統合レポート生成"
+    "summary_tool3_title": "統合レポート生成",
+    "table_tool_header": "ツール",
+    "table_feature_header": "機能",
+    "table_detail_header": "詳細"
   }
 }

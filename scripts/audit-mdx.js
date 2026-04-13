@@ -23,7 +23,17 @@ const files = globSync('**/*.mdx', { posix: true });
 let allPass = true;
 files.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  const missing = requiredKeys.filter(k => !content.includes(k));
+  const missing = requiredKeys.filter(k => {
+    if (content.includes(k)) return false;
+    
+    // Docgen component generates these titles
+    if (k === 'doc.anatomy_title' && content.includes('<Docgen') && content.includes('section="anatomy"')) return false;
+    if (k === 'doc.tokens_title' && content.includes('<Docgen') && content.includes('section="tokens"')) return false;
+    if (k === 'doc.test_title' && content.includes('<Docgen') && content.includes('section="test"')) return false;
+    
+    return true;
+  });
+  
   if (missing.length > 0) {
     console.log(`[FAIL] ${file} is missing: ${missing.join(', ')}`);
     allPass = false;

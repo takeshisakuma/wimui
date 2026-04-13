@@ -1,10 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BaseListItem } from "@/components/_internal/BaseListItem/BaseListItem";
-import { Icon } from "@/components/media/Icon/Icon";
-import { Chip } from "@/components/data-display/Chip/Chip";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
+import { Chip, Icon } from "wimui";
 
 
 const meta: Meta<typeof BaseListItem> = {

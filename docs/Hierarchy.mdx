@@ -18,7 +18,7 @@ import { T } from "../stories/T";
 <table>
   <thead>
     <tr>
-      <th>Tier</th>
+      <th><T k="table.header_tier" /></th>
       <th><T k="table.header_overview" /></th>
       <th><T k="table.header_role" /></th>
       <th><T k="table.header_component" /></th>
@@ -26,25 +26,25 @@ import { T } from "../stories/T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>Tier 1</strong><br/>Foundations (<T k="cat.utilities" />)</td>
+      <td><strong><T k="guide.tier1_label" /></strong><br/><T k="guide.tier_foundations" /> (<T k="cat.utilities" />)</td>
       <td><T k="tier1.desc" /></td>
       <td><T k="tier1.role" /></td>
       <td>`AspectRatio`, `Box`, `Center`, `Blockquote`, `Code`, `Container`, `Divider`, `Flex`, `FocusTrap`, `Grid`, `Group`, `Highlight`, `Icon`, `Kbd`, `Loader`, `Markdown`, `Marquee`, `Portal`, `ScrollArea`, `SimpleGrid`, `Span`, `Stack`, `Text`, `Title`, `Transition`, `VisuallyHidden`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong><br/>Atoms (<T k="cat.basic_inputs" />)</td>
+      <td><strong><T k="guide.tier2_label" /></strong><br/><T k="guide.tier_atoms" /> (<T k="cat.basic_inputs" />)</td>
       <td><T k="tier2.desc" /></td>
       <td><T k="tier2.role" /></td>
       <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputMask`, `InteractiveArea`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `PhoneInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong><br/>Molecules (<T k="cat.overlays" />)</td>
+      <td><strong><T k="guide.tier3_label" /></strong><br/><T k="guide.tier_molecules" /> (<T k="cat.overlays" />)</td>
       <td><T k="tier3.desc" /></td>
       <td><T k="tier3.role" /></td>
       <td>`Accordion`, `Alert`, `AvatarGroup`, `Banner`, `Breadcrumb`, `ButtonGroup`, `Card`, `Carousel`, `Cascader`, `CheckboxGroup`, `ColorInput`, `Combobox`, `DescriptionList`, `Dropdown`, `EmptyState`, `FAQSection`, `HoverCard`, `InputGroup`, `List`, `LoadingOverlay`, `Mentions`, `MultiSelect`, `Pagination`, `Popconfirm`, `Popover`, `RadioGroup`, `RangeSlider`, `Result`, `SearchInput`, `SegmentedControl`, `Selectbox`, `Snackbar`, `Stats`, `Stepper`, `SwitchGroup`, `Timeline`, `Toast`, `ToggleGroup`, `Transfer`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong><br/>Organisms (<T k="cat.app_shell" />)</td>
+      <td><strong><T k="guide.tier4_label" /></strong><br/><T k="guide.tier_organisms" /> (<T k="cat.app_shell" />)</td>
       <td><T k="tier4.desc" /></td>
       <td><T k="tier4.role" /></td>
       <td>`AppShell`, `BentoGrid`, `BottomSheet`, `Calendar`, `Charts`, `ChatUI`, `CommandPalette`, `ContextMenu`, `DataGrid`, `DatePicker`, `DateRangePicker`, `Dialog`, `Drawer`, `Dropzone`, `ErrorBoundary`, `Footer`, `HamburgerMenu`, `Header`, `InfiniteScroll`, `Kanban`, `Masonry`, `Menu`, `Navbar`, `QueryBuilder`, `RichTextEditor`, `Sidebar`, `Splitter`, `TabBar`, `TabNavigation`, `Table`, `Tabs`, `TimePicker`, `Tour`, `TreeSelect`, `TreeView`, `VirtualList`, `Watermark`</td>
@@ -61,169 +61,169 @@ import { T } from "../stories/T";
 <table>
   <thead>
     <tr>
-      <th>Tier</th>
+      <th><T k="table.header_tier" /></th>
       <th><T k="table.header_component" /></th>
-      <th>Composition (Uses internally)</th>
+      <th><T k="guide.composition_uses_internally" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DataGrid`</td>
       <td>`Table`, `Pagination`, `Checkbox`, `EmptyState`, `Spinner`, `SearchInput`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`AppShell`</td>
       <td>`Header`, `Sidebar`, `Footer`, `Drawer`, `HamburgerMenu`, `Button`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`ChatUI`</td>
       <td>`Avatar`, `Input`, `IconButton`, `ScrollArea`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Calendar`</td>
       <td>`Button`, `Selectbox`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Dialog`</td>
-      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (Internal: *OverlayBase*)</td>
+      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (<T k="guide.tier_internal_label" />: *OverlayBase*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Drawer`</td>
-      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (Internal: *OverlayBase*)</td>
+      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (<T k="guide.tier_internal_label" />: *OverlayBase*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DatePicker`</td>
       <td>`Popover`, `Calendar`, `Input`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DateRangePicker`</td>
       <td>`Popover`, `Calendar`, `Input`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Table`</td>
       <td>`Icon`, `Checkbox`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Tabs`</td>
       <td>`Transition`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Menu`</td>
       <td>`Popover`, `List`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`TreeView`</td>
-      <td>`Icon` (Internal: *BaseListItem*)</td>
+      <td>`Icon` (<T k="guide.tier_internal_label" />: *BaseListItem*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`TimePicker`</td>
       <td>`Input` (type="time"), `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Selectbox`</td>
-      <td>`Transition`, `Icon` (Internal: *InputBase*, *FieldTemplate*, *BaseListItem*)</td>
+      <td>`Transition`, `Icon` (<T k="guide.tier_internal_label" />: *InputBase*, *FieldTemplate*, *BaseListItem*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Combobox`</td>
-      <td>`Input` (Internal: *FieldTemplate*, *BaseListItem*)</td>
+      <td>`Input` (<T k="guide.tier_internal_label" />: *FieldTemplate*, *BaseListItem*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`MultiSelect`</td>
-      <td>`Chip`, `Icon` (Internal: *InputBase*, *FieldTemplate*, *BaseListItem*)</td>
+      <td>`Chip`, `Icon` (<T k="guide.tier_internal_label" />: *InputBase*, *FieldTemplate*, *BaseListItem*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Result`</td>
       <td>`InteractiveArea`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`EmptyState`</td>
-      <td>`Icon`, `Button` (Internal: *StatusContent*)</td>
+      <td>`Icon`, `Button` (<T k="guide.tier_internal_label" />: *StatusContent*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Accordion`</td>
       <td>`Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Stats`</td>
       <td>`Card`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Carousel`</td>
       <td>`Button` (Arrows), `Indicator` (Dots)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Pagination`</td>
       <td>`Button`, `Input`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Breadcrumb`</td>
       <td>`Link`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Popover`</td>
       <td>`Portal`, `Transition`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Tooltip`</td>
       <td>`Popover`, `Portal`, `Transition`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td><strong><T k="guide.tier3_label" /></strong></td>
       <td>`Stepper`</td>
       <td>`Icon`, `Divider`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`RichTextEditor`</td>
-      <td>(Internal: *FieldTemplate*)</td>
+      <td>(<T k="guide.tier_internal_label" />: *FieldTemplate*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td><strong><T k="guide.tier2_label" /></strong></td>
       <td>`PhoneInput`</td>
-      <td>(Internal: *FieldTemplate*)</td>
+      <td>(<T k="guide.tier_internal_label" />: *FieldTemplate*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td><strong><T k="guide.tier2_label" /></strong></td>
       <td>`IconButton`</td>
       <td>`Button`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td><strong><T k="guide.tier2_label" /></strong></td>
       <td>`Indicator`</td>
-      <td>`Icon` (Internal: *IndicatorBase*)</td>
+      <td>`Icon` (<T k="guide.tier_internal_label" />: *IndicatorBase*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td><strong><T k="guide.tier2_label" /></strong></td>
       <td>`Badge`</td>
-      <td>(Internal: *IndicatorBase*)</td>
+      <td>(<T k="guide.tier_internal_label" />: *IndicatorBase*)</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td><strong><T k="guide.tier2_label" /></strong></td>
       <td>`Notification`</td>
       <td>`Icon`, `IconButton` (Close)</td>
     </tr>

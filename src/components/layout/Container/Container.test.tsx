@@ -49,4 +49,15 @@ describe("Container", () => {
     render(<Container size="50vw">VW</Container>);
     expect(screen.getByText("VW")).toHaveStyle({ maxWidth: "50vw" });
   });
+
+  it("renders as child element when asChild is true", () => {
+    render(
+      <Container asChild>
+        <section>Slotted Container</section>
+      </Container>,
+    );
+    const el = screen.getByText("Slotted Container");
+    expect(el.tagName).toBe("SECTION");
+    expect(el).toHaveStyle({ maxWidth: "1140px" });
+  });
 });

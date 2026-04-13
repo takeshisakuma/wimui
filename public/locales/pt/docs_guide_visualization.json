@@ -40,7 +40,13 @@
     "suitable_graph": "Gráfico Adequado",
     "technical_impl_title": "Implementação Técnica",
     "treemap_data_desc": "Relações de dados hierárquicos, contribuição para o todo.",
-    "what_to_express": "Objetivo da História"
+    "what_to_express": "Objetivo da História",
+    "line_chart": "Gráfico de Linhas",
+    "bar_chart": "Gráfico de Barras",
+    "pie_chart": "Gráfico de Pizza",
+    "comparison_trend_annotation": "Comparação e Tendência",
+    "proportions_annotation": "Proporções",
+    "correlation_annotation": "Correlação e Distribuição"
   },
   "guide": {
     "visualization_title": "Guia de Seleção de Componentes de Visualização",

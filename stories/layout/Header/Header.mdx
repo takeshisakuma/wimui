@@ -1,17 +1,17 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as HeaderStories from "./Header.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={HeaderStories} />
 
-# Header
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.header_title" />
@@ -50,25 +50,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.header_anatomy_root_label" /></b></td>
-      <td><T k="doc.header_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.header_anatomy_content_label" /></b></td>
-      <td><T k="doc.header_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Header" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -107,8 +89,11 @@ import { T } from "../../T";
   <li><T k="doc.header_best_practice_2" /></li>
 </ul>
 
+<Primary />
+
 <Canvas of={HeaderStories.Playground} />
-<Controls of={HeaderStories.Playground} />
+
+<Docgen componentName="Header" section="props" />
 
 ## <T k="doc.header_import" />
 
@@ -142,9 +127,9 @@ import Header from "@/components/layout/Header/Header";
 
 <Canvas of={HeaderStories.Sticky} />
 
+<Stories />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Header" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -155,8 +140,4 @@ import Header from "@/components/layout/Header/Header";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.header_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Header
-```
+<Docgen componentName="Header" section="test" />

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  RangeCalendar,
-  RangeCalendarValue,
-} from "@/components/data-display/Calendar/RangeCalendar";
+import { RangeCalendar, RangeCalendarValue } from "wimui";
+
 
 const meta: Meta<typeof RangeCalendar> = {
   title: "Components/Pickers & Sliders/RangeCalendar",

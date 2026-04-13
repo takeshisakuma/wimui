@@ -157,6 +157,7 @@
     "char_limit": "Char Limit & Formats",
     "char_limit_details": "State limits (e.g., \"Max 100\") and show real-time counts.",
     "char_limit_effect": "Prevents post-input corrections and gives reassurance.",
+    "call_to_action_annotation": "(Call To Action)",
     "clear_cta": "Clear CTA",
     "clear_cta_details": "Use specific labels like \"Submit\" or \"Next\" with visual emphasis.",
     "clear_cta_effect": "Users can execute the next action without hesitation.",
@@ -264,7 +265,8 @@
     "v_input_desc": "Numerical input vs. Slider?",
     "v_slider_title": "Picker vs Slider",
     "v_text_desc": "Text field vs. Overlaid Picker?",
-    "visual_preview": "Visual Preview"
+    "visual_preview": "Visual Preview",
+    "call_to_action_annotation": "(Call To Action)"
   },
   "placeholder": {
     "as_label": "Substitute for label",
@@ -386,6 +388,11 @@
     "visibility": "Visibility",
     "want_confirm": "Confirm via 'Save' or 'Submit' button",
     "want_immediate": "Apply settings immediately",
-    "when_segmented_best": "When SegmentedControl is best"
+    "when_segmented_best": "When SegmentedControl is best",
+    "seg_vs_btn_group_title": "SegmentedControl vs Button Group (joined)",
+    "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
+    "seg_vs_tabs_title": "SegmentedControl vs Tabs",
+    "segmented_control_label": "SegmentedControl",
+    "btn_group_joined_label": "Button Group (joined)"
   }
 }

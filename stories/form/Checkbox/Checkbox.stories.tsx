@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "@/components/form/Checkbox/Checkbox";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Checkbox } from "wimui";
 
 
 const meta: Meta<typeof Checkbox> = {

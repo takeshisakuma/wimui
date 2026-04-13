@@ -40,7 +40,13 @@
     "suitable_graph": "Suitable Graph",
     "technical_impl_title": "Technical Implementation",
     "treemap_data_desc": "Hierarchical data relations, contribution to the whole.",
-    "what_to_express": "Story Goal"
+    "what_to_express": "Story Goal",
+    "line_chart": "Line Chart",
+    "bar_chart": "Bar Chart",
+    "pie_chart": "Pie Chart",
+    "comparison_trend_annotation": "Comparison & Trend",
+    "proportions_annotation": "Proportions",
+    "correlation_annotation": "Correlation & Distribution"
   },
   "guide": {
     "visualization_title": "Visualization Component Selection Guide",

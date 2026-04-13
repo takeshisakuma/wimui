@@ -1,12 +1,10 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Selectbox,
-  SelectboxOption,
-} from "@/components/form/Selectbox/Selectbox";
+
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { expect, userEvent, within } from "storybook/test";
+import { Selectbox, SelectboxOption } from "wimui";
 
 
 const meta: Meta<typeof Selectbox> = {

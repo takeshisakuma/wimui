@@ -1,9 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InputMask } from "@/components/form/InputMask/InputMask";
-import { Label } from "@/components/typography/Label/Label";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { InputMask, Label } from "wimui";
 
 
 const meta: Meta<typeof InputMask> = {

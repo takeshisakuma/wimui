@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { KanbanBoard } from "@/components/data-display/Kanban/Kanban";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { KanbanBoard } from "wimui";
 
 const meta: Meta<typeof KanbanBoard> = {
   title: "Components/Data Structures/Kanban",

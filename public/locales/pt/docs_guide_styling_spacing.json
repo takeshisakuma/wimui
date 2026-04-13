@@ -17,7 +17,13 @@
     "spacings_scale": "Escala de Espaçamento",
     "spacings_title": "Espaçamentos e Raio",
     "tokens_title": "Tokens de Design",
-    "usage": "Guia de Uso"
+    "usage": "Guia de Uso",
+    "spacings_border_width_title": "Largura da Borda",
+    "spacings_header_name": "Nome",
+    "spacings_header_value": "Valor",
+    "spacings_header_token": "Token",
+    "spacings_thin": "Fino (Thin)",
+    "spacings_thick": "Grosso (Thick)"
   },
   "perf": {
     "tips_title": "Dicas de Performance",

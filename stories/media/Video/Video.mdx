@@ -1,21 +1,11 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
 import * as VideoStories from "./Video.stories";
+import { Docgen } from "../../Docgen";
 
 <Meta of={VideoStories} />
 
-# Video
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc.video_title" />
-</p>
+<Title />
 
 <p><T k="doc.video_long_desc" /></p>
 
@@ -69,25 +59,7 @@ import * as VideoStories from "./Video.stories";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.video_anatomy_root_label" /></b></td>
-      <td><T k="doc.video_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.video_anatomy_content_label" /></b></td>
-      <td><T k="doc.video_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Video" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -273,9 +245,7 @@ import { Video } from "@/components/media/Video/Video";
   </tbody>
 </table>
 
-## <T k="doc.props" />
-
-<Controls />
+<Docgen componentName="Video" section="props" />
 
 ## <T k="doc.variants" />
 
@@ -317,8 +287,7 @@ import { Video } from "@/components/media/Video/Video";
 
 
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Video" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -329,8 +298,4 @@ import { Video } from "@/components/media/Video/Video";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.video_i18n_desc" /></p>
 
-## <T k="doc.test_title" />
-
-```bash
-npm run test -- Video
-```
+<Docgen componentName="Video" section="test" />

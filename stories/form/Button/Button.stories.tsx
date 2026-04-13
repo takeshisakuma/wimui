@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Button } from "wimui";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Buttons/Button",
