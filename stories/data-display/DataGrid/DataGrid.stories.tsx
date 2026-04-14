@@ -438,4 +438,63 @@ export const InfiniteScroll: Story = {
     );
   },
 };
+export const WithFixedColumn: Story = {
+  render: () => {
+    const { tColumns, tSampleData } = useDataGridTranslations();
+    return (
+      <div style={{ maxWidth: "400px" }}>
+        <DataGrid
+          columns={tColumns}
+          data={tSampleData}
+          bordered
+          stickyHeader
+        />
+      </div>
+    );
+  },
+};
 
+export const WithRightFixedColumn: Story = {
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const columns = [
+      {
+        key: "id",
+        title: t("story.datagrid_col_id"),
+        width: 55,
+        fixed: "left" as const,
+      },
+      {
+        key: "name",
+        title: t("story.datagrid_col_name"),
+        width: 150,
+      },
+      {
+        key: "email",
+        title: t("story.datagrid_col_email"),
+        width: 250,
+      },
+      {
+        key: "role",
+        title: t("story.datagrid_col_role"),
+        width: 100,
+      },
+      {
+        key: "actions",
+        title: t("story.datagrid_col_actions"),
+        width: 80,
+        fixed: "right" as const,
+        render: () => "...",
+      },
+    ];
+    return (
+      <div style={{ maxWidth: "500px" }}>
+        <DataGrid
+          columns={columns}
+          data={sampleData as unknown as Record<string, unknown>[]}
+          bordered
+        />
+      </div>
+    );
+  },
+};
