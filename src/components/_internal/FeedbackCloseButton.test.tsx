@@ -30,9 +30,10 @@ describe("FeedbackCloseButton", () => {
   it("stops event propagation when clicked", () => {
     const parentClick = vi.fn();
     render(
-      <button type="button" onClick={parentClick}>
+      /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+      <div onClick={parentClick}>
         <FeedbackCloseButton onClose={() => {}} />
-      </button>,
+      </div>,
     );
     fireEvent.click(screen.getByRole("button", { name: "Close" }));
     expect(parentClick).not.toHaveBeenCalled();

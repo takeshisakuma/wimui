@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { SegmentedControl } from "./SegmentedControl";
 import styles from "./segmented-control.module.scss";
 import fieldStyles from "../FieldTemplate/field-template.module.scss";
@@ -10,57 +10,87 @@ describe("SegmentedControl", () => {
     { label: "Option 2", value: "2" },
     { label: "Option 3", value: "3" },
   ];
+  
+  const originalRAF = window.requestAnimationFrame;
 
-  it("renders all options", () => {
+  beforeAll(() => {
+    window.requestAnimationFrame = (cb) => {
+      cb(0);
+      return 0;
+    };
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame = originalRAF;
+  });
+
+  it("renders all options", async () => {
     render(
       <SegmentedControl options={options} value="1" onChange={() => {}} />,
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     expect(screen.getByText("Option 2")).toBeInTheDocument();
     expect(screen.getByText("Option 3")).toBeInTheDocument();
   });
 
-  it("calls onChange when an option is clicked", () => {
+  it("calls onChange when an option is clicked", async () => {
     const onChange = vi.fn();
     render(
       <SegmentedControl options={options} value="1" onChange={onChange} />,
     );
-    fireEvent.click(screen.getByText("Option 2"));
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
+    act(() => {
+      fireEvent.click(screen.getByText("Option 2"));
+    });
     expect(onChange).toHaveBeenCalledWith("2");
   });
 
-  it("sets active class on selected option", () => {
+  it("sets active class on selected option", async () => {
     render(
       <SegmentedControl options={options} value="2" onChange={() => {}} />,
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const activeItem = screen.getByText("Option 2").closest("button");
     expect(activeItem).toHaveClass(styles.active);
   });
 
-  it("handles keyboard navigation (ArrowRight, ArrowDown, ArrowLeft, ArrowUp)", () => {
+  it("handles keyboard navigation (ArrowRight, ArrowDown, ArrowLeft, ArrowUp)", async () => {
     const onChange = vi.fn();
     render(
       <SegmentedControl options={options} value="1" onChange={onChange} />,
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const btns = screen.getAllByRole("radio");
 
-    fireEvent.keyDown(btns[0], { key: "ArrowRight" });
+    act(() => {
+      fireEvent.keyDown(btns[0], { key: "ArrowRight" });
+    });
     expect(onChange).toHaveBeenCalledWith("2");
 
-    fireEvent.keyDown(btns[0], { key: "ArrowDown" });
+    act(() => {
+      fireEvent.keyDown(btns[0], { key: "ArrowDown" });
+    });
     expect(onChange).toHaveBeenCalledWith("2");
 
-    fireEvent.keyDown(btns[0], { key: "ArrowLeft" });
+    act(() => {
+      fireEvent.keyDown(btns[0], { key: "ArrowLeft" });
+    });
     expect(onChange).toHaveBeenCalledWith("3");
 
-    fireEvent.keyDown(btns[0], { key: "ArrowUp" });
+    act(() => {
+      fireEvent.keyDown(btns[0], { key: "ArrowUp" });
+    });
     expect(onChange).toHaveBeenCalledWith("3");
 
-    fireEvent.keyDown(btns[0], { key: "a" });
+    act(() => {
+      fireEvent.keyDown(btns[0], { key: "a" });
+    });
     expect(onChange).toHaveBeenCalledTimes(4); // No change
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
   });
 
-  it("applies size, fullWidth and custom className", () => {
+  it("applies size, fullWidth and custom className", async () => {
     const { container } = render(
       <SegmentedControl
         options={options}
@@ -71,38 +101,43 @@ describe("SegmentedControl", () => {
         className="my-custom"
       />,
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const el = screen.getByRole("radiogroup");
     expect(el).toHaveClass(styles.lg);
     expect(el).toHaveClass(styles.fullWidth);
     expect(container.firstChild).toHaveClass("my-custom"); // FieldTemplate container
   });
 
-  it("renders with icon only", () => {
+  it("renders with icon only", async () => {
     // Only iconName, no label
     const iconOptions = [{ value: "1", iconName: "CircleIcon" as const }];
     render(
       <SegmentedControl options={iconOptions} value="1" onChange={() => {}} />,
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const btn = screen.getByRole("radio");
     expect(btn).toHaveClass(styles.iconOnly);
     // Icon renders svg
     expect(btn.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("applies small and medium size classes", () => {
+  it("applies small and medium size classes", async () => {
     const { rerender } = render(
       <SegmentedControl options={options} value="1" onChange={() => {}} size="sm" />
     );
-    expect(screen.getByRole("radiogroup")).toHaveClass(styles.sm);
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.sm));
 
-    rerender(<SegmentedControl options={options} value="1" onChange={() => {}} size="md" />);
-    expect(screen.getByRole("radiogroup")).toHaveClass(styles.md);
+    act(() => {
+      rerender(<SegmentedControl options={options} value="1" onChange={() => {}} size="md" />);
+    });
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.md));
   });
 
-  it("applies horizontal layout class", () => {
+  it("applies horizontal layout class", async () => {
     const { container } = render(
       <SegmentedControl options={options} value="1" onChange={() => {}} layout="horizontal" />
     );
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
   });
 });

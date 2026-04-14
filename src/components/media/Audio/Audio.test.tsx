@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Audio } from "./Audio";
 import styles from "./audio.module.scss";
@@ -27,12 +27,16 @@ describe("Audio", () => {
     expect(screen.getByRole("button", { name: /Mute/i })).toBeInTheDocument();
   });
 
-  it("toggles play/pause with custom controls", () => {
+  it("toggles play/pause with custom controls", async () => {
     render(<Audio src={src} customControls />);
     const playBtn = screen.getByRole("button", { name: /Play/i });
 
-    fireEvent.click(playBtn);
+    act(() => {
+      fireEvent.click(playBtn);
+    });
     expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled();
+    // Wait for internal isPlaying state update
+    await waitFor(() => expect(screen.getByRole("button", { name: /Pause/i })).toBeInTheDocument());
   });
 
   it("renders caption", () => {
@@ -40,7 +44,7 @@ describe("Audio", () => {
     expect(screen.getByText("Example Audio")).toBeInTheDocument();
   });
 
-  it("handles onLoadedMetadata, onLoadedData, and onCanPlay events", () => {
+  it("handles onLoadedMetadata, onLoadedData, and onCanPlay events", async () => {
     const onLoadedMetadata = vi.fn();
     const onLoadedData = vi.fn();
     const onCanPlay = vi.fn();
@@ -56,22 +60,26 @@ describe("Audio", () => {
     const audioElement = screen.getByTestId("audio-active");
 
     // Simulate events
-    fireEvent.loadedMetadata(audioElement);
-    fireEvent.loadedData(audioElement);
-    fireEvent.canPlay(audioElement);
+    act(() => {
+      fireEvent.loadedMetadata(audioElement);
+      fireEvent.loadedData(audioElement);
+      fireEvent.canPlay(audioElement);
+    });
 
     expect(onLoadedMetadata).toHaveBeenCalled();
     expect(onLoadedData).toHaveBeenCalled();
     expect(onCanPlay).toHaveBeenCalled();
   });
 
-  it("handles array of sources", () => {
+  it("handles array of sources", async () => {
     const { rerender } = render(<Audio src={["src1.mp3", "src2.mp3"]} />);
     let audioElement = screen.getByTestId("audio-active");
     expect(audioElement).toHaveAttribute("src", "src1.mp3");
 
     // Re-render with array of objects
-    rerender(<Audio src={[{ src: "obj1.mp3" }]} />);
+    act(() => {
+      rerender(<Audio src={[{ src: "obj1.mp3" }]} />);
+    });
     audioElement = screen.getByTestId("audio-active");
     expect(audioElement).toHaveAttribute("src", "obj1.mp3");
   });
@@ -213,5 +221,4 @@ describe("Audio", () => {
     render(<Audio src={src} />);
     expect(screen.getByTestId("audio-root")).toBeInTheDocument();
   });
-
 });
