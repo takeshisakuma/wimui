@@ -182,6 +182,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
       sortable = false,
       sortDirection = "none",
       onSort,
+      selection = false,
       stickyLeft = false,
       stickyRight = false,
       leftOffset,
@@ -200,7 +201,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
         className={classNames(
           styles.head,
           sortable && styles.sortable,
-          props.selection && styles.selection,
+          selection && styles.selection,
           stickyLeft && styles.stickyLeft,
           stickyRight && styles.stickyRight,
           className,
