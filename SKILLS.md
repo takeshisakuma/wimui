@@ -60,14 +60,15 @@ public/
 
 ## コンポーネント新規作成の手順
 
-1. `src/components/ComponentName/` を作成し `ComponentName.tsx` と `component-name.module.scss` を配置
-2. `ComponentName.tsx` 内で `import styles from "./component-name.module.scss"` を記述
-3. `src/index.ts` にエクスポートを追加
-4. `ComponentName.test.tsx` を作成し `npm run test` で通過を確認
-5. `stories/ComponentName/ComponentName.stories.tsx` を作成
-6. `stories/ComponentName/ComponentName.mdx` を作成（後述の構成に従う）
-7. 翻訳キーを追加（後述の i18n 手順に従う）
-8. `npm run lint` / `npm run stylelint` で問題がないことを確認
+1.  **スキャフォールディングの実行**: `npm run scaffold -- <ComponentName> <category>` を実行します。
+    -   例: `npm run scaffold -- MyButton form`
+    -   これにより `src/components/form/MyButton/` 配下の TSX/SCSS/Test と `stories/MyButton/` 配下の Stories/MDX が自動生成され、`src/form.ts` にエクスポートが追加されます。
+2.  **ロジックの実装**: 生成された `ComponentName.tsx` と `*.module.scss` に機能を実装します。
+3.  **テストの修正・実行**: `npm run test` で生成されたテストが通過することを確認します。
+4.  **MDX の執筆**: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
+5.  **コンポーネントリストの更新**: `src/data/components.json` に新規コンポーネントを追記します。
+6.  **翻訳キーの追加**: `public/locales/en/` に翻訳キーを追加し、`npm run i18n:sync` を実行します。
+7.  **最終確認**: `npm run audit-mdx` (自作予定) または lint を実行して問題がないことを確認します。
 
 ---
 

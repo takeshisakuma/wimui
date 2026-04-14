@@ -20,7 +20,7 @@
 - `public/locales/` 配下のJSONファイルは1000行を超えないようにしてください。超える場合は分割してください。
 - en / ja / pt すべてのリソースファイルで漏れなく定義されているか、`npm run i18n:sync` でチェックしてください。
 - i18nキーは **ネスト構造** で命名してください（例: `a11y.close`, `button.clear`, `fileupload.button`）。JSONファイルはネストオブジェクト形式で管理し、コード側は `.` 区切りのドット記法を使用します。新規キーは同じ prefix グループに追加してください。
-- 新しいネームスペース（新しいJSONファイル）を追加した場合は、Vite/Storybook のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。開発者が手動で更新する必要はありません。
+- **ファイルの分割**: 単一の JSON ファイルが 1000 行を超える前に、カテゴリー単位（`form.json`, `data-display.json` 等）でファイルを分割してください。新しいファイルを追加した場合は `stories/i18nConstants.ts` に自動で反映されます。
 - **ドキュメントの自動化（Docgen）**: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）、テスト実行方法は、Vite プラグインによって `src/data/docgen.json` へ自動抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、**見出し（H2）を含めて**これらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
 - MDXや TSX/Stories で `<T k="..." />` や `t("...")` を使うキーを新規追加・変更した場合は、必ず en / ja / pt の**すべて**のロケールファイルに同じキーを追加してください。1言語だけ追加して他を忘れると翻訳キーがそのまま表示されます。
 - 既存の汎用キー（`doc.scenario.*` など）を MDX で使う場合は、**事前にロケールファイルに存在するか検索して確認**してください。存在しなければ追加してください。`doc.scenario.filter_title` は存在するが `doc.scenario.faq_title` は存在しない、といった漏れが起きやすいです。
@@ -309,3 +309,26 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 | Example（実装例） | サンプルコード・Canvas を掲載 | `## <T k="doc.example" />` |
 | Variations（バリエーション） | 見た目・動作のバリエーション一覧 | `## <T k="doc.variations" />` |
 | コンポーネント固有のセクション | 特殊な注意事項など | 例: Dialog の「Why not modal?」|
+
+---
+
+# 大量コンポーネント追加時の特別ルール
+
+短期間に多くのコンポーネントを追加する場合は、以下の点に特に注意してください。
+
+## 1. 共通インターフェースの遵守
+
+新規コンポーネントが `asChild` / `ref` / `className` / `style` などの基本 prop を一貫してサポートしているか確認してください。これらが漏れると、レイアウトコンポーネントとの組み合わせ（Composition）が困難になります。
+
+## 2. i18n ファイルの分割計画
+
+`public/locales/` 配下の JSON ファイル（特に `common.json`）が 1000 行に近づいた場合は、迷わず分割してください。
+- 例: `form.json`, `overlay.json`, `typography.json` など、コンポーネントカテゴリーに応じたネームスペースを作成してください。
+
+## 3. Storybook の階層整理
+
+コンポーネントリスト（`src/data/components.json`）のカテゴリー ID に基づき、Storybook の `title` （例: `Components/Form/Button`）を正しく設定してください。フラットなリストになると視認性が著しく低下します。
+
+## 4. 自動化スクリプトの活用
+
+`npm run scaffold -- <Name> <Category>` を活用して、標準的なファイル構成と 15 セクション MDX を自動生成してください。手動でのテンプレート作成はミス（セクション漏れなど）の温床となります。 scss も `@layer component` で自動ラップされます。

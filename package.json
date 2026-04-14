@@ -103,8 +103,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
     "format": "prettier --write .",
-    "lint": "eslint src stories --ignore-pattern \"**/*.mdx\" --max-warnings=0",
-    "lint:fix": "eslint src stories --ignore-pattern \"**/*.mdx\" --fix --max-warnings=0",
+    "lint": "eslint src stories --max-warnings=0",
+    "lint:fix": "eslint src stories --fix --max-warnings=0",
     "stylelint:css": "stylelint \"{src,stories}/**/*.css\" --allow-empty-input",
     "stylelint:scss": "stylelint \"{src,stories}/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
@@ -122,6 +122,8 @@
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
     "check:links": "node scripts/check-mdx-links.js",
+    "audit-mdx": "node scripts/audit-mdx.js",
+    "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js",
     "prepare": "husky"
   },
@@ -219,6 +221,7 @@
       "stylelint --fix --max-warnings=0"
     ],
     "**/*.mdx": [
+      "eslint --fix --max-warnings=0",
       "node scripts/check-mdx-hardcoded.js",
       "node scripts/check-i18n-components.js",
       "node scripts/check-mdx-links.js"

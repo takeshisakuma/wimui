@@ -22,7 +22,12 @@ export default [
     }),
     rules: {
       ...mdx.flat.rules,
-      "no-unused-vars": "off", // MDX often has false positives for unused vars
+      "no-unused-vars": "off",
+      "react/jsx-no-undef": "error",
+    },
+    plugins: {
+      ...mdx.flat.plugins,
+      react: reactPlugin,
     },
     languageOptions: {
       ...(mdx.flat.languageOptions || {}),

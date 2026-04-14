@@ -11,6 +11,7 @@ const requiredKeys = [
   'doc.a11y_spec_title',
   'doc.real_world_scenarios_title',
   'doc.best_practices_title',
+  'doc.props_title',
   'doc.tokens_title',
   'doc.responsive_title',
   'doc.keyboard_nav_title',
@@ -30,6 +31,7 @@ files.forEach(file => {
     if (k === 'doc.anatomy_title' && content.includes('<Docgen') && content.includes('section="anatomy"')) return false;
     if (k === 'doc.tokens_title' && content.includes('<Docgen') && content.includes('section="tokens"')) return false;
     if (k === 'doc.test_title' && content.includes('<Docgen') && content.includes('section="test"')) return false;
+    if (k === 'doc.props_title' && content.includes('<Docgen') && content.includes('section="props"')) return false;
     
     return true;
   });
