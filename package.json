@@ -224,7 +224,8 @@
       "eslint --fix --max-warnings=0",
       "node scripts/check-mdx-hardcoded.js",
       "node scripts/check-i18n-components.js",
-      "node scripts/check-mdx-links.js"
+      "node scripts/check-mdx-links.js",
+      "node scripts/audit-mdx.js"
     ],
     "public/locales/**/*.json": [
       "node scripts/check-i18n.js"

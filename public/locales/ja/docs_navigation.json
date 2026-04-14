@@ -480,6 +480,15 @@
     "tour_motion_desc": "トランジションは最小限かつ目的のあるもので、ユーザーのモーション軽減設定を尊重します。",
     "tour_scenario_1": "機能紹介: ログインした既存ユーザーに、新しく追加された分析ツールを紹介します。",
     "tour_scenario_2": "プラットフォーム案内: 複雑なSaaSダッシュボードで、初回利用者向けの必須ガイドを提供します。",
-    "affix_target_note": "実際のプロダクトで全体スクロールに Affix を使う場合はデフォルトの window 追従で正しく動きますが、今回のようにモーダルや特定のビュー内で使う場合は target にその親コンテナを渡して利用してください。"
+    "affix_target_note": "実際のプロダクトで全体スクロールに Affix を使う場合はデフォルトの window 追従で正しく動きますが、今回のようにモーダルや特定のビュー内で使う場合は target にその親コンテナを渡して利用してください。",
+    "sidebar_collapsed": "折りたたみ状態 (Collapsed)",
+    "sidebar_collapsed_desc": "`collapsed` プロパティを使用すると、サイドバーを最小サイズに折りたたみます。アイコンのみが表示されるようになります。",
+    "sidebar_custom_width": "カスタム幅",
+    "sidebar_custom_width_desc": "`width` プロパティを使用して、展開時の幅を調整できます。",
+    "sidebar_desc": "サイドパネル",
+    "sidebar_long_desc": "Sidebarは、ページの横側に配置されるナビゲーションや情報のパネルです。",
+    "sidebar_pc_only": "PCのみ: このコンポーネントは主にPC（マウス・キーボード操作）向けに設計されています。スマートフォンなどの小画面デバイスでは、`TabBar`やドロワーメニューなどの代替手段を検討してください。",
+    "sidebar_title": "画面の端に配置され、主要なメニューや補助的な情報を保持する垂直パネル",
+    "sidebar_usage_desc": "`Sidebar` コンポーネントの中に `Sidebar.Header`、`Sidebar.Content`、`Sidebar.Footer` を配置し、`Sidebar.Content` の中に `Sidebar.Item` を配置します。"
   }
 }

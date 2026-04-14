@@ -19,6 +19,18 @@ const requiredKeys = [
   'doc.test_title'
 ];
 
+const prohibitedPlaceholders = [
+  'description...',
+  'intent here...',
+  'matrix here...',
+  'guidelines here...',
+  'spec here...',
+  'scenarios here...',
+  'practices here...',
+  'info here...'
+];
+
+
 const componentFiles = globSync('stories/**/*.mdx', { posix: true });
 const guideFiles = globSync('docs/**/*.mdx', { posix: true });
 
@@ -49,8 +61,15 @@ componentFiles.forEach(file => {
     return true;
   });
   
-  if (missing.length > 0) {
-    console.log(`[FAIL] ${file} is missing: ${missing.join(', ')}`);
+  const foundPlaceholders = prohibitedPlaceholders.filter(p => content.includes(p));
+  
+  if (missing.length > 0 || foundPlaceholders.length > 0) {
+    if (missing.length > 0) {
+      console.log(`[FAIL] ${file} is missing: ${missing.join(', ')}`);
+    }
+    if (foundPlaceholders.length > 0) {
+      console.log(`[FAIL] ${file} contains placeholders: ${foundPlaceholders.join(', ')}`);
+    }
     allPass = false;
   }
 });

@@ -320,6 +320,7 @@
     "linkbutton_keyboard_desc": "Tab focuses the link button. Enter activates it. It behaves as a standard anchor element for keyboard users.",
     "linkbutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children prop.",
     "dropdown_keyboard_desc": "Tab focuses the dropdown trigger. Enter or Space opens the dropdown. Arrow keys navigate options. Enter selects the focused option. Escape closes the dropdown.",
-    "dropdown_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the trigger and item label children."
+    "dropdown_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the trigger and item label children.",
+    "action": "Action"
   }
 }

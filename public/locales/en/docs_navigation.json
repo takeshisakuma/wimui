@@ -480,6 +480,15 @@
     "tabnavigation_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each tab item's label prop.",
     "tour_keyboard_desc": "Tab moves focus through the Previous, Next, and Close buttons within each tour step. Enter or Space activates the focused button. Escape closes the tour.",
     "tour_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each step's title, description, and button label props.",
-    "affix_target_note": "When using Affix for the entire page scroll, the default window target works perfectly. However, if you are using Affix inside a modal or a specific scrollable view, remember to pass the parent container to the target prop."
+    "affix_target_note": "When using Affix for the entire page scroll, the default window target works perfectly. However, if you are using Affix inside a modal or a specific scrollable view, remember to pass the parent container to the target prop.",
+    "sidebar_collapsed": "Collapsed State",
+    "sidebar_collapsed_desc": "Collapses the sidebar to a minimum size using the `collapsed` property. Only icons will be visible.",
+    "sidebar_custom_width": "Custom Width",
+    "sidebar_custom_width_desc": "Adjust the expanded width using the `width` property.",
+    "sidebar_desc": "A collapsible navigation or informational panel on the side of the screen",
+    "sidebar_long_desc": "A sidebar is a navigation or information panel placed on the side of a page.",
+    "sidebar_pc_only": "Desktop Only: This component is primarily designed for desktop (mouse and keyboard) use. For small-screen devices like smartphones, consider alternatives such as a `TabBar` or drawer menu.",
+    "sidebar_title": "A collapsible navigation or informational panel on the side of the screen",
+    "sidebar_usage_desc": "Place `Sidebar.Header`, `Sidebar.Content`, and `Sidebar.Footer` inside `Sidebar`, and place `Sidebar.Item` inside `Sidebar.Content`."
   }
 }

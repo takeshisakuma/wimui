@@ -6,8 +6,10 @@ export const ALL_NAMESPACES = [
   "common",
   "components",
   "docs_actions",
-  "docs_display",
-  "docs_display2",
+  "docs_charts",
+  "docs_common",
+  "docs_data_display",
+  "docs_data_heavy",
   "docs_feedback",
   "docs_guide_a11y_usability",
   "docs_guide_colors",
@@ -31,6 +33,8 @@ export const ALL_NAMESPACES = [
   "docs_inputs",
   "docs_inputs2",
   "docs_layout",
+  "docs_layout_complex",
+  "docs_layout_shell",
   "docs_media",
   "docs_navigation",
   "docs_overlay",
@@ -45,5 +49,6 @@ export const ALL_NAMESPACES = [
   "docs_stories_overlay",
   "docs_stories_recipes",
   "docs_stories_utility",
+  "docs_typography",
   "docs_utility"
 ];

@@ -320,6 +320,7 @@
     "linkbutton_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
     "linkbutton_scenario_1": "Seções de CTA: Promovendo uma jornada 'Começar' que leva a uma página de inscrição.",
     "linkbutton_scenario_2": "Compartilhamento Social: Fornecendo botões 'Ver no GitHub' ou 'Seguir no Twitter' em um rodapé.",
-    "linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link."
+    "linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link.",
+    "action": "Ação"
   }
 }

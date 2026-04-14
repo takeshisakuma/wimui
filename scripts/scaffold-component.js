@@ -13,7 +13,7 @@ if (!componentName || !category) {
 }
 
 const componentDir = path.join(__dirname, '../src/components', category, componentName);
-const storiesDir = path.join(__dirname, '../stories', componentName);
+const storiesDir = path.join(__dirname, '../stories', category, componentName);
 
 if (fs.existsSync(componentDir)) {
   console.error(`Error: Component ${componentName} already exists in ${category}.`);
@@ -129,14 +129,14 @@ export const Default: Story = {
 `;
 
 // 5. MDX
-const mdx = `import { Meta, Canvas, Controls } from "@storybook/blocks";
+const mdx = `import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/blocks";
 import * as ${componentName}Stories from "./${componentName}.stories";
-import { T } from "../T";
+import { T } from "../../T";
 import { Docgen } from "../../Docgen";
 
 <Meta of={${componentName}Stories} />
 
-# ${componentName}
+<Title />
 
 ${componentName} description...
 
@@ -151,7 +151,7 @@ Design intent here...
 
 Choice matrix here...
 
-<Docgen section="anatomy" />
+<Docgen componentName="${componentName}" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 
@@ -173,9 +173,9 @@ Real world scenarios here...
 
 Best practices here...
 
-<Docgen section="props" />
+<Docgen componentName="${componentName}" section="props" />
 
-<Docgen section="tokens" />
+<Docgen componentName="${componentName}" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 
@@ -189,7 +189,11 @@ Keyboard navigation info here...
 
 I18n info here...
 
-<Docgen section="test" />
+<Docgen componentName="${componentName}" section="test" />
+
+<Primary />
+
+<Stories />
 `;
 
 // Write files
@@ -210,5 +214,5 @@ if (fs.existsSync(exportFilePath)) {
   }
 }
 
-console.log(\`✓ \${componentName} scaffolded successfully in src/components/\${category}/\${componentName}\`);
-console.log(\`Don't forget to update src/data/components.json and run scripts if needed.\`);
+console.log(`✓ ${componentName} scaffolded successfully in src/components/${category}/${componentName}`);
+console.log(`Don't forget to update src/data/components.json and run scripts if needed.`);

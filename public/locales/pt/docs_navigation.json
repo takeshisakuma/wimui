@@ -480,6 +480,15 @@
     "tour_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
     "tour_scenario_1": "Destaque de Recurso: Apresentando uma ferramenta analítica recém-adicionada a usuários existentes ao fazer login.",
     "tour_scenario_2": "Orientação da Plataforma: Um guia obrigatório de primeira viagem para dashboards SaaS complexos.",
-    "affix_target_note": "Ao usar o Affix para a rolagem de toda a página, o alvo padrão da janela funciona perfeitamente. Contudo, se estiver a usar o Affix dentro de um modal ou numa visualização de rolagem específica, lembre-se de passar o recipiente pai para a propriedade target."
+    "affix_target_note": "Ao usar o Affix para a rolagem de toda a página, o alvo padrão da janela funciona perfeitamente. Contudo, se estiver a usar o Affix dentro de um modal ou numa visualização de rolagem específica, lembre-se de passar o recipiente pai para a propriedade target.",
+    "sidebar_collapsed": "Estado Recolhido",
+    "sidebar_collapsed_desc": "Recolhe a barra lateral para um tamanho mínimo usando a propriedade `collapsed`. Apenas os ícones ficarão visíveis.",
+    "sidebar_custom_width": "Largura Personalizada",
+    "sidebar_custom_width_desc": "Ajuste a largura expandida usando a propriedade `width`.",
+    "sidebar_desc": "Navegação vertical complementar na borda da tela",
+    "sidebar_long_desc": "Uma barra lateral é um painel de navegação ou informação colocado ao lado de uma página.",
+    "sidebar_pc_only": "Apenas Desktop: Este componente foi projetado principalmente para uso em desktop (mouse e teclado). Para dispositivos de tela pequena, como smartphones, considere alternativas como uma `TabBar` ou menu de gaveta (drawer).",
+    "sidebar_title": "Barra Lateral",
+    "sidebar_usage_desc": "Coloque `Sidebar.Header`, `Sidebar.Content`, e `Sidebar.Footer` dentro de `Sidebar`, e coloque `Sidebar.Item` dentro de `Sidebar.Content`."
   }
 }
