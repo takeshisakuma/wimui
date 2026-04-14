@@ -314,21 +314,43 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 
 # 大量コンポーネント追加時の特別ルール
 
-短期間に多くのコンポーネントを追加する場合は、以下の点に特に注意してください。
+短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合は、以下の **「プレフライト・チェックリスト」** を必ずパスするようにしてください。
 
-## 1. 共通インターフェースの遵守
+## 1. プレフライト・チェックリスト
 
-新規コンポーネントが `asChild` / `ref` / `className` / `style` などの基本 prop を一貫してサポートしているか確認してください。これらが漏れると、レイアウトコンポーネントとの組み合わせ（Composition）が困難になります。
+新規コンポーネントをコミットする前に、以下のコマンドですべてチェックしてください。
 
-## 2. i18n ファイルの分割計画
+| チェック項目 | コマンド | 目的 |
+|---|---|---|
+| **MDX 全数監査** | `npm run audit-mdx` | 必須 15 セクションが揃っているか確認。 |
+| **ポリモーフィック監査** | `node scripts/check-aschild.js` | `asChild` が正しく実装されているか確認。 |
+| **i18n 整合性** | `npm run i18n:check` | 3言語すべてにキーが存在するか確認。 |
+| **型・スタイル** | `npm run lint` / `npm run stylelint` | 基本的な構文エラーがないか確認。 |
+| **トークン漏れチェック** | (目視または `Docgen`) | ハードコードされた色やサイズがないか。 |
 
-`public/locales/` 配下の JSON ファイル（特に `common.json`）が 1000 行に近づいた場合は、迷わず分割してください。
-- 例: `form.json`, `overlay.json`, `typography.json` など、コンポーネントカテゴリーに応じたネームスペースを作成してください。
+## 2. Storybook の階層整理（Deep Hierarchy）
 
-## 3. Storybook の階層整理
+コンポーネントが 50 を超える場合は、Storybook のサイドバーがフラットだと目的のコンポーネントが探せなくなります。
+`stories/*.stories.tsx` の `title` に階層を深く持たせてください。
 
-コンポーネントリスト（`src/data/components.json`）のカテゴリー ID に基づき、Storybook の `title` （例: `Components/Form/Button`）を正しく設定してください。フラットなリストになると視認性が著しく低下します。
+- **NG**: `title: "Components/Button"`
+- **OK**: `title: "Components/Form/Button"`
+- **推奨**: 原子コンポーネント以上の複雑なものはサブカテゴリを作ってください。
+  - `Components/Data Display/Table/SortableTable`
+  - `Components/Data Display/Table/VirtualTable`
+
+## 3. i18n ファイルの分割（Governance）
+
+`public/locales/` 配下の単一 JSON ファイルが 1000 行（または 50KB）を超えそうな場合：
+1. `common.json` に何でも入れないでください。
+2. カテゴリ別のファイル（`form.json`, `overlay.json` 等）を新設してください。
+3. `stories/i18nConstants.ts` に自動登録されるので、MDX では `<T k="form.submit" />` のようにネームスペース付きで参照してください。
 
 ## 4. 自動化スクリプトの活用
 
-`npm run scaffold -- <Name> <Category>` を活用して、標準的なファイル構成と 15 セクション MDX を自動生成してください。手動でのテンプレート作成はミス（セクション漏れなど）の温床となります。 scss も `@layer component` で自動ラップされます。
+手動でファイルを作成ぜず、必ず `npm run scaffold -- <Name> <Category>` を使用してください。
+これにより以下のボイラープレートが自動適用されます：
+- `forwardRef` + `asChild` (Radix Slot)
+- `@layer component` による SCSS ラップ
+- 15 セクション構成の MDX テンプレート
+- `vi.mock("react-i18next")` 済みのテストファイル

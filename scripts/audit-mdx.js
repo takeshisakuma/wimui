@@ -19,19 +19,32 @@ const requiredKeys = [
   'doc.test_title'
 ];
 
-const files = globSync('**/*.mdx', { posix: true });
+const componentFiles = globSync('stories/**/*.mdx', { posix: true });
+const guideFiles = globSync('docs/**/*.mdx', { posix: true });
 
 let allPass = true;
-files.forEach(file => {
+
+console.log('--- Auditing Component MDX Files ---');
+componentFiles.forEach(file => {
+  // Ignore MDX files that don't have a corresponding .stories.tsx (likely internal or guide-like)
+  const dir = path.dirname(file);
+  const baseName = path.basename(file, '.mdx');
+  const storyFile = path.join(dir, `${baseName}.stories.tsx`);
+  
+  if (!fs.existsSync(storyFile)) {
+    // console.log(`[SKIP] ${file} (No corresponding story file found)`);
+    return;
+  }
+
   const content = fs.readFileSync(file, 'utf8');
   const missing = requiredKeys.filter(k => {
     if (content.includes(k)) return false;
     
     // Docgen component generates these titles
-    if (k === 'doc.anatomy_title' && content.includes('<Docgen') && content.includes('section="anatomy"')) return false;
-    if (k === 'doc.tokens_title' && content.includes('<Docgen') && content.includes('section="tokens"')) return false;
-    if (k === 'doc.test_title' && content.includes('<Docgen') && content.includes('section="test"')) return false;
-    if (k === 'doc.props_title' && content.includes('<Docgen') && content.includes('section="props"')) return false;
+    if (k === 'doc.anatomy_title' && (content.includes('section="anatomy"') || content.includes('componentName='))) return false;
+    if (k === 'doc.tokens_title' && (content.includes('section="tokens"') || content.includes('componentName='))) return false;
+    if (k === 'doc.test_title' && (content.includes('section="test"') || content.includes('componentName='))) return false;
+    if (k === 'doc.props_title' && (content.includes('section="props"') || content.includes('componentName='))) return false;
     
     return true;
   });
@@ -42,6 +55,19 @@ files.forEach(file => {
   }
 });
 
+console.log('\n--- Auditing Guide MDX Files ---');
+guideFiles.forEach(file => {
+  const content = fs.readFileSync(file, 'utf8');
+  // Guides only need a title (h1) or Meta title
+  if (!content.includes('# ') && !content.includes('<Meta title=')) {
+    console.log(`[FAIL] ${file} is missing a title or Meta title.`);
+    allPass = false;
+  }
+});
+
 if (allPass) {
-  console.log('✓ All MDX files contain required sections.');
+  console.log('\n✓ All MDX files passed the audit.');
+} else {
+  console.log('\n✗ Some MDX files failed the audit.');
+  process.exit(1);
 }

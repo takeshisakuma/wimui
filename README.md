@@ -2,203 +2,207 @@
 
 ## 開発
 
-### Storybook 起動
+### Storybook 起勁E
 
 ```
 npm run storybook
 ```
 
-### パッケージバージョン確認
+### パッケージバ�Eジョン確誁E
 
 ```
 npm outdated
 ```
 
-## 品質チェック
+## 品質チェチE��
 
 ### SCSS
 
 ```
-npm run stylelint       # src・storiesフォルダ内のCSS/SCSSの品質確認
-npm run stylelint:fix   # src・storiesフォルダ内のCSS/SCSSを自動修正
+npm run stylelint       # src・storiesフォルダ冁E�ECSS/SCSSの品質確誁E
+npm run stylelint:fix   # src・storiesフォルダ冁E�ECSS/SCSSを�E動修正
 ```
 
 ### JavaScript / TypeScript
 
 ```
-npm run lint            # src・storiesフォルダ内のJS/TSの品質確認（.mdxを除く、警告ゼロが必須）
-npm run lint:fix        # src・storiesフォルダ内のJS/TSを自動修正
+npm run lint            # src・storiesフォルダ冁E�EJS/TSの品質確認！Emdxを除く、警告ゼロが忁E��！E
+npm run lint:fix        # src・storiesフォルダ冁E�EJS/TSを�E動修正
 ```
 
-### 単体テスト
+### 単体テスチE
 
 ```
-npm run test            # コンポーネント単体テスト (*.test.tsx) を実行
+npm run test            # コンポ�Eネント単体テスチE(*.test.tsx) を実衁E
 ```
 
-### テストカバレッジ
+### チE��トカバレチE��
 
 ```
-npm run test:coverage   # coverage/ にブラウザで確認可能なHTMLレポートを生成
+npm run test:coverage   # coverage/ にブラウザで確認可能なHTMLレポ�Eトを生�E
 ```
 
-### 未テストコンポーネント
+### 未チE��トコンポ�EネンチE
 
 ```
-npm run test:check      # 未テストコンポーネントのリスト (stories/missing_tests.txt) を更新
-npm run test:report     # カバレッジ測定と未テストチェックを同時に実行
+npm run test:check      # 未チE��トコンポ�Eネント�EリスチE(stories/missing_tests.txt) を更新
+npm run test:report     # カバレチE��測定と未チE��トチェチE��を同時に実衁E
 ```
 
 ### VRT (Visual Regression Testing)
 
 ```
-npm run test:vrt                                        # スナップショットと比較
-npm run test:vrt:update                                 # スナップショットを更新
-npm run test:vrt:report                                 # 差分をスライダー形式で確認
-$env:FILTER='Calendar'; npm run test:vrt:update         # Calendarのスナップショットのみ更新
+npm run test:vrt                                        # スナップショチE��と比輁E
+npm run test:vrt:update                                 # スナップショチE��を更新
+npm run test:vrt:report                                 # 差刁E��スライダー形式で確誁E
+$env:FILTER='Calendar'; npm run test:vrt:update         # CalendarのスナップショチE��のみ更新
 ```
 
-#### 環境変数
+#### 環墁E��数
 
 ```
-$env:THEME='light'                               # ライトモードのみ実行
-$env:THEME='dark'                                # ダークモードのみ実行
-$env:FILTER='Button'                             # Buttonコンポーネントのみ実行
-$env:THEME='light'; $env:FILTER='Button'         # ButtonのライトモードのみVRT
-$env:THEME='dark'; $env:FILTER='Calendar'        # CalendarのダークモードのみVRT
-$env:THEME=$null; $env:FILTER=$null              # 環境変数をリセット
+$env:THEME='light'                               # ライトモード�Eみ実衁E
+$env:THEME='dark'                                # ダークモード�Eみ実衁E
+$env:FILTER='Button'                             # Buttonコンポ�Eネント�Eみ実衁E
+$env:THEME='light'; $env:FILTER='Button'         # Buttonのライトモード�EみVRT
+$env:THEME='dark'; $env:FILTER='Calendar'        # Calendarのダークモード�EみVRT
+$env:THEME=$null; $env:FILTER=$null              # 環墁E��数をリセチE��
 ```
 
 ### a11y
 
 ```
-npx playwright test vrt/a11y.spec.ts                                        # 全ストーリーのa11yチェック
+npx playwright test vrt/a11y.spec.ts                                        # 全スト�Eリーのa11yチェチE��
 $env:FILTER='Button'; npx playwright test vrt/a11y.spec.ts                  # Buttonのみ
 ```
 
 ### バンドルサイズ
 
 ```
-npm run size   # ESモジュール全チャンク(gzip)とUMDバンドル(gzip)が閾値内かチェック
+npm run size   # ESモジュール全チャンク(gzip)とUMDバンドル(gzip)が閾値冁E��チェチE��
 ```
 
-閾値はCI（`bundle-size.yml`）でも自動確認されます。
+### MDX / 構造
+
+```bash
+npm run audit-mdx                # MDXのセクション漏れがなぁE��
+node scripts/check-aschild.js    # asChild の実裁E��忘れてぁE��ぁE��
+```
+
+閾値はCI�E�Ebundle-size.yml`�E�でも�E動確認されます、E
 
 ### Storybook docs エラー検知
 
-MDX ファイルで参照しているストーリー名が実際のエクスポートと一致しない場合、Storybook のビルド時にエラーが出力されます。
+MDX ファイルで参�EしてぁE��スト�Eリー名が実際のエクスポ�Eトと一致しなぁE��合、Storybook のビルド時にエラーが�E力されます、E
 
 ```
-npm run build-storybook   # ビルドエラーとしてエラーのあるページを検知
+npm run build-storybook   # ビルドエラーとしてエラーのあるペ�Eジを検知
 ```
 
-エラーが出た場合は標準エラー出力に `error` が含まれる行として表示されます。
+エラーが�Eた場合�E標準エラー出力に `error` が含まれる行として表示されます、E
 
-よくある原因：
+よくある原因�E�E
 
-- MDX の `<Canvas of={Stories.ExportName} />` で `ExportName` がストーリーファイルに存在しない
-- MDX の `<Controls of={Stories.ExportName} />` で同上
-- `<Markdown>` コンポーネントに文字列ではなく JSX を渡している
+- MDX の `<Canvas of={Stories.ExportName} />` で `ExportName` がスト�Eリーファイルに存在しなぁE
+- MDX の `<Controls of={Stories.ExportName} />` で同丁E
+- `<Markdown>` コンポ�Eネントに斁E���EではなぁEJSX を渡してぁE��
 
 ## コード整形
 
 ```
-npm run format   # プロジェクト全体をPrettierで整形
+npm run format   # プロジェクト�E体をPrettierで整形
 ```
 
 ## 国際化 (i18n)
 
 ```
-npm run i18n:check              # ロケールファイル間の翻訳キー欠落をチェック（en にあって ja/pt にない、など）
-npm run i18n:check:components   # コンポーネントソースで使われているキーが翻訳ファイルに存在するかチェック
-npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳・追記（要: GOOGLE_GENERATIVE_AI_API_KEY）
+npm run i18n:check              # 3言語すべてに翻訳キーが存在するか（ロケール間�E欠落チェチE���E�E
+npm run i18n:check:components   # コンポ�Eネントソースで使われてぁE��キーが翻訳ファイルに存在するかチェチE��
+npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳・追記（要E GOOGLE_GENERATIVE_AI_API_KEY�E�E
 ```
 
-### 2つのチェックスクリプトの使い分け
+### 2つのチェチE��スクリプトの使ぁE�EぁE
 
-| スクリプト | 検出できるケース |
+| スクリプト | 検�Eできるケース |
 |---|---|
-| `i18n:check` | ロケール間の欠落（en に翻訳があるが ja/pt に未追加） |
-| `i18n:check:components` | コードで `t("key")` を使い始めたがどのロケールにも未登録 |
+| `i18n:check` | ロケール間�E欠落�E�En に翻訳があるが ja/pt に未追加�E�E|
+| `i18n:check:components` | コードで `t("key")` を使ぁE��めたがどのロケールにも未登録 |
 
-**Namespace の自動登録：**
-`public/locales/en/` に 新しい JSON ファイルを追加すると、Vite のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。手動での更新は不要です。
+**Namespace の自動登録�E�E*
+`public/locales/en/` に 新しい JSON ファイルを追加すると、Vite のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。手動での更新は不要です、E
 
-**推奨フロー：**
-1. `npm run i18n:check:components` でコード上の未登録キーを検出
+**推奨フロー�E�E*
+1. `npm run i18n:check:components` でコード上�E未登録キーを検�E
 2. EN の翻訳ファイルにキーを追加
 3. `npm run i18n:sync` で ja/pt へ自動翻訳
-4. `npm run i18n:check` でロケール間の整合性を確認
+4. `npm run i18n:check` でロケール間�E整合性を確誁E
 
-## ユーティリティ
+## ユーチE��リチE��
 
-### 整合性チェック
-
-```
-npm run check:consistency   # src・components.json・stories・mdxの不整合を確認
-```
-
-### コンポーネント階層確認
+### 整合性チェチE��
 
 ```
-npm run check:hierarchy     # コンポーネントの階層を表示
+npm run check:consistency   # src・components.json・stories・mdxの不整合を確誁E
 ```
 
-### 翻訳キーの確認
+### コンポ�Eネント階層確誁E
 
 ```
-npm run check:stories       # 翻訳キーの漏れ（生キー表示）を確認
-npm run i18n:missing        # enにあって他言語に未翻訳のキーを確認
+npm run check:hierarchy     # コンポ�Eネント�E階層を表示
 ```
 
-## デプロイ
+### 翻訳キーの確誁E
 
 ```
-npm run deploy   # GitHub Pagesへデプロイ
+npm run check:stories       # 翻訳キーの漏れ�E�生キー表示�E�を確誁E
+npm run i18n:missing        # enにあって他言語に未翻訳のキーを確誁E
+```
+
+## チE�Eロイ
+
+```
+npm run deploy   # GitHub PagesへチE�Eロイ
 ```
 
 ## Git
 
-### Huskyのスキップ
+### HuskyのスキチE�E
 
-やむを得ずコミット時のHuskyをスキップする場合：
+めE�Eを得ずコミット時のHuskyをスキチE�Eする場合！E
 
 ```
 git commit -m "commit message" --no-verify
 ```
 
-## コーディングルール
+## コーチE��ングルール
 
-- スタイリング：新規コンポーネントは **CSS Modules**（`*.module.scss`）を推奨
-- CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `RULES.md` を参照）
+- スタイリング�E�新規コンポ�Eネント�E **CSS Modules**�E�E*.module.scss`�E�を推奨
+- CSSクラス名：従来のグローバルクラスは `wim-` プレフィチE��スを使用�E�詳細は `RULES.md` を参照�E�E
 
 
-## ドキュメントの自動抽出 (Docgen)
+## ドキュメント�E自動抽出 (Docgen)
 
-WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
-Vite の開発サーバー起動時やファイル保存時に `src/data/docgen.json` が自動更新されるため、手動でスクリプトを実行する必要はありません。
-MDX の記述方法の詳細は `SKILLS.md` を参照してください。
+WIM UI では、コンポ�Eネント�E仕様！Erops、デザイント�Eクン、構�E要素�E�を自動抽出し、MDX に埋め込む仕絁E��を構築してぁE��す、E
+Vite の開発サーバ�E起動時めE��ァイル保存時に `src/data/docgen.json` が�E動更新されるため、手動でスクリプトを実行する忁E���Eありません、E
+MDX の記述方法�E詳細は `SKILLS.md` を参照してください、E
 
-## ドキュメントの欠落確認
-node scripts/audit-mdx.js
+## チE��イント�Eクン
 
-## デザイントークン
+WIM UI は、E*Style Dictionary** を使用してチE��イント�Eクンを一允E��琁E��Eingle Source of Truth�E�してぁE��す、E
 
-WIM UI は、**Style Dictionary** を使用してデザイントークンを一元管理（Single Source of Truth）しています。
-
-### 基本構成
+### 基本構�E
 
 - **ソース**: `tokens/**/*.json`
-- **生成物（自動生成）**:
+- **生�E物�E��E動生成！E*:
     - `src/tokens/generated/` (SCSS変数, CSSカスタムプロパティ)
     - `src/types/generated-tokens.ts` (TypeScript 型定義)
 
-### ビルドコマンド
+### ビルドコマンチE
 
-トークン（JSON）を編集した後は、必ず以下のコマンドを実行してコードに反映させてください。
+ト�Eクン�E�ESON�E�を編雁E��た後�E、忁E��以下�Eコマンドを実行してコードに反映させてください、E
 
 ```bash
-npm run tokens:build   # JSONからSCSS/TypeScript定義を自動生成
+npm run tokens:build   # JSONからSCSS/TypeScript定義を�E動生戁E
 ```
 
-このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。
+こ�Eコマンドにより、コンポ�Eネント開発時に最新のト�Eクンが型補完として利用可能になります�

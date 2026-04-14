@@ -68,7 +68,10 @@ public/
 4.  **MDX の執筆**: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
 5.  **コンポーネントリストの更新**: `src/data/components.json` に新規コンポーネントを追記します。
 6.  **翻訳キーの追加**: `public/locales/en/` に翻訳キーを追加し、`npm run i18n:sync` を実行します。
-7.  **最終確認**: `npm run audit-mdx` (自作予定) または lint を実行して問題がないことを確認します。
+7.  **品質監査の実行**: 
+    - `npm run audit-mdx`: MDX セクションの欠落チェック
+    - `node scripts/check-aschild.js`: `asChild` 実装漏れのチェック
+    - `npm run i18n:check`: 翻訳ファイルの整合性チェック
 
 ---
 
