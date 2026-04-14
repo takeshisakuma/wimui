@@ -10,6 +10,37 @@ class ResizeObserver {
 window.ResizeObserver = ResizeObserver;
 window.HTMLElement.prototype.scrollTo = vi.fn();
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
+const mockContext = {
+  fillRect: vi.fn(),
+  clearRect: vi.fn(),
+  getImageData: vi.fn(),
+  putImageData: vi.fn(),
+  createImageData: vi.fn(),
+  setTransform: vi.fn(),
+  drawImage: vi.fn(),
+  save: vi.fn(),
+  restore: vi.fn(),
+  beginPath: vi.fn(),
+  moveTo: vi.fn(),
+  lineTo: vi.fn(),
+  closePath: vi.fn(),
+  stroke: vi.fn(),
+  translate: vi.fn(),
+  scale: vi.fn(),
+  rotate: vi.fn(),
+  arc: vi.fn(),
+  fill: vi.fn(),
+  measureText: vi.fn().mockReturnValue({ width: 0 }),
+  transform: vi.fn(),
+  rect: vi.fn(),
+  clip: vi.fn(),
+};
+
+HTMLCanvasElement.prototype.getContext = vi.fn().mockReturnValue(mockContext);
+
+if (typeof globalThis.OffscreenCanvas !== 'undefined') {
+  globalThis.OffscreenCanvas.prototype.getContext = vi.fn().mockReturnValue(mockContext);
+}
 
 // Mock IntersectionObserver — immediately fires callback as intersecting so lazy-loaded media renders in tests
 class IntersectionObserver {

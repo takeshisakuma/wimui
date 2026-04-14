@@ -39,7 +39,7 @@ vi.mock("recharts", async () => {
       return <div data-testid="yaxis">{label}</div>;
     },
     ZAxis: () => null,
-    Scatter: ({ children }: React.PropsWithChildren<object>) => <g>{children}</g>,
+    Scatter: ({ children }: React.PropsWithChildren<object>) => <div>{children}</div>,
     Cell: () => null,
   };
 });
