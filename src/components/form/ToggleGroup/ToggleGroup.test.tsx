@@ -24,7 +24,9 @@ describe("ToggleGroup", () => {
   });
 
   it("renders all options", async () => {
-    render(<ToggleGroup options={options} defaultValue="opt1" />);
+    await act(async () => {
+      render(<ToggleGroup options={options} defaultValue="opt1" />);
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     expect(screen.getByText("Option 2")).toBeInTheDocument();
@@ -33,11 +35,14 @@ describe("ToggleGroup", () => {
 
   it("handles single selection", async () => {
     const handleChange = vi.fn();
-    render(<ToggleGroup options={options} onChange={handleChange} defaultValue="opt1" />);
+    await act(async () => {
+      render(<ToggleGroup options={options} onChange={handleChange} defaultValue="opt1" />);
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Option 2"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(handleChange).toHaveBeenCalledWith("opt2");
     await waitFor(() => {
@@ -46,39 +51,48 @@ describe("ToggleGroup", () => {
       );
     });
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Option 2"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(handleChange).toHaveBeenCalledWith("");
   });
 
   it("handles multiple selection", async () => {
     const handleChange = vi.fn();
-    render(
-      <ToggleGroup
-        options={options}
-        selectionMode="multiple"
-        onChange={handleChange}
-        defaultValue={["opt1"]}
-      />,
-    );
+    await act(async () => {
+      render(
+        <ToggleGroup
+          options={options}
+          selectionMode="multiple"
+          onChange={handleChange}
+          defaultValue={["opt1"]}
+        />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("toolbar")).toHaveClass(styles.ready));
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Option 2"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(handleChange).toHaveBeenCalledWith(["opt1", "opt2"]);
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Option 1"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(handleChange).toHaveBeenCalledWith(["opt2"]);
   });
 
   it("applies size and fullWidth classes", async () => {
-    const { container } = render(
-      <ToggleGroup options={options} size="lg" fullWidth defaultValue="opt1" />,
-    );
+    let container: HTMLElement = null!;
+    await act(async () => {
+      const result = render(
+        <ToggleGroup options={options} size="lg" fullWidth defaultValue="opt1" />,
+      );
+      container = result.container;
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(container.firstChild).toHaveClass(styles.lg);
     expect(container.firstChild).toHaveClass(styles.fullWidth);
@@ -88,7 +102,9 @@ describe("ToggleGroup", () => {
     const optionsWithDisabled = [
       { label: "Disabled", value: "d", disabled: true },
     ];
-    render(<ToggleGroup options={optionsWithDisabled} />);
+    await act(async () => {
+      render(<ToggleGroup options={optionsWithDisabled} />);
+    });
     await act(async () => {
       await new Promise(r => setTimeout(r, 0));
     });
@@ -97,26 +113,34 @@ describe("ToggleGroup", () => {
 
   describe("ARIA roles", () => {
     it("uses role=radiogroup for single mode", async () => {
-      render(<ToggleGroup options={options} selectionMode="single" defaultValue="opt1" />);
+      await act(async () => {
+        render(<ToggleGroup options={options} selectionMode="single" defaultValue="opt1" />);
+      });
       await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
       expect(screen.getByRole("radiogroup")).toBeInTheDocument();
     });
 
     it("uses role=toolbar for multiple mode", async () => {
-      render(<ToggleGroup options={options} selectionMode="multiple" defaultValue={["opt1"]} />);
+      await act(async () => {
+        render(<ToggleGroup options={options} selectionMode="multiple" defaultValue={["opt1"]} />);
+      });
       await waitFor(() => expect(screen.getByRole("toolbar")).toHaveClass(styles.ready));
       expect(screen.getByRole("toolbar")).toBeInTheDocument();
     });
 
     it("items have role=radio in single mode", async () => {
-      render(<ToggleGroup options={options} selectionMode="single" defaultValue="opt1" />);
+      await act(async () => {
+        render(<ToggleGroup options={options} selectionMode="single" defaultValue="opt1" />);
+      });
       await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
       const radios = screen.getAllByRole("radio");
       expect(radios).toHaveLength(3);
     });
 
     it("items have aria-checked in single mode", async () => {
-      render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      await act(async () => {
+        render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      });
       await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
       const radios = screen.getAllByRole("radio");
       expect(radios[1]).toHaveAttribute("aria-checked", "true");
@@ -124,13 +148,15 @@ describe("ToggleGroup", () => {
     });
 
     it("items have aria-pressed in multiple mode", async () => {
-      render(
-        <ToggleGroup
-          options={options}
-          value={["opt1", "opt3"]}
-          selectionMode="multiple"
-        />,
-      );
+      await act(async () => {
+        render(
+          <ToggleGroup
+            options={options}
+            value={["opt1", "opt3"]}
+            selectionMode="multiple"
+          />,
+        );
+      });
       await waitFor(() => expect(screen.getByRole("toolbar")).toHaveClass(styles.ready));
       const buttons = screen.getAllByRole("button");
       expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
@@ -141,14 +167,18 @@ describe("ToggleGroup", () => {
 
   describe("roving tabindex", () => {
     it("gives tabIndex=0 to the selected item in single mode", async () => {
-      render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      await act(async () => {
+        render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      });
       await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
       const radios = screen.getAllByRole("radio");
       expect(radios[1]).toHaveAttribute("tabindex", "0");
     });
 
     it("gives tabIndex=0 to first non-disabled item when nothing is selected", async () => {
-      render(<ToggleGroup options={options} selectionMode="single" />);
+      await act(async () => {
+        render(<ToggleGroup options={options} selectionMode="single" />);
+      });
       await act(async () => { await new Promise(r => setTimeout(r, 0)); });
       const radios = screen.getAllByRole("radio");
       expect(radios[0]).toHaveAttribute("tabindex", "0");
@@ -157,13 +187,16 @@ describe("ToggleGroup", () => {
 
   it("handles uncontrolled state with defaultValue", async () => {
     const onChange = vi.fn();
-    render(<ToggleGroup options={options} defaultValue="opt2" onChange={onChange} />);
+    await act(async () => {
+      render(<ToggleGroup options={options} defaultValue="opt2" onChange={onChange} />);
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const radios = screen.getAllByRole("radio");
     expect(radios[1]).toHaveClass(styles.active);
     
-    act(() => {
+    await act(async () => {
       fireEvent.click(radios[0]);
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(onChange).toHaveBeenCalledWith("opt1");
     expect(radios[0]).toHaveClass(styles.active);
@@ -171,10 +204,13 @@ describe("ToggleGroup", () => {
 
   it("toggles off in single mode when clicking active item", async () => {
     const onChange = vi.fn();
-    render(<ToggleGroup options={options} value="opt1" onChange={onChange} />);
+    await act(async () => {
+      render(<ToggleGroup options={options} value="opt1" onChange={onChange} />);
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Option 1"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(onChange).toHaveBeenCalledWith("");
   });
@@ -184,7 +220,9 @@ describe("ToggleGroup", () => {
       { value: "bold", iconName: "CircleIcon" as const },
       { value: "italic", iconName: "SquareIcon" as const },
     ];
-    render(<ToggleGroup options={iconOptions} defaultValue="bold" />);
+    await act(async () => {
+      render(<ToggleGroup options={iconOptions} defaultValue="bold" />);
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const buttons = screen.getAllByRole("radio");
     expect(buttons[0]).toHaveClass(styles.iconOnly);

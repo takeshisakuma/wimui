@@ -18,16 +18,18 @@ describe("Tabs", () => {
   });
 
   it("switches content when triggers are clicked", async () => {
-    render(
-      <Tabs defaultValue="tab1">
-        <Tabs.List>
-          <Tabs.Trigger value="tab1">Tab 1</Tabs.Trigger>
-          <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value="tab1">Content 1</Tabs.Content>
-        <Tabs.Content value="tab2">Content 2</Tabs.Content>
-      </Tabs>,
-    );
+    await act(async () => {
+      render(
+        <Tabs defaultValue="tab1">
+          <Tabs.List>
+            <Tabs.Trigger value="tab1">Tab 1</Tabs.Trigger>
+            <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="tab1">Content 1</Tabs.Content>
+          <Tabs.Content value="tab2">Content 2</Tabs.Content>
+        </Tabs>,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("tablist")).toHaveClass(styles.ready));
 
     expect(screen.getByText("Content 1")).toBeInTheDocument();
@@ -43,17 +45,20 @@ describe("Tabs", () => {
 
   it("calls onChange when a trigger is clicked", async () => {
     const onChange = vi.fn();
-    render(
-      <Tabs onChange={onChange}>
-        <Tabs.List>
-          <Tabs.Trigger value="test">Test</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>,
-    );
+    await act(async () => {
+      render(
+        <Tabs onChange={onChange}>
+          <Tabs.List>
+            <Tabs.Trigger value="test">Test</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>,
+      );
+    });
     // Note: tablist won't have 'ready' class because no tab is active yet
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(screen.getByText("Test"));
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(onChange).toHaveBeenCalledWith("test");
   });
@@ -67,15 +72,17 @@ describe("Tabs", () => {
 
   it("handles keyboard navigation (horizontal)", async () => {
     const onChange = vi.fn();
-    render(
-      <Tabs defaultValue="t1" onChange={onChange}>
-        <Tabs.List>
-          <Tabs.Trigger value="t1">1</Tabs.Trigger>
-          <Tabs.Trigger value="t2">2</Tabs.Trigger>
-          <Tabs.Trigger value="t3">3</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
-    );
+    await act(async () => {
+      render(
+        <Tabs defaultValue="t1" onChange={onChange}>
+          <Tabs.List>
+            <Tabs.Trigger value="t1">1</Tabs.Trigger>
+            <Tabs.Trigger value="t2">2</Tabs.Trigger>
+            <Tabs.Trigger value="t3">3</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>
+      );
+    });
     await waitFor(() => expect(screen.getByRole("tablist")).toHaveClass(styles.ready));
     const list = screen.getByRole("tablist");
 
@@ -109,15 +116,17 @@ describe("Tabs", () => {
 
   it("handles keyboard navigation (vertical)", async () => {
     const onChange = vi.fn();
-    render(
-      <Tabs defaultValue="t2" orientation="vertical" onChange={onChange}>
-        <Tabs.List>
-          <Tabs.Trigger value="t1">1</Tabs.Trigger>
-          <Tabs.Trigger value="t2">2</Tabs.Trigger>
-          <Tabs.Trigger value="t3">3</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
-    );
+    await act(async () => {
+      render(
+        <Tabs defaultValue="t2" orientation="vertical" onChange={onChange}>
+          <Tabs.List>
+            <Tabs.Trigger value="t1">1</Tabs.Trigger>
+            <Tabs.Trigger value="t2">2</Tabs.Trigger>
+            <Tabs.Trigger value="t3">3</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>
+      );
+    });
     await waitFor(() => expect(screen.getByRole("tablist")).toHaveClass(styles.ready));
     const list = screen.getByRole("tablist");
 
@@ -133,51 +142,60 @@ describe("Tabs", () => {
   });
 
   it("handles dragging in horizontal mode", async () => {
-    render(
-      <Tabs defaultValue="t1">
-        <Tabs.List>
-          <Tabs.Trigger value="t1">1</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
-    );
+    await act(async () => {
+      render(
+        <Tabs defaultValue="t1">
+          <Tabs.List>
+            <Tabs.Trigger value="t1">1</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>
+      );
+    });
     await waitFor(() => expect(screen.getByRole("tablist")).toHaveClass(styles.ready));
     const list = screen.getByRole("tablist");
 
     // Start drag
-    act(() => {
+    await act(async () => {
       fireEvent.mouseDown(list, { pageX: 100 });
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(list).toHaveClass(styles.dragging);
 
     // Move drag
-    act(() => {
+    await act(async () => {
       fireEvent.mouseMove(list, { pageX: 50 });
+      await new Promise(r => setTimeout(r, 0));
     });
 
     // End drag via mouseLeave
-    act(() => {
+    await act(async () => {
       fireEvent.mouseLeave(list);
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(list).not.toHaveClass(styles.dragging);
 
     // End drag via mouseUp
-    act(() => {
+    await act(async () => {
       fireEvent.mouseDown(list, { pageX: 100 });
+      await new Promise(r => setTimeout(r, 0));
     });
-    act(() => {
+    await act(async () => {
       fireEvent.mouseUp(list);
+      await new Promise(r => setTimeout(r, 0));
     });
     expect(list).not.toHaveClass(styles.dragging);
   });
 
   it("ignores dragging and specific keys in vertical mode", async () => {
-    render(
-      <Tabs defaultValue="t1" orientation="vertical">
-        <Tabs.List>
-          <Tabs.Trigger value="t1">1</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
-    );
+    await act(async () => {
+      render(
+        <Tabs defaultValue="t1" orientation="vertical">
+          <Tabs.List>
+            <Tabs.Trigger value="t1">1</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>
+      );
+    });
     await waitFor(() => expect(screen.getByRole("tablist")).toHaveClass(styles.ready));
     const list = screen.getByRole("tablist");
 

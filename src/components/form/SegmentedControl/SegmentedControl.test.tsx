@@ -25,9 +25,11 @@ describe("SegmentedControl", () => {
   });
 
   it("renders all options", async () => {
-    render(
-      <SegmentedControl options={options} value="1" onChange={() => {}} />,
-    );
+    await act(async () => {
+      render(
+        <SegmentedControl options={options} value="1" onChange={() => {}} />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(screen.getByText("Option 1")).toBeInTheDocument();
     expect(screen.getByText("Option 2")).toBeInTheDocument();
@@ -36,9 +38,11 @@ describe("SegmentedControl", () => {
 
   it("calls onChange when an option is clicked", async () => {
     const onChange = vi.fn();
-    render(
-      <SegmentedControl options={options} value="1" onChange={onChange} />,
-    );
+    await act(async () => {
+      render(
+        <SegmentedControl options={options} value="1" onChange={onChange} />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     act(() => {
       fireEvent.click(screen.getByText("Option 2"));
@@ -47,9 +51,11 @@ describe("SegmentedControl", () => {
   });
 
   it("sets active class on selected option", async () => {
-    render(
-      <SegmentedControl options={options} value="2" onChange={() => {}} />,
-    );
+    await act(async () => {
+      render(
+        <SegmentedControl options={options} value="2" onChange={() => {}} />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const activeItem = screen.getByText("Option 2").closest("button");
     expect(activeItem).toHaveClass(styles.active);
@@ -57,9 +63,11 @@ describe("SegmentedControl", () => {
 
   it("handles keyboard navigation (ArrowRight, ArrowDown, ArrowLeft, ArrowUp)", async () => {
     const onChange = vi.fn();
-    render(
-      <SegmentedControl options={options} value="1" onChange={onChange} />,
-    );
+    await act(async () => {
+      render(
+        <SegmentedControl options={options} value="1" onChange={onChange} />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const btns = screen.getAllByRole("radio");
 
@@ -91,16 +99,20 @@ describe("SegmentedControl", () => {
   });
 
   it("applies size, fullWidth and custom className", async () => {
-    const { container } = render(
-      <SegmentedControl
-        options={options}
-        value="1"
-        onChange={() => {}}
-        size="lg"
-        fullWidth
-        className="my-custom"
-      />,
-    );
+    let container: HTMLElement = null!;
+    await act(async () => {
+      const result = render(
+        <SegmentedControl
+          options={options}
+          value="1"
+          onChange={() => {}}
+          size="lg"
+          fullWidth
+          className="my-custom"
+        />,
+      );
+      container = result.container;
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const el = screen.getByRole("radiogroup");
     expect(el).toHaveClass(styles.lg);
@@ -111,9 +123,11 @@ describe("SegmentedControl", () => {
   it("renders with icon only", async () => {
     // Only iconName, no label
     const iconOptions = [{ value: "1", iconName: "CircleIcon" as const }];
-    render(
-      <SegmentedControl options={iconOptions} value="1" onChange={() => {}} />,
-    );
+    await act(async () => {
+      render(
+        <SegmentedControl options={iconOptions} value="1" onChange={() => {}} />,
+      );
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     const btn = screen.getByRole("radio");
     expect(btn).toHaveClass(styles.iconOnly);
@@ -122,9 +136,13 @@ describe("SegmentedControl", () => {
   });
 
   it("applies small and medium size classes", async () => {
-    const { rerender } = render(
-      <SegmentedControl options={options} value="1" onChange={() => {}} size="sm" />
-    );
+    let rerender: ReturnType<typeof render>["rerender"];
+    await act(async () => {
+      const result = render(
+        <SegmentedControl options={options} value="1" onChange={() => {}} size="sm" />
+      );
+      rerender = result.rerender;
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.sm));
 
     act(() => {
@@ -134,9 +152,13 @@ describe("SegmentedControl", () => {
   });
 
   it("applies horizontal layout class", async () => {
-    const { container } = render(
-      <SegmentedControl options={options} value="1" onChange={() => {}} layout="horizontal" />
-    );
+    let container: HTMLElement = null!;
+    await act(async () => {
+      const result = render(
+        <SegmentedControl options={options} value="1" onChange={() => {}} layout="horizontal" />
+      );
+      container = result.container;
+    });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
   });

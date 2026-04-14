@@ -163,3 +163,7 @@ tmp/
 scripts/tmp_*.cjs
 # Temporary scratch scripts
 scratch/
+
+
+
+test_output.txt

@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { QueryBuilder, QueryBuilderProps, QueryGroup } from "./QueryBuilder";
 import styles from "./querybuilder.module.scss";
+import { act } from "@testing-library/react";
 
 const fields: QueryBuilderProps["fields"] = [
   { name: "firstName", label: "First Name", type: "string" },
@@ -18,58 +19,87 @@ const makeGroup = (overrides?: Partial<QueryGroup>): QueryGroup => ({
   ...overrides,
 });
 
+const originalRAF = window.requestAnimationFrame;
+
+const renderQB = async (props: Partial<QueryBuilderProps>) => {
+  let result: ReturnType<typeof render> = null!;
+  await act(async () => {
+    result = render(<QueryBuilder fields={fields} {...props} />);
+  });
+  // Flush any trailing updates (RAF, MutationObserver)
+  await act(async () => {
+    await new Promise(r => setTimeout(r, 0));
+  });
+  return result;
+};
+
 describe("QueryBuilder", () => {
+  beforeAll(() => {
+    window.requestAnimationFrame = (cb) => {
+      cb(0);
+      return 0;
+    };
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame = originalRAF;
+  });
+
   // ─── Basic rendering ─────────────────────────────────────────────────────────
 
-  it("renders the query builder region", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("renders the query builder region", async () => {
+    await renderQB({});
     expect(screen.getByRole("region", { name: "Query Builder" })).toBeInTheDocument();
   });
 
-  it("renders AND/OR combinator buttons", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("renders AND/OR combinator buttons", async () => {
+    await renderQB({});
     expect(screen.getByText("AND")).toBeInTheDocument();
     expect(screen.getByText("OR")).toBeInTheDocument();
   });
 
-  it("renders NOT switch", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("renders NOT switch", async () => {
+    await renderQB({});
     expect(screen.getByRole("switch", { name: "NOT" })).toBeInTheDocument();
   });
 
-  it("renders Add rule and Add group buttons", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("renders Add rule and Add group buttons", async () => {
+    await renderQB({});
     expect(screen.getByText("Add rule")).toBeInTheDocument();
     expect(screen.getByText("Add group")).toBeInTheDocument();
   });
 
-  it("applies custom id", () => {
-    const { container } = render(<QueryBuilder fields={fields} id="my-qb" />);
-    expect(container.querySelector("#my-qb")).toBeInTheDocument();
+  it("applies custom id", async () => {
+    await renderQB({ id: "my-qb" });
+    expect(screen.getByRole("region")).toHaveAttribute("id", "my-qb");
   });
 
-  it("applies custom className", () => {
-    const { container } = render(<QueryBuilder fields={fields} className="custom" />);
+  it("applies custom className", async () => {
+    const { container } = await renderQB({ className: "custom" });
     expect(container.querySelector(`.${styles.root}.custom`)).toBeInTheDocument();
   });
 
   // ─── Add / remove rules ───────────────────────────────────────────────────────
 
-  it("adds a rule when Add rule is clicked (uncontrolled)", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("adds a rule when Add rule is clicked (uncontrolled)", async () => {
+    await renderQB({});
     expect(screen.queryByRole("group", { name: "Rule" })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Add rule"));
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
 
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
   });
 
-  it("calls onChange with a new rule when Add rule is clicked (controlled)", () => {
+  it("calls onChange with a new rule when Add rule is clicked (controlled)", async () => {
     const onChange = vi.fn();
     const query = makeGroup();
-    render(<QueryBuilder fields={fields} query={query} onChange={onChange} />);
+    await renderQB({ query, onChange });
 
-    fireEvent.click(screen.getByText("Add rule"));
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const newQuery: QueryGroup = onChange.mock.calls[0][0];
@@ -77,22 +107,28 @@ describe("QueryBuilder", () => {
     expect((newQuery.rules[0] as { field: string }).field).toBe("firstName");
   });
 
-  it("removes a rule when the remove button is clicked (uncontrolled)", () => {
-    render(<QueryBuilder fields={fields} />);
-    fireEvent.click(screen.getByText("Add rule"));
+  it("removes a rule when the remove button is clicked (uncontrolled)", async () => {
+    await renderQB({});
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+    });
     expect(screen.queryByRole("group", { name: "Rule" })).not.toBeInTheDocument();
   });
 
-  it("calls onChange with rule removed (controlled)", () => {
+  it("calls onChange with rule removed (controlled)", async () => {
     const onChange = vi.fn();
     const existingRule = { id: "r1", field: "firstName", operator: "=", value: "" };
     const query = makeGroup({ rules: [existingRule] });
-    render(<QueryBuilder fields={fields} query={query} onChange={onChange} />);
+    await renderQB({ query, onChange });
 
-    fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const newQuery: QueryGroup = onChange.mock.calls[0][0];
@@ -101,20 +137,25 @@ describe("QueryBuilder", () => {
 
   // ─── Add / remove groups ──────────────────────────────────────────────────────
 
-  it("adds a nested group when Add group is clicked (uncontrolled)", () => {
-    render(<QueryBuilder fields={fields} />);
-    fireEvent.click(screen.getByText("Add group"));
+  it("adds a nested group when Add group is clicked (uncontrolled)", async () => {
+    await renderQB({});
+    await act(async () => {
+      fireEvent.click(screen.getByText("Add group"));
+      await new Promise(r => setTimeout(r, 0));
+    });
 
     // After adding a group, a "Remove group" button appears for the nested group
     expect(screen.getByRole("button", { name: "Remove group" })).toBeInTheDocument();
   });
 
-  it("calls onChange with a nested group when Add group is clicked (controlled)", () => {
+  it("calls onChange with a nested group when Add group is clicked (controlled)", async () => {
     const onChange = vi.fn();
     const query = makeGroup();
-    render(<QueryBuilder fields={fields} query={query} onChange={onChange} />);
+    await renderQB({ query, onChange });
 
-    fireEvent.click(screen.getByText("Add group"));
+    act(() => {
+      fireEvent.click(screen.getByText("Add group"));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const newQuery: QueryGroup = onChange.mock.calls[0][0];
@@ -122,48 +163,62 @@ describe("QueryBuilder", () => {
     expect("rules" in newQuery.rules[0]).toBe(true);
   });
 
-  it("removes a nested group when the remove button is clicked", () => {
-    render(<QueryBuilder fields={fields} />);
-    fireEvent.click(screen.getByText("Add group"));
+  it("removes a nested group when the remove button is clicked", async () => {
+    await renderQB({});
+    act(() => {
+      fireEvent.click(screen.getByText("Add group"));
+    });
     expect(screen.getByRole("button", { name: "Remove group" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Remove group" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "Remove group" }));
+      await new Promise(r => setTimeout(r, 0));
+    });
     expect(screen.queryByRole("button", { name: "Remove group" })).not.toBeInTheDocument();
   });
 
   // ─── maxDepth ─────────────────────────────────────────────────────────────────
 
-  it("hides Add group button at maxDepth=0", () => {
-    render(<QueryBuilder fields={fields} maxDepth={0} />);
+  it("hides Add group button at maxDepth=0", async () => {
+    await renderQB({ maxDepth: 0 });
     expect(screen.queryByText("Add group")).not.toBeInTheDocument();
   });
 
   // ─── Combinator (AND / OR) ────────────────────────────────────────────────────
 
-  it("switches combinator to OR when OR is clicked (uncontrolled)", () => {
-    render(<QueryBuilder fields={fields} />);
-    fireEvent.click(screen.getByText("OR"));
+  it("switches combinator to OR when OR is clicked (uncontrolled)", async () => {
+    await renderQB({});
+    await act(async () => {
+      fireEvent.click(screen.getByText("OR"));
+      await new Promise(r => setTimeout(r, 0));
+    });
 
     const groups = screen.getAllByRole("group");
     const orGroup = groups.find((g) => g.getAttribute("aria-label") === "OR group");
     expect(orGroup).toBeInTheDocument();
   });
 
-  it("calls onChange with combinator='or' when OR is clicked (controlled)", () => {
+  it("calls onChange with combinator='or' when OR is clicked (controlled)", async () => {
     const onChange = vi.fn();
-    render(<QueryBuilder fields={fields} query={makeGroup()} onChange={onChange} />);
+    await renderQB({ query: makeGroup(), onChange });
 
-    fireEvent.click(screen.getByText("OR"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("OR"));
+      await new Promise(r => setTimeout(r, 0));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange.mock.calls[0][0].combinator).toBe("or");
   });
 
-  it("calls onChange with combinator='and' when AND is clicked (controlled)", () => {
+  it("calls onChange with combinator='and' when AND is clicked (controlled)", async () => {
     const onChange = vi.fn();
-    render(<QueryBuilder fields={fields} query={makeGroup({ combinator: "or" })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ combinator: "or" }), onChange });
 
-    fireEvent.click(screen.getByText("AND"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("AND"));
+      await new Promise(r => setTimeout(r, 0));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange.mock.calls[0][0].combinator).toBe("and");
@@ -171,31 +226,37 @@ describe("QueryBuilder", () => {
 
   // ─── NOT toggle ───────────────────────────────────────────────────────────────
 
-  it("toggles NOT on when the NOT switch is clicked (uncontrolled)", () => {
-    render(<QueryBuilder fields={fields} />);
+  it("toggles NOT on when the NOT switch is clicked (uncontrolled)", async () => {
+    await renderQB({});
     const notSwitch = screen.getByRole("switch", { name: "NOT" });
     expect(notSwitch).not.toBeChecked();
 
-    fireEvent.click(notSwitch);
+    act(() => {
+      fireEvent.click(notSwitch);
+    });
 
     expect(notSwitch).toBeChecked();
   });
 
-  it("calls onChange with not=true when NOT is toggled on (controlled)", () => {
+  it("calls onChange with not=true when NOT is toggled on (controlled)", async () => {
     const onChange = vi.fn();
-    render(<QueryBuilder fields={fields} query={makeGroup({ not: false })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ not: false }), onChange });
 
-    fireEvent.click(screen.getByRole("switch", { name: "NOT" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("switch", { name: "NOT" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange.mock.calls[0][0].not).toBe(true);
   });
 
-  it("calls onChange with not=false when NOT is toggled off (controlled)", () => {
+  it("calls onChange with not=false when NOT is toggled off (controlled)", async () => {
     const onChange = vi.fn();
-    render(<QueryBuilder fields={fields} query={makeGroup({ not: true })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ not: true }), onChange });
 
-    fireEvent.click(screen.getByRole("switch", { name: "NOT" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("switch", { name: "NOT" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange.mock.calls[0][0].not).toBe(false);
@@ -203,28 +264,30 @@ describe("QueryBuilder", () => {
 
   // ─── Rule field selectors ─────────────────────────────────────────────────────
 
-  it("renders field and operator comboboxes for a rule", () => {
+  it("renders field and operator comboboxes for a rule", async () => {
     const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("combobox", { name: "Field" })).toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: "Operator" })).toBeInTheDocument();
   });
 
-  it("renders string value text input for string field", () => {
+  it("renders string value text input for string field", async () => {
     const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("textbox", { name: "Value" })).toBeInTheDocument();
   });
 
-  it("calls onChange with updated value when text input changes", () => {
+  it("calls onChange with updated value when text input changes", async () => {
     const onChange = vi.fn();
     const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
-    fireEvent.change(screen.getByRole("textbox", { name: "Value" }), {
-      target: { value: "Alice" },
+    act(() => {
+      fireEvent.change(screen.getByRole("textbox", { name: "Value" }), {
+        target: { value: "Alice" },
+      });
     });
 
     expect(onChange).toHaveBeenCalledOnce();
@@ -232,28 +295,36 @@ describe("QueryBuilder", () => {
     expect(updatedRule.value).toBe("Alice");
   });
 
-  it("calls onChange with updated field when a different field is selected", () => {
+  it("calls onChange with updated field when a different field is selected", async () => {
     const onChange = vi.fn();
     const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     // Open field combobox and click "Age"
-    fireEvent.click(screen.getByRole("combobox", { name: "Field" }));
-    fireEvent.click(screen.getByRole("option", { name: "Age" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("combobox", { name: "Field" }));
+    });
+    act(() => {
+      fireEvent.click(screen.getByRole("option", { name: "Age" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const updatedRule = onChange.mock.calls[0][0].rules[0] as { field: string };
     expect(updatedRule.field).toBe("age");
   });
 
-  it("calls onChange with updated operator when a different operator is selected", () => {
+  it("calls onChange with updated operator when a different operator is selected", async () => {
     const onChange = vi.fn();
     const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     // Open operator combobox and click "Contains"
-    fireEvent.click(screen.getByRole("combobox", { name: "Operator" }));
-    fireEvent.click(screen.getByRole("option", { name: "Contains" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("combobox", { name: "Operator" }));
+    });
+    act(() => {
+      fireEvent.click(screen.getByRole("option", { name: "Contains" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const updatedRule = onChange.mock.calls[0][0].rules[0] as { operator: string };
@@ -262,45 +333,49 @@ describe("QueryBuilder", () => {
 
   // ─── Unary operators (no value field) ────────────────────────────────────────
 
-  it("hides value input for is_null operator", () => {
+  it("hides value input for is_null operator", async () => {
     const rule = { id: "r1", field: "firstName", operator: "is_null", value: null };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.queryByRole("textbox", { name: "Value" })).not.toBeInTheDocument();
   });
 
-  it("hides value input for is_not_null operator", () => {
+  it("hides value input for is_not_null operator", async () => {
     const rule = { id: "r1", field: "firstName", operator: "is_not_null", value: null };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.queryByRole("textbox", { name: "Value" })).not.toBeInTheDocument();
   });
 
   // ─── Field type: number ───────────────────────────────────────────────────────
 
-  it("renders number input for number field", () => {
+  it("renders number input for number field", async () => {
     const rule = { id: "r1", field: "age", operator: "=", value: "" };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("spinbutton", { name: "Value" })).toBeInTheDocument();
   });
 
   // ─── Field type: boolean ──────────────────────────────────────────────────────
 
-  it("renders true/false selectbox for boolean field", () => {
+  it("renders true/false selectbox for boolean field", async () => {
     const rule = { id: "r1", field: "isActive", operator: "=", value: false };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("combobox", { name: "Value" })).toBeInTheDocument();
   });
 
-  it("calls onChange with boolean true when True option is selected", () => {
+  it("calls onChange with boolean true when True option is selected", async () => {
     const onChange = vi.fn();
     const rule = { id: "r1", field: "isActive", operator: "=", value: false };
-    render(<QueryBuilder fields={fields} query={makeGroup({ rules: [rule] })} onChange={onChange} />);
+    await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
-    fireEvent.click(screen.getByRole("combobox", { name: "Value" }));
-    fireEvent.click(screen.getByRole("option", { name: "True" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("combobox", { name: "Value" }));
+    });
+    act(() => {
+      fireEvent.click(screen.getByRole("option", { name: "True" }));
+    });
 
     expect(onChange).toHaveBeenCalledOnce();
     const updatedRule = onChange.mock.calls[0][0].rules[0] as { value: boolean };
@@ -309,26 +384,26 @@ describe("QueryBuilder", () => {
 
   // ─── Multiple rules ───────────────────────────────────────────────────────────
 
-  it("renders multiple rules independently", () => {
+  it("renders multiple rules independently", async () => {
     const query = makeGroup({
       rules: [
         { id: "r1", field: "firstName", operator: "=", value: "Alice" },
         { id: "r2", field: "age", operator: ">", value: 18 },
       ],
     });
-    render(<QueryBuilder fields={fields} query={query} />);
+    await renderQB({ query });
 
     expect(screen.getAllByRole("group", { name: "Rule" })).toHaveLength(2);
   });
 
   // ─── defaultQuery (uncontrolled initialisation) ───────────────────────────────
 
-  it("initialises from defaultQuery", () => {
+  it("initialises from defaultQuery", async () => {
     const defaultQuery = makeGroup({
       combinator: "or",
       rules: [{ id: "r1", field: "firstName", operator: "=", value: "Bob" }],
     });
-    render(<QueryBuilder fields={fields} defaultQuery={defaultQuery} />);
+    await renderQB({ defaultQuery });
 
     expect(screen.getByRole("group", { name: "OR group" })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
