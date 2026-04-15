@@ -122,7 +122,9 @@
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
     "check:links": "node scripts/check-mdx-links.js",
+    "check:aschild": "node scripts/check-aschild.js",
     "audit-mdx": "node scripts/audit-mdx.js",
+    "audit:all": "node scripts/audit-all.js",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js",
     "prepare": "husky"

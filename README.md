@@ -106,47 +106,46 @@ npm run build-storybook   # ビルドエラーとしてエラーのあるペー�
 npm run format   # プロジェクト全体をPrettierで整形
 ```
 
+## メンテナンス・監査 (Maintenance & Audit)
+
+大量のコンポーネント追加や大規模なリファクタリングの前後で実行することを推奨します。
+
+```bash
+npm run audit:all   # MDX構成、asChild遵守、i18n整合性・ファイル行数を一括チェック
+```
+
+監査内容：
+- **MDX 構成**: 必須カテゴリの有無、プレースホルダーの残存チェック
+- **Polymorphic**: `asChild` (Radix Slot) の実装漏れチェック
+- **i18n**: 言語間の整合性および、JSON ファイルが 1000 行を超えていないかのチェック
+- **Hardcoded Docs**: MDX 内にハードコードされたテキストがないかチェック
+- **Hierarchy**: ストーリーの階層が深すぎないかチェック
+
 ## 国際化 (i18n)
 
-```
-npm run i18n:check              # ロケールファイル間の翻訳キー欠落をチェック（en にあって ja/pt にない、など）
+```bash
+npm run i18n:check              # ロケールファイル間の翻訳キー欠落とファイル行数(1000行)をチェック
 npm run i18n:check:components   # コンポーネントソースで使われているキーが翻訳ファイルに存在するかチェック
 npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳・追記（要: GOOGLE_GENERATIVE_AI_API_KEY）
 ```
 
-### 2つのチェックスクリプトの使い分け
-
 | スクリプト | 検出できるケース |
 |---|---|
-| `i18n:check` | ロケール間の欠落（en に翻訳があるが ja/pt に未追加） |
-| `i18n:check:components` | コードで `t("key")` を使い始めたがどのロケールにも未登録 |
-
-**Namespace の自動登録：**
-`public/locales/en/` に 新しい JSON ファイルを追加すると、Vite のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。手動での更新は不要です。
+| `i18n:check` | ロケール間の欠落、ファイル肥大化（1000行制限） |
+| `i18n:check:components` | コード上で `t("key")` を使い始めたが登録を忘れているケース |
 
 **推奨フロー：**
-1. `npm run i18n:check:components` でコード上の未登録キーを検出
+1. `npm run i18n:check:components` で未登録キーを検出
 2. EN の翻訳ファイルにキーを追加
 3. `npm run i18n:sync` で ja/pt へ自動翻訳
-4. `npm run i18n:check` でロケール間の整合性を確認
+4. `npm run i18n:check` で最終的な整合性を確認
 
-## ユーティリティ
+## ユーティリティ・整合性
 
-### 整合性チェック
-
-```
-npm run check:consistency   # src・components.json・stories・mdxの不整合を確認
-```
-
-### コンポーネント階層確認
-
-```
-npm run check:hierarchy     # コンポーネントの階層を表示
-```
-
-### 翻訳キーの確認
-
-```
+```bash
+npm run check:consistency   # src・components.json・stories・mdxの構造的矛盾を確認
+npm run check:hierarchy     # コンポーネントリスト(MDX)の掲載漏れを確認
+npm run check:aschild       # コンポーネントが Slot パターンを正しく実装しているか確認
 npm run check:stories       # 翻訳キーの漏れ（生キー表示）を確認
 npm run i18n:missing        # enにあって他言語に未翻訳のキーを確認
 ```
@@ -178,9 +177,6 @@ git commit -m "commit message" --no-verify
 WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
 Vite の開発サーバー起動時やファイル保存時に `src/data/docgen.json` が自動更新されるため、手動でスクリプトを実行する必要はありません。
 MDX の記述方法の詳細は `SKILLS.md` を参照してください。
-
-## ドキュメントの欠落確認
-node scripts/audit-mdx.js
 
 ## デザイントークン
 

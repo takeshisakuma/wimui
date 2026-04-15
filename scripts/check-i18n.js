@@ -26,8 +26,13 @@ for (const lang of langs) {
 }
 const namespaces = [...namespacesSet].sort();
 
+const MAX_LINES = 1000;
+const WARN_LINES = 800;
+
 let totalGaps = 0;
+let totalLineErrors = 0;
 const report = [];
+const lineCountIssues = [];
 
 for (const ns of namespaces) {
   // Load each locale file that exists
@@ -35,7 +40,15 @@ for (const ns of namespaces) {
   for (const lang of langs) {
     const filePath = path.join(localesDir, lang, `${ns}.json`);
     if (fs.existsSync(filePath)) {
-      loaded[lang] = Object.keys(JSON.parse(fs.readFileSync(filePath, "utf8")));
+      const content = fs.readFileSync(filePath, "utf8");
+      const lineCount = content.split("\n").length;
+      
+      if (lineCount > WARN_LINES) {
+        lineCountIssues.push({ ns, lang, lineCount, isError: lineCount > MAX_LINES });
+        if (lineCount > MAX_LINES) totalLineErrors++;
+      }
+
+      loaded[lang] = Object.keys(JSON.parse(content));
     }
   }
 
@@ -54,19 +67,31 @@ for (const ns of namespaces) {
   }
 }
 
-if (report.length === 0) {
-  console.log("✓ All translation keys are consistent across all locales.");
+if (report.length === 0 && lineCountIssues.length === 0) {
+  console.log("✓ All translation keys are consistent across all locales and file sizes are within limits.");
   process.exit(0);
 }
 
-console.error(
-  `✗ Found ${totalGaps} missing translation key(s) across ${report.length} locale/namespace combination(s):\n`,
-);
-
-for (const { ns, lang, missing } of report) {
-  console.error(`  [${ns}] ${lang} is missing ${missing.length} key(s):`);
-  missing.forEach((k) => console.error(`    - ${k}`));
+if (lineCountIssues.length > 0) {
+  console.warn("\n--- I18n File Size Check ---");
+  for (const { ns, lang, lineCount, isError } of lineCountIssues) {
+    const icon = isError ? "✗" : "⚠";
+    const status = isError ? "ERROR" : "WARNING";
+    console.warn(`  ${icon} [${ns}] ${lang}: ${lineCount} lines (${status}: Limit is ${MAX_LINES} lines)`);
+  }
 }
 
-console.error("\nRun `npm run i18n:sync` to fill in missing translations.");
-process.exit(1);
+if (report.length > 0) {
+  console.error(
+    `\n✗ Found ${totalGaps} missing translation key(s) across ${report.length} locale/namespace combination(s):\n`,
+  );
+
+  for (const { ns, lang, missing } of report) {
+    console.error(`  [${ns}] ${lang} is missing ${missing.length} key(s):`);
+    missing.forEach((k) => console.error(`    - ${k}`));
+  }
+  console.error("\nRun `npm run i18n:sync` to fill in missing translations.");
+}
+
+const shouldExitWithError = totalGaps > 0 || totalLineErrors > 0;
+process.exit(shouldExitWithError ? 1 : 0);
