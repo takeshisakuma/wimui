@@ -22,53 +22,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Popover": {
-    "name": "Popover",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Menu": {
-    "name": "Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-xs",
-      "--wim-letter-spacing-wide",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -213,9 +166,50 @@
       }
     }
   },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
+  "Popover": {
+    "name": "Popover",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Menu": {
+    "name": "Menu",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-xs",
+      "--wim-letter-spacing-wide",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-z-1"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -263,6 +257,35 @@
       }
     }
   },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Drawer": {
+    "name": "Drawer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-overlay-max-width-md",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Dropdown": {
     "name": "Dropdown",
     "tokens": [
@@ -275,6 +298,18 @@
       "--wim-spacing-xs",
       "--wim-z-overlay"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "ContextMenu": {
+    "name": "ContextMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "BottomSheet": {
+    "name": "BottomSheet",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -303,41 +338,6 @@
       "--wim-spacing-xl",
       "--wim-z-overlay"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Drawer": {
-    "name": "Drawer",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-overlay-max-width-md",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "ContextMenu": {
-    "name": "ContextMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "BottomSheet": {
-    "name": "BottomSheet",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   }
