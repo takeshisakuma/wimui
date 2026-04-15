@@ -84,9 +84,22 @@ guideFiles.forEach(file => {
   }
 });
 
+console.log('\n--- Auditing I18n File Governance ---');
+const localeFiles = globSync('public/locales/en/*.json', { posix: true });
+localeFiles.forEach(file => {
+  const content = fs.readFileSync(file, 'utf8');
+  const lines = content.split('\n').length;
+  if (lines > 1000) {
+    console.log(`[FAIL] ${file} exceeds 1000 lines (${lines} lines). Please split it into semantically named files.`);
+    allPass = false;
+  } else if (lines > 800) {
+    console.log(`[WARN] ${file} is approaching 1000 lines (${lines} lines). Consider planning a split.`);
+  }
+});
+
 if (allPass) {
-  console.log('\n✓ All MDX files passed the audit.');
+  console.log('\n✓ All audits passed.');
 } else {
-  console.log('\n✗ Some MDX files failed the audit.');
+  console.log('\n✗ Some audits failed.');
   process.exit(1);
 }

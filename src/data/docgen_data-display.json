@@ -1,4 +1,10 @@
 {
+  "TreeView": {
+    "name": "TreeView",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "VirtualList": {
     "name": "VirtualList",
     "tokens": [],
@@ -111,9 +117,26 @@
       }
     }
   },
-  "TreeView": {
-    "name": "TreeView",
-    "tokens": [],
+  "Timeline": {
+    "name": "Timeline",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -272,29 +295,6 @@
       "--wim-z-index-sticky",
       "--wim-z-index-sticky-column",
       "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Timeline": {
-    "name": "Timeline",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -575,6 +575,17 @@
       }
     }
   },
+  "List": {
+    "name": "List",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Kanban": {
     "name": "Kanban",
     "tokens": [
@@ -594,17 +605,6 @@
       "--wim-shadow-md",
       "--wim-shadow-sm",
       "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "List": {
-    "name": "List",
-    "tokens": [
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal-jp"
     ],
     "anatomy": [],
     "props": {}
@@ -851,6 +851,12 @@
         }
       }
     }
+  },
+  "DescriptionList": {
+    "name": "DescriptionList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "DataGrid": {
     "name": "DataGrid",
@@ -1471,12 +1477,6 @@
         "description": "Accessibility label for the grid"
       }
     }
-  },
-  "DescriptionList": {
-    "name": "DescriptionList",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "Chip": {
     "name": "Chip",

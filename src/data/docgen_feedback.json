@@ -846,6 +846,141 @@
     "anatomy": [],
     "props": {}
   },
+  "Loader": {
+    "name": "Loader",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-circle",
+      "--wim-duration-fast",
+      "--wim-duration-short",
+      "--wim-duration-slow",
+      "--wim-duration-slowest",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-standard",
+      "--wim-loader-dot-gap",
+      "--wim-loader-duration",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"bars\" | \"dots\" | \"pulse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"bars\""
+            },
+            {
+              "name": "literal",
+              "value": "\"dots\""
+            },
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            }
+          ]
+        },
+        "description": "ローダーのアニメーション形式。",
+        "defaultValue": {
+          "value": "\"bars\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            }
+          ]
+        },
+        "description": "ローダーのサイズ。",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "ローダーの色。",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "Indicator": {
     "name": "Indicator",
     "tokens": [
@@ -1003,141 +1138,6 @@
           "raw": "React.CSSProperties"
         },
         "description": ""
-      }
-    }
-  },
-  "Loader": {
-    "name": "Loader",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-circle",
-      "--wim-duration-fast",
-      "--wim-duration-short",
-      "--wim-duration-slow",
-      "--wim-duration-slowest",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-standard",
-      "--wim-loader-dot-gap",
-      "--wim-loader-duration",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"bars\" | \"dots\" | \"pulse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"bars\""
-            },
-            {
-              "name": "literal",
-              "value": "\"dots\""
-            },
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            }
-          ]
-        },
-        "description": "ローダーのアニメーション形式。",
-        "defaultValue": {
-          "value": "\"bars\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            }
-          ]
-        },
-        "description": "ローダーのサイズ。",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "ローダーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
       }
     }
   },
