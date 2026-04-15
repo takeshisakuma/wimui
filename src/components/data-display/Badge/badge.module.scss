@@ -14,13 +14,13 @@
     &.sm {
       min-width: 1.25em;
       height: 1.25em;
-      padding: var(--wim-spacing-3xs, 2px) var(--wim-spacing-xs, 6px);
-      font-size: var(--wim-font-size-xs, 0.75rem);
+      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-2xs); // Use 2xs for small badge
 
       &.iconOnly {
-        width: var(--wim-badge-dot-sm, 8px);
+        width: var(--wim-badge-dot-sm, var(--wim-radius-lg));
         min-width: 0;
-        height: var(--wim-badge-dot-sm, 8px);
+        height: var(--wim-badge-dot-sm, var(--wim-radius-lg));
         padding: 0;
       }
     }
@@ -28,8 +28,8 @@
     &.md {
       min-width: 1.5em;
       height: 1.5em;
-      padding: var(--wim-spacing-2xs, 4px) var(--wim-spacing-md, 8px);
-      font-size: var(--wim-font-size-xs, 0.75rem);
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-xs);
 
       &.iconOnly {
         width: var(--wim-badge-dot-md, var(--wim-spacing-xs));
@@ -42,8 +42,8 @@
     &.lg {
       min-width: 1.75em;
       height: 1.75em;
-      padding: var(--wim-spacing-xs, 6px) var(--wim-spacing-lg, 10px);
-      font-size: var(--wim-font-size-sm, 0.875rem);
+      padding: var(--wim-spacing-xs) var(--wim-spacing-lg);
+      font-size: var(--wim-font-size-sm);
 
       &.iconOnly {
         width: var(--wim-badge-dot-lg, var(--wim-spacing-md));

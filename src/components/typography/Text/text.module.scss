@@ -62,7 +62,7 @@
     &.underline {
       text-decoration: var(--wim-decoration-underline);
       text-decoration-skip-ink: none;
-      text-underline-offset: 0.3em;
+      text-underline-offset: var(--wim-text-underline-offset);
     }
 
     &.highlight {

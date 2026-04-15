@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 64px;
+    height: var(--wim-height-xl);
     padding: 0 var(--wim-spacing-xl);
     background-color: var(--wim-color-bg-component);
     transition: all var(--wim-transition-base);
@@ -31,11 +31,11 @@
 
     &.glass {
       background-color: var(--wim-color-surface-glass);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(var(--wim-radius-lg));
     }
 
     &.bordered {
-      border-bottom: 1px solid var(--wim-color-border-secondary);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
     }
   }
 
@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--wim-layout-max-width);
     height: 100%;
     margin: 0 auto;
   }
@@ -142,7 +142,7 @@
       gap: var(--wim-spacing-md);
       width: 100%;
       height: 100%;
-      padding: 80px var(--wim-spacing-xl) var(--wim-spacing-xl);
+      padding: var(--wim-spacing-5xl) var(--wim-spacing-xl) var(--wim-spacing-xl);
     }
   }
 
@@ -150,7 +150,7 @@
     width: 100%;
     padding: var(--wim-spacing-md);
     font-size: var(--wim-font-size-lg);
-    border-bottom: 1px solid var(--wim-color-border-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
 
     &:last-child {
       border-bottom: none;

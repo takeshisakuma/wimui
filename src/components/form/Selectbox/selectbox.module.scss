@@ -21,8 +21,8 @@
     min-width: 0;
     min-height: var(--wim-height-md);
     padding: var(--wim-spacing-md) var(--wim-spacing-md);
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
     cursor: pointer;
     background-color: transparent;
@@ -114,13 +114,13 @@
 
   .search {
     padding: var(--wim-spacing-sm);
-    border-bottom: 1px solid var(--wim-color-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
   }
 
   .searchInput {
     width: 100%;
     padding: var(--wim-spacing-sm);
-    font-size: 0.9rem;
+    font-size: var(--wim-font-size-small-scale, 0.9rem);
     outline: none;
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-sm);
@@ -145,11 +145,11 @@
 
   .groupLabel {
     padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     font-weight: 600;
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--wim-letter-spacing-wide);
     pointer-events: none;
   }
 
@@ -168,14 +168,14 @@
 
   .empty {
     padding: var(--wim-spacing-md);
-    font-size: 0.9rem;
+    font-size: var(--wim-font-size-small-scale, 0.9rem);
     font-style: italic;
     color: var(--wim-color-text-secondary);
     text-align: center;
   }
 
   .separator {
-    height: 1px;
+    height: var(--wim-border-width-thin);
     margin: var(--wim-spacing-xs) var(--wim-spacing-md);
     overflow: hidden;
     background-color: var(--wim-color-secondary);
@@ -197,13 +197,13 @@
       min-height: var(--wim-height-md);
       padding: var(--wim-spacing-md) calc(var(--wim-spacing-md) * 2.5) var(--wim-spacing-md) var(--wim-spacing-md);
       font-family: inherit;
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: var(--wim-font-size-md);
+      line-height: var(--wim-line-height-normal);
       color: var(--wim-color-text-primary);
       appearance: none;
       cursor: pointer;
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-secondary);
+      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
       border-radius: var(--wim-radius-md);
       transition:
         border-color var(--wim-transition-fast),

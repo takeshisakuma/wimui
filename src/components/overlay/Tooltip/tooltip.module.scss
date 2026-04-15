@@ -14,8 +14,8 @@
   .content {
     z-index: var(--wim-z-overlay);
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-tight);
     color: var(--text-tooltip, var(--wim-color-text-on-dark));
     white-space: nowrap;
     pointer-events: none;

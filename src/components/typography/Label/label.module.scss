@@ -2,7 +2,7 @@
   .root {
     display: flex;
     flex-direction: column;
-    gap: var(--wim-spacing-md, 8px);
+    gap: var(--wim-spacing-md);
     width: max-content;
     max-width: 100%;
 
@@ -27,7 +27,7 @@
     }
 
     .text {
-      font-size: var(--wim-font-size-sm, 0.875rem);
+      font-size: var(--wim-font-size-sm);
       font-weight: bold;
       color: var(--wim-color-text-primary);
       overflow-wrap: break-word;

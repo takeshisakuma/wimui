@@ -3,7 +3,7 @@
     width: 100%;
     overflow: hidden;
     border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-md, 4px);
+    border-radius: var(--wim-radius-md);
   }
 
   .item {
@@ -62,8 +62,8 @@
   }
 
   .chevron {
-    width: var(--wim-accordion-chevron-size, 1.25rem);
-    height: var(--wim-accordion-chevron-size, 1.25rem);
+    width: var(--wim-accordion-chevron-size, var(--wim-font-size-xl));
+    height: var(--wim-accordion-chevron-size, var(--wim-font-size-xl));
     margin-left: var(--wim-spacing-2xl);
     color: var(--wim-color-text-secondary);
     transition: transform var(--wim-duration-base) var(--wim-easing-standard);
@@ -80,7 +80,7 @@
     margin: 0;
     overflow: hidden;
     font-size: var(--wim-font-size-sm);
-    line-height: var(--wim-line-height-relaxed, 1.6);
+    line-height: var(--wim-line-height-loose);
     transition: all var(--wim-duration-base) var(--wim-easing-standard);
     will-change: grid-template-rows;
 

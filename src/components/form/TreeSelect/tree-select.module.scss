@@ -10,7 +10,7 @@
     position: relative;
     align-self: flex-start;
     width: 100%;
-    min-width: 200px;
+    min-width: var(--wim-menu-min-width);
     max-width: var(--wim-input-width, var(--wim-width-md));
     font-family: var(--wim-font-family);
 
@@ -95,12 +95,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    padding: var(--wim-radius-md) 0;
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     background: none;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--wim-radius-md);
     transition: var(--wim-transition-fast);
   }
 
@@ -111,10 +111,10 @@
     z-index: var(--wim-z-overlay);
     width: max-content;
     min-width: 100%;
-    max-width: min(480px, calc(100vw - 32px));
-    max-height: 320px;
-    padding: 4px 0;
-    margin-top: 4px;
+    max-width: min(30rem, calc(100vw - var(--wim-spacing-5xl)));
+    max-height: 20rem;
+    padding: var(--wim-radius-md) 0;
+    margin-top: var(--wim-radius-md);
     overflow: hidden auto;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -127,7 +127,7 @@
     }
 
     &::-webkit-scrollbar {
-      width: 6px;
+      width: var(--wim-spacing-lg, 0.6rem);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -149,8 +149,8 @@
       }
 
       .treeViewSearch {
-        padding: 4px 12px;
-        margin-bottom: 8px;
+        padding: var(--wim-radius-md) var(--wim-spacing-xl);
+        margin-bottom: var(--wim-spacing-md);
       }
     }
   }

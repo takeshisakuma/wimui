@@ -7,13 +7,13 @@
     place-items: center;
     overflow-y: auto;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(var(--wim-dialog-blur, 2px));
+    backdrop-filter: blur(var(--wim-dialog-blur, var(--wim-radius-xs)));
   }
 
   .content {
     position: relative;
     width: var(--wim-dialog-width-mobile, 90vw);
-    max-width: var(--wim-dialog-max-width, 450px);
+    max-width: var(--wim-dialog-max-width, var(--wim-overlay-max-width-lg));
     max-height: var(--wim-dialog-max-height, 85vh);
     padding: var(--wim-spacing-2xl);
     margin: 0;
@@ -44,7 +44,7 @@
 
   .title {
     margin: 0;
-    font-size: var(--wim-font-size-lg, 1.125rem);
+    font-size: var(--wim-font-size-lg);
     font-weight: 600;
     color: var(--wim-color-text-primary);
   }
@@ -52,7 +52,7 @@
   .description {
     margin: 0;
     font-size: var(--wim-font-size-sm);
-    line-height: var(--wim-line-height-normal, 1.5);
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-secondary);
   }
 
@@ -62,7 +62,7 @@
     gap: var(--wim-spacing-md);
     margin-top: var(--wim-spacing-2xl);
 
-    @container (width >= var(--wim-dialog-breakpoint, 640px)) {
+    @container (width >= var(--wim-dialog-breakpoint, var(--wim-breakpoint-sm))) {
       flex-direction: row;
       justify-content: flex-end;
     }

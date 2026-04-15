@@ -1,3 +1,5 @@
+@use "../../../tokens/generated/tokens" as tokens;
+
 @layer component {
   .container {
     width: 100%;
@@ -27,11 +29,11 @@
     }
   
     &.bordered {
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
   
       th,
       td {
-        border: 1px solid var(--wim-color-border);
+        border: var(--wim-border-width-thin) solid var(--wim-color-border);
       }
     }
   
@@ -45,14 +47,14 @@
       thead th {
         position: sticky;
         top: 0;
-        z-index: var(--wim-z-index-sticky, 10);
+        z-index: var(--wim-z-overlay);
         background-color: var(--wim-color-bg-component);
-        box-shadow: 0 1px 0 var(--wim-color-border);
+        box-shadow: 0 var(--wim-border-width-thin) 0 var(--wim-color-border);
       }
     }
 
     &.mobileCard {
-      @media screen and (width <= 768px) {
+      @media screen and (max-width: tokens.$wim-breakpoint-md) {
         display: block;
         border: none;
   
@@ -130,7 +132,7 @@
     }
   
     &.selection {
-      width: var(--wim-table-selection-width, 48px);
+      width: var(--wim-height-lg, 3rem);
       text-align: center;
     }
   
@@ -138,14 +140,14 @@
       position: sticky;
       z-index: var(--wim-z-index-sticky-column, 20);
       background-color: inherit;
-      box-shadow: 1px 0 0 var(--wim-color-border);
+      box-shadow: var(--wim-border-width-thin) 0 0 var(--wim-color-border);
     }
   
     &.stickyRight {
       position: sticky;
       z-index: var(--wim-z-index-sticky-column, 20);
       background-color: inherit;
-      box-shadow: -1px 0 0 var(--wim-color-border);
+      box-shadow: calc(var(--wim-border-width-thin) * -1) 0 0 var(--wim-color-border);
     }
   }
 
@@ -154,7 +156,7 @@
     vertical-align: middle;
   
     &.selection {
-      width: var(--wim-table-selection-width, 48px);
+      width: var(--wim-height-lg, 3rem);
       text-align: center;
     }
   
@@ -169,7 +171,7 @@
       position: sticky;
       z-index: var(--wim-z-index-sticky, 10);
       background-color: inherit;
-      box-shadow: -1px 0 0 var(--wim-color-border);
+      box-shadow: calc(var(--wim-border-width-thin) * -1) 0 0 var(--wim-color-border);
     }
   }
 

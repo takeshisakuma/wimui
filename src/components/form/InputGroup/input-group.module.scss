@@ -18,7 +18,7 @@
       margin-bottom: 0;
 
       &:not(:first-child) {
-        margin-left: -1px; // Standard overlap for 1px borders
+        margin-left: calc(var(--wim-border-width-thin) * -1); // Standard overlap for 1px borders
 
         --wim-field-radius-tl: 0;
         --wim-field-radius-bl: 0;
@@ -64,14 +64,14 @@
     display: flex;
     align-items: center;
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
     font-weight: 400;
     line-height: normal;
     color: var(--wim-color-text-secondary);
     text-align: center;
     white-space: nowrap;
     background-color: var(--wim-color-disabled);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
   }
 }

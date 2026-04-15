@@ -8,12 +8,12 @@
     max-width: var(--wim-input-width, var(--wim-width-md));
 
     /* Allow vertical resizing by default */
-    min-height: 80px;
+    min-height: calc(var(--wim-height-md) * 2); // Roughly 80px (42 * 2 = 84px)
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
 
     /* Reasonable default height */
-    line-height: 1.5;
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
     resize: vertical;
     background-color: var(--wim-color-bg-component);

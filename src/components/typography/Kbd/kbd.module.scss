@@ -10,8 +10,8 @@
     white-space: nowrap;
     user-select: none;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-bottom-width: var(--wim-kbd-border-bottom-width, 3px);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-bottom-width: var(--wim-kbd-border-bottom-width, var(--wim-spacing-xs));
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-xs);
 
@@ -39,9 +39,9 @@
 
     // Interactive feel (though typically static)
     &:active {
-      border-bottom-width: 1px;
+      border-bottom-width: var(--wim-border-width-thin);
       box-shadow: none;
-      transform: translateY(2px);
+      transform: translateY(var(--wim-border-width-thick));
     }
   }
 }

@@ -10,9 +10,47 @@
   --wim-indicator-active-color: var(--wim-color-primary);
 
   /* Standard Component Heights (Standardized for Button, Input, etc.) */
+  --wim-height-xs: 1.5rem;       // 24px
   --wim-height-sm: 2rem;       // 32px
   --wim-height-md: 2.625rem;   // 42px
   --wim-height-lg: 3rem;       // 48px
+
+  /* SegmentedControl & TabNavigation Item Widths (for icon-only) */
+  --wim-segmented-control-item-size-sm: 1.875rem; // 30px
+  --wim-segmented-control-item-size-md: 2.25rem;  // 36px
+  --wim-segmented-control-item-size-lg: 2.75rem;  // 44px
+  --wim-switch-width-sm: 2.25rem; // 36px
+  --wim-switch-width-md: 2.75rem; // 44px
+  --wim-switch-width-lg: 3.25rem; // 52px
+
+  /* Navigation & Overlay */
+  --wim-menu-min-width: 12.5rem; // 200px
+  --wim-overlay-max-width-sm: 18.75rem; // 300px
+  --wim-overlay-max-width-md: 28rem; // 448px
+  --wim-overlay-max-width-lg: 31.25rem; // 500px
+  --wim-layout-max-width: 75rem; // 1200px
+  --wim-tab-nav-height: var(--wim-height-md);
+
+  /* Inner elements font sizes */
+  --wim-font-size-icon-inner: 0.7em;
+  --wim-font-size-icon-inner-sm: 0.875em;
+  --wim-font-size-small-scale: 0.9em;
+
+  /* Specific Component Borders */
+  --wim-blockquote-border-width: var(--wim-radius-md); // 4px
+
+  /* Decoration */
+  --wim-text-underline-offset: 0.3em;
+
+  /* Internal / Status Content */
+  --wim-status-icon-size-sm: 2rem; // 32px
+  --wim-status-icon-size: 5rem; // 80px
+  --wim-status-desc-max-width: 37.5rem; // 600px
+  --wim-status-body-max-width: 50rem; // 800px
+
+  /* Typography / Spacing */
+  --wim-letter-spacing-wide: 0.05em;
+  --wim-letter-spacing-extra-wide: 0.1em;
 }
 
 .wim-ui-connector {

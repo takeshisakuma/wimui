@@ -17,7 +17,7 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    width: 44px;
+    width: var(--wim-switch-width-md);
     height: var(--wim-height-xs);
     padding: var(--wim-spacing-3xs);
     appearance: none;
@@ -63,7 +63,7 @@
     }
 
     &.sm {
-      width: 36px;
+      width: var(--wim-switch-width-sm);
       height: var(--wim-height-xs);
 
       &::after {
@@ -73,7 +73,7 @@
     }
 
     &.lg {
-      width: 52px;
+      width: var(--wim-switch-width-lg);
       height: var(--wim-spacing-2xl);
 
       &::after {

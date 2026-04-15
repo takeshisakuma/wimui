@@ -4,21 +4,21 @@
     align-items: center;
 
     &.sm {
-      --wim-rating-star-size: 16px;
+      --wim-rating-star-size: var(--wim-font-size-md); // 16px
 
-      gap: 2px;
+      gap: var(--wim-border-width-thick);
     }
 
     &.md {
-      --wim-rating-star-size: 24px;
+      --wim-rating-star-size: var(--wim-height-xs); // 24px
 
-      gap: 4px;
+      gap: var(--wim-radius-md);
     }
 
     &.lg {
-      --wim-rating-star-size: 32px;
+      --wim-rating-star-size: var(--wim-height-sm); // 32px
 
-      gap: 6px;
+      gap: var(--wim-spacing-sm);
     }
 
     &.disabled {

@@ -8,7 +8,7 @@
     cursor: pointer;
 
     svg {
-      font-size: 0.7em;
+      font-size: var(--wim-font-size-icon-inner);
     }
 
     &.xl {
@@ -90,7 +90,7 @@
     &.underline {
       text-decoration: var(--wim-decoration-underline);
       text-decoration-skip-ink: none;
-      text-underline-offset: 0.3em;
+      text-underline-offset: var(--wim-text-underline-offset);
     }
 
     &.highlight {

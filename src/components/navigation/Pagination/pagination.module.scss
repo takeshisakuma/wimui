@@ -154,7 +154,7 @@
     }
 
     .jumpInput {
-      width: 60px;
+      width: var(--wim-height-xl);
       padding: var(--wim-spacing-sm);
       font-size: var(--wim-font-size-md);
       color: var(--wim-color-text-primary);

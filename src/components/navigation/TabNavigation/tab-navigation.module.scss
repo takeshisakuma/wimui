@@ -49,7 +49,7 @@
     &.sm {
       --wim-tab-nav-padding: 0 var(--wim-spacing-md);
       --wim-tab-nav-font-size: var(--wim-font-size-sm);
-      --wim-tab-nav-height: 32px;
+      --wim-tab-nav-height: var(--wim-height-sm);
     }
 
     &.md {
@@ -61,7 +61,7 @@
     &.lg {
       --wim-tab-nav-padding: 0 var(--wim-spacing-xl);
       --wim-tab-nav-font-size: var(--wim-font-size-lg);
-      --wim-tab-nav-height: 48px;
+      --wim-tab-nav-height: var(--wim-height-lg);
     }
 
     /* Base Item Styles */
@@ -88,7 +88,7 @@
 
       &:focus-visible {
         outline: none;
-        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+        box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
       }
 
       .icon {
@@ -99,10 +99,10 @@
 
     /* Variant: Underline (Default) */
     &.underline {
-      border-bottom: 1px solid var(--wim-color-border-secondary);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
 
       .slider {
-        @include indicator.indicator-slider-underline($bottom: -1px);
+        @include indicator.indicator-slider-underline($bottom: calc(var(--wim-border-width-thin) * -1));
 
         opacity: 0;
       }
@@ -112,8 +112,8 @@
       }
 
       .item {
-        margin-bottom: -1px;
-        border-bottom: 2px solid transparent;
+        margin-bottom: calc(var(--wim-border-width-thin) * -1);
+        border-bottom: var(--wim-border-width-thick) solid transparent;
         border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
 
         &:hover:not(.disabled) {
@@ -135,7 +135,7 @@
       }
 
       .slider {
-        @include indicator.indicator-slider-contained($radius: 99px, $bg: var(--wim-color-primary), $shadow: none, $offset: 0);
+        @include indicator.indicator-slider-contained($radius: var(--wim-radius-full), $bg: var(--wim-color-primary), $shadow: none, $offset: 0);
 
         z-index: -1;
         transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
@@ -154,7 +154,7 @@
 
       .item {
         padding-inline: var(--wim-spacing-xl);
-        border-radius: 99px;
+        border-radius: var(--wim-radius-full);
 
         &.active {
           color: var(--wim-color-text-on-primary);
@@ -177,7 +177,7 @@
       display: inline-flex; // Shrink to fit content
 
       .list {
-        gap: 4px;
+        gap: var(--wim-radius-md);
       }
 
       .slider {
@@ -191,7 +191,7 @@
       }
 
       .item {
-        height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
+        height: calc(var(--wim-tab-nav-height) - var(--wim-spacing-md)); // 8px = spacing-md
         border-radius: var(--wim-radius-sm);
 
         &.active {

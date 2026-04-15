@@ -5,7 +5,7 @@
   inset: 0;
   z-index: var(--wim-z-mask);
   background-color: var(--wim-color-overlay-bg-sidebar);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(var(--wim-radius-xs));
 }
 
 .root {
@@ -25,7 +25,7 @@
   }
 
   &.collapsed {
-    width: 64px;
+    width: var(--wim-height-xl);
 
     .itemText {
       display: none;
@@ -33,7 +33,7 @@
   }
 
   &.bordered {
-    border-right: 1px solid var(--wim-color-border-secondary);
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   &.responsive {
@@ -59,7 +59,7 @@
 
 .header {
   padding: var(--wim-spacing-md);
-  border-bottom: 1px solid var(--wim-color-border-secondary);
+  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
 }
 
 .content {
@@ -70,7 +70,7 @@
 
 .footer {
   padding: var(--wim-spacing-md);
-  border-top: 1px solid var(--wim-color-border-secondary);
+  border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
 }
 
 .item {
@@ -104,9 +104,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
+    min-width: var(--wim-height-sm);
     margin-right: var(--wim-spacing-sm);
-    font-size: 1.25rem;
+    font-size: var(--wim-font-size-xl);
   }
 
   &Text {

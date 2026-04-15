@@ -12,8 +12,8 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    border: 1px solid var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-md, 4px);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    border-radius: var(--wim-radius-md);
 
     &.vertical {
       flex-direction: row;
@@ -24,15 +24,15 @@
 
       .list {
         flex-direction: column;
-        width: var(--wim-tabs-vertical-width, 200px);
+        width: var(--wim-tabs-vertical-width, var(--wim-menu-min-width));
         background-color: var(--wim-color-primary-subtle);
-        border-right: 1px solid var(--wim-color-border-secondary);
+        border-right: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
         border-bottom: none;
         border-radius: 0;
         mask-image: linear-gradient(to bottom,
             transparent,
-            var(--wim-tabs-mask-size, 15px) black,
-            black calc(100% - var(--wim-tabs-mask-size, 15px)),
+            var(--wim-tabs-mask-size, var(--wim-spacing-md)) black,
+            black calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
             transparent);
 
         @include breakpoints.container-down(md) {
@@ -40,7 +40,7 @@
           width: 100%;
           overflow-x: auto;
           border-right: none;
-          border-bottom: 1px solid var(--wim-color-border-secondary);
+          border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
           mask-image: linear-gradient(to right,
               transparent,
               var(--wim-tabs-mask-size, 15px) black,
@@ -96,7 +96,7 @@
       /* IE and Edge */
       scrollbar-width: none;
       background-color: var(--wim-color-primary-subtle);
-      border-bottom: 1px solid var(--wim-color-border-secondary);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
       border-radius: 0;
 
       /* Firefox */
@@ -177,7 +177,7 @@
       &:focus-visible {
         z-index: 1;
         outline: none;
-        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+        box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
       }
     }
 
@@ -189,7 +189,7 @@
         z-index: 1;
         outline: none;
         border-radius: var(--wim-radius-sm);
-        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+        box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
       }
     }
   }

@@ -10,7 +10,7 @@
   
     /* Variants */
     &.elevated {
-      border: 1px solid transparent;
+      border: var(--wim-border-width-thin) solid transparent;
       box-shadow: var(--wim-shadow-sm);
   
       &:hover {
@@ -20,12 +20,12 @@
     }
   
     &.outline {
-      border: 1px solid var(--wim-color-secondary);
+      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     }
   
     &.flat {
       background-color: var(--wim-color-disabled);
-      border: 1px solid transparent;
+      border: var(--wim-border-width-thin) solid transparent;
     }
   
     /* Padding */
@@ -89,7 +89,7 @@
 
   /* Internal elements */
   .header {
-    border-bottom: 1px solid var(--wim-divider-color, var(--wim-color-ghost-border));
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-divider-color, var(--wim-color-ghost-border));
   }
 
   .body {
@@ -97,6 +97,6 @@
   }
 
   .footer {
-    border-top: 1px solid var(--wim-divider-color, var(--wim-color-ghost-border));
+    border-top: var(--wim-border-width-thin) solid var(--wim-divider-color, var(--wim-color-ghost-border));
   }
 }

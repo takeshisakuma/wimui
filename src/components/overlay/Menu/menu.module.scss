@@ -5,14 +5,14 @@
     margin: 0;
     list-style: none;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
 
     &.vertical {
       display: flex;
       flex-direction: column;
-      min-width: 200px;
+      min-width: var(--wim-menu-min-width);
     }
 
     &.horizontal {
@@ -49,7 +49,7 @@
     &.inline {
       display: flex;
       flex-direction: column;
-      min-width: 200px;
+      min-width: var(--wim-menu-min-width);
       padding: var(--wim-spacing-xs) 0;
       border: none;
       box-shadow: none;
@@ -83,11 +83,11 @@
 
   .itemGroupTitle {
     padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     font-weight: 600;
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--wim-letter-spacing-wide);
   }
 
   .itemGroupList {
@@ -132,8 +132,8 @@
     transition: transform var(--wim-duration-fast) var(--wim-easing-standard);
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: var(--wim-font-size-md);
+      height: var(--wim-font-size-md);
     }
 
     &.open {
@@ -150,7 +150,7 @@
   }
 
   .divider {
-    height: 1px;
+    height: var(--wim-border-width-thin);
     margin: var(--wim-spacing-xs) var(--wim-spacing-md);
     list-style: none;
     background-color: var(--wim-color-secondary);
@@ -160,7 +160,7 @@
   @keyframes slideDown {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(calc(var(--wim-spacing-md) * -1));
     }
 
     to {

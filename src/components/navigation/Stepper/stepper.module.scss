@@ -30,7 +30,7 @@
       }
 
       &.labelVertical {
-        @container (min-width: 577px) {
+        @container (min-width: calc(var(--wim-breakpoint-sm) + 1px)) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
@@ -40,14 +40,14 @@
             width: 100%;
 
             &::before {
-              left: -1px; // Slight overlap to prevent gaps
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + 1px);
+              left: calc(var(--wim-border-width-thin) * -1); // Slight overlap to prevent gaps
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
             }
 
             &::after {
-              right: -1px; // Slight overlap to prevent gaps
+              right: calc(var(--wim-border-width-thin) * -1); // Slight overlap to prevent gaps
               left: auto;
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + 1px);
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
             }
           }
 
@@ -75,10 +75,10 @@
         color: var(--wim-color-text-on-primary);
         background-color: var(--wim-color-primary);
         border-color: var(--wim-color-primary);
-        box-shadow: 0 0 0 4px
+        box-shadow: 0 0 0 var(--wim-focus-outline-width)
           color-mix(
             in srgb,
-            var(--wim-color-primary-rgb, 0, 107, 255) 10%,
+            var(--wim-color-primary) 10%,
             transparent
           );
       }
@@ -116,7 +116,7 @@
         left: 0;
         z-index: 0;
         width: auto;
-        height: 2px;
+        height: var(--wim-border-width-thick);
         background-color: transparent;
         transform: translateY(-50%);
 
@@ -159,7 +159,7 @@
       }
     }
 
-    @container (max-width: 576px) {
+    @container (max-width: var(--wim-breakpoint-sm)) {
       &.horizontal {
         flex-direction: column;
 
@@ -265,7 +265,7 @@
       font-weight: var(--wim-font-weight-bold);
       color: var(--wim-color-text-secondary);
       background-color: var(--wim-color-bg-component);
-      border: 2px solid var(--wim-color-border-secondary);
+      border: var(--wim-border-width-thick) solid var(--wim-color-border-secondary);
       border-radius: var(--wim-radius-full);
       transition: all var(--wim-transition-base);
     }

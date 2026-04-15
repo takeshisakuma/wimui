@@ -8,13 +8,13 @@
     transition: var(--wim-transition-fast);
 
     &.border {
-      border-left: 4px solid var(--wim-color-text-secondary);
+      border-left: var(--wim-blockquote-border-width) solid var(--wim-color-text-secondary);
     }
 
     .cite {
       display: block;
       margin-top: var(--wim-spacing-sm);
-      font-size: 0.9em;
+      font-size: var(--wim-font-size-small-scale);
       font-style: italic;
       opacity: 0.8;
 
