@@ -43,7 +43,7 @@
   /* DataGrid specific highlights */
   .cellFixed {
     position: sticky;
-    z-index: 2;
+    z-index: var(--wim-z-2);
     background-color: var(--wim-color-bg-component);
   }
 

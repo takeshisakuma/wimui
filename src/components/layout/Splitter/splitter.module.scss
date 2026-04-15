@@ -31,7 +31,7 @@
 
 .handle {
   position: relative;
-  z-index: 10;
+  z-index: var(--wim-z-10);
   flex: 0 0 auto;
   background-color: transparent;
   transition: background-color var(--wim-transition-fast);

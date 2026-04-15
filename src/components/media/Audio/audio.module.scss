@@ -14,7 +14,7 @@
     width: fit-content;
     min-width: 300px;
     max-width: 100%;
-    min-height: 54px; // Matches standard native player height to avoid jumps
+    min-height: calc(var(--wim-height-lg) + var(--wim-spacing-sm)); // Matches standard native player height to avoid jumps
     overflow: hidden; // Clip content to radius
     line-height: normal; // Reset to normal
     border-radius: var(--wim-radius-full); // Default to pill shape for native audio feel
@@ -49,7 +49,7 @@
     }
 
     &.border {
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
 
     // Fade-in core
@@ -74,7 +74,7 @@
     &::before {
       position: absolute;
       inset: 0;
-      z-index: 5;
+      z-index: var(--wim-z-5);
       pointer-events: none;
       content: "";
       background: linear-gradient(
@@ -120,11 +120,11 @@
     --wim-audio-bg-end: var(--wim-color-bg-inverted); // Using same for now or a variation if exists
 
     position: relative;
-    z-index: 1;
+    z-index: var(--wim-z-1);
     display: flex;
     flex-direction: column;
-    gap: 0.6rem; // Adjusted for 3 rows
-    padding: 1rem 0 0.8rem; // More generous padding
+    gap: var(--wim-spacing-lg); // Adjusted for 3 rows
+    padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl); // More generous padding
     color: var(--wim-color-text-white);
     background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
     mask-image: none;
@@ -136,8 +136,8 @@
 
   // When radius is full (pills), we need even more horizontal padding and width
   .radiusFull .custom {
-    min-width: 480px; // Provide more room for deep curves
-    padding: 1.5rem 52px 1rem; // Increase top/side padding to clear curves
+    min-width: calc(var(--wim-width-md) + var(--wim-spacing-2xl)); // Provide more room for deep curves
+    padding: var(--wim-spacing-3xl) var(--wim-spacing-5xl) var(--wim-spacing-2xl); // Increase top/side padding to clear curves
   }
 
   .visualizerCanvas {
@@ -154,7 +154,7 @@
 
   .metadata {
     position: relative;
-    z-index: 2;
+    z-index: var(--wim-z-2);
     display: flex;
     gap: var(--wim-spacing-sm);
     align-items: center;
@@ -168,8 +168,8 @@
   }
 
   .cover {
-    width: 48px;
-    height: 48px;
+    width: var(--wim-height-lg);
+    height: var(--wim-height-lg);
     object-fit: cover;
     border-radius: var(--wim-radius-sm);
     box-shadow: 0 2px 8px color-mix(in srgb, var(--wim-color-bg-void) 30%, transparent);
@@ -178,7 +178,7 @@
   .info {
     display: flex;
     flex-direction: column;
-    gap: 8px; // Significantly increased gap
+    gap: var(--wim-spacing-md); // Significantly increased gap
     line-height: 1.5;
   }
 
@@ -202,9 +202,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 12px;
-    height: 12px;
-    font-size: 8px;
+    width: var(--wim-spacing-md);
+    height: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-2xs);
     font-weight: bold;
     color: var(--wim-color-text-on-primary);
     background: var(--wim-color-primary);
@@ -240,8 +240,8 @@
     flex-shrink: 0; // Prevent distortion in flex containers
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--wim-height-sm);
+    height: var(--wim-height-sm);
     padding: var(--wim-spacing-xs);
     color: var(--wim-color-text-white);
     cursor: pointer;
@@ -274,8 +274,8 @@
 
     &.btnPlay {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: var(--wim-height-md);
+      height: var(--wim-height-md);
       background-color: var(--wim-color-primary);
 
       &:hover {
@@ -284,8 +284,8 @@
       }
 
       svg {
-        width: 20px;
-        height: 20px;
+        width: var(--wim-spacing-2xl);
+        height: var(--wim-spacing-2xl);
       }
     }
   }
@@ -293,7 +293,7 @@
   .time {
     display: flex;
     flex: 1;
-    gap: 6px; // Tighter gap
+    gap: var(--wim-spacing-sm); // Tighter gap
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
@@ -310,7 +310,7 @@
     height: 4px;
     cursor: pointer;
     background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
 
     // Expand click area
     &::after {
@@ -324,7 +324,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: var(--wim-z-2);
     width: 100%;
     height: 100%;
     margin: 0;
@@ -336,18 +336,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: var(--wim-z-1);
     height: 100%;
     pointer-events: none;
     background-color: var(--wim-color-primary);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
 
     &::after {
       position: absolute;
       top: 50%;
-      right: -4px;
-      width: 8px;
-      height: 8px;
+      right: calc(var(--wim-spacing-md) * -1);
+      width: var(--wim-spacing-md);
+      height: var(--wim-spacing-md);
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
@@ -362,13 +362,13 @@
   }
 
   .volume {
-    width: 60px; // Always show for now for simplicity
-    height: 4px;
+    width: calc(var(--wim-height-lg) * 1.25); // Always show for now for simplicity
+    height: var(--wim-spacing-xs);
     appearance: none;
     cursor: pointer;
     outline: none;
     background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
     transition:
       width var(--wim-transition-base),
       opacity var(--wim-transition-base);
@@ -378,8 +378,8 @@
     }
 
     &::-webkit-slider-thumb {
-      width: 10px;
-      height: 10px;
+      width: var(--wim-spacing-xl);
+      height: var(--wim-spacing-xl);
       appearance: none;
       cursor: pointer;
       background: var(--wim-color-text-white);
@@ -387,8 +387,8 @@
     }
 
     &::-moz-range-thumb {
-      width: 10px;
-      height: 10px;
+      width: var(--wim-spacing-xl);
+      height: var(--wim-spacing-xl);
       cursor: pointer;
       background: var(--wim-color-text-white);
       border: none;

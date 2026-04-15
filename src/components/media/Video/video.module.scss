@@ -46,7 +46,7 @@
     }
   
     &.border {
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
   
     // Fade-in state
@@ -66,7 +66,7 @@
     &::before {
       position: absolute;
       inset: 0;
-      z-index: 5;
+      z-index: var(--wim-z-5);
       pointer-events: none;
       content: "";
       background: linear-gradient(
@@ -118,7 +118,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 10;
+    z-index: var(--wim-z-10);
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-sm);
@@ -146,8 +146,8 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--wim-height-sm);
+    height: var(--wim-height-sm);
     padding: var(--wim-spacing-xs);
     color: var(--wim-color-text-on-overlay);
     cursor: pointer;
@@ -164,8 +164,8 @@
 
     &.btnPlay {
       // Can be larger if desired, but sticking to consistent size for toolbar
-      width: 40px;
-      height: 40px;
+      width: var(--wim-height-md);
+      height: var(--wim-height-md);
 
       &:hover {
         background-color: var(--wim-color-overlay-control-active);
@@ -204,7 +204,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: var(--wim-z-2);
     width: 100%;
     height: 100%; // Make it cover the container
     padding: 0;
@@ -217,7 +217,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: var(--wim-z-1);
     height: 100%;
     pointer-events: none;
     background-color: var(--wim-color-primary);
@@ -226,9 +226,9 @@
     &::after {
       position: absolute;
       top: 50%;
-      right: -6px;
-      width: 12px;
-      height: 12px;
+      right: calc(var(--wim-spacing-xl) * -1);
+      width: var(--wim-spacing-xl);
+      height: var(--wim-spacing-xl);
       content: "";
       background-color: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
@@ -244,7 +244,7 @@
     align-items: center;
   
     &:hover .volume {
-      width: 60px;
+      width: calc(var(--wim-height-lg) * 1.25);
       pointer-events: auto;
       opacity: 1;
     }
@@ -252,13 +252,13 @@
   
   .volume {
     width: 0;
-    height: 4px;
+    height: var(--wim-spacing-xs);
     appearance: none;
     pointer-events: none;
     cursor: pointer;
     outline: none;
     background: var(--wim-color-overlay-control-track);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
     opacity: 0;
     transition:
       width var(--wim-transition-base),
@@ -305,7 +305,7 @@
     position: absolute;
     right: var(--wim-spacing-md);
     bottom: 60px;
-    z-index: 20;
+    z-index: var(--wim-z-20);
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-xs);
@@ -382,7 +382,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 15;
+    z-index: var(--wim-z-15);
     display: flex;
     gap: 4px;
     align-items: center;

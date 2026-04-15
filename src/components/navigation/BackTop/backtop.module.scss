@@ -1,18 +1,18 @@
 @layer component {
   .root {
     position: fixed;
-    right: 40px;
-    bottom: 40px;
+    right: var(--wim-spacing-5xl);
+    bottom: var(--wim-spacing-5xl);
     z-index: var(--wim-z-overlay);
-    width: 40px;
-    height: 40px;
+    width: var(--wim-height-md);
+    height: var(--wim-height-md);
     cursor: pointer;
     transition: all var(--wim-transition-base);
 
     &.hidden {
       pointer-events: none;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(var(--wim-spacing-3xl));
     }
 
     .content {
@@ -40,7 +40,7 @@
     }
 
     .icon {
-      font-size: 20px;
+      font-size: var(--wim-font-size-xl);
     }
   }
 }

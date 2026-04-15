@@ -19,7 +19,7 @@
 
   .dot {
     position: absolute;
-    z-index: 10;
+    z-index: var(--wim-z-10);
     display: inline-block;
     flex-shrink: 0;
     width: var(--indicator-size, 10px);

@@ -21,7 +21,7 @@
     .slider {
       @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--wim-color-primary));
   
-      z-index: 1;
+      z-index: var(--wim-z-1);
       opacity: 0;
   
       &.single.ready {

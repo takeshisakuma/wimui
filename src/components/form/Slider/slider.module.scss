@@ -40,6 +40,7 @@
   .thumb {
     position: absolute;
     top: 50%;
+    z-index: var(--wim-z-1);
     width: var(--wim-font-size-lg); // 1.125rem = 18px
     height: var(--wim-font-size-lg);
     cursor: grab;
@@ -53,17 +54,17 @@
     will-change: left;
 
     &:hover {
-      z-index: 2;
+      z-index: var(--wim-z-2);
       box-shadow: 0 0 0 calc(var(--wim-focus-outline-width) * 2) color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
     }
 
     &:focus-visible {
-      z-index: 2;
+      z-index: var(--wim-z-2);
       box-shadow: inset 0 0 0 2px var(--wim-color-primary);
     }
 
     &:active {
-      z-index: 2;
+      z-index: var(--wim-z-2);
       cursor: grabbing;
       box-shadow: 0 0 0 6px var(--wim-color-ghost-border-hover);
     }

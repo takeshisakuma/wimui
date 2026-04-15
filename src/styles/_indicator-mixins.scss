@@ -4,7 +4,7 @@
 
 @mixin indicator-slider-base($duration: var(--wim-duration-base)) {
   position: absolute;
-  z-index: 1;
+  z-index: var(--wim-z-1);
   pointer-events: none;
   transition: 
     transform $duration cubic-bezier(0.2, 0, 0, 1),
@@ -31,7 +31,7 @@
   top: $offset;
   bottom: $offset;
   left: 0;
-  z-index: 1; // Behind content if isolation is used correctly or use negative
+  z-index: var(--wim-z-1); // Behind content if isolation is used correctly or use negative
   background-color: $bg;
   border-radius: $radius;
   box-shadow: $shadow;
@@ -43,7 +43,7 @@
 
   bottom: $bottom;
   left: 0;
-  z-index: 2;
+  z-index: var(--wim-z-2);
   height: $height;
   background-color: $color;
   border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
@@ -52,7 +52,7 @@
 /* Base style for items within an indicator container */
 @mixin indicator-item-base {
   position: relative;
-  z-index: 2;
+  z-index: var(--wim-z-2);
   display: inline-flex;
   align-items: center;
   justify-content: center;

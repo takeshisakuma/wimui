@@ -58,7 +58,7 @@
     }
 
     &.border {
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
 
     // Fade-in state
@@ -79,7 +79,7 @@
     &::before {
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: var(--wim-z-1);
       pointer-events: none;
       content: "";
       background: linear-gradient(
@@ -112,7 +112,7 @@
     &.hasNoise::after {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: var(--wim-z-2);
       pointer-events: none;
       content: "";
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -123,7 +123,7 @@
     &.hasOverlay::before {
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: var(--wim-z-1);
       pointer-events: none;
       content: "";
       background: var(--wim-image-overlay-color, transparent);
@@ -170,7 +170,7 @@
   .caption {
     padding-bottom: var(--wim-spacing-xs);
     margin-top: var(--wim-spacing-sm);
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     line-height: 1.5;
     color: var(--wim-color-text-secondary);
     text-align: center;
