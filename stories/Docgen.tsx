@@ -1,6 +1,6 @@
 import React from 'react';
 import { T } from './T';
-import docgenData from '../src/data/docgen.json';
+import indexData from '../src/data/docgen_index.json';
 import './docgen.scss';
 
 interface DocgenProps {
@@ -21,11 +21,48 @@ interface ComponentData {
   anatomy?: string[];
 }
 
-export const Docgen = ({ componentName, section }: DocgenProps) => {
-  const data = (docgenData as Record<string, ComponentData>)[componentName];
+const typedIndexData = indexData as Record<string, string>;
 
-  if (!data) {
-    return <div>No docgen data for {componentName}</div>;
+export const Docgen = ({ componentName, section }: DocgenProps) => {
+  const [data, setData] = React.useState<ComponentData | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const category = typedIndexData[componentName];
+    if (!category) {
+      setError(`No category found for ${componentName}`);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    // Dynamic import the specific category data
+    import(`../src/data/docgen_${category}.json`)
+      .then((module) => {
+        const categoryData = module.default as Record<string, ComponentData>;
+        if (categoryData[componentName]) {
+          setData(categoryData[componentName]);
+          setError(null);
+        } else {
+          setError(`No data found for ${componentName} in ${category}`);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(`Failed to load documentation for ${category}`);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [componentName]);
+
+  if (loading) {
+    return <div className="docgen-loading">Loading documentation data...</div>;
+  }
+
+  if (error || !data) {
+    return <div className="docgen-error">{error || 'Unknown error'}</div>;
   }
 
   const renderProps = () => {

@@ -28,17 +28,27 @@ function extractAnatomy(scssContent, componentName) {
 
 export async function generateDocgenData() {
   const rootDir = path.resolve(__dirname, '..');
-  const targetFile = path.resolve(rootDir, 'src/data/docgen.json');
+  const dataDir = path.resolve(rootDir, 'src/data');
   const components = await glob('src/components/**/[A-Z]*.tsx', { 
     cwd: rootDir,
     ignore: ['src/components/_internal/**', 'src/components/**/*.test.tsx'] 
   });
-  const data = {};
+  
+  const categorizedData = {};
+  const indexData = {};
 
   for (const componentRelPath of components) {
     const componentPath = path.resolve(rootDir, componentRelPath);
     const componentName = path.basename(componentPath, '.tsx');
     const componentDir = path.dirname(componentPath);
+    
+    // Extract category from path: src/components/<category>/<componentName>/...
+    const pathParts = componentRelPath.split(path.sep);
+    const category = pathParts[2]; // [src, components, category, ...]
+    
+    if (!categorizedData[category]) categorizedData[category] = {};
+    indexData[componentName] = category;
+
     const scssPath = path.join(componentDir, `${componentName.toLowerCase()}.scss`);
     const moduleScssPath = path.join(componentDir, `${componentName.toLowerCase()}.module.scss`);
 
@@ -61,15 +71,14 @@ export async function generateDocgenData() {
         filename: componentPath,
       });
       
-      data[componentName] = {
+      categorizedData[category][componentName] = {
         name: componentName,
         tokens,
         anatomy,
         props: docgen[0]?.props || {}
       };
     } catch (e) {
-      // console.error(`Error parsing ${componentPath}:`, e.message);
-      data[componentName] = {
+      categorizedData[category][componentName] = {
         name: componentName,
         tokens,
         anatomy,
@@ -78,16 +87,36 @@ export async function generateDocgenData() {
     }
   }
 
-  const content = JSON.stringify(data, null, 2);
-  
-  // 内容が変わっていない場合は書き込まない
-  if (fs.existsSync(targetFile)) {
-    const currentContent = fs.readFileSync(targetFile, 'utf-8');
-    if (currentContent === content) return;
+  // Write index
+  fs.writeFileSync(path.join(dataDir, 'docgen_index.json'), JSON.stringify(indexData, null, 2));
+
+  // Write category files and cleanup old ones
+  const existingFiles = fs.readdirSync(dataDir).filter(f => f.startsWith('docgen_') && f.endsWith('.json') && f !== 'docgen_index.json');
+  const currentCategories = Object.keys(categorizedData);
+
+  for (const category of currentCategories) {
+    const targetFile = path.join(dataDir, `docgen_${category}.json`);
+    const content = JSON.stringify(categorizedData[category], null, 2);
+    
+    if (fs.existsSync(targetFile)) {
+      if (fs.readFileSync(targetFile, 'utf-8') === content) continue;
+    }
+    fs.writeFileSync(targetFile, content);
   }
 
-  fs.writeFileSync(targetFile, content);
-  console.log(`[docgen-plugin] Generated ${path.relative(rootDir, targetFile)}`);
+  // Cleanup obsolete files
+  for (const file of existingFiles) {
+    const categoryMatch = file.match(/docgen_(.+)\.json/);
+    if (categoryMatch && !currentCategories.includes(categoryMatch[1])) {
+      fs.unlinkSync(path.join(dataDir, file));
+    }
+  }
+
+  // Remove old monolithic file if exists
+  const oldFile = path.join(dataDir, 'docgen.json');
+  if (fs.existsSync(oldFile)) fs.unlinkSync(oldFile);
+
+  console.log(`[docgen-plugin] Generated split docgen data and index in src/data/`);
 }
 
 /**
