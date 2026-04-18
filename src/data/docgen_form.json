@@ -1397,46 +1397,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Selectbox": {
-    "name": "Selectbox",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-disabled",
-      "--wim-color-text-placeholder",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-field-padding-v",
-      "--wim-font-family-default",
-      "--wim-font-size-md",
-      "--wim-font-size-small-scale",
-      "--wim-font-size-xs",
-      "--wim-height-md",
-      "--wim-letter-spacing-wide",
-      "--wim-line-height-normal",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-field-focus",
-      "--wim-shadow-focus",
-      "--wim-shadow-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-transition-fast",
-      "--wim-width-md",
-      "--wim-z-1",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "SignaturePad": {
     "name": "SignaturePad",
     "tokens": [],
@@ -1603,6 +1563,46 @@
         "description": "Aria label for the canvas"
       }
     }
+  },
+  "Selectbox": {
+    "name": "Selectbox",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-disabled",
+      "--wim-color-text-placeholder",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-field-padding-v",
+      "--wim-font-family-default",
+      "--wim-font-size-md",
+      "--wim-font-size-small-scale",
+      "--wim-font-size-xs",
+      "--wim-height-md",
+      "--wim-letter-spacing-wide",
+      "--wim-line-height-normal",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-field-focus",
+      "--wim-shadow-focus",
+      "--wim-shadow-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-transition-fast",
+      "--wim-width-md",
+      "--wim-z-1",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "SegmentedControl": {
     "name": "SegmentedControl",
@@ -2768,115 +2768,48 @@
     "anatomy": [],
     "props": {}
   },
-  "QueryBuilder": {
-    "name": "QueryBuilder",
+  "Radio": {
+    "name": "Radio",
     "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-border",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
+      "--wim-border-width-thick",
+      "--wim-color-disabled",
       "--wim-color-primary",
-      "--wim-color-primary-container-alpha",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
       "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
       "--wim-easing-standard",
-      "--wim-height-md",
-      "--wim-input-width",
-      "--wim-radius-lg",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-transition-fast"
+      "--wim-font-family-default",
+      "--wim-font-size-md",
+      "--wim-height-xs",
+      "--wim-line-height-normal",
+      "--wim-opacity-disabled",
+      "--wim-radio-dot-size",
+      "--wim-radio-size",
+      "--wim-radius-full",
+      "--wim-shadow-focus",
+      "--wim-spacing-sm"
     ],
     "anatomy": [],
     "props": {
-      "fields": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "QueryField"
-            }
-          ],
-          "raw": "QueryField[]"
-        },
-        "description": "Field definitions"
-      },
-      "query": {
+      "asChild": {
         "required": false,
         "tsType": {
-          "name": "QueryGroup"
+          "name": "boolean"
         },
-        "description": "Current query state (controlled)"
-      },
-      "defaultQuery": {
-        "required": false,
-        "tsType": {
-          "name": "QueryGroup"
-        },
-        "description": "Default query state (uncontrolled)"
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(query: QueryGroup) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "QueryGroup"
-                },
-                "name": "query"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when query changes"
-      },
-      "maxDepth": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Maximum nesting depth",
+        "description": "",
         "defaultValue": {
-          "value": "3",
+          "value": "false",
           "computed": false
         }
       },
-      "className": {
+      "children": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "Additional class name"
-      },
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Unique ID for the component"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "QueryBuilderLabels"
-        },
-        "description": "Labels for internationalization",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
+        "description": ""
       }
     }
   },
@@ -3017,14 +2950,126 @@
       }
     }
   },
-  "OtpInput": {
-    "name": "OtpInput",
+  "QueryBuilder": {
+    "name": "QueryBuilder",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-primary",
+      "--wim-color-primary-container-alpha",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-height-md",
+      "--wim-input-width",
+      "--wim-radius-lg",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "fields": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "QueryField"
+            }
+          ],
+          "raw": "QueryField[]"
+        },
+        "description": "Field definitions"
+      },
+      "query": {
+        "required": false,
+        "tsType": {
+          "name": "QueryGroup"
+        },
+        "description": "Current query state (controlled)"
+      },
+      "defaultQuery": {
+        "required": false,
+        "tsType": {
+          "name": "QueryGroup"
+        },
+        "description": "Default query state (uncontrolled)"
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(query: QueryGroup) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "QueryGroup"
+                },
+                "name": "query"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when query changes"
+      },
+      "maxDepth": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum nesting depth",
+        "defaultValue": {
+          "value": "3",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class name"
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Unique ID for the component"
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "QueryBuilderLabels"
+        },
+        "description": "Labels for internationalization",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  },
+  "PasswordInput": {
+    "name": "PasswordInput",
     "tokens": [],
     "anatomy": [],
     "props": {}
   },
-  "PasswordInput": {
-    "name": "PasswordInput",
+  "OtpInput": {
+    "name": "OtpInput",
     "tokens": [],
     "anatomy": [],
     "props": {}
@@ -3034,51 +3079,6 @@
     "tokens": [],
     "anatomy": [],
     "props": {}
-  },
-  "Radio": {
-    "name": "Radio",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-family-default",
-      "--wim-font-size-md",
-      "--wim-height-xs",
-      "--wim-line-height-normal",
-      "--wim-opacity-disabled",
-      "--wim-radio-dot-size",
-      "--wim-radio-size",
-      "--wim-radius-full",
-      "--wim-shadow-focus",
-      "--wim-spacing-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      }
-    }
   },
   "MultiSelect": {
     "name": "MultiSelect",
@@ -3379,6 +3379,37 @@
   },
   "LinkButton": {
     "name": "LinkButton",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "InputMask": {
+    "name": "InputMask",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "mask": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "maskChar": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"_\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "InputGroup": {
+    "name": "InputGroup",
     "tokens": [],
     "anatomy": [],
     "props": {}
@@ -3792,12 +3823,6 @@
       }
     }
   },
-  "InputGroup": {
-    "name": "InputGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Input": {
     "name": "Input",
     "tokens": [
@@ -3856,31 +3881,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "InputMask": {
-    "name": "InputMask",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "mask": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "maskChar": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"_\"",
-          "computed": false
-        }
       }
     }
   },
@@ -4216,6 +4216,34 @@
       }
     }
   },
+  "FieldError": {
+    "name": "FieldError",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Fieldset": {
     "name": "Fieldset",
     "tokens": [
@@ -4271,117 +4299,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "FieldError": {
-    "name": "FieldError",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "DateRangePicker": {
-    "name": "DateRangePicker",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "startProps": {
-        "required": false,
-        "tsType": {
-          "name": "ReactComponentProps",
-          "raw": "React.ComponentProps<typeof DatePicker>",
-          "elements": [
-            {
-              "name": "DatePicker"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "endProps": {
-        "required": false,
-        "tsType": {
-          "name": "ReactComponentProps",
-          "raw": "React.ComponentProps<typeof DatePicker>",
-          "elements": [
-            {
-              "name": "DatePicker"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "error": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
       }
     }
   },
@@ -4538,11 +4455,88 @@
       }
     }
   },
-  "DatePicker": {
-    "name": "DatePicker",
+  "DateRangePicker": {
+    "name": "DateRangePicker",
     "tokens": [],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "startProps": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps",
+          "raw": "React.ComponentProps<typeof DatePicker>",
+          "elements": [
+            {
+              "name": "DatePicker"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "endProps": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps",
+          "raw": "React.ComponentProps<typeof DatePicker>",
+          "elements": [
+            {
+              "name": "DatePicker"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "error": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
+      }
+    }
   },
   "DatePicker": {
     "name": "DatePicker",

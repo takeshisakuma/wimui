@@ -117,6 +117,29 @@
     "anatomy": [],
     "props": {}
   },
+  "Timeline": {
+    "name": "Timeline",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Tag": {
     "name": "Tag",
     "tokens": [
@@ -238,25 +261,20 @@
       }
     }
   },
-  "Timeline": {
-    "name": "Timeline",
+  "Stats": {
+    "name": "Stats",
     "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
       "--wim-color-destructive",
+      "--wim-color-disabled",
       "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
+      "--wim-radius-sm",
       "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
     ],
     "anatomy": [],
     "props": {}
@@ -436,24 +454,6 @@
       }
     }
   },
-  "Stats": {
-    "name": "Stats",
-    "tokens": [
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-positive",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Marquee": {
     "name": "Marquee",
     "tokens": [
@@ -518,6 +518,17 @@
       }
     }
   },
+  "List": {
+    "name": "List",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Markdown": {
     "name": "Markdown",
     "tokens": [
@@ -574,17 +585,6 @@
         "description": "追加のクラス名。"
       }
     }
-  },
-  "List": {
-    "name": "List",
-    "tokens": [
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal-jp"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Kanban": {
     "name": "Kanban",
@@ -1733,6 +1733,274 @@
     "anatomy": [],
     "props": {}
   },
+  "Carousel": {
+    "name": "Carousel",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-carousel-object-fit",
+      "--wim-color-carousel-control-bg",
+      "--wim-color-carousel-control-hover-bg",
+      "--wim-color-carousel-indicator-bg",
+      "--wim-color-carousel-indicator-hover-bg",
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-duration-extra-slow",
+      "--wim-easing-standard",
+      "--wim-height-md",
+      "--wim-radius-sm",
+      "--wim-spacing-4xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "カルーセル内のコンテンツ"
+      },
+      "autoPlay": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "自動再生するかどうか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "interval": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "自動再生の間隔（ミリ秒）",
+        "defaultValue": {
+          "value": "5000",
+          "computed": false
+        }
+      },
+      "showIndicators": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "インジケーターを表示するかどうか",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showControls": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "前後ボタンを表示するかどうか",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "loop": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "無限ループするかどうか（シームレスな切り替え）",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "slidesToShow": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | Breakpoints",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  base?: number;\r\n  sm?: number;\r\n  md?: number;\r\n  lg?: number;\r\n  xl?: number;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "base",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "sm",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "md",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "lg",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "xl",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "description": "一度に表示するスライド数。数値またはブレークポイントごとのオブジェクトを指定可能。",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "aspectRatio": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "アスペクト比（例: '16/9', '4/3', '1/1'）を指定します。"
+      },
+      "objectFit": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"fill\" | \"contain\" | \"cover\" | \"none\" | \"scale-down\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"fill\""
+            },
+            {
+              "name": "literal",
+              "value": "\"contain\""
+            },
+            {
+              "name": "literal",
+              "value": "\"cover\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            },
+            {
+              "name": "literal",
+              "value": "\"scale-down\""
+            }
+          ]
+        },
+        "description": "画像のフィット方法を指定します。aspectRatioが指定されている場合に有効です。（デフォルト: 'cover'）",
+        "defaultValue": {
+          "value": "\"cover\"",
+          "computed": false
+        }
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  slideLabel?: (number: number) => string;\r\n  prevSlide?: string;\r\n  nextSlide?: string;\r\n  goToSlide?: (number: number) => string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "slideLabel",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(number: number) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "number"
+                        },
+                        "name": "number"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              },
+              {
+                "key": "prevSlide",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "nextSlide",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "goToSlide",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(number: number) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "number"
+                        },
+                        "name": "number"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "手動翻訳用のラベル。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名"
+      }
+    }
+  },
   "Card": {
     "name": "Card",
     "tokens": [
@@ -2413,274 +2681,6 @@
           ]
         },
         "description": "サイズ"
-      }
-    }
-  },
-  "Carousel": {
-    "name": "Carousel",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-carousel-object-fit",
-      "--wim-color-carousel-control-bg",
-      "--wim-color-carousel-control-hover-bg",
-      "--wim-color-carousel-indicator-bg",
-      "--wim-color-carousel-indicator-hover-bg",
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-duration-extra-slow",
-      "--wim-easing-standard",
-      "--wim-height-md",
-      "--wim-radius-sm",
-      "--wim-spacing-4xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "カルーセル内のコンテンツ"
-      },
-      "autoPlay": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "自動再生するかどうか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "interval": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "自動再生の間隔（ミリ秒）",
-        "defaultValue": {
-          "value": "5000",
-          "computed": false
-        }
-      },
-      "showIndicators": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "インジケーターを表示するかどうか",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showControls": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "前後ボタンを表示するかどうか",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "loop": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "無限ループするかどうか（シームレスな切り替え）",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "slidesToShow": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | Breakpoints",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  base?: number;\r\n  sm?: number;\r\n  md?: number;\r\n  lg?: number;\r\n  xl?: number;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "base",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "sm",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "md",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "lg",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "xl",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "description": "一度に表示するスライド数。数値またはブレークポイントごとのオブジェクトを指定可能。",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "aspectRatio": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "アスペクト比（例: '16/9', '4/3', '1/1'）を指定します。"
-      },
-      "objectFit": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"fill\" | \"contain\" | \"cover\" | \"none\" | \"scale-down\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"fill\""
-            },
-            {
-              "name": "literal",
-              "value": "\"contain\""
-            },
-            {
-              "name": "literal",
-              "value": "\"cover\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            },
-            {
-              "name": "literal",
-              "value": "\"scale-down\""
-            }
-          ]
-        },
-        "description": "画像のフィット方法を指定します。aspectRatioが指定されている場合に有効です。（デフォルト: 'cover'）",
-        "defaultValue": {
-          "value": "\"cover\"",
-          "computed": false
-        }
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  slideLabel?: (number: number) => string;\r\n  prevSlide?: string;\r\n  nextSlide?: string;\r\n  goToSlide?: (number: number) => string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "slideLabel",
-                "value": {
-                  "name": "signature",
-                  "type": "function",
-                  "raw": "(number: number) => string",
-                  "signature": {
-                    "arguments": [
-                      {
-                        "type": {
-                          "name": "number"
-                        },
-                        "name": "number"
-                      }
-                    ],
-                    "return": {
-                      "name": "string"
-                    }
-                  },
-                  "required": false
-                }
-              },
-              {
-                "key": "prevSlide",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "nextSlide",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "goToSlide",
-                "value": {
-                  "name": "signature",
-                  "type": "function",
-                  "raw": "(number: number) => string",
-                  "signature": {
-                    "arguments": [
-                      {
-                        "type": {
-                          "name": "number"
-                        },
-                        "name": "number"
-                      }
-                    ],
-                    "return": {
-                      "name": "string"
-                    }
-                  },
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "手動翻訳用のラベル。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名"
       }
     }
   },

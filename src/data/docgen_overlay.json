@@ -185,12 +185,6 @@
       }
     }
   },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Menu": {
     "name": "Menu",
     "tokens": [
@@ -216,6 +210,12 @@
       "--wim-spacing-xs",
       "--wim-z-1"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -301,6 +301,12 @@
     "anatomy": [],
     "props": {}
   },
+  "ContextMenu": {
+    "name": "ContextMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Dialog": {
     "name": "Dialog",
     "tokens": [
@@ -331,12 +337,6 @@
   },
   "BottomSheet": {
     "name": "BottomSheet",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "ContextMenu": {
-    "name": "ContextMenu",
     "tokens": [],
     "anatomy": [],
     "props": {}
