@@ -72,8 +72,8 @@
 
   &__header-count {
     flex-shrink: 0;
-    margin-left: 8px;
-    font-size: 12px;
+    margin-left: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-xs);
     font-weight: normal;
     color: var(--wim-color-text-secondary);
   }
@@ -128,20 +128,20 @@
   &__item-label {
     // Standard font styles are handled by BaseListItem
     @container (max-width: 768px) {
-      font-size: 16px; // 文字も少し大きく
+      font-size: var(--wim-font-size-md);
     }
   }
 
   &__operation {
     display: flex;
     flex-direction: column;
-    gap: 12px; // ボタン間の余白も少し広げて「太め」に
+    gap: 12px; // TODO: tokenization
 
     @container (max-width: 768px) {
       flex-direction: row;
-      gap: 24px; // ボタン間の距離を広げる
+      gap: 24px; // TODO: tokenization
       justify-content: center;
-      padding: 8px 0;
+      padding: var(--wim-spacing-md) 0;
 
       .wim-button {
         transform: rotate(90deg) scale(1.2); // ボタン自体を少し大きく
@@ -154,7 +154,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    font-size: 14px;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-placeholder);
   }
 }

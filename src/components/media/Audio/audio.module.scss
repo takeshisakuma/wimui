@@ -307,7 +307,7 @@
   .progressContainer {
     position: relative;
     flex: 1;
-    height: 4px;
+    height: 4px; /* Exception: Structural Logic — プログレスバーの視認可能な最小高さ */
     cursor: pointer;
     background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
     border-radius: var(--wim-radius-sm);

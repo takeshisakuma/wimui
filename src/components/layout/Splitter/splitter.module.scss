@@ -56,8 +56,8 @@
 
   /* When inside horizontal root */
   .root.horizontal > & {
-    width: 8px;
-    margin: 0 -4px;
+    width: 8px; /* Exception: Structural Logic — ドラッグハンドルの最小タッチ領域（操作性確保のため死守） */
+    margin: 0 -4px; /* Exception: Geometric Harmony — ハンドル幅(8px)の半分を負マージンでオーバーラップ */
     cursor: col-resize;
 
     &::after {
@@ -76,8 +76,8 @@
 
   /* When inside vertical root */
   .root.vertical > & {
-    height: 8px;
-    margin: -4px 0;
+    height: 8px; /* Exception: Structural Logic — ドラッグハンドルの最小タッチ領域（操作性確保のため死守） */
+    margin: -4px 0; /* Exception: Geometric Harmony — ハンドル高さ(8px)の半分を負マージンでオーバーラップ */
     cursor: row-resize;
 
     &::after {

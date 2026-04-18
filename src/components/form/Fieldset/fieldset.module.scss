@@ -2,12 +2,12 @@
   .root {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px; // TODO: tokenization
     min-width: 0;
-    padding: 16px;
+    padding: var(--wim-spacing-2xl);
     margin: 0;
     border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    border-radius: var(--wim-radius-lg);
 
     &.fullWidth {
       width: 100%;

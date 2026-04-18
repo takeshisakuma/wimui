@@ -35,7 +35,7 @@
     .labelWrapper {
       display: inline-block;
       max-width: 200px;
-      padding: 4px 0;
+      padding: 4px 0; // TODO: tokenization
       overflow: hidden;
       vertical-align: middle;
       transition:
@@ -210,12 +210,12 @@
       min-width: 16px;
       height: 16px;
       padding: 0 4px;
-      font-size: 10px;
+      font-size: var(--wim-font-size-3xs);
       line-height: 1;
       color: var(--wim-color-text-on-primary);
       text-align: center;
       background-color: var(--wim-color-destructive);
-      border-radius: 8px;
+      border-radius: var(--wim-radius-lg);
       box-shadow: 0 0 0 2px var(--wim-color-bg-component);
 
       &.dot {
@@ -233,13 +233,13 @@
     .description {
       position: absolute;
       right: 52px;
-      padding: 4px 8px;
-      font-size: 12px;
+      padding: 4px 8px; // TODO: tokenization
+      font-size: var(--wim-font-size-xs);
       color: var(--wim-color-text-on-overlay);
       white-space: nowrap;
       pointer-events: none;
       background-color: var(--wim-color-overlay-bg-dark);
-      border-radius: 4px;
+      border-radius: var(--wim-radius-md);
       opacity: 0;
       transition: opacity var(--wim-transition-fast);
     }

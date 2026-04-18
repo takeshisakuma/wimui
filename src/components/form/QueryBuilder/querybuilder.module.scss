@@ -100,7 +100,7 @@
   .segmentedControl {
     align-items: stretch;
     height: var(--wim-height-md);
-    padding: 2px;
+    padding: var(--wim-spacing-fine);
 
     .segmentedControlItem {
       height: calc(var(--wim-height-md) - 4px);
@@ -172,7 +172,7 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px; // TODO: tokenization
   align-items: stretch;
   min-width: 0;
 

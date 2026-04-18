@@ -154,13 +154,13 @@
   }
 
   .spacer {
-    width: 24px;
-    height: 24px;
+    width: 24px; /* Exception: Geometric Harmony — アイコン展開ボタンと同サイズに揃えるインデント用スペーサー */
+    height: 24px; /* Exception: Geometric Harmony — アイコン展開ボタンと同サイズに揃えるインデント用スペーサー */
   }
 
   .checkbox {
-    width: 16px;
-    height: 16px;
+    width: 16px; /* Exception: Structural Logic — ネイティブ checkbox の最小操作サイズ */
+    height: 16px; /* Exception: Structural Logic — ネイティブ checkbox の最小操作サイズ */
     margin: 0;
     accent-color: var(--wim-color-primary);
     cursor: pointer;

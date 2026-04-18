@@ -1,6 +1,8 @@
 {
   "wim": {
     "spacing": {
+      "hairline": { "value": "1px" },
+      "fine": { "value": "2px" },
       "3xs": { "value": "0.1rem" },
       "2xs": { "value": "0.2rem" },
       "xs": { "value": "0.3rem" },

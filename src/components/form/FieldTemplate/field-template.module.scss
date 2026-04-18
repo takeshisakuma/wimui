@@ -4,7 +4,7 @@
 
     &.vertical {
       flex-direction: column;
-      gap: 8px;
+      gap: var(--wim-spacing-md);
 
       .label {
         display: block;
@@ -21,7 +21,7 @@
 
     &.horizontal {
       flex-direction: row;
-      gap: 16px;
+      gap: var(--wim-spacing-2xl);
       align-items: flex-start;
 
       .content:has(input[type="color"]) {
@@ -47,13 +47,13 @@
     }
 
     .error {
-        margin-top: 4px;
+        margin-top: 4px; // TODO: tokenization
     }
   }
 
   .content {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 4px; // TODO: tokenization
   }
 }

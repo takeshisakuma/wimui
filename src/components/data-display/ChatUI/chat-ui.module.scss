@@ -95,9 +95,9 @@
     content: "";
     border-color: transparent var(--wim-chat-bubble-bg) transparent transparent;
     border-style: solid;
-    border-width: 6px 6px 6px 0;
+    border-width: 6px 6px 6px 0; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
-  
+
   .message.right.hasAvatar .bubble::before {
     position: absolute;
     top: 10px;
@@ -105,7 +105,7 @@
     content: "";
     border-color: transparent transparent transparent var(--wim-chat-bubble-bg);
     border-style: solid;
-    border-width: 6px 0 6px 6px;
+    border-width: 6px 0 6px 6px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
   
   .timestamp {
@@ -121,8 +121,8 @@
     border-top: 1px solid var(--wim-color-border);
   
     @container (max-width: 480px) {
-      gap: 8px;
-      padding: 12px;
+      gap: var(--wim-spacing-md);
+      padding: 12px; // TODO: tokenization
     }
   }
   
@@ -167,7 +167,7 @@
       opacity var(--wim-transition-fast);
   
     @container (max-width: 480px) {
-      padding: 12px 16px;
+      padding: 12px 16px; // TODO: tokenization
     }
   
     &:hover:not(:disabled) {

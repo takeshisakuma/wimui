@@ -6,27 +6,27 @@
   .inner {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--wim-spacing-2xl);
     padding: var(--wim-spacing-2xl);
   }
 
   .label {
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     font-weight: 500;
-    line-height: 1.25rem;
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-secondary);
   }
 
   .value {
-    font-size: 1.5rem;
+    font-size: var(--wim-font-size-display);
     font-weight: 700;
-    line-height: 2rem;
+    line-height: var(--wim-line-height-snug);
     color: var(--wim-color-text-primary);
   }
 
   .description {
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: var(--wim-font-size-xs);
+    line-height: var(--wim-line-height-tight);
     color: var(--wim-color-text-tertiary);
   }
 
@@ -36,7 +36,7 @@
     align-items: center;
     width: fit-content;
     padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     font-weight: 600;
     border-radius: var(--wim-radius-sm);
 

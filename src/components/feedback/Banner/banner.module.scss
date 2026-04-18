@@ -74,8 +74,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 24px; /* Exception: Structural Logic — 閉じるボタンの最小タッチ領域 */
+    height: 24px; /* Exception: Structural Logic — 閉じるボタンの最小タッチ領域 */
     padding: 0;
     color: inherit;
     cursor: pointer;
@@ -96,8 +96,8 @@
     }
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: 16px; /* Exception: Geometric Harmony — ボタン領域(24px)に対する適正アイコン比率 */
+      height: 16px; /* Exception: Geometric Harmony — ボタン領域(24px)に対する適正アイコン比率 */
     }
   }
 

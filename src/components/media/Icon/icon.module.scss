@@ -1,8 +1,8 @@
 @layer component {
   .root {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 1em; /* Exception: Structural Logic — font-size に追従させる構造的寸法 */
+    height: 1em; /* Exception: Structural Logic — font-size に追従させる構造的寸法 */
     overflow: visible;
     vertical-align: middle;
     color: inherit;

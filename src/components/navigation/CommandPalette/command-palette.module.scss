@@ -171,12 +171,12 @@
     // Hide footer on very small screens or make it more compact
     @media (width <= 480px) {
       flex-wrap: wrap;
-      gap: 8px;
+      gap: var(--wim-spacing-md);
     }
   }
   
   .kbd {
-    padding: 1px 4px;
+    padding: var(--wim-spacing-hairline) var(--wim-spacing-xs);
     font-family: inherit;
     font-size: 0.6rem;
     background-color: var(--wim-color-bg-secondary);

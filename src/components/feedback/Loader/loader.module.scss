@@ -57,8 +57,8 @@
         gap: var(--wim-spacing-2xs);
 
         .item {
-          width: 3px;
-          height: 12px;
+          width: 3px; /* Exception: Geometric Harmony — bars アニメーションの sm サイズ比率（幅:高さ = 1:4） */
+          height: 12px; /* Exception: Geometric Harmony — bars アニメーションの sm サイズ比率 */
         }
       }
 
@@ -66,8 +66,8 @@
         gap: var(--wim-spacing-xs);
 
         .item {
-          width: 4px;
-          height: 16px;
+          width: 4px; /* Exception: Geometric Harmony — bars アニメーションの md サイズ比率（幅:高さ = 1:4） */
+          height: 16px; /* Exception: Geometric Harmony — bars アニメーションの md サイズ比率 */
         }
       }
 
@@ -75,8 +75,8 @@
         gap: var(--wim-spacing-md);
 
         .item {
-          width: 8px;
-          height: 32px;
+          width: 8px; /* Exception: Geometric Harmony — bars アニメーションの lg サイズ比率（幅:高さ = 1:4） */
+          height: 32px; /* Exception: Geometric Harmony — bars アニメーションの lg サイズ比率 */
         }
       }
     }
@@ -105,8 +105,8 @@
         gap: var(--wim-spacing-xs);
 
         .item {
-          width: 4px;
-          height: 4px;
+          width: 4px; /* Exception: Geometric Harmony — dots アニメーションの sm ドット直径 */
+          height: 4px; /* Exception: Geometric Harmony — dots アニメーションの sm ドット直径 */
         }
       }
 
@@ -114,8 +114,8 @@
         gap: var(--wim-loader-dot-gap, 6px);
 
         .item {
-          width: 8px;
-          height: 8px;
+          width: 8px; /* Exception: Geometric Harmony — dots アニメーションの md ドット直径（sm の 2 倍） */
+          height: 8px; /* Exception: Geometric Harmony — dots アニメーションの md ドット直径（sm の 2 倍） */
         }
       }
 
@@ -123,8 +123,8 @@
         gap: var(--wim-spacing-lg);
 
         .item {
-          width: 16px;
-          height: 16px;
+          width: 16px; /* Exception: Geometric Harmony — dots アニメーションの lg ドット直径（md の 2 倍） */
+          height: 16px; /* Exception: Geometric Harmony — dots アニメーションの lg ドット直径（md の 2 倍） */
         }
       }
     }
@@ -160,8 +160,8 @@
       }
 
       &.lg {
-        width: 48px;
-        height: 48px;
+        width: 48px; /* Exception: Geometric Harmony — pulse アニメーションの lg サイズ（sm/md がトークン済みのため比率維持） */
+        height: 48px; /* Exception: Geometric Harmony — pulse アニメーションの lg サイズ */
       }
     }
   }

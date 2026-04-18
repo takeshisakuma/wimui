@@ -7,12 +7,14 @@
       "pt": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" }
     },
     "font-size": {
+      "3xs": { "value": "0.625rem" },
       "2xs": { "value": "0.702rem" },
       "xs": { "value": "0.79rem" },
       "sm": { "value": "0.889rem" },
       "md": { "value": "1rem" },
       "lg": { "value": "1.125rem" },
       "xl": { "value": "1.266rem" },
+      "display": { "value": "1.5rem" },
       "2xl": { "value": "1.602rem" },
       "3xl": { "value": "2.027rem" },
       "4xl": { "value": "2.566rem" },
@@ -28,9 +30,11 @@
     "line-height": {
       "loose-jp": { "value": "1.8" },
       "normal-jp": { "value": "1.6" },
+      "snug-jp": { "value": "1.5" },
       "tight-jp": { "value": "1.4" },
       "loose": { "value": "1.6" },
       "normal": { "value": "1.4" },
+      "snug": { "value": "1.33" },
       "tight": { "value": "1.2" }
     },
     "decoration": {

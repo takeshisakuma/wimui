@@ -8,7 +8,7 @@
   &.horizontal {
     width: 100%;
     height: var(--wim-divider-thickness, 1px);
-    margin: 8px 0;
+    margin: var(--wim-spacing-md) 0;
   }
 
   &.vertical {
@@ -16,6 +16,6 @@
     align-self: stretch;
     width: var(--wim-divider-thickness, 1px);
     height: 100%;
-    margin: 0 8px;
+    margin: 0 var(--wim-spacing-md);
   }
 }

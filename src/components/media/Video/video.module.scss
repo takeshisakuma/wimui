@@ -194,10 +194,10 @@
     display: flex;
     flex: 1;
     align-items: center;
-    height: 4px;
+    height: 4px; /* Exception: Structural Logic — プログレスバーの視認可能な最小高さ */
     cursor: pointer;
     background: var(--wim-color-overlay-control-track);
-    border-radius: 2px;
+    border-radius: 2px; /* Exception: Browser Rendering Fixes — 4px 高さのバーに対するサブピクセル補正 */
   }
 
   .progress {
@@ -347,10 +347,10 @@
   
       &::-webkit-scrollbar-thumb {
         background: var(--wim-color-overlay-control-track);
-        border-radius: 2px;
+        border-radius: 2px; /* Exception: Browser Rendering Fixes — スクロールバーサムのサブピクセル補正 */
       }
     }
-  
+
     button.menuBtn {
       display: flex;
       gap: var(--wim-spacing-sm);

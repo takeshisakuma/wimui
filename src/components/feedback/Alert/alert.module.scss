@@ -57,8 +57,8 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 28px; /* Exception: Structural Logic — 閉じるボタンの最小タッチ領域（WCAG 2.5.5: 44×44px 推奨に近づける） */
+    height: 28px; /* Exception: Structural Logic — 閉じるボタンの最小タッチ領域 */
     padding: 0;
     margin: 0;
     color: inherit;
@@ -79,8 +79,8 @@
     }
 
     svg {
-      width: 18px;
-      height: 18px;
+      width: 18px; /* Exception: Geometric Harmony — ボタン領域(28px)に対する適正アイコン比率 */
+      height: 18px; /* Exception: Geometric Harmony — ボタン領域(28px)に対する適正アイコン比率 */
     }
   }
 

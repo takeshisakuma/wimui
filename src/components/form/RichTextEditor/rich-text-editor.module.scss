@@ -100,7 +100,7 @@
     .toolbar {
       display: flex;
       flex-flow: row wrap;
-      gap: 2px;
+      gap: var(--wim-spacing-fine);
       align-items: center;
       padding: var(--wim-spacing-xs, 4px) var(--wim-spacing-sm, 8px);
       border-bottom: 1px solid var(--wim-color-secondary);
@@ -123,9 +123,9 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      padding: 4px;
+      width: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法（アイコン16px + padding 6px×2） */
+      height: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法 */
+      padding: 4px; // TODO: tokenization
       font-size: 0.75rem;
       font-weight: bold;
       line-height: 1;
