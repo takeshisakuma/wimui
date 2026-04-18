@@ -1,76 +1,94 @@
 @use "../../../base" as *;
 
-.wim-transfer-container {
-  width: 100%;
-  min-width: 0;
-  container-type: inline-size;
-}
-
-.wim-transfer {
-  display: flex;
-  gap: var(--wim-spacing-xl); // リスト間の余白を広げて全体を幅広くする
-  align-items: center;
-  font-family: var(--wim-font-family);
-
-  @container (max-width: 768px) {
-    flex-direction: column;
-    gap: var(--wim-spacing-lg); // モバイル時は縦の余白を適切に調整
-    align-items: stretch;
+@layer component {
+  .container {
     width: 100%;
-    margin: 0 auto; // 中央寄せ
+    min-width: 0;
+    container-type: inline-size;
   }
 
-  &--disabled {
-    pointer-events: none;
-    opacity: var(--wim-opacity-disabled);
+  .root {
+    display: flex;
+    gap: var(--wim-spacing-4xl);
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-family: var(--wim-font-family);
+
+    @container (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--wim-spacing-2xl);
+      align-items: stretch;
+      margin: 0 auto;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: var(--wim-opacity-disabled);
+    }
   }
 
-  &__list {
+  .list {
     display: flex;
     flex-direction: column;
     width: var(--wim-width-md);
+    min-width: 0;
+    max-width: 100%;
     height: 320px;
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-xs); // プレミアムな質感を出すためのシャドウ
+    box-shadow: var(--wim-shadow-xs);
     transition: var(--wim-transition-base);
 
     &:hover {
       border-color: var(--wim-color-primary-light, var(--wim-color-border));
-      box-shadow: var(--wim-shadow-md); // ホバー時に質感を強調
+      box-shadow: var(--wim-shadow-md);
     }
 
     @container (max-width: 768px) {
       width: 100%;
-      height: var(--wim-width-md); // 400pxから300pxに変更
-      box-shadow: var(--wim-shadow-md); // モバイルではより存在感を出す
+      height: 300px;
+      box-shadow: var(--wim-shadow-md);
     }
   }
 
-  &__header {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     font-weight: 500;
-    background: color-mix(in srgb,
-        var(--wim-color-primary) 4%,
-        transparent);
+    background: color-mix(in srgb, var(--wim-color-primary) 4%, transparent);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
-    .wim-transfer--disabled & {
+    // Ensure the checkbox can truncate
+    & > :first-child {
+      flex: 1;
+      min-width: 0;
+      margin-right: var(--wim-spacing-sm);
+    }
+
+    .headerTitle {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .root.disabled & {
       background: var(--wim-color-bg-secondary);
     }
 
     @container (max-width: 768px) {
-      padding: var(--wim-spacing-md) var(--wim-spacing-lg); // ヘッダーを厚くする
+      padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     }
   }
 
-  &__header-count {
+  .headerCount {
     flex-shrink: 0;
     margin-left: var(--wim-spacing-md);
     font-size: var(--wim-font-size-xs);
@@ -78,7 +96,7 @@
     color: var(--wim-color-text-secondary);
   }
 
-  &__body {
+  .body {
     flex: 1;
     padding: var(--wim-spacing-xs) 0;
     overflow-y: auto;
@@ -104,52 +122,48 @@
     }
   }
 
-
-
-  &__item {
-    .wim-checkbox-wrapper {
-      pointer-events: none;
-    }
-
-    // キーボードフォーカス中のアイテム（aria-activedescendant によるハイライト）
-    &.wim-base-list-item--active {
-      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
-      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
-
-      @media (forced-colors: active) {
-        color: HighlightText;
-        forced-color-adjust: none;
-        background-color: Highlight;
-        box-shadow: none;
-      }
-    }
-  }
-
-  &__item-label {
-    // Standard font styles are handled by BaseListItem
-    @container (max-width: 768px) {
-      font-size: var(--wim-font-size-md);
-    }
-  }
-
-  &__operation {
+  .itemList {
     display: flex;
     flex-direction: column;
-    gap: 12px; // TODO: tokenization
+    width: 100%;
+  }
+
+  .item {
+    & > span { // Targets the icon/checkbox wrapper in BaseListItem
+      pointer-events: none;
+    }
+  }
+
+  .active {
+    background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+    box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background-color: Highlight;
+      box-shadow: none;
+    }
+  }
+
+  .operation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xl);
 
     @container (max-width: 768px) {
       flex-direction: row;
-      gap: 24px; // TODO: tokenization
+      gap: var(--wim-spacing-3xl);
       justify-content: center;
       padding: var(--wim-spacing-md) 0;
 
-      .wim-button {
-        transform: rotate(90deg) scale(1.2); // ボタン自体を少し大きく
+      .button {
+        transform: rotate(90deg) scale(1.2);
       }
     }
   }
 
-  &__empty {
+  .empty {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,12 +174,13 @@
 }
 
 @media (forced-colors: active) {
-  .wim-transfer__list {
+  .list {
     border: 2px solid ButtonBorder;
   }
 
-  .wim-transfer__header {
+  .header {
     background: ButtonFace;
     border-bottom: 2px solid ButtonBorder;
   }
 }
+

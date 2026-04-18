@@ -125,7 +125,7 @@
       justify-content: center;
       width: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法（アイコン16px + padding 6px×2） */
       height: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法 */
-      padding: 4px; // TODO: tokenization
+      padding: var(--wim-spacing-xs);
       font-size: 0.75rem;
       font-weight: bold;
       line-height: 1;

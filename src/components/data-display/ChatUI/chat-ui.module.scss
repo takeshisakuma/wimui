@@ -122,7 +122,7 @@
   
     @container (max-width: 480px) {
       gap: var(--wim-spacing-md);
-      padding: 12px; // TODO: tokenization
+      padding: var(--wim-spacing-xl);
     }
   }
   
@@ -167,7 +167,7 @@
       opacity var(--wim-transition-fast);
   
     @container (max-width: 480px) {
-      padding: 12px 16px; // TODO: tokenization
+      padding: var(--wim-spacing-xl) var(--wim-spacing-2xl);
     }
   
     &:hover:not(:disabled) {
@@ -195,21 +195,21 @@
     border-radius: var(--wim-radius-full);
   
     &.sm {
-      width: 32px;
-      height: 32px;
-      font-size: var(--wim-font-size-sm, 14px);
+      width: var(--wim-height-sm);
+      height: var(--wim-height-sm);
+      font-size: var(--wim-font-size-sm);
     }
   
     &.md {
-      width: 40px;
-      height: 40px;
-      font-size: var(--wim-font-size-md, 16px);
+      width: var(--wim-height-md);
+      height: var(--wim-height-md);
+      font-size: var(--wim-font-size-md);
     }
   
     &.lg {
-      width: 48px;
-      height: 48px;
-      font-size: var(--wim-font-size-lg, 18px);
+      width: var(--wim-height-lg);
+      height: var(--wim-height-lg);
+      font-size: var(--wim-font-size-lg);
     }
   
     /* Strong Tone Colors */

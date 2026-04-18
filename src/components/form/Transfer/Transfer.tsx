@@ -131,7 +131,7 @@ const TransferList = ({
     <BaseListItem
       id={`${id}-${listType}-option-${item.key}`}
       key={item.key}
-      className={styles.item}
+      className={classNames(styles.item, focusedKey === item.key && styles.active)}
       disabled={disabled || item.disabled}
       active={focusedKey === item.key}
       onClick={() => {
@@ -169,7 +169,11 @@ const TransferList = ({
           indeterminate={isIndeterminate}
           onChange={() => onSelectAll(listKeys, listType)}
           disabled={disabled || listKeys.length === 0}
-        >{title}</Checkbox>
+        >
+          <span className={styles.headerTitle} title={titleStr}>
+            {title}
+          </span>
+        </Checkbox>
         <span className={styles.headerCount}>
           {listSelectedKeys.length}/{data.length}
         </span>
@@ -439,18 +443,16 @@ export const Transfer = ({
             <Button
               variant="outline"
               size="sm"
+              className={styles.button}
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
               icon="ChevronRightIcon"
               aria-label={moveToTarget}
             />
-            <button
-              style={{ display: "none" }}
-              aria-hidden="true"
-            />
             <Button
               variant="outline"
               size="sm"
+              className={styles.button}
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}
               icon="ChevronLeftIcon"

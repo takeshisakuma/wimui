@@ -13,9 +13,9 @@
 
       .content:has(input[type="color"]) {
         width: fit-content;
-        min-width: 120px;
-        max-width: 120px;
-        min-height: 42px;
+        min-width: var(--wim-width-xs);
+        max-width: var(--wim-width-xs);
+        min-height: var(--wim-height-md);
       }
     }
 
@@ -33,8 +33,8 @@
 
       .labelWrapper {
           flex-shrink: 0;
-          width: 150px;
-          padding-top: 10px;
+          width: var(--wim-width-sm);
+          padding-top: var(--wim-spacing-md);
       }
       
       .content {
@@ -47,13 +47,13 @@
     }
 
     .error {
-        margin-top: 4px; // TODO: tokenization
+        margin-top: var(--wim-spacing-xs);
     }
   }
 
   .content {
       display: flex;
       flex-direction: column;
-      gap: 4px; // TODO: tokenization
+      gap: var(--wim-spacing-xs);
   }
 }

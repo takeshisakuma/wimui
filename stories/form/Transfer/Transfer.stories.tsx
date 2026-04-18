@@ -98,3 +98,20 @@ const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 export const Disabled: Story = {
   render: (args) => <DisabledTransfer {...args} />,
 };
+export const LongText: Story = {
+  render: (args) => {
+    const dataSource = [
+      {
+        key: "1",
+        title: "This is a very very very very very very very very very very very very very very very long title that should be truncated",
+        description: "This is a very very very very very very very very very very very long description",
+      },
+      {
+        key: "2",
+        title: "Short Title",
+        description: "Short Description",
+      },
+    ];
+    return <Transfer {...args} dataSource={dataSource} titles={["Very Long Title for the Source Panel Header", "Very Long Title for the Target Panel Header"]} />;
+  },
+};

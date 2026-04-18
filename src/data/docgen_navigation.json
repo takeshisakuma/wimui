@@ -43,36 +43,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Stepper": {
-    "name": "Stepper",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-breakpoint-sm",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-focus-outline-width",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-radius-full",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Pagination": {
     "name": "Pagination",
     "tokens": [
@@ -99,6 +69,36 @@
       "--wim-spacing-sm",
       "--wim-spacing-xs",
       "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Stepper": {
+    "name": "Stepper",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-breakpoint-sm",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-focus-outline-width",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-radius-full",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -346,12 +346,6 @@
       }
     }
   },
-  "CommandPalette": {
-    "name": "CommandPalette",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Breadcrumb": {
     "name": "Breadcrumb",
     "tokens": [
@@ -479,6 +473,18 @@
     "anatomy": [],
     "props": {}
   },
+  "CommandPalette": {
+    "name": "CommandPalette",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Affix": {
+    "name": "Affix",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Anchor": {
     "name": "Anchor",
     "tokens": [
@@ -494,12 +500,6 @@
       "--wim-transition-base",
       "--wim-z-1"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Affix": {
-    "name": "Affix",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   }

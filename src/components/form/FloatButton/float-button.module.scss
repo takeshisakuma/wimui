@@ -35,7 +35,7 @@
     .labelWrapper {
       display: inline-block;
       max-width: 200px;
-      padding: 4px 0; // TODO: tokenization
+      padding: var(--wim-spacing-xs) 0;
       overflow: hidden;
       vertical-align: middle;
       transition:
@@ -232,8 +232,8 @@
 
     .description {
       position: absolute;
-      right: 52px;
-      padding: 4px 8px; // TODO: tokenization
+      right: var(--wim-spacing-5xl);
+      padding: var(--wim-spacing-xs) var(--wim-spacing-md);
       font-size: var(--wim-font-size-xs);
       color: var(--wim-color-text-on-overlay);
       white-space: nowrap;

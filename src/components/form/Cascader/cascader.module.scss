@@ -21,8 +21,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: 40px;
-    padding: 8px 12px; // TODO: tokenization
+    min-height: var(--wim-height-md);
+    padding: var(--wim-spacing-md) var(--wim-spacing-xl);
     cursor: pointer;
     background: transparent;
     border: none;
@@ -75,7 +75,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px; // TODO: tokenization
+    padding: var(--wim-spacing-xs);
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     background: none;
@@ -90,7 +90,7 @@
     left: 0;
     z-index: var(--wim-z-overlay);
     display: flex;
-    margin-top: 4px; // TODO: tokenization
+    margin-top: var(--wim-spacing-xs);
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
@@ -106,7 +106,7 @@
   .menu {
     min-width: 180px;
     max-height: 240px;
-    padding: 4px 0; // TODO: tokenization
+    padding: var(--wim-spacing-xs) 0;
     overflow-y: auto;
     border-right: 1px solid var(--wim-color-border);
 

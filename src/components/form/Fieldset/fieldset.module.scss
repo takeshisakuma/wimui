@@ -2,7 +2,7 @@
   .root {
     display: flex;
     flex-direction: column;
-    gap: 12px; // TODO: tokenization
+    gap: var(--wim-spacing-xl);
     min-width: 0;
     padding: var(--wim-spacing-2xl);
     margin: 0;

@@ -49,7 +49,7 @@
     right: var(--wim-spacing-sm);
     display: flex;
     align-items: center;
-    padding: 4px; // TODO: tokenization
+    padding: var(--wim-spacing-xs);
     color: var(--wim-color-text-disabled);
     cursor: pointer;
     background: transparent;
