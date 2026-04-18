@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { expect, userEvent, within } from "storybook/test";
 import { Selectbox, SelectboxOption } from "wimui";
 
 
@@ -38,25 +37,6 @@ export const Default: Story = {
       { label: t("story.selectbox_opt5"), value: "opt5" },
     ];
     return <Selectbox {...args} options={options} placeholder={t("story.selectbox_placeholder")} />;
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const trigger = canvas.getByRole("combobox");
-
-    // Click to open
-    await userEvent.click(trigger);
-    const listbox = await canvas.findByRole("listbox");
-    await expect(listbox).toBeVisible();
-
-    // Select option 1
-    const option1 = canvas.getByRole("option", { name: "Option 1" });
-    await userEvent.click(option1);
-
-    // Check if dropdown closed
-    await expect(listbox).not.toBeVisible();
-
-    // Check if selected value is displayed
-    await expect(trigger).toHaveTextContent("Option 1");
   },
 };
 
@@ -171,26 +151,6 @@ export const Searchable: Story = {
         placeholder={t("story.selectbox_placeholder")}
       />
     );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const trigger = canvas.getByRole("combobox");
-
-    // Open dropdown
-    await userEvent.click(trigger);
-    const searchInput = await canvas.findByPlaceholderText("Search...");
-    await expect(searchInput).toBeVisible();
-
-    // Type "Apple"
-    await userEvent.type(searchInput, "Apple");
-
-    // Check if only Apple is visible
-    await expect(canvas.getByRole("option", { name: "Apple" })).toBeVisible();
-    await expect(canvas.queryByRole("option", { name: "Banana" })).not.toBeInTheDocument();
-
-    // Select Apple
-    await userEvent.click(canvas.getByRole("option", { name: "Apple" }));
-    await expect(trigger).toHaveTextContent("Apple");
   },
 };
 

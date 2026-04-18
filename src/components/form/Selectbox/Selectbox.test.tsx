@@ -158,8 +158,179 @@ describe("Selectbox", () => {
     const banana = screen.getByText("Banana").closest("[role='option']")!;
     fireEvent.mouseEnter(banana);
 
-    // After mouse enter, pressing Enter should select the hovered item
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "Enter" });
     expect(onChange).toHaveBeenCalledWith("2");
+  });
+
+  it("closes dropdown on Escape key", async () => {
+    render(<Selectbox options={options} />);
+    fireEvent.click(screen.getByRole("combobox"));
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    fireEvent.keyDown(screen.getByRole("combobox"), { key: "Escape" });
+    await waitFor(() => expect(screen.queryByRole("listbox")).toBeNull());
+  });
+
+  it("opens dropdown on Space key", async () => {
+    render(<Selectbox options={options} />);
+    fireEvent.keyDown(screen.getByRole("combobox"), { key: " " });
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+  });
+
+  it("navigates up with ArrowUp key", async () => {
+    const onChange = vi.fn();
+    render(<Selectbox options={options} onChange={onChange} />);
+    const trigger = screen.getByRole("combobox");
+
+    fireEvent.keyDown(trigger, { key: "ArrowDown" }); // open
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    fireEvent.keyDown(trigger, { key: "ArrowDown" }); // → Apple (index 0)
+    fireEvent.keyDown(trigger, { key: "ArrowDown" }); // → Banana (index 1)
+    fireEvent.keyDown(trigger, { key: "ArrowUp" });   // → Apple (index 0)
+    fireEvent.keyDown(trigger, { key: "Enter" });
+
+    await waitFor(() => expect(onChange).toHaveBeenCalledWith("1"));
+  });
+
+  it("navigates to first item with Home key", async () => {
+    const onChange = vi.fn();
+    render(<Selectbox options={options} onChange={onChange} />);
+    const trigger = screen.getByRole("combobox");
+
+    fireEvent.keyDown(trigger, { key: "Enter" }); // open
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    fireEvent.keyDown(trigger, { key: "ArrowDown" }); // Apple
+    fireEvent.keyDown(trigger, { key: "ArrowDown" }); // Banana
+    fireEvent.keyDown(trigger, { key: "Home" });       // back to Apple
+    fireEvent.keyDown(trigger, { key: "Enter" });
+
+    await waitFor(() => expect(onChange).toHaveBeenCalledWith("1"));
+  });
+
+  it("navigates to last enabled item with End key", async () => {
+    const onChange = vi.fn();
+    render(<Selectbox options={options} onChange={onChange} />);
+    const trigger = screen.getByRole("combobox");
+
+    fireEvent.keyDown(trigger, { key: "Enter" }); // open
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    fireEvent.keyDown(trigger, { key: "End" });
+    fireEvent.keyDown(trigger, { key: "Enter" });
+
+    // Orange (index 2) is disabled, so End focuses it but Enter should not select it
+    await waitFor(() => expect(onChange).not.toHaveBeenCalled());
+  });
+
+  it("closes on outside click", async () => {
+    render(
+      <div>
+        <Selectbox options={options} />
+        <button>Outside</button>
+      </div>,
+    );
+    fireEvent.click(screen.getByRole("combobox"));
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    fireEvent.mouseDown(screen.getByRole("button", { name: "Outside" }));
+    await waitFor(() => expect(screen.queryByRole("listbox")).toBeNull());
+  });
+
+  it("does not open when disabled", () => {
+    render(<Selectbox options={options} disabled />);
+    fireEvent.click(screen.getByRole("combobox"));
+    expect(screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("does not clear when disabled", () => {
+    const onChange = vi.fn();
+    render(<Selectbox options={options} defaultValue="1" allowClear disabled onChange={onChange} />);
+    // clear button is not shown when disabled
+    expect(screen.queryByLabelText(/clear input/i)).not.toBeInTheDocument();
+  });
+
+  it("controlled mode: displays value from prop", () => {
+    render(<Selectbox options={options} value="2" />);
+    expect(screen.getByRole("combobox")).toHaveTextContent("Banana");
+  });
+
+  it("controlled mode: calls onChange but does not change displayed value without prop update", async () => {
+    const onChange = vi.fn();
+    const { rerender } = render(<Selectbox options={options} value="1" onChange={onChange} />);
+
+    fireEvent.click(screen.getByRole("combobox"));
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+    fireEvent.click(screen.getByRole("option", { name: "Banana" }));
+
+    expect(onChange).toHaveBeenCalledWith("2");
+    // controlled value unchanged → still shows Apple
+    rerender(<Selectbox options={options} value="1" onChange={onChange} />);
+    expect(screen.getByRole("combobox")).toHaveTextContent("Apple");
+  });
+
+  it("uses custom filterOption", async () => {
+    const user = userEvent.setup();
+    const filterOption = vi.fn((opt, search) =>
+      (opt.value as string).startsWith(search),
+    );
+    render(
+      <Selectbox options={options} searchable filterOption={filterOption} searchPlaceholder="Search..." />,
+    );
+
+    await user.click(screen.getByRole("combobox"));
+    await user.type(screen.getByPlaceholderText("Search..."), "1");
+
+    await waitFor(() => expect(filterOption).toHaveBeenCalled());
+    expect(screen.queryByRole("option", { name: "Apple" })).toBeInTheDocument();
+    expect(screen.queryByRole("option", { name: "Banana" })).not.toBeInTheDocument();
+  });
+
+  it("shows no-options label when search returns empty", async () => {
+    const user = userEvent.setup();
+    render(
+      <Selectbox
+        options={options}
+        searchable
+        searchPlaceholder="Search..."
+        noOptionsFoundLabel="Nothing found"
+      />,
+    );
+
+    await user.click(screen.getByRole("combobox"));
+    await user.type(screen.getByPlaceholderText("Search..."), "zzz");
+
+    await waitFor(() => expect(screen.getByText("Nothing found")).toBeInTheDocument());
+  });
+
+  it("renders error state", () => {
+    render(<Selectbox options={options} error="Required field" />);
+    expect(screen.getByText("Required field")).toBeInTheDocument();
+  });
+
+  it("shows selected label in trigger after selection in uncontrolled mode", async () => {
+    render(<Selectbox options={options} />);
+    fireEvent.click(screen.getByRole("combobox"));
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+    fireEvent.click(screen.getByRole("option", { name: "Apple" }));
+    await waitFor(() =>
+      expect(screen.getByRole("combobox")).toHaveTextContent("Apple"),
+    );
+  });
+
+  it("grouped mode with search filters within groups", async () => {
+    const user = userEvent.setup();
+    const groupedOptions = [
+      { label: "Fruits", options: [{ label: "Apple", value: "apple" }, { label: "Banana", value: "banana" }] },
+      { label: "Vegs", options: [{ label: "Carrot", value: "carrot" }] },
+    ];
+    render(<Selectbox options={groupedOptions} grouped searchable searchPlaceholder="Search..." />);
+
+    await user.click(screen.getByRole("combobox"));
+    await user.type(screen.getByPlaceholderText("Search..."), "Carrot");
+
+    await waitFor(() => expect(screen.queryByRole("option", { name: "Carrot" })).toBeInTheDocument());
+    expect(screen.queryByRole("option", { name: "Apple" })).not.toBeInTheDocument();
   });
 });

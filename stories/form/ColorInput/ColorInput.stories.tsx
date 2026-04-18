@@ -49,7 +49,8 @@ export const CustomStates: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story.colorinput_states")}>
+      <div>
+        <Label label={t("story.colorinput_states")} />
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <ColorInput
             {...args}
@@ -73,7 +74,7 @@ export const CustomStates: Story = {
             aria-label={t("story.colorinput_states")}
           />
         </div>
-      </Label>
+      </div>
     );
   },
 };

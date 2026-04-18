@@ -100,17 +100,6 @@
       width: var(--wim-input-offset-left);
     }
 
-    &[class*="hasLeftIcon"] {
-      .input {
-        padding-left: var(--wim-input-offset-left);
-      }
-    }
-
-    &[class*="hasRightIcon"] {
-      .input {
-        padding-right: var(--wim-input-offset-right);
-      }
-    }
   }
 }
 }

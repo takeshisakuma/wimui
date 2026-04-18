@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { TreeView, TreeViewItem } from "./TreeView";
+import { TreeView, TreeViewItem, type TreeViewNode } from "./TreeView";
 import styles from "./tree-view.module.scss";
 
 describe("TreeView", () => {
@@ -273,5 +273,401 @@ describe("TreeView", () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<TreeViewItem value="1" label="Fail" />)).toThrow("TreeView components must be used within a TreeView");
     consoleError.mockRestore();
+  });
+
+  describe("data-driven mode (nodes prop)", () => {
+    const treeNodes: TreeViewNode[] = [
+      {
+        value: "1",
+        label: "Root 1",
+        children: [
+          { value: "1.1", label: "Child 1.1" },
+          { value: "1.2", label: "Child 1.2" },
+        ],
+      },
+      { value: "2", label: "Root 2" },
+    ];
+
+    it("renders root nodes", () => {
+      render(<TreeView nodes={treeNodes} />);
+      expect(screen.getByText("Root 1")).toBeInTheDocument();
+      expect(screen.getByText("Root 2")).toBeInTheDocument();
+    });
+
+    it("renders numeric label as text", () => {
+      render(<TreeView nodes={[{ value: "n", label: 42 }]} />);
+      expect(screen.getByText("42")).toBeInTheDocument();
+    });
+
+    it("does not render children initially when node is collapsed", () => {
+      render(<TreeView nodes={treeNodes} />);
+      expect(screen.queryByText("Child 1.1")).not.toBeInTheDocument();
+    });
+
+    it("expands node when expand button is clicked", () => {
+      render(<TreeView nodes={treeNodes} />);
+      fireEvent.click(screen.getByLabelText("Expand Root 1"));
+      expect(screen.getByText("Child 1.1")).toBeInTheDocument();
+      expect(screen.getByText("Child 1.2")).toBeInTheDocument();
+    });
+
+    it("collapses expanded node when expand button is clicked again", () => {
+      render(<TreeView nodes={treeNodes} defaultExpandedValues={["1"]} />);
+      expect(screen.getByText("Child 1.1")).toBeInTheDocument();
+      fireEvent.click(screen.getByLabelText("Collapse Root 1"));
+      expect(screen.queryByText("Child 1.1")).not.toBeInTheDocument();
+    });
+
+    it("selects node on click and calls onSelectedChange", () => {
+      const onSelectedChange = vi.fn();
+      render(<TreeView nodes={treeNodes} onSelectedChange={onSelectedChange} />);
+      fireEvent.click(screen.getByText("Root 2"));
+      expect(onSelectedChange).toHaveBeenCalledWith(["2"]);
+    });
+
+    it("respects defaultExpandedValues", () => {
+      render(<TreeView nodes={treeNodes} defaultExpandedValues={["1"]} />);
+      expect(screen.getByText("Child 1.1")).toBeInTheDocument();
+    });
+
+    it("does not select disabled node on click", () => {
+      const onSelectedChange = vi.fn();
+      const disabledNodes: TreeViewNode[] = [{ value: "1", label: "Disabled Node", disabled: true }];
+      render(<TreeView nodes={disabledNodes} onSelectedChange={onSelectedChange} />);
+      fireEvent.click(screen.getByText("Disabled Node"));
+      expect(onSelectedChange).not.toHaveBeenCalled();
+    });
+
+    it("renders icons when provided on nodes", () => {
+      const nodesWithIcon: TreeViewNode[] = [
+        { value: "1", label: "With Icon", icon: <span data-testid="custom-icon" /> },
+      ];
+      render(<TreeView nodes={nodesWithIcon} />);
+      expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+    });
+
+    it("filters nodes by search query and shows matching ancestors", () => {
+      render(<TreeView nodes={treeNodes} searchable />);
+      fireEvent.change(screen.getByTestId("tree-view-search-input"), {
+        target: { value: "1.1" },
+      });
+      expect(screen.getByText("Root 1")).toBeInTheDocument();
+      expect(screen.getByText("Child 1.1")).toBeInTheDocument();
+      expect(screen.queryByText("Child 1.2")).not.toBeInTheDocument();
+      expect(screen.queryByText("Root 2")).not.toBeInTheDocument();
+    });
+
+    it("shows no results when search matches nothing", () => {
+      render(<TreeView nodes={treeNodes} searchable />);
+      fireEvent.change(screen.getByTestId("tree-view-search-input"), {
+        target: { value: "zzz" },
+      });
+      expect(screen.queryByText("Root 1")).not.toBeInTheDocument();
+      expect(screen.queryByText("Root 2")).not.toBeInTheDocument();
+    });
+
+    it("applies labelId as aria-labelledby when no treeAriaLabel", () => {
+      render(<TreeView nodes={treeNodes} labelId="external-label" />);
+      expect(screen.getByRole("tree")).toHaveAttribute("aria-labelledby", "external-label");
+    });
+
+    it("uses treeAriaLabel and omits aria-labelledby", () => {
+      render(
+        <TreeView nodes={treeNodes} labels={{ treeAriaLabel: "My Tree" }} labelId="external" />,
+      );
+      expect(screen.getByRole("tree")).toHaveAttribute("aria-label", "My Tree");
+      expect(screen.getByRole("tree")).not.toHaveAttribute("aria-labelledby");
+    });
+
+    it("uses virtual list when flatNodes exceed virtualThreshold", () => {
+      const manyNodes = Array.from({ length: 5 }, (_, i) => ({
+        value: `${i}`,
+        label: `Node ${i}`,
+      }));
+      render(<TreeView nodes={manyNodes} virtualThreshold={3} />);
+      expect(screen.getByText("Node 0")).toBeInTheDocument();
+    });
+
+    it("respects defaultCheckedValues and shows checked checkboxes", () => {
+      render(
+        <TreeView
+          nodes={treeNodes}
+          checkable
+          defaultExpandedValues={["1"]}
+          defaultCheckedValues={["1.1"]}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      const checkedCheckbox = checkboxes.find((cb) => (cb as HTMLInputElement).checked);
+      expect(checkedCheckbox).toBeDefined();
+    });
+
+    it("calls onCheckedChange when checkbox is clicked (no nodes, exclusive)", () => {
+      const onCheckedChange = vi.fn();
+      render(<TreeView nodes={treeNodes} checkable onCheckedChange={onCheckedChange} />);
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[0]);
+      expect(onCheckedChange).toHaveBeenCalled();
+    });
+  });
+
+  describe("data-driven cascade checkStrategy", () => {
+    const cascadeNodes: TreeViewNode[] = [
+      {
+        value: "parent",
+        label: "Parent",
+        children: [
+          { value: "child1", label: "Child 1" },
+          { value: "child2", label: "Child 2" },
+        ],
+      },
+    ];
+
+    it("cascade-checks all descendants when parent is checked", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={cascadeNodes}
+          checkable
+          checkStrategy="cascade"
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[0]);
+      const calledWith: string[] = onCheckedChange.mock.calls[0][0];
+      expect(calledWith).toContain("child1");
+      expect(calledWith).toContain("child2");
+    });
+
+    it("unchecks all descendants when parent is unchecked", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={cascadeNodes}
+          checkable
+          checkStrategy="cascade"
+          defaultCheckedValues={["parent", "child1", "child2"]}
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[0]);
+      expect(onCheckedChange).toHaveBeenCalledWith([]);
+    });
+
+    it("sets parent to indeterminate when only some children are checked", () => {
+      render(
+        <TreeView
+          nodes={cascadeNodes}
+          checkable
+          checkStrategy="cascade"
+          defaultExpandedValues={["parent"]}
+          defaultCheckedValues={["child1"]}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      const parentCheckbox = checkboxes[0] as HTMLInputElement;
+      expect(parentCheckbox.indeterminate).toBe(true);
+    });
+
+    it("checking a leaf alone results in parent indeterminate, not checked", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={cascadeNodes}
+          checkable
+          checkStrategy="cascade"
+          defaultExpandedValues={["parent"]}
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[1]); // child1
+      expect(onCheckedChange).toHaveBeenCalledWith(["child1"]);
+    });
+  });
+
+  describe("data-driven exclusive checkStrategy", () => {
+    const exclusiveNodes: TreeViewNode[] = [
+      {
+        value: "parent",
+        label: "Parent",
+        children: [
+          { value: "child1", label: "Child 1" },
+          { value: "child2", label: "Child 2" },
+        ],
+      },
+    ];
+
+    it("removes ancestor when checking a child in exclusive mode", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={exclusiveNodes}
+          checkable
+          checkStrategy="exclusive"
+          defaultCheckedValues={["parent"]}
+          defaultExpandedValues={["parent"]}
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[1]); // child1
+      const calledWith: string[] = onCheckedChange.mock.calls[0][0];
+      expect(calledWith).not.toContain("parent");
+      expect(calledWith).toContain("child1");
+    });
+
+    it("removes descendants when checking a parent in exclusive mode", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={exclusiveNodes}
+          checkable
+          checkStrategy="exclusive"
+          defaultCheckedValues={["child1"]}
+          defaultExpandedValues={["parent"]}
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[0]); // parent
+      const calledWith: string[] = onCheckedChange.mock.calls[0][0];
+      expect(calledWith).not.toContain("child1");
+      expect(calledWith).toContain("parent");
+    });
+
+    it("unchecks node when already checked in exclusive mode", () => {
+      const onCheckedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={exclusiveNodes}
+          checkable
+          checkStrategy="exclusive"
+          defaultCheckedValues={["child1"]}
+          defaultExpandedValues={["parent"]}
+          onCheckedChange={onCheckedChange}
+        />,
+      );
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[1]); // uncheck child1
+      const calledWith: string[] = onCheckedChange.mock.calls[0][0];
+      expect(calledWith).not.toContain("child1");
+    });
+  });
+
+  describe("data-driven keyboard navigation", () => {
+    const navNodes: TreeViewNode[] = [
+      { value: "a", label: "Item A" },
+      { value: "b", label: "Item B" },
+      { value: "c", label: "Item C" },
+    ];
+
+    it("ArrowDown moves focus to next item", () => {
+      render(<TreeView nodes={navNodes} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "ArrowDown" });
+      expect(items[1]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("ArrowUp moves focus to previous item", () => {
+      render(<TreeView nodes={navNodes} defaultSelectedValues={["b"]} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[1], { key: "ArrowUp" });
+      expect(items[0]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("Home moves focus to first item", () => {
+      render(<TreeView nodes={navNodes} defaultSelectedValues={["c"]} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[2], { key: "Home" });
+      expect(items[0]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("End moves focus to last item", () => {
+      render(<TreeView nodes={navNodes} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "End" });
+      expect(items[2]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("ArrowDown does not move beyond last item", () => {
+      render(<TreeView nodes={navNodes} defaultSelectedValues={["c"]} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[2], { key: "ArrowDown" });
+      expect(items[2]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("ArrowUp does not throw when already at first item", () => {
+      render(<TreeView nodes={navNodes} />);
+      const items = screen.getAllByRole("treeitem");
+      expect(() => fireEvent.keyDown(items[0], { key: "ArrowUp" })).not.toThrow();
+    });
+
+    it("ArrowRight expands collapsed node with children", () => {
+      const parentNodes: TreeViewNode[] = [
+        { value: "p", label: "Parent", children: [{ value: "c", label: "Child" }] },
+      ];
+      render(<TreeView nodes={parentNodes} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "ArrowRight" });
+      expect(screen.getByText("Child")).toBeInTheDocument();
+    });
+
+    it("ArrowRight on expanded node moves focus to next item", () => {
+      const parentNodes: TreeViewNode[] = [
+        { value: "p", label: "Parent", children: [{ value: "c", label: "Child" }] },
+      ];
+      render(<TreeView nodes={parentNodes} defaultExpandedValues={["p"]} defaultSelectedValues={["p"]} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "ArrowRight" });
+      expect(items[1]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("ArrowLeft collapses expanded node with children", () => {
+      const parentNodes: TreeViewNode[] = [
+        { value: "p", label: "Parent", children: [{ value: "c", label: "Child" }] },
+      ];
+      render(<TreeView nodes={parentNodes} defaultExpandedValues={["p"]} />);
+      expect(screen.getByText("Child")).toBeInTheDocument();
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "ArrowLeft" });
+      expect(screen.queryByText("Child")).not.toBeInTheDocument();
+    });
+
+    it("ArrowLeft on a leaf moves focus to shallower ancestor", () => {
+      const parentNodes: TreeViewNode[] = [
+        { value: "p", label: "Parent", children: [{ value: "c", label: "Child" }] },
+      ];
+      render(<TreeView nodes={parentNodes} defaultExpandedValues={["p"]} defaultSelectedValues={["c"]} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[1], { key: "ArrowLeft" });
+      expect(items[0]).toHaveAttribute("tabIndex", "0");
+    });
+
+    it("Enter selects the focused item", () => {
+      const onSelectedChange = vi.fn();
+      render(<TreeView nodes={navNodes} onSelectedChange={onSelectedChange} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "Enter" });
+      expect(onSelectedChange).toHaveBeenCalledWith(["a"]);
+    });
+
+    it("Space selects the focused item", () => {
+      const onSelectedChange = vi.fn();
+      render(<TreeView nodes={navNodes} onSelectedChange={onSelectedChange} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[1], { key: " " });
+      expect(onSelectedChange).toHaveBeenCalledWith(["b"]);
+    });
+
+    it("Enter also toggles check when checkable", () => {
+      const onCheckedChange = vi.fn();
+      render(<TreeView nodes={navNodes} checkable onCheckedChange={onCheckedChange} />);
+      const items = screen.getAllByRole("treeitem");
+      fireEvent.keyDown(items[0], { key: "Enter" });
+      expect(onCheckedChange).toHaveBeenCalled();
+    });
   });
 });

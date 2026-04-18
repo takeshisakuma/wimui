@@ -1,10 +1,4 @@
 {
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Tooltip": {
     "name": "Tooltip",
     "tokens": [
@@ -38,6 +32,12 @@
       "--wim-spacing-sm",
       "--wim-z-overlay"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -185,6 +185,12 @@
       }
     }
   },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Menu": {
     "name": "Menu",
     "tokens": [
@@ -210,12 +216,6 @@
       "--wim-spacing-xs",
       "--wim-z-1"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -263,21 +263,6 @@
       }
     }
   },
-  "Dropdown": {
-    "name": "Dropdown",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Drawer": {
     "name": "Drawer",
     "tokens": [
@@ -301,9 +286,18 @@
     "anatomy": [],
     "props": {}
   },
-  "ContextMenu": {
-    "name": "ContextMenu",
-    "tokens": [],
+  "Dropdown": {
+    "name": "Dropdown",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -337,6 +331,12 @@
   },
   "BottomSheet": {
     "name": "BottomSheet",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "ContextMenu": {
+    "name": "ContextMenu",
     "tokens": [],
     "anatomy": [],
     "props": {}

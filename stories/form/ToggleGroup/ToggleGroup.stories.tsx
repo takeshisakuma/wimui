@@ -77,7 +77,7 @@ export const Sizes: Story = {
   render: function Render(args) {
     const options = useDefaultOptions();
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "flex-start" }}>
         <ToggleGroup {...args} options={options} size="sm" />
         <ToggleGroup {...args} options={options} size="md" />
         <ToggleGroup {...args} options={options} size="lg" />
