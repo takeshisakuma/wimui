@@ -1,0 +1,81 @@
+name: Visual Regression Test
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+      - "vrt/vrt.spec.ts"
+      - "playwright.config.ts"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+  workflow_dispatch:
+    inputs:
+      update_snapshots:
+        description: "Update baseline snapshots and commit back"
+        type: boolean
+        default: false
+
+jobs:
+  vrt:
+    name: VRT (${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Run VRT (update snapshots)
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        run: npx playwright test vrt/vrt.spec.ts --update-snapshots
+
+      - name: Commit updated snapshots
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add vrt/vrt.spec.ts-snapshots/
+          if git diff --staged --quiet; then
+            echo "No snapshot changes to commit."
+          else
+            git commit -m "chore: update VRT baseline snapshots [skip ci]"
+            git push
+          fi
+
+      - name: Run VRT (compare)
+        if: ${{ github.event.inputs.update_snapshots != 'true' }}
+        run: npx playwright test vrt/vrt.spec.ts
+
+      - name: Upload diff artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vrt-diffs
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
