@@ -46,7 +46,7 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
     },
     ref,
   ) => {
-    const sizeClass = size?.replace(/^(\d+)/, (match, p1) => `xl${p1}`) || size;
+    const sizeClass = size ? size.replace(/^(\d+)/, (match, p1) => `xl${p1}`) : size;
 
     const finalContent =
       decoration !== "none" ? (
