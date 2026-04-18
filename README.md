@@ -69,6 +69,21 @@ $env:THEME='dark'; $env:FILTER='Calendar'        # Calendarのダークモード
 $env:THEME=$null; $env:FILTER=$null              # 環境変数をリセット
 ```
 
+#### CI (GitHub Actions) での VRT 運用
+
+VRT は `src/`・`stories/` に変更があるPRで自動実行されます。
+
+**UIを意図的に変更した場合の手順：**
+
+1. UIを変更してPRを作成する
+2. VRTワークフローが自動実行され、既存のlinuxスナップショットと比較する
+3. 差分が検出されるとテストが失敗する
+4. Actions タブ → 該当ワークフロー → `vrt-diffs` アーティファクトをダウンロードして差分画像を確認する
+5. 変更が意図的なものであれば、Actions タブ → **Visual Regression Test** → **Run workflow** → `Update baseline snapshots: true` でベースラインを更新する
+
+> **初回セットアップ**: linuxスナップショットがまだ存在しない状態では比較対象がないため失敗します。  
+> 上記の Run workflow → `Update baseline snapshots: true` を一度実行してlinux用ベースラインを生成してください。
+
 ### a11y
 
 ```
