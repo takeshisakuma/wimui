@@ -220,252 +220,6 @@
       }
     }
   },
-  "Text": {
-    "name": "Text",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-text-disabled",
-      "--wim-color-text-error",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-color-text-white",
-      "--wim-decoration-highlight-color",
-      "--wim-decoration-line-through",
-      "--wim-decoration-underline",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-font-size-xs",
-      "--wim-font-weight-bold",
-      "--wim-line-height-loose",
-      "--wim-line-height-loose-jp",
-      "--wim-line-height-normal",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-line-height-tight-jp",
-      "--wim-text-underline-offset"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the text будет rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimColorKey | WimColorToken",
-              "elements": [
-                {
-                  "name": "WimColorKey"
-                },
-                {
-                  "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-color-${WimColorKey})`"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-${WimColorKey})`"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "weight": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"normal\" | \"bold\" | \"medium\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"normal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bold\""
-            },
-            {
-              "name": "literal",
-              "value": "\"medium\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"normal\"",
-          "computed": false
-        }
-      },
-      "lineHeight": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimLineHeightKey | WimLineHeightToken",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "| \"loose-jp\"\r\n| \"normal-jp\"\r\n| \"tight-jp\"\r\n| \"loose\"\r\n| \"normal\"\r\n| \"tight\"",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "\"loose-jp\""
-                    },
-                    {
-                      "name": "literal",
-                      "value": "\"normal-jp\""
-                    },
-                    {
-                      "name": "literal",
-                      "value": "\"tight-jp\""
-                    },
-                    {
-                      "name": "literal",
-                      "value": "\"loose\""
-                    },
-                    {
-                      "name": "literal",
-                      "value": "\"normal\""
-                    },
-                    {
-                      "name": "literal",
-                      "value": "\"tight\""
-                    }
-                  ]
-                },
-                {
-                  "name": "literal",
-                  "value": "`var(--wim-line-height-${WimLineHeightKey})`"
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "fontStyle": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"normal\" | \"italic\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"normal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"italic\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"normal\"",
-          "computed": false
-        }
-      },
-      "decoration": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"line-through\" | \"underline\" | \"highlight\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"line-through\""
-            },
-            {
-              "name": "literal",
-              "value": "\"underline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"highlight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"none\"",
-          "computed": false
-        }
-      },
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      }
-    }
-  },
   "Span": {
     "name": "Span",
     "tokens": [
@@ -755,6 +509,252 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "Text": {
+    "name": "Text",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-text-disabled",
+      "--wim-color-text-error",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-color-text-white",
+      "--wim-decoration-highlight-color",
+      "--wim-decoration-line-through",
+      "--wim-decoration-underline",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-font-size-xs",
+      "--wim-font-weight-bold",
+      "--wim-line-height-loose",
+      "--wim-line-height-loose-jp",
+      "--wim-line-height-normal",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-line-height-tight-jp",
+      "--wim-text-underline-offset"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the text будет rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimColorKey | WimColorToken",
+              "elements": [
+                {
+                  "name": "WimColorKey"
+                },
+                {
+                  "name": "union",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-color-${WimColorKey})`"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-${WimColorKey})`"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "weight": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"normal\" | \"bold\" | \"medium\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bold\""
+            },
+            {
+              "name": "literal",
+              "value": "\"medium\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      },
+      "lineHeight": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimLineHeightKey | WimLineHeightToken",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "| \"loose-jp\"\r\n| \"normal-jp\"\r\n| \"tight-jp\"\r\n| \"loose\"\r\n| \"normal\"\r\n| \"tight\"",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "\"loose-jp\""
+                    },
+                    {
+                      "name": "literal",
+                      "value": "\"normal-jp\""
+                    },
+                    {
+                      "name": "literal",
+                      "value": "\"tight-jp\""
+                    },
+                    {
+                      "name": "literal",
+                      "value": "\"loose\""
+                    },
+                    {
+                      "name": "literal",
+                      "value": "\"normal\""
+                    },
+                    {
+                      "name": "literal",
+                      "value": "\"tight\""
+                    }
+                  ]
+                },
+                {
+                  "name": "literal",
+                  "value": "`var(--wim-line-height-${WimLineHeightKey})`"
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "fontStyle": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"normal\" | \"italic\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"italic\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      },
+      "decoration": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"line-through\" | \"underline\" | \"highlight\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"line-through\""
+            },
+            {
+              "name": "literal",
+              "value": "\"underline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"highlight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
       }
     }
   },
