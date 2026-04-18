@@ -213,3 +213,14 @@ npm run tokens:build   # JSONからSCSS/TypeScript定義を自動生成
 ```
 
 このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。
+
+
+
+
+
+## ワークフロー
+
+git add .
+git commit -m "..."
+git pull --rebase origin main
+git push origin main
