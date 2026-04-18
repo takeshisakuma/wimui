@@ -213,6 +213,12 @@
     "anatomy": [],
     "props": {}
   },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "FocusTrap": {
     "name": "FocusTrap",
     "tokens": [],
@@ -272,9 +278,26 @@
     "anatomy": [],
     "props": {}
   },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
+  "Drawer": {
+    "name": "Drawer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-overlay-max-width-md",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -306,37 +329,14 @@
     "anatomy": [],
     "props": {}
   },
-  "Drawer": {
-    "name": "Drawer",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-overlay-max-width-md",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
+  "ContextMenu": {
+    "name": "ContextMenu",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
   "BottomSheet": {
     "name": "BottomSheet",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "ContextMenu": {
-    "name": "ContextMenu",
     "tokens": [],
     "anatomy": [],
     "props": {}

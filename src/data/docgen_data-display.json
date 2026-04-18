@@ -111,6 +111,12 @@
       }
     }
   },
+  "TreeView": {
+    "name": "TreeView",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Timeline": {
     "name": "Timeline",
     "tokens": [
@@ -131,12 +137,6 @@
       "--wim-spacing-xl",
       "--wim-z-1"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "TreeView": {
-    "name": "TreeView",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
