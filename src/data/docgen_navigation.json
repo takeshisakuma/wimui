@@ -31,48 +31,6 @@
     "anatomy": [],
     "props": {}
   },
-  "TabNavigation": {
-    "name": "TabNavigation",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Pagination": {
-    "name": "Pagination",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-field-focus",
-      "--wim-shadow-focus",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Stepper": {
     "name": "Stepper",
     "tokens": [
@@ -99,6 +57,18 @@
       "--wim-transition-base",
       "--wim-z-1"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "TabNavigation": {
+    "name": "TabNavigation",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -384,6 +354,36 @@
         "description": "Custom class name"
       }
     }
+  },
+  "Pagination": {
+    "name": "Pagination",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-field-focus",
+      "--wim-shadow-focus",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "CommandPalette": {
     "name": "CommandPalette",

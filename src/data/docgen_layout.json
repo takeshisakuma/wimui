@@ -1428,21 +1428,6 @@
       }
     }
   },
-  "Splitter": {
-    "name": "Splitter",
-    "tokens": [
-      "--wim-color-border",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-splitter-handle-active-color",
-      "--wim-splitter-handle-color",
-      "--wim-splitter-handle-hover-bg",
-      "--wim-transition-fast",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "SimpleGrid": {
     "name": "SimpleGrid",
     "tokens": [],
@@ -1563,6 +1548,21 @@
       }
     }
   },
+  "Splitter": {
+    "name": "Splitter",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-splitter-handle-active-color",
+      "--wim-splitter-handle-color",
+      "--wim-splitter-handle-hover-bg",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Sidebar": {
     "name": "Sidebar",
     "tokens": [
@@ -1646,36 +1646,6 @@
         "description": ""
       }
     }
-  },
-  "Navbar": {
-    "name": "Navbar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-surface-glass",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-layout-max-width",
-      "--wim-radius-lg",
-      "--wim-radius-sm",
-      "--wim-spacing-5xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-navbar"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Masonry": {
     "name": "Masonry",
@@ -1936,6 +1906,52 @@
       }
     }
   },
+  "Navbar": {
+    "name": "Navbar",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-surface-glass",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-layout-max-width",
+      "--wim-radius-lg",
+      "--wim-radius-sm",
+      "--wim-spacing-5xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-navbar"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Header": {
+    "name": "Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Group": {
     "name": "Group",
     "tokens": [],
@@ -2078,22 +2094,6 @@
         }
       }
     }
-  },
-  "Header": {
-    "name": "Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Grid": {
     "name": "Grid",
@@ -2690,30 +2690,6 @@
       }
     }
   },
-  "Footer": {
-    "name": "Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Flex": {
     "name": "Flex",
     "tokens": [],
@@ -2897,6 +2873,30 @@
         }
       }
     }
+  },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Divider": {
     "name": "Divider",
@@ -4768,6 +4768,12 @@
       }
     }
   },
+  "BentoGrid": {
+    "name": "BentoGrid",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Box": {
     "name": "Box",
     "tokens": [
@@ -5664,12 +5670,6 @@
         "description": "Position"
       }
     }
-  },
-  "BentoGrid": {
-    "name": "BentoGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "AspectRatio": {
     "name": "AspectRatio",

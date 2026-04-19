@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { Watermark } from "./Watermark";
 
 describe("Watermark", () => {
@@ -13,6 +13,10 @@ describe("Watermark", () => {
     vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
       "data:image/png;base64,xxxx",
     );
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it("renders children", () => {

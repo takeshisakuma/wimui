@@ -13,11 +13,8 @@ describe("RangeCalendar", () => {
     const handleChange = vi.fn();
     render(<RangeCalendar onChange={handleChange} />);
 
-    // Find all day cells. Nav buttons have role="button", day cells are buttons with aria-label
-    // Wait, the previous test was using getAllByRole("gridcell"). 
-    // But Calendar.tsx renders buttons for days without role="gridcell".
-    // Let's use getByLabelText or just all buttons that are not nav buttons.
-    const days = screen.getAllByRole("button").filter(btn => btn.hasAttribute("aria-label") && btn.getAttribute("aria-label")?.includes("-"));
+    // Find all day cells. Day cells now have role="gridcell"
+    const days = screen.getAllByRole("gridcell");
 
     // Click first day
     fireEvent.click(days[10]);
