@@ -127,6 +127,7 @@ export const DrawerClose = ({
       type="button"
       className={classNames(styles.closeButton, className)}
       onClick={handleClick}
+      data-testid="drawer-close"
       {...props}
     >
       <Slottable>{children}</Slottable>
@@ -191,7 +192,7 @@ export const DrawerContent = ({
       aria-describedby={descriptionId}
       data-side={side}
     >
-      <Component>
+      <Component data-testid="drawer-content">
         <div className={styles.inner}>
           <Slottable>{children}</Slottable>
         </div>
