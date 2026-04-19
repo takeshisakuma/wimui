@@ -1,35 +1,4 @@
 {
-  "Toast": {
-    "name": "Toast",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-glass-bg",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-duration-base",
-      "--wim-easing-base",
-      "--wim-easing-entrance",
-      "--wim-height-xs",
-      "--wim-opacity-ghost",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-glass",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Tour": {
     "name": "Tour",
     "tokens": [
@@ -161,42 +130,30 @@
       }
     }
   },
-  "Snackbar": {
-    "name": "Snackbar",
+  "Toast": {
+    "name": "Toast",
     "tokens": [
-      "--wim-color-bg-inverted",
+      "--wim-border-width-thin",
       "--wim-color-caution",
+      "--wim-color-close-hover",
       "--wim-color-destructive",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-glass-bg",
       "--wim-color-informative",
-      "--wim-color-overlay-control-active",
-      "--wim-color-overlay-control-hover",
-      "--wim-color-overlay-control-track",
       "--wim-color-positive",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-full",
+      "--wim-duration-base",
+      "--wim-easing-base",
+      "--wim-easing-entrance",
+      "--wim-height-xs",
+      "--wim-opacity-ghost",
+      "--wim-radius-lg",
       "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-snackbar-action",
-      "--wim-snackbar-action-hover",
-      "--wim-snackbar-bg",
-      "--wim-snackbar-blur",
-      "--wim-snackbar-border",
-      "--wim-snackbar-close-hover",
-      "--wim-snackbar-close-idle",
-      "--wim-snackbar-close-size",
-      "--wim-snackbar-lift",
-      "--wim-snackbar-max-width",
-      "--wim-snackbar-min-width",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-4xl",
+      "--wim-shadow-glass",
+      "--wim-spacing-2xs",
       "--wim-spacing-lg",
       "--wim-spacing-md",
-      "--wim-spacing-sm",
+      "--wim-spacing-xl",
       "--wim-spacing-xs",
       "--wim-transition-fast",
       "--wim-z-toast"
@@ -444,165 +401,48 @@
       }
     }
   },
-  "Result": {
-    "name": "Result",
+  "Snackbar": {
+    "name": "Snackbar",
     "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-radius-sm",
-      "--wim-result-icon-size",
+      "--wim-color-bg-inverted",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-overlay-control-active",
+      "--wim-color-overlay-control-hover",
+      "--wim-color-overlay-control-track",
+      "--wim-color-positive",
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-full",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-snackbar-action",
+      "--wim-snackbar-action-hover",
+      "--wim-snackbar-bg",
+      "--wim-snackbar-blur",
+      "--wim-snackbar-border",
+      "--wim-snackbar-close-hover",
+      "--wim-snackbar-close-idle",
+      "--wim-snackbar-close-size",
+      "--wim-snackbar-lift",
+      "--wim-snackbar-max-width",
+      "--wim-snackbar-min-width",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-4xl",
       "--wim-spacing-lg",
       "--wim-spacing-md",
-      "--wim-spacing-sm"
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
     ],
     "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "Extract",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"primary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"secondary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"neutral\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"default\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"destructive\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"positive\""
-                }
-              ]
-            },
-            {
-              "name": "union",
-              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                }
-              ]
-            }
-          ],
-          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
-        },
-        "description": "Semantic intent — determines the icon and color.",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "status": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"404\" | \"403\" | \"500\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"404\""
-            },
-            {
-              "name": "literal",
-              "value": "\"403\""
-            },
-            {
-              "name": "literal",
-              "value": "\"500\""
-            }
-          ]
-        },
-        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Operating area"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Custom icon"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The children"
-      }
-    }
+    "props": {}
   },
   "ScrollProgress": {
     "name": "ScrollProgress",
@@ -673,40 +513,6 @@
         "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
       }
     }
-  },
-  "Notification": {
-    "name": "Notification",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-medium",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-notification-border-accent-width",
-      "--wim-notification-width",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Progress": {
     "name": "Progress",
@@ -872,20 +678,196 @@
       }
     }
   },
-  "LoadingOverlay": {
-    "name": "LoadingOverlay",
+  "Result": {
+    "name": "Result",
     "tokens": [
-      "--wim-color-overlay-bg",
-      "--wim-color-overlay-bg-dark",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-text-on-overlay",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
+      "--wim-color-bg-subtle",
+      "--wim-radius-sm",
+      "--wim-result-icon-size",
+      "--wim-spacing-lg",
       "--wim-spacing-md",
-      "--wim-transition-duration-normal",
-      "--wim-transition-timing-ease-out",
-      "--wim-z-1",
-      "--wim-z-overlay"
+      "--wim-spacing-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "Extract",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"primary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"secondary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"neutral\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"default\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"destructive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                }
+              ]
+            },
+            {
+              "name": "union",
+              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          ],
+          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
+        },
+        "description": "Semantic intent — determines the icon and color.",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"404\" | \"403\" | \"500\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"404\""
+            },
+            {
+              "name": "literal",
+              "value": "\"403\""
+            },
+            {
+              "name": "literal",
+              "value": "\"500\""
+            }
+          ]
+        },
+        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Operating area"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Custom icon"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The children"
+      }
+    }
+  },
+  "Notification": {
+    "name": "Notification",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-medium",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-notification-border-accent-width",
+      "--wim-notification-width",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-toast"
     ],
     "anatomy": [],
     "props": {}
@@ -1044,6 +1026,24 @@
         }
       }
     }
+  },
+  "LoadingOverlay": {
+    "name": "LoadingOverlay",
+    "tokens": [
+      "--wim-color-overlay-bg",
+      "--wim-color-overlay-bg-dark",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-text-on-overlay",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-spacing-md",
+      "--wim-transition-duration-normal",
+      "--wim-transition-timing-ease-out",
+      "--wim-z-1",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Indicator": {
     "name": "Indicator",
@@ -1225,6 +1225,124 @@
       }
     }
   },
+  "ErrorBoundary": {
+    "name": "ErrorBoundary",
+    "tokens": [
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-font-size-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "fallback": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
+          "elements": [
+            {
+              "name": "ReactNode"
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
+      },
+      "onError": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Error"
+                },
+                "name": "error"
+              },
+              {
+                "type": {
+                  "name": "ErrorInfo"
+                },
+                "name": "errorInfo"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーが発生した時に呼び出されるコールバック。"
+      },
+      "onReset": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーがリセットされた時に呼び出されるコールバック。"
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "title",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "retry",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "showDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "hideDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "手動翻訳用のラベル。"
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "子要素。"
+      }
+    }
+  },
   "Banner": {
     "name": "Banner",
     "tokens": [
@@ -1351,124 +1469,6 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素"
-      }
-    }
-  },
-  "ErrorBoundary": {
-    "name": "ErrorBoundary",
-    "tokens": [
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-font-size-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "fallback": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
-          "elements": [
-            {
-              "name": "ReactNode"
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
-      },
-      "onError": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Error"
-                },
-                "name": "error"
-              },
-              {
-                "type": {
-                  "name": "ErrorInfo"
-                },
-                "name": "errorInfo"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーが発生した時に呼び出されるコールバック。"
-      },
-      "onReset": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーがリセットされた時に呼び出されるコールバック。"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "title",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "retry",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "showDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "hideDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "手動翻訳用のラベル。"
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "子要素。"
       }
     }
   },

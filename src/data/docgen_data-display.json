@@ -117,6 +117,29 @@
     "anatomy": [],
     "props": {}
   },
+  "Timeline": {
+    "name": "Timeline",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Tag": {
     "name": "Tag",
     "tokens": [
@@ -265,29 +288,6 @@
         "description": "アイコン"
       }
     }
-  },
-  "Timeline": {
-    "name": "Timeline",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Table": {
     "name": "Table",
@@ -552,17 +552,6 @@
       }
     }
   },
-  "List": {
-    "name": "List",
-    "tokens": [
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal-jp"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Markdown": {
     "name": "Markdown",
     "tokens": [
@@ -619,6 +608,17 @@
         "description": "追加のクラス名。"
       }
     }
+  },
+  "List": {
+    "name": "List",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Kanban": {
     "name": "Kanban",
@@ -743,6 +743,149 @@
           ]
         },
         "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
+      }
+    }
+  },
+  "FAQSection": {
+    "name": "FAQSection",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "FAQItem"
+            }
+          ],
+          "raw": "FAQItem[]"
+        },
+        "description": "FAQの各項目。"
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "セクションのメインタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "タイトルの下に表示される補足説明。"
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"top\" | \"left\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"left\""
+            }
+          ]
+        },
+        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
+        "defaultValue": {
+          "value": "\"top\"",
+          "computed": false
+        }
+      },
+      "accordionProps": {
+        "required": false,
+        "tsType": {
+          "name": "Omit",
+          "elements": [
+            {
+              "name": "AccordionProps"
+            },
+            {
+              "name": "literal",
+              "value": "\"children\""
+            }
+          ],
+          "raw": "Omit<AccordionProps, \"children\">"
+        },
+        "description": "内部のAccordionコンポーネントに渡すProps。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
+  "EmptyState": {
+    "name": "EmptyState",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示する説明文。"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するアイコン。"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションとして表示する要素（ボタンなど）。"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"simple\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"simple\""
+            }
+          ]
+        },
+        "description": "デザインバリエーション。",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
       }
     }
   },
@@ -1389,149 +1532,6 @@
       }
     }
   },
-  "EmptyState": {
-    "name": "EmptyState",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示する説明文。"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するアイコン。"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションとして表示する要素（ボタンなど）。"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"simple\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"simple\""
-            }
-          ]
-        },
-        "description": "デザインバリエーション。",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "FAQSection": {
-    "name": "FAQSection",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "FAQItem"
-            }
-          ],
-          "raw": "FAQItem[]"
-        },
-        "description": "FAQの各項目。"
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "セクションのメインタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "タイトルの下に表示される補足説明。"
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"top\" | \"left\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"left\""
-            }
-          ]
-        },
-        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
-        "defaultValue": {
-          "value": "\"top\"",
-          "computed": false
-        }
-      },
-      "accordionProps": {
-        "required": false,
-        "tsType": {
-          "name": "Omit",
-          "elements": [
-            {
-              "name": "AccordionProps"
-            },
-            {
-              "name": "literal",
-              "value": "\"children\""
-            }
-          ],
-          "raw": "Omit<AccordionProps, \"children\">"
-        },
-        "description": "内部のAccordionコンポーネントに渡すProps。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
   "Chip": {
     "name": "Chip",
     "tokens": [
@@ -1815,30 +1815,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Card": {
-    "name": "Card",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -2106,6 +2082,30 @@
         "description": "追加のクラス名"
       }
     }
+  },
+  "Card": {
+    "name": "Card",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "RangeCalendar": {
     "name": "RangeCalendar",
