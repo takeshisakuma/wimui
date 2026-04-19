@@ -339,8 +339,6 @@ export function DataGrid<T extends Record<string, unknown>>({
               total={pagination.total}
               pageSize={pagination.pageSize}
               onChange={pagination.onChange}
-              showSizeChanger
-              simple
             />
           </div>
         </div>

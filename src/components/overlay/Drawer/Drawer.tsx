@@ -192,7 +192,7 @@ export const DrawerContent = ({
       aria-describedby={descriptionId}
       data-side={side}
     >
-      <Component data-testid="drawer-content">
+      <Component data-testid="drawer-content" data-side={side}>
         <div className={styles.inner}>
           <Slottable>{children}</Slottable>
         </div>

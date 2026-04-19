@@ -442,7 +442,7 @@ export const Transfer = ({
             labels={labels}
           />
 
-          <div className={styles.operation}>
+          <div className={classNames(styles.operation, "wim-transfer__operation")}>
             <Button
               variant="outline"
               size="sm"

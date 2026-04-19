@@ -240,10 +240,10 @@ test.describe("Transfer", () => {
   });
 
   test("renders source and target panels", async ({ page }) => {
-    // Panel titles from translation: "Available" / "Selected"
-    // Use last() because Storybook's "no stories" page has a hidden element containing "Selected"
-    await expect(page.getByText("Available").last()).toBeVisible();
-    await expect(page.getByText("Selected").last()).toBeVisible();
+    // Panel titles default to "Source" / "Target"
+    // Use last() because Storybook may have hidden elements with similar text
+    await expect(page.getByText("Source").last()).toBeVisible();
+    await expect(page.getByText("Target").last()).toBeVisible();
   });
 
   test("items in targetKeys start in the right panel", async ({ page }) => {
