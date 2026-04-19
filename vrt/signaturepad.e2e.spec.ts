@@ -1,7 +1,7 @@
 import { test, expect, type Page, type Locator } from "@playwright/test";
 
 const STORY_URL = (id: string) =>
-  `/iframe.html?id=${id}&viewMode=story&globals=locale:en`;
+  `/iframe.html?id=${id}&viewMode=story&globals=theme:light;locale:en`;
 
 const DEFAULT_STORY = "components-advanced-inputs-signaturepad--default";
 const DISABLED_STORY = "components-advanced-inputs-signaturepad--disabled";
@@ -29,13 +29,13 @@ async function drawOnCanvas(
 test.describe("SignaturePad", () => {
   test.describe("initial state", () => {
     test("canvas is rendered", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
       await expect(canvas).toBeVisible();
     });
 
     test("clear button is disabled when canvas is empty", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const clearButton = page.getByRole("button", { name: /clear/i });
       await expect(clearButton).toBeDisabled();
     });
@@ -43,7 +43,7 @@ test.describe("SignaturePad", () => {
 
   test.describe("drawing behavior", () => {
     test("clear button becomes enabled after drawing", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
       const clearButton = page.getByRole("button", { name: /clear/i });
 
@@ -53,7 +53,7 @@ test.describe("SignaturePad", () => {
     });
 
     test("canvas has non-empty pixel data after drawing", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 50, 200, 100);
@@ -74,7 +74,7 @@ test.describe("SignaturePad", () => {
     });
 
     test("clicking clear button resets the canvas", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
       const clearButton = page.getByRole("button", { name: /clear/i });
 
@@ -86,7 +86,7 @@ test.describe("SignaturePad", () => {
     });
 
     test("canvas is transparent after clearing", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
       const clearButton = page.getByRole("button", { name: /clear/i });
 
@@ -107,7 +107,7 @@ test.describe("SignaturePad", () => {
     });
 
     test("pen color is applied when drawing", async ({ page }) => {
-      await page.goto(STORY_URL(CUSTOM_COLORS_STORY));
+      await page.goto(STORY_URL(CUSTOM_COLORS_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 80, 200, 80);
@@ -136,13 +136,13 @@ test.describe("SignaturePad", () => {
 
   test.describe("disabled state", () => {
     test("clear button is disabled", async ({ page }) => {
-      await page.goto(STORY_URL(DISABLED_STORY));
+      await page.goto(STORY_URL(DISABLED_STORY), { waitUntil: "networkidle" });
       const clearButton = page.getByRole("button", { name: /clear/i });
       await expect(clearButton).toBeDisabled();
     });
 
     test("canvas remains empty after drawing attempt", async ({ page }) => {
-      await page.goto(STORY_URL(DISABLED_STORY));
+      await page.goto(STORY_URL(DISABLED_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);

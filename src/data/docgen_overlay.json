@@ -16,6 +16,12 @@
     "anatomy": [],
     "props": {}
   },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Popover": {
     "name": "Popover",
     "tokens": [
@@ -211,12 +217,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "FocusTrap": {
     "name": "FocusTrap",
     "tokens": [],
@@ -305,6 +305,12 @@
     "anatomy": [],
     "props": {}
   },
+  "BottomSheet": {
+    "name": "BottomSheet",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Dialog": {
     "name": "Dialog",
     "tokens": [
@@ -330,12 +336,6 @@
       "--wim-spacing-xl",
       "--wim-z-overlay"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "BottomSheet": {
-    "name": "BottomSheet",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   }

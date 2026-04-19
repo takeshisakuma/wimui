@@ -123,6 +123,7 @@ export const RangeSlider = ({
   const hiddenMinRef = useRef<HTMLInputElement>(null);
   const hiddenMaxRef = useRef<HTMLInputElement>(null);
   const [draggingHandle, setDraggingHandle] = useState<"min" | "max" | null>(null);
+  const draggingHandleRef = useRef<"min" | "max" | null>(null);
   const dragValueRef = useRef<[number, number]>([...currentValue]);
 
   const getPercentage = useCallback(
@@ -166,6 +167,7 @@ export const RangeSlider = ({
   ) => {
     if (disabled) return;
     dragValueRef.current = [...currentValue];
+    draggingHandleRef.current = handle;
     setDraggingHandle(handle);
     e.stopPropagation();
     e.preventDefault();
@@ -187,6 +189,7 @@ export const RangeSlider = ({
       targetHandle = clickValue < currentValue[0] ? "min" : "max";
     }
 
+    draggingHandleRef.current = targetHandle;
     setDraggingHandle(targetHandle);
 
     const nextValues: [number, number] = [...dragValueRef.current];
@@ -202,13 +205,13 @@ export const RangeSlider = ({
 
   const handleGlobalMouseMoveRef = useCallback(
     (e: MouseEvent | TouchEvent) => {
-      if (!draggingHandle || disabled) return;
+      if (!draggingHandleRef.current || disabled) return;
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
       const newValue = calculateValue(clientX, trackRef.current);
 
       const nextValues: [number, number] = [...dragValueRef.current];
-      if (draggingHandle === "min") {
+      if (draggingHandleRef.current === "min") {
         nextValues[0] = Math.min(newValue, allowCross ? max : nextValues[1]);
       } else {
         nextValues[1] = Math.max(newValue, allowCross ? min : nextValues[0]);
@@ -217,11 +220,12 @@ export const RangeSlider = ({
       applyDomPosition(nextValues);
       onChange?.(nextValues);
     },
-    [disabled, onChange, allowCross, calculateValue, min, max, applyDomPosition, draggingHandle],
+    [disabled, onChange, allowCross, calculateValue, min, max, applyDomPosition],
   );
 
   const handleGlobalMouseUp = useCallback(() => {
-    if (draggingHandle) {
+    if (draggingHandleRef.current) {
+      draggingHandleRef.current = null;
       setDraggingHandle(null);
       const finalValue = dragValueRef.current;
       if (!isControlled) {
@@ -229,7 +233,7 @@ export const RangeSlider = ({
       }
       onAfterChange?.(finalValue);
     }
-  }, [isControlled, onAfterChange, draggingHandle]);
+  }, [isControlled, onAfterChange]);
 
   useEffect(() => {
     document.addEventListener("mousemove", handleGlobalMouseMoveRef);

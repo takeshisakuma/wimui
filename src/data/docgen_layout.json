@@ -145,21 +145,6 @@
       }
     }
   },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
-      }
-    }
-  },
   "Transition": {
     "name": "Transition",
     "tokens": [
@@ -1428,6 +1413,21 @@
       }
     }
   },
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Splitter": {
     "name": "Splitter",
     "tokens": [
@@ -1563,34 +1563,6 @@
       }
     }
   },
-  "Sidebar": {
-    "name": "Sidebar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-overlay-bg-sidebar",
-      "--wim-color-primary",
-      "--wim-color-primary-light",
-      "--wim-color-text-primary",
-      "--wim-font-size-xl",
-      "--wim-font-weight-bold",
-      "--wim-height-sm",
-      "--wim-height-xl",
-      "--wim-radius-xs",
-      "--wim-sidebar-width",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-transition-base",
-      "--wim-transition-fast",
-      "--wim-z-drawer",
-      "--wim-z-mask",
-      "--wim-z-sidebar"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "ScrollArea": {
     "name": "ScrollArea",
     "tokens": [],
@@ -1646,6 +1618,34 @@
         "description": ""
       }
     }
+  },
+  "Sidebar": {
+    "name": "Sidebar",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-overlay-bg-sidebar",
+      "--wim-color-primary",
+      "--wim-color-primary-light",
+      "--wim-color-text-primary",
+      "--wim-font-size-xl",
+      "--wim-font-weight-bold",
+      "--wim-height-sm",
+      "--wim-height-xl",
+      "--wim-radius-xs",
+      "--wim-sidebar-width",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-transition-base",
+      "--wim-transition-fast",
+      "--wim-z-drawer",
+      "--wim-z-mask",
+      "--wim-z-sidebar"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Navbar": {
     "name": "Navbar",
@@ -2094,214 +2094,6 @@
         }
       }
     }
-  },
-  "Flex": {
-    "name": "Flex",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the flex will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "direction": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"row\" | \"row-reverse\" | \"column\" | \"column-reverse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"row\""
-            },
-            {
-              "name": "literal",
-              "value": "\"row-reverse\""
-            },
-            {
-              "name": "literal",
-              "value": "\"column\""
-            },
-            {
-              "name": "literal",
-              "value": "\"column-reverse\""
-            }
-          ]
-        },
-        "description": "Flex direction",
-        "defaultValue": {
-          "value": "\"row\"",
-          "computed": false
-        }
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"stretch\""
-            },
-            {
-              "name": "literal",
-              "value": "\"baseline\""
-            }
-          ]
-        },
-        "description": "Align-items"
-      },
-      "justify": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"start\"\r\n| \"center\"\r\n| \"end\"\r\n| \"between\"\r\n| \"around\"\r\n| \"evenly\"\r\n| \"stretch\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"between\""
-            },
-            {
-              "name": "literal",
-              "value": "\"around\""
-            },
-            {
-              "name": "literal",
-              "value": "\"evenly\""
-            },
-            {
-              "name": "literal",
-              "value": "\"stretch\""
-            }
-          ]
-        },
-        "description": "Justify-content"
-      },
-      "wrap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"nowrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap-reverse\""
-            }
-          ]
-        },
-        "description": "Flex-wrap"
-      },
-      "gap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Gap between children"
-      },
-      "inline": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Display inline-flex",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Footer": {
-    "name": "Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Grid": {
     "name": "Grid",
@@ -2898,6 +2690,190 @@
       }
     }
   },
+  "Flex": {
+    "name": "Flex",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the flex will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"row\" | \"row-reverse\" | \"column\" | \"column-reverse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"row\""
+            },
+            {
+              "name": "literal",
+              "value": "\"row-reverse\""
+            },
+            {
+              "name": "literal",
+              "value": "\"column\""
+            },
+            {
+              "name": "literal",
+              "value": "\"column-reverse\""
+            }
+          ]
+        },
+        "description": "Flex direction",
+        "defaultValue": {
+          "value": "\"row\"",
+          "computed": false
+        }
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"stretch\""
+            },
+            {
+              "name": "literal",
+              "value": "\"baseline\""
+            }
+          ]
+        },
+        "description": "Align-items"
+      },
+      "justify": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"start\"\r\n| \"center\"\r\n| \"end\"\r\n| \"between\"\r\n| \"around\"\r\n| \"evenly\"\r\n| \"stretch\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"between\""
+            },
+            {
+              "name": "literal",
+              "value": "\"around\""
+            },
+            {
+              "name": "literal",
+              "value": "\"evenly\""
+            },
+            {
+              "name": "literal",
+              "value": "\"stretch\""
+            }
+          ]
+        },
+        "description": "Justify-content"
+      },
+      "wrap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"nowrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap-reverse\""
+            }
+          ]
+        },
+        "description": "Flex-wrap"
+      },
+      "gap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Gap between children"
+      },
+      "inline": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Display inline-flex",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Divider": {
     "name": "Divider",
     "tokens": [
@@ -2941,6 +2917,30 @@
         }
       }
     }
+  },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Container": {
     "name": "Container",
@@ -5665,6 +5665,23 @@
       }
     }
   },
+  "AppShell": {
+    "name": "AppShell",
+    "tokens": [
+      "--wim-appshell-max-width",
+      "--wim-appshell-tabbar-height",
+      "--wim-color-bg-component",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-appshell-footer",
+      "--wim-z-appshell-header",
+      "--wim-z-appshell-navbar",
+      "--wim-z-appshell-sidebar"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "BentoGrid": {
     "name": "BentoGrid",
     "tokens": [],
@@ -5696,22 +5713,5 @@
         "description": "子要素"
       }
     }
-  },
-  "AppShell": {
-    "name": "AppShell",
-    "tokens": [
-      "--wim-appshell-max-width",
-      "--wim-appshell-tabbar-height",
-      "--wim-color-bg-component",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-appshell-footer",
-      "--wim-z-appshell-header",
-      "--wim-z-appshell-navbar",
-      "--wim-z-appshell-sidebar"
-    ],
-    "anatomy": [],
-    "props": {}
   }
 }

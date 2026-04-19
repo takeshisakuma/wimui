@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 const STORY_URL = (id: string) =>
-  `/iframe.html?id=${id}&viewMode=story&globals=locale:en`;
+  `/iframe.html?id=${id}&viewMode=story&globals=theme:light;locale:en`;
 
 const DEFAULT_STORY = "components-pickers-sliders-rangeslider--default";
 const DISABLED_STORY = "components-pickers-sliders-rangeslider--disabled";
@@ -10,7 +10,7 @@ const STEP_STORY = "components-pickers-sliders-rangeslider--step";
 test.describe("RangeSlider", () => {
   test.describe("keyboard navigation", () => {
     test("ArrowRight increases min handle value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const thumbs = page.getByRole("slider");
       const minThumb = thumbs.first();
 
@@ -21,7 +21,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("ArrowLeft decreases min handle value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const minThumb = page.getByRole("slider").first();
 
       await expect(minThumb).toHaveAttribute("aria-valuenow", "20");
@@ -31,7 +31,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("ArrowLeft decreases max handle value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const maxThumb = page.getByRole("slider").last();
 
       await expect(maxThumb).toHaveAttribute("aria-valuenow", "80");
@@ -41,7 +41,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("ArrowRight increases max handle value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const maxThumb = page.getByRole("slider").last();
 
       await expect(maxThumb).toHaveAttribute("aria-valuenow", "80");
@@ -51,7 +51,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("Home key sets min handle to minimum value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const minThumb = page.getByRole("slider").first();
 
       await minThumb.focus();
@@ -60,7 +60,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("End key sets max handle to maximum value", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const maxThumb = page.getByRole("slider").last();
 
       await maxThumb.focus();
@@ -71,7 +71,7 @@ test.describe("RangeSlider", () => {
     test("min handle cannot exceed max handle without allowCross", async ({
       page,
     }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const minThumb = page.getByRole("slider").first();
 
       await minThumb.focus();
@@ -83,7 +83,7 @@ test.describe("RangeSlider", () => {
     test("max handle cannot go below min handle without allowCross", async ({
       page,
     }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const maxThumb = page.getByRole("slider").last();
 
       await maxThumb.focus();
@@ -93,7 +93,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("step is respected during keyboard navigation", async ({ page }) => {
-      await page.goto(STORY_URL(STEP_STORY));
+      await page.goto(STORY_URL(STEP_STORY), { waitUntil: "networkidle" });
       const minThumb = page.getByRole("slider").first();
 
       const initialValue = await minThumb.getAttribute("aria-valuenow");
@@ -108,7 +108,7 @@ test.describe("RangeSlider", () => {
     test("dragging min handle to the right increases its value", async ({
       page,
     }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const minThumb = page.getByRole("slider").first();
 
       await expect(minThumb).toHaveAttribute("aria-valuenow", "20");
@@ -131,7 +131,7 @@ test.describe("RangeSlider", () => {
     test("dragging max handle to the left decreases its value", async ({
       page,
     }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const maxThumb = page.getByRole("slider").last();
 
       await expect(maxThumb).toHaveAttribute("aria-valuenow", "80");
@@ -152,7 +152,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("clicking the track moves the nearest handle", async ({ page }) => {
-      await page.goto(STORY_URL(DEFAULT_STORY));
+      await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const thumbs = page.getByRole("slider");
 
       // Track is between 0%–100%. Click near the left end → moves min handle
@@ -172,7 +172,7 @@ test.describe("RangeSlider", () => {
 
   test.describe("disabled state", () => {
     test("disabled handles do not respond to keyboard", async ({ page }) => {
-      await page.goto(STORY_URL(DISABLED_STORY));
+      await page.goto(STORY_URL(DISABLED_STORY), { waitUntil: "networkidle" });
       const thumbs = page.getByRole("slider");
       const minThumb = thumbs.first();
 
@@ -183,7 +183,7 @@ test.describe("RangeSlider", () => {
     });
 
     test("disabled handles have aria-disabled attribute", async ({ page }) => {
-      await page.goto(STORY_URL(DISABLED_STORY));
+      await page.goto(STORY_URL(DISABLED_STORY), { waitUntil: "networkidle" });
       const thumbs = page.getByRole("slider");
       for (const thumb of await thumbs.all()) {
         await expect(thumb).toHaveAttribute("aria-disabled", "true");
