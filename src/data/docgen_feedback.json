@@ -514,6 +514,166 @@
       }
     }
   },
+  "Result": {
+    "name": "Result",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-radius-sm",
+      "--wim-result-icon-size",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "Extract",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"primary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"secondary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"neutral\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"default\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"destructive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                }
+              ]
+            },
+            {
+              "name": "union",
+              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          ],
+          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
+        },
+        "description": "Semantic intent — determines the icon and color.",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"404\" | \"403\" | \"500\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"404\""
+            },
+            {
+              "name": "literal",
+              "value": "\"403\""
+            },
+            {
+              "name": "literal",
+              "value": "\"500\""
+            }
+          ]
+        },
+        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Operating area"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Custom icon"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The children"
+      }
+    }
+  },
   "Progress": {
     "name": "Progress",
     "tokens": [
@@ -675,166 +835,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "Result": {
-    "name": "Result",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-radius-sm",
-      "--wim-result-icon-size",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "Extract",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"primary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"secondary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"neutral\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"default\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"destructive\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"positive\""
-                }
-              ]
-            },
-            {
-              "name": "union",
-              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                }
-              ]
-            }
-          ],
-          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
-        },
-        "description": "Semantic intent — determines the icon and color.",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "status": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"404\" | \"403\" | \"500\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"404\""
-            },
-            {
-              "name": "literal",
-              "value": "\"403\""
-            },
-            {
-              "name": "literal",
-              "value": "\"500\""
-            }
-          ]
-        },
-        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Operating area"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Custom icon"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The children"
       }
     }
   },
@@ -1027,24 +1027,6 @@
       }
     }
   },
-  "LoadingOverlay": {
-    "name": "LoadingOverlay",
-    "tokens": [
-      "--wim-color-overlay-bg",
-      "--wim-color-overlay-bg-dark",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-text-on-overlay",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-spacing-md",
-      "--wim-transition-duration-normal",
-      "--wim-transition-timing-ease-out",
-      "--wim-z-1",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Indicator": {
     "name": "Indicator",
     "tokens": [
@@ -1224,6 +1206,24 @@
         "description": ""
       }
     }
+  },
+  "LoadingOverlay": {
+    "name": "LoadingOverlay",
+    "tokens": [
+      "--wim-color-overlay-bg",
+      "--wim-color-overlay-bg-dark",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-text-on-overlay",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-spacing-md",
+      "--wim-transition-duration-normal",
+      "--wim-transition-timing-ease-out",
+      "--wim-z-1",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "ErrorBoundary": {
     "name": "ErrorBoundary",

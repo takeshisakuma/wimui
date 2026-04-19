@@ -241,6 +241,7 @@ export const SignaturePad = ({
           <Button
             variant="outline"
             size="sm"
+            data-testid="signature-clear"
             onMouseDown={() => {
               clearIntentRef.current = true;
             }}

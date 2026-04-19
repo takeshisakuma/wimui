@@ -252,9 +252,8 @@ export const WithActions: Story = {
         key: "actions",
         title: t("story.datagrid_col_actions"),
         width: 100,
-        fixed: "right" as const,
         render: (_: unknown, row: Record<string, unknown>) => (
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "nowrap" }}>
             <Button
               size="sm"
               variant="ghost"

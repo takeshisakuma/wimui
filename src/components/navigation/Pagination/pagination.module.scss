@@ -34,6 +34,7 @@
       @include breakpoints.container-down(md) {
         display: inline-flex;
         color: var(--wim-color-text-primary);
+        white-space: nowrap;
         pointer-events: none;
         cursor: default;
         background: transparent;

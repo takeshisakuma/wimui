@@ -36,7 +36,7 @@ test.describe("SignaturePad", () => {
 
     test("clear button is disabled when canvas is empty", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
       await expect(clearButton).toBeDisabled();
     });
   });
@@ -45,7 +45,7 @@ test.describe("SignaturePad", () => {
     test("clear button becomes enabled after drawing", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
 
       await expect(clearButton).toBeDisabled();
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
@@ -76,7 +76,7 @@ test.describe("SignaturePad", () => {
     test("clicking clear button resets the canvas", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
       await expect(clearButton).toBeEnabled();
@@ -88,7 +88,7 @@ test.describe("SignaturePad", () => {
     test("canvas is transparent after clearing", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY), { waitUntil: "networkidle" });
       const canvas = page.locator('[data-testid="signature-canvas"]');
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
       await clearButton.click();
@@ -137,7 +137,7 @@ test.describe("SignaturePad", () => {
   test.describe("disabled state", () => {
     test("clear button is disabled", async ({ page }) => {
       await page.goto(STORY_URL(DISABLED_STORY), { waitUntil: "networkidle" });
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
       await expect(clearButton).toBeDisabled();
     });
 
@@ -148,7 +148,7 @@ test.describe("SignaturePad", () => {
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
 
       // Clear button stays disabled → canvas is still empty
-      const clearButton = page.getByRole("button", { name: /clear/i });
+      const clearButton = page.getByTestId("signature-clear");
       await expect(clearButton).toBeDisabled();
 
       const isEmpty = await page.evaluate(() => {

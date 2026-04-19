@@ -108,11 +108,12 @@
   }
 
   .body {
-    // Basic body styles
+    background-color: var(--wim-color-bg-component);
   }
 
 
   .row {
+    background-color: inherit;
     border-bottom: 1px solid var(--wim-color-border);
 
     &.selected {

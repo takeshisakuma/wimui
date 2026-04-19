@@ -1,4 +1,19 @@
 {
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Watermark": {
     "name": "Watermark",
     "tokens": [],
@@ -142,21 +157,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
       }
     }
   },
@@ -312,141 +312,6 @@
         "description": ""
       }
     }
-  },
-  "SimpleGrid": {
-    "name": "SimpleGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "cols": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "base",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "sm",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "md",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "lg",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "xl",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "spacing": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "16",
-          "computed": false
-        }
-      },
-      "verticalSpacing": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "minChildWidth": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": ""
-      }
-    }
-  },
-  "Splitter": {
-    "name": "Splitter",
-    "tokens": [
-      "--wim-color-border",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-splitter-handle-active-color",
-      "--wim-splitter-handle-color",
-      "--wim-splitter-handle-hover-bg",
-      "--wim-transition-fast",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Stack": {
     "name": "Stack",
@@ -1563,6 +1428,21 @@
       }
     }
   },
+  "Splitter": {
+    "name": "Splitter",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-splitter-handle-active-color",
+      "--wim-splitter-handle-color",
+      "--wim-splitter-handle-hover-bg",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Sidebar": {
     "name": "Sidebar",
     "tokens": [
@@ -1642,6 +1522,126 @@
         "required": false,
         "tsType": {
           "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "SimpleGrid": {
+    "name": "SimpleGrid",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "cols": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "base",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "sm",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "md",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "lg",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "xl",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "spacing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "16",
+          "computed": false
+        }
+      },
+      "verticalSpacing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "minChildWidth": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
         },
         "description": ""
       }
@@ -1936,6 +1936,149 @@
       }
     }
   },
+  "Group": {
+    "name": "Group",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the group will be rendered as its child, merging its props onto that child."
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"stretch\""
+            },
+            {
+              "name": "literal",
+              "value": "\"baseline\""
+            }
+          ]
+        },
+        "description": "Vertical alignment",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "justify": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"between\""
+            },
+            {
+              "name": "literal",
+              "value": "\"around\""
+            },
+            {
+              "name": "literal",
+              "value": "\"evenly\""
+            }
+          ]
+        },
+        "description": "Horizontal alignment",
+        "defaultValue": {
+          "value": "\"start\"",
+          "computed": false
+        }
+      },
+      "gap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "Gap between elements",
+        "defaultValue": {
+          "value": "16",
+          "computed": false
+        }
+      },
+      "wrap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"nowrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap-reverse\""
+            }
+          ]
+        },
+        "description": "Whether to wrap children",
+        "defaultValue": {
+          "value": "\"wrap\"",
+          "computed": false
+        }
+      },
+      "grow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether items should grow to fill available space",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Header": {
     "name": "Header",
     "tokens": [
@@ -1948,30 +2091,6 @@
       "--wim-spacing-xl",
       "--wim-transition-base",
       "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Footer": {
-    "name": "Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
     ],
     "anatomy": [],
     "props": {}
@@ -2571,6 +2690,30 @@
       }
     }
   },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Flex": {
     "name": "Flex",
     "tokens": [],
@@ -2750,193 +2893,6 @@
         "description": "Display inline-flex",
         "defaultValue": {
           "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Group": {
-    "name": "Group",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the group will be rendered as its child, merging its props onto that child."
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"stretch\""
-            },
-            {
-              "name": "literal",
-              "value": "\"baseline\""
-            }
-          ]
-        },
-        "description": "Vertical alignment",
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        }
-      },
-      "justify": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"between\""
-            },
-            {
-              "name": "literal",
-              "value": "\"around\""
-            },
-            {
-              "name": "literal",
-              "value": "\"evenly\""
-            }
-          ]
-        },
-        "description": "Horizontal alignment",
-        "defaultValue": {
-          "value": "\"start\"",
-          "computed": false
-        }
-      },
-      "gap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "Gap between elements",
-        "defaultValue": {
-          "value": "16",
-          "computed": false
-        }
-      },
-      "wrap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"nowrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap-reverse\""
-            }
-          ]
-        },
-        "description": "Whether to wrap children",
-        "defaultValue": {
-          "value": "\"wrap\"",
-          "computed": false
-        }
-      },
-      "grow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether items should grow to fill available space",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Divider": {
-    "name": "Divider",
-    "tokens": [
-      "--wim-color-border",
-      "--wim-divider-thickness",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "orientation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "分割線の方向",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      },
-      "thickness": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "線の太さ (px)",
-        "defaultValue": {
-          "value": "1",
           "computed": false
         }
       }
@@ -4768,6 +4724,50 @@
       }
     }
   },
+  "Divider": {
+    "name": "Divider",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-divider-thickness",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "orientation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "分割線の方向",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "thickness": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "線の太さ (px)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      }
+    }
+  },
   "Box": {
     "name": "Box",
     "tokens": [
@@ -5665,12 +5665,6 @@
       }
     }
   },
-  "BentoGrid": {
-    "name": "BentoGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "AspectRatio": {
     "name": "AspectRatio",
     "tokens": [],
@@ -5711,6 +5705,12 @@
       "--wim-z-appshell-navbar",
       "--wim-z-appshell-sidebar"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "BentoGrid": {
+    "name": "BentoGrid",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   }

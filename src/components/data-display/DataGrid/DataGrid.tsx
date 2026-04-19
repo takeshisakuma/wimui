@@ -239,7 +239,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                 return (
                   <Table.Head
                     key={col.key}
-                    style={{ width: col.width }}
+                    style={{ width: col.width, minWidth: col.width }}
                     sortable={col.sortable}
                     sortDirection={sortConfig?.key === col.key ? sortConfig.direction : "none"}
                     onSort={() => {
@@ -335,6 +335,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           </div>
           <div className={styles.pagination}>
             <Pagination
+              className={styles.paginationContent}
               current={pagination.current}
               total={pagination.total}
               pageSize={pagination.pageSize}

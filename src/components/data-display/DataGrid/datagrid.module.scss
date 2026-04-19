@@ -1,3 +1,5 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 @layer component {
   .root {
     box-sizing: border-box;
@@ -5,6 +7,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    container-type: inline-size;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
@@ -18,6 +21,8 @@
 
   .footer {
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-md);
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-md);
@@ -28,11 +33,25 @@
   .info {
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-secondary);
+
+    @include breakpoints.container-down(sm) {
+      flex-basis: 100%;
+      text-align: left;
+    }
   }
 
   .pagination {
     display: flex;
+    flex: 1;
     align-items: center;
+
+    @include breakpoints.container-down(sm) {
+      flex-basis: 100%;
+    }
+  }
+
+  .paginationContent {
+    justify-content: flex-end !important;
   }
 
   .loading {
