@@ -160,159 +160,6 @@
       }
     }
   },
-  "Transition": {
-    "name": "Transition",
-    "tokens": [
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {
-      "show": {
-        "required": true,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "preset": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"fade\"\n| \"scale\"\n| \"slide-right\"\n| \"slide-left\"\n| \"slide-top\"\n| \"slide-bottom\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"fade\""
-            },
-            {
-              "name": "literal",
-              "value": "\"scale\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-bottom\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "enter": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "enterFrom": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "enterTo": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leave": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leaveFrom": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leaveTo": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "unmount": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "appear": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "Stack": {
     "name": "Stack",
     "tokens": [
@@ -1428,6 +1275,21 @@
       }
     }
   },
+  "Splitter": {
+    "name": "Splitter",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-splitter-handle-active-color",
+      "--wim-splitter-handle-color",
+      "--wim-splitter-handle-hover-bg",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "SimpleGrid": {
     "name": "SimpleGrid",
     "tokens": [],
@@ -1548,20 +1410,158 @@
       }
     }
   },
-  "Splitter": {
-    "name": "Splitter",
+  "Transition": {
+    "name": "Transition",
     "tokens": [
-      "--wim-color-border",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-splitter-handle-active-color",
-      "--wim-splitter-handle-color",
-      "--wim-splitter-handle-hover-bg",
-      "--wim-transition-fast",
-      "--wim-z-10"
+      "--wim-transition-base"
     ],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "show": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "preset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"fade\"\n| \"scale\"\n| \"slide-right\"\n| \"slide-left\"\n| \"slide-top\"\n| \"slide-bottom\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"fade\""
+            },
+            {
+              "name": "literal",
+              "value": "\"scale\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-bottom\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "enter": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "enterFrom": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "enterTo": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leave": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leaveFrom": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leaveTo": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "unmount": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "appear": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
   },
   "Sidebar": {
     "name": "Sidebar",
@@ -1647,43 +1647,35 @@
       }
     }
   },
-  "Masonry": {
-    "name": "Masonry",
-    "tokens": [],
+  "Navbar": {
+    "name": "Navbar",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-surface-glass",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-layout-max-width",
+      "--wim-radius-lg",
+      "--wim-radius-sm",
+      "--wim-spacing-5xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-navbar"
+    ],
     "anatomy": [],
-    "props": {
-      "columns": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Number of columns",
-        "defaultValue": {
-          "value": "3",
-          "computed": false
-        }
-      },
-      "spacing": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "Spacing between items",
-        "defaultValue": {
-          "value": "16",
-          "computed": false
-        }
-      }
-    }
+    "props": {}
   },
   "InteractiveArea": {
     "name": "InteractiveArea",
@@ -1906,51 +1898,43 @@
       }
     }
   },
-  "Navbar": {
-    "name": "Navbar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-surface-glass",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-layout-max-width",
-      "--wim-radius-lg",
-      "--wim-radius-sm",
-      "--wim-spacing-5xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-navbar"
-    ],
+  "Masonry": {
+    "name": "Masonry",
+    "tokens": [],
     "anatomy": [],
-    "props": {}
-  },
-  "Header": {
-    "name": "Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {}
+    "props": {
+      "columns": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Number of columns",
+        "defaultValue": {
+          "value": "3",
+          "computed": false
+        }
+      },
+      "spacing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "Spacing between items",
+        "defaultValue": {
+          "value": "16",
+          "computed": false
+        }
+      }
+    }
   },
   "Group": {
     "name": "Group",
@@ -2094,6 +2078,22 @@
         }
       }
     }
+  },
+  "Header": {
+    "name": "Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Grid": {
     "name": "Grid",
@@ -2874,30 +2874,6 @@
       }
     }
   },
-  "Footer": {
-    "name": "Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Divider": {
     "name": "Divider",
     "tokens": [
@@ -2941,6 +2917,30 @@
         }
       }
     }
+  },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Container": {
     "name": "Container",
@@ -4768,12 +4768,6 @@
       }
     }
   },
-  "BentoGrid": {
-    "name": "BentoGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Box": {
     "name": "Box",
     "tokens": [
@@ -5711,6 +5705,12 @@
       "--wim-z-appshell-navbar",
       "--wim-z-appshell-sidebar"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "BentoGrid": {
+    "name": "BentoGrid",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   }

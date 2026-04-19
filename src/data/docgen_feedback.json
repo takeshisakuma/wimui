@@ -130,6 +130,145 @@
       }
     }
   },
+  "Skeleton": {
+    "name": "Skeleton",
+    "tokens": [
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-radius-full",
+      "--wim-radius-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"text\" | \"rect\" | \"circle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"text\""
+            },
+            {
+              "name": "literal",
+              "value": "\"rect\""
+            },
+            {
+              "name": "literal",
+              "value": "\"circle\""
+            }
+          ]
+        },
+        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
+        "defaultValue": {
+          "value": "\"text\"",
+          "computed": false
+        }
+      },
+      "animation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pulse\" | \"wave\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wave\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
+        "defaultValue": {
+          "value": "\"pulse\"",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
+      }
+    }
+  },
+  "Snackbar": {
+    "name": "Snackbar",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-overlay-control-active",
+      "--wim-color-overlay-control-hover",
+      "--wim-color-overlay-control-track",
+      "--wim-color-positive",
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-full",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-snackbar-action",
+      "--wim-snackbar-action-hover",
+      "--wim-snackbar-bg",
+      "--wim-snackbar-blur",
+      "--wim-snackbar-border",
+      "--wim-snackbar-close-hover",
+      "--wim-snackbar-close-idle",
+      "--wim-snackbar-close-size",
+      "--wim-snackbar-lift",
+      "--wim-snackbar-max-width",
+      "--wim-snackbar-min-width",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Toast": {
     "name": "Toast",
     "tokens": [
@@ -305,142 +444,73 @@
       }
     }
   },
-  "Snackbar": {
-    "name": "Snackbar",
+  "ScrollProgress": {
+    "name": "ScrollProgress",
     "tokens": [
-      "--wim-color-bg-inverted",
       "--wim-color-caution",
       "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-overlay-control-active",
-      "--wim-color-overlay-control-hover",
-      "--wim-color-overlay-control-track",
       "--wim-color-positive",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-full",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-snackbar-action",
-      "--wim-snackbar-action-hover",
-      "--wim-snackbar-bg",
-      "--wim-snackbar-blur",
-      "--wim-snackbar-border",
-      "--wim-snackbar-close-hover",
-      "--wim-snackbar-close-idle",
-      "--wim-snackbar-close-size",
-      "--wim-snackbar-lift",
-      "--wim-snackbar-max-width",
-      "--wim-snackbar-min-width",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Skeleton": {
-    "name": "Skeleton",
-    "tokens": [
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-radius-full",
-      "--wim-radius-sm"
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {
-      "variant": {
+      "color": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"text\" | \"rect\" | \"circle\"",
+          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
           "elements": [
             {
               "name": "literal",
-              "value": "\"text\""
+              "value": "\"primary\""
             },
             {
               "name": "literal",
-              "value": "\"rect\""
+              "value": "\"secondary\""
             },
             {
               "name": "literal",
-              "value": "\"circle\""
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
             }
           ]
         },
-        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
+        "description": "進捗バーの色。",
         "defaultValue": {
-          "value": "\"text\"",
+          "value": "\"primary\"",
           "computed": false
         }
       },
-      "animation": {
+      "target": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"pulse\" | \"wave\" | \"none\"",
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
           "elements": [
             {
-              "name": "literal",
-              "value": "\"pulse\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wave\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
             }
           ]
         },
-        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
-        "defaultValue": {
-          "value": "\"pulse\"",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
+        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
       }
     }
   },
@@ -637,76 +707,6 @@
     ],
     "anatomy": [],
     "props": {}
-  },
-  "ScrollProgress": {
-    "name": "ScrollProgress",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "進捗バーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "target": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
-      }
-    }
   },
   "Progress": {
     "name": "Progress",
@@ -1027,6 +1027,24 @@
       }
     }
   },
+  "LoadingOverlay": {
+    "name": "LoadingOverlay",
+    "tokens": [
+      "--wim-color-overlay-bg",
+      "--wim-color-overlay-bg-dark",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-text-on-overlay",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-spacing-md",
+      "--wim-transition-duration-normal",
+      "--wim-transition-timing-ease-out",
+      "--wim-z-1",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Indicator": {
     "name": "Indicator",
     "tokens": [
@@ -1204,142 +1222,6 @@
           "raw": "React.CSSProperties"
         },
         "description": ""
-      }
-    }
-  },
-  "LoadingOverlay": {
-    "name": "LoadingOverlay",
-    "tokens": [
-      "--wim-color-overlay-bg",
-      "--wim-color-overlay-bg-dark",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-text-on-overlay",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-spacing-md",
-      "--wim-transition-duration-normal",
-      "--wim-transition-timing-ease-out",
-      "--wim-z-1",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "ErrorBoundary": {
-    "name": "ErrorBoundary",
-    "tokens": [
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-font-size-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "fallback": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
-          "elements": [
-            {
-              "name": "ReactNode"
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
-      },
-      "onError": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Error"
-                },
-                "name": "error"
-              },
-              {
-                "type": {
-                  "name": "ErrorInfo"
-                },
-                "name": "errorInfo"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーが発生した時に呼び出されるコールバック。"
-      },
-      "onReset": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーがリセットされた時に呼び出されるコールバック。"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "title",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "retry",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "showDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "hideDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "手動翻訳用のラベル。"
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "子要素。"
       }
     }
   },
@@ -1580,6 +1462,124 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素（説明文として扱われます）"
+      }
+    }
+  },
+  "ErrorBoundary": {
+    "name": "ErrorBoundary",
+    "tokens": [
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-font-size-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "fallback": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
+          "elements": [
+            {
+              "name": "ReactNode"
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
+      },
+      "onError": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Error"
+                },
+                "name": "error"
+              },
+              {
+                "type": {
+                  "name": "ErrorInfo"
+                },
+                "name": "errorInfo"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーが発生した時に呼び出されるコールバック。"
+      },
+      "onReset": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーがリセットされた時に呼び出されるコールバック。"
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "title",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "retry",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "showDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "hideDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "手動翻訳用のラベル。"
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "子要素。"
       }
     }
   }

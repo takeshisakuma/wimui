@@ -31,6 +31,48 @@
     "anatomy": [],
     "props": {}
   },
+  "TabNavigation": {
+    "name": "TabNavigation",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Pagination": {
+    "name": "Pagination",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-field-focus",
+      "--wim-shadow-focus",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Stepper": {
     "name": "Stepper",
     "tokens": [
@@ -57,18 +99,6 @@
       "--wim-transition-base",
       "--wim-z-1"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "TabNavigation": {
-    "name": "TabNavigation",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -355,39 +385,44 @@
       }
     }
   },
-  "Pagination": {
-    "name": "Pagination",
+  "CommandPalette": {
+    "name": "CommandPalette",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "BackTop": {
+    "name": "BackTop",
     "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-disabled",
       "--wim-color-primary",
-      "--wim-color-secondary",
       "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-field-focus",
-      "--wim-shadow-focus",
+      "--wim-font-size-xl",
+      "--wim-height-md",
+      "--wim-radius-full",
+      "--wim-shadow-lg",
       "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
+      "--wim-spacing-5xl",
+      "--wim-transition-base",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}
   },
-  "CommandPalette": {
-    "name": "CommandPalette",
-    "tokens": [],
+  "Anchor": {
+    "name": "Anchor",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -520,41 +555,6 @@
         "description": ""
       }
     }
-  },
-  "BackTop": {
-    "name": "BackTop",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-font-size-xl",
-      "--wim-height-md",
-      "--wim-radius-full",
-      "--wim-shadow-lg",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-transition-base",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Anchor": {
-    "name": "Anchor",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Affix": {
     "name": "Affix",
