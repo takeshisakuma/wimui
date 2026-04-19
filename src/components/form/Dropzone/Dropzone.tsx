@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
+import { InteractiveArea, InteractiveAreaProps } from "../../layout/InteractiveArea/InteractiveArea";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./dropzone.module.scss";
 
@@ -50,6 +50,10 @@ type DropzoneProps = {
    * レイアウト方向
    */
   layout?: "vertical" | "horizontal";
+  /**
+   * サイズ
+   */
+  size?: InteractiveAreaProps["size"];
 };
 
 /**
@@ -67,6 +71,7 @@ export const Dropzone = ({
   error,
   required,
   layout = "vertical",
+  size = "md",
 }: DropzoneProps) => {
   const generatedId = React.useId();
   const id = `wim-dropzone-${generatedId}`;
@@ -124,6 +129,7 @@ export const Dropzone = ({
     >
       <InteractiveArea
         className={styles.dropzone}
+        size={size}
         isDragging={isDragging}
         disabled={disabled}
         isClickable={!disabled}
@@ -144,7 +150,6 @@ export const Dropzone = ({
           iconName && (
             <Icon
               name={iconName}
-              size="lg"
               color={disabled ? "disabled" : "primary"}
             />
           )

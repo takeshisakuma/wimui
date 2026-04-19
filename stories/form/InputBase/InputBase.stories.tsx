@@ -16,17 +16,18 @@ const meta: Meta<typeof InputBase> = {
 export default meta;
 type Story = StoryObj<typeof InputBase>;
 
-const DummyInput = ({ placeholder }: { placeholder?: string }) => (
+const DummyInput = ({ placeholder, className, ...rest }: React.InputHTMLAttributes<HTMLInputElement>) => (
   <input
+    className={className}
     style={{
       flex: 1,
       border: "none",
       background: "transparent",
       outline: "none",
-      padding: "8px 0",
       color: "inherit",
     }}
     placeholder={placeholder}
+    {...rest}
   />
 );
 

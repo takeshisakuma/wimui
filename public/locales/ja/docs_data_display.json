@@ -376,6 +376,7 @@
     "interactiveArea_scenario_desc": "ファイルマネージャー、ダッシュボードのタイル、またはセクション全体をインタラクティブにする必要があるカスタムリストアイテムで使用されます。",
     "interactiveArea_summary": "枠線やホバー状態を持つ、一貫したインタラクティブエリアの基盤コンポーネント",
     "interactiveArea_usage_desc": "Dropzone と EmptyState が内部で一貫したインタラクティブゾーンの外観を実現するために使用しています。",
+    "interactiveArea_with_context_menu_desc": "ContextMenu コンポーネントで InteractiveArea をラップすることで、右クリック時にメニューを表示するパターンを実現しています。",
     "item": "項目",
     "key": "キー",
     "label_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",

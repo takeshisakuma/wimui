@@ -210,6 +210,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           stickyHeader={stickyHeader}
           mobileCard={mobileCard}
           fullWidth
+          className={styles.table}
         >
           <Table.Header>
             <Table.Row>

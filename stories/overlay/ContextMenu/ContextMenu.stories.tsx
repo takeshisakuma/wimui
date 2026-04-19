@@ -259,7 +259,7 @@ export const OnImage: Story = {
           style={{
             width: "300px",
             height: "200px",
-            background: "var(--wim-gradient-glass)",
+            background: "var(--wim-color-primary)",
             borderRadius: "8px",
             display: "flex",
             alignItems: "center",

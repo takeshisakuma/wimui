@@ -16,6 +16,11 @@ describe("Badge", () => {
     expect(screen.getByText("Active")).toBeInTheDocument();
   });
 
+  it("renders content prop", () => {
+    render(<Badge content="Count" />);
+    expect(screen.getByText("Count")).toBeInTheDocument();
+  });
+
   it("renders icon", () => {
     render(<Badge icon={<span data-testid="icon">Icon</span>} />);
     expect(screen.getByTestId("icon")).toBeInTheDocument();
@@ -52,8 +57,14 @@ describe("Badge", () => {
     expect(container.firstChild).toHaveAttribute("role", "status");
   });
 
-  it("applies icon-only class when no content", () => {
-    const { container } = render(<Badge icon={<span>Icon</span>} />);
-    expect(container.firstChild).toHaveClass(styles.iconOnly);
+  it("applies iconOnly class only when no content and no icon (dot mode)", () => {
+    const { container: dotContainer } = render(<Badge />);
+    expect(dotContainer.firstChild).toHaveClass(styles.iconOnly);
+
+    const { container: iconContainer } = render(<Badge icon={<span>Icon</span>} />);
+    expect(iconContainer.firstChild).not.toHaveClass(styles.iconOnly);
+
+    const { container: textContainer } = render(<Badge>Text</Badge>);
+    expect(textContainer.firstChild).not.toHaveClass(styles.iconOnly);
   });
 });

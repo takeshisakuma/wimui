@@ -1,15 +1,8 @@
 @layer component {
   .input {
-    // Styling for the native time picker indicator
+    // ブラウザ組み込みの時計アイコンを非表示にする（rightIconでClockIconを代替表示するため）
     &::-webkit-calendar-picker-indicator {
-      padding: var(--wim-spacing-xs);
-      cursor: pointer;
-      border-radius: var(--wim-radius-sm);
-      transition: background-color var(--wim-transition-fast);
-  
-      &:hover {
-        background-color: var(--wim-color-surface-hover);
-      }
+      display: none;
     }
   }
 }

@@ -34,7 +34,7 @@ export const Icon = ({
     <IconComponent
       className={classNames(
         styles.root,
-        styles[size],
+        size && styles[`size-${size}`],
         color && styles[color],
         name && (name === "LoadingIcon" || name === "SpinnerIcon") &&
           styles.loading,

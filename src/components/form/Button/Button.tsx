@@ -170,9 +170,11 @@ export const Button = React.forwardRef<
         aria-busy={loading || undefined}
         {...(asChild ? props : { ...props })}
       >
-        {iconContent && iconPosition === "left" && iconContent}
-        <Slottable>{children}</Slottable>
-        {iconContent && iconPosition === "right" && iconContent}
+        <span className={localStyles.content}>
+          {iconContent && iconPosition === "left" && iconContent}
+          <Slottable>{children}</Slottable>
+          {iconContent && iconPosition === "right" && iconContent}
+        </span>
         {loading && (
           <span className={classNames(localStyles.loader, stylesProp?.loader)}>
             <Icon name="LoadingIcon" size={size} />

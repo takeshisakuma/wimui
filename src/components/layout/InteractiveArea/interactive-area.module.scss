@@ -34,14 +34,20 @@
 
   &.sm {
     padding: var(--wim-spacing-md);
+
+    --ia-title-size: var(--wim-font-size-md);
   }
 
   &.md {
     padding: var(--wim-spacing-xl);
+
+    --ia-title-size: var(--wim-font-size-lg);
   }
 
   &.lg {
     padding: var(--wim-spacing-3xl);
+
+    --ia-title-size: var(--wim-font-size-xl);
   }
 
   &.dragging {
@@ -74,13 +80,19 @@
 
 .icon {
   margin-bottom: var(--wim-spacing-md);
-  font-size: 2.5rem;
+  font-size: var(--wim-font-size-4xl);
   color: var(--wim-color-text-secondary);
+
+  // Force Icon component to inherit font-size if it has the .root class (from icon.module.scss)
+  // Since we don't know the exact hashed class, we can try to target children
+  & > * {
+    font-size: inherit !important;
+  }
 }
 
 .title {
   margin-bottom: var(--wim-spacing-xs);
-  font-size: var(--wim-font-size-lg);
+  font-size: var(--ia-title-size, var(--wim-font-size-lg));
   font-weight: var(--wim-font-weight-bold);
   color: var(--wim-color-text-primary);
 }

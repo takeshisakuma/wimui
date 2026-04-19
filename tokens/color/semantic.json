@@ -87,8 +87,10 @@
 
       "bg-inverted": { "value": "{pccs.gy2-5}" },
       "border-inverted": { "value": "{pccs.gy3-5}" },
+      "text-on-inverted": { "value": "{pccs.w}" },
       "text-muted-on-inverted": { "value": "{pccs.gy6-5}" },
       "surface-inverse": { "value": "var(--wim-color-bg-inverted)" },
+      "surface-inverted": { "value": "{pccs.gy3-5}" },
       "text-on-dark": { "value": "var(--wim-color-text-white)" },
 
       "bg-void": { "value": "{pccs.bk}" },

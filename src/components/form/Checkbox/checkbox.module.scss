@@ -1,9 +1,12 @@
 @layer component {
   .root {
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    font-family: var(--wim-font-family-default, var(--font-sans));
+    font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-normal, 1.5);
+    color: var(--wim-color-text-primary);
     cursor: pointer;
     user-select: none;
 
@@ -15,24 +18,33 @@
 
   .input {
     position: relative;
-    display: flex;
+    display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: var(--wim-checkbox-size, var(--wim-height-xs));
-    height: var(--wim-checkbox-size, var(--wim-height-xs));
+    width: var(--wim-checkbox-size);
+    height: var(--wim-checkbox-size);
     margin: 0 var(--wim-spacing-sm) 0 0;
     appearance: none;
     cursor: pointer;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-sm);
-    transition: all var(--wim-duration-fast) var(--wim-easing-standard);
+    transition:
+      background-color var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
 
     &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
       content: "";
       opacity: 0;
-      transform: scale(0.5);
-      transition: all var(--wim-duration-fast) var(--wim-easing-entrance);
+      transform: translate(-50%, -50%) scale(0.5);
+      transition:
+        opacity var(--wim-duration-fast) var(--wim-easing-entrance),
+        transform var(--wim-duration-fast) var(--wim-easing-entrance);
     }
 
     // Checked state
@@ -46,7 +58,7 @@
         border: solid var(--wim-color-text-white);
         border-width: 0 var(--wim-border-width-thick) var(--wim-border-width-thick) 0;
         opacity: 1;
-        transform: rotate(45deg) scale(1) translate(-1px, -1px);
+        transform: translate(-50%, -60%) rotate(45deg) scale(1);
       }
     }
 
@@ -61,7 +73,7 @@
         background-color: var(--wim-color-text-white);
         border-radius: var(--wim-radius-3xs, var(--wim-border-width-thin));
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
     }
 
@@ -87,9 +99,4 @@
     }
   }
 
-  .label {
-    font-family: var(--wim-font-family-default, var(--font-sans));
-    font-size: var(--wim-font-size-md);
-    color: var(--wim-color-text-primary);
-  }
 }

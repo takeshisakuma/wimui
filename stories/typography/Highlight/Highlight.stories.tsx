@@ -59,7 +59,7 @@ export const AsChild: Story = {
   args: {
     highlight: "link",
     asChild: true,
-    children: "This is a string that will be wrapped in a custom element",
+    children: "Click this link to learn more about highlights.",
   },
   render: (args) => (
     <Highlight {...args} asChild>

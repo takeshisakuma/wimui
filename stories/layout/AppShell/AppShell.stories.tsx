@@ -176,7 +176,7 @@ export const WithSidebar: Story = {
                             `}</style>
               <button
                 className="appshell-mobile-trigger"
-                onClick={() => setMobileOpen(true)}
+                onClick={() => setMobileOpen((o) => !o)}
               >
                 {t("story.common_menu", "Menu")}
               </button>

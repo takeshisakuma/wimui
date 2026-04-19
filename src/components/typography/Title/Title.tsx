@@ -49,7 +49,7 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
     const sizeClass = size ? size.replace(/^(\d+)/, (match, p1) => `xl${p1}`) : size;
 
     const finalContent =
-      decoration !== "none" ? (
+      !asChild && decoration !== "none" ? (
         <span
           className={
             decoration === "highlight"
@@ -87,6 +87,7 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
           styles[sizeClass as keyof typeof styles],
           useClassNameForColor && styles[color as keyof typeof styles],
           styles[align],
+          asChild && decoration !== "none" && (decoration === "highlight" ? styles.highlight : styles[decoration]),
           className,
         )}
         style={{

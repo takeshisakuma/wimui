@@ -86,40 +86,40 @@ export const Popconfirm = ({
         aria-describedby={description ? descriptionId : undefined}
       >
         <div className={styles.inner}>
-          <div className={styles.message}>
-            <span className={styles.icon}>
-              <FeedbackIcon
-                intent="warning"
-                icon={icon}
-                size="sm"
-                color="caution"
-              />
-            </span>
+          <span className={styles.icon}>
+            <FeedbackIcon
+              intent="warning"
+              icon={icon}
+              size="sm"
+              color="caution"
+            />
+          </span>
+          <div className={styles.body}>
             <div id={titleId} className={styles.title}>
               {title}
             </div>
-          </div>
-          {description && (
-            <div id={descriptionId} className={styles.description}>
-              {description}
+            {description && (
+              <div id={descriptionId} className={styles.description}>
+                {description}
+              </div>
+            )}
+            <div className={styles.actions}>
+              <PopoverClose asChild>
+                <Button
+                  size="sm"
+                  onClick={onCancel}
+                  variant="ghost"
+                >{cancelText}</Button>
+              </PopoverClose>
+              <PopoverClose asChild>
+                <Button
+                  size="sm"
+                  onClick={onConfirm}
+                  variant="solid"
+                  intent={okType}
+                >{okText}</Button>
+              </PopoverClose>
             </div>
-          )}
-          <div className={styles.actions}>
-            <PopoverClose asChild>
-              <Button
-                size="sm"
-                onClick={onCancel}
-                variant="ghost"
-              >{cancelText}</Button>
-            </PopoverClose>
-            <PopoverClose asChild>
-              <Button
-                size="sm"
-                onClick={onConfirm}
-                variant="solid"
-                intent={okType}
-              >{okText}</Button>
-            </PopoverClose>
           </div>
         </div>
       </PopoverContent>

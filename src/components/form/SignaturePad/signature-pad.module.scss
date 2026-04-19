@@ -1,14 +1,26 @@
 @use "../../../base" as *;
 
-.wim-signature-pad {
-  box-sizing: border-box;
-  display: inline-flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
-  max-width: 90vw;
-  font-family: var(--wim-font-family);
+@layer component {
+  .root {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    max-width: 90vw;
+    font-family: var(--wim-font-family);
 
-  &__canvas-container {
+    &.disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+
+      .canvasContainer {
+        pointer-events: none;
+        background: var(--wim-color-disabled);
+      }
+    }
+  }
+
+  .canvasContainer {
     position: relative;
     box-sizing: border-box;
     max-width: 100%;
@@ -20,25 +32,15 @@
     border-radius: var(--wim-radius-md);
   }
 
-  &__canvas {
+  .canvas {
     box-sizing: border-box;
     display: block;
     max-width: 100%;
   }
 
-  &__footer {
+  .footer {
     display: flex;
     gap: var(--wim-spacing-md);
     justify-content: flex-end;
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-disabled);
-
-    .wim-signature-pad__canvas-container {
-      pointer-events: none;
-      background: var(--wim-color-disabled);
-    }
   }
 }

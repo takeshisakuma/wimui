@@ -186,22 +186,17 @@
 
   // Make sure children (inputs, triggers) don't have their own borders
   .inner {
-    --wim-field-border: none;
-    --wim-field-shadow: none;
-    --wim-field-bg: transparent;
-    --wim-field-outline: none;
-    --wim-field-padding-v: var(--wim-spacing-sm);
-    --wim-field-padding-left: var(--wim-input-offset-left);
-    --wim-field-padding-right: var(--wim-input-offset-right);
-
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     width: 100%;
-    min-width: 0;
+    min-width: 0 !important;
     height: 100%;
-    padding: var(--wim-field-padding-v) var(--wim-field-padding-right) var(--wim-field-padding-v) var(--wim-field-padding-left);
-    outline: var(--wim-field-outline);
-    background: var(--wim-field-bg);
-    border: var(--wim-field-border);
-    box-shadow: var(--wim-field-shadow);
+    padding-top: var(--wim-spacing-sm);
+    padding-right: var(--wim-input-offset-right) !important;
+    padding-bottom: var(--wim-spacing-sm);
+    padding-left: var(--wim-input-offset-left) !important;
+    outline: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 }

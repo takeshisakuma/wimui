@@ -56,7 +56,7 @@ export const Inline: Story = {
 
 export const Icons: Story = {
   render: () => (
-    <Center w={40} h={40} bg="var(--wim-color-primary)" color="var(--wim-color-text-on-primary)" radius="full">
+    <Center w={40} h={40} bg="primary" color="text-on-primary" radius="full">
       <Icon name="PlusIcon" />
     </Center>
   ),

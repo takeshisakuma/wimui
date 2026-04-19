@@ -12,19 +12,22 @@
 
   .inner {
     display: flex;
-    flex-direction: column;
-    gap: var(--wim-spacing-2xs);
-  }
-
-  .message {
-    display: flex;
+    flex-direction: row;
     gap: var(--wim-spacing-xs);
-    align-items: flex-start;
+    align-items: center;
   }
 
   .icon {
     flex-shrink: 0;
-    margin-top: var(--wim-spacing-3xs, 0.1rem);
+    align-self: center;
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    min-width: 0;
   }
 
   .title {
@@ -34,7 +37,6 @@
   }
 
   .description {
-    margin-left: var(--wim-spacing-4xl);
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-secondary);
   }

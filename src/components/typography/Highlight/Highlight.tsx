@@ -37,8 +37,45 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
   ) => {
     const Component = asChild ? Slot : AsComponent;
 
+    const buildParts = (text: string): React.ReactNode[] | null => {
+      if (!highlight || (Array.isArray(highlight) && highlight.length === 0)) return null;
+
+      const queries = (Array.isArray(highlight) ? highlight : [highlight])
+        .filter((q) => q.length > 0)
+        .map((q) => q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+
+      if (queries.length === 0) return null;
+
+      const regex = new RegExp(`(${queries.join("|")})`, "gi");
+      const parts = text.split(regex);
+
+      return parts.map((part, i) => {
+        const isMatch = regex.test(part);
+        regex.lastIndex = 0;
+        return isMatch ? (
+          <mark key={i} className={classNames(styles.mark, highlightClassName)} style={highlightStyles}>
+            {part}
+          </mark>
+        ) : (
+          part
+        );
+      });
+    };
+
+    if (asChild) {
+      const child = React.Children.only(children as React.ReactElement<{ children?: React.ReactNode }>);
+      const childText = child.props.children;
+      const parts = typeof childText === "string" ? buildParts(childText) : null;
+      const slotChild = parts ? React.cloneElement(child, {}, parts) : child;
+
+      return (
+        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
+          <Slottable>{slotChild}</Slottable>
+        </Component>
+      );
+    }
+
     if (typeof children !== "string") {
-      // Fallsave if children is not a string
       return (
         <Component className={classNames(styles.root, className)} ref={ref} {...props}>
           <Slottable>{children}</Slottable>
@@ -46,45 +83,12 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
       );
     }
 
-    if (!highlight || (Array.isArray(highlight) && highlight.length === 0)) {
-      return (
-        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
-          <Slottable>{children}</Slottable>
-        </Component>
-      );
-    }
-
-    const queries = (Array.isArray(highlight) ? highlight : [highlight])
-      .filter((q) => q.length > 0)
-      .map((q) => q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-
-    if (queries.length === 0) {
-      return (
-        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
-          <Slottable>{children}</Slottable>
-        </Component>
-      );
-    }
-
-    const regex = new RegExp(`(${queries.join("|")})`, "gi");
-    const parts = children.split(regex);
+    const parts = buildParts(children);
 
     return (
       <Component className={classNames(styles.root, className)} ref={ref} {...props}>
         <Slottable>
-          {parts.map((part, i) => {
-            const isMatch = regex.test(part);
-            // Reset lastIndex because of 'g' flag
-            regex.lastIndex = 0;
-
-            return isMatch ? (
-              <mark key={i} className={classNames(styles.mark, highlightClassName)} style={highlightStyles}>
-                {part}
-              </mark>
-            ) : (
-              part
-            );
-          })}
+          {parts ?? children}
         </Slottable>
       </Component>
     );

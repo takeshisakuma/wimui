@@ -70,6 +70,17 @@ describe("Highlight", () => {
     expect(element).toHaveClass(styles.root);
   });
 
+  it("highlights text inside asChild element", () => {
+    const { container } = render(
+      <Highlight highlight="link" asChild>
+        <a href="/">This has a link in it</a>
+      </Highlight>,
+    );
+    const mark = container.querySelector("mark");
+    expect(mark?.textContent).toBe("link");
+    expect(container.querySelector("a")?.textContent).toBe("This has a link in it");
+  });
+
   it("forwards ref to the element", () => {
     const ref = React.createRef<HTMLElement>();
     render(<Highlight highlight="test" ref={ref}>test</Highlight>);

@@ -83,6 +83,9 @@ describe("IndicatorBase", () => {
     );
     expect(container.firstChild).toHaveClass("extra");
   });
+
+  it("renders content prop as alternative to children", () => {
+    render(<IndicatorBase styles={mockStyles} content="From Prop" />);
+    expect(screen.getByText("From Prop")).toBeInTheDocument();
+  });
 });
-
-

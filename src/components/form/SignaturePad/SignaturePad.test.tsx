@@ -11,10 +11,18 @@ describe("SignaturePad", () => {
       lineTo: vi.fn(),
       stroke: vi.fn(),
       clearRect: vi.fn(),
+      scale: vi.fn(),
       strokeStyle: "",
       lineWidth: 0,
       lineCap: "",
       lineJoin: "",
+    });
+    // Mock getBoundingClientRect for coordinates
+    HTMLCanvasElement.prototype.getBoundingClientRect = vi.fn().mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 400,
+      height: 200,
     });
     // Mock toDataURL
     HTMLCanvasElement.prototype.toDataURL = vi.fn().mockReturnValue("data:image/png;base64,test");

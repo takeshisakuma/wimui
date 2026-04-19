@@ -94,14 +94,16 @@
     }
 
     /* Decoration */
-    &.underline {
+    &.underline,
+    .underline {
       text-decoration: var(--wim-decoration-underline);
       text-decoration-skip-ink: none;
       text-underline-offset: var(--wim-text-underline-offset);
     }
 
+    &.highlight,
     .highlight {
-      background-color: var(--wim-decoration-highlight-color);
+      background-color: var(--wim-color-decoration-highlight-color);
     }
   }
 }

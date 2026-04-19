@@ -376,6 +376,7 @@
     "interactiveArea_scenario_desc": "Used in file managers, dashboard tiles, or custom list items where a whole section needs to be interactive.",
     "interactiveArea_summary": "Foundational interactive area component with borders and hover states",
     "interactiveArea_usage_desc": "Used internally by Dropzone and EmptyState to provide a consistent interactive zone appearance.",
+    "interactiveArea_with_context_menu_desc": "A pattern where a context menu is displayed on right-click by wrapping the InteractiveArea with the ContextMenu component.",
     "item": "Item",
     "key": "Key",
     "label_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",

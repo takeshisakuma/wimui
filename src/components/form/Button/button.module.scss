@@ -243,8 +243,16 @@
     cursor: not-allowed;
   }
 
+  .content {
+    display: contents;
+  }
+
   .loading {
     pointer-events: none;
+
+    .content {
+      visibility: hidden;
+    }
   }
 
   .animatedWidth {

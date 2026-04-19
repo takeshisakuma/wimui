@@ -256,7 +256,7 @@ export const TreeSelect = ({
           onClear={handleClear}
           intent={error ? "error" : "default"}
           width={width}
-          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleToggle }]}
           className={classNames(
             isOpen && styles.open,
           )}

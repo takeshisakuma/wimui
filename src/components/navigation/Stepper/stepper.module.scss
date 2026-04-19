@@ -30,26 +30,11 @@
       }
 
       &.labelVertical {
-        @container (min-width: calc(var(--wim-breakpoint-sm) + 1px)) {
+        @container (min-width: 769px) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
           text-align: center;
-
-          .line {
-            width: 100%;
-
-            &::before {
-              left: calc(var(--wim-border-width-thin) * -1); // Slight overlap to prevent gaps
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
-            }
-
-            &::after {
-              right: calc(var(--wim-border-width-thin) * -1); // Slight overlap to prevent gaps
-              left: auto;
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
-            }
-          }
 
           &:last-child {
             flex: 1;
@@ -157,9 +142,28 @@
           margin-top: calc(var(--wim-spacing-xs) * -1.2); // Position title further up
         }
       }
+
+      &.labelVertical {
+        @container (min-width: 769px) {
+          .line {
+            width: 100%;
+
+            &::before {
+              left: calc(var(--wim-border-width-thin) * -1);
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
+            }
+
+            &::after {
+              right: calc(var(--wim-border-width-thin) * -1);
+              left: auto;
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
+            }
+          }
+        }
+      }
     }
 
-    @container (max-width: var(--wim-breakpoint-sm)) {
+    @container (max-width: 768px) {
       &.horizontal {
         flex-direction: column;
 
@@ -291,7 +295,7 @@
     }
 
     .item.labelVertical .content {
-      @container (min-width: 577px) {
+      @container (min-width: 769px) {
         width: 100%;
         min-width: 100px;
         margin-top: var(--wim-spacing-xs);

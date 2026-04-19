@@ -87,14 +87,16 @@
       text-decoration: var(--wim-decoration-line-through);
     }
 
-    &.underline {
+    &.underline,
+    .underline {
       text-decoration: var(--wim-decoration-underline);
       text-decoration-skip-ink: none;
       text-underline-offset: var(--wim-text-underline-offset);
     }
 
-    &.highlight {
-      background-color: var(--wim-decoration-highlight-color);
+    &.highlight,
+    .highlight {
+      background-color: var(--wim-color-decoration-highlight-color);
     }
   }
 }

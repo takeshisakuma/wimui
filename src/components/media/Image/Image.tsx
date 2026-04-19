@@ -288,7 +288,7 @@ export const Image = ({
 
     // Noise
     if (noise && noise !== "none") {
-      const opacity = { sm: "0.05", md: "0.1", lg: "0.2" }[noise];
+      const opacity = { sm: "0.05", md: "0.1", lg: "0.2", xl: "0.3", "2xl": "0.4", "3xl": "0.5", "4xl": "0.6", "5xl": "0.7" }[noise];
       stylesMap["--wim-image-noise-opacity"] = opacity || "0";
     }
 

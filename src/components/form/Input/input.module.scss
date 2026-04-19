@@ -4,8 +4,6 @@
     display: block;
     width: 100%;
     min-height: var(--wim-height-md);
-    padding: 0;
-    padding: var(--wim-field-padding-v, var(--wim-spacing-sm)) var(--wim-field-padding-right, var(--wim-input-offset-right, var(--wim-spacing-md))) var(--wim-field-padding-v, var(--wim-spacing-sm)) var(--wim-field-padding-left, var(--wim-input-offset-left, var(--wim-spacing-md)));
     margin: 0;
     font: inherit;
     font-size: var(--wim-font-size-md);

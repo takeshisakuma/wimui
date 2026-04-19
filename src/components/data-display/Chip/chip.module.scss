@@ -110,14 +110,22 @@
     justify-content: center;
     padding: var(--wim-border-width-thin);
     margin-right: -var(--wim-spacing-xs);
+    color: inherit;
     cursor: pointer;
+    background: transparent;
+    border: none;
     border-radius: var(--wim-radius-full);
     opacity: var(--wim-opacity-disabled);
-    transition: opacity var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast);
 
     &:hover {
       background-color: var(--wim-color-ghost-bg-active);
       opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentcolor;
+      outline-offset: -2px;
     }
   }
 }

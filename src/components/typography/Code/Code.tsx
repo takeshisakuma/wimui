@@ -15,6 +15,7 @@ export interface CodeProps extends Omit<React.HTMLAttributes<HTMLElement>, "cont
 export const Code = React.forwardRef<HTMLElement, CodeProps>(
   ({ asChild = false, children, code, block = false, language, className, ...props }, ref) => {
     const Component = asChild ? Slot : block ? "pre" : "code";
+    const finalContent = asChild ? children : (code || children);
 
     return (
       <Component
@@ -27,12 +28,12 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
         ref={mergeRefs(ref)}
         {...props}
       >
-        {block ? (
+        {!asChild && block ? (
           <code className={language && `language-${language}`}>
-            <Slottable>{code || children}</Slottable>
+            <Slottable>{finalContent}</Slottable>
           </code>
         ) : (
-          <Slottable>{code || children}</Slottable>
+          <Slottable>{finalContent}</Slottable>
         )}
       </Component>
     );

@@ -40,13 +40,18 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
     },
     ref,
   ) => {
-    const finalContent = content ?? children;
+    const finalContent = asChild ? children : (content ?? children);
 
     // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
     const iconSizeMap: Record<ComponentSize, ComponentSize> = {
       sm: "sm",
       md: "md",
       lg: "lg",
+      xl: "lg",
+      "2xl": "lg",
+      "3xl": "lg",
+      "4xl": "lg",
+      "5xl": "lg",
     };
     const iconSize = iconSizeMap[size] || "md";
 
@@ -56,7 +61,7 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
       <>
         {iconPosition === "left" && iconComponent}
         <Slottable>
-          <span>{finalContent}</span>
+          {asChild ? finalContent : <span>{finalContent}</span>}
         </Slottable>
         {iconPosition === "right" && iconComponent}
       </>

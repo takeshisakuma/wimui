@@ -1,9 +1,12 @@
 @layer component {
   .root {
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    font-family: var(--wim-font-family-default, var(--font-sans));
+    font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-normal, 1.5);
+    color: var(--wim-color-text-primary);
     cursor: pointer;
     user-select: none;
 
@@ -15,27 +18,36 @@
 
   .input {
     position: relative;
-    display: flex;
+    display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: var(--wim-radio-size, var(--wim-height-xs));
-    height: var(--wim-radio-size, var(--wim-height-xs));
+    width: var(--wim-radio-size);
+    height: var(--wim-radio-size);
     margin: 0 var(--wim-spacing-sm) 0 0;
     appearance: none;
     cursor: pointer;
     border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-full);
-    transition: all var(--wim-duration-base) var(--wim-easing-standard);
+    transition:
+      background-color var(--wim-duration-base) var(--wim-easing-standard),
+      border-color var(--wim-duration-base) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-base) var(--wim-easing-standard);
 
     &::after {
-      width: var(--wim-radio-dot-size, var(--wim-spacing-sm));
-      height: var(--wim-radio-dot-size, var(--wim-spacing-sm));
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--wim-radio-dot-size, var(--wim-spacing-md));
+      height: var(--wim-radio-dot-size, var(--wim-spacing-md));
       content: "";
       background-color: var(--wim-color-primary);
       border-radius: var(--wim-radius-full);
       opacity: 0;
-      transform: scale(0);
-      transition: all var(--wim-duration-base) var(--wim-easing-standard);
+      transform: translate(-50%, -50%) scale(0);
+      transition:
+        opacity var(--wim-duration-base) var(--wim-easing-standard),
+        transform var(--wim-duration-base) var(--wim-easing-standard);
     }
 
     // Checked state
@@ -44,7 +56,7 @@
 
       &::after {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
     }
 
@@ -67,9 +79,4 @@
     }
   }
 
-  .label {
-    font-family: var(--wim-font-family-default, var(--font-sans));
-    font-size: var(--wim-font-size-md);
-    color: var(--wim-color-text-primary);
-  }
 }

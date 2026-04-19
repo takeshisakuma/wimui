@@ -18,8 +18,8 @@
     flex-shrink: 0;
     align-items: center;
     width: var(--wim-switch-width-md);
-    height: var(--wim-height-xs);
-    padding: var(--wim-spacing-3xs);
+    height: var(--wim-switch-height-md);
+    padding: var(--wim-spacing-2xs);
     appearance: none;
     cursor: pointer;
     background-color: var(--wim-color-border-secondary);
@@ -40,8 +40,8 @@
     }
 
     &::after {
-      width: var(--wim-height-xs);
-      height: var(--wim-height-xs);
+      width: calc(var(--wim-switch-height-md) - 2 * var(--wim-spacing-2xs));
+      height: calc(var(--wim-switch-height-md) - 2 * var(--wim-spacing-2xs));
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
@@ -64,21 +64,21 @@
 
     &.sm {
       width: var(--wim-switch-width-sm);
-      height: var(--wim-height-xs);
+      height: var(--wim-switch-height-sm);
 
       &::after {
-        width: var(--wim-spacing-lg);
-        height: var(--wim-spacing-lg);
+        width: calc(var(--wim-switch-height-sm) - 2 * var(--wim-spacing-2xs));
+        height: calc(var(--wim-switch-height-sm) - 2 * var(--wim-spacing-2xs));
       }
     }
 
     &.lg {
       width: var(--wim-switch-width-lg);
-      height: var(--wim-spacing-2xl);
+      height: var(--wim-switch-height-lg);
 
       &::after {
-        width: var(--wim-spacing-xl);
-        height: var(--wim-spacing-xl);
+        width: calc(var(--wim-switch-height-lg) - 2 * var(--wim-spacing-2xs));
+        height: calc(var(--wim-switch-height-lg) - 2 * var(--wim-spacing-2xs));
       }
     }
 

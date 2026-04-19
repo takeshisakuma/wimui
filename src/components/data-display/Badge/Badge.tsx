@@ -12,6 +12,8 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   asChild?: boolean;
   /** 表示するコンテンツ */
   children?: React.ReactNode;
+  /** 表示するコンテンツ (childrenの代替) */
+  content?: React.ReactNode;
   /** アイコン */
   icon?: React.ReactNode;
   /** インテント（意味的状態） */
@@ -26,18 +28,21 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ children, icon, className, role, "aria-label": ariaLabel, ...props }, ref) => {
+  ({ children, content, icon, className, role, "aria-label": ariaLabel, ...props }, ref) => {
+    const finalContent = content ?? children;
+    const isDot = !finalContent && !icon;
+
     return (
       <IndicatorBase
         ref={ref}
         styles={styles}
         icon={icon}
-        className={classNames(!children && styles.iconOnly, className)}
+        className={classNames(isDot && styles.iconOnly, className)}
         role={role ?? (ariaLabel ? "img" : undefined)}
         aria-label={ariaLabel}
         {...props}
       >
-        {children}
+        {finalContent}
       </IndicatorBase>
     );
   },

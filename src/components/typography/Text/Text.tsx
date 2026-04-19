@@ -42,10 +42,10 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
     },
     ref,
   ) => {
-    const finalContent = content ?? children;
+    const finalContent = asChild ? children : (content ?? children);
 
     const innerContent =
-      decoration !== "none" ? (
+      !asChild && decoration !== "none" ? (
         <span className={styles[decoration]}>
           <Slottable>{finalContent}</Slottable>
         </span>
@@ -79,6 +79,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           weight === "bold" && styles.bold,
           fontStyle === "italic" && styles.italic,
           useClassNameForColor && styles[color as keyof typeof styles],
+          asChild && decoration !== "none" && styles[decoration],
           className,
         )}
         style={{

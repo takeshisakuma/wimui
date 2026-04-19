@@ -13,7 +13,9 @@ const meta: Meta<typeof Dialog> = {
   parameters: {
     layout: "centered",
   },
-
+  args: {
+    closeOnOverlayClick: true,
+  },
   argTypes: {
     open: {
       control: "boolean",
@@ -27,6 +29,10 @@ const meta: Meta<typeof Dialog> = {
       action: "onOpenChange",
       description: "Event handler called when the open state changes.",
     },
+    closeOnOverlayClick: {
+      control: "boolean",
+      description: "Whether clicking the overlay backdrop closes the dialog.",
+    },
   },
 };
 
@@ -34,6 +40,9 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
+  args: {
+    closeOnOverlayClick: true,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -73,10 +82,10 @@ export const Default: Story = {
 };
 
 export const Uncontrolled: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Dialog>
+      <Dialog closeOnOverlayClick={args.closeOnOverlayClick}>
         <DialogTrigger asChild>
           <Button variant="outline">{t("story.dialog_uncontrolled")}</Button>
         </DialogTrigger>
@@ -105,7 +114,7 @@ export const Uncontrolled: Story = {
 };
 
 export const Controlled: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
     return (
@@ -126,7 +135,7 @@ export const Controlled: Story = {
 
         >{t("story.dialog_state_open")}</Button>
 
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={setOpen} closeOnOverlayClick={args.closeOnOverlayClick}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{t("story.dialog_controlled_title")}</DialogTitle>

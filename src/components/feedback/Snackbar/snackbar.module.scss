@@ -50,17 +50,22 @@
     --wim-snackbar-border: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
     --wim-snackbar-close-idle: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
     --wim-snackbar-close-hover: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
-    --wim-snackbar-action: color-mix(in srgb, var(--wim-color-informative) 70%, white);
-    --wim-snackbar-action-hover: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
+    --wim-snackbar-action: var(--wim-color-text-white);
+    --wim-snackbar-action-hover: color-mix(in srgb, var(--wim-color-text-white) 15%, transparent);
 
     position: relative;
     display: flex;
     gap: var(--wim-spacing-md);
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     min-width: var(--wim-snackbar-min-width, 288px);
     max-width: var(--wim-snackbar-max-width, 560px);
     padding: var(--wim-spacing-sm) var(--wim-spacing-2xl) var(--wim-spacing-sm) var(--wim-spacing-md);
+
+    &.hasCloseButton {
+      padding-right: var(--wim-spacing-4xl);
+    }
+
     color: var(--wim-color-text-white);
     pointer-events: auto;
     background: var(--wim-snackbar-bg);
@@ -108,14 +113,8 @@
   }
 
   .actionButton {
-    min-height: auto;
-    padding: var(--wim-spacing-2xs) var(--wim-spacing-md);
-    font-weight: 600;
-    color: var(--wim-snackbar-action);
-
-    &:hover {
-      background: var(--wim-snackbar-action-hover);
-    }
+    background-color: transparent;
+    border-color: transparent;
   }
 
   .closeButton {
@@ -168,5 +167,22 @@
     --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-informative) 75%, black);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
+  }
+}
+
+/* Unlayered: beats @layer component button rules and :root CSS variable definitions */
+.actionButton {
+  color: var(--wim-snackbar-action);
+  background-color: var(--wim-color-overlay-control-track);
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--wim-color-overlay-control-hover);
+    border-color: transparent;
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--wim-color-overlay-control-active);
+    border-color: transparent;
   }
 }

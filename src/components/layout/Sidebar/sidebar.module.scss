@@ -37,7 +37,7 @@
   }
 
   &.responsive {
-    @include breakpoints.down(sm) {
+    @include breakpoints.down(md) {
       position: fixed;
       top: 0;
       bottom: 0;

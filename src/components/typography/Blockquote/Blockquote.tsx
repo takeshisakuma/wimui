@@ -29,7 +29,7 @@ export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
     ref,
   ) => {
     const Component = asChild ? Slot : "blockquote";
-    const finalContent = content ?? children;
+    const finalContent = asChild ? children : (content ?? children);
 
     return (
       <Component

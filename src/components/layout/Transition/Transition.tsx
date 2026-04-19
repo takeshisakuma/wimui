@@ -3,45 +3,98 @@ import React, {
   useRef,
   useLayoutEffect,
   useImperativeHandle,
-  useEffect,
   useCallback,
 } from "react";
 import classNames from "classnames";
 import styles from "./transition.module.scss";
 
-export type TransitionPreset = "fade" | "scale";
+export type TransitionPreset =
+  | "fade"
+  | "scale"
+  | "slide-right"
+  | "slide-left"
+  | "slide-top"
+  | "slide-bottom";
 
 export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Whether the component should be shown or hidden */
   show: boolean;
-  /** The content to be transitioned */
   children: React.ReactNode;
-  /** Built-in transition preset */
   preset?: TransitionPreset;
-  /** Transition classes applied when entering */
   enter?: string;
-  /** Startup classes for the entry transition */
   enterFrom?: string;
-  /** Ending classes for the entry transition */
   enterTo?: string;
-  /** Transition classes applied when leaving */
   leave?: string;
-  /** Startup classes for the leave transition */
   leaveFrom?: string;
-  /** Ending classes for the leave transition */
   leaveTo?: string;
-  /** Whether to unmount the children when hidden */
   unmount?: boolean;
-  /** Whether to animate on initial mount */
   appear?: boolean;
-  /** Additional class names for the wrapper */
   className?: string;
 }
 
-/**
- * A component that handles simple CSS transitions for its children.
- * It manages applying classes at the right moments (enter, enterFrom, enterTo, etc.).
- */
+const getPresetClasses = (p: TransitionPreset) => {
+  switch (p) {
+    case "fade":
+      return {
+        enter: styles.fadeEnterTo,
+        enterFrom: styles.fadeEnter,
+        enterTo: styles.fadeEnterTo,
+        leave: styles.fadeLeaveTo,
+        leaveFrom: styles.fadeLeave,
+        leaveTo: styles.fadeLeaveTo,
+      };
+    case "scale":
+      return {
+        enter: styles.scaleEnterTo,
+        enterFrom: styles.scaleEnter,
+        enterTo: styles.scaleEnterTo,
+        leave: styles.scaleLeaveTo,
+        leaveFrom: styles.scaleLeave,
+        leaveTo: styles.scaleLeaveTo,
+      };
+    case "slide-right":
+      return {
+        enter: styles.slideBase,
+        enterFrom: styles.slideRightEnterFrom,
+        enterTo: styles.slideRightEnterTo,
+        leave: styles.slideBase,
+        leaveFrom: styles.slideRightLeaveFrom,
+        leaveTo: styles.slideRightLeaveTo,
+      };
+    case "slide-left":
+      return {
+        enter: styles.slideBase,
+        enterFrom: styles.slideLeftEnterFrom,
+        enterTo: styles.slideLeftEnterTo,
+        leave: styles.slideBase,
+        leaveFrom: styles.slideLeftLeaveFrom,
+        leaveTo: styles.slideLeftLeaveTo,
+      };
+    case "slide-top":
+      return {
+        enter: styles.slideBase,
+        enterFrom: styles.slideTopEnterFrom,
+        enterTo: styles.slideTopEnterTo,
+        leave: styles.slideBase,
+        leaveFrom: styles.slideTopLeaveFrom,
+        leaveTo: styles.slideTopLeaveTo,
+      };
+    case "slide-bottom":
+      return {
+        enter: styles.slideBase,
+        enterFrom: styles.slideBottomEnterFrom,
+        enterTo: styles.slideBottomEnterTo,
+        leave: styles.slideBase,
+        leaveFrom: styles.slideBottomLeaveFrom,
+        leaveTo: styles.slideBottomLeaveTo,
+      };
+    default:
+      return {};
+  }
+};
+
+/** Split a classNames string into an array of non-empty strings */
+const toClassList = (cn: string) => cn.split(" ").filter(Boolean);
+
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
   (
     {
@@ -62,152 +115,114 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     ref,
   ) => {
     const [shouldRender, setShouldRender] = useState(show);
-    const [state, setState] = useState<"idle" | "entering" | "leaving">("idle");
-    const stateRef = useRef<"idle" | "entering" | "leaving">("idle");
-    const [activeClasses, setActiveClasses] = useState("");
+    const [animState, setAnimState] = useState<"idle" | "entering" | "leaving">(
+      () => (show && appear ? "entering" : "idle"),
+    );
+    const [prevShow, setPrevShow] = useState(show);
     const internalRef = useRef<HTMLDivElement>(null);
-    const isInitialRender = useRef(true);
-
-    // Built-in presets mapping
-    const getPresetClasses = (p: TransitionPreset) => {
-      switch (p) {
-        case "fade":
-          return {
-            enter: styles.fadeEnterTo,
-            enterFrom: styles.fadeEnter,
-            enterTo: styles.fadeEnterTo,
-            leave: styles.fadeLeaveTo,
-            leaveFrom: styles.fadeLeave,
-            leaveTo: styles.fadeLeaveTo,
-          };
-        case "scale":
-          return {
-            enter: styles.scaleEnterTo,
-            enterFrom: styles.scaleEnter,
-            enterTo: styles.scaleEnterTo,
-            leave: styles.scaleLeaveTo,
-            leaveFrom: styles.scaleLeave,
-            leaveTo: styles.scaleLeaveTo,
-          };
-        default:
-          return {};
-      }
-    };
 
     const presetClasses = preset ? getPresetClasses(preset) : {};
-    const effectiveEnter = classNames(presetClasses.enter, enter);
+    const effectiveEnter    = classNames(presetClasses.enter,     enter);
     const effectiveEnterFrom = classNames(presetClasses.enterFrom, enterFrom);
-    const effectiveEnterTo = classNames(presetClasses.enterTo, enterTo);
-    const effectiveLeave = classNames(presetClasses.leave, leave);
+    const effectiveEnterTo  = classNames(presetClasses.enterTo,   enterTo);
+    const effectiveLeave    = classNames(presetClasses.leave,     leave);
     const effectiveLeaveFrom = classNames(presetClasses.leaveFrom, leaveFrom);
-    const effectiveLeaveTo = classNames(presetClasses.leaveTo, leaveTo);
+    const effectiveLeaveTo  = classNames(presetClasses.leaveTo,   leaveTo);
 
-    // Sync ref with state for synchronous access in fallback
-    useEffect(() => {
-      stateRef.current = state;
-    }, [state]);
+    // Derived state: mount the element when show becomes true.
+    if (show && !shouldRender) {
+      setShouldRender(true);
+    }
+
+    // Derived state: drive animation state from show changes during render.
+    if (show !== prevShow) {
+      setPrevShow(show);
+      if (show) {
+        if (animState !== "entering") setAnimState("entering");
+      } else {
+        if (animState !== "leaving") setAnimState("leaving");
+      }
+    }
 
     useImperativeHandle(ref, () => internalRef.current!);
 
     const handleTransitionEnd = useCallback((e: React.TransitionEvent) => {
       if (e.target !== internalRef.current) return;
-
-      const currentState = stateRef.current;
-
-      if (currentState === "entering") {
-        setState("idle");
-        stateRef.current = "idle";
-        setActiveClasses("");
-      } else if (currentState === "leaving") {
-        setState("idle");
-        stateRef.current = "idle";
-        setActiveClasses("");
-        if (unmount) {
-          setShouldRender(false);
-        }
+      if (animState === "entering" || animState === "leaving") {
+        const leaving = animState === "leaving";
+        setAnimState("idle");
+        if (leaving && unmount) setShouldRender(false);
       }
-    }, [unmount]);
+    }, [animState, unmount]);
 
+    // DOM-only effect: applies CSS transition classes via classList.
+    // No setState here — animation state is managed in the render phase above.
     useLayoutEffect(() => {
-      if (isInitialRender.current) {
-        isInitialRender.current = false;
-        if (!appear || !show) return;
-      }
+      const el = internalRef.current;
+      if (!el) return;
 
-      const completeTransition = () => {
+      if (animState === "entering") {
+        const enterFromList = toClassList(effectiveEnterFrom);
+        const enterList     = toClassList(effectiveEnter);
+        const enterToList   = toClassList(effectiveEnterTo);
+
+        el.classList.add(...enterFromList, ...enterList);
+        void el.offsetHeight;
+        el.classList.remove(...enterFromList);
+        el.classList.add(...enterToList);
+
         if (import.meta.env.MODE === "test") {
           const timer = setTimeout(() => {
-            if (internalRef.current) {
-              handleTransitionEnd({
-                target: internalRef.current,
-                currentTarget: internalRef.current,
-              } as unknown as React.TransitionEvent);
-            }
+            handleTransitionEnd({
+              target: el,
+              currentTarget: el,
+            } as unknown as React.TransitionEvent);
           }, 100);
           return () => clearTimeout(timer);
         }
-        return () => {};
-      };
-
-      if (show) {
-        /* eslint-disable react-hooks/set-state-in-effect */
-        setShouldRender(true);
-        setState("entering");
-        stateRef.current = "entering";
-        setActiveClasses(classNames(effectiveEnter, effectiveEnterFrom));
-        /* eslint-enable react-hooks/set-state-in-effect */
-
-        void internalRef.current?.offsetHeight;
-
-        let cleanup: () => void = () => {};
-        let frame2: number;
-        const frame = requestAnimationFrame(() => {
-          frame2 = requestAnimationFrame(() => {
-            if (internalRef.current) {
-              setActiveClasses(classNames(effectiveEnter, effectiveEnterTo));
-              cleanup = completeTransition();
-            }
-          });
-        });
 
         return () => {
-          cancelAnimationFrame(frame);
-          cancelAnimationFrame(frame2);
-          cleanup();
-        };
-      } else {
-        setState("leaving");
-        stateRef.current = "leaving";
-        setActiveClasses(classNames(effectiveLeave, effectiveLeaveFrom));
-
-        void internalRef.current?.offsetHeight;
-
-        let cleanup: () => void = () => {};
-        let frame2: number;
-        const frame = requestAnimationFrame(() => {
-          frame2 = requestAnimationFrame(() => {
-            if (internalRef.current) {
-              setActiveClasses(classNames(effectiveLeave, effectiveLeaveTo));
-              cleanup = completeTransition();
-            }
-          });
-        });
-
-        return () => {
-          cancelAnimationFrame(frame);
-          cancelAnimationFrame(frame2);
-          cleanup();
+          el.classList.remove(...enterFromList, ...enterList, ...enterToList);
         };
       }
-    }, [show, effectiveEnter, effectiveEnterFrom, effectiveEnterTo, effectiveLeave, effectiveLeaveFrom, effectiveLeaveTo, appear, handleTransitionEnd]);
+
+      if (animState === "leaving") {
+        const leaveFromList = toClassList(effectiveLeaveFrom);
+        const leaveList     = toClassList(effectiveLeave);
+        const leaveToList   = toClassList(effectiveLeaveTo);
+
+        el.classList.add(...leaveFromList, ...leaveList);
+        void el.offsetHeight;
+        el.classList.remove(...leaveFromList);
+        el.classList.add(...leaveToList);
+
+        if (import.meta.env.MODE === "test") {
+          const timer = setTimeout(() => {
+            handleTransitionEnd({
+              target: el,
+              currentTarget: el,
+            } as unknown as React.TransitionEvent);
+          }, 100);
+          return () => clearTimeout(timer);
+        }
+
+        return () => {
+          el.classList.remove(...leaveFromList, ...leaveList, ...leaveToList);
+        };
+      }
+    }, [animState, effectiveEnter, effectiveEnterFrom, effectiveEnterTo, effectiveLeave, effectiveLeaveFrom, effectiveLeaveTo, handleTransitionEnd]);
 
     if (!shouldRender && unmount) return null;
 
     return (
       <div
         ref={internalRef}
-        className={classNames(className, activeClasses, {
-          [styles.hidden]: !show && state === "idle" && !unmount,
+        className={classNames(className, {
+          [styles.hidden]: !show && animState === "idle" && !unmount,
+          [effectiveEnter]: animState === "entering",
+          [effectiveEnterTo]: animState === "entering",
+          [effectiveLeave]: animState === "leaving",
+          [effectiveLeaveTo]: animState === "leaving",
         })}
         onTransitionEnd={handleTransitionEnd}
         {...props}
@@ -215,7 +230,6 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         {children}
       </div>
     );
-
   },
 );
 

@@ -17,6 +17,10 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
    */
   children?: React.ReactNode;
   /**
+   * Content to be rendered inside the indicator (alternative to children).
+   */
+  content?: React.ReactNode;
+  /**
    * Optional icon to display before the children.
    */
   icon?: React.ReactNode;
@@ -71,6 +75,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
   {
     asChild = false,
     children,
+    content,
     icon,
     intent = "primary",
     variant = "solid",
@@ -84,6 +89,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
   ref: React.ForwardedRef<any>,
 ) => {
   const Component = (asChild ? Slot : (as || "span")) as React.ElementType;
+  const finalContent = content ?? children;
 
   const resolvedClassName = classNames(
     styles?.root,
@@ -102,7 +108,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
       {...props}
     >
       {icon && <span className={iconClassName}>{icon}</span>}
-      <Slottable>{children}</Slottable>
+      <Slottable>{finalContent}</Slottable>
     </Component>
   );
 };

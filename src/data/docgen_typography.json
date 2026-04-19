@@ -3,6 +3,7 @@
     "name": "Title",
     "tokens": [
       "--wim-color-caution",
+      "--wim-color-decoration-highlight-color",
       "--wim-color-informative",
       "--wim-color-positive",
       "--wim-color-primary",
@@ -12,7 +13,6 @@
       "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
       "--wim-color-text-white",
-      "--wim-decoration-highlight-color",
       "--wim-decoration-underline",
       "--wim-font-size-2xl",
       "--wim-font-size-3xl",
@@ -224,6 +224,7 @@
     "name": "Text",
     "tokens": [
       "--wim-color-caution",
+      "--wim-color-decoration-highlight-color",
       "--wim-color-informative",
       "--wim-color-positive",
       "--wim-color-primary",
@@ -233,7 +234,6 @@
       "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
       "--wim-color-text-white",
-      "--wim-decoration-highlight-color",
       "--wim-decoration-line-through",
       "--wim-decoration-underline",
       "--wim-font-size-lg",
@@ -267,7 +267,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
           "elements": [
             {
               "name": "literal",
@@ -280,6 +280,18 @@
             {
               "name": "literal",
               "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
             }
           ]
         },
@@ -470,6 +482,7 @@
     "name": "Span",
     "tokens": [
       "--wim-color-caution",
+      "--wim-color-decoration-highlight-color",
       "--wim-color-destructive",
       "--wim-color-informative",
       "--wim-color-positive",
@@ -480,7 +493,6 @@
       "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
       "--wim-color-text-white",
-      "--wim-decoration-highlight-color",
       "--wim-decoration-line-through",
       "--wim-decoration-underline",
       "--wim-font-size-icon-inner",
@@ -510,7 +522,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
           "elements": [
             {
               "name": "literal",
@@ -523,6 +535,18 @@
             {
               "name": "literal",
               "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
             }
           ]
         },
@@ -763,7 +787,8 @@
     "tokens": [
       "--wim-color-text-primary",
       "--wim-font-size-sm",
-      "--wim-spacing-md"
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
     ],
     "anatomy": [],
     "props": {
@@ -910,7 +935,7 @@
   "Highlight": {
     "name": "Highlight",
     "tokens": [
-      "--wim-decoration-highlight-color",
+      "--wim-color-decoration-highlight-color",
       "--wim-radius-xs",
       "--wim-spacing-3xs"
     ],
@@ -1090,7 +1115,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
           "elements": [
             {
               "name": "literal",
@@ -1103,6 +1128,18 @@
             {
               "name": "literal",
               "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
             }
           ]
         },
@@ -1116,7 +1153,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "| \"black\"\r\n| \"deepgray\"\r\n| \"gray\"\r\n| \"lightgray\"\r\n| \"white\"\r\n| \"primary\"\r\n| \"success\"\r\n| \"warning\"\r\n| \"error\"\r\n| \"info\"",
+          "raw": "| \"black\"\n| \"deepgray\"\n| \"gray\"\n| \"lightgray\"\n| \"white\"\n| \"primary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"",
           "elements": [
             {
               "name": "literal",

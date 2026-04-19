@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useId, useCallback } from "react";
+import React, { useRef, useState, useEffect, useId, useCallback, useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
@@ -62,7 +62,37 @@ export const SignaturePad = ({
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
 
-  const getCoordinates = (
+  // Resolve CSS variables if needed
+  const getResolvedColor = useCallback((color: string): string => {
+    if (color.startsWith("var(") && canvasRef.current) {
+      const varName = color.match(/var\((--[^)]+)\)/)?.[1];
+      if (varName) {
+        return getComputedStyle(canvasRef.current).getPropertyValue(varName).trim() || "#000";
+      }
+    }
+    return color;
+  }, []);
+
+  // Initialize canvas with high DPI support
+  useLayoutEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+    ctx.scale(ratio, ratio);
+
+    // Set initial styles
+    ctx.strokeStyle = getResolvedColor(penColor);
+    ctx.lineWidth = penWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+  }, [width, height, penColor, penWidth, getResolvedColor]);
+
+  const getCoordinates = useCallback((
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
   ): { x: number; y: number } | null => {
     if (!canvasRef.current) return null;
@@ -78,46 +108,60 @@ export const SignaturePad = ({
       clientY = (event as MouseEvent).clientY;
     }
 
-    const scaleX = rect.width ? canvasRef.current.width / rect.width : 1;
-    const scaleY = rect.height ? canvasRef.current.height / rect.height : 1;
+    // Coordinates relative to the element's CSS size
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    // Scale coordinates based on the ratio between canvas internal size and CSS size
+    // Note: canvas internal size (ctx.scale) is handled by the browser if we just use x, y
+    // but we need to account for CSS scaling (width: 100%)
+    const scaleX = width / rect.width;
+    const scaleY = height / rect.height;
 
     return {
-      x: (clientX - rect.left) * scaleX,
-      y: (clientY - rect.top) * scaleY,
+      x: x * scaleX,
+      y: y * scaleY,
     };
-  };
+  }, [width, height]);
 
   const startDrawing = (event: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
-    setIsDrawing(true);
+    
+    // Prevent default to avoid scrolling on touch devices
+    if ("touches" in event) {
+      // event.preventDefault(); // Handled by touch-action: none in CSS
+    }
+
     const coords = getCoordinates(event);
     if (!coords || !canvasRef.current) return;
 
     const ctx = canvasRef.current.getContext("2d");
     if (ctx) {
+      setIsDrawing(true);
       ctx.beginPath();
       ctx.moveTo(coords.x, coords.y);
-      ctx.strokeStyle = penColor;
+      // Ensure color is correct even if theme changed
+      ctx.strokeStyle = getResolvedColor(penColor);
       ctx.lineWidth = penWidth;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
     }
   };
 
-  const draw = (
+  const draw = useCallback((
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
   ) => {
-    if (!isDrawing || disabled) return;
+    if (!isDrawing || disabled || !canvasRef.current) return;
     const coords = getCoordinates(event);
-    if (!coords || !canvasRef.current) return;
+    if (!coords) return;
 
     const ctx = canvasRef.current.getContext("2d");
     if (ctx) {
       ctx.lineTo(coords.x, coords.y);
       ctx.stroke();
-      setIsEmpty(false);
+      if (isEmpty) {
+        setIsEmpty(false);
+      }
     }
-  };
+  }, [isDrawing, disabled, getCoordinates, isEmpty]);
 
   const stopDrawing = useCallback(() => {
     if (!isDrawing) return;
@@ -131,17 +175,26 @@ export const SignaturePad = ({
     if (disabled || !canvasRef.current) return;
     const ctx = canvasRef.current.getContext("2d");
     if (ctx) {
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      ctx.clearRect(0, 0, width, height);
       setIsEmpty(true);
       if (onChange) onChange(null);
     }
   };
 
   useEffect(() => {
-    // Global mouseup to stop drawing even if mouse leaves canvas
-    window.addEventListener("mouseup", stopDrawing);
-    return () => window.removeEventListener("mouseup", stopDrawing);
-  }, [isDrawing, stopDrawing]);
+    if (isDrawing) {
+      const handleMouseMove = (e: MouseEvent) => draw(e);
+      const handleMouseUp = () => stopDrawing();
+      
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+      
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mouseup", handleMouseUp);
+      };
+    }
+  }, [isDrawing, draw, stopDrawing]);
 
   return (
     <FieldTemplate
@@ -171,17 +224,19 @@ export const SignaturePad = ({
         >
           <canvas
             ref={canvasRef}
-            width={width}
-            height={height}
             data-testid="signature-canvas"
             className={styles.canvas}
             style={{ width: "100%", height: "100%", display: "block" }}
             onMouseDown={startDrawing}
-            onMouseMove={draw}
-            onMouseUp={stopDrawing}
-            onMouseLeave={draw} // Smooth line when leaving
             onTouchStart={startDrawing}
-            onTouchMove={draw}
+            // onMouseMove and onMouseUp are handled by window listeners when drawing
+            // to allow drawing even when cursor leaves the canvas area
+            onTouchMove={(e) => {
+              if (isDrawing) {
+                draw(e);
+                e.preventDefault();
+              }
+            }}
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
             aria-describedby={errorId}

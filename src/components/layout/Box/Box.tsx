@@ -54,6 +54,8 @@ export type BoxProps<C extends React.ElementType = "div"> = {
   my?: number | WimSpacing;
   /** Background color */
   bg?: WimColor;
+  /** Text color */
+  color?: WimColor;
   /** Width */
   w?: ResponsiveProp<number | string>;
   /** Height */
@@ -100,6 +102,7 @@ export const Box = React.forwardRef(
       mx,
       my,
       bg,
+      color,
       w,
       h,
       radius,
@@ -129,6 +132,7 @@ export const Box = React.forwardRef(
       marginBottom: getSpacingValue(mb ?? my ?? m),
       marginLeft: getSpacingValue(ml ?? mx ?? m),
       backgroundColor: getColorValue(bg),
+      color: getColorValue(color),
       width:
         typeof w === "object"
           ? "var(--wim-box-w)"

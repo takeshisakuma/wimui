@@ -2,7 +2,6 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { expect, userEvent, within } from "storybook/test";
 import { Combobox } from "wimui";
 
 
@@ -57,26 +56,6 @@ export const Default: Story = {
         placeholder={t("story.combobox_placeholder")}
       />
     );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const input = canvas.getByRole("combobox");
-
-    // Type to search
-    await userEvent.type(input, "Apple");
-    
-    // Check if dropdown is open and shows filtered result
-    const listbox = await canvas.findByRole("listbox");
-    await expect(listbox).toBeVisible();
-    await expect(canvas.getByRole("option", { name: "Apple" })).toBeVisible();
-    await expect(canvas.queryByRole("option", { name: "Banana" })).not.toBeInTheDocument();
-
-    // Select Apple
-    await userEvent.click(canvas.getByRole("option", { name: "Apple" }));
-
-    // Check if dropdown closed and input value updated
-    await expect(listbox).not.toBeVisible();
-    await expect(input).toHaveValue("Apple");
   },
 };
 

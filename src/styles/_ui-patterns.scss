@@ -15,6 +15,10 @@
   --wim-height-md: 2.625rem;   // 42px
   --wim-height-lg: 3rem;       // 48px
 
+  /* Form Control Sizes */
+  --wim-checkbox-size: 1.125rem; // 18px
+  --wim-radio-size: 1.125rem;    // 18px
+
   /* Standard Field Widths */
   --wim-width-xs: 7.5rem;   // 120px
   --wim-width-sm: 11.25rem; // 180px
@@ -26,9 +30,12 @@
   --wim-segmented-control-item-size-sm: 1.875rem; // 30px
   --wim-segmented-control-item-size-md: 2.25rem;  // 36px
   --wim-segmented-control-item-size-lg: 2.75rem;  // 44px
-  --wim-switch-width-sm: 2.25rem; // 36px
-  --wim-switch-width-md: 2.75rem; // 44px
-  --wim-switch-width-lg: 3.25rem; // 52px
+  --wim-switch-width-sm: 2.25rem;  // 36px
+  --wim-switch-width-md: 2.75rem;  // 44px
+  --wim-switch-width-lg: 3.25rem;  // 52px
+  --wim-switch-height-sm: 1.1rem;  // ~18px
+  --wim-switch-height-md: 1.5rem;  // 24px
+  --wim-switch-height-lg: 1.875rem; // 30px
 
   /* Navigation & Overlay */
   --wim-menu-min-width: 12.5rem; // 200px

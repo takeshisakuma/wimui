@@ -6,7 +6,9 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { OverlayBase } from "../../_internal/OverlayBase";
+import type { TransitionPreset } from "../../layout/Transition/Transition";
 import styles from "./drawer.module.scss";
+
 
 // --- Drawer Context ---
 type DrawerSide = "top" | "right" | "bottom" | "left";
@@ -187,15 +189,10 @@ export interface DrawerContentProps {
 export const DrawerContent = ({ children, className }: DrawerContentProps) => {
   const { open, onOpenChange, side, slideIn, slideOut } = useDrawer();
 
-  const slideTransition = {
-    appear: slideIn,
-    enter: slideIn ? `slide-${side}-enter` : "",
-    enterFrom: slideIn ? `slide-${side}-enter-from` : "",
-    enterTo: slideIn ? `slide-${side}-enter-to` : "",
-    leave: slideOut ? `slide-${side}-leave` : "",
-    leaveFrom: slideOut ? `slide-${side}-leave-from` : "",
-    leaveTo: slideOut ? `slide-${side}-leave-to` : "",
-  };
+  const slidePreset = (slideIn || slideOut)
+    ? (`slide-${side}` as TransitionPreset)
+    : undefined;
+
 
   return (
     <OverlayBase
@@ -207,7 +204,10 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
         styles[side],
         className,
       )}
-      transitionProps={slideTransition}
+      transitionProps={{
+        appear: slideIn,
+        preset: slidePreset,
+      }}
       data-side={side}
       data-testid="drawer-content"
     >

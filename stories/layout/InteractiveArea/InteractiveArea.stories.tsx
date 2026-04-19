@@ -100,6 +100,7 @@ export const Small: Story = {
   args: {
     ...Default.args,
     size: "sm",
+    icon: <Icon name="DocumentIcon" />,
   },
 };
 
@@ -110,8 +111,8 @@ export const WithContextMenu: Story = {
       <ContextMenu
         menu={
           <>
-            <ContextMenuItem icon={<Icon name="EditIcon" />}>{t("a11y.edit") || "Edit"}</ContextMenuItem>
-            <ContextMenuItem icon={<Icon name="TrashIcon" />} danger>{t("a11y.delete") || "Delete"}</ContextMenuItem>
+            <ContextMenuItem icon={<Icon name="EditIcon" size="xl" />}>{t("a11y.edit") || "Edit"}</ContextMenuItem>
+            <ContextMenuItem icon={<Icon name="TrashIcon" size="xl" />} danger>{t("a11y.delete") || "Delete"}</ContextMenuItem>
           </>
         }
       >

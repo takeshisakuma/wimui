@@ -139,6 +139,7 @@ export const Snackbar = ({
             styles.root,
             intent && styles[intent],
             isVisible && styles.visible,
+            showCloseButton && styles.hasCloseButton,
             className,
           )}
           role={role}

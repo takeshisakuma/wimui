@@ -44,24 +44,40 @@
       transition: opacity var(--wim-transition-fast);
     }
 
-    &.xl {
-      font-size: var(--wim-font-size-xl);
+    &.size-xs {
+      font-size: var(--wim-font-size-xs);
     }
 
-    &.lg {
-      font-size: var(--wim-font-size-lg);
-    }
-
-    &.md {
-      font-size: var(--wim-font-size-md);
-    }
-
-    &.sm {
+    &.size-sm {
       font-size: var(--wim-font-size-sm);
     }
 
-    &.xs {
-      font-size: var(--wim-font-size-xs);
+    &.size-md {
+      font-size: var(--wim-font-size-md);
+    }
+
+    &.size-lg {
+      font-size: var(--wim-font-size-lg);
+    }
+
+    &.size-xl {
+      font-size: var(--wim-font-size-xl);
+    }
+
+    &.size-2xl {
+      font-size: var(--wim-font-size-2xl);
+    }
+
+    &.size-3xl {
+      font-size: var(--wim-font-size-3xl);
+    }
+
+    &.size-4xl {
+      font-size: var(--wim-font-size-4xl);
+    }
+
+    &.size-5xl {
+      font-size: var(--wim-font-size-5xl);
     }
 
     &.destructive {

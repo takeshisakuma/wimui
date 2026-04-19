@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useId } from "react";
+import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import classNames from "classnames";
 import { Input } from "../../form/Input/Input";
 import { BaseListItem } from "../../_internal/BaseListItem";
@@ -54,8 +54,6 @@ export const Combobox = ({
   const { noResults = "No results found" } = labels;
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(defaultValue);
-  const [filteredOptions, setFilteredOptions] =
-    useState<ComboboxOption[]>(options);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,6 +62,13 @@ export const Combobox = ({
   const listboxId = `${id}-list`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+
+  const filteredOptions = useMemo(() => {
+    const searchStr = (inputValue || "").toLowerCase();
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(searchStr),
+    );
+  }, [options, inputValue]);
 
   // 外部クリックで閉じる
   useEffect(() => {
@@ -79,15 +84,9 @@ export const Combobox = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 入力値に基づいてフィルタリング
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
-
-    const filtered = options.filter((option) =>
-      option.label.toLowerCase().includes(value.toLowerCase()),
-    );
-    setFilteredOptions(filtered);
     setIsOpen(true);
     setActiveIndex(-1);
   };
@@ -157,6 +156,7 @@ export const Combobox = ({
           onFocus={() => setIsOpen(true)}
           leftIcon={showSearchIcon ? "SearchIcon" : undefined}
           rightIcon="ChevronDownIcon"
+          onRightIconClick={() => setIsOpen(!isOpen)}
           rightIconRotated={isOpen}
           allowClear={allowClear}
           disabled={disabled}

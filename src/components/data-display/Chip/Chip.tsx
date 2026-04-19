@@ -14,6 +14,8 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   asChild?: boolean;
   /** 表示するコンテンツ */
   children?: React.ReactNode;
+  /** 表示するコンテンツ (childrenの代替) */
+  content?: React.ReactNode;
   /** クリック時のイベント。提供されるとボタンとして動作します。 */
   onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => void;
   /** 削除時のイベント。提供されると×ボタンが表示されます。 */
@@ -46,6 +48,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     {
       asChild = false,
       children,
+      content,
       onClick,
       onDelete,
       avatar,
@@ -64,6 +67,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     const { t } = useTranslation("common");
     const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
     const Component = asChild ? Slot : (onClick ? "button" : "span");
+    const finalContent = content ?? children;
     
     return (
       <Component
@@ -86,7 +90,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         {avatar && <span className={styles.avatar}>{avatar}</span>}
         {!avatar && icon && <span className={styles.icon}>{icon}</span>}
         <span className={styles.label}>
-          <Slottable>{children}</Slottable>
+          <Slottable>{finalContent}</Slottable>
         </span>
         {onDelete && !disabled && (
           <button

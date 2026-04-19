@@ -39,6 +39,79 @@
   transition: all var(--wim-transition-base);
 }
 
+/* Slide - shared transition base */
+.slideBase {
+  transition: transform var(--wim-transition-base);
+}
+
+/* Slide Right */
+.slideRightEnterFrom {
+  transform: translateX(100%);
+}
+
+.slideRightEnterTo {
+  transform: translateX(0);
+}
+
+.slideRightLeaveFrom {
+  transform: translateX(0);
+}
+
+.slideRightLeaveTo {
+  transform: translateX(100%);
+}
+
+/* Slide Left */
+.slideLeftEnterFrom {
+  transform: translateX(-100%);
+}
+
+.slideLeftEnterTo {
+  transform: translateX(0);
+}
+
+.slideLeftLeaveFrom {
+  transform: translateX(0);
+}
+
+.slideLeftLeaveTo {
+  transform: translateX(-100%);
+}
+
+/* Slide Top */
+.slideTopEnterFrom {
+  transform: translateY(-100%);
+}
+
+.slideTopEnterTo {
+  transform: translateY(0);
+}
+
+.slideTopLeaveFrom {
+  transform: translateY(0);
+}
+
+.slideTopLeaveTo {
+  transform: translateY(-100%);
+}
+
+/* Slide Bottom */
+.slideBottomEnterFrom {
+  transform: translateY(100%);
+}
+
+.slideBottomEnterTo {
+  transform: translateY(0);
+}
+
+.slideBottomLeaveFrom {
+  transform: translateY(0);
+}
+
+.slideBottomLeaveTo {
+  transform: translateY(100%);
+}
+
 .hidden {
   display: none !important;
 }

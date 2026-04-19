@@ -86,7 +86,7 @@
     .item {
       position: relative;
       padding: var(--wim-spacing-2xs) 0;
-      line-height: var(--wim-spacing-lg);
+      line-height: var(--wim-line-height-normal);
 
       &.active {
         > .link {

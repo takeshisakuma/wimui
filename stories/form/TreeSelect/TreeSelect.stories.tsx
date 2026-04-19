@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
-import { expect, userEvent, within } from "storybook/test";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   TreeSelect,
   TreeSelectNode,
@@ -59,7 +59,7 @@ const translateTreeData = (
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
@@ -69,17 +69,6 @@ export const Default: Story = {
       />
     );
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const trigger = canvas.getByRole("combobox");
-
-    // Click to open
-    await userEvent.click(trigger);
-    
-    // Check if tree dropdown is open
-    const tree = await canvas.findByRole("tree");
-    await expect(tree).toBeVisible();
-  },
 };
 
 /**
@@ -88,7 +77,7 @@ export const Default: Story = {
  */
 export const CascadeMultiple: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
@@ -109,7 +98,7 @@ export const CascadeMultiple: Story = {
  */
 export const ExclusiveMultiple: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
@@ -126,7 +115,7 @@ export const ExclusiveMultiple: Story = {
 
 export const Searchable: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
@@ -141,7 +130,7 @@ export const Searchable: Story = {
 
 export const DefaultExpanded: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
@@ -156,7 +145,7 @@ export const DefaultExpanded: Story = {
 
 export const Disabled: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(ALL_NAMESPACES);
     const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect

@@ -10,6 +10,7 @@ type DialogContextType = {
   descriptionId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  closeOnOverlayClick: boolean;
 };
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
@@ -29,6 +30,7 @@ export interface DialogProps {
   onOpenChange?: (open: boolean) => void;
   defaultOpen?: boolean;
   className?: string;
+  closeOnOverlayClick?: boolean;
 }
 
 export const Dialog = ({
@@ -36,6 +38,7 @@ export const Dialog = ({
   open: controlledOpen,
   onOpenChange,
   defaultOpen = false,
+  closeOnOverlayClick = true,
 }: DialogProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const isControlled = controlledOpen !== undefined;
@@ -54,7 +57,7 @@ export const Dialog = ({
   const descriptionId = `${id}-description`;
 
   return (
-    <DialogContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange }}>
+    <DialogContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange, closeOnOverlayClick }}>
       {children}
     </DialogContext.Provider>
   );
@@ -146,7 +149,7 @@ export const DialogContent = ({
   onOpenChange: propsOnOpenChange,
   ...props
 }: DialogContentProps) => {
-  const { open: contextOpen, onOpenChange: contextOnOpenChange, titleId, descriptionId } = useDialog();
+  const { open: contextOpen, onOpenChange: contextOnOpenChange, titleId, descriptionId, closeOnOverlayClick } = useDialog();
 
   const open = propsOpen !== undefined ? propsOpen : contextOpen;
   const onOpenChange = propsOnOpenChange !== undefined ? propsOnOpenChange : contextOnOpenChange;
@@ -158,12 +161,13 @@ export const DialogContent = ({
       {...props}
       open={open}
       onOpenChange={onOpenChange}
-      className={classNames(styles.root, className)}
+      closeOnOverlayClick={closeOnOverlayClick}
+      overlayClassName={styles.overlay}
       role="dialog"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
     >
-      <Component className={styles.content}>
+      <Component className={classNames(styles.content, className)}>
         <Slottable>{children}</Slottable>
       </Component>
     </OverlayBase>

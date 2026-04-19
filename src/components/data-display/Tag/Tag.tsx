@@ -10,6 +10,8 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   asChild?: boolean;
   /** 表示するコンテンツ */
   children?: React.ReactNode;
+  /** 表示するコンテンツ (childrenの代替) */
+  content?: React.ReactNode;
   /** インテント（意味的状態） */
   intent?: IndicatorIntent;
   /** バリアント */
@@ -24,9 +26,9 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
  * カテゴリ分けや属性のラベルとして使用される非インタラクティブなコンポーネント。
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
-  ({ children, icon, ...props }, ref) => {
+  ({ children, content, icon, ...props }, ref) => {
     return (
-      <IndicatorBase ref={ref} styles={styles} icon={icon} {...props}>
+      <IndicatorBase ref={ref} styles={styles} icon={icon} content={content} {...props}>
         {children}
       </IndicatorBase>
     );

@@ -65,12 +65,27 @@ describe("Dialog", () => {
 
     expect(screen.getByText("Dialog Body")).toBeInTheDocument();
 
-    const overlay = screen.getByTestId("overlay");
-    if (overlay) fireEvent.click(overlay);
+    fireEvent.click(screen.getByTestId("overlay"));
 
     await waitFor(() => {
       expect(screen.queryByText("Dialog Body")).not.toBeInTheDocument();
     });
+  });
+
+  it("does not close when overlay is clicked and closeOnOverlayClick is false", () => {
+    render(
+      <Dialog defaultOpen={true} closeOnOverlayClick={false}>
+        <DialogContent>
+          <div>Dialog Body</div>
+        </DialogContent>
+      </Dialog>,
+    );
+
+    expect(screen.getByText("Dialog Body")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId("overlay"));
+
+    expect(screen.getByText("Dialog Body")).toBeInTheDocument();
   });
 
   it("respects controlled open=true", () => {
