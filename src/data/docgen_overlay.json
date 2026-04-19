@@ -22,6 +22,25 @@
     "anatomy": [],
     "props": {}
   },
+  "Popover": {
+    "name": "Popover",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -164,31 +183,6 @@
       }
     }
   },
-  "Popover": {
-    "name": "Popover",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Menu": {
     "name": "Menu",
     "tokens": [
@@ -214,6 +208,12 @@
       "--wim-spacing-xs",
       "--wim-z-1"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -276,6 +276,29 @@
     "anatomy": [],
     "props": {}
   },
+  "Drawer": {
+    "name": "Drawer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-overlay-max-width-md",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Dialog": {
     "name": "Dialog",
     "tokens": [
@@ -300,29 +323,6 @@
       "--wim-spacing-md",
       "--wim-spacing-xl",
       "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Drawer": {
-    "name": "Drawer",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-overlay-max-width-md",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
     ],
     "anatomy": [],
     "props": {}
