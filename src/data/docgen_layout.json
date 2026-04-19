@@ -145,6 +145,21 @@
       }
     }
   },
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Transition": {
     "name": "Transition",
     "tokens": [
@@ -295,21 +310,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
       }
     }
   },
@@ -847,7 +847,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -883,7 +883,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -1804,7 +1804,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -1829,6 +1829,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -1927,22 +1935,6 @@
         "description": "Custom styles for internal parts"
       }
     }
-  },
-  "Header": {
-    "name": "Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Group": {
     "name": "Group",
@@ -2086,6 +2078,22 @@
         }
       }
     }
+  },
+  "Header": {
+    "name": "Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Grid": {
     "name": "Grid",
@@ -3458,7 +3466,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -3494,7 +3502,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -4391,7 +4399,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -4427,7 +4435,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -5299,7 +5307,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -5335,7 +5343,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -5657,6 +5665,12 @@
       }
     }
   },
+  "BentoGrid": {
+    "name": "BentoGrid",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "AspectRatio": {
     "name": "AspectRatio",
     "tokens": [],
@@ -5682,12 +5696,6 @@
         "description": "子要素"
       }
     }
-  },
-  "BentoGrid": {
-    "name": "BentoGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "AppShell": {
     "name": "AppShell",

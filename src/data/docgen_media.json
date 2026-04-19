@@ -881,7 +881,7 @@
           "elements": [
             {
               "name": "union",
-              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
               "elements": [
                 {
                   "name": "literal",
@@ -906,6 +906,14 @@
                 {
                   "name": "literal",
                   "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
                 }
               ]
             },
@@ -1005,6 +1013,414 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "Icon": {
+    "name": "Icon",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-2xl",
+      "--wim-font-size-3xl",
+      "--wim-font-size-4xl",
+      "--wim-font-size-5xl",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-font-size-xs",
+      "--wim-opacity-disabled",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "name": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "keyof typeof ALL_ICONS",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "AlertCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "BellIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CalendarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChartIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronLeftIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronRightIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ClockIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseSmallIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CopyIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DocumentIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DownloadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EditIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EmailIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ExternalLinkIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeOffIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "FilterIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HelpCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HomeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HourglassIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ImageIcon"
+            },
+            {
+              "name": "literal",
+              "value": "InfoCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LoadingIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogInIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogOutIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MaximizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinimizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MonitorIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoonIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreHorizontalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreVerticalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MuteIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PauseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PdfIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PhoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PipIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlayIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ProjectIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RefreshIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RepeatIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SearchIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SettingsIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShuffleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipBackIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipForwardIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SmartphoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SpinnerIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SquareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "StarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SunIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "TrashIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UploadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UserIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VideoIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VolumeIcon"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "component": {
+        "required": false,
+        "tsType": {
+          "name": "ReactFC",
+          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
+          "elements": [
+            {
+              "name": "ReactSVGProps",
+              "raw": "React.SVGProps<SVGSVGElement>",
+              "elements": [
+                {
+                  "name": "SVGSVGElement"
+                }
+              ]
+            }
+          ]
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"destructive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"positive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"caution\""
+            },
+            {
+              "name": "literal",
+              "value": "\"informative\""
+            },
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"tertiary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"disabled\""
+            }
+          ]
+        },
+        "description": ""
       }
     }
   },
@@ -1574,406 +1990,6 @@
           "value": "{}",
           "computed": false
         }
-      }
-    }
-  },
-  "Icon": {
-    "name": "Icon",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-2xl",
-      "--wim-font-size-3xl",
-      "--wim-font-size-4xl",
-      "--wim-font-size-5xl",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-font-size-xs",
-      "--wim-opacity-disabled",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "name": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "keyof typeof ALL_ICONS",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "AlertCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "BellIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CalendarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChartIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronLeftIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronRightIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ClockIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseSmallIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CopyIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DocumentIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DownloadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EditIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EmailIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ExternalLinkIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeOffIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "FilterIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HelpCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HomeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HourglassIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ImageIcon"
-            },
-            {
-              "name": "literal",
-              "value": "InfoCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LoadingIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogInIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogOutIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MaximizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinimizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MonitorIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoonIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreHorizontalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreVerticalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MuteIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PauseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PdfIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PhoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PipIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlayIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ProjectIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RefreshIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RepeatIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SearchIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SettingsIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShuffleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipBackIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipForwardIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SmartphoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SpinnerIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SquareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "StarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SunIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "TrashIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UploadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UserIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VideoIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VolumeIcon"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "component": {
-        "required": false,
-        "tsType": {
-          "name": "ReactFC",
-          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
-          "elements": [
-            {
-              "name": "ReactSVGProps",
-              "raw": "React.SVGProps<SVGSVGElement>",
-              "elements": [
-                {
-                  "name": "SVGSVGElement"
-                }
-              ]
-            }
-          ]
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"destructive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"positive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"caution\""
-            },
-            {
-              "name": "literal",
-              "value": "\"informative\""
-            },
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"tertiary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"disabled\""
-            }
-          ]
-        },
-        "description": ""
       }
     }
   },

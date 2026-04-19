@@ -176,65 +176,81 @@ export const Calendar = ({
         </button>
       </div>
 
-      <div className={styles.grid}>
-        {displayWeekDayNames.map((day, index) => {
-          const actualDayIndex = (index + (weekStartsOn || 0)) % 7;
-          return (
-            <div
-              key={index}
-              className={classNames(styles.weekday, {
-                [styles.sunday]: actualDayIndex === 0,
-                [styles.saturday]: actualDayIndex === 6,
+      <div className={styles.grid} role="grid">
+        <div role="row">
+          {displayWeekDayNames.map((day, index) => {
+            const actualDayIndex = (index + (weekStartsOn || 0)) % 7;
+            return (
+              <div
+                key={index}
+                role="columnheader"
+                className={classNames(styles.weekday, {
+                  [styles.sunday]: actualDayIndex === 0,
+                  [styles.saturday]: actualDayIndex === 6,
+                })}
+              >
+                {day}
+              </div>
+            );
+          })}
+        </div>
+        {(() => {
+          const rows = [];
+          for (let i = 0; i < daysGrid.length; i += 7) {
+            rows.push(daysGrid.slice(i, i + 7));
+          }
+          return rows.map((row, rowIndex) => (
+            <div key={rowIndex} role="row">
+              {row.map((day, colIndex) => {
+                const index = rowIndex * 7 + colIndex;
+                const selected = isSelected(day.date);
+                const inRange = isInRange(day.date);
+                const isDisabled = disabled || isInternalDisabled(day.date);
+                const isTodayDate = isToday(day.date);
+                const isOtherMonth = !day.currentMonth;
+                const isRangeStart = rangeMode && isSameDay(day.date, activeRange.start);
+                const isRangeEnd = rangeMode && isSameDay(day.date, activeRange.end);
+
+                const dateLabel = `${day.date.getFullYear()}-${day.date.getMonth() + 1}-${day.date.getDate()}`;
+
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    role="gridcell"
+                    aria-selected={selected}
+                    aria-current={isTodayDate ? "date" : undefined}
+                    data-calendar-day
+                    data-selected={selected || undefined}
+                    data-other-month={isOtherMonth || undefined}
+                    className={classNames(styles.day, {
+                      [styles.selected]: selected,
+                      [styles.inRange]: inRange,
+                      [styles.rangeStart]: isRangeStart,
+                      [styles.rangeEnd]: isRangeEnd,
+                      [styles.disabled]: isDisabled,
+                      [styles.today]: isTodayDate,
+                      [styles.otherMonth]: isOtherMonth,
+                      [styles.sunday]: day.date.getDay() === 0,
+                      [styles.saturday]: day.date.getDay() === 6,
+                    })}
+                    onClick={() => handleDateClick(day.date)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleDateClick(day.date);
+                      }
+                    }}
+                    disabled={isDisabled}
+                    aria-label={dateLabel}
+                  >
+                    {day.date.getDate()}
+                  </button>
+                );
               })}
-            >
-              {day}
             </div>
-          );
-        })}
-        {daysGrid.map((day, index) => {
-          const selected = isSelected(day.date);
-          const inRange = isInRange(day.date);
-          const isDisabled = disabled || isInternalDisabled(day.date);
-          const isTodayDate = isToday(day.date);
-          const isOtherMonth = !day.currentMonth;
-          const isRangeStart = rangeMode && isSameDay(day.date, activeRange.start);
-          const isRangeEnd = rangeMode && isSameDay(day.date, activeRange.end);
-
-          const dateLabel = `${day.date.getFullYear()}-${day.date.getMonth() + 1}-${day.date.getDate()}`;
-
-          return (
-            <button
-              key={index}
-              type="button"
-              data-calendar-day
-              data-selected={selected || undefined}
-              data-other-month={isOtherMonth || undefined}
-              className={classNames(styles.day, {
-                [styles.selected]: selected,
-                [styles.inRange]: inRange,
-                [styles.rangeStart]: isRangeStart,
-                [styles.rangeEnd]: isRangeEnd,
-                [styles.disabled]: isDisabled,
-                [styles.today]: isTodayDate,
-                [styles.otherMonth]: isOtherMonth,
-                [styles.sunday]: day.date.getDay() === 0,
-                [styles.saturday]: day.date.getDay() === 6,
-              })}
-              onClick={() => handleDateClick(day.date)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleDateClick(day.date);
-                }
-              }}
-              disabled={isDisabled}
-              aria-pressed={selected}
-              aria-label={dateLabel}
-            >
-              {day.date.getDate()}
-            </button>
-          );
-        })}
+          ));
+        })()}
       </div>
     </div>
   );

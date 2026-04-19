@@ -51,11 +51,12 @@ export const SignaturePad = ({
   layout = "vertical",
   canvasAriaLabel,
 }: SignaturePadProps) => {
-  const { t } = useTranslation("common");
-  const resolvedClearLabel = clearLabel ?? t("button.clear");
+  const { t } = useTranslation(["common", "components"]);
+  const resolvedClearLabel = clearLabel ?? t("signature.clear", { ns: "components", defaultValue: t("button.clear") });
   const resolvedCanvasAriaLabel = canvasAriaLabel ?? t("a11y.signature_canvas");
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
+  // Use ref instead of state — avoids re-renders during drawing that would re-run effects
+  const isDrawingRef = useRef(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const generatedId = useId();
   const id = `wim-signature-pad-${generatedId}`;
@@ -73,7 +74,9 @@ export const SignaturePad = ({
     return color;
   }, []);
 
-  // Initialize canvas with high DPI support
+  // Initialize canvas with high DPI support.
+  // Depends only on width/height — assigning canvas.width/height clears the canvas,
+  // so pen style props must NOT be included here.
   useLayoutEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
@@ -84,13 +87,9 @@ export const SignaturePad = ({
     canvas.width = width * ratio;
     canvas.height = height * ratio;
     ctx.scale(ratio, ratio);
-
-    // Set initial styles
-    ctx.strokeStyle = getResolvedColor(penColor);
-    ctx.lineWidth = penWidth;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-  }, [width, height, penColor, penWidth, getResolvedColor]);
+  }, [width, height]);
 
   const getCoordinates = useCallback((
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
@@ -108,13 +107,8 @@ export const SignaturePad = ({
       clientY = (event as MouseEvent).clientY;
     }
 
-    // Coordinates relative to the element's CSS size
     const x = clientX - rect.left;
     const y = clientY - rect.top;
-
-    // Scale coordinates based on the ratio between canvas internal size and CSS size
-    // Note: canvas internal size (ctx.scale) is handled by the browser if we just use x, y
-    // but we need to account for CSS scaling (width: 100%)
     const scaleX = width / rect.width;
     const scaleY = height / rect.height;
 
@@ -126,30 +120,26 @@ export const SignaturePad = ({
 
   const startDrawing = (event: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
-    
-    // Prevent default to avoid scrolling on touch devices
-    if ("touches" in event) {
-      // event.preventDefault(); // Handled by touch-action: none in CSS
-    }
 
     const coords = getCoordinates(event);
     if (!coords || !canvasRef.current) return;
 
     const ctx = canvasRef.current.getContext("2d");
     if (ctx) {
-      setIsDrawing(true);
+      isDrawingRef.current = true;
       ctx.beginPath();
       ctx.moveTo(coords.x, coords.y);
-      // Ensure color is correct even if theme changed
       ctx.strokeStyle = getResolvedColor(penColor);
       ctx.lineWidth = penWidth;
     }
   };
 
-  const draw = useCallback((
+  // Plain function attached directly to canvas — React updates the binding each render,
+  // so there is no stale-closure risk.
+  const draw = (
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
   ) => {
-    if (!isDrawing || disabled || !canvasRef.current) return;
+    if (!isDrawingRef.current || disabled || !canvasRef.current) return;
     const coords = getCoordinates(event);
     if (!coords) return;
 
@@ -157,44 +147,52 @@ export const SignaturePad = ({
     if (ctx) {
       ctx.lineTo(coords.x, coords.y);
       ctx.stroke();
-      if (isEmpty) {
-        setIsEmpty(false);
-      }
+      setIsEmpty(false);
     }
-  }, [isDrawing, disabled, getCoordinates, isEmpty]);
+  };
 
-  const stopDrawing = useCallback(() => {
-    if (!isDrawing) return;
-    setIsDrawing(false);
+  const stopDrawing = () => {
+    if (!isDrawingRef.current) return;
+    isDrawingRef.current = false;
     if (onChange && canvasRef.current) {
-      onChange(isEmpty ? null : canvasRef.current.toDataURL());
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      const isCanvasEmpty = !ctx || ctx.getImageData(0, 0, canvas.width, canvas.height).data.every(
+        (v, i) => i % 4 !== 3 || v === 0,
+      );
+      onChange(isCanvasEmpty ? null : canvas.toDataURL());
     }
-  }, [isDrawing, onChange, isEmpty]);
+  };
+
+  // Keep a ref so the window mouseup listener always calls the latest stopDrawing
+  const stopRef = useRef(stopDrawing);
+  useLayoutEffect(() => {
+    stopRef.current = stopDrawing;
+  });
+
+  // Window mouseup catches releases that occur outside the canvas element
+  useEffect(() => {
+    const handleMouseUp = () => stopRef.current();
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => window.removeEventListener("mouseup", handleMouseUp);
+  }, []);
+
+  // Guard: only clear when the button itself received pointerdown.
+  // Prevents accidental clears when a drawing gesture ends over the button.
+  const clearIntentRef = useRef(false);
 
   const clear = () => {
+    if (!clearIntentRef.current) return;
+    clearIntentRef.current = false;
     if (disabled || !canvasRef.current) return;
-    const ctx = canvasRef.current.getContext("2d");
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
     if (ctx) {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       setIsEmpty(true);
       if (onChange) onChange(null);
     }
   };
-
-  useEffect(() => {
-    if (isDrawing) {
-      const handleMouseMove = (e: MouseEvent) => draw(e);
-      const handleMouseUp = () => stopDrawing();
-      
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-      
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
-  }, [isDrawing, draw, stopDrawing]);
 
   return (
     <FieldTemplate
@@ -228,15 +226,10 @@ export const SignaturePad = ({
             className={styles.canvas}
             style={{ width: "100%", height: "100%", display: "block" }}
             onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
             onTouchStart={startDrawing}
-            // onMouseMove and onMouseUp are handled by window listeners when drawing
-            // to allow drawing even when cursor leaves the canvas area
-            onTouchMove={(e) => {
-              if (isDrawing) {
-                draw(e);
-                e.preventDefault();
-              }
-            }}
+            onTouchMove={draw}
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
             aria-describedby={errorId}
@@ -248,6 +241,7 @@ export const SignaturePad = ({
           <Button
             variant="outline"
             size="sm"
+            onPointerDown={() => { clearIntentRef.current = true; }}
             onClick={clear}
             disabled={disabled || isEmpty}
           >

@@ -137,7 +137,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -267,7 +267,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -292,6 +292,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -316,7 +324,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -375,7 +383,7 @@
               "elements": [
                 {
                   "name": "union",
-                  "raw": "| \"loose-jp\"\r\n| \"normal-jp\"\r\n| \"tight-jp\"\r\n| \"loose\"\r\n| \"normal\"\r\n| \"tight\"",
+                  "raw": "| \"loose-jp\"\n| \"normal-jp\"\n| \"tight-jp\"\n| \"loose\"\n| \"normal\"\n| \"tight\"",
                   "elements": [
                     {
                       "name": "literal",
@@ -590,7 +598,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -615,6 +623,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -639,7 +655,7 @@
                 },
                 {
                   "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\r\n| `var(--wim-${WimColorKey})`",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
                   "elements": [
                     {
                       "name": "literal",
@@ -1115,7 +1131,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -1140,6 +1156,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },

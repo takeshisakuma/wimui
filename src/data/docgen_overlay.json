@@ -183,6 +183,12 @@
       }
     }
   },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Menu": {
     "name": "Menu",
     "tokens": [
@@ -208,12 +214,6 @@
       "--wim-spacing-xs",
       "--wim-z-1"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },

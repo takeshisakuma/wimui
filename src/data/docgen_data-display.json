@@ -158,7 +158,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "| \"primary\"\r\n| \"secondary\"\r\n| \"success\"\r\n| \"warning\"\r\n| \"error\"\r\n| \"info\"\r\n| \"neutral\"",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
           "elements": [
             {
               "name": "literal",
@@ -218,7 +218,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -243,6 +243,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -277,6 +285,30 @@
       "--wim-spacing-sm",
       "--wim-spacing-xl",
       "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Stats": {
+    "name": "Stats",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
     ],
     "anatomy": [],
     "props": {}
@@ -318,94 +350,6 @@
     ],
     "anatomy": [],
     "props": {}
-  },
-  "Stats": {
-    "name": "Stats",
-    "tokens": [
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-positive",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-display",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-line-height-normal",
-      "--wim-line-height-snug",
-      "--wim-line-height-tight",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Marquee": {
-    "name": "Marquee",
-    "tokens": [
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "duration": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "アニメーションの速度（秒）。デフォルトは `20`。",
-        "defaultValue": {
-          "value": "20",
-          "computed": false
-        }
-      },
-      "reverse": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "アニメーションを逆方向にするかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "pauseOnHover": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "ホバー時にアニメーションを一時停止するかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "vertical": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "垂直方向に流すかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "repeat": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。",
-        "defaultValue": {
-          "value": "2",
-          "computed": false
-        }
-      }
-    }
   },
   "QRCode": {
     "name": "QRCode",
@@ -541,6 +485,70 @@
           "name": "string"
         },
         "description": "Accessible label describing what the QR code represents"
+      }
+    }
+  },
+  "Marquee": {
+    "name": "Marquee",
+    "tokens": [
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "duration": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "アニメーションの速度（秒）。デフォルトは `20`。",
+        "defaultValue": {
+          "value": "20",
+          "computed": false
+        }
+      },
+      "reverse": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "アニメーションを逆方向にするかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "pauseOnHover": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "ホバー時にアニメーションを一時停止するかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "vertical": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "垂直方向に流すかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "repeat": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
       }
     }
   },
@@ -738,6 +746,67 @@
       }
     }
   },
+  "EmptyState": {
+    "name": "EmptyState",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示する説明文。"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するアイコン。"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションとして表示する要素（ボタンなど）。"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"simple\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"simple\""
+            }
+          ]
+        },
+        "description": "デザインバリエーション。",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "FAQSection": {
     "name": "FAQSection",
     "tokens": [],
@@ -817,67 +886,6 @@
           "name": "string"
         },
         "description": "追加のクラス名。"
-      }
-    }
-  },
-  "EmptyState": {
-    "name": "EmptyState",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示する説明文。"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するアイコン。"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションとして表示する要素（ボタンなど）。"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"simple\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"simple\""
-            }
-          ]
-        },
-        "description": "デザインバリエーション。",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
       }
     }
   },
@@ -1658,7 +1666,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "| \"primary\"\r\n| \"secondary\"\r\n| \"success\"\r\n| \"warning\"\r\n| \"error\"\r\n| \"info\"\r\n| \"neutral\"",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
           "elements": [
             {
               "name": "literal",
@@ -1726,7 +1734,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -1751,6 +1759,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -1779,6 +1795,30 @@
   "ChatUI": {
     "name": "ChatUI",
     "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Card": {
+    "name": "Card",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -2049,30 +2089,6 @@
         "description": "追加のクラス名"
       }
     }
-  },
-  "Card": {
-    "name": "Card",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "RangeCalendar": {
     "name": "RangeCalendar",
@@ -2661,7 +2677,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "| \"primary\"\r\n| \"secondary\"\r\n| \"success\"\r\n| \"warning\"\r\n| \"error\"\r\n| \"info\"\r\n| \"neutral\"",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
           "elements": [
             {
               "name": "literal",
@@ -2721,7 +2737,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -2746,6 +2762,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -2777,7 +2801,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -2802,6 +2826,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -2895,7 +2927,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
             {
               "name": "literal",
@@ -2920,6 +2952,14 @@
             {
               "name": "literal",
               "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
             }
           ]
         },
@@ -2955,7 +2995,7 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "| \"primary\"\r\n| \"secondary\"\r\n| \"success\"\r\n| \"warning\"\r\n| \"error\"\r\n| \"info\"\r\n| \"neutral\"",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
           "elements": [
             {
               "name": "literal",
