@@ -1,28 +1,74 @@
 import React from "react";
-import { Button, ButtonProps } from "../../form/Button/Button";
-import buttonStyles from "../../form/Button/button.module.scss";
 import classNames from "classnames";
+import { ButtonProps } from "../../form/Button/Button";
+import buttonStyles from "../../form/Button/button.module.scss";
+import { Icon } from "../../media/Icon/Icon";
+import { getColorValue } from "../../../utilities/style-utils";
 
 export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
   Omit<ButtonProps, "onClick" | "type">;
 
 /**
  * ボタンの見た目をしたアンカー（リンク）コンポーネント。
- * internally uses Button with asChild pattern.
  */
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ children, icon, className, ...props }, ref) => {
+  (
+    {
+      children,
+      icon,
+      iconPosition = "left",
+      size = "md",
+      variant = "outline",
+      intent = "default",
+      backgroundColor,
+      justify = "center",
+      fullWidth = false,
+      className,
+      style,
+      "aria-label": ariaLabelProp,
+      ...props
+    },
+    ref,
+  ) => {
+    const justifyStyle =
+      justify === "start"
+        ? "flex-start"
+        : justify === "end"
+          ? "flex-end"
+          : justify === "between"
+            ? "space-between"
+            : justify;
+
+    const iconContent = icon
+      ? typeof icon === "string"
+        ? <Icon name={icon as React.ComponentProps<typeof Icon>["name"]} size={size} />
+        : icon
+      : null;
+
+    const bgStyle = backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {};
+
     return (
-      <Button
-        asChild
-        icon={icon}
-        className={classNames({ [buttonStyles.iconOnly]: !children && !!icon }, className)}
-        {...(props as ButtonProps)}
+      <a
+        ref={ref}
+        className={classNames(
+          buttonStyles.root,
+          buttonStyles[size],
+          buttonStyles[variant],
+          buttonStyles[intent],
+          !children && !!icon && buttonStyles.iconOnly,
+          fullWidth && buttonStyles.fullWidth,
+          className,
+        )}
+        style={{ justifyContent: justifyStyle, ...bgStyle, ...style }}
+        aria-label={ariaLabelProp}
+        {...props}
       >
-        <a ref={ref} href={props.href}>
+        <span className={buttonStyles.content}>
+          {iconContent && iconPosition === "left" && iconContent}
           {children}
-        </a>
-      </Button>
+          {iconContent && iconPosition === "right" && iconContent}
+        </span>
+      </a>
     );
   },
 );

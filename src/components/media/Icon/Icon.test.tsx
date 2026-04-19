@@ -19,7 +19,7 @@ describe("Icon", () => {
       <Icon name="CircleIcon" size="lg" color="primary" />,
     );
     const svg = container.querySelector("svg");
-    expect(svg).toHaveClass(styles.lg);
+    expect(svg).toHaveClass(styles["size-lg"]);
     expect(svg).toHaveClass(styles.primary);
   });
 
