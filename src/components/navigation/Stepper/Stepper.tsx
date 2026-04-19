@@ -140,7 +140,7 @@ export const Stepper = ({
               aria-selected={onChange ? index === current : undefined}
               aria-disabled={step.disabled ? "true" : undefined}
               data-testid="stepper-item"
-              data-intent={stepIntent}
+              data-status={stepIntent}
               tabIndex={
                 onChange
                   ? !step.disabled && index === current ? 0 : -1

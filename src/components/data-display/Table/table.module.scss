@@ -12,6 +12,10 @@
   }
 
   .root {
+    :global(.wim-table) & {
+      width: 100%;
+    }
+
     width: 100%;
     margin-bottom: var(--wim-spacing-xl);
     vertical-align: top;
@@ -106,6 +110,7 @@
   .body {
     // Basic body styles
   }
+
 
   .row {
     border-bottom: 1px solid var(--wim-color-border);

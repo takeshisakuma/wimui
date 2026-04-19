@@ -71,6 +71,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
             fullWidth && styles.fullWidth,
             stickyHeader && styles.stickyHeader,
             mobileCard && styles.mobileCard,
+            "wim-table",
             className,
           )}
           ref={ref}

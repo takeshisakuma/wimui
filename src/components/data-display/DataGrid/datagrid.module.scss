@@ -4,31 +4,16 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow: hidden;
-    background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    height: 100%;
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
   }
 
   .container {
+    position: relative;
     flex: 1;
-    width: 100%;
     overflow: auto;
-
-    /* Remove default Table margin and border to avoid gap and double borders */
-    .table {
-      margin-bottom: 0;
-      border: none;
-    }
-  }
-
-  /* Header & Footer */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--wim-spacing-md);
-    border-bottom: 1px solid var(--wim-color-border);
   }
 
   .footer {
@@ -36,20 +21,42 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-md);
-    background: var(--wim-color-bg-subtle);
-    border-top: 1px solid var(--wim-color-border);
+    background-color: var(--wim-color-bg-secondary);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
+  .info {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
   }
 
   .pagination {
     display: flex;
-    gap: var(--wim-spacing-sm);
     align-items: center;
   }
 
-  /* DataGrid specific highlights */
+  .loading {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .table {
+    margin: 0 !important;
+    border: none !important;
+  }
+
   .cellFixed {
     position: sticky;
-    z-index: var(--wim-z-2);
+    z-index: var(--wim-z-10);
     background-color: var(--wim-color-bg-component);
   }
 
@@ -59,5 +66,11 @@
 
   .cellFixedRightFirst {
     box-shadow: -2px 0 5px -2px color-mix(in srgb, var(--wim-color-text-primary) 10%, transparent);
+  }
+
+  .selectionInfo {
+    margin-left: var(--wim-spacing-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-primary);
   }
 }

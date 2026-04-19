@@ -48,10 +48,6 @@
             .line::after {
               background-color: var(--wim-color-primary);
             }
-
-            & + .item.labelVertical .line::before {
-              background-color: var(--wim-color-primary);
-            }
           }
         }
       }
@@ -117,12 +113,13 @@
 
         &::before {
           left: 0;
-          width: calc(var(--wim-spacing-3xl) / 2);
+          display: none;
+          width: 0;
         }
 
         &::after {
           right: 0;
-          left: calc(var(--wim-spacing-3xl) / 2);
+          left: var(--wim-spacing-3xl);
           width: auto;
         }
       }
@@ -137,9 +134,15 @@
 
       // Beside Label Mode (Default)
       &:not(.labelVertical) {
+        .line::after {
+          right: calc(-1 * var(--wim-spacing-md));
+          left: var(--wim-spacing-3xl);
+          width: auto;
+        }
+
         .content {
           padding-right: var(--wim-spacing-md);
-          margin-top: calc(var(--wim-spacing-xs) * -1.2); // Position title further up
+          margin-top: calc(var(--wim-spacing-xs) * -1.2);
         }
       }
 
@@ -149,14 +152,13 @@
             width: 100%;
 
             &::before {
-              left: calc(var(--wim-border-width-thin) * -1);
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
+              display: none;
             }
 
             &::after {
-              right: calc(var(--wim-border-width-thin) * -1);
-              left: auto;
-              width: calc(50% - var(--wim-spacing-3xl) / 2 + var(--wim-border-width-thin));
+              right: auto;
+              left: calc(50% + var(--wim-spacing-3xl) / 2);
+              width: calc(100% - var(--wim-spacing-3xl));
             }
           }
         }
@@ -175,11 +177,12 @@
 
           .line {
             position: absolute;
-            top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
+            top: calc(var(--wim-spacing-3xl) + var(--wim-spacing-xs));
+            bottom: calc(-1 * var(--wim-spacing-lg) + var(--wim-spacing-xs));
             left: calc(var(--wim-spacing-3xl) / 2);
             z-index: 0;
             width: var(--wim-border-width-thick);
-            height: 100%;
+            height: auto;
             background-color: var(--wim-color-border-secondary);
             transform: translateX(-50%);
 
@@ -226,11 +229,12 @@
 
       .line {
         position: absolute;
-        top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
+        top: calc(var(--wim-spacing-3xl) + var(--wim-spacing-xs));
+        bottom: calc(-1 * var(--wim-spacing-lg) + var(--wim-spacing-xs));
         left: calc(var(--wim-spacing-3xl) / 2);
         z-index: 0;
         width: var(--wim-border-width-thick);
-        height: 100%;
+        height: auto;
         background-color: var(--wim-color-border-secondary);
         transform: translateX(-50%);
 
@@ -239,7 +243,7 @@
           top: 0;
           left: 0;
           width: 100%;
-          height: calc(100% + var(--wim-spacing-lg)); // Extend line to next icon
+          height: 100%;
           content: "";
           background-color: inherit;
         }

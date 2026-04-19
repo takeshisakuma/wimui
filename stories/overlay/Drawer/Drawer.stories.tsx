@@ -56,7 +56,7 @@ export const Default: Story = {
         <DrawerTrigger asChild>
           <Button variant="solid">{t("story.drawer_open_right")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent side={args.side}>
           <DrawerHeader>
             <DrawerTitle>{t("story.drawer_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_desc")}</DrawerDescription>
@@ -88,7 +88,7 @@ export const Left: Story = {
         <DrawerTrigger asChild>
           <Button variant="outline">{t("story.drawer_open_left")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent side={args.side}>
           <DrawerHeader>
             <DrawerTitle>{t("story.drawer_left_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_left_desc")}</DrawerDescription>
@@ -118,7 +118,7 @@ export const Top: Story = {
         <DrawerTrigger asChild>
           <Button variant="outline">{t("story.drawer_open_top")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent side={args.side}>
           <DrawerHeader>
             <DrawerTitle>{t("story.drawer_top_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_top_desc")}</DrawerDescription>
@@ -148,7 +148,7 @@ export const Bottom: Story = {
         <DrawerTrigger asChild>
           <Button variant="outline">{t("story.drawer_open_bottom")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent side={args.side}>
           <DrawerHeader>
             <DrawerTitle>{t("story.drawer_bottom_title")}</DrawerTitle>
             <DrawerDescription>
@@ -170,7 +170,7 @@ export const Bottom: Story = {
 };
 
 export const Controlled: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
     return (
@@ -192,7 +192,7 @@ export const Controlled: Story = {
         >{t("story.dialog_state_open")}</Button>
 
         <Drawer open={open} onOpenChange={setOpen}>
-          <DrawerContent>
+          <DrawerContent side={args.side}>
             <DrawerHeader>
               <DrawerTitle>{t("story.drawer_controlled_title")}</DrawerTitle>
               <DrawerDescription>
@@ -234,7 +234,7 @@ export const WithoutSlide: Story = {
         <DrawerTrigger asChild>
           <Button variant="solid">{t("story.drawer_open_no_slide")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent side={args.side}>
           <DrawerHeader>
             <DrawerTitle>{t("story.drawer_no_slide_title")}</DrawerTitle>
             <DrawerDescription>

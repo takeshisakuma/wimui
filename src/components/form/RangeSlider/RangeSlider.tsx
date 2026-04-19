@@ -165,6 +165,7 @@ export const RangeSlider = ({
     handle: "min" | "max",
   ) => {
     if (disabled) return;
+    dragValueRef.current = [...currentValue];
     setDraggingHandle(handle);
     e.stopPropagation();
     e.preventDefault();

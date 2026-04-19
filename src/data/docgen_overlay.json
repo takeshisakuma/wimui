@@ -1,4 +1,10 @@
 {
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Tooltip": {
     "name": "Tooltip",
     "tokens": [
@@ -13,12 +19,6 @@
       "--wim-spacing-sm",
       "--wim-z-overlay"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -37,6 +37,34 @@
       "--wim-spacing-md",
       "--wim-spacing-sm",
       "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Menu": {
+    "name": "Menu",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-xs",
+      "--wim-letter-spacing-wide",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -189,30 +217,17 @@
     "anatomy": [],
     "props": {}
   },
-  "Menu": {
-    "name": "Menu",
+  "Dropdown": {
+    "name": "Dropdown",
     "tokens": [
       "--wim-border-width-thin",
       "--wim-color-bg-component",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-xs",
-      "--wim-letter-spacing-wide",
+      "--wim-color-border",
       "--wim-menu-min-width",
       "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
+      "--wim-shadow-lg",
       "--wim-spacing-xs",
-      "--wim-z-1"
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}
@@ -261,16 +276,29 @@
       }
     }
   },
-  "Dropdown": {
-    "name": "Dropdown",
+  "Dialog": {
+    "name": "Dialog",
     "tokens": [
-      "--wim-border-width-thin",
+      "--wim-breakpoint-sm",
       "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-breakpoint",
+      "--wim-dialog-max-height",
+      "--wim-dialog-max-width",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-overlay-max-width-lg",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
       "--wim-shadow-lg",
-      "--wim-spacing-xs",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
       "--wim-z-overlay"
     ],
     "anatomy": [],
@@ -302,34 +330,6 @@
   "ContextMenu": {
     "name": "ContextMenu",
     "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog": {
-    "name": "Dialog",
-    "tokens": [
-      "--wim-breakpoint-sm",
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-breakpoint",
-      "--wim-dialog-max-height",
-      "--wim-dialog-max-width",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-overlay-max-width-lg",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
     "anatomy": [],
     "props": {}
   },

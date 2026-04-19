@@ -67,6 +67,7 @@ type TransferListProps = {
     data: TransferItem[],
   ) => void;
   labels?: TransferLabels;
+  className?: string;
 };
 
 const TransferList = ({
@@ -82,6 +83,7 @@ const TransferList = ({
   onSelectAll,
   onKeyDown,
   labels = {},
+  className,
 }: TransferListProps) => {
   const { noData = "No Data" } = labels;
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -162,7 +164,7 @@ const TransferList = ({
   const titleStr = typeof title === "string" ? title : "";
 
   return (
-    <div className={styles.list}>
+    <div className={classNames(styles.list, className)}>
       <div className={styles.header}>
         <Checkbox
           checked={isAllSelected}
@@ -410,7 +412,7 @@ export const Transfer = ({
       errorId={errorId}
       className={className}
     >
-      <div className={styles.container}>
+      <div className={classNames(styles.container, "wim-transfer")}>
         <VisuallyHidden aria-live="polite" aria-atomic="true">
           {statusMessage}
         </VisuallyHidden>
@@ -425,6 +427,7 @@ export const Transfer = ({
           aria-describedby={errorId}
         >
           <TransferList
+            className="wim-transfer__list"
             data={sourceData}
             title={titles[0]}
             listType="source"
@@ -461,6 +464,7 @@ export const Transfer = ({
           </div>
 
           <TransferList
+            className="wim-transfer__list"
             data={targetData}
             title={titles[1]}
             listType="target"

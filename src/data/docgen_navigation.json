@@ -77,7 +77,6 @@
     "name": "Stepper",
     "tokens": [
       "--wim-border-width-thick",
-      "--wim-border-width-thin",
       "--wim-color-bg-component",
       "--wim-color-border-secondary",
       "--wim-color-destructive",
@@ -294,6 +293,12 @@
       }
     }
   },
+  "CommandPalette": {
+    "name": "CommandPalette",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "HamburgerMenu": {
     "name": "HamburgerMenu",
     "tokens": [],
@@ -384,47 +389,6 @@
         "description": "Custom class name"
       }
     }
-  },
-  "CommandPalette": {
-    "name": "CommandPalette",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "BackTop": {
-    "name": "BackTop",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-font-size-xl",
-      "--wim-height-md",
-      "--wim-radius-full",
-      "--wim-shadow-lg",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-transition-base",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Anchor": {
-    "name": "Anchor",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Breadcrumb": {
     "name": "Breadcrumb",
@@ -556,9 +520,44 @@
       }
     }
   },
+  "BackTop": {
+    "name": "BackTop",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-font-size-xl",
+      "--wim-height-md",
+      "--wim-radius-full",
+      "--wim-shadow-lg",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-transition-base",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Affix": {
     "name": "Affix",
     "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Anchor": {
+    "name": "Anchor",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
     "anatomy": [],
     "props": {}
   }

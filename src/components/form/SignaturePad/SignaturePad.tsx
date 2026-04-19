@@ -241,7 +241,9 @@ export const SignaturePad = ({
           <Button
             variant="outline"
             size="sm"
-            onPointerDown={() => { clearIntentRef.current = true; }}
+            onMouseDown={() => {
+              clearIntentRef.current = true;
+            }}
             onClick={clear}
             disabled={disabled || isEmpty}
           >

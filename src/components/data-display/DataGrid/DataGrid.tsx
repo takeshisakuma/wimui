@@ -46,7 +46,7 @@ export type DataGridProps<T> = {
   /** Selected row keys (used with boolean `selection`) */
   selectedRowKeys?: string[];
   /** Selection change callback (used with boolean `selection`) */
-  onSelectionChange?: (keys: string[]) => void;
+  onSelectionChange?: (keys: string[], records: T[]) => void;
   // Sorting
   sortConfig?: {
     key: string;
@@ -102,8 +102,8 @@ export function DataGrid<T extends Record<string, unknown>>({
       return {
         type: "checkbox",
         selectedRowKeys: propsSelectedRowKeys ?? [],
-        onChange: (keys: string[], _records: T[]) => {
-          onSelectionChange?.(keys);
+        onChange: (keys: string[], records: T[]) => {
+          onSelectionChange?.(keys, records);
         },
       };
     }
@@ -210,7 +210,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           stickyHeader={stickyHeader}
           mobileCard={mobileCard}
           fullWidth
-          className={styles.table}
+          className={classNames("wim-table", styles.table)}
         >
           <Table.Header>
             <Table.Row>
@@ -327,6 +327,11 @@ export function DataGrid<T extends Record<string, unknown>>({
         <div className={styles.footer}>
           <div className={styles.info}>
             Displaying {data.length} of {pagination.total} records
+            {selection?.selectedRowKeys && selection.selectedRowKeys.length > 0 && (
+              <span className={styles.selectionInfo}>
+                ({selection.selectedRowKeys.length} row(s) selected)
+              </span>
+            )}
           </div>
           <div className={styles.pagination}>
             <Pagination

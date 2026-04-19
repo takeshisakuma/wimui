@@ -1,32 +1,26 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-} from "react";
+import React, { createContext, useContext, useId, useState } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
-import type { TransitionPreset } from "../../layout/Transition/Transition";
 import styles from "./drawer.module.scss";
 
-
 // --- Drawer Context ---
-type DrawerSide = "top" | "right" | "bottom" | "left";
-
 type DrawerContextType = {
+  titleId: string;
+  descriptionId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  side: DrawerSide;
+  side: "left" | "right" | "top" | "bottom";
   slideIn: boolean;
   slideOut: boolean;
 };
 
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
-const useDrawer = () => {
+export const useDrawer = () => {
   const context = useContext(DrawerContext);
   if (!context) {
-    throw new Error("useDrawer must be used within a Drawer provider");
+    throw new Error("Drawer sub-components must be used within Drawer");
   }
   return context;
 };
@@ -35,9 +29,9 @@ const useDrawer = () => {
 export interface DrawerProps {
   children: React.ReactNode;
   open?: boolean;
-  defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  side?: DrawerSide;
+  defaultOpen?: boolean;
+  side?: "left" | "right" | "top" | "bottom";
   slideIn?: boolean;
   slideOut?: boolean;
 }
@@ -45,8 +39,8 @@ export interface DrawerProps {
 export const Drawer = ({
   children,
   open: controlledOpen,
-  defaultOpen = false,
   onOpenChange,
+  defaultOpen = false,
   side = "right",
   slideIn = true,
   slideOut = true,
@@ -55,163 +49,154 @@ export const Drawer = ({
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : uncontrolledOpen;
 
-  const handleOpenChange = useCallback(
-    (newOpen: boolean) => {
-      if (!isControlled) {
-        setUncontrolledOpen(newOpen);
-      }
-      onOpenChange?.(newOpen);
-    },
-    [isControlled, onOpenChange],
-  );
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!isControlled) {
+      setUncontrolledOpen(newOpen);
+    }
+    onOpenChange?.(newOpen);
+  };
+
+  const generatedId = useId();
+  const id = `wim-drawer-${generatedId}`;
+  const titleId = `${id}-title`;
+  const descriptionId = `${id}-description`;
 
   return (
-    <DrawerContext.Provider
-      value={{ open, onOpenChange: handleOpenChange, side, slideIn, slideOut }}
-    >
+    <DrawerContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange, side, slideIn, slideOut }}>
       {children}
     </DrawerContext.Provider>
   );
 };
 
 // --- Drawer Trigger ---
-export interface DrawerTriggerProps {
-  children: React.ReactNode;
+export interface DrawerTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
   asChild?: boolean;
-  className?: string;
 }
 
 export const DrawerTrigger = ({
   children,
-  asChild,
   className,
+  onClick,
+  asChild = false,
+  ...props
 }: DrawerTriggerProps) => {
   const { onOpenChange } = useDrawer();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
     onOpenChange(true);
   };
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children as React.ReactElement<{
-        onClick?: React.MouseEventHandler;
-        className?: string;
-      }>,
-      {
-        onClick: (e: React.MouseEvent) => {
-          const child = children as React.ReactElement<{
-            onClick?: React.MouseEventHandler;
-          }>;
-          child.props.onClick?.(e);
-          handleClick();
-        },
-        className: classNames(
-          className,
-          (children as React.ReactElement<{ className?: string }>).props
-            .className,
-        ),
-      },
-    );
-  }
+  const Component = asChild ? Slot : "button";
 
   return (
-    <button
+    <Component
+      type="button"
       className={classNames(styles.trigger, className)}
       onClick={handleClick}
-      data-testid="drawer-trigger"
+      {...props}
     >
-      {children}
-    </button>
+      <Slottable>{children}</Slottable>
+    </Component>
   );
 };
 
 // --- Drawer Close ---
-export interface DrawerCloseProps {
-  children: React.ReactNode;
+export interface DrawerCloseProps extends React.ComponentPropsWithoutRef<"button"> {
   asChild?: boolean;
-  className?: string;
 }
 
 export const DrawerClose = ({
   children,
   className,
-  asChild,
+  onClick,
+  asChild = false,
+  ...props
 }: DrawerCloseProps) => {
   const { onOpenChange } = useDrawer();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
     onOpenChange(false);
   };
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children as React.ReactElement<{
-        onClick?: React.MouseEventHandler;
-        className?: string;
-      }>,
-      {
-        onClick: (e: React.MouseEvent) => {
-          const child = children as React.ReactElement<{
-            onClick?: React.MouseEventHandler;
-          }>;
-          child.props.onClick?.(e);
-          handleClick();
-        },
-        className: classNames(
-          styles.closeButton,
-          className,
-          (children as React.ReactElement<{ className?: string }>).props
-            .className,
-        ),
-      },
-    );
-  }
+  const Component = asChild ? Slot : "button";
 
   return (
-    <button
+    <Component
       type="button"
       className={classNames(styles.closeButton, className)}
       onClick={handleClick}
-      data-testid="drawer-close"
+      {...props}
     >
-      {children}
-    </button>
+      <Slottable>{children}</Slottable>
+    </Component>
   );
 };
 
 // --- Drawer Content ---
-export interface DrawerContentProps {
-  children: React.ReactNode;
-  className?: string;
+export interface DrawerContentProps extends Partial<React.ComponentPropsWithoutRef<typeof OverlayBase>> {
+  asChild?: boolean;
+  side?: "left" | "right" | "top" | "bottom";
+  slideIn?: boolean;
+  slideOut?: boolean;
+  showOverlay?: boolean;
 }
 
-export const DrawerContent = ({ children, className }: DrawerContentProps) => {
-  const { open, onOpenChange, side, slideIn, slideOut } = useDrawer();
+export const DrawerContent = ({
+  children,
+  className,
+  asChild = false,
+  open: propsOpen,
+  onOpenChange: propsOnOpenChange,
+  side: sideProp,
+  slideIn: slideInProp,
+  slideOut: slideOutProp,
+  showOverlay = true,
+  ...props
+}: DrawerContentProps) => {
+  const { 
+    open: contextOpen, 
+    onOpenChange: contextOnOpenChange, 
+    titleId, 
+    descriptionId, 
+    side: contextSide, 
+    slideIn: contextSlideIn, 
+    slideOut: contextSlideOut 
+  } = useDrawer();
 
-  const slidePreset = (slideIn || slideOut)
-    ? (`slide-${side}` as TransitionPreset)
-    : undefined;
+  const open = propsOpen !== undefined ? propsOpen : contextOpen;
+  const onOpenChange = propsOnOpenChange !== undefined ? propsOnOpenChange : contextOnOpenChange;
+  const side = sideProp ?? contextSide;
+  const slideIn = slideInProp ?? contextSlideIn;
+  const slideOut = slideOutProp ?? contextSlideOut;
 
+  const Component = asChild ? Slot : "div";
 
   return (
     <OverlayBase
+      {...props}
       open={open}
       onOpenChange={onOpenChange}
-      overlayClassName={styles.overlay}
-      contentClassName={classNames(
-        styles.content,
-        styles[side],
-        className,
-      )}
-      transitionProps={{
-        appear: slideIn,
-        preset: slidePreset,
-      }}
+      overlayClassName={classNames(styles.overlay, !showOverlay && styles.hideOverlay)}
+      role="dialog"
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
       data-side={side}
-      data-testid="drawer-content"
     >
-      {children}
+      <Component 
+        className={classNames(
+          styles.content, 
+          styles[side], 
+          !slideIn && styles.noSlideIn,
+          !slideOut && styles.noSlideOut,
+          className
+        )}
+      >
+        <div className={styles.inner}>
+          <Slottable>{children}</Slottable>
+        </div>
+      </Component>
     </OverlayBase>
   );
 };
@@ -220,38 +205,48 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
 export const DrawerHeader = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={classNames(styles.header, className)}>{children}</div>
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={classNames(styles.header, className)} data-testid="drawer-header" {...props}>{children}</div>
 );
 
 export const DrawerFooter = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={classNames(styles.footer, className)}>{children}</div>
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={classNames(styles.footer, className)} data-testid="drawer-footer" {...props}>{children}</div>
 );
 
 export const DrawerTitle = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <h2 className={classNames(styles.title, className)} data-testid="drawer-title">{children}</h2>;
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const { titleId } = useDrawer();
+  return (
+    <h2 id={titleId} className={classNames(styles.title, className)} data-testid="drawer-title" {...props}>
+      {children}
+    </h2>
+  );
+};
 
 export const DrawerDescription = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <p className={classNames(styles.description, className)}>{children}</p>
-);
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) => {
+  const { descriptionId } = useDrawer();
+  return (
+    <p
+      id={descriptionId}
+      className={classNames(styles.description, className)}
+      data-testid="drawer-description"
+      {...props}
+    >
+      {children}
+    </p>
+  );
+};
 
+export default Drawer;
