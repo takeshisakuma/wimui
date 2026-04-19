@@ -63,7 +63,7 @@ describe("DataGrid", () => {
     const checkboxes = screen.getAllByRole("checkbox");
     await user.click(checkboxes[1]); // Click first row checkbox
 
-    expect(onSelectionChange).toHaveBeenCalledWith(["1"]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["1"], expect.any(Array));
   });
 
   it("handles select all", async () => {
@@ -83,7 +83,7 @@ describe("DataGrid", () => {
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
     await user.click(selectAllCheckbox);
 
-    expect(onSelectionChange).toHaveBeenCalledWith(["1", "2", "3"]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["1", "2", "3"], expect.any(Array));
   });
 
   it("handles sorting", async () => {
@@ -366,7 +366,7 @@ describe("DataGrid", () => {
     );
     const checkbox = screen.getAllByRole("checkbox")[1];
     fireEvent.click(checkbox);
-    expect(onSelectionChange).toHaveBeenCalledWith(["row-1"]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["row-1"], expect.any(Array));
   });
 
   it("renders custom ReactNode emptyMessage", () => {

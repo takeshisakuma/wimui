@@ -20,7 +20,7 @@ const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 export const useDrawer = () => {
   const context = useContext(DrawerContext);
   if (!context) {
-    throw new Error("Drawer sub-components must be used within Drawer");
+    throw new Error("useDrawer must be used within a Drawer provider");
   }
   return context;
 };
@@ -179,20 +179,19 @@ export const DrawerContent = ({
       open={open}
       onOpenChange={onOpenChange}
       overlayClassName={classNames(styles.overlay, !showOverlay && styles.hideOverlay)}
+      contentClassName={classNames(
+        styles.content,
+        styles[side],
+        !slideIn && styles.noSlideIn,
+        !slideOut && styles.noSlideOut,
+        className,
+      )}
       role="dialog"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       data-side={side}
     >
-      <Component 
-        className={classNames(
-          styles.content, 
-          styles[side], 
-          !slideIn && styles.noSlideIn,
-          !slideOut && styles.noSlideOut,
-          className
-        )}
-      >
+      <Component>
         <div className={styles.inner}>
           <Slottable>{children}</Slottable>
         </div>
