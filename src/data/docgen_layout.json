@@ -1,4 +1,19 @@
 {
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Watermark": {
     "name": "Watermark",
     "tokens": [],
@@ -142,21 +157,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
       }
     }
   },
@@ -1275,6 +1275,21 @@
       }
     }
   },
+  "Splitter": {
+    "name": "Splitter",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-splitter-handle-active-color",
+      "--wim-splitter-handle-color",
+      "--wim-splitter-handle-hover-bg",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Transition": {
     "name": "Transition",
     "tokens": [
@@ -1428,17 +1443,30 @@
       }
     }
   },
-  "Splitter": {
-    "name": "Splitter",
+  "Sidebar": {
+    "name": "Sidebar",
     "tokens": [
-      "--wim-color-border",
-      "--wim-color-ghost-bg-hover",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-overlay-bg-sidebar",
       "--wim-color-primary",
-      "--wim-splitter-handle-active-color",
-      "--wim-splitter-handle-color",
-      "--wim-splitter-handle-hover-bg",
+      "--wim-color-primary-light",
+      "--wim-color-text-primary",
+      "--wim-font-size-xl",
+      "--wim-font-weight-bold",
+      "--wim-height-sm",
+      "--wim-height-xl",
+      "--wim-radius-xs",
+      "--wim-sidebar-width",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-transition-base",
       "--wim-transition-fast",
-      "--wim-z-10"
+      "--wim-z-drawer",
+      "--wim-z-mask",
+      "--wim-z-sidebar"
     ],
     "anatomy": [],
     "props": {}
@@ -1563,64 +1591,6 @@
       }
     }
   },
-  "Navbar": {
-    "name": "Navbar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-surface-glass",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-layout-max-width",
-      "--wim-radius-lg",
-      "--wim-radius-sm",
-      "--wim-spacing-5xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-navbar"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Sidebar": {
-    "name": "Sidebar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-overlay-bg-sidebar",
-      "--wim-color-primary",
-      "--wim-color-primary-light",
-      "--wim-color-text-primary",
-      "--wim-font-size-xl",
-      "--wim-font-weight-bold",
-      "--wim-height-sm",
-      "--wim-height-xl",
-      "--wim-radius-xs",
-      "--wim-sidebar-width",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-transition-base",
-      "--wim-transition-fast",
-      "--wim-z-drawer",
-      "--wim-z-mask",
-      "--wim-z-sidebar"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "ScrollArea": {
     "name": "ScrollArea",
     "tokens": [],
@@ -1715,164 +1685,35 @@
       }
     }
   },
-  "Header": {
-    "name": "Header",
+  "Navbar": {
+    "name": "Navbar",
     "tokens": [
+      "--wim-border-width-thin",
       "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
+      "--wim-color-bg-hover",
       "--wim-color-border-secondary",
-      "--wim-header-height",
+      "--wim-color-primary",
+      "--wim-color-surface-glass",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-layout-max-width",
+      "--wim-radius-lg",
+      "--wim-radius-sm",
+      "--wim-spacing-5xl",
       "--wim-spacing-md",
+      "--wim-spacing-sm",
       "--wim-spacing-xl",
+      "--wim-spacing-xs",
       "--wim-transition-base",
-      "--wim-z-header"
+      "--wim-z-navbar"
     ],
     "anatomy": [],
     "props": {}
-  },
-  "Group": {
-    "name": "Group",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the group will be rendered as its child, merging its props onto that child."
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"stretch\""
-            },
-            {
-              "name": "literal",
-              "value": "\"baseline\""
-            }
-          ]
-        },
-        "description": "Vertical alignment",
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        }
-      },
-      "justify": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"between\""
-            },
-            {
-              "name": "literal",
-              "value": "\"around\""
-            },
-            {
-              "name": "literal",
-              "value": "\"evenly\""
-            }
-          ]
-        },
-        "description": "Horizontal alignment",
-        "defaultValue": {
-          "value": "\"start\"",
-          "computed": false
-        }
-      },
-      "gap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "Gap between elements",
-        "defaultValue": {
-          "value": "16",
-          "computed": false
-        }
-      },
-      "wrap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"nowrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap-reverse\""
-            }
-          ]
-        },
-        "description": "Whether to wrap children",
-        "defaultValue": {
-          "value": "\"wrap\"",
-          "computed": false
-        }
-      },
-      "grow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether items should grow to fill available space",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
   },
   "InteractiveArea": {
     "name": "InteractiveArea",
@@ -2092,6 +1933,165 @@
           }
         },
         "description": "Custom styles for internal parts"
+      }
+    }
+  },
+  "Header": {
+    "name": "Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Group": {
+    "name": "Group",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the group will be rendered as its child, merging its props onto that child."
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"stretch\""
+            },
+            {
+              "name": "literal",
+              "value": "\"baseline\""
+            }
+          ]
+        },
+        "description": "Vertical alignment",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "justify": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"between\""
+            },
+            {
+              "name": "literal",
+              "value": "\"around\""
+            },
+            {
+              "name": "literal",
+              "value": "\"evenly\""
+            }
+          ]
+        },
+        "description": "Horizontal alignment",
+        "defaultValue": {
+          "value": "\"start\"",
+          "computed": false
+        }
+      },
+      "gap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "Gap between elements",
+        "defaultValue": {
+          "value": "16",
+          "computed": false
+        }
+      },
+      "wrap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"nowrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap-reverse\""
+            }
+          ]
+        },
+        "description": "Whether to wrap children",
+        "defaultValue": {
+          "value": "\"wrap\"",
+          "computed": false
+        }
+      },
+      "grow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether items should grow to fill available space",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
@@ -2893,6 +2893,50 @@
         "description": "",
         "defaultValue": {
           "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Divider": {
+    "name": "Divider",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-divider-thickness",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "orientation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "分割線の方向",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "thickness": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "線の太さ (px)",
+        "defaultValue": {
+          "value": "1",
           "computed": false
         }
       }
@@ -3831,47 +3875,928 @@
       }
     }
   },
-  "Divider": {
-    "name": "Divider",
-    "tokens": [
-      "--wim-color-border",
-      "--wim-divider-thickness",
-      "--wim-spacing-md"
-    ],
+  "Center": {
+    "name": "Center",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "orientation": {
+      "as": {
+        "required": false,
+        "tsType": {
+          "name": "C"
+        },
+        "description": "The component used for the root node. Either a string to use a HTML element or a component."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the box will be rendered as its child, merging its props onto that child."
+      },
+      "p": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
+          "raw": "number | WimSpacing",
           "elements": [
             {
-              "name": "literal",
-              "value": "\"horizontal\""
+              "name": "number"
             },
             {
-              "name": "literal",
-              "value": "\"vertical\""
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
             }
           ]
         },
-        "description": "分割線の方向",
+        "description": "Padding"
+      },
+      "pt": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding top"
+      },
+      "pr": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding right"
+      },
+      "pb": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding bottom"
+      },
+      "pl": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding left"
+      },
+      "px": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding horizontal"
+      },
+      "py": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Padding vertical"
+      },
+      "m": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin"
+      },
+      "mt": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin top"
+      },
+      "mr": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin right"
+      },
+      "mb": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin bottom"
+      },
+      "ml": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin left"
+      },
+      "mx": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin horizontal"
+      },
+      "my": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimSpacing",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimSpacingKey | WimSpacingToken",
+                  "elements": [
+                    {
+                      "name": "WimSpacingKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Margin vertical"
+      },
+      "bg": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimColorKey | WimColorToken",
+              "elements": [
+                {
+                  "name": "WimColorKey"
+                },
+                {
+                  "name": "union",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-color-${WimColorKey})`"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-${WimColorKey})`"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "Background color"
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimColorKey | WimColorToken",
+              "elements": [
+                {
+                  "name": "WimColorKey"
+                },
+                {
+                  "name": "union",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-color-${WimColorKey})`"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-${WimColorKey})`"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "Text color"
+      },
+      "w": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "number | string",
+              "elements": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "string"
+                }
+              ]
+            },
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "base",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "sm",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "md",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "lg",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "xl",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "description": "Width"
+      },
+      "h": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "number | string",
+              "elements": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "string"
+                }
+              ]
+            },
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "base",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "sm",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "md",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "lg",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "xl",
+                    "value": {
+                      "name": "union",
+                      "raw": "number | string",
+                      "elements": [
+                        {
+                          "name": "number"
+                        },
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "description": "Height"
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | WimRadius",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimRadiusKey | WimRadiusToken",
+                  "elements": [
+                    {
+                      "name": "WimRadiusKey"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-radius-${WimRadiusKey})`"
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "Border radius"
+      },
+      "shadow": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimShadowKey | WimShadowToken",
+              "elements": [
+                {
+                  "name": "WimShadowKey"
+                },
+                {
+                  "name": "literal",
+                  "value": "`var(--wim-shadow-${WimShadowKey})`"
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "Box shadow"
+      },
+      "display": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties[\"display\"]",
+          "raw": "React.CSSProperties[\"display\"]"
+        },
+        "description": "Display"
+      },
+      "position": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties[\"position\"]",
+          "raw": "React.CSSProperties[\"position\"]"
+        },
+        "description": "Position"
+      },
+      "inline": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to use inline-flex",
         "defaultValue": {
-          "value": "\"horizontal\"",
+          "value": "false",
           "computed": false
         }
-      },
-      "thickness": {
+      }
+    }
+  },
+  "BentoGrid": {
+    "name": "BentoGrid",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "AspectRatio": {
+    "name": "AspectRatio",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "ratio": {
         "required": false,
         "tsType": {
           "name": "number"
         },
-        "description": "線の太さ (px)",
+        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
         "defaultValue": {
           "value": "1",
           "computed": false
         }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
       }
     }
   },
@@ -4772,905 +5697,6 @@
       }
     }
   },
-  "Center": {
-    "name": "Center",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "as": {
-        "required": false,
-        "tsType": {
-          "name": "C"
-        },
-        "description": "The component used for the root node. Either a string to use a HTML element or a component."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the box will be rendered as its child, merging its props onto that child."
-      },
-      "p": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding"
-      },
-      "pt": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding top"
-      },
-      "pr": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding right"
-      },
-      "pb": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding bottom"
-      },
-      "pl": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding left"
-      },
-      "px": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding horizontal"
-      },
-      "py": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Padding vertical"
-      },
-      "m": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin"
-      },
-      "mt": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin top"
-      },
-      "mr": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin right"
-      },
-      "mb": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin bottom"
-      },
-      "ml": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin left"
-      },
-      "mx": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin horizontal"
-      },
-      "my": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimSpacing",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimSpacingKey | WimSpacingToken",
-                  "elements": [
-                    {
-                      "name": "WimSpacingKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-spacing-${WimSpacingKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Margin vertical"
-      },
-      "bg": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimColorKey | WimColorToken",
-              "elements": [
-                {
-                  "name": "WimColorKey"
-                },
-                {
-                  "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-color-${WimColorKey})`"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-${WimColorKey})`"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "Background color"
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimColorKey | WimColorToken",
-              "elements": [
-                {
-                  "name": "WimColorKey"
-                },
-                {
-                  "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-color-${WimColorKey})`"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-${WimColorKey})`"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "Text color"
-      },
-      "w": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "number | string",
-              "elements": [
-                {
-                  "name": "number"
-                },
-                {
-                  "name": "string"
-                }
-              ]
-            },
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "base",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "sm",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "md",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "lg",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "xl",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "description": "Width"
-      },
-      "h": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| T\r\n| {\r\n    base?: T;\r\n    sm?: T;\r\n    md?: T;\r\n    lg?: T;\r\n    xl?: T;\r\n  }",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "number | string",
-              "elements": [
-                {
-                  "name": "number"
-                },
-                {
-                  "name": "string"
-                }
-              ]
-            },
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  base?: T;\r\n  sm?: T;\r\n  md?: T;\r\n  lg?: T;\r\n  xl?: T;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "base",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "sm",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "md",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "lg",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "xl",
-                    "value": {
-                      "name": "union",
-                      "raw": "number | string",
-                      "elements": [
-                        {
-                          "name": "number"
-                        },
-                        {
-                          "name": "string"
-                        }
-                      ],
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "description": "Height"
-      },
-      "radius": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | WimRadius",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimRadiusKey | WimRadiusToken",
-                  "elements": [
-                    {
-                      "name": "WimRadiusKey"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-radius-${WimRadiusKey})`"
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "Border radius"
-      },
-      "shadow": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimShadowKey | WimShadowToken",
-              "elements": [
-                {
-                  "name": "WimShadowKey"
-                },
-                {
-                  "name": "literal",
-                  "value": "`var(--wim-shadow-${WimShadowKey})`"
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "Box shadow"
-      },
-      "display": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties[\"display\"]",
-          "raw": "React.CSSProperties[\"display\"]"
-        },
-        "description": "Display"
-      },
-      "position": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties[\"position\"]",
-          "raw": "React.CSSProperties[\"position\"]"
-        },
-        "description": "Position"
-      },
-      "inline": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to use inline-flex",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "BentoGrid": {
-    "name": "BentoGrid",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "AppShell": {
     "name": "AppShell",
     "tokens": [
@@ -5687,31 +5713,5 @@
     ],
     "anatomy": [],
     "props": {}
-  },
-  "AspectRatio": {
-    "name": "AspectRatio",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "ratio": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
-      }
-    }
   }
 }

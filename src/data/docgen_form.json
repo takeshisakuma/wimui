@@ -677,6 +677,237 @@
       }
     }
   },
+  "TimePicker": {
+    "name": "TimePicker",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "variant": {
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      },
+      "allowClear": {
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "Textarea": {
+    "name": "Textarea",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-disabled",
+      "--wim-color-text-error",
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-field-radius",
+      "--wim-field-radius-bl",
+      "--wim-field-radius-br",
+      "--wim-field-radius-tl",
+      "--wim-field-radius-tr",
+      "--wim-font-size-md",
+      "--wim-height-md",
+      "--wim-input-width",
+      "--wim-line-height-normal",
+      "--wim-radius-md",
+      "--wim-shadow-error-ring",
+      "--wim-shadow-focus-ring",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-transition-base",
+      "--wim-width-lg",
+      "--wim-width-md",
+      "--wim-width-sm",
+      "--wim-width-xl",
+      "--wim-width-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"outline\" | \"ghost\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"ghost\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        }
+      },
+      "fullWidth": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fieldSizing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"fixed\" | \"content\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"fixed\""
+            },
+            {
+              "name": "literal",
+              "value": "\"content\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"fixed\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "error": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "FieldWidth | string | number",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"xs\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                }
+              ]
+            },
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      }
+    }
+  },
   "ToggleGroup": {
     "name": "ToggleGroup",
     "tokens": [],
@@ -921,237 +1152,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "TimePicker": {
-    "name": "TimePicker",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "variant": {
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "fullWidth": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      },
-      "allowClear": {
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "Textarea": {
-    "name": "Textarea",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-disabled",
-      "--wim-color-text-error",
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-field-radius",
-      "--wim-field-radius-bl",
-      "--wim-field-radius-br",
-      "--wim-field-radius-tl",
-      "--wim-field-radius-tr",
-      "--wim-font-size-md",
-      "--wim-height-md",
-      "--wim-input-width",
-      "--wim-line-height-normal",
-      "--wim-radius-md",
-      "--wim-shadow-error-ring",
-      "--wim-shadow-focus-ring",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-transition-base",
-      "--wim-width-lg",
-      "--wim-width-md",
-      "--wim-width-sm",
-      "--wim-width-xl",
-      "--wim-width-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"outline\" | \"ghost\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"ghost\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        }
-      },
-      "fullWidth": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fieldSizing": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"fixed\" | \"content\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"fixed\""
-            },
-            {
-              "name": "literal",
-              "value": "\"content\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"fixed\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "error": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "FieldWidth | string | number",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"xs\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                }
-              ]
-            },
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
       }
     }
   },
@@ -1439,77 +1439,90 @@
     "anatomy": [],
     "props": {}
   },
-  "SignaturePad": {
-    "name": "SignaturePad",
+  "SegmentedControl": {
+    "name": "SegmentedControl",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "width": {
-        "required": false,
+      "options": {
+        "required": true,
         "tsType": {
-          "name": "number"
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  label?: string;\r\n  value: string;\r\n  iconName?: \"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\";\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "iconName",
+                    "value": {
+                      "name": "union",
+                      "raw": "\"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\"",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "\"CircleIcon\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"SquareIcon\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"LoadingIcon\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"ExternalLinkIcon\""
+                        }
+                      ],
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "Option[]"
         },
-        "description": "Width of the canvas",
-        "defaultValue": {
-          "value": "400",
-          "computed": false
-        }
+        "description": ""
       },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Height of the canvas",
-        "defaultValue": {
-          "value": "200",
-          "computed": false
-        }
-      },
-      "penColor": {
-        "required": false,
+      "value": {
+        "required": true,
         "tsType": {
           "name": "string"
         },
-        "description": "Color of the pen",
-        "defaultValue": {
-          "value": "\"var(--wim-color-text-primary)\"",
-          "computed": false
-        }
-      },
-      "penWidth": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Width of the pen stroke",
-        "defaultValue": {
-          "value": "2",
-          "computed": false
-        }
+        "description": ""
       },
       "onChange": {
-        "required": false,
+        "required": true,
         "tsType": {
           "name": "signature",
           "type": "function",
-          "raw": "(dataUrl: string | null) => void",
+          "raw": "(value: string) => void",
           "signature": {
             "arguments": [
               {
                 "type": {
-                  "name": "union",
-                  "raw": "string | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
+                  "name": "string"
                 },
-                "name": "dataUrl"
+                "name": "value"
               }
             ],
             "return": {
@@ -1517,22 +1530,60 @@
             }
           }
         },
-        "description": "Callback when signature changes or is cleared"
+        "description": ""
       },
-      "clearLabel": {
+      "size": {
         "required": false,
         "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
         },
-        "description": "Custom label for the clear button"
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
       },
-      "disabled": {
+      "fullWidth": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether the component is disabled",
+        "description": "",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -1543,37 +1594,28 @@
         "tsType": {
           "name": "string"
         },
-        "description": "CSS class name"
-      },
-      "style": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Inline styles"
+        "description": ""
       },
       "label": {
         "required": false,
         "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
+          "name": "string"
         },
-        "description": ""
+        "description": "アクセシビリティ用のラベル"
       },
       "error": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "エラーメッセージ"
       },
       "required": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": ""
+        "description": "必須表示にするかどうか"
       },
       "layout": {
         "required": false,
@@ -1591,18 +1633,63 @@
             }
           ]
         },
-        "description": "",
+        "description": "レイアウト方向",
         "defaultValue": {
           "value": "\"vertical\"",
           "computed": false
         }
       },
-      "canvasAriaLabel": {
+      "disabled": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "boolean"
         },
-        "description": "Aria label for the canvas"
+        "description": "無効状態にするかどうか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "styles": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  root?: string;\r\n  item?: string;\r\n  slider?: string;\r\n  label?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "root",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "item",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "slider",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "label",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "Custom styles for internal parts"
       }
     }
   },
@@ -2085,90 +2172,77 @@
       }
     }
   },
-  "SegmentedControl": {
-    "name": "SegmentedControl",
+  "SignaturePad": {
+    "name": "SignaturePad",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "options": {
-        "required": true,
+      "width": {
+        "required": false,
         "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  label?: string;\r\n  value: string;\r\n  iconName?: \"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\";\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "label",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "value",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "iconName",
-                    "value": {
-                      "name": "union",
-                      "raw": "\"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\"",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "\"CircleIcon\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"SquareIcon\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"LoadingIcon\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"ExternalLinkIcon\""
-                        }
-                      ],
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "Option[]"
+          "name": "number"
         },
-        "description": ""
+        "description": "Width of the canvas",
+        "defaultValue": {
+          "value": "400",
+          "computed": false
+        }
       },
-      "value": {
-        "required": true,
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Height of the canvas",
+        "defaultValue": {
+          "value": "200",
+          "computed": false
+        }
+      },
+      "penColor": {
+        "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "Color of the pen",
+        "defaultValue": {
+          "value": "\"var(--wim-color-text-primary)\"",
+          "computed": false
+        }
+      },
+      "penWidth": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Width of the pen stroke",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
       },
       "onChange": {
-        "required": true,
+        "required": false,
         "tsType": {
           "name": "signature",
           "type": "function",
-          "raw": "(value: string) => void",
+          "raw": "(dataUrl: string | null) => void",
           "signature": {
             "arguments": [
               {
                 "type": {
-                  "name": "string"
+                  "name": "union",
+                  "raw": "string | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
                 },
-                "name": "value"
+                "name": "dataUrl"
               }
             ],
             "return": {
@@ -2176,60 +2250,22 @@
             }
           }
         },
-        "description": ""
+        "description": "Callback when signature changes or is cleared"
       },
-      "size": {
+      "clearLabel": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
+        "description": "Custom label for the clear button"
       },
-      "fullWidth": {
+      "disabled": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "",
+        "description": "Whether the component is disabled",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -2240,7 +2276,240 @@
         "tsType": {
           "name": "string"
         },
+        "description": "CSS class name"
+      },
+      "style": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Inline styles"
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
         "description": ""
+      },
+      "error": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
+      },
+      "canvasAriaLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Aria label for the canvas"
+      }
+    }
+  },
+  "RangeSlider": {
+    "name": "RangeSlider",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": false,
+        "tsType": {
+          "name": "tuple",
+          "raw": "[number, number]",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "現在の値 [min, max]"
+      },
+      "defaultValue": {
+        "required": false,
+        "tsType": {
+          "name": "tuple",
+          "raw": "[number, number]",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "デフォルトの値 [min, max]（非制御時）",
+        "defaultValue": {
+          "value": "[20, 80]",
+          "computed": false
+        }
+      },
+      "min": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "最小値",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "max": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "最大値",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "step": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "ステップ値",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "allowCross": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "同じ値を許容するかどうか（交差はしない）",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "無効化フラグ",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: [number, number]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "tuple",
+                  "raw": "[number, number]",
+                  "elements": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ]
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "値変更時のコールバック"
+      },
+      "onAfterChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: [number, number]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "tuple",
+                  "raw": "[number, number]",
+                  "elements": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ]
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "ドラッグ終了時のコールバック"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名"
+      },
+      "name": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "名前の属性"
       },
       "label": {
         "required": false,
@@ -2285,57 +2554,26 @@
           "computed": false
         }
       },
-      "disabled": {
+      "id": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "string"
         },
-        "description": "無効状態にするかどうか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "description": "カスタムID"
       },
-      "styles": {
+      "aria-label": {
         "required": false,
         "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  root?: string;\r\n  item?: string;\r\n  slider?: string;\r\n  label?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "root",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "item",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "slider",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "label",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
+          "name": "string"
         },
-        "description": "Custom styles for internal parts"
+        "description": ""
+      },
+      "aria-labelledby": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -2603,244 +2841,6 @@
           "value": "{}",
           "computed": false
         }
-      }
-    }
-  },
-  "RangeSlider": {
-    "name": "RangeSlider",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": false,
-        "tsType": {
-          "name": "tuple",
-          "raw": "[number, number]",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "現在の値 [min, max]"
-      },
-      "defaultValue": {
-        "required": false,
-        "tsType": {
-          "name": "tuple",
-          "raw": "[number, number]",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "デフォルトの値 [min, max]（非制御時）",
-        "defaultValue": {
-          "value": "[20, 80]",
-          "computed": false
-        }
-      },
-      "min": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "最小値",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "max": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "最大値",
-        "defaultValue": {
-          "value": "100",
-          "computed": false
-        }
-      },
-      "step": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "ステップ値",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "allowCross": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "同じ値を許容するかどうか（交差はしない）",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "無効化フラグ",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: [number, number]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "tuple",
-                  "raw": "[number, number]",
-                  "elements": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "number"
-                    }
-                  ]
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "値変更時のコールバック"
-      },
-      "onAfterChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: [number, number]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "tuple",
-                  "raw": "[number, number]",
-                  "elements": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "number"
-                    }
-                  ]
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "ドラッグ終了時のコールバック"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名"
-      },
-      "name": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "名前の属性"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "アクセシビリティ用のラベル"
-      },
-      "error": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "エラーメッセージ"
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "必須表示にするかどうか"
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "レイアウト方向",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
-      },
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "カスタムID"
-      },
-      "aria-label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "aria-labelledby": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },
@@ -3158,6 +3158,74 @@
     "anatomy": [],
     "props": {}
   },
+  "Mentions": {
+    "name": "Mentions",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "NumberInput": {
+    "name": "NumberInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "LinkButton": {
+    "name": "LinkButton",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "iconPosition": {
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "size": {
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "variant": {
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "intent": {
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "justify": {
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
   "MultiSelect": {
     "name": "MultiSelect",
     "tokens": [
@@ -3443,74 +3511,6 @@
       }
     }
   },
-  "NumberInput": {
-    "name": "NumberInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "LinkButton": {
-    "name": "LinkButton",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "iconPosition": {
-        "defaultValue": {
-          "value": "\"left\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "size": {
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "variant": {
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "intent": {
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "justify": {
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "fullWidth": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "Mentions": {
-    "name": "Mentions",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "InputMask": {
     "name": "InputMask",
     "tokens": [],
@@ -3541,6 +3541,28 @@
     "tokens": [],
     "anatomy": [],
     "props": {}
+  },
+  "IconButton": {
+    "name": "IconButton",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "iconName": {
+        "required": true,
+        "tsType": {
+          "name": "ReactComponentProps[\"name\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "description": ""
+      },
+      "aria-label": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
   },
   "InputBase": {
     "name": "InputBase",
@@ -3951,25 +3973,173 @@
       }
     }
   },
-  "IconButton": {
-    "name": "IconButton",
+  "Input": {
+    "name": "Input",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-error",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-field-bg",
+      "--wim-field-border",
+      "--wim-field-outline",
+      "--wim-field-radius",
+      "--wim-field-radius-bl",
+      "--wim-field-radius-br",
+      "--wim-field-radius-tl",
+      "--wim-field-radius-tr",
+      "--wim-field-shadow",
+      "--wim-font-size-md",
+      "--wim-height-md",
+      "--wim-radius-md",
+      "--wim-shadow-error-ring",
+      "--wim-shadow-focus-ring",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "FloatButton": {
+    "name": "FloatButton",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "FieldTemplate": {
+    "name": "FieldTemplate",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "iconName": {
-        "required": true,
+      "asChild": {
+        "required": false,
         "tsType": {
-          "name": "ReactComponentProps[\"name\"]",
-          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+          "name": "boolean"
         },
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
-      "aria-label": {
-        "required": true,
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "フィールド�EラベルチE��スチE"
+      },
+      "error": {
+        "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "エラーメチE��ージ"
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "フィールド�EメインコンチE��チE"
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "忁E��表示にするかどぁE��"
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "レイアウト方吁E\r\n@default \"vertical\"",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
+      },
+      "labelId": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "アクセシビリチE��用のラベルID"
+      },
+      "errorId": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "エラー表示用のID"
+      },
+      "styles": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  root?: string;\r\n  labelWrapper?: string;\r\n  label?: string;\r\n  content?: string;\r\n  error?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "root",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "labelWrapper",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "label",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "content",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "error",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "Custom styles for internal parts"
       }
     }
   },
@@ -4187,176 +4357,6 @@
       }
     }
   },
-  "Input": {
-    "name": "Input",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-error",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-field-bg",
-      "--wim-field-border",
-      "--wim-field-outline",
-      "--wim-field-radius",
-      "--wim-field-radius-bl",
-      "--wim-field-radius-br",
-      "--wim-field-radius-tl",
-      "--wim-field-radius-tr",
-      "--wim-field-shadow",
-      "--wim-font-size-md",
-      "--wim-height-md",
-      "--wim-radius-md",
-      "--wim-shadow-error-ring",
-      "--wim-shadow-focus-ring",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "FloatButton": {
-    "name": "FloatButton",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "FieldTemplate": {
-    "name": "FieldTemplate",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "フィールド�EラベルチE��スチE"
-      },
-      "error": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "エラーメチE��ージ"
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "フィールド�EメインコンチE��チE"
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "忁E��表示にするかどぁE��"
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "レイアウト方吁E\r\n@default \"vertical\"",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
-      },
-      "labelId": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "アクセシビリチE��用のラベルID"
-      },
-      "errorId": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "エラー表示用のID"
-      },
-      "styles": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  root?: string;\r\n  labelWrapper?: string;\r\n  label?: string;\r\n  content?: string;\r\n  error?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "root",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "labelWrapper",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "label",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "content",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "error",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "Custom styles for internal parts"
-      }
-    }
-  },
   "Fieldset": {
     "name": "Fieldset",
     "tokens": [
@@ -4410,34 +4410,6 @@
         }
       },
       "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "FieldError": {
-    "name": "FieldError",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "id": {
         "required": false,
         "tsType": {
           "name": "string"
@@ -4698,6 +4670,34 @@
       }
     }
   },
+  "FieldError": {
+    "name": "FieldError",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "CopyButton": {
     "name": "CopyButton",
     "tokens": [],
@@ -4793,40 +4793,6 @@
         }
       }
     }
-  },
-  "ColorPicker": {
-    "name": "ColorPicker",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "variant": {
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "fullWidth": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "ColorInput": {
-    "name": "ColorInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "Combobox": {
     "name": "Combobox",
@@ -5067,68 +5033,45 @@
       }
     }
   },
-  "Checkbox": {
-    "name": "Checkbox",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-checkbox-check-height",
-      "--wim-checkbox-check-width",
-      "--wim-checkbox-indeterminate-width",
-      "--wim-checkbox-size",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-color-text-white",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-family-default",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-opacity-disabled",
-      "--wim-radius-3xs",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs"
-    ],
+  "ColorPicker": {
+    "name": "ColorPicker",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
+      "intent": {
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
         },
-        "description": "",
+        "required": false
+      },
+      "variant": {
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "fullWidth": {
         "defaultValue": {
           "value": "false",
           "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
         },
-        "description": ""
-      },
-      "indeterminate": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "required": false
       }
     }
+  },
+  "ColorInput": {
+    "name": "ColorInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "CheckboxGroup": {
+    "name": "CheckboxGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "Cascader": {
     "name": "Cascader",
@@ -5497,38 +5440,38 @@
       }
     }
   },
-  "ButtonGroup": {
-    "name": "ButtonGroup",
-    "tokens": [],
+  "Checkbox": {
+    "name": "Checkbox",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-checkbox-check-height",
+      "--wim-checkbox-check-width",
+      "--wim-checkbox-indeterminate-width",
+      "--wim-checkbox-size",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-color-text-white",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-family-default",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-opacity-disabled",
+      "--wim-radius-3xs",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs"
+    ],
     "anatomy": [],
     "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "gap": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"8px\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "joined": {
+      "asChild": {
         "required": false,
         "tsType": {
           "name": "boolean"
@@ -5539,35 +5482,26 @@
           "computed": false
         }
       },
-      "variant": {
+      "children": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"solid\" | \"outline\" | \"ghost\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"solid\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"ghost\""
-            }
-          ]
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
         "description": ""
+      },
+      "indeterminate": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
-  },
-  "CheckboxGroup": {
-    "name": "CheckboxGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "Button": {
     "name": "Button",
@@ -5925,6 +5859,72 @@
         "required": false,
         "tsType": {
           "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ButtonGroup": {
+    "name": "ButtonGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "gap": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"8px\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "joined": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"solid\" | \"outline\" | \"ghost\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"solid\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"ghost\""
+            }
+          ]
         },
         "description": ""
       }

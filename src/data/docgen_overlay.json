@@ -1,74 +1,4 @@
 {
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Tooltip": {
-    "name": "Tooltip",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-duration-fast",
-      "--wim-font-size-sm",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Popover": {
-    "name": "Popover",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Menu": {
-    "name": "Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-xs",
-      "--wim-letter-spacing-wide",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -211,23 +141,78 @@
       }
     }
   },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Popover": {
+    "name": "Popover",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Tooltip": {
+    "name": "Tooltip",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-duration-fast",
+      "--wim-font-size-sm",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "HoverCard": {
     "name": "HoverCard",
     "tokens": [],
     "anatomy": [],
     "props": {}
   },
-  "Dropdown": {
-    "name": "Dropdown",
+  "Menu": {
+    "name": "Menu",
     "tokens": [
       "--wim-border-width-thin",
       "--wim-color-bg-component",
-      "--wim-color-border",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-xs",
+      "--wim-letter-spacing-wide",
       "--wim-menu-min-width",
       "--wim-radius-md",
-      "--wim-shadow-lg",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
       "--wim-spacing-xs",
-      "--wim-z-overlay"
+      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -276,6 +261,44 @@
       }
     }
   },
+  "Drawer": {
+    "name": "Drawer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-overlay-max-width-md",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dropdown": {
+    "name": "Dropdown",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Dialog": {
     "name": "Dialog",
     "tokens": [
@@ -304,37 +327,14 @@
     "anatomy": [],
     "props": {}
   },
-  "Drawer": {
-    "name": "Drawer",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-overlay-max-width-md",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
+  "BottomSheet": {
+    "name": "BottomSheet",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
   "ContextMenu": {
     "name": "ContextMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "BottomSheet": {
-    "name": "BottomSheet",
     "tokens": [],
     "anatomy": [],
     "props": {}
