@@ -24,7 +24,7 @@ describe("useFixedColumns", () => {
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
-    expect(result.current.fixedLeftOffsets["a"].zIndex).toBe(20);
+    expect(result.current.fixedLeftOffsets["a"].zIndex).toBe(100);
   });
 
   it("second fixed-left column accumulates offset from first", () => {
@@ -36,8 +36,8 @@ describe("useFixedColumns", () => {
     expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
     expect(result.current.fixedLeftOffsets["b"].offset).toBe("80px");
     // zIndex decrements
-    expect(result.current.fixedLeftOffsets["a"].zIndex).toBe(20);
-    expect(result.current.fixedLeftOffsets["b"].zIndex).toBe(19);
+    expect(result.current.fixedLeftOffsets["a"].zIndex).toBe(100);
+    expect(result.current.fixedLeftOffsets["b"].zIndex).toBe(99);
   });
 
   it("adds 48px for selection column when selection=true", () => {
@@ -45,8 +45,8 @@ describe("useFixedColumns", () => {
       { key: "a", title: "A", fixed: "left", width: "100px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, true));
-    // first fixed-left starts at 48px (selection column)
-    expect(result.current.fixedLeftOffsets["a"].offset).toBe("48px");
+    // first fixed-left starts at 60px (selection column)
+    expect(result.current.fixedLeftOffsets["a"].offset).toBe("60px");
   });
 
   it("fixed-right columns are processed right-to-left with offset 0 for the rightmost", () => {
@@ -67,8 +67,8 @@ describe("useFixedColumns", () => {
       { key: "c", title: "C", fixed: "right", width: "60px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
-    expect(result.current.fixedRightOffsets["c"].zIndex).toBe(20);
-    expect(result.current.fixedRightOffsets["b"].zIndex).toBe(19);
+    expect(result.current.fixedRightOffsets["c"].zIndex).toBe(100);
+    expect(result.current.fixedRightOffsets["b"].zIndex).toBe(99);
   });
 
   it("handles numeric width in fixed columns", () => {
