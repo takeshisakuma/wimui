@@ -66,7 +66,7 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
           await page.waitForTimeout(300);
 
           const results = await new AxeBuilder({ page })
-            .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+            .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
             .disableRules(DISABLED_RULES)
             .analyze();
 

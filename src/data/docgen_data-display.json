@@ -140,43 +140,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Table": {
-    "name": "Table",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-scrollbar-thumb",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-duration-base",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-table-row-bg",
-      "--wim-table-row-bg-hover",
-      "--wim-table-scrollbar-color",
-      "--wim-table-scrollbar-thumb-bg",
-      "--wim-table-scrollbar-track-bg",
-      "--wim-table-scrollbar-width",
-      "--wim-z-index-sticky",
-      "--wim-z-index-sticky-column",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Tag": {
     "name": "Tag",
     "tokens": [
@@ -325,6 +288,43 @@
         "description": "アイコン"
       }
     }
+  },
+  "Table": {
+    "name": "Table",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Stats": {
     "name": "Stats",
@@ -827,6 +827,12 @@
       }
     }
   },
+  "DescriptionList": {
+    "name": "DescriptionList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "EmptyState": {
     "name": "EmptyState",
     "tokens": [],
@@ -887,12 +893,6 @@
         }
       }
     }
-  },
-  "DescriptionList": {
-    "name": "DescriptionList",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "DataGrid": {
     "name": "DataGrid",
@@ -2639,25 +2639,115 @@
       }
     }
   },
-  "AvatarGroup": {
-    "name": "AvatarGroup",
-    "tokens": [],
+  "Badge": {
+    "name": "Badge",
+    "tokens": [
+      "--wim-badge-dot-lg",
+      "--wim-badge-dot-md",
+      "--wim-badge-dot-sm",
+      "--wim-font-size-2xs",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
     "anatomy": [],
     "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the badge will be rendered as its child, merging its props onto that child."
+      },
       "children": {
-        "required": true,
+        "required": false,
         "tsType": {
           "name": "ReactReactNode",
           "raw": "React.ReactNode"
         },
-        "description": ""
+        "description": "表示するコンテンツ"
       },
-      "max": {
+      "content": {
         "required": false,
         "tsType": {
-          "name": "number"
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": ""
+        "description": "表示するコンテンツ (childrenの代替)"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アイコン"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "インテント（意味的状態）"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"solid\" | \"outline\" | \"subtle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"solid\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"subtle\""
+            }
+          ]
+        },
+        "description": "バリアント"
       },
       "size": {
         "required": false,
@@ -2699,25 +2789,7 @@
             }
           ]
         },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "total": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
+        "description": "サイズ"
       }
     }
   },
@@ -2893,139 +2965,25 @@
       }
     }
   },
-  "Accordion": {
-    "name": "Accordion",
-    "tokens": [
-      "--wim-accordion-chevron-size",
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-line-height-loose",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-spacing-2xl",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Badge": {
-    "name": "Badge",
-    "tokens": [
-      "--wim-badge-dot-lg",
-      "--wim-badge-dot-md",
-      "--wim-badge-dot-sm",
-      "--wim-font-size-2xs",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
+  "AvatarGroup": {
+    "name": "AvatarGroup",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the badge will be rendered as its child, merging its props onto that child."
-      },
       "children": {
-        "required": false,
+        "required": true,
         "tsType": {
           "name": "ReactReactNode",
           "raw": "React.ReactNode"
         },
-        "description": "表示するコンテンツ"
+        "description": ""
       },
-      "content": {
+      "max": {
         "required": false,
         "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
+          "name": "number"
         },
-        "description": "表示するコンテンツ (childrenの代替)"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アイコン"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"neutral\""
-            }
-          ]
-        },
-        "description": "インテント（意味的状態）"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"solid\" | \"outline\" | \"subtle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"solid\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"subtle\""
-            }
-          ]
-        },
-        "description": "バリアント"
+        "description": ""
       },
       "size": {
         "required": false,
@@ -3067,8 +3025,50 @@
             }
           ]
         },
-        "description": "サイズ"
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "total": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
+  },
+  "Accordion": {
+    "name": "Accordion",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {}
   }
 }

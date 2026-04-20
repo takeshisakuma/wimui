@@ -89,6 +89,7 @@ VRT は `src/`・`stories/` に変更があるPRで自動実行されます。
 ```
 npx playwright test vrt/a11y.spec.ts                                        # 全ストーリーのa11yチェック
 $env:FILTER='Button'; npx playwright test vrt/a11y.spec.ts                  # Buttonのみ
+npx playwright test vrt/a11y.spec.ts --grep "DataGrid"                     # DataGridのみ
 ```
 
 ### バンドルサイズ

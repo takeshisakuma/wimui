@@ -305,75 +305,48 @@
     "anatomy": [],
     "props": {}
   },
-  "ScrollProgress": {
-    "name": "ScrollProgress",
+  "Snackbar": {
+    "name": "Snackbar",
     "tokens": [
+      "--wim-color-bg-inverted",
       "--wim-color-caution",
       "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-overlay-control-active",
+      "--wim-color-overlay-control-hover",
+      "--wim-color-overlay-control-track",
       "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-z-overlay"
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-full",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-snackbar-action",
+      "--wim-snackbar-action-hover",
+      "--wim-snackbar-bg",
+      "--wim-snackbar-blur",
+      "--wim-snackbar-border",
+      "--wim-snackbar-close-hover",
+      "--wim-snackbar-close-idle",
+      "--wim-snackbar-close-size",
+      "--wim-snackbar-lift",
+      "--wim-snackbar-max-width",
+      "--wim-snackbar-min-width",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
     ],
     "anatomy": [],
-    "props": {
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "進捗バーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "target": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
-      }
-    }
+    "props": {}
   },
   "Skeleton": {
     "name": "Skeleton",
@@ -468,6 +441,76 @@
           ]
         },
         "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
+      }
+    }
+  },
+  "ScrollProgress": {
+    "name": "ScrollProgress",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "進捗バーの色。",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "target": {
+        "required": false,
+        "tsType": {
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
       }
     }
   },
@@ -794,49 +837,6 @@
         }
       }
     }
-  },
-  "Snackbar": {
-    "name": "Snackbar",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-overlay-control-active",
-      "--wim-color-overlay-control-hover",
-      "--wim-color-overlay-control-track",
-      "--wim-color-positive",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-full",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-snackbar-action",
-      "--wim-snackbar-action-hover",
-      "--wim-snackbar-bg",
-      "--wim-snackbar-blur",
-      "--wim-snackbar-border",
-      "--wim-snackbar-close-hover",
-      "--wim-snackbar-close-idle",
-      "--wim-snackbar-close-size",
-      "--wim-snackbar-lift",
-      "--wim-snackbar-max-width",
-      "--wim-snackbar-min-width",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Notification": {
     "name": "Notification",

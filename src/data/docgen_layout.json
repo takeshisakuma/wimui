@@ -1563,6 +1563,34 @@
       }
     }
   },
+  "Sidebar": {
+    "name": "Sidebar",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-overlay-bg-sidebar",
+      "--wim-color-primary",
+      "--wim-color-primary-light",
+      "--wim-color-text-primary",
+      "--wim-font-size-xl",
+      "--wim-font-weight-bold",
+      "--wim-height-sm",
+      "--wim-height-xl",
+      "--wim-radius-xs",
+      "--wim-sidebar-width",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-transition-base",
+      "--wim-transition-fast",
+      "--wim-z-drawer",
+      "--wim-z-mask",
+      "--wim-z-sidebar"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "ScrollArea": {
     "name": "ScrollArea",
     "tokens": [],
@@ -1618,34 +1646,6 @@
         "description": ""
       }
     }
-  },
-  "Sidebar": {
-    "name": "Sidebar",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-overlay-bg-sidebar",
-      "--wim-color-primary",
-      "--wim-color-primary-light",
-      "--wim-color-text-primary",
-      "--wim-font-size-xl",
-      "--wim-font-weight-bold",
-      "--wim-height-sm",
-      "--wim-height-xl",
-      "--wim-radius-xs",
-      "--wim-sidebar-width",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-transition-base",
-      "--wim-transition-fast",
-      "--wim-z-drawer",
-      "--wim-z-mask",
-      "--wim-z-sidebar"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Navbar": {
     "name": "Navbar",
@@ -2690,30 +2690,6 @@
       }
     }
   },
-  "Footer": {
-    "name": "Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Flex": {
     "name": "Flex",
     "tokens": [],
@@ -2893,6 +2869,74 @@
         "description": "Display inline-flex",
         "defaultValue": {
           "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Divider": {
+    "name": "Divider",
+    "tokens": [
+      "--wim-color-border",
+      "--wim-divider-thickness",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "orientation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "分割線の方向",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "thickness": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "線の太さ (px)",
+        "defaultValue": {
+          "value": "1",
           "computed": false
         }
       }
@@ -3826,50 +3870,6 @@
         "description": "Whether the container should be fluid (100% width)",
         "defaultValue": {
           "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Divider": {
-    "name": "Divider",
-    "tokens": [
-      "--wim-color-border",
-      "--wim-divider-thickness",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "orientation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "分割線の方向",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      },
-      "thickness": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "線の太さ (px)",
-        "defaultValue": {
-          "value": "1",
           "computed": false
         }
       }
