@@ -326,6 +326,30 @@
     "anatomy": [],
     "props": {}
   },
+  "Stats": {
+    "name": "Stats",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "QRCode": {
     "name": "QRCode",
     "tokens": [
@@ -463,87 +487,6 @@
       }
     }
   },
-  "Stats": {
-    "name": "Stats",
-    "tokens": [
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-positive",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-display",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-line-height-normal",
-      "--wim-line-height-snug",
-      "--wim-line-height-tight",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Markdown": {
-    "name": "Markdown",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-family-mono",
-      "--wim-font-size-2xl",
-      "--wim-font-size-xl",
-      "--wim-line-height-normal",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-radius-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
-      },
-      "gfm": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
   "Marquee": {
     "name": "Marquee",
     "tokens": [
@@ -608,6 +551,63 @@
       }
     }
   },
+  "Markdown": {
+    "name": "Markdown",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-color-bg-subtle-alpha",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-family-mono",
+      "--wim-font-size-2xl",
+      "--wim-font-size-xl",
+      "--wim-line-height-normal",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-radius-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
+      },
+      "gfm": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "List": {
     "name": "List",
     "tokens": [
@@ -642,94 +642,6 @@
       "--wim-spacing-2xl",
       "--wim-z-10"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "FAQSection": {
-    "name": "FAQSection",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "FAQItem"
-            }
-          ],
-          "raw": "FAQItem[]"
-        },
-        "description": "FAQの各項目。"
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "セクションのメインタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "タイトルの下に表示される補足説明。"
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"top\" | \"left\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"left\""
-            }
-          ]
-        },
-        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
-        "defaultValue": {
-          "value": "\"top\"",
-          "computed": false
-        }
-      },
-      "accordionProps": {
-        "required": false,
-        "tsType": {
-          "name": "Omit",
-          "elements": [
-            {
-              "name": "AccordionProps"
-            },
-            {
-              "name": "literal",
-              "value": "\"children\""
-            }
-          ],
-          "raw": "Omit<AccordionProps, \"children\">"
-        },
-        "description": "内部のAccordionコンポーネントに渡すProps。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
-  "DescriptionList": {
-    "name": "DescriptionList",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -833,6 +745,88 @@
       }
     }
   },
+  "FAQSection": {
+    "name": "FAQSection",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "FAQItem"
+            }
+          ],
+          "raw": "FAQItem[]"
+        },
+        "description": "FAQの各項目。"
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "セクションのメインタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "タイトルの下に表示される補足説明。"
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"top\" | \"left\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"left\""
+            }
+          ]
+        },
+        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
+        "defaultValue": {
+          "value": "\"top\"",
+          "computed": false
+        }
+      },
+      "accordionProps": {
+        "required": false,
+        "tsType": {
+          "name": "Omit",
+          "elements": [
+            {
+              "name": "AccordionProps"
+            },
+            {
+              "name": "literal",
+              "value": "\"children\""
+            }
+          ],
+          "raw": "Omit<AccordionProps, \"children\">"
+        },
+        "description": "内部のAccordionコンポーネントに渡すProps。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "EmptyState": {
     "name": "EmptyState",
     "tokens": [],
@@ -893,6 +887,12 @@
         }
       }
     }
+  },
+  "DescriptionList": {
+    "name": "DescriptionList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "DataGrid": {
     "name": "DataGrid",
@@ -1814,30 +1814,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Card": {
-    "name": "Card",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -2105,6 +2081,30 @@
         "description": "追加のクラス名"
       }
     }
+  },
+  "Card": {
+    "name": "Card",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "RangeCalendar": {
     "name": "RangeCalendar",

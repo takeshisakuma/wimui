@@ -59,20 +59,30 @@
       border-radius: var(--wim-radius-md);
       transition: all var(--wim-transition-base);
 
-      &:hover:not(.disabled, .active) {
-        color: var(--wim-color-primary);
+      &:hover:not(.disabled, .active),
+      &:focus-within:not(.disabled, .active) {
+        color: var(--wim-color-text-primary);
         background-color: var(--wim-color-bg-hover);
+        border-color: var(--wim-color-primary);
+      }
+
+      &:active:not(.disabled, .active) {
+        background-color: color-mix(in srgb, var(--wim-color-primary) 15%, transparent);
+        transform: scale(0.96);
       }
 
       &.active {
         color: var(--wim-color-text-on-primary);
         cursor: default;
         background-color: var(--wim-color-primary);
+        border-color: var(--wim-color-primary);
       }
 
       &.disabled {
         color: var(--wim-color-disabled);
         cursor: not-allowed;
+        background-color: transparent;
+        border-color: transparent;
         opacity: var(--wim-opacity-ghost);
       }
 

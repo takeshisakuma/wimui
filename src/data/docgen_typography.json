@@ -798,82 +798,6 @@
       }
     }
   },
-  "Label": {
-    "name": "Label",
-    "tokens": [
-      "--wim-color-text-primary",
-      "--wim-font-size-sm",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "label": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The main label text or element."
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the field is mandatory. If true, displays a required badge.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "requiredLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the required badge.\r\n@default \"required\""
-      },
-      "showOptional": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to display an optional badge when `required` is false.\r\n@default false",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "optionalLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class name for the container."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the Label will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
   "Kbd": {
     "name": "Kbd",
     "tokens": [
@@ -1020,6 +944,82 @@
           "name": "boolean"
         },
         "description": "If true, the component will be rendered as its child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Label": {
+    "name": "Label",
+    "tokens": [
+      "--wim-color-text-primary",
+      "--wim-font-size-sm",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "label": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The main label text or element."
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the field is mandatory. If true, displays a required badge.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "requiredLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the required badge.\r\n@default \"required\""
+      },
+      "showOptional": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to display an optional badge when `required` is false.\r\n@default false",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "optionalLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class name for the container."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the Label will be rendered as its child, merging its props onto that child.",
         "defaultValue": {
           "value": "false",
           "computed": false
