@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof DescriptionList>;
 
 const DescriptionListContent = () => {
-  const { t } = useTranslation("docs");
+  const { t } = useTranslation("docs_stories_common");
   return (
     <>
       <DescriptionListItem>

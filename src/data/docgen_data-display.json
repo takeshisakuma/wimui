@@ -1,4 +1,10 @@
 {
+  "TreeView": {
+    "name": "TreeView",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "VirtualList": {
     "name": "VirtualList",
     "tokens": [],
@@ -110,73 +116,6 @@
         }
       }
     }
-  },
-  "TreeView": {
-    "name": "TreeView",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Timeline": {
-    "name": "Timeline",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Table": {
-    "name": "Table",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-alpha",
-      "--wim-color-scrollbar-thumb",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-duration-base",
-      "--wim-height-lg",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-table-scrollbar-color",
-      "--wim-table-scrollbar-thumb-bg",
-      "--wim-table-scrollbar-track-bg",
-      "--wim-table-scrollbar-width",
-      "--wim-z-index-sticky",
-      "--wim-z-index-sticky-column",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Tag": {
     "name": "Tag",
@@ -327,26 +266,62 @@
       }
     }
   },
-  "Stats": {
-    "name": "Stats",
+  "Timeline": {
+    "name": "Timeline",
     "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
       "--wim-color-destructive",
-      "--wim-color-disabled",
       "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Table": {
+    "name": "Table",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
       "--wim-color-text-primary",
       "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
-      "--wim-font-size-display",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-line-height-normal",
-      "--wim-line-height-snug",
-      "--wim-line-height-tight",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-xs"
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}
@@ -488,69 +463,29 @@
       }
     }
   },
-  "Marquee": {
-    "name": "Marquee",
+  "Stats": {
+    "name": "Stats",
     "tokens": [
-      "--wim-spacing-md"
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
     ],
     "anatomy": [],
-    "props": {
-      "duration": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "アニメーションの速度（秒）。デフォルトは `20`。",
-        "defaultValue": {
-          "value": "20",
-          "computed": false
-        }
-      },
-      "reverse": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "アニメーションを逆方向にするかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "pauseOnHover": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "ホバー時にアニメーションを一時停止するかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "vertical": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "垂直方向に流すかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "repeat": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。",
-        "defaultValue": {
-          "value": "2",
-          "computed": false
-        }
-      }
-    }
+    "props": {}
   },
   "Markdown": {
     "name": "Markdown",
@@ -620,6 +555,70 @@
     "anatomy": [],
     "props": {}
   },
+  "Marquee": {
+    "name": "Marquee",
+    "tokens": [
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "duration": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "アニメーションの速度（秒）。デフォルトは `20`。",
+        "defaultValue": {
+          "value": "20",
+          "computed": false
+        }
+      },
+      "reverse": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "アニメーションを逆方向にするかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "pauseOnHover": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "ホバー時にアニメーションを一時停止するかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "vertical": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "垂直方向に流すかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "repeat": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
+      }
+    }
+  },
   "Kanban": {
     "name": "Kanban",
     "tokens": [
@@ -645,67 +644,6 @@
     ],
     "anatomy": [],
     "props": {}
-  },
-  "EmptyState": {
-    "name": "EmptyState",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示する説明文。"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するアイコン。"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションとして表示する要素（ボタンなど）。"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"simple\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"simple\""
-            }
-          ]
-        },
-        "description": "デザインバリエーション。",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      }
-    }
   },
   "InfiniteScroll": {
     "name": "InfiniteScroll",
@@ -889,6 +827,67 @@
       }
     }
   },
+  "EmptyState": {
+    "name": "EmptyState",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示する説明文。"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するアイコン。"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションとして表示する要素（ボタンなど）。"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"simple\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"simple\""
+            }
+          ]
+        },
+        "description": "デザインバリエーション。",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "DescriptionList": {
     "name": "DescriptionList",
     "tokens": [],
@@ -910,7 +909,7 @@
       "--wim-radius-md",
       "--wim-spacing-md",
       "--wim-spacing-sm",
-      "--wim-z-10"
+      "--wim-table-row-bg"
     ],
     "anatomy": [],
     "props": {
@@ -1809,6 +1808,12 @@
       }
     }
   },
+  "ChatUI": {
+    "name": "ChatUI",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -2098,12 +2103,6 @@
       "--wim-spacing-xl",
       "--wim-transition-base"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "ChatUI": {
-    "name": "ChatUI",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
@@ -2876,30 +2875,6 @@
       }
     }
   },
-  "Accordion": {
-    "name": "Accordion",
-    "tokens": [
-      "--wim-accordion-chevron-size",
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-line-height-loose",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-spacing-2xl",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Avatar": {
     "name": "Avatar",
     "tokens": [
@@ -3071,5 +3046,29 @@
         "description": ""
       }
     }
+  },
+  "Accordion": {
+    "name": "Accordion",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {}
   }
 }

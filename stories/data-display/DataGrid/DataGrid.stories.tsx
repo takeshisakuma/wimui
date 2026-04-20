@@ -481,9 +481,31 @@ export const WithRightFixedColumn: Story = {
       {
         key: "actions",
         title: t("story.datagrid_col_actions"),
-        width: 80,
+        width: 100,
         fixed: "right" as const,
-        render: () => "...",
+        render: (_: unknown, row: Record<string, unknown>) => (
+          <div style={{ display: "flex", gap: "8px", flexWrap: "nowrap" }}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() =>
+                alert(t("story.datagrid_action_edit", { name: row.name }))
+              }
+            >
+              <Icon name="EditIcon" size="sm" />
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              intent="destructive"
+              onClick={() =>
+                alert(t("story.datagrid_action_delete", { name: row.name }))
+              }
+            >
+              <Icon name="TrashIcon" size="sm" />
+            </Button>
+          </div>
+        ),
       },
     ];
     return (

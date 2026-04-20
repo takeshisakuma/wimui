@@ -25,7 +25,7 @@
       "disabled": { "value": "{pccs.gy4-5}" },
       "text-on-disabled": { "value": "{pccs.gy7-5}" },
       "text-error": { "value": "#ff8c8c" },
-      "destructive": { "value": "{pccs.v2}" },
+      "destructive": { "value": "{pccs.lt2}" },
       "positive": { "value": "{pccs.v12}" },
       "caution": { "value": "{pccs.v7}" },
       "informative": { "value": "{pccs.v17}" },

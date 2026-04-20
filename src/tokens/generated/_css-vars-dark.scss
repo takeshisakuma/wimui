@@ -3,7 +3,7 @@
  */
 
 [data-theme="dark"] {
-  --wim-color-destructive: #ee0026;
+  --wim-color-destructive: #fb7482;
   --wim-color-positive: #33a23d;
   --wim-color-caution: #fc0;
   --wim-color-primary: #055d87;
@@ -221,7 +221,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --wim-color-destructive: #ee0026;
+    --wim-color-destructive: #fb7482;
     --wim-color-positive: #33a23d;
     --wim-color-caution: #fc0;
     --wim-color-primary: #055d87;

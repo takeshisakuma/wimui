@@ -232,9 +232,8 @@ test.describe("DataGrid — Pagination", () => {
 test.describe("Transfer", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(
-      iframe("components-advanced-inputs-transfer--controlled"),
+      iframe("components-advanced-inputs-transfer--default"),
     );
-    // Transfer makes ongoing fetch requests; use load instead of networkidle
     await page.waitForLoadState("load");
     await expect(page.locator(".wim-transfer__list").first()).toBeVisible();
   });
@@ -247,26 +246,26 @@ test.describe("Transfer", () => {
   });
 
   test("items in targetKeys start in the right panel", async ({ page }) => {
-    // targetKeys=["1","2"] → Item 2, Item 3 are on the right
+    // targetKeys=["1","3","5"] → Item 2, Item 4, Item 6 are on the right
     const panels = page.locator(".wim-transfer__list");
     const targetPanel = panels.last();
     await expect(targetPanel.getByText("Item 2")).toBeVisible();
-    await expect(targetPanel.getByText("Item 3")).toBeVisible();
+    await expect(targetPanel.getByText("Item 4")).toBeVisible();
   });
 
   test("moves a selected item from source to target", async ({ page }) => {
-    // Item 4 (key "3") is in source panel initially
+    // Item 3 (key "2") is in source panel (targetKeys=["1","3","5"])
     const panels = page.locator(".wim-transfer__list");
     const sourcePanel = panels.first();
     const targetPanel = panels.last();
 
-    await sourcePanel.getByText("Item 4").click();
+    await sourcePanel.getByRole("option", { name: "Item 3" }).click();
 
     // Click the → (right arrow) move button
     const moveRightBtn = page.locator(".wim-transfer__operation button").first();
     await moveRightBtn.click();
 
-    await expect(targetPanel.getByText("Item 4")).toBeVisible();
+    await expect(targetPanel.getByText("Item 3")).toBeVisible();
   });
 
   test("moves a selected item from target back to source", async ({ page }) => {
@@ -274,7 +273,7 @@ test.describe("Transfer", () => {
     const sourcePanel = panels.first();
     const targetPanel = panels.last();
 
-    await targetPanel.getByText("Item 2").click();
+    await targetPanel.getByRole("option", { name: "Item 2" }).click();
 
     // Click the ← (left arrow) move button
     const moveLeftBtn = page.locator(".wim-transfer__operation button").last();

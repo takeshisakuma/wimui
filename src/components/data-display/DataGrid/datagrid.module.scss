@@ -73,18 +73,41 @@
     border: none !important;
   }
 
+  .tableContainer {
+    overflow: visible !important;
+  }
+
   .cellFixed {
     position: sticky;
-    z-index: var(--wim-z-10);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
   }
 
   .cellFixedLeftLast {
-    box-shadow: 2px 0 5px -2px color-mix(in srgb, var(--wim-color-text-primary) 10%, transparent);
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(to right, color-mix(in srgb, var(--wim-color-text-primary) 10%, transparent), transparent);
+      transform: translateX(100%);
+    }
   }
 
   .cellFixedRightFirst {
-    box-shadow: -2px 0 5px -2px color-mix(in srgb, var(--wim-color-text-primary) 10%, transparent);
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 10px;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(to left, color-mix(in srgb, var(--wim-color-text-primary) 10%, transparent), transparent);
+      transform: translateX(-100%);
+    }
   }
 
   .selectionInfo {

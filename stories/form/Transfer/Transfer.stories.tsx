@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof Transfer>;
 
 const useDataSource = () => {
-  const { t } = useTranslation("docs");
+  const { t } = useTranslation("docs_stories_common");
   return Array.from({ length: 20 }).map((_, i) => ({
     key: i.toString(),
     title: `${t("story.transfer_item")} ${i + 1}`,
@@ -67,7 +67,7 @@ export const Controlled: Story = {
 };
 
 const CustomTitlesTransfer = (args: React.ComponentProps<typeof Transfer>) => {
-  const { t } = useTranslation("docs");
+  const { t } = useTranslation("docs_stories_common");
   const dataSource = useDataSource();
   return (
     <Transfer

@@ -21,6 +21,7 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   mobileCard?: boolean;
   height?: string | number;
   maxHeight?: string | number;
+  containerClassName?: string;
 }
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>(
@@ -36,6 +37,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
       mobileCard = false,
       height,
       maxHeight,
+      containerClassName,
       className,
       children,
       ...props
@@ -57,6 +59,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
           stickyHeader && styles.sticky,
           scrollbar === "subtle" && styles.subtleScrollbar,
           scrollbar === "hidden" && styles.noScrollbar,
+          containerClassName,
         )}
         style={containerStyle}
         tabIndex={height || maxHeight ? 0 : undefined}

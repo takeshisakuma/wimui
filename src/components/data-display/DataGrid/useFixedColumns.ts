@@ -19,8 +19,8 @@ export function useFixedColumns<T>(
 } {
   return useMemo(() => {
     const fixedLeftOffsets: Record<string, FixedColumnInfo & { isLast?: boolean; isFirst?: boolean }> = {};
-    let currentLeftOffset = selection ? 48 : 0;
-    let currentLeftZIndex = 20;
+    let currentLeftOffset = selection ? 60 : 0;
+    let currentLeftZIndex = 100;
 
     const fixedLeft = columns.filter(col => col.fixed === "left");
     fixedLeft.forEach((col, index) => {
@@ -34,7 +34,7 @@ export function useFixedColumns<T>(
 
     const fixedRightOffsets: Record<string, FixedColumnInfo> = {};
     let currentRightOffset = 0;
-    let currentRightZIndex = 20;
+    let currentRightZIndex = 100;
 
     const fixedRight = columns.filter(col => col.fixed === "right");
     fixedRight.reverse().forEach((col, index) => {

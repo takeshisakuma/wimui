@@ -113,13 +113,13 @@ export function DataGrid<T extends Record<string, unknown>>({
   // 1. Column Processing (Fixed columns)
   const { fixedLeftOffsets, fixedRightOffsets } = useFixedColumns(columns, !!selection);
 
-  const getStickyProps = (columnKey: string) => {
+  const getStickyProps = (columnKey: string, isHeader = false) => {
     const leftInfo = fixedLeftOffsets[columnKey] as FixedColumnInfo & { isLast?: boolean };
     if (leftInfo) {
       return {
         stickyLeft: true,
         leftOffset: leftInfo.offset,
-        stickyZIndex: leftInfo.zIndex,
+        stickyZIndex: isHeader ? 1000 + leftInfo.zIndex : leftInfo.zIndex,
         className: classNames(
           styles.cellFixed,
           leftInfo.isLast && styles.cellFixedLeftLast,
@@ -131,7 +131,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       return {
         stickyRight: true,
         rightOffset: rightInfo.offset,
-        stickyZIndex: rightInfo.zIndex,
+        stickyZIndex: isHeader ? 1000 + rightInfo.zIndex : rightInfo.zIndex,
         className: classNames(
           styles.cellFixed,
           rightInfo.isFirst && styles.cellFixedRightFirst,
@@ -211,6 +211,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           mobileCard={mobileCard}
           fullWidth
           className={classNames("wim-table", styles.table)}
+          containerClassName={styles.tableContainer}
         >
           <Table.Header>
             <Table.Row>
@@ -219,7 +220,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                   selection
                   stickyLeft
                   leftOffset={0}
-                  stickyZIndex={30}
+                  stickyZIndex={1150}
                   data-row={-1}
                   data-col={-1}
                   tabIndex={focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1}
@@ -235,7 +236,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                 </Table.Head>
               )}
               {columns.map((col, colIndex) => {
-                const stickyProps = getStickyProps(col.key);
+                const stickyProps = getStickyProps(col.key, true);
                 return (
                   <Table.Head
                     key={col.key}
@@ -277,7 +278,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                       selection
                       stickyLeft
                       leftOffset={0}
-                      stickyZIndex={10}
+                      stickyZIndex={150}
                       data-row={rowIndex}
                       data-col={-1}
                       tabIndex={focusedCell.row === rowIndex && focusedCell.col === -1 ? 0 : -1}
@@ -290,7 +291,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     </Table.Cell>
                   )}
                   {columns.map((col, colIndex) => {
-                    const stickyProps = getStickyProps(col.key);
+                    const stickyProps = getStickyProps(col.key, false);
                     const fieldKey = col.dataIndex ?? col.key;
                     const value = record[fieldKey];
                     return (
