@@ -33,6 +33,7 @@ export const Default: Story = {
         items={items}
         itemHeight={48}
         height={300}
+        aria-label={t("story.virtuallist_aria_label")}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
             {t("story.virtuallist_item_label", { id: item.id })}
@@ -53,6 +54,7 @@ export const LargeDataset: Story = {
         items={items}
         itemHeight={40}
         height={400}
+        aria-label={t("story.virtuallist_aria_label")}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
             {t("story.virtuallist_item_label", { id: item.id })}
@@ -73,6 +75,7 @@ export const WithCustomItemHeight: Story = {
         items={items}
         itemHeight={64}
         height={320}
+        aria-label={t("story.virtuallist_aria_label")}
         renderItem={(item) => (
           <div
             style={{
@@ -105,6 +108,7 @@ export const WithOverscan: Story = {
         itemHeight={48}
         height={300}
         overscan={10}
+        aria-label={t("story.virtuallist_aria_label")}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
             {t("story.virtuallist_item_label", { id: item.id })}

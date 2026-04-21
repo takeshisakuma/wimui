@@ -62,7 +62,7 @@
   
     svg {
       margin-right: var(--wim-spacing-sm);
-      color: var(--wim-color-text-tertiary);
+      color: var(--wim-color-text-secondary);
       transition: color var(--wim-transition-fast);
     }
   
@@ -89,7 +89,7 @@
     display: flex;
     align-items: center;
     font-size: var(--wim-font-size-sm);
-    color: var(--wim-color-text-tertiary);
+    color: var(--wim-color-text-secondary);
   }
   
   .input {
@@ -103,7 +103,7 @@
     box-shadow: none;
   
     &::placeholder {
-      color: var(--wim-color-text-tertiary);
+      color: var(--wim-color-text-secondary);
     }
   }
   
@@ -129,7 +129,7 @@
     padding: var(--wim-spacing-xs) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
     font-size: var(--wim-font-size-xs);
     font-weight: 600;
-    color: var(--wim-color-text-tertiary);
+    color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--wim-letter-spacing-wide);
   }
@@ -156,7 +156,7 @@
   .empty {
     padding: var(--wim-spacing-xl) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
-    color: var(--wim-color-text-tertiary);
+    color: var(--wim-color-text-secondary);
     text-align: center;
   }
   
@@ -179,6 +179,7 @@
     padding: var(--wim-spacing-hairline) var(--wim-spacing-xs);
     font-family: inherit;
     font-size: 0.6rem;
+    color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-secondary);
     border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-xs);

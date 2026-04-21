@@ -148,12 +148,13 @@ const TransferList = ({
       aria-setsize={useVirtual ? data.length : undefined}
       aria-posinset={useVirtual ? index + 1 : undefined}
       icon={
-        <Checkbox
-          checked={selectedKeys.includes(item.key)}
-          disabled={disabled || item.disabled}
-          tabIndex={-1}
-          readOnly
-          aria-hidden={true}
+        <div
+          className={classNames(
+            styles.checkboxVisual,
+            selectedKeys.includes(item.key) && styles.checked,
+            (disabled || item.disabled) && styles.disabled,
+          )}
+          aria-hidden="true"
         />
       }
     >
@@ -183,10 +184,10 @@ const TransferList = ({
       <div
         ref={bodyRef}
         className={styles.body}
-        role="listbox"
-        aria-multiselectable="true"
+        role={data.length > 0 ? "listbox" : undefined}
+        aria-multiselectable={data.length > 0 ? "true" : undefined}
         aria-label={titleStr}
-        aria-activedescendant={activeDescendantId}
+        aria-activedescendant={data.length > 0 ? activeDescendantId : undefined}
         tabIndex={disabled || data.length === 0 ? -1 : 0}
         onKeyDown={(e) => onKeyDown(e, listType, data)}
         onFocus={() => {
@@ -278,19 +279,12 @@ export const Transfer = ({
   const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset focused key if it's no longer in the list (e.g. after move)
-   
-  useEffect(() => {
-    if (focusedSourceKey && !sourceData.some((d) => d.key === focusedSourceKey)) {
-      setFocusedSourceKey(null);
-    }
-  }, [sourceData, focusedSourceKey]);
-
-  useEffect(() => {
-    if (focusedTargetKey && !targetData.some((d) => d.key === focusedTargetKey)) {
-      setFocusedTargetKey(null);
-    }
-  }, [targetData, focusedTargetKey]);
-   
+  if (focusedSourceKey && !sourceData.some((d) => d.key === focusedSourceKey)) {
+    setFocusedSourceKey(null);
+  }
+  if (focusedTargetKey && !targetData.some((d) => d.key === focusedTargetKey)) {
+    setFocusedTargetKey(null);
+  }
 
   const handleSelect = (key: string) => {
     if (disabled) return;

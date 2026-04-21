@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { CommandPalette, CommandPaletteContent, CommandPaletteEmpty, CommandPaletteFooter, CommandPaletteGroup, CommandPaletteInput, CommandPaletteItem, CommandPaletteList, CommandPaletteTrigger, Icon } from "wimui";
+import { CommandPalette, CommandPaletteContent, CommandPaletteEmpty, CommandPaletteFooter, CommandPaletteGroup, CommandPaletteInput, CommandPaletteItem, CommandPaletteList, CommandPaletteTrigger, Icon, Kbd } from "wimui";
 
 
 const meta: Meta<typeof CommandPalette> = {
@@ -67,9 +67,9 @@ const DefaultTemplate = () => {
         <CommandPaletteTrigger>
           <Icon name="SearchIcon" size="sm" />
           <span>{t("story.command_search_commands")}</span>
-          <kbd style={{ marginLeft: "12px", fontSize: "0.8em", opacity: 0.6 }}>
+          <Kbd size="sm" style={{ marginLeft: "12px" }}>
             ⌘K
-          </kbd>
+          </Kbd>
         </CommandPaletteTrigger>
 
         <CommandPaletteContent>
@@ -97,15 +97,15 @@ const DefaultTemplate = () => {
             ))}
           </CommandPaletteList>
           <CommandPaletteFooter>
-            <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">↵</kbd> {t("story.command_to_select")}
+            <div className="wim-command-palette-shortcut-hint" style={{ color: "var(--wim-color-text-secondary)", fontSize: "var(--wim-font-size-xs)" }}>
+              <Kbd size="sm">↵</Kbd> {t("story.command_to_select")}
             </div>
-            <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">↑</kbd>
-              <kbd className="wim-kbd wim-kbd--sm">↓</kbd> {t("story.command_to_navigate")}
+            <div className="wim-command-palette-shortcut-hint" style={{ color: "var(--wim-color-text-secondary)", fontSize: "var(--wim-font-size-xs)" }}>
+              <Kbd size="sm">↑</Kbd>
+              <Kbd size="sm">↓</Kbd> {t("story.command_to_navigate")}
             </div>
-            <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">esc</kbd> {t("story.command_to_close")}
+            <div className="wim-command-palette-shortcut-hint" style={{ color: "var(--wim-color-text-secondary)", fontSize: "var(--wim-font-size-xs)" }}>
+              <Kbd size="sm">esc</Kbd> {t("story.command_to_close")}
             </div>
           </CommandPaletteFooter>
         </CommandPaletteContent>

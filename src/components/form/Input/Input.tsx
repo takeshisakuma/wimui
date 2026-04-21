@@ -175,9 +175,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         required={required}
         layout={layout}
         labelId={labelId}
+        htmlFor={id}
         errorId={errorId}
         className={className}
       >
+
         <InputBase
           intent={currentIntent}
           variant={variant}

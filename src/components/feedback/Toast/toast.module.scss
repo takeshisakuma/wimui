@@ -86,7 +86,6 @@
     margin: 0;
     font-size: 0.8125rem;
     line-height: 1.5;
-    opacity: 0.8;
 
     .title + & {
       margin-top: var(--wim-spacing-2xs);
@@ -147,11 +146,11 @@
   }
 
   .warning {
-    color: color-mix(in srgb, var(--wim-color-caution) 75%, var(--wim-color-feedback-text-base));
+    color: color-mix(in srgb, var(--wim-color-caution) 40%, var(--wim-color-feedback-text-base));
     border-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
 
     .icon {
-      color: var(--wim-color-caution);
+      color: color-mix(in srgb, var(--wim-color-caution) 80%, var(--wim-color-feedback-text-base));
     }
   }
 

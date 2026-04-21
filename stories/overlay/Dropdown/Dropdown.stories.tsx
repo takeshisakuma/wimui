@@ -22,7 +22,7 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Dropdown {...args}>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <Button >{t("story.dropdown_open")}</Button>
         </DropdownTrigger>
         <DropdownMenu>
@@ -46,7 +46,7 @@ export const WithIcons: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Dropdown {...args}>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <Button variant="outline">{t("story.dropdown_options")}</Button>
         </DropdownTrigger>
         <DropdownMenu>
@@ -71,7 +71,7 @@ export const AlignmentRight: Story = {
     return (
       <div style={{ paddingLeft: "200px" }}>
         <Dropdown {...args}>
-          <DropdownTrigger>
+          <DropdownTrigger asChild>
             <Button >{t("story.dropdown_right_aligned")}</Button>
           </DropdownTrigger>
           <DropdownMenu align="right">

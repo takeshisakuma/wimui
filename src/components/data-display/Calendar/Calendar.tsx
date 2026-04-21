@@ -130,7 +130,10 @@ export const Calendar = ({
 
   const isInRange = (date: Date) => {
     if (!rangeMode || !activeRange.start || !activeRange.end) return false;
-    return date > activeRange.start && date < activeRange.end;
+    const d = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+    const s = new Date(activeRange.start.getFullYear(), activeRange.start.getMonth(), activeRange.start.getDate()).getTime();
+    const e = new Date(activeRange.end.getFullYear(), activeRange.end.getMonth(), activeRange.end.getDate()).getTime();
+    return d > s && d < e;
   };
 
   const weekDayNames = ["日", "月", "火", "水", "木", "金", "土"];

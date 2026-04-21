@@ -83,7 +83,7 @@ export const OverflowEscape: Story = {
                                   }
                               `}</style>
                 <Stack gap="xs">
-                  <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-primary)" }}>
+                  <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-color-primary)" }}>
                     {t("story.portal_power_title")}
                   </h4>
                   <p
@@ -223,7 +223,7 @@ const SenderComponent = ({
                 fontSize: "12px",
                 background: color,
                 color: "var(--wim-color-text-primary)",
-                border: "1px solid var(--wim-color-border-subtle)",
+                border: "1px solid var(--wim-color-border)",
                 animation: "slideIn 0.2s ease-out",
               }}
             >
@@ -292,18 +292,19 @@ export const NotificationCenter: Story = {
             </SimpleGrid>
           </Stack>
 
-          <Card
-            variant="flat"
-            style={{
-              background: "var(--wim-color-bg-inverted)",
-              color: "var(--wim-color-text-on-inverted)",
-              minHeight: "400px",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <Box data-theme="dark" style={{ minHeight: "400px", display: "flex", flexDirection: "column" }}>
+            <Card
+              variant="flat"
+              style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                background: "var(--wim-color-bg-app)",
+                color: "var(--wim-color-text-primary)",
+              }}
+            >
             <Card.Header
-              style={{ borderBottom: "1px solid var(--wim-color-border-subtle)", color: "var(--wim-color-text-tertiary)" }}
+              style={{ borderBottom: "1px solid var(--wim-color-border)", color: "var(--wim-color-text-secondary)" }}
             >
               <Stack direction="row" justify="between" align="center">
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
@@ -317,7 +318,7 @@ export const NotificationCenter: Story = {
                 ref={setLogContainer}
                 style={{
                   marginBottom: "16px",
-                  borderBottom: "1px solid var(--wim-color-border-subtle)",
+                  borderBottom: "1px solid var(--wim-color-border)",
                   paddingBottom: "16px",
                   minHeight: "20px",
                 }}
@@ -349,7 +350,8 @@ export const NotificationCenter: Story = {
                 )}
               </div>
             </Card.Body>
-          </Card>
+            </Card>
+          </Box>
         </Grid>
       </Container>
       </Box>

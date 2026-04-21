@@ -16,7 +16,7 @@
       margin-top: var(--wim-spacing-sm);
       font-size: var(--wim-font-size-small-scale);
       font-style: italic;
-      opacity: 0.8;
+      opacity: 1;
 
       &::before {
         content: "— ";
@@ -54,18 +54,18 @@
     }
 
     &.gray {
-      color: var(--wim-color-text-tertiary);
+      color: var(--wim-color-text-secondary);
 
       &.border {
-        border-color: var(--wim-color-text-tertiary);
+        border-color: var(--wim-color-text-secondary);
       }
     }
 
     &.lightgray {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-tertiary);
 
       &.border {
-        border-color: var(--wim-color-text-disabled);
+        border-color: var(--wim-color-text-tertiary);
       }
     }
 
@@ -78,7 +78,7 @@
     }
 
     &.primary {
-      color: var(--wim-color-primary);
+      color: color-mix(in srgb, var(--wim-color-primary) 85%, var(--wim-color-text-primary));
 
       &.border {
         border-color: var(--wim-color-primary);
@@ -86,7 +86,7 @@
     }
 
     &.success {
-      color: var(--wim-color-positive);
+      color: color-mix(in srgb, var(--wim-color-positive) 85%, var(--wim-color-text-primary));
 
       &.border {
         border-color: var(--wim-color-positive);
@@ -94,7 +94,7 @@
     }
 
     &.warning {
-      color: var(--wim-color-caution);
+      color: color-mix(in srgb, var(--wim-color-caution) 40%, var(--wim-color-text-primary));
 
       &.border {
         border-color: var(--wim-color-caution);
@@ -102,7 +102,7 @@
     }
 
     &.error {
-      color: var(--wim-color-text-error);
+      color: color-mix(in srgb, var(--wim-color-text-error) 85%, var(--wim-color-text-primary));
 
       &.border {
         border-color: var(--wim-color-text-error);
@@ -110,7 +110,7 @@
     }
 
     &.info {
-      color: var(--wim-color-informative);
+      color: color-mix(in srgb, var(--wim-color-informative) 85%, var(--wim-color-text-primary));
 
       &.border {
         border-color: var(--wim-color-informative);

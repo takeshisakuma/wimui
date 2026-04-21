@@ -25,8 +25,10 @@ i18n
     lng: "en",
     react: {
       useSuspense: false,
+      bindI18n: "languageChanged",
       bindI18nStore: "added",
     },
+
   });
 
 export default i18n;

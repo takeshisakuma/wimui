@@ -224,6 +224,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                   stickyZIndex={1150}
                   data-row={-1}
                   data-col={-1}
+                  aria-label={t("a11y.select_all_rows")}
                   tabIndex={focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1}
                 >
                   {(selection.type ?? "checkbox") === "checkbox" && (

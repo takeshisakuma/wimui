@@ -39,7 +39,7 @@
   &::after {
     position: absolute;
     content: "";
-    background-color: var(--wim-splitter-handle-color, var(--wim-color-border));
+    background-color: var(--wim-splitter-handle-color, var(--wim-color-text-tertiary));
     transition:
       background-color var(--wim-transition-fast),
       transform var(--wim-transition-fast);

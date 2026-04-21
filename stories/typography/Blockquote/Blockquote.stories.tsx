@@ -74,7 +74,7 @@ export const VariousColors = {
         <Blockquote {...args} content={t('story.quote_black')} color="black" />
         <Blockquote {...args} content={t('story.quote_deepgray')} color="deepgray" />
         <Blockquote {...args} content={t('story.quote_gray')} color="gray" />
-        <div style={{ backgroundColor: "var(--wim-color-bg-inverted)", padding: "12px", borderRadius: "4px" }}>
+        <div data-theme="dark" style={{ backgroundColor: "var(--wim-color-bg-void)", padding: "12px", borderRadius: "4px" }}>
           <Blockquote {...args} content={t('story.quote_lightgray')} color="lightgray" />
         </div>
       </div>

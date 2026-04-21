@@ -17,7 +17,11 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <NumberInput {...args} placeholder={t("story.numberinput_placeholder")} />
+      <NumberInput
+        {...args}
+        label="Number Input"
+        placeholder={t("story.numberinput_placeholder")}
+      />
     );
   },
 };
@@ -29,7 +33,7 @@ export const NumericMode: Story = {
   args: {
     mode: "number",
     hideSpinButton: true,
-    "aria-label": "Number",
+    label: "Quantity",
   },
 };
 
@@ -39,6 +43,7 @@ export const NumericMode: Story = {
 export const TextMode: Story = {
   args: {
     mode: "text",
+    label: "ID Number",
     placeholder: "XXXX-XXXX-XXXX-XXXX",
   },
 };
@@ -50,6 +55,7 @@ export const ShowSpinButton: Story = {
   args: {
     mode: "number",
     hideSpinButton: false,
+    label: "Standard Number Input",
   },
 };
 
@@ -61,6 +67,8 @@ export const DecimalAndNegative: Story = {
     mode: "number",
     allowDecimal: true,
     allowNegative: true,
+    label: "Decimal and Negative",
     placeholder: "-123.45",
   },
 };
+

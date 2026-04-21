@@ -52,4 +52,10 @@ describe("Alert", () => {
     // This just verifies the component renders without issue
     expect(screen.getByText("No callback")).toBeInTheDocument();
   });
+
+  it("renders title with specified tag", () => {
+    render(<Alert title="Heading 2" titleTag="h2" />);
+    const heading = screen.getByText("Heading 2");
+    expect(heading.tagName).toBe("H2");
+  });
 });

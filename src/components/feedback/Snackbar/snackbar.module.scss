@@ -158,7 +158,7 @@
   }
 
   .warning {
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-caution) 75%, black);
+    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-caution) 50%, black);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }

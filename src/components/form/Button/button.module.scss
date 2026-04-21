@@ -165,7 +165,7 @@
     }
 
     &:disabled {
-      color: var(--wim-color-disabled);
+      color: var(--wim-color-text-disabled);
       background-color: transparent;
       border-color: var(--wim-color-disabled);
     }
@@ -204,7 +204,7 @@
     }
 
     &:disabled {
-      color: var(--wim-color-disabled);
+      color: var(--wim-color-text-disabled);
       background-color: transparent;
       border-color: transparent;
     }

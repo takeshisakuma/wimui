@@ -151,6 +151,8 @@
     "table_name": "Name",
     "table_pending": "Pending",
     "table_role": "Role",
+    "table_select_all": "Select all",
+    "table_select_row": "Select row",
     "table_status": "Status",
     "table_user": "User",
     "timeline_code": "Code",
@@ -187,6 +189,7 @@
     "chat_ai_assistant": "AI Assistant",
     "chat_ai_greeting": "Hello! I am your AI Assistant. How can I help you today?",
     "chat_ai_response": "This is a simulated AI response to: \"{{message}}\". In a real environment, you would uncomment the Gemini API code snippet above.",
-    "chat_placeholder_ai": "Ask the AI Assistant..."
+    "chat_placeholder_ai": "Ask the AI Assistant...",
+    "virtuallist_aria_label": "Virtual list"
   }
 }

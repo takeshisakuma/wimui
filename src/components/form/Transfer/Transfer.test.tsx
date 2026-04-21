@@ -73,13 +73,24 @@ describe("Transfer", () => {
   });
 
   describe("ARIA roles", () => {
-    it("renders listboxes with correct roles", () => {
-      render(<Transfer dataSource={dataSource} />);
+    it("renders listboxes with correct roles when not empty", () => {
+      render(<Transfer dataSource={dataSource} targetKeys={["1"]} />);
       const listboxes = screen.getAllByRole("listbox");
       expect(listboxes).toHaveLength(2);
       listboxes.forEach((lb) => {
         expect(lb).toHaveAttribute("aria-multiselectable", "true");
       });
+    });
+
+    it("does not render listbox role when list is empty", () => {
+      render(<Transfer dataSource={dataSource} />);
+      // Source has items, Target is empty
+      const listboxes = screen.getAllByRole("listbox");
+      expect(listboxes).toHaveLength(1);
+      // Source list should have the role
+      expect(screen.getByRole("listbox", { name: "Source" })).toBeInTheDocument();
+      // Target list should NOT have the role
+      expect(screen.queryByRole("listbox", { name: "Target" })).not.toBeInTheDocument();
     });
 
     it("renders options with correct roles and aria-selected", () => {

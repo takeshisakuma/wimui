@@ -25,7 +25,10 @@
 
     &.disabled {
       pointer-events: none;
-      opacity: var(--wim-opacity-disabled);
+
+      // Note: We remove opacity here because children (Checkbox, Button, BaseListItem) 
+      // already apply their own opacity when disabled. Applying it here creates 
+      // nested opacities (0.6 * 0.6 = 0.36), which fails contrast checks.
     }
   }
 
@@ -84,6 +87,7 @@
     }
 
     .root.disabled & {
+      color: var(--wim-color-text-primary);
       background: var(--wim-color-bg-secondary);
     }
 
@@ -98,6 +102,11 @@
     font-size: var(--wim-font-size-xs);
     font-weight: normal;
     color: var(--wim-color-text-secondary);
+
+    .root.disabled & {
+      color: var(--wim-color-text-primary);
+      opacity: var(--wim-opacity-disabled);
+    }
   }
 
   .body {
@@ -136,6 +145,63 @@
     & > span { // Targets the icon/checkbox wrapper in BaseListItem
       pointer-events: none;
     }
+
+    &.disabled {
+      color: var(--wim-color-text-tertiary) !important;
+      opacity: 1 !important;
+    }
+  }
+
+  .checkboxVisual {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-checkbox-size, 16px);
+    height: var(--wim-checkbox-size, 16px);
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
+    border-radius: var(--wim-radius-sm);
+    transition:
+      background-color var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--wim-checkbox-check-width, 4px);
+      height: var(--wim-checkbox-check-height, 8px);
+      content: "";
+      border: solid var(--wim-color-text-white);
+      border-width: 0 var(--wim-border-width-thick) var(--wim-border-width-thick) 0;
+      opacity: 0;
+      transform: translate(-50%, -60%) rotate(45deg) scale(0.5);
+      transition:
+        opacity var(--wim-duration-fast) var(--wim-easing-entrance),
+        transform var(--wim-duration-fast) var(--wim-easing-entrance);
+    }
+
+    &.checked {
+      background-color: var(--wim-color-primary);
+      border-color: var(--wim-color-primary);
+
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -60%) rotate(45deg) scale(1);
+      }
+    }
+
+    &.disabled {
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+      opacity: var(--wim-opacity-disabled);
+
+      &.checked::after {
+        border-color: var(--wim-color-text-on-disabled);
+      }
+    }
   }
 
   .active {
@@ -165,6 +231,10 @@
         transform: rotate(90deg) scale(1.2);
       }
     }
+
+    .button:disabled {
+      color: var(--wim-color-text-tertiary);
+    }
   }
 
   .empty {
@@ -174,6 +244,11 @@
     height: 100%;
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-placeholder);
+
+    .root.disabled & {
+      color: var(--wim-color-text-primary);
+      opacity: var(--wim-opacity-disabled);
+    }
   }
 }
 

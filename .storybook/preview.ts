@@ -60,46 +60,54 @@ const applyTheme = (theme: string): void => {
 };
 
 // ② Storybook ツールバーの切替イベントを直接検知（モジュールレベル）
-//    ツールバーでロケール・テーマを変えると GLOBALS_UPDATED が発火する
-try {
-  const channel = addons.getChannel();
-  channel.on(
-    GLOBALS_UPDATED,
-    ({ globals }: { globals: Record<string, unknown> }) => {
-      const locale = globals?.locale as string | undefined;
-      if (locale) {
-        applyLang(locale);
-        if (i18n.language !== locale) i18n.changeLanguage(locale);
-      }
-      // ツールバーのテーマ切り替えを純粋な MDX ページにも適用する
-      // デコレーターはストーリーにしか動作しないため、documentElement に直接セットする
-      const theme = globals?.theme as string | undefined;
-      if (theme) applyTheme(theme);
-    },
-  );
-} catch {
-  // チャンネルが初期化前の場合は無視（③ の URL 読み取りでカバー）
-}
+const initChannel = () => {
+  try {
+    const channel = addons.getChannel();
+    if (channel) {
+      channel.on(
+        GLOBALS_UPDATED,
+        ({ globals }: { globals: Record<string, unknown> }) => {
+          const locale = globals?.locale as string | undefined;
+          if (locale) {
+            applyLang(locale);
+            if (i18n.language !== locale) i18n.changeLanguage(locale);
+          }
+          const theme = globals?.theme as string | undefined;
+          if (theme) applyTheme(theme);
+        },
+      );
+    }
+  } catch (err) {
+    // チャンネルが初期化前の場合は無視
+  }
+};
+initChannel();
 
 // ③ iframe のフルリロード時: URL の globals パラメータから初期値を読み取る
-//    ロケール・テーマ切替で iframe がリロードされる場合はこちらが機能する
-try {
-  const topWin = window.top || window;
-  const globals = new URLSearchParams(topWin.location.search).get("globals");
+const syncFromUrl = () => {
+  try {
+    // window.top へのアクセスは、オリジンが異なる場合に SecurityError を投げる可能性があるため慎重に行う
+    const topWin = window.top !== window ? window.top : window;
+    if (!topWin) return;
 
-  const localeMatch = globals?.match(/locale:([^;]+)/);
-  if (localeMatch) {
-    const locale = localeMatch[1];
-    applyLang(locale);
-    if (i18n.language !== locale) i18n.changeLanguage(locale);
+    const search = topWin.location.search;
+    const globals = new URLSearchParams(search).get("globals");
+
+    const localeMatch = globals?.match(/locale:([^;]+)/);
+    if (localeMatch) {
+      const locale = localeMatch[1];
+      applyLang(locale);
+      if (i18n.language !== locale) i18n.changeLanguage(locale);
+    }
+
+    const themeMatch = globals?.match(/theme:([^;]+)/);
+    if (themeMatch) applyTheme(themeMatch[1]);
+  } catch (err) {
+    // クロスオリジンや初期化中のエラーは無視
   }
+};
+syncFromUrl();
 
-  // URL に保存されたテーマ選択を復元（system pref より優先）
-  const themeMatch = globals?.match(/theme:([^;]+)/);
-  if (themeMatch) applyTheme(themeMatch[1]);
-} catch {
-  // cross-origin エラーは無視
-}
 
 // ─────────────────────────────────────────────────
 

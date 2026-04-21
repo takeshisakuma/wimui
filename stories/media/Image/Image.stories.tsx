@@ -176,6 +176,7 @@ export const Glassmorphism: Story = {
             style={{
               backgroundColor: "var(--wim-color-surface-glass)",
               padding: "20px",
+              color: "var(--wim-color-text-primary)",
             }}
             width={300}
             radius="lg"
@@ -313,6 +314,7 @@ export const MotionEffects: Story = {
             </div>
             <Image
               {...args}
+              alt={t("story.image_alt")}
               key={imageKey}
               src={`${vibrantLandscape}?k=${imageKey}`}
               fadeIn
@@ -400,10 +402,10 @@ export const BlendingEffects: Story = {
                 caption={t("story.image_caption_yellow_multiply", { defaultValue: "Image Multiply with Yellow BG" })}
               />
             </div>
-            <div style={{ padding: "20px", background: "var(--wim-color-bg-inverted)" }}>
+            <div style={{ padding: "20px", background: "var(--wim-color-bg-inverted)", color: "var(--wim-color-text-on-inverted)" }}>
               <Image
                 {...args}
-                alt={t("story.image_alt_screen", { defaultValue: "Screen image" })}
+                alt={t("story.image_alt_screen", { defaultValue: "Image Screen (Whitening effect)" })}
                 blendMode="screen"
                 width={300}
                 caption={t("story.image_caption_screen", { defaultValue: "Image Screen (Whitening effect)" })}
@@ -425,7 +427,18 @@ export const BlendingEffects: Story = {
               }}
               width="100%"
             />
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "var(--wim-color-text-on-primary)", fontSize: "2rem", fontWeight: "bold", mixBlendMode: "difference" }}>
+            <div style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              fontSize: "2rem",
+              fontWeight: "bold",
+              mixBlendMode: "difference",
+              padding: "0.5rem 1rem",
+              borderRadius: "4px"
+            }}>
               {t("story.image_inverted_text", { defaultValue: "INVERTED TEXT" })}
             </div>
           </div>

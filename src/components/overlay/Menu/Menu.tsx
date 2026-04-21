@@ -219,10 +219,19 @@ export const MenuItemGroup = ({
   title,
   className,
 }: MenuItemGroupProps) => {
+  const labelId = React.useId();
   return (
-    <li className={classNames(styles.itemGroup, className)}>
-      {title && <div className={styles.itemGroupTitle}>{title}</div>}
-      <ul className={styles.itemGroupList} role="group">
+    <li className={classNames(styles.itemGroup, className)} role="none">
+      {title && (
+        <div id={labelId} className={styles.itemGroupTitle} aria-hidden="true">
+          {title}
+        </div>
+      )}
+      <ul
+        className={styles.itemGroupList}
+        role="group"
+        aria-labelledby={title ? labelId : undefined}
+      >
         {children}
       </ul>
     </li>
@@ -249,6 +258,7 @@ export const SubMenu = ({
   const isOpen = expandedItems.has(itemKey);
   const [index] = useState(() => registerItem());
   const isFocused = focusedIndex === index;
+  const titleId = React.useId();
 
   const handleToggle = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -262,8 +272,10 @@ export const SubMenu = ({
         isOpen && styles.open,
         className,
       )}
+      role="none"
     >
       <BaseListItem
+        id={titleId}
         className={styles.submenuTitle}
         onClick={handleToggle}
         onFocus={() => setFocusedIndex(index)}
@@ -296,9 +308,14 @@ export const SubMenu = ({
         show={isOpen}
         preset="fade"
         className={styles.submenuList}
-        role="menu"
       >
-        <ul className={styles.submenuList}>{children}</ul>
+        <ul
+          className={styles.submenuList}
+          role="menu"
+          aria-labelledby={titleId}
+        >
+          {children}
+        </ul>
       </Transition>
     </li>
   );
@@ -316,4 +333,3 @@ export const MenuDivider = ({ className }: MenuDividerProps) => {
     />
   );
 };
-

@@ -151,6 +151,8 @@
     "table_name": "名前",
     "table_pending": "保留",
     "table_role": "ロール",
+    "table_select_all": "すべて選択",
+    "table_select_row": "行を選択",
     "table_status": "ステータス",
     "table_user": "ユーザー",
     "timeline_code": "コード",
@@ -187,6 +189,7 @@
     "chat_ai_assistant": "AIアシスタント",
     "chat_ai_greeting": "こんにちは！AIアシスタントです。何かお手伝いできることはありますか？",
     "chat_ai_response": "「{{message}}」へのAI応答のシミュレーションです。実際の環境では、上記のGemini APIコードのコメントを外してください。",
-    "chat_placeholder_ai": "AIアシスタントに質問する..."
+    "chat_placeholder_ai": "AIアシスタントに質問する...",
+    "virtuallist_aria_label": "仮想リスト"
   }
 }

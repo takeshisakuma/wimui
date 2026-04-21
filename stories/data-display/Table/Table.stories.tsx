@@ -308,11 +308,12 @@ export const RowSelection: Story = {
       <Table {...args} fullWidth>
         <Table.Header>
           <Table.Row>
-            <Table.Head selection>
+            <Table.Head selection aria-label={t("story.table_select_all")}>
               <Checkbox
                 checked={allSelected}
                 indeterminate={indeterminate}
                 onChange={toggleAll}
+                aria-label={t("story.table_select_all")}
               />
             </Table.Head>
             <Table.Head>{t("story.table_id")}</Table.Head>
@@ -327,6 +328,7 @@ export const RowSelection: Story = {
                 <Checkbox
                   checked={selectedIds.includes(row.id)}
                   onChange={() => toggleRow(row.id)}
+                  aria-label={t("story.table_select_row")}
                 />
               </Table.Cell>
               <Table.Cell label={t("story.table_id")}>{row.id}</Table.Cell>

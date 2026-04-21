@@ -11,6 +11,11 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   title?: React.ReactNode;
   /**
+   * アラートのタイトルのHTMLタグ
+   * @default "h4"
+   */
+  titleTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  /**
    * アラートの説明文
    */
   description?: React.ReactNode;
@@ -41,6 +46,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Alert = ({
   title,
+  titleTag: TitleTag = "h4",
   description,
   intent = "info",
   icon,
@@ -68,7 +74,7 @@ export const Alert = ({
         <FeedbackIcon intent={intent} icon={icon} size="sm" />
       </div>
       <div className={styles.content}>
-        {title && <h4 className={styles.title}>{title}</h4>}
+        {title && <TitleTag className={styles.title}>{title}</TitleTag>}
         {(description || children) && (
           <div className={styles.description}>
             {description ? description : children}

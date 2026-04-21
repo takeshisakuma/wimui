@@ -19,6 +19,10 @@ export interface VirtualListProps<T> {
   itemRole?: string;
   /** リスト全体の役割 (アクセシビリティ用) */
   role?: string;
+  /** アクセシビリティ用のラベル */
+  "aria-label"?: string;
+  /** アクセシビリティ用のラベル参照 */
+  "aria-labelledby"?: string;
 }
 
 const VirtualListInner = <T,>(
@@ -31,6 +35,8 @@ const VirtualListInner = <T,>(
     className,
     itemRole = "listitem",
     role = "list",
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
   }: VirtualListProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
@@ -76,6 +82,9 @@ const VirtualListInner = <T,>(
       className={classNames(styles.root, className)}
       style={{ height }}
       role={role}
+      tabIndex={0}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
     >
       <div
         className={styles.viewport}

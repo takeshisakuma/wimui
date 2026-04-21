@@ -873,49 +873,14 @@ export const HeroSection: StoryObj = {
               <Card
                 style={{
                   padding: "0",
-                  borderRadius: "24px",
+                  borderRadius: "0",
                   boxShadow:
-                    "var(--wim-shadow-lg)",
+                    "var(--wim-shadow-md)",
                   overflow: "hidden",
                 }}
               >
                 <Stack gap="none">
-                  <Stack
-                    direction="row"
-                    gap="xs"
-                    align="center"
-                    style={{
-                      height: "var(--wim-spacing-4xl)",
-                      background: "var(--wim-color-bg-secondary)",
-                      borderBottom: "1px solid var(--wim-color-border)",
-                      padding: "0 var(--wim-spacing-md)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "10px",
-                        height: "10px",
-                        borderRadius: "var(--wim-radius-full)",
-                        background: "var(--wim-color-destructive)",
-                      }}
-                    />
-                    <div
-                      style={{
-                        width: "10px",
-                        height: "10px",
-                        borderRadius: "var(--wim-radius-full)",
-                        background: "var(--wim-color-caution)",
-                      }}
-                    />
-                    <div
-                      style={{
-                        width: "10px",
-                        height: "10px",
-                        borderRadius: "var(--wim-radius-full)",
-                        background: "var(--wim-color-positive)",
-                      }}
-                    />
-                  </Stack>
+
                   <div style={{ padding: "24px" }}>
                     <Stack gap="lg">
                       <Skeleton variant="text" height={20} width="100%" />
@@ -967,7 +932,7 @@ export const ErrorPage: StoryObj = {
             style={{
               fontSize: "var(--wim-spacing-5xl)", // Use a large token if possible, or rem
               fontWeight: "900",
-              color: "var(--wim-color-border-secondary)",
+              color: "var(--wim-color-text-disabled)",
               lineHeight: "1",
               margin: "0",
             }}
@@ -980,12 +945,17 @@ export const ErrorPage: StoryObj = {
             </Title>
             <Text
               content={t("error.desc")}
-              color="gray"
+              color="deepgray"
               style={{ textAlign: "center" }}
             />
           </Stack>
 
-          <Alert intent="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
+          <Alert
+            intent="info"
+            title={t("error.help_title")}
+            titleTag="h2"
+            style={{ textAlign: "left" }}
+          >
             {t("error.help_desc")}
           </Alert>
 

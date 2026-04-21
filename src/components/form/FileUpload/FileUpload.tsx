@@ -111,6 +111,7 @@ export const FileUpload = ({
             styles[size],
             disabled && styles.disabled,
           )}
+          aria-disabled={disabled || undefined}
         >
           {fileNames}
         </span>

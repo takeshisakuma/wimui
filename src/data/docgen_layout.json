@@ -316,9 +316,9 @@
   "Splitter": {
     "name": "Splitter",
     "tokens": [
-      "--wim-color-border",
       "--wim-color-ghost-bg-hover",
       "--wim-color-primary",
+      "--wim-color-text-tertiary",
       "--wim-splitter-handle-active-color",
       "--wim-splitter-handle-color",
       "--wim-splitter-handle-hover-bg",
