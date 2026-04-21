@@ -41,6 +41,34 @@
     "anatomy": [],
     "props": {}
   },
+  "Menu": {
+    "name": "Menu",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-xs",
+      "--wim-letter-spacing-wide",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -183,34 +211,6 @@
       }
     }
   },
-  "Menu": {
-    "name": "Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-xs",
-      "--wim-letter-spacing-wide",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "HoverCard": {
     "name": "HoverCard",
     "tokens": [],
@@ -302,13 +302,11 @@
   "Dialog": {
     "name": "Dialog",
     "tokens": [
-      "--wim-breakpoint-sm",
       "--wim-color-bg-component",
       "--wim-color-overlay-bg",
       "--wim-color-text-primary",
       "--wim-color-text-secondary",
       "--wim-dialog-blur",
-      "--wim-dialog-breakpoint",
       "--wim-dialog-max-height",
       "--wim-dialog-max-width",
       "--wim-dialog-width-mobile",

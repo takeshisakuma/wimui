@@ -62,7 +62,7 @@
     gap: var(--wim-spacing-md);
     margin-top: var(--wim-spacing-2xl);
 
-    @container (width >= var(--wim-dialog-breakpoint, var(--wim-breakpoint-sm))) {
+    @container (width >= 576px) {
       flex-direction: row;
       justify-content: flex-end;
     }

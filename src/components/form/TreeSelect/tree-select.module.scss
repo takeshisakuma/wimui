@@ -14,7 +14,7 @@
     max-width: var(--wim-input-width, var(--wim-width-md));
     font-family: var(--wim-font-family);
 
-    @container (max-width: var(--wim-width-lg)) {
+    @container (max-width: 30rem) {
       min-width: var(--wim-width-sm);
     }
 
