@@ -9,7 +9,7 @@ export function useDataGridKeyboard<T>(
   const [focusedCell, setFocusedCell] = useState<{ row: number; col: number }>(
     { row: -1, col: selection ? -1 : 0 },
   );
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLTableElement>(null);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const { row, col } = focusedCell;

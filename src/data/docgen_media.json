@@ -1,4 +1,396 @@
 {
+  "Image": {
+    "name": "Image",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-border",
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-extra-fast",
+      "--wim-duration-extra-slow",
+      "--wim-duration-slow",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-image-backdrop",
+      "--wim-image-bg-color",
+      "--wim-image-blend-mode",
+      "--wim-image-filter",
+      "--wim-image-hover-backdrop",
+      "--wim-image-hover-filter",
+      "--wim-image-noise-opacity",
+      "--wim-image-overlay-blend",
+      "--wim-image-overlay-color",
+      "--wim-image-overlay-hover-opacity",
+      "--wim-image-overlay-opacity",
+      "--wim-image-transition-duration",
+      "--wim-image-zoom-scale",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-transition-spring",
+      "--wim-z-1",
+      "--wim-z-2"
+    ],
+    "anatomy": [],
+    "props": {
+      "src": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "WimRadiusKey | \"none\"",
+          "elements": [
+            {
+              "name": "WimRadiusKey"
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "角丸のサイズ",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "shadow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "シャドウ（影）を表示するか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "border": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "枠線を表示するか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fit": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"contain\" | \"cover\" | \"fill\" | \"none\" | \"scale-down\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"contain\""
+            },
+            {
+              "name": "literal",
+              "value": "\"cover\""
+            },
+            {
+              "name": "literal",
+              "value": "\"fill\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            },
+            {
+              "name": "literal",
+              "value": "\"scale-down\""
+            }
+          ]
+        },
+        "description": "画像のフィット感",
+        "defaultValue": {
+          "value": "\"cover\"",
+          "computed": false
+        }
+      },
+      "loading": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"eager\" | \"lazy\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"eager\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lazy\""
+            }
+          ]
+        },
+        "description": "遅延読み込み設定"
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "画像の下に表示する説明文"
+      },
+      "filter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "画像自体に適用するフィルタ"
+      },
+      "hoverFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "ホバー時に適用するフィルタ（指定がない場合はfilterが維持されます）"
+      },
+      "backdropFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "背景に適用するフィルタ（透過画像などで効果的）"
+      },
+      "hoverBackdropFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "ホバー時に背景に適用するフィルタ"
+      },
+      "transition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"none\" | \"fast\" | \"normal\" | \"slow\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"none\""
+            },
+            {
+              "name": "literal",
+              "value": "\"fast\""
+            },
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slow\""
+            }
+          ]
+        },
+        "description": "フィルタ切り替え時のアニメーション速度",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      },
+      "noise": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "フィルムグレイン（ノイズ）の強度"
+      },
+      "duotone": {
+        "required": false,
+        "tsType": {
+          "name": "ImageDuotoneOptions"
+        },
+        "description": "デュオトーン設定"
+      },
+      "overlay": {
+        "required": false,
+        "tsType": {
+          "name": "ImageOverlayOptions"
+        },
+        "description": "オーバーレイ設定"
+      },
+      "zoom": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | number",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "ホバー時の拡大倍率 (例: 1.1) または true (デフォルト1.05)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "tilt": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウスに追従するチルト（傾き）エフェクト",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fadeIn": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "読み込み完了時にフェードインさせるか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "blendMode": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties[\"mixBlendMode\"]",
+          "raw": "React.CSSProperties[\"mixBlendMode\"]"
+        },
+        "description": "画像自体のブレンドモード"
+      },
+      "bgColor": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "ブレンド用の背景色"
+      },
+      "demoDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
+      },
+      "priority": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "LCP候補など、読み込み優先度を上げるかどうか（fetchpriority=\"high\"）",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Video": {
     "name": "Video",
     "tokens": [
@@ -619,398 +1011,6 @@
         "description": "手動翻訳用のラベル",
         "defaultValue": {
           "value": "{}",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Image": {
-    "name": "Image",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-border",
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-extra-fast",
-      "--wim-duration-extra-slow",
-      "--wim-duration-slow",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-image-backdrop",
-      "--wim-image-bg-color",
-      "--wim-image-blend-mode",
-      "--wim-image-filter",
-      "--wim-image-hover-backdrop",
-      "--wim-image-hover-filter",
-      "--wim-image-noise-opacity",
-      "--wim-image-overlay-blend",
-      "--wim-image-overlay-color",
-      "--wim-image-overlay-hover-opacity",
-      "--wim-image-overlay-opacity",
-      "--wim-image-transition-duration",
-      "--wim-image-zoom-scale",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-transition-spring",
-      "--wim-z-1",
-      "--wim-z-2"
-    ],
-    "anatomy": [],
-    "props": {
-      "src": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "alt": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "radius": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "WimRadiusKey | \"none\"",
-          "elements": [
-            {
-              "name": "WimRadiusKey"
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "角丸のサイズ",
-        "defaultValue": {
-          "value": "\"none\"",
-          "computed": false
-        }
-      },
-      "shadow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "シャドウ（影）を表示するか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "border": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "枠線を表示するか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fit": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"contain\" | \"cover\" | \"fill\" | \"none\" | \"scale-down\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"contain\""
-            },
-            {
-              "name": "literal",
-              "value": "\"cover\""
-            },
-            {
-              "name": "literal",
-              "value": "\"fill\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            },
-            {
-              "name": "literal",
-              "value": "\"scale-down\""
-            }
-          ]
-        },
-        "description": "画像のフィット感",
-        "defaultValue": {
-          "value": "\"cover\"",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"eager\" | \"lazy\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"eager\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lazy\""
-            }
-          ]
-        },
-        "description": "遅延読み込み設定"
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "画像の下に表示する説明文"
-      },
-      "filter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "画像自体に適用するフィルタ"
-      },
-      "hoverFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "ホバー時に適用するフィルタ（指定がない場合はfilterが維持されます）"
-      },
-      "backdropFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "背景に適用するフィルタ（透過画像などで効果的）"
-      },
-      "hoverBackdropFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "ホバー時に背景に適用するフィルタ"
-      },
-      "transition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"none\" | \"fast\" | \"normal\" | \"slow\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"none\""
-            },
-            {
-              "name": "literal",
-              "value": "\"fast\""
-            },
-            {
-              "name": "literal",
-              "value": "\"normal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slow\""
-            }
-          ]
-        },
-        "description": "フィルタ切り替え時のアニメーション速度",
-        "defaultValue": {
-          "value": "\"normal\"",
-          "computed": false
-        }
-      },
-      "noise": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "ComponentSize | \"none\"",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"2xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"3xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"4xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"5xl\""
-                }
-              ]
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "フィルムグレイン（ノイズ）の強度"
-      },
-      "duotone": {
-        "required": false,
-        "tsType": {
-          "name": "ImageDuotoneOptions"
-        },
-        "description": "デュオトーン設定"
-      },
-      "overlay": {
-        "required": false,
-        "tsType": {
-          "name": "ImageOverlayOptions"
-        },
-        "description": "オーバーレイ設定"
-      },
-      "zoom": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | number",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "ホバー時の拡大倍率 (例: 1.1) または true (デフォルト1.05)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "tilt": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウスに追従するチルト（傾き）エフェクト",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fadeIn": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "読み込み完了時にフェードインさせるか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "blendMode": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties[\"mixBlendMode\"]",
-          "raw": "React.CSSProperties[\"mixBlendMode\"]"
-        },
-        "description": "画像自体のブレンドモード"
-      },
-      "bgColor": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "ブレンド用の背景色"
-      },
-      "demoDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
-      },
-      "priority": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "LCP候補など、読み込み優先度を上げるかどうか（fetchpriority=\"high\"）",
-        "defaultValue": {
-          "value": "false",
           "computed": false
         }
       }

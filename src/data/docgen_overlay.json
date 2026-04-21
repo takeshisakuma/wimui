@@ -1,4 +1,21 @@
 {
+  "Tooltip": {
+    "name": "Tooltip",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-duration-fast",
+      "--wim-font-size-sm",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-lg",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Portal": {
     "name": "Portal",
     "tokens": [],
@@ -24,19 +41,30 @@
     "anatomy": [],
     "props": {}
   },
-  "Tooltip": {
-    "name": "Tooltip",
+  "Menu": {
+    "name": "Menu",
     "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-text-on-dark",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
       "--wim-duration-fast",
-      "--wim-font-size-sm",
-      "--wim-line-height-tight",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-xs",
+      "--wim-letter-spacing-wide",
+      "--wim-menu-min-width",
       "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
       "--wim-shadow-md",
       "--wim-spacing-lg",
+      "--wim-spacing-md",
       "--wim-spacing-sm",
-      "--wim-z-overlay"
+      "--wim-spacing-xs",
+      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -182,34 +210,6 @@
         }
       }
     }
-  },
-  "Menu": {
-    "name": "Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-xs",
-      "--wim-letter-spacing-wide",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-shadow-md",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "HoverCard": {
     "name": "HoverCard",

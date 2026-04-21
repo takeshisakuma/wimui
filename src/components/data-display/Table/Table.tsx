@@ -63,6 +63,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
         )}
         style={containerStyle}
         tabIndex={height || maxHeight ? 0 : undefined}
+        role="none"
         data-testid="table-container"
       >
         <Component

@@ -130,6 +130,37 @@
       }
     }
   },
+  "Toast": {
+    "name": "Toast",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-glass-bg",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-duration-base",
+      "--wim-easing-base",
+      "--wim-easing-entrance",
+      "--wim-height-xs",
+      "--wim-opacity-ghost",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-glass",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Spinner": {
     "name": "Spinner",
     "tokens": [
@@ -273,37 +304,6 @@
         }
       }
     }
-  },
-  "Toast": {
-    "name": "Toast",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-glass-bg",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-duration-base",
-      "--wim-easing-base",
-      "--wim-easing-entrance",
-      "--wim-height-xs",
-      "--wim-opacity-ghost",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-glass",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Snackbar": {
     "name": "Snackbar",

@@ -117,25 +117,39 @@
     "anatomy": [],
     "props": {}
   },
-  "Timeline": {
-    "name": "Timeline",
+  "Table": {
+    "name": "Table",
     "tokens": [
       "--wim-border-width-thick",
+      "--wim-border-width-thin",
       "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
       "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
+      "--wim-color-border-secondary",
       "--wim-color-primary",
-      "--wim-color-secondary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
       "--wim-spacing-xl",
-      "--wim-z-1"
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}
@@ -289,39 +303,25 @@
       }
     }
   },
-  "Table": {
-    "name": "Table",
+  "Timeline": {
+    "name": "Timeline",
     "tokens": [
       "--wim-border-width-thick",
-      "--wim-border-width-thin",
       "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-subtle",
       "--wim-color-border",
-      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-positive",
       "--wim-color-primary",
-      "--wim-color-scrollbar-thumb",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
+      "--wim-color-secondary",
       "--wim-color-text-tertiary",
-      "--wim-duration-base",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
       "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-table-row-bg",
-      "--wim-table-row-bg-hover",
-      "--wim-table-scrollbar-color",
-      "--wim-table-scrollbar-thumb-bg",
-      "--wim-table-scrollbar-track-bg",
-      "--wim-table-scrollbar-width",
-      "--wim-z-index-sticky",
-      "--wim-z-index-sticky-column",
-      "--wim-z-overlay"
+      "--wim-z-1"
     ],
     "anatomy": [],
     "props": {}
@@ -487,6 +487,63 @@
       }
     }
   },
+  "Markdown": {
+    "name": "Markdown",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-color-bg-subtle-alpha",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-family-mono",
+      "--wim-font-size-2xl",
+      "--wim-font-size-xl",
+      "--wim-line-height-normal",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-radius-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
+      },
+      "gfm": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "Marquee": {
     "name": "Marquee",
     "tokens": [
@@ -551,63 +608,6 @@
       }
     }
   },
-  "Markdown": {
-    "name": "Markdown",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-family-mono",
-      "--wim-font-size-2xl",
-      "--wim-font-size-xl",
-      "--wim-line-height-normal",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-radius-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
-      },
-      "gfm": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
   "List": {
     "name": "List",
     "tokens": [
@@ -615,6 +615,32 @@
       "--wim-font-size-md",
       "--wim-font-size-sm",
       "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Kanban": {
+    "name": "Kanban",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
     ],
     "anatomy": [],
     "props": {}
@@ -719,32 +745,6 @@
       }
     }
   },
-  "Kanban": {
-    "name": "Kanban",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "FAQSection": {
     "name": "FAQSection",
     "tokens": [],
@@ -827,12 +827,6 @@
       }
     }
   },
-  "DescriptionList": {
-    "name": "DescriptionList",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "EmptyState": {
     "name": "EmptyState",
     "tokens": [],
@@ -893,6 +887,12 @@
         }
       }
     }
+  },
+  "DescriptionList": {
+    "name": "DescriptionList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "DataGrid": {
     "name": "DataGrid",
@@ -1808,12 +1808,6 @@
       }
     }
   },
-  "ChatUI": {
-    "name": "ChatUI",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -2081,6 +2075,12 @@
         "description": "追加のクラス名"
       }
     }
+  },
+  "ChatUI": {
+    "name": "ChatUI",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "Card": {
     "name": "Card",
@@ -2793,6 +2793,88 @@
       }
     }
   },
+  "AvatarGroup": {
+    "name": "AvatarGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "max": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "total": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Avatar": {
     "name": "Avatar",
     "tokens": [
@@ -2960,88 +3042,6 @@
               "value": "\"neutral\""
             }
           ]
-        },
-        "description": ""
-      }
-    }
-  },
-  "AvatarGroup": {
-    "name": "AvatarGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "max": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "total": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
         },
         "description": ""
       }

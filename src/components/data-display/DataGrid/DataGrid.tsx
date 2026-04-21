@@ -193,17 +193,17 @@ export function DataGrid<T extends Record<string, unknown>>({
   return (
     <div className={classNames(styles.root, loading && styles.loading, className)}>
       <div
-        ref={containerRef}
         className={styles.container}
         style={{ height, maxHeight }}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="grid"
-        aria-label={ariaLabel ?? t("a11y.data_grid")}
-        aria-rowcount={data.length + 1}
-        aria-colcount={colCount}
       >
         <Table
+          ref={containerRef}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          role="grid"
+          aria-label={ariaLabel ?? t("a11y.data_grid")}
+          aria-rowcount={data.length + 1}
+          aria-colcount={colCount}
           striped={striped}
           bordered={bordered}
           hoverable={hoverable}
@@ -217,6 +217,7 @@ export function DataGrid<T extends Record<string, unknown>>({
             <Table.Row>
               {selection && (
                 <Table.Head
+                  role="columnheader"
                   selection
                   stickyLeft
                   leftOffset={0}
@@ -239,6 +240,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                 const stickyProps = getStickyProps(col.key, true);
                 return (
                   <Table.Head
+                    role="columnheader"
                     key={col.key}
                     style={{ width: col.width, minWidth: col.width }}
                     sortable={col.sortable}
@@ -275,6 +277,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                 <Table.Row key={key} selected={isSelected}>
                   {selection && (
                     <Table.Cell
+                      role="gridcell"
                       selection
                       stickyLeft
                       leftOffset={0}
@@ -296,6 +299,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     const value = record[fieldKey];
                     return (
                       <Table.Cell
+                        role="gridcell"
                         key={col.key}
                         label={typeof col.title === "string" ? col.title : undefined}
                         {...stickyProps}
