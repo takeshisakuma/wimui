@@ -151,7 +151,9 @@
     "with_children": "子要素を含む",
     "with_icons": "アイコン付き",
     "with_label": "Label",
-    "with_submenu": "Submenu"
+    "with_submenu": "Submenu",
+    "tokens_desc": "カラー、スペーシング、タイポグラフィなどのテクニカルトークンとグローバルスタイルの定義です。",
+    "responsive_desc": "メディアクエリやコンテナクエリを使用して、ビューポートやコンテナのサイズに応じてレイアウトとコンポーネントが適応します。"
   },
   "config": {
     "features_a11y": "アクセシビリティ",
@@ -167,7 +169,15 @@
     "quality_stylelint_desc": "SCSS/CSS の命名・構造規則チェック",
     "quality_stylelint_title": "Stylelint",
     "quality_title": "静的解析・リンター",
+    "quality_husky_title": "Husky",
+    "quality_husky_desc": "コミット前の自動チェックを行う Git Hooks",
+    "quality_lint_staged_title": "lint-staged",
+    "quality_lint_staged_desc": "Git のステージング済みファイルに対してリンターを実行",
     "tech_stack_title": "技術スタック",
+    "tech_stack_react": "React",
+    "tech_stack_typescript": "TypeScript",
+    "tech_stack_vite": "Vite",
+    "tech_stack_scss": "SCSS",
     "test_a11y_desc": "アクセシビリティ",
     "test_a11y_title": "a11y test",
     "test_a11y_tool": "axe-core",

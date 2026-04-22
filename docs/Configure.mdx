@@ -1,4 +1,4 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 
 import { T } from "../stories/T";
 
@@ -40,10 +40,10 @@ export const RightArrow = () => (
 
   <h3><T k="config.tech_stack_title" /></h3>
   <ul>
-    <li>React</li>
-    <li>TypeScript</li>
-    <li>Vite</li>
-    <li>SCSS</li>
+    <li><T k="config.tech_stack_react" /></li>
+    <li><T k="config.tech_stack_typescript" /></li>
+    <li><T k="config.tech_stack_vite" /></li>
+    <li><T k="config.tech_stack_scss" /></li>
   </ul>
 
   <h3><T k="config.quality_title" /></h3>
@@ -66,6 +66,14 @@ export const RightArrow = () => (
       <tr>
         <td><T k="config.quality_prettier_title" /></td>
         <td><T k="config.quality_prettier_desc" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.quality_husky_title" /></td>
+        <td><T k="config.quality_husky_desc" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.quality_lint_staged_title" /></td>
+        <td><T k="config.quality_lint_staged_desc" /></td>
       </tr>
     </tbody>
   </table>
@@ -115,7 +123,7 @@ export const RightArrow = () => (
     padding: 24px;
     max-width: 800px;
     margin: 0 auto;
-    font-family: var(--wim-font-family-base, sans-serif);
+    font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
   }
 
@@ -230,6 +238,6 @@ export const RightArrow = () => (
 ## <T k="doc.test_title" />
 
 ```bash
-npm run test:i18n
+npm test
 ```
 

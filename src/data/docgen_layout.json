@@ -313,6 +313,21 @@
       }
     }
   },
+  "Splitter": {
+    "name": "Splitter",
+    "tokens": [
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-primary",
+      "--wim-color-text-tertiary",
+      "--wim-splitter-handle-active-color",
+      "--wim-splitter-handle-color",
+      "--wim-splitter-handle-hover-bg",
+      "--wim-transition-fast",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Stack": {
     "name": "Stack",
     "tokens": [
@@ -1427,21 +1442,6 @@
         "description": "Justify-content"
       }
     }
-  },
-  "Splitter": {
-    "name": "Splitter",
-    "tokens": [
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-primary",
-      "--wim-color-text-tertiary",
-      "--wim-splitter-handle-active-color",
-      "--wim-splitter-handle-color",
-      "--wim-splitter-handle-hover-bg",
-      "--wim-transition-fast",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "SimpleGrid": {
     "name": "SimpleGrid",

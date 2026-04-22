@@ -20,7 +20,7 @@ export const LoginForm: StoryObj = {
       <Center style={{ height: "100vh", backgroundColor: "var(--wim-color-surface)" }}>
         <Card
           style={{
-            width: "var(--wim-spacing-5xl)", // Close to 400px? No, 5xl is 2.2rem. 400px is 25rem.
+            width: "100%",
             maxWidth: "400px",
             padding: "var(--wim-spacing-3xl)",
             border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
@@ -40,38 +40,25 @@ export const LoginForm: StoryObj = {
 
             <form onSubmit={(e) => e.preventDefault()}>
               <Stack gap="lg">
-                <Label label={t("login.email")} htmlFor="login-email">
-                  <Input
-                    id="login-email"
-                    placeholder={t("login.email_placeholder")}
-                    fullWidth
-                  />
-                </Label>
+                <Input
+                  id="login-email"
+                  label={t("login.email")}
+                  placeholder={t("login.email_placeholder")}
+                  fullWidth
+                />
 
-                <Label label={t("login.password")} htmlFor="login-password">
-                  <Input
-                    id="login-password"
-                    type="password"
-                    placeholder="••••••••"
-                    fullWidth
-                  />
-                </Label>
+                <Input
+                  id="login-password"
+                  label={t("login.password")}
+                  type="password"
+                  placeholder="••••••••"
+                  fullWidth
+                />
 
                 <Stack direction="column" gap="sm" align="start">
-                  <label
-                    htmlFor="remember-me"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "var(--wim-spacing-md)",
-                      fontSize: "var(--wim-font-size-sm)",
-                      cursor: "pointer",
-                      color: "var(--wim-color-text-secondary)",
-                    }}
-                  >
-                    <Checkbox id="remember-me" />
+                  <Checkbox id="remember-me">
                     {t("login.remember_me")}
-                  </label>
+                  </Checkbox>
                   <Link href="#" style={{ fontSize: "var(--wim-font-size-sm)" }}>
                     {t("login.forgot_password")}
                   </Link>
@@ -414,46 +401,42 @@ export const UserProfileForm: StoryObj = {
                           gap: "var(--wim-spacing-xl)",
                         }}
                       >
-                        <Label label={t("profile.first_name")} htmlFor="profile-first-name">
-                          <Input
-                            id="profile-first-name"
-                            defaultValue="John"
-                            fullWidth
-                          />
-                        </Label>
-                        <Label label={t("profile.last_name")} htmlFor="profile-last-name">
-                          <Input
-                            id="profile-last-name"
-                            defaultValue="Doe"
-                            fullWidth
-                          />
-                        </Label>
+                        <Input
+                          id="profile-first-name"
+                          label={t("profile.first_name")}
+                          defaultValue="John"
+                          fullWidth
+                        />
+                        <Input
+                          id="profile-last-name"
+                          label={t("profile.last_name")}
+                          defaultValue="Doe"
+                          fullWidth
+                        />
                       </div>
 
-                      <Label label={t("profile.email")} htmlFor="profile-email">
-                        <Input
-                          id="profile-email"
-                          type="email"
-                          defaultValue="john.doe@example.com"
-                          fullWidth
-                        />
-                      </Label>
+                      <Input
+                        id="profile-email"
+                        label={t("profile.email")}
+                        type="email"
+                        defaultValue="john.doe@example.com"
+                        fullWidth
+                      />
 
-                      <Label label={t("profile.bio")} htmlFor="profile-bio">
-                        <Textarea
-                          id="profile-bio"
-                          placeholder={t("profile.bio_placeholder")}
-                          rows={4}
-                          fullWidth
-                          defaultValue="I am a software engineer based in Tokyo."
-                        />
-                        <Text
-                          content={t("profile.bio_char_count")}
-                          size="sm"
-                          color="gray"
-                          style={{ textAlign: "right" }}
-                        />
-                      </Label>
+                      <Textarea
+                        id="profile-bio"
+                        label={t("profile.bio")}
+                        placeholder={t("profile.bio_placeholder")}
+                        rows={4}
+                        fullWidth
+                        defaultValue="I am a software engineer based in Tokyo."
+                      />
+                      <Text
+                        content={t("profile.bio_char_count")}
+                        size="sm"
+                        color="gray"
+                        style={{ textAlign: "right" }}
+                      />
                     </Stack>
                   </Stack>
 
@@ -503,27 +486,26 @@ export const UserProfileForm: StoryObj = {
                     </Title>
 
                     <Stack gap="lg">
-                      <Label label={t("profile.visibility")}>
-                        <RadioGroup
-                          name="visibility"
-                          defaultValue="public"
-                          options={[
-                            {
-                              label: t("profile.visibility_public"),
-                              value: "public",
-                            },
-                            {
-                              label: t("profile.visibility_private"),
-                              value: "private",
-                            },
-                            {
-                              label:
-                                t("profile.visibility_friends"),
-                              value: "friends",
-                            },
-                          ]}
-                        />
-                      </Label>
+                      <RadioGroup
+                        name="visibility"
+                        label={t("profile.visibility")}
+                        defaultValue="public"
+                        options={[
+                          {
+                            label: t("profile.visibility_public"),
+                            value: "public",
+                          },
+                          {
+                            label: t("profile.visibility_private"),
+                            value: "private",
+                          },
+                          {
+                            label:
+                              t("profile.visibility_friends"),
+                            value: "friends",
+                          },
+                        ]}
+                      />
 
                       <Label label={t("profile.notif_label")}>
                         <Stack gap="sm">

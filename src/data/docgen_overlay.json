@@ -22,25 +22,6 @@
     "anatomy": [],
     "props": {}
   },
-  "Popover": {
-    "name": "Popover",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -183,6 +164,25 @@
       }
     }
   },
+  "Popover": {
+    "name": "Popover",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Menu": {
     "name": "Menu",
     "tokens": [
@@ -214,6 +214,21 @@
   "HoverCard": {
     "name": "HoverCard",
     "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dropdown": {
+    "name": "Dropdown",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
     "anatomy": [],
     "props": {}
   },
@@ -260,21 +275,6 @@
         "description": "追加のクラス名。"
       }
     }
-  },
-  "Dropdown": {
-    "name": "Dropdown",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Drawer": {
     "name": "Drawer",

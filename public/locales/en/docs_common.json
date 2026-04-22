@@ -149,9 +149,9 @@
     "with_icons": "With Icons",
     "with_label": "Label",
     "with_submenu": "Submenu",
-    "scenario_payment_title": "Payment Success",
-    "scenario_404_title": "404 Not Found",
-    "scenario_fail_title": "Processing Failure"
+    "scenario_fail_title": "Processing Failure",
+    "tokens_desc": "Technical tokens and global style definitions for colors, spacing, and typography.",
+    "responsive_desc": "Layouts and components respond to viewport and container sizes using media and container queries."
   },
   "config": {
     "features_a11y": "Accessibility",
@@ -167,7 +167,15 @@
     "quality_stylelint_desc": "SCSS/CSS Naming & Structure Rules",
     "quality_stylelint_title": "Stylelint",
     "quality_title": "Static Analysis & Linting",
+    "quality_husky_title": "Husky",
+    "quality_husky_desc": "Git Hooks for pre-commit checks",
+    "quality_lint_staged_title": "lint-staged",
+    "quality_lint_staged_desc": "Run linters on git staged files",
     "tech_stack_title": "Tech Stack",
+    "tech_stack_react": "React",
+    "tech_stack_typescript": "TypeScript",
+    "tech_stack_vite": "Vite",
+    "tech_stack_scss": "SCSS",
     "test_a11y_desc": "Accessibility",
     "test_a11y_title": "a11y test",
     "test_a11y_tool": "axe-core",
