@@ -303,70 +303,18 @@ export const Cascader = ({
     }
   };
 
-  const renderMenus = () => {
-    const menus = [];
-    let currentOptions = options;
-
-    // Always render at least the first level
-    menus.push(currentOptions);
-
-    for (let i = 0; i < activePath.length; i++) {
-      const activeVal = activePath[i];
-      const activeOpt = currentOptions.find((o) => o.value === activeVal);
-      if (activeOpt && activeOpt.children && activeOpt.children.length > 0) {
-        menus.push(activeOpt.children);
-        currentOptions = activeOpt.children;
-      } else {
-        break;
-      }
+  const menus = [options];
+  let currentOptions = options;
+  for (let i = 0; i < activePath.length; i++) {
+    const activeVal = activePath[i];
+    const activeOpt = currentOptions.find((o) => o.value === activeVal);
+    if (activeOpt && activeOpt.children && activeOpt.children.length > 0) {
+      menus.push(activeOpt.children);
+      currentOptions = activeOpt.children;
+    } else {
+      break;
     }
-
-    return menus.map((menuOptions, level) => (
-      <div key={level} className={styles.menu} role="listbox">
-        {menuOptions.map((option, index) => {
-          const isActive = activePath[level] === option.value;
-          const isFocused = focusedLevel === level && focusedIndexes[level] === index;
-          const isSelected = currentValue[level] === option.value;
-          const hasChildren = option.children && option.children.length > 0;
-
-          return (
-            <BaseListItem
-              key={option.value}
-              className={classNames(
-                styles.menuItem,
-                isSelected && styles.selected,
-              )}
-              active={isFocused || isActive}
-              disabled={option.disabled}
-              onClick={(e: React.MouseEvent) => {
-                e.stopPropagation();
-                handleOptionSelect(option, level);
-              }}
-              onMouseEnter={() => {
-                handleOptionHover(option, level);
-                setFocusedLevel(level);
-                setFocusedIndexes((prev) => {
-                  const next = [...prev.slice(0, level), index];
-                  return next;
-                });
-              }}
-              rightSection={
-                hasChildren ? (
-                  <Icon name="ChevronRightIcon" size="sm" />
-                ) : undefined
-              }
-              role="option"
-              id={`${id}-menu-${level}-option-${index}`}
-              aria-selected={isSelected}
-              tabIndex={-1}
-            >
-              {option.label}
-            </BaseListItem>
-          );
-        })}
-      </div>
-    ));
-  };
+  }
 
   const displayValue = getSelectedLabel();
 
@@ -455,7 +403,52 @@ export const Cascader = ({
           id={popupId}
           className={styles.dropdown}
         >
-          {renderMenus()}
+          {menus.map((menuOptions, level) => (
+            <div key={level} className={styles.menu} role="listbox">
+              {menuOptions.map((option, index) => {
+                const isActive = activePath[level] === option.value;
+                const isFocused =
+                  focusedLevel === level && focusedIndexes[level] === index;
+                const isSelected = currentValue[level] === option.value;
+                const hasChildren = option.children && option.children.length > 0;
+
+                return (
+                  <BaseListItem
+                    key={option.value}
+                    className={classNames(
+                      styles.menuItem,
+                      isSelected && styles.selected,
+                    )}
+                    active={isFocused || isActive}
+                    disabled={option.disabled}
+                    onClick={(e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      handleOptionSelect(option, level);
+                    }}
+                    onMouseEnter={() => {
+                      handleOptionHover(option, level);
+                      setFocusedLevel(level);
+                      setFocusedIndexes((prev) => {
+                        const next = [...prev.slice(0, level), index];
+                        return next;
+                      });
+                    }}
+                    rightSection={
+                      hasChildren ? (
+                        <Icon name="ChevronRightIcon" size="sm" />
+                      ) : undefined
+                    }
+                    role="option"
+                    id={`${id}-menu-${level}-option-${index}`}
+                    aria-selected={isSelected}
+                    tabIndex={-1}
+                  >
+                    {option.label}
+                  </BaseListItem>
+                );
+              })}
+            </div>
+          ))}
         </Transition>
       </div>
     </FieldTemplate>

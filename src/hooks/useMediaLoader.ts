@@ -18,22 +18,25 @@ export interface UseMediaLoaderOptions {
 export const useMediaLoader = (options: UseMediaLoaderOptions = {}) => {
   const { loading = "lazy", src, demoDelay, rootMargin = "250px" } = options;
 
-  // 読み込み状態（最終的に表示して良いか）
-  const [isLoaded, setIsLoaded] = React.useState(false);
   // メディア自体がデータロードを完了したか
   const [hasMediaLoaded, setHasMediaLoaded] = React.useState(false);
   // 交差状態（画面内に入ったか）
-  const [isIntersecting, setIsIntersecting] = React.useState(false);
-  
+  const [isIntersecting, setIsIntersecting] = React.useState(loading === "eager");
+  // 読み込み状態（遅延がある場合に使用）
+  const [isLoadedDelayed, setIsLoadedDelayed] = React.useState(false);
+
+  const [prevSrc, setPrevSrc] = React.useState(src);
+  if (src !== prevSrc) {
+    setPrevSrc(src);
+    setHasMediaLoaded(false);
+    setIsLoadedDelayed(false);
+  }
+
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   // Intersection Observerの設定
   React.useEffect(() => {
-    // 監視対象がない場合やEager読み込みの場合は即時Intersect
-    if (loading === "eager") {
-      setIsIntersecting(true);
-      return;
-    }
+    if (loading === "eager") return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -48,33 +51,25 @@ export const useMediaLoader = (options: UseMediaLoaderOptions = {}) => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     } else {
-      // refがセットされていない場合は安全のため即時表示
       setIsIntersecting(true);
     }
 
     return () => observer.disconnect();
-  }, [loading, src, rootMargin]);
+  }, [loading, rootMargin]);
 
-  // 読み込み完了と遅延の管理
+  // 遅延の管理
   React.useEffect(() => {
-    if (hasMediaLoaded && isIntersecting) {
-      if (demoDelay) {
-        const timer = setTimeout(() => setIsLoaded(true), demoDelay);
-        return () => clearTimeout(timer);
-      } else {
-        setIsLoaded(true);
-      }
-    } else {
-      setIsLoaded(false);
+    if (hasMediaLoaded && isIntersecting && demoDelay) {
+      const timer = setTimeout(() => setIsLoadedDelayed(true), demoDelay);
+      return () => clearTimeout(timer);
     }
-  }, [hasMediaLoaded, isIntersecting, demoDelay, src]);
+  }, [hasMediaLoaded, isIntersecting, demoDelay]);
 
-  // srcが変わったら状態をリセット
-  React.useEffect(() => {
-    setHasMediaLoaded(false);
-    setIsLoaded(false);
-    // Intersectionは一度trueになったら維持して良い（スクロール済みのため）
-  }, [src]);
+  if (!(hasMediaLoaded && isIntersecting) && isLoadedDelayed) {
+    setIsLoadedDelayed(false);
+  }
+
+  const isLoaded = demoDelay ? isLoadedDelayed : (hasMediaLoaded && isIntersecting);
 
   return {
     /** 監視対象のコンテナにセットするref */

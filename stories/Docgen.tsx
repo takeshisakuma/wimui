@@ -28,15 +28,17 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    const category = typedIndexData[componentName];
-    if (!category) {
-      setError(`No category found for ${componentName}`);
-      setLoading(false);
-      return;
-    }
-
+  const category = typedIndexData[componentName];
+  const [prevComponentName, setPrevComponentName] = React.useState(componentName);
+  if (componentName !== prevComponentName) {
+    setPrevComponentName(componentName);
     setLoading(true);
+    setError(null);
+    setData(null);
+  }
+
+  React.useEffect(() => {
+    if (!category) return;
     // Dynamic import the specific category data
     import(`../src/data/docgen_${category}.json`)
       .then((module) => {
@@ -55,7 +57,11 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [componentName]);
+  }, [componentName, category]);
+
+  if (!category) {
+    return <div className="docgen-error">No category found for {componentName}</div>;
+  }
 
   if (loading) {
     return <div className="docgen-loading">Loading documentation data...</div>;

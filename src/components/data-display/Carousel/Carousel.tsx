@@ -120,8 +120,8 @@ export const Carousel = ({
     loop ? originalItemCount : 0,
   );
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [displaySlides, setDisplaySlides] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const displaySlides = getSlidesToShow(slidesToShow, windowWidth);
 
   const timerRef = useRef<number | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -134,10 +134,6 @@ export const Carousel = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  useEffect(() => {
-    setDisplaySlides(getSlidesToShow(slidesToShow, windowWidth));
-  }, [slidesToShow, windowWidth]);
 
   // 無限ループ用のデータ作成
   const extendedItems = useMemo(() => {

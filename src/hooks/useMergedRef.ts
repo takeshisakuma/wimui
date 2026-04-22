@@ -7,8 +7,13 @@ type PossibleRef<T> = React.Ref<T> | undefined;
  * Useful when you need to use a ref internally but also support a forwarded ref.
  */
 export function useMergedRef<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
+  const refsRef = React.useRef(refs);
+  React.useLayoutEffect(() => {
+    refsRef.current = refs;
+  });
+
   return React.useCallback((node: T | null) => {
-    refs.forEach((ref) => {
+    refsRef.current.forEach((ref) => {
       if (!ref) return;
 
       if (typeof ref === "function") {
@@ -21,6 +26,5 @@ export function useMergedRef<T>(...refs: PossibleRef<T>[]): React.RefCallback<T>
         }
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...refs]);
+  }, []);
 }

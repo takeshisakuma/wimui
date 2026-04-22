@@ -5,6 +5,7 @@ import React, {
   useEffect,
   createContext,
   useContext,
+  useMemo,
 } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
@@ -45,27 +46,30 @@ const Splitter = ({
   ...props
 }: SplitterProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+  const panels = useMemo(() => {
+    return childrenArray.filter(
+      (child) =>
+        (child as React.ReactElement).type === SplitterPanel,
+    );
+  }, [childrenArray]);
+
   const [panelSizes, setPanelSizes] = useState<number[]>([]);
-  const [resizingIndex, setResizingIndex] = useState<number | null>(null);
+  const [prevPanelsCount, setPrevPanelsCount] = useState(0);
 
-  const childrenArray = React.Children.toArray(children);
-  const panels = childrenArray.filter(
-    (child) =>
-      (child as React.ReactElement<{ displayName?: string }>).type &&
-      (child as React.ReactElement).type === SplitterPanel,
-  );
-
-  useEffect(() => {
+  if (panels.length !== prevPanelsCount) {
+    setPrevPanelsCount(panels.length);
     const initialSizes = panels.map(
       (p) =>
         (p as React.ReactElement<SplitterPanelProps>).props.defaultSize ??
-        100 / panels.length,
+        100 / (panels.length || 1),
     );
-    const sum = initialSizes.reduce((a, b) => a + b, 0);
+    const sum = initialSizes.reduce((a, b) => a + b, 0) || 1;
     setPanelSizes(initialSizes.map((s) => (s / sum) * 100));
-    // panels.length だけを依存にすることで初期化を一度だけ行う
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [panels.length]);
+  }
+
+  const [resizingIndex, setResizingIndex] = useState<number | null>(null);
+
 
   const handleResizeStart = useCallback(
     (index: number, e: React.MouseEvent | React.TouchEvent) => {
