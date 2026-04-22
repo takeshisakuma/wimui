@@ -226,7 +226,7 @@ describe("useAudioMetadata", () => {
       rerender({ track: null });
     });
 
-    // null track returns early without updating state
-    expect(result.current.metaTitle).toBe("Track A");
+    // metadata should be cleared when track is null
+    expect(result.current.metaTitle).toBe("");
   });
 });
