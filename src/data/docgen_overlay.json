@@ -299,12 +299,6 @@
     "anatomy": [],
     "props": {}
   },
-  "ContextMenu": {
-    "name": "ContextMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Dialog": {
     "name": "Dialog",
     "tokens": [
@@ -328,6 +322,12 @@
       "--wim-spacing-xl",
       "--wim-z-overlay"
     ],
+    "anatomy": [],
+    "props": {}
+  },
+  "ContextMenu": {
+    "name": "ContextMenu",
+    "tokens": [],
     "anatomy": [],
     "props": {}
   },
