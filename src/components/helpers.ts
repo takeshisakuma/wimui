@@ -14,9 +14,21 @@ export const CHART_COLORS = [
   "var(--wim-color-caution)",
   "var(--wim-color-destructive)",
   "var(--wim-color-secondary)",
-  "var(--wim-color-text-primary)",
-  "var(--wim-color-text-secondary)",
+  "var(--wim-color-text-tertiary)",
+  "var(--wim-color-disabled)",
 ];
+
+export const CHART_TEXT_COLORS = [
+  "var(--wim-color-text-on-primary)",
+  "var(--wim-color-text-on-informative)",
+  "var(--wim-color-text-on-positive)",
+  "var(--wim-color-text-on-caution)",
+  "var(--wim-color-text-on-destructive)",
+  "var(--wim-color-text-on-secondary)",
+  "var(--wim-color-text-primary)",
+  "var(--wim-color-text-primary)",
+];
+
 
 export const CHART_THEME = {
   axis: {

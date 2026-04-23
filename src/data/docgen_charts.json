@@ -3,7 +3,6 @@
     "name": "CustomizedContent",
     "tokens": [
       "--wim-color-bg-primary",
-      "--wim-color-text-inverse",
       "--wim-font-size-xs"
     ],
     "anatomy": [
@@ -16,7 +15,6 @@
     "name": "Treemap",
     "tokens": [
       "--wim-color-bg-primary",
-      "--wim-color-text-inverse",
       "--wim-font-size-xs"
     ],
     "anatomy": [
@@ -230,8 +228,8 @@
       }
     }
   },
-  "PieChart": {
-    "name": "PieChart",
+  "RadarChart": {
+    "name": "RadarChart",
     "tokens": [],
     "anatomy": [],
     "props": {
@@ -241,30 +239,51 @@
           "name": "Array",
           "elements": [
             {
-              "name": "signature",
-              "type": "object",
-              "raw": "{ name: string; value: number }",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "name",
-                    "value": {
-                      "name": "string",
-                      "required": true
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
                     }
-                  },
-                  {
-                    "key": "value",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
             }
           ],
-          "raw": "{ name: string; value: number }[]"
+          "raw": "ChartDataPoint[]"
+        },
+        "description": ""
+      },
+      "keys": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "indexKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
         },
         "description": ""
       },
@@ -305,17 +324,6 @@
           "name": "string"
         },
         "description": ""
-      },
-      "donut": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
       }
     }
   },
@@ -429,8 +437,8 @@
       }
     }
   },
-  "RadarChart": {
-    "name": "RadarChart",
+  "PieChart": {
+    "name": "PieChart",
     "tokens": [],
     "anatomy": [],
     "props": {
@@ -440,51 +448,30 @@
           "name": "Array",
           "elements": [
             {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
+              "name": "signature",
+              "type": "object",
+              "raw": "{ name: string; value: number }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "name",
+                    "value": {
+                      "name": "string",
+                      "required": true
                     }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
+                  },
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
             }
           ],
-          "raw": "ChartDataPoint[]"
-        },
-        "description": ""
-      },
-      "keys": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "indexKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
+          "raw": "{ name: string; value: number }[]"
         },
         "description": ""
       },
@@ -525,6 +512,17 @@
           "name": "string"
         },
         "description": ""
+      },
+      "donut": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },

@@ -5,7 +5,12 @@ import {
   Tooltip,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_TEXT_COLORS,
+  CHART_THEME,
+  type ChartDataPoint,
+} from "../../helpers";
 import styles from "./treemap.module.scss";
 
 /**
@@ -45,7 +50,8 @@ export type TreemapProps = {
  * A custom renderer for Treemap content to show labels and varied colors.
  */
 const CustomizedContent = (props: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-  const { x, y, width, height, index, name } = props;
+  const { x, y, width, height, index = 0, name } = props;
+
 
   return (
     <g>
@@ -56,9 +62,7 @@ const CustomizedContent = (props: any) => { // eslint-disable-line @typescript-e
         height={height}
         style={{
           fill: CHART_COLORS[index % CHART_COLORS.length],
-          stroke: "var(--wim-color-bg-primary)",
-          strokeWidth: 2 / (props.depth || 1),
-          strokeOpacity: 1,
+          stroke: "none",
         }}
       />
       {width > 30 && height > 20 && (
@@ -66,19 +70,26 @@ const CustomizedContent = (props: any) => { // eslint-disable-line @typescript-e
           x={x + width / 2}
           y={y + height / 2}
           textAnchor="middle"
-          dominantBaseline="middle"
-          fill="var(--wim-color-text-inverse)"
+          dominantBaseline="central"
           style={{
-            fontSize: "var(--wim-font-size-xs)",
+            fill: CHART_TEXT_COLORS[index % CHART_TEXT_COLORS.length],
+            fontSize: "var(--wim-font-size-lg)",
+            fontWeight: "var(--wim-font-weight-bold)",
+            stroke: "none",
+            strokeWidth: 0,
             pointerEvents: "none",
+            userSelect: "none",
+
           }}
         >
           {name}
         </text>
+
       )}
     </g>
   );
 };
+
 
 export const Treemap = ({
   data,
@@ -108,7 +119,7 @@ export const Treemap = ({
             data={data}
             dataKey={dataKey}
             aspectRatio={aspectRatio}
-            stroke="var(--wim-color-bg-primary)"
+            stroke="none"
             content={<CustomizedContent />}
             isAnimationActive={false}
           >
