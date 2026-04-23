@@ -184,6 +184,8 @@
     "richTextEditor_anatomy_toolbar_label": "Barra de Ferramentas",
     "richTextEditor_best_practice_1": "Saneie sempre a saída HTML antes da renderização — o editor emite HTML bruto que pode conter scripts injetados.",
     "richTextEditor_best_practice_2": "Limite a barra de ferramentas às opções de formatação que o seu modelo de conteúdo realmente suporta; ocultar botões irrelevantes reduz a carga cognitiva.",
+    "richTextEditor_best_practice_category_editor": "editor",
+    "richTextEditor_best_practice_category_toolbar": "barra de ferramentas",
     "richTextEditor_choice_markdown_when": "Quando o público é técnico e a sintaxe Markdown é preferida em vez da formatação visual.",
     "richTextEditor_choice_matrix_desc": "Selecione o componente apropriado com base no tipo de conteúdo esperado e nas necessidades de formatação.",
     "richTextEditor_choice_rte_when": "Quando os utilizadores precisam de formatar texto (negrito, itálico, cabeçalhos, listas, hiperligações) e a saída é renderizada como HTML.",

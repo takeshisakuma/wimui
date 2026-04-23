@@ -21,6 +21,8 @@
     "header_admin": "Admin",
     "overview_title": "Dashboard Overview",
     "stats_revenue": "Total Revenue",
+    "stats_users": "New Users",
+    "stats_active": "Active Sessions",
     "stats_last_month": "Compared to last month"
   },
   "profile": {

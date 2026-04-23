@@ -225,7 +225,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label="Notifications"
               />
               <Badge
-                intent="secondary"
+                intent="error"
                 size="sm"
                 content="3"
                 style={{
@@ -276,23 +276,29 @@ export const DashboardHeader: StoryObj = {
               gap={24}
               justify="center"
             >
-              {[1, 2, 3].map((i) => (
+              {[
+                { label: t("dashboard.stats_revenue"), value: "$45,231.89", trend: "+12.5%", intent: "success" as const },
+                { label: t("dashboard.stats_users"), value: "2,405", trend: "-2.4%", intent: "error" as const },
+                { label: t("dashboard.stats_active"), value: "1,203", trend: "+5.1%", intent: "success" as const },
+              ].map((stat, i) => (
                 <Stats
                   key={i}
                   style={{
                     border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
                   }}
                 >
-                  <Stack justify="space-between" align="center" direction="row">
-                    <Stats.Label>{t("dashboard.stats_revenue")}</Stats.Label>
-                    <Badge intent="neutral" content="+12.5%" size="sm" />
+                  <Stack gap="xs">
+                    <Stack justify="space-between" align="center" direction="row">
+                      <Stats.Label style={{ fontSize: "var(--wim-font-size-md)", fontWeight: 600 }}>{stat.label}</Stats.Label>
+                      <Badge intent={stat.intent} content={stat.trend} size="lg" variant="subtle" />
+                    </Stack>
+                    <Stats.Value>
+                      <Title tag="h3" size="2xl" style={{ whiteSpace: "nowrap", margin: 0 }}>
+                        {stat.value}
+                      </Title>
+                    </Stats.Value>
                   </Stack>
-                  <Stats.Value>
-                    <Title tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
-                      $45,231.89
-                    </Title>
-                  </Stats.Value>
-                  <Stats.Description>{t("dashboard.stats_last_month")}</Stats.Description>
+                  <Stats.Description style={{ fontSize: "var(--wim-font-size-sm)" }}>{t("dashboard.stats_last_month")}</Stats.Description>
                 </Stats>
               ))}
             </Grid>
@@ -536,6 +542,19 @@ export const PricingTable: StoryObj = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}>
+        <style>{`
+          .pricing-list {
+            align-self: stretch;
+            padding-left: 3.5rem;
+          }
+          @media (max-width: 767px) {
+            .pricing-list {
+              width: fit-content !important;
+              margin: 0 auto !important;
+              padding-left: 2rem !important;
+            }
+          }
+        `}</style>
           <Stack align="center" gap="3xl" style={{ marginBottom: "64px" }}>
             <Title tag="h2" size="xl" align="center">
               {t("pricing.title")}
@@ -552,238 +571,108 @@ export const PricingTable: StoryObj = {
         <Grid
           cols={{ base: 1, md: 3 }}
           gap={{ base: 32, lg: 48, xl: 64 }}
-          style={{ maxWidth: "1100px", margin: "0 auto" }}
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            gridTemplateRows: "auto auto auto auto auto", // Row 1: Title, 2: Price, 3: Desc, 4: List, 5: Button
+          }}
         >
+          {/* Starter Plan */}
           <Card
             style={{
-              padding: "32px",
-              border: "2px solid", borderColor: "var(--wim-color-border-secondary)",
+              display: "grid",
+              gridRow: "span 5",
+              gridTemplateRows: "subgrid",
+              gap: "var(--wim-spacing-md)",
+              padding: "var(--wim-spacing-xl)",
+              border: "2px solid var(--wim-color-border-secondary)",
             }}
           >
-            <Stack gap="lg" style={{ height: "100%" }}>
-              <Stack gap="lg" align="center" style={{ flex: 1 }}>
-                <Stack gap="xs" align="center">
-                  <div
-                    style={{
-                      minHeight: "48px",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Title
-                      tag="h3"
-                      size="sm"
-                      align="center"
-                      style={{ margin: 0 }}
-                    >
-                      {t("pricing.starter_title")}
-                    </Title>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      justifyContent: "center",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
-                      $0
-                    </Title>
-                    <Text
-                      content={t("pricing.period")}
-                      color="gray"
-                      size="sm"
-                      style={{ marginLeft: "2px" }}
-                    />
-                  </div>
-                </Stack>
-                <div
-                  style={{
-                    minHeight: "40px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    content={t("pricing.starter_desc")}
-                    size="sm"
-                    color="deepgray"
-                    style={{ textAlign: "center", margin: 0 }}
-                  />
-                </div>
-
-                <List
-                  spacing="normal"
-                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
-                >
-                  <ListItem iconName="CheckIcon">{t("pricing.starter_feat_1")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.starter_feat_2")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.starter_feat_3")}</ListItem>
-                  <ListItem
-                    iconName="CheckIcon"
-                    className="wim-color-gray"
-                    style={{ opacity: 0.5 }}
-                  >
-                    {t("pricing.starter_feat_4")}
-                  </ListItem>
-                </List>
-              </Stack>
-
-              <Button variant="outline" style={{ width: "100%" }}>{t("pricing.starter_btn")}</Button>
-            </Stack>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Title tag="h3" size="md" align="center" style={{ margin: 0 }}>
+                {t("pricing.starter_title")}
+              </Title>
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", whiteSpace: "nowrap" }}>
+              <Title tag="h4" size="4xl" style={{ margin: 0, width: "auto", fontSize: "3.75rem", letterSpacing: "-0.02em" }}>$0</Title>
+              <Text content={t("pricing.period")} color="black" size="lg" style={{ marginLeft: "-2px", fontWeight: 600 }} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Text content={t("pricing.starter_desc")} size="sm" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+            </div>
+            <List className="pricing-list" spacing="normal">
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.starter_feat_1")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.starter_feat_2")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.starter_feat_3")}</ListItem>
+              <ListItem iconName="CheckIcon" className="wim-color-gray" style={{ opacity: 0.7 }}>
+                {t("pricing.starter_feat_4")}
+              </ListItem>
+            </List>
+            <Button variant="outline" style={{ width: "100%", alignSelf: "end" }}>{t("pricing.starter_btn")}</Button>
           </Card>
 
+          {/* Pro Plan */}
           <Card
             style={{
+              display: "grid",
+              gridRow: "span 5",
+              gridTemplateRows: "subgrid",
+              gap: "var(--wim-spacing-md)",
               padding: "var(--wim-spacing-xl)",
               border: "var(--wim-border-width-thick) solid var(--wim-color-primary)",
               position: "relative",
             }}
           >
-
-            <Stack gap="lg" style={{ height: "100%" }}>
-              <Stack gap="lg" align="center" style={{ flex: 1 }}>
-                <Stack gap="xs" align="center">
-                  <div
-                    style={{
-                      minHeight: "48px",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Title
-                      tag="h3"
-                      size="sm"
-                      align="center"
-                      style={{ margin: 0 }}
-                    >
-                      {t("pricing.pro_title")}
-                    </Title>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      justifyContent: "center",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
-                      $29
-                    </Title>
-                    <Text
-                      content={t("pricing.period")}
-                      color="gray"
-                      size="sm"
-                      style={{ marginLeft: "2px" }}
-                    />
-                  </div>
-                </Stack>
-                <div
-                  style={{
-                    minHeight: "40px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    content={t("pricing.pro_desc")}
-                    size="sm"
-                    color="deepgray"
-                    style={{ textAlign: "center", margin: 0 }}
-                  />
-                </div>
-
-                <List
-                  spacing="normal"
-                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
-                >
-                  <ListItem iconName="CheckIcon">{t("pricing.pro_feat_1")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.pro_feat_2")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.pro_feat_3")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.pro_feat_4")}</ListItem>
-                </List>
-              </Stack>
-
-              <Button variant="solid" style={{ width: "100%" }}>{t("pricing.pro_btn")}</Button>
-            </Stack>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Title tag="h3" size="md" align="center" style={{ margin: 0 }}>
+                {t("pricing.pro_title")}
+              </Title>
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", whiteSpace: "nowrap" }}>
+              <Title tag="h4" size="4xl" style={{ margin: 0, width: "auto", fontSize: "3.75rem", letterSpacing: "-0.02em" }}>$29</Title>
+              <Text content={t("pricing.period")} color="black" size="lg" style={{ marginLeft: "-2px", fontWeight: 600 }} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Text content={t("pricing.pro_desc")} size="sm" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+            </div>
+            <List className="pricing-list" spacing="normal">
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.pro_feat_1")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.pro_feat_2")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.pro_feat_3")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.pro_feat_4")}</ListItem>
+            </List>
+            <Button variant="solid" style={{ width: "100%", alignSelf: "end" }}>{t("pricing.pro_btn")}</Button>
           </Card>
 
+          {/* Enterprise Plan */}
           <Card
             style={{
+              display: "grid",
+              gridRow: "span 5",
+              gridTemplateRows: "subgrid",
+              gap: "var(--wim-spacing-md)",
               padding: "var(--wim-spacing-xl)",
-              border: "var(--wim-border-width-thick) solid", borderColor: "var(--wim-color-border-secondary)",
+              border: "var(--wim-border-width-thick) solid var(--wim-color-border-secondary)",
             }}
           >
-            <Stack gap="lg" style={{ height: "100%" }}>
-              <Stack gap="lg" align="center" style={{ flex: 1 }}>
-                <Stack gap="xs" align="center">
-                  <div
-                    style={{
-                      minHeight: "48px",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Title
-                      tag="h3"
-                      size="sm"
-                      align="center"
-                      style={{ margin: 0 }}
-                    >
-                      {t("pricing.ent_title")}
-                    </Title>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      justifyContent: "center",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
-                      $99
-                    </Title>
-                    <Text
-                      content={t("pricing.period")}
-                      color="gray"
-                      size="sm"
-                      style={{ marginLeft: "2px" }}
-                    />
-                  </div>
-                </Stack>
-                <div
-                  style={{
-                    minHeight: "40px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    content={t("pricing.ent_desc")}
-                    size="sm"
-                    color="deepgray"
-                    style={{ textAlign: "center", margin: 0 }}
-                  />
-                </div>
-
-                <List
-                  spacing="normal"
-                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
-                >
-                  <ListItem iconName="CheckIcon">{t("pricing.ent_feat_1")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.ent_feat_2")}</ListItem>
-                  <ListItem iconName="CheckIcon">{t("pricing.ent_feat_3")}</ListItem>
-                </List>
-              </Stack>
-
-              <Button variant="outline" style={{ width: "100%" }}>{t("pricing.ent_btn")}</Button>
-            </Stack>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Title tag="h3" size="md" align="center" style={{ margin: 0 }}>
+                {t("pricing.ent_title")}
+              </Title>
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", whiteSpace: "nowrap" }}>
+              <Title tag="h4" size="4xl" style={{ margin: 0, width: "auto", fontSize: "3.75rem", letterSpacing: "-0.02em" }}>$99</Title>
+              <Text content={t("pricing.period")} color="black" size="lg" style={{ marginLeft: "-2px", fontWeight: 600 }} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Text content={t("pricing.ent_desc")} size="sm" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+            </div>
+            <List className="pricing-list" spacing="normal">
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.ent_feat_1")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.ent_feat_2")}</ListItem>
+              <ListItem iconName="CheckIcon" iconColor="positive">{t("pricing.ent_feat_3")}</ListItem>
+            </List>
+            <Button variant="outline" style={{ width: "100%", alignSelf: "end" }}>{t("pricing.ent_btn")}</Button>
           </Card>
         </Grid>
       </Container>

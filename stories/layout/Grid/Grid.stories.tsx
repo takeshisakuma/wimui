@@ -33,12 +33,12 @@ type Story = StoryObj<typeof meta>;
 
 type BoxIntent = "primary" | "positive" | "caution" | "destructive" | "secondary" | "informative";
 const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
-  primary:     { bg: "var(--wim-color-primary)",     text: "var(--wim-color-text-on-primary)" },
-  positive:    { bg: "var(--wim-color-positive)",    text: "var(--wim-color-text-on-positive)" },
-  caution:     { bg: "var(--wim-color-caution)",     text: "var(--wim-color-text-on-caution)" },
-  destructive: { bg: "var(--wim-color-destructive)", text: "var(--wim-color-text-on-destructive)" },
-  secondary:   { bg: "var(--wim-color-secondary)",   text: "var(--wim-color-text-on-secondary)" },
-  informative: { bg: "var(--wim-color-informative)", text: "var(--wim-color-text-on-informative)" },
+  primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-primary) 60%, black)" },
+  positive:    { bg: "color-mix(in srgb, var(--wim-color-positive) 12%, var(--wim-color-bg-component))",    text: "color-mix(in srgb, var(--wim-color-positive) 60%, black)" },
+  caution:     { bg: "color-mix(in srgb, var(--wim-color-caution) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-caution) 60%, black)" },
+  destructive: { bg: "color-mix(in srgb, var(--wim-color-destructive) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-destructive) 60%, black)" },
+  secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-bg-component))",   text: "color-mix(in srgb, var(--wim-color-secondary) 60%, black)" },
+  informative: { bg: "color-mix(in srgb, var(--wim-color-informative) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-informative) 60%, black)" },
 };
 
 const Box = ({

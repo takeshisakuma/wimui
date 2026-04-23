@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Splitter>;
 const PanelContent = ({
   children,
   color,
-  textColor = "var(--wim-color-text-on-primary)",
+  textColor = "color-mix(in srgb, var(--wim-color-primary) 80%, black)",
 }: {
   children: React.ReactNode;
   color: string;
@@ -48,13 +48,14 @@ export const Horizontal: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
-          "--wim-splitter-handle-color": "var(--wim-color-text-primary)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
+          "--wim-splitter-handle-color": "var(--wim-color-border)",
+          "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={30}>
-            <PanelContent color="var(--wim-color-bg-primary)" textColor="var(--wim-color-text-on-primary)">{t("story.splitter_left", "Left Panel")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_left", "Left Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={70}>
@@ -73,14 +74,15 @@ export const Vertical: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
           // Ensuring handle has contrast against colorful backgrounds
-          "--wim-splitter-handle-color": "var(--wim-color-text-primary)",
+          "--wim-splitter-handle-color": "var(--wim-color-border)",
+          "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="vertical">
           <Splitter.Panel defaultSize={40}>
-            <PanelContent color="var(--wim-color-bg-primary)" textColor="var(--wim-color-text-on-primary)">{t("story.splitter_top", "Top Panel")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_top", "Top Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
@@ -99,13 +101,14 @@ export const MultiplePanels: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
-          "--wim-splitter-handle-color": "var(--wim-color-text-primary)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
+          "--wim-splitter-handle-color": "var(--wim-color-border)",
+          "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="var(--wim-color-bg-primary)" textColor="var(--wim-color-text-on-primary)">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
@@ -128,13 +131,14 @@ export const Nested: Story = {
       <div
         style={{
           height: "600px",
-          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
-          "--wim-splitter-handle-color": "var(--wim-color-text-primary)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
+          "--wim-splitter-handle-color": "var(--wim-color-border)",
+          "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={25}>
-            <PanelContent color="var(--wim-color-bg-primary)" textColor="var(--wim-color-text-on-primary)">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={75}>
@@ -161,13 +165,14 @@ export const Constraints: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
-          "--wim-splitter-handle-color": "var(--wim-color-text-primary)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
+          "--wim-splitter-handle-color": "var(--wim-color-border)",
+          "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel minSize={20} maxSize={50} defaultSize={30}>
-            <PanelContent color="var(--wim-color-bg-primary)" textColor="var(--wim-color-text-on-primary)">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel>

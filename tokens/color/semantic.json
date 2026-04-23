@@ -26,6 +26,7 @@
       "bg-primary": { "value": "{pccs.s16}" },
       "bg-secondary": { "value": "{pccs.gy8-5}" },
       "bg-tertiary": { "value": "{pccs.gy7-5}" },
+      "bg-white": { "value": "{pccs.w}" },
       "bg-hover": { "value": "color-mix(in srgb, var(--wim-color-primary) 8%, transparent)" },
       "border": { "value": "{pccs.gy7-5}" },
       "border-secondary": { "value": "{pccs.gy8-5}" },

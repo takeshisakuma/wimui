@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 import {
@@ -8,7 +9,7 @@ import {
   TokenGrid,
 } from "../stories/TokenVisualizer";
 
-<Meta title="Token/Spacings &amp; Radius" />
+<Meta title="Token/Spacings & Radius" />
 
 
   <h1><T k="guide.spacings_title" /></h1>
@@ -20,6 +21,8 @@ import {
   <p><T k="guide.spacings_scale" /></p>
 </h2>
 <div style={{ marginTop: "24px", marginBottom: "40px" }}>
+  <SpacingSwatch name="Hairline" value="1px" size="var(--wim-spacing-hairline)" />
+  <SpacingSwatch name="Fine" value="2px" size="var(--wim-spacing-fine)" />
   <SpacingSwatch name="3XS" value="0.1rem (1.6px)" size="var(--wim-spacing-3xs)" />
 
   <SpacingSwatch name="2XS" value="0.2rem (3.2px)" size="var(--wim-spacing-2xs)" />
@@ -54,7 +57,7 @@ import {
   <RadiusSwatch name="Medium" value="4px" radius="var(--wim-radius-md)" />
 
   <RadiusSwatch name="Large" value="8px" radius="var(--wim-radius-lg)" />
-
+  <RadiusSwatch name="XL" value="1rem (16px)" radius="var(--wim-radius-xl)" />
   <RadiusSwatch name="Full" value="9999px" radius="var(--wim-radius-full)" />
 </TokenGrid>
 
@@ -164,7 +167,5 @@ import {
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

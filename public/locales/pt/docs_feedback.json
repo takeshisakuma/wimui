@@ -475,7 +475,9 @@
     "watermark_var_multi": "Texto de várias linhas",
     "watermark_var_multi_desc": "Exibe várias linhas de texto passando um array para a prop `content`.",
     "watermark_var_text": "Texto",
-    "watermark_var_text_desc": "Exibe uma string especificada na prop `content`."
+    "watermark_var_text_desc": "Exibe uma string especificada na prop `content`.",
+    "watermark_var_auto": "Proporção Automática",
+    "watermark_var_auto_desc": "Ao usar a propriedade `image`, se você omitir a `width` ou a `height`, a outra dimensão será calculada automaticamente com base na proporção nativa da imagem. Se ambas forem omitidas, o padrão é uma largura de 125 px com uma altura correspondente."
   },
   "guide": {
     "progress_bad_blocking": "Evite designs que bloqueiem completamente todas as operações durante processos longos. Forneça opções de cancelamento/pausa para dar aos usuários uma sensação de controle.",

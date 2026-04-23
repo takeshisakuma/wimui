@@ -361,7 +361,9 @@
     "watermark_scenario_1": "Integrating Watermark into workflows for data collection or display.",
     "watermark_scenario_2": "Using Watermark in management views for information organization.",
     "watermark_var_image": "Image",
-    "watermark_var_image_desc": "Uses an image such as a logo as a watermark via the `image` prop."
+    "watermark_var_image_desc": "Uses an image such as a logo as a watermark via the `image` prop.",
+    "watermark_var_auto": "Automatic Aspect Ratio",
+    "watermark_var_auto_desc": "When using the `image` prop, if you omit either `width` or `height`, the other dimension will be automatically calculated based on the image's native aspect ratio. If both are omitted, it defaults to a width of 125px with a corresponding height."
   },
   "media": {
     "alt_text": "Alternative Text (Alt)",

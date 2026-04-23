@@ -361,7 +361,9 @@
     "watermark_scenario_1": "データ収集や表示のワークフローにWatermarkを統合する。",
     "watermark_scenario_2": "情報管理ビューでWatermarkを使用する。",
     "watermark_var_image": "画像",
-    "watermark_var_image_desc": "`image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。"
+    "watermark_var_image_desc": "`image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。",
+    "watermark_var_auto": "アスペクト比の自動計算",
+    "watermark_var_auto_desc": "`image` プロパティを使用する際、`width` または `height` のいずれかを省略すると、画像の本来の縦横比に基づいてもう一方のサイズが自動的に計算されます。両方を省略した場合は、デフォルトの幅（125px）に基づいた高さが設定されます。"
   },
   "guide": {
     "media_title": "メディアコンポーネントの使い分けガイド"

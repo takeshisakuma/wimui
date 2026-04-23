@@ -129,30 +129,495 @@
     "name": "TreeView",
     "tokens": [],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "JSX ベースのアイテム（children API）。nodes を使わない場合に指定します。"
+      },
+      "nodes": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  value: string;\r\n  label: React.ReactNode;\r\n  children?: TreeViewNode[];\r\n  disabled?: boolean;\r\n  icon?: React.ReactNode;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "ReactReactNode",
+                      "raw": "React.ReactNode",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "children",
+                    "value": {
+                      "name": "Array",
+                      "elements": [
+                        {
+                          "name": "TreeViewNode"
+                        }
+                      ],
+                      "raw": "TreeViewNode[]",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "disabled",
+                    "value": {
+                      "name": "boolean",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "icon",
+                    "value": {
+                      "name": "ReactReactNode",
+                      "raw": "React.ReactNode",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "TreeViewNode[]"
+        },
+        "description": "データ駆動モードのノード配列。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "multiSelect": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "checkable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "checkStrategy": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"cascade\" | \"exclusive\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"cascade\""
+            },
+            {
+              "name": "literal",
+              "value": "\"exclusive\""
+            }
+          ]
+        },
+        "description": "チェック選択の動作モード。",
+        "defaultValue": {
+          "value": "\"cascade\"",
+          "computed": false
+        }
+      },
+      "searchable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "defaultExpandedValues": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "defaultSelectedValues": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "defaultCheckedValues": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "onCheckedChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(checked: string[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "string"
+                    }
+                  ],
+                  "raw": "string[]"
+                },
+                "name": "checked"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onSelectedChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(selected: string[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "string"
+                    }
+                  ],
+                  "raw": "string[]"
+                },
+                "name": "selected"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "virtualThreshold": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "仮想化を開始するしきい値。",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  searchPlaceholder?: string;\r\n  searchAriaLabel?: string;\r\n  expandLabel?: (label: string) => string;\r\n  collapseLabel?: (label: string) => string;\r\n  treeAriaLabel?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "searchPlaceholder",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "searchAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "expandLabel",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(label: string) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "string"
+                        },
+                        "name": "label"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              },
+              {
+                "key": "collapseLabel",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(label: string) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "string"
+                        },
+                        "name": "label"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              },
+              {
+                "key": "treeAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      },
+      "labelId": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessibility label ID"
+      },
+      "styles": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  root?: string;\r\n  item?: string;\r\n  search?: string;\r\n  searchInput?: string;\r\n  labelContainer?: string;\r\n  iconWrapper?: string;\r\n  expandBtn?: string;\r\n  checkbox?: string;\r\n  icon?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "root",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "item",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "search",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "searchInput",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "labelContainer",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "iconWrapper",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "expandBtn",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "checkbox",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "icon",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "Custom styles for internal parts"
+      }
+    }
   },
-  "Timeline": {
-    "name": "Timeline",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
+  "TreeView.Item": {
+    "name": "TreeView.Item",
+    "tokens": [],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "label": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
   },
   "Tag": {
     "name": "Tag",
@@ -303,6 +768,345 @@
       }
     }
   },
+  "Timeline": {
+    "name": "Timeline",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"alternate\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"alternate\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineItem": {
+    "name": "TimelineItem",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"alternate\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"alternate\""
+            }
+          ]
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineSeparator": {
+    "name": "TimelineSeparator",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineConnector": {
+    "name": "TimelineConnector",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelinePoint": {
+    "name": "TimelinePoint",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"error\" | \"success\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineContent": {
+    "name": "TimelineContent",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineOppositeContent": {
+    "name": "TimelineOppositeContent",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Table": {
     "name": "Table",
     "tokens": [
@@ -338,31 +1142,666 @@
       "--wim-z-overlay"
     ],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "striped": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "hoverable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fullWidth": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "stickyHeader": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "scrollbar": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"subtle\" | \"hidden\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"subtle\""
+            },
+            {
+              "name": "literal",
+              "value": "\"hidden\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "mobileCard": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Mobile view: Switch to card layout",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "maxHeight": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "containerClassName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
   },
-  "Stats": {
-    "name": "Stats",
+  "Table.Header": {
+    "name": "Table.Header",
     "tokens": [
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-positive",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
       "--wim-color-text-primary",
       "--wim-color-text-secondary",
       "--wim-color-text-tertiary",
-      "--wim-font-size-display",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-line-height-normal",
-      "--wim-line-height-snug",
-      "--wim-line-height-tight",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-xs"
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Table.Body": {
+    "name": "Table.Body",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Table.Footer": {
+    "name": "Table.Footer",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Table.Row": {
+    "name": "Table.Row",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "selected": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Table.Head": {
+    "name": "Table.Head",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "sortable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "sortDirection": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"asc\" | \"desc\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"asc\""
+            },
+            {
+              "name": "literal",
+              "value": "\"desc\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "onSort": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.SyntheticEvent) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactSyntheticEvent",
+                  "raw": "React.SyntheticEvent"
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "selection": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "stickyLeft": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "stickyRight": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "leftOffset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "rightOffset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "stickyZIndex": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Table.Cell": {
+    "name": "Table.Cell",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-scrollbar-thumb",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-table-row-bg",
+      "--wim-table-row-bg-hover",
+      "--wim-table-scrollbar-color",
+      "--wim-table-scrollbar-thumb-bg",
+      "--wim-table-scrollbar-track-bg",
+      "--wim-table-scrollbar-width",
+      "--wim-z-index-sticky",
+      "--wim-z-index-sticky-column",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "selection": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "stickyLeft": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "stickyRight": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "leftOffset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "rightOffset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "stickyZIndex": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      }
+    }
   },
   "QRCode": {
     "name": "QRCode",
@@ -501,6 +1940,218 @@
       }
     }
   },
+  "Stats": {
+    "name": "Stats",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "defaultValue": {
+          "value": "\"elevated\"",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "Stats.Label": {
+    "name": "Stats.Label",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Stats.Value": {
+    "name": "Stats.Value",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Stats.Description": {
+    "name": "Stats.Description",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Stats.Trend": {
+    "name": "Stats.Trend",
+    "tokens": [
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-positive",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-display",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-line-height-normal",
+      "--wim-line-height-snug",
+      "--wim-line-height-tight",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"up\" | \"down\" | \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"up\""
+            },
+            {
+              "name": "literal",
+              "value": "\"down\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"up\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Markdown": {
+    "name": "Markdown",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-color-bg-subtle-alpha",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-family-mono",
+      "--wim-font-size-2xl",
+      "--wim-font-size-xl",
+      "--wim-line-height-normal",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-radius-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
+      },
+      "gfm": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "Marquee": {
     "name": "Marquee",
     "tokens": [
@@ -565,63 +2216,6 @@
       }
     }
   },
-  "Markdown": {
-    "name": "Markdown",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-family-mono",
-      "--wim-font-size-2xl",
-      "--wim-font-size-xl",
-      "--wim-line-height-normal",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-radius-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
-      },
-      "gfm": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
   "List": {
     "name": "List",
     "tokens": [
@@ -631,7 +2225,160 @@
       "--wim-line-height-normal-jp"
     ],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "spacing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"tight\" | \"normal\" | \"loose\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"tight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"loose\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "List.Item": {
+    "name": "List.Item",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "iconName": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"name\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "description": ""
+      },
+      "iconPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "iconColor": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"color\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"color\"]"
+        },
+        "description": ""
+      }
+    }
   },
   "Kanban": {
     "name": "Kanban",
@@ -657,7 +2404,293 @@
       "--wim-z-10"
     ],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "columns": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "KanbanColumnData"
+            }
+          ],
+          "raw": "KanbanColumnData[]"
+        },
+        "description": "カンバンのカラムデータ（Prop-driven用）。"
+      },
+      "onMove": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "itemId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "fromColumnId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "toColumnId"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "カードの移動が発生した時のコールバック。"
+      },
+      "onCardMove": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "itemId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "fromColumnId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "toColumnId"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "カードの移動が発生した時のコールバック (Legacy/Alternative name)。"
+      },
+      "forceMobileUI": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "タッチデバイス向けのUIを強制的に表示するか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child element.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "KanbanColumn": {
+    "name": "KanbanColumn",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "cardCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "KanbanCard": {
+    "name": "KanbanCard",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "KanbanColumnWrapper": {
+    "name": "KanbanColumnWrapper",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "cardCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
   },
   "FAQSection": {
     "name": "FAQSection",
@@ -741,6 +2774,106 @@
       }
     }
   },
+  "InfiniteScroll": {
+    "name": "InfiniteScroll",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ。"
+      },
+      "hasMore": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "さらに読み込むデータがあるかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "loading": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "ローディング中かどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onLoadMore": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "次のデータを読み込むためのコールバック。"
+      },
+      "loader": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "ローディング中に表示する要素。"
+      },
+      "threshold": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
+        "defaultValue": {
+          "value": "250",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      },
+      "container": {
+        "required": false,
+        "tsType": {
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
+      }
+    }
+  },
   "EmptyState": {
     "name": "EmptyState",
     "tokens": [],
@@ -806,7 +2939,172 @@
     "name": "DescriptionList",
     "tokens": [],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\" | \"compact\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"compact\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "border": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "DescriptionListItem": {
+    "name": "DescriptionListItem",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "DescriptionListTerm": {
+    "name": "DescriptionListTerm",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "DescriptionListDetails": {
+    "name": "DescriptionListDetails",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
   },
   "DataGrid": {
     "name": "DataGrid",
@@ -1445,106 +3743,6 @@
       }
     }
   },
-  "InfiniteScroll": {
-    "name": "InfiniteScroll",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ。"
-      },
-      "hasMore": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "さらに読み込むデータがあるかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "ローディング中かどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onLoadMore": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "次のデータを読み込むためのコールバック。"
-      },
-      "loader": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "ローディング中に表示する要素。"
-      },
-      "threshold": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
-        "defaultValue": {
-          "value": "250",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      },
-      "container": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
-      }
-    }
-  },
   "Chip": {
     "name": "Chip",
     "tokens": [
@@ -1822,36 +4020,6 @@
       }
     }
   },
-  "ChatUI": {
-    "name": "ChatUI",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Card": {
-    "name": "Card",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -2119,6 +4287,603 @@
         "description": "追加のクラス名"
       }
     }
+  },
+  "ChatContainer": {
+    "name": "ChatContainer",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ChatMessageList": {
+    "name": "ChatMessageList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ChatMessage": {
+    "name": "ChatMessage",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "position": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"primary\" | \"secondary\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "showAvatar": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "avatar": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "timestamp": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "senderName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ChatInput": {
+    "name": "ChatInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "onSend": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(message: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "message"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "sendButtonLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "showSendButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ChatAvatar": {
+    "name": "ChatAvatar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "src": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "fallback": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"s1\" | \"s3\" | \"s5\" | \"s7\" | \"s10\" | \"s12\" | \"s14\" | \"s16\" | \"s18\" | \"s20\" | \"s22\" | \"s24\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"s1\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s3\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s5\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s7\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s10\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s12\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s14\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s16\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s18\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s20\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s22\""
+            },
+            {
+              "name": "literal",
+              "value": "\"s24\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"s18\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Card": {
+    "name": "Card",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the card will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"elevated\" | \"outline\" | \"flat\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"elevated\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"flat\""
+            }
+          ]
+        },
+        "description": "カードのバリアント",
+        "defaultValue": {
+          "value": "\"elevated\"",
+          "computed": false
+        }
+      },
+      "padding": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "パディングのサイズ",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "角丸のサイズ",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "as": {
+        "required": false,
+        "tsType": {
+          "name": "C"
+        },
+        "description": "レンダリングするHTML要素"
+      }
+    }
+  },
+  "Card.Header": {
+    "name": "Card.Header",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Card.Body": {
+    "name": "Card.Body",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Card.Footer": {
+    "name": "Card.Footer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "RangeCalendar": {
     "name": "RangeCalendar",
@@ -2889,6 +5654,273 @@
       }
     }
   },
+  "Accordion": {
+    "name": "Accordion",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "type": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"single\" | \"multiple\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"single\""
+            },
+            {
+              "name": "literal",
+              "value": "\"multiple\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"single\"",
+          "computed": false
+        }
+      },
+      "defaultValue": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | string[]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "value": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | string[]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string | string[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "union",
+                  "raw": "string | string[]",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "Array",
+                      "elements": [
+                        {
+                          "name": "string"
+                        }
+                      ],
+                      "raw": "string[]"
+                    }
+                  ]
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "collapsible": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Accordion.Item": {
+    "name": "Accordion.Item",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Accordion.Trigger": {
+    "name": "Accordion.Trigger",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Accordion.Content": {
+    "name": "Accordion.Content",
+    "tokens": [
+      "--wim-accordion-chevron-size",
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-line-height-loose",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-spacing-2xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Avatar": {
     "name": "Avatar",
     "tokens": [
@@ -3060,29 +6092,5 @@
         "description": ""
       }
     }
-  },
-  "Accordion": {
-    "name": "Accordion",
-    "tokens": [
-      "--wim-accordion-chevron-size",
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-line-height-loose",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-spacing-2xl",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {}
   }
 }

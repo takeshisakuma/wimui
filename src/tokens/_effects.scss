@@ -16,8 +16,4 @@
       rgb(255 255 255 / 0.05) 0%,
       rgb(0 0 0 / 0.02) 100%);
   --wim-inner-highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.1);
-
-  /* Ring Shadows for Inputs */
-  --wim-shadow-focus-ring: 0 0 0 3px color-mix(in srgb, var(--wim-color-primary) 15%, transparent);
-  --wim-shadow-error-ring: 0 0 0 3px color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
 }

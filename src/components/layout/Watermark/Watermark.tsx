@@ -16,20 +16,23 @@ type WatermarkProps = {
   className?: string;
 };
 
-export const Watermark = ({
-  content,
-  image,
-  width = 120,
-  height = 64,
-  rotate = -22,
-  zIndex = 9,
-  opacity = 0.15,
-  gap = [100, 100],
-  offset = [50, 50],
-  children,
-  className,
-}: WatermarkProps) => {
+export const Watermark = (props: WatermarkProps) => {
+  const {
+    content,
+    image,
+    width = 125,
+    height = 64,
+    rotate = -22,
+    zIndex = 9,
+    opacity = 0.15,
+    gap = [100, 100],
+    offset = [50, 50],
+    children,
+    className,
+  } = props;
+
   const [base64, setBase64] = useState("");
+  const [markSize, setMarkSize] = useState({ w: width, h: height });
 
   useEffect(() => {
     const canvas = document.createElement("canvas");
@@ -37,24 +40,52 @@ export const Watermark = ({
     if (!ctx) return;
 
     const ratio = window.devicePixelRatio || 1;
-    const canvasWidth = (gap[0] + width) * ratio;
-    const canvasHeight = (gap[1] + height) * ratio;
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-
-    ctx.translate(offset[0] * ratio, offset[1] * ratio);
-    ctx.rotate((rotate * Math.PI) / 180);
-    ctx.globalAlpha = opacity;
 
     if (image) {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = image;
       img.onload = () => {
-        ctx.drawImage(img, 0, 0, width * ratio, height * ratio);
+        const aspect = img.width / img.height;
+        let w = props.width;
+        let h = props.height;
+
+        if (w === undefined && h === undefined) {
+          w = 125;
+          h = w / aspect;
+        } else if (w !== undefined && h === undefined) {
+          h = w / aspect;
+        } else if (w === undefined && h !== undefined) {
+          w = h * aspect;
+        } else {
+          w = w!;
+          h = h!;
+        }
+
+        const canvasWidth = (gap[0] + w) * ratio;
+        const canvasHeight = (gap[1] + h) * ratio;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        ctx.translate(offset[0] * ratio, offset[1] * ratio);
+        ctx.rotate((rotate * Math.PI) / 180);
+        ctx.globalAlpha = opacity;
+        ctx.drawImage(img, 0, 0, w * ratio, h * ratio);
         setBase64(canvas.toDataURL());
+        setMarkSize({ w, h });
       };
     } else if (content) {
+      const w = width;
+      const h = height;
+      const canvasWidth = (gap[0] + w) * ratio;
+      const canvasHeight = (gap[1] + h) * ratio;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+
+      ctx.translate(offset[0] * ratio, offset[1] * ratio);
+      ctx.rotate((rotate * Math.PI) / 180);
+      ctx.globalAlpha = opacity;
+
       const fontSize = 16 * ratio;
       ctx.font = `${fontSize}px sans-serif`;
       ctx.fillStyle = "black";
@@ -64,10 +95,12 @@ export const Watermark = ({
       contents.forEach((item, index) => {
         ctx.fillText(item, 0, index * fontSize * 1.5);
       });
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setBase64(canvas.toDataURL());
+      setTimeout(() => {
+        setBase64(canvas.toDataURL());
+        setMarkSize({ w, h });
+      }, 0);
     }
-  }, [content, image, width, height, rotate, opacity, gap, offset]);
+  }, [content, image, props.width, props.height, rotate, opacity, gap, offset, width, height]);
 
   return (
     <div className={classNames(styles.wrapper, className)}>
@@ -78,10 +111,9 @@ export const Watermark = ({
         style={{
           zIndex,
           backgroundImage: `url(${base64})`,
-          backgroundSize: `${gap[0] + width}px ${gap[1] + height}px`,
+          backgroundSize: `${gap[0] + markSize.w}px ${gap[1] + markSize.h}px`,
         }}
       />
-
     </div>
   );
 };

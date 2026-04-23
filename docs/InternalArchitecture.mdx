@@ -1,3 +1,4 @@
+import { Command } from "../stories/Command";
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
@@ -52,6 +53,14 @@ import { T } from "../stories/T";
     <tr>
       <td>**InteractiveArea**</td>
       <td><T k="doc.interactiveArea_desc" /></td>
+    </tr>
+    <tr>
+      <td>**<T k="internal.comp_feedback_close_title" />**</td>
+      <td><T k="internal.comp_feedback_close_role" /></td>
+    </tr>
+    <tr>
+      <td>**<T k="internal.comp_feedback_icon_title" />**</td>
+      <td><T k="internal.comp_feedback_icon_role" /></td>
     </tr>
   </tbody>
 </table>
@@ -165,7 +174,7 @@ import { T } from "../stories/T";
   <tbody>
     <tr>
       <td>**<T k="perf.animation_used_in" />**</td>
-      <td>`Marquee`, `Carousel`, `Skeleton`, `Icon` (loading state), `BottomSheet`, `Tooltip`, `Switch`, `Sidebar`, `Accordion`.</td>
+      <td>`Marquee`, `Carousel`, `Skeleton`, `Icon` (loading state), `BottomSheet`, `Tooltip`, `Switch`, `Sidebar`, `Accordion`, `Dialog`, `Drawer`, `Menu`, `Popover`, `Notification`, `Toast`, `Snackbar`, `Alert`.</td>
     </tr>
     <tr>
       <td>**<T k="perf.animation_micro_interactions" />**</td>
@@ -244,7 +253,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

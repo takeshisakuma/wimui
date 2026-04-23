@@ -35,6 +35,8 @@
     "anchor_basic_desc": "アンカーコンポーネントの詳細情報と使用方法について説明します。",
     "anchor_best_practice_1": "アンカーテキストは短く、対象セクションの見出しと一致させて統一感を持たせましょう。",
     "anchor_best_practice_2": "アンカーリストはサイドバーや固定領域に配置し、どの位置からでもナビゲーション可能にしましょう。",
+    "anchor_best_practice_label_layout": "レイアウト",
+    "anchor_best_practice_label_text": "テキスト",
     "anchor_choice_anchor_when": "1つのページ内に多くのセクションがあり、目次のように機能させたい場合。",
     "anchor_choice_matrix_desc": "ページ構成とコンテンツの種類に応じて、最適なナビゲーション手段を選択してください。",
     "anchor_choice_nav_when": "単一のページ内ではなく、サイト全体の異なるページ間を移動させたい場合。",

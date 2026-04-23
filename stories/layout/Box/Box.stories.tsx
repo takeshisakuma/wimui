@@ -53,8 +53,8 @@ export const AsButton: Story = {
   },
   args: {
     as: "button",
-    bg: "var(--wim-color-primary-subtle)",
-    color: "var(--wim-color-primary)",
+    bg: "color-mix(in srgb, var(--wim-color-primary) 12%, white)",
+    color: "color-mix(in srgb, var(--wim-color-primary) 80%, black)",
     p: "10px 20px",
     radius: 6,
     style: { border: "1px solid var(--wim-color-primary)", cursor: "pointer", fontWeight: 600 },
@@ -67,19 +67,19 @@ export const Spacing: Story = {
     return (
       <Box bg="var(--wim-color-bg-secondary)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
         <Box
-          bg="var(--wim-color-primary-subtle)"
+          bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)"
           p={15}
           mb={15}
-          color="var(--wim-color-primary)"
+          color="color-mix(in srgb, var(--wim-color-primary) 80%, black)"
           radius={4}
           style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.box_margin")}
         </Box>
         <Box
-          bg="var(--wim-color-positive-subtle)"
+          bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)"
           p={15}
-          color="var(--wim-color-positive)"
+          color="color-mix(in srgb, var(--wim-color-positive) 80%, black)"
           radius={4}
           style={{ border: "1px solid var(--wim-color-positive)" }}
         >
@@ -96,8 +96,8 @@ export const PaddingProps: Story = {
     return <Box {...args}>{t("story.box_padding")}</Box>;
   },
   args: {
-    bg: "var(--wim-color-destructive-subtle)",
-    color: "var(--wim-color-destructive)",
+    bg: "color-mix(in srgb, var(--wim-color-destructive) 12%, white)",
+    color: "color-mix(in srgb, var(--wim-color-destructive) 80%, black)",
     px: 40, // Left and right padding
     py: 10, // Top and bottom padding
     radius: 8,

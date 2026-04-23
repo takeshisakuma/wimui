@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 <Meta title="Components/Visualization/Overview" />
@@ -305,12 +306,12 @@ import { T } from "../stories/T";
       <li>
         <strong><T k="viz.component_location" /></strong><br />
 
-        `src/components/Charts/`
+        `src/components/charts/`
       </li>
       <li style={{ marginTop: "12px" }}>
         <strong><T k="viz.common_settings_keys" /></strong><br />
 
-        `src/components/Charts/helpers.ts`<br />
+        `src/components/helpers.ts`<br />
 
         <small style={{ color: "var(--wim-color-text-secondary)" }}><T k="vis.chart_colors" /></small>
       </li>
@@ -356,7 +357,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

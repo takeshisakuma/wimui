@@ -63,14 +63,15 @@
     &::after {
       top: 0;
       bottom: 0;
-      left: 50%;
-      width: 2px;
-      transform: translateX(-50%);
+      left: 4px;
+      width: var(--wim-splitter-handle-width, 2px);
     }
 
     &:hover::after,
     &.active::after {
+      left: 50%;
       width: 4px;
+      transform: translateX(-50%);
     }
   }
 
@@ -81,16 +82,17 @@
     cursor: row-resize;
 
     &::after {
-      top: 50%;
+      top: 4px;
       right: 0;
       left: 0;
-      height: 2px;
-      transform: translateY(-50%);
+      height: var(--wim-splitter-handle-width, 2px);
     }
 
     &:hover::after,
     &.active::after {
+      top: 50%;
       height: 4px;
+      transform: translateY(-50%);
     }
   }
 }

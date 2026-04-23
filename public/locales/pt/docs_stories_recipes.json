@@ -21,6 +21,8 @@
     "header_admin": "Admin",
     "overview_title": "Visão Geral do Painel",
     "stats_revenue": "Receita Total",
+    "stats_users": "Novos Usuários",
+    "stats_active": "Sessões Ativas",
     "stats_last_month": "Comparado ao mês passado"
   },
   "profile": {

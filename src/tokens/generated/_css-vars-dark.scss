@@ -28,6 +28,7 @@
   --wim-color-bg-primary: #393939;
   --wim-color-bg-secondary: #4f4f4f;
   --wim-color-bg-tertiary: #4f4f4f;
+  --wim-color-bg-white: #fff;
   --wim-color-bg-hover: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
   --wim-color-border: #646464;
   --wim-color-border-secondary: #4f4f4f;
@@ -132,6 +133,8 @@
   --wim-shadow-lg: 0 12px 24px color-mix(in srgb, #000 12%, transparent), 0 8px 16px color-mix(in srgb, #000 18%, transparent);
   --wim-shadow-inset: inset 0 2px 4px color-mix(in srgb, #000 10%, transparent);
   --wim-shadow-focus: 0 0 0 2px #fff, 0 0 0 4px color-mix(in srgb, #055d87 50%, transparent);
+  --wim-shadow-focus-ring: 0 0 0 3px color-mix(in srgb, #055d87 15%, transparent);
+  --wim-shadow-error-ring: 0 0 0 3px color-mix(in srgb, #fb7482 15%, transparent);
   --wim-shadow-field-focus: 0 0 0 2px color-mix(in srgb, #055d87 20%, transparent);
   --wim-duration-extra-fast: 0.1s;
   --wim-duration-short: 0.15s;
@@ -246,6 +249,7 @@
     --wim-color-bg-primary: #393939;
     --wim-color-bg-secondary: #4f4f4f;
     --wim-color-bg-tertiary: #4f4f4f;
+    --wim-color-bg-white: #fff;
     --wim-color-bg-hover: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
     --wim-color-border: #646464;
     --wim-color-border-secondary: #4f4f4f;
@@ -350,6 +354,8 @@
     --wim-shadow-lg: 0 12px 24px color-mix(in srgb, #000 12%, transparent), 0 8px 16px color-mix(in srgb, #000 18%, transparent);
     --wim-shadow-inset: inset 0 2px 4px color-mix(in srgb, #000 10%, transparent);
     --wim-shadow-focus: 0 0 0 2px #fff, 0 0 0 4px color-mix(in srgb, #055d87 50%, transparent);
+    --wim-shadow-focus-ring: 0 0 0 3px color-mix(in srgb, #055d87 15%, transparent);
+    --wim-shadow-error-ring: 0 0 0 3px color-mix(in srgb, #fb7482 15%, transparent);
     --wim-shadow-field-focus: 0 0 0 2px color-mix(in srgb, #055d87 20%, transparent);
     --wim-duration-extra-fast: 0.1s;
     --wim-duration-short: 0.15s;

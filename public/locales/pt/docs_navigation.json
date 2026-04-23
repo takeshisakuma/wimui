@@ -35,6 +35,8 @@
     "anchor_basic_desc": "Informações detalhadas e instruções de uso para o componente Âncora.",
     "anchor_best_practice_1": "Mantenha o texto do anchor curto e alinhado com o título da seção de destino.",
     "anchor_best_practice_2": "Posicione a lista de anchors em uma barra lateral fixa para navegação de qualquer posição.",
+    "anchor_best_practice_label_layout": "Layout",
+    "anchor_best_practice_label_text": "Texto",
     "anchor_choice_anchor_when": "Quando você tem muitas seções em uma única página e deseja que elas funcionem como um sumário.",
     "anchor_choice_matrix_desc": "Escolha o método de navegação mais apropriado com base na estrutura da página e no tipo de conteúdo.",
     "anchor_choice_nav_when": "Quando você deseja se mover entre diferentes páginas do site em vez de permanecer em uma única página.",

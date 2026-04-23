@@ -1,3 +1,4 @@
+import { Command } from "../stories/Command";
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
@@ -11,10 +12,25 @@ import { T } from "../stories/T";
 
 <p><T k="guide.progress_types_desc" /></p>
 
-<ul>
-  <li><strong><T k="guide.progress_type_determinate_title" /></strong>: <T k="guide.progress_type_determinate_desc" /></li>
-  <li><strong><T k="guide.progress_type_indeterminate_title" /></strong>: <T k="guide.progress_type_indeterminate_desc" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.category_label" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide.progress_type_determinate_title" /></strong></td>
+      <td><T k="guide.progress_type_determinate_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_type_indeterminate_title" /></strong></td>
+      <td><T k="guide.progress_type_indeterminate_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
 
 <p><T k="doc.see_more" /> <a href="./?path=/docs/architecture-progress-indicator-standardization--docs" target="_top"><T k="guide.std_doc_progress_indicator" /></a></p>
 
@@ -144,7 +160,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

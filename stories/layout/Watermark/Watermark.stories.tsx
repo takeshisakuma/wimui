@@ -69,8 +69,15 @@ export const MultiLine: Story = {
 export const Image: Story = {
   args: {
     image: "./wimlogo.svg",
-    width: 40,
-    height: 40,
+    width: 80,
+    opacity: 0.1,
+    children: <div style={{ height: "400px" }} />,
+  },
+};
+
+export const AutoRatio: Story = {
+  args: {
+    image: "./wimlogo.svg",
     opacity: 0.1,
     children: <div style={{ height: "400px" }} />,
   },

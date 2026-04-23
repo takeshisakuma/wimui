@@ -3,14 +3,19 @@
 @use "../../../tokens/spacings" as *;
 
 @layer component {
-  .root {
+  .root, :global(.wim-treemap__root) {
     display: block;
     width: 100%;
     height: auto;
   }
 
-  .container {
+  .container, :global(.wim-treemap__container) {
     position: relative;
     width: 100%;
   }
+
+  // Tokens used in CustomizedContent (JS):
+  // var(--wim-color-bg-primary)
+  // var(--wim-color-text-inverse)
+  // var(--wim-font-size-xs)
 }

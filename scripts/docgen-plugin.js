@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse } from 'react-docgen';
+import { parse, builtinResolvers } from 'react-docgen';
 import { glob } from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -67,17 +67,32 @@ export async function generateDocgenData() {
 
     try {
       const tsxContent = fs.readFileSync(componentPath, 'utf8');
+      // findAll: true to get all components in the file
       const docgen = parse(tsxContent, {
         filename: componentPath,
+        resolver: new builtinResolvers.FindAllDefinitionsResolver(),
       });
       
-      categorizedData[category][componentName] = {
-        name: componentName,
-        tokens,
-        anatomy,
-        props: docgen[0]?.props || {}
-      };
+      const foundComponents = Array.isArray(docgen) ? docgen : [docgen];
+      
+      for (const comp of foundComponents) {
+        // Use displayName if it exists, otherwise fallback to filename
+        const name = comp.displayName || componentName;
+        
+        // Skip internal components that might be picked up
+        if (name.startsWith('_')) continue;
+        
+        indexData[name] = category;
+        categorizedData[category][name] = {
+          name: name,
+          tokens,
+          anatomy,
+          props: comp.props || {}
+        };
+      }
     } catch (e) {
+      // Fallback if parsing fails
+      indexData[componentName] = category;
       categorizedData[category][componentName] = {
         name: componentName,
         tokens,

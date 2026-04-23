@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 <Meta title="Components/Selection Controls/Overview" />
@@ -27,7 +28,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.one_on_off" /></td>
       <td>-</td>
-      <td>○</td>
+      <td>��</td>
       <td>
         <strong><T k="selection.want_immediate" /></strong>
       </td>
@@ -39,7 +40,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.multiple" /></td>
       <td><T k="selection.few" /></td>
-      <td>○</td>
+      <td>��</td>
       <td>
         <strong><T k="selection.multiple_immediate" /></strong>
       </td>
@@ -51,7 +52,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single_or_multi" /></td>
       <td><T k="selection.few" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.want_confirm" /></strong>
       </td>
@@ -63,7 +64,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.multiple" /></td>
       <td><T k="selection.few_to_medium" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.checkbox_group_want_confirm" /></strong>
       </td>
@@ -75,7 +76,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single" /></td>
       <td><T k="selection.few_items" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.choose_one_confirm_later" /></strong>
       </td>
@@ -87,7 +88,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single" /></td>
       <td><T k="selection.few_items" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.choose_one_confirm_later" /></strong>
       </td>
@@ -99,7 +100,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single" /></td>
       <td><T k="selection.few_items" /></td>
-      <td>○</td>
+      <td>��</td>
       <td>
         <strong><T k="selection.switch_in_place" /></strong>
       </td>
@@ -111,7 +112,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single" /></td>
       <td><T k="selection.medium_to_many" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.space_saving_usage" /></strong>
       </td>
@@ -123,7 +124,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single" /></td>
       <td><T k="selection.many_searchable" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.search_filter_usage" /></strong>
       </td>
@@ -135,7 +136,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.multiple" /></td>
       <td><T k="selection.medium_to_many_multi" /></td>
-      <td>×</td>
+      <td>�~</td>
       <td>
         <strong><T k="selection.multi_item_usage" /></strong>
       </td>
@@ -147,7 +148,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single_or_multiple" /></td>
       <td><T k="selection.small_count" /></td>
-      <td>○ / ×</td>
+      <td>�� / �~</td>
       <td>
         <strong><T k="selection.chip_visual_usage" /></strong>
       </td>
@@ -159,7 +160,7 @@ import { T } from "../stories/T";
       </td>
       <td><T k="selection.single_or_multiple" /></td>
       <td><T k="selection.small_count" /></td>
-      <td>○</td>
+      <td>��</td>
       <td>
         <strong><T k="selection.toggle_group_visual_usage" /></strong>
       </td>
@@ -492,7 +493,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

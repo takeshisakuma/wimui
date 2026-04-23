@@ -24,6 +24,8 @@
       "lg": { "value": "0 12px 24px color-mix(in srgb, {pccs.bk} 12%, transparent), 0 8px 16px color-mix(in srgb, {pccs.bk} 18%, transparent)" },
       "inset": { "value": "inset 0 2px 4px color-mix(in srgb, {pccs.bk} 10%, transparent)" },
       "focus": { "value": "0 0 0 2px {pccs.w}, 0 0 0 4px color-mix(in srgb, {wim.color.primary} 50%, transparent)" },
+      "focus-ring": { "value": "0 0 0 3px color-mix(in srgb, {wim.color.primary} 15%, transparent)" },
+      "error-ring": { "value": "0 0 0 3px color-mix(in srgb, {wim.color.destructive} 15%, transparent)" },
       "field-focus": { "value": "0 0 0 2px color-mix(in srgb, {wim.color.primary} 20%, transparent)" }
     },
     "duration": {

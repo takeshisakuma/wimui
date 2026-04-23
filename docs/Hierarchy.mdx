@@ -1,7 +1,8 @@
+import { Command } from "../stories/Command";
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
-<Meta title="Guides/Hierarchy &amp; Composition" />
+<Meta title="Guides/Hierarchy & Composition" />
 
 # <T k="guide.hierarchy_title" />
 
@@ -29,13 +30,13 @@ import { T } from "../stories/T";
       <td><strong><T k="guide.tier1_label" /></strong><br/><T k="guide.tier_foundations" /> (<T k="cat.utilities" />)</td>
       <td><T k="tier1.desc" /></td>
       <td><T k="tier1.role" /></td>
-      <td>`AspectRatio`, `Box`, `Center`, `Blockquote`, `Code`, `Container`, `Divider`, `Flex`, `FocusTrap`, `Grid`, `Group`, `Highlight`, `Icon`, `Kbd`, `Loader`, `Markdown`, `Marquee`, `Portal`, `ScrollArea`, `SimpleGrid`, `Span`, `Stack`, `Text`, `Title`, `Transition`, `VisuallyHidden`</td>
+      <td>`AspectRatio`, `Box`, `Center`, `Blockquote`, `Code`, `Container`, `Divider`, `Flex`, `FocusTrap`, `Grid`, `Group`, `Highlight`, `Icon`, `InteractiveArea`, `Kbd`, `Loader`, `Markdown`, `Marquee`, `Portal`, `ScrollArea`, `SimpleGrid`, `Span`, `Stack`, `Text`, `Title`, `Transition`, `VisuallyHidden`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier2_label" /></strong><br/><T k="guide.tier_atoms" /> (<T k="cat.basic_inputs" />)</td>
       <td><T k="tier2.desc" /></td>
       <td><T k="tier2.role" /></td>
-      <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputMask`, `InteractiveArea`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `PhoneInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
+      <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputMask`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `PhoneInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier3_label" /></strong><br/><T k="guide.tier_molecules" /> (<T k="cat.overlays" />)</td>
@@ -339,7 +340,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

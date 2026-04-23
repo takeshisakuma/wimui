@@ -26,6 +26,7 @@ export type WimColorKey =
   | "bg-surface-subtle"
   | "bg-tertiary"
   | "bg-void"
+  | "bg-white"
   | "border"
   | "border-inverted"
   | "border-secondary"
@@ -133,8 +134,10 @@ export type WimOpacityKey =
   | "secondary";
 
 export type WimShadowKey = 
+  | "error-ring"
   | "field-focus"
   | "focus"
+  | "focus-ring"
   | "inset"
   | "lg"
   | "md"

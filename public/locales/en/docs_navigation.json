@@ -33,6 +33,8 @@
     "anchor_basic_desc": "Detailed information and usage instructions for the Anchor component.",
     "anchor_best_practice_1": "Keep anchor text short and aligned with the heading of the target section for consistency.",
     "anchor_best_practice_2": "Position the anchor list in a sidebar or fixed area so users can navigate from any scroll position.",
+    "anchor_best_practice_label_layout": "Layout",
+    "anchor_best_practice_label_text": "Text",
     "anchor_choice_anchor_when": "When you have many sections on a single page and want them to function like a table of contents.",
     "anchor_choice_matrix_desc": "Choose the most appropriate navigation method based on the page structure and content type.",
     "anchor_choice_nav_when": "When you want to move between different pages across the site rather than staying on a single page.",

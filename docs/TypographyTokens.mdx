@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisualizer } from "../stories/TokenVisualizer";
@@ -63,7 +64,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     </tr>
     <tr>
       <td><T k="token.type_ff_ja" /> (`lang="ja"`)</td>
-      <td>`"Noto Sans JP", "游ゴシック体", "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", "Meiryo", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
+      <td>`"Noto Sans JP", "貂ｸ繧ｴ繧ｷ繝・け菴・, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "繝偵Λ繧ｮ繝手ｧ偵ざ ProN W3", "繝｡繧､繝ｪ繧ｪ", "Meiryo", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
     <tr>
       <td><T k="token.type_ff_en" /> (`lang="en"`)</td>
@@ -80,6 +81,48 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <h2><T k="token.type_size" /></h2>
 <div style={{ display: "grid", gap: "8px" }}>
+  <TypographyVisualizer
+    token="--wim-font-size-7xl"
+    text="7XL (5.202rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-6xl"
+    text="6XL (4.11rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-5xl"
+    text="5XL (3.247rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-4xl"
+    text="4XL (2.566rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-3xl"
+    text="3XL (2.027rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-2xl"
+    text="2XL (1.602rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-display"
+    text="Display (1.5rem)"
+    type="font-size"
+  />
+
   <TypographyVisualizer
     token="--wim-font-size-xl"
     textKey="token.type_text_ex_large"
@@ -109,6 +152,18 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     textKey="token.type_text_ex_small"
     type="font-size"
   />
+
+  <TypographyVisualizer
+    token="--wim-font-size-2xs"
+    text="2XS (0.702rem)"
+    type="font-size"
+  />
+
+  <TypographyVisualizer
+    token="--wim-font-size-3xs"
+    text="3XS (0.625rem)"
+    type="font-size"
+  />
 </div>
 
 <hr />
@@ -131,7 +186,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
       <h3><T k="token.type_lh_jpan" /></h3>
       <TypographyVisualizer
         token="--wim-line-height-loose-jp"
-        text={"Loose (1.8)\n日本語の文章において、特にモバイルデバイスや長い本文で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。"}
+        text={"Loose (1.8)\n日本語の文章において、特にモバイルデバイスなどの小画面で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。"}
       />
 
       <TypographyVisualizer
@@ -175,7 +230,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
   <DecorationVisualizer token="--wim-decoration-underline" name="Underline" type="decoration" />
 
-  <DecorationVisualizer token="--wim-decoration-highlight-color" name="Highlight Color" type="highlight" />
+  <DecorationVisualizer token="--wim-color-decoration-highlight-color" name="Highlight Color" type="highlight" />
 </TokenGrid>
 
 <hr />
@@ -256,7 +311,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
       <td>`--decoration-underline`</td>
     </tr>
     <tr>
-      <td>`--wim-decoration-highlight-color`</td>
+      <td>`--wim-color-decoration-highlight-color`</td>
       <td>`--decoration-highlight-color`</td>
     </tr>
   </tbody>
@@ -302,7 +357,5 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

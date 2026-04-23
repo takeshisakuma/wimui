@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 <Meta title="Architecture/Progress Indicator Standardization" />
@@ -28,13 +29,31 @@ import { T } from "../stories/T";
 
 <p><T k="guide.progress_types_desc" /></p>
 
-### <T k="guide.progress_type_determinate_title" />
-<p><T k="guide.progress_type_determinate_desc" /></p>
-<p><T k="guide.progress_type_determinate_benefit" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.category_label" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide.progress_type_determinate_title" /></strong></td>
+      <td>
+        <p><T k="guide.progress_type_determinate_desc" /></p>
+        <p><T k="guide.progress_type_determinate_benefit" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_type_indeterminate_title" /></strong></td>
+      <td>
+        <p><T k="guide.progress_type_indeterminate_desc" /></p>
+        <p><T k="guide.progress_type_indeterminate_point" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-### <T k="guide.progress_type_indeterminate_title" />
-<p><T k="guide.progress_type_indeterminate_desc" /></p>
-<p><T k="guide.progress_type_indeterminate_point" /></p>
 
 ---
 
@@ -74,12 +93,29 @@ import { T } from "../stories/T";
 #### <T k="guide.progress_bp_feedback_title" />
 <p><T k="guide.progress_bp_feedback_desc" /></p>
 
-#### <T k="guide.progress_bp_duration_title" />
-<ul>
-  <li><strong><T k="guide.progress_bp_duration_1s_label" /></strong>: <T k="guide.progress_bp_duration_1s" /></li>
-  <li><strong><T k="guide.progress_bp_duration_2_5s_label" /></strong>: <T k="guide.progress_bp_duration_2_5s" /></li>
-  <li><strong><T k="guide.progress_bp_duration_5s_label" /></strong>: <T k="guide.progress_bp_duration_5s" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="guide.progress_bp_duration_title" /></th>
+      <th><T k="doc.recommendation" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide.progress_bp_duration_1s_label" /></strong></td>
+      <td><T k="guide.progress_bp_duration_1s" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_bp_duration_2_5s_label" /></strong></td>
+      <td><T k="guide.progress_bp_duration_2_5s" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_bp_duration_5s_label" /></strong></td>
+      <td><T k="guide.progress_bp_duration_5s" /></td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### <T k="guide.progress_ux_improvement_title" />
 
@@ -100,12 +136,32 @@ import { T } from "../stories/T";
 
 ## <T k="guide.progress_std_bad_title" />
 
-<ul>
-  <li><strong><T k="guide.progress_bad_default_title" /></strong>: <T k="guide.progress_bad_default" /></li>
-  <li><strong><T k="guide.progress_bad_blocking_title" /></strong>: <T k="guide.progress_bad_blocking" /></li>
-  <li><strong><T k="guide.progress_bad_static_title" /></strong>: <T k="guide.progress_bad_static" /></li>
-  <li><strong><T k="guide.progress_bad_complex_title" /></strong>: <T k="guide.progress_bad_complex" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.practice" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide.progress_bad_default_title" /></strong></td>
+      <td><T k="guide.progress_bad_default" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_bad_blocking_title" /></strong></td>
+      <td><T k="guide.progress_bad_blocking" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_bad_static_title" /></strong></td>
+      <td><T k="guide.progress_bad_static" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.progress_bad_complex_title" /></strong></td>
+      <td><T k="guide.progress_bad_complex" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
@@ -147,7 +203,5 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 

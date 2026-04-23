@@ -470,6 +470,8 @@
     "watermark_var_multi_desc": "Displays multiple lines of text by passing an array to the `content` prop.",
     "watermark_var_text": "Text",
     "watermark_var_text_desc": "Displays a string specified in the `content` prop.",
+    "watermark_var_auto": "Automatic Aspect Ratio",
+    "watermark_var_auto_desc": "When using the `image` prop, if you omit either `width` or `height`, the other dimension will be automatically calculated based on the image's native aspect ratio. If both are omitted, it defaults to a width of 125px with a corresponding height.",
     "result_keyboard_desc": "Tab moves focus through action buttons within the result component. Enter or Space activates the focused button.",
     "result_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title, description, and action children props.",
     "spinner_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",

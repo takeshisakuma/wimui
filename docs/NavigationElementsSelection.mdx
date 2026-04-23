@@ -1,20 +1,23 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
+import { ComponentDashboard } from "../stories/ComponentDashboard";
+import componentData from "../src/data/components.json";
 
 <Meta title="Components/Navigation Elements/Overview" />
 
 # <T k="nav.guide_title" />
 
-<p><T k="nav.guide_desc" /></p>
+<p><T k="nav.guide" /></p>
 
-## <T k="nav.type_compare" />
+## <T k="nav.selection_guide" />
 
 <table>
   <thead>
     <tr>
       <th><T k="table.header_component" /></th>
-      <th><T k="table.header_placement" /></th>
-      <th><T k="nav.hierarchy_level" /></th>
+      <th><T k="nav.type" /></th>
+      <th><T k="nav.judgment_point" /></th>
       <th><T k="table.header_usage" /></th>
     </tr>
   </thead>
@@ -23,86 +26,73 @@ import { T } from "../stories/T";
       <td>
         <strong>Tabs</strong>
       </td>
-      <td><T k="alert.in_content_short" /></td>
-      <td><T k="nav.level_mid_low" /></td>
-      <td><T k="nav.context_switch_desc" /></td>
-    </tr>
-    <tr>
+      <td><T k="nav.type_flat" /></td>
       <td>
-        <strong>TabNavigation</strong>
+        <strong><T k="nav.same_level_content_desc" /></strong>
+        <T k="nav.flat_hierarchy" />
+
       </td>
-      <td><T k="nav.page_elements" /></td>
-      <td><T k="nav.level_mid" /></td>
-      <td><T k="nav.url_switch_desc" /></td>
+      <td><T k="nav.tabs_usage" /></td>
     </tr>
     <tr>
       <td>
         <strong>Breadcrumb</strong>
       </td>
-      <td><T k="nav.content_top" /></td>
-      <td><T k="nav.level_all" /></td>
-      <td><T k="nav.breadcrumb_desc" /></td>
+      <td><T k="nav.type_hierarchy" /></td>
+      <td>
+        <strong><T k="nav.path_desc" /></strong>
+        <T k="nav.deep_hierarchy" />
+
+      </td>
+      <td><T k="nav.breadcrumb_usage" /></td>
     </tr>
     <tr>
       <td>
         <strong>Pagination</strong>
       </td>
-      <td><T k="nav.list_bottom" /></td>
-      <td><T k="nav.list_type" /></td>
-      <td><T k="nav.pagination_desc" /></td>
-    </tr>
-    <tr>
+      <td><T k="nav.type_sequential" /></td>
       <td>
-        <strong>Stepper</strong>
+        <strong><T k="nav.large_list_desc" /></strong>
+        <T k="nav.page_switching" />
+
       </td>
-      <td><T k="nav.screen_center_top" /></td>
-      <td><T k="nav.steps_type" /></td>
-      <td><T k="nav.stepper_desc" /></td>
+      <td><T k="nav.pagination_usage" /></td>
     </tr>
     <tr>
       <td>
         <strong>Anchor</strong>
       </td>
-      <td><T k="alert.in_content_short" /></td>
-      <td><T k="nav.within_page" /></td>
-      <td><T k="nav.anchor_desc" /></td>
-    </tr>
-    <tr>
+      <td><T k="nav.type_jump" /></td>
       <td>
-        <strong>HamburgerMenu</strong>
-      </td>
-      <td><T k="nav.within_header" /></td>
-      <td><T k="nav.supplementary" /></td>
-      <td><T k="nav.burger_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+        <strong><T k="nav.single_page_desc" /></strong>
+        <T k="nav.section_jump" />
 
----
-
-## <T k="nav.usability_tips" />
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="table.header_item" /></th>
-      <th><T k="table.header_guideline" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <strong><T k="nav.explicit_location" /></strong>
       </td>
-      <td>
-        <T k="nav.active_state_desc" /></td>
+      <td><T k="nav.anchor_usage" /></td>
     </tr>
     <tr>
       <td>
-        <strong><T k="table.header_consistency" /></strong>
+        <strong>Stepper</strong>
       </td>
+      <td><T k="nav.type_process" /></td>
       <td>
-        <T k="nav.fixed_pos_desc" /></td>
+        <strong><T k="nav.step_desc" /></strong>
+        <T k="nav.flow_guide" />
+
+      </td>
+      <td><T k="nav.stepper_usage" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>CommandPalette</strong>
+      </td>
+      <td><T k="nav.type_quick" /></td>
+      <td>
+        <strong><T k="nav.kb_quick_access" /></strong>
+        <T k="nav.search_execution" />
+
+      </td>
+      <td><T k="nav.cmd_usage" /></td>
     </tr>
   </tbody>
 </table>
@@ -147,7 +137,4 @@ import { T } from "../stories/T";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
-
+<Command>npm run i18n:check</Command>

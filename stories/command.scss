@@ -1,0 +1,68 @@
+.wim-doc-command {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+  margin: var(--wim-spacing-md) 0;
+  background-color: var(--wim-color-bg-component, #f5f5f5);
+  border: 1px solid var(--wim-color-border-subtle, #e0e0e0);
+  border-radius: var(--wim-radius-md, 8px);
+  transition: var(--wim-transition-base);
+
+  &:hover {
+    border-color: var(--wim-color-primary, #007bff);
+    box-shadow: var(--wim-shadow-sm);
+  }
+
+  &__content {
+    flex: 1;
+    margin-right: var(--wim-spacing-md);
+    overflow-x: auto;
+
+    code {
+      font-family: var(--wim-font-family-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+      font-size: var(--wim-font-size-sm, 0.875rem);
+      color: var(--wim-color-text-primary);
+      white-space: nowrap;
+    }
+  }
+
+  &__copy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm, 4px);
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--wim-color-primary);
+      background-color: var(--wim-color-bg-hover, rgb(0 0 0 / 0.05));
+    }
+
+    &.is-copied {
+      color: var(--wim-color-success, #28a745);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// Dark mode adjustments (handled by tokens mostly, but explicit for clarity)
+[data-theme="dark"] .wim-doc-command {
+  background-color: var(--wim-color-bg-component, #1e1e1e);
+  border-color: var(--wim-color-border-subtle, #333);
+
+  &__copy-button:hover {
+    background-color: var(--wim-color-bg-hover, rgb(255 255 255 / 0.1));
+  }
+}

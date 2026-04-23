@@ -46,10 +46,11 @@ export interface ListItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   children: React.ReactNode;
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
+  iconColor?: React.ComponentProps<typeof Icon>["color"];
 }
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  ({ asChild = false, children, className, iconName, iconPosition = "left", ...props }, ref) => {
+  ({ asChild = false, children, className, iconName, iconPosition = "left", iconColor, ...props }, ref) => {
     const { size } = useContext(ListContext);
     const Component = asChild ? Slot : "li";
 
@@ -67,7 +68,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
           <div className={styles.itemContent}>
             {iconPosition === "left" && (
               <div className={classNames(styles.iconContainer, styles.left)}>
-                <Icon name={iconName} size={size} className={styles.icon} />
+                <Icon name={iconName} size={size} color={iconColor} className={styles.icon} />
               </div>
             )}
             <div className={styles.text}>
@@ -75,7 +76,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             </div>
             {iconPosition === "right" && (
               <div className={classNames(styles.iconContainer, styles.right)}>
-                <Icon name={iconName} size={size} className={styles.icon} />
+                <Icon name={iconName} size={size} color={iconColor} className={styles.icon} />
               </div>
             )}
           </div>

@@ -1,8 +1,28 @@
 {
+  "CustomizedContent": {
+    "name": "CustomizedContent",
+    "tokens": [
+      "--wim-color-bg-primary",
+      "--wim-color-text-inverse",
+      "--wim-font-size-xs"
+    ],
+    "anatomy": [
+      "container",
+      "root"
+    ],
+    "props": {}
+  },
   "Treemap": {
     "name": "Treemap",
-    "tokens": [],
-    "anatomy": [],
+    "tokens": [
+      "--wim-color-bg-primary",
+      "--wim-color-text-inverse",
+      "--wim-font-size-xs"
+    ],
+    "anatomy": [
+      "container",
+      "root"
+    ],
     "props": {
       "data": {
         "required": true,
@@ -36,21 +56,21 @@
           ],
           "raw": "ChartDataPoint[]"
         },
-        "description": ""
+        "description": "Data to display in the treemap."
       },
       "dataKey": {
         "required": true,
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "The key in the data objects that represents the size of the rectangle."
       },
       "aspectRatio": {
         "required": false,
         "tsType": {
           "name": "number"
         },
-        "description": "",
+        "description": "The aspect ratio of the rectangles.\n@default 4/3",
         "defaultValue": {
           "value": "4 / 3",
           "computed": false
@@ -61,7 +81,7 @@
         "tsType": {
           "name": "number"
         },
-        "description": "",
+        "description": "The height of the chart in pixels.\n@default 300",
         "defaultValue": {
           "value": "300",
           "computed": false
@@ -81,7 +101,7 @@
             }
           ]
         },
-        "description": "",
+        "description": "The width of the chart (e.g., \"100%\", 500).\n@default \"100%\"",
         "defaultValue": {
           "value": "\"100%\"",
           "computed": false
@@ -92,7 +112,7 @@
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "Optional title displayed above the chart."
       }
     }
   },
@@ -309,6 +329,95 @@
       }
     }
   },
+  "PieChart": {
+    "name": "PieChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ name: string; value: number }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "name",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "{ name: string; value: number }[]"
+        },
+        "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "donut": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "LineChart": {
     "name": "LineChart",
     "tokens": [],
@@ -407,95 +516,6 @@
         "description": ""
       },
       "smooth": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "PieChart": {
-    "name": "PieChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{ name: string; value: number }",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "name",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "value",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "{ name: string; value: number }[]"
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "donut": {
         "required": false,
         "tsType": {
           "name": "boolean"

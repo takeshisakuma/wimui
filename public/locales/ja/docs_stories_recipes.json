@@ -21,6 +21,8 @@
     "header_admin": "管理者",
     "overview_title": "ダッシュボードの概要",
     "stats_revenue": "総収益",
+    "stats_users": "新規ユーザー",
+    "stats_active": "アクティブセッション",
     "stats_last_month": "先月比"
   },
   "profile": {

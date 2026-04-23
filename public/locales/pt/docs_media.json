@@ -361,7 +361,9 @@
     "watermark_scenario_1": "Integrando Watermark em fluxos de trabalho para coleta ou exibição de dados.",
     "watermark_scenario_2": "Usando Watermark em visualizações de gerenciamento para organização de informações.",
     "watermark_var_image": "Imagem",
-    "watermark_var_image_desc": "Usa uma imagem como um logotipo como uma marca d'água via prop `image`."
+    "watermark_var_image_desc": "Usa uma imagem como um logotipo como uma marca d'água via prop `image`.",
+    "watermark_var_auto": "Proporção Automática",
+    "watermark_var_auto_desc": "Ao usar a propriedade `image`, se você omitir a `width` ou a `height`, a outra dimensão será calculada automaticamente com base na proporção nativa da imagem. Se ambas forem omitidas, o padrão é uma largura de 125 px com uma altura correspondente."
   },
   "guide": {
     "media_title": "Guia de Seleção de Componentes de Mídia"

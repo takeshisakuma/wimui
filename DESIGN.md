@@ -191,11 +191,13 @@ Major Second (1.125) に近い Type Scale を採用。
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
+| `--wim-font-size-3xs` | 0.625rem | 極小注釈 |
 | `--wim-font-size-2xs` | 0.702rem | 最小注釈、バッジ内テキスト |
 | `--wim-font-size-xs` | 0.79rem | キャプション、ヒント |
 | `--wim-font-size-sm` | 0.889rem | 小さめの本文、ラベル |
 | `--wim-font-size-md` | 1rem (16px) | 本文テキスト |
 | `--wim-font-size-lg` | 1.125rem | やや強調されたテキスト |
+| `--wim-font-size-display` | 1.5rem | 特殊ディスプレイ見出し |
 | `--wim-font-size-xl` | 1.266rem | サブ見出し |
 | `--wim-font-size-2xl` | 1.602rem | セクション見出し |
 | `--wim-font-size-3xl` | 2.027rem | ページ見出し |
@@ -242,6 +244,8 @@ Major Second (1.125) に近い Type Scale を採用。
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
+| `--wim-spacing-hairline` | 1px | 極細境界線、ヘアライン |
+| `--wim-spacing-fine` | 2px | 微細な間隔 |
 | `--wim-spacing-3xs` | 0.1rem (1.6px) | 最小マイクロ間隔 |
 | `--wim-spacing-2xs` | 0.2rem (3.2px) | アイコン間隔 |
 | `--wim-spacing-xs` | 0.3rem (4.8px) | インライン要素間 |
@@ -292,7 +296,9 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-shadow-md` | 0 4px 12px ... | モーダル、ポップオーバー |
 | `--wim-shadow-lg` | 0 12px 24px ... | ドロワー、全画面オーバーレイ |
 | `--wim-shadow-inset` | inset 0 2px 4px ... | 押し込み効果 |
-| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px rgba(...) | フォーカスリング |
+| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px rgba(...) | フォーカス外枠 |
+| `--wim-shadow-focus-ring` | 0 0 0 3px rgba(...) | 入力要素のフォーカスリング |
+| `--wim-shadow-error-ring` | 0 0 0 3px rgba(...) | エラー状態のリング |
 | `--wim-shadow-field-focus` | 0 0 0 2px rgba(...) | 入力フィールドのフォーカス |
 
 ### 透明度
@@ -414,17 +420,17 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ## コンポーネントカタログ
 
-### Form（フォーム）-- 47 コンポーネント
+### Form（フォーム）-- 46 コンポーネント
 
-Button, IconButton, LinkButton, ButtonGroup, CopyButton, FloatButton, Input, PasswordInput, PhoneInput, SearchInput, NumberInput, Textarea, OtpInput, InputMask, Mentions, RichTextEditor, Checkbox, CheckboxGroup, Radio, RadioGroup, Switch, SwitchGroup, Selectbox, MultiSelect, Combobox, Cascader, TreeSelect, Transfer, Slider, RangeSlider, SegmentedControl, ToggleGroup, DatePicker, DateRangePicker, TimePicker, ColorPicker, ColorInput, Rating, SignaturePad, Dropzone, FileUpload, QueryBuilder, InputBase, InputGroup, FieldError, FieldTemplate, Fieldset
+Button, ButtonGroup, Cascader, Checkbox, CheckboxGroup, ColorInput, ColorPicker, Combobox, CopyButton, DatePicker, DateRangePicker, Dropzone, FieldError, FieldTemplate, Fieldset, FileUpload, FloatButton, IconButton, Input, InputBase, InputGroup, InputMask, LinkButton, Mentions, MultiSelect, NumberInput, OtpInput, PasswordInput, PhoneInput, Radio, RadioGroup, RangeSlider, Rating, RichTextEditor, SearchInput, SegmentedControl, Selectbox, SignaturePad, Slider, Switch, SwitchGroup, Textarea, TimePicker, ToggleGroup, Transfer, TreeSelect
 
-### Data Display（データ表示）-- 25 コンポーネント
+### Data Display（データ表示）-- 26 コンポーネント
 
-Accordion, Avatar, AvatarGroup, Badge, Calendar, Card, Carousel, ChatUI, Chip, DataGrid, DescriptionList, EmptyState, FAQSection, InfiniteScroll, Kanban, List, Markdown, Marquee, QRCode, Stats, Table, Tag, Timeline, TreeView, VirtualList
+Accordion, Avatar, AvatarGroup, Badge, BaseListItem, Calendar, Card, Carousel, ChatUI, Chip, DataGrid, DescriptionList, EmptyState, FAQSection, Indicator, Kanban, List, QRCode, QueryBuilder, RangeCalendar, Stats, Table, Tag, Timeline, TreeView, VirtualList
 
 ### Feedback（フィードバック）-- 15 コンポーネント
 
-Alert, Banner, ErrorBoundary, Indicator, Loader, LoadingOverlay, Notification, Progress, Result, ScrollProgress, Skeleton, Snackbar, Spinner, Toast, Tour
+Alert, Banner, ErrorBoundary, Loader, LoadingOverlay, Notification, Popconfirm, Progress, Result, ScrollProgress, Skeleton, Snackbar, Spinner, Toast, Tour
 
 ### Layout（レイアウト）-- 23 コンポーネント
 
@@ -434,21 +440,22 @@ AppShell, AspectRatio, BentoGrid, Box, Center, Container, Divider, Flex, Footer,
 
 Affix, Anchor, BackTop, Breadcrumb, CommandPalette, HamburgerMenu, Link, Pagination, Stepper, TabBar, TabNavigation, Tabs
 
-### Overlay（オーバーレイ）-- 12 コンポーネント
+### Overlay（オーバーレイ）-- 11 コンポーネント
 
-BottomSheet, ContextMenu, Dialog, Drawer, Dropdown, FocusTrap, HoverCard, Menu, Popconfirm, Popover, Portal, Tooltip
+BottomSheet, ContextMenu, Dialog, Drawer, Dropdown, FocusTrap, HoverCard, Menu, Popover, Portal, Tooltip
 
 ### Typography（タイポグラフィ）-- 9 コンポーネント
 
-Code, Heading, Highlight, Kbd, Label, Legend, Paragraph, Quote, Span
+Blockquote, Code, Highlight, Kbd, Label, Legend, Span, Text, Title
 
 ### Media（メディア）-- 4 コンポーネント
 
 Audio, Icon, Image, Video
 
-### Charts（チャート）-- 11 コンポーネント
+### Charts（チャート）-- 12 コンポーネント
 
-AreaChart, BarChart, FunnelChart, GanttChart, GaugeChart, Heatmap, LineChart, PieChart, RadarChart, ScatterChart, Treemap
+AreaChart, BarChart, Charts, FunnelChart, GanttChart, GaugeChart, Heatmap, LineChart, PieChart, RadarChart, ScatterChart, Treemap
+
 
 ---
 

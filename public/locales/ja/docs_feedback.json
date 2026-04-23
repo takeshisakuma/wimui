@@ -475,7 +475,9 @@
     "watermark_var_multi": "複数行テキスト",
     "watermark_var_multi_desc": "`content` プロップに配列を渡すことで、複数行のテキストを表示できます。",
     "watermark_var_text": "テキスト",
-    "watermark_var_text_desc": "`content` プロップに文字列を指定して表示します。"
+    "watermark_var_text_desc": "`content` プロップに文字列を指定して表示します。",
+    "watermark_var_auto": "アスペクト比の自動計算",
+    "watermark_var_auto_desc": "`image` プロパティを使用する際、`width` または `height` のいずれかを省略すると、画像の本来の縦横比に基づいてもう一方のサイズが自動的に計算されます。両方を省略した場合は、デフォルトの幅（125px）に基づいた高さが設定されます。"
   },
   "guide": {
     "progress_bad_blocking": "長時間の処理中に全操作をブロックしてしまうデザインは避けるべきです。キャンセルや一時停止の選択肢を提供し、ユーザーにコントロール感を与えることが重要です。",

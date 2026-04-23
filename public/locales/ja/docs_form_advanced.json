@@ -184,6 +184,8 @@
     "richTextEditor_anatomy_toolbar_label": "Toolbar",
     "richTextEditor_best_practice_1": "エディタは生のHTMLを出力するため、レンダリング前に必ずHTMLをサニタイズしてください。インジェクトされたスクリプトが含まれる可能性があります。",
     "richTextEditor_best_practice_2": "ツールバーはコンテンツモデルが実際にサポートする書式オプションのみに限定してください。不要なボタンを非表示にすることで認知負荷が軽減されます。",
+    "richTextEditor_best_practice_category_editor": "エディタ",
+    "richTextEditor_best_practice_category_toolbar": "ツールバー",
     "richTextEditor_choice_markdown_when": "対象ユーザーが技術者であり、視覚的な書式設定よりMarkdown記法が好まれる場合。",
     "richTextEditor_choice_matrix_desc": "期待されるコンテンツの種類と書式ニーズに応じてコンポーネントを選択してください。",
     "richTextEditor_choice_rte_when": "ユーザーがテキストを書式設定（太字・斜体・見出し・リスト・リンク）する必要があり、出力をHTMLとして描画する場合。",

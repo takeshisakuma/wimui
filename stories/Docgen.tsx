@@ -1,5 +1,6 @@
 import React from 'react';
 import { T } from './T';
+import { Command } from './Command';
 import indexData from '../src/data/docgen_index.json';
 import './docgen.scss';
 
@@ -147,15 +148,12 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
   };
 
   const renderTest = () => {
+    const commandText = `npm run test -- ${componentName}`;
     return (
       <section id="test">
         <h2><T k="doc.test_title" /></h2>
         <p><T k="doc.test_description" /></p>
-        <div className="docgen-code-block">
-          <pre>
-            <code>npm run test -- {componentName}</code>
-          </pre>
-        </div>
+        <Command>{commandText}</Command>
       </section>
     );
   };

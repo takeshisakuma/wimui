@@ -1,4 +1,5 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Command } from "../stories/Command";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 import { ColorSwatch, ColorGrid } from "../stories/ColorSwatch";
@@ -252,8 +253,8 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <ColorGrid>
   <ColorSwatch
     name="Scrollbar Thumb"
-    value="--wim-scrollbar-thumb"
-    color="var(--wim-scrollbar-thumb)"
+    value="--wim-color-scrollbar-thumb"
+    color="var(--wim-color-scrollbar-thumb)"
   />
 </ColorGrid>
 
@@ -279,8 +280,8 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   <ColorSwatch name="Sidebar Overlay" value="--wim-color-overlay-bg-sidebar" color="var(--wim-color-overlay-bg-sidebar)" />
   <ColorSwatch name="Overlay Menu" value="--wim-color-overlay-menu-bg" color="var(--wim-color-overlay-menu-bg)" />
   <ColorSwatch name="Surface Subtle" value="--wim-color-bg-surface-subtle" color="var(--wim-color-bg-surface-subtle)" />
-  <ColorSwatch name="Carousel Control BG" value="--wim-carousel-control-bg" color="var(--wim-carousel-control-bg)" />
-  <ColorSwatch name="Carousel Indicator BG" value="--wim-carousel-indicator-bg" color="var(--wim-carousel-indicator-bg)" />
+  <ColorSwatch name="Carousel Control BG" value="--wim-color-carousel-control-bg" color="var(--wim-color-carousel-control-bg)" />
+  <ColorSwatch name="Carousel Indicator BG" value="--wim-color-carousel-indicator-bg" color="var(--wim-color-carousel-indicator-bg)" />
 </ColorGrid>
 
 <h2><T k="guide.colors_component_specific_title" /></h2>
@@ -402,7 +403,5 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 
 ## <T k="doc.test_title" />
 
-```bash
-npm run test:i18n
-```
+<Command>npm run i18n:check</Command>
 
