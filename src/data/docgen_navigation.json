@@ -209,83 +209,6 @@
       }
     }
   },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "fixed": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Fixed position at the bottom of the screen",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Show top border",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TabBar.Item": {
-    "name": "TabBar.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Active state"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Icon element"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Text label"
-      },
-      "badge": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Badge content (optional)"
-      }
-    }
-  },
   "TabNavigation": {
     "name": "TabNavigation",
     "tokens": [],
@@ -424,170 +347,80 @@
       }
     }
   },
-  "Stepper": {
-    "name": "Stepper",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-focus-outline-width",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-radius-full",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "steps": {
+      "fixed": {
         "required": false,
         "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "Step"
-            }
-          ],
-          "raw": "Step[]"
+          "name": "boolean"
         },
-        "description": "Array of step configurations",
+        "description": "Fixed position at the bottom of the screen",
         "defaultValue": {
-          "value": "[]",
+          "value": "true",
           "computed": false
         }
       },
-      "current": {
+      "bordered": {
         "required": false,
         "tsType": {
-          "name": "number"
+          "name": "boolean"
         },
-        "description": "Index of the current active step (0-indexed)",
+        "description": "Show top border",
         "defaultValue": {
-          "value": "0",
+          "value": "true",
           "computed": false
         }
       },
-      "direction": {
+      "glass": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
+          "name": "boolean"
         },
-        "description": "Direction of the stepper",
+        "description": "Glassmorphism effect",
         "defaultValue": {
-          "value": "\"horizontal\"",
+          "value": "false",
           "computed": false
         }
-      },
-      "labelPlacement": {
+      }
+    }
+  },
+  "TabBar.Item": {
+    "name": "TabBar.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "active": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
+          "name": "boolean"
         },
-        "description": "Placement of the labels",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
+        "description": "Active state"
       },
-      "intent": {
+      "icon": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"wait\" | \"process\" | \"finish\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"wait\""
-            },
-            {
-              "name": "literal",
-              "value": "\"process\""
-            },
-            {
-              "name": "literal",
-              "value": "\"finish\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "Workflow intent shown on the current active step (default: \"process\")",
-        "defaultValue": {
-          "value": "\"process\"",
-          "computed": false
-        }
+        "description": "Icon element"
       },
-      "className": {
+      "label": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "Additional class names"
+        "description": "Text label"
       },
-      "ariaLabel": {
+      "badge": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "Accessibility label for the navigation"
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(current: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "current"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when a step is clicked (if applicable)"
+        "description": "Badge content (optional)"
       }
     }
   },
@@ -910,6 +743,173 @@
           "value": "{}",
           "computed": false
         }
+      }
+    }
+  },
+  "Stepper": {
+    "name": "Stepper",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-focus-outline-width",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-radius-full",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "steps": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Step"
+            }
+          ],
+          "raw": "Step[]"
+        },
+        "description": "Array of step configurations",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "current": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Index of the current active step (0-indexed)",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "Direction of the stepper",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "labelPlacement": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "Placement of the labels",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"wait\" | \"process\" | \"finish\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"wait\""
+            },
+            {
+              "name": "literal",
+              "value": "\"process\""
+            },
+            {
+              "name": "literal",
+              "value": "\"finish\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "Workflow intent shown on the current active step (default: \"process\")",
+        "defaultValue": {
+          "value": "\"process\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "ariaLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessibility label for the navigation"
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(current: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "current"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when a step is clicked (if applicable)"
       }
     }
   },
