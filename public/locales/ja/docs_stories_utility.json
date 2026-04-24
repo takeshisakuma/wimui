@@ -9,7 +9,7 @@
     "errorboundary_status_stable": "安定したコンテンツ。",
     "errorboundary_throw_msg": "意図的なエラーが発生しました！",
     "infscroll_item": "アイテム {{index}}",
-    "markdown_sample": "# Markdownプレビュー\n\nこれは **Markdown** コンポーネントです。様々な要素をサポートしています：\n\n## タイポグラフィ\n- **太字テキスト**\n- *斜体テキスト*\n- ~~取り消し線~~\n\n## リスト\n1. 最初のアイテム\n2. 2番目のアイテム\n   - サブアイテム A\n   - サブアイテム B\n\n## コード\nインライン `const x = 10;` とブロック：\n\n```javascript\nfunction hello() {\n  console.log(\"Hello, world!\");\n}\n```\n\n## テーブル\n| 機能 | サポート |\n| --- | --- |\n| GFM | はい |\n| カスタムスタイル | はい |\n\n---\n\n> これは引用です。",
+    "markdown_sample": "# Markdownプレビュー\n\nこれは Markdown コンポーネントです。様々な要素をサポートしています：\n\n## タイポグラフィ\n- 太字テキスト\n- *斜体テキスト*\n- ~~取り消し線~~\n\n## リスト\n1. 最初のアイテム\n2. 2番目のアイテム\n   - サブアイテム A\n   - サブアイテム B\n\n## コード\nインライン `const x = 10;` とブロック：\n\n```javascript\nfunction hello() {\n  console.log(\"Hello, world!\");\n}\n```\n\n## テーブル\n| 機能 | サポート |\n| --- | --- |\n| GFM | はい |\n| カスタムスタイル | はい |\n\n---\n\n> これは引用です。",
     "marquee_check_out": "最新のコンポーネントをチェックしてください。",
     "marquee_item": "アイテム {{count}}",
     "marquee_new_feature": "新機能",

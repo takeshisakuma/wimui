@@ -36,7 +36,7 @@ import { T } from "../stories/T";
       <td><strong><T k="guide.tier2_label" /></strong><br/><T k="guide.tier_atoms" /> (<T k="cat.basic_inputs" />)</td>
       <td><T k="tier2.desc" /></td>
       <td><T k="tier2.role" /></td>
-      <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputMask`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `PhoneInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
+      <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `FieldTemplate`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputBase`, `InputMask`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `PhoneInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier3_label" /></strong><br/><T k="guide.tier_molecules" /> (<T k="cat.overlays" />)</td>
@@ -48,7 +48,7 @@ import { T } from "../stories/T";
       <td><strong><T k="guide.tier4_label" /></strong><br/><T k="guide.tier_organisms" /> (<T k="cat.app_shell" />)</td>
       <td><T k="tier4.desc" /></td>
       <td><T k="tier4.role" /></td>
-      <td>`AppShell`, `BentoGrid`, `BottomSheet`, `Calendar`, `Charts`, `ChatUI`, `CommandPalette`, `ContextMenu`, `DataGrid`, `DatePicker`, `DateRangePicker`, `Dialog`, `Drawer`, `Dropzone`, `ErrorBoundary`, `Footer`, `HamburgerMenu`, `Header`, `InfiniteScroll`, `Kanban`, `Masonry`, `Menu`, `Navbar`, `QueryBuilder`, `RichTextEditor`, `Sidebar`, `Splitter`, `TabBar`, `TabNavigation`, `Table`, `Tabs`, `TimePicker`, `Tour`, `TreeSelect`, `TreeView`, `VirtualList`, `Watermark`</td>
+      <td>`AppShell`, `AreaChart`, `BarChart`, `BentoGrid`, `BottomSheet`, `Calendar`, `ChatUI`, `CommandPalette`, `ContextMenu`, `DataGrid`, `DatePicker`, `DateRangePicker`, `Dialog`, `Drawer`, `Dropzone`, `ErrorBoundary`, `Footer`, `FunnelChart`, `GanttChart`, `GaugeChart`, `HamburgerMenu`, `Header`, `Heatmap`, `InfiniteScroll`, `Kanban`, `LineChart`, `Masonry`, `Menu`, `Navbar`, `PieChart`, `QueryBuilder`, `RadarChart`, `RichTextEditor`, `ScatterChart`, `Sidebar`, `Splitter`, `TabBar`, `TabNavigation`, `Table`, `Tabs`, `TimePicker`, `Tour`, `TreeSelect`, `TreeView`, `Treemap`, `VirtualList`, `Watermark`</td>
     </tr>
   </tbody>
 </table>
@@ -71,22 +71,17 @@ import { T } from "../stories/T";
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DataGrid`</td>
-      <td>`Table`, `Pagination`, `Checkbox`, `EmptyState`, `Spinner`, `SearchInput`</td>
+      <td>`Table`, `Pagination`, `Checkbox`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`AppShell`</td>
-      <td>`Header`, `Sidebar`, `Footer`, `Drawer`, `HamburgerMenu`, `Button`</td>
-    </tr>
-    <tr>
-      <td><strong><T k="guide.tier4_label" /></strong></td>
-      <td>`ChatUI`</td>
-      <td>`Avatar`, `Input`, `IconButton`, `ScrollArea`</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Calendar`</td>
-      <td>`Button`, `Selectbox`</td>
+      <td>`Icon`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
@@ -101,22 +96,22 @@ import { T } from "../stories/T";
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DatePicker`</td>
-      <td>`Popover`, `Calendar`, `Input`</td>
+      <td>`Calendar`, `InputBase`, `Transition`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`DateRangePicker`</td>
-      <td>`Popover`, `Calendar`, `Input`</td>
+      <td>`Calendar`, `InputBase`, `Transition`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Table`</td>
-      <td>`Icon`, `Checkbox`</td>
+      <td>`Icon`</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
       <td>`Tabs`</td>
-      <td>`Transition`</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><strong><T k="guide.tier4_label" /></strong></td>
@@ -234,13 +229,40 @@ import { T } from "../stories/T";
 
 ---
 
+## <T k="guide.principles_title" />
+
+<p><T k="guide.principles_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="table.header_item" /></th>
+      <th><T k="table.header_guideline" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="principle.dom_title" /></strong></td>
+      <td><T k="principle.dom_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="principle.animation_title" /></strong></td>
+      <td><T k="principle.animation_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="principle.transition_title" /></strong></td>
+      <td><T k="principle.transition_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
 ## <T k="guide.input_std_title" />
 
 <p><T k="guide.input_std_desc" /></p>
 
-<a href="./?path=/docs/architecture-input-area-standardization--page" target="_top"><T k="guide.usage" /> (Input Area)</a>
+<a href="./?path=/docs/standardization-input-area-standardization--docs" target="_top"><T k="guide.usage" /> (Input Area)</a>
 &nbsp; / &nbsp;
-<a href="./?path=/docs/architecture-internal-core-components--page" target="_top"><T k="guide.internal_title" /></a>
+<a href="./?path=/docs/architecture-internal-core-components--docs" target="_top"><T k="guide.internal_title" /></a>
 
 ## <T k="guide.hierarchy_rules_title" />
 
@@ -271,74 +293,24 @@ import { T } from "../stories/T";
 
 ---
 
-## <T k="guide.principles_title" />
-
-<p>
-  <T k="guide.principles_desc" />
-</p>
+## <T k="doc.std_summary_title" />
 
 <table>
   <thead>
     <tr>
-      <th><T k="table.header_item" /></th>
-      <th><T k="table.header_guideline" /></th>
+      <th style={{ width: '30%' }}><T k="doc.std_summary_item" /></th>
+      <th><T k="doc.std_summary_desc" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong><T k="principle.dom_title" /></strong></td>
-      <td><T k="principle.dom_desc" /></td>
+      <td><strong><T k="doc.global_standards_title" /></strong></td>
+      <td><T k="doc.global_standards_desc" /></td>
     </tr>
     <tr>
-      <td><strong><T k="principle.animation_title" /></strong></td>
-      <td><T k="principle.animation_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="principle.transition_title" /></strong></td>
-      <td><T k="principle.transition_desc" /></td>
+      <td><strong><T k="doc.test_title" /></strong></td>
+      <td><Command>npm run i18n:check</Command></td>
     </tr>
   </tbody>
 </table>
-
-<hr />
-
-## <T k="doc.design_intent_title" />
-<p><T k="guide.std_design_intent_desc" /></p>
-
-## <T k="doc.choice_matrix_title" />
-<p><T k="guide.std_choice_matrix_desc" /></p>
-
-## <T k="doc.anatomy_title" />
-<p><T k="guide.std_anatomy_desc" /></p>
-
-## <T k="doc.content_guidelines_title" />
-<p><T k="guide.std_content_guidelines_desc" /></p>
-
-## <T k="doc.motion_spec_title" />
-<p><T k="guide.std_motion_spec_desc" /></p>
-
-## <T k="doc.a11y_spec_title" />
-<p><T k="guide.std_a11y_spec_desc" /></p>
-
-## <T k="doc.real_world_scenarios_title" />
-<p><T k="guide.std_real_world_scenarios_desc" /></p>
-
-## <T k="doc.best_practices_title" />
-<p><T k="guide.std_best_practices_desc" /></p>
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
-
-## <T k="doc.responsive_title" />
-<p><T k="doc.responsive_desc" /></p>
-
-## <T k="doc.keyboard_nav_title" />
-<p><T k="guide.std_keyboard_nav_not_applicable" /></p>
-
-## <T k="doc.i18n_title" />
-<p><T k="guide.std_i18n_fully_supported" /></p>
-
-## <T k="doc.test_title" />
-
-<Command>npm run i18n:check</Command>
 

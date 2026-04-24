@@ -17,7 +17,19 @@
     "tokens_desc": "すべての WIM UI コンポーネントとデザインシステムの基盤。",
     "responsive_desc": "グローバルなブレークポイント仕様に基づく標準的なレスポンシブ動作。",
     "keyboard_nav_desc": "すべてのインタラクティブな要素におけるフォーカス管理とキーボードショートカット。",
-    "i18n_desc": "グローバルなアクセシビリティのための多言語サポート。"
+    "i18n_desc": "グローバルなアクセシビリティのための多言語サポート。",
+    "principles_title": "デザイン原則",
+    "principles_desc": "WIM UIのすべての設計判断は、以下の5つの原則に基づいています。",
+    "principle_1_title": "一貫性 (Consistency)",
+    "principle_1_desc": "すべての UI 要素はデザイントークンを通じて統一されたビジュアル言語を共有します。",
+    "principle_2_title": "アクセシビリティ (Accessibility)",
+    "principle_2_desc": "WCAG AA 準拠のコントラスト比と WAI-ARIA パターンを前提とします。",
+    "principle_3_title": "テーマ適応性 (Theme Adaptability)",
+    "principle_3_desc": "ライトモード/ダークモードの切り替えはセマンティックトークンのみで完結します。",
+    "principle_4_title": "多言語対応 (i18n)",
+    "principle_4_desc": "日本語・英語・ポルトガル語を基本とし、言語ごとのタイポグラフィ特性を考慮します。",
+    "principle_5_title": "レスポンシブ (Responsive)",
+    "principle_5_desc": "デスクトップ/モバイルの両方で最適な体験を提供します。"
   },
   "internal": {
     "philosophy_desc": "WIM UI を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",

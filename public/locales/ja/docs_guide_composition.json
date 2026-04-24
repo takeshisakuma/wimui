@@ -19,6 +19,13 @@
     "tier_molecules": "モレキュール (Molecules)",
     "tier_organisms": "オーガニズム (Organisms)",
     "tier_internal_label": "内部",
-    "composition_uses_internally": "構成 (内部で使用)"
+    "composition_uses_internally": "構成要素 (内部利用)",
+    "usage": "利用ガイド",
+    "input_std_title": "入力エリアの標準化",
+    "input_std_desc": "フォームコンポーネント間での一貫性を確保するための、入力エリアの標準的な動作とレイアウト規則です。",
+    "internal_title": "内部コアコンポーネント"
+  },
+  "table": {
+    "header_role": "役割"
   }
 }

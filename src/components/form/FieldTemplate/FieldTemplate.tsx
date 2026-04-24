@@ -8,28 +8,28 @@ import localStyles from "./field-template.module.scss";
 export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
   /**
-   * 繝輔ぅ繝ｼ繝ｫ繝峨・繝ｩ繝吶Ν繝・く繧ｹ繝・
+   * フィールドのラベルテキスト
    */
   label?: React.ReactNode;
   /**
-   * 繧ｨ繝ｩ繝ｼ繝｡繝・そ繝ｼ繧ｸ
+   * エラーメッセージ
    */
   error?: string;
   /**
-   * 繝輔ぅ繝ｼ繝ｫ繝峨・繝｡繧､繝ｳ繧ｳ繝ｳ繝・Φ繝・
+   * フィールドのメインコンテンツ
    */
   children: React.ReactNode;
   /**
-   * 蠢・�郁｡ｨ遉ｺ縺ｫ縺吶ｋ縺九←縺・°
+   * 必須表示にするかどうか
    */
   required?: boolean;
   /**
-   * 繝ｬ繧､繧｢繧ｦ繝域婿蜷・
+   * レイアウト方向
    * @default "vertical"
    */
   layout?: "vertical" | "horizontal";
   /**
-   * 繧｢繧ｯ繧ｻ繧ｷ繝薙Μ繝・ぅ逕ｨ縺ｮ繝ｩ繝吶ΝID
+   * アクセシビリティ用のラベルID
    */
   labelId?: string;
   /**
@@ -37,7 +37,7 @@ export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement>
    */
   htmlFor?: string;
   /**
-   * 繧ｨ繝ｩ繝ｼ陦ｨ遉ｺ逕ｨ縺ｮID
+   * エラー表示用のID
    */
   errorId?: string;
   /**
@@ -53,7 +53,7 @@ export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 /**
- * 繝輔か繝ｼ繝�邉ｻ繧ｳ繝ｳ繝昴・繝阪Φ繝医・蜈ｱ騾壹Ξ繧､繧｢繧ｦ繝茨ｼ医Λ繝吶Ν縲√お繝ｩ繝ｼ陦ｨ遉ｺ縲・・鄂ｮ・峨ｒ邂｡逅・☆繧句・驛ｨ繧ｳ繝ｳ繝昴・繝阪Φ繝医・
+ * フォーム系コンポーネントの共通レイアウト（ラベル、エラー表示、配置）を管理する内部コンポーネント。
  */
 export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps>(
   ({ asChild = false, label, error, children, required, layout = "vertical", labelId, htmlFor, errorId, className, styles: stylesProp, ...props }, ref) => {
@@ -81,4 +81,3 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
 );
 
 FieldTemplate.displayName = "FieldTemplate";
-

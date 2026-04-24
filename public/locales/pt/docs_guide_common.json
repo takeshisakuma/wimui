@@ -50,7 +50,7 @@
   },
   "doc": {
     "design_tokens": "Tokens de Design",
-    "design_intent_title": "Intenção de Design",
+    "overview_title": "Visão Geral",
     "best_practices_title": "Boas Práticas",
     "usage_guidelines_title": "Diretrizes de Uso",
     "choice_matrix_title": "Matriz de Escolha de Componentes",
@@ -129,6 +129,9 @@
     "i18n_title": "Internacionalização (i18n)",
     "test_title": "Teste",
     "visual_guideline_title": "Diretrizes Visuais",
+    "std_summary_title": "Resumo de Padronização",
+    "std_summary_item": "Item",
+    "std_summary_desc": "Especificação / Referência",
     "table_header_category": "Categoria",
     "table_header_detail": "Detalhe",
     "table_header_status": "Status",
@@ -140,7 +143,9 @@
     "accessibility_title": "Acessibilidade",
     "examples_title": "Exemplos",
     "guidelines_title": "Diretrizes",
-    "guideline_best_practices": "Melhores Práticas"
+    "guideline_best_practices": "Melhores Práticas",
+    "global_standards_title": "Padrões Globais",
+    "global_standards_desc": "Para princípios fundamentais, filosofia de design e especificações básicas de acessibilidade, consulte a <a href=\"./?path=/docs/foundation-philosophy--docs\" target=\"_top\">Filosofia</a>."
   },
   "guide": {
     "do": "Fazer (Do)",

@@ -600,7 +600,8 @@
     "type_text_small": "Texto Pequeno (14.22px)\nUsa a proporção de 1.125 elevado a -1 ($font-size-minus-1).",
     "type_title": "Tokens de Tipografia",
     "type_weight": "Pesos de Fonte (Font Weights)",
-    "typography": "Tipografia"
+    "typography": "Tipografia",
+    "pccs_desc": "Um sistema de cores baseado no Practical Color Co-ordinate System, usado para definições de cores semânticas."
   },
   "top": "Topo",
   "transfer": {

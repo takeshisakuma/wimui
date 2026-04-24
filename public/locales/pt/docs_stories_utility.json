@@ -9,7 +9,7 @@
     "errorboundary_status_stable": "Conteúdo estável.",
     "errorboundary_throw_msg": "Ocorreu um erro pretendido!",
     "infscroll_item": "Item {{index}}",
-    "markdown_sample": "# Visualização de Markdown\n\nEste é um componente **Markdown**. Suporta vários elementos:\n\n## Tipografia\n- **Texto em negrito**\n- *Texto em itálico*\n- ~~Tachado~~\n\n## Listas\n1. Primeiro item\n2. Segundo item\n   - Subitem A\n   - Subitem B\n\n## Código\nInline `const x = 10;` e blocos:\n\n```javascript\nfunction hello() {\n  console.log(\"Olá, mundo!\");\n}\n```\n\n## Tabelas\n| Funcionalidade | Suportado |\n| --- | --- |\n| GFM | Sim |\n| Estilos personalizados | Sim |\n\n---\n\n> Isto é uma citação.",
+    "markdown_sample": "# Visualização de Markdown\n\nEste é um componente Markdown. Suporta vários elementos:\n\n## Tipografia\n- Texto em negrito\n- *Texto em itálico*\n- ~~Tachado~~\n\n## Listas\n1. Primeiro item\n2. Segundo item\n   - Subitem A\n   - Subitem B\n\n## Código\nInline `const x = 10;` e blocos:\n\n```javascript\nfunction hello() {\n  console.log(\"Olá, mundo!\");\n}\n```\n\n## Tabelas\n| Funcionalidade | Suportado |\n| --- | --- |\n| GFM | Sim |\n| Estilos personalizados | Sim |\n\n---\n\n> Isto é uma citação.",
     "marquee_check_out": "Confira nossos componentes mais recentes.",
     "marquee_item": "Item {{count}}",
     "marquee_new_feature": "Nova Funcionalidade",

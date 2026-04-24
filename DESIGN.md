@@ -6,11 +6,11 @@
 
 ## デザイン原則
 
-1. **一貫性** -- すべての UI 要素はデザイントークンを通じて統一されたビジュアル言語を共有する
-2. **アクセシビリティ** -- WCAG AA 準拠のコントラスト比と WAI-ARIA パターンを前提とする
-3. **テーマ適応性** -- ライトモード/ダークモードの切り替えはセマンティックトークンのみで完結する
-4. **多言語対応** -- 日本語・英語・ポルトガル語の 3 言語を基本とし、言語ごとのタイポグラフィ特性を考慮する
-5. **レスポンシブ** -- デスクトップ/モバイルの両方で最適な体験を提供する
+1. 一貫性 -- すべての UI 要素はデザイントークンを通じて統一されたビジュアル言語を共有する
+2. アクセシビリティ -- WCAG AA 準拠のコントラスト比と WAI-ARIA パターンを前提とする
+3. テーマ適応性 -- ライトモード/ダークモードの切り替えはセマンティックトークンのみで完結する
+4. 多言語対応 -- 日本語・英語・ポルトガル語の 3 言語を基本とし、言語ごとのタイポグラフィ特性を考慮する
+5. レスポンシブ -- デスクトップ/モバイルの両方で最適な体験を提供する
 
 ---
 
@@ -18,7 +18,7 @@
 
 ### PCCS カラーパレット
 
-WIM UI のカラー基盤は **PCCS（Practical Color Co-ordinate System）** に基づいています。24 色相を軸に 12 トーン（明度・彩度の組み合わせ）を展開し、合計 **約 300 色** のパレットを保持しています。
+WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基づいています。24 色相を軸に 12 トーン（明度・彩度の組み合わせ）を展開し、合計 約 300 色 のパレットを保持しています。
 
 | トーン | 略称 | 特徴 | 用途例 |
 |--------|------|------|--------|
@@ -114,7 +114,6 @@ WIM UI のカラー基盤は **PCCS（Practical Color Co-ordinate System）** �
 
 | トークン | ライト | ダーク |
 |----------|--------|--------|
-| `--wim-color-skeleton-bg` | rgba(0,0,0, 0.11) | rgba(255,255,255, 0.13) |
 | `--wim-color-skeleton-shine` | rgba(255,255,255, 0.3) | rgba(255,255,255, 0.08) |
 
 #### Overlay
@@ -168,7 +167,7 @@ border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-fe
 
 ### コンポーネントでの対応
 
-コンポーネントの SCSS に `[data-theme="dark"]` や `@media (prefers-color-scheme: dark)` を**書かない**。セマンティックトークンを使用するだけでライト/ダーク両モードに自動で対応する。
+コンポーネントの SCSS に `[data-theme="dark"]` や `@media (prefers-color-scheme: dark)` を書かない。セマンティックトークンを使用するだけでライト/ダーク両モードに自動で対応する。
 
 ---
 
@@ -291,15 +290,12 @@ Major Second (1.125) に近い Type Scale を採用。
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-shadow-none` | none | フラット |
-| `--wim-shadow-xs` | 0 1px 2px ... | 微小な浮き（Badge, Chip） |
-| `--wim-shadow-sm` | 0 2px 4px ... | カード、ドロップダウン |
-| `--wim-shadow-md` | 0 4px 12px ... | モーダル、ポップオーバー |
-| `--wim-shadow-lg` | 0 12px 24px ... | ドロワー、全画面オーバーレイ |
-| `--wim-shadow-inset` | inset 0 2px 4px ... | 押し込み効果 |
-| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px rgba(...) | フォーカス外枠 |
-| `--wim-shadow-focus-ring` | 0 0 0 3px rgba(...) | 入力要素のフォーカスリング |
-| `--wim-shadow-error-ring` | 0 0 0 3px rgba(...) | エラー状態のリング |
-| `--wim-shadow-field-focus` | 0 0 0 2px rgba(...) | 入力フィールドのフォーカス |
+| `--wim-shadow-xs` | 0 1px 2px rgba(0,0,0,0.05) | 微小な浮き（Badge, Chip） |
+| `--wim-shadow-sm` | 0 2px 4px rgba(0,0,0,0.08) | カード、ドロップダウン |
+| `--wim-shadow-md` | 0 4px 12px rgba(0,0,0,0.12) | モーダル、ポップオーバー |
+| `--wim-shadow-lg` | 0 12px 24px rgba(0,0,0,0.16) | ドロワー、全画面オーバーレイ |
+| `--wim-shadow-inset` | inset 0 2px 4px rgba(0,0,0,0.06) | 押し込み効果 |
+| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px var(--wim-color-primary-alpha) | フォーカス外枠 |
 
 ### 透明度
 
@@ -317,20 +313,19 @@ Major Second (1.125) に近い Type Scale を採用。
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-duration-instant` | 83ms | マイクロインタラクション（ホバー色変更） |
-| `--wim-duration-fast` | 167ms | ボタンフィードバック、トグル |
+| `--wim-duration-instant` | 83ms | マイクロインタラクション |
+| `--wim-duration-fast` | 167ms | ボタンフィードバック |
 | `--wim-duration-base` | 250ms | 標準アニメーション |
-| `--wim-duration-slow` | 333ms | モーダル開閉、パネル遷移 |
+| `--wim-duration-slow` | 333ms | モーダル開閉 |
 
 ### イージング
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-easing-standard` | cubic-bezier(0.55, 0, 0.1, 1) | 汎用トランジション |
-| `--wim-easing-entrance` | cubic-bezier(0, 0, 0, 1) | 画面に入るアニメーション |
-| `--wim-easing-exit` | cubic-bezier(1, 0, 1, 1) | 画面から出るアニメーション |
+| `--wim-easing-entrance` | cubic-bezier(0, 0, 0, 1) | 画面に入る |
+| `--wim-easing-exit` | cubic-bezier(1, 0, 1, 1) | 画面から出る |
 | `--wim-easing-spring` | cubic-bezier(0.34, 1.56, 0.64, 1) | バウンス効果 |
-| `--wim-easing-out-back` | cubic-bezier(0.175, 0.885, 0.32, 1.275) | オーバーシュート効果 |
 
 ### Lift（浮き上がり）
 
@@ -355,8 +350,6 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ## Z-Index レイヤー
 
-グローバルなスタッキングコンテキスト管理。
-
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-z-sidebar` | 900 | サイドバー（非オーバーレイ時） |
@@ -364,8 +357,6 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-z-overlay-panel` | 1001 | オーバーレイ上に重なるパネル |
 | `--wim-z-overlay-step` | 1002 | Tour ステップバブル |
 | `--wim-z-toast` | 9999 | Toast, Snackbar, Notification（常に最前面） |
-
-コンポーネント内部でスタッキングコンテキストが閉じている場合（Slider のトラック/サム等）は生値を使用可。
 
 ---
 
@@ -393,8 +384,6 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ### コンポーネントサイズ
 
-3 段階のサイズを標準とする（Layout用途では 5 段階）。
-
 | 用途 | 値 | 型 |
 |------|-----|-----|
 | UI コンポーネント | `sm`, `md`, `lg` | `ComponentSize` |
@@ -420,17 +409,17 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ## コンポーネントカタログ
 
-### Form（フォーム）-- 46 コンポーネント
+### Form（フォーム）-- 47 コンポーネント
 
-Button, ButtonGroup, Cascader, Checkbox, CheckboxGroup, ColorInput, ColorPicker, Combobox, CopyButton, DatePicker, DateRangePicker, Dropzone, FieldError, FieldTemplate, Fieldset, FileUpload, FloatButton, IconButton, Input, InputBase, InputGroup, InputMask, LinkButton, Mentions, MultiSelect, NumberInput, OtpInput, PasswordInput, PhoneInput, Radio, RadioGroup, RangeSlider, Rating, RichTextEditor, SearchInput, SegmentedControl, Selectbox, SignaturePad, Slider, Switch, SwitchGroup, Textarea, TimePicker, ToggleGroup, Transfer, TreeSelect
+Button, ButtonGroup, Cascader, Checkbox, CheckboxGroup, ColorInput, ColorPicker, Combobox, CopyButton, DatePicker, DateRangePicker, Dropzone, FieldError, FieldTemplate, Fieldset, FileUpload, FloatButton, IconButton, Input, InputBase, InputGroup, InputMask, LinkButton, Mentions, MultiSelect, NumberInput, OtpInput, PasswordInput, PhoneInput, QueryBuilder, Radio, RadioGroup, RangeSlider, Rating, RichTextEditor, SearchInput, SegmentedControl, Selectbox, SignaturePad, Slider, Switch, SwitchGroup, Textarea, TimePicker, ToggleGroup, Transfer, TreeSelect
 
-### Data Display（データ表示）-- 26 コンポーネント
+### Data Display（データ表示）-- 25 コンポーネント
 
-Accordion, Avatar, AvatarGroup, Badge, BaseListItem, Calendar, Card, Carousel, ChatUI, Chip, DataGrid, DescriptionList, EmptyState, FAQSection, Indicator, Kanban, List, QRCode, QueryBuilder, RangeCalendar, Stats, Table, Tag, Timeline, TreeView, VirtualList
+Accordion, Avatar, AvatarGroup, Badge, Calendar, Card, Carousel, ChatUI, Chip, DataGrid, DescriptionList, EmptyState, FAQSection, InfiniteScroll, Kanban, List, Markdown, Marquee, QRCode, RangeCalendar, Stats, Table, Tag, Timeline, TreeView, VirtualList
 
 ### Feedback（フィードバック）-- 15 コンポーネント
 
-Alert, Banner, ErrorBoundary, Loader, LoadingOverlay, Notification, Popconfirm, Progress, Result, ScrollProgress, Skeleton, Snackbar, Spinner, Toast, Tour
+Alert, Banner, ErrorBoundary, Indicator, Loader, LoadingOverlay, Notification, Progress, Result, ScrollProgress, Skeleton, Snackbar, Spinner, Toast, Tour
 
 ### Layout（レイアウト）-- 23 コンポーネント
 
@@ -440,9 +429,9 @@ AppShell, AspectRatio, BentoGrid, Box, Center, Container, Divider, Flex, Footer,
 
 Affix, Anchor, BackTop, Breadcrumb, CommandPalette, HamburgerMenu, Link, Pagination, Stepper, TabBar, TabNavigation, Tabs
 
-### Overlay（オーバーレイ）-- 11 コンポーネント
+### Overlay（オーバーレイ）-- 12 コンポーネント
 
-BottomSheet, ContextMenu, Dialog, Drawer, Dropdown, FocusTrap, HoverCard, Menu, Popover, Portal, Tooltip
+BottomSheet, ContextMenu, Dialog, Drawer, Dropdown, FocusTrap, HoverCard, Menu, Popconfirm, Popover, Portal, Tooltip
 
 ### Typography（タイポグラフィ）-- 9 コンポーネント
 
@@ -452,10 +441,9 @@ Blockquote, Code, Highlight, Kbd, Label, Legend, Span, Text, Title
 
 Audio, Icon, Image, Video
 
-### Charts（チャート）-- 12 コンポーネント
+### Charts（チャート）-- 11 コンポーネント
 
-AreaChart, BarChart, Charts, FunnelChart, GanttChart, GaugeChart, Heatmap, LineChart, PieChart, RadarChart, ScatterChart, Treemap
-
+AreaChart, BarChart, FunnelChart, GanttChart, GaugeChart, Heatmap, LineChart, PieChart, RadarChart, ScatterChart, Treemap
 
 ---
 
@@ -500,7 +488,7 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 
 ### スタイリング方式
 
-新規コンポーネントは **CSS Modules**（`*.module.scss`）を使用。
+新規コンポーネントは CSS Modules（`*.module.scss`）を使用。
 
 ### クラス名規約
 

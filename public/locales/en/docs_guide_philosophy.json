@@ -17,7 +17,19 @@
     "tokens_desc": "Foundation for all WIM UI components and design systems.",
     "responsive_desc": "Standard responsive behavior follows the global breakpoint specifications.",
     "keyboard_nav_desc": "Focus management and keyboard shortcuts across all interactive elements.",
-    "i18n_desc": "Multi-language support for global accessibility."
+    "i18n_desc": "Multi-language support for global accessibility.",
+    "principles_title": "Design Principles",
+    "principles_desc": "All design decisions in WIM UI are based on the following five principles.",
+    "principle_1_title": "Consistency",
+    "principle_1_desc": "All UI elements share a unified visual language through design tokens.",
+    "principle_2_title": "Accessibility",
+    "principle_2_desc": "Assumes WCAG AA compliant contrast ratios and WAI-ARIA patterns.",
+    "principle_3_title": "Theme Adaptability",
+    "principle_3_desc": "Switching between light and dark modes is handled entirely by semantic tokens.",
+    "principle_4_title": "Internationalization (i18n)",
+    "principle_4_desc": "Supports Japanese, English, and Portuguese, considering the typographic characteristics of each language.",
+    "principle_5_title": "Responsive",
+    "principle_5_desc": "Provides an optimal experience on both desktop and mobile."
   },
   "internal": {
     "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending WIM UI or adding new components.",

@@ -19,6 +19,13 @@
     "tier_molecules": "Moléculas",
     "tier_organisms": "Organismos",
     "tier_internal_label": "Interno",
-    "composition_uses_internally": "Composição (Usado internamente)"
+    "composition_uses_internally": "Composição (Uso interno)",
+    "usage": "Guia de Uso",
+    "input_std_title": "Padronização de Área de Entrada",
+    "input_std_desc": "Comportamento padronizado e regras de layout para áreas de entrada para garantir consistência em todos os componentes de formulário.",
+    "internal_title": "Componentes Internos Principais"
+  },
+  "table": {
+    "header_role": "Papel"
   }
 }

@@ -35,6 +35,9 @@
     "text_usage": "Blocos de Texto",
     "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
     "title_usage": "Cabeçalhos de Seção",
-    "u11y_a11y_title": "Usability & Accessibility"
+    "u11y_a11y_title": "Usability & Accessibility",
+    "lh_jpan_loose": "Loose (1.8)\nProvides a spacious line height, making it easier to read on small screens like mobile devices. It gives a relaxed impression and ensures smooth eye movement.",
+    "lh_jpan_normal": "Normal (1.6)\nThe standard line height for WIM UI. It offers the best balance between readability and information density, ideal for general articles.",
+    "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space."
   }
 }

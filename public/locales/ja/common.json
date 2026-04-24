@@ -597,7 +597,8 @@
     "type_text_small": "Small Text (14.22px)\n1.125の-1乗の比率（$font-size-minus-1）を使用しています。",
     "type_title": "タイポグラフィ・トークン",
     "type_weight": "フォントウェイト (Font Weights)",
-    "typography": "Typography"
+    "typography": "Typography",
+    "pccs_desc": "Practical Color Co-ordinate System（日本色彩研究所）に基づいた、セマンティックカラー定義のための色彩体系。"
   },
   "top": "上",
   "transfer": {

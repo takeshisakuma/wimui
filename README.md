@@ -73,15 +73,15 @@ $env:THEME=$null; $env:FILTER=$null              # 環境変数をリセット
 
 VRT は `src/`・`stories/` に変更があるPRで自動実行されます。
 
-**UIを意図的に変更した場合の手順：**
+UIを意図的に変更した場合の手順：
 
 1. UIを変更してPRを作成する
 2. VRTワークフローが自動実行され、既存のlinuxスナップショットと比較する
 3. 差分が検出されるとテストが失敗する
 4. Actions タブ → 該当ワークフロー → `vrt-diffs` アーティファクトをダウンロードして差分画像を確認する
-5. 変更が意図的なものであれば、Actions タブ → **Visual Regression Test** → **Run workflow** → `Update baseline snapshots: true` でベースラインを更新する
+5. 変更が意図的なものであれば、Actions タブ → Visual Regression Test → Run workflow → `Update baseline snapshots: true` でベースラインを更新する
 
-> **初回セットアップ**: linuxスナップショットがまだ存在しない状態では比較対象がないため失敗します。  
+> 初回セットアップ: linuxスナップショットがまだ存在しない状態では比較対象がないため失敗します。  
 > 上記の Run workflow → `Update baseline snapshots: true` を一度実行してlinux用ベースラインを生成してください。
 
 ### a11y
@@ -131,11 +131,11 @@ npm run audit:all   # MDX構成、asChild遵守、i18n整合性・ファイル�
 ```
 
 監査内容：
-- **MDX 構成**: 必須カテゴリの有無、プレースホルダーの残存チェック
-- **Polymorphic**: `asChild` (Radix Slot) の実装漏れチェック
-- **i18n**: 言語間の整合性および、JSON ファイルが 1000 行を超えていないかのチェック
-- **Hardcoded Docs**: MDX 内にハードコードされたテキストがないかチェック
-- **Hierarchy**: ストーリーの階層が深すぎないかチェック
+- MDX 構成: 必須カテゴリの有無、プレースホルダーの残存チェック
+- Polymorphic: `asChild` (Radix Slot) の実装漏れチェック
+- i18n: 言語間の整合性および、JSON ファイルが 1000 行を超えていないかのチェック
+- Hardcoded Docs: MDX 内にハードコードされたテキストがないかチェック
+- Hierarchy: ストーリーの階層が深すぎないかチェック
 
 ## 国際化 (i18n)
 
@@ -150,7 +150,7 @@ npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳
 | `i18n:check` | ロケール間の欠落、ファイル肥大化（1000行制限） |
 | `i18n:check:components` | コード上で `t("key")` を使い始めたが登録を忘れているケース |
 
-**推奨フロー：**
+推奨フロー：
 1. `npm run i18n:check:components` で未登録キーを検出
 2. EN の翻訳ファイルにキーを追加
 3. `npm run i18n:sync` で ja/pt へ自動翻訳
@@ -184,7 +184,7 @@ git commit -m "commit message" --no-verify
 
 ## コーディングルール
 
-- スタイリング：新規コンポーネントは **CSS Modules**（`*.module.scss`）を推奨
+- スタイリング：新規コンポーネントは CSS Modules（`*.module.scss`）を推奨
 - CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `RULES.md` を参照）
 
 
@@ -196,12 +196,12 @@ MDX の記述方法の詳細は `SKILLS.md` を参照してください。
 
 ## デザイントークン
 
-WIM UI は、**Style Dictionary** を使用してデザイントークンを一元管理（Single Source of Truth）しています。
+WIM UI は、Style Dictionary を使用してデザイントークンを一元管理（Single Source of Truth）しています。
 
 ### 基本構成
 
-- **ソース**: `tokens/**/*.json`
-- **生成物（自動生成）**:
+- ソース: `tokens//*.json`
+- 生成物（自動生成）:
     - `src/tokens/generated/` (SCSS変数, CSSカスタムプロパティ)
     - `src/types/generated-tokens.ts` (TypeScript 型定義)
 

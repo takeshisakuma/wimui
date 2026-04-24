@@ -60,15 +60,15 @@ public/
 
 ## コンポーネント新規作成の手順
 
-1.  **スキャフォールディングの実行**: `npm run scaffold -- <ComponentName> <category>` を実行します。
+1.  スキャフォールディングの実行: `npm run scaffold -- <ComponentName> <category>` を実行します。
     -   例: `npm run scaffold -- MyButton form`
     -   これにより `src/components/form/MyButton/` 配下の TSX/SCSS/Test と `stories/MyButton/` 配下の Stories/MDX が自動生成され、`src/form.ts` にエクスポートが追加されます。
-2.  **ロジックの実装**: 生成された `ComponentName.tsx` と `*.module.scss` に機能を実装します。
-3.  **テストの修正・実行**: `npm run test` で生成されたテストが通過することを確認します。
-4.  **MDX の執筆**: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
-5.  **コンポーネントリストの更新**: `src/data/components.json` に新規コンポーネントを追記します。
-6.  **翻訳キーの追加**: `public/locales/en/` に翻訳キーを追加し、`npm run i18n:sync` を実行します。
-7.  **品質監査の実行**: 
+2.  ロジックの実装: 生成された `ComponentName.tsx` と `*.module.scss` に機能を実装します。
+3.  テストの修正・実行: `npm run test` で生成されたテストが通過することを確認します。
+4.  MDX の執筆: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
+5.  コンポーネントリストの更新: `src/data/components.json` に新規コンポーネントを追記します。
+6.  翻訳キーの追加: `public/locales/en/` に翻訳キーを追加し、`npm run i18n:sync` を実行します。
+7.  品質監査の実行: 
     - `npm run audit-mdx`: MDX セクションの欠落チェック
     - `node scripts/check-aschild.js`: `asChild` 実装漏れのチェック
     - `npm run i18n:check`: 翻訳ファイルの整合性チェック
@@ -123,7 +123,7 @@ padding: var(--wim-spacing-md);
 | `--wim-z-drawer` | 2000 | Drawer（サイドからスライドするパネル）。Dialog より優先される場合に使用。 |
 | `--wim-z-toast` | 9999 | Toast, Notification など、常に最前面に表示すべき通知。 |
 
-**注意：** コンポーネント内部（Slider のサムブ、Table の固定列など）での相対的な順序指定には、生値（`z-index: 10` 等）を使用して構いません。
+注意： コンポーネント内部（Slider のサムブ、Table の固定列など）での相対的な順序指定には、生値（`z-index: 10` 等）を使用して構いません。
 
 ### 新しいカテゴリ自体が必要な場合
 
@@ -226,7 +226,7 @@ MDX から参照する際はエクスポート名と完全一致が必要です�
 
 ### argTypes の書き方
 
-control の型指定は**オブジェクト形式でなく文字列の短縮形**を使用してください。
+control の型指定はオブジェクト形式でなく文字列の短縮形を使用してください。
 
 ```tsx
 // NG
@@ -281,7 +281,7 @@ intent: {
 - 多言語化の対応
 
 > [!IMPORTANT]
-> **ストーリーの重複に注意してください。**
+> ストーリーの重複に注意してください。
 > 各バリエーションを `<Canvas of={...} />` で個別に紹介している場合、ページ末尾に `<Stories />` タグを記述しないでください。記述すると、すでに紹介済みのストーリーがページ下部で再度一括表示されてしまいます。
 
 
@@ -309,11 +309,11 @@ import { Docgen } from "../../Docgen";
 ```
 
 ### 自動抽出の仕組み
-- **Props**: `react-docgen` を使用して TypeScript の型定義から抽出します。
-- **Tokens**: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
-- **Anatomy**: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules では、`.root` や共通修飾子を除いたクラス名が自動抽出されます。
-- **Test**: コンポーネントに対応するテストファイルの実行コマンド（`npm run test -- path/to/Test.tsx`）を自動生成します。
-- **更新タイミング**: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen_*.json` が自動更新されます。大規模なプロジェクトでもパフォーマンスを維持するため、データはコンポーネントのカテゴリ（form, layout等）ごとに分割して生成されます。
+- Props: `react-docgen` を使用して TypeScript の型定義から抽出します。
+- Tokens: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
+- Anatomy: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules では、`.root` や共通修飾子を除いたクラス名が自動抽出されます。
+- Test: コンポーネントに対応するテストファイルの実行コマンド（`npm run test -- path/to/Test.tsx`）を自動生成します。
+- 更新タイミング: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen_*.json` が自動更新されます。大規模なプロジェクトでもパフォーマンスを維持するため、データはコンポーネントのカテゴリ（form, layout等）ごとに分割して生成されます。
 
 ---
 
@@ -344,15 +344,15 @@ describe("MyComponent", () => {
 ### 開発サーバーの起動高速化
 Vite の設定（`vite.config.ts`, `.storybook/main.ts`）で以下の最適化を行っています。
 
-- **imagemin の限定実行**: 重い画像圧縮処理（`vite-plugin-imagemin`）は `mode === "production"` の時のみ実行されます。開発時はスキップされ、起動時間が短縮されます。
-- **optimizeDeps の活用**: 頻繁に使用する巨大なライブラリ（`react`, `recharts` 等）を `optimizeDeps.include` に明示することで、初動の依存解決を高速化しています。
+- imagemin の限定実行: 重い画像圧縮処理（`vite-plugin-imagemin`）は `mode === "production"` の時のみ実行されます。開発時はスキップされ、起動時間が短縮されます。
+- optimizeDeps の活用: 頻繁に使用する巨大なライブラリ（`react`, `recharts` 等）を `optimizeDeps.include` に明示することで、初動の依存解決を高速化しています。
 
 ### 依存関係のトラブルシューティング（jsmediatags 等）
 Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザビルドで `fs` や `path` のエラーを引き起こすことがあります。
 
-1. **Vite での define**: `optimizeDeps.esbuildOptions.define` で `global: "globalThis"` を定義し、Node.js 固有のグローバル変数参照を解決します。
-2. **Storybook での Alias**: `jsmediatags` は Storybook の `viteFinal` で `dist/jsmediatags.min.js` を直接参照するようにエイリアスを貼っています。これにより、内部で外部モジュールを require しようとする挙動を防ぎます。
-3. **External 指定**: ライブラリビルド（`vite.config.ts` の `rollupOptions.external`）では、利用側で解決してもらうためにこれらを external に含めています。
+1. Vite での define: `optimizeDeps.esbuildOptions.define` で `global: "globalThis"` を定義し、Node.js 固有のグローバル変数参照を解決します。
+2. Storybook での Alias: `jsmediatags` は Storybook の `viteFinal` で `dist/jsmediatags.min.js` を直接参照するようにエイリアスを貼っています。これにより、内部で外部モジュールを require しようとする挙動を防ぎます。
+3. External 指定: ライブラリビルド（`vite.config.ts` の `rollupOptions.external`）では、利用側で解決してもらうためにこれらを external に含めています。
 
 ---
 
@@ -362,23 +362,23 @@ Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザ�
 
 ### 使用方法
 
-1.  **SVG を追加**: `src/icon/` ディレクトリに新しい `.svg` ファイルを置きます（例: `my-icon.svg`）。
-2.  **自動生成**: 保存時またはビルド時に `src/icon/index.ts` が自動更新され、`MyIconIcon` としてエクスポートされます。
-3.  **コンポーネントで使う**:
-    -   **動的指定 (Name-based Lookup)**:
+1.  SVG を追加: `src/icon/` ディレクトリに新しい `.svg` ファイルを置きます（例: `my-icon.svg`）。
+2.  自動生成: 保存時またはビルド時に `src/icon/index.ts` が自動更新され、`MyIconIcon` としてエクスポートされます。
+3.  コンポーネントで使う:
+    -   動的指定 (Name-based Lookup):
         ```tsx
         <Icon name="MyIconIcon" />
         ```
-    -   **静的インポート (Tree-shaking 向け)**:
+    -   静的インポート (Tree-shaking 向け):
         ```tsx
         import { MyIconIcon } from "@/icon";
         <Icon component={MyIconIcon} />
         ```
 
 ### メリット
--   **手動更新の排除**: `Icon.tsx` の巨大な `switch` 文やマッピングオブジェクトを手動で管理する必要がなくなります。
--   **Tree-shaking**: 個別のエクスポート形式を提供しているため、使用していないアイコンは最終ビルドから削除されます。
--   **TypeScript サポート**: `IconName` 型が自動的に更新され、無効なアイコン名を指定するとコンパイルエラーになります。
+-   手動更新の排除: `Icon.tsx` の巨大な `switch` 文やマッピングオブジェクトを手動で管理する必要がなくなります。
+-   Tree-shaking: 個別のエクスポート形式を提供しているため、使用していないアイコンは最終ビルドから削除されます。
+-   TypeScript サポート: `IconName` 型が自動的に更新され、無効なアイコン名を指定するとコンパイルエラーになります。
 
 ---
 
@@ -386,9 +386,9 @@ Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザ�
 
 `git commit` 時に lint-staged が以下を自動実行します。
 
-- `src/**/*.{ts,tsx}`: ESLint (--max-warnings=0) + TypeScript 型チェック
-- `src/**/*.{css,scss}`: Stylelint (--max-warnings=0)
-- `public/locales/**/*.json`: i18n キー整合性チェック
+- `src//*.{ts,tsx}`: ESLint (--max-warnings=0) + TypeScript 型チェック
+- `src//*.{css,scss}`: Stylelint (--max-warnings=0)
+- `public/locales//*.json`: i18n キー整合性チェック
 
 警告が1件でもあるとコミットが失敗します。
 

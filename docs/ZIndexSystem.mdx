@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { T } from "../stories/T";
+import { Command } from "../stories/Command";
+
+<Meta title="Architecture/Z-Index System" />
+
+# <T k="guide.title" ns="docs_guide_zindex" />
+
+<T k="guide.desc" ns="docs_guide_zindex" />
+
+---
+
+## <T k="guide.layers_title" ns="docs_guide_zindex" />
+
+<T k="guide.layers_desc" ns="docs_guide_zindex" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="guide.col_token" ns="docs_guide_zindex" /></th>
+      <th><T k="guide.col_value" ns="docs_guide_zindex" /></th>
+      <th><T k="guide.col_usage" ns="docs_guide_zindex" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--wim-z-sidebar</code></td>
+      <td>900</td>
+      <td><T k="guide.z_sidebar_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><code>--wim-z-overlay</code></td>
+      <td>1000</td>
+      <td><T k="guide.z_overlay_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><code>--wim-z-overlay-panel</code></td>
+      <td>1001</td>
+      <td><T k="guide.z_overlay_panel_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><code>--wim-z-overlay-step</code></td>
+      <td>1002</td>
+      <td><T k="guide.z_overlay_step_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><code>--wim-z-toast</code></td>
+      <td>9999</td>
+      <td><T k="guide.z_toast_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="guide.guidelines_title" ns="docs_guide_zindex" />
+
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: '240px' }}><T k="guide.col_rule" ns="docs_guide_zindex" /></th>
+      <th><T k="guide.col_desc" ns="docs_guide_zindex" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide.guideline_no_raw_values_title" ns="docs_guide_zindex" /></strong></td>
+      <td><T k="guide.guideline_no_raw_values_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.guideline_stacking_context_title" ns="docs_guide_zindex" /></strong></td>
+      <td><T k="guide.guideline_stacking_context_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide.guideline_portals_title" ns="docs_guide_zindex" /></strong></td>
+      <td><T k="guide.guideline_portals_desc" ns="docs_guide_zindex" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="doc.std_summary_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: '30%' }}><T k="doc.std_summary_item" /></th>
+      <th><T k="doc.std_summary_desc" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.global_standards_title" /></strong></td>
+      <td><T k="doc.global_standards_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.test_title" /></strong></td>
+      <td><Command>npm run i18n:check</Command></td>
+    </tr>
+  </tbody>
+</table>

@@ -64,7 +64,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     </tr>
     <tr>
       <td><T k="token.type_ff_ja" /> (`lang="ja"`)</td>
-      <td>`"Noto Sans JP", "貂ｸ繧ｴ繧ｷ繝・け菴・, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "繝偵Λ繧ｮ繝手ｧ偵ざ ProN W3", "繝｡繧､繝ｪ繧ｪ", "Meiryo", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
+      <td>`"Noto Sans JP", "游ゴシック体", "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", "Meiryo", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
     <tr>
       <td><T k="token.type_ff_en" /> (`lang="en"`)</td>
@@ -186,17 +186,17 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
       <h3><T k="token.type_lh_jpan" /></h3>
       <TypographyVisualizer
         token="--wim-line-height-loose-jp"
-        text={"Loose (1.8)\n日本語の文章において、特にモバイルデバイスなどの小画面で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。"}
+        textKey="typo.lh_jpan_loose"
       />
 
       <TypographyVisualizer
         token="--wim-line-height-normal-jp"
-        text={"Normal (1.6)\nWIM UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。"}
+        textKey="typo.lh_jpan_normal"
       />
 
       <TypographyVisualizer
         token="--wim-line-height-tight-jp"
-        text={"Tight (1.4)\n見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。"}
+        textKey="typo.lh_jpan_tight"
       />
 
     </div>
@@ -317,45 +317,29 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
   </tbody>
 </table>
 
-<hr />
+---
 
-## <T k="doc.design_intent_title" />
-<p><T k="guide.std_design_intent_desc" /></p>
+## <T k="doc.std_summary_title" />
 
-## <T k="doc.choice_matrix_title" />
-<p><T k="guide.std_choice_matrix_desc" /></p>
-
-## <T k="doc.anatomy_title" />
-<p><T k="guide.std_anatomy_desc" /></p>
-
-## <T k="doc.content_guidelines_title" />
-<p><T k="guide.std_content_guidelines_desc" /></p>
-
-## <T k="doc.motion_spec_title" />
-<p><T k="guide.std_motion_spec_desc" /></p>
-
-## <T k="doc.a11y_spec_title" />
-<p><T k="guide.std_a11y_spec_desc" /></p>
-
-## <T k="doc.real_world_scenarios_title" />
-<p><T k="guide.std_real_world_scenarios_desc" /></p>
-
-## <T k="doc.best_practices_title" />
-<p><T k="guide.std_best_practices_desc" /></p>
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
-
-## <T k="doc.responsive_title" />
-<p><T k="doc.responsive_desc" /></p>
-
-## <T k="doc.keyboard_nav_title" />
-<p><T k="guide.std_keyboard_nav_not_applicable" /></p>
-
-## <T k="doc.i18n_title" />
-<p><T k="guide.std_i18n_fully_supported" /></p>
-
-## <T k="doc.test_title" />
-
-<Command>npm run i18n:check</Command>
-
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: '30%' }}><T k="doc.std_summary_item" /></th>
+      <th><T k="doc.std_summary_desc" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.overview_title" /></strong></td>
+      <td><T k="guide.std_design_intent_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.global_standards_title" /></strong></td>
+      <td><T k="doc.global_standards_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.test_title" /></strong></td>
+      <td><Command>npm run tokens:build</Command></td>
+    </tr>
+  </tbody>
+</table>

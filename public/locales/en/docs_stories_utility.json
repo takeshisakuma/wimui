@@ -9,7 +9,7 @@
     "errorboundary_status_stable": "Stable content.",
     "errorboundary_throw_msg": "Intended error occurred!",
     "infscroll_item": "Item {{index}}",
-    "markdown_sample": "# Markdown Preview\n\nThis is a **Markdown** component. It supports various elements:\n\n## Typography\n- **Bold text**\n- *Italic text*\n- ~~Strikethrough~~\n\n## Lists\n1. First item\n2. Second item\n   - Sub item A\n   - Sub item B\n\n## Code\nInline `const x = 10;` and blocks:\n\n```javascript\nfunction hello() {\n  console.log(\"Hello, world!\");\n}\n```\n\n## Tables\n| Feature | Supported |\n| --- | --- |\n| GFM | Yes |\n| Custom Styles | Yes |\n\n---\n\n> This is a quote.",
+    "markdown_sample": "# Markdown Preview\n\nThis is a Markdown component. It supports various elements:\n\n## Typography\n- Bold text\n- *Italic text*\n- ~~Strikethrough~~\n\n## Lists\n1. First item\n2. Second item\n   - Sub item A\n   - Sub item B\n\n## Code\nInline `const x = 10;` and blocks:\n\n```javascript\nfunction hello() {\n  console.log(\"Hello, world!\");\n}\n```\n\n## Tables\n| Feature | Supported |\n| --- | --- |\n| GFM | Yes |\n| Custom Styles | Yes |\n\n---\n\n> This is a quote.",
     "marquee_check_out": "Check out our latest components.",
     "marquee_item": "Item {{count}}",
     "marquee_new_feature": "New Feature",

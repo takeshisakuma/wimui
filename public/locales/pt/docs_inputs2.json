@@ -49,7 +49,7 @@
     "numberinput_choice_matrix_desc": "Selecione de acordo com a natureza do valor a ser inserido e a frequência do ajuste.",
     "numberinput_choice_number_when": "Quando são esperadas operações contínuas de incremento/decremento de valores numéricos como quantidade, idade ou preço.",
     "numberinput_choice_slider_when": "Quando proporções intuitivas ou ajustes sensoriais dentro de um intervalo são priorizados em relação a valores numéricos precisos.",
-    "numberinput_choice_text_when": "Para 'números' com um forte significado simbólico, como números de telefone, números de cartão de crédito ou códigos postais (consulte a [Padronização de Entrada Numérica](/docs/guides-numeric-input-standardization--docs)).",
+    "numberinput_choice_text_when": "Para 'números' com um forte significado simbólico, como números de telefone, números de cartão de crédito ou códigos postais (consulte a [Padronização de Entrada Numérica](./?path=/docs/standardization-numeric-input-standardization--docs)).",
     "numberinput_content_precision": "Quando a precisão decimal for importante, como em moedas ou pesos, faça as configurações apropriadas e comunique os valores esperados ao usuário.",
     "numberinput_design_intent": "NumberInput é um componente especializado para inserir e ajustar valores numéricos. Além de os usuários inserirem números diretamente pelo teclado, ele fornece uma UI onde os valores podem ser ajustados intuitivamente usando botões de rotação (botões de incremento/decremento).",
     "numberinput_i18n_desc": "Todo o texto visivel usa chaves i18n. Passe strings traduzidas atraves das props placeholder e aria-label.",

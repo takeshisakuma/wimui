@@ -55,16 +55,54 @@
   "table": {
     "header_key": "Key",
     "header_operation": "Operation",
+    "header_guideline": "Guideline",
+    "header_description": "Description",
     "key_arrow": "Arrow Keys",
     "key_enter": "Enter",
     "key_escape": "Escape",
     "key_page_up_down": "Page Up / Down",
-    "key_space": "Space"
+    "key_space": "Space",
+    "key_tab": "Tab / Shift + Tab",
+    "op_arrow": "Move focus between items (Tabs, Radio Groups, etc.)",
+    "op_enter": "Select or activate the focused item",
+    "op_escape": "Close overlays or cancel the current action",
+    "op_page_up_down": "Scroll or move between large units",
+    "op_space": "Select or toggle the focused item",
+    "op_tab": "Move focus to the next / previous interactive element"
   },
   "ensure": {
     "contrast": "Ensure sufficient contrast."
   },
   "visual": {
     "accessibility": "Visual Accessibility"
+  },
+  "foundation": {
+    "a11y_desc": "WIM UI puts accessibility at the core of its design to provide an interface that is easy for everyone to use.",
+    "standards_title": "Compliance Standards",
+    "wcag_aa_title": "WCAG 2.1 AA Compliance",
+    "wcag_aa_desc": "Maintains a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.",
+    "semantic_tokens_title": "Semantic Tokens",
+    "semantic_tokens_desc": "By using semantic tokens defined in the color system, contrast ratios are automatically ensured in both light and dark modes.",
+    "automated_checks_title": "Automated Checks",
+    "automated_checks_desc": "Automated testing with `eslint-plugin-jsx-a11y` and `axe-core` is integrated into the pipeline.",
+    "focus_mgmt_title": "Focus Management",
+    "focus_mgmt_desc": "Proper focus indicators are essential for keyboard users.",
+    "focus_ring_title": "Focus Ring",
+    "focus_ring_desc": "A high-visibility focus ring (`--wim-shadow-focus`) is applied to all interactive elements.",
+    "offset_title": "Offset",
+    "offset_desc": "Proper distance (`--wim-focus-outline-offset`) is maintained between the element and the focus ring to improve visibility without compromising design aesthetics.",
+    "focus_trap_title": "Focus Trap",
+    "focus_trap_desc": "For overlays such as modals, drawers, and popovers, a Focus Trap feature is implemented to keep focus within the element.",
+    "keyboard_nav_title": "Keyboard Navigation",
+    "keyboard_nav_desc": "WIM UI components are fully operable without a mouse.",
+    "wai_aria_patterns_title": "WAI-ARIA Patterns",
+    "wai_aria_patterns_desc": "Complex components such as tabs, radio buttons, and accordions implement keyboard interactions based on W3C's WAI-ARIA Authoring Practices.",
+    "roving_tabindex_title": "Roving Tabindex",
+    "roving_tabindex_desc": "Supports smooth item movement using arrow keys.",
+    "motion_considerations_title": "Motion Considerations",
+    "reduced_motion_title": "Reduced Motion",
+    "reduced_motion_desc": "Respects the OS 'Reduce Motion' setting and disables or simplifies unnecessary animations (support for `prefers-reduced-motion` media query).",
+    "test_maintenance_title": "Testing",
+    "test_maintenance_desc": "Regularly run the following command to maintain accessibility."
   }
 }

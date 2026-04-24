@@ -19,6 +19,13 @@
     "tier_molecules": "Molecules",
     "tier_organisms": "Organisms",
     "tier_internal_label": "Internal",
-    "composition_uses_internally": "Composition (Uses internally)"
+    "composition_uses_internally": "Composition (Uses internally)",
+    "usage": "Usage Guide",
+    "input_std_title": "Input Area Standardization",
+    "input_std_desc": "Standardized behavior and layout rules for input areas to ensure consistency across form components.",
+    "internal_title": "Internal Core Components"
+  },
+  "table": {
+    "header_role": "Role"
   }
 }

@@ -55,16 +55,54 @@
   "table": {
     "header_key": "Tecla",
     "header_operation": "Operação",
+    "header_guideline": "Diretriz",
+    "header_description": "Descrição",
     "key_arrow": "Teclas de Seta",
     "key_enter": "Enter",
     "key_escape": "Escape",
     "key_page_up_down": "Page Up / Down",
-    "key_space": "Space"
+    "key_space": "Space",
+    "key_tab": "Tab / Shift + Tab",
+    "op_arrow": "Mover o foco entre itens (abas, grupos de rádio, etc.)",
+    "op_enter": "Selecionar ou ativar o item focado",
+    "op_escape": "Fechar sobreposições ou cancelar a ação atual",
+    "op_page_up_down": "Rolar ou mover entre grandes unidades",
+    "op_space": "Selecionar ou alternar o item focado",
+    "op_tab": "Mover o foco para o próximo / anterior elemento interativo"
   },
   "ensure": {
     "contrast": "Garanta contraste suficiente."
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
+  },
+  "foundation": {
+    "a11y_desc": "O WIM UI coloca a acessibilidade no centro de seu design para fornecer uma interface fácil de usar para todos.",
+    "standards_title": "Padrões de Conformidade",
+    "wcag_aa_title": "Conformidade WCAG 2.1 AA",
+    "wcag_aa_desc": "Mantém uma razão de contraste de pelo menos 4,5:1 para texto normal e 3:1 para texto grande.",
+    "semantic_tokens_title": "Tokens Semânticos",
+    "semantic_tokens_desc": "Ao usar tokens semânticos definidos no sistema de cores, as razões de contraste são garantidas automaticamente nos modos claro e escuro.",
+    "automated_checks_title": "Verificações Automatizadas",
+    "automated_checks_desc": "Testes automatizados com `eslint-plugin-jsx-a11y` e `axe-core` estão integrados ao pipeline.",
+    "focus_mgmt_title": "Gerenciamento de Foco",
+    "focus_mgmt_desc": "Indicadores de foco adequados são essenciais para usuários de teclado.",
+    "focus_ring_title": "Anel de Foco",
+    "focus_ring_desc": "Um anel de foco de alta visibilidade (`--wim-shadow-focus`) é aplicado a todos os elementos interativos.",
+    "offset_title": "Deslocamento (Offset)",
+    "offset_desc": "A distância adequada (`--wim-focus-outline-offset`) é mantida entre o elemento e o anel de foco para melhorar a visibilidade sem comprometer a estética do design.",
+    "focus_trap_title": "Focus Trap",
+    "focus_trap_desc": "Para sobreposições como modais, gavetas (drawers) e popovers, um recurso de Focus Trap é implementado para manter o foco dentro do elemento.",
+    "keyboard_nav_title": "Navegação por Teclado",
+    "keyboard_nav_desc": "Os componentes do WIM UI são totalmente operáveis sem mouse.",
+    "wai_aria_patterns_title": "Padrões WAI-ARIA",
+    "wai_aria_patterns_desc": "Componentes complexos como abas, botões de rádio e acordeões implementam interações de teclado baseadas nas Práticas de Autoria WAI-ARIA do W3C.",
+    "roving_tabindex_title": "Roving Tabindex",
+    "roving_tabindex_desc": "Suporta o movimento suave de itens usando as teclas de seta.",
+    "motion_considerations_title": "Considerações de Movimento",
+    "reduced_motion_title": "Redução de Movimento",
+    "reduced_motion_desc": "Respeita a configuração de 'Reduzir Movimento' do SO e desativa ou simplifica animações desnecessárias (suporte para a media query `prefers-reduced-motion`).",
+    "test_maintenance_title": "Testes",
+    "test_maintenance_desc": "Execute regularmente o seguinte comando para manter a acessibilidade."
   }
 }

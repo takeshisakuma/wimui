@@ -583,7 +583,8 @@
     "type_text_small": "Small Text (14.22px)\nUses a ratio of 1.125^-1 ($font-size-minus-1).",
     "type_title": "Typography Tokens",
     "type_weight": "Font Weights",
-    "typography": "Typography"
+    "typography": "Typography",
+    "pccs_desc": "A color system based on the Practical Color Co-ordinate System, used for semantic color definitions."
   },
   "top": "Top",
   "transfer": {
