@@ -314,12 +314,13 @@ export const LightboxGallery = ({ items, children }: LightboxGalleryProps) => {
 
 export type { LightboxProps as LightboxRootProps };
 
-export const LightboxRoot = Lightbox as typeof Lightbox & {
+export interface LightboxComponent extends React.FC<LightboxProps> {
   Trigger: typeof LightboxTrigger;
   Content: typeof LightboxContent;
   Gallery: typeof LightboxGallery;
-  displayName?: string;
-};
+}
+
+export const LightboxRoot = Lightbox as unknown as LightboxComponent;
 
 LightboxRoot.Trigger = LightboxTrigger;
 LightboxRoot.Content = LightboxContent;

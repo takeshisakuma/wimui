@@ -1,0 +1,101 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as PromptInputStories from "./PromptInput.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={PromptInputStories} />
+
+<Title />
+
+AI チャット向けの自動リサイズ入力コンポーネントです。テキストの増減に応じて高さが自動調整され、送信ボタン・添付ボタンを備えます。`StreamingText` と組み合わせて ChatUI を構築するために設計されています。
+
+<Canvas of={PromptInputStories.Default} />
+<Controls of={PromptInputStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+ユーザーが長文プロンプトを自然に入力できるよう、固定サイズのテキストエリアではなく自動リサイズを採用しています。最大行数（`maxRows`）を超えるとスクロール可能になり、画面を圧迫しません。
+
+## <T k="doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th>用途</th><th>推奨</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>AI チャットの入力欄</td><td>PromptInput</td></tr>
+    <tr><td>通常のフォームのテキストエリア</td><td>Textarea</td></tr>
+    <tr><td>単行のテキスト入力</td><td>Input</td></tr>
+    <tr><td>リッチテキスト編集</td><td>RichTextEditor</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="PromptInput" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li>placeholder はユーザーが実際に入力するような例文にしてください（「Ask anything...」「How can I help?」）。</li>
+  <li>maxLength を設定する場合はカウンターを表示し、残り文字数をユーザーに伝えてください。</li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+高さの変化は CSS `height` のアニメーションではなく JavaScript による即時リサイズで行います。これにより、入力中の遅延感を排除しています。
+
+## <T k="doc.a11y_spec_title" />
+
+<ul>
+  <li>テキストエリアには `aria-label` と `aria-multiline="true"` を付与しています。</li>
+  <li>文字数カウンターには `aria-live="polite"` を設定し、変化をスクリーンリーダーに通知します。</li>
+  <li>送信・添付ボタンには `aria-label` を付与しています。</li>
+  <li>`disabled` 状態ではすべてのインタラクティブ要素が無効化されます。</li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li>**AI チャット画面**: `StreamingText` と組み合わせてメッセージの入力と AI 応答の表示を行う。</li>
+  <li>**コードレビューアシスタント**: 添付ボタンでファイルを選択し、コンテキストとともにプロンプトを送信する。</li>
+  <li>**ドキュメント生成ツール**: 長文のプロンプトを段落ごとに入力しながら生成を制御する。</li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li>`loading` prop を `true` にすると入力と送信が無効化されます。AI の応答生成中はこの状態にしてください。</li>
+  <li>制御コンポーネントとして使用する場合は `value` と `onChange` を必ず組み合わせてください。</li>
+  <li>`onAttach` を実装する場合は、ファイル選択ダイアログの開閉を呼び出し側で制御してください。</li>
+</ul>
+
+<Canvas of={PromptInputStories.WithAttachment} />
+<Canvas of={PromptInputStories.WithCharCount} />
+<Canvas of={PromptInputStories.Disabled} />
+<Canvas of={PromptInputStories.Loading} />
+
+<Docgen componentName="PromptInput" section="props" />
+
+<Docgen componentName="PromptInput" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+幅は親要素に依存します。モバイルでは `maxRows` を小さめ（3〜4）に設定することで、画面内に収まる入力領域になります。
+
+## <T k="doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th>キー</th><th>動作</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Enter</td><td>プロンプトを送信</td></tr>
+    <tr><td>Shift + Enter</td><td>改行を挿入</td></tr>
+    <tr><td>Tab</td><td>送信・添付ボタンへフォーカス移動</td></tr>
+  </tbody>
+</table>
+
+## <T k="doc.i18n_title" />
+
+`prompt_input.*` キー（`form` ネームスペース）を en / ja / pt に定義しています。`placeholder` は prop で上書きも可能です。
+
+<Docgen componentName="PromptInput" section="test" />

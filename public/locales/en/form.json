@@ -1,4 +1,10 @@
 {
+  "prompt_input": {
+    "placeholder": "Ask anything... (Enter to send, Shift+Enter for new line)",
+    "send_label": "Send",
+    "attach_label": "Attach file",
+    "aria_label": "Prompt input"
+  },
   "button": {
     "clear": "Clear",
     "close": "Close",

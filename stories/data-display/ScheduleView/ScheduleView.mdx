@@ -1,0 +1,98 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as ScheduleViewStories from "./ScheduleView.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={ScheduleViewStories} />
+
+<Title />
+
+時間軸のあるカレンダー（TimeGrid）コンポーネントです。FullCalendar をラップしており、週・日・月ビューの切り替え、イベントのドラッグ移動、時間帯の選択による予定作成をサポートします。
+
+<Canvas of={ScheduleViewStories.Default} />
+<Controls of={ScheduleViewStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+Google カレンダーのような直感的なスケジュール管理 UI を提供します。閲覧だけでなく、ドラッグ＆ドロップによる予定の移動・リサイズ、空き時間クリックによる新規作成もサポートします。
+
+## <T k="doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th>用途</th><th>推奨</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>時間単位のスケジュール管理</td><td>ScheduleView (timeGridWeek / timeGridDay)</td></tr>
+    <tr><td>月次の予定一覧</td><td>ScheduleView (dayGridMonth)</td></tr>
+    <tr><td>日付の選択のみ</td><td>DatePicker</td></tr>
+    <tr><td>単純なイベントリスト</td><td>List または Table</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="ScheduleView" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li>イベントタイトルは短く（15文字以内）、タイムグリッド内で視認しやすくしてください。</li>
+  <li>色分けによってカテゴリ・担当者・優先度を区別することを推奨します。</li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+FullCalendar のデフォルトアニメーションを使用します。ドラッグ中のイベントにはミラー要素が表示され、ドロップ位置を視覚的にフィードバックします。
+
+## <T k="doc.a11y_spec_title" />
+
+<ul>
+  <li>カレンダー全体を `role="region"` と `aria-label` でラップしています。</li>
+  <li>FullCalendar は WAI-ARIA 準拠のマークアップを生成します。</li>
+  <li>キーボードによるイベント操作（矢印キーによる移動）はブラウザと FullCalendar が処理します。</li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li>**シフト管理**: 週次タイムグリッドでスタッフのシフトをドラッグ配置する。</li>
+  <li>**会議室予約**: 空き時間をクリックして予約を作成し、ダブルブッキングを防止する。</li>
+  <li>**プロジェクトスケジュール**: マイルストーンや締め切りを月次ビューで俯瞰する。</li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li>コンテナに明示的な高さを与えてください（例：`height: 600px`）。`height="100%"` は親要素の高さに依存します。</li>
+  <li>`slotMinTime` / `slotMaxTime` でビジネスアワーに絞り込むと、スクロール量を削減できます。</li>
+  <li>`onDateSelect` を実装してダイアログと連携することで、予定の詳細を入力できます。</li>
+</ul>
+
+<Canvas of={ScheduleViewStories.DayView} />
+<Canvas of={ScheduleViewStories.MonthView} />
+
+<Docgen componentName="ScheduleView" section="props" />
+
+<Docgen componentName="ScheduleView" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+コンテナの幅に応じてカレンダーが自動リサイズされます。モバイルでは週ビューから日ビューに切り替え（`initialView="timeGridDay"`）を推奨します。
+
+## <T k="doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th>キー</th><th>動作</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tab</td><td>コントロール（prev/next/today）間のフォーカス移動</td></tr>
+    <tr><td>Enter / Space</td><td>フォーカスされたコントロールを実行</td></tr>
+    <tr><td>矢印キー</td><td>FullCalendar の組み込みナビゲーション</td></tr>
+  </tbody>
+</table>
+
+## <T k="doc.i18n_title" />
+
+`locale` prop に `"ja"` や `"pt"` を渡すと、曜日・月名などが自動でローカライズされます。FullCalendar のロケールデータは自動的に読み込まれます。
+
+<Docgen componentName="ScheduleView" section="test" />

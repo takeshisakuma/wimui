@@ -1145,6 +1145,37 @@
         "descKey": "doc.gaugechart_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "NodeGraph",
+        "descKey": "doc.nodeGraph_desc",
+        "pc": true,
+        "mobile": false
+      },
+      {
+        "name": "ScheduleView",
+        "descKey": "doc.scheduleView_desc",
+        "pc": true,
+        "mobile": true
+      }
+    ]
+  },
+  {
+    "id": "ai",
+    "nameKey": "cat.ai",
+    "guideUrl": null,
+    "components": [
+      {
+        "name": "PromptInput",
+        "descKey": "doc.promptInput_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "StreamingText",
+        "descKey": "doc.streamingText_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

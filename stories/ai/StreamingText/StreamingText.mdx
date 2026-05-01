@@ -1,0 +1,89 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as StreamingTextStories from "./StreamingText.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={StreamingTextStories} />
+
+<Title />
+
+生成AIの回答をMarkdown形式でストリーミング描画するコンポーネントです。`react-markdown` と `remark-gfm` を使用し、コードブロック・テーブル・リストなどの Markdown 構文を正しくレンダリングします。ストリーミング中はカーソルが点滅します。
+
+<Canvas of={StreamingTextStories.Default} />
+<Controls of={StreamingTextStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+AI が文字を生成するにつれてコンテンツが徐々に表示されるストリーミング体験を実現します。完了したテキストは通常のMarkdownとして読めるよう、一貫したタイポグラフィとスペーシングを持ちます。
+
+## <T k="doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th>用途</th><th>推奨</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>AI の Markdown 応答の表示</td><td>StreamingText</td></tr>
+    <tr><td>静的な Markdown コンテンツ</td><td>StreamingText (isStreaming=false)</td></tr>
+    <tr><td>ユーザーが入力する Markdown エディタ</td><td>RichTextEditor</td></tr>
+    <tr><td>プレーンテキストのみの表示</td><td>Text</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="StreamingText" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li>AIが生成するMarkdownの品質はモデル側で制御してください。コンポーネントは受け取ったテキストをそのまま描画します。</li>
+  <li>コードブロックには言語指定（` ```tsx ` など）を付けることでシンタックスハイライトを将来的に追加しやすくなります。</li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+ストリーミングカーソルは CSS animation（`step-end` + `opacity` 切り替え）で点滅します。`prefers-reduced-motion` が設定されている場合はカーソルを非表示にすることを推奨します。
+
+## <T k="doc.a11y_spec_title" />
+
+<ul>
+  <li>`isStreaming` が `true` の間は `aria-live="polite"` を設定し、スクリーンリーダーが更新を適切なタイミングで読み上げます。</li>
+  <li>`aria-atomic="false"` により、追加されたテキストのみをアナウンスします（ページ全体の再読み上げを防ぎます）。</li>
+  <li>カーソル要素には `aria-hidden="true"` を付与しており、スクリーンリーダーに認識されません。</li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li>**AI チャット**: `PromptInput` と組み合わせて、ユーザーの質問に対する回答をリアルタイムで表示する。</li>
+  <li>**コード生成ツール**: LLM が生成するコードスニペットを `\`\`\`tsx` ブロックで表示する。</li>
+  <li>**ドキュメント生成**: 入力フォームから生成されたMarkdownドキュメントをプレビューする。</li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li>ストリーミング完了後は必ず `isStreaming={false}` にしてください。カーソルが消え、`aria-live` も解除されます。</li>
+  <li>長文の場合はラッパーにスクロール領域を設けてください（`overflow-y: auto`）。</li>
+  <li>`components` prop でコードブロックのレンダラーを差し替えることで、シンタックスハイライトライブラリを統合できます。</li>
+</ul>
+
+<Canvas of={StreamingTextStories.Streaming} />
+<Canvas of={StreamingTextStories.WithCursor} />
+
+<Docgen componentName="StreamingText" section="props" />
+
+<Docgen componentName="StreamingText" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+コンテナの幅に応じてテキストが折り返されます。コードブロックは `overflow-x: auto` でスクロール可能です。モバイルではフォントサイズを維持しつつ、テーブルのスクロールに注意してください。
+
+## <T k="doc.keyboard_nav_title" />
+
+テキストコンテンツのみのため特別なキーボード操作はありません。リンクや `components` で差し替えた要素には標準のフォーカス動作が適用されます。
+
+## <T k="doc.i18n_title" />
+
+コンポーネント自体には翻訳キーはありません。`content` prop に渡すテキストのローカライズは呼び出し側で行ってください。
+
+<Docgen componentName="StreamingText" section="test" />

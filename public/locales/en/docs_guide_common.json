@@ -1,5 +1,7 @@
 {
   "cat": {
+    "ai": "AI",
+    "ai_desc": "Components for building AI-powered chat interfaces and visualizing generative AI output.",
     "advanced_inputs": "Advanced Inputs",
     "advanced_inputs_desc": "Input components for complex data formats or special interactions.",
     "alerts": "Alerts & Notifications",

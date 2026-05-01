@@ -76,7 +76,14 @@
     "querybuilder_best_practice_2": "Validate the generated QueryGroup on the server; never rely solely on the client-side query structure.",
     "querybuilder_responsive_desc": "Rule rows wrap vertically on narrow containers. Add Rule and Add Group buttons remain accessible on mobile layouts.",
     "querybuilder_keyboard_desc": "Tab moves focus through Field, Operator, Value, Add Rule, Add Group, and Remove buttons in DOM order. Within the SegmentedControl (AND/OR), arrow keys switch the combinator. The NOT Switch is toggled with Space.",
-    "querybuilder_i18n_desc": "Field labels are resolved through i18n keys passed in the fields array. Operator labels, combinator labels (AND/OR/NOT), and button labels use the components namespace."
+    "querybuilder_i18n_desc": "Field labels are resolved through i18n keys passed in the fields array. Operator labels, combinator labels (AND/OR/NOT), and button labels use the components namespace.",
+    "nodeGraph_desc": "Visualizes complex networks and relationships between nodes.",
+    "scheduleView_desc": "Displays tasks or events on a chronological timeline or calendar view.",
+    "promptInput_desc": "Interactive input optimized for AI prompt engineering with multi-line support and action triggers.",
+    "streamingText_desc": "Renders text with a typewriter-like animation, ideal for AI chat responses."
+  },
+  "cat": {
+    "ai": "AI"
   },
   "annotation": {
     "outside_field": "Notes should be outside the field, not as placeholders."

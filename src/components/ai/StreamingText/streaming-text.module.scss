@@ -1,0 +1,117 @@
+.root {
+  font-size: var(--wim-font-size-md);
+  line-height: var(--wim-line-height-relaxed);
+  color: var(--wim-color-text-primary);
+
+  p {
+    margin: 0 0 var(--wim-spacing-sm);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: var(--wim-spacing-md) 0 var(--wim-spacing-xs);
+    font-weight: var(--wim-font-weight-bold);
+    line-height: var(--wim-line-height-tight);
+  }
+
+  ul,
+  ol {
+    padding-left: var(--wim-spacing-xl);
+    margin: 0 0 var(--wim-spacing-sm);
+  }
+
+  li {
+    margin-bottom: var(--wim-spacing-xs);
+  }
+
+  code {
+    padding: 2px var(--wim-spacing-xs);
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: 0.875em;
+    background: var(--wim-color-ghost-bg);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-sm);
+  }
+
+  pre {
+    padding: var(--wim-spacing-md);
+    margin: 0 0 var(--wim-spacing-sm);
+    overflow-x: auto;
+    background: var(--wim-color-ghost-bg);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+
+    code {
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  blockquote {
+    padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+    margin: 0 0 var(--wim-spacing-sm);
+    color: var(--wim-color-text-secondary);
+    border-left: 3px solid var(--wim-color-primary);
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: var(--wim-spacing-sm);
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+      text-align: left;
+      border: 1px solid var(--wim-color-border);
+    }
+
+    th {
+      font-weight: var(--wim-font-weight-semibold);
+      background: var(--wim-color-ghost-bg);
+    }
+  }
+
+  a {
+    color: var(--wim-color-primary);
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  hr {
+    margin: var(--wim-spacing-md) 0;
+    border: none;
+    border-top: 1px solid var(--wim-color-border);
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--wim-color-text-primary);
+  border-radius: 1px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% { opacity: 1; }
+
+  50% { opacity: 0; }
+}

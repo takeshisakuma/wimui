@@ -1,0 +1,108 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xs);
+  background: var(--wim-color-surface);
+  border: 1px solid var(--wim-color-border);
+  border-radius: var(--wim-radius-lg);
+  transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
+    box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
+
+  &:focus-within:not(.disabled) {
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px var(--wim-color-focus-ring);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background: var(--wim-color-ghost-bg);
+    opacity: var(--wim-opacity-disabled);
+  }
+
+  &.loading {
+    cursor: wait;
+  }
+}
+
+.inputArea {
+  display: flex;
+  gap: var(--wim-spacing-xs);
+  align-items: flex-end;
+  padding: var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-md);
+}
+
+.textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: var(--wim-font-size-md);
+  line-height: var(--wim-line-height-normal);
+  color: var(--wim-color-text-primary);
+  resize: none;
+  outline: none;
+  background: transparent;
+  border: none;
+
+  &::placeholder {
+    color: var(--wim-color-text-tertiary);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.actionButton {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--wim-color-text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: var(--wim-radius-md);
+  transition: background var(--wim-duration-fast) var(--wim-easing-standard),
+    color var(--wim-duration-fast) var(--wim-easing-standard);
+
+  &:hover:not(:disabled) {
+    color: var(--wim-color-text-primary);
+    background: var(--wim-color-ghost-bg-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: var(--wim-opacity-disabled);
+  }
+}
+
+.sendButton {
+  &:not(:disabled) {
+    color: var(--wim-color-primary);
+
+    &:hover {
+      background: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
+}
+
+.charCount {
+  font-size: var(--wim-font-size-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--wim-color-text-tertiary);
+}
+
+.charCountMax {
+  color: var(--wim-color-error);
+}

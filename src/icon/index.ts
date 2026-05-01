@@ -39,6 +39,7 @@ import MoonIcon from "./moon.svg?react";
 import MoreHorizontalIcon from "./more-horizontal.svg?react";
 import MoreVerticalIcon from "./more-vertical.svg?react";
 import MuteIcon from "./mute.svg?react";
+import PaperclipIcon from "./paperclip.svg?react";
 import PauseIcon from "./pause.svg?react";
 import PdfIcon from "./pdf.svg?react";
 import PhoneIcon from "./phone.svg?react";
@@ -49,6 +50,7 @@ import ProjectIcon from "./project.svg?react";
 import RefreshIcon from "./refresh.svg?react";
 import RepeatIcon from "./repeat.svg?react";
 import SearchIcon from "./search.svg?react";
+import SendIcon from "./send.svg?react";
 import SettingsIcon from "./settings.svg?react";
 import ShareIcon from "./share.svg?react";
 import ShuffleIcon from "./shuffle.svg?react";
@@ -108,6 +110,7 @@ export {
   MoreHorizontalIcon,
   MoreVerticalIcon,
   MuteIcon,
+  PaperclipIcon,
   PauseIcon,
   PdfIcon,
   PhoneIcon,
@@ -118,6 +121,7 @@ export {
   RefreshIcon,
   RepeatIcon,
   SearchIcon,
+  SendIcon,
   SettingsIcon,
   ShareIcon,
   ShuffleIcon,
@@ -178,6 +182,7 @@ export const ALL_ICONS = {
   MoreHorizontalIcon,
   MoreVerticalIcon,
   MuteIcon,
+  PaperclipIcon,
   PauseIcon,
   PdfIcon,
   PhoneIcon,
@@ -188,6 +193,7 @@ export const ALL_ICONS = {
   RefreshIcon,
   RepeatIcon,
   SearchIcon,
+  SendIcon,
   SettingsIcon,
   ShareIcon,
   ShuffleIcon,

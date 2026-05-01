@@ -25,3 +25,5 @@ export * from "./components/data-display/FAQSection/FAQSection";
 export * from "./components/data-display/QRCode/QRCode";
 export * from "./components/data-display/InfiniteScroll/InfiniteScroll";
 export * from "./components/data-display/SortableList/SortableList";
+export * from "./components/data-display/NodeGraph/NodeGraph";
+export * from "./components/data-display/ScheduleView/ScheduleView";

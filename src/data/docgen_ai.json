@@ -1,0 +1,183 @@
+{
+  "StreamingText": {
+    "name": "StreamingText",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The markdown text content to render"
+      },
+      "isStreaming": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "When true, a blinking cursor is shown at the end of the content",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "components": {
+        "required": false,
+        "tsType": {
+          "name": "Components"
+        },
+        "description": "Override the default markdown component renderers"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
+      }
+    }
+  },
+  "PromptInput": {
+    "name": "PromptInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Current text value (controlled)"
+      },
+      "defaultValue": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Default text value (uncontrolled)",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when the text value changes"
+      },
+      "onSubmit": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when the user submits the prompt (Enter key or send button)"
+      },
+      "onAttach": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when the attachment button is clicked"
+      },
+      "placeholder": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Placeholder text for the textarea"
+      },
+      "maxLength": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum character length"
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the input is disabled",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "loading": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether a response is being generated (blocks submission)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "showAttach": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the attachment button",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "maxRows": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum rows before scrolling begins",
+        "defaultValue": {
+          "value": "8",
+          "computed": false
+        }
+      }
+    }
+  }
+}

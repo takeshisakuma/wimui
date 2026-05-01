@@ -1,4 +1,19 @@
 {
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Watermark": {
     "name": "Watermark",
     "tokens": [],
@@ -107,6 +122,159 @@
           "raw": "React.ReactNode"
         },
         "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Transition": {
+    "name": "Transition",
+    "tokens": [
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "show": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "preset": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"fade\"\n| \"scale\"\n| \"slide-right\"\n| \"slide-left\"\n| \"slide-top\"\n| \"slide-bottom\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"fade\""
+            },
+            {
+              "name": "literal",
+              "value": "\"scale\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slide-bottom\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "enter": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "enterFrom": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "enterTo": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leave": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leaveFrom": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "leaveTo": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "unmount": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "appear": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "className": {
         "required": false,
@@ -1232,174 +1400,6 @@
       }
     }
   },
-  "Transition": {
-    "name": "Transition",
-    "tokens": [
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {
-      "show": {
-        "required": true,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "preset": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"fade\"\n| \"scale\"\n| \"slide-right\"\n| \"slide-left\"\n| \"slide-top\"\n| \"slide-bottom\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"fade\""
-            },
-            {
-              "name": "literal",
-              "value": "\"scale\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slide-bottom\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "enter": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "enterFrom": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "enterTo": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leave": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leaveFrom": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "leaveTo": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        }
-      },
-      "unmount": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "appear": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
-      }
-    }
-  },
   "Splitter": {
     "name": "Splitter",
     "tokens": [
@@ -1892,62 +1892,6 @@
       }
     }
   },
-  "ScrollArea": {
-    "name": "ScrollArea",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "text": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "scrollAxis": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"x\" | \"y\" | \"both\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"x\""
-            },
-            {
-              "name": "literal",
-              "value": "\"y\""
-            },
-            {
-              "name": "literal",
-              "value": "\"both\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"y\"",
-          "computed": false
-        }
-      },
-      "maxHeight": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "Navbar": {
     "name": "Navbar",
     "tokens": [
@@ -2353,39 +2297,171 @@
       }
     }
   },
-  "Masonry": {
-    "name": "Masonry",
+  "ScrollArea": {
+    "name": "ScrollArea",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "columns": {
+      "text": {
         "required": false,
         "tsType": {
-          "name": "number"
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "Number of columns",
-        "defaultValue": {
-          "value": "3",
-          "computed": false
-        }
+        "description": ""
       },
-      "spacing": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "scrollAxis": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "number | string",
+          "raw": "\"x\" | \"y\" | \"both\"",
           "elements": [
             {
-              "name": "number"
+              "name": "literal",
+              "value": "\"x\""
             },
             {
-              "name": "string"
+              "name": "literal",
+              "value": "\"y\""
+            },
+            {
+              "name": "literal",
+              "value": "\"both\""
             }
           ]
         },
-        "description": "Spacing between items",
+        "description": "",
         "defaultValue": {
-          "value": "16",
+          "value": "\"y\"",
+          "computed": false
+        }
+      },
+      "maxHeight": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Header": {
+    "name": "Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the top"
+      },
+      "sticky": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Sticky position at the top"
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Border at the bottom"
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect"
+      },
+      "background": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"transparent\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"transparent\""
+            }
+          ]
+        },
+        "description": "Background color",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Header.Section": {
+    "name": "Header.Section",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-secondary",
+      "--wim-header-height",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base",
+      "--wim-z-header"
+    ],
+    "anatomy": [],
+    "props": {
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"start\"",
           "computed": false
         }
       }
@@ -2612,115 +2688,39 @@
       }
     }
   },
-  "Header": {
-    "name": "Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
+  "Masonry": {
+    "name": "Masonry",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "fixed": {
+      "columns": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "number"
         },
-        "description": "Fixed position at the top"
-      },
-      "sticky": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Sticky position at the top"
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Border at the bottom"
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect"
-      },
-      "background": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"transparent\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"transparent\""
-            }
-          ]
-        },
-        "description": "Background color",
+        "description": "Number of columns",
         "defaultValue": {
-          "value": "\"primary\"",
+          "value": "3",
           "computed": false
         }
-      }
-    }
-  },
-  "Header.Section": {
-    "name": "Header.Section",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {
-      "align": {
+      },
+      "spacing": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\"",
+          "raw": "number | string",
           "elements": [
             {
-              "name": "literal",
-              "value": "\"start\""
+              "name": "number"
             },
             {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
+              "name": "string"
             }
           ]
         },
-        "description": "",
+        "description": "Spacing between items",
         "defaultValue": {
-          "value": "\"start\"",
+          "value": "16",
           "computed": false
         }
       }
@@ -6529,6 +6529,32 @@
       }
     }
   },
+  "AspectRatio": {
+    "name": "AspectRatio",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "ratio": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
+      }
+    }
+  },
   "BentoGrid": {
     "name": "BentoGrid",
     "tokens": [],
@@ -6580,32 +6606,6 @@
           "raw": "React.ReactNode"
         },
         "description": ""
-      }
-    }
-  },
-  "AspectRatio": {
-    "name": "AspectRatio",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "ratio": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
       }
     }
   },

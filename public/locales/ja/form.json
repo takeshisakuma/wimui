@@ -1,4 +1,10 @@
 {
+  "prompt_input": {
+    "placeholder": "メッセージを入力... (Enterで送信、Shift+Enterで改行)",
+    "send_label": "送信",
+    "attach_label": "ファイルを添付",
+    "aria_label": "プロンプト入力"
+  },
   "button": {
     "clear": "クリア",
     "close": "閉じる",

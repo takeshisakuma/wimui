@@ -1,4 +1,10 @@
 {
+  "prompt_input": {
+    "placeholder": "Pergunte qualquer coisa... (Enter para enviar, Shift+Enter para nova linha)",
+    "send_label": "Enviar",
+    "attach_label": "Anexar arquivo",
+    "aria_label": "Campo de prompt"
+  },
   "button": {
     "clear": "Limpar",
     "close": "Fechar",
