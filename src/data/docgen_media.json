@@ -624,6 +624,297 @@
       }
     }
   },
+  "Lightbox": {
+    "name": "Lightbox",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "onOpenChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "defaultOpen": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "defaultIndex": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Trigger": {
+    "name": "Lightbox.Trigger",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "index": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "src": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Lightbox.Content": {
+    "name": "Lightbox.Content",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "showCloseButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showNavigation": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showCounter": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "closeOnOverlayClick": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Gallery": {
+    "name": "Lightbox.Gallery",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "LightboxItem"
+            }
+          ],
+          "raw": "LightboxItem[]"
+        },
+        "description": ""
+      }
+    }
+  },
   "Image": {
     "name": "Image",
     "tokens": [
@@ -1012,297 +1303,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "Lightbox": {
-    "name": "Lightbox",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "defaultOpen": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "defaultIndex": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Trigger": {
-    "name": "Lightbox.Trigger",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "index": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "src": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "alt": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Lightbox.Content": {
-    "name": "Lightbox.Content",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "showCloseButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showNavigation": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showCounter": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "closeOnOverlayClick": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Gallery": {
-    "name": "Lightbox.Gallery",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "LightboxItem"
-            }
-          ],
-          "raw": "LightboxItem[]"
-        },
-        "description": ""
       }
     }
   },
