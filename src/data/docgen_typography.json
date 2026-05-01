@@ -730,6 +730,74 @@
       }
     }
   },
+  "Legend": {
+    "name": "Legend",
+    "tokens": [
+      "--wim-color-text-primary",
+      "--wim-font-size-md",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "label": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The main label text or element."
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the field is mandatory. If true, displays a required badge."
+      },
+      "requiredLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the required badge.\r\n@default \"required\""
+      },
+      "showOptional": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to display an optional badge when `required` is false.\r\n@default false"
+      },
+      "optionalLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class name for the container."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the Legend will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Label": {
     "name": "Label",
     "tokens": [
@@ -799,74 +867,6 @@
           "name": "boolean"
         },
         "description": "If true, the Label will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Legend": {
-    "name": "Legend",
-    "tokens": [
-      "--wim-color-text-primary",
-      "--wim-font-size-md",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "label": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The main label text or element."
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the field is mandatory. If true, displays a required badge."
-      },
-      "requiredLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the required badge.\r\n@default \"required\""
-      },
-      "showOptional": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to display an optional badge when `required` is false.\r\n@default false"
-      },
-      "optionalLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class name for the container."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the Legend will be rendered as its child, merging its props onto that child.",
         "defaultValue": {
           "value": "false",
           "computed": false
