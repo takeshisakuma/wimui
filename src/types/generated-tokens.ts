@@ -35,6 +35,14 @@ export type WimColorKey =
   | "carousel-indicator-bg"
   | "carousel-indicator-hover-bg"
   | "caution"
+  | "chart-1"
+  | "chart-2"
+  | "chart-3"
+  | "chart-4"
+  | "chart-5"
+  | "chart-6"
+  | "chart-7"
+  | "chart-8"
   | "chat-bubble-received"
   | "chat-bubble-sent"
   | "close-hover"
@@ -126,6 +134,7 @@ export type WimZIndexKey =
   | "overlay-panel"
   | "overlay-step"
   | "sidebar"
+  | "sticky"
   | "toast";
 
 export type WimOpacityKey = 

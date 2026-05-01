@@ -1,0 +1,176 @@
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import * as InlineEditStories from "./InlineEdit.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={InlineEditStories} />
+
+<Title />
+
+<T k="doc.inlineEdit_desc" />
+
+<Canvas of={InlineEditStories.Default} />
+<Controls of={InlineEditStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<T k="doc.inlineEdit_design_intent" />
+
+## <T k="doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common.component" /></th>
+      <th><T k="common.usage" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>InlineEdit</strong></td>
+      <td><T k="doc.inlineEdit_choice_use_when" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input</strong></td>
+      <td><T k="doc.input_choice_input_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="InlineEdit" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.category" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="common.content" /></td>
+      <td><T k="doc.inlineEdit_content_guideline_1" /></td>
+    </tr>
+    <tr>
+      <td><T k="common.placeholder" /></td>
+      <td><T k="doc.inlineEdit_content_guideline_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.motion_spec_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.transition" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc.behavior_colon" /></td>
+      <td><T k="doc.inlineEdit_motion_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.a11y_spec_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.feature" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc.keyboard_navigation" /></td>
+      <td><T k="doc.inlineEdit_a11y_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.inlineEdit_scenario_1_title" /></strong></td>
+      <td><T k="doc.inlineEdit_scenario_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.inlineEdit_scenario_2_title" /></strong></td>
+      <td><T k="doc.inlineEdit_scenario_2_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.best_practice_label" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc.best_practice_label" /> 1</td>
+      <td><T k="doc.inlineEdit_best_practice_1" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc.best_practice_label" /> 2</td>
+      <td><T k="doc.inlineEdit_best_practice_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="InlineEdit" section="props" />
+
+<Docgen componentName="InlineEdit" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+<T k="doc.inlineEdit_responsive_desc" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="docs_guide_a11y_usability:table.header_key" /></th>
+      <th><T k="docs_guide_a11y_usability:table.header_operation" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Enter</code></td>
+      <td><T k="doc.op_edit_save" /></td>
+    </tr>
+    <tr>
+      <td><code>Escape</code></td>
+      <td><T k="doc.op_cancel" /></td>
+    </tr>
+    <tr>
+      <td><code>Tab</code></td>
+      <td><T k="doc.op_navigate" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.i18n_title" />
+
+<T k="doc.inlineEdit_i18n_desc" />
+
+<Docgen componentName="InlineEdit" section="test" />

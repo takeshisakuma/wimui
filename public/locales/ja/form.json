@@ -1,0 +1,62 @@
+{
+  "button": {
+    "clear": "クリア",
+    "close": "閉じる",
+    "dismiss": "閉じる",
+    "label": "ボタン",
+    "guide_title": "ボタンの概要",
+    "guide_desc": "インターフェースに適切なボタンタイプを選択し、実装するためのガイドライン。",
+    "priority_weighting": "プライマリ、セカンダリ、またはターシャリボタンを使用するタイミングを説明するマトリックス。",
+    "semantics_desc": "ボタンはアクションをトリガーし、リンクはページの場所やスクロール位置を変更します。",
+    "semantics_guide_ref": "詳細については、リンクとボタンの対比ガイドを参照してください。",
+    "standard_desc": "一般的なアクション用の標準的な長方形ボタン。",
+    "standard_usage": "送信、保存、アイテムの追加などの主要なCTA。",
+    "icon_usage": "高密度のツールバー、メディアコントロール、またはソーシャル共有。",
+    "link_desc": "二次的なナビゲーションアクション用のテキストリンクのようにスタイル設定されたボタン。",
+    "group_desc": "論理的に関連する複数のボタンをグループ化するコンテナ。",
+    "group_usage": "フィルターバー、ページネーション、または複数ステップのフォームアクション。",
+    "copy_desc": "視覚的なフィードバックを伴ってテキストをクリップボードにコピーするための専用ボタン。",
+    "copy_usage": "APIキー、トランザションID、または共有リンク。",
+    "guideline_principle": "原則",
+    "guideline_detail": "詳細",
+    "consistency": "一貫性",
+    "consistency_desc": "すべてのボタンで同一のラベルのケーシング（文の最初の文字のみ大文字）とアイコンの配置を維持します。",
+    "placement_desc": "ボタンは、モーダルの場合は右下に、フォームの場合は左下にグループ化する必要があります。",
+    "placement_conflict": "配置の競合",
+    "placement_conflict_desc": "同じビューに複数のプライマリボタンを配置しないでください。"
+  },
+  "btn": {
+    "page_transition": "標準的なページ遷移またはフッターリンク。"
+  },
+  "datepicker": {
+    "placeholder": "日付を選択"
+  },
+  "dropzone": {
+    "description": "ここにファイルをドラッグ＆ドロップ、またはクリックして選択"
+  },
+  "fileupload": {
+    "button": "ファイルを選択",
+    "no_file": "選択されていません"
+  },
+  "form": {
+    "optional": "任意",
+    "required": "必須"
+  },
+  "phone": {
+    "number": "電話番号"
+  },
+  "search": {
+    "placeholder": "ボタン"
+  },
+  "select": {
+    "option": "項目1"
+  },
+  "transfer": {
+    "move_to_source": "選択可能に移動",
+    "move_to_target": "選択済みに移動",
+    "source": "選択可能",
+    "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
+    "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",
+    "target": "選択済み"
+  }
+}

@@ -302,20 +302,27 @@ import { T } from "../stories/T";
   <h2><T k="viz.technical_impl_title" /></h2>
     <p><T k="vis.recharts_desc" /></p>
 
-    <ul>
-      <li>
-        <strong><T k="viz.component_location" /></strong><br />
-
-        `src/components/charts/`
-      </li>
-      <li style={{ marginTop: "12px" }}>
-        <strong><T k="viz.common_settings_keys" /></strong><br />
-
-        `src/components/helpers.ts`<br />
-
-        <small style={{ color: "var(--wim-color-text-secondary)" }}><T k="vis.chart_colors" /></small>
-      </li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th><T k="table.header_item" /></th>
+          <th><T k="doc.location" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong><T k="viz.component_location" /></strong></td>
+          <td>`src/components/charts/`</td>
+        </tr>
+        <tr>
+          <td>
+            <strong><T k="viz.common_settings_keys" /></strong><br />
+            <small style={{ color: "var(--wim-color-text-secondary)" }}><T k="vis.chart_colors" /></small>
+          </td>
+          <td>`src/components/helpers.ts`</td>
+        </tr>
+      </tbody>
+    </table>
 
 ---
 

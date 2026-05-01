@@ -1,0 +1,12 @@
+{
+  "calendar": {
+    "aria_date": "{{year}}年{{month}}月{{day}}日",
+    "title": "{{year}}年 {{month}}月"
+  },
+  "table": {
+    "header_component": "コンポーネント",
+    "header_overview": "概要",
+    "header_usage": "使用シナリオ",
+    "header_placement": "配置"
+  }
+}

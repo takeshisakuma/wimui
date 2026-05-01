@@ -1,6 +1,7 @@
 {
   "wim": {
     "z": {
+      "sticky": { "value": "100" },
       "sidebar": { "value": "900" },
       "header": { "value": "1000" },
       "overlay": { "value": "1000" },

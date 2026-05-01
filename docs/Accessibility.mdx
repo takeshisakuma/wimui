@@ -152,19 +152,19 @@ import { Command } from "../stories/Command";
     <tr>
       <th style={{ width: '200px' }}><T k="config.test_header_type" /></th>
       <th><T k="config.test_header_tool" /></th>
-      <th>Command</th>
+      <th><T k="config.test_header_command" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong><T k="config.test_a11y_title" /></strong></td>
-      <td><code>axe-core</code> / <code>eslint-plugin-jsx-a11y</code></td>
-      <td><code>npm run test</code></td>
+      <td><T k="config.test_tool_a11y_detail" /></td>
+      <td><Command>npm run test</Command></td>
     </tr>
     <tr>
       <td><strong><T k="config.test_unit_title" /></strong></td>
-      <td><code>Vitest</code> / <code>React Testing Library</code></td>
-      <td><code>npm run test</code></td>
+      <td><T k="config.test_tool_unit_detail" /></td>
+      <td><Command>npm run test</Command></td>
     </tr>
   </tbody>
 </table>

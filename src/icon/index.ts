@@ -22,6 +22,7 @@ import ExternalLinkIcon from "./external-link.svg?react";
 import EyeOffIcon from "./eye-off.svg?react";
 import EyeIcon from "./eye.svg?react";
 import FilterIcon from "./filter.svg?react";
+import GripVerticalIcon from "./grip-vertical.svg?react";
 import HelpCircleIcon from "./help-circle.svg?react";
 import HomeIcon from "./home.svg?react";
 import HourglassIcon from "./hourglass.svg?react";
@@ -90,6 +91,7 @@ export {
   EyeOffIcon,
   EyeIcon,
   FilterIcon,
+  GripVerticalIcon,
   HelpCircleIcon,
   HomeIcon,
   HourglassIcon,
@@ -159,6 +161,7 @@ export const ALL_ICONS = {
   EyeOffIcon,
   EyeIcon,
   FilterIcon,
+  GripVerticalIcon,
   HelpCircleIcon,
   HomeIcon,
   HourglassIcon,

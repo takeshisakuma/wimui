@@ -120,7 +120,16 @@
       "avatar-s24": { "value": "{pccs.s24}" },
 
       "chat-bubble-received": { "value": "{pccs.p7}" },
-      "chat-bubble-sent": { "value": "{pccs.p18}" }
+      "chat-bubble-sent": { "value": "{pccs.p18}" },
+
+      "chart-1": { "value": "{pccs.v16}" },
+      "chart-2": { "value": "{pccs.v6}" },
+      "chart-3": { "value": "{pccs.v12}" },
+      "chart-4": { "value": "{pccs.v24}" },
+      "chart-5": { "value": "{pccs.v20}" },
+      "chart-6": { "value": "{pccs.v10}" },
+      "chart-7": { "value": "{pccs.v4}" },
+      "chart-8": { "value": "{pccs.v14}" }
     }
   }
 }

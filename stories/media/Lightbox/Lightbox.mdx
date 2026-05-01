@@ -1,0 +1,109 @@
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import * as LightboxStories from "./Lightbox.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={LightboxStories} />
+
+<Title />
+
+<T k="doc.lightbox_desc" />
+
+<Canvas of={LightboxStories.Default} />
+<Controls of={LightboxStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<T k="doc.lightbox_design_intent" />
+
+## <T k="doc.choice_matrix_title" />
+
+<T k="doc.lightbox_choice_matrix_desc" />
+
+### <T k="doc.usage_scenario" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="common.usage" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Lightbox</strong></td>
+      <td><T k="doc.lightbox_choice_use_when" /></td>
+    </tr>
+    <tr>
+      <td><strong>Image / Dialog</strong></td>
+      <td><T k="doc.lightbox_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Lightbox" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li><T k="doc.lightbox_content_guideline_1" /></li>
+  <li><T k="doc.lightbox_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+<T k="doc.lightbox_motion_desc" />
+
+## <T k="doc.a11y_spec_title" />
+
+<T k="doc.lightbox_a11y_desc" />
+
+## <T k="doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_gallery_title" /></strong></td>
+      <td><T k="doc.lightbox_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_detail_title" /></strong></td>
+      <td><T k="doc.lightbox_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li><T k="doc.lightbox_best_practice_1" /></li>
+  <li><T k="doc.lightbox_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="Lightbox" section="props" />
+
+<Docgen componentName="Lightbox" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+<T k="doc.lightbox_responsive_desc" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<T k="doc.lightbox_keyboard_desc" />
+
+## <T k="doc.i18n_title" />
+
+<T k="doc.lightbox_i18n_desc" />
+
+<Docgen componentName="Lightbox" section="test" />
+
+<Primary />
+
+<Stories title={<T k="doc.stories" />} />

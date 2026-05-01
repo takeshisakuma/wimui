@@ -34,3 +34,14 @@
 .wim-interactive-area {
   border-radius: 4px !important;
 }
+
+/* Fix for Storybook Blue Outline Issue on Canvas */
+.sbdocs-preview:focus-visible,
+.sbdocs-preview:focus,
+.sbdocs-wrapper:focus-visible,
+.sbdocs-wrapper:focus,
+.docblock-source:focus-visible,
+.docblock-source:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

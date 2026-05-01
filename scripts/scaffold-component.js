@@ -193,7 +193,7 @@ I18n info here...
 
 <Primary />
 
-<Stories />
+{/* <Stories /> */}
 `;
 
 // Write files

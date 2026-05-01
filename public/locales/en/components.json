@@ -540,5 +540,19 @@
     "before": "Before",
     "after_or_on": "After or on",
     "before_or_on": "Before or on"
+  },
+  "sortable_list": {
+    "drag_handle_label": "Drag to reorder",
+    "keyboard_instruction": "Press Space or Enter to pick up an item. Use Arrow keys to move, and Space or Enter to drop.",
+    "keyboard_moving": "Moving item at position {{index}}",
+    "keyboard_moved": "Item moved from {{oldIndex}} to {{newIndex}}"
+  },
+  "lightbox": {
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "zoom_in": "Zoom in",
+    "zoom_out": "Zoom out",
+    "counter": "{{current}} / {{total}}"
   }
 }

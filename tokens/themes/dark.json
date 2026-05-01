@@ -77,6 +77,15 @@
       "chat-bubble-received": { "value": "color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary))" },
       "chat-bubble-sent": { "value": "color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
 
+      "chart-1": { "value": "{pccs.b16}" },
+      "chart-2": { "value": "{pccs.b6}" },
+      "chart-3": { "value": "{pccs.b12}" },
+      "chart-4": { "value": "{pccs.b24}" },
+      "chart-5": { "value": "{pccs.b20}" },
+      "chart-6": { "value": "{pccs.b10}" },
+      "chart-7": { "value": "{pccs.b4}" },
+      "chart-8": { "value": "{pccs.b14}" },
+
       "decoration-highlight-color": { "value": "#5c4400" }
     }
   }

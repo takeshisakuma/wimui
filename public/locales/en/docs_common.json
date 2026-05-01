@@ -129,6 +129,7 @@
     "story_with_icons": "With Icons",
     "story_with_right_section": "With Right Section",
     "styling": "Styling",
+    "transition": "Transition",
     "subcomponents": "Subcomponents",
     "success": "Success",
     "type": "Type",
@@ -172,7 +173,8 @@
     "token_interaction": "Interaction",
     "token_interaction_desc": "Tokens for focus rings, hover states, and active interaction feedback.",
     "token_z_index": "Z-Index",
-    "token_z_index_desc": "Standardized layering system to manage stacking order across all components."
+    "token_z_index_desc": "Standardized layering system to manage stacking order across all components.",
+    "token_pccs": "PCCS"
   },
   "config": {
     "features_a11y": "Accessibility",
@@ -205,6 +207,7 @@
     "test_e2e_tool": "Playwright",
     "test_header_purpose": "Purpose",
     "test_header_tool": "Tool",
+    "test_header_command": "Command",
     "test_header_type": "Test Type",
     "test_storybook_desc": "Smoke test for each story",
     "test_storybook_title": "Storybook test",
@@ -213,6 +216,8 @@
     "test_unit_desc": "Logic / Rendering",
     "test_unit_title": "Unit test",
     "test_unit_tool": "Vitest",
+    "test_tool_a11y_detail": "`axe-core` / `eslint-plugin-jsx-a11y`",
+    "test_tool_unit_detail": "`Vitest` / `React Testing Library`",
     "test_vrt_desc": "Visual Regression",
     "test_vrt_title": "VRT",
     "test_vrt_tool": "Playwright screenshot"

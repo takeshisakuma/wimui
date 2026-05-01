@@ -71,36 +71,6 @@
   },
   "audience": "Audience",
   "bottom": "Bottom",
-  "button": {
-    "clear": "Clear",
-    "close": "Close",
-    "dismiss": "Dismiss",
-    "label": "Button",
-    "guide_title": "Button Overview",
-    "guide_desc": "Guidelines for choosing and implementing the correct button type for your interface.",
-    "priority_weighting": "A matrix describing when to use Primary, Secondary, or Tertiary buttons.",
-    "semantics_desc": "Buttons trigger actions, while Links change page location or scroll position.",
-    "semantics_guide_ref": "Refer to the Link vs Button guide for more detailed information.",
-    "standard_desc": "Standard rectangular button for general actions.",
-    "standard_usage": "Main CTAs like Submit, Save, or Add Item.",
-    "icon_usage": "Dense toolbars, media controls, or social sharing.",
-    "link_desc": "A button styled like a text link for secondary navigating actions.",
-    "group_desc": "A container that groups multiple logically related buttons together.",
-    "group_usage": "Filter bars, pagination, or multi-step form actions.",
-    "copy_desc": "A specialized button for copying text to the clipboard with visual feedback.",
-    "copy_usage": "API keys, transaction IDs, or sharing links.",
-    "guideline_principle": "Principle",
-    "guideline_detail": "Detail",
-    "consistency": "Consistency",
-    "consistency_desc": "Maintain identical label casing (Sentence case) and icon placement across all buttons.",
-    "placement_desc": "Buttons should be grouped at the bottom-right for modals or bottom-left for forms.",
-    "placement_conflict": "Placement Conflict",
-    "placement_conflict_desc": "Avoid placing multiple primary buttons on the same view."
-  },
-  "calendar": {
-    "aria_date": "{{year}}-{{month}}-{{day}}",
-    "title": "{{year}} / {{month}}"
-  },
   "common": {
     "all": "All",
     "appearance": "Appearance",
@@ -158,10 +128,12 @@
     "intro": "You can check the development status and specification overview of all WIM UI components.",
     "tokens_link": "Token documentation is available in the Design Tokens section."
   },
-  "datepicker": {
-    "placeholder": "Select date"
-  },
   "doc": {
+    "location": "Location",
+    "transition": "Transition",
+    "op_edit_save": "Save changes",
+    "op_cancel": "Cancel changes",
+    "op_navigate": "Navigate through items",
     "a11y_spec_title": "Accessibility Specifications",
     "anatomy_title": "Anatomy",
     "api_reference": "API Reference",
@@ -339,20 +311,9 @@
     "usage_scenario": "Usage Scenario",
     "transfer_i18n_desc": "Full support for localizing labels, placeholders, and status messages."
   },
-  "dropzone": {
-    "description": "Drag and drop files here, or click to select"
-  },
   "error": {
     "invalid": "Invalid input",
     "required": "Required field"
-  },
-  "fileupload": {
-    "button": "Choose file",
-    "no_file": "No file selected"
-  },
-  "form": {
-    "optional": "Optional",
-    "required": "Required"
   },
   "fri": "Fri",
   "greeting": "Hello",
@@ -451,9 +412,6 @@
     "go_to": "Go to",
     "items_per_page": "items per page"
   },
-  "phone": {
-    "number": "Phone number"
-  },
   "placeholder": {
     "email": "example@email.com",
     "name": "Full name",
@@ -471,12 +429,6 @@
   "sampletextforscrollarea": "Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area. Sample text for scroll area.",
   "sat": "Sat",
   "saving": "Saving...",
-  "search": {
-    "placeholder": "Search"
-  },
-  "select": {
-    "option": "Option 1"
-  },
   "settings": "Settings",
   "standard": "Standard",
   "standard_list_item": "List item",
@@ -587,27 +539,9 @@
     "pccs_desc": "A color system based on the Practical Color Co-ordinate System, used for semantic color definitions."
   },
   "top": "Top",
-  "transfer": {
-    "move_to_source": "Move to available",
-    "move_to_target": "Move to selected",
-    "source": "Available",
-    "status_moved_to_source": "{{count}} item(s) moved to available",
-    "status_moved_to_target": "{{count}} item(s) moved to selected",
-    "target": "Selected"
-  },
   "tue": "Tue",
   "upload": "Upload",
   "username": "Username",
   "wed": "Wed",
-  "table": {
-    "header_component": "Component",
-    "header_overview": "Overview",
-    "header_usage": "Usage Scenario",
-    "header_placement": "Placement"
-  },
-  "btn": {
-    "page_transition": "Standard page transitions or footer links."
-  },
   "welcome": "Welcome to our app"
 }
-

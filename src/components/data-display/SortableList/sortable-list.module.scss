@@ -1,0 +1,86 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    list-style: none;
+  }
+
+  .item {
+    position: relative;
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    cursor: grab;
+    outline: none;
+    background: var(--wim-color-surface);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+    transition:
+      transform var(--wim-duration-fast) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard),
+      background-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover:not(.disabled) {
+      background: var(--wim-color-ghost-bg-hover);
+      border-color: var(--wim-color-primary-subtle);
+    }
+
+    &:focus-visible {
+      z-index: 1;
+      box-shadow: 0 0 0 2px var(--wim-color-focus-ring);
+    }
+
+    &.dragging {
+      cursor: grabbing;
+      background: var(--wim-color-surface-glass);
+      border-color: var(--wim-color-primary);
+      border-style: dashed;
+      opacity: 0.5;
+      backdrop-filter: blur(8px);
+      transform: scale(0.98);
+    }
+
+    &.over {
+      background: color-mix(in srgb, var(--wim-color-primary) 5%, var(--wim-color-surface));
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-sm);
+      transform: translateY(2px);
+
+      &::before {
+        position: absolute;
+        top: -4px;
+        right: 0;
+        left: 0;
+        height: 2px;
+        content: "";
+        background: var(--wim-color-primary);
+        border-radius: var(--wim-radius-full);
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      background: var(--wim-color-ghost-bg);
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  .dragHandle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wim-color-text-tertiary);
+    transition: color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-secondary);
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "button": {
+    "clear": "Limpar",
+    "close": "Fechar",
+    "dismiss": "Descartar",
+    "label": "Botão",
+    "guide_title": "Visão Geral dos Botões",
+    "guide_desc": "Diretrizes para escolher e implementar o tipo de botão correto para sua interface.",
+    "priority_weighting": "Uma matriz descrevendo quando usar botões Primários, Secundários ou Terciários.",
+    "semantics_desc": "Botões acionam ações, enquanto Links alteram a localização da página ou a posição de rolagem.",
+    "semantics_guide_ref": "Consulte o guia Link vs Botão para informações mais detalhadas.",
+    "standard_desc": "Botão retangular padrão para ações gerais.",
+    "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item.",
+    "icon_usage": "Barras de ferramentas densas, controles de mídia ou compartilhamento social.",
+    "link_desc": "Um botão estilizado como um link de texto para ações de navegação secundárias.",
+    "group_desc": "Um contêiner que agrupa vários botões logicamente relacionados.",
+    "group_usage": "Barras de filtro, paginação ou ações de formulário de várias etapas.",
+    "copy_desc": "Um botão especializado para copiar texto para a área de transferência com feedback visual.",
+    "copy_usage": "Chaves de API, IDs de transação ou links de compartilhamento.",
+    "guideline_principle": "Princípio",
+    "guideline_detail": "Detalhe",
+    "consistency": "Consistência",
+    "consistency_desc": "Mantenha o mesmo uso de maiúsculas no rótulo (Frase) e o posicionamento do ícone em todos os botões.",
+    "placement_desc": "Os botões devem ser agrupados no canto inferior direito para modais ou inferior esquerdo para formulários.",
+    "placement_conflict": "Conflito de Posicionamento",
+    "placement_conflict_desc": "Evite colocar vários botões primários na mesma visualização."
+  },
+  "btn": {
+    "page_transition": "Transições de página padrão ou links de rodapé."
+  },
+  "datepicker": {
+    "placeholder": "Selecionar data"
+  },
+  "dropzone": {
+    "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
+  },
+  "fileupload": {
+    "button": "Selecionar arquivo",
+    "no_file": "Nenhum arquivo selecionado"
+  },
+  "form": {
+    "optional": "Opcional",
+    "required": "Obrigatório"
+  },
+  "phone": {
+    "number": "Número de telefone"
+  },
+  "search": {
+    "placeholder": "Botão"
+  },
+  "select": {
+    "option": "Opção 1"
+  },
+  "transfer": {
+    "move_to_source": "Mover para disponível",
+    "move_to_target": "Mover para selecionado",
+    "source": "Disponível",
+    "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
+    "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+    "target": "Selecionado"
+  }
+}

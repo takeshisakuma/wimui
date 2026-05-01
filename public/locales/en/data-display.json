@@ -1,0 +1,12 @@
+{
+  "calendar": {
+    "aria_date": "{{year}}-{{month}}-{{day}}",
+    "title": "{{year}} / {{month}}"
+  },
+  "table": {
+    "header_component": "Component",
+    "header_overview": "Overview",
+    "header_usage": "Usage Scenario",
+    "header_placement": "Placement"
+  }
+}

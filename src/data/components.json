@@ -204,6 +204,12 @@
         "descKey": "doc.richTextEditor_desc",
         "pc": true,
         "mobile": false
+      },
+      {
+        "name": "InlineEdit",
+        "descKey": "doc.inlineEdit_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -398,6 +404,12 @@
       {
         "name": "VirtualList",
         "descKey": "doc.virtuallist_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "SortableList",
+        "descKey": "doc.sortable_list_desc",
         "pc": true,
         "mobile": true
       },
@@ -612,6 +624,12 @@
       {
         "name": "Audio",
         "descKey": "doc.audio_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "Lightbox",
+        "descKey": "doc.lightbox_desc",
         "pc": true,
         "mobile": true
       }

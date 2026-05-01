@@ -1,0 +1,87 @@
+@layer component {
+  .root {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+
+    &.fullWidth {
+      display: block;
+      width: 100%;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  .editWrapper {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .input {
+    flex: 1;
+  }
+
+  .editActions {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+  }
+
+  .preview {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    min-height: var(--wim-height-md, 40px);
+    padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+    cursor: text;
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-md);
+    transition: var(--wim-transition-base);
+
+    &:hover {
+      background-color: var(--wim-color-surface-hover);
+
+      .editIconWrapper {
+        opacity: 1;
+      }
+    }
+    
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus);
+      outline-offset: var(--wim-focus-outline-offset);
+    }
+  }
+
+  .text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+
+    &.placeholder {
+      color: var(--wim-color-text-placeholder);
+    }
+  }
+
+  .editIconWrapper {
+    display: inline-flex;
+    align-items: center;
+    margin-left: var(--wim-spacing-xs);
+    color: var(--wim-color-text-secondary);
+    opacity: 0;
+    transition: opacity var(--wim-transition-base);
+
+    &:focus-within {
+      opacity: 1;
+    }
+  }
+}

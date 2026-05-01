@@ -5,6 +5,7 @@
 export const ALL_NAMESPACES = [
   "common",
   "components",
+  "data-display",
   "docs_actions",
   "docs_charts",
   "docs_common",
@@ -53,5 +54,6 @@ export const ALL_NAMESPACES = [
   "docs_stories_recipes",
   "docs_stories_utility",
   "docs_typography",
-  "docs_utility"
+  "docs_utility",
+  "form"
 ];

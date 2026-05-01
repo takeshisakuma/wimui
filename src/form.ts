@@ -45,3 +45,4 @@ export * from "./components/form/IconButton/IconButton";
 export * from "./components/form/LinkButton/LinkButton";
 export * from "./components/form/FloatButton/FloatButton";
 export * from "./components/form/QueryBuilder/QueryBuilder";
+export * from "./components/form/InlineEdit/InlineEdit";
