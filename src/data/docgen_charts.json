@@ -1,4 +1,118 @@
 {
+  "ScatterChart": {
+    "name": "ScatterChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ x: number; y: number; z?: number; name: string }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "x",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "y",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "z",
+                    "value": {
+                      "name": "number",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "{ x: number; y: number; z?: number; name: string }[]"
+        },
+        "description": ""
+      },
+      "xAxisName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"X\"",
+          "computed": false
+        }
+      },
+      "yAxisName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"Y\"",
+          "computed": false
+        }
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "CustomizedContent": {
     "name": "CustomizedContent",
     "tokens": [
@@ -213,120 +327,6 @@
       }
     }
   },
-  "ScatterChart": {
-    "name": "ScatterChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{ x: number; y: number; z?: number; name: string }",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "x",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "y",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "z",
-                    "value": {
-                      "name": "number",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "name",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "{ x: number; y: number; z?: number; name: string }[]"
-        },
-        "description": ""
-      },
-      "xAxisName": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"X\"",
-          "computed": false
-        }
-      },
-      "yAxisName": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"Y\"",
-          "computed": false
-        }
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "PieChart": {
     "name": "PieChart",
     "tokens": [],
@@ -413,225 +413,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "Heatmap": {
-    "name": "Heatmap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{ x: string; y: string; value: number }",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "x",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "y",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "value",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "{ x: string; y: string; value: number }[]"
-        },
-        "description": ""
-      },
-      "xAxisKey": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "yAxisKey": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "colorRange": {
-        "required": false,
-        "tsType": {
-          "name": "tuple",
-          "raw": "[string, string]",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "[\"var(--wim-color-bg-secondary)\", \"var(--wim-color-primary)\"]",
-          "computed": false
-        }
-      }
-    }
-  },
-  "GaugeChart": {
-    "name": "GaugeChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "min": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "max": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "100",
-          "computed": false
-        }
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "200",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },
@@ -742,6 +523,94 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "GaugeChart": {
+    "name": "GaugeChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "min": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "max": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "200",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -1002,6 +871,137 @@
       }
     }
   },
+  "Heatmap": {
+    "name": "Heatmap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{ x: string; y: string; value: number }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "x",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "y",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "{ x: string; y: string; value: number }[]"
+        },
+        "description": ""
+      },
+      "xAxisKey": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "yAxisKey": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "colorRange": {
+        "required": false,
+        "tsType": {
+          "name": "tuple",
+          "raw": "[string, string]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "[\"var(--wim-color-bg-secondary)\", \"var(--wim-color-primary)\"]",
+          "computed": false
+        }
+      }
+    }
+  },
   "FunnelChart": {
     "name": "FunnelChart",
     "tokens": [],
@@ -1054,6 +1054,116 @@
           "name": "string"
         },
         "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "BarChart": {
+    "name": "BarChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
+            }
+          ],
+          "raw": "ChartDataPoint[]"
+        },
+        "description": ""
+      },
+      "keys": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "xAxisKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "stacked": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "height": {
         "required": false,
@@ -1213,116 +1323,6 @@
           "value": "true",
           "computed": false
         }
-      }
-    }
-  },
-  "BarChart": {
-    "name": "BarChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
-            }
-          ],
-          "raw": "ChartDataPoint[]"
-        },
-        "description": ""
-      },
-      "keys": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "xAxisKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "stacked": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   }
