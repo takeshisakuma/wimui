@@ -1,142 +1,4 @@
 {
-  "TabNavigation": {
-    "name": "TabNavigation",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"underline\" | \"pill\" | \"contained\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"underline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"pill\""
-            },
-            {
-              "name": "literal",
-              "value": "\"contained\""
-            }
-          ]
-        },
-        "description": "Visual style of the tabs",
-        "defaultValue": {
-          "value": "\"underline\"",
-          "computed": false
-        }
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"justify\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"justify\""
-            }
-          ]
-        },
-        "description": "Alignment of the tabs",
-        "defaultValue": {
-          "value": "\"start\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "Size of the tabs",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TabNavigation.Item": {
-    "name": "TabNavigation.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Active state"
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Disabled state"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Icon element"
-      }
-    }
-  },
   "Tabs": {
     "name": "Tabs",
     "tokens": [
@@ -347,48 +209,117 @@
       }
     }
   },
-  "TabBar": {
-    "name": "TabBar",
+  "TabNavigation": {
+    "name": "TabNavigation",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "fixed": {
+      "variant": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "union",
+          "raw": "\"underline\" | \"pill\" | \"contained\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"underline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"pill\""
+            },
+            {
+              "name": "literal",
+              "value": "\"contained\""
+            }
+          ]
         },
-        "description": "Fixed position at the bottom of the screen",
+        "description": "Visual style of the tabs",
         "defaultValue": {
-          "value": "true",
+          "value": "\"underline\"",
           "computed": false
         }
       },
-      "bordered": {
+      "align": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"justify\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"justify\""
+            }
+          ]
         },
-        "description": "Show top border",
+        "description": "Alignment of the tabs",
         "defaultValue": {
-          "value": "true",
+          "value": "\"start\"",
           "computed": false
         }
       },
-      "glass": {
+      "size": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
         },
-        "description": "Glassmorphism effect",
+        "description": "Size of the tabs",
         "defaultValue": {
-          "value": "false",
+          "value": "\"md\"",
           "computed": false
         }
       }
     }
   },
-  "TabBar.Item": {
-    "name": "TabBar.Item",
+  "TabNavigation.Item": {
+    "name": "TabNavigation.Item",
     "tokens": [],
     "anatomy": [],
     "props": {
@@ -399,6 +330,13 @@
         },
         "description": "Active state"
       },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Disabled state"
+      },
       "icon": {
         "required": false,
         "tsType": {
@@ -406,21 +344,6 @@
           "raw": "React.ReactNode"
         },
         "description": "Icon element"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Text label"
-      },
-      "badge": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Badge content (optional)"
       }
     }
   },
@@ -588,6 +511,83 @@
           }
         },
         "description": "Callback function when a step is clicked (if applicable)"
+      }
+    }
+  },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the bottom of the screen",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Show top border",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TabBar.Item": {
+    "name": "TabBar.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Active state"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Icon element"
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Text label"
+      },
+      "badge": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Badge content (optional)"
       }
     }
   },
@@ -913,97 +913,6 @@
       }
     }
   },
-  "HamburgerMenu": {
-    "name": "HamburgerMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the menu is open",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "ReactMouseEventHandler",
-          "raw": "React.MouseEventHandler<HTMLButtonElement>",
-          "elements": [
-            {
-              "name": "HTMLButtonElement"
-            }
-          ]
-        },
-        "description": "Callback function when the menu is toggled"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "Size of the hamburger menu",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Color of the bars"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
-      }
-    }
-  },
   "Link": {
     "name": "Link",
     "tokens": [
@@ -1193,6 +1102,227 @@
           }
         },
         "description": "Custom styles for internal parts"
+      }
+    }
+  },
+  "HamburgerMenu": {
+    "name": "HamburgerMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the menu is open",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "ReactMouseEventHandler",
+          "raw": "React.MouseEventHandler<HTMLButtonElement>",
+          "elements": [
+            {
+              "name": "HTMLButtonElement"
+            }
+          ]
+        },
+        "description": "Callback function when the menu is toggled"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "Size of the hamburger menu",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Color of the bars"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
+      }
+    }
+  },
+  "Breadcrumb": {
+    "name": "Breadcrumb",
+    "tokens": [
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-opacity-disabled",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  label: React.ReactNode;\r\n  href?: string;\r\n  iconName?: React.ComponentProps<typeof Icon>[\"name\"];\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "ReactReactNode",
+                      "raw": "React.ReactNode",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "iconName",
+                    "value": {
+                      "name": "ReactComponentProps[\"name\"]",
+                      "raw": "React.ComponentProps<typeof Icon>[\"name\"]",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "BreadcrumbItem[]"
+        },
+        "description": ""
+      },
+      "separator": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "ariaLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -1460,136 +1590,6 @@
         "required": true,
         "tsType": {
           "name": "ReactNode"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Breadcrumb": {
-    "name": "Breadcrumb",
-    "tokens": [
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-opacity-disabled",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  label: React.ReactNode;\r\n  href?: string;\r\n  iconName?: React.ComponentProps<typeof Icon>[\"name\"];\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "label",
-                    "value": {
-                      "name": "ReactReactNode",
-                      "raw": "React.ReactNode",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "href",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "iconName",
-                    "value": {
-                      "name": "ReactComponentProps[\"name\"]",
-                      "raw": "React.ComponentProps<typeof Icon>[\"name\"]",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "BreadcrumbItem[]"
-        },
-        "description": ""
-      },
-      "separator": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "ariaLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
         },
         "description": ""
       }

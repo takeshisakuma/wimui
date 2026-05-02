@@ -14,4 +14,5 @@ export * from "./overlay";
 export * from "./typography";
 export * from "./media";
 export * from "./charts";
+export * from "./ai";
 

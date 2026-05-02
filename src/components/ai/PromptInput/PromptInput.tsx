@@ -1,56 +1,55 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
+import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./prompt-input.module.scss";
 
 export interface PromptInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "onSubmit"> {
   /** Current text value (controlled) */
   value?: string;
-  /** Default text value (uncontrolled) */
+  /** Default value (uncontrolled) */
   defaultValue?: string;
-  /** Called when the text value changes */
+  /** Callback when value changes */
   onChange?: (value: string) => void;
-  /** Called when the user submits the prompt (Enter key or send button) */
+  /** Callback when user submits (Enter or button click) */
   onSubmit?: (value: string) => void;
-  /** Called when the attachment button is clicked */
-  onAttach?: () => void;
-  /** Placeholder text for the textarea */
+  /** Placeholder text */
   placeholder?: string;
-  /** Maximum character length */
+  /** Maximum number of characters */
   maxLength?: number;
   /** Whether the input is disabled */
   disabled?: boolean;
-  /** Whether a response is being generated (blocks submission) */
+  /** Whether the input is in a loading state */
   loading?: boolean;
   /** Whether to show the attachment button */
   showAttach?: boolean;
-  /** Maximum rows before scrolling begins */
+  /** Callback when attachment button is clicked */
+  onAttach?: () => void;
+  /** Maximum number of rows to show before scrolling */
   maxRows?: number;
+  /** Additional CSS class */
+  className?: string;
 }
 
 /**
- * PromptInput is an auto-resizing prompt input with send and optional attachment actions.
- * Press Enter to submit; Shift+Enter inserts a newline.
- *
- * Composition Contract:
- * - Managed by: App consumption
- * - Scroll lock: No
+ * PromptInput is a specialized input for AI prompts, 
+ * supporting auto-resizing, file attachments, and submission logic.
  */
-export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
+export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProps>(
   (
     {
       value: controlledValue,
       defaultValue = "",
       onChange,
       onSubmit,
-      onAttach,
       placeholder,
       maxLength,
       disabled = false,
       loading = false,
       showAttach = false,
+      onAttach,
       maxRows = 8,
       className,
       ...props
@@ -58,27 +57,16 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
     ref
   ) => {
     const { t } = useTranslation("form");
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
     const isControlled = controlledValue !== undefined;
-
     const [internalValue, setInternalValue] = React.useState(defaultValue);
     const currentValue = isControlled ? controlledValue : internalValue;
 
+    const textareaRef = useAutoResize(currentValue, maxRows);
+
+    // Merge refs
+    React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
+
     const placeholderText = placeholder ?? t("prompt_input.placeholder");
-
-    const resize = useCallback(() => {
-      const el = textareaRef.current;
-      if (!el) return;
-      el.style.height = "auto";
-      const lineHeight = parseFloat(getComputedStyle(el).lineHeight) || 24;
-      const maxHeight = lineHeight * maxRows;
-      el.style.height = `${Math.min(el.scrollHeight, maxHeight)}px`;
-      el.style.overflowY = el.scrollHeight > maxHeight ? "auto" : "hidden";
-    }, [maxRows]);
-
-    useEffect(() => {
-      resize();
-    }, [currentValue, resize]);
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -109,27 +97,29 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
 
     return (
       <div
-        ref={ref}
         className={classNames(
           styles.root,
-          disabled && styles.disabled,
-          loading && styles.loading,
+          {
+            [styles.disabled]: disabled,
+            [styles.loading]: loading,
+          },
           className
         )}
         {...props}
       >
-        <div className={classNames(styles.inputArea, !showAttach && styles.noAttach)}>
+        <div className={classNames(styles.inputArea, { [styles.noAttach]: !showAttach })}>
           {showAttach && (
             <button
               type="button"
               className={styles.actionButton}
               onClick={onAttach}
+              aria-label="Attach file"
               disabled={disabled || loading}
-              aria-label={t("prompt_input.attach_label")}
             >
               <Icon component={PaperclipIcon} size="sm" />
             </button>
           )}
+
           <textarea
             ref={textareaRef}
             className={styles.textarea}
@@ -137,29 +127,28 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder={placeholderText}
-            maxLength={maxLength}
-            disabled={disabled || loading}
             rows={1}
-            aria-label={t("prompt_input.aria_label")}
-            aria-multiline="true"
+            disabled={disabled || loading}
+            maxLength={maxLength}
           />
+
           <button
             type="button"
             className={classNames(styles.actionButton, styles.sendButton)}
             onClick={handleSubmit}
             disabled={!canSubmit}
-            aria-label={t("prompt_input.send_label")}
+            aria-label="Send message"
           >
             <Icon component={SendIcon} size="sm" />
           </button>
         </div>
-        {maxLength !== undefined && (
-          <div className={styles.footer} aria-live="polite" aria-atomic="true">
+
+        {maxLength && (
+          <div className={styles.footer}>
             <span
-              className={classNames(
-                styles.charCount,
-                currentValue.length >= maxLength && styles.charCountMax
-              )}
+              className={classNames(styles.charCount, {
+                [styles.charCountMax]: currentValue.length >= maxLength,
+              })}
             >
               {currentValue.length} / {maxLength}
             </span>

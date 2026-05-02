@@ -130,150 +130,6 @@
       }
     }
   },
-  "Spinner": {
-    "name": "Spinner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "labelPosition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"right\" | \"bottom\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"right\"",
-          "computed": false
-        }
-      }
-    }
-  },
   "Toast": {
     "name": "Toast",
     "tokens": [
@@ -483,6 +339,246 @@
           "value": "\"top-right\"",
           "computed": false
         }
+      }
+    }
+  },
+  "Spinner": {
+    "name": "Spinner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "labelPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"right\" | \"bottom\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"right\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Skeleton": {
+    "name": "Skeleton",
+    "tokens": [
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-radius-full",
+      "--wim-radius-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"text\" | \"rect\" | \"circle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"text\""
+            },
+            {
+              "name": "literal",
+              "value": "\"rect\""
+            },
+            {
+              "name": "literal",
+              "value": "\"circle\""
+            }
+          ]
+        },
+        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
+        "defaultValue": {
+          "value": "\"text\"",
+          "computed": false
+        }
+      },
+      "animation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pulse\" | \"wave\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wave\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
+        "defaultValue": {
+          "value": "\"pulse\"",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
       }
     }
   },
@@ -731,102 +827,6 @@
           "raw": "React.ReactNode"
         },
         "description": ""
-      }
-    }
-  },
-  "Skeleton": {
-    "name": "Skeleton",
-    "tokens": [
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-radius-full",
-      "--wim-radius-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"text\" | \"rect\" | \"circle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"text\""
-            },
-            {
-              "name": "literal",
-              "value": "\"rect\""
-            },
-            {
-              "name": "literal",
-              "value": "\"circle\""
-            }
-          ]
-        },
-        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
-        "defaultValue": {
-          "value": "\"text\"",
-          "computed": false
-        }
-      },
-      "animation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"pulse\" | \"wave\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wave\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
-        "defaultValue": {
-          "value": "\"pulse\"",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
       }
     }
   },
@@ -1764,161 +1764,6 @@
       }
     }
   },
-  "Loader": {
-    "name": "Loader",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-circle",
-      "--wim-duration-fast",
-      "--wim-duration-short",
-      "--wim-duration-slow",
-      "--wim-duration-slowest",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-standard",
-      "--wim-loader-dot-gap",
-      "--wim-loader-duration",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"bars\" | \"dots\" | \"pulse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"bars\""
-            },
-            {
-              "name": "literal",
-              "value": "\"dots\""
-            },
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            }
-          ]
-        },
-        "description": "ローダーのアニメーション形式。",
-        "defaultValue": {
-          "value": "\"bars\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "ローダーのサイズ。",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "ローダーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      }
-    }
-  },
   "Indicator": {
     "name": "Indicator",
     "tokens": [
@@ -2096,6 +1941,161 @@
           "raw": "React.CSSProperties"
         },
         "description": ""
+      }
+    }
+  },
+  "Loader": {
+    "name": "Loader",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-circle",
+      "--wim-duration-fast",
+      "--wim-duration-short",
+      "--wim-duration-slow",
+      "--wim-duration-slowest",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-standard",
+      "--wim-loader-dot-gap",
+      "--wim-loader-duration",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"bars\" | \"dots\" | \"pulse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"bars\""
+            },
+            {
+              "name": "literal",
+              "value": "\"dots\""
+            },
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            }
+          ]
+        },
+        "description": "ローダーのアニメーション形式。",
+        "defaultValue": {
+          "value": "\"bars\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "ローダーのサイズ。",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "ローダーの色。",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
       }
     }
   },
@@ -2313,135 +2313,6 @@
       }
     }
   },
-  "Banner": {
-    "name": "Banner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-bg-base",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-informative",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-positive",
-      "--wim-opacity-disabled",
-      "--wim-opacity-ghost",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーのタイトル"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーの説明文"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "バナーのインテント（意味的状態）",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | React.ReactNode",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          ]
-        },
-        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションボタン要素（例：Buttonコンポーネント）"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
-      }
-    }
-  },
   "Alert": {
     "name": "Alert",
     "tokens": [
@@ -2588,6 +2459,135 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素（説明文として扱われます）"
+      }
+    }
+  },
+  "Banner": {
+    "name": "Banner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-bg-base",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-informative",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-positive",
+      "--wim-opacity-disabled",
+      "--wim-opacity-ghost",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーのタイトル"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーの説明文"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "バナーのインテント（意味的状態）",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | React.ReactNode",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          ]
+        },
+        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションボタン要素（例：Buttonコンポーネント）"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
       }
     }
   }

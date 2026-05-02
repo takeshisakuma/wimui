@@ -55,7 +55,7 @@
         "tsType": {
           "name": "string"
         },
-        "description": "Default text value (uncontrolled)",
+        "description": "Default value (uncontrolled)",
         "defaultValue": {
           "value": "\"\"",
           "computed": false
@@ -81,7 +81,7 @@
             }
           }
         },
-        "description": "Called when the text value changes"
+        "description": "Callback when value changes"
       },
       "onSubmit": {
         "required": false,
@@ -103,36 +103,21 @@
             }
           }
         },
-        "description": "Called when the user submits the prompt (Enter key or send button)"
-      },
-      "onAttach": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Called when the attachment button is clicked"
+        "description": "Callback when user submits (Enter or button click)"
       },
       "placeholder": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "Placeholder text for the textarea"
+        "description": "Placeholder text"
       },
       "maxLength": {
         "required": false,
         "tsType": {
           "name": "number"
         },
-        "description": "Maximum character length"
+        "description": "Maximum number of characters"
       },
       "disabled": {
         "required": false,
@@ -150,7 +135,7 @@
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether a response is being generated (blocks submission)",
+        "description": "Whether the input is in a loading state",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -167,16 +152,38 @@
           "computed": false
         }
       },
+      "onAttach": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when attachment button is clicked"
+      },
       "maxRows": {
         "required": false,
         "tsType": {
           "name": "number"
         },
-        "description": "Maximum rows before scrolling begins",
+        "description": "Maximum number of rows to show before scrolling",
         "defaultValue": {
           "value": "8",
           "computed": false
         }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
       }
     }
   }

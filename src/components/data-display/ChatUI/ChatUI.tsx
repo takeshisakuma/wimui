@@ -1,6 +1,9 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
+import { Icon } from "../../media/Icon/Icon";
+import { SendIcon, PaperclipIcon } from "@/icon";
+import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./chat-ui.module.scss";
 
 export interface ChatContainerProps {
@@ -86,36 +89,80 @@ export const ChatMessage = ({
   );
 };
 
-export interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  onSend?: (message: string) => void;
-  sendButtonLabel?: string;
-  showSendButton?: boolean;
+export interface ChatInputAreaProps {
+  children: React.ReactNode;
   className?: string;
 }
 
-export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
+/**
+ * ChatInputArea provides a consistent footer container for chat inputs,
+ * including a top border and background color.
+ */
+export const ChatInputArea = ({
+  children,
+  className,
+}: ChatInputAreaProps): React.ReactElement => {
+  return (
+    <div className={classNames(styles.inputArea, className)}>
+      {children}
+    </div>
+  );
+};
+
+export interface ChatInputProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "onSend"> {
+  onSend?: (message: string) => void;
+  onAttach?: () => void;
+  sendButtonLabel?: string;
+  sendButtonIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  showSendButton?: boolean;
+  showAttach?: boolean;
+  maxRows?: number;
+  className?: string;
+}
+
+export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
   (
     {
       onSend,
-      sendButtonLabel: sendButtonLabelProp,
+      onAttach,
+      sendButtonLabel,
+      sendButtonIcon = SendIcon,
       showSendButton = true,
+      showAttach = false,
+      maxRows = 8,
       className,
       ...props
     },
     ref,
   ) => {
-    const [value, setValue] = React.useState("");
+    const [internalValue, setInternalValue] = React.useState("");
+    const isControlled = props.value !== undefined;
+    const value = isControlled ? (props.value as string) : internalValue;
 
-    const sendButtonLabel = sendButtonLabelProp || "Send";
+    const textareaRef = useAutoResize(value, maxRows);
+
+    // Merge refs
+    React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
+
+    const hasLabel = !!sendButtonLabel;
 
     const handleSend = () => {
-      if (value.trim() && onSend) {
+      if (onSend) {
         onSend(value);
-        setValue("");
+        if (!isControlled) {
+          setInternalValue("");
+        }
       }
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (!isControlled) {
+        setInternalValue(e.target.value);
+      }
+      props.onChange?.(e);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         handleSend();
@@ -123,28 +170,41 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
     };
 
     return (
-      <div className={classNames(styles.input, className)}>
-        <input
-          ref={ref}
-          type="text"
-          className={styles.field}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder={props.placeholder || "Type a message..."}
-          {...props}
-        />
-        {showSendButton && (
-          <button
-            className={styles.sendButton}
-            onClick={handleSend}
-            disabled={!value.trim()}
-            type="button"
-          >
-            {sendButtonLabel}
-          </button>
-        )}
-      </div>
+      <ChatInputArea className={className}>
+        <div className={styles.fieldContainer}>
+          {showAttach && (
+            <button
+              type="button"
+              className={styles.attachButton}
+              onClick={onAttach}
+              aria-label="Attach file"
+            >
+              <Icon component={PaperclipIcon} size="sm" />
+            </button>
+          )}
+          <textarea
+            ref={textareaRef}
+            className={styles.field}
+            value={value}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder={props.placeholder || "Type a message..."}
+            rows={1}
+            {...props}
+          />
+          {showSendButton && (
+            <button
+              className={styles.sendButton}
+              onClick={handleSend}
+              disabled={!value.trim()}
+              type="button"
+              aria-label={sendButtonLabel || "Send"}
+            >
+              {hasLabel ? sendButtonLabel : <Icon component={sendButtonIcon} size="sm" />}
+            </button>
+          )}
+        </div>
+      </ChatInputArea>
     );
   },
 );

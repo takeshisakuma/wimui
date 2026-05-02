@@ -113,16 +113,33 @@
     color: var(--wim-color-text-tertiary);
   }
   
-  .input {
+  .inputArea {
     display: flex;
     gap: var(--wim-spacing-sm, 12px);
-    padding: var(--wim-spacing-md, 16px);
+    align-items: flex-end;
+    padding: var(--wim-spacing-sm, 12px);
     background-color: var(--wim-color-bg-component);
     border-top: 1px solid var(--wim-color-border);
-  
+
     @container (max-width: 480px) {
-      gap: var(--wim-spacing-md);
-      padding: var(--wim-spacing-xl);
+      padding: var(--wim-spacing-md);
+    }
+  }
+
+  .fieldContainer {
+    display: flex;
+    flex: 1;
+    gap: var(--wim-spacing-xs);
+    align-items: flex-end;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
+    background-color: var(--wim-color-surface);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-lg);
+    transition: border-color var(--wim-transition-fast), box-shadow var(--wim-transition-fast);
+
+    &:focus-within {
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
     }
   }
   
@@ -130,22 +147,18 @@
     box-sizing: border-box;
     flex: 1;
     min-width: 0;
-    padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-md, 16px);
+    padding: var(--wim-spacing-xs) 0;
     font-family: inherit;
     font-size: var(--wim-font-size-md, 16px);
     line-height: normal;
     color: var(--wim-color-text-primary);
     appearance: none;
+    resize: none;
     outline: none;
-    background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md, 8px);
-    transition: border-color var(--wim-transition-fast);
+    background-color: transparent;
+    border: none;
+    box-shadow: none !important;
     text-box-trim: none;
-  
-    &:focus {
-      border-color: var(--wim-color-primary);
-    }
   
     &::placeholder {
       color: var(--wim-color-text-tertiary);
@@ -153,34 +166,62 @@
   }
   
   .sendButton {
+    display: flex;
     flex-shrink: 0;
-    padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-lg, 24px);
-    font-size: var(--wim-font-size-md, 16px);
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium, 500);
-    color: var(--wim-color-text-on-primary);
+    color: var(--wim-color-primary);
     cursor: pointer;
-    background-color: var(--wim-color-primary);
+    background-color: transparent;
     border: none;
-    border-radius: var(--wim-radius-md, 8px);
+    border-radius: var(--wim-radius-md);
     transition:
       background-color var(--wim-transition-fast),
       opacity var(--wim-transition-fast);
   
-    @container (max-width: 480px) {
-      padding: var(--wim-spacing-xl) var(--wim-spacing-2xl);
-    }
-  
     &:hover:not(:disabled) {
-      background-color: var(--wim-color-primary-hover);
+      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
     }
   
     &:active:not(:disabled) {
-      background-color: var(--wim-color-primary-active);
+      background-color: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
     }
   
     &:disabled {
       cursor: not-allowed;
-      opacity: var(--wim-opacity-ghost);
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  .attachButton {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px; // Align slightly better with text
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: var(--wim-radius-md);
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast);
+
+    &:hover {
+      color: var(--wim-color-text-secondary);
+      background-color: var(--wim-color-bg-secondary);
+    }
+
+    &:active {
+      background-color: var(--wim-color-bg-active);
     }
   }
   
