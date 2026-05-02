@@ -25,10 +25,45 @@
   
     // Colors and Variants
     @include module-token-variants;
+
+    &:disabled,
+    &.disabled {
+      color: var(--wim-color-text-disabled) !important;
+      cursor: not-allowed;
+      background-color: var(--wim-color-bg-component) !important;
+      border: var(--wim-border-width-thin) solid var(--wim-color-border) !important;
+      opacity: 1;
+      filter: none;
+
+      .closeButton {
+        display: none;
+      }
+    }
   }
 
   .icon {
     display: flex;
     font-size: 1.2em;
+  }
+
+  .closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-right: calc(-1 * var(--wim-spacing-xs));
+    margin-left: var(--wim-spacing-3xs);
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    opacity: var(--wim-opacity-secondary);
+    transition: all var(--wim-transition-fast);
+
+    &:hover {
+      background-color: var(--wim-color-bg-hover);
+      opacity: 1;
+    }
   }
 }

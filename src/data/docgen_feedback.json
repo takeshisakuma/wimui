@@ -130,6 +130,366 @@
       }
     }
   },
+  "Toast": {
+    "name": "Toast",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-glass-bg",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-duration-base",
+      "--wim-easing-base",
+      "--wim-easing-entrance",
+      "--wim-height-xs",
+      "--wim-opacity-ghost",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-glass",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "duration": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "3000",
+          "computed": false
+        }
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(id?: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "id"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ToastProvider": {
+    "name": "ToastProvider",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-glass-bg",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-duration-base",
+      "--wim-easing-base",
+      "--wim-easing-entrance",
+      "--wim-height-xs",
+      "--wim-opacity-ghost",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-glass",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "position": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"top-right\"\r\n| \"top-left\"\r\n| \"top-center\"\r\n| \"bottom-right\"\r\n| \"bottom-left\"\r\n| \"bottom-center\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top-right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"top-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"top-center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-center\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"top-right\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Spinner": {
+    "name": "Spinner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "labelPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"right\" | \"bottom\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"right\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "Snackbar": {
     "name": "Snackbar",
     "tokens": [
@@ -375,362 +735,6 @@
           "raw": "React.ReactNode"
         },
         "description": ""
-      }
-    }
-  },
-  "Toast": {
-    "name": "Toast",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-glass-bg",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-duration-base",
-      "--wim-easing-base",
-      "--wim-easing-entrance",
-      "--wim-height-xs",
-      "--wim-opacity-ghost",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-glass",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "duration": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "3000",
-          "computed": false
-        }
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(id?: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "id"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "ToastProvider": {
-    "name": "ToastProvider",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-glass-bg",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-duration-base",
-      "--wim-easing-base",
-      "--wim-easing-entrance",
-      "--wim-height-xs",
-      "--wim-opacity-ghost",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-glass",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "position": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"top-right\"\r\n| \"top-left\"\r\n| \"top-center\"\r\n| \"bottom-right\"\r\n| \"bottom-left\"\r\n| \"bottom-center\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top-right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"top-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"top-center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-center\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"top-right\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Spinner": {
-    "name": "Spinner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "labelPosition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"right\" | \"bottom\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"right\"",
-          "computed": false
-        }
       }
     }
   },
@@ -1272,8 +1276,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -1340,6 +1348,208 @@
         "description": "",
         "defaultValue": {
           "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Notification": {
+    "name": "Notification",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-medium",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-notification-border-accent-width",
+      "--wim-notification-width",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The unique identifier of notification"
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title of notification"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description of notification"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The icon of notification"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "The intent of notification"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(id?: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "id"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when notification is closed"
+      },
+      "closable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show close button",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class name"
+      }
+    }
+  },
+  "NotificationProvider": {
+    "name": "NotificationProvider",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-medium",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-notification-border-accent-width",
+      "--wim-notification-width",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "placement": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"topRight\"\r\n| \"topLeft\"\r\n| \"bottomRight\"\r\n| \"bottomLeft\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"topRight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"topLeft\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottomRight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottomLeft\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"topRight\"",
           "computed": false
         }
       }
@@ -1562,208 +1772,6 @@
       }
     }
   },
-  "Notification": {
-    "name": "Notification",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-medium",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-notification-border-accent-width",
-      "--wim-notification-width",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "The unique identifier of notification"
-      },
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title of notification"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description of notification"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The icon of notification"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "The intent of notification"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(id?: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "id"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when notification is closed"
-      },
-      "closable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show close button",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class name"
-      }
-    }
-  },
-  "NotificationProvider": {
-    "name": "NotificationProvider",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-medium",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-notification-border-accent-width",
-      "--wim-notification-width",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "placement": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"topRight\"\r\n| \"topLeft\"\r\n| \"bottomRight\"\r\n| \"bottomLeft\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"topRight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"topLeft\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottomRight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottomLeft\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"topRight\"",
-          "computed": false
-        }
-      }
-    }
-  },
   "Loader": {
     "name": "Loader",
     "tokens": [
@@ -1825,8 +1833,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -1988,8 +2000,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -2313,6 +2329,135 @@
       }
     }
   },
+  "Banner": {
+    "name": "Banner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-bg-base",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-informative",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-positive",
+      "--wim-opacity-disabled",
+      "--wim-opacity-ghost",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーのタイトル"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーの説明文"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "バナーのインテント（意味的状態）",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | React.ReactNode",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          ]
+        },
+        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションボタン要素（例：Buttonコンポーネント）"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
+      }
+    }
+  },
   "Alert": {
     "name": "Alert",
     "tokens": [
@@ -2459,135 +2604,6 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素（説明文として扱われます）"
-      }
-    }
-  },
-  "Banner": {
-    "name": "Banner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-bg-base",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-informative",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-positive",
-      "--wim-opacity-disabled",
-      "--wim-opacity-ghost",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーのタイトル"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーの説明文"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "バナーのインテント（意味的状態）",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | React.ReactNode",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          ]
-        },
-        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションボタン要素（例：Buttonコンポーネント）"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
       }
     }
   }

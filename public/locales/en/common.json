@@ -132,6 +132,9 @@
   "doc": {
     "location": "Location",
     "transition": "Transition",
+    "label": "Label",
+    "tag_deletable": "Deletable",
+    "tag_deletable_desc": "If the onDelete prop is provided, a close icon is displayed, and clicking it triggers the callback.",
     "op_edit_save": "Save changes",
     "op_cancel": "Cancel changes",
     "op_navigate": "Navigate through items",

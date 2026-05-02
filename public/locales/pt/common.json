@@ -133,6 +133,9 @@
   "doc": {
     "location": "Localização",
     "transition": "Transição",
+    "label": "Rótulo",
+    "tag_deletable": "Eliminável",
+    "tag_deletable_desc": "Se a propriedade onDelete for fornecida, um ícone de fechar é exibido e clicar nele aciona o retorno de chamada.",
     "op_edit_save": "Salvar alterações",
     "op_cancel": "Cancelar alterações",
     "op_navigate": "Navegar pelos itens",

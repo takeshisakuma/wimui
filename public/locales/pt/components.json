@@ -141,7 +141,13 @@
     "promptInput_desc": "Entrada interativa otimizada para engenharia de prompts de IA com suporte a múltiplas linhas e gatilhos de ação.",
     "streamingText_desc": "Renderiza texto com uma animação tipo máquina de escrever, ideal para respostas de chat de IA.",
     "smartSearchInput_desc": "Entrada de busca inteligente que permite tanto a busca tradicional quanto prompte de IA.",
-    "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo."
+    "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo.",
+    "passwordStrength_desc": "Medidor visual para indicar o nível de segurança da senha.",
+    "imageCropper_desc": "Ferramenta front-end para recorte e rotação de imagens.",
+    "tagInput_desc": "Campo de entrada para criação de tags de forma livre.",
+    "score": "Pontuação",
+    "intent": "Intenção",
+    "levels_title": "Definições de Nível"
   },
   "cat": {
     "ai": "IA"

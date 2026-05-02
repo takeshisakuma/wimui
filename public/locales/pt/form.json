@@ -1,38 +1,32 @@
 {
-  "prompt_input": {
-    "placeholder": "Pergunte à IA ou anexe um arquivo...",
-    "send_label": "Enviar",
-    "attach_label": "Anexar arquivo",
-    "aria_label": "Campo de prompt"
+  "btn": {
+    "page_transition": "Transições de página padrão ou links de rodapé."
   },
   "button": {
     "clear": "Limpar",
     "close": "Fechar",
+    "consistency": "Consistência",
+    "consistency_desc": "Mantenha o mesmo uso de maiúsculas no rótulo (Frase) e o posicionamento do ícone em todos os botões.",
+    "copy_desc": "Um botão especializado para copiar texto para a área de transferência com feedback visual.",
+    "copy_usage": "Chaves de API, IDs de transação ou links de compartilhamento.",
     "dismiss": "Descartar",
-    "label": "Botão",
-    "guide_title": "Visão Geral dos Botões",
+    "group_desc": "Um contêiner que agrupa vários botões logicamente relacionados.",
+    "group_usage": "Barras de filtro, paginação ou ações de formulário de várias etapas.",
     "guide_desc": "Diretrizes para escolher e implementar o tipo de botão correto para sua interface.",
+    "guide_title": "Visão Geral dos Botões",
+    "guideline_detail": "Detalhe",
+    "guideline_principle": "Princípio",
+    "icon_usage": "Barras de ferramentas densas, controles de mídia ou compartilhamento social.",
+    "label": "Botão",
+    "link_desc": "Um botão estilizado como um link de texto para ações de navegação secundárias.",
+    "placement_conflict": "Conflito de Posicionamento",
+    "placement_conflict_desc": "Evite colocar vários botões primários na mesma visualização.",
+    "placement_desc": "Os botões devem ser agrupados no canto inferior direito para modais ou inferior esquerdo para formulários.",
     "priority_weighting": "Uma matriz descrevendo quando usar botões Primários, Secundários ou Terciários.",
     "semantics_desc": "Botões acionam ações, enquanto Links alteram a localização da página ou a posição de rolagem.",
     "semantics_guide_ref": "Consulte o guia Link vs Botão para informações mais detalhadas.",
     "standard_desc": "Botão retangular padrão para ações gerais.",
-    "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item.",
-    "icon_usage": "Barras de ferramentas densas, controles de mídia ou compartilhamento social.",
-    "link_desc": "Um botão estilizado como um link de texto para ações de navegação secundárias.",
-    "group_desc": "Um contêiner que agrupa vários botões logicamente relacionados.",
-    "group_usage": "Barras de filtro, paginação ou ações de formulário de várias etapas.",
-    "copy_desc": "Um botão especializado para copiar texto para a área de transferência com feedback visual.",
-    "copy_usage": "Chaves de API, IDs de transação ou links de compartilhamento.",
-    "guideline_principle": "Princípio",
-    "guideline_detail": "Detalhe",
-    "consistency": "Consistência",
-    "consistency_desc": "Mantenha o mesmo uso de maiúsculas no rótulo (Frase) e o posicionamento do ícone em todos os botões.",
-    "placement_desc": "Os botões devem ser agrupados no canto inferior direito para modais ou inferior esquerdo para formulários.",
-    "placement_conflict": "Conflito de Posicionamento",
-    "placement_conflict_desc": "Evite colocar vários botões primários na mesma visualização."
-  },
-  "btn": {
-    "page_transition": "Transições de página padrão ou links de rodapé."
+    "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item."
   },
   "datepicker": {
     "placeholder": "Selecionar data"
@@ -48,14 +42,40 @@
     "optional": "Opcional",
     "required": "Obrigatório"
   },
+  "image_cropper": {
+    "no_image": "Nenhuma imagem selecionada",
+    "rotate": "Rodar",
+    "zoom": "Zoom",
+    "apply": "Aplicar recorte",
+    "confirm_title": "Aplicar recorte",
+    "confirm_message": "Deseja salvar a imagem com este recorte?",
+    "confirm": "Aplicar",
+    "cancel": "Cancelar"
+  },
+  "password_strength": {
+    "fair": "Razoável",
+    "strong": "Forte",
+    "very_strong": "Muito forte",
+    "very_weak": "Muito fraca",
+    "weak": "Fraca"
+  },
   "phone": {
     "number": "Número de telefone"
+  },
+  "prompt_input": {
+    "aria_label": "Campo de prompt",
+    "attach_label": "Anexar arquivo",
+    "placeholder": "Pergunte à IA ou anexe um arquivo...",
+    "send_label": "Enviar"
   },
   "search": {
     "placeholder": "Botão"
   },
   "select": {
     "option": "Opção 1"
+  },
+  "tag_input": {
+    "placeholder": "Inserir etiquetas..."
   },
   "transfer": {
     "move_to_source": "Mover para disponível",

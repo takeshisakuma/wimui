@@ -47,3 +47,6 @@ export * from "./components/form/LinkButton/LinkButton";
 export * from "./components/form/FloatButton/FloatButton";
 export * from "./components/form/QueryBuilder/QueryBuilder";
 export * from "./components/form/InlineEdit/InlineEdit";
+export * from "./components/form/PasswordStrength/PasswordStrength";
+export * from "./components/form/ImageCropper/ImageCropper";
+export * from "./components/form/TagInput/TagInput";

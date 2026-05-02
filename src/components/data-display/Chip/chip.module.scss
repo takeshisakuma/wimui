@@ -72,9 +72,16 @@
   
     &:disabled,
     &.disabled {
+      color: var(--wim-color-text-disabled) !important;
       cursor: not-allowed;
-      opacity: var(--wim-opacity-ghost);
+      background-color: var(--wim-color-bg-component) !important;
+      border: var(--wim-border-width-thin) solid var(--wim-color-border) !important;
+      opacity: 1;
       filter: none;
+
+      .delete {
+        display: none;
+      }
     }
   }
 

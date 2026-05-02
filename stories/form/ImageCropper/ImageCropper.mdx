@@ -1,0 +1,118 @@
+import {
+  Meta,
+  Title,
+  Primary,
+  Stories,
+  Canvas,
+  Controls,
+} from "@storybook/blocks";
+import * as ImageCropperStories from "./ImageCropper.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={ImageCropperStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.imageCropper_title" />
+</p>
+
+<p><T k="doc.imageCropper_long_desc" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.imageCropper_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.imageCropper_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>ImageCropper</b></td>
+      <td><T k="doc.imageCropper_choice_imagecropper_when" /></td>
+    </tr>
+    <tr>
+      <td><b>FileUpload</b></td>
+      <td><T k="doc.imageCropper_choice_fileupload_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="ImageCropper" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.imageCropper_content_guideline_1" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.imageCropper_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.imageCropper_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.imageCropper_scenario_1_title" /></strong></td>
+      <td><T k="doc.imageCropper_scenario_1_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.imageCropper_best_practice_1" /></li>
+  <li><T k="doc.imageCropper_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="ImageCropper" section="tokens" />
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.imageCropper_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.imageCropper_keyboard_desc" /></p>
+
+<Docgen componentName="ImageCropper" section="test" />
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.imageCropper_i18n_desc" /></p>
+
+<Primary />
+
+<Docgen componentName="ImageCropper" section="props" />
+
+## <T k="doc.stories" />
+
+### <T k="doc.story_default" />
+<Canvas of={ImageCropperStories.Default} />
+
+### Landscape Ratio
+<p>Example of a fixed 16:9 aspect ratio.</p>
+<Canvas of={ImageCropperStories.Landscape} />
+
+### Circular Crop
+<p>Use the <code>circular</code> prop for avatar-style cropping.</p>
+<Canvas of={ImageCropperStories.Circular} />
+
+

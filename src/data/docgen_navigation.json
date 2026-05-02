@@ -1,4 +1,214 @@
 {
+  "Tabs": {
+    "name": "Tabs",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "defaultValue": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "value": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "orientation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Tabs.List": {
+    "name": "Tabs.List",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Tabs.Trigger": {
+    "name": "Tabs.Trigger",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "Tabs.Content": {
+    "name": "Tabs.Content",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "TabNavigation": {
     "name": "TabNavigation",
     "tokens": [],
@@ -64,8 +274,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -743,8 +957,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -895,346 +1113,6 @@
       }
     }
   },
-  "Tabs": {
-    "name": "Tabs",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "defaultValue": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "value": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "orientation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Tabs.List": {
-    "name": "Tabs.List",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Tabs.Trigger": {
-    "name": "Tabs.Trigger",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "disabled": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "Tabs.Content": {
-    "name": "Tabs.Content",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Breadcrumb": {
-    "name": "Breadcrumb",
-    "tokens": [
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-opacity-disabled",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  label: React.ReactNode;\r\n  href?: string;\r\n  iconName?: React.ComponentProps<typeof Icon>[\"name\"];\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "label",
-                    "value": {
-                      "name": "ReactReactNode",
-                      "raw": "React.ReactNode",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "href",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "iconName",
-                    "value": {
-                      "name": "ReactComponentProps[\"name\"]",
-                      "raw": "React.ComponentProps<typeof Icon>[\"name\"]",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "BreadcrumbItem[]"
-        },
-        "description": ""
-      },
-      "separator": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "ariaLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "HamburgerMenu": {
     "name": "HamburgerMenu",
     "tokens": [],
@@ -1268,8 +1146,12 @@
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
             {
               "name": "literal",
               "value": "\"sm\""
@@ -1590,6 +1472,140 @@
         "required": true,
         "tsType": {
           "name": "ReactNode"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Breadcrumb": {
+    "name": "Breadcrumb",
+    "tokens": [
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-opacity-disabled",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  label: React.ReactNode;\r\n  href?: string;\r\n  iconName?: React.ComponentProps<typeof Icon>[\"name\"];\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "label",
+                    "value": {
+                      "name": "ReactReactNode",
+                      "raw": "React.ReactNode",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "href",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "iconName",
+                    "value": {
+                      "name": "ReactComponentProps[\"name\"]",
+                      "raw": "React.ComponentProps<typeof Icon>[\"name\"]",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "BreadcrumbItem[]"
+        },
+        "description": ""
+      },
+      "separator": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "ariaLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
         },
         "description": ""
       }

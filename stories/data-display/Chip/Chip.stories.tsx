@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Avatar, Chip, Icon } from "wimui";
+import { Avatar, Chip, Icon, Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Button } from "wimui";
 
 
 /**
@@ -37,7 +37,7 @@ type Story = StoryObj<typeof Chip>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Chip {...args}>{t("story.chip_default")}</Chip>;
+    return <Chip {...args}>{t("docs_stories_display:story.chip_default")}</Chip>;
   },
 };
 
@@ -49,7 +49,7 @@ export const Clickable: Story = {
         {...args}
         onClick={(e: React.MouseEvent) => console.log("Chip clicked", e)}
       >
-        {t("story.chip_clickable")}
+        {t("docs_stories_display:story.chip_clickable")}
       </Chip>
     );
   },
@@ -58,13 +58,36 @@ export const Clickable: Story = {
 export const Deletable: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const [open, setOpen] = useState(false);
+
     return (
-      <Chip
-        {...args}
-        onDelete={(e: React.SyntheticEvent) => console.log("Chip deleted", e)}
-      >
-        {t("story.chip_deletable")}
-      </Chip>
+      <>
+        <Chip
+          {...args}
+          onDelete={() => setOpen(true)}
+        >
+          {t("docs_stories_display:story.chip_deletable")}
+        </Chip>
+
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{t("docs_stories_display:story.dialog_confirm_title")}</DialogTitle>
+              <DialogDescription>
+                {t("docs_stories_display:story.dialog_confirm_desc")}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter style={{ flexDirection: "row", justifyContent: "flex-end", gap: "8px" }}>
+              <DialogClose asChild>
+                <Button variant="outline">{t("docs_stories_display:story.dialog_cancel")}</Button>
+              </DialogClose>
+              <Button variant="solid" intent="destructive" onClick={() => setOpen(false)}>
+                {t("docs_stories_display:story.dialog_confirm")}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </>
     );
   },
 };
@@ -83,7 +106,7 @@ export const WithIcon: Story = {
         {...args}
         icon={<Icon name="CircleIcon" size="sm" />}
       >
-        {t("story.selectbox_opt4")}
+        {t("docs_stories_inputs:story.selectbox_opt4")}
       </Chip>
     );
   },
@@ -92,7 +115,7 @@ export const WithIcon: Story = {
 export const Selected: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Chip {...args} selected={true} onClick={() => {}}>{t("story.chip_selected")}</Chip>;
+    return <Chip {...args} selected={true} onClick={() => {}}>{t("docs_stories_display:story.chip_selected")}</Chip>;
   },
 };
 
@@ -101,15 +124,15 @@ export const Variants: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Chip {...args} variant="solid" onClick={() => {}}>{t("story.chip_solid")}</Chip>
-        <Chip {...args} variant="outline" onClick={() => {}}>{t("story.chip_outline")}</Chip>
+        <Chip {...args} variant="solid" onClick={() => {}}>{t("docs_stories_display:story.chip_solid")}</Chip>
+        <Chip {...args} variant="outline" onClick={() => {}}>{t("docs_stories_display:story.chip_outline")}</Chip>
         <Chip
           {...args}
           variant="outline"
           selected
           onClick={() => {}}
         >
-          {t("story.chip_selected_label")}
+          {t("docs_stories_display:story.chip_selected_label")}
         </Chip>
       </div>
     );

@@ -1,4 +1,6 @@
 import React from "react";
+import classNames from "classnames";
+import { Icon } from "../../media/Icon/Icon";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./tag.module.scss";
@@ -20,16 +22,41 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: ComponentSize;
   /** アイコン */
   icon?: React.ReactNode;
+  /** 削除時のイベント。提供されると×ボタンが表示されます。 */
+  onDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /** 無効状態 */
+  disabled?: boolean;
 };
 
 /**
- * カテゴリ分けや属性のラベルとして使用される非インタラクティブなコンポーネント。
+ * カテゴリ分けや属性のラベルとして使用されるコンポーネント。
+ * onClose を提供することで削除可能なタグとして機能します。
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
-  ({ children, content, icon, ...props }, ref) => {
+  ({ children, content, icon, onDelete, disabled, ...props }, ref) => {
     return (
-      <IndicatorBase ref={ref} styles={styles} icon={icon} content={content} {...props}>
+      <IndicatorBase
+        ref={ref}
+        styles={styles}
+        icon={icon}
+        content={content}
+        className={classNames(props.className, { [styles.disabled]: disabled })}
+        {...props}
+      >
         {children}
+        {onDelete && (
+          <button
+            type="button"
+            className={styles.closeButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(e);
+            }}
+            aria-label="Close"
+          >
+            <Icon name="CloseIcon" size="sm" />
+          </button>
+        )}
       </IndicatorBase>
     );
   },

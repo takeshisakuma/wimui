@@ -45,6 +45,18 @@
         "descKey": "doc.signaturePad_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "ImageCropper",
+        "descKey": "doc.imageCropper_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "TagInput",
+        "descKey": "doc.tagInput_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -154,6 +166,12 @@
       {
         "name": "PasswordInput",
         "descKey": "doc.passwordInput_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "PasswordStrength",
+        "descKey": "doc.passwordStrength_desc",
         "pc": true,
         "mobile": true
       },

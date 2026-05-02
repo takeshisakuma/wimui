@@ -141,7 +141,13 @@
     "promptInput_desc": "AIプロンプトエンジニアリングに最適化された、複数行サポートとアクション・トリガーを備えた入力コンポーネント。",
     "streamingText_desc": "AIのチャット応答などに適した、タイプライターのようなアニメーションでテキストを描画します。",
     "smartSearchInput_desc": "検索とAIプロンプトの両立を可能にするスマート検索入力。",
-    "thoughtProcess_desc": "AIの推論過程やステップごとの処理状態を可視化するコンポーネント。"
+    "thoughtProcess_desc": "AIの推論過程やステップごとの処理状態を可視化するコンポーネント。",
+    "passwordStrength_desc": "パスワードの安全性を視覚的に表示するメーター。",
+    "imageCropper_desc": "フロントエンドでの画像切り抜き・回転ツール。",
+    "tagInput_desc": "自由入力によるタグ作成フィールド。",
+    "score": "スコア",
+    "intent": "インテント",
+    "levels_title": "強度レベルの定義"
   },
   "cat": {
     "ai": "AI"

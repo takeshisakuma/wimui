@@ -1,38 +1,32 @@
 {
-  "prompt_input": {
-    "placeholder": "AIにメッセージを入力、またはファイルを添付...",
-    "send_label": "送信",
-    "attach_label": "ファイルを添付",
-    "aria_label": "プロンプト入力"
+  "btn": {
+    "page_transition": "標準的なページ遷移またはフッターリンク。"
   },
   "button": {
     "clear": "クリア",
     "close": "閉じる",
+    "consistency": "一貫性",
+    "consistency_desc": "すべてのボタンで同一のラベルのケーシング（文の最初の文字のみ大文字）とアイコンの配置を維持します。",
+    "copy_desc": "視覚的なフィードバックを伴ってテキストをクリップボードにコピーするための専用ボタン。",
+    "copy_usage": "APIキー、トランザションID、または共有リンク。",
     "dismiss": "閉じる",
-    "label": "ボタン",
-    "guide_title": "ボタンの概要",
+    "group_desc": "論理的に関連する複数のボタンをグループ化するコンテナ。",
+    "group_usage": "フィルターバー、ページネーション、または複数ステップのフォームアクション。",
     "guide_desc": "インターフェースに適切なボタンタイプを選択し、実装するためのガイドライン。",
+    "guide_title": "ボタンの概要",
+    "guideline_detail": "詳細",
+    "guideline_principle": "原則",
+    "icon_usage": "高密度のツールバー、メディアコントロール、またはソーシャル共有。",
+    "label": "ボタン",
+    "link_desc": "二次的なナビゲーションアクション用のテキストリンクのようにスタイル設定されたボタン。",
+    "placement_conflict": "配置の競合",
+    "placement_conflict_desc": "同じビューに複数のプライマリボタンを配置しないでください。",
+    "placement_desc": "ボタンは、モーダルの場合は右下に、フォームの場合は左下にグループ化する必要があります。",
     "priority_weighting": "プライマリ、セカンダリ、またはターシャリボタンを使用するタイミングを説明するマトリックス。",
     "semantics_desc": "ボタンはアクションをトリガーし、リンクはページの場所やスクロール位置を変更します。",
     "semantics_guide_ref": "詳細については、リンクとボタンの対比ガイドを参照してください。",
     "standard_desc": "一般的なアクション用の標準的な長方形ボタン。",
-    "standard_usage": "送信、保存、アイテムの追加などの主要なCTA。",
-    "icon_usage": "高密度のツールバー、メディアコントロール、またはソーシャル共有。",
-    "link_desc": "二次的なナビゲーションアクション用のテキストリンクのようにスタイル設定されたボタン。",
-    "group_desc": "論理的に関連する複数のボタンをグループ化するコンテナ。",
-    "group_usage": "フィルターバー、ページネーション、または複数ステップのフォームアクション。",
-    "copy_desc": "視覚的なフィードバックを伴ってテキストをクリップボードにコピーするための専用ボタン。",
-    "copy_usage": "APIキー、トランザションID、または共有リンク。",
-    "guideline_principle": "原則",
-    "guideline_detail": "詳細",
-    "consistency": "一貫性",
-    "consistency_desc": "すべてのボタンで同一のラベルのケーシング（文の最初の文字のみ大文字）とアイコンの配置を維持します。",
-    "placement_desc": "ボタンは、モーダルの場合は右下に、フォームの場合は左下にグループ化する必要があります。",
-    "placement_conflict": "配置の競合",
-    "placement_conflict_desc": "同じビューに複数のプライマリボタンを配置しないでください。"
-  },
-  "btn": {
-    "page_transition": "標準的なページ遷移またはフッターリンク。"
+    "standard_usage": "送信、保存、アイテムの追加などの主要なCTA。"
   },
   "datepicker": {
     "placeholder": "日付を選択"
@@ -48,14 +42,40 @@
     "optional": "任意",
     "required": "必須"
   },
+  "image_cropper": {
+    "no_image": "画像が選択されていません",
+    "rotate": "回転",
+    "zoom": "ズーム",
+    "apply": "クロップを適用",
+    "confirm_title": "クロップの適用",
+    "confirm_message": "この範囲で画像を保存しますか？",
+    "confirm": "適用",
+    "cancel": "キャンセル"
+  },
+  "password_strength": {
+    "fair": "普通",
+    "strong": "強い",
+    "very_strong": "とても強い",
+    "very_weak": "とても弱い",
+    "weak": "弱い"
+  },
   "phone": {
     "number": "電話番号"
+  },
+  "prompt_input": {
+    "aria_label": "プロンプト入力",
+    "attach_label": "ファイルを添付",
+    "placeholder": "AIにメッセージを入力、またはファイルを添付...",
+    "send_label": "送信"
   },
   "search": {
     "placeholder": "ボタン"
   },
   "select": {
     "option": "項目1"
+  },
+  "tag_input": {
+    "placeholder": "タグを入力..."
   },
   "transfer": {
     "move_to_source": "選択可能に移動",

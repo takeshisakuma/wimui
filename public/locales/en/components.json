@@ -82,7 +82,13 @@
     "promptInput_desc": "Interactive input optimized for AI prompt engineering with multi-line support and action triggers.",
     "streamingText_desc": "Renders text with a typewriter-like animation, ideal for AI chat responses.",
     "smartSearchInput_desc": "Smart search input enabling both traditional search and AI prompting.",
-    "thoughtProcess_desc": "Visualizes AI reasoning steps and execution states in a timeline format."
+    "thoughtProcess_desc": "Visualizes AI reasoning steps and execution states in a timeline format.",
+    "passwordStrength_desc": "Visual meter to indicate password security level.",
+    "imageCropper_desc": "Front-end image cropping and rotation tool.",
+    "tagInput_desc": "Input field for creating free-form tags.",
+    "score": "Score",
+    "intent": "Intent",
+    "levels_title": "Level Definitions"
   },
   "cat": {
     "ai": "AI"

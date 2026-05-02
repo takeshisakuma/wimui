@@ -64,6 +64,10 @@ export interface SliderProps extends Omit<React.ComponentPropsWithoutRef<"div">,
   id?: string;
   /** Whether to render as a child element. */
   asChild?: boolean;
+  /**
+   * 内部パーツのカスタムスタイル
+   */
+  styles?: React.ComponentPropsWithoutRef<typeof FieldTemplate>["styles"];
 }
 
 /**
@@ -90,6 +94,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
       asChild = false,
+      styles: stylesProp,
       children,
       ...props
     },
@@ -224,6 +229,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
         labelId={labelId}
         errorId={errorId}
         className={className}
+        styles={stylesProp}
       >
         <Component
           role="presentation"

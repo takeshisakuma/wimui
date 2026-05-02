@@ -64,5 +64,25 @@
     "status_moved_to_source": "{{count}} item(s) moved to available",
     "status_moved_to_target": "{{count}} item(s) moved to selected",
     "target": "Selected"
+  },
+  "password_strength": {
+    "very_weak": "Very weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "very_strong": "Very strong"
+  },
+  "image_cropper": {
+    "no_image": "No image selected",
+    "zoom": "Zoom",
+    "rotate": "Rotate",
+    "apply": "Apply Crop",
+    "confirm_title": "Apply Crop",
+    "confirm_message": "Do you want to save the image with this crop?",
+    "confirm": "Apply",
+    "cancel": "Cancel"
+  },
+  "tag_input": {
+    "placeholder": "Enter tags..."
   }
 }

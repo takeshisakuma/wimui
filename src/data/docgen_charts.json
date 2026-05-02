@@ -228,8 +228,8 @@
       }
     }
   },
-  "Heatmap": {
-    "name": "Heatmap",
+  "RadarChart": {
+    "name": "RadarChart",
     "tokens": [],
     "anatomy": [],
     "props": {
@@ -239,41 +239,35 @@
           "name": "Array",
           "elements": [
             {
-              "name": "signature",
-              "type": "object",
-              "raw": "{ x: string; y: string; value: number }",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "x",
-                    "value": {
-                      "name": "string",
-                      "required": true
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
                     }
-                  },
-                  {
-                    "key": "y",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "value",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
             }
           ],
-          "raw": "{ x: string; y: string; value: number }[]"
+          "raw": "ChartDataPoint[]"
         },
         "description": ""
       },
-      "xAxisKey": {
+      "keys": {
         "required": true,
         "tsType": {
           "name": "Array",
@@ -286,16 +280,10 @@
         },
         "description": ""
       },
-      "yAxisKey": {
+      "indexKey": {
         "required": true,
         "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
+          "name": "string"
         },
         "description": ""
       },
@@ -336,26 +324,6 @@
           "name": "string"
         },
         "description": ""
-      },
-      "colorRange": {
-        "required": false,
-        "tsType": {
-          "name": "tuple",
-          "raw": "[string, string]",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "[\"var(--wim-color-bg-secondary)\", \"var(--wim-color-primary)\"]",
-          "computed": false
-        }
       }
     }
   },
@@ -558,8 +526,8 @@
       }
     }
   },
-  "RadarChart": {
-    "name": "RadarChart",
+  "Heatmap": {
+    "name": "Heatmap",
     "tokens": [],
     "anatomy": [],
     "props": {
@@ -569,35 +537,41 @@
           "name": "Array",
           "elements": [
             {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
+              "name": "signature",
+              "type": "object",
+              "raw": "{ x: string; y: string; value: number }",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "x",
+                    "value": {
+                      "name": "string",
+                      "required": true
                     }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
+                  },
+                  {
+                    "key": "y",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "value",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
             }
           ],
-          "raw": "ChartDataPoint[]"
+          "raw": "{ x: string; y: string; value: number }[]"
         },
         "description": ""
       },
-      "keys": {
+      "xAxisKey": {
         "required": true,
         "tsType": {
           "name": "Array",
@@ -610,103 +584,16 @@
         },
         "description": ""
       },
-      "indexKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "FunnelChart": {
-    "name": "FunnelChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
+      "yAxisKey": {
         "required": true,
         "tsType": {
           "name": "Array",
           "elements": [
             {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
+              "name": "string"
             }
           ],
-          "raw": "ChartDataPoint[]"
-        },
-        "description": ""
-      },
-      "dataKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "nameKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
+          "raw": "string[]"
         },
         "description": ""
       },
@@ -747,6 +634,26 @@
           "name": "string"
         },
         "description": ""
+      },
+      "colorRange": {
+        "required": false,
+        "tsType": {
+          "name": "tuple",
+          "raw": "[string, string]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "[\"var(--wim-color-bg-secondary)\", \"var(--wim-color-primary)\"]",
+          "computed": false
+        }
       }
     }
   },
@@ -1092,6 +999,99 @@
           }
         },
         "description": "手動翻訳用のラベル"
+      }
+    }
+  },
+  "FunnelChart": {
+    "name": "FunnelChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
+            }
+          ],
+          "raw": "ChartDataPoint[]"
+        },
+        "description": ""
+      },
+      "dataKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "nameKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },

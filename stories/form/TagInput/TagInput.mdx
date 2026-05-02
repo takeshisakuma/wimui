@@ -1,0 +1,120 @@
+import {
+  Meta,
+  Title,
+  Primary,
+  Stories,
+  Canvas,
+  Controls,
+} from "@storybook/blocks";
+import * as TagInputStories from "./TagInput.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={TagInputStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.tagInput_title" />
+</p>
+
+<p><T k="doc.tagInput_long_desc" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.tagInput_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.tagInput_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>TagInput</b></td>
+      <td><T k="doc.tagInput_choice_taginput_when" /></td>
+    </tr>
+    <tr>
+      <td><b>MultiSelect</b></td>
+      <td><T k="doc.tagInput_choice_multiselect_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="TagInput" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.tagInput_content_guideline_1" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.tagInput_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.tagInput_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.tagInput_scenario_1_title" /></strong></td>
+      <td><T k="doc.tagInput_scenario_1_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.tagInput_best_practice_1" /></li>
+  <li><T k="doc.tagInput_best_practice_2" /></li>
+  <li><T k="doc.tagInput_best_practice_3" /></li>
+</ul>
+
+<Docgen componentName="TagInput" section="tokens" />
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.tagInput_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.tagInput_keyboard_desc" /></p>
+
+<Docgen componentName="TagInput" section="test" />
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.tagInput_i18n_desc" /></p>
+
+<Primary />
+
+<Docgen componentName="TagInput" section="props" />
+
+## <T k="doc.stories" />
+
+### <T k="doc.story_default" />
+<Canvas of={TagInputStories.Default} />
+
+### Controlled
+<p>Managing tags via external state.</p>
+<Canvas of={TagInputStories.Controlled} />
+
+### Maximum Tags
+<p>Limit the number of tags that can be added.</p>
+<Canvas of={TagInputStories.MaxTags} />
+
+### <T k="doc.story_disabled" />
+<Canvas of={TagInputStories.Disabled} />

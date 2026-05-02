@@ -133,6 +133,9 @@
   "doc": {
     "location": "場所",
     "transition": "トランジション",
+    "label": "ラベル",
+    "tag_deletable": "削除可能",
+    "tag_deletable_desc": "onDelete プロップが渡されると、削除用アイコンが表示され、クリック時にコールバックが実行されます。",
     "op_edit_save": "変更を保存",
     "op_cancel": "変更をキャンセル",
     "op_navigate": "項目を移動",
