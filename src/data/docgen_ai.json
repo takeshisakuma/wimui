@@ -1,4 +1,118 @@
 {
+  "ThoughtStep": {
+    "name": "ThoughtStep",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The content of the step"
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pending\" | \"completed\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pending\""
+            },
+            {
+              "name": "literal",
+              "value": "\"completed\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "Status of the step",
+        "defaultValue": {
+          "value": "\"completed\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Optional label or title for the step"
+      },
+      "isLast": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether this is the last step (hides connector)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "ThoughtProcess": {
+    "name": "ThoughtProcess",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"Thinking Process\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "isCollapsible": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "defaultExpanded": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
   "StreamingText": {
     "name": "StreamingText",
     "tokens": [],

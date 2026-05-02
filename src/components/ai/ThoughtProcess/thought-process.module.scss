@@ -1,0 +1,125 @@
+@layer component {
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: var(--wim-spacing-md);
+    overflow: hidden;
+    background-color: var(--wim-color-ghost-bg);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: background-color var(--wim-transition-fast);
+
+    &:hover {
+      background-color: var(--wim-color-ghost-bg-hover);
+    }
+  }
+
+  .chevron {
+    display: inline-block;
+    margin-right: var(--wim-spacing-xs);
+    font-size: 10px;
+    transition: transform var(--wim-transition-fast);
+
+    &.expanded {
+      transform: rotate(90deg);
+    }
+  }
+
+  .title {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .body {
+    padding: var(--wim-spacing-sm);
+    border-top: 1px solid var(--wim-color-border);
+
+    // Override Timeline's large default padding for mobile
+    :global(.wim-timeline) {
+      padding: var(--wim-spacing-sm);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .root {
+      border-right: none;
+      border-left: none;
+      border-radius: 0;
+    }
+    
+    .header {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    }
+  }
+
+  .item {
+    min-height: 48px;
+  }
+
+  .content {
+    padding-bottom: var(--wim-spacing-md);
+  }
+
+  .label {
+    margin-bottom: 2px;
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .text {
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+  }
+
+  .connector {
+    background-color: var(--wim-color-border);
+  }
+
+  .spinner {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--wim-color-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: thought-spin 0.8s linear infinite;
+  }
+
+  @keyframes thought-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // Status variations
+  .pending {
+    .text {
+      color: var(--wim-color-text-secondary);
+      opacity: 0.8;
+    }
+  }
+
+  .error {
+    .label {
+      color: var(--wim-color-error);
+    }
+  }
+}

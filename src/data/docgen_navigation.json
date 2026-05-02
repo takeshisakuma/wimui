@@ -137,216 +137,6 @@
       }
     }
   },
-  "Tabs": {
-    "name": "Tabs",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "defaultValue": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "value": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "orientation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Tabs.List": {
-    "name": "Tabs.List",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Tabs.Trigger": {
-    "name": "Tabs.Trigger",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "disabled": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "Tabs.Content": {
-    "name": "Tabs.Content",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-hover",
-      "--wim-color-border-secondary",
-      "--wim-color-primary",
-      "--wim-color-primary-subtle",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-tabs-mask-size",
-      "--wim-tabs-vertical-width",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "TabBar": {
     "name": "TabBar",
     "tokens": [],
@@ -1105,94 +895,213 @@
       }
     }
   },
-  "HamburgerMenu": {
-    "name": "HamburgerMenu",
-    "tokens": [],
+  "Tabs": {
+    "name": "Tabs",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
     "anatomy": [],
     "props": {
-      "open": {
+      "defaultValue": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "string"
         },
-        "description": "Whether the menu is open",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "description": ""
       },
-      "onClick": {
+      "value": {
         "required": false,
         "tsType": {
-          "name": "ReactMouseEventHandler",
-          "raw": "React.MouseEventHandler<HTMLButtonElement>",
-          "elements": [
-            {
-              "name": "HTMLButtonElement"
+          "name": "string"
+        },
+        "description": ""
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
             }
-          ]
+          }
         },
-        "description": "Callback function when the menu is toggled"
+        "description": ""
       },
-      "size": {
+      "orientation": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "raw": "\"horizontal\" | \"vertical\"",
           "elements": [
             {
               "name": "literal",
-              "value": "\"sm\""
+              "value": "\"horizontal\""
             },
             {
               "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
+              "value": "\"vertical\""
             }
           ]
         },
-        "description": "Size of the hamburger menu",
+        "description": "",
         "defaultValue": {
-          "value": "\"md\"",
+          "value": "\"horizontal\"",
           "computed": false
         }
-      },
-      "color": {
-        "required": false,
+      }
+    }
+  },
+  "Tabs.List": {
+    "name": "Tabs.List",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Tabs.Trigger": {
+    "name": "Tabs.Trigger",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
         "tsType": {
           "name": "string"
         },
-        "description": "Color of the bars"
+        "description": ""
       },
-      "className": {
-        "required": false,
+      "disabled": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "Tabs.Content": {
+    "name": "Tabs.Content",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-hover",
+      "--wim-color-border-secondary",
+      "--wim-color-primary",
+      "--wim-color-primary-subtle",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-tabs-mask-size",
+      "--wim-tabs-vertical-width",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
         "tsType": {
           "name": "string"
         },
-        "description": "Custom class name"
+        "description": ""
       }
     }
   },
@@ -1323,6 +1232,97 @@
           "name": "string"
         },
         "description": ""
+      }
+    }
+  },
+  "HamburgerMenu": {
+    "name": "HamburgerMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the menu is open",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "ReactMouseEventHandler",
+          "raw": "React.MouseEventHandler<HTMLButtonElement>",
+          "elements": [
+            {
+              "name": "HTMLButtonElement"
+            }
+          ]
+        },
+        "description": "Callback function when the menu is toggled"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "Size of the hamburger menu",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Color of the bars"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
       }
     }
   },

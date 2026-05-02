@@ -44,6 +44,7 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
 
     // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
     const iconSizeMap: Record<ComponentSize, ComponentSize> = {
+      xs: "xs",
       sm: "sm",
       md: "md",
       lg: "lg",

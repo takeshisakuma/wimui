@@ -130,6 +130,254 @@
       }
     }
   },
+  "Snackbar": {
+    "name": "Snackbar",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-overlay-control-active",
+      "--wim-color-overlay-control-hover",
+      "--wim-color-overlay-control-track",
+      "--wim-color-positive",
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-full",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-snackbar-action",
+      "--wim-snackbar-action-hover",
+      "--wim-snackbar-bg",
+      "--wim-snackbar-blur",
+      "--wim-snackbar-border",
+      "--wim-snackbar-close-hover",
+      "--wim-snackbar-close-idle",
+      "--wim-snackbar-close-size",
+      "--wim-snackbar-lift",
+      "--wim-snackbar-max-width",
+      "--wim-snackbar-min-width",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "message": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "スナックバーに表示するメッセージ"
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "表示状態",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "インテント（意味的状態）",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "position": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"top-left\"\n| \"top-center\"\n| \"top-right\"\n| \"bottom-left\"\n| \"bottom-center\"\n| \"bottom-right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"top-center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"top-right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom-right\""
+            }
+          ]
+        },
+        "description": "表示位置",
+        "defaultValue": {
+          "value": "\"bottom-center\"",
+          "computed": false
+        }
+      },
+      "autoHideDuration": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。",
+        "defaultValue": {
+          "value": "5000",
+          "computed": false
+        }
+      },
+      "showCloseButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "閉じるボタンを表示するかどうか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "actionLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "アクションボタンのラベル"
+      },
+      "onAction": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "アクションボタンがクリックされた時のコールバック"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "スナックバーが閉じられる時のコールバック"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "カスタムクラス名"
+      }
+    }
+  },
+  "SnackbarProvider": {
+    "name": "SnackbarProvider",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-overlay-control-active",
+      "--wim-color-overlay-control-hover",
+      "--wim-color-overlay-control-track",
+      "--wim-color-positive",
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-full",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-snackbar-action",
+      "--wim-snackbar-action-hover",
+      "--wim-snackbar-bg",
+      "--wim-snackbar-blur",
+      "--wim-snackbar-border",
+      "--wim-snackbar-close-hover",
+      "--wim-snackbar-close-idle",
+      "--wim-snackbar-close-size",
+      "--wim-snackbar-lift",
+      "--wim-snackbar-max-width",
+      "--wim-snackbar-min-width",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      }
+    }
+  },
   "Toast": {
     "name": "Toast",
     "tokens": [
@@ -579,254 +827,6 @@
           ]
         },
         "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
-      }
-    }
-  },
-  "Snackbar": {
-    "name": "Snackbar",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-overlay-control-active",
-      "--wim-color-overlay-control-hover",
-      "--wim-color-overlay-control-track",
-      "--wim-color-positive",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-full",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-snackbar-action",
-      "--wim-snackbar-action-hover",
-      "--wim-snackbar-bg",
-      "--wim-snackbar-blur",
-      "--wim-snackbar-border",
-      "--wim-snackbar-close-hover",
-      "--wim-snackbar-close-idle",
-      "--wim-snackbar-close-size",
-      "--wim-snackbar-lift",
-      "--wim-snackbar-max-width",
-      "--wim-snackbar-min-width",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "message": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "スナックバーに表示するメッセージ"
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "表示状態",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "インテント（意味的状態）",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "position": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"top-left\"\n| \"top-center\"\n| \"top-right\"\n| \"bottom-left\"\n| \"bottom-center\"\n| \"bottom-right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"top-center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"top-right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom-right\""
-            }
-          ]
-        },
-        "description": "表示位置",
-        "defaultValue": {
-          "value": "\"bottom-center\"",
-          "computed": false
-        }
-      },
-      "autoHideDuration": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。",
-        "defaultValue": {
-          "value": "5000",
-          "computed": false
-        }
-      },
-      "showCloseButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "閉じるボタンを表示するかどうか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "actionLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "アクションボタンのラベル"
-      },
-      "onAction": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "アクションボタンがクリックされた時のコールバック"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "スナックバーが閉じられる時のコールバック"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "カスタムクラス名"
-      }
-    }
-  },
-  "SnackbarProvider": {
-    "name": "SnackbarProvider",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-overlay-control-active",
-      "--wim-color-overlay-control-hover",
-      "--wim-color-overlay-control-track",
-      "--wim-color-positive",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-full",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-snackbar-action",
-      "--wim-snackbar-action-hover",
-      "--wim-snackbar-bg",
-      "--wim-snackbar-blur",
-      "--wim-snackbar-border",
-      "--wim-snackbar-close-hover",
-      "--wim-snackbar-close-idle",
-      "--wim-snackbar-close-size",
-      "--wim-snackbar-lift",
-      "--wim-snackbar-max-width",
-      "--wim-snackbar-min-width",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
       }
     }
   },
@@ -2313,135 +2313,6 @@
       }
     }
   },
-  "Banner": {
-    "name": "Banner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-close-hover",
-      "--wim-color-destructive",
-      "--wim-color-feedback-bg-base",
-      "--wim-color-feedback-border-strength",
-      "--wim-color-feedback-text-base",
-      "--wim-color-informative",
-      "--wim-color-overlay-bg-light",
-      "--wim-color-positive",
-      "--wim-opacity-disabled",
-      "--wim-opacity-ghost",
-      "--wim-radius-sm",
-      "--wim-shadow-focus",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーのタイトル"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "バナーの説明文"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "バナーのインテント（意味的状態）",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | React.ReactNode",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          ]
-        },
-        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アクションボタン要素（例：Buttonコンポーネント）"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
-      }
-    }
-  },
   "Alert": {
     "name": "Alert",
     "tokens": [
@@ -2588,6 +2459,135 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素（説明文として扱われます）"
+      }
+    }
+  },
+  "Banner": {
+    "name": "Banner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-close-hover",
+      "--wim-color-destructive",
+      "--wim-color-feedback-bg-base",
+      "--wim-color-feedback-border-strength",
+      "--wim-color-feedback-text-base",
+      "--wim-color-informative",
+      "--wim-color-overlay-bg-light",
+      "--wim-color-positive",
+      "--wim-opacity-disabled",
+      "--wim-opacity-ghost",
+      "--wim-radius-sm",
+      "--wim-shadow-focus",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーのタイトル"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "バナーの説明文"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "バナーのインテント（意味的状態）",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | React.ReactNode",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          ]
+        },
+        "description": "アイコンを表示するかどうか、またはカスタムアイコン",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アクションボタン要素（例：Buttonコンポーネント）"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
       }
     }
   }

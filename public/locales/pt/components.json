@@ -139,7 +139,9 @@
     "nodeGraph_desc": "Visualiza redes complexas e relações entre nós.",
     "scheduleView_desc": "Exibe tarefas ou eventos em uma linha do tempo cronológica ou visualização de calendário.",
     "promptInput_desc": "Entrada interativa otimizada para engenharia de prompts de IA com suporte a múltiplas linhas e gatilhos de ação.",
-    "streamingText_desc": "Renderiza texto com uma animação tipo máquina de escrever, ideal para respostas de chat de IA."
+    "streamingText_desc": "Renderiza texto com uma animação tipo máquina de escrever, ideal para respostas de chat de IA.",
+    "smartSearchInput_desc": "Entrada de busca inteligente que permite tanto a busca tradicional quanto prompte de IA.",
+    "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo."
   },
   "cat": {
     "ai": "IA"

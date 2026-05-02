@@ -86,6 +86,62 @@
     background-color: var(--wim-chat-bubble-bg);
     border-radius: var(--wim-radius-lg, 12px);
     box-shadow: var(--wim-shadow-xs);
+    transition: background-color var(--wim-transition-fast);
+
+    &.typing {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      min-height: 24px;
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    }
+  }
+
+  .typingDot {
+    width: 6px;
+    height: 6px;
+    background-color: currentcolor;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: chat-typing 1.4s infinite ease-in-out both;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+
+  @keyframes chat-typing {
+    0%, 80%, 100% {
+      opacity: 0.4;
+      transform: scale(0.6);
+    }
+
+    40% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity var(--wim-transition-fast);
+
+    // AI messages often show actions on hover, or always if it's the last one.
+    // For standard, we'll show them when the message is hovered.
+    .message:hover & {
+      opacity: 1;
+    }
+
+    &.visible {
+      opacity: 1;
+    }
   }
 
   .message.left.hasAvatar .bubble::before {

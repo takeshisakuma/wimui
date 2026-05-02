@@ -15,4 +15,4 @@ export * from "./typography";
 export * from "./media";
 export * from "./charts";
 export * from "./ai";
-
+export * from "./hooks/useAutoResize";

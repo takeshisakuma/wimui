@@ -26,9 +26,19 @@ import { T } from "../stories/T";
       <td>`onSubmit`, `loading`, `showAttach`, `maxLength`, `maxRows`</td>
     </tr>
     <tr>
+      <td><strong>SmartSearchInput</strong></td>
+      <td>標準の検索窓から AI プロンプトへとシームレスに拡張する入力欄。1 行の検索から複数行の対話への移行をサポート。</td>
+      <td>`onSubmit`, `onChange`, `allowClear`, `maxRows`</td>
+    </tr>
+    <tr>
       <td><strong>StreamingText</strong></td>
       <td>LLM の生成テキストをリアルタイムで Markdown レンダリング。ストリーミング中はカーソルが点滅し、`aria-live` でスクリーンリーダーに通知する。</td>
       <td>`content`, `isStreaming`, `components`</td>
+    </tr>
+    <tr>
+      <td><strong>ThoughtProcess</strong></td>
+      <td>AI の推論プロセス（思考ステップ）をタイムライン形式で可視化。折りたたみ可能なコンテナで、各ステップの状態（実行中・完了・エラー）を表示。</td>
+      <td>`title`, `isCollapsible`, `ThoughtStep` (children)</td>
     </tr>
   </tbody>
 </table>
@@ -49,7 +59,11 @@ import { T } from "../stories/T";
   <tbody>
     <tr>
       <td>AI チャット</td>
-      <td>`PromptInput`（入力） + `StreamingText`（応答表示）</td>
+      <td>`PromptInput`（入力） + `ThoughtProcess`（推論） + `StreamingText`（応答表示）</td>
+    </tr>
+    <tr>
+      <td>AI 検索</td>
+      <td>`SmartSearchInput`（入力） + `StreamingText`（結果要約）</td>
     </tr>
     <tr>
       <td>コードアシスタント</td>

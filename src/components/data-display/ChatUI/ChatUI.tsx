@@ -40,13 +40,15 @@ export const ChatMessageList = forwardRef<HTMLDivElement, ChatMessageListProps>(
 ChatMessageList.displayName = "ChatMessageList";
 
 export interface ChatMessageProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   position?: "left" | "right";
   variant?: "default" | "primary" | "secondary";
   showAvatar?: boolean;
   avatar?: React.ReactNode;
   timestamp?: string;
   senderName?: string;
+  isTyping?: boolean;
+  actions?: React.ReactNode;
   className?: string;
 }
 
@@ -58,6 +60,8 @@ export const ChatMessage = ({
   avatar,
   timestamp,
   senderName,
+  isTyping = false,
+  actions,
   className,
 }: ChatMessageProps): React.ReactElement => {
   return (
@@ -77,7 +81,22 @@ export const ChatMessage = ({
         {senderName && (
           <div className={styles.sender}>{senderName}</div>
         )}
-        <div className={styles.bubble}>{children}</div>
+        <div className={classNames(styles.bubble, { [styles.typing]: isTyping })}>
+          {isTyping ? (
+            <>
+              <span className={styles.typingDot} />
+              <span className={styles.typingDot} />
+              <span className={styles.typingDot} />
+            </>
+          ) : (
+            children
+          )}
+        </div>
+        {actions && (
+          <div className={styles.actions}>
+            {actions}
+          </div>
+        )}
         {timestamp && (
           <div className={styles.timestamp}>{timestamp}</div>
         )}

@@ -8,7 +8,7 @@ const meta: Meta<typeof PromptInput> = {
   title: "Components/AI/PromptInput",
   component: PromptInput,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   argTypes: {
     disabled: { control: "boolean" },
@@ -37,7 +37,7 @@ const InteractiveDemo = (args: React.ComponentProps<typeof PromptInput>) => {
   };
 
   return (
-    <div style={{ width: 480, display: "flex", flexDirection: "column", gap: "var(--wim-spacing-md)" }}>
+    <div style={{ width: "100%", maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: "var(--wim-spacing-md)" }}>
       <input
         type="file"
         ref={fileInputRef}

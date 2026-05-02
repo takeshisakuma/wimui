@@ -1,7 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { ChatAvatar, ChatContainer, ChatInput, ChatInputArea, ChatMessage, ChatMessageList, PromptInput } from "../../../src/index";
+import { 
+  ChatAvatar, 
+  ChatContainer, 
+  ChatInput, 
+  ChatInputArea, 
+  ChatMessage, 
+  ChatMessageList, 
+  PromptInput,
+  StreamingText 
+} from "../../../src/index";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ChatContainer> = {
@@ -22,6 +31,7 @@ interface Message {
   sender?: string;
   timestamp?: string;
   variant?: "default" | "primary" | "secondary";
+  isStreaming?: boolean;
 }
 
 export const Basic: Story = {
@@ -237,17 +247,36 @@ export const AiAssistantIntegration: Story = {
       }]);
       
       setIsLoading(true);
+      
+      // Simulate AI response with streaming
       setTimeout(() => {
-        const aiResponse: Message = { 
-          id: (Date.now() + 2).toString(), 
-          text: t("story.chat_ai_response", { message: text }), 
+        setIsLoading(false);
+        const aiMessageId = (Date.now() + 2).toString();
+        const fullText = t("story.chat_ai_response", { message: text });
+        
+        setMessages((prev) => [...prev, { 
+          id: aiMessageId, 
+          text: "", 
           position: "left", 
           sender: t("story.chat_ai_assistant"), 
-          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) 
-        };
-        setMessages((prev) => [...prev, aiResponse]);
-        setIsLoading(false);
-      }, 1500);
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isStreaming: true
+        }]);
+
+        let currentText = "";
+        const words = fullText.split(" ");
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i < words.length) {
+            currentText += (i === 0 ? "" : " ") + words[i];
+            setMessages((prev) => prev.map(m => m.id === aiMessageId ? { ...m, text: currentText } : m));
+            i++;
+          } else {
+            clearInterval(interval);
+            setMessages((prev) => prev.map(m => m.id === aiMessageId ? { ...m, isStreaming: false } : m));
+          }
+        }, 50);
+      }, 1000);
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -271,6 +300,14 @@ export const AiAssistantIntegration: Story = {
       }
     }, [messages, isLoading]);
 
+    const MessageActions = () => (
+      <div style={{ display: "flex", gap: "4px" }}>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Copy">📋</button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Good">👍</button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Bad">👎</button>
+      </div>
+    );
+
     return (
       <div style={{ height: "100vh" }}>
         <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
@@ -284,20 +321,33 @@ export const AiAssistantIntegration: Story = {
                 senderName={msg.sender}
                 timestamp={msg.timestamp}
                 showAvatar
-                avatar={msg.position === "left" ? <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}>✨</div> : <ChatAvatar fallback="Y" color="s18" />}
+                isTyping={msg.id === "loading"}
+                avatar={
+                  msg.position === "left" ? (
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}>
+                      <span>✨</span>
+                    </div>
+                  ) : (
+                    <ChatAvatar fallback="Y" color="s18" />
+                  )
+                }
+                actions={msg.position === "left" && !msg.isStreaming && msg.id !== "1" ? <MessageActions /> : undefined}
               >
-                {msg.text}
+                {msg.position === "left" && msg.id !== "1" ? (
+                  <StreamingText content={msg.text} isStreaming={msg.isStreaming} />
+                ) : (
+                  msg.text
+                )}
               </ChatMessage>
             ))}
             {isLoading && (
-              <ChatMessage position="left" senderName={t("story.chat_ai_assistant")} showAvatar avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}>✨</div>}>
-                <div style={{ display: "flex", gap: "4px", alignItems: "center", height: "24px" }}>
-                  <span style={{ animation: "chat-typing 1.4s infinite ease-in-out both" }}>●</span>
-                  <span style={{ animation: "chat-typing 1.4s infinite ease-in-out both", animationDelay: "-0.32s" }}>●</span>
-                  <span style={{ animation: "chat-typing 1.4s infinite ease-in-out both", animationDelay: "-0.16s" }}>●</span>
-                  <style>{`@keyframes chat-typing { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }`}</style>
-                </div>
-              </ChatMessage>
+              <ChatMessage 
+                position="left" 
+                senderName={t("story.chat_ai_assistant")} 
+                showAvatar 
+                isTyping
+                avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}><span>✨</span></div>}
+              />
             )}
           </ChatMessageList>
           <ChatInputArea>

@@ -210,6 +210,12 @@
         "descKey": "doc.inlineEdit_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "SmartSearchInput",
+        "descKey": "doc.smartSearchInput_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -1174,6 +1180,12 @@
       {
         "name": "StreamingText",
         "descKey": "doc.streamingText_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "ThoughtProcess",
+        "descKey": "doc.thoughtProcess_desc",
         "pc": true,
         "mobile": true
       }

@@ -1,0 +1,27 @@
+@layer component {
+  .textarea {
+    box-sizing: border-box !important;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    font: inherit;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+    resize: none;
+    outline: none !important;
+    background: transparent;
+    border: none !important;
+
+    &::placeholder {
+      color: var(--wim-color-text-tertiary);
+    }
+
+    &:disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+}

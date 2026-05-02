@@ -8,7 +8,7 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 /**
  * Standard size values for components.
  */
-export type ComponentSize = "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+export type ComponentSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 
 /**
  * Standard width values for form field components.
