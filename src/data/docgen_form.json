@@ -1130,6 +1130,41 @@
       }
     }
   },
+  "TimePicker": {
+    "name": "TimePicker",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "variant": {
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      },
+      "allowClear": {
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
   "ToggleGroup": {
     "name": "ToggleGroup",
     "tokens": [],
@@ -1374,41 +1409,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "TimePicker": {
-    "name": "TimePicker",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "variant": {
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "fullWidth": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      },
-      "allowClear": {
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        },
-        "required": false
       }
     }
   },
@@ -4365,6 +4365,120 @@
       }
     }
   },
+  "QueryBuilder": {
+    "name": "QueryBuilder",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-border",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-primary",
+      "--wim-color-primary-container-alpha",
+      "--wim-duration-base",
+      "--wim-duration-fast",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-height-md",
+      "--wim-input-width",
+      "--wim-radius-lg",
+      "--wim-spacing-fine",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "fields": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "QueryField"
+            }
+          ],
+          "raw": "QueryField[]"
+        },
+        "description": "Field definitions"
+      },
+      "query": {
+        "required": false,
+        "tsType": {
+          "name": "QueryGroup"
+        },
+        "description": "Current query state (controlled)"
+      },
+      "defaultQuery": {
+        "required": false,
+        "tsType": {
+          "name": "QueryGroup"
+        },
+        "description": "Default query state (uncontrolled)"
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(query: QueryGroup) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "QueryGroup"
+                },
+                "name": "query"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when query changes"
+      },
+      "maxDepth": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum nesting depth",
+        "defaultValue": {
+          "value": "3",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class name"
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Unique ID for the component"
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "QueryBuilderLabels"
+        },
+        "description": "Labels for internationalization",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  },
   "PhoneInput": {
     "name": "PhoneInput",
     "tokens": [],
@@ -4499,120 +4613,6 @@
           "name": "string"
         },
         "description": "追加CSSクラス。"
-      }
-    }
-  },
-  "QueryBuilder": {
-    "name": "QueryBuilder",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-border",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-primary",
-      "--wim-color-primary-container-alpha",
-      "--wim-duration-base",
-      "--wim-duration-fast",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-height-md",
-      "--wim-input-width",
-      "--wim-radius-lg",
-      "--wim-spacing-fine",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "fields": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "QueryField"
-            }
-          ],
-          "raw": "QueryField[]"
-        },
-        "description": "Field definitions"
-      },
-      "query": {
-        "required": false,
-        "tsType": {
-          "name": "QueryGroup"
-        },
-        "description": "Current query state (controlled)"
-      },
-      "defaultQuery": {
-        "required": false,
-        "tsType": {
-          "name": "QueryGroup"
-        },
-        "description": "Default query state (uncontrolled)"
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(query: QueryGroup) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "QueryGroup"
-                },
-                "name": "query"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when query changes"
-      },
-      "maxDepth": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Maximum nesting depth",
-        "defaultValue": {
-          "value": "3",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class name"
-      },
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Unique ID for the component"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "QueryBuilderLabels"
-        },
-        "description": "Labels for internationalization",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
       }
     }
   },
@@ -4767,79 +4767,6 @@
           "name": "boolean"
         },
         "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "NumberInput": {
-    "name": "NumberInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "mode": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"number\" | \"text\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"number\""
-            },
-            {
-              "name": "literal",
-              "value": "\"text\""
-            }
-          ]
-        },
-        "description": "'number': ネイティブの type=\"number\" を使用（数量の増減など）\n'text': type=\"text\" + inputmode を使用（クレカ番号、IDなど、ゼロを保持したい場合）",
-        "defaultValue": {
-          "value": "\"number\"",
-          "computed": false
-        }
-      },
-      "hideSpinButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "スピンボタンを非表示にするか",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "allowDecimal": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "小数点を許可するか (mode=\"number\" の場合のみ有効)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "allowNegative": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "負の数を許可するか (mode=\"number\" の場合のみ有効)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to render as a child element.",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -5132,6 +5059,79 @@
       }
     }
   },
+  "NumberInput": {
+    "name": "NumberInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "mode": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"number\" | \"text\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"number\""
+            },
+            {
+              "name": "literal",
+              "value": "\"text\""
+            }
+          ]
+        },
+        "description": "'number': ネイティブの type=\"number\" を使用（数量の増減など）\n'text': type=\"text\" + inputmode を使用（クレカ番号、IDなど、ゼロを保持したい場合）",
+        "defaultValue": {
+          "value": "\"number\"",
+          "computed": false
+        }
+      },
+      "hideSpinButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "スピンボタンを非表示にするか",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "allowDecimal": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "小数点を許可するか (mode=\"number\" の場合のみ有効)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "allowNegative": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "負の数を許可するか (mode=\"number\" の場合のみ有効)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child element.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Mentions": {
     "name": "Mentions",
     "tokens": [
@@ -5307,31 +5307,6 @@
           "computed": false
         },
         "required": false
-      }
-    }
-  },
-  "InputMask": {
-    "name": "InputMask",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "mask": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "maskChar": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"_\"",
-          "computed": false
-        }
       }
     }
   },
@@ -5799,6 +5774,31 @@
       }
     }
   },
+  "InputMask": {
+    "name": "InputMask",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "mask": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "maskChar": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"_\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "Input": {
     "name": "Input",
     "tokens": [
@@ -6140,28 +6140,6 @@
       }
     }
   },
-  "IconButton": {
-    "name": "IconButton",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "iconName": {
-        "required": true,
-        "tsType": {
-          "name": "ReactComponentProps[\"name\"]",
-          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
-        },
-        "description": ""
-      },
-      "aria-label": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "InlineEdit": {
     "name": "InlineEdit",
     "tokens": [],
@@ -6286,217 +6264,25 @@
       }
     }
   },
-  "FileUpload": {
-    "name": "FileUpload",
+  "IconButton": {
+    "name": "IconButton",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "buttonLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"Choose File\"",
-          "computed": false
-        }
-      },
-      "noFileLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"No file chosen\"",
-          "computed": false
-        }
-      },
-      "accept": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "multiple": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(files: FileList | null) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "union",
-                  "raw": "FileList | null",
-                  "elements": [
-                    {
-                      "name": "FileList"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
-                },
-                "name": "files"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
       "iconName": {
-        "required": false,
+        "required": true,
         "tsType": {
           "name": "ReactComponentProps[\"name\"]",
           "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
         },
         "description": ""
       },
-      "iconPosition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "error": {
-        "required": false,
+      "aria-label": {
+        "required": true,
         "tsType": {
           "name": "string"
         },
         "description": ""
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
       }
     }
   },
@@ -6767,6 +6553,220 @@
           "name": "string"
         },
         "description": "Aria label for accessibility"
+      }
+    }
+  },
+  "FileUpload": {
+    "name": "FileUpload",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "buttonLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"Choose File\"",
+          "computed": false
+        }
+      },
+      "noFileLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"No file chosen\"",
+          "computed": false
+        }
+      },
+      "accept": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "multiple": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(files: FileList | null) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "union",
+                  "raw": "FileList | null",
+                  "elements": [
+                    {
+                      "name": "FileList"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                },
+                "name": "files"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "iconName": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"name\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "description": ""
+      },
+      "iconPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "error": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
       }
     }
   },
@@ -7615,34 +7615,6 @@
       }
     }
   },
-  "ColorPicker": {
-    "name": "ColorPicker",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "variant": {
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        },
-        "required": false
-      },
-      "fullWidth": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
   "Combobox": {
     "name": "Combobox",
     "tokens": [
@@ -7879,6 +7851,34 @@
           "value": "{}",
           "computed": false
         }
+      }
+    }
+  },
+  "ColorPicker": {
+    "name": "ColorPicker",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "variant": {
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        },
+        "required": false
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
       }
     }
   },

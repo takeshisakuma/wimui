@@ -113,7 +113,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
               type="button"
               className={styles.actionButton}
               onClick={onAttach}
-              aria-label="Attach file"
+              aria-label={t("prompt_input.attach_label")}
               disabled={disabled || loading}
             >
               <Icon component={PaperclipIcon} size="sm" />
@@ -137,7 +137,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
             className={classNames(styles.actionButton, styles.sendButton)}
             onClick={handleSubmit}
             disabled={!canSubmit}
-            aria-label="Send message"
+            aria-label={t("prompt_input.send_label")}
           >
             <Icon component={SendIcon} size="sm" />
           </button>
