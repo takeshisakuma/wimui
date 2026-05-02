@@ -3378,244 +3378,6 @@
       }
     }
   },
-  "SmartSearchInput": {
-    "name": "SmartSearchInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"outline\" | \"ghost\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"ghost\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"outline\"",
-          "computed": false
-        }
-      },
-      "fullWidth": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "FieldWidth | string | number",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"xs\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                }
-              ]
-            },
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "error": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "maxRows": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "8",
-          "computed": false
-        }
-      },
-      "allowClear": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "onClear": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onSubmit": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(value: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "value"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "defaultValue": {
-        "defaultValue": {
-          "value": "\"\"",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "SearchInput": {
-    "name": "SearchInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "BoldIcon": {
     "name": "BoldIcon",
     "tokens": [],
@@ -4154,6 +3916,244 @@
       }
     }
   },
+  "SmartSearchInput": {
+    "name": "SmartSearchInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"outline\" | \"ghost\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"ghost\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"outline\"",
+          "computed": false
+        }
+      },
+      "fullWidth": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "FieldWidth | string | number",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"xs\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                }
+              ]
+            },
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "error": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "maxRows": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "8",
+          "computed": false
+        }
+      },
+      "allowClear": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "onClear": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onSubmit": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "defaultValue": {
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "SearchInput": {
+    "name": "SearchInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Rating": {
     "name": "Rating",
     "tokens": [
@@ -4663,51 +4663,6 @@
       }
     }
   },
-  "Radio": {
-    "name": "Radio",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-tertiary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-family-default",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-opacity-disabled",
-      "--wim-radio-dot-size",
-      "--wim-radio-size",
-      "--wim-radius-full",
-      "--wim-shadow-focus",
-      "--wim-spacing-md",
-      "--wim-spacing-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      }
-    }
-  },
   "RadioGroup": {
     "name": "RadioGroup",
     "tokens": [],
@@ -4854,6 +4809,51 @@
         "required": false,
         "tsType": {
           "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Radio": {
+    "name": "Radio",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-tertiary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-family-default",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-opacity-disabled",
+      "--wim-radio-dot-size",
+      "--wim-radio-size",
+      "--wim-radius-full",
+      "--wim-shadow-focus",
+      "--wim-spacing-md",
+      "--wim-spacing-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
         "description": ""
       }
@@ -5376,79 +5376,6 @@
       }
     }
   },
-  "NumberInput": {
-    "name": "NumberInput",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "mode": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"number\" | \"text\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"number\""
-            },
-            {
-              "name": "literal",
-              "value": "\"text\""
-            }
-          ]
-        },
-        "description": "'number': ネイティブの type=\"number\" を使用（数量の増減など）\n'text': type=\"text\" + inputmode を使用（クレカ番号、IDなど、ゼロを保持したい場合）",
-        "defaultValue": {
-          "value": "\"number\"",
-          "computed": false
-        }
-      },
-      "hideSpinButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "スピンボタンを非表示にするか",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "allowDecimal": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "小数点を許可するか (mode=\"number\" の場合のみ有効)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "allowNegative": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "負の数を許可するか (mode=\"number\" の場合のみ有効)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to render as a child element.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
   "MultiSelect": {
     "name": "MultiSelect",
     "tokens": [
@@ -5912,6 +5839,79 @@
       }
     }
   },
+  "NumberInput": {
+    "name": "NumberInput",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "mode": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"number\" | \"text\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"number\""
+            },
+            {
+              "name": "literal",
+              "value": "\"text\""
+            }
+          ]
+        },
+        "description": "'number': ネイティブの type=\"number\" を使用（数量の増減など）\n'text': type=\"text\" + inputmode を使用（クレカ番号、IDなど、ゼロを保持したい場合）",
+        "defaultValue": {
+          "value": "\"number\"",
+          "computed": false
+        }
+      },
+      "hideSpinButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "スピンボタンを非表示にするか",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "allowDecimal": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "小数点を許可するか (mode=\"number\" の場合のみ有効)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "allowNegative": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "負の数を許可するか (mode=\"number\" の場合のみ有効)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child element.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "InputMask": {
     "name": "InputMask",
     "tokens": [],
@@ -5934,61 +5934,6 @@
           "value": "\"_\"",
           "computed": false
         }
-      }
-    }
-  },
-  "InputGroup": {
-    "name": "InputGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "fullWidth": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "InputGroupText": {
-    "name": "InputGroupText",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },
@@ -6398,6 +6343,61 @@
           }
         },
         "description": "Custom styles for internal parts"
+      }
+    }
+  },
+  "InputGroup": {
+    "name": "InputGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "fullWidth": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "InputGroupText": {
+    "name": "InputGroupText",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -7974,106 +7974,6 @@
       }
     }
   },
-  "CopyButton": {
-    "name": "CopyButton",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "aria-label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "copyLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"Copy to clipboard\"",
-          "computed": false
-        }
-      },
-      "copiedLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"Copied\"",
-          "computed": false
-        }
-      }
-    }
-  },
   "DatePicker": {
     "name": "DatePicker",
     "tokens": [],
@@ -8583,6 +8483,106 @@
         "description": "",
         "defaultValue": {
           "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  },
+  "CopyButton": {
+    "name": "CopyButton",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "aria-label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "copyLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"Copy to clipboard\"",
+          "computed": false
+        }
+      },
+      "copiedLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"Copied\"",
           "computed": false
         }
       }

@@ -7,13 +7,8 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("PasswordStrength", () => {
-  it("renders correctly", () => {
-    render(<PasswordStrength>Test content</PasswordStrength>);
-    expect(screen.getByText("Test content")).toBeInTheDocument();
-  });
-
-  it("renders with default props", () => {
-    render(<PasswordStrength />);
+  it("renders with a score and label", () => {
+    render(<PasswordStrength score={0} />);
     expect(screen.getByText("password_strength.very_weak")).toBeInTheDocument();
   });
 });

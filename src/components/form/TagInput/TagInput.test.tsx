@@ -7,11 +7,6 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("TagInput", () => {
-  it("renders correctly", () => {
-    render(<TagInput>Test content</TagInput>);
-    expect(screen.getByText("Test content")).toBeInTheDocument();
-  });
-
   it("renders with default values", () => {
     render(<TagInput defaultValue={["Tag1"]} />);
     expect(screen.getByText("Tag1")).toBeInTheDocument();
