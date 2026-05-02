@@ -1,10 +1,4 @@
 {
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Tooltip": {
     "name": "Tooltip",
     "tokens": [
@@ -158,6 +152,12 @@
         "description": ""
       }
     }
+  },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "Popover": {
     "name": "Popover",
