@@ -1,295 +1,4 @@
 {
-  "Lightbox": {
-    "name": "Lightbox",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "defaultOpen": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "defaultIndex": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Trigger": {
-    "name": "Lightbox.Trigger",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "index": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "src": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "alt": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Lightbox.Content": {
-    "name": "Lightbox.Content",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "showCloseButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showNavigation": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showCounter": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "closeOnOverlayClick": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Gallery": {
-    "name": "Lightbox.Gallery",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "LightboxItem"
-            }
-          ],
-          "raw": "LightboxItem[]"
-        },
-        "description": ""
-      }
-    }
-  },
   "Video": {
     "name": "Video",
     "tokens": [
@@ -915,421 +624,292 @@
       }
     }
   },
-  "Icon": {
-    "name": "Icon",
+  "Lightbox": {
+    "name": "Lightbox",
     "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-2xl",
-      "--wim-font-size-3xl",
-      "--wim-font-size-4xl",
-      "--wim-font-size-5xl",
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
       "--wim-font-size-lg",
       "--wim-font-size-md",
       "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-font-size-xs",
-      "--wim-opacity-disabled",
-      "--wim-transition-fast"
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
     ],
     "anatomy": [],
     "props": {
-      "name": {
-        "required": false,
+      "children": {
+        "required": true,
         "tsType": {
-          "name": "union",
-          "raw": "keyof typeof ALL_ICONS",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "AlertCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "BellIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CalendarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChartIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronLeftIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronRightIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ClockIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseSmallIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CopyIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DocumentIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DownloadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EditIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EmailIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ExternalLinkIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeOffIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "FilterIcon"
-            },
-            {
-              "name": "literal",
-              "value": "GripVerticalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HelpCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HomeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HourglassIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ImageIcon"
-            },
-            {
-              "name": "literal",
-              "value": "InfoCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LoadingIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogInIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogOutIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MaximizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinimizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MonitorIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoonIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreHorizontalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreVerticalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MuteIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PaperclipIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PauseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PdfIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PhoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PipIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlayIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ProjectIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RefreshIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RepeatIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SearchIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SendIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SettingsIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShuffleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipBackIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipForwardIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SmartphoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SpinnerIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SquareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "StarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SunIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "TrashIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UploadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UserIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VideoIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VolumeIcon"
-            }
-          ]
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
         "description": ""
       },
-      "component": {
+      "open": {
         "required": false,
         "tsType": {
-          "name": "ReactFC",
-          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
-          "elements": [
-            {
-              "name": "ReactSVGProps",
-              "raw": "React.SVGProps<SVGSVGElement>",
-              "elements": [
-                {
-                  "name": "SVGSVGElement"
-                }
-              ]
-            }
-          ]
+          "name": "boolean"
         },
         "description": ""
       },
-      "size": {
+      "onOpenChange": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
             }
-          ]
+          }
+        },
+        "description": ""
+      },
+      "defaultOpen": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
         },
         "description": "",
         "defaultValue": {
-          "value": "\"md\"",
+          "value": "false",
           "computed": false
         }
       },
-      "color": {
+      "defaultIndex": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Trigger": {
+    "name": "Lightbox.Trigger",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "index": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "src": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Lightbox.Content": {
+    "name": "Lightbox.Content",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "showCloseButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showNavigation": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showCounter": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "closeOnOverlayClick": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Gallery": {
+    "name": "Lightbox.Gallery",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
           "elements": [
             {
-              "name": "literal",
-              "value": "\"destructive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"positive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"caution\""
-            },
-            {
-              "name": "literal",
-              "value": "\"informative\""
-            },
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"tertiary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"disabled\""
+              "name": "LightboxItem"
             }
-          ]
+          ],
+          "raw": "LightboxItem[]"
         },
         "description": ""
       }
@@ -2292,6 +1872,426 @@
           "value": "{}",
           "computed": false
         }
+      }
+    }
+  },
+  "Icon": {
+    "name": "Icon",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-2xl",
+      "--wim-font-size-3xl",
+      "--wim-font-size-4xl",
+      "--wim-font-size-5xl",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-font-size-xs",
+      "--wim-opacity-disabled",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "name": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "keyof typeof ALL_ICONS",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "AlertCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "BellIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CalendarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChartIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronLeftIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronRightIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ClockIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseSmallIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CopyIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DocumentIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DownloadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EditIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EmailIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ExternalLinkIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeOffIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "FilterIcon"
+            },
+            {
+              "name": "literal",
+              "value": "GripVerticalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HelpCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HomeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HourglassIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ImageIcon"
+            },
+            {
+              "name": "literal",
+              "value": "InfoCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LoadingIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogInIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogOutIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MaximizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinimizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MonitorIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoonIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreHorizontalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreVerticalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MuteIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PaperclipIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PauseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PdfIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PhoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PipIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlayIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ProjectIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RefreshIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RepeatIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SearchIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SendIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SettingsIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShuffleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipBackIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipForwardIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SmartphoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SpinnerIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SquareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "StarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SunIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "TrashIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UploadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UserIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VideoIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VolumeIcon"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "component": {
+        "required": false,
+        "tsType": {
+          "name": "ReactFC",
+          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
+          "elements": [
+            {
+              "name": "ReactSVGProps",
+              "raw": "React.SVGProps<SVGSVGElement>",
+              "elements": [
+                {
+                  "name": "SVGSVGElement"
+                }
+              ]
+            }
+          ]
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"destructive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"positive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"caution\""
+            },
+            {
+              "name": "literal",
+              "value": "\"informative\""
+            },
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"tertiary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"disabled\""
+            }
+          ]
+        },
+        "description": ""
       }
     }
   },
