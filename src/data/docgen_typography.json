@@ -1035,68 +1035,6 @@
       }
     }
   },
-  "Code": {
-    "name": "Code",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-subtle",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-text-primary",
-      "--wim-font-size-small-scale",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "code": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "block": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "language": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "Blockquote": {
     "name": "Blockquote",
     "tokens": [
@@ -1264,6 +1202,68 @@
           "value": "true",
           "computed": false
         }
+      }
+    }
+  },
+  "Code": {
+    "name": "Code",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-subtle",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-text-primary",
+      "--wim-font-size-small-scale",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "code": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "block": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "language": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   }
