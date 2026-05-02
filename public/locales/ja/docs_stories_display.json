@@ -190,6 +190,16 @@
     "chat_ai_greeting": "こんにちは！AIアシスタントです。何かお手伝いできることはありますか？",
     "chat_ai_response": "「{{message}}」へのAI応答のシミュレーションです。実際の環境では、上記のGemini APIコードのコメントを外してください。",
     "chat_placeholder_ai": "AIアシスタントに質問する...",
-    "virtuallist_aria_label": "仮想リスト"
+    "virtuallist_aria_label": "仮想リスト",
+    "nodegraph_label_start": "開始",
+    "nodegraph_label_process": "処理",
+    "nodegraph_label_end": "終了",
+    "nodegraph_label_error": "エラーハンドラ",
+    "nodegraph_edge_trigger": "トリガー",
+    "nodegraph_edge_success": "成功",
+    "nodegraph_edge_error": "エラー",
+    "schedule_event_design": "デザインレビュー",
+    "schedule_event_standup": "チームスタンドアップ",
+    "schedule_event_sprint": "スプリントプランニング"
   }
 }

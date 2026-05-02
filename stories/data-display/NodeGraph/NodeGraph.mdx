@@ -7,89 +7,107 @@ import { Docgen } from "../../Docgen";
 
 <Title />
 
-インタラクティブなノードベースのダイアグラムを描画するコンポーネントです。React Flow をラップしており、承認フローやAIエージェントのパイプライン可視化など、複雑なグラフ構造の表示と編集に使用します。
+<T k="docs_data_heavy:doc.nodegraph_desc" />
+
 
 <Canvas of={NodeGraphStories.Default} />
 <Controls of={NodeGraphStories.Default} />
 
-## <T k="doc.design_intent_title" />
+## <T k="common:doc.design_intent_title" />
 
-ノード（処理単位）とエッジ（接続）で構成される有向グラフをユーザーが視覚的に把握・編集できるよう設計されています。ドラッグによるノード移動や接続の作成をサポートし、読み取り専用モードも提供します。
+<T k="docs_data_heavy:doc.nodegraph_design_intent" />
 
-## <T k="doc.choice_matrix_title" />
+## <T k="common:doc.choice_matrix_title" />
 
 <table>
   <thead>
-    <tr><th>用途</th><th>推奨</th></tr>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>承認フローの設定画面</td><td>NodeGraph (editable)</td></tr>
-    <tr><td>AIパイプラインの可視化（閲覧のみ）</td><td>NodeGraph (readOnly)</td></tr>
-    <tr><td>単純な線形フロー表示</td><td>Stepper または Timeline</td></tr>
-    <tr><td>階層構造の表示</td><td>TreeView</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.nodegraph_choice_flow" /></td><td>NodeGraph (editable)</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.nodegraph_choice_viz" /></td><td>NodeGraph (readOnly)</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.nodegraph_choice_stepper" /></td><td>Stepper <T k="common.or" /> Timeline</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.nodegraph_choice_tree" /></td><td>TreeView</td></tr>
   </tbody>
 </table>
 
 <Docgen componentName="NodeGraph" section="anatomy" />
 
-## <T k="doc.content_guidelines_title" />
+## <T k="common:doc.content_guidelines_title" />
 
 <ul>
-  <li>ノードラベルは短く、一目で内容が伝わるようにしてください（例：「承認」「送信」「条件分岐」）。</li>
-  <li>エッジのラベルには状態遷移の条件（例：「success」「error」）を記述します。</li>
+  <li><T k="docs_data_heavy:doc.nodegraph_content_label" /></li>
+  <li><T k="docs_data_heavy:doc.nodegraph_content_edge" /></li>
 </ul>
 
-## <T k="doc.motion_spec_title" />
+## <T k="common:doc.motion_spec_title" />
 
-ノードのドラッグ操作はネイティブのブラウザ挙動を使用します。React Flow が提供するデフォルトのアニメーションを維持してください。
+<T k="docs_data_heavy:doc.nodegraph_motion_drag" />
 
-## <T k="doc.a11y_spec_title" />
+## <T k="common:doc.a11y_spec_title" />
 
 <ul>
-  <li>グラフ全体を `role="region"` と `aria-label` でラップしています。</li>
-  <li>キーボードによるノード選択・移動は React Flow の組み込みサポートに依存します。</li>
-  <li>スクリーンリーダー向けには、重要な状態変化を別途 `aria-live` 領域でアナウンスすることを推奨します。</li>
+  <li><T k="docs_data_heavy:doc.nodegraph_a11y_wrap" /></li>
+  <li><T k="docs_data_heavy:doc.nodegraph_a11y_keyboard" /></li>
+  <li><T k="docs_data_heavy:doc.nodegraph_a11y_live" /></li>
 </ul>
 
-## <T k="doc.real_world_scenarios_title" />
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common:doc.scenario" /></th>
+      <th><T k="common:doc.summary" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.nodegraph_scenario_flow" /></strong></td>
+      <td><T k="docs_data_heavy:doc.nodegraph_scenario_flow_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.nodegraph_scenario_ai" /></strong></td>
+      <td><T k="docs_data_heavy:doc.nodegraph_scenario_ai_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.nodegraph_scenario_data" /></strong></td>
+      <td><T k="docs_data_heavy:doc.nodegraph_scenario_data_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
 
 <ul>
-  <li>**承認フローエディタ**: 申請・承認・却下のノードをドラッグ接続してワークフローを構築する。</li>
-  <li>**AIパイプライン可視化**: プロンプト → LLM → 後処理の処理フローを可視化する。</li>
-  <li>**データフロー図**: ETL パイプラインや API 連携の依存関係を図示する。</li>
-</ul>
-
-## <T k="doc.best_practices_title" />
-
-<ul>
-  <li>初期ノード・エッジは `nodes` / `edges` prop に渡してください。内部状態は React Flow が管理します。</li>
-  <li>読み取り専用にする場合は `nodesDraggable={false}` `nodesConnectable={false}` `deleteKeyCode={null}` を組み合わせてください。</li>
-  <li>コンテナに必ず明示的な高さを指定してください（例：`height: 500px`）。高さが 0 だとグラフが描画されません。</li>
+  <li><T k="docs_data_heavy:doc.nodegraph_best_init" /></li>
+  <li><T k="docs_data_heavy:doc.nodegraph_best_readonly" /></li>
+  <li><T k="docs_data_heavy:doc.nodegraph_best_height" /></li>
 </ul>
 
 <Docgen componentName="NodeGraph" section="props" />
 
 <Docgen componentName="NodeGraph" section="tokens" />
 
-## <T k="doc.responsive_title" />
+## <T k="common:doc.responsive_title" />
 
-コンテナの幅・高さに応じて自動リサイズされます。モバイルでは Controls ボタンのタッチターゲットが小さくなるため、`showControls={false}` にしてジェスチャーのみで操作させることを検討してください。
+<T k="docs_data_heavy:doc.nodegraph_responsive_desc" />
 
-## <T k="doc.keyboard_nav_title" />
+## <T k="common:doc.keyboard_nav_title" />
 
 <table>
   <thead>
-    <tr><th>キー</th><th>動作</th></tr>
+    <tr><th><T k="common.name" /></th><th><T k="common:doc.summary" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>Tab</td><td>ノード間のフォーカス移動</td></tr>
-    <tr><td>Delete / Backspace</td><td>選択ノード・エッジの削除（`deleteKeyCode` で変更可）</td></tr>
-    <tr><td>Ctrl + Z</td><td>元に戻す（消費側で実装が必要）</td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_tab" /></td><td><T k="docs_data_heavy:doc.nodegraph_keyboard_tab" /></td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_delete" /></td><td><T k="docs_data_heavy:doc.nodegraph_keyboard_delete" /></td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_undo" /></td><td><T k="docs_data_heavy:doc.nodegraph_keyboard_undo" /></td></tr>
   </tbody>
 </table>
 
-## <T k="doc.i18n_title" />
+## <T k="common:doc.i18n_title" />
 
-コンポーネント自体には翻訳キーはありません。ノードラベルやエッジラベルのローカライズは `nodes` / `edges` データ側で行ってください。
+<T k="docs_data_heavy:doc.nodegraph_i18n_desc" />
 
 <Docgen componentName="NodeGraph" section="test" />

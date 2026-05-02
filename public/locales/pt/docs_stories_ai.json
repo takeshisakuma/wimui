@@ -1,0 +1,13 @@
+{
+  "story": {
+    "promptinput_placeholder": "“Conte-me sobre criaturas do mar profundo”",
+    "promptinput_placeholder_attach": "“Resuma este arquivo”",
+    "promptinput_placeholder_char": "“Resuma isso em 3 linhas”",
+    "promptinput_submitted": "Enviado: ",
+    "promptinput_attached": "Arquivo anexado",
+    "promptinput_disabled_val": "A entrada está desativada",
+    "promptinput_loading_val": "Gerando resposta...",
+    "streamingtext_thinking": "O assistente está pensando",
+    "streamingtext_sample": "## Resumo\n\nReact é uma **biblioteca JavaScript** para construir interfaces de usuário.\n\n### Principais Recursos\n\n- Arquitetura baseada em componentes\n- DOM Virtual para renderização eficiente\n- Vinculação de dados unidirecional\n\n```tsx\nconst App = () => <h1>Olá, mundo!</h1>;\n```\n\n> \"Pense em componentes, não em páginas.\"\n"
+  }
+}

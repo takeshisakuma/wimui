@@ -9,8 +9,8 @@
   "cat": {
     "advanced_inputs": "Entradas Avançadas",
     "advanced_inputs_desc": "Componentes de entrada para formatos de dados complexos ou interações especiais.",
-    "ai": "[MISSING_TRANSLATION: pt] AI",
-    "ai_desc": "[MISSING_TRANSLATION: pt] Components for building AI-powered chat interfaces and visualizing generative AI output.",
+    "ai": "IA",
+    "ai_desc": "Componentes para construir interfaces de chat com IA e visualizar saídas de IA generativa.",
     "alerts": "Alertas e Notificações",
     "alerts_desc": "Componentes para comunicar informações importantes ou feedback aos usuários.",
     "app_shell": "Estrutura do Aplicativo",

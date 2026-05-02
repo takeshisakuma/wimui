@@ -10,7 +10,7 @@
 
   &:focus-within:not(.disabled) {
     border-color: var(--wim-color-primary);
-    box-shadow: 0 0 0 2px var(--wim-color-focus-ring);
+    box-shadow: var(--wim-shadow-focus-ring);
   }
 
   &.disabled {
@@ -29,21 +29,27 @@
   gap: var(--wim-spacing-xs);
   align-items: flex-end;
   padding: var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-md);
+
+  &.noAttach {
+    padding-left: var(--wim-spacing-2xl);
+  }
 }
 
 .textarea {
   flex: 1;
   min-width: 0;
   padding: 0;
+  padding: var(--wim-spacing-xs) 0;
   overflow: hidden;
   font-family: inherit;
   font-size: var(--wim-font-size-md);
   line-height: var(--wim-line-height-normal);
   color: var(--wim-color-text-primary);
   resize: none;
-  outline: none;
+  outline: none !important;
   background: transparent;
   border: none;
+  box-shadow: none !important;
 
   &::placeholder {
     color: var(--wim-color-text-tertiary);

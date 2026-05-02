@@ -190,6 +190,16 @@
     "chat_ai_greeting": "Hello! I am your AI Assistant. How can I help you today?",
     "chat_ai_response": "This is a simulated AI response to: \"{{message}}\". In a real environment, you would uncomment the Gemini API code snippet above.",
     "chat_placeholder_ai": "Ask the AI Assistant...",
-    "virtuallist_aria_label": "Virtual list"
+    "virtuallist_aria_label": "Virtual list",
+    "nodegraph_label_start": "Start",
+    "nodegraph_label_process": "Process",
+    "nodegraph_label_end": "End",
+    "nodegraph_label_error": "Error Handler",
+    "nodegraph_edge_trigger": "trigger",
+    "nodegraph_edge_success": "success",
+    "nodegraph_edge_error": "error",
+    "schedule_event_design": "Design Review",
+    "schedule_event_standup": "Team Standup",
+    "schedule_event_sprint": "Sprint Planning"
   }
 }

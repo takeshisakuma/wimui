@@ -3,8 +3,9 @@
     position: fixed;
     inset: 0;
     z-index: var(--wim-z-overlay);
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow-y: auto;
     background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(var(--wim-dialog-blur, var(--wim-radius-xs)));
@@ -12,11 +13,11 @@
 
   .content {
     position: relative;
-    width: var(--wim-dialog-width-mobile, 90vw);
-    max-width: var(--wim-dialog-max-width, var(--wim-overlay-max-width-lg));
+    width: 100%;
+    max-width: var(--wim-dialog-width-mobile, 90vw);
     max-height: var(--wim-dialog-max-height, 85vh);
     padding: var(--wim-spacing-2xl);
-    margin: 0;
+    margin: auto;
     container-type: inline-size;
     overflow: auto;
     color: var(--wim-color-text-primary);

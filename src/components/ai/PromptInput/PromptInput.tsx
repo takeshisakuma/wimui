@@ -118,7 +118,7 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
         )}
         {...props}
       >
-        <div className={styles.inputArea}>
+        <div className={classNames(styles.inputArea, !showAttach && styles.noAttach)}>
           {showAttach && (
             <button
               type="button"

@@ -368,7 +368,8 @@ Best Practices と Props の間、または Props の後に必要なセクショ
   - `Selection Controls`: 選択コントロール (Checkbox, Radio, Switch, SegmentedControl等)
   - `Typography & Icons`: 文字・アイコン (Text, Link, Icon等)
   - `Utilities`: その他便利要素 (Divider, InfiniteScroll, Marquee等)
-  - `Visualization`: グラフ・チャート (Charts, GanttChart等)
+  - `Visualization`: グラフ・チャート (Charts, GanttChart, NodeGraph, ScheduleView等)
+  - `AI`: AI向けUI (PromptInput, StreamingText等)
 
 - 注意点:
   - `stories/*.stories.tsx` の `title` プロパティでこれを定義します。

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { StreamingText } from "@/components/ai/StreamingText/StreamingText";
 
 const meta: Meta<typeof StreamingText> = {
@@ -17,39 +19,25 @@ const meta: Meta<typeof StreamingText> = {
 export default meta;
 type Story = StoryObj<typeof StreamingText>;
 
-const markdownSample = `## Summary
-
-React is a **JavaScript library** for building user interfaces.
-
-### Key Features
-
-- Component-based architecture
-- Virtual DOM for efficient rendering
-- One-way data binding
-
-\`\`\`tsx
-const App = () => <h1>Hello, world!</h1>;
-\`\`\`
-
-> "Think in components, not in pages."
-`;
-
 export const Default: Story = {
-  render: (args) => (
-    <div style={{ width: 560 }}>
-      <StreamingText {...args} />
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ width: 560 }}>
+        <StreamingText {...args} content={args.content ?? t("story.streamingtext_sample")} />
+      </div>
+    );
+  },
   args: {
-    content: markdownSample,
     isStreaming: false,
   },
 };
 
 export const Streaming: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [displayed, setDisplayed] = useState("");
-    const full = markdownSample;
+    const full = args.content ?? t("story.streamingtext_sample");
 
     useEffect(() => {
       setDisplayed("");
@@ -73,13 +61,15 @@ export const Streaming: Story = {
 };
 
 export const WithCursor: Story = {
-  render: (args) => (
-    <div style={{ width: 560 }}>
-      <StreamingText {...args} />
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ width: 560 }}>
+        <StreamingText {...args} content={args.content ?? t("story.streamingtext_thinking")} />
+      </div>
+    );
+  },
   args: {
-    content: "The assistant is thinking",
     isStreaming: true,
   },
 };

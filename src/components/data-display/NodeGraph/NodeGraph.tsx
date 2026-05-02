@@ -1,16 +1,15 @@
-import React, { useCallback } from "react";
+import React from "react";
 import classNames from "classnames";
 import {
   ReactFlow,
   Background,
   Controls,
   MiniMap,
-  addEdge,
-  useNodesState,
-  useEdgesState,
   BackgroundVariant,
   type Node,
   type Edge,
+  type OnNodesChange,
+  type OnEdgesChange,
   type OnConnect,
   type NodeTypes,
   type EdgeTypes,
@@ -23,24 +22,20 @@ import styles from "./node-graph.module.scss";
 export type { Node as NodeGraphNode, Edge as NodeGraphEdge };
 
 export interface NodeGraphProps {
-  /** Initial nodes (uncontrolled) or controlled nodes */
-  nodes?: Node[];
-  /** Initial edges (uncontrolled) or controlled edges */
-  edges?: Edge[];
+  /** Controlled nodes */
+  nodes: Node[];
+  /** Controlled edges */
+  edges: Edge[];
+  /** Called when nodes change (position, selection, removal) */
+  onNodesChange: OnNodesChange;
+  /** Called when edges change */
+  onEdgesChange: OnEdgesChange;
+  /** Called when a new connection is made */
+  onConnect?: OnConnect;
   /** Custom node type renderers */
   nodeTypes?: NodeTypes;
   /** Custom edge type renderers */
   edgeTypes?: EdgeTypes;
-  /** Called when nodes change (position, selection, removal) */
-  onNodesChange?: Parameters<typeof useNodesState>[0] extends Node[]
-    ? (nodes: Node[]) => void
-    : never;
-  /** Called when edges change */
-  onEdgesChange?: Parameters<typeof useEdgesState>[0] extends Edge[]
-    ? (edges: Edge[]) => void
-    : never;
-  /** Called when a new connection is made */
-  onConnect?: OnConnect;
   /** Whether nodes can be dragged */
   nodesDraggable?: boolean;
   /** Whether nodes can be connected */
@@ -65,7 +60,10 @@ export interface NodeGraphProps {
 }
 
 /**
- * NodeGraph wraps React Flow to render interactive node-based diagrams.
+ * NodeGraph — a controlled wrapper around React Flow.
+ *
+ * The consumer manages nodes/edges state via useNodesState / useEdgesState
+ * hooks and passes them as props alongside their change handlers.
  *
  * Composition Contract:
  * - Managed by: App consumption; ReactFlow manages its own portal for edge labels
@@ -74,11 +72,13 @@ export interface NodeGraphProps {
 export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
   (
     {
-      nodes: initialNodes = [],
-      edges: initialEdges = [],
+      nodes,
+      edges,
+      onNodesChange,
+      onEdgesChange,
+      onConnect,
       nodeTypes,
       edgeTypes,
-      onConnect: onConnectProp,
       nodesDraggable = true,
       nodesConnectable = true,
       deleteKeyCode = "Backspace",
@@ -93,49 +93,36 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
       ...props
     },
     ref
-  ) => {
-    const [nodes, , onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-    const onConnect: OnConnect = useCallback(
-      (params) => {
-        setEdges((eds) => addEdge(params, eds));
-        onConnectProp?.(params);
-      },
-      [setEdges, onConnectProp]
-    );
-
-    return (
-      <div
-        ref={ref}
-        className={classNames(styles.root, className)}
-        role="region"
-        aria-label={ariaLabel}
-        {...props}
+  ) => (
+    <div
+      ref={ref}
+      className={classNames(styles.root, className)}
+      role="region"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        nodesDraggable={nodesDraggable}
+        nodesConnectable={nodesConnectable}
+        deleteKeyCode={deleteKeyCode}
+        fitView={fitView}
+        fitViewOptions={fitViewOptions}
+        defaultEdgeOptions={defaultEdgeOptions}
+        className={styles.flow}
       >
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          nodeTypes={nodeTypes}
-          edgeTypes={edgeTypes}
-          nodesDraggable={nodesDraggable}
-          nodesConnectable={nodesConnectable}
-          deleteKeyCode={deleteKeyCode}
-          fitView={fitView}
-          fitViewOptions={fitViewOptions}
-          defaultEdgeOptions={defaultEdgeOptions}
-          className={styles.flow}
-        >
-          <Background variant={backgroundVariant} className={styles.background} />
-          {showControls && <Controls className={styles.controls} />}
-          {showMiniMap && <MiniMap className={styles.miniMap} />}
-        </ReactFlow>
-      </div>
-    );
-  }
+        <Background variant={backgroundVariant} className={styles.background} />
+        {showControls && <Controls className={styles.controls} />}
+        {showMiniMap && <MiniMap className={styles.miniMap} />}
+      </ReactFlow>
+    </div>
+  )
 );
 
 NodeGraph.displayName = "NodeGraph";

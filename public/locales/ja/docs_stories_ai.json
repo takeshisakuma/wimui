@@ -1,0 +1,13 @@
+{
+  "story": {
+    "promptinput_placeholder": "「深海魚の生態について教えて」",
+    "promptinput_placeholder_attach": "「このファイルを要約して」",
+    "promptinput_placeholder_char": "「500文字以内で解説して」",
+    "promptinput_submitted": "送信済み: ",
+    "promptinput_attached": "添付ファイル",
+    "promptinput_disabled_val": "入力は無効です",
+    "promptinput_loading_val": "回答を生成中...",
+    "streamingtext_thinking": "アシスタントが考えています",
+    "streamingtext_sample": "## 概要\n\nReactは、ユーザーインターフェースを構築するための**JavaScriptライブラリ**です。\n\n### 主な特徴\n\n- コンポーネントベースのアーキテクチャ\n- 効率的なレンダリングのための仮想DOM\n- 単方向データバインディング\n\n```tsx\nconst App = () => <h1>Hello, world!</h1>;\n```\n\n> 「ページではなく、コンポーネントで考えよう。」\n"
+  }
+}

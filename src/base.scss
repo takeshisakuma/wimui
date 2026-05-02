@@ -35,7 +35,7 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* 画像とメチE��ア要素の応答性 */
+  /* 画像とメディア要素の応答性 */
   img,
   picture,
   video,
@@ -45,6 +45,7 @@
     max-width: 100%;
     height: auto;
   }
+
 
   /* フォーム要素のフォント継承とインタラクションの最適匁E */
   input,
@@ -222,5 +223,18 @@
   background-color: color-mix(in srgb, var(--wim-color-text-primary) 1%, transparent);
   border: 1px solid color-mix(in srgb, var(--wim-color-text-primary) 5%, transparent);
   border-radius: 3px;
+}
+
+/* ─── React Flow SVG override ───────────────────────────────────────
+   グローバルリセット @layer base の svg { height: auto; max-width: 100% }
+   が React Flow の edge 描画用 SVG を潰すのを防ぐ。
+   unset で React Flow 本来の CSS に制御を戻す。
+   ──────────────────────────────────────────────────────────────────── */
+.react-flow svg,
+.react-flow__edges svg,
+svg.react-flow__connectionline {
+  display: unset !important;
+  max-width: unset !important;
+  height: unset !important;
 }
 

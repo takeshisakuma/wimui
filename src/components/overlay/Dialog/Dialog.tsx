@@ -180,11 +180,11 @@ DialogContent.displayName = "Dialog.Content";
 export const DialogHeader = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={classNames(styles.header, className)} data-testid="dialog-header">{children}</div>
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) => (
+  <div className={classNames(styles.header, className)} data-testid="dialog-header" {...props}>
+    {children}
+  </div>
 );
 
 DialogHeader.displayName = "Dialog.Header";
@@ -192,11 +192,11 @@ DialogHeader.displayName = "Dialog.Header";
 export const DialogFooter = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={classNames(styles.footer, className)} data-testid="dialog-footer">{children}</div>
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) => (
+  <div className={classNames(styles.footer, className)} data-testid="dialog-footer" {...props}>
+    {children}
+  </div>
 );
 
 DialogFooter.displayName = "Dialog.Footer";
@@ -204,13 +204,11 @@ DialogFooter.displayName = "Dialog.Footer";
 export const DialogTitle = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+  ...props
+}: React.ComponentPropsWithoutRef<"h2">) => {
   const { titleId } = useDialog();
   return (
-    <h2 id={titleId} className={classNames(styles.title, className)} data-testid="dialog-title">
+    <h2 id={titleId} className={classNames(styles.title, className)} data-testid="dialog-title" {...props}>
       {children}
     </h2>
   );
@@ -221,16 +219,15 @@ DialogTitle.displayName = "Dialog.Title";
 export const DialogDescription = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+  ...props
+}: React.ComponentPropsWithoutRef<"p">) => {
   const { descriptionId } = useDialog();
   return (
     <p
       id={descriptionId}
       className={classNames(styles.description, className)}
       data-testid="dialog-description"
+      {...props}
     >
       {children}
     </p>

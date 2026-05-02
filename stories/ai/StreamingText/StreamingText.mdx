@@ -7,64 +7,81 @@ import { Docgen } from "../../Docgen";
 
 <Title />
 
-生成AIの回答をMarkdown形式でストリーミング描画するコンポーネントです。`react-markdown` と `remark-gfm` を使用し、コードブロック・テーブル・リストなどの Markdown 構文を正しくレンダリングします。ストリーミング中はカーソルが点滅します。
+<T k="docs_form_advanced:doc.streamingtext_desc" />
 
 <Canvas of={StreamingTextStories.Default} />
 <Controls of={StreamingTextStories.Default} />
 
-## <T k="doc.design_intent_title" />
+## <T k="common:doc.design_intent_title" />
 
-AI が文字を生成するにつれてコンテンツが徐々に表示されるストリーミング体験を実現します。完了したテキストは通常のMarkdownとして読めるよう、一貫したタイポグラフィとスペーシングを持ちます。
+<T k="docs_form_advanced:doc.streamingtext_design_intent" />
 
-## <T k="doc.choice_matrix_title" />
+## <T k="common:doc.choice_matrix_title" />
 
 <table>
   <thead>
-    <tr><th>用途</th><th>推奨</th></tr>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>AI の Markdown 応答の表示</td><td>StreamingText</td></tr>
-    <tr><td>静的な Markdown コンテンツ</td><td>StreamingText (isStreaming=false)</td></tr>
-    <tr><td>ユーザーが入力する Markdown エディタ</td><td>RichTextEditor</td></tr>
-    <tr><td>プレーンテキストのみの表示</td><td>Text</td></tr>
+    <tr><td><T k="docs_form_advanced:doc.streamingtext_choice_ai" /></td><td>StreamingText</td></tr>
+    <tr><td><T k="docs_form_advanced:doc.streamingtext_choice_static" /></td><td>StreamingText (isStreaming=false)</td></tr>
+    <tr><td><T k="docs_form_advanced:doc.streamingtext_choice_rte" /></td><td>RichTextEditor</td></tr>
+    <tr><td><T k="docs_form_advanced:doc.streamingtext_choice_text" /></td><td>Text</td></tr>
   </tbody>
 </table>
 
 <Docgen componentName="StreamingText" section="anatomy" />
 
-## <T k="doc.content_guidelines_title" />
+## <T k="common:doc.content_guidelines_title" />
 
 <ul>
-  <li>AIが生成するMarkdownの品質はモデル側で制御してください。コンポーネントは受け取ったテキストをそのまま描画します。</li>
-  <li>コードブロックには言語指定（` ```tsx ` など）を付けることでシンタックスハイライトを将来的に追加しやすくなります。</li>
+  <li><T k="docs_form_advanced:doc.streamingtext_content_quality" /></li>
+  <li><T k="docs_form_advanced:doc.streamingtext_content_codeblock" /></li>
 </ul>
 
-## <T k="doc.motion_spec_title" />
+## <T k="common:doc.motion_spec_title" />
 
-ストリーミングカーソルは CSS animation（`step-end` + `opacity` 切り替え）で点滅します。`prefers-reduced-motion` が設定されている場合はカーソルを非表示にすることを推奨します。
+<T k="docs_form_advanced:doc.streamingtext_motion_cursor" />
 
-## <T k="doc.a11y_spec_title" />
+## <T k="common:doc.a11y_spec_title" />
 
 <ul>
-  <li>`isStreaming` が `true` の間は `aria-live="polite"` を設定し、スクリーンリーダーが更新を適切なタイミングで読み上げます。</li>
-  <li>`aria-atomic="false"` により、追加されたテキストのみをアナウンスします（ページ全体の再読み上げを防ぎます）。</li>
-  <li>カーソル要素には `aria-hidden="true"` を付与しており、スクリーンリーダーに認識されません。</li>
+  <li><T k="docs_form_advanced:doc.streamingtext_a11y_live" /></li>
+  <li><T k="docs_form_advanced:doc.streamingtext_a11y_atomic" /></li>
+  <li><T k="docs_form_advanced:doc.streamingtext_a11y_hidden" /></li>
 </ul>
 
-## <T k="doc.real_world_scenarios_title" />
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common:doc.scenario" /></th>
+      <th><T k="common:doc.summary" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="docs_form_advanced:doc.streamingtext_scenario_chat" /></strong></td>
+      <td><T k="docs_form_advanced:doc.streamingtext_scenario_chat_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_form_advanced:doc.streamingtext_scenario_codegen" /></strong></td>
+      <td><T k="docs_form_advanced:doc.streamingtext_scenario_codegen_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_form_advanced:doc.streamingtext_scenario_docs" /></strong></td>
+      <td><T k="docs_form_advanced:doc.streamingtext_scenario_docs_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
 
 <ul>
-  <li>**AI チャット**: `PromptInput` と組み合わせて、ユーザーの質問に対する回答をリアルタイムで表示する。</li>
-  <li>**コード生成ツール**: LLM が生成するコードスニペットを `\`\`\`tsx` ブロックで表示する。</li>
-  <li>**ドキュメント生成**: 入力フォームから生成されたMarkdownドキュメントをプレビューする。</li>
-</ul>
-
-## <T k="doc.best_practices_title" />
-
-<ul>
-  <li>ストリーミング完了後は必ず `isStreaming={false}` にしてください。カーソルが消え、`aria-live` も解除されます。</li>
-  <li>長文の場合はラッパーにスクロール領域を設けてください（`overflow-y: auto`）。</li>
-  <li>`components` prop でコードブロックのレンダラーを差し替えることで、シンタックスハイライトライブラリを統合できます。</li>
+  <li><T k="docs_form_advanced:doc.streamingtext_best_isstreaming" /></li>
+  <li><T k="docs_form_advanced:doc.streamingtext_best_scroll" /></li>
+  <li><T k="docs_form_advanced:doc.streamingtext_best_renderer" /></li>
 </ul>
 
 <Canvas of={StreamingTextStories.Streaming} />
@@ -74,16 +91,16 @@ AI が文字を生成するにつれてコンテンツが徐々に表示され�
 
 <Docgen componentName="StreamingText" section="tokens" />
 
-## <T k="doc.responsive_title" />
+## <T k="common:doc.responsive_title" />
 
-コンテナの幅に応じてテキストが折り返されます。コードブロックは `overflow-x: auto` でスクロール可能です。モバイルではフォントサイズを維持しつつ、テーブルのスクロールに注意してください。
+<T k="docs_form_advanced:doc.streamingtext_responsive_desc" />
 
-## <T k="doc.keyboard_nav_title" />
+## <T k="common:doc.keyboard_nav_title" />
 
-テキストコンテンツのみのため特別なキーボード操作はありません。リンクや `components` で差し替えた要素には標準のフォーカス動作が適用されます。
+<T k="docs_form_advanced:doc.streamingtext_keyboard_desc" />
 
-## <T k="doc.i18n_title" />
+## <T k="common:doc.i18n_title" />
 
-コンポーネント自体には翻訳キーはありません。`content` prop に渡すテキストのローカライズは呼び出し側で行ってください。
+<T k="docs_form_advanced:doc.streamingtext_i18n_desc" />
 
 <Docgen componentName="StreamingText" section="test" />

@@ -43,6 +43,7 @@ export const ALL_NAMESPACES = [
   "docs_navigation",
   "docs_overlay",
   "docs_stories_actions",
+  "docs_stories_ai",
   "docs_stories_common",
   "docs_stories_display",
   "docs_stories_feedback",

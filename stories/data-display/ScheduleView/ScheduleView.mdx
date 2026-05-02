@@ -7,64 +7,81 @@ import { Docgen } from "../../Docgen";
 
 <Title />
 
-時間軸のあるカレンダー（TimeGrid）コンポーネントです。FullCalendar をラップしており、週・日・月ビューの切り替え、イベントのドラッグ移動、時間帯の選択による予定作成をサポートします。
+<T k="docs_data_heavy:doc.scheduleview_desc" />
 
 <Canvas of={ScheduleViewStories.Default} />
 <Controls of={ScheduleViewStories.Default} />
 
-## <T k="doc.design_intent_title" />
+## <T k="common:doc.design_intent_title" />
 
-Google カレンダーのような直感的なスケジュール管理 UI を提供します。閲覧だけでなく、ドラッグ＆ドロップによる予定の移動・リサイズ、空き時間クリックによる新規作成もサポートします。
+<T k="docs_data_heavy:doc.scheduleview_design_intent" />
 
-## <T k="doc.choice_matrix_title" />
+## <T k="common:doc.choice_matrix_title" />
 
 <table>
   <thead>
-    <tr><th>用途</th><th>推奨</th></tr>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>時間単位のスケジュール管理</td><td>ScheduleView (timeGridWeek / timeGridDay)</td></tr>
-    <tr><td>月次の予定一覧</td><td>ScheduleView (dayGridMonth)</td></tr>
-    <tr><td>日付の選択のみ</td><td>DatePicker</td></tr>
-    <tr><td>単純なイベントリスト</td><td>List または Table</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.scheduleview_choice_timegrid" /></td><td>ScheduleView (timeGridWeek / timeGridDay)</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.scheduleview_choice_month" /></td><td>ScheduleView (dayGridMonth)</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.scheduleview_choice_datepicker" /></td><td>DatePicker</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.scheduleview_choice_list" /></td><td><T k="docs_data_heavy:doc.scheduleview_choice_list" /></td></tr>
   </tbody>
 </table>
 
 <Docgen componentName="ScheduleView" section="anatomy" />
 
-## <T k="doc.content_guidelines_title" />
+## <T k="common:doc.content_guidelines_title" />
 
 <ul>
-  <li>イベントタイトルは短く（15文字以内）、タイムグリッド内で視認しやすくしてください。</li>
-  <li>色分けによってカテゴリ・担当者・優先度を区別することを推奨します。</li>
+  <li><T k="docs_data_heavy:doc.scheduleview_content_title" /></li>
+  <li><T k="docs_data_heavy:doc.scheduleview_content_color" /></li>
 </ul>
 
-## <T k="doc.motion_spec_title" />
+## <T k="common:doc.motion_spec_title" />
 
-FullCalendar のデフォルトアニメーションを使用します。ドラッグ中のイベントにはミラー要素が表示され、ドロップ位置を視覚的にフィードバックします。
+<T k="docs_data_heavy:doc.scheduleview_motion_drag" />
 
-## <T k="doc.a11y_spec_title" />
+## <T k="common:doc.a11y_spec_title" />
 
 <ul>
-  <li>カレンダー全体を `role="region"` と `aria-label` でラップしています。</li>
-  <li>FullCalendar は WAI-ARIA 準拠のマークアップを生成します。</li>
-  <li>キーボードによるイベント操作（矢印キーによる移動）はブラウザと FullCalendar が処理します。</li>
+  <li><T k="docs_data_heavy:doc.scheduleview_a11y_wrap" /></li>
+  <li><T k="docs_data_heavy:doc.scheduleview_a11y_markup" /></li>
+  <li><T k="docs_data_heavy:doc.scheduleview_a11y_keyboard" /></li>
 </ul>
 
-## <T k="doc.real_world_scenarios_title" />
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common:doc.scenario" /></th>
+      <th><T k="common:doc.summary" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.scheduleview_scenario_shift" /></strong></td>
+      <td><T k="docs_data_heavy:doc.scheduleview_scenario_shift_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.scheduleview_scenario_booking" /></strong></td>
+      <td><T k="docs_data_heavy:doc.scheduleview_scenario_booking_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.scheduleview_scenario_project" /></strong></td>
+      <td><T k="docs_data_heavy:doc.scheduleview_scenario_project_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
 
 <ul>
-  <li>**シフト管理**: 週次タイムグリッドでスタッフのシフトをドラッグ配置する。</li>
-  <li>**会議室予約**: 空き時間をクリックして予約を作成し、ダブルブッキングを防止する。</li>
-  <li>**プロジェクトスケジュール**: マイルストーンや締め切りを月次ビューで俯瞰する。</li>
-</ul>
-
-## <T k="doc.best_practices_title" />
-
-<ul>
-  <li>コンテナに明示的な高さを与えてください（例：`height: 600px`）。`height="100%"` は親要素の高さに依存します。</li>
-  <li>`slotMinTime` / `slotMaxTime` でビジネスアワーに絞り込むと、スクロール量を削減できます。</li>
-  <li>`onDateSelect` を実装してダイアログと連携することで、予定の詳細を入力できます。</li>
+  <li><T k="docs_data_heavy:doc.scheduleview_best_height" /></li>
+  <li><T k="docs_data_heavy:doc.scheduleview_best_slots" /></li>
+  <li><T k="docs_data_heavy:doc.scheduleview_best_dialog" /></li>
 </ul>
 
 <Canvas of={ScheduleViewStories.DayView} />
@@ -74,25 +91,25 @@ FullCalendar のデフォルトアニメーションを使用します。ドラ�
 
 <Docgen componentName="ScheduleView" section="tokens" />
 
-## <T k="doc.responsive_title" />
+## <T k="common:doc.responsive_title" />
 
-コンテナの幅に応じてカレンダーが自動リサイズされます。モバイルでは週ビューから日ビューに切り替え（`initialView="timeGridDay"`）を推奨します。
+<T k="docs_data_heavy:doc.scheduleview_responsive_desc" />
 
-## <T k="doc.keyboard_nav_title" />
+## <T k="common:doc.keyboard_nav_title" />
 
 <table>
   <thead>
-    <tr><th>キー</th><th>動作</th></tr>
+    <tr><th><T k="common.name" /></th><th><T k="common:doc.summary" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>Tab</td><td>コントロール（prev/next/today）間のフォーカス移動</td></tr>
-    <tr><td>Enter / Space</td><td>フォーカスされたコントロールを実行</td></tr>
-    <tr><td>矢印キー</td><td>FullCalendar の組み込みナビゲーション</td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_tab" /></td><td><T k="docs_data_heavy:doc.scheduleview_keyboard_controls" /></td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_enter" /> / <T k="docs_guide_a11y_usability:table.key_space" /></td><td><T k="docs_data_heavy:doc.scheduleview_keyboard_exec" /></td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_arrow" /></td><td><T k="docs_data_heavy:doc.scheduleview_keyboard_builtin" /></td></tr>
   </tbody>
 </table>
 
-## <T k="doc.i18n_title" />
+## <T k="common:doc.i18n_title" />
 
-`locale` prop に `"ja"` や `"pt"` を渡すと、曜日・月名などが自動でローカライズされます。FullCalendar のロケールデータは自動的に読み込まれます。
+<T k="docs_data_heavy:doc.scheduleview_i18n_desc" />
 
 <Docgen componentName="ScheduleView" section="test" />

@@ -1,0 +1,73 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Components/AI/Overview" />
+
+# <T k="cat.ai" />
+
+<p><T k="cat.ai_desc" /></p>
+
+---
+
+## コンポーネント一覧
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>用途</th>
+      <th>主な Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>PromptInput</strong></td>
+      <td>ユーザーが AI へのプロンプトを入力する自動リサイズ入力欄。送信ボタン・添付ボタンを内包し、Enter で送信・Shift+Enter で改行。</td>
+      <td>`onSubmit`, `loading`, `showAttach`, `maxLength`, `maxRows`</td>
+    </tr>
+    <tr>
+      <td><strong>StreamingText</strong></td>
+      <td>LLM の生成テキストをリアルタイムで Markdown レンダリング。ストリーミング中はカーソルが点滅し、`aria-live` でスクリーンリーダーに通知する。</td>
+      <td>`content`, `isStreaming`, `components`</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 組み合わせパターン
+
+`PromptInput` と `StreamingText` を組み合わせることで、シンプルな AI チャット UI を構築できます。
+
+<table>
+  <thead>
+    <tr>
+      <th>ユースケース</th>
+      <th>構成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AI チャット</td>
+      <td>`PromptInput`（入力） + `StreamingText`（応答表示）</td>
+    </tr>
+    <tr>
+      <td>コードアシスタント</td>
+      <td>`PromptInput`（添付あり） + `StreamingText`（コードブロック強調）</td>
+    </tr>
+    <tr>
+      <td>ドキュメント生成</td>
+      <td>`PromptInput` + `StreamingText` + 保存ボタン</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ベストプラクティス
+
+<ul>
+  <li>AI が応答を生成中は `PromptInput` の `loading={true}` を設定し、重複送信を防いでください。</li>
+  <li>`StreamingText` はストリーミング完了後に `isStreaming={false}` へ切り替えてください。カーソルが消え、`aria-live` が解除されます。</li>
+  <li>エラー発生時は `StreamingText` の `content` にエラーメッセージを表示するか、別途 `Alert` コンポーネントを使用してください。</li>
+</ul>

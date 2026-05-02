@@ -1,6 +1,6 @@
 {
   "prompt_input": {
-    "placeholder": "Ask anything... (Enter to send, Shift+Enter for new line)",
+    "placeholder": "Ask AI or attach a file...",
     "send_label": "Send",
     "attach_label": "Attach file",
     "aria_label": "Prompt input"

@@ -10,7 +10,18 @@ import type {
   EventDropArg,
   DateSelectArg,
   EventChangeArg,
+  EventApi,
 } from "@fullcalendar/core";
+
+export type {
+  EventInput,
+  EventClickArg,
+  EventDropArg,
+  DateSelectArg,
+  EventChangeArg,
+  EventApi,
+};
+import allLocales from "@fullcalendar/core/locales-all";
 import styles from "./schedule-view.module.scss";
 
 export type ScheduleViewEvent = EventInput;
@@ -42,11 +53,20 @@ export interface ScheduleViewProps {
   slotDuration?: string;
   /** Locale string, e.g. "ja", "pt" */
   locale?: string;
+  /** Whether clicking elsewhere on the page will clear the current selection */
+  unselectAuto?: boolean;
   /** Additional CSS class */
   className?: string;
   /** Accessible label for the schedule region */
   "aria-label"?: string;
 }
+
+const PLUGINS = [timeGridPlugin, dayGridPlugin, interactionPlugin];
+const HEADER_TOOLBAR = {
+  left: "prev,next today",
+  center: "title",
+  right: "dayGridMonth,timeGridWeek,timeGridDay",
+};
 
 /**
  * ScheduleView renders a time-grid calendar (week/day/month) powered by FullCalendar.
@@ -66,6 +86,7 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
       onEventDrop,
       onEventChange,
       onDateSelect,
+      unselectAuto = true,
       slotMinTime = "08:00:00",
       slotMaxTime = "20:00:00",
       slotDuration = "00:30:00",
@@ -88,23 +109,21 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
       >
         <FullCalendar
           ref={calendarRef}
-          plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
+          plugins={PLUGINS}
           initialView={initialView}
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
+          headerToolbar={HEADER_TOOLBAR}
           events={events}
           editable={editable}
           selectable={selectable}
           selectMirror
+          unselectAuto={unselectAuto}
           dayMaxEvents
           weekends
           slotMinTime={slotMinTime}
           slotMaxTime={slotMaxTime}
           slotDuration={slotDuration}
           locale={locale}
+          locales={allLocales}
           eventClick={onEventClick}
           eventDrop={onEventDrop}
           eventChange={onEventChange}

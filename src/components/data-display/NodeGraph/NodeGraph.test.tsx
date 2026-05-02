@@ -15,34 +15,38 @@ vi.mock("@xyflow/react", () => ({
   Controls: () => <div data-testid="controls" />,
   MiniMap: () => <div data-testid="minimap" />,
   BackgroundVariant: { Dots: "dots", Lines: "lines", Cross: "cross" },
-  useNodesState: () => [[], vi.fn(), vi.fn()],
-  useEdgesState: () => [[], vi.fn(), vi.fn()],
-  addEdge: vi.fn((params, edges) => [...edges, params]),
 }));
+
+const defaultProps = {
+  nodes: [],
+  edges: [],
+  onNodesChange: vi.fn(),
+  onEdgesChange: vi.fn(),
+};
 
 describe("NodeGraph", () => {
   it("renders a region with the correct aria-label", () => {
-    render(<NodeGraph aria-label="My graph" />);
+    render(<NodeGraph {...defaultProps} aria-label="My graph" />);
     expect(screen.getByRole("region", { name: "My graph" })).toBeInTheDocument();
   });
 
   it("shows controls by default", () => {
-    render(<NodeGraph />);
+    render(<NodeGraph {...defaultProps} />);
     expect(screen.getByTestId("controls")).toBeInTheDocument();
   });
 
   it("hides controls when showControls is false", () => {
-    render(<NodeGraph showControls={false} />);
+    render(<NodeGraph {...defaultProps} showControls={false} />);
     expect(screen.queryByTestId("controls")).not.toBeInTheDocument();
   });
 
   it("shows minimap when showMiniMap is true", () => {
-    render(<NodeGraph showMiniMap />);
+    render(<NodeGraph {...defaultProps} showMiniMap />);
     expect(screen.getByTestId("minimap")).toBeInTheDocument();
   });
 
   it("hides minimap by default", () => {
-    render(<NodeGraph />);
+    render(<NodeGraph {...defaultProps} />);
     expect(screen.queryByTestId("minimap")).not.toBeInTheDocument();
   });
 });
