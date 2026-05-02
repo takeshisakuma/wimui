@@ -351,6 +351,83 @@
       }
     }
   },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the bottom of the screen",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Show top border",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TabBar.Item": {
+    "name": "TabBar.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Active state"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Icon element"
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Text label"
+      },
+      "badge": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Badge content (optional)"
+      }
+    }
+  },
   "Stepper": {
     "name": "Stepper",
     "tokens": [
@@ -840,6 +917,101 @@
       }
     }
   },
+  "HamburgerMenu": {
+    "name": "HamburgerMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the menu is open",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "ReactMouseEventHandler",
+          "raw": "React.MouseEventHandler<HTMLButtonElement>",
+          "elements": [
+            {
+              "name": "HTMLButtonElement"
+            }
+          ]
+        },
+        "description": "Callback function when the menu is toggled"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "Size of the hamburger menu",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Color of the bars"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
+      }
+    }
+  },
   "Link": {
     "name": "Link",
     "tokens": [
@@ -1033,178 +1205,6 @@
           }
         },
         "description": "Custom styles for internal parts"
-      }
-    }
-  },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "fixed": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Fixed position at the bottom of the screen",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Show top border",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TabBar.Item": {
-    "name": "TabBar.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Active state"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Icon element"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Text label"
-      },
-      "badge": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Badge content (optional)"
-      }
-    }
-  },
-  "HamburgerMenu": {
-    "name": "HamburgerMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the menu is open",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "ReactMouseEventHandler",
-          "raw": "React.MouseEventHandler<HTMLButtonElement>",
-          "elements": [
-            {
-              "name": "HTMLButtonElement"
-            }
-          ]
-        },
-        "description": "Callback function when the menu is toggled"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "Size of the hamburger menu",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Color of the bars"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
       }
     }
   },
@@ -1477,6 +1477,127 @@
       }
     }
   },
+  "BackTop": {
+    "name": "BackTop",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-font-size-xl",
+      "--wim-height-md",
+      "--wim-radius-full",
+      "--wim-shadow-lg",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-transition-base",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "target": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => HTMLElement | Window | Document | null",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "union",
+              "raw": "HTMLElement | Window | Document | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "Window"
+                },
+                {
+                  "name": "Document"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Target container that will be scrolled",
+        "defaultValue": {
+          "value": "() => window",
+          "computed": false
+        }
+      },
+      "visibilityHeight": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Scroll height after which the button becomes visible",
+        "defaultValue": {
+          "value": "400",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.MouseEvent<HTMLDivElement>) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactMouseEvent",
+                  "raw": "React.MouseEvent<HTMLDivElement>",
+                  "elements": [
+                    {
+                      "name": "HTMLDivElement"
+                    }
+                  ]
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when clicked"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Children to be rendered inside the button"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "style": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Style attribute"
+      },
+      "aria-label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessible label for the button"
+      }
+    }
+  },
   "Breadcrumb": {
     "name": "Breadcrumb",
     "tokens": [
@@ -1703,127 +1824,6 @@
           "raw": "React.CSSProperties"
         },
         "description": "Style attribute"
-      }
-    }
-  },
-  "BackTop": {
-    "name": "BackTop",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-font-size-xl",
-      "--wim-height-md",
-      "--wim-radius-full",
-      "--wim-shadow-lg",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-transition-base",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "target": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => HTMLElement | Window | Document | null",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "union",
-              "raw": "HTMLElement | Window | Document | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "Window"
-                },
-                {
-                  "name": "Document"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Target container that will be scrolled",
-        "defaultValue": {
-          "value": "() => window",
-          "computed": false
-        }
-      },
-      "visibilityHeight": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Scroll height after which the button becomes visible",
-        "defaultValue": {
-          "value": "400",
-          "computed": false
-        }
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(e: React.MouseEvent<HTMLDivElement>) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "ReactMouseEvent",
-                  "raw": "React.MouseEvent<HTMLDivElement>",
-                  "elements": [
-                    {
-                      "name": "HTMLDivElement"
-                    }
-                  ]
-                },
-                "name": "e"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when clicked"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Children to be rendered inside the button"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "style": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Style attribute"
-      },
-      "aria-label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Accessible label for the button"
       }
     }
   },
