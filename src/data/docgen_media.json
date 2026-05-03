@@ -1,1683 +1,4 @@
 {
-  "Lightbox": {
-    "name": "Lightbox",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "defaultOpen": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "defaultIndex": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Trigger": {
-    "name": "Lightbox.Trigger",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "index": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "src": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "alt": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Lightbox.Content": {
-    "name": "Lightbox.Content",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "showCloseButton": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showNavigation": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showCounter": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "closeOnOverlayClick": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Lightbox.Gallery": {
-    "name": "Lightbox.Gallery",
-    "tokens": [
-      "--wim-color-glass-border",
-      "--wim-color-surface-glass",
-      "--wim-color-white",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-opacity-hover",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-scale-active",
-      "--wim-scale-hover",
-      "--wim-shadow-xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "LightboxItem"
-            }
-          ],
-          "raw": "LightboxItem[]"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Image": {
-    "name": "Image",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-border",
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-duration-base",
-      "--wim-duration-extra-fast",
-      "--wim-duration-extra-slow",
-      "--wim-duration-slow",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-image-backdrop",
-      "--wim-image-bg-color",
-      "--wim-image-blend-mode",
-      "--wim-image-filter",
-      "--wim-image-hover-backdrop",
-      "--wim-image-hover-filter",
-      "--wim-image-noise-opacity",
-      "--wim-image-overlay-blend",
-      "--wim-image-overlay-color",
-      "--wim-image-overlay-hover-opacity",
-      "--wim-image-overlay-opacity",
-      "--wim-image-transition-duration",
-      "--wim-image-zoom-scale",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-transition-spring",
-      "--wim-z-1",
-      "--wim-z-2"
-    ],
-    "anatomy": [],
-    "props": {
-      "src": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "alt": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "radius": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "WimRadiusKey | \"none\"",
-          "elements": [
-            {
-              "name": "WimRadiusKey"
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "角丸のサイズ",
-        "defaultValue": {
-          "value": "\"none\"",
-          "computed": false
-        }
-      },
-      "shadow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "シャドウ（影）を表示するか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "border": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "枠線を表示するか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fit": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"contain\" | \"cover\" | \"fill\" | \"none\" | \"scale-down\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"contain\""
-            },
-            {
-              "name": "literal",
-              "value": "\"cover\""
-            },
-            {
-              "name": "literal",
-              "value": "\"fill\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            },
-            {
-              "name": "literal",
-              "value": "\"scale-down\""
-            }
-          ]
-        },
-        "description": "画像のフィット感",
-        "defaultValue": {
-          "value": "\"cover\"",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"eager\" | \"lazy\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"eager\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lazy\""
-            }
-          ]
-        },
-        "description": "遅延読み込み設定"
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "画像の下に表示する説明文"
-      },
-      "filter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "画像自体に適用するフィルタ"
-      },
-      "hoverFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "ホバー時に適用するフィルタ（指定がない場合はfilterが維持されます）"
-      },
-      "backdropFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "背景に適用するフィルタ（透過画像などで効果的）"
-      },
-      "hoverBackdropFilter": {
-        "required": false,
-        "tsType": {
-          "name": "ImageFilterOptions"
-        },
-        "description": "ホバー時に背景に適用するフィルタ"
-      },
-      "transition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"none\" | \"fast\" | \"normal\" | \"slow\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"none\""
-            },
-            {
-              "name": "literal",
-              "value": "\"fast\""
-            },
-            {
-              "name": "literal",
-              "value": "\"normal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"slow\""
-            }
-          ]
-        },
-        "description": "フィルタ切り替え時のアニメーション速度",
-        "defaultValue": {
-          "value": "\"normal\"",
-          "computed": false
-        }
-      },
-      "noise": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "ComponentSize | \"none\"",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"xs\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"2xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"3xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"4xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"5xl\""
-                }
-              ]
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "フィルムグレイン（ノイズ）の強度"
-      },
-      "duotone": {
-        "required": false,
-        "tsType": {
-          "name": "ImageDuotoneOptions"
-        },
-        "description": "デュオトーン設定"
-      },
-      "overlay": {
-        "required": false,
-        "tsType": {
-          "name": "ImageOverlayOptions"
-        },
-        "description": "オーバーレイ設定"
-      },
-      "zoom": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | number",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "ホバー時の拡大倍率 (例: 1.1) または true (デフォルト1.05)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "tilt": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウスに追従するチルト（傾き）エフェクト",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fadeIn": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "読み込み完了時にフェードインさせるか",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "blendMode": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties[\"mixBlendMode\"]",
-          "raw": "React.CSSProperties[\"mixBlendMode\"]"
-        },
-        "description": "画像自体のブレンドモード"
-      },
-      "bgColor": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "ブレンド用の背景色"
-      },
-      "demoDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
-      },
-      "priority": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "LCP候補など、読み込み優先度を上げるかどうか（fetchpriority=\"high\"）",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Icon": {
-    "name": "Icon",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-disabled",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-2xl",
-      "--wim-font-size-3xl",
-      "--wim-font-size-4xl",
-      "--wim-font-size-5xl",
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xl",
-      "--wim-font-size-xs",
-      "--wim-opacity-disabled",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "name": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "keyof typeof ALL_ICONS",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "AlertCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "BellIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CalendarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChartIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CheckIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronLeftIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronRightIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ChevronUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ClockIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseSmallIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CloseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "CopyIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DocumentIcon"
-            },
-            {
-              "name": "literal",
-              "value": "DownloadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EditIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EmailIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ExternalLinkIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeOffIcon"
-            },
-            {
-              "name": "literal",
-              "value": "EyeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "FilterIcon"
-            },
-            {
-              "name": "literal",
-              "value": "GripVerticalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HelpCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HomeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "HourglassIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ImageIcon"
-            },
-            {
-              "name": "literal",
-              "value": "InfoCircleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LoadingIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogInIcon"
-            },
-            {
-              "name": "literal",
-              "value": "LogOutIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MaximizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinimizeIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MinusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MonitorIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoonIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreHorizontalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MoreVerticalIcon"
-            },
-            {
-              "name": "literal",
-              "value": "MuteIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PaperclipIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PauseIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PdfIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PhoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PipIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlayIcon"
-            },
-            {
-              "name": "literal",
-              "value": "PlusIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ProjectIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RefreshIcon"
-            },
-            {
-              "name": "literal",
-              "value": "RepeatIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SearchIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SendIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SettingsIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ShuffleIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipBackIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SkipForwardIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SmartphoneIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SpinnerIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SquareIcon"
-            },
-            {
-              "name": "literal",
-              "value": "StarIcon"
-            },
-            {
-              "name": "literal",
-              "value": "SunIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbDownIcon"
-            },
-            {
-              "name": "literal",
-              "value": "ThumbUpIcon"
-            },
-            {
-              "name": "literal",
-              "value": "TrashIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UploadIcon"
-            },
-            {
-              "name": "literal",
-              "value": "UserIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VideoIcon"
-            },
-            {
-              "name": "literal",
-              "value": "VolumeIcon"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "component": {
-        "required": false,
-        "tsType": {
-          "name": "ReactFC",
-          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
-          "elements": [
-            {
-              "name": "ReactSVGProps",
-              "raw": "React.SVGProps<SVGSVGElement>",
-              "elements": [
-                {
-                  "name": "SVGSVGElement"
-                }
-              ]
-            }
-          ]
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"destructive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"positive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"caution\""
-            },
-            {
-              "name": "literal",
-              "value": "\"informative\""
-            },
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"tertiary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"disabled\""
-            }
-          ]
-        },
-        "description": ""
-      }
-    }
-  },
-  "Audio": {
-    "name": "Audio",
-    "tokens": [
-      "--wim-audio-bg-end",
-      "--wim-audio-bg-start",
-      "--wim-border-width-thin",
-      "--wim-color-bg-inverted",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-void",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-primary-light",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-white",
-      "--wim-duration-slow",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-entrance",
-      "--wim-easing-standard",
-      "--wim-font-size-2xs",
-      "--wim-height-lg",
-      "--wim-height-md",
-      "--wim-height-sm",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-md",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-transition-fast",
-      "--wim-width-md",
-      "--wim-z-1",
-      "--wim-z-2",
-      "--wim-z-5"
-    ],
-    "anatomy": [],
-    "props": {
-      "src": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | string[] | AudioTrack | AudioTrack[]",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "Array",
-              "elements": [
-                {
-                  "name": "string"
-                }
-              ],
-              "raw": "string[]"
-            },
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  src: string;\r\n  title?: string;\r\n  artist?: string;\r\n  coverArt?: string;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "src",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "title",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "artist",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "coverArt",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "name": "Array",
-              "elements": [
-                {
-                  "name": "signature",
-                  "type": "object",
-                  "raw": "{\r\n  src: string;\r\n  title?: string;\r\n  artist?: string;\r\n  coverArt?: string;\r\n}",
-                  "signature": {
-                    "properties": [
-                      {
-                        "key": "src",
-                        "value": {
-                          "name": "string",
-                          "required": true
-                        }
-                      },
-                      {
-                        "key": "title",
-                        "value": {
-                          "name": "string",
-                          "required": false
-                        }
-                      },
-                      {
-                        "key": "artist",
-                        "value": {
-                          "name": "string",
-                          "required": false
-                        }
-                      },
-                      {
-                        "key": "coverArt",
-                        "value": {
-                          "name": "string",
-                          "required": false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "raw": "AudioTrack[]"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "autoPlay": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "loop": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "muted": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "controls": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "preload": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"auto\" | \"metadata\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"auto\""
-            },
-            {
-              "name": "literal",
-              "value": "\"metadata\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "radius": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "WimRadiusKey | \"none\"",
-          "elements": [
-            {
-              "name": "WimRadiusKey"
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"none\"",
-          "computed": false
-        }
-      },
-      "shadow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "border": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "caption": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "customControls": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "visualizer": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "showMetadata": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fadeIn": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | number",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "fadeOut": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | number",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "crossfade": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "boolean | number",
-          "elements": [
-            {
-              "name": "boolean"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "playbackRate": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "hotkeys": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "presets": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "sleepTimer": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"eager\" | \"lazy\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"eager\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lazy\""
-            }
-          ]
-        },
-        "description": "読み込み設定。\"lazy\" の場合に Intersection Observer が有効化されます",
-        "defaultValue": {
-          "value": "\"lazy\"",
-          "computed": false
-        }
-      },
-      "demoDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  seek?: string;\r\n  mute?: string;\r\n  unmute?: string;\r\n  volume?: string;\r\n  play?: string;\r\n  pause?: string;\r\n  next?: string;\r\n  prev?: string;\r\n  repeatMode0?: string; // Off\r\n  repeatMode1?: string; // One\r\n  repeatMode2?: string; // All\r\n  shuffle?: string;\r\n  playbackSpeed?: string;\r\n  bassBoost?: string;\r\n  sleepTimer?: string;\r\n  unknownTitle?: string;\r\n  unknownArtist?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "seek",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "mute",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "unmute",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "volume",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "play",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "pause",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "next",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "prev",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "repeatMode0",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "repeatMode1",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "repeatMode2",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "shuffle",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "playbackSpeed",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "bassBoost",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "sleepTimer",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "unknownTitle",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "unknownArtist",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "手動翻訳用のラベル",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
-      }
-    }
-  },
   "Video": {
     "name": "Video",
     "tokens": [
@@ -2303,382 +624,1546 @@
       }
     }
   },
-  "AudioCustomControls": {
-    "name": "AudioCustomControls",
-    "tokens": [],
+  "Lightbox": {
+    "name": "Lightbox",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
     "anatomy": [],
     "props": {
-      "isPlaying": {
+      "children": {
         "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "open": {
+        "required": false,
         "tsType": {
           "name": "boolean"
         },
         "description": ""
       },
-      "currentTime": {
-        "required": true,
+      "onOpenChange": {
+        "required": false,
         "tsType": {
-          "name": "number"
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
         },
         "description": ""
       },
-      "duration": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "volume": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "isMuted": {
-        "required": true,
+      "defaultOpen": {
+        "required": false,
         "tsType": {
           "name": "boolean"
         },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "defaultIndex": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Trigger": {
+    "name": "Lightbox.Trigger",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "index": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
         "description": ""
       },
-      "repeatMode": {
+      "src": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Lightbox.Content": {
+    "name": "Lightbox.Content",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "showCloseButton": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showNavigation": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showCounter": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "closeOnOverlayClick": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Lightbox.Gallery": {
+    "name": "Lightbox.Gallery",
+    "tokens": [
+      "--wim-color-glass-border",
+      "--wim-color-surface-glass",
+      "--wim-color-white",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-opacity-hover",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-scale-active",
+      "--wim-scale-hover",
+      "--wim-shadow-xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
         "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "LightboxItem"
+            }
+          ],
+          "raw": "LightboxItem[]"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Icon": {
+    "name": "Icon",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-disabled",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-2xl",
+      "--wim-font-size-3xl",
+      "--wim-font-size-4xl",
+      "--wim-font-size-5xl",
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xl",
+      "--wim-font-size-xs",
+      "--wim-opacity-disabled",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "name": {
+        "required": false,
         "tsType": {
           "name": "union",
-          "raw": "0 | 1 | 2",
+          "raw": "keyof typeof ALL_ICONS",
           "elements": [
             {
               "name": "literal",
-              "value": "0"
+              "value": "AlertCircleIcon"
             },
             {
               "name": "literal",
-              "value": "1"
+              "value": "BellIcon"
             },
             {
               "name": "literal",
-              "value": "2"
+              "value": "CalendarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChartIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CheckIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronLeftIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronRightIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ChevronUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ClockIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseSmallIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CloseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "CopyIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DocumentIcon"
+            },
+            {
+              "name": "literal",
+              "value": "DownloadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EditIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EmailIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ExternalLinkIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeOffIcon"
+            },
+            {
+              "name": "literal",
+              "value": "EyeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "FilterIcon"
+            },
+            {
+              "name": "literal",
+              "value": "GripVerticalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HelpCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HomeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "HourglassIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ImageIcon"
+            },
+            {
+              "name": "literal",
+              "value": "InfoCircleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LoadingIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogInIcon"
+            },
+            {
+              "name": "literal",
+              "value": "LogOutIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MaximizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinimizeIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MinusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MonitorIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoonIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreHorizontalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MoreVerticalIcon"
+            },
+            {
+              "name": "literal",
+              "value": "MuteIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PaperclipIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PauseIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PdfIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PhoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PipIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlayIcon"
+            },
+            {
+              "name": "literal",
+              "value": "PlusIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ProjectIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RefreshIcon"
+            },
+            {
+              "name": "literal",
+              "value": "RepeatIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SearchIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SendIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SettingsIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ShuffleIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipBackIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SkipForwardIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SmartphoneIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SpinnerIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SquareIcon"
+            },
+            {
+              "name": "literal",
+              "value": "StarIcon"
+            },
+            {
+              "name": "literal",
+              "value": "SunIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbDownIcon"
+            },
+            {
+              "name": "literal",
+              "value": "ThumbUpIcon"
+            },
+            {
+              "name": "literal",
+              "value": "TrashIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UploadIcon"
+            },
+            {
+              "name": "literal",
+              "value": "UserIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VideoIcon"
+            },
+            {
+              "name": "literal",
+              "value": "VolumeIcon"
             }
           ]
         },
         "description": ""
       },
-      "shuffleMode": {
-        "required": true,
+      "component": {
+        "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "ReactFC",
+          "raw": "React.FC<React.SVGProps<SVGSVGElement>>",
+          "elements": [
+            {
+              "name": "ReactSVGProps",
+              "raw": "React.SVGProps<SVGSVGElement>",
+              "elements": [
+                {
+                  "name": "SVGSVGElement"
+                }
+              ]
+            }
+          ]
         },
         "description": ""
       },
-      "currentPlaybackRate": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "isBassBoost": {
-        "required": true,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "remainingSleepTime": {
-        "required": true,
+      "size": {
+        "required": false,
         "tsType": {
           "name": "union",
-          "raw": "number | null",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"destructive\"\n| \"positive\"\n| \"caution\"\n| \"informative\"\n| \"primary\"\n| \"secondary\"\n| \"tertiary\"\n| \"disabled\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"destructive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"positive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"caution\""
+            },
+            {
+              "name": "literal",
+              "value": "\"informative\""
+            },
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"tertiary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"disabled\""
+            }
+          ]
+        },
+        "description": ""
+      }
+    }
+  },
+  "Image": {
+    "name": "Image",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-border",
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-duration-base",
+      "--wim-duration-extra-fast",
+      "--wim-duration-extra-slow",
+      "--wim-duration-slow",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-image-backdrop",
+      "--wim-image-bg-color",
+      "--wim-image-blend-mode",
+      "--wim-image-filter",
+      "--wim-image-hover-backdrop",
+      "--wim-image-hover-filter",
+      "--wim-image-noise-opacity",
+      "--wim-image-overlay-blend",
+      "--wim-image-overlay-color",
+      "--wim-image-overlay-hover-opacity",
+      "--wim-image-overlay-opacity",
+      "--wim-image-transition-duration",
+      "--wim-image-zoom-scale",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-transition-spring",
+      "--wim-z-1",
+      "--wim-z-2"
+    ],
+    "anatomy": [],
+    "props": {
+      "src": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "alt": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
             {
               "name": "number"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
             },
             {
-              "name": "null"
+              "name": "number"
             }
           ]
         },
         "description": ""
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "WimRadiusKey | \"none\"",
+          "elements": [
+            {
+              "name": "WimRadiusKey"
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "角丸のサイズ",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "shadow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "シャドウ（影）を表示するか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "border": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "枠線を表示するか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fit": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"contain\" | \"cover\" | \"fill\" | \"none\" | \"scale-down\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"contain\""
+            },
+            {
+              "name": "literal",
+              "value": "\"cover\""
+            },
+            {
+              "name": "literal",
+              "value": "\"fill\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            },
+            {
+              "name": "literal",
+              "value": "\"scale-down\""
+            }
+          ]
+        },
+        "description": "画像のフィット感",
+        "defaultValue": {
+          "value": "\"cover\"",
+          "computed": false
+        }
+      },
+      "loading": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"eager\" | \"lazy\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"eager\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lazy\""
+            }
+          ]
+        },
+        "description": "遅延読み込み設定"
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "画像の下に表示する説明文"
+      },
+      "filter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "画像自体に適用するフィルタ"
+      },
+      "hoverFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "ホバー時に適用するフィルタ（指定がない場合はfilterが維持されます）"
+      },
+      "backdropFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "背景に適用するフィルタ（透過画像などで効果的）"
+      },
+      "hoverBackdropFilter": {
+        "required": false,
+        "tsType": {
+          "name": "ImageFilterOptions"
+        },
+        "description": "ホバー時に背景に適用するフィルタ"
+      },
+      "transition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"none\" | \"fast\" | \"normal\" | \"slow\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"none\""
+            },
+            {
+              "name": "literal",
+              "value": "\"fast\""
+            },
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"slow\""
+            }
+          ]
+        },
+        "description": "フィルタ切り替え時のアニメーション速度",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      },
+      "noise": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"xs\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "フィルムグレイン（ノイズ）の強度"
+      },
+      "duotone": {
+        "required": false,
+        "tsType": {
+          "name": "ImageDuotoneOptions"
+        },
+        "description": "デュオトーン設定"
+      },
+      "overlay": {
+        "required": false,
+        "tsType": {
+          "name": "ImageOverlayOptions"
+        },
+        "description": "オーバーレイ設定"
+      },
+      "zoom": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | number",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "ホバー時の拡大倍率 (例: 1.1) または true (デフォルト1.05)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "tilt": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウスに追従するチルト（傾き）エフェクト",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fadeIn": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "読み込み完了時にフェードインさせるか",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "blendMode": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties[\"mixBlendMode\"]",
+          "raw": "React.CSSProperties[\"mixBlendMode\"]"
+        },
+        "description": "画像自体のブレンドモード"
+      },
+      "bgColor": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "ブレンド用の背景色"
+      },
+      "demoDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
+      },
+      "priority": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "LCP候補など、読み込み優先度を上げるかどうか（fetchpriority=\"high\"）",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Audio": {
+    "name": "Audio",
+    "tokens": [
+      "--wim-audio-bg-end",
+      "--wim-audio-bg-start",
+      "--wim-border-width-thin",
+      "--wim-color-bg-inverted",
+      "--wim-color-bg-primary",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-void",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-primary-light",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-white",
+      "--wim-duration-slow",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-entrance",
+      "--wim-easing-standard",
+      "--wim-font-size-2xs",
+      "--wim-height-lg",
+      "--wim-height-md",
+      "--wim-height-sm",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-md",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-transition-fast",
+      "--wim-width-md",
+      "--wim-z-1",
+      "--wim-z-2",
+      "--wim-z-5"
+    ],
+    "anatomy": [],
+    "props": {
+      "src": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | string[] | AudioTrack | AudioTrack[]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            },
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  src: string;\r\n  title?: string;\r\n  artist?: string;\r\n  coverArt?: string;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "src",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "artist",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "coverArt",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "signature",
+                  "type": "object",
+                  "raw": "{\r\n  src: string;\r\n  title?: string;\r\n  artist?: string;\r\n  coverArt?: string;\r\n}",
+                  "signature": {
+                    "properties": [
+                      {
+                        "key": "src",
+                        "value": {
+                          "name": "string",
+                          "required": true
+                        }
+                      },
+                      {
+                        "key": "title",
+                        "value": {
+                          "name": "string",
+                          "required": false
+                        }
+                      },
+                      {
+                        "key": "artist",
+                        "value": {
+                          "name": "string",
+                          "required": false
+                        }
+                      },
+                      {
+                        "key": "coverArt",
+                        "value": {
+                          "name": "string",
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "raw": "AudioTrack[]"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "autoPlay": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "loop": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "muted": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "controls": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "preload": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"auto\" | \"metadata\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"auto\""
+            },
+            {
+              "name": "literal",
+              "value": "\"metadata\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "WimRadiusKey | \"none\"",
+          "elements": [
+            {
+              "name": "WimRadiusKey"
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "shadow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "border": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "caption": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "customControls": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "visualizer": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "showMetadata": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fadeIn": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | number",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "fadeOut": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | number",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "crossfade": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "boolean | number",
+          "elements": [
+            {
+              "name": "boolean"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "playbackRate": {
-        "required": true,
+        "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "hotkeys": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "presets": {
-        "required": true,
+        "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "sleepTimer": {
-        "required": true,
+        "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
-      "setRepeatMode": {
-        "required": true,
+      "loading": {
+        "required": false,
         "tsType": {
-          "name": "ReactDispatch",
-          "raw": "React.Dispatch<React.SetStateAction<0 | 1 | 2>>",
+          "name": "union",
+          "raw": "\"eager\" | \"lazy\"",
           "elements": [
             {
-              "name": "ReactSetStateAction",
-              "raw": "React.SetStateAction<0 | 1 | 2>",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "0 | 1 | 2",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "0"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "1"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "2"
-                    }
-                  ]
-                }
-              ]
+              "name": "literal",
+              "value": "\"eager\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lazy\""
             }
           ]
         },
-        "description": ""
+        "description": "読み込み設定。\"lazy\" の場合に Intersection Observer が有効化されます",
+        "defaultValue": {
+          "value": "\"lazy\"",
+          "computed": false
+        }
       },
-      "setShuffleMode": {
-        "required": true,
+      "demoDelay": {
+        "required": false,
         "tsType": {
-          "name": "ReactDispatch",
-          "raw": "React.Dispatch<React.SetStateAction<boolean>>",
-          "elements": [
-            {
-              "name": "ReactSetStateAction",
-              "raw": "React.SetStateAction<boolean>",
-              "elements": [
-                {
-                  "name": "boolean"
-                }
-              ]
-            }
-          ]
+          "name": "number"
         },
-        "description": ""
-      },
-      "setCurrentPlaybackRate": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(rate: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "rate"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "setIsBassBoost": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(boost: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "boost"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "setIsMuted": {
-        "required": true,
-        "tsType": {
-          "name": "ReactDispatch",
-          "raw": "React.Dispatch<React.SetStateAction<boolean>>",
-          "elements": [
-            {
-              "name": "ReactSetStateAction",
-              "raw": "React.SetStateAction<boolean>",
-              "elements": [
-                {
-                  "name": "boolean"
-                }
-              ]
-            }
-          ]
-        },
-        "description": ""
-      },
-      "togglePlay": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "handleSeek": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(e: React.ChangeEvent<HTMLInputElement>) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "ReactChangeEvent",
-                  "raw": "React.ChangeEvent<HTMLInputElement>",
-                  "elements": [
-                    {
-                      "name": "HTMLInputElement"
-                    }
-                  ]
-                },
-                "name": "e"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "handleVolumeChange": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(e: React.ChangeEvent<HTMLInputElement>) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "ReactChangeEvent",
-                  "raw": "React.ChangeEvent<HTMLInputElement>",
-                  "elements": [
-                    {
-                      "name": "HTMLInputElement"
-                    }
-                  ]
-                },
-                "name": "e"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "playNext": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(dir: 1 | -1) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "union",
-                  "raw": "1 | -1",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "1"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "-1"
-                    }
-                  ]
-                },
-                "name": "dir"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "toggleSleepTimer": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "formatTime": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(time: number) => string",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "time"
-              }
-            ],
-            "return": {
-              "name": "string"
-            }
-          }
-        },
-        "description": ""
+        "description": "デモ用：読み込み完了を意図的に遅らせるミリ秒"
       },
       "labels": {
         "required": false,
@@ -2810,27 +2295,11 @@
             ]
           }
         },
-        "description": "",
+        "description": "手動翻訳用のラベル",
         "defaultValue": {
           "value": "{}",
           "computed": false
         }
-      },
-      "styles": {
-        "required": true,
-        "tsType": {
-          "name": "Record",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "Record<string, string>"
-        },
-        "description": ""
       }
     }
   },
@@ -3946,6 +3415,537 @@
               },
               {
                 "key": "seconds",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      },
+      "styles": {
+        "required": true,
+        "tsType": {
+          "name": "Record",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "Record<string, string>"
+        },
+        "description": ""
+      }
+    }
+  },
+  "AudioCustomControls": {
+    "name": "AudioCustomControls",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "isPlaying": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "currentTime": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "duration": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "volume": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "isMuted": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "repeatMode": {
+        "required": true,
+        "tsType": {
+          "name": "union",
+          "raw": "0 | 1 | 2",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "0"
+            },
+            {
+              "name": "literal",
+              "value": "1"
+            },
+            {
+              "name": "literal",
+              "value": "2"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "shuffleMode": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "currentPlaybackRate": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "isBassBoost": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "remainingSleepTime": {
+        "required": true,
+        "tsType": {
+          "name": "union",
+          "raw": "number | null",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "null"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "playbackRate": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "presets": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "sleepTimer": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "setRepeatMode": {
+        "required": true,
+        "tsType": {
+          "name": "ReactDispatch",
+          "raw": "React.Dispatch<React.SetStateAction<0 | 1 | 2>>",
+          "elements": [
+            {
+              "name": "ReactSetStateAction",
+              "raw": "React.SetStateAction<0 | 1 | 2>",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "0 | 1 | 2",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "0"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "1"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "description": ""
+      },
+      "setShuffleMode": {
+        "required": true,
+        "tsType": {
+          "name": "ReactDispatch",
+          "raw": "React.Dispatch<React.SetStateAction<boolean>>",
+          "elements": [
+            {
+              "name": "ReactSetStateAction",
+              "raw": "React.SetStateAction<boolean>",
+              "elements": [
+                {
+                  "name": "boolean"
+                }
+              ]
+            }
+          ]
+        },
+        "description": ""
+      },
+      "setCurrentPlaybackRate": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(rate: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "rate"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "setIsBassBoost": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(boost: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "boost"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "setIsMuted": {
+        "required": true,
+        "tsType": {
+          "name": "ReactDispatch",
+          "raw": "React.Dispatch<React.SetStateAction<boolean>>",
+          "elements": [
+            {
+              "name": "ReactSetStateAction",
+              "raw": "React.SetStateAction<boolean>",
+              "elements": [
+                {
+                  "name": "boolean"
+                }
+              ]
+            }
+          ]
+        },
+        "description": ""
+      },
+      "togglePlay": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "handleSeek": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.ChangeEvent<HTMLInputElement>) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactChangeEvent",
+                  "raw": "React.ChangeEvent<HTMLInputElement>",
+                  "elements": [
+                    {
+                      "name": "HTMLInputElement"
+                    }
+                  ]
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "handleVolumeChange": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.ChangeEvent<HTMLInputElement>) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactChangeEvent",
+                  "raw": "React.ChangeEvent<HTMLInputElement>",
+                  "elements": [
+                    {
+                      "name": "HTMLInputElement"
+                    }
+                  ]
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "playNext": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(dir: 1 | -1) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "union",
+                  "raw": "1 | -1",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "1"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "-1"
+                    }
+                  ]
+                },
+                "name": "dir"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "toggleSleepTimer": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "formatTime": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(time: number) => string",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "time"
+              }
+            ],
+            "return": {
+              "name": "string"
+            }
+          }
+        },
+        "description": ""
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  seek?: string;\r\n  mute?: string;\r\n  unmute?: string;\r\n  volume?: string;\r\n  play?: string;\r\n  pause?: string;\r\n  next?: string;\r\n  prev?: string;\r\n  repeatMode0?: string; // Off\r\n  repeatMode1?: string; // One\r\n  repeatMode2?: string; // All\r\n  shuffle?: string;\r\n  playbackSpeed?: string;\r\n  bassBoost?: string;\r\n  sleepTimer?: string;\r\n  unknownTitle?: string;\r\n  unknownArtist?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "seek",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "mute",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "unmute",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "volume",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "play",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "pause",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "next",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "prev",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "repeatMode0",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "repeatMode1",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "repeatMode2",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "shuffle",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "playbackSpeed",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "bassBoost",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "sleepTimer",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "unknownTitle",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "unknownArtist",
                 "value": {
                   "name": "string",
                   "required": false
