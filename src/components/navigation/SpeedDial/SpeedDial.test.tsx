@@ -8,14 +8,16 @@ vi.mock("react-i18next", () => ({
 
 describe("SpeedDial", () => {
   it("renders correctly", () => {
-    render(<SpeedDial actions={[]}>Test content</SpeedDial>);
-    expect(screen.getByText("Test content")).toBeInTheDocument();
+    render(<SpeedDial actions={[]} />);
+    expect(screen.getByLabelText("PlusIcon")).toBeInTheDocument();
   });
 
   it("supports asChild", () => {
     render(
       <SpeedDial asChild actions={[]}>
-        <span data-testid="child">Child</span>
+        <div data-testid="child">
+          <button type="button">Trigger</button>
+        </div>
       </SpeedDial>
     );
     expect(screen.getByTestId("child")).toBeInTheDocument();

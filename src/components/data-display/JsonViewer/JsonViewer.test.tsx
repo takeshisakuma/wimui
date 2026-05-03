@@ -8,14 +8,16 @@ vi.mock("react-i18next", () => ({
 
 describe("JsonViewer", () => {
   it("renders correctly", () => {
-    render(<JsonViewer data={{}}>Test content</JsonViewer>);
-    expect(screen.getByText("Test content")).toBeInTheDocument();
+    render(<JsonViewer data={{ key: "value" }} />);
+    expect(screen.getByText("JSON Viewer")).toBeInTheDocument();
+    expect(screen.getByText("key:")).toBeInTheDocument();
+    expect(screen.getByText(/"value"/)).toBeInTheDocument();
   });
 
   it("supports asChild", () => {
     render(
       <JsonViewer asChild data={{}}>
-        <span data-testid="child">Child</span>
+        <div data-testid="child">JSON Viewer</div>
       </JsonViewer>
     );
     expect(screen.getByTestId("child")).toBeInTheDocument();

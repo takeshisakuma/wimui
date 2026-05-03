@@ -49,7 +49,11 @@
 
     &.primary { background: var(--wim-color-primary); }
     &.error { background: var(--wim-color-error); }
-    &.warning { background: var(--wim-color-warning); }
+
+    &.warning { 
+      color: var(--wim-color-text); 
+      background: var(--wim-color-warning);
+    }
     &.success { background: var(--wim-color-success); }
     &.neutral { background: var(--wim-color-neutral); }
   }
