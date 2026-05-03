@@ -1275,6 +1275,301 @@
       }
     }
   },
+  "Dialog": {
+    "name": "Dialog",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "onOpenChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "defaultOpen": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "closeOnOverlayClick": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Trigger": {
+    "name": "Dialog.Trigger",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Close": {
+    "name": "Dialog.Close",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Content": {
+    "name": "Dialog.Content",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Header": {
+    "name": "Dialog.Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Footer": {
+    "name": "Dialog.Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Title": {
+    "name": "Dialog.Title",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Description": {
+    "name": "Dialog.Description",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-lg",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
   "Drawer": {
     "name": "Drawer",
     "tokens": [
@@ -1643,301 +1938,6 @@
       "--wim-spacing-xs",
       "--wim-z-overlay",
       "--wim-z-overlay-panel"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog": {
-    "name": "Dialog",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "defaultOpen": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "closeOnOverlayClick": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Trigger": {
-    "name": "Dialog.Trigger",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Close": {
-    "name": "Dialog.Close",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Content": {
-    "name": "Dialog.Content",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Header": {
-    "name": "Dialog.Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Footer": {
-    "name": "Dialog.Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Title": {
-    "name": "Dialog.Title",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Description": {
-    "name": "Dialog.Description",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-lg",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}

@@ -490,6 +490,102 @@
       }
     }
   },
+  "Skeleton": {
+    "name": "Skeleton",
+    "tokens": [
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-radius-full",
+      "--wim-radius-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"text\" | \"rect\" | \"circle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"text\""
+            },
+            {
+              "name": "literal",
+              "value": "\"rect\""
+            },
+            {
+              "name": "literal",
+              "value": "\"circle\""
+            }
+          ]
+        },
+        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
+        "defaultValue": {
+          "value": "\"text\"",
+          "computed": false
+        }
+      },
+      "animation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pulse\" | \"wave\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wave\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
+        "defaultValue": {
+          "value": "\"pulse\"",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
+      }
+    }
+  },
   "Snackbar": {
     "name": "Snackbar",
     "tokens": [
@@ -738,102 +834,6 @@
       }
     }
   },
-  "Skeleton": {
-    "name": "Skeleton",
-    "tokens": [
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-radius-full",
-      "--wim-radius-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"text\" | \"rect\" | \"circle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"text\""
-            },
-            {
-              "name": "literal",
-              "value": "\"rect\""
-            },
-            {
-              "name": "literal",
-              "value": "\"circle\""
-            }
-          ]
-        },
-        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
-        "defaultValue": {
-          "value": "\"text\"",
-          "computed": false
-        }
-      },
-      "animation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"pulse\" | \"wave\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wave\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
-        "defaultValue": {
-          "value": "\"pulse\"",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
-      }
-    }
-  },
   "ScrollProgress": {
     "name": "ScrollProgress",
     "tokens": [
@@ -901,287 +901,6 @@
           ]
         },
         "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
-      }
-    }
-  },
-  "DefaultIcon": {
-    "name": "DefaultIcon",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-radius-sm",
-      "--wim-result-icon-size",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "Extract",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"primary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"secondary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"neutral\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"default\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"destructive\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"positive\""
-                }
-              ]
-            },
-            {
-              "name": "union",
-              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                }
-              ]
-            }
-          ],
-          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
-        },
-        "description": ""
-      },
-      "status": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"404\" | \"403\" | \"500\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"404\""
-            },
-            {
-              "name": "literal",
-              "value": "\"403\""
-            },
-            {
-              "name": "literal",
-              "value": "\"500\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Result": {
-    "name": "Result",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-radius-sm",
-      "--wim-result-icon-size",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "Extract",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"primary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"secondary\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"neutral\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"default\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"destructive\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"positive\""
-                }
-              ]
-            },
-            {
-              "name": "union",
-              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"success\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"error\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"info\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"warning\""
-                }
-              ]
-            }
-          ],
-          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
-        },
-        "description": "Semantic intent — determines the icon and color.",
-        "defaultValue": {
-          "value": "\"info\"",
-          "computed": false
-        }
-      },
-      "status": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"404\" | \"403\" | \"500\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"404\""
-            },
-            {
-              "name": "literal",
-              "value": "\"403\""
-            },
-            {
-              "name": "literal",
-              "value": "\"500\""
-            }
-          ]
-        },
-        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description"
-      },
-      "extra": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Operating area"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Custom icon"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The children"
       }
     }
   },
@@ -1552,6 +1271,287 @@
           "value": "\"topRight\"",
           "computed": false
         }
+      }
+    }
+  },
+  "DefaultIcon": {
+    "name": "DefaultIcon",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-radius-sm",
+      "--wim-result-icon-size",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "Extract",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"primary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"secondary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"neutral\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"default\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"destructive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                }
+              ]
+            },
+            {
+              "name": "union",
+              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          ],
+          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
+        },
+        "description": ""
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"404\" | \"403\" | \"500\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"404\""
+            },
+            {
+              "name": "literal",
+              "value": "\"403\""
+            },
+            {
+              "name": "literal",
+              "value": "\"500\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Result": {
+    "name": "Result",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-radius-sm",
+      "--wim-result-icon-size",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "Extract",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"\n| \"default\"\n| \"destructive\"\n| \"positive\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"primary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"secondary\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"neutral\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"default\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"destructive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                }
+              ]
+            },
+            {
+              "name": "union",
+              "raw": "\"success\" | \"error\" | \"info\" | \"warning\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"success\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"error\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"info\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          ],
+          "raw": "Extract<WimIntent, \"success\" | \"error\" | \"info\" | \"warning\">"
+        },
+        "description": "Semantic intent — determines the icon and color.",
+        "defaultValue": {
+          "value": "\"info\"",
+          "computed": false
+        }
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"404\" | \"403\" | \"500\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"404\""
+            },
+            {
+              "name": "literal",
+              "value": "\"403\""
+            },
+            {
+              "name": "literal",
+              "value": "\"500\""
+            }
+          ]
+        },
+        "description": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500)."
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description"
+      },
+      "extra": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Operating area"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Custom icon"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The children"
       }
     }
   },
