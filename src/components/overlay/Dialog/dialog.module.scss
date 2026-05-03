@@ -32,10 +32,6 @@
     }
   }
 
-  .contentInner {
-    // Styling moved from inner class if needed
-  }
-
   .header {
     display: flex;
     flex-direction: column;
@@ -68,13 +64,5 @@
       flex-direction: row;
       justify-content: flex-end;
     }
-  }
-
-  .trigger {
-    // Placeholder for trigger styling if needed
-  }
-
-  .closeButton {
-    // Placeholder for close button styling if needed
   }
 }

@@ -448,6 +448,12 @@
         "descKey": "doc.ganttchart_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "JsonViewer",
+        "descKey": "doc.json_viewer_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -728,6 +734,12 @@
       {
         "name": "FloatButton",
         "descKey": "doc.floatButton_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "SpeedDial",
+        "descKey": "doc.speed_dial_desc",
         "pc": true,
         "mobile": true
       }
@@ -1070,6 +1082,18 @@
         "name": "VisuallyHidden",
         "descKey": "doc.visuallyhidden_desc",
         "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "SwipeAction",
+        "descKey": "doc.swipe_action_desc",
+        "pc": false,
+        "mobile": true
+      },
+      {
+        "name": "PullToRefresh",
+        "descKey": "doc.pull_to_refresh_desc",
+        "pc": false,
         "mobile": true
       }
     ]

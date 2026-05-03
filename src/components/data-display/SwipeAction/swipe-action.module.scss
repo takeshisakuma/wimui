@@ -1,0 +1,73 @@
+@layer component {
+  .container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    background: var(--wim-color-surface-subtle);
+  }
+
+  .actions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
+  }
+
+  .action {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-inverse);
+    cursor: pointer;
+    background: var(--wim-color-neutral-subtle);
+    border: none;
+    transition: filter var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    &:active {
+      filter: brightness(0.9);
+    }
+
+    &.primary { background: var(--wim-color-primary); }
+    &.error { background: var(--wim-color-error); }
+    &.warning { background: var(--wim-color-warning); }
+    &.success { background: var(--wim-color-success); }
+    &.neutral { background: var(--wim-color-neutral); }
+  }
+
+  .label {
+    font-weight: var(--wim-font-weight-medium);
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    background: var(--wim-color-surface);
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}

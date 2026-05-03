@@ -1,0 +1,78 @@
+@layer component {
+  .root {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+
+    &.up { flex-direction: column-reverse; }
+    &.down { flex-direction: column; }
+    &.left { flex-direction: row-reverse; }
+    &.right { flex-direction: row; }
+  }
+
+  .actions {
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    gap: var(--wim-spacing-md);
+    pointer-events: none;
+    opacity: 0;
+    transition: all var(--wim-duration-normal) var(--wim-easing-standard);
+
+    .up & {
+      bottom: 100%;
+      flex-direction: column-reverse;
+      padding-bottom: var(--wim-spacing-md);
+      transform: translateY(10px);
+    }
+
+    .down & {
+      top: 100%;
+      flex-direction: column;
+      padding-top: var(--wim-spacing-md);
+      transform: translateY(-10px);
+    }
+
+    .left & {
+      right: 100%;
+      flex-direction: row-reverse;
+      padding-right: var(--wim-spacing-md);
+      transform: translateX(10px);
+    }
+
+    .right & {
+      left: 100%;
+      flex-direction: row;
+      padding-left: var(--wim-spacing-md);
+      transform: translateX(-10px);
+    }
+  }
+
+  .open .actions {
+    z-index: var(--wim-z-overlay);
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  .actionWrapper {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all var(--wim-duration-normal) var(--wim-easing-standard);
+
+    .open & {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .trigger {
+    transition: transform var(--wim-duration-normal) var(--wim-easing-standard);
+
+    .open & {
+      transform: rotate(90deg);
+    }
+  }
+}

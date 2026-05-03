@@ -10,3 +10,4 @@ export * from "./components/navigation/Stepper/Stepper";
 export * from "./components/navigation/TabBar/TabBar";
 export * from "./components/navigation/TabNavigation/TabNavigation";
 export * from "./components/navigation/Tabs/Tabs";
+export * from "./components/navigation/SpeedDial/SpeedDial";

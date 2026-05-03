@@ -1,0 +1,66 @@
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import * as JsonViewerStories from "./JsonViewer.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={JsonViewerStories} />
+
+<Title />
+
+<T k="doc.json_viewer_desc" />
+
+<Canvas of={JsonViewerStories.Default} />
+<Controls of={JsonViewerStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<T k="doc.json_viewer_design_intent" />
+
+## <T k="doc.choice_matrix_title" />
+
+<T k="doc.json_viewer_choice_matrix_desc" />
+
+<Docgen componentName="JsonViewer" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+- <T k="doc.json_viewer_content_guideline_1" />
+- <T k="doc.json_viewer_content_guideline_2" />
+
+## <T k="doc.motion_spec_title" />
+
+<T k="doc.json_viewer_motion_desc" />
+
+## <T k="doc.a11y_spec_title" />
+
+<T k="doc.json_viewer_a11y_desc" />
+
+## <T k="doc.real_world_scenarios_title" />
+
+- <T k="doc.json_viewer_scenario_1" />
+- <T k="doc.json_viewer_scenario_2" />
+
+## <T k="doc.best_practices_title" />
+
+- <T k="doc.json_viewer_best_practice_1" />
+- <T k="doc.json_viewer_best_practice_2" />
+
+<Docgen componentName="JsonViewer" section="props" />
+
+<Docgen componentName="JsonViewer" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+<T k="doc.json_viewer_responsive_desc" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<T k="doc.json_viewer_keyboard_desc" />
+
+## <T k="doc.i18n_title" />
+
+<T k="doc.json_viewer_i18n_desc" />
+
+<Docgen componentName="JsonViewer" section="test" />
+
+<Primary />

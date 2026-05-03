@@ -1,135 +1,4 @@
 {
-  "Tour": {
-    "name": "Tour",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-4xl",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-tour-bubble-width",
-      "--wim-transition-base",
-      "--wim-z-overlay",
-      "--wim-z-overlay-panel",
-      "--wim-z-overlay-step"
-    ],
-    "anatomy": [],
-    "props": {
-      "steps": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  target: string; // CSS selector\r\n  title: string;\r\n  description: string;\r\n  placement?: \"top\" | \"bottom\" | \"left\" | \"right\";\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "target",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "title",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "description",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "placement",
-                    "value": {
-                      "name": "union",
-                      "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "\"top\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"bottom\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"left\""
-                        },
-                        {
-                          "name": "literal",
-                          "value": "\"right\""
-                        }
-                      ],
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "TourStep[]"
-        },
-        "description": ""
-      },
-      "open": {
-        "required": true,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onClose": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onFinish": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      }
-    }
-  },
   "Toast": {
     "name": "Toast",
     "tokens": [
@@ -342,6 +211,137 @@
       }
     }
   },
+  "Tour": {
+    "name": "Tour",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-4xl",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-tour-bubble-width",
+      "--wim-transition-base",
+      "--wim-z-overlay",
+      "--wim-z-overlay-panel",
+      "--wim-z-overlay-step"
+    ],
+    "anatomy": [],
+    "props": {
+      "steps": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  target: string; // CSS selector\r\n  title: string;\r\n  description: string;\r\n  placement?: \"top\" | \"bottom\" | \"left\" | \"right\";\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "target",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "description",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "placement",
+                    "value": {
+                      "name": "union",
+                      "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "\"top\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"bottom\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"left\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"right\""
+                        }
+                      ],
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "TourStep[]"
+        },
+        "description": ""
+      },
+      "open": {
+        "required": true,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "onClose": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onFinish": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      }
+    }
+  },
   "Spinner": {
     "name": "Spinner",
     "tokens": [
@@ -487,6 +487,102 @@
           "value": "\"right\"",
           "computed": false
         }
+      }
+    }
+  },
+  "Skeleton": {
+    "name": "Skeleton",
+    "tokens": [
+      "--wim-color-skeleton-bg",
+      "--wim-color-skeleton-shine",
+      "--wim-radius-full",
+      "--wim-radius-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"text\" | \"rect\" | \"circle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"text\""
+            },
+            {
+              "name": "literal",
+              "value": "\"rect\""
+            },
+            {
+              "name": "literal",
+              "value": "\"circle\""
+            }
+          ]
+        },
+        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
+        "defaultValue": {
+          "value": "\"text\"",
+          "computed": false
+        }
+      },
+      "animation": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pulse\" | \"wave\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wave\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
+        "defaultValue": {
+          "value": "\"pulse\"",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
       }
     }
   },
@@ -735,102 +831,6 @@
           "raw": "React.ReactNode"
         },
         "description": ""
-      }
-    }
-  },
-  "Skeleton": {
-    "name": "Skeleton",
-    "tokens": [
-      "--wim-color-skeleton-bg",
-      "--wim-color-skeleton-shine",
-      "--wim-radius-full",
-      "--wim-radius-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"text\" | \"rect\" | \"circle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"text\""
-            },
-            {
-              "name": "literal",
-              "value": "\"rect\""
-            },
-            {
-              "name": "literal",
-              "value": "\"circle\""
-            }
-          ]
-        },
-        "description": "スケルトンの形状。\r\n- `text`: テキスト行のような形状。\r\n- `rect`: 矩形。\r\n- `circle`: 円形。",
-        "defaultValue": {
-          "value": "\"text\"",
-          "computed": false
-        }
-      },
-      "animation": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"pulse\" | \"wave\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wave\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "アニメーションの種類。\r\n- `pulse`: ゆっくりとした明滅。\r\n- `wave`: 左から右への波のような動き。\r\n- `none`: アニメーションなし。",
-        "defaultValue": {
-          "value": "\"pulse\"",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "幅。CSSの単位（px, %, remなど）を含めて指定します。"
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
       }
     }
   },

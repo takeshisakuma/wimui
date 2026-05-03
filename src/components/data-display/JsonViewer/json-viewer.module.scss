@@ -1,0 +1,94 @@
+@layer component {
+  .root {
+    width: 100%;
+    overflow: hidden;
+    font-family: var(--wim-font-family-mono);
+    font-size: var(--wim-font-size-sm);
+    background: var(--wim-color-surface-elevated);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-border-radius-md);
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    background: var(--wim-color-surface-subtle);
+    border-bottom: 1px solid var(--wim-color-border);
+  }
+
+  .title {
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tree {
+    max-height: 500px;
+    padding: var(--wim-spacing-sm);
+    overflow: auto;
+  }
+
+  .node {
+    margin-left: var(--wim-spacing-md);
+    line-height: 1.6;
+    white-space: nowrap;
+  }
+
+  .header {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    cursor: default;
+
+    &.collapsible {
+      cursor: pointer;
+      &:hover { color: var(--wim-color-primary); }
+    }
+  }
+
+  .toggle {
+    color: var(--wim-color-text-tertiary);
+    transition: color var(--wim-duration-fast);
+  }
+
+  .children {
+    margin-left: 6px;
+    border-left: 1px dashed var(--wim-color-border-subtle);
+  }
+
+  .footer {
+    margin-left: -2px;
+  }
+
+  .key {
+    margin-right: var(--wim-spacing-xs); 
+    color: var(--wim-color-informative);
+  }
+
+  .value {
+    &.string { color: var(--wim-color-positive); }
+    &.number { color: var(--wim-color-primary); }
+    &.boolean { color: var(--wim-color-destructive); }
+    &.null { color: var(--wim-color-text-tertiary); }
+  }
+
+  .bracket {
+    font-weight: var(--wim-font-weight-bold); 
+    color: var(--wim-color-text-secondary);
+  }
+
+  .count {
+    margin-left: var(--wim-spacing-xs);
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .ellipsis {
+    margin: 0 var(--wim-spacing-xs);
+    color: var(--wim-color-text-tertiary);
+  }
+}
