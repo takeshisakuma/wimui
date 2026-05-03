@@ -162,6 +162,7 @@ export const ExclusiveList: Story = {
             {[1, 2, 3, 4, 5].map((i) => (
               <SwipeAction
                 key={i}
+                as="li"
                 ref={(el) => { swipeActionRefs.current[i] = el; }}
                 closeOnAction={false}
                 leftActions={[

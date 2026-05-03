@@ -20,6 +20,8 @@ export interface SwipeActionItem {
 }
 
 export interface SwipeActionProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** The element to render as the root container. Default is 'div'. */
+  as?: React.ElementType;
   /** Actions revealed when swiping from left to right */
   leftActions?: SwipeActionItem[];
   /** Actions revealed when swiping from right to left */
@@ -47,7 +49,7 @@ export interface SwipeActionRef {
  * - Scroll lock: No (allows vertical scrolling)
  */
 export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
-  ({ leftActions = [], rightActions = [], children, asChild = false, id: propsId, closeOnAction = true, className, ...props }, ref) => {
+  ({ as: Component = "div", leftActions = [], rightActions = [], children, asChild = false, id: propsId, closeOnAction = true, className, ...props }, ref) => {
     const generatedId = useId();
     const id = propsId || generatedId;
     const listContext = useSwipeableList();
@@ -134,7 +136,7 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     const ContentComponent = asChild ? Slot : "div";
 
     return (
-      <div
+      <Component
         ref={containerRef}
         className={classNames(localStyles.container, className)}
         onMouseLeave={handleEnd}
@@ -199,7 +201,7 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         >
           {children}
         </ContentComponent>
-      </div>
+      </Component>
     );
   }
 );
