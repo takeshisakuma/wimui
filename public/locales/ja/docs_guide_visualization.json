@@ -1,5 +1,7 @@
 {
   "viz": {
+    "comp_nodegraph": "NodeGraph",
+    "comp_scheduleview": "ScheduleView",
     "area_data_desc": "合計値の変化。時間の経過に伴う「量」を強調したい場合。",
     "axis_labeling": "軸ラベルの表示",
     "axis_labeling_desc": "単位や軸の意味がわかるように、必ずラベルを明示してください。",
@@ -46,7 +48,11 @@
     "pie_chart": "円グラフ",
     "comparison_trend_annotation": "比較 & トレンド",
     "proportions_annotation": "割合",
-    "correlation_annotation": "相関 & 分布"
+    "correlation_annotation": "相関 & 分布",
+    "nodegraph_usage": "承認フロー・AIパイプラインなどのノードベースの有向グラフを対話的に編集・表示する",
+    "nodegraph_data": "有向非巡回グラフ（DAG）、ワークフロー、依存関係図",
+    "scheduleview_usage": "時間軸のあるカレンダー（週・日・月ビュー）で予定の閲覧・作成・移動を行う",
+    "scheduleview_data": "時系列イベントデータ、シフト・予約・スケジュール"
   },
   "guide": {
     "visualization_title": "可視化コンポーネントの使い分けガイド",

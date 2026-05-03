@@ -5,6 +5,7 @@ import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
+import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
 import styles from "./smart-search-input.module.scss";
 
 export interface SmartSearchInputProps extends Omit<React.ComponentPropsWithoutRef<"textarea">, "onChange" | "onSubmit"> {
@@ -21,6 +22,8 @@ export interface SmartSearchInputProps extends Omit<React.ComponentPropsWithoutR
   onClear?: () => void;
   onSubmit?: (value: string) => void;
   onChange?: (value: string) => void;
+  /** Maximum number of characters */
+  maxLength?: number;
 }
 
 /**
@@ -49,6 +52,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
       disabled,
       className,
       id: customId,
+      maxLength,
       ...props
     },
     ref
@@ -106,30 +110,38 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
         htmlFor={id}
         className={className}
       >
-        <InputBase
-          intent={currentIntent}
-          variant={variant}
-          fullWidth={fullWidth}
-          width={width}
-          disabled={disabled}
-          leftIcon="SearchIcon"
-          allowClear={allowClear}
-          hasValue={!!currentValue}
-          onClear={handleClear}
-        >
-          <textarea
-            id={id}
-            ref={textareaRef}
-            className={classNames(styles.textarea, styles[variant], disabled && styles.disabled)}
-            value={currentValue}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholder ?? t("search.placeholder")}
-            rows={1}
+        <div className={styles.container}>
+          <InputBase
+            intent={currentIntent}
+            variant={variant}
+            fullWidth={fullWidth}
+            width={width}
             disabled={disabled}
-            {...props}
+            leftIcon="SearchIcon"
+            allowClear={allowClear}
+            hasValue={!!currentValue}
+            onClear={handleClear}
+          >
+            <textarea
+              id={id}
+              ref={textareaRef}
+              className={classNames(styles.textarea, styles[variant], disabled && styles.disabled)}
+              value={currentValue}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholder ?? t("search.placeholder")}
+              rows={1}
+              disabled={disabled}
+              maxLength={maxLength}
+              {...props}
+            />
+          </InputBase>
+          <FieldCharacterCount
+            count={currentValue.length}
+            maxLength={maxLength}
+            className={styles.charCount}
           />
-        </InputBase>
+        </div>
       </FieldTemplate>
     );
   }

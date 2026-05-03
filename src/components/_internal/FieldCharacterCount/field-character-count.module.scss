@@ -1,0 +1,33 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--wim-font-family-mono); // Use mono for numbers to prevent jumping
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+    pointer-events: none;
+    user-select: none;
+
+    &.error {
+      font-weight: bold;
+      color: var(--wim-color-text-error);
+    }
+
+    &.warning {
+      color: var(--wim-color-text-warning);
+    }
+  }
+
+  .count {
+    // Current count part
+  }
+
+  .separator {
+    margin: 0 2px;
+    opacity: 0.6;
+  }
+
+  .max {
+    // Max count part
+  }
+}

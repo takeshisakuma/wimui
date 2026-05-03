@@ -4,7 +4,7 @@ import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./textarea.module.scss";
 
-type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
+export type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
   intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;

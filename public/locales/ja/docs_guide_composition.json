@@ -23,7 +23,9 @@
     "usage": "利用ガイド",
     "input_std_title": "入力エリアの標準化",
     "input_std_desc": "フォームコンポーネント間での一貫性を確保するための、入力エリアの標準的な動作とレイアウト規則です。",
-    "internal_title": "内部コアコンポーネント"
+    "internal_title": "内部コアコンポーネント",
+    "external_react_flow": "React Flow (@xyflow/react)",
+    "external_full_calendar": "FullCalendar (@fullcalendar/react)"
   },
   "table": {
     "header_role": "役割"

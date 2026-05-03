@@ -9,35 +9,35 @@ import { T } from "../stories/T";
 
 ---
 
-## コンポーネント一覧
+## <T k="doc.ai_components_title" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>用途</th>
-      <th>主な Props</th>
+      <th><T k="doc.ai_table_component" /></th>
+      <th><T k="doc.ai_table_usage" /></th>
+      <th><T k="doc.ai_table_props" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>PromptInput</strong></td>
-      <td>ユーザーが AI へのプロンプトを入力する自動リサイズ入力欄。送信ボタン・添付ボタンを内包し、Enter で送信・Shift+Enter で改行。</td>
+      <td><strong><T k="doc.comp_prompt_input" /></strong></td>
+      <td><T k="doc.prompt_input_usage" /></td>
       <td>`onSubmit`, `loading`, `showAttach`, `maxLength`, `maxRows`</td>
     </tr>
     <tr>
-      <td><strong>SmartSearchInput</strong></td>
-      <td>標準の検索窓から AI プロンプトへとシームレスに拡張する入力欄。1 行の検索から複数行の対話への移行をサポート。</td>
+      <td><strong><T k="doc.comp_smart_search_input" /></strong></td>
+      <td><T k="doc.smart_search_input_usage" /></td>
       <td>`onSubmit`, `onChange`, `allowClear`, `maxRows`</td>
     </tr>
     <tr>
-      <td><strong>StreamingText</strong></td>
-      <td>LLM の生成テキストをリアルタイムで Markdown レンダリング。ストリーミング中はカーソルが点滅し、`aria-live` でスクリーンリーダーに通知する。</td>
+      <td><strong><T k="doc.comp_streaming_text" /></strong></td>
+      <td><T k="doc.streaming_text_usage" /></td>
       <td>`content`, `isStreaming`, `components`</td>
     </tr>
     <tr>
-      <td><strong>ThoughtProcess</strong></td>
-      <td>AI の推論プロセス（思考ステップ）をタイムライン形式で可視化。折りたたみ可能なコンテナで、各ステップの状態（実行中・完了・エラー）を表示。</td>
+      <td><strong><T k="doc.comp_thought_process" /></strong></td>
+      <td><T k="doc.thought_process_usage" /></td>
       <td>`title`, `isCollapsible`, `ThoughtStep` (children)</td>
     </tr>
   </tbody>
@@ -45,32 +45,32 @@ import { T } from "../stories/T";
 
 ---
 
-## 組み合わせパターン
+## <T k="doc.ai_patterns_title" />
 
-`PromptInput` と `StreamingText` を組み合わせることで、シンプルな AI チャット UI を構築できます。
+<p><T k="doc.ai_patterns_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>ユースケース</th>
-      <th>構成</th>
+      <th><T k="doc.ai_patterns_table_usecase" /></th>
+      <th><T k="doc.ai_patterns_table_config" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>AI チャット</td>
+      <td><T k="doc.ai_patterns_chat" /></td>
       <td>`PromptInput`（入力） + `ThoughtProcess`（推論） + `StreamingText`（応答表示）</td>
     </tr>
     <tr>
-      <td>AI 検索</td>
+      <td><T k="doc.ai_patterns_search" /></td>
       <td>`SmartSearchInput`（入力） + `StreamingText`（結果要約）</td>
     </tr>
     <tr>
-      <td>コードアシスタント</td>
+      <td><T k="doc.ai_patterns_assistant" /></td>
       <td>`PromptInput`（添付あり） + `StreamingText`（コードブロック強調）</td>
     </tr>
     <tr>
-      <td>ドキュメント生成</td>
+      <td><T k="doc.ai_patterns_doc_gen" /></td>
       <td>`PromptInput` + `StreamingText` + 保存ボタン</td>
     </tr>
   </tbody>
@@ -78,10 +78,10 @@ import { T } from "../stories/T";
 
 ---
 
-## ベストプラクティス
+## <T k="doc.ai_best_practices_title" />
 
 <ul>
-  <li>AI が応答を生成中は `PromptInput` の `loading={true}` を設定し、重複送信を防いでください。</li>
-  <li>`StreamingText` はストリーミング完了後に `isStreaming={false}` へ切り替えてください。カーソルが消え、`aria-live` が解除されます。</li>
-  <li>エラー発生時は `StreamingText` の `content` にエラーメッセージを表示するか、別途 `Alert` コンポーネントを使用してください。</li>
+  <li><T k="doc.ai_best_practices_loading" /></li>
+  <li><T k="doc.ai_best_practices_streaming" /></li>
+  <li><T k="doc.ai_best_practices_error" /></li>
 </ul>

@@ -200,6 +200,12 @@
     "textarea_value_none": "None in particular",
     "timepicker_ghost": "Ghost TimePicker",
     "timepicker_outline": "Outline TimePicker",
-    "timepicker_select": "Select Time"
+    "timepicker_select": "Select Time",
+    "credit_card_label": "Credit Card Number",
+    "credit_card_placeholder": "0000 0000 0000 0000",
+    "credit_card_visa_label": "Visa (Starts with 4)",
+    "credit_card_amex_label": "Amex (Starts with 34/37, 4-6-5 format)",
+    "counter_textarea_label": "Message with Counter",
+    "counter_textarea_placeholder": "Type your message here..."
   }
 }

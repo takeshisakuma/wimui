@@ -99,7 +99,7 @@
   }
 }
 
-.footer {
+.charCount {
   display: flex;
   justify-content: flex-end;
   padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
@@ -107,14 +107,4 @@
   @media (max-width: 480px) {
     padding: 0 var(--wim-spacing-sm) var(--wim-spacing-xs);
   }
-}
-
-.charCount {
-  font-size: var(--wim-font-size-xs);
-  font-variant-numeric: tabular-nums;
-  color: var(--wim-color-text-tertiary);
-}
-
-.charCountMax {
-  color: var(--wim-color-error);
 }

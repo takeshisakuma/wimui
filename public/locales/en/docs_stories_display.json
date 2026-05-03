@@ -226,6 +226,9 @@
     "dialog_confirm_title": "Confirm Deletion",
     "dialog_confirm_desc": "Are you sure you want to delete this item? This action cannot be undone.",
     "dialog_cancel": "Cancel",
-    "dialog_confirm": "Delete"
+    "dialog_confirm": "Delete",
+    "heatmap_label": "Activity Heatmap",
+    "heatmap_less": "Less",
+    "heatmap_more": "More"
   }
 }

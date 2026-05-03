@@ -1,4 +1,10 @@
 @layer component {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .textarea {
     box-sizing: border-box !important;
     display: block;
@@ -23,5 +29,12 @@
       color: var(--wim-color-text-disabled);
       cursor: not-allowed;
     }
+  }
+
+  .charCount {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: var(--wim-spacing-xs);
+    margin-top: var(--wim-spacing-xs);
   }
 }

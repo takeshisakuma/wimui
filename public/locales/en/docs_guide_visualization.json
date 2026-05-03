@@ -1,5 +1,7 @@
 {
   "viz": {
+    "comp_nodegraph": "NodeGraph",
+    "comp_scheduleview": "ScheduleView",
     "area_data_desc": "Changes in total values, emphasizing volume over time.",
     "axis_labeling": "Axis Labeling",
     "axis_labeling_desc": "Always clearly label units and axes.",
@@ -46,7 +48,11 @@
     "pie_chart": "Pie Chart",
     "comparison_trend_annotation": "Comparison & Trend",
     "proportions_annotation": "Proportions",
-    "correlation_annotation": "Correlation & Distribution"
+    "correlation_annotation": "Correlation & Distribution",
+    "nodegraph_usage": "Interactively edit and display node-based directed graphs such as approval flows and AI pipelines.",
+    "nodegraph_data": "Directed Acyclic Graphs (DAG), workflows, dependency diagrams.",
+    "scheduleview_usage": "View, create, and move appointments on a calendar with a timeline (week, day, month views).",
+    "scheduleview_data": "Time-series event data, shifts, bookings, schedules."
   },
   "guide": {
     "visualization_title": "Visualization Component Selection Guide",

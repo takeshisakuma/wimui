@@ -1,0 +1,28 @@
+{
+  "doc": {
+    "ai_best_practices_error": "[MISSING_TRANSLATION: pt] Display error messages in `StreamingText` content or use a separate `Alert` component when errors occur.",
+    "ai_best_practices_loading": "[MISSING_TRANSLATION: pt] Set `loading={true}` on `PromptInput` while AI is generating a response to prevent duplicate submissions.",
+    "ai_best_practices_streaming": "[MISSING_TRANSLATION: pt] Switch `isStreaming={false}` on `StreamingText` after completion to hide the cursor and stop `aria-live` updates.",
+    "ai_best_practices_title": "[MISSING_TRANSLATION: pt] Best Practices",
+    "ai_components_title": "[MISSING_TRANSLATION: pt] AI Components",
+    "ai_patterns_assistant": "[MISSING_TRANSLATION: pt] Code Assistant",
+    "ai_patterns_chat": "[MISSING_TRANSLATION: pt] AI Chat",
+    "ai_patterns_desc": "[MISSING_TRANSLATION: pt] Combine `PromptInput` and `StreamingText` to build simple AI chat interfaces.",
+    "ai_patterns_doc_gen": "[MISSING_TRANSLATION: pt] Document Generation",
+    "ai_patterns_search": "[MISSING_TRANSLATION: pt] AI Search",
+    "ai_patterns_table_config": "[MISSING_TRANSLATION: pt] Composition",
+    "ai_patterns_table_usecase": "[MISSING_TRANSLATION: pt] Use Case",
+    "ai_patterns_title": "[MISSING_TRANSLATION: pt] Composition Patterns",
+    "ai_table_component": "[MISSING_TRANSLATION: pt] Component",
+    "ai_table_props": "[MISSING_TRANSLATION: pt] Key Props",
+    "ai_table_usage": "[MISSING_TRANSLATION: pt] Usage",
+    "comp_prompt_input": "[MISSING_TRANSLATION: pt] PromptInput",
+    "comp_smart_search_input": "[MISSING_TRANSLATION: pt] SmartSearchInput",
+    "comp_streaming_text": "[MISSING_TRANSLATION: pt] StreamingText",
+    "comp_thought_process": "[MISSING_TRANSLATION: pt] ThoughtProcess",
+    "prompt_input_usage": "[MISSING_TRANSLATION: pt] Auto-resizing input for AI prompts. Includes send/attach buttons, handles Enter for send and Shift+Enter for newline.",
+    "smart_search_input_usage": "[MISSING_TRANSLATION: pt] Input field that seamlessly expands from a standard search bar to an AI prompt. Supports transition from single-line search to multi-line dialogue.",
+    "streaming_text_usage": "[MISSING_TRANSLATION: pt] Real-time Markdown rendering for LLM generated text. Includes a blinking cursor during streaming and aria-live notifications.",
+    "thought_process_usage": "[MISSING_TRANSLATION: pt] Visualizes AI reasoning steps in a timeline. Features collapsible containers showing step status (running, completed, error)."
+  }
+}

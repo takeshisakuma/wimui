@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
+import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
 import styles from "./prompt-input.module.scss";
 
 export interface PromptInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "onSubmit"> {
@@ -143,17 +144,11 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
           </button>
         </div>
 
-        {maxLength && (
-          <div className={styles.footer}>
-            <span
-              className={classNames(styles.charCount, {
-                [styles.charCountMax]: currentValue.length >= maxLength,
-              })}
-            >
-              {currentValue.length} / {maxLength}
-            </span>
-          </div>
-        )}
+        <FieldCharacterCount
+          count={currentValue.length}
+          maxLength={maxLength}
+          className={styles.charCount}
+        />
       </div>
     );
   }

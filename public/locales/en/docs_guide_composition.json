@@ -23,7 +23,9 @@
     "usage": "Usage Guide",
     "input_std_title": "Input Area Standardization",
     "input_std_desc": "Standardized behavior and layout rules for input areas to ensure consistency across form components.",
-    "internal_title": "Internal Core Components"
+    "internal_title": "Internal Core Components",
+    "external_react_flow": "React Flow (@xyflow/react)",
+    "external_full_calendar": "FullCalendar (@fullcalendar/react)"
   },
   "table": {
     "header_role": "Role"

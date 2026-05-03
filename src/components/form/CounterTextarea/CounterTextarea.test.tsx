@@ -1,0 +1,23 @@
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { CounterTextarea } from "./CounterTextarea";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
+
+describe("CounterTextarea", () => {
+  it("renders correctly", () => {
+    render(<CounterTextarea defaultValue="Test content" />);
+    expect(screen.getByDisplayValue("Test content")).toBeInTheDocument();
+  });
+
+  it("supports asChild", () => {
+    render(
+      <CounterTextarea asChild>
+        <textarea data-testid="child" defaultValue="Child" />
+      </CounterTextarea>
+    );
+    expect(screen.getByTestId("child")).toBeInTheDocument();
+  });
+});

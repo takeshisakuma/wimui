@@ -14,6 +14,7 @@ import ClockIcon from "./clock.svg?react";
 import CloseSmallIcon from "./close-small.svg?react";
 import CloseIcon from "./close.svg?react";
 import CopyIcon from "./copy.svg?react";
+import CreditCardIcon from "./credit-card.svg?react";
 import DocumentIcon from "./document.svg?react";
 import DownloadIcon from "./download.svg?react";
 import EditIcon from "./edit.svg?react";
@@ -85,6 +86,7 @@ export {
   CloseSmallIcon,
   CloseIcon,
   CopyIcon,
+  CreditCardIcon,
   DocumentIcon,
   DownloadIcon,
   EditIcon,
@@ -157,6 +159,7 @@ export const ALL_ICONS = {
   CloseSmallIcon,
   CloseIcon,
   CopyIcon,
+  CreditCardIcon,
   DocumentIcon,
   DownloadIcon,
   EditIcon,

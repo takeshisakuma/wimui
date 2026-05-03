@@ -200,6 +200,12 @@
     "textarea_value_none": "特になし",
     "timepicker_ghost": "ゴースト時間選択",
     "timepicker_outline": "アウトライン時間選択",
-    "timepicker_select": "時間を選択"
+    "timepicker_select": "時間を選択",
+    "credit_card_label": "クレジットカード番号",
+    "credit_card_placeholder": "0000 0000 0000 0000",
+    "credit_card_visa_label": "Visa (4で始まる)",
+    "credit_card_amex_label": "Amex (34/37で始まる、4-6-5形式)",
+    "counter_textarea_label": "文字数カウント付きメッセージ",
+    "counter_textarea_placeholder": "メッセージを入力してください..."
   }
 }

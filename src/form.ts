@@ -50,3 +50,5 @@ export * from "./components/form/InlineEdit/InlineEdit";
 export * from "./components/form/PasswordStrength/PasswordStrength";
 export * from "./components/form/ImageCropper/ImageCropper";
 export * from "./components/form/TagInput/TagInput";
+export * from "./components/form/CreditCardInput/CreditCardInput";
+export * from "./components/form/CounterTextarea/CounterTextarea";

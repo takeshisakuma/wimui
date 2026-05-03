@@ -226,6 +226,9 @@
     "dialog_confirm_title": "削除の確認",
     "dialog_confirm_desc": "本当に削除してもよろしいですか？この操作は取り消せません。",
     "dialog_cancel": "キャンセル",
-    "dialog_confirm": "削除"
+    "dialog_confirm": "削除",
+    "heatmap_label": "アクティビティヒートマップ",
+    "heatmap_less": "少ない",
+    "heatmap_more": "多い"
   }
 }

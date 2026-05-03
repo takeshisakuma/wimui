@@ -200,6 +200,12 @@
         "mobile": true
       },
       {
+        "name": "CounterTextarea",
+        "descKey": "doc.counterTextarea_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "OtpInput",
         "descKey": "doc.otpInput_desc",
         "pc": true,
@@ -208,6 +214,12 @@
       {
         "name": "InputMask",
         "descKey": "doc.inputMask_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "CreditCardInput",
+        "descKey": "doc.creditCardInput_desc",
         "pc": true,
         "mobile": true
       },
@@ -1167,6 +1179,12 @@
       {
         "name": "Heatmap",
         "descKey": "doc.heatmap_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "CalendarHeatmap",
+        "descKey": "doc.calendarHeatmap_desc",
         "pc": true,
         "mobile": true
       },

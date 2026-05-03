@@ -112,6 +112,9 @@
     "rounded": "Arredondado",
     "size": "Tamanho",
     "small": "Pequeno",
+    "heatmap_less": "Menos",
+    "heatmap_more": "Mais",
+    "heatmap_title": "Mapa de Atividade",
     "status": "Status",
     "style": "Estilo",
     "title": "Título",
@@ -455,13 +458,13 @@
   },
   "home": "Início",
   "jsonViewer": {
-    "addItem": "[MISSING_TRANSLATION: pt] Add item",
+    "addItem": "Adicionar item",
     "collapse": "Recolher tudo",
     "copy": "Copiar JSON",
-    "deleteItem": "[MISSING_TRANSLATION: pt] Delete item",
+    "deleteItem": "Excluir item",
     "edit": "Editar JSON",
     "expand": "Expandir tudo",
-    "title": "[MISSING_TRANSLATION: pt] JSON Viewer"
+    "title": "Visualizador de JSON"
   },
   "language": {
     "en": "Inglês",
