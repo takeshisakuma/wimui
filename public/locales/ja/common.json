@@ -452,10 +452,13 @@
   },
   "home": "ホーム",
   "jsonViewer": {
+    "addItem": "項目の追加",
     "collapse": "すべて折り畳む",
     "copy": "JSONをコピー",
+    "deleteItem": "項目の削除",
     "edit": "JSONを編集",
-    "expand": "すべて展開"
+    "expand": "すべて展開",
+    "title": "JSONビューアー"
   },
   "language": {
     "en": "英語",

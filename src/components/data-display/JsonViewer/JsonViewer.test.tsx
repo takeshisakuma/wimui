@@ -9,7 +9,7 @@ vi.mock("react-i18next", () => ({
 describe("JsonViewer", () => {
   it("renders correctly", () => {
     render(<JsonViewer data={{ key: "value" }} />);
-    expect(screen.getByText("JSON Viewer")).toBeInTheDocument();
+    expect(screen.getByText("jsonViewer.title")).toBeInTheDocument();
     expect(screen.getByText("key:")).toBeInTheDocument();
     expect(screen.getByText(/"value"/)).toBeInTheDocument();
   });

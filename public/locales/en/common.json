@@ -617,9 +617,12 @@
     "loading": "Refreshing..."
   },
   "jsonViewer": {
+    "title": "JSON Viewer",
     "expand": "Expand all",
     "collapse": "Collapse all",
     "copy": "Copy JSON",
-    "edit": "Edit JSON"
+    "edit": "Edit JSON",
+    "addItem": "Add item",
+    "deleteItem": "Delete item"
   }
 }

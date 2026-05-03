@@ -33,20 +33,74 @@
   }
 
   .node {
+    position: relative;
     margin-left: var(--wim-spacing-md);
     line-height: 1.6;
     white-space: nowrap;
+
+    &:hover > .actions {
+      opacity: 1;
+    }
   }
 
   .header {
     display: flex;
     gap: var(--wim-spacing-xs);
     align-items: center;
+    min-height: 24px;
     cursor: default;
 
     &.collapsible {
       cursor: pointer;
-      &:hover { color: var(--wim-color-primary); }
+      &:hover { .toggle { color: var(--wim-color-primary); } }
+    }
+  }
+
+  .actions {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: var(--wim-spacing-sm);
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity var(--wim-duration-fast);
+  }
+
+  .nodeAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-border-radius-xs);
+    transition: all var(--wim-duration-fast);
+
+    &:hover {
+      color: var(--wim-color-text);
+      background: var(--wim-color-surface-subtle);
+    }
+
+    &.delete:hover {
+      color: var(--wim-color-error);
+      background: var(--wim-color-error-subtle);
+    }
+  }
+
+  .input {
+    min-width: 60px;
+    padding: 0 4px;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+    background: var(--wim-color-surface);
+    border: 1px solid var(--wim-color-primary);
+    border-radius: var(--wim-border-radius-xs);
+
+    &.keyInput {
+      color: var(--wim-color-informative);
     }
   }
 

@@ -209,173 +209,6 @@
       }
     }
   },
-  "Stepper": {
-    "name": "Stepper",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-primary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-focus-outline-width",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-font-weight-medium",
-      "--wim-radius-full",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "steps": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "Step"
-            }
-          ],
-          "raw": "Step[]"
-        },
-        "description": "Array of step configurations",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "current": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Index of the current active step (0-indexed)",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "direction": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "Direction of the stepper",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      },
-      "labelPlacement": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"horizontal\" | \"vertical\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            }
-          ]
-        },
-        "description": "Placement of the labels",
-        "defaultValue": {
-          "value": "\"horizontal\"",
-          "computed": false
-        }
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"wait\" | \"process\" | \"finish\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"wait\""
-            },
-            {
-              "name": "literal",
-              "value": "\"process\""
-            },
-            {
-              "name": "literal",
-              "value": "\"finish\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "Workflow intent shown on the current active step (default: \"process\")",
-        "defaultValue": {
-          "value": "\"process\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "ariaLabel": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Accessibility label for the navigation"
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(current: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "current"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when a step is clicked (if applicable)"
-      }
-    }
-  },
   "TabNavigation": {
     "name": "TabNavigation",
     "tokens": [],
@@ -592,6 +425,328 @@
           "raw": "React.ReactNode"
         },
         "description": "Badge content (optional)"
+      }
+    }
+  },
+  "Pagination": {
+    "name": "Pagination",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-field-focus",
+      "--wim-shadow-focus",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "total": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Total number of items"
+      },
+      "pageSize": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Number of items per page",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "current": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Current page number (1-indexed)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(page: number, pageSize: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "page"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "pageSize"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when page changes"
+      },
+      "onPageSizeChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(pageSize: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "pageSize"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when page size changes"
+      },
+      "siblingCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Number of sibling pages to show around the current page",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "simple": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show a simplified version",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "hideOnSinglePage": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to hide the pagination if there is only one page",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "showSizeChanger": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the page size changer",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "pageSizeOptions": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "number"
+            }
+          ],
+          "raw": "number[]"
+        },
+        "description": "Page size options for the page size changer",
+        "defaultValue": {
+          "value": "[10, 20, 50, 100]",
+          "computed": false
+        }
+      },
+      "showTotal": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(total: number, range: [number, number]) => React.ReactNode",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "total"
+              },
+              {
+                "type": {
+                  "name": "tuple",
+                  "raw": "[number, number]",
+                  "elements": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ]
+                },
+                "name": "range"
+              }
+            ],
+            "return": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          }
+        },
+        "description": "Function to display the total count"
+      },
+      "showQuickJumper": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show quick jumper",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  prevPage?: string;\r\n  nextPage?: string;\r\n  pageAriaLabel?: (page: number) => string;\r\n  itemsPerPage?: string;\r\n  goTo?: string;\r\n  pageSizeAriaLabel?: string;\r\n  jumpToPageAriaLabel?: string;\r\n  navAriaLabel?: string;\r\n  totalLabel?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "prevPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "nextPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "pageAriaLabel",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(page: number) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "number"
+                        },
+                        "name": "page"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              },
+              {
+                "key": "itemsPerPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "goTo",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "pageSizeAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "jumpToPageAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "navAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "totalLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "Labels for internationalization",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
       }
     }
   },
@@ -1276,328 +1431,6 @@
       }
     }
   },
-  "Pagination": {
-    "name": "Pagination",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-field-focus",
-      "--wim-shadow-focus",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {
-      "total": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Total number of items"
-      },
-      "pageSize": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Number of items per page",
-        "defaultValue": {
-          "value": "10",
-          "computed": false
-        }
-      },
-      "current": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Current page number (1-indexed)",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(page: number, pageSize: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "page"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "pageSize"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when page changes"
-      },
-      "onPageSizeChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(pageSize: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "pageSize"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when page size changes"
-      },
-      "siblingCount": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Number of sibling pages to show around the current page",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "simple": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show a simplified version",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "hideOnSinglePage": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to hide the pagination if there is only one page",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "showSizeChanger": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show the page size changer",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "pageSizeOptions": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "number"
-            }
-          ],
-          "raw": "number[]"
-        },
-        "description": "Page size options for the page size changer",
-        "defaultValue": {
-          "value": "[10, 20, 50, 100]",
-          "computed": false
-        }
-      },
-      "showTotal": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(total: number, range: [number, number]) => React.ReactNode",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "total"
-              },
-              {
-                "type": {
-                  "name": "tuple",
-                  "raw": "[number, number]",
-                  "elements": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "number"
-                    }
-                  ]
-                },
-                "name": "range"
-              }
-            ],
-            "return": {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          }
-        },
-        "description": "Function to display the total count"
-      },
-      "showQuickJumper": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show quick jumper",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  prevPage?: string;\r\n  nextPage?: string;\r\n  pageAriaLabel?: (page: number) => string;\r\n  itemsPerPage?: string;\r\n  goTo?: string;\r\n  pageSizeAriaLabel?: string;\r\n  jumpToPageAriaLabel?: string;\r\n  navAriaLabel?: string;\r\n  totalLabel?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "prevPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "nextPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "pageAriaLabel",
-                "value": {
-                  "name": "signature",
-                  "type": "function",
-                  "raw": "(page: number) => string",
-                  "signature": {
-                    "arguments": [
-                      {
-                        "type": {
-                          "name": "number"
-                        },
-                        "name": "page"
-                      }
-                    ],
-                    "return": {
-                      "name": "string"
-                    }
-                  },
-                  "required": false
-                }
-              },
-              {
-                "key": "itemsPerPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "goTo",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "pageSizeAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "jumpToPageAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "navAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "totalLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "Labels for internationalization",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
-      }
-    }
-  },
   "Link": {
     "name": "Link",
     "tokens": [
@@ -1886,6 +1719,173 @@
           "name": "string"
         },
         "description": "Custom class name"
+      }
+    }
+  },
+  "Stepper": {
+    "name": "Stepper",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-primary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-focus-outline-width",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-font-weight-medium",
+      "--wim-radius-full",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "steps": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Step"
+            }
+          ],
+          "raw": "Step[]"
+        },
+        "description": "Array of step configurations",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "current": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Index of the current active step (0-indexed)",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "Direction of the stepper",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "labelPlacement": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"horizontal\" | \"vertical\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            }
+          ]
+        },
+        "description": "Placement of the labels",
+        "defaultValue": {
+          "value": "\"horizontal\"",
+          "computed": false
+        }
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"wait\" | \"process\" | \"finish\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"wait\""
+            },
+            {
+              "name": "literal",
+              "value": "\"process\""
+            },
+            {
+              "name": "literal",
+              "value": "\"finish\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "Workflow intent shown on the current active step (default: \"process\")",
+        "defaultValue": {
+          "value": "\"process\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "ariaLabel": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessibility label for the navigation"
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(current: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "current"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when a step is clicked (if applicable)"
       }
     }
   },

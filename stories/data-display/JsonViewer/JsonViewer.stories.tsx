@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { JsonViewer } from "@/components/data-display/JsonViewer/JsonViewer";
 
@@ -47,5 +48,21 @@ export const NoToolbar: Story = {
   args: {
     data: mockData,
     showToolbar: false,
+  },
+};
+
+export const Editable: Story = {
+  render: (args) => {
+     
+    const [data, setData] = React.useState(mockData);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <JsonViewer {...args} data={data} editable onChange={(newData) => setData(newData as typeof mockData)} />
+        <div style={{ padding: "10px", background: "var(--wim-color-surface-subtle)", borderRadius: "4px" }}>
+          <h4 style={{ margin: "0 0 10px 0", fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>PARENT STATE PREVIEW:</h4>
+          <pre style={{ margin: 0, fontSize: "12px" }}>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      </div>
+    );
   },
 };
