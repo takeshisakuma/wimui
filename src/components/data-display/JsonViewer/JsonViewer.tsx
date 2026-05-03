@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { Slot } from "@radix-ui/react-slot";
 import localStyles from "./json-viewer.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { IconButton } from "../../form/IconButton/IconButton";
@@ -15,8 +14,6 @@ export interface JsonViewerProps extends React.HTMLAttributes<HTMLDivElement> {
   showCopy?: boolean;
   /** If true, show toolbar */
   showToolbar?: boolean;
-  /** If true, the component will be rendered as its child */
-  asChild?: boolean;
 }
 
 const JsonNode = ({
@@ -109,16 +106,15 @@ const JsonNode = ({
  * - Scroll lock: No
  */
 export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
-  ({ data, expandDepth = 1, showCopy = true, showToolbar = true, asChild = false, className, ...props }, ref) => {
+  ({ data, expandDepth = 1, showCopy = true, showToolbar = true, className, ...props }, ref) => {
     const { t } = useTranslation();
-    const Root = asChild ? Slot : "div";
 
     const copyToClipboard = () => {
       navigator.clipboard.writeText(JSON.stringify(data, null, 2));
     };
 
     return (
-      <Root ref={ref} className={classNames(localStyles.root, className)} {...props}>
+      <div ref={ref} className={classNames(localStyles.root, className)} {...props}>
         {showToolbar && (
           <div className={localStyles.toolbar}>
             <span className={localStyles.title}>JSON Viewer</span>
@@ -136,7 +132,7 @@ export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
         <div className={localStyles.tree}>
           <JsonNode value={data} depth={expandDepth} currentDepth={0} />
         </div>
-      </Root>
+      </div>
     );
   }
 );

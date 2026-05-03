@@ -13,13 +13,4 @@ describe("JsonViewer", () => {
     expect(screen.getByText("key:")).toBeInTheDocument();
     expect(screen.getByText(/"value"/)).toBeInTheDocument();
   });
-
-  it("supports asChild", () => {
-    render(
-      <JsonViewer asChild data={{}}>
-        <div data-testid="child">JSON Viewer</div>
-      </JsonViewer>
-    );
-    expect(screen.getByTestId("child")).toBeInTheDocument();
-  });
 });

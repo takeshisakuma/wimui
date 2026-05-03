@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { Slot } from "@radix-ui/react-slot";
 import localStyles from "./speed-dial.module.scss";
 import { FloatButton } from "../../form/FloatButton/FloatButton";
 import { IconName } from "../../../icon";
@@ -28,8 +27,6 @@ export type SpeedDialProps = React.ComponentPropsWithoutRef<"div"> & {
   open?: boolean;
   /** Callback when open state changes */
   onOpenChange?: (open: boolean) => void;
-  /** If true, the component will be rendered as its child */
-  asChild?: boolean;
 };
 
 /**
@@ -49,7 +46,6 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       trigger = "hover",
       open: controlledOpen,
       onOpenChange,
-      asChild = false,
       className,
       ...props
     },
@@ -75,10 +71,8 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       if (trigger === "click") handleOpenChange(!open);
     };
 
-    const Root = asChild ? Slot : "div";
-
     return (
-      <Root
+      <div
         ref={ref}
         className={classNames(
           localStyles.root,
@@ -122,7 +116,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           aria-expanded={open}
           aria-haspopup="true"
         />
-      </Root>
+      </div>
     );
   }
 );

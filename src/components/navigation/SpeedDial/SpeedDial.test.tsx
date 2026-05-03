@@ -11,15 +11,4 @@ describe("SpeedDial", () => {
     render(<SpeedDial actions={[]} />);
     expect(screen.getByLabelText("PlusIcon")).toBeInTheDocument();
   });
-
-  it("supports asChild", () => {
-    render(
-      <SpeedDial asChild actions={[]}>
-        <div data-testid="child">
-          <button type="button">Trigger</button>
-        </div>
-      </SpeedDial>
-    );
-    expect(screen.getByTestId("child")).toBeInTheDocument();
-  });
 });

@@ -1154,6 +1154,117 @@
       }
     }
   },
+  "SwipeAction": {
+    "name": "SwipeAction",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "leftActions": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "SwipeActionItem"
+            }
+          ],
+          "raw": "SwipeActionItem[]"
+        },
+        "description": "Actions revealed when swiping from left to right",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "rightActions": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "SwipeActionItem"
+            }
+          ],
+          "raw": "SwipeActionItem[]"
+        },
+        "description": "Actions revealed when swiping from right to left",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The content to be wrapped and swiped"
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the content div will be rendered as its child",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Unique ID for the item. Automatically generated if not provided."
+      },
+      "closeOnAction": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to automatically close the actions when an action is clicked. Default is true.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
+  "SwipeableList": {
+    "name": "SwipeableList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "exclusive": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, only one item can be swiped open at a time.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Table": {
     "name": "Table",
     "tokens": [
@@ -1845,117 +1956,6 @@
         "required": false,
         "tsType": {
           "name": "number"
-        },
-        "description": ""
-      }
-    }
-  },
-  "SwipeAction": {
-    "name": "SwipeAction",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "leftActions": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "SwipeActionItem"
-            }
-          ],
-          "raw": "SwipeActionItem[]"
-        },
-        "description": "Actions revealed when swiping from left to right",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "rightActions": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "SwipeActionItem"
-            }
-          ],
-          "raw": "SwipeActionItem[]"
-        },
-        "description": "Actions revealed when swiping from right to left",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The content to be wrapped and swiped"
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the content div will be rendered as its child",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Unique ID for the item. Automatically generated if not provided."
-      },
-      "closeOnAction": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to automatically close the actions when an action is clicked. Default is true.",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "SwipeableList": {
-    "name": "SwipeableList",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "exclusive": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, only one item can be swiped open at a time.",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
         },
         "description": ""
       }
@@ -3548,17 +3548,88 @@
           "value": "true",
           "computed": false
         }
+      }
+    }
+  },
+  "FAQSection": {
+    "name": "FAQSection",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "FAQItem"
+            }
+          ],
+          "raw": "FAQItem[]"
+        },
+        "description": "FAQの各項目。"
       },
-      "asChild": {
+      "title": {
         "required": false,
         "tsType": {
-          "name": "boolean"
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
         },
-        "description": "If true, the component will be rendered as its child",
+        "description": "セクションのメインタイトル。"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "タイトルの下に表示される補足説明。"
+      },
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"top\" | \"left\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"left\""
+            }
+          ]
+        },
+        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
         "defaultValue": {
-          "value": "false",
+          "value": "\"top\"",
           "computed": false
         }
+      },
+      "accordionProps": {
+        "required": false,
+        "tsType": {
+          "name": "Omit",
+          "elements": [
+            {
+              "name": "AccordionProps"
+            },
+            {
+              "name": "literal",
+              "value": "\"children\""
+            }
+          ],
+          "raw": "Omit<AccordionProps, \"children\">"
+        },
+        "description": "内部のAccordionコンポーネントに渡すProps。"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
       }
     }
   },
@@ -3659,88 +3730,6 @@
           ]
         },
         "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
-      }
-    }
-  },
-  "FAQSection": {
-    "name": "FAQSection",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "FAQItem"
-            }
-          ],
-          "raw": "FAQItem[]"
-        },
-        "description": "FAQの各項目。"
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "セクションのメインタイトル。"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "タイトルの下に表示される補足説明。"
-      },
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"top\" | \"left\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"left\""
-            }
-          ]
-        },
-        "description": "レイアウト。\r\n- top: タイトルと説明をアコーディオンの上に配置。\r\n- left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。",
-        "defaultValue": {
-          "value": "\"top\"",
-          "computed": false
-        }
-      },
-      "accordionProps": {
-        "required": false,
-        "tsType": {
-          "name": "Omit",
-          "elements": [
-            {
-              "name": "AccordionProps"
-            },
-            {
-              "name": "literal",
-              "value": "\"children\""
-            }
-          ],
-          "raw": "Omit<AccordionProps, \"children\">"
-        },
-        "description": "内部のAccordionコンポーネントに渡すProps。"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
       }
     }
   },
