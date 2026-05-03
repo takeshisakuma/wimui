@@ -45,7 +45,12 @@ describe("PromptInput", () => {
 
   it("shows char count when maxLength is set", () => {
     render(<PromptInput defaultValue="Hi" maxLength={100} />);
-    expect(screen.getByText("2 / 100")).toBeInTheDocument();
+    // FieldCharacterCount renders count, separator, and max in separate spans,
+    // so we match by the container's combined text content.
+    const counter = screen.getByText((_, element) =>
+      element?.textContent?.replace(/\s+/g, " ").trim() === "2 / 100"
+    );
+    expect(counter).toBeInTheDocument();
   });
 
   it("shows attachment button when showAttach is true", () => {
