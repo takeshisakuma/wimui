@@ -490,74 +490,6 @@
       }
     }
   },
-  "Legend": {
-    "name": "Legend",
-    "tokens": [
-      "--wim-color-text-primary",
-      "--wim-font-size-md",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "label": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The main label text or element."
-      },
-      "required": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the field is mandatory. If true, displays a required badge."
-      },
-      "requiredLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the required badge.\r\n@default \"required\""
-      },
-      "showOptional": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to display an optional badge when `required` is false.\r\n@default false"
-      },
-      "optionalLabel": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class name for the container."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the Legend will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
   "Span": {
     "name": "Span",
     "tokens": [
@@ -806,11 +738,11 @@
       }
     }
   },
-  "Label": {
-    "name": "Label",
+  "Legend": {
+    "name": "Legend",
     "tokens": [
       "--wim-color-text-primary",
-      "--wim-font-size-sm",
+      "--wim-font-size-md",
       "--wim-spacing-md",
       "--wim-spacing-xs"
     ],
@@ -829,11 +761,7 @@
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether the field is mandatory. If true, displays a required badge.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "description": "Whether the field is mandatory. If true, displays a required badge."
       },
       "requiredLabel": {
         "required": false,
@@ -848,11 +776,7 @@
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether to display an optional badge when `required` is false.\r\n@default false",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "description": "Whether to display an optional badge when `required` is false.\r\n@default false"
       },
       "optionalLabel": {
         "required": false,
@@ -874,7 +798,7 @@
         "tsType": {
           "name": "boolean"
         },
-        "description": "If true, the Label will be rendered as its child, merging its props onto that child.",
+        "description": "If true, the Legend will be rendered as its child, merging its props onto that child.",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -953,6 +877,161 @@
           "raw": "React.ReactNode"
         },
         "description": ""
+      }
+    }
+  },
+  "Label": {
+    "name": "Label",
+    "tokens": [
+      "--wim-color-text-primary",
+      "--wim-font-size-sm",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "label": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The main label text or element."
+      },
+      "required": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the field is mandatory. If true, displays a required badge.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "requiredLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the required badge.\r\n@default \"required\""
+      },
+      "showOptional": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to display an optional badge when `required` is false.\r\n@default false",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "optionalLabel": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Custom text or element for the optional badge.\r\n@default \"optional\""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class name for the container."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the Label will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Highlight": {
+    "name": "Highlight",
+    "tokens": [
+      "--wim-color-decoration-highlight-color",
+      "--wim-radius-xs",
+      "--wim-spacing-3xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The full text to highlight substrings in."
+      },
+      "highlight": {
+        "required": true,
+        "tsType": {
+          "name": "union",
+          "raw": "string | string[]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            }
+          ]
+        },
+        "description": "Substring(s) to highlight."
+      },
+      "highlightClassName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name for the highlighted `<mark>` element."
+      },
+      "highlightStyles": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Custom styles for the highlighted `<mark>` element."
+      },
+      "as": {
+        "required": false,
+        "tsType": {
+          "name": "ReactElementType",
+          "raw": "React.ElementType"
+        },
+        "description": "The HTML tag or component to use for the container. Default is \"span\".",
+        "defaultValue": {
+          "value": "\"span\"",
+          "computed": false
+        }
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the component will be rendered as its child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
@@ -1183,85 +1262,6 @@
         "description": "",
         "defaultValue": {
           "value": "true",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Highlight": {
-    "name": "Highlight",
-    "tokens": [
-      "--wim-color-decoration-highlight-color",
-      "--wim-radius-xs",
-      "--wim-spacing-3xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The full text to highlight substrings in."
-      },
-      "highlight": {
-        "required": true,
-        "tsType": {
-          "name": "union",
-          "raw": "string | string[]",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "Array",
-              "elements": [
-                {
-                  "name": "string"
-                }
-              ],
-              "raw": "string[]"
-            }
-          ]
-        },
-        "description": "Substring(s) to highlight."
-      },
-      "highlightClassName": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name for the highlighted `<mark>` element."
-      },
-      "highlightStyles": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Custom styles for the highlighted `<mark>` element."
-      },
-      "as": {
-        "required": false,
-        "tsType": {
-          "name": "ReactElementType",
-          "raw": "React.ElementType"
-        },
-        "description": "The HTML tag or component to use for the container. Default is \"span\".",
-        "defaultValue": {
-          "value": "\"span\"",
-          "computed": false
-        }
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will be rendered as its child.",
-        "defaultValue": {
-          "value": "false",
           "computed": false
         }
       }
