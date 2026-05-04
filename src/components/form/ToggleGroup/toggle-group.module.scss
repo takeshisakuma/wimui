@@ -3,12 +3,13 @@
 @layer component {
   .root {
     @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-component), $padding: 2px);
-  
+
     box-sizing: border-box;
     display: inline-flex;
     gap: var(--wim-spacing-3xs);
+    width: fit-content;
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  
+
     &.fullWidth {
       display: flex;
       width: 100%;

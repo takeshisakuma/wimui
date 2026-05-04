@@ -2,57 +2,67 @@
 
 @layer component {
   .root {
-    @include indicator.indicator-container-segmented($padding: var(--wim-spacing-3xs));
-  
+    @include indicator.indicator-container-segmented($padding: 2px);
+
     display: inline-grid;
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
+    width: max-content;
     user-select: none;
-  
+
     &.fullWidth {
       display: grid;
       width: 100%;
     }
   
     &.sm {
+      height: var(--wim-height-sm);
+
       .item {
-        padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+        height: calc(var(--wim-height-sm) - var(--wim-spacing-xs));
+        padding: 0 var(--wim-spacing-sm);
         font-size: var(--wim-font-size-sm);
-  
+
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-sm);
-          padding: var(--wim-spacing-xs) 0;
+          padding: 0;
         }
       }
     }
-  
+
     &.md {
+      height: var(--wim-height-md);
+
       .item {
-        padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+        height: calc(var(--wim-height-md) - var(--wim-spacing-xs));
+        padding: 0 var(--wim-spacing-md);
         font-size: var(--wim-font-size-md);
-  
+
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-md);
-          padding: var(--wim-spacing-sm) 0;
+          padding: 0;
         }
       }
     }
-  
+
     &.lg {
+      height: var(--wim-height-lg);
+
       .item {
-        padding: var(--wim-spacing-md) var(--wim-spacing-xl);
+        height: calc(var(--wim-height-lg) - var(--wim-spacing-xs));
+        padding: 0 var(--wim-spacing-lg);
         font-size: var(--wim-font-size-lg);
-  
+
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-lg);
-          padding: var(--wim-spacing-md) 0;
+          padding: 0;
         }
       }
     }
   }
 
   .slider {
-    @include indicator.indicator-slider-contained($offset: var(--wim-spacing-3xs));
+    @include indicator.indicator-slider-contained($offset: 2px);
 
     opacity: 0;
 
@@ -68,13 +78,11 @@
     @include indicator.indicator-item-base;
 
     gap: var(--wim-spacing-sm);
-    height: var(--wim-tab-nav-height);
-    padding: var(--wim-tab-nav-padding);
-    font-size: var(--wim-tab-nav-font-size);
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
     white-space: nowrap;
     text-decoration: none;
+    border-radius: var(--wim-radius-sm);
 
     &:hover {
       color: var(--wim-color-text-primary);
