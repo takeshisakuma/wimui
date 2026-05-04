@@ -50,12 +50,19 @@ export const Default: Story = {
       },
     ];
 
+    const labels = {
+      ariaChart: t("components:ganttchart.aria_chart"),
+      ariaTaskBar: (label: string, start: string, end: string) =>
+        t("components:ganttchart.aria_task_bar", { label, start, end }),
+    };
+
     return (
       <GanttChart
         tasks={tasks}
         startDate={new Date(2026, 2, 1)}
         endDate={new Date(2026, 2, 31)}
         viewMode="day"
+        labels={labels}
       />
     );
   },

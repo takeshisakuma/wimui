@@ -82,7 +82,7 @@ function getHeaderCells(
     const current = new Date(chartStart.getFullYear(), chartStart.getMonth(), 1);
     const end = startOfDay(chartEnd);
     while (current <= end) {
-      const label = current.toLocaleString("en-US", { month: "short", year: "2-digit" });
+      const label = current.toLocaleString(undefined, { month: "short", year: "2-digit" });
       cells.push({ label, date: new Date(current) });
       current.setMonth(current.getMonth() + 1);
     }

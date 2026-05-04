@@ -31,12 +31,30 @@ type Story = StoryObj<typeof RichTextEditor>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const { t } = useTranslation(["docs_stories_common", "components"]);
+    const labels = {
+      bold: t("components:a11y.rte_bold"),
+      italic: t("components:a11y.rte_italic"),
+      underline: t("components:a11y.rte_underline"),
+      strikethrough: t("components:a11y.rte_strikethrough"),
+      h1: t("components:a11y.rte_h1"),
+      h2: t("components:a11y.rte_h2"),
+      h3: t("components:a11y.rte_h3"),
+      ul: t("components:a11y.rte_ul"),
+      ol: t("components:a11y.rte_ol"),
+      link: t("components:a11y.rte_link"),
+      unlink: t("components:a11y.rte_unlink"),
+      removeFormat: t("components:a11y.rte_remove_format"),
+      toolbar: t("components:a11y.rte_toolbar"),
+      linkPrompt: t("components:a11y.rte_link_prompt"),
+    };
+
     return (
       <RichTextEditor
         {...args}
-        label={t("story.rte_label_content")}
-        placeholder={t("story.rte_placeholder_default")}
+        label={t("docs_stories_common:story.rte_label_content")}
+        placeholder={t("docs_stories_common:story.rte_placeholder_default")}
+        labels={labels}
       />
     );
   },

@@ -58,6 +58,7 @@
     "option": "Option 1"
   },
   "transfer": {
+    "no_data": "No Data",
     "move_to_source": "Move to available",
     "move_to_target": "Move to selected",
     "source": "Available",
@@ -84,5 +85,11 @@
   },
   "tag_input": {
     "placeholder": "Enter tags..."
+  },
+  "combobox": {
+    "no_results": "No results found"
+  },
+  "otp": {
+    "digit": "Digit {{index}}"
   }
 }

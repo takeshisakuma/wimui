@@ -31,7 +31,7 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.datepicker_select")}>
-        <DatePicker {...args} />
+        <DatePicker {...args} placeholder={t("form:datepicker.placeholder")} />
       </Label>
     );
   },

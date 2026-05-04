@@ -27,9 +27,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const labels = {
+      star: (count: number) => t("components:rating.stars", { count }),
+      readonly: (count: number, max: number) => t("components:rating.readonly_label", { count, max }),
+    };
     return (
       <Label label={t("story.rating_default")}>
-        <Rating {...args} />
+        <Rating {...args} labels={labels} />
       </Label>
     );
   },

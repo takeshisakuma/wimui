@@ -18,6 +18,13 @@ const meta: Meta<typeof OtpInput> = {
     },
     onChange: { action: "changed" },
   },
+  render: (args) => {
+    const { t } = useTranslation("form");
+    const labels = {
+      digitAriaLabel: (index: number) => t("form:otp.digit", { index }),
+    };
+    return <OtpInput {...args} labels={labels} />;
+  },
 };
 
 export default meta;
@@ -54,9 +61,12 @@ export const ErrorStatus: Story = {
 export const Controlled = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const [value, setValue] = useState("");
+  const labels = {
+    digitAriaLabel: (index: number) => t("form:otp.digit", { index }),
+  };
   return (
     <div>
-      <OtpInput value={value} onChange={setValue} length={6} />
+      <OtpInput value={value} onChange={setValue} length={6} labels={labels} />
       <p style={{ marginTop: "1rem" }}>
         {t("story.otp_current_value")}: {value}
       </p>

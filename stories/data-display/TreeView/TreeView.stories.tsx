@@ -42,8 +42,12 @@ export const Default: Story = {
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const labels = {
+      expandLabel: (label: string) => t("components:a11y.expand_label", { label }),
+      collapseLabel: (label: string) => t("components:a11y.collapse_label", { label }),
+    };
     return (
-      <TreeView {...args} defaultExpandedValues={["1", "2"]}>
+      <TreeView {...args} defaultExpandedValues={["1", "2"]} labels={labels}>
         <TreeView.Item
           value="1"
           label={t("story.tree_documents")}

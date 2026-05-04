@@ -48,12 +48,16 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const sampleOptions = useSampleOptions();
+    const labels = {
+      noResults: t("form:combobox.no_results"),
+    };
     return (
       <Combobox
         {...args}
         label={t("story.combobox_label")}
         options={sampleOptions}
         placeholder={t("story.combobox_placeholder")}
+        labels={labels}
       />
     );
   },

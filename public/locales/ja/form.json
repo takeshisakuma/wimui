@@ -77,7 +77,14 @@
   "tag_input": {
     "placeholder": "タグを入力..."
   },
+  "combobox": {
+    "no_results": "結果が見つかりません"
+  },
+  "otp": {
+    "digit": "{{index}}番目の桁"
+  },
   "transfer": {
+    "no_data": "データがありません",
     "move_to_source": "選択可能に移動",
     "move_to_target": "選択済みに移動",
     "source": "選択可能",

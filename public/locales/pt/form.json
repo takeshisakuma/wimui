@@ -77,7 +77,14 @@
   "tag_input": {
     "placeholder": "Inserir etiquetas..."
   },
+  "combobox": {
+    "no_results": "Nenhum resultado encontrado"
+  },
+  "otp": {
+    "digit": "Dígito {{index}}"
+  },
   "transfer": {
+    "no_data": "Sem dados",
     "move_to_source": "Mover para disponível",
     "move_to_target": "Mover para selecionado",
     "source": "Disponível",
