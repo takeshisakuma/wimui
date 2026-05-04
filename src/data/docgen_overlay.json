@@ -153,12 +153,6 @@
       }
     }
   },
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
   "Popover": {
     "name": "Popover",
     "tokens": [
@@ -404,6 +398,12 @@
       }
     }
   },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -541,194 +541,6 @@
         "description": "Whether to show the popconfirm",
         "defaultValue": {
           "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "openDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Delay before showing the hover card in ms.",
-        "defaultValue": {
-          "value": "700",
-          "computed": false
-        }
-      },
-      "closeDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Delay before hiding the hover card in ms.",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If provided, controls the open state."
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when open state changes."
-      }
-    }
-  },
-  "HoverCardTrigger": {
-    "name": "HoverCardTrigger",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "HoverCardContent": {
-    "name": "HoverCardContent",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\" | \"center\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        }
-      },
-      "side": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom\""
-            },
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"bottom\"",
-          "computed": false
-        }
-      },
-      "sideOffset": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "8",
           "computed": false
         }
       }
@@ -1063,6 +875,194 @@
           "name": "string"
         },
         "description": ""
+      }
+    }
+  },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "openDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Delay before showing the hover card in ms.",
+        "defaultValue": {
+          "value": "700",
+          "computed": false
+        }
+      },
+      "closeDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Delay before hiding the hover card in ms.",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If provided, controls the open state."
+      },
+      "onOpenChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when open state changes."
+      }
+    }
+  },
+  "HoverCardTrigger": {
+    "name": "HoverCardTrigger",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "HoverCardContent": {
+    "name": "HoverCardContent",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"center\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "side": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom\""
+            },
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"bottom\"",
+          "computed": false
+        }
+      },
+      "sideOffset": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "8",
+          "computed": false
+        }
       }
     }
   },
