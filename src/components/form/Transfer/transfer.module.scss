@@ -24,8 +24,6 @@
     }
 
     &.disabled {
-      pointer-events: none;
-
       // Note: We remove opacity here because children (Checkbox, Button, BaseListItem) 
       // already apply their own opacity when disabled. Applying it here creates 
       // nested opacities (0.6 * 0.6 = 0.36), which fails contrast checks.
@@ -117,6 +115,10 @@
 
     &:focus-visible {
       box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
+
+      :global(.wim-transfer).disabled & {
+        box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-border);
+      }
 
       @media (forced-colors: active) {
         outline: var(--wim-border-width-thick) solid Highlight;

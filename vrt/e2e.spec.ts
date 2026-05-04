@@ -239,10 +239,10 @@ test.describe("Transfer", () => {
   });
 
   test("renders source and target panels", async ({ page }) => {
-    // Panel titles default to "Source" / "Target"
+    // Panel titles in English (locale:en)
     // Use last() because Storybook may have hidden elements with similar text
-    await expect(page.getByText("Source").last()).toBeVisible();
-    await expect(page.getByText("Target").last()).toBeVisible();
+    await expect(page.getByText("Available").last()).toBeVisible();
+    await expect(page.getByText("Selected").last()).toBeVisible();
   });
 
   test("items in targetKeys start in the right panel", async ({ page }) => {

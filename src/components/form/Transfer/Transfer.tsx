@@ -188,7 +188,8 @@ const TransferList = ({
         aria-multiselectable={data.length > 0 ? "true" : undefined}
         aria-label={titleStr}
         aria-activedescendant={data.length > 0 ? activeDescendantId : undefined}
-        tabIndex={disabled || data.length === 0 ? -1 : 0}
+        aria-disabled={disabled || undefined}
+        tabIndex={data.length === 0 ? -1 : 0}
         onKeyDown={(e) => onKeyDown(e, listType, data)}
         onFocus={() => {
           if (!focusedKey) {

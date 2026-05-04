@@ -1,4 +1,119 @@
 {
+  "CustomizedContent": {
+    "name": "CustomizedContent",
+    "tokens": [
+      "--wim-color-bg-primary",
+      "--wim-font-size-xs"
+    ],
+    "anatomy": [
+      "container",
+      "root"
+    ],
+    "props": {}
+  },
+  "Treemap": {
+    "name": "Treemap",
+    "tokens": [
+      "--wim-color-bg-primary",
+      "--wim-font-size-xs"
+    ],
+    "anatomy": [
+      "container",
+      "root"
+    ],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
+            }
+          ],
+          "raw": "ChartDataPoint[]"
+        },
+        "description": "Data to display in the treemap."
+      },
+      "dataKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The key in the data objects that represents the size of the rectangle."
+      },
+      "aspectRatio": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The aspect ratio of the rectangles.\n@default 4/3",
+        "defaultValue": {
+          "value": "4 / 3",
+          "computed": false
+        }
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The height of the chart in pixels.\n@default 300",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "The width of the chart (e.g., \"100%\", 500).\n@default \"100%\"",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Optional title displayed above the chart."
+      }
+    }
+  },
   "ScatterChart": {
     "name": "ScatterChart",
     "tokens": [],
@@ -113,28 +228,10 @@
       }
     }
   },
-  "CustomizedContent": {
-    "name": "CustomizedContent",
-    "tokens": [
-      "--wim-color-bg-primary",
-      "--wim-font-size-xs"
-    ],
-    "anatomy": [
-      "container",
-      "root"
-    ],
-    "props": {}
-  },
-  "Treemap": {
-    "name": "Treemap",
-    "tokens": [
-      "--wim-color-bg-primary",
-      "--wim-font-size-xs"
-    ],
-    "anatomy": [
-      "container",
-      "root"
-    ],
+  "RadarChart": {
+    "name": "RadarChart",
+    "tokens": [],
+    "anatomy": [],
     "props": {
       "data": {
         "required": true,
@@ -168,32 +265,34 @@
           ],
           "raw": "ChartDataPoint[]"
         },
-        "description": "Data to display in the treemap."
+        "description": ""
       },
-      "dataKey": {
+      "keys": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "indexKey": {
         "required": true,
         "tsType": {
           "name": "string"
         },
-        "description": "The key in the data objects that represents the size of the rectangle."
-      },
-      "aspectRatio": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "The aspect ratio of the rectangles.\n@default 4/3",
-        "defaultValue": {
-          "value": "4 / 3",
-          "computed": false
-        }
+        "description": ""
       },
       "height": {
         "required": false,
         "tsType": {
           "name": "number"
         },
-        "description": "The height of the chart in pixels.\n@default 300",
+        "description": "",
         "defaultValue": {
           "value": "300",
           "computed": false
@@ -213,7 +312,7 @@
             }
           ]
         },
-        "description": "The width of the chart (e.g., \"100%\", 500).\n@default \"100%\"",
+        "description": "",
         "defaultValue": {
           "value": "\"100%\"",
           "computed": false
@@ -224,7 +323,7 @@
         "tsType": {
           "name": "string"
         },
-        "description": "Optional title displayed above the chart."
+        "description": ""
       }
     }
   },
@@ -424,105 +523,6 @@
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "RadarChart": {
-    "name": "RadarChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
-            }
-          ],
-          "raw": "ChartDataPoint[]"
-        },
-        "description": ""
-      },
-      "keys": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "indexKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },
@@ -1095,6 +1095,116 @@
       }
     }
   },
+  "BarChart": {
+    "name": "BarChart",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "Record",
+              "elements": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "union",
+                  "raw": "string | number | null",
+                  "elements": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                }
+              ],
+              "raw": "Record<string, string | number | null>"
+            }
+          ],
+          "raw": "ChartDataPoint[]"
+        },
+        "description": ""
+      },
+      "keys": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "string"
+            }
+          ],
+          "raw": "string[]"
+        },
+        "description": ""
+      },
+      "xAxisKey": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "stacked": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "height": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "width": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "string | number",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"100%\"",
+          "computed": false
+        }
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "AreaChart": {
     "name": "AreaChart",
     "tokens": [],
@@ -1213,116 +1323,6 @@
           "value": "true",
           "computed": false
         }
-      }
-    }
-  },
-  "BarChart": {
-    "name": "BarChart",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "Record",
-              "elements": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "union",
-                  "raw": "string | number | null",
-                  "elements": [
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "null"
-                    }
-                  ]
-                }
-              ],
-              "raw": "Record<string, string | number | null>"
-            }
-          ],
-          "raw": "ChartDataPoint[]"
-        },
-        "description": ""
-      },
-      "keys": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "string"
-            }
-          ],
-          "raw": "string[]"
-        },
-        "description": ""
-      },
-      "xAxisKey": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "stacked": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "height": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "width": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "string | number",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "number"
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"100%\"",
-          "computed": false
-        }
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   }
