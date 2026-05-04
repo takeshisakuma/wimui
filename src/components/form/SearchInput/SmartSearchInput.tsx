@@ -67,6 +67,8 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
 
     const generatedId = useId();
     const id = customId || `smart-search-${generatedId}`;
+    const errorId = error ? `${id}-error` : undefined;
+    const labelId = label ? `${id}-label` : undefined;
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -108,7 +110,9 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
         required={required}
         layout={layout}
         htmlFor={id}
-        className={className}
+        labelId={labelId}
+        errorId={errorId}
+        className={classNames(className, fullWidth && styles.fullWidth)}
       >
         <div className={styles.container}>
           <InputBase

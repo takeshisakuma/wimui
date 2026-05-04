@@ -1,43 +1,4 @@
 {
-  "StreamingText": {
-    "name": "StreamingText",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "The markdown text content to render"
-      },
-      "isStreaming": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "When true, a blinking cursor is shown at the end of the content",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "components": {
-        "required": false,
-        "tsType": {
-          "name": "Components"
-        },
-        "description": "Override the default markdown component renderers"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class"
-      }
-    }
-  },
   "ThoughtStep": {
     "name": "ThoughtStep",
     "tokens": [],
@@ -149,6 +110,45 @@
           "value": "true",
           "computed": false
         }
+      }
+    }
+  },
+  "StreamingText": {
+    "name": "StreamingText",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The markdown text content to render"
+      },
+      "isStreaming": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "When true, a blinking cursor is shown at the end of the content",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "components": {
+        "required": false,
+        "tsType": {
+          "name": "Components"
+        },
+        "description": "Override the default markdown component renderers"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
       }
     }
   },
@@ -289,6 +289,17 @@
         "description": "Maximum number of rows to show before scrolling",
         "defaultValue": {
           "value": "8",
+          "computed": false
+        }
+      },
+      "fullWidth": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the input should take up the full width of its container",
+        "defaultValue": {
+          "value": "false",
           "computed": false
         }
       },

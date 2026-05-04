@@ -4,6 +4,10 @@
   .root {
     width: 100%;
     container-type: inline-size;
+
+    &.fullWidth {
+      width: 100%;
+    }
   }
   
   .container {

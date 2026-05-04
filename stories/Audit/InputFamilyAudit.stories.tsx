@@ -11,10 +11,16 @@ import {
   PromptInput,
   NumberInput,
   OtpInput,
+  Button,
   Stack,
   Text,
   Box,
-} from "wimui";
+} from "../../src";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const InputAny = Input as any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const PasswordInputAny = PasswordInput as any;
 
 const meta: Meta = {
   title: "Audit/InputFamily",
@@ -26,7 +32,7 @@ const meta: Meta = {
 export default meta;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box pb="lg" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
+  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
     <Text size="lg" weight="bold">
       {children}
     </Text>
@@ -45,7 +51,7 @@ const ComparisonGrid = ({
       {title}
     </Text>
     <Box
-      bg="bg-surface-subtle"
+      bg="subtle"
       radius="md"
       style={{
         display: "grid",
@@ -59,20 +65,21 @@ const ComparisonGrid = ({
   </Box>
 );
 
-const ComponentGroup = ({
-  label,
-  children,
-}: {
+interface ComponentGroupProps {
   label: string;
   children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
+  maxWidth?: string;
+  align?: "start" | "center" | "end" | "stretch";
+}
+
+const ComponentGroup = ({ label, children, maxWidth, align = "stretch" }: ComponentGroupProps) => (
+  <Stack direction="column" gap="var(--wim-spacing-xs)" w="100%">
     <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
       <Text size="xs" color="secondary">
         {label}
       </Text>
     </Box>
-    <Stack gap="var(--wim-spacing-md)" align="start">
+    <Stack direction="column" gap="md" align={align} style={{ maxWidth: maxWidth }} w="100%">
       {children}
     </Stack>
   </Stack>
@@ -89,7 +96,7 @@ export const Overview: StoryObj = {
       <Box bg="surface">
         <SectionTitle>{t("audit:input_family_title")}</SectionTitle>
 
-        {/* Basic Comparison */}
+        {/* 1. Basic Comparison */}
         <ComparisonGrid title={t("audit:basic_comparison")}>
           <ComponentGroup label={t("audit:label_standard_inputs")}>
             <Input placeholder="Standard Input" />
@@ -101,7 +108,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
         </ComparisonGrid>
 
-        {/* Variant Comparison */}
+        {/* 2. Variant Comparison */}
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
@@ -111,18 +118,18 @@ export const Overview: StoryObj = {
           ))}
         </ComparisonGrid>
 
-        {/* Intent Comparison */}
+        {/* 3. Intent Comparison */}
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
-              <Input intent={intent as "default" | "error"} placeholder={`Input ${intent}`} />
-              <PasswordInput intent={intent as "default" | "error"} placeholder={`Password ${intent}`} />
+              <InputAny intent={intent as "default" | "error"} placeholder={`Input ${intent}`} />
+              <PasswordInputAny intent={intent as "default" | "error"} placeholder={`Password ${intent}`} />
             </ComponentGroup>
           ))}
         </ComparisonGrid>
 
-        {/* Specialized & AI Inputs */}
-        <ComparisonGrid title={t("audit:specialized_buttons")}>
+        {/* 4. Specialized & AI Inputs */}
+        <ComparisonGrid title={t("audit:specialized_inputs")}>
           <ComponentGroup label="AI Specific">
             <PromptInput placeholder="PromptInput (AI)" />
             <SmartSearchInput placeholder="SmartSearchInput (AI)" />
@@ -133,7 +140,23 @@ export const Overview: StoryObj = {
           </ComponentGroup>
         </ComparisonGrid>
 
-        {/* Focus & Disabled States */}
+        {/* 5. Mixed Composition (Alignment Check) */}
+        <ComparisonGrid title={t("audit:mixed_composition")}>
+          <ComponentGroup label={t("audit:label_mix")}>
+            <Stack direction="row" gap="md" align="center" w="100%">
+              <Input placeholder="Align Check" style={{ flex: 1 }} />
+              <Button>Action</Button>
+              <SearchInput placeholder="Search" style={{ flex: 1 }} />
+            </Stack>
+            <Stack direction="row" gap="md" align="center" w="100%">
+              <PromptInput placeholder="Prompt" style={{ flex: 1 }} />
+              <Button variant="ghost">Cancel</Button>
+              <Button>Send</Button>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* 6. Focus & Disabled States */}
         <ComparisonGrid title={t("audit:states_disabled")}>
           <ComponentGroup label={t("audit:label_disabled")}>
             <Input disabled placeholder="Disabled Input" />
@@ -142,18 +165,31 @@ export const Overview: StoryObj = {
           </ComponentGroup>
         </ComparisonGrid>
 
-        {/* Fluid Width Check */}
+        {/* 7. Fluid Width Check (Readability Comparison) */}
         <ComparisonGrid title={t("audit:fluid_width_check")}>
-          <Box style={{ gridColumn: "1 / -1" }} w="100%">
+          {/* Fully Fluid */}
+          <ComponentGroup label="Truly Full Width (100% of parent)">
             <Stack gap="lg">
               <Input fullWidth placeholder="Full Width Input" />
               <SearchInput fullWidth placeholder="Full Width Search" />
               <PasswordInput fullWidth placeholder="Full Width Password" />
-              <OtpInput length={6} />
-              <PromptInput placeholder="PromptInput (Should be fluid by default)" />
-              <SmartSearchInput placeholder="SmartSearchInput (Should be fluid by default)" />
+              <OtpInput length={6} fullWidth />
+              <PromptInput fullWidth placeholder="PromptInput (Fluid)" />
+              <SmartSearchInput fullWidth placeholder="SmartSearchInput (Fluid)" />
             </Stack>
-          </Box>
+          </ComponentGroup>
+
+          {/* Capped for Readability */}
+          <ComponentGroup 
+            label="Readable Limit (Capped at 60rem/960px - approx. 40-50 chars)" 
+            maxWidth="60rem"
+          >
+            <Stack gap="lg">
+              <Input fullWidth placeholder="Full Width Input (Capped)" />
+              <PromptInput fullWidth placeholder="PromptInput (Capped)" />
+              <SmartSearchInput fullWidth placeholder="SmartSearchInput (Capped)" />
+            </Stack>
+          </ComponentGroup>
         </ComparisonGrid>
       </Box>
     );

@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
   Box,
-} from "wimui";
+} from "../../src";
 
 const meta: Meta = {
   title: "Audit/ButtonFamily",
@@ -23,7 +23,7 @@ const meta: Meta = {
 export default meta;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box pb="lg" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
+  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
     <Text size="lg" weight="bold">
       {children}
     </Text>

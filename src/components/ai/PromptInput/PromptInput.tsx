@@ -30,6 +30,8 @@ export interface PromptInputProps extends Omit<React.ComponentPropsWithoutRef<"d
   onAttach?: () => void;
   /** Maximum number of rows to show before scrolling */
   maxRows?: number;
+  /** Whether the input should take up the full width of its container */
+  fullWidth?: boolean;
   /** Additional CSS class */
   className?: string;
 }
@@ -52,6 +54,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
       showAttach = false,
       onAttach,
       maxRows = 8,
+      fullWidth = false,
       className,
       ...props
     },
@@ -103,6 +106,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
           {
             [styles.disabled]: disabled,
             [styles.loading]: loading,
+            [styles.fullWidth]: fullWidth,
           },
           className
         )}
@@ -117,7 +121,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
               aria-label={t("prompt_input.attach_label")}
               disabled={disabled || loading}
             >
-              <Icon component={PaperclipIcon} size="sm" />
+              <Icon component={PaperclipIcon} size="md" />
             </button>
           )}
 
@@ -140,7 +144,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
             disabled={!canSubmit}
             aria-label={t("prompt_input.send_label")}
           >
-            <Icon component={SendIcon} size="sm" />
+            <Icon component={SendIcon} size="md" />
           </button>
         </div>
 

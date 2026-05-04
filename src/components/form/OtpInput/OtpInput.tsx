@@ -19,6 +19,7 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   layout?: "vertical" | "horizontal";
   labels?: OtpInputLabels;
   asChild?: boolean;
+  fullWidth?: boolean;
 }
 
 /**
@@ -38,6 +39,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       className,
       labels = {},
       asChild = false,
+      fullWidth = false,
       children,
       ...props
     },
@@ -150,9 +152,13 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
         layout={layout}
         labelId={labelId}
         errorId={errorId}
-        className={className}
+        className={classNames(className, fullWidth && styles.fullWidth)}
       >
-        <Component className={styles.root} ref={ref} {...props}>
+        <Component
+          className={classNames(styles.root, fullWidth && styles.fullWidth)}
+          ref={ref}
+          {...props}
+        >
           <Slottable>
             <div
               className={classNames(

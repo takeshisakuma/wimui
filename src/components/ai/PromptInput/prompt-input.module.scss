@@ -4,11 +4,19 @@
   flex-direction: column;
   gap: var(--wim-spacing-xs);
   width: 100%;
+  min-width: 0;
+  max-width: var(--wim-width-md);
+  min-height: var(--wim-height-md);
   background: var(--wim-color-surface);
-  border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-field-radius, var(--wim-radius-md));
   transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
     box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
+
+  &.fullWidth {
+    width: 100%;
+    max-width: none;
+  }
 
   &:focus-within:not(.disabled) {
     border-color: var(--wim-color-primary);
@@ -29,19 +37,19 @@
 .inputArea {
   display: flex;
   gap: var(--wim-spacing-xs);
-  align-items: flex-end;
+  align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-md);
 
   &.noAttach {
-    padding-left: var(--wim-spacing-2xl);
+    padding-left: var(--wim-spacing-md);
   }
 }
 
 .textarea {
+  display: block;
   flex: 1;
   min-width: 0;
   padding: 0;
-  padding: var(--wim-spacing-xs) 0;
   overflow: hidden;
   font-family: inherit;
   font-size: var(--wim-font-size-md);
@@ -63,13 +71,10 @@
 }
 
 .actionButton {
-  display: flex;
+  display: grid;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
+  place-items: center;
+  padding: var(--wim-spacing-2xs);
   color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: transparent;
