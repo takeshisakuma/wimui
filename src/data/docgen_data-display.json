@@ -958,6 +958,202 @@
       }
     }
   },
+  "Tag": {
+    "name": "Tag",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border",
+      "--wim-color-text-disabled",
+      "--wim-font-size-2xs",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-opacity-secondary",
+      "--wim-radius-sm",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the tag will be rendered as its child, merging its props onto that child."
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ"
+      },
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ (childrenの代替)"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "インテント（意味的状態）"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"solid\" | \"outline\" | \"subtle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"solid\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"subtle\""
+            }
+          ]
+        },
+        "description": "バリアント"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "サイズ"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アイコン"
+      },
+      "onDelete": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.MouseEvent<HTMLButtonElement>) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactMouseEvent",
+                  "raw": "React.MouseEvent<HTMLButtonElement>",
+                  "elements": [
+                    {
+                      "name": "HTMLButtonElement"
+                    }
+                  ]
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "削除時のイベント。提供されると×ボタンが表示されます。"
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "無効状態"
+      }
+    }
+  },
   "Table": {
     "name": "Table",
     "tokens": [
@@ -1654,202 +1850,6 @@
       }
     }
   },
-  "Tag": {
-    "name": "Tag",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border",
-      "--wim-color-text-disabled",
-      "--wim-font-size-2xs",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-opacity-secondary",
-      "--wim-radius-sm",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the tag will be rendered as its child, merging its props onto that child."
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ"
-      },
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ (childrenの代替)"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"neutral\""
-            }
-          ]
-        },
-        "description": "インテント（意味的状態）"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"solid\" | \"outline\" | \"subtle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"solid\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"subtle\""
-            }
-          ]
-        },
-        "description": "バリアント"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "サイズ"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アイコン"
-      },
-      "onDelete": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(e: React.MouseEvent<HTMLButtonElement>) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "ReactMouseEvent",
-                  "raw": "React.MouseEvent<HTMLButtonElement>",
-                  "elements": [
-                    {
-                      "name": "HTMLButtonElement"
-                    }
-                  ]
-                },
-                "name": "e"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "削除時のイベント。提供されると×ボタンが表示されます。"
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "無効状態"
-      }
-    }
-  },
   "SwipeAction": {
     "name": "SwipeAction",
     "tokens": [],
@@ -2079,6 +2079,239 @@
         "description": "",
         "defaultValue": {
           "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "ScheduleView": {
+    "name": "ScheduleView",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "events": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "EventInput"
+            }
+          ],
+          "raw": "ScheduleViewEvent[]"
+        },
+        "description": "List of calendar events",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "initialView": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"timeGridWeek\" | \"timeGridDay\" | \"dayGridMonth\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"timeGridWeek\""
+            },
+            {
+              "name": "literal",
+              "value": "\"timeGridDay\""
+            },
+            {
+              "name": "literal",
+              "value": "\"dayGridMonth\""
+            }
+          ]
+        },
+        "description": "Initial view mode",
+        "defaultValue": {
+          "value": "\"timeGridWeek\"",
+          "computed": false
+        }
+      },
+      "editable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether events can be dragged to new times",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "selectable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether date ranges can be selected by clicking/dragging",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "onEventClick": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(arg: EventClickArg) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "EventClickArg"
+                },
+                "name": "arg"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when an event is clicked"
+      },
+      "onEventDrop": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(arg: EventDropArg) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "EventDropArg"
+                },
+                "name": "arg"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when an event is dropped to a new time"
+      },
+      "onEventChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(arg: EventChangeArg) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "EventChangeArg"
+                },
+                "name": "arg"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when an event is resized"
+      },
+      "onDateSelect": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(arg: DateSelectArg) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "DateSelectArg"
+                },
+                "name": "arg"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when a date/time range is selected"
+      },
+      "slotMinTime": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "First hour displayed in the time grid (e.g. \"08:00:00\")",
+        "defaultValue": {
+          "value": "\"08:00:00\"",
+          "computed": false
+        }
+      },
+      "slotMaxTime": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Last hour displayed in the time grid (e.g. \"20:00:00\")",
+        "defaultValue": {
+          "value": "\"20:00:00\"",
+          "computed": false
+        }
+      },
+      "slotDuration": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Duration of each time slot, e.g. \"00:30:00\"",
+        "defaultValue": {
+          "value": "\"00:30:00\"",
+          "computed": false
+        }
+      },
+      "locale": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Locale string, e.g. \"ja\", \"pt\"",
+        "defaultValue": {
+          "value": "\"en\"",
+          "computed": false
+        }
+      },
+      "unselectAuto": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether clicking elsewhere on the page will clear the current selection",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
+      },
+      "aria-label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessible label for the schedule region",
+        "defaultValue": {
+          "value": "\"Schedule\"",
           "computed": false
         }
       }
@@ -2373,239 +2606,6 @@
           "name": "string"
         },
         "description": "Accessible label describing what the QR code represents"
-      }
-    }
-  },
-  "ScheduleView": {
-    "name": "ScheduleView",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "events": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "EventInput"
-            }
-          ],
-          "raw": "ScheduleViewEvent[]"
-        },
-        "description": "List of calendar events",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "initialView": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"timeGridWeek\" | \"timeGridDay\" | \"dayGridMonth\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"timeGridWeek\""
-            },
-            {
-              "name": "literal",
-              "value": "\"timeGridDay\""
-            },
-            {
-              "name": "literal",
-              "value": "\"dayGridMonth\""
-            }
-          ]
-        },
-        "description": "Initial view mode",
-        "defaultValue": {
-          "value": "\"timeGridWeek\"",
-          "computed": false
-        }
-      },
-      "editable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether events can be dragged to new times",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "selectable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether date ranges can be selected by clicking/dragging",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "onEventClick": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(arg: EventClickArg) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "EventClickArg"
-                },
-                "name": "arg"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Called when an event is clicked"
-      },
-      "onEventDrop": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(arg: EventDropArg) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "EventDropArg"
-                },
-                "name": "arg"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Called when an event is dropped to a new time"
-      },
-      "onEventChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(arg: EventChangeArg) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "EventChangeArg"
-                },
-                "name": "arg"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Called when an event is resized"
-      },
-      "onDateSelect": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(arg: DateSelectArg) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "DateSelectArg"
-                },
-                "name": "arg"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Called when a date/time range is selected"
-      },
-      "slotMinTime": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "First hour displayed in the time grid (e.g. \"08:00:00\")",
-        "defaultValue": {
-          "value": "\"08:00:00\"",
-          "computed": false
-        }
-      },
-      "slotMaxTime": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Last hour displayed in the time grid (e.g. \"20:00:00\")",
-        "defaultValue": {
-          "value": "\"20:00:00\"",
-          "computed": false
-        }
-      },
-      "slotDuration": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Duration of each time slot, e.g. \"00:30:00\"",
-        "defaultValue": {
-          "value": "\"00:30:00\"",
-          "computed": false
-        }
-      },
-      "locale": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Locale string, e.g. \"ja\", \"pt\"",
-        "defaultValue": {
-          "value": "\"en\"",
-          "computed": false
-        }
-      },
-      "unselectAuto": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether clicking elsewhere on the page will clear the current selection",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class"
-      },
-      "aria-label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Accessible label for the schedule region",
-        "defaultValue": {
-          "value": "\"Schedule\"",
-          "computed": false
-        }
       }
     }
   },
@@ -2944,6 +2944,63 @@
       }
     }
   },
+  "Markdown": {
+    "name": "Markdown",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-color-bg-subtle-alpha",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-family-mono",
+      "--wim-font-size-2xl",
+      "--wim-font-size-xl",
+      "--wim-line-height-normal",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-radius-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
+      },
+      "gfm": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "List": {
     "name": "List",
     "tokens": [
@@ -3109,63 +3166,6 @@
           "raw": "React.ComponentProps<typeof Icon>[\"color\"]"
         },
         "description": ""
-      }
-    }
-  },
-  "Markdown": {
-    "name": "Markdown",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-family-mono",
-      "--wim-font-size-2xl",
-      "--wim-font-size-xl",
-      "--wim-line-height-normal",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-radius-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
-      },
-      "gfm": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
       }
     }
   },
@@ -5536,267 +5536,6 @@
       }
     }
   },
-  "Card": {
-    "name": "Card",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the card will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"elevated\" | \"outline\" | \"flat\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"elevated\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"flat\""
-            }
-          ]
-        },
-        "description": "カードのバリアント",
-        "defaultValue": {
-          "value": "\"elevated\"",
-          "computed": false
-        }
-      },
-      "padding": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "ComponentSize | \"none\"",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"xs\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"2xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"3xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"4xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"5xl\""
-                }
-              ]
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "パディングのサイズ",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "radius": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "ComponentSize | \"none\"",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "\"xs\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"sm\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"md\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"lg\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"2xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"3xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"4xl\""
-                },
-                {
-                  "name": "literal",
-                  "value": "\"5xl\""
-                }
-              ]
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "角丸のサイズ",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "as": {
-        "required": false,
-        "tsType": {
-          "name": "C"
-        },
-        "description": "レンダリングするHTML要素"
-      }
-    }
-  },
-  "Card.Header": {
-    "name": "Card.Header",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Card.Body": {
-    "name": "Card.Body",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Card.Footer": {
-    "name": "Card.Footer",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-disabled",
-      "--wim-color-ghost-border",
-      "--wim-color-secondary",
-      "--wim-color-text-primary",
-      "--wim-divider-color",
-      "--wim-lift-sm",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-lg",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -6065,164 +5804,266 @@
       }
     }
   },
-  "CalendarHeatmap": {
-    "name": "CalendarHeatmap",
-    "tokens": [],
+  "Card": {
+    "name": "Card",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
     "anatomy": [],
     "props": {
-      "data": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "date",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "count",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "CalendarHeatmapData[]"
-        },
-        "description": "Activity data array.",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "year": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "The year to display.\n@default current year",
-        "defaultValue": {
-          "value": "new Date().getFullYear()",
-          "computed": true
-        }
-      },
-      "getColorLevel": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "union",
-              "raw": "0 | 1 | 2 | 3 | 4",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "0"
-                },
-                {
-                  "name": "literal",
-                  "value": "1"
-                },
-                {
-                  "name": "literal",
-                  "value": "2"
-                },
-                {
-                  "name": "literal",
-                  "value": "3"
-                },
-                {
-                  "name": "literal",
-                  "value": "4"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Function to map count to a level (0-4).",
-        "defaultValue": {
-          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name for the root element."
-      },
-      "tooltipFormatter": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(date: string, count: number) => React.ReactNode",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "date"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          }
-        },
-        "description": "Custom tooltip formatter."
-      },
       "asChild": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether to render as a child component.",
+        "description": "If true, the card will be rendered as its child, merging its props onto that child.",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
       },
-      "children": {
+      "variant": {
         "required": false,
         "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
+          "name": "union",
+          "raw": "\"elevated\" | \"outline\" | \"flat\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"elevated\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"flat\""
+            }
+          ]
         },
-        "description": "Content to render inside."
+        "description": "カードのバリアント",
+        "defaultValue": {
+          "value": "\"elevated\"",
+          "computed": false
+        }
+      },
+      "padding": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"xs\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "パディングのサイズ",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "radius": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "ComponentSize | \"none\"",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"xs\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"sm\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"md\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"lg\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"2xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"3xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"4xl\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"5xl\""
+                }
+              ]
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "角丸のサイズ",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "as": {
+        "required": false,
+        "tsType": {
+          "name": "C"
+        },
+        "description": "レンダリングするHTML要素"
       }
     }
+  },
+  "Card.Header": {
+    "name": "Card.Header",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Card.Body": {
+    "name": "Card.Body",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Card.Footer": {
+    "name": "Card.Footer",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-disabled",
+      "--wim-color-ghost-border",
+      "--wim-color-secondary",
+      "--wim-color-text-primary",
+      "--wim-divider-color",
+      "--wim-lift-sm",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-lg",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "RangeCalendar": {
     "name": "RangeCalendar",
@@ -6757,6 +6598,251 @@
       }
     }
   },
+  "CalendarHeatmap": {
+    "name": "CalendarHeatmap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "date",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "count",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "CalendarHeatmapData[]"
+        },
+        "description": "Activity data array.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "year": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The year to display.\n@default current year",
+        "defaultValue": {
+          "value": "new Date().getFullYear()",
+          "computed": true
+        }
+      },
+      "getColorLevel": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "union",
+              "raw": "0 | 1 | 2 | 3 | 4",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "0"
+                },
+                {
+                  "name": "literal",
+                  "value": "1"
+                },
+                {
+                  "name": "literal",
+                  "value": "2"
+                },
+                {
+                  "name": "literal",
+                  "value": "3"
+                },
+                {
+                  "name": "literal",
+                  "value": "4"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Function to map count to a level (0-4).",
+        "defaultValue": {
+          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name for the root element."
+      },
+      "tooltipFormatter": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(date: string, count: number) => React.ReactNode",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "date"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          }
+        },
+        "description": "Custom tooltip formatter."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child component.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Content to render inside."
+      }
+    }
+  },
+  "AvatarGroup": {
+    "name": "AvatarGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "max": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "total": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Badge": {
     "name": "Badge",
     "tokens": [
@@ -6912,92 +6998,6 @@
           ]
         },
         "description": "サイズ"
-      }
-    }
-  },
-  "AvatarGroup": {
-    "name": "AvatarGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "max": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "total": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },

@@ -24,10 +24,10 @@
     }
 
     &.disabled {
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
-      color: var(--wim-color-text-on-disabled);
     }
 
     &.error {
@@ -51,8 +51,8 @@
     all: unset;
     box-sizing: border-box;
     display: flex;
-    align-items: center;
     gap: var(--wim-spacing-xs);
+    align-items: center;
     height: 100%;
     padding: 0 var(--wim-spacing-md);
     cursor: pointer;
@@ -64,8 +64,8 @@
     }
 
     &:focus-visible {
-      background-color: var(--wim-color-surface-hover);
       outline: none;
+      background-color: var(--wim-color-surface-hover);
     }
 
     &:disabled {
@@ -96,18 +96,18 @@
   }
 
   .countryList {
+    max-height: inherit;
     padding: var(--wim-spacing-xs) 0;
     margin: 0;
     overflow-y: auto;
     list-style: none;
-    max-height: inherit;
   }
 
   .countryOption {
     display: flex;
+    gap: var(--wim-spacing-md);
     align-items: center;
     justify-content: space-between;
-    gap: var(--wim-spacing-md);
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     cursor: pointer;

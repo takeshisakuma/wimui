@@ -16,9 +16,9 @@
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
+    outline: none;
     background: transparent;
     border: none;
-    outline: none;
 
     &::placeholder {
       color: var(--wim-color-text-placeholder);
