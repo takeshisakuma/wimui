@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { ColorPicker, Label } from "wimui";
+import { ColorPicker, Label } from "../../../src";
 
 
 const meta: Meta<typeof ColorPicker> = {

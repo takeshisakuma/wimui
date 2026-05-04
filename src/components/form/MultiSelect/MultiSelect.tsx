@@ -231,6 +231,7 @@ export const MultiSelect = ({
       required={required}
       layout={layout}
       labelId={labelId}
+      htmlFor={triggerId}
       errorId={errorId}
       className={className}
     >

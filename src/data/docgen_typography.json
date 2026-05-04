@@ -1,4 +1,225 @@
 {
+  "Title": {
+    "name": "Title",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-decoration-highlight-color",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-text-disabled",
+      "--wim-color-text-error",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-color-text-white",
+      "--wim-decoration-underline",
+      "--wim-font-size-2xl",
+      "--wim-font-size-3xl",
+      "--wim-font-size-4xl",
+      "--wim-font-size-5xl",
+      "--wim-font-size-6xl",
+      "--wim-font-size-7xl",
+      "--wim-font-size-md",
+      "--wim-font-size-xl",
+      "--wim-font-weight-bold",
+      "--wim-text-underline-offset"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the heading will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "tag": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"h1\""
+            },
+            {
+              "name": "literal",
+              "value": "\"h2\""
+            },
+            {
+              "name": "literal",
+              "value": "\"h3\""
+            },
+            {
+              "name": "literal",
+              "value": "\"h4\""
+            },
+            {
+              "name": "literal",
+              "value": "\"h5\""
+            },
+            {
+              "name": "literal",
+              "value": "\"h6\""
+            }
+          ]
+        },
+        "description": "The semantic HTML tag to use.",
+        "defaultValue": {
+          "value": "\"h1\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            }
+          ]
+        },
+        "description": "The visual size of the title.",
+        "defaultValue": {
+          "value": "\"xl\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "T | (string & {})",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "WimColorKey | WimColorToken",
+              "elements": [
+                {
+                  "name": "WimColorKey"
+                },
+                {
+                  "name": "union",
+                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-color-${WimColorKey})`"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "`var(--wim-${WimColorKey})`"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "Text color."
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"center\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "Text alignment.",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "decoration": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"underline\" | \"highlight\" | \"none\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"underline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"highlight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"none\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"none\"",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      }
+    }
+  },
   "Text": {
     "name": "Text",
     "tokens": [
@@ -261,227 +482,6 @@
       },
       "content": {
         "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Title": {
-    "name": "Title",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-decoration-highlight-color",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-text-disabled",
-      "--wim-color-text-error",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-color-text-white",
-      "--wim-decoration-underline",
-      "--wim-font-size-2xl",
-      "--wim-font-size-3xl",
-      "--wim-font-size-4xl",
-      "--wim-font-size-5xl",
-      "--wim-font-size-6xl",
-      "--wim-font-size-7xl",
-      "--wim-font-size-md",
-      "--wim-font-size-xl",
-      "--wim-font-weight-bold",
-      "--wim-text-underline-offset"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the heading will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "tag": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"h1\""
-            },
-            {
-              "name": "literal",
-              "value": "\"h2\""
-            },
-            {
-              "name": "literal",
-              "value": "\"h3\""
-            },
-            {
-              "name": "literal",
-              "value": "\"h4\""
-            },
-            {
-              "name": "literal",
-              "value": "\"h5\""
-            },
-            {
-              "name": "literal",
-              "value": "\"h6\""
-            }
-          ]
-        },
-        "description": "The semantic HTML tag to use.",
-        "defaultValue": {
-          "value": "\"h1\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            }
-          ]
-        },
-        "description": "The visual size of the title.",
-        "defaultValue": {
-          "value": "\"xl\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "T | (string & {})",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "WimColorKey | WimColorToken",
-              "elements": [
-                {
-                  "name": "WimColorKey"
-                },
-                {
-                  "name": "union",
-                  "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                  "elements": [
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-color-${WimColorKey})`"
-                    },
-                    {
-                      "name": "literal",
-                      "value": "`var(--wim-${WimColorKey})`"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "Text color."
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"center\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "Text alignment.",
-        "defaultValue": {
-          "value": "\"left\"",
-          "computed": false
-        }
-      },
-      "decoration": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"underline\" | \"highlight\" | \"none\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"underline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"highlight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"none\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"none\"",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
         "tsType": {
           "name": "ReactReactNode",
           "raw": "React.ReactNode"
@@ -956,82 +956,65 @@
       }
     }
   },
-  "Highlight": {
-    "name": "Highlight",
+  "Code": {
+    "name": "Code",
     "tokens": [
-      "--wim-color-decoration-highlight-color",
-      "--wim-radius-xs",
-      "--wim-spacing-3xs"
+      "--wim-border-width-thin",
+      "--wim-color-bg-subtle",
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-color-ghost-bg-hover",
+      "--wim-color-text-primary",
+      "--wim-font-size-small-scale",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl"
     ],
     "anatomy": [],
     "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The full text to highlight substrings in."
-      },
-      "highlight": {
-        "required": true,
-        "tsType": {
-          "name": "union",
-          "raw": "string | string[]",
-          "elements": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "Array",
-              "elements": [
-                {
-                  "name": "string"
-                }
-              ],
-              "raw": "string[]"
-            }
-          ]
-        },
-        "description": "Substring(s) to highlight."
-      },
-      "highlightClassName": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name for the highlighted `<mark>` element."
-      },
-      "highlightStyles": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Custom styles for the highlighted `<mark>` element."
-      },
-      "as": {
-        "required": false,
-        "tsType": {
-          "name": "ReactElementType",
-          "raw": "React.ElementType"
-        },
-        "description": "The HTML tag or component to use for the container. Default is \"span\".",
-        "defaultValue": {
-          "value": "\"span\"",
-          "computed": false
-        }
-      },
       "asChild": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "If true, the component will be rendered as its child.",
+        "description": "",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "code": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "block": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "language": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -1205,65 +1188,82 @@
       }
     }
   },
-  "Code": {
-    "name": "Code",
+  "Highlight": {
+    "name": "Highlight",
     "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-subtle",
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-color-ghost-bg-hover",
-      "--wim-color-text-primary",
-      "--wim-font-size-small-scale",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl"
+      "--wim-color-decoration-highlight-color",
+      "--wim-radius-xs",
+      "--wim-spacing-3xs"
     ],
     "anatomy": [],
     "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The full text to highlight substrings in."
+      },
+      "highlight": {
+        "required": true,
+        "tsType": {
+          "name": "union",
+          "raw": "string | string[]",
+          "elements": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            }
+          ]
+        },
+        "description": "Substring(s) to highlight."
+      },
+      "highlightClassName": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name for the highlighted `<mark>` element."
+      },
+      "highlightStyles": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Custom styles for the highlighted `<mark>` element."
+      },
+      "as": {
+        "required": false,
+        "tsType": {
+          "name": "ReactElementType",
+          "raw": "React.ElementType"
+        },
+        "description": "The HTML tag or component to use for the container. Default is \"span\".",
+        "defaultValue": {
+          "value": "\"span\"",
+          "computed": false
+        }
+      },
       "asChild": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "",
+        "description": "If true, the component will be rendered as its child.",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "code": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "block": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "language": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   }

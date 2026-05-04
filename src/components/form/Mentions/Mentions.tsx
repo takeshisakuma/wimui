@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, useRef, forwardRef, useId } from "react";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Textarea } from "../../form/Textarea/Textarea";
 import { BaseListItem } from "../../_internal/BaseListItem";
@@ -35,6 +35,9 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
     },
     ref,
   ) => {
+    const generatedId = useId();
+    const id = props.id || `wim-mentions-${generatedId}`;
+
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const isControlled = value !== undefined;
     const currentValue = (isControlled ? value : internalValue) as string;
@@ -175,13 +178,17 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
             value={currentValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            aria-autocomplete="list"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-controls={isOpen ? `${id}-list` : undefined}
             onBlur={() => {
               // 少し遅らせないとリストのクリックイベントが拾えない
               setTimeout(() => setIsOpen(false), 200);
             }}
           />
           {isOpen && filteredOptions.length > 0 && (
-            <div className={styles.list} role="listbox">
+            <div id={`${id}-list`} className={styles.list} role="listbox">
               {filteredOptions.map((opt, index) => (
                 <BaseListItem
                   key={opt.id}

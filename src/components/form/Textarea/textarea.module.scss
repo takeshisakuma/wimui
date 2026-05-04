@@ -64,7 +64,7 @@
     }
 
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
       resize: none;
       background-color: var(--wim-color-disabled);

@@ -40,6 +40,10 @@ type SegmentedControlProps = {
    */
   disabled?: boolean;
   /**
+   * Unique ID for the component
+   */
+  id?: string;
+  /**
    * Custom styles for internal parts
    */
   styles?: {
@@ -62,12 +66,14 @@ export const SegmentedControl = ({
   required,
   layout = "vertical",
   disabled = false,
+  id: customId,
   styles: stylesProp,
 }: SegmentedControlProps) => {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
-  const labelId = `wim-segmented-label-${generatedId}`;
-  const errorId = `wim-segmented-error-${generatedId}`;
+  const id = customId || `wim-segmented-${generatedId}`;
+  const labelId = `${id}-label`;
+  const errorId = `${id}-error`;
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
     activeSelector: `.${localStyles.active}`,
@@ -99,48 +105,54 @@ export const SegmentedControl = ({
     itemRefs.current[nextIndex]?.focus();
   };
 
-  return (
-    <FieldTemplate
-      label={label}
-      error={error}
-      required={required}
-      layout={layout}
-      labelId={labelId}
-      errorId={errorId}
-      className={className}
-    >
-      <div
-        ref={containerRef}
-        className={classNames(
-          localStyles.root,
-          localStyles[size],
-          fullWidth && localStyles.fullWidth,
-          isReady && localStyles.ready,
-          stylesProp?.root,
-        )}
-        role="radiogroup"
-        aria-labelledby={label ? labelId : undefined}
-        aria-required={required}
-        aria-describedby={error ? errorId : undefined}
+    const firstItemId = `${id}-item-0`;
+
+    return (
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        htmlFor={firstItemId}
+        errorId={errorId}
+        className={className}
       >
         <div
-          className={classNames(localStyles.slider, stylesProp?.slider)}
-          style={sliderStyle}
-          aria-hidden="true"
-        />
-        {options.map((option, index) => {
-          const isSelected = option.value === value;
-          // If nothing is selected (unlikely for radio behavior but possible init state), make first tabable
-          const isTabbable =
-            isSelected || (selectedIndex === -1 && index === 0);
+          ref={containerRef}
+          id={id}
+          className={classNames(
+            localStyles.root,
+            localStyles[size],
+            fullWidth && localStyles.fullWidth,
+            isReady && localStyles.ready,
+            stylesProp?.root,
+          )}
+          role="radiogroup"
+          aria-labelledby={label ? labelId : undefined}
+          aria-required={required}
+          aria-describedby={error ? errorId : undefined}
+        >
+          <div
+            className={classNames(localStyles.slider, stylesProp?.slider)}
+            style={sliderStyle}
+            aria-hidden="true"
+          />
+          {options.map((option, index) => {
+            const isSelected = option.value === value;
+            // If nothing is selected (unlikely for radio behavior but possible init state), make first tabable
+            const isTabbable =
+              isSelected || (selectedIndex === -1 && index === 0);
+            const itemId = `${id}-item-${index}`;
 
-          return (
-            <button
-              key={option.value}
-              ref={(el) => {
-                itemRefs.current[index] = el;
-              }}
-              type="button"
+            return (
+              <button
+                key={option.value}
+                id={itemId}
+                ref={(el) => {
+                  itemRefs.current[index] = el;
+                }}
+                type="button"
               className={classNames(
                 localStyles.item,
                 isSelected && localStyles.active,

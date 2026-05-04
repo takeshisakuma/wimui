@@ -1,12 +1,6 @@
 @layer component {
   .inputBase {
     cursor: text;
-
-    @media (min-width: 1024px) {
-      --wim-input-width: 100% !important;
-
-      max-width: none !important;
-    }
   }
 
   .inputBaseInner {

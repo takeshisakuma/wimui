@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import classNames from "classnames";
-import { Slot } from "@radix-ui/react-slot";
 import { Textarea, TextareaProps } from "../Textarea/Textarea";
+import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
 import styles from "./counter-textarea.module.scss";
 
@@ -32,67 +32,80 @@ export const CounterTextarea = React.forwardRef<HTMLTextAreaElement, CounterText
     {
       showCount = true,
       counterPosition = "bottom",
-      asChild = false,
       maxLength,
       onChange,
       value,
       defaultValue,
       className,
-      fullWidth = true,
+      fullWidth = false,
       children,
       ...props
     },
     ref,
   ) => {
-    const Component = asChild ? Slot : Textarea;
-    const [count, setCount] = useState(() => {
-      const initialValue = value ?? defaultValue ?? "";
-      return String(initialValue).length;
-    });
+    const [internalValue, setInternalValue] = useState(defaultValue ?? "");
+    const currentValue = value !== undefined ? value : internalValue;
+    const count = String(currentValue).length;
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setCount(e.target.value.length);
+        if (value === undefined) {
+          setInternalValue(e.target.value);
+        }
         onChange?.(e);
       },
-      [onChange],
+      [value, onChange],
     );
 
-    useEffect(() => {
-      if (value !== undefined) {
-        setCount(String(value).length);
-      }
-    }, [value]);
+    const generatedId = React.useId();
+    const id = props.id || `wim-counter-textarea-${generatedId}`;
+    const labelId = props.label ? `${id}-label` : undefined;
+    const errorId = props.error ? `${id}-error` : undefined;
 
     return (
-      <div
-        className={classNames(
-          styles.container,
-          counterPosition === "overlay" && styles["container--overlay"],
-          fullWidth && styles.fullWidth,
-          className,
-        )}
+      <FieldTemplate
+        label={props.label}
+        error={props.error}
+        required={props.required}
+        layout={props.layout}
+        labelId={labelId}
+        htmlFor={id}
+        errorId={errorId}
+        className={className}
       >
-        <Component
-          {...props}
-          ref={ref}
-          value={value}
-          defaultValue={defaultValue}
-          onChange={handleChange}
-          maxLength={maxLength}
-          fullWidth={fullWidth}
-          className={styles.textarea}
+        <div
+          className={classNames(
+            styles.container,
+            counterPosition === "overlay" && styles["container--overlay"],
+            fullWidth && styles.fullWidth,
+          )}
         >
-          {children}
-        </Component>
-        {showCount && (
-          <FieldCharacterCount
-            count={count}
+          <Textarea
+            {...props}
+            ref={ref}
+            id={id}
+            value={value}
+            defaultValue={defaultValue}
+            onChange={handleChange}
             maxLength={maxLength}
-            className={styles.counter}
-          />
-        )}
-      </div>
+            fullWidth={fullWidth}
+            label={undefined}
+            error={undefined}
+            className={styles.textarea}
+            aria-labelledby={labelId}
+            aria-describedby={errorId}
+          >
+            {children}
+          </Textarea>
+          {showCount && (
+            <FieldCharacterCount
+              count={count}
+              maxLength={maxLength}
+              className={styles.counter}
+            />
+          )}
+        </div>
+      </FieldTemplate>
     );
   },
 );

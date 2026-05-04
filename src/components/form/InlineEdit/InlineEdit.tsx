@@ -163,10 +163,14 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             <span className={localStyles.editIconWrapper}>
               <IconButton
                 iconName="EditIcon"
-                aria-label={t("action.edit")}
                 variant="ghost"
                 tabIndex={-1}
-              />
+                aria-label={t("action.edit")}
+                aria-hidden="true"
+                asChild
+              >
+                <span />
+              </IconButton>
             </span>
           </div>
         )}

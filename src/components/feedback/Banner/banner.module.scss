@@ -2,7 +2,7 @@
   .root {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     container-type: inline-size;

@@ -36,7 +36,7 @@ const ComparisonGrid = ({
   children: React.ReactNode;
 }) => (
   <Box m="lg">
-    <Text size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
+    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
       {title}
     </Text>
     <Box
@@ -63,7 +63,7 @@ const ComponentGroup = ({
 }) => (
   <Stack gap="var(--wim-spacing-xs)">
     <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="secondary">
+      <Text size="xs" color="text-secondary">
         {label}
       </Text>
     </Box>

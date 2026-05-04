@@ -1,5 +1,6 @@
 import React, { useRef, useId } from "react";
 import classNames from "classnames";
+import { Slottable } from "@radix-ui/react-slot";
 import { ComponentSize } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./switch.module.scss";
@@ -47,11 +48,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           ref={mergedRef}
           {...props}
         />
-        {children && (
-          <span className={styles.label}>
-            {children}
-          </span>
-        )}
+        <Slottable>{children}</Slottable>
       </label>
     );
   },

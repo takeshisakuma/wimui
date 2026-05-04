@@ -224,6 +224,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         required={required}
         layout={layout}
         labelId={labelId}
+        htmlFor={id}
         errorId={errorId}
         className={className}
       >

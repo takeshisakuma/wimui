@@ -49,11 +49,11 @@ export const DateRangePicker = ({
         aria-describedby={errorId}
       >
         <div className={styles.pickerWrapper}>
-          <DatePicker {...startProps} fullWidth />
+          <DatePicker {...startProps} label={undefined} error={undefined} fullWidth />
         </div>
         <span className={styles.separator}>~</span>
         <div className={styles.pickerWrapper}>
-          <DatePicker {...endProps} fullWidth />
+          <DatePicker {...endProps} label={undefined} error={undefined} fullWidth />
         </div>
       </div>
     </FieldTemplate>

@@ -1,162 +1,210 @@
-import React, { useId } from "react";
+import React, { useState, useRef, useEffect, useId, forwardRef } from "react";
 import classNames from "classnames";
-import { FieldTemplate } from "../FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
+import { Icon } from "../../media/Icon/Icon";
+import { Transition } from "../../layout/Transition/Transition";
 import styles from "./phone-input.module.scss";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
-export type CountryEntry = {
+interface Country {
   code: string;
+  name: string;
   dialCode: string;
   flag: string;
-  name: string;
-};
+}
 
-export const PHONE_COUNTRIES: CountryEntry[] = [
-  { code: "AU", dialCode: "+61", flag: "🇦🇺", name: "Australia" },
-  { code: "BR", dialCode: "+55", flag: "🇧🇷", name: "Brazil" },
-  { code: "CA", dialCode: "+1", flag: "🇨🇦", name: "Canada" },
-  { code: "CN", dialCode: "+86", flag: "🇨🇳", name: "China" },
-  { code: "FR", dialCode: "+33", flag: "🇫🇷", name: "France" },
-  { code: "DE", dialCode: "+49", flag: "🇩🇪", name: "Germany" },
-  { code: "IN", dialCode: "+91", flag: "🇮🇳", name: "India" },
-  { code: "IT", dialCode: "+39", flag: "🇮🇹", name: "Italy" },
-  { code: "JP", dialCode: "+81", flag: "🇯🇵", name: "Japan" },
-  { code: "KR", dialCode: "+82", flag: "🇰🇷", name: "Korea" },
-  { code: "MX", dialCode: "+52", flag: "🇲🇽", name: "Mexico" },
-  { code: "SG", dialCode: "+65", flag: "🇸🇬", name: "Singapore" },
-  { code: "ES", dialCode: "+34", flag: "🇪🇸", name: "Spain" },
-  { code: "GB", dialCode: "+44", flag: "🇬🇧", name: "UK" },
-  { code: "US", dialCode: "+1", flag: "🇺🇸", name: "US" },
+const PHONE_COUNTRIES: Country[] = [
+  { code: "US", name: "United States", dialCode: "1", flag: "🇺🇸" },
+  { code: "JP", name: "Japan", dialCode: "81", flag: "🇯🇵" },
+  { code: "GB", name: "United Kingdom", dialCode: "44", flag: "🇬🇧" },
+  { code: "AU", name: "Australia", dialCode: "61", flag: "🇦🇺" },
+  { code: "DE", name: "Germany", dialCode: "49", flag: "🇩🇪" },
+  { code: "FR", name: "France", dialCode: "33", flag: "🇫🇷" },
+  { code: "CN", name: "China", dialCode: "86", flag: "🇨🇳" },
+  { code: "KR", name: "South Korea", dialCode: "82", flag: "🇰🇷" },
+  { code: "IN", name: "India", dialCode: "91", flag: "🇮🇳" },
+  { code: "BR", name: "Brazil", dialCode: "55", flag: "🇧🇷" },
 ];
 
 // ─── PhoneInput ────────────────────────────────────────────────────────────────
 
 export type PhoneInputProps = {
-  /**
-   * 電話番号の値（国番号を除く番号部分）。
-   */
+  /** 電話番号の値（国番号を除く番号部分）。 */
   value?: string;
-  /**
-   * 電話番号が変更されたときに呼び出されるコールバック。
-   */
+  /** 電話番号が変更されたときに呼び出されるコールバック。 */
   onChange?: (value: string) => void;
-  /**
-   * 選択中の国コード（例: "JP", "US"）。
-   */
+  /** 選択中の国コード（例: "JP", "US"）。 */
   countryCode?: string;
-  /**
-   * 国コードが変更されたときに呼び出されるコールバック。
-   */
+  /** 国コードが変更されたときに呼び出されるコールバック。 */
   onCountryChange?: (countryCode: string) => void;
-  /**
-   * 電話番号入力欄のプレースホルダー。
-   */
+  /** 電話番号入力欄のプレースホルダー。 */
   placeholder?: string;
-  /**
-   * 無効状態。
-   */
+  /** 無効状態。 */
   disabled?: boolean;
-  /**
-   * エラーメッセージ。
-   */
+  /** エラーメッセージ。 */
   error?: string;
-  /**
-   * 必須フラグ。
-   */
+  /** 必須フラグ。 */
   required?: boolean;
-  /**
-   * フィールドラベル。
-   */
+  /** フィールドラベル。 */
   label?: string;
-  /**
-   * レイアウト方向。
-   */
+  /** レイアウト方向。 */
   layout?: "vertical" | "horizontal";
-  /**
-   * 追加CSSクラス。
-   */
+  /** 追加CSSクラス。 */
   className?: string;
+  /** Whether to take full width of parent. */
+  fullWidth?: boolean;
 };
 
 /**
  * 国番号セレクターと電話番号入力を組み合わせたコンポーネント。
+ * カスタムドロップダウンを採用し、洗練されたデザインを実現しています。
  */
-export const PhoneInput = ({
-  value = "",
-  onChange,
-  countryCode = "US",
-  onCountryChange,
-  placeholder,
-  disabled = false,
-  error,
-  required,
-  label,
-  layout,
-  className,
-}: PhoneInputProps) => {
-  const generatedId = useId();
-  const inputId = `wim-phone-input-${generatedId}`;
-  const labelId = label ? `${inputId}-label` : undefined;
-  const errorId = error ? `${inputId}-error` : undefined;
+export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
+  (
+    {
+      value = "",
+      onChange,
+      countryCode = "US",
+      onCountryChange,
+      placeholder = "000-0000-0000",
+      disabled = false,
+      error,
+      required = false,
+      label,
+      layout = "vertical",
+      className,
+      fullWidth = false,
+    },
+    ref,
+  ) => {
+    const generatedId = useId();
+    const inputId = `wim-phone-input-${generatedId}`;
+    const labelId = label ? `${inputId}-label` : undefined;
+    const errorId = error ? `${inputId}-error` : undefined;
 
-  const selectedCountry =
-    PHONE_COUNTRIES.find((c) => c.code === countryCode) ?? PHONE_COUNTRIES[0];
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <FieldTemplate
-      label={label}
-      labelId={labelId}
-      required={required}
-      error={error}
-      errorId={errorId}
-      layout={layout}
-    >
-      <div
-        className={classNames(
-          styles.root,
-          disabled && styles.disabled,
-          error && styles.error,
-          className,
-        )}
+    // Handle click outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.target as Node)
+        ) {
+          setIsOpen(false);
+        }
+      };
+      if (isOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+      }
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isOpen]);
+
+    const selectedCountry =
+      PHONE_COUNTRIES.find((c) => c.code === countryCode) ?? PHONE_COUNTRIES[0];
+
+    const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e.target.value);
+    };
+
+    return (
+      <FieldTemplate
+        label={label}
+        labelId={labelId}
+        htmlFor={inputId}
+        required={required}
+        error={error}
+        errorId={errorId}
+        layout={layout}
+        fullWidth={fullWidth}
+        className={className}
       >
-        <div className={styles.countryWrapper}>
-          <select
-            className={styles.country}
-            value={countryCode}
+        <div
+          ref={containerRef}
+          className={classNames(
+            styles.root,
+            fullWidth && styles.fullWidth,
+            disabled && styles.disabled,
+            error && styles.error,
+          )}
+        >
+          <div className={styles.countryWrapper}>
+            <button
+              type="button"
+              className={styles.countryTrigger}
+              onClick={() => !disabled && setIsOpen(!isOpen)}
+              disabled={disabled}
+              aria-haspopup="listbox"
+              aria-expanded={isOpen}
+              aria-labelledby={labelId}
+            >
+              <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
+              <span className={styles.dialCode}>+{selectedCountry.dialCode}</span>
+              <Icon
+                name="ChevronDownIcon"
+                size="sm"
+                className={classNames(
+                  styles.chevron,
+                  isOpen && styles.chevronOpen,
+                )}
+              />
+            </button>
+
+            <Transition show={isOpen} preset="fade" className={styles.dropdown}>
+              <ul className={styles.countryList} role="listbox">
+                {PHONE_COUNTRIES.map((country) => (
+                  <li
+                    key={country.code}
+                    className={classNames(
+                      styles.countryOption,
+                      selectedCountry.code === country.code && styles.selected,
+                    )}
+                    onClick={() => {
+                      onCountryChange?.(country.code);
+                      setIsOpen(false);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        onCountryChange?.(country.code);
+                        setIsOpen(false);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="option"
+                    aria-selected={selectedCountry.code === country.code}
+                  >
+                    <span aria-hidden="true">{country.flag}</span>
+                    <span className={styles.countryName}>{country.name}</span>
+                    <span className={styles.countryCode}>+{country.dialCode}</span>
+                  </li>
+                ))}
+              </ul>
+            </Transition>
+          </div>
+
+          <div className={styles.divider} aria-hidden="true" />
+
+          <input
+            id={inputId}
+            ref={ref}
+            type="tel"
+            value={value}
+            onChange={handleNumberChange}
+            placeholder={placeholder}
             disabled={disabled}
-            aria-label="Country code"
-            onChange={(e) => onCountryChange?.(e.target.value)}
-          >
-            {PHONE_COUNTRIES.map((country) => (
-              <option key={country.code} value={country.code}>
-                {country.flag} {country.dialCode}
-              </option>
-            ))}
-          </select>
-          <span className={styles.dialPreview} aria-hidden="true">
-            {selectedCountry.flag} {selectedCountry.dialCode}
-          </span>
+            className={styles.number}
+            aria-invalid={!!error}
+            aria-describedby={errorId}
+          />
         </div>
-        <span className={styles.divider} aria-hidden="true" />
-        <input
-          id={inputId}
-          type="tel"
-          className={styles.number}
-          value={value}
-          placeholder={placeholder}
-          disabled={disabled}
-          required={required}
-          aria-labelledby={labelId}
-          aria-required={required}
-          aria-invalid={error ? "true" : undefined}
-          aria-describedby={errorId}
-          onChange={(e) => {
-            const filtered = e.target.value.replace(/[^0-9+\-() ]/g, "");
-            onChange?.(filtered);
-          }}
-        />
-      </div>
-    </FieldTemplate>
-  );
-};
+      </FieldTemplate>
+    );
+  },
+);
+
+PhoneInput.displayName = "PhoneInput";

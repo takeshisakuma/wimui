@@ -34,10 +34,14 @@
     }
 
     &.disabled {
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
-      opacity: var(--wim-opacity-disabled);
+
+      .icon, .iconItem {
+        color: var(--wim-color-text-disabled);
+      }
 
       input,
       textarea {

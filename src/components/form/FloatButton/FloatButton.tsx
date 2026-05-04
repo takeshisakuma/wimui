@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./float-button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSize, ButtonIntent } from "../../../types/tokens";
 
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -20,6 +20,8 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | string;
   /** Variant of the button */
   variant?: "default" | "primary";
+  /** Intent of the button (semantic meaning) */
+  intent?: ButtonIntent;
   /** Shape of the button */
   shape?: "circle" | "square";
   /** Size of the button */
@@ -57,7 +59,8 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
     {
       asChild = false,
       iconName = "CircleIcon",
-      variant = "default",
+      variant,
+      intent = "default",
       shape = "circle",
       size = "md",
       label,
@@ -132,7 +135,11 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
         type={asChild ? undefined : "button"}
         className={classNames(
           styles.root,
-          styles[variant],
+          !variant && styles[intent],
+          variant === "default" && styles.variant_default,
+          variant === "primary" && styles.primary,
+          intent === "destructive" && styles.destructive,
+          intent === "positive" && styles.positive,
           styles[shape],
           styles[size],
           positionClass,

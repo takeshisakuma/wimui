@@ -133,7 +133,43 @@
       border-radius: var(--wim-radius-md);
     }
 
+    &.primary,
+    &.default_intent, // temporary name or just use .default if we don't conflict
     &.default {
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
+
+      &:hover {
+        box-shadow: var(--wim-shadow-lg);
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+    }
+
+    &.destructive {
+      color: var(--wim-color-text-on-destructive);
+      background-color: var(--wim-color-destructive);
+
+      &:hover {
+        box-shadow: var(--wim-shadow-lg);
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+    }
+
+    &.positive {
+      color: var(--wim-color-text-on-positive);
+      background-color: var(--wim-color-positive);
+
+      &:hover {
+        box-shadow: var(--wim-shadow-lg);
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+    }
+
+    // Legacy or specific variant for outlined
+    &.variant_default {
       color: var(--wim-color-text-primary);
       background-color: var(--wim-color-bg-component);
       border: 1px solid var(--wim-color-disabled);
@@ -141,17 +177,6 @@
       &:hover {
         background-color: var(--wim-color-disabled);
         box-shadow: var(--wim-shadow-lg);
-        transform: scale(1.05);
-      }
-    }
-
-    &.primary {
-      color: var(--wim-color-text-on-primary);
-      background-color: var(--wim-color-primary);
-
-      &:hover {
-        box-shadow: var(--wim-shadow-lg);
-        filter: brightness(1.1);
         transform: scale(1.05);
       }
     }

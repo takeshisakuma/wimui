@@ -1,4 +1,10 @@
 {
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Tooltip": {
     "name": "Tooltip",
     "tokens": [
@@ -152,12 +158,6 @@
         "description": ""
       }
     }
-  },
-  "Portal": {
-    "name": "Portal",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
   },
   "Popover": {
     "name": "Popover",
@@ -878,6 +878,50 @@
       }
     }
   },
+  "FocusTrap": {
+    "name": "FocusTrap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "トラップされるコンテンツ。"
+      },
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "トラップが有効かどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "initialFocus": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウント時に最初の要素にフォーカスするかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "HoverCard": {
     "name": "HoverCard",
     "tokens": [],
@@ -1063,215 +1107,6 @@
           "value": "8",
           "computed": false
         }
-      }
-    }
-  },
-  "Dropdown": {
-    "name": "Dropdown",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dropdown.Trigger": {
-    "name": "Dropdown.Trigger",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dropdown.Menu": {
-    "name": "Dropdown.Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"left\"",
-          "computed": false
-        }
-      },
-      "show": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Dropdown.Item": {
-    "name": "Dropdown.Item",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-md",
-      "--wim-shadow-lg",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "disabled": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "FocusTrap": {
-    "name": "FocusTrap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "トラップされるコンテンツ。"
-      },
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "トラップが有効かどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "initialFocus": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウント時に最初の要素にフォーカスするかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
       }
     }
   },
@@ -2085,6 +1920,171 @@
           "name": "string"
         },
         "description": ""
+      }
+    }
+  },
+  "Dropdown": {
+    "name": "Dropdown",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dropdown.Trigger": {
+    "name": "Dropdown.Trigger",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dropdown.Menu": {
+    "name": "Dropdown.Menu",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "show": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Dropdown.Item": {
+    "name": "Dropdown.Item",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-md",
+      "--wim-shadow-lg",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
       }
     }
   },

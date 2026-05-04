@@ -151,6 +151,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
         required={required}
         layout={layout}
         labelId={labelId}
+        htmlFor={id}
         errorId={errorId}
         className={classNames(className, fullWidth && styles.fullWidth)}
       >
@@ -165,6 +166,8 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                 styles.container,
                 disabled && styles.disabled,
               )}
+              role="group"
+              aria-labelledby={labelId}
               data-testid="otp-input-container"
               data-disabled={disabled}
             >
@@ -189,9 +192,9 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                   onPaste={handlePaste}
                   disabled={disabled}
                   aria-label={digitAriaLabel(index + 1)}
-                  aria-invalid={!!error}
+                  aria-invalid={error ? "true" : "false"}
                   aria-describedby={errorId}
-                  aria-required={required}
+                  aria-required={required ? "true" : undefined}
                 />
               ))}
             </div>

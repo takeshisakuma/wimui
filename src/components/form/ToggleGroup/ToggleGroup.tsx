@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
+import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import styles from "./toggle-group.module.scss";
 
@@ -21,18 +22,35 @@ type ToggleGroupProps = {
   size?: ComponentSize;
   fullWidth?: boolean;
   className?: string;
+  disabled?: boolean;
   /**
-   * アクセシビリティ用のラベル（role="radiogroup" / "toolbar" の accessible name）
+   * グループのラベル
+   */
+  label?: string;
+  /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
+  /**
+   * Unique ID for the component
+   */
+  id?: string;
+  /**
+   * アクセシビリティ用のラベル
    */
   "aria-label"?: string;
   /**
-   * アクセシビリティ用のラベルID（aria-label の代替）
+   * アクセシビリティ用のラベルID
    */
   "aria-labelledby"?: string;
-  /**
-   * 無効状態にするかどうか
-   */
-  disabled?: boolean;
 };
 
 /**
@@ -50,7 +68,16 @@ export const ToggleGroup = ({
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
   disabled = false,
+  label,
+  error,
+  required,
+  layout = "vertical",
+  id: customId,
 }: ToggleGroupProps) => {
+  const generatedId = React.useId();
+  const id = customId || `wim-toggle-group-${generatedId}`;
+  const labelId = `${id}-label`;
+  const errorId = `${id}-error`;
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string | string[]>(
     defaultValue ?? (selectionMode === "multiple" ? [] : ""),
@@ -160,23 +187,34 @@ export const ToggleGroup = ({
 
   // single: radiogroup / multiple: toolbar
   const containerRole = selectionMode === "single" ? "radiogroup" : "toolbar";
+  const firstItemId = `${id}-item-0`;
 
   return (
-    <div
-      ref={containerRef}
-      className={classNames(
-        styles.root,
-        styles[size],
-        styles[selectionMode],
-        fullWidth && styles.fullWidth,
-        isReady && styles.ready,
-        className,
-      )}
-      role={containerRole}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      aria-orientation="horizontal"
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      htmlFor={firstItemId}
+      errorId={errorId}
+      className={className}
     >
+      <div
+        ref={containerRef}
+        id={id}
+        className={classNames(
+          styles.root,
+          styles[size],
+          styles[selectionMode],
+          fullWidth && styles.fullWidth,
+          isReady && styles.ready,
+        )}
+        role={containerRole}
+        aria-label={ariaLabel}
+        aria-labelledby={label ? labelId : ariaLabelledBy}
+        aria-orientation="horizontal"
+      >
       <div
         className={classNames(
           styles.slider,
@@ -186,12 +224,15 @@ export const ToggleGroup = ({
         style={sliderStyle}
         aria-hidden="true"
       />
-      {options.map((option, index) => (
-        <button
-          key={option.value}
-          ref={(el) => {
-            buttonRefs.current[index] = el;
-          }}
+      {options.map((option, index) => {
+        const itemId = `${id}-item-${index}`;
+        return (
+          <button
+            key={option.value}
+            id={itemId}
+            ref={(el) => {
+              buttonRefs.current[index] = el;
+            }}
           type="button"
           className={classNames(
             styles.item,
@@ -219,7 +260,8 @@ export const ToggleGroup = ({
             <span className={styles.label}>{option.label}</span>
           )}
         </button>
-      ))}
-    </div>
+      )})}
+      </div>
+    </FieldTemplate>
   );
 };

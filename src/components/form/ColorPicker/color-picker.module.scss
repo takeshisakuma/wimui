@@ -1,7 +1,7 @@
 @layer component {
   .input {
     height: 42px; // Match other inputs
-    padding: var(--wim-spacing-3xs);
+    padding: 0 !important;
     cursor: pointer;
   
     &::-webkit-color-swatch-wrapper {

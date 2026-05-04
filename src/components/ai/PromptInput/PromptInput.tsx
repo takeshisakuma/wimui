@@ -5,6 +5,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
+import { FieldTemplate } from "../../form/FieldTemplate";
 import styles from "./prompt-input.module.scss";
 
 export interface PromptInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "onSubmit"> {
@@ -34,6 +35,14 @@ export interface PromptInputProps extends Omit<React.ComponentPropsWithoutRef<"d
   fullWidth?: boolean;
   /** Additional CSS class */
   className?: string;
+  /** Label for the field */
+  label?: React.ReactNode;
+  /** Error message */
+  error?: string;
+  /** Whether the field is required */
+  required?: boolean;
+  /** Layout of the field */
+  layout?: "vertical" | "horizontal";
 }
 
 /**
@@ -56,6 +65,11 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
       maxRows = 8,
       fullWidth = false,
       className,
+      label,
+      error,
+      required,
+      layout,
+      id: customId,
       ...props
     },
     ref
@@ -71,6 +85,11 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
     React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
 
     const placeholderText = placeholder ?? t("prompt_input.placeholder");
+
+    const generatedId = React.useId();
+    const id = customId || `prompt-input-${generatedId}`;
+    const errorId = error ? `${id}-error` : undefined;
+    const labelId = label ? `${id}-label` : undefined;
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -100,60 +119,76 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
     const canSubmit = currentValue.trim().length > 0 && !disabled && !loading;
 
     return (
-      <div
-        className={classNames(
-          styles.root,
-          {
-            [styles.disabled]: disabled,
-            [styles.loading]: loading,
-            [styles.fullWidth]: fullWidth,
-          },
-          className
-        )}
-        {...props}
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        htmlFor={id}
+        errorId={errorId}
+        className={className}
       >
-        <div className={classNames(styles.inputArea, { [styles.noAttach]: !showAttach })}>
-          {showAttach && (
+        <div
+          id={id}
+          className={classNames(
+            styles.root,
+            {
+              [styles.disabled]: disabled,
+              [styles.loading]: loading,
+              [styles.fullWidth]: fullWidth,
+              [styles.error]: !!error,
+            },
+          )}
+          {...props}
+        >
+          <div className={classNames(styles.inputArea, { [styles.noAttach]: !showAttach })}>
+            {showAttach && (
+              <button
+                type="button"
+                className={styles.actionButton}
+                onClick={onAttach}
+                aria-label={t("prompt_input.attach_label")}
+                disabled={disabled || loading}
+              >
+                <Icon component={PaperclipIcon} size="md" />
+              </button>
+            )}
+
+            <textarea
+              ref={textareaRef}
+              className={styles.textarea}
+              value={currentValue}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholderText}
+              rows={1}
+              disabled={disabled || loading}
+              maxLength={maxLength}
+              aria-invalid={!!error}
+              aria-describedby={errorId}
+              aria-labelledby={label ? labelId : undefined}
+              aria-required={required}
+            />
+
             <button
               type="button"
-              className={styles.actionButton}
-              onClick={onAttach}
-              aria-label={t("prompt_input.attach_label")}
-              disabled={disabled || loading}
+              className={classNames(styles.actionButton, styles.sendButton)}
+              onClick={handleSubmit}
+              disabled={!canSubmit}
+              aria-label={t("prompt_input.send_label")}
             >
-              <Icon component={PaperclipIcon} size="md" />
+              <Icon component={SendIcon} size="md" />
             </button>
-          )}
+          </div>
 
-          <textarea
-            ref={textareaRef}
-            className={styles.textarea}
-            value={currentValue}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholderText}
-            rows={1}
-            disabled={disabled || loading}
+          <FieldCharacterCount
+            count={currentValue.length}
             maxLength={maxLength}
+            className={styles.charCount}
           />
-
-          <button
-            type="button"
-            className={classNames(styles.actionButton, styles.sendButton)}
-            onClick={handleSubmit}
-            disabled={!canSubmit}
-            aria-label={t("prompt_input.send_label")}
-          >
-            <Icon component={SendIcon} size="md" />
-          </button>
         </div>
-
-        <FieldCharacterCount
-          count={currentValue.length}
-          maxLength={maxLength}
-          className={styles.charCount}
-        />
-      </div>
+      </FieldTemplate>
     );
   }
 );

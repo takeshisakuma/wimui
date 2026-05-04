@@ -1,13 +1,13 @@
 @layer component {
   .root {
     position: relative;
-    display: inline-block;
-    width: auto;
+    display: block;
+    width: 100%;
+    max-width: var(--wim-width-md);
     vertical-align: middle;
 
     &.fullWidth {
-      display: block;
-      width: 100%;
+      max-width: none;
     }
 
     &.disabled {
@@ -18,13 +18,13 @@
 
   .editWrapper {
     display: flex;
-    gap: var(--wim-spacing-sm);
-    align-items: flex-start;
-    width: 100%;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
   }
 
   .input {
     flex: 1;
+    min-width: 0;
   }
 
   .editActions {

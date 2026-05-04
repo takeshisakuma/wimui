@@ -2,11 +2,14 @@
 
 @layer component {
   .root {
+    box-sizing: border-box;
     width: 100%;
+    min-width: 0;
+    max-width: var(--wim-width-md);
     container-type: inline-size;
 
     &.fullWidth {
-      width: 100%;
+      max-width: none;
     }
   }
   
@@ -21,7 +24,6 @@
   
     &.disabled {
       pointer-events: none;
-      opacity: var(--wim-opacity-secondary);
     }
   }
   
@@ -58,7 +60,7 @@
     }
   
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
     }

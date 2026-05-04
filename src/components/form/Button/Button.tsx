@@ -174,12 +174,12 @@ export const Button = React.forwardRef<
           {iconContent && iconPosition === "left" && iconContent}
           <Slottable>{children}</Slottable>
           {iconContent && iconPosition === "right" && iconContent}
+          {loading && (
+            <span className={classNames(localStyles.loader, stylesProp?.loader)}>
+              <Icon name="LoadingIcon" size={size} />
+            </span>
+          )}
         </span>
-        {loading && (
-          <span className={classNames(localStyles.loader, stylesProp?.loader)}>
-            <Icon name="LoadingIcon" size={size} />
-          </span>
-        )}
       </Root>
     );
   },

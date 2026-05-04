@@ -1,7 +1,6 @@
 @layer component {
   .root {
     display: inline-flex;
-    gap: var(--wim-spacing-sm);
     align-items: center;
     cursor: pointer;
     user-select: none;
@@ -19,6 +18,7 @@
     align-items: center;
     width: var(--wim-switch-width-md);
     height: var(--wim-switch-height-md);
+    margin: 0 var(--wim-spacing-sm) 0 0;
     padding: var(--wim-spacing-2xs);
     appearance: none;
     cursor: pointer;
@@ -88,9 +88,4 @@
     }
   }
 
-  .label {
-    font-family: var(--font-sans);
-    font-size: var(--wim-font-size-md);
-    color: var(--wim-color-text-primary);
-  }
 }

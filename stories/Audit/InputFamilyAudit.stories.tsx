@@ -11,6 +11,19 @@ import {
   PromptInput,
   NumberInput,
   OtpInput,
+  ColorPicker,
+  ColorInput,
+  Combobox,
+  TagInput,
+  Selectbox,
+  MultiSelect,
+  TreeSelect,
+  Cascader,
+  PhoneInput,
+  CreditCardInput,
+  DatePicker,
+  InlineEdit,
+  CounterTextarea,
   Button,
   Stack,
   Text,
@@ -47,7 +60,7 @@ const ComparisonGrid = ({
   children: React.ReactNode;
 }) => (
   <Box m="lg">
-    <Text size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
+    <Text color="text-secondary" size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
       {title}
     </Text>
     <Box
@@ -75,7 +88,7 @@ interface ComponentGroupProps {
 const ComponentGroup = ({ label, children, maxWidth, align = "stretch" }: ComponentGroupProps) => (
   <Stack direction="column" gap="var(--wim-spacing-xs)" w="100%">
     <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="secondary">
+      <Text size="xs" color="text-secondary">
         {label}
       </Text>
     </Box>
@@ -99,12 +112,12 @@ export const Overview: StoryObj = {
         {/* 1. Basic Comparison */}
         <ComparisonGrid title={t("audit:basic_comparison")}>
           <ComponentGroup label={t("audit:label_standard_inputs")}>
-            <Input placeholder="Standard Input" />
-            <SearchInput placeholder="Search Input" />
-            <NumberInput placeholder="Number Input" />
+            <Input label="Standard Input" placeholder="Standard Input" />
+            <SearchInput label="Search Input" placeholder="Search Input" />
+            <NumberInput label="Number Input" placeholder="Number Input" />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_otp_input")}>
-            <OtpInput length={6} />
+            <OtpInput label="OTP Input" length={6} />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -112,8 +125,11 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
-              <Input variant={variant} placeholder={`Input ${variant}`} />
-              <Textarea variant={variant} placeholder={`Textarea ${variant}`} />
+              <Input label={`Input ${variant}`} variant={variant} placeholder={`Input ${variant}`} />
+              <Textarea label={`Textarea ${variant}`} variant={variant} placeholder={`Textarea ${variant}`} />
+              {variant === "ghost" && (
+                <InlineEdit label="Inline Edit (Comparison)" defaultValue="Click to edit me" />
+              )}
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -122,21 +138,92 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
-              <InputAny intent={intent as "default" | "error"} placeholder={`Input ${intent}`} />
-              <PasswordInputAny intent={intent as "default" | "error"} placeholder={`Password ${intent}`} />
+              <InputAny label={`Input ${intent}`} intent={intent as "default" | "error"} placeholder={`Input ${intent}`} />
+              <PasswordInputAny label={`Password ${intent}`} intent={intent as "default" | "error"} placeholder={`Password ${intent}`} />
+              <SmartSearchInput label={`SmartSearch ${intent}`} intent={intent as "default" | "error"} placeholder={`SmartSearch ${intent}`} />
+              <PromptInput label={`Prompt ${intent}`} error={intent === "error" ? "Error message" : undefined} placeholder={`Prompt ${intent}`} />
+              <Combobox label={`Combobox ${intent}`} options={[{ label: "Option 1", value: "1" }]} error={intent === "error" ? "Error" : undefined} placeholder={`Combobox ${intent}`} />
+              <TagInput label={`TagInput ${intent}`} defaultValue={["Tag 1"]} error={intent === "error" ? "Error" : undefined} placeholder={`TagInput ${intent}`} />
+              <Selectbox label={`Selectbox ${intent}`} options={[{ label: "Option 1", value: "1" }]} error={intent === "error" ? "Error" : undefined} placeholder={`Selectbox ${intent}`} />
+              <MultiSelect label={`MultiSelect ${intent}`} options={[{ label: "Option 1", value: "1" }]} error={intent === "error" ? "Error" : undefined} placeholder={`MultiSelect ${intent}`} />
             </ComponentGroup>
           ))}
         </ComparisonGrid>
 
         {/* 4. Specialized & AI Inputs */}
         <ComparisonGrid title={t("audit:specialized_inputs")}>
-          <ComponentGroup label="AI Specific">
-            <PromptInput placeholder="PromptInput (AI)" />
-            <SmartSearchInput placeholder="SmartSearchInput (AI)" />
+          <ComponentGroup label="Specialized & AI Inputs">
+            <PromptInput label="AI Prompt" placeholder="PromptInput (AI)" />
+            <SmartSearchInput label="AI Smart Search" placeholder="SmartSearchInput (AI)" />
+            <ColorPicker label="Color Picker" />
+            <ColorInput label="Color Input (with HEX)" />
+            <TagInput 
+              label="Tag Input (Free-form)" 
+              defaultValue={["Tag A", "Tag B"]} 
+              placeholder="Add free-form tags..."
+            />
+            <MultiSelect 
+              label="Multi Select (Selection)" 
+              options={[
+                { label: "Option 1", value: "1" },
+                { label: "Option 2", value: "2" },
+                { label: "Option 3", value: "3" },
+              ]} 
+              defaultValue={["1", "2"]}
+              placeholder="Select tags from list..." 
+            />
+            <Combobox 
+              label="Combobox" 
+              options={[
+                { label: "Option A", value: "a" },
+                { label: "Option B", value: "b" },
+              ]} 
+              placeholder="Search or Select..." 
+            />
+            <Selectbox 
+              label="Selectbox" 
+              options={[
+                { label: "High Priority", value: "high" },
+                { label: "Low Priority", value: "low" },
+              ]} 
+              placeholder="Select..."
+            />
+            <TreeSelect 
+              label="TreeSelect" 
+              treeData={[
+                { label: "Parent", value: "p", children: [{ label: "Child", value: "c" }] }
+              ]} 
+              placeholder="Select from tree..." 
+            />
+            <Cascader 
+              label="Cascader" 
+              options={[
+                { label: "Category", value: "cat", children: [{ label: "Product", value: "prod" }] }
+              ]} 
+              placeholder="Cascade select..." 
+            />
+            <PhoneInput 
+              label="Phone Input" 
+              placeholder="090-1234-5678" 
+            />
+            <CreditCardInput 
+              label="Credit Card" 
+              placeholder="xxxx xxxx xxxx xxxx" 
+            />
+            <DatePicker 
+              label="Date Picker" 
+              placeholder="Select date..." 
+            />
+            <InlineEdit 
+              label="Inline Edit" 
+              defaultValue="John Doe" 
+              placeholder="Enter name..."
+            />
           </ComponentGroup>
           <ComponentGroup label="Large Text Fields">
-            <Textarea placeholder="Standard Textarea" />
-            <Textarea rows={5} placeholder="Textarea with 5 rows" />
+            <Textarea label="Standard Textarea" placeholder="Standard Textarea" />
+            <CounterTextarea label="Counter Textarea" maxLength={100} placeholder="Counter Textarea" />
+            <Textarea label="Large Textarea" rows={5} placeholder="Textarea with 5 rows" />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -144,12 +231,12 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")}>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <Input placeholder="Align Check" style={{ flex: 1 }} />
+              <Input aria-label="Mix Input 1" placeholder="Align Check" style={{ flex: 1 }} />
               <Button>Action</Button>
-              <SearchInput placeholder="Search" style={{ flex: 1 }} />
+              <SearchInput aria-label="Mix Search" placeholder="Search" style={{ flex: 1 }} />
             </Stack>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <PromptInput placeholder="Prompt" style={{ flex: 1 }} />
+              <PromptInput aria-label="Mix Prompt" placeholder="Prompt" style={{ flex: 1 }} />
               <Button variant="ghost">Cancel</Button>
               <Button>Send</Button>
             </Stack>
@@ -159,9 +246,9 @@ export const Overview: StoryObj = {
         {/* 6. Focus & Disabled States */}
         <ComparisonGrid title={t("audit:states_disabled")}>
           <ComponentGroup label={t("audit:label_disabled")}>
-            <Input disabled placeholder="Disabled Input" />
-            <SearchInput disabled placeholder="Disabled Search" />
-            <Textarea disabled placeholder="Disabled Textarea" />
+            <Input label="Disabled Input" disabled placeholder="Disabled Input" />
+            <SearchInput label="Disabled Search" disabled placeholder="Disabled Search" />
+            <Textarea label="Disabled Textarea" disabled placeholder="Disabled Textarea" />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -170,12 +257,20 @@ export const Overview: StoryObj = {
           {/* Fully Fluid */}
           <ComponentGroup label="Truly Full Width (100% of parent)">
             <Stack gap="lg">
-              <Input fullWidth placeholder="Full Width Input" />
-              <SearchInput fullWidth placeholder="Full Width Search" />
-              <PasswordInput fullWidth placeholder="Full Width Password" />
-              <OtpInput length={6} fullWidth />
-              <PromptInput fullWidth placeholder="PromptInput (Fluid)" />
-              <SmartSearchInput fullWidth placeholder="SmartSearchInput (Fluid)" />
+              <Input label="Fluid Input" fullWidth placeholder="Full Width Input" />
+              <SearchInput label="Fluid Search" fullWidth placeholder="Full Width Search" />
+              <PasswordInput label="Fluid Password" fullWidth placeholder="Full Width Password" />
+              <OtpInput label="Fluid OTP" length={6} fullWidth />
+              <PromptInput label="Fluid Prompt" fullWidth placeholder="PromptInput (Fluid)" />
+              <SmartSearchInput label="Fluid SmartSearch" fullWidth placeholder="SmartSearchInput (Fluid)" />
+              <Combobox label="Fluid Combobox" fullWidth options={[{ label: "Fluid Option", value: "f1" }]} placeholder="Combobox (Fluid)" />
+              <TagInput label="Fluid TagInput" fullWidth defaultValue={["Fluid"]} />
+              <Selectbox label="Fluid Selectbox" fullWidth options={[{ label: "Fluid Option", value: "f1" }]} placeholder="Selectbox (Fluid)" />
+              <MultiSelect label="Fluid MultiSelect" fullWidth options={[{ label: "Fluid Option", value: "f1" }]} placeholder="MultiSelect (Fluid)" />
+              <TreeSelect label="Fluid TreeSelect" fullWidth treeData={[{ label: "Fluid Node", value: "fn1" }]} placeholder="TreeSelect (Fluid)" />
+              <Cascader label="Fluid Cascader" fullWidth options={[{ label: "Fluid Case", value: "fc1" }]} placeholder="Cascader (Fluid)" />
+              <PhoneInput label="Fluid Phone" fullWidth placeholder="Phone (Fluid)" />
+              <CreditCardInput label="Fluid CC" fullWidth placeholder="CC (Fluid)" />
             </Stack>
           </ComponentGroup>
 

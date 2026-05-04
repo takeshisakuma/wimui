@@ -1,33 +1,42 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 @layer component {
   .root {
     position: relative;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    width: 100%;
+    max-width: var(--wim-width-md);
+    min-height: var(--wim-height-md);
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     transition: var(--wim-transition-base);
+
+    &.fullWidth {
+      max-width: none;
+    }
 
     &:focus-within:not(.disabled) {
       border-color: var(--wim-color-primary);
       box-shadow: var(--wim-shadow-focus-ring);
     }
-  }
 
-  .error {
-    border-color: var(--wim-color-text-error);
-
-    &:focus-within {
-      box-shadow: var(--wim-shadow-error-ring);
+    &.disabled {
+      cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+      color: var(--wim-color-text-on-disabled);
     }
-  }
 
-  .disabled {
-    cursor: not-allowed;
-    background: var(--wim-color-bg-subtle);
-    opacity: var(--wim-opacity-disabled);
+    &.error {
+      border-color: var(--wim-color-text-error);
+
+      &:focus-within {
+        box-shadow: var(--wim-shadow-error-ring);
+      }
+    }
   }
 
   .countryWrapper {
@@ -35,41 +44,104 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
+    height: 100%;
   }
 
-  .country {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+  .countryTrigger {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--wim-spacing-xs);
     height: 100%;
+    padding: 0 var(--wim-spacing-md);
     cursor: pointer;
-    opacity: 0;
+    border-radius: var(--wim-radius-md) 0 0 var(--wim-radius-md);
+    transition: background-color var(--wim-transition-base);
 
-    // ネイティブselectを透明にして dial-preview の上に重ねる
-    // disabled時はpointer-eventsを無効化
+    &:hover:not(:disabled) {
+      background-color: var(--wim-color-surface-hover);
+    }
+
+    &:focus-visible {
+      background-color: var(--wim-color-surface-hover);
+      outline: none;
+    }
+
     &:disabled {
-      pointer-events: none;
       cursor: not-allowed;
     }
   }
 
-  .dialPreview {
+  .chevron {
+    color: var(--wim-color-text-secondary);
+    transition: transform var(--wim-transition-base);
+  }
+
+  .chevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + var(--wim-spacing-xs));
+    left: 0;
+    z-index: var(--wim-z-overlay);
+    min-width: 16rem;
+    max-height: 20rem;
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-lg);
+  }
+
+  .countryList {
+    padding: var(--wim-spacing-xs) 0;
+    margin: 0;
+    overflow-y: auto;
+    list-style: none;
+    max-height: inherit;
+  }
+
+  .countryOption {
     display: flex;
-    flex-shrink: 0;
     align-items: center;
-    padding: 0 0.625rem;
-    font-size: var(--wim-font-size-md);
+    justify-content: space-between;
+    gap: var(--wim-spacing-md);
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    cursor: pointer;
+    transition: background-color var(--wim-transition-fast);
+
+    &:hover {
+      background-color: var(--wim-color-bg-hover);
+    }
+
+    &.selected {
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-primary);
+      background-color: color-mix(in srgb, var(--wim-color-primary) 8%, transparent);
+    }
+  }
+
+  .countryName {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    pointer-events: none;
+  }
+
+  .countryCode {
+    font-variant-numeric: tabular-nums;
+    color: var(--wim-color-text-secondary);
   }
 
   .divider {
     display: block;
     flex-shrink: 0;
     width: 1px;
-    height: 1.25rem;
-    background: var(--wim-color-border);
+    height: 1.5rem;
+    background: var(--wim-color-border-secondary);
   }
 
   .number {
@@ -78,7 +150,7 @@
     flex: 1;
     width: 0;
     min-width: 0;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem var(--wim-spacing-md);
     font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
     appearance: none;

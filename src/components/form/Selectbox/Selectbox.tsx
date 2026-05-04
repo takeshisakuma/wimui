@@ -288,6 +288,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
         required={required}
         layout={layout}
         labelId={labelId}
+        htmlFor={triggerId}
         errorId={errorId}
         className={className}
       >
@@ -341,8 +342,8 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
                     : undefined
                 }
                 aria-describedby={errorId || ariaDescribedBy}
-                aria-required={required}
-                aria-invalid={currentIntent === "error"}
+                aria-required={required ? "true" : undefined}
+                aria-invalid={currentIntent === "error" ? "true" : "false"}
                 aria-activedescendant={isOpen ? activeDescendant : undefined}
                 ref={triggerRef}
               >

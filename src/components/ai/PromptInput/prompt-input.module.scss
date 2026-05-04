@@ -21,6 +21,15 @@
   &:focus-within:not(.disabled) {
     border-color: var(--wim-color-primary);
     box-shadow: var(--wim-shadow-focus-ring);
+
+    &.error {
+      border-color: var(--wim-color-text-error);
+      box-shadow: var(--wim-shadow-error-ring);
+    }
+  }
+
+  &.error {
+    border-color: var(--wim-color-text-error);
   }
 
   &.disabled {
@@ -39,6 +48,7 @@
   gap: var(--wim-spacing-xs);
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-sm) var(--wim-spacing-md);
+  min-height: calc(var(--wim-height-md) - 2px); // Ensure consistent height
 
   &.noAttach {
     padding-left: var(--wim-spacing-md);
@@ -50,6 +60,8 @@
   flex: 1;
   min-width: 0;
   padding: 0;
+  margin: 0;
+  vertical-align: middle;
   overflow: hidden;
   font-family: inherit;
   font-size: var(--wim-font-size-md);
@@ -75,6 +87,7 @@
   flex-shrink: 0;
   place-items: center;
   padding: var(--wim-spacing-2xs);
+  line-height: 1;
   color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: transparent;

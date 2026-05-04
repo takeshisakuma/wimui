@@ -4,8 +4,13 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Checkbox,
+  CheckboxGroup,
   Radio,
+  RadioGroup,
   Switch,
+  SwitchGroup,
+  SegmentedControl,
+  ToggleGroup,
   Slider,
   Stack,
   Text,
@@ -74,6 +79,31 @@ const ComponentGroup = ({
   </Stack>
 );
 
+const InteractiveSegmentedControl = (props: React.ComponentProps<typeof SegmentedControl>) => {
+  const [value, setValue] = React.useState(props.value || "a");
+  return <SegmentedControl {...props} value={value} onChange={setValue} />;
+};
+
+const InteractiveCheckboxGroup = (props: React.ComponentProps<typeof CheckboxGroup>) => {
+  const [value, setValue] = React.useState<string[]>(props.defaultValue || []);
+  return <CheckboxGroup {...props} value={value} onChange={setValue} />;
+};
+
+const InteractiveRadioGroup = (props: React.ComponentProps<typeof RadioGroup>) => {
+  const [value, setValue] = React.useState<string>(props.defaultValue || "");
+  return <RadioGroup {...props} value={value} onChange={setValue} />;
+};
+
+const InteractiveToggleGroup = (props: React.ComponentProps<typeof ToggleGroup>) => {
+  const [value, setValue] = React.useState<string | string[]>(props.defaultValue || "");
+  return <ToggleGroup {...props} value={value} onChange={setValue} />;
+};
+
+const InteractiveSwitchGroup = (props: React.ComponentProps<typeof SwitchGroup>) => {
+  const [value, setValue] = React.useState<string[]>(props.defaultValue || []);
+  return <SwitchGroup {...props} value={value} onChange={setValue} />;
+};
+
 export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
@@ -93,6 +123,94 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_switch")}>
             <Switch>{t("audit:sample_long_text", { component: "Switch" })}</Switch>
           </ComponentGroup>
+          <ComponentGroup label="SegmentedControl">
+            <InteractiveSegmentedControl
+              options={[
+                { label: "Option A", value: "a" },
+                { label: "Option B", value: "b" },
+                { label: "Option C", value: "c" },
+              ]}
+              value="a"
+            />
+          </ComponentGroup>
+          <ComponentGroup label="ToggleGroup">
+            <InteractiveToggleGroup
+              options={[
+                { label: "Option A", value: "a" },
+                { label: "Option B", value: "b" },
+                { label: "Option C", value: "c" },
+              ]}
+              defaultValue="a"
+            />
+            <InteractiveToggleGroup
+              selectionMode="multiple"
+              options={[
+                { iconName: "CircleIcon", value: "1" },
+                { iconName: "SquareIcon", value: "2" },
+                { iconName: "LoadingIcon", value: "3" },
+              ]}
+              defaultValue={["1"]}
+            />
+          </ComponentGroup>
+          <ComponentGroup label="CheckboxGroup">
+            <InteractiveCheckboxGroup
+              label="Checkbox Group (Vertical)"
+              options={[
+                { label: "Option 1", value: "1" },
+                { label: "Option 2", value: "2" },
+                { label: "Option 3", value: "3" },
+              ]}
+              defaultValue={["1"]}
+            />
+            <InteractiveCheckboxGroup
+              label="Checkbox Group (Horizontal)"
+              direction="horizontal"
+              options={[
+                { label: "Option 1", value: "1" },
+                { label: "Option 2", value: "2" },
+              ]}
+              defaultValue={["1"]}
+            />
+          </ComponentGroup>
+          <ComponentGroup label="RadioGroup">
+            <InteractiveRadioGroup
+              label="Radio Group (Vertical)"
+              options={[
+                { label: "Option A", value: "a" },
+                { label: "Option B", value: "b" },
+              ]}
+              defaultValue="a"
+            />
+            <InteractiveRadioGroup
+              label="Radio Group (Horizontal)"
+              direction="horizontal"
+              options={[
+                { label: "Option A", value: "a" },
+                { label: "Option B", value: "b" },
+                { label: "Option C", value: "c" },
+              ]}
+              defaultValue="a"
+            />
+          </ComponentGroup>
+          <ComponentGroup label="SwitchGroup">
+            <InteractiveSwitchGroup
+              label="Switch Group (Vertical)"
+              options={[
+                { label: "Toggle 1", value: "1" },
+                { label: "Toggle 2", value: "2" },
+              ]}
+              defaultValue={["1"]}
+            />
+            <InteractiveSwitchGroup
+              label="Switch Group (Horizontal)"
+              direction="horizontal"
+              options={[
+                { label: "Toggle 1", value: "1" },
+                { label: "Toggle 2", value: "2" },
+              ]}
+              defaultValue={["1"]}
+            />
+          </ComponentGroup>
         </ComparisonGrid>
 
         {/* Intent Comparison */}
@@ -104,10 +222,19 @@ export const Overview: StoryObj = {
             <Slider defaultValue={50} style={{ width: "200px" }} aria-label={t("audit:label_intent_default")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_intent_error")}>
-            {/* These components don't have an explicit intent prop, error state is usually handled via FieldTemplate or wrapper */}
             <Checkbox defaultChecked>{t("audit:label_intent_error")}</Checkbox>
             <Radio defaultChecked>{t("audit:label_intent_error")}</Radio>
             <Switch defaultChecked>{t("audit:label_intent_error")}</Switch>
+            <InteractiveSegmentedControl
+              options={[{ label: "A", value: "a" }, { label: "B", value: "b" }]}
+              value="a"
+              error="Error message"
+            />
+            <InteractiveToggleGroup
+              options={[{ label: "A", value: "a" }, { label: "B", value: "b" }]}
+              defaultValue="a"
+              error="Error message"
+            />
             <Slider defaultValue={40} style={{ width: "200px" }} aria-label={t("audit:label_intent_error")} />
           </ComponentGroup>
         </ComparisonGrid>

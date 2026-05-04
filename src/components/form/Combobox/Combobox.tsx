@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import classNames from "classnames";
-import { Input } from "../../form/Input/Input";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import styles from "./combobox.module.scss";
+import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
+import styles from "./combobox.module.scss";
 
 export type ComboboxOption = {
   label: string;
@@ -27,6 +27,8 @@ export type ComboboxProps = {
   defaultValue?: string;
   className?: string;
   disabled?: boolean;
+  /** Whether to take full width of parent */
+  fullWidth?: boolean;
   id?: string;
   labels?: ComboboxLabels;
 };
@@ -47,6 +49,7 @@ export const Combobox = ({
   error,
   required,
   layout,
+  fullWidth = false,
   id: customId,
   labels = {},
   ...props
@@ -131,51 +134,65 @@ export const Combobox = ({
     }
   };
 
-  return (
-    <FieldTemplate
-      label={label}
-      error={error}
-      required={required}
-      layout={layout}
-      labelId={labelId}
-      errorId={errorId}
-      className={className}
-    >
-      <div
-        className={styles.root}
-        ref={containerRef}
-        onMouseMove={() => setIsKeyboardNavigating(false)}
-        data-keyboard-nav={isKeyboardNavigating}
+    return (
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        htmlFor={id}
+        errorId={errorId}
+        className={className}
       >
-        <Input
-          id={id}
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          onFocus={() => setIsOpen(true)}
-          leftIcon={showSearchIcon ? "SearchIcon" : undefined}
-          rightIcon="ChevronDownIcon"
-          onRightIconClick={() => setIsOpen(!isOpen)}
-          rightIconRotated={isOpen}
-          allowClear={allowClear}
-          disabled={disabled}
-          autoComplete="off"
-          role="combobox"
-          aria-autocomplete="list"
-          aria-expanded={isOpen}
-          aria-controls={isOpen ? listboxId : undefined}
-          aria-labelledby={labelId}
-          aria-describedby={errorId}
-          required={required}
-          aria-invalid={!!error}
-          aria-activedescendant={
-            isOpen && activeIndex >= 0
-              ? `${listboxId}-option-${activeIndex}`
-              : undefined
-          }
-          {...props}
-        />
+        <div
+          className={classNames(styles.root, fullWidth && styles.fullWidth)}
+          ref={containerRef}
+          onMouseMove={() => setIsKeyboardNavigating(false)}
+          data-keyboard-nav={isKeyboardNavigating}
+        >
+          <InputBase
+            disabled={disabled}
+            allowClear={allowClear}
+            hasValue={!!inputValue}
+            onClear={() => setInputValue("")}
+            intent={error ? "error" : "default"}
+            leftIcon={showSearchIcon ? "SearchIcon" : undefined}
+            fullWidth={fullWidth}
+            rightIcons={[
+              {
+                name: "ChevronDownIcon",
+                rotated: isOpen,
+                onClick: () => setIsOpen(!isOpen),
+              },
+            ]}
+          >
+            <input
+              id={id}
+              className={classNames(styles.input, disabled && styles.disabled)}
+              placeholder={placeholder}
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              onFocus={() => setIsOpen(true)}
+              disabled={disabled}
+              autoComplete="off"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded={isOpen}
+              aria-controls={isOpen ? listboxId : undefined}
+              aria-labelledby={labelId}
+              aria-describedby={errorId}
+              required={required}
+              aria-invalid={!!error}
+              aria-activedescendant={
+                isOpen && activeIndex >= 0
+                  ? `${listboxId}-option-${activeIndex}`
+                  : undefined
+              }
+              {...props}
+            />
+          </InputBase>
         {isOpen && filteredOptions.length > 0 && (
           <div className={styles.dropdown}>
             <ul

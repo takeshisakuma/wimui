@@ -48,7 +48,10 @@ const config: StorybookConfig = {
               "node_modules/storybook/dist/theming",
             ),
           },
-
+          {
+            find: "wimui",
+            replacement: path.resolve(process.cwd(), "src"),
+          },
         ],
       },
       plugins: [
