@@ -308,6 +308,18 @@ describe("Dialog section components", () => {
     expect(footer).toHaveClass("my-footer");
   });
 
+  it("renders DialogFooter with layout prop", () => {
+    render(
+      <Dialog defaultOpen={true}>
+        <DialogContent>
+          <DialogFooter layout="row">Footer</DialogFooter>
+        </DialogContent>
+      </Dialog>,
+    );
+    const footer = screen.getByTestId("dialog-footer");
+    expect(footer).toHaveAttribute("data-layout", "row");
+  });
+
   it("renders DialogTitle as h2", () => {
     render(
       <Dialog defaultOpen={true}>

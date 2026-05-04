@@ -162,7 +162,7 @@ const ScheduleTemplate = (args: React.ComponentProps<typeof ScheduleView>) => {
               fullWidth
             />
           </div>
-          <Dialog.Footer style={{ flexDirection: "row", justifyContent: "flex-end", gap: "8px" }}>
+          <Dialog.Footer>
             <Dialog.Close asChild>
               <Button variant="ghost">{t("common:action.cancel")}</Button>
             </Dialog.Close>
@@ -182,7 +182,7 @@ const ScheduleTemplate = (args: React.ComponentProps<typeof ScheduleView>) => {
               <strong>{eventToDelete?.title}</strong>
             </Dialog.Description>
           </Dialog.Header>
-          <Dialog.Footer style={{ flexDirection: "row", justifyContent: "flex-end", gap: "8px" }}>
+          <Dialog.Footer>
             <Dialog.Close asChild>
               <Button variant="ghost">{t("common:action.cancel")}</Button>
             </Dialog.Close>

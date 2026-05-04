@@ -189,12 +189,27 @@ export const DialogHeader = ({
 
 DialogHeader.displayName = "Dialog.Header";
 
+export interface DialogFooterProps extends React.ComponentPropsWithoutRef<"div"> {
+  /**
+   * The layout of the footer.
+   * - "row" (default): Buttons are side-by-side.
+   * - "column": Buttons are stacked (standard mobile behavior).
+   */
+  layout?: "row" | "column";
+}
+
 export const DialogFooter = ({
   children,
   className,
+  layout,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames(styles.footer, className)} data-testid="dialog-footer" {...props}>
+}: DialogFooterProps) => (
+  <div
+    className={classNames(styles.footer, className)}
+    data-layout={layout}
+    data-testid="dialog-footer"
+    {...props}
+  >
     {children}
   </div>
 );

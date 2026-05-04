@@ -229,7 +229,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
             <DialogDescription>
               {t("image_cropper.confirm_message")}
             </DialogDescription>
-            <DialogFooter style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <DialogFooter>
               <DialogClose asChild>
                 <Button variant="ghost">
                   {t("image_cropper.cancel")}

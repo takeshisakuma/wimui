@@ -209,83 +209,6 @@
       }
     }
   },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "fixed": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Fixed position at the bottom of the screen",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Show top border",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TabBar.Item": {
-    "name": "TabBar.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Active state"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Icon element"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Text label"
-      },
-      "badge": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Badge content (optional)"
-      }
-    }
-  },
   "TabNavigation": {
     "name": "TabNavigation",
     "tokens": [],
@@ -425,6 +348,83 @@
           "raw": "React.ReactNode"
         },
         "description": "Icon element"
+      }
+    }
+  },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the bottom of the screen",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Show top border",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TabBar.Item": {
+    "name": "TabBar.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Active state"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Icon element"
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Text label"
+      },
+      "badge": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Badge content (optional)"
       }
     }
   },
@@ -592,328 +592,6 @@
           }
         },
         "description": "Callback function when a step is clicked (if applicable)"
-      }
-    }
-  },
-  "Pagination": {
-    "name": "Pagination",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-disabled",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-on-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-weight-medium",
-      "--wim-height-xl",
-      "--wim-opacity-ghost",
-      "--wim-radius-md",
-      "--wim-radius-sm",
-      "--wim-shadow-field-focus",
-      "--wim-shadow-focus",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {
-      "total": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Total number of items"
-      },
-      "pageSize": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Number of items per page",
-        "defaultValue": {
-          "value": "10",
-          "computed": false
-        }
-      },
-      "current": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Current page number (1-indexed)",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(page: number, pageSize: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "page"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "pageSize"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when page changes"
-      },
-      "onPageSizeChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(pageSize: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "pageSize"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback function when page size changes"
-      },
-      "siblingCount": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Number of sibling pages to show around the current page",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "simple": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show a simplified version",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "hideOnSinglePage": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to hide the pagination if there is only one page",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "showSizeChanger": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show the page size changer",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "pageSizeOptions": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "number"
-            }
-          ],
-          "raw": "number[]"
-        },
-        "description": "Page size options for the page size changer",
-        "defaultValue": {
-          "value": "[10, 20, 50, 100]",
-          "computed": false
-        }
-      },
-      "showTotal": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(total: number, range: [number, number]) => React.ReactNode",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "total"
-              },
-              {
-                "type": {
-                  "name": "tuple",
-                  "raw": "[number, number]",
-                  "elements": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "number"
-                    }
-                  ]
-                },
-                "name": "range"
-              }
-            ],
-            "return": {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          }
-        },
-        "description": "Function to display the total count"
-      },
-      "showQuickJumper": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show quick jumper",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  prevPage?: string;\r\n  nextPage?: string;\r\n  pageAriaLabel?: (page: number) => string;\r\n  itemsPerPage?: string;\r\n  goTo?: string;\r\n  pageSizeAriaLabel?: string;\r\n  jumpToPageAriaLabel?: string;\r\n  navAriaLabel?: string;\r\n  totalLabel?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "prevPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "nextPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "pageAriaLabel",
-                "value": {
-                  "name": "signature",
-                  "type": "function",
-                  "raw": "(page: number) => string",
-                  "signature": {
-                    "arguments": [
-                      {
-                        "type": {
-                          "name": "number"
-                        },
-                        "name": "page"
-                      }
-                    ],
-                    "return": {
-                      "name": "string"
-                    }
-                  },
-                  "required": false
-                }
-              },
-              {
-                "key": "itemsPerPage",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "goTo",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "pageSizeAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "jumpToPageAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "navAriaLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "totalLabel",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "Labels for internationalization",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
       }
     }
   },
@@ -1606,6 +1284,328 @@
       }
     }
   },
+  "Pagination": {
+    "name": "Pagination",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-disabled",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-on-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-weight-medium",
+      "--wim-height-xl",
+      "--wim-opacity-ghost",
+      "--wim-radius-md",
+      "--wim-radius-sm",
+      "--wim-shadow-field-focus",
+      "--wim-shadow-focus",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "total": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Total number of items"
+      },
+      "pageSize": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Number of items per page",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "current": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Current page number (1-indexed)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(page: number, pageSize: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "page"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "pageSize"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when page changes"
+      },
+      "onPageSizeChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(pageSize: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "pageSize"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback function when page size changes"
+      },
+      "siblingCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Number of sibling pages to show around the current page",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "simple": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show a simplified version",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "hideOnSinglePage": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to hide the pagination if there is only one page",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "showSizeChanger": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the page size changer",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "pageSizeOptions": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "number"
+            }
+          ],
+          "raw": "number[]"
+        },
+        "description": "Page size options for the page size changer",
+        "defaultValue": {
+          "value": "[10, 20, 50, 100]",
+          "computed": false
+        }
+      },
+      "showTotal": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(total: number, range: [number, number]) => React.ReactNode",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "total"
+              },
+              {
+                "type": {
+                  "name": "tuple",
+                  "raw": "[number, number]",
+                  "elements": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ]
+                },
+                "name": "range"
+              }
+            ],
+            "return": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          }
+        },
+        "description": "Function to display the total count"
+      },
+      "showQuickJumper": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show quick jumper",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  prevPage?: string;\r\n  nextPage?: string;\r\n  pageAriaLabel?: (page: number) => string;\r\n  itemsPerPage?: string;\r\n  goTo?: string;\r\n  pageSizeAriaLabel?: string;\r\n  jumpToPageAriaLabel?: string;\r\n  navAriaLabel?: string;\r\n  totalLabel?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "prevPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "nextPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "pageAriaLabel",
+                "value": {
+                  "name": "signature",
+                  "type": "function",
+                  "raw": "(page: number) => string",
+                  "signature": {
+                    "arguments": [
+                      {
+                        "type": {
+                          "name": "number"
+                        },
+                        "name": "page"
+                      }
+                    ],
+                    "return": {
+                      "name": "string"
+                    }
+                  },
+                  "required": false
+                }
+              },
+              {
+                "key": "itemsPerPage",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "goTo",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "pageSizeAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "jumpToPageAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "navAriaLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "totalLabel",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "Labels for internationalization",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  },
   "Link": {
     "name": "Link",
     "tokens": [
@@ -1799,6 +1799,101 @@
           }
         },
         "description": "Custom styles for internal parts"
+      }
+    }
+  },
+  "HamburgerMenu": {
+    "name": "HamburgerMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the menu is open",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "ReactMouseEventHandler",
+          "raw": "React.MouseEventHandler<HTMLButtonElement>",
+          "elements": [
+            {
+              "name": "HTMLButtonElement"
+            }
+          ]
+        },
+        "description": "Callback function when the menu is toggled"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "Size of the hamburger menu",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Color of the bars"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name"
       }
     }
   },
@@ -2205,293 +2300,6 @@
       }
     }
   },
-  "Anchor": {
-    "name": "Anchor",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "AnchorLinkItem"
-            }
-          ],
-          "raw": "AnchorLinkItem[]"
-        },
-        "description": "Array of anchor link configurations",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "bounds": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Bounding distance (in pixels) for triggering active state",
-        "defaultValue": {
-          "value": "5",
-          "computed": false
-        }
-      },
-      "offset": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Offset (in pixels) from top when clicking to scroll",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "direction": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "Orientation of the anchor links",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "style": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Style attribute"
-      }
-    }
-  },
-  "HamburgerMenu": {
-    "name": "HamburgerMenu",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the menu is open",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "ReactMouseEventHandler",
-          "raw": "React.MouseEventHandler<HTMLButtonElement>",
-          "elements": [
-            {
-              "name": "HTMLButtonElement"
-            }
-          ]
-        },
-        "description": "Callback function when the menu is toggled"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "Size of the hamburger menu",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Color of the bars"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name"
-      }
-    }
-  },
-  "Affix": {
-    "name": "Affix",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "offsetTop": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Office distance from the top of the window (in pixels)"
-      },
-      "offsetBottom": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Office distance from the bottom of the window (in pixels)"
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(lastAffixed: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "lastAffixed"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when the affix state changes"
-      },
-      "target": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => HTMLElement | Window | null",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "union",
-              "raw": "HTMLElement | Window | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "Window"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Target container that will be scrolled",
-        "defaultValue": {
-          "value": "() => window",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Children to be rendered inside the affix"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "style": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Style attribute"
-      }
-    }
-  },
   "BackTop": {
     "name": "BackTop",
     "tokens": [
@@ -2610,6 +2418,198 @@
           "name": "string"
         },
         "description": "Accessible label for the button"
+      }
+    }
+  },
+  "Anchor": {
+    "name": "Anchor",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "AnchorLinkItem"
+            }
+          ],
+          "raw": "AnchorLinkItem[]"
+        },
+        "description": "Array of anchor link configurations",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "bounds": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Bounding distance (in pixels) for triggering active state",
+        "defaultValue": {
+          "value": "5",
+          "computed": false
+        }
+      },
+      "offset": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Offset (in pixels) from top when clicking to scroll",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "Orientation of the anchor links",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "style": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Style attribute"
+      }
+    }
+  },
+  "Affix": {
+    "name": "Affix",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "offsetTop": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Office distance from the top of the window (in pixels)"
+      },
+      "offsetBottom": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Office distance from the bottom of the window (in pixels)"
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(lastAffixed: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "lastAffixed"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when the affix state changes"
+      },
+      "target": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => HTMLElement | Window | null",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "union",
+              "raw": "HTMLElement | Window | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "Window"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Target container that will be scrolled",
+        "defaultValue": {
+          "value": "() => window",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Children to be rendered inside the affix"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "style": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Style attribute"
       }
     }
   }

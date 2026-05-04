@@ -56,13 +56,14 @@
 
   .footer {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
     gap: var(--wim-spacing-md);
+    justify-content: flex-end;
     margin-top: var(--wim-spacing-2xl);
 
-    @container (width >= 576px) {
-      flex-direction: row;
-      justify-content: flex-end;
+    &[data-layout="column"] {
+      flex-direction: column-reverse;
+      justify-content: initial;
     }
   }
 }

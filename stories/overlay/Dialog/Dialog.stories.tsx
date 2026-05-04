@@ -162,3 +162,31 @@ export const Controlled: Story = {
     );
   },
 };
+
+export const Stacked: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
+          <Button variant="solid">{t("story.dialog_stacked_trigger")}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story.dialog_stacked_title")}</DialogTitle>
+            <DialogDescription>
+              {t("story.dialog_stacked_desc")}
+            </DialogDescription>
+          </DialogHeader>
+          <p style={{ padding: "1rem 0" }}>{t("story.dialog_stacked_body")}</p>
+          <DialogFooter layout="column">
+            <DialogClose asChild>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
+            </DialogClose>
+            <Button variant="solid">{t("story.dialog_confirm")}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
