@@ -34,6 +34,7 @@ export type MultiSelectProps = {
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   width?: FieldWidth | string | number;
+  fullWidth?: boolean;
 };
 
 /**
@@ -54,6 +55,7 @@ export const MultiSelect = ({
   allowClear = false,
   id: customId,
   width,
+  fullWidth = false,
   ...props
 }: MultiSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -236,7 +238,7 @@ export const MultiSelect = ({
       className={className}
     >
       <div
-        className={styles.root}
+        className={classNames(styles.root, fullWidth && styles.fullWidth)}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -249,6 +251,7 @@ export const MultiSelect = ({
           onClear={handleClearAll}
           intent={error ? "error" : "default"}
           width={width}
+          fullWidth={fullWidth}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

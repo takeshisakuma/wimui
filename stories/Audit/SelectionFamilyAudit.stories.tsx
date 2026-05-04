@@ -79,9 +79,9 @@ const ComponentGroup = ({
   </Stack>
 );
 
-const InteractiveSegmentedControl = (props: React.ComponentProps<typeof SegmentedControl>) => {
+const InteractiveSegmentedControl = ({ onChange, ...props }: Omit<React.ComponentProps<typeof SegmentedControl>, "onChange"> & { onChange?: (value: string) => void }) => {
   const [value, setValue] = React.useState(props.value || "a");
-  return <SegmentedControl {...props} value={value} onChange={setValue} />;
+  return <SegmentedControl {...props} value={value} onChange={onChange ?? setValue} />;
 };
 
 const InteractiveCheckboxGroup = (props: React.ComponentProps<typeof CheckboxGroup>) => {

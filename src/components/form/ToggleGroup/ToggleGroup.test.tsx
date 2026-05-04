@@ -86,16 +86,13 @@ describe("ToggleGroup", () => {
   });
 
   it("applies size and fullWidth classes", async () => {
-    let container: HTMLElement = null!;
     await act(async () => {
-      const result = render(
-        <ToggleGroup options={options} size="lg" fullWidth defaultValue="opt1" />,
-      );
-      container = result.container;
+      render(<ToggleGroup options={options} size="lg" fullWidth defaultValue="opt1" />);
     });
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
-    expect(container.firstChild).toHaveClass(styles.lg);
-    expect(container.firstChild).toHaveClass(styles.fullWidth);
+    const group = screen.getByRole("radiogroup");
+    expect(group).toHaveClass(styles.lg);
+    expect(group).toHaveClass(styles.fullWidth);
   });
 
   it("disables options when disabled prop is set", async () => {

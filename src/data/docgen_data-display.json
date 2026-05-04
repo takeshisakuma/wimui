@@ -619,202 +619,6 @@
       }
     }
   },
-  "Tag": {
-    "name": "Tag",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-border",
-      "--wim-color-text-disabled",
-      "--wim-font-size-2xs",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-opacity-secondary",
-      "--wim-radius-sm",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-fast"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the tag will be rendered as its child, merging its props onto that child."
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ"
-      },
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ (childrenの代替)"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"neutral\""
-            }
-          ]
-        },
-        "description": "インテント（意味的状態）"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"solid\" | \"outline\" | \"subtle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"solid\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"subtle\""
-            }
-          ]
-        },
-        "description": "バリアント"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "サイズ"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アイコン"
-      },
-      "onDelete": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(e: React.MouseEvent<HTMLButtonElement>) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "ReactMouseEvent",
-                  "raw": "React.MouseEvent<HTMLButtonElement>",
-                  "elements": [
-                    {
-                      "name": "HTMLButtonElement"
-                    }
-                  ]
-                },
-                "name": "e"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "削除時のイベント。提供されると×ボタンが表示されます。"
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "無効状態"
-      }
-    }
-  },
   "Timeline": {
     "name": "Timeline",
     "tokens": [
@@ -1850,6 +1654,202 @@
       }
     }
   },
+  "Tag": {
+    "name": "Tag",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-border",
+      "--wim-color-text-disabled",
+      "--wim-font-size-2xs",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-opacity-secondary",
+      "--wim-radius-sm",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-fast"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the tag will be rendered as its child, merging its props onto that child."
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ"
+      },
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ (childrenの代替)"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "インテント（意味的状態）"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"solid\" | \"outline\" | \"subtle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"solid\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"subtle\""
+            }
+          ]
+        },
+        "description": "バリアント"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "サイズ"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アイコン"
+      },
+      "onDelete": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(e: React.MouseEvent<HTMLButtonElement>) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "ReactMouseEvent",
+                  "raw": "React.MouseEvent<HTMLButtonElement>",
+                  "elements": [
+                    {
+                      "name": "HTMLButtonElement"
+                    }
+                  ]
+                },
+                "name": "e"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "削除時のイベント。提供されると×ボタンが表示されます。"
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "無効状態"
+      }
+    }
+  },
   "SwipeAction": {
     "name": "SwipeAction",
     "tokens": [],
@@ -1970,6 +1970,117 @@
           "name": "string"
         },
         "description": ""
+      }
+    }
+  },
+  "SortableList": {
+    "name": "SortableList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the component will be rendered as its child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onSortEnd": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(oldIndex: number, newIndex: number) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "oldIndex"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "newIndex"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback called when reordering is completed."
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the entire list is disabled.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "SortableList.Item": {
+    "name": "SortableList.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "index": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The index of the item in the list."
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether this specific item is disabled for dragging.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "SortableList.DragHandle": {
+    "name": "SortableList.DragHandle",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
@@ -2125,6 +2236,143 @@
           "value": "\"up\"",
           "computed": false
         }
+      }
+    }
+  },
+  "QRCode": {
+    "name": "QRCode",
+    "tokens": [
+      "--wim-color-bg-white",
+      "--wim-color-border-secondary",
+      "--wim-radius-md",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "128",
+          "computed": false
+        }
+      },
+      "level": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"L\" | \"M\" | \"Q\" | \"H\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"L\""
+            },
+            {
+              "name": "literal",
+              "value": "\"M\""
+            },
+            {
+              "name": "literal",
+              "value": "\"Q\""
+            },
+            {
+              "name": "literal",
+              "value": "\"H\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"M\"",
+          "computed": false
+        }
+      },
+      "bgColor": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"var(--wim-color-bg-component)\"",
+          "computed": false
+        }
+      },
+      "fgColor": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"var(--wim-color-text-primary)\"",
+          "computed": false
+        }
+      },
+      "marginSize": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "renderAs": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"svg\" | \"canvas\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"svg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"canvas\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"svg\"",
+          "computed": false
+        }
+      },
+      "imageSettings": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"imageSettings\"]",
+          "raw": "React.ComponentProps<typeof QRCodeSVG>[\"imageSettings\"]"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "aria-label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Accessible label describing what the QR code represents"
       }
     }
   },
@@ -2356,254 +2604,6 @@
         "description": "Accessible label for the schedule region",
         "defaultValue": {
           "value": "\"Schedule\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "QRCode": {
-    "name": "QRCode",
-    "tokens": [
-      "--wim-color-bg-white",
-      "--wim-color-border-secondary",
-      "--wim-radius-md",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "128",
-          "computed": false
-        }
-      },
-      "level": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"L\" | \"M\" | \"Q\" | \"H\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"L\""
-            },
-            {
-              "name": "literal",
-              "value": "\"M\""
-            },
-            {
-              "name": "literal",
-              "value": "\"Q\""
-            },
-            {
-              "name": "literal",
-              "value": "\"H\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"M\"",
-          "computed": false
-        }
-      },
-      "bgColor": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"var(--wim-color-bg-component)\"",
-          "computed": false
-        }
-      },
-      "fgColor": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"var(--wim-color-text-primary)\"",
-          "computed": false
-        }
-      },
-      "marginSize": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "renderAs": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"svg\" | \"canvas\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"svg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"canvas\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"svg\"",
-          "computed": false
-        }
-      },
-      "imageSettings": {
-        "required": false,
-        "tsType": {
-          "name": "ReactComponentProps[\"imageSettings\"]",
-          "raw": "React.ComponentProps<typeof QRCodeSVG>[\"imageSettings\"]"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "aria-label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Accessible label describing what the QR code represents"
-      }
-    }
-  },
-  "SortableList": {
-    "name": "SortableList",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will be rendered as its child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onSortEnd": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(oldIndex: number, newIndex: number) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "oldIndex"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "newIndex"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback called when reordering is completed."
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the entire list is disabled.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "SortableList.Item": {
-    "name": "SortableList.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "index": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "The index of the item in the list."
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether this specific item is disabled for dragging.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "SortableList.DragHandle": {
-    "name": "SortableList.DragHandle",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
           "computed": false
         }
       }
@@ -2944,6 +2944,174 @@
       }
     }
   },
+  "List": {
+    "name": "List",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "spacing": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"tight\" | \"normal\" | \"loose\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"tight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"normal\""
+            },
+            {
+              "name": "literal",
+              "value": "\"loose\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"normal\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "List.Item": {
+    "name": "List.Item",
+    "tokens": [
+      "--wim-font-size-lg",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal-jp"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "iconName": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"name\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "description": ""
+      },
+      "iconPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "iconColor": {
+        "required": false,
+        "tsType": {
+          "name": "ReactComponentProps[\"color\"]",
+          "raw": "React.ComponentProps<typeof Icon>[\"color\"]"
+        },
+        "description": ""
+      }
+    }
+  },
   "Markdown": {
     "name": "Markdown",
     "tokens": [
@@ -2998,274 +3166,6 @@
           "name": "string"
         },
         "description": "追加のクラス名。"
-      }
-    }
-  },
-  "EditableValue": {
-    "name": "EditableValue",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": ""
-      },
-      "onSave": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(val: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "val"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "JsonNode": {
-    "name": "JsonNode",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": ""
-      },
-      "depth": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "currentDepth": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "path": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "unknown"
-            }
-          ],
-          "raw": "(string | number)[]"
-        },
-        "description": ""
-      },
-      "editable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onUpdate": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[], val: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              },
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "val"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onDelete": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onAdd": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      }
-    }
-  },
-  "JsonViewer": {
-    "name": "JsonViewer",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": "The JSON data to display"
-      },
-      "expandDepth": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Initial depth to expand",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "showCopy": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, show copy button",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showToolbar": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, show toolbar",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "editable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the data can be edited inline",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(data: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "data"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when data changes"
       }
     }
   },
@@ -3581,171 +3481,371 @@
       }
     }
   },
-  "List": {
-    "name": "List",
-    "tokens": [
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal-jp"
-    ],
+  "EditableValue": {
+    "name": "EditableValue",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "asChild": {
-        "required": false,
+      "value": {
+        "required": true,
         "tsType": {
-          "name": "boolean"
+          "name": "unknown"
         },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
+        "description": ""
       },
-      "size": {
-        "required": false,
+      "onSave": {
+        "required": true,
         "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
+          "name": "signature",
+          "type": "function",
+          "raw": "(val: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "val"
+              }
+            ],
+            "return": {
+              "name": "void"
             }
-          ]
+          }
         },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
+        "description": ""
       },
-      "spacing": {
+      "className": {
         "required": false,
         "tsType": {
-          "name": "union",
-          "raw": "\"tight\" | \"normal\" | \"loose\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"tight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"normal\""
-            },
-            {
-              "name": "literal",
-              "value": "\"loose\""
-            }
-          ]
+          "name": "string"
         },
-        "description": "",
-        "defaultValue": {
-          "value": "\"normal\"",
-          "computed": false
-        }
+        "description": ""
       }
     }
   },
-  "List.Item": {
-    "name": "List.Item",
-    "tokens": [
-      "--wim-font-size-lg",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal-jp"
-    ],
+  "JsonNode": {
+    "name": "JsonNode",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "asChild": {
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "unknown"
+        },
+        "description": ""
+      },
+      "depth": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "currentDepth": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "path": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "unknown"
+            }
+          ],
+          "raw": "(string | number)[]"
+        },
+        "description": ""
+      },
+      "editable": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "",
+        "description": ""
+      },
+      "onUpdate": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[], val: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              },
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "val"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onDelete": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onAdd": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      }
+    }
+  },
+  "JsonViewer": {
+    "name": "JsonViewer",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "unknown"
+        },
+        "description": "The JSON data to display"
+      },
+      "expandDepth": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Initial depth to expand",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "showCopy": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, show copy button",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showToolbar": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, show toolbar",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "editable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the data can be edited inline",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
       },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(data: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "data"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when data changes"
+      }
+    }
+  },
+  "InfiniteScroll": {
+    "name": "InfiniteScroll",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
       "children": {
         "required": true,
         "tsType": {
           "name": "ReactReactNode",
           "raw": "React.ReactNode"
         },
-        "description": ""
+        "description": "表示するコンテンツ。"
       },
-      "iconName": {
+      "hasMore": {
         "required": false,
         "tsType": {
-          "name": "ReactComponentProps[\"name\"]",
-          "raw": "React.ComponentProps<typeof Icon>[\"name\"]"
+          "name": "boolean"
         },
-        "description": ""
-      },
-      "iconPosition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "",
+        "description": "さらに読み込むデータがあるかどうか。",
         "defaultValue": {
-          "value": "\"left\"",
+          "value": "false",
           "computed": false
         }
       },
-      "iconColor": {
+      "loading": {
         "required": false,
         "tsType": {
-          "name": "ReactComponentProps[\"color\"]",
-          "raw": "React.ComponentProps<typeof Icon>[\"color\"]"
+          "name": "boolean"
         },
-        "description": ""
+        "description": "ローディング中かどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onLoadMore": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "次のデータを読み込むためのコールバック。"
+      },
+      "loader": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "ローディング中に表示する要素。"
+      },
+      "threshold": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
+        "defaultValue": {
+          "value": "250",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      },
+      "container": {
+        "required": false,
+        "tsType": {
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
       }
     }
   },
@@ -3889,106 +3989,6 @@
           "value": "\"default\"",
           "computed": false
         }
-      }
-    }
-  },
-  "InfiniteScroll": {
-    "name": "InfiniteScroll",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ。"
-      },
-      "hasMore": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "さらに読み込むデータがあるかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "ローディング中かどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onLoadMore": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "次のデータを読み込むためのコールバック。"
-      },
-      "loader": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "ローディング中に表示する要素。"
-      },
-      "threshold": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
-        "defaultValue": {
-          "value": "250",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      },
-      "container": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
       }
     }
   },
@@ -5797,165 +5797,6 @@
     "anatomy": [],
     "props": {}
   },
-  "CalendarHeatmap": {
-    "name": "CalendarHeatmap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "date",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "count",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "CalendarHeatmapData[]"
-        },
-        "description": "Activity data array.",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "year": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "The year to display.\n@default current year",
-        "defaultValue": {
-          "value": "new Date().getFullYear()",
-          "computed": true
-        }
-      },
-      "getColorLevel": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "union",
-              "raw": "0 | 1 | 2 | 3 | 4",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "0"
-                },
-                {
-                  "name": "literal",
-                  "value": "1"
-                },
-                {
-                  "name": "literal",
-                  "value": "2"
-                },
-                {
-                  "name": "literal",
-                  "value": "3"
-                },
-                {
-                  "name": "literal",
-                  "value": "4"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Function to map count to a level (0-4).",
-        "defaultValue": {
-          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name for the root element."
-      },
-      "tooltipFormatter": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(date: string, count: number) => React.ReactNode",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "date"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          }
-        },
-        "description": "Custom tooltip formatter."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to render as a child component.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Content to render inside."
-      }
-    }
-  },
   "Carousel": {
     "name": "Carousel",
     "tokens": [
@@ -6221,6 +6062,165 @@
           "name": "string"
         },
         "description": "追加のクラス名"
+      }
+    }
+  },
+  "CalendarHeatmap": {
+    "name": "CalendarHeatmap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "date",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "count",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "CalendarHeatmapData[]"
+        },
+        "description": "Activity data array.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "year": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The year to display.\n@default current year",
+        "defaultValue": {
+          "value": "new Date().getFullYear()",
+          "computed": true
+        }
+      },
+      "getColorLevel": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "union",
+              "raw": "0 | 1 | 2 | 3 | 4",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "0"
+                },
+                {
+                  "name": "literal",
+                  "value": "1"
+                },
+                {
+                  "name": "literal",
+                  "value": "2"
+                },
+                {
+                  "name": "literal",
+                  "value": "3"
+                },
+                {
+                  "name": "literal",
+                  "value": "4"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Function to map count to a level (0-4).",
+        "defaultValue": {
+          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name for the root element."
+      },
+      "tooltipFormatter": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(date: string, count: number) => React.ReactNode",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "date"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          }
+        },
+        "description": "Custom tooltip formatter."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child component.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Content to render inside."
       }
     }
   },

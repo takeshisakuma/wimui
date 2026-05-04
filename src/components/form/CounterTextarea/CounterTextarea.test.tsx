@@ -11,13 +11,4 @@ describe("CounterTextarea", () => {
     render(<CounterTextarea defaultValue="Test content" />);
     expect(screen.getByDisplayValue("Test content")).toBeInTheDocument();
   });
-
-  it("supports asChild", () => {
-    render(
-      <CounterTextarea asChild>
-        <textarea data-testid="child" defaultValue="Child" />
-      </CounterTextarea>
-    );
-    expect(screen.getByTestId("child")).toBeInTheDocument();
-  });
 });

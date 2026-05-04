@@ -43,6 +43,7 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
   /** Accessible label for the trigger when no visible label is provided */
   "aria-label"?: string;
   width?: FieldWidth | string | number;
+  fullWidth?: boolean;
 };
 
 /**
@@ -66,6 +67,7 @@ export const Cascader = ({
   allowClear = false,
   "aria-label": ariaLabel,
   width,
+  fullWidth = false,
   ...props
 }: CascaderProps) => {
   const generatedId = useId();
@@ -357,6 +359,7 @@ export const Cascader = ({
           onClear={handleClear}
           intent={error ? "error" : "default"}
           width={width}
+          fullWidth={fullWidth}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

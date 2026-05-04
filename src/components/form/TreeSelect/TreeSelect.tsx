@@ -56,6 +56,7 @@ export type TreeSelectProps = {
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   width?: FieldWidth | string | number;
+  fullWidth?: boolean;
 };
 
 /**
@@ -79,6 +80,7 @@ export const TreeSelect = ({
   checkStrategy = "cascade",
   id: customId,
   width,
+  fullWidth = false,
   ...props
 }: TreeSelectProps) => {
   const generatedId = useId();
@@ -245,7 +247,7 @@ export const TreeSelect = ({
       className={classNames(styles.container, className)}
     >
       <div
-        className={styles.root}
+        className={classNames(styles.root, fullWidth && styles.fullWidth)}
         ref={containerRef}
         {...wrapperProps}
       >
@@ -256,6 +258,7 @@ export const TreeSelect = ({
           onClear={handleClear}
           intent={error ? "error" : "default"}
           width={width}
+          fullWidth={fullWidth}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleToggle }]}
           className={classNames(
             isOpen && styles.open,

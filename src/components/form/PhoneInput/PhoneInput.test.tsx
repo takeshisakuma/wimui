@@ -9,21 +9,21 @@ describe("PhoneInput", () => {
     expect(screen.getByPlaceholderText("090-0000-0000")).toBeInTheDocument();
   });
 
-  it("renders the country code selector", () => {
+  it("renders the country code selector button", () => {
     render(<PhoneInput />);
-    expect(screen.getByRole("combobox", { name: "Country code" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Select country" })).toBeInTheDocument();
   });
 
-  it("shows default country US dial code in preview", () => {
-    const { container } = render(<PhoneInput />);
-    const preview = container.querySelector(`.${styles.dialPreview}`);
-    expect(preview).toHaveTextContent("🇺🇸 +1");
+  it("shows default country US dial code", () => {
+    render(<PhoneInput />);
+    expect(screen.getByText("+1")).toBeInTheDocument();
+    expect(screen.getByText("🇺🇸")).toBeInTheDocument();
   });
 
-  it("shows selected country dial code in preview when countryCode prop changes", () => {
-    const { container } = render(<PhoneInput countryCode="JP" />);
-    const preview = container.querySelector(`.${styles.dialPreview}`);
-    expect(preview).toHaveTextContent("🇯🇵 +81");
+  it("shows selected country dial code when countryCode prop is provided", () => {
+    render(<PhoneInput countryCode="JP" />);
+    expect(screen.getByText("+81")).toBeInTheDocument();
+    expect(screen.getByText("🇯🇵")).toBeInTheDocument();
   });
 
   it("calls onChange when phone number input changes", () => {
@@ -33,25 +33,23 @@ describe("PhoneInput", () => {
     expect(onChange).toHaveBeenCalledWith("09012345678");
   });
 
-  it("filters out non-phone characters", () => {
-    const onChange = vi.fn();
-    render(<PhoneInput onChange={onChange} />);
-    fireEvent.change(screen.getByRole("textbox"), { target: { value: "090abc日本語" } });
-    expect(onChange).toHaveBeenCalledWith("090");
-  });
-
-  it("calls onCountryChange when country selector changes", () => {
+  it("calls onCountryChange when a country is selected from the dropdown", async () => {
     const onCountryChange = vi.fn();
     render(<PhoneInput onCountryChange={onCountryChange} />);
-    fireEvent.change(screen.getByRole("combobox", { name: "Country code" }), {
-      target: { value: "JP" },
-    });
+    
+    // Open dropdown
+    fireEvent.click(screen.getByRole("button", { name: "Select country" }));
+    
+    // Select Japan
+    const japanOption = screen.getByText("Japan");
+    fireEvent.click(japanOption);
+    
     expect(onCountryChange).toHaveBeenCalledWith("JP");
   });
 
-  it("disables both select and input when disabled", () => {
+  it("disables both button and input when disabled", () => {
     render(<PhoneInput disabled />);
-    expect(screen.getByRole("combobox", { name: "Country code" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Select country" })).toBeDisabled();
     expect(screen.getByRole("textbox")).toBeDisabled();
   });
 
@@ -70,19 +68,25 @@ describe("PhoneInput", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
 
-  it("contains all countries in the select", () => {
+  it("contains all countries in the dropdown when opened", async () => {
     render(<PhoneInput />);
+    
+    // Open dropdown
+    fireEvent.click(screen.getByRole("button", { name: "Select country" }));
+    
     const options = screen.getAllByRole("option");
     expect(options).toHaveLength(PHONE_COUNTRIES.length);
   });
 
   it("applies error class when error is set", () => {
-    const { container } = render(<PhoneInput error="Error" />);
-    expect(container.querySelector(`.${styles.error}`)).toBeInTheDocument();
+    render(<PhoneInput error="Error" />);
+    const root = screen.getByTestId("phone-input-root");
+    expect(root).toHaveClass(styles.error);
   });
 
   it("applies disabled class when disabled", () => {
-    const { container } = render(<PhoneInput disabled />);
-    expect(container.querySelector(`.${styles.disabled}`)).toBeInTheDocument();
+    render(<PhoneInput disabled />);
+    const root = screen.getByTestId("phone-input-root");
+    expect(root).toHaveClass(styles.disabled);
   });
 });

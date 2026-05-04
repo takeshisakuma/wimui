@@ -14,7 +14,7 @@ interface Country {
   flag: string;
 }
 
-const PHONE_COUNTRIES: Country[] = [
+export const PHONE_COUNTRIES: Country[] = [
   { code: "US", name: "United States", dialCode: "1", flag: "🇺🇸" },
   { code: "JP", name: "Japan", dialCode: "81", flag: "🇯🇵" },
   { code: "GB", name: "United Kingdom", dialCode: "44", flag: "🇬🇧" },
@@ -75,6 +75,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       layout = "vertical",
       className,
       fullWidth = false,
+      ...props
     },
     ref,
   ) => {
@@ -120,7 +121,6 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         error={error}
         errorId={errorId}
         layout={layout}
-        fullWidth={fullWidth}
         className={className}
       >
         <div
@@ -131,6 +131,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             disabled && styles.disabled,
             error && styles.error,
           )}
+          data-testid="phone-input-root"
+          {...props}
         >
           <div className={styles.countryWrapper}>
             <button
@@ -141,6 +143,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               aria-haspopup="listbox"
               aria-expanded={isOpen}
               aria-labelledby={labelId}
+              aria-label={label ? undefined : "Select country"}
             >
               <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
               <span className={styles.dialCode}>+{selectedCountry.dialCode}</span>

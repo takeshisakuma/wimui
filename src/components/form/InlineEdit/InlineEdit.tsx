@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Input } from "../Input/Input";
 import { IconButton } from "../IconButton/IconButton";
+import { FieldTemplate } from "../FieldTemplate";
 import localStyles from "./inline-edit.module.scss";
 
 export type InlineEditProps = Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> & {
@@ -15,6 +16,7 @@ export type InlineEditProps = Omit<React.ComponentPropsWithoutRef<"div">, "onCha
   placeholder?: string;
   disabled?: boolean;
   fullWidth?: boolean;
+  label?: React.ReactNode;
 };
 
 /**
@@ -36,6 +38,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
       placeholder,
       disabled = false,
       fullWidth = false,
+      label,
       className,
       ...props
     },
@@ -102,13 +105,13 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
     }, [isEditing]);
 
     return (
+      <FieldTemplate label={label} className={className}>
       <div
         ref={ref}
         className={classNames(
           localStyles.root,
           fullWidth && localStyles.fullWidth,
           disabled && localStyles.disabled,
-          className
         )}
         {...props}
       >
@@ -175,6 +178,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
           </div>
         )}
       </div>
+      </FieldTemplate>
     );
   }
 );
