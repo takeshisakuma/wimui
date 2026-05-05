@@ -35,59 +35,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box m="lg">
-    <Text size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-        overflow: "hidden",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="primary" weight="medium">
-        {label}
-      </Text>
-    </Box>
-    <Stack gap="var(--wim-spacing-md)" align="stretch" style={{ minWidth: 0 }}>
-      {children}
-    </Stack>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
@@ -96,9 +44,7 @@ export const Overview: StoryObj = {
     const feedbackIntents = ["info", "success", "warning", "error"] as const;
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:overlay_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:overlay_family_title")}>
         {/* 1. Elevation & Shadow Audit (Standardized Floating Elements) */}
         <ComparisonGrid title={t("audit:shadow_radius_check")}>
           <Text size="sm">
@@ -272,7 +218,7 @@ export const Overview: StoryObj = {
             </ComponentGroup>
           ))}
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

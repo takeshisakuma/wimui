@@ -21,71 +21,17 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="md" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box mx="md" my="lg">
-    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-xl)",
-        padding: "var(--wim-spacing-md)",
-        overflowX: "auto",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary">
-        {label}
-      </Text>
-    </Box>
-    <Box style={{ width: "100%" }}>
-      {children}
-    </Box>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:state_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:state_family_title")}>
         {/* Structural Consistency */}
         <ComparisonGrid title={t("audit:structural_consistency_check")}>
-          <ComponentGroup label={t("audit:label_result")}>
+          <ComponentGroup label={t("audit:label_result")} align="stretch">
             <Result
               intent="success"
               title="Payment Successful"
@@ -99,7 +45,7 @@ export const Overview: StoryObj = {
             />
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_empty_state")}>
+          <ComponentGroup label={t("audit:label_empty_state")} align="stretch">
             <EmptyState
               icon={<Icon name="SearchIcon" size="xl" color="secondary" />}
               title="No data found"
@@ -108,7 +54,7 @@ export const Overview: StoryObj = {
             />
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_error_boundary")}>
+          <ComponentGroup label={t("audit:label_error_boundary")} align="stretch">
             <Box
               p="lg"
               radius="md"
@@ -135,7 +81,7 @@ export const Overview: StoryObj = {
 
         {/* Vertical Spacing Check */}
         <ComparisonGrid title={t("audit:vertical_spacing_check")}>
-          <ComponentGroup label="Result (Spacing)">
+          <ComponentGroup label="Result (Spacing)" align="stretch">
              <Box style={{ border: "1px solid var(--wim-color-border)", padding: "var(--wim-spacing-xl)", background: "var(--wim-color-bg-surface)" }}>
                 <Result
                   intent="info"
@@ -145,7 +91,7 @@ export const Overview: StoryObj = {
                 />
              </Box>
           </ComponentGroup>
-          <ComponentGroup label="EmptyState (Spacing)">
+          <ComponentGroup label="EmptyState (Spacing)" align="stretch">
              <Box style={{ border: "1px solid var(--wim-color-border)", padding: "var(--wim-spacing-xl)", background: "var(--wim-color-bg-surface)" }}>
                 <EmptyState
                   icon={<Icon name="CircleIcon" size="xl" color="secondary" />}
@@ -160,14 +106,14 @@ export const Overview: StoryObj = {
         {/* Action Button Recommendation */}
         <ComparisonGrid title={t("audit:action_button_style_check")}>
           <Stack gap="lg">
-            <ComponentGroup label="Success/Info: Recommended Solid Button">
+            <ComponentGroup label="Success/Info: Recommended Solid Button" align="stretch">
               <Result
                 intent="success"
                 title="Process Completed"
                 extra={<Button variant="solid">Done</Button>}
               />
             </ComponentGroup>
-            <ComponentGroup label="Empty/Neutral: Recommended Outline Button">
+            <ComponentGroup label="Empty/Neutral: Recommended Outline Button" align="stretch">
               <EmptyState
                 title="No items to show"
                 extra={<Button variant="outline">Create New Item</Button>}
@@ -175,7 +121,7 @@ export const Overview: StoryObj = {
             </ComponentGroup>
           </Stack>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

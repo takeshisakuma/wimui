@@ -6,8 +6,6 @@ import {
   Title,
   Text,
   Link,
-  Stack,
-  Box,
 } from "../../src";
 
 const meta: Meta = {
@@ -19,58 +17,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box m="lg">
-    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary" weight="medium">
-        {label}
-      </Text>
-    </Box>
-    <Stack gap="var(--wim-spacing-md)" align="start">
-      {children}
-    </Stack>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
@@ -80,9 +27,7 @@ export const Overview: StoryObj = {
     const textSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:typography_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:typography_family_title")}>
         {/* Heading Levels */}
         <ComparisonGrid title={t("audit:label_heading")}>
           {headingLevels.map((level) => (
@@ -120,7 +65,7 @@ export const Overview: StoryObj = {
             </Text>
           </ComponentGroup>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

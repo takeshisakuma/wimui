@@ -353,7 +353,7 @@
     "search_placeholder": "WIM UI のボタンの種類は？",
     "search_result_1": "「{{val}}」に関連するAI結果1",
     "search_result_2": "「{{val}}」の文脈に一致するAI結果2",
-    "search_suggestions": "✨ AI の提案",
+    "search_suggestions": "AI の提案",
     "search_thinking": "AI 思考中..."
   },
   "snackbar": "スナックバー",

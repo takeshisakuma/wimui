@@ -92,7 +92,11 @@ export const ThoughtProcess = ({
           onClick={() => setIsExpanded(!isExpanded)}
           aria-expanded={isExpanded}
         >
-          <span className={classNames(styles.chevron, isExpanded && styles.expanded)}>▶</span>
+          <Icon 
+            name="ChevronRightIcon" 
+            size="sm" 
+            className={classNames(styles.chevron, isExpanded && styles.expanded)} 
+          />
           <span className={styles.title}>{title}</span>
         </button>
       ) : (

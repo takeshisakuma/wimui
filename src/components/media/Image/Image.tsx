@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
+import { Icon } from "../Icon/Icon";
 import type { ComponentSize, WimRadiusKey } from "../../../types/tokens";
 import styles from "./image.module.scss";
 
@@ -104,6 +105,8 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
   demoDelay?: number;
   /** LCP候補など、読み込み優先度を上げるかどうか（fetchpriority="high"） */
   priority?: boolean;
+  /** 読み込み失敗時に表示するカスタム要素 */
+  fallback?: React.ReactNode;
 };
 
 /**
@@ -211,10 +214,13 @@ export const Image = ({
   bgColor,
   demoDelay,
   priority = false,
+  fallback,
   className,
   style,
   ...props
 }: ImageProps) => {
+  const [hasError, setHasError] = React.useState(false);
+
   // 共通メディアローダーフックの使用
   const {
     containerRef,
@@ -383,11 +389,12 @@ export const Image = ({
         )}
         data-testid="image-inner"
       >
-        {isIntersecting && (
+        {isIntersecting && !hasError && (
           <img
             src={src}
             alt={alt}
             onLoad={notifyLoaded}
+            onError={() => setHasError(true)}
             className={classNames(
               styles.image,
               (filter || hoverFilter || duotone) && styles.hasFilter,
@@ -398,6 +405,16 @@ export const Image = ({
             data-testid="image-element"
             {...props}
           />
+        )}
+        {hasError && (
+          <div className={styles.fallback} data-testid="image-fallback">
+            {fallback || (
+              <div className={styles.defaultFallback}>
+                <Icon name="ImageIcon" size="lg" color="secondary" />
+                {alt && <span className={styles.fallbackText}>{alt}</span>}
+              </div>
+            )}
+          </div>
         )}
       </div>
       {caption && (

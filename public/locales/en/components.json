@@ -308,7 +308,7 @@
     "search_placeholder": "What types of buttons are in WIM UI?",
     "search_result_1": "AI Result 1 related to \"{{val}}\"",
     "search_result_2": "AI Result 2 matching context of \"{{val}}\"",
-    "search_suggestions": "✨ AI Suggestions",
+    "search_suggestions": "AI Suggestions",
     "search_thinking": "AI thinking..."
   },
   "snackbar": "Snackbar",

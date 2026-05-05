@@ -1,0 +1,156 @@
+import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+import {
+  PromptInput,
+  StreamingText,
+  ThoughtProcess,
+  ThoughtStep,
+  ChatMessageList,
+  ChatMessage,
+  ChatInput,
+  Stack,
+  Box,
+} from "../../src";
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
+
+const meta: Meta = {
+  title: "Audit/AIFamily",
+  parameters: {
+    layout: "fullscreen",
+  },
+};
+
+export default meta;
+
+
+export const Overview: StoryObj = {
+  render: () => {
+    const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
+
+    const sampleSteps = [
+      { label: "Initializing search", content: "Connecting to vector database and preparing query parameters.", status: "completed" as const },
+      { label: "Retrieving context", content: "Found 3 relevant documents from the knowledge base.", status: "completed" as const },
+      { label: "Synthesizing answer", content: "Processing retrieved information to generate a concise summary.", status: "pending" as const },
+    ];
+
+    const sampleMessages = [
+      { id: "1", role: "user" as const, content: "What is WIM UI?" },
+      { id: "2", role: "assistant" as const, content: "WIM UI is a modern design system built with React and Vanilla CSS, focusing on premium aesthetics and accessibility." },
+    ];
+
+    return (
+      <AuditPage title={t("audit:ai_family_title")}>
+
+        {/* Streaming Visual Check */}
+        <ComparisonGrid title={t("audit:ai_streaming_visual_check")}>
+          <ComponentGroup 
+            label={`${t("audit:label_streaming_text")} — active`}
+            maxWidth="var(--wim-width-md)"
+          >
+            <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
+              <StreamingText 
+                content="The design system incorporates advanced micro-interactions and a robust token system to ensure consistency across all components." 
+                isStreaming 
+              />
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_chat_ui")} — overall structure`} align="stretch">
+            <Box style={{ height: "450px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <ChatMessageList style={{ flex: 1, padding: "var(--wim-spacing-md)" }}>
+                {sampleMessages.map((msg) => (
+                  <ChatMessage 
+                    key={msg.id} 
+                    position={msg.role === "user" ? "right" : "left"}
+                    variant={msg.role === "user" ? "primary" : "default"}
+                  >
+                    {msg.content}
+                  </ChatMessage>
+                ))}
+                <ChatMessage isTyping />
+              </ChatMessageList>
+              <ChatInput placeholder="Type a message..." showAttach />
+            </Box>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* ThoughtProcess Check */}
+        <ComparisonGrid title={t("audit:ai_thought_process_check")}>
+          <ComponentGroup 
+            label={`${t("audit:label_thought_process")} — expanded`}
+            maxWidth="var(--wim-width-md)"
+          >
+            <ThoughtProcess title="Analysis in progress" defaultExpanded>
+              {sampleSteps.map((step, i) => (
+                <ThoughtStep key={i} label={step.label} status={step.status} isLast={i === sampleSteps.length - 1}>
+                  {step.content}
+                </ThoughtStep>
+              ))}
+            </ThoughtProcess>
+          </ComponentGroup>
+          <ComponentGroup 
+            label={`${t("audit:label_thought_process")} — collapsed`}
+            maxWidth="var(--wim-width-md)"
+          >
+            <ThoughtProcess title="Step-by-step reasoning" defaultExpanded={false}>
+              <ThoughtStep label="Search" status="completed">Searching for data...</ThoughtStep>
+              <ThoughtStep label="Process" status="completed" isLast>Processing data...</ThoughtStep>
+            </ThoughtProcess>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* PromptInput Action Check */}
+        <ComparisonGrid title={t("audit:ai_prompt_action_check")}>
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — default`} align="stretch" maxWidth="var(--wim-width-md)">
+            <PromptInput placeholder="Ask anything..." showAttach fullWidth />
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — loading & disabled`} align="stretch" maxWidth="var(--wim-width-md)">
+            <Stack gap="md">
+              <PromptInput value="Generating response..." loading disabled fullWidth />
+              <PromptInput placeholder="Disabled state" disabled fullWidth />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — with label and error`} align="stretch" maxWidth="var(--wim-width-md)">
+            <PromptInput 
+              label="System Prompt" 
+              error="The prompt exceeds the maximum allowed length." 
+              defaultValue="Explain the concept of quantum computing to a 5-year old."
+              maxLength={100}
+              fullWidth
+            />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Fluid Width Check (Readability Comparison) */}
+        <ComparisonGrid title={t("audit:fluid_width_check")}>
+          <ComponentGroup label={t("audit:label_truly_full_width")} align="stretch">
+            <Stack gap="lg">
+              <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:label_fluid_prompt")} />
+              <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
+                <StreamingText 
+                  content="This is a truly full width streaming text component that will span the entire width of its container regardless of length. This confirms that the component can handle extreme horizontal stretches." 
+                  isStreaming 
+                />
+              </Box>
+            </Stack>
+          </ComponentGroup>
+
+          <ComponentGroup 
+            label={t("audit:label_readable_limit")} 
+            maxWidth="60rem"
+          >
+            <Stack gap="lg">
+              <PromptInput fullWidth placeholder={t("audit:label_prompt_input_capped")} />
+              <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
+                <StreamingText 
+                  content="This streaming text is capped at 60rem (960px) to maintain optimal readability for long-form AI responses, even on ultra-wide displays. Following the same rule as standard InputFamily components ensures a consistent reading experience across the entire platform." 
+                />
+              </Box>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+      </AuditPage>
+    );
+  },
+};

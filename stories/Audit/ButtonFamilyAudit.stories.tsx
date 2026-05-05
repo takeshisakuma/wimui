@@ -9,7 +9,6 @@ import {
   CopyButton,
   FloatButton,
   Stack,
-  Text,
   Box,
 } from "../../src";
 
@@ -22,58 +21,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box m="lg">
-    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary">
-        {label}
-      </Text>
-    </Box>
-    <Stack gap="var(--wim-spacing-md)" align="start">
-      {children}
-    </Stack>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
@@ -84,9 +32,7 @@ export const Overview: StoryObj = {
     const intents = ["default", "destructive", "positive"] as const;
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:button_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:button_family_title")}>
         {/* Size Comparison */}
         <ComparisonGrid title={t("audit:size_comparison")}>
           {sizes.map((size) => (
@@ -162,7 +108,7 @@ export const Overview: StoryObj = {
             </Stack>
           </Box>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

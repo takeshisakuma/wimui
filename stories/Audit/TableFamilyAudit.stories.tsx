@@ -7,9 +7,6 @@ import {
   DataGrid,
   List,
   ListItem,
-  Stack,
-  Text,
-  Box,
 } from "../../src";
 
 const meta: Meta = {
@@ -21,59 +18,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="md" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box mx="md" my="lg">
-    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-        overflowX: "auto",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary">
-        {label}
-      </Text>
-    </Box>
-    <Stack gap="var(--wim-spacing-md)" align="start" w="100%">
-      {children}
-    </Stack>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
@@ -116,9 +61,7 @@ export const Overview: StoryObj = {
     };
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:table_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:table_family_title")}>
         {/* Standard Table Variations */}
         <ComparisonGrid title={t("audit:label_table_standard")}>
           <ComponentGroup label={t("audit:label_table_standard")}>
@@ -222,7 +165,7 @@ export const Overview: StoryObj = {
             </Table>
           </ComponentGroup>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

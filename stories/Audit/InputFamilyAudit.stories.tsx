@@ -26,14 +26,9 @@ import {
   CounterTextarea,
   Button,
   Stack,
-  Text,
-  Box,
 } from "../../src";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const InputAny = Input as any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const PasswordInputAny = PasswordInput as any;
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {
   title: "Audit/InputFamily",
@@ -44,60 +39,10 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="md" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box mx="md" my="lg">
-    <Text color="text-secondary" size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
-      {title}
-    </Text>
-    <Box
-      bg="subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-        overflowX: "auto",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-interface ComponentGroupProps {
-  label: string;
-  children: React.ReactNode;
-  maxWidth?: string;
-  align?: "start" | "center" | "end" | "stretch";
-}
-
-const ComponentGroup = ({ label, children, maxWidth, align = "stretch" }: ComponentGroupProps) => (
-  <Stack direction="column" gap="var(--wim-spacing-xs)" w="100%">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary">
-        {label}
-      </Text>
-    </Box>
-    <Stack direction="column" gap="md" align={align} style={{ maxWidth: maxWidth }} w="100%">
-      {children}
-    </Stack>
-  </Stack>
-);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const InputAny = Input as any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const PasswordInputAny = PasswordInput as any;
 
 export const Overview: StoryObj = {
   render: () => {
@@ -107,17 +52,15 @@ export const Overview: StoryObj = {
     const intents = ["default", "error"] as const;
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:input_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:input_family_title")}>
         {/* 1. Basic Comparison */}
         <ComparisonGrid title={t("audit:basic_comparison")}>
-          <ComponentGroup label={t("audit:label_standard_inputs")}>
+          <ComponentGroup label={t("audit:label_standard_inputs")} align="stretch" maxWidth="var(--wim-width-md)">
             <Input label={t("audit:label_standard_input")} placeholder={t("audit:label_standard_input")} />
             <SearchInput label={t("audit:label_search_input")} placeholder={t("audit:label_search_input")} />
             <NumberInput label={t("audit:label_number_input")} placeholder={t("audit:label_number_input")} />
           </ComponentGroup>
-          <ComponentGroup label={t("audit:label_otp_input")}>
+          <ComponentGroup label={t("audit:label_otp_input")} align="stretch" maxWidth="var(--wim-width-md)">
             <OtpInput label={t("audit:label_otp_input")} length={6} />
           </ComponentGroup>
         </ComparisonGrid>
@@ -125,7 +68,7 @@ export const Overview: StoryObj = {
         {/* 2. Variant Comparison */}
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
-            <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
+            <ComponentGroup key={variant} label={t("audit:label_variant", { variant })} align="stretch" maxWidth="var(--wim-width-md)">
               <Input label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:label_variant", { variant })} />
               <Textarea label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:label_variant", { variant })} />
               {variant === "ghost" && (
@@ -138,7 +81,7 @@ export const Overview: StoryObj = {
         {/* 3. Intent Comparison */}
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
-            <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
+            <ComponentGroup key={intent} label={t("audit:label_intent", { intent })} align="stretch" maxWidth="var(--wim-width-md)">
               <InputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
               <PasswordInputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
               <SmartSearchInput label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
@@ -153,7 +96,7 @@ export const Overview: StoryObj = {
 
         {/* 4. Specialized & AI Inputs */}
         <ComparisonGrid title={t("audit:specialized_inputs")}>
-          <ComponentGroup label={t("audit:specialized_inputs")}>
+          <ComponentGroup label={t("audit:specialized_inputs")} align="stretch" maxWidth="var(--wim-width-md)">
             <PromptInput label={t("audit:label_ai_prompt")} placeholder={t("audit:sample_prompt_ai")} />
             <SmartSearchInput label={t("audit:label_ai_smart_search")} placeholder={t("audit:sample_smart_search_ai")} />
             <ColorPicker label={t("audit:label_color_picker")} />
@@ -221,7 +164,7 @@ export const Overview: StoryObj = {
               placeholder={t("audit:sample_name_placeholder")}
             />
           </ComponentGroup>
-          <ComponentGroup label={t("audit:label_large_text_fields")}>
+          <ComponentGroup label={t("audit:label_large_text_fields")} align="stretch" maxWidth="var(--wim-width-md)">
             <Textarea label={t("audit:label_standard_textarea")} placeholder={t("audit:label_standard_textarea")} />
             <CounterTextarea label={t("audit:label_counter_textarea")} maxLength={100} placeholder={t("audit:label_counter_textarea")} />
             <Textarea label={t("audit:label_large_textarea")} rows={5} placeholder={t("audit:sample_textarea_rows", { rows: 5 })} />
@@ -246,7 +189,7 @@ export const Overview: StoryObj = {
 
         {/* 6. Focus & Disabled States */}
         <ComparisonGrid title={t("audit:states_disabled")}>
-          <ComponentGroup label={t("audit:label_disabled")}>
+          <ComponentGroup label={t("audit:label_disabled")} align="stretch" maxWidth="var(--wim-width-md)">
             <Input label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
             <SearchInput label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
             <Textarea label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
@@ -287,7 +230,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

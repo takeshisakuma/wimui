@@ -154,7 +154,7 @@
 
 ## インタラクション状態（`:hover` / `:active`）の背景色変更
 
-- `:hover` や `:active` でボタン・タイルなどの **背景色を変化** させる場合は、`opacity` や `filter: brightness()` を使わず、CSS Color Level 4 の **oklch 相対色構文** を使ってください。
+- `:hover` や `:active` でボタン・タイルなどの 背景色を変化 させる場合は、`opacity` や `filter: brightness()` を使わず、CSS Color Level 4 の oklch 相対色構文 を使ってください。
 
   ```scss
   // NG — ダークモードで知覚的な変化量がバラつく
@@ -176,7 +176,7 @@
   }
   ```
 
-- `opacity` は **表示/非表示の切り替え**（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
+- `opacity` は 表示/非表示の切り替え（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
 
 ## `!important` の使用
 

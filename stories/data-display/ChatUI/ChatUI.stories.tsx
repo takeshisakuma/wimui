@@ -9,7 +9,8 @@ import {
   ChatMessage, 
   ChatMessageList, 
   PromptInput,
-  StreamingText 
+  StreamingText,
+  Icon
 } from "../../../src/index";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -127,7 +128,7 @@ export const Interactive: Story = {
         const timestamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
         setMessages((prev) => [...prev, { 
           id: Date.now().toString(), 
-          text: `📎 Attached: ${file.name}`, 
+          text: t("chat.attachment_prefix", { fileName: file.name }), 
           position: "right", 
           sender: t("story.chat_you"), 
           timestamp,
@@ -183,7 +184,7 @@ export const WithIcons: Story = {
             <ChatMessage 
               position="left" 
               showAvatar 
-              avatar={<div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}>👤</div>}
+              avatar={<div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}><Icon name="UserIcon" size="sm" /></div>}
             >
               {t("story.chat_msg_12")}
             </ChatMessage>
@@ -285,7 +286,7 @@ export const AiAssistantIntegration: Story = {
         const timestamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
         setMessages((prev) => [...prev, { 
           id: Date.now().toString(), 
-          text: `📎 Attached: ${file.name}`, 
+          text: t("chat.attachment_prefix", { fileName: file.name }), 
           position: "right", 
           sender: t("story.chat_you"), 
           timestamp,
@@ -302,9 +303,9 @@ export const AiAssistantIntegration: Story = {
 
     const MessageActions = () => (
       <div style={{ display: "flex", gap: "4px" }}>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Copy">📋</button>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Good">👍</button>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Bad">👎</button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Copy"><Icon name="CopyIcon" size="sm" /></button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Good"><Icon name="ThumbUpIcon" size="sm" /></button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Bad"><Icon name="ThumbDownIcon" size="sm" /></button>
       </div>
     );
 
@@ -325,7 +326,7 @@ export const AiAssistantIntegration: Story = {
                 avatar={
                   msg.position === "left" ? (
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}>
-                      <span>✨</span>
+                      <Icon name="StarIcon" size="sm" />
                     </div>
                   ) : (
                     <ChatAvatar fallback="Y" color="s18" />
@@ -346,7 +347,7 @@ export const AiAssistantIntegration: Story = {
                 senderName={t("story.chat_ai_assistant")} 
                 showAvatar 
                 isTyping
-                avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}><span>✨</span></div>}
+                avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}><Icon name="StarIcon" size="sm" /></div>}
               />
             )}
           </ChatMessageList>

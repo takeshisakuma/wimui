@@ -65,6 +65,14 @@
     "search": "Search",
     "submit": "Submit"
   },
+  "chat": {
+    "attachment_prefix": "Attached: {{fileName}}",
+    "placeholder": "Type a message...",
+    "placeholder_interactive": "Type a message and press Enter...",
+    "ai_assistant": "AI Assistant",
+    "you": "You",
+    "support": "Support"
+  },
   "analytics": "Analytics",
   "aspect": {
     "ratio": "Aspect ratio"

@@ -13,7 +13,6 @@ import {
   TimelineConnector,
   TimelineContent,
   DataGrid,
-  Stack,
   Text,
   Box,
 } from "../../src";
@@ -27,59 +26,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="md" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box mx="md" my="lg">
-    <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "minmax(0, 1fr)",
-        gap: "var(--wim-spacing-xl)",
-        padding: "var(--wim-spacing-md)",
-        overflowX: "auto",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="text-secondary">
-        {label}
-      </Text>
-    </Box>
-    <Box style={{ width: "100%", overflow: "hidden" }}>
-      {children}
-    </Box>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const ViewportAudit: StoryObj = {
   render: () => {
@@ -122,12 +69,10 @@ export const ViewportAudit: StoryObj = {
     }));
 
     return (
-      <Box bg="surface" pb="xl">
-        <SectionTitle>{t("audit:viewport_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:viewport_family_title")}>
         {/* Scrollbar & Masking Audit */}
         <ComparisonGrid title={`${t("audit:scrollbar_design_check")} & ${t("audit:masking_fade_check")}`}>
-          <ComponentGroup label={t("audit:label_gantt_chart")}>
+          <ComponentGroup label={t("audit:label_gantt_chart")} noStack>
              <div style={{ height: "320px" }}>
                <GanttChart
                  tasks={ganttTasks}
@@ -138,15 +83,15 @@ export const ViewportAudit: StoryObj = {
              </div>
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_calendar_heatmap")}>
+          <ComponentGroup label={t("audit:label_calendar_heatmap")} noStack>
             <CalendarHeatmap
               data={heatmapData}
               year={2026}
             />
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_kanban")}>
-            <Box style={{ overflow: "hidden", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)" }}>
+          <ComponentGroup label={t("audit:label_kanban")} noStack>
+            <Box style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)" }}>
               <KanbanBoard>
                 <KanbanBoard.Column id="todo" title="To Do" cardCount={3}>
                   <KanbanBoard.Card id="c1">Research UI Patterns</KanbanBoard.Card>
@@ -168,8 +113,8 @@ export const ViewportAudit: StoryObj = {
 
         {/* Sticky & Boundary Audit */}
         <ComparisonGrid title={t("audit:sticky_boundary_check")}>
-          <ComponentGroup label={t("audit:label_viewport_grid")}>
-            <Box style={{ height: "400px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden" }}>
+          <ComponentGroup label={t("audit:label_viewport_grid")} noStack>
+            <Box style={{ height: "400px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)" }}>
               <DataGrid
                 columns={gridColumns}
                 data={gridData}
@@ -179,7 +124,7 @@ export const ViewportAudit: StoryObj = {
             </Box>
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_timeline")}>
+          <ComponentGroup label={t("audit:label_timeline")} noStack>
              <Box style={{ height: "350px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "auto", padding: "var(--wim-spacing-lg)", background: "var(--wim-color-bg-surface)" }}>
                 <Timeline align="left">
                   <TimelineItem>
@@ -225,7 +170,7 @@ export const ViewportAudit: StoryObj = {
              </Box>
           </ComponentGroup>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

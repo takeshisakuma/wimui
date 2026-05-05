@@ -353,7 +353,7 @@
     "search_placeholder": "Que tipos de botões existem no WIM UI?",
     "search_result_1": "Resultado da IA 1 relacionado a \"{{val}}\"",
     "search_result_2": "Resultado da IA 2 correspondendo ao contexto de \"{{val}}\"",
-    "search_suggestions": "✨ Sugestões da IA",
+    "search_suggestions": "Sugestões da IA",
     "search_thinking": "IA pensando..."
   },
   "snackbar": "Snackbar",

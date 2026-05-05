@@ -12,9 +12,6 @@ import {
   SegmentedControl,
   ToggleGroup,
   Slider,
-  Stack,
-  Text,
-  Box,
 } from "../../src";
 
 const meta: Meta = {
@@ -26,58 +23,7 @@ const meta: Meta = {
 
 export default meta;
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
-    <Text size="lg" weight="bold">
-      {children}
-    </Text>
-  </Box>
-);
-
-const ComparisonGrid = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <Box m="lg">
-    <Text size="md" weight="bold" style={{ margin: "0 0 var(--wim-spacing-md) 0" }}>
-      {title}
-    </Text>
-    <Box
-      bg="bg-surface-subtle"
-      radius="md"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "var(--wim-spacing-lg)",
-        padding: "var(--wim-spacing-md)",
-      }}
-    >
-      {children}
-    </Box>
-  </Box>
-);
-
-const ComponentGroup = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => (
-  <Stack gap="var(--wim-spacing-xs)">
-    <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
-      <Text size="xs" color="primary" weight="medium">
-        {label}
-      </Text>
-    </Box>
-    <Stack gap="var(--wim-spacing-md)" align="start">
-      {children}
-    </Stack>
-  </Stack>
-);
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const InteractiveSegmentedControl = ({ onChange, ...props }: Omit<React.ComponentProps<typeof SegmentedControl>, "onChange"> & { onChange?: (value: string) => void }) => {
   const [value, setValue] = React.useState(props.value || "a");
@@ -109,9 +55,7 @@ export const Overview: StoryObj = {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     return (
-      <Box bg="surface">
-        <SectionTitle>{t("audit:selection_family_title")}</SectionTitle>
-
+      <AuditPage title={t("audit:selection_family_title")}>
         {/* Alignment & Focus Check */}
         <ComparisonGrid title={t("audit:alignment_focus_check")}>
           <ComponentGroup label={t("audit:label_checkbox")}>
@@ -248,7 +192,7 @@ export const Overview: StoryObj = {
             <Slider disabled defaultValue={30} style={{ width: "200px" }} aria-label={t("audit:label_disabled")} />
           </ComponentGroup>
         </ComparisonGrid>
-      </Box>
+      </AuditPage>
     );
   },
 };

@@ -65,6 +65,14 @@
     "search": "検索",
     "submit": "送信"
   },
+  "chat": {
+    "attachment_prefix": "添付: {{fileName}}",
+    "placeholder": "メッセージを入力...",
+    "placeholder_interactive": "メッセージを入力して送信...",
+    "ai_assistant": "AIアシスタント",
+    "you": "あなた",
+    "support": "サポート"
+  },
   "analytics": "分析",
   "aspect": {
     "ratio": "アスペクト比"

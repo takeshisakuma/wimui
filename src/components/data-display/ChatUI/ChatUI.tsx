@@ -6,7 +6,7 @@ import { SendIcon, PaperclipIcon } from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./chat-ui.module.scss";
 
-export interface ChatContainerProps {
+export interface ChatContainerProps extends React.ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
   className?: string;
 }
@@ -14,23 +14,24 @@ export interface ChatContainerProps {
 export const ChatContainer = ({
   children,
   className,
+  ...props
 }: ChatContainerProps): React.ReactElement => {
   return (
-    <div className={classNames(styles.container, className)}>
+    <div className={classNames(styles.container, className)} {...props}>
       {children}
     </div>
   );
 };
 
-export interface ChatMessageListProps {
+export interface ChatMessageListProps extends React.ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
   className?: string;
 }
 
 export const ChatMessageList = forwardRef<HTMLDivElement, ChatMessageListProps>(
-  ({ children, className }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <div ref={ref} className={classNames(styles.messageList, className)}>
+      <div ref={ref} className={classNames(styles.messageList, className)} {...props}>
         {children}
       </div>
     );
@@ -39,7 +40,7 @@ export const ChatMessageList = forwardRef<HTMLDivElement, ChatMessageListProps>(
 
 ChatMessageList.displayName = "ChatMessageList";
 
-export interface ChatMessageProps {
+export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> {
   children?: React.ReactNode;
   position?: "left" | "right";
   variant?: "default" | "primary" | "secondary";
@@ -63,6 +64,7 @@ export const ChatMessage = ({
   isTyping = false,
   actions,
   className,
+  ...props
 }: ChatMessageProps): React.ReactElement => {
   return (
     <div
@@ -73,6 +75,7 @@ export const ChatMessage = ({
         { [styles.hasAvatar]: showAvatar },
         className,
       )}
+      {...props}
     >
       {showAvatar && position === "left" && (
         <div className={styles.messageAvatar}>{avatar}</div>
@@ -108,7 +111,7 @@ export const ChatMessage = ({
   );
 };
 
-export interface ChatInputAreaProps {
+export interface ChatInputAreaProps extends React.ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
   className?: string;
 }
@@ -120,9 +123,10 @@ export interface ChatInputAreaProps {
 export const ChatInputArea = ({
   children,
   className,
+  ...props
 }: ChatInputAreaProps): React.ReactElement => {
   return (
-    <div className={classNames(styles.inputArea, className)}>
+    <div className={classNames(styles.inputArea, className)} {...props}>
       {children}
     </div>
   );
@@ -230,7 +234,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
 
 ChatInput.displayName = "ChatInput";
 
-export interface ChatAvatarProps {
+export interface ChatAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   src?: string;
   alt?: string;
   fallback?: string;
@@ -246,6 +250,7 @@ export const ChatAvatar = ({
   size = "md",
   color = "s18",
   className,
+  ...props
 }: ChatAvatarProps): React.ReactElement => {
   const [imageError, setImageError] = React.useState(false);
 
@@ -259,6 +264,7 @@ export const ChatAvatar = ({
         styles[color],
         className,
       )}
+      {...props}
     >
       {src && !imageError ? (
         <img

@@ -176,6 +176,31 @@
     text-align: center;
   }
 
+  .fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wim-color-text-secondary);
+    background-color: var(--wim-color-bg-surface-subtle);
+  }
+
+  .defaultFallback {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    padding: var(--wim-spacing-md);
+  }
+
+  .fallbackText {
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-medium);
+    text-align: center;
+    word-break: break-all;
+  }
+
   @keyframes skeleton-loading {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
