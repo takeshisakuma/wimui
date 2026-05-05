@@ -157,6 +157,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     );
   }
 );
+DropdownInner.displayName = "Dropdown";
 
 export interface DropdownTriggerProps extends React.ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
@@ -193,6 +194,7 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
     );
   }
 );
+DropdownTrigger.displayName = "Dropdown.Trigger";
 
 // We Omit 'show' because it's managed via context
 export interface DropdownMenuProps extends Omit<React.ComponentPropsWithoutRef<typeof Transition>, "show"> {
@@ -226,6 +228,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     );
   }
 );
+DropdownMenu.displayName = "Dropdown.Menu";
 
 export interface DropdownItemProps extends React.ComponentPropsWithoutRef<typeof BaseListItem> {
   children: ReactNode;
@@ -272,21 +275,22 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
     );
   }
 );
-
-// --- Compound Components ---
-DropdownInner.displayName = "Dropdown";
-DropdownTrigger.displayName = "Dropdown.Trigger";
-DropdownMenu.displayName = "Dropdown.Menu";
 DropdownItem.displayName = "Dropdown.Item";
 
-export const Dropdown = Object.assign(DropdownInner, {
-  Trigger: DropdownTrigger,
-  Menu: DropdownMenu,
-  Item: DropdownItem,
-}) as typeof DropdownInner & {
+export interface DropdownComponent extends React.ForwardRefExoticComponent<DropdownProps & React.RefAttributes<HTMLDivElement>> {
   Trigger: typeof DropdownTrigger;
   Menu: typeof DropdownMenu;
   Item: typeof DropdownItem;
-};
+}
 
-export default Dropdown;
+const DropdownCompound = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => (
+  <DropdownInner {...props} ref={ref} />
+)) as DropdownComponent;
+
+DropdownCompound.displayName = "Dropdown";
+DropdownCompound.Trigger = DropdownTrigger;
+DropdownCompound.Menu = DropdownMenu;
+DropdownCompound.Item = DropdownItem;
+
+export { DropdownCompound as Dropdown };
+export default DropdownCompound;

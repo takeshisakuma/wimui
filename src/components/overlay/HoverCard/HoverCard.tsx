@@ -208,13 +208,15 @@ export const HoverCardContent = ({
     </div>
   );
 };
-// --- Compound Components ---
-export const HoverCard = Object.assign(HoverCardInner, {
-  Trigger: HoverCardTrigger,
-  Content: HoverCardContent,
-}) as typeof HoverCardInner & {
+export interface HoverCardComponent extends React.FC<HoverCardProps> {
   Trigger: typeof HoverCardTrigger;
   Content: typeof HoverCardContent;
-};
+}
 
-export default HoverCard;
+const HoverCardCompound: HoverCardComponent = (props) => <HoverCardInner {...props} />;
+HoverCardCompound.displayName = "HoverCard";
+HoverCardCompound.Trigger = HoverCardTrigger;
+HoverCardCompound.Content = HoverCardContent;
+
+export { HoverCardCompound as HoverCard };
+export default HoverCardCompound;

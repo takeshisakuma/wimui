@@ -2,6 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
+import { Selectbox } from "../../form/Selectbox/Selectbox";
+import { Input } from "../../form/Input/Input";
+import { Button } from "../../form/Button/Button";
 import styles from "./pagination.module.scss";
 
 export interface PaginationProps {
@@ -38,6 +41,7 @@ export interface PaginationProps {
     pageAriaLabel?: (page: number) => string;
     itemsPerPage?: string;
     goTo?: string;
+    go?: string;
     pageSizeAriaLabel?: string;
     jumpToPageAriaLabel?: string;
     navAriaLabel?: string;
@@ -70,6 +74,7 @@ export const Pagination = ({
     pageAriaLabel = (page: number) => t("a11y.go_to_page", { page: String(page) }),
     itemsPerPage = t("pagination.items_per_page"),
     goTo = t("pagination.go_to"),
+    go = t("pagination.go"),
     pageSizeAriaLabel = t("a11y.items_per_page"),
     jumpToPageAriaLabel = t("a11y.jump_to_page"),
     navAriaLabel = t("a11y.pagination_nav"),
@@ -145,13 +150,17 @@ export const Pagination = ({
     onChange?.(1, newSize);
   };
 
+  const executeJump = () => {
+    const page = parseInt(jumpValue);
+    if (!isNaN(page) && page >= 1 && page <= totalPages) {
+      handlePageChange(page);
+      setJumpValue("");
+    }
+  };
+
   const handleQuickJump = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      const page = parseInt(jumpValue);
-      if (!isNaN(page) && page >= 1 && page <= totalPages) {
-        handlePageChange(page);
-        setJumpValue("");
-      }
+      executeJump();
     }
   };
 
@@ -301,18 +310,16 @@ export const Pagination = ({
         {/* Page Size Changer */}
         {showSizeChanger && (
           <div className={styles.sizeChanger}>
-            <select
-              value={currentPageSize}
-              onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-              className={styles.sizeSelect}
+            <Selectbox
+              value={String(currentPageSize)}
+              onChange={(val) => handlePageSizeChange(Number(val))}
+              options={pageSizeOptions.map((size) => ({
+                label: `${size} ${itemsPerPage}`,
+                value: String(size),
+              }))}
+              width="auto"
               aria-label={pageSizeAriaLabel}
-            >
-              {pageSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size} {itemsPerPage}
-                </option>
-              ))}
-            </select>
+            />
           </div>
         )}
 
@@ -320,16 +327,24 @@ export const Pagination = ({
         {showQuickJumper && (
           <div className={styles.quickJumper}>
             <span>{goTo}</span>
-            <input
+            <Input
               type="number"
               min={1}
               max={totalPages}
               value={jumpValue}
               onChange={(e) => setJumpValue(e.target.value)}
               onKeyDown={handleQuickJump}
-              className={styles.jumpInput}
+              width="60px"
               aria-label={jumpToPageAriaLabel}
             />
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={executeJump}
+              disabled={!jumpValue}
+            >
+              {go}
+            </Button>
           </div>
         )}
       </div>

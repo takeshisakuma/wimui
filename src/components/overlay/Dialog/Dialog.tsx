@@ -251,16 +251,7 @@ export const DialogDescription = ({
 
 DialogDescription.displayName = "Dialog.Description";
 
-// --- Compound Components ---
-export const Dialog = Object.assign(DialogInner, {
-  Trigger: DialogTrigger,
-  Content: DialogContent,
-  Close: DialogClose,
-  Header: DialogHeader,
-  Footer: DialogFooter,
-  Title: DialogTitle,
-  Description: DialogDescription,
-}) as typeof DialogInner & {
+export interface DialogComponent extends React.FC<DialogProps> {
   Trigger: typeof DialogTrigger;
   Content: typeof DialogContent;
   Close: typeof DialogClose;
@@ -268,6 +259,17 @@ export const Dialog = Object.assign(DialogInner, {
   Footer: typeof DialogFooter;
   Title: typeof DialogTitle;
   Description: typeof DialogDescription;
-};
+}
 
-export default Dialog;
+const DialogCompound: DialogComponent = (props) => <DialogInner {...props} />;
+DialogCompound.displayName = "Dialog";
+DialogCompound.Trigger = DialogTrigger;
+DialogCompound.Content = DialogContent;
+DialogCompound.Close = DialogClose;
+DialogCompound.Header = DialogHeader;
+DialogCompound.Footer = DialogFooter;
+DialogCompound.Title = DialogTitle;
+DialogCompound.Description = DialogDescription;
+
+export { DialogCompound as Dialog };
+export default DialogCompound;

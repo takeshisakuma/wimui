@@ -8,6 +8,8 @@
   .root {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
     container-type: inline-size;
     overflow: hidden;
     font-size: var(--wim-font-size-sm);

@@ -340,16 +340,18 @@ export const MenuDivider = ({ className }: MenuDividerProps) => {
 };
 
 // --- Compound Components ---
-export const Menu = Object.assign(MenuInner, {
-  Item: MenuItem,
-  Group: MenuItemGroup,
-  SubMenu: SubMenu,
-  Divider: MenuDivider,
-}) as typeof MenuInner & {
+export interface MenuComponent extends React.FC<MenuProps> {
   Item: typeof MenuItem;
   Group: typeof MenuItemGroup;
   SubMenu: typeof SubMenu;
   Divider: typeof MenuDivider;
-};
+}
+
+export const Menu: MenuComponent = Object.assign(MenuInner, {
+  Item: MenuItem,
+  Group: MenuItemGroup,
+  SubMenu: SubMenu,
+  Divider: MenuDivider,
+});
 
 export default Menu;

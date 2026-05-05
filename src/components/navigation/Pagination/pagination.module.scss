@@ -123,79 +123,24 @@
         box-shadow: var(--wim-shadow-focus);
       }
     }
+  }
 
-    .total {
-      font-size: var(--wim-font-size-md);
-      color: var(--wim-color-text-secondary);
-    }
+  .total {
+    font-size: var(--wim-font-size-md);
+    color: var(--wim-color-text-secondary);
+  }
 
-    .sizeChanger {
-      display: flex;
-      gap: var(--wim-spacing-sm);
-      align-items: center;
-    }
+  .sizeChanger {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
 
-    .sizeSelect {
-      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-      font-size: var(--wim-font-size-md);
-      color: var(--wim-color-text-primary);
-      cursor: pointer;
-      outline: none;
-      background-color: var(--wim-color-bg-component);
-      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-      border-radius: var(--wim-radius-md);
-      transition: all var(--wim-transition-base);
-
-      &:hover {
-        border-color: var(--wim-color-primary);
-      }
-
-      &:focus {
-        border-color: var(--wim-color-primary);
-        box-shadow: var(--wim-shadow-field-focus);
-      }
-    }
-
-    .quickJumper {
-      display: flex;
-      gap: var(--wim-spacing-sm);
-      align-items: center;
-      font-size: var(--wim-font-size-md);
-      color: var(--wim-color-text-secondary);
-    }
-
-    .jumpInput {
-      width: var(--wim-height-xl);
-      padding: var(--wim-spacing-sm);
-      font-size: var(--wim-font-size-md);
-      color: var(--wim-color-text-primary);
-      text-align: center;
-      outline: none;
-      background-color: var(--wim-color-bg-component);
-      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-      border-radius: var(--wim-radius-md);
-      transition: all var(--wim-transition-base);
-
-      &:hover {
-        border-color: var(--wim-color-primary);
-      }
-
-      &:focus {
-        border-color: var(--wim-color-primary);
-        box-shadow: var(--wim-shadow-field-focus);
-      }
-
-      /* Chrome, Safari, Edge, Opera */
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        margin: 0;
-        appearance: none;
-      }
-
-      /* Firefox */
-      &[type="number"] {
-        appearance: textfield;
-      }
-    }
+  .quickJumper {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    font-size: var(--wim-font-size-md);
+    color: var(--wim-color-text-secondary);
   }
 }

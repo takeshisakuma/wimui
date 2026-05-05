@@ -472,6 +472,7 @@
   "optional": "Optional",
   "overview": "Overview",
   "pagination": {
+    "go": "Go",
     "go_to": "Go to",
     "items_per_page": "items per page"
   },

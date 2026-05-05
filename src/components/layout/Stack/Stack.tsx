@@ -31,6 +31,8 @@ export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
     | "evenly"
     | "stretch"
     | React.CSSProperties["justifyContent"];
+  /** Whether children should wrap */
+  wrap?: boolean | React.CSSProperties["flexWrap"];
 };
 
 const mapAlign = (val?: string) => {
@@ -68,6 +70,7 @@ export const Stack = React.forwardRef(
       gap = "md",
       align,
       justify,
+      wrap,
       style,
       className,
       children,
@@ -132,6 +135,7 @@ export const Stack = React.forwardRef(
           gap: getGapValue(gap),
           alignItems: mapAlign(align as string),
           justifyContent: mapJustify(justify as string),
+          flexWrap: typeof wrap === "boolean" ? (wrap ? "wrap" : "nowrap") : wrap,
           ...responsiveStyles,
           ...style,
         }}

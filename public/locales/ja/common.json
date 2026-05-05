@@ -495,6 +495,7 @@
   "optional": "任意",
   "overview": "概要",
   "pagination": {
+    "go": "移動",
     "go_to": "移動",
     "items_per_page": "件 / ページ"
   },

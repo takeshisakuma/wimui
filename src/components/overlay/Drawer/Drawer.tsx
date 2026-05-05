@@ -249,16 +249,7 @@ export const DrawerDescription = ({
   );
 };
 
-// --- Compound Components ---
-export const Drawer = Object.assign(DrawerInner, {
-  Trigger: DrawerTrigger,
-  Content: DrawerContent,
-  Header: DrawerHeader,
-  Footer: DrawerFooter,
-  Title: DrawerTitle,
-  Description: DrawerDescription,
-  Close: DrawerClose,
-}) as typeof DrawerInner & {
+export interface DrawerComponent extends React.FC<DrawerProps> {
   Trigger: typeof DrawerTrigger;
   Content: typeof DrawerContent;
   Header: typeof DrawerHeader;
@@ -266,6 +257,17 @@ export const Drawer = Object.assign(DrawerInner, {
   Title: typeof DrawerTitle;
   Description: typeof DrawerDescription;
   Close: typeof DrawerClose;
-};
+}
 
-export default Drawer;
+const DrawerCompound: DrawerComponent = (props) => <DrawerInner {...props} />;
+DrawerCompound.displayName = "Drawer";
+DrawerCompound.Trigger = DrawerTrigger;
+DrawerCompound.Content = DrawerContent;
+DrawerCompound.Header = DrawerHeader;
+DrawerCompound.Footer = DrawerFooter;
+DrawerCompound.Title = DrawerTitle;
+DrawerCompound.Description = DrawerDescription;
+DrawerCompound.Close = DrawerClose;
+
+export { DrawerCompound as Drawer };
+export default DrawerCompound;

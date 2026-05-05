@@ -22,7 +22,7 @@ const meta: Meta = {
 export default meta;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Box px="lg" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
+  <Box px="md" py="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
     <Text size="lg" weight="bold">
       {children}
     </Text>
@@ -36,7 +36,7 @@ const ComparisonGrid = ({
   title: string;
   children: React.ReactNode;
 }) => (
-  <Box m="lg">
+  <Box mx="md" my="lg">
     <Text color="text-secondary" size="sm" style={{ marginBottom: "var(--wim-spacing-md)" }}>
       {title}
     </Text>
@@ -48,6 +48,7 @@ const ComparisonGrid = ({
         gridTemplateColumns: "1fr",
         gap: "var(--wim-spacing-lg)",
         padding: "var(--wim-spacing-md)",
+        overflowX: "auto",
       }}
     >
       {children}

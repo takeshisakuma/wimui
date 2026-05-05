@@ -74,16 +74,14 @@ const DefaultFallback = ({
           title={labels.title}
           description={error.message}
         />
-        <Stack direction="row" gap="sm">
+        <Stack direction="row" gap="sm" wrap>
           <Button
             onClick={reset}
             variant="solid"
-            size="sm"
           >{labels.retry}</Button>
           <Button
             onClick={() => setShowDetails(!showDetails)}
             variant="outline"
-            size="sm"
           >{showDetails ? labels.hideDetails : labels.showDetails}</Button>
         </Stack>
         {showDetails && (

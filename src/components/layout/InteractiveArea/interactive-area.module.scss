@@ -76,6 +76,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .icon {
@@ -110,6 +114,8 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--wim-spacing-sm);
+  justify-content: center;
   margin-top: var(--wim-spacing-md);
 }

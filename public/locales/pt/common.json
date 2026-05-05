@@ -501,6 +501,7 @@
   "optional": "Opcional",
   "overview": "Visão Geral",
   "pagination": {
+    "go": "Ir",
     "go_to": "Ir para",
     "items_per_page": "itens / página"
   },

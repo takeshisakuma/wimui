@@ -62,6 +62,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
       tooltipFormatter,
       asChild = false,
       children,
+      ...props
     },
     ref,
   ) => {
@@ -112,7 +113,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
     ];
 
     return (
-      <Component className={classNames(styles.root, className)} ref={ref}>
+      <Component className={classNames(styles.root, className)} ref={ref} {...props}>
         <Slottable>{children}</Slottable>
         <div className={styles.internalWrapper}>
           <div className={styles.grid}>

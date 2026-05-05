@@ -36,12 +36,14 @@
     font-size: 0.9375rem;
     font-weight: 600;
     line-height: 1.4;
+    overflow-wrap: break-word;
   }
 
   .description {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.5;
+    overflow-wrap: break-word;
     opacity: 1;
 
     .title + & {

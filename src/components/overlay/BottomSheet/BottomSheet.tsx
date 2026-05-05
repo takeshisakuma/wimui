@@ -264,17 +264,7 @@ export const BottomSheetBody = ({
     {children}
   </div>
 );
-// --- Compound Components ---
-export const BottomSheet = Object.assign(BottomSheetInner, {
-  Trigger: BottomSheetTrigger,
-  Content: BottomSheetContent,
-  Header: BottomSheetHeader,
-  Footer: BottomSheetFooter,
-  Title: BottomSheetTitle,
-  Description: BottomSheetDescription,
-  Body: BottomSheetBody,
-  Close: BottomSheetClose,
-}) as typeof BottomSheetInner & {
+export interface BottomSheetComponent extends React.FC<BottomSheetProps> {
   Trigger: typeof BottomSheetTrigger;
   Content: typeof BottomSheetContent;
   Header: typeof BottomSheetHeader;
@@ -283,6 +273,18 @@ export const BottomSheet = Object.assign(BottomSheetInner, {
   Description: typeof BottomSheetDescription;
   Body: typeof BottomSheetBody;
   Close: typeof BottomSheetClose;
-};
+}
 
-export default BottomSheet;
+const BottomSheetCompound: BottomSheetComponent = (props) => <BottomSheetInner {...props} />;
+BottomSheetCompound.displayName = "BottomSheet";
+BottomSheetCompound.Trigger = BottomSheetTrigger;
+BottomSheetCompound.Content = BottomSheetContent;
+BottomSheetCompound.Header = BottomSheetHeader;
+BottomSheetCompound.Footer = BottomSheetFooter;
+BottomSheetCompound.Title = BottomSheetTitle;
+BottomSheetCompound.Description = BottomSheetDescription;
+BottomSheetCompound.Body = BottomSheetBody;
+BottomSheetCompound.Close = BottomSheetClose;
+
+export { BottomSheetCompound as BottomSheet };
+export default BottomSheetCompound;

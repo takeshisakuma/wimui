@@ -28,11 +28,6 @@
       .linkLabel {
         line-height: inherit;
       }
-
-      // Override Link base style if needed for breadcrumb context
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     .label {

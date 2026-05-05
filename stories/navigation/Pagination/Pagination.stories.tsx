@@ -71,3 +71,24 @@ export const Interactive: Story = {
     pageSize: 10,
   },
 };
+export const FullFeatures: Story = {
+  render: (args) => {
+    const [current, setCurrent] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    return (
+      <Pagination
+        {...args}
+        current={current}
+        pageSize={pageSize}
+        onChange={(page) => setCurrent(page)}
+        onPageSizeChange={(size) => setPageSize(size)}
+      />
+    );
+  },
+  args: {
+    total: 100,
+    showSizeChanger: true,
+    showQuickJumper: true,
+    showTotal: (total) => `Total ${total} items`,
+  },
+};

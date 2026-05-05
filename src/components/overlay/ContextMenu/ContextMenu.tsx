@@ -266,15 +266,17 @@ export const ContextMenuGroup = ({
     </div>
   );
 };
-// --- Compound Components ---
-export const ContextMenu = Object.assign(ContextMenuInner, {
-  Item: ContextMenuItem,
-  Divider: ContextMenuDivider,
-  Group: ContextMenuGroup,
-}) as typeof ContextMenuInner & {
+export interface ContextMenuComponent extends React.FC<ContextMenuProps> {
   Item: typeof ContextMenuItem;
   Divider: typeof ContextMenuDivider;
   Group: typeof ContextMenuGroup;
-};
+}
 
-export default ContextMenu;
+const ContextMenuCompound: ContextMenuComponent = (props) => <ContextMenuInner {...props} />;
+ContextMenuCompound.displayName = "ContextMenu";
+ContextMenuCompound.Item = ContextMenuItem;
+ContextMenuCompound.Divider = ContextMenuDivider;
+ContextMenuCompound.Group = ContextMenuGroup;
+
+export { ContextMenuCompound as ContextMenu };
+export default ContextMenuCompound;
