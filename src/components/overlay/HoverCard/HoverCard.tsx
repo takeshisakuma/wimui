@@ -34,7 +34,7 @@ export type HoverCardProps = {
   onOpenChange?: (open: boolean) => void;
 };
 
-export const HoverCard = ({
+const HoverCardInner = ({
   children,
   className,
   openDelay = 700,
@@ -208,4 +208,13 @@ export const HoverCardContent = ({
     </div>
   );
 };
+// --- Compound Components ---
+export const HoverCard = Object.assign(HoverCardInner, {
+  Trigger: HoverCardTrigger,
+  Content: HoverCardContent,
+}) as typeof HoverCardInner & {
+  Trigger: typeof HoverCardTrigger;
+  Content: typeof HoverCardContent;
+};
 
+export default HoverCard;

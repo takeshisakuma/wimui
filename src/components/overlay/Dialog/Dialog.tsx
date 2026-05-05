@@ -33,7 +33,7 @@ export interface DialogProps {
   closeOnOverlayClick?: boolean;
 }
 
-export const Dialog = ({
+const DialogInner = ({
   children,
   open: controlledOpen,
   onOpenChange,
@@ -63,7 +63,7 @@ export const Dialog = ({
   );
 };
 
-Dialog.displayName = "Dialog";
+DialogInner.displayName = "Dialog";
 
 // --- Dialog Trigger ---
 export interface DialogTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -251,8 +251,16 @@ export const DialogDescription = ({
 
 DialogDescription.displayName = "Dialog.Description";
 
-// --- Compound Export ---
-export const DialogRoot = Dialog as typeof Dialog & {
+// --- Compound Components ---
+export const Dialog = Object.assign(DialogInner, {
+  Trigger: DialogTrigger,
+  Content: DialogContent,
+  Close: DialogClose,
+  Header: DialogHeader,
+  Footer: DialogFooter,
+  Title: DialogTitle,
+  Description: DialogDescription,
+}) as typeof DialogInner & {
   Trigger: typeof DialogTrigger;
   Content: typeof DialogContent;
   Close: typeof DialogClose;
@@ -262,12 +270,4 @@ export const DialogRoot = Dialog as typeof Dialog & {
   Description: typeof DialogDescription;
 };
 
-DialogRoot.Trigger = DialogTrigger;
-DialogRoot.Content = DialogContent;
-DialogRoot.Close = DialogClose;
-DialogRoot.Header = DialogHeader;
-DialogRoot.Footer = DialogFooter;
-DialogRoot.Title = DialogTitle;
-DialogRoot.Description = DialogDescription;
-
-export default DialogRoot;
+export default Dialog;

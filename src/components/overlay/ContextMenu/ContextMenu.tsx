@@ -38,7 +38,7 @@ const ContextMenuContext = React.createContext<{
   getItemProps: (userProps?: React.HTMLProps<HTMLElement> & { index?: number }) => Record<string, unknown>;
 } | null>(null);
 
-export const ContextMenu = ({
+const ContextMenuInner = ({
   children,
   menu,
   className,
@@ -266,4 +266,15 @@ export const ContextMenuGroup = ({
     </div>
   );
 };
+// --- Compound Components ---
+export const ContextMenu = Object.assign(ContextMenuInner, {
+  Item: ContextMenuItem,
+  Divider: ContextMenuDivider,
+  Group: ContextMenuGroup,
+}) as typeof ContextMenuInner & {
+  Item: typeof ContextMenuItem;
+  Divider: typeof ContextMenuDivider;
+  Group: typeof ContextMenuGroup;
+};
 
+export default ContextMenu;

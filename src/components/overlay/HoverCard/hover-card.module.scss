@@ -27,9 +27,9 @@
     color: var(--wim-color-text-primary);
     pointer-events: auto;
     background-color: var(--wim-color-bg-component);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-lg);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-lg);
+    box-shadow: var(--wim-shadow-md);
     opacity: 0;
     animation: fadeIn var(--wim-duration-fast) forwards;
   

@@ -209,6 +209,83 @@
       }
     }
   },
+  "TabBar": {
+    "name": "TabBar",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the bottom of the screen",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Show top border",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TabBar.Item": {
+    "name": "TabBar.Item",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Active state"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Icon element"
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Text label"
+      },
+      "badge": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Badge content (optional)"
+      }
+    }
+  },
   "TabNavigation": {
     "name": "TabNavigation",
     "tokens": [],
@@ -515,83 +592,6 @@
           }
         },
         "description": "Callback function when a step is clicked (if applicable)"
-      }
-    }
-  },
-  "TabBar": {
-    "name": "TabBar",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "fixed": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Fixed position at the bottom of the screen",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Show top border",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TabBar.Item": {
-    "name": "TabBar.Item",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Active state"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Icon element"
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Text label"
-      },
-      "badge": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Badge content (optional)"
       }
     }
   },
@@ -2300,6 +2300,101 @@
       }
     }
   },
+  "Anchor": {
+    "name": "Anchor",
+    "tokens": [
+      "--wim-color-primary",
+      "--wim-color-scrollbar-track",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-line-height-normal",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "items": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "AnchorLinkItem"
+            }
+          ],
+          "raw": "AnchorLinkItem[]"
+        },
+        "description": "Array of anchor link configurations",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "bounds": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Bounding distance (in pixels) for triggering active state",
+        "defaultValue": {
+          "value": "5",
+          "computed": false
+        }
+      },
+      "offset": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Offset (in pixels) from top when clicking to scroll",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "direction": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"vertical\" | \"horizontal\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"vertical\""
+            },
+            {
+              "name": "literal",
+              "value": "\"horizontal\""
+            }
+          ]
+        },
+        "description": "Orientation of the anchor links",
+        "defaultValue": {
+          "value": "\"vertical\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class names"
+      },
+      "style": {
+        "required": false,
+        "tsType": {
+          "name": "ReactCSSProperties",
+          "raw": "React.CSSProperties"
+        },
+        "description": "Style attribute"
+      }
+    }
+  },
   "BackTop": {
     "name": "BackTop",
     "tokens": [
@@ -2418,101 +2513,6 @@
           "name": "string"
         },
         "description": "Accessible label for the button"
-      }
-    }
-  },
-  "Anchor": {
-    "name": "Anchor",
-    "tokens": [
-      "--wim-color-primary",
-      "--wim-color-scrollbar-track",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-line-height-normal",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "items": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "AnchorLinkItem"
-            }
-          ],
-          "raw": "AnchorLinkItem[]"
-        },
-        "description": "Array of anchor link configurations",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "bounds": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Bounding distance (in pixels) for triggering active state",
-        "defaultValue": {
-          "value": "5",
-          "computed": false
-        }
-      },
-      "offset": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Offset (in pixels) from top when clicking to scroll",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "direction": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"vertical\" | \"horizontal\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"vertical\""
-            },
-            {
-              "name": "literal",
-              "value": "\"horizontal\""
-            }
-          ]
-        },
-        "description": "Orientation of the anchor links",
-        "defaultValue": {
-          "value": "\"vertical\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class names"
-      },
-      "style": {
-        "required": false,
-        "tsType": {
-          "name": "ReactCSSProperties",
-          "raw": "React.CSSProperties"
-        },
-        "description": "Style attribute"
       }
     }
   },

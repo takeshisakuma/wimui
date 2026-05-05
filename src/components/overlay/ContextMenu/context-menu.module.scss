@@ -18,9 +18,9 @@
     min-width: var(--wim-menu-min-width);
     padding: var(--wim-spacing-xs) 0;
     background-color: var(--wim-color-bg-component);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-lg);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-lg);
+    box-shadow: var(--wim-shadow-md);
     animation: fadeIn var(--wim-duration-short) ease-in-out;
   }
   

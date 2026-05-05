@@ -36,7 +36,7 @@ export interface DrawerProps {
   slideOut?: boolean;
 }
 
-export const Drawer = ({
+const DrawerInner = ({
   children,
   open: controlledOpen,
   onOpenChange,
@@ -247,6 +247,25 @@ export const DrawerDescription = ({
       {children}
     </p>
   );
+};
+
+// --- Compound Components ---
+export const Drawer = Object.assign(DrawerInner, {
+  Trigger: DrawerTrigger,
+  Content: DrawerContent,
+  Header: DrawerHeader,
+  Footer: DrawerFooter,
+  Title: DrawerTitle,
+  Description: DrawerDescription,
+  Close: DrawerClose,
+}) as typeof DrawerInner & {
+  Trigger: typeof DrawerTrigger;
+  Content: typeof DrawerContent;
+  Header: typeof DrawerHeader;
+  Footer: typeof DrawerFooter;
+  Title: typeof DrawerTitle;
+  Description: typeof DrawerDescription;
+  Close: typeof DrawerClose;
 };
 
 export default Drawer;

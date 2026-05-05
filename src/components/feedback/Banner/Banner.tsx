@@ -59,7 +59,7 @@ export const Banner = ({
   return (
     <div
       className={classNames(styles.root, styles[intent], className)}
-      role="banner"
+      role="status"
       {...props}
     >
       <div className={styles.container}>

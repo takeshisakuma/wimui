@@ -34,7 +34,7 @@ export interface DropdownProps extends React.ComponentPropsWithoutRef<"div"> {
   asChild?: boolean;
 }
 
-export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
+const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
   ({ children, className, asChild = false, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -273,21 +273,20 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
   }
 );
 
-// Assign sub-components
-export const DropdownRoot = Dropdown as typeof Dropdown & {
+// --- Compound Components ---
+DropdownInner.displayName = "Dropdown";
+DropdownTrigger.displayName = "Dropdown.Trigger";
+DropdownMenu.displayName = "Dropdown.Menu";
+DropdownItem.displayName = "Dropdown.Item";
+
+export const Dropdown = Object.assign(DropdownInner, {
+  Trigger: DropdownTrigger,
+  Menu: DropdownMenu,
+  Item: DropdownItem,
+}) as typeof DropdownInner & {
   Trigger: typeof DropdownTrigger;
   Menu: typeof DropdownMenu;
   Item: typeof DropdownItem;
 };
 
-DropdownRoot.Trigger = DropdownTrigger;
-DropdownRoot.Menu = DropdownMenu;
-DropdownRoot.Item = DropdownItem;
-
-Dropdown.displayName = "Dropdown";
-DropdownRoot.displayName = "DropdownRoot";
-DropdownTrigger.displayName = "Dropdown.Trigger";
-DropdownMenu.displayName = "Dropdown.Menu";
-DropdownItem.displayName = "Dropdown.Item";
-
-export default DropdownRoot;
+export default Dropdown;

@@ -36,7 +36,7 @@ export interface BottomSheetProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-export const BottomSheet = ({
+const BottomSheetInner = ({
   children,
   open: controlledOpen,
   defaultOpen = false,
@@ -264,4 +264,25 @@ export const BottomSheetBody = ({
     {children}
   </div>
 );
+// --- Compound Components ---
+export const BottomSheet = Object.assign(BottomSheetInner, {
+  Trigger: BottomSheetTrigger,
+  Content: BottomSheetContent,
+  Header: BottomSheetHeader,
+  Footer: BottomSheetFooter,
+  Title: BottomSheetTitle,
+  Description: BottomSheetDescription,
+  Body: BottomSheetBody,
+  Close: BottomSheetClose,
+}) as typeof BottomSheetInner & {
+  Trigger: typeof BottomSheetTrigger;
+  Content: typeof BottomSheetContent;
+  Header: typeof BottomSheetHeader;
+  Footer: typeof BottomSheetFooter;
+  Title: typeof BottomSheetTitle;
+  Description: typeof BottomSheetDescription;
+  Body: typeof BottomSheetBody;
+  Close: typeof BottomSheetClose;
+};
 
+export default BottomSheet;

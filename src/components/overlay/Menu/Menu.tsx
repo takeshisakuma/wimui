@@ -43,7 +43,7 @@ export type MenuProps = {
   defaultOpenKeys?: string[];
 };
 
-export const Menu = ({
+const MenuInner = ({
   children,
   className,
   mode = "vertical",
@@ -163,18 +163,21 @@ export type MenuItemProps = {
   children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
+  danger?: boolean;
   className?: string;
   icon?: ReactNode;
   /** Unique key for this item */
   itemKey?: string;
-};
+} & React.ComponentPropsWithoutRef<"li">;
 
 export const MenuItem = ({
   children,
   onClick,
   disabled = false,
+  danger = false,
   className,
   icon,
+  ...props
 }: MenuItemProps) => {
   const { focusedIndex, setFocusedIndex, registerItem } = useMenu();
   const [index] = useState(() => registerItem());
@@ -193,6 +196,7 @@ export const MenuItem = ({
       onClick={handleClick}
       onFocus={() => setFocusedIndex(index)}
       disabled={disabled}
+      danger={danger}
       icon={icon}
       role="menuitem"
       tabIndex={isFocused ? 0 : -1}
@@ -202,6 +206,7 @@ export const MenuItem = ({
           handleClick(e);
         }
       }}
+      {...props}
     >
       {children}
     </BaseListItem>
@@ -333,3 +338,18 @@ export const MenuDivider = ({ className }: MenuDividerProps) => {
     />
   );
 };
+
+// --- Compound Components ---
+export const Menu = Object.assign(MenuInner, {
+  Item: MenuItem,
+  Group: MenuItemGroup,
+  SubMenu: SubMenu,
+  Divider: MenuDivider,
+}) as typeof MenuInner & {
+  Item: typeof MenuItem;
+  Group: typeof MenuItemGroup;
+  SubMenu: typeof SubMenu;
+  Divider: typeof MenuDivider;
+};
+
+export default Menu;

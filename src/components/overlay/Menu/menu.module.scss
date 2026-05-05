@@ -5,8 +5,8 @@
     margin: 0;
     list-style: none;
     background-color: var(--wim-color-bg-component);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-md);
 
     &.vertical {
