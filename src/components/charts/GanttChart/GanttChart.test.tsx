@@ -117,7 +117,7 @@ describe("GanttChart", () => {
   it("applies custom color to task bar", () => {
     render(<GanttChart tasks={tasks} startDate={today} />);
     const bars = document.querySelectorAll("[data-gantt-bar=\"true\"]");
-    expect(bars[2]).toHaveStyle({ backgroundColor: "#e65100" });
+    expect((bars[2] as HTMLElement).style.getPropertyValue("--gantt-bar-bg")).toBe("#e65100");
   });
 
   it("does not call onTaskClick when handler is not provided", () => {

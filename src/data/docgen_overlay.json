@@ -153,6 +153,12 @@
       }
     }
   },
+  "Portal": {
+    "name": "Portal",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
+  },
   "Popconfirm": {
     "name": "Popconfirm",
     "tokens": [
@@ -888,11 +894,210 @@
       }
     }
   },
-  "Portal": {
-    "name": "Portal",
+  "Dropdown": {
+    "name": "Dropdown",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Dropdown.Trigger": {
+    "name": "Dropdown.Trigger",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dropdown.Menu": {
+    "name": "Dropdown.Menu",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "show": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Dropdown.Item": {
+    "name": "Dropdown.Item",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-menu-min-width",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
+  "FocusTrap": {
+    "name": "FocusTrap",
     "tokens": [],
     "anatomy": [],
-    "props": {}
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "トラップされるコンテンツ。"
+      },
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "トラップが有効かどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "initialFocus": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウント時に最初の要素にフォーカスするかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
   },
   "HoverCardInner": {
     "name": "HoverCardInner",
@@ -1085,458 +1290,6 @@
   "HoverCard": {
     "name": "HoverCard",
     "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "FocusTrap": {
-    "name": "FocusTrap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "トラップされるコンテンツ。"
-      },
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "トラップが有効かどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "initialFocus": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウント時に最初の要素にフォーカスするかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
-  "Dropdown": {
-    "name": "Dropdown",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Dropdown.Trigger": {
-    "name": "Dropdown.Trigger",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dropdown.Menu": {
-    "name": "Dropdown.Menu",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"left\"",
-          "computed": false
-        }
-      },
-      "show": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "Dropdown.Item": {
-    "name": "Dropdown.Item",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-menu-min-width",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "disabled": {
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        },
-        "required": false
-      }
-    }
-  },
-  "Dialog": {
-    "name": "Dialog",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Trigger": {
-    "name": "Dialog.Trigger",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Close": {
-    "name": "Dialog.Close",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Content": {
-    "name": "Dialog.Content",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Dialog.Header": {
-    "name": "Dialog.Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Footer": {
-    "name": "Dialog.Footer",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "layout": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"row\" | \"column\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"row\""
-            },
-            {
-              "name": "literal",
-              "value": "\"column\""
-            }
-          ]
-        },
-        "description": "The layout of the footer.\n- \"row\" (default): Buttons are side-by-side.\n- \"column\": Buttons are stacked (standard mobile behavior)."
-      }
-    }
-  },
-  "Dialog.Title": {
-    "name": "Dialog.Title",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {}
-  },
-  "Dialog.Description": {
-    "name": "Dialog.Description",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-overlay-bg",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-dialog-blur",
-      "--wim-dialog-max-height",
-      "--wim-dialog-width-mobile",
-      "--wim-font-size-lg",
-      "--wim-font-size-sm",
-      "--wim-line-height-normal",
-      "--wim-radius-xl",
-      "--wim-radius-xs",
-      "--wim-shadow-lg",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-z-overlay"
-    ],
     "anatomy": [],
     "props": {}
   },
@@ -1931,6 +1684,253 @@
       "--wim-spacing-xs",
       "--wim-z-overlay",
       "--wim-z-overlay-panel"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog": {
+    "name": "Dialog",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Trigger": {
+    "name": "Dialog.Trigger",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Close": {
+    "name": "Dialog.Close",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Content": {
+    "name": "Dialog.Content",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Dialog.Header": {
+    "name": "Dialog.Header",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Footer": {
+    "name": "Dialog.Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "layout": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"row\" | \"column\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"row\""
+            },
+            {
+              "name": "literal",
+              "value": "\"column\""
+            }
+          ]
+        },
+        "description": "The layout of the footer.\n- \"row\" (default): Buttons are side-by-side.\n- \"column\": Buttons are stacked (standard mobile behavior)."
+      }
+    }
+  },
+  "Dialog.Title": {
+    "name": "Dialog.Title",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {}
+  },
+  "Dialog.Description": {
+    "name": "Dialog.Description",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-overlay-bg",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-dialog-blur",
+      "--wim-dialog-max-height",
+      "--wim-dialog-width-mobile",
+      "--wim-font-size-lg",
+      "--wim-font-size-sm",
+      "--wim-line-height-normal",
+      "--wim-radius-xl",
+      "--wim-radius-xs",
+      "--wim-shadow-lg",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-z-overlay"
     ],
     "anatomy": [],
     "props": {}
