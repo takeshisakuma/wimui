@@ -111,7 +111,7 @@
     border-radius: var(--wim-radius-full);
 
     &:hover {
-      filter: brightness(0.9);
+      background: oklch(from var(--wim-color-scrollbar-thumb) calc(l * 0.9) c h);
     }
   }
 

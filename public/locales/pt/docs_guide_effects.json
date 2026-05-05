@@ -42,7 +42,15 @@
     "effects_opacity_disabled": "Controles desativados (checkbox, radio, fieldset, etc.)",
     "effects_opacity_ghost": "Elementos de UI fantasmagóricos (botões de fechar, ícones de placeholder, etc.)",
     "effects_opacity_secondary": "Elementos secundários e texto complementar",
-    "effects_opacity_guideline": "Use estes três níveis — disabled / ghost / secondary — em vez de valores fixos (0.5, 0.6, 0.7)."
+    "effects_opacity_guideline": "Use estes três níveis — disabled / ghost / secondary — em vez de valores fixos (0.5, 0.6, 0.7).",
+    "effects_interaction_bg_title": "Cor de Fundo em Estados de Interação (oklch)",
+    "effects_interaction_bg_desc": "Ao alterar cores de fundo em estados :hover ou :active, use a sintaxe de cor relativa oklch do CSS Color Level 4 em vez de opacity ou filter: brightness(). Isso produz mudanças de luminosidade perceptivamente uniformes nos modos claro e escuro.",
+    "effects_interaction_bg_rule_ng": "NG — filter: brightness() ou opacity altera todas as cores (fundo, texto, borda) simultaneamente e se comporta de forma diferente no modo escuro",
+    "effects_interaction_bg_rule_ok": "OK — a cor relativa oklch ajusta apenas o canal L (luminosidade), dando resultados visualmente consistentes em qualquer tema",
+    "effects_interaction_bg_opacity_note": "opacity só pode ser usado para alternâncias de visibilidade (opacity: 0 → 1). O estado desativado pode continuar usando tokens de opacity (--wim-opacity-disabled etc.).",
+    "effects_interaction_bg_multivariant_title": "Componentes Multi-variante",
+    "effects_interaction_bg_multivariant_desc": "Quando a cor de fundo varia por variante, armazene-a em uma variável CSS local (--bg) e referencie-a na regra de hover.",
+    "effects_interaction_bg_guideline": "Use oklch(from var(--token) calc(l * 0.9) c h) para escurecer, calc(l * 1.1) para clarear. Armazene fundos dinâmicos em uma variável local --bg."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

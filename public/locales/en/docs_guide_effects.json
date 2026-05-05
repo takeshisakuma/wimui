@@ -42,7 +42,15 @@
     "effects_opacity_disabled": "Disabled controls (checkbox, radio, fieldset, etc.)",
     "effects_opacity_ghost": "Ghost UI elements (close buttons, placeholder icons, etc.)",
     "effects_opacity_secondary": "Secondary elements and supplemental text",
-    "effects_opacity_guideline": "Use these three levels — disabled / ghost / secondary — instead of hardcoded values (0.5, 0.6, 0.7)."
+    "effects_opacity_guideline": "Use these three levels — disabled / ghost / secondary — instead of hardcoded values (0.5, 0.6, 0.7).",
+    "effects_interaction_bg_title": "Interaction Background Color (oklch)",
+    "effects_interaction_bg_desc": "When changing background colors in :hover or :active states, use CSS Color Level 4 oklch relative color syntax instead of opacity or filter: brightness(). This produces perceptually uniform lightness changes across both light and dark modes.",
+    "effects_interaction_bg_rule_ng": "NG — filter: brightness() or opacity alters all colors (bg, text, border) simultaneously and behaves differently in dark mode",
+    "effects_interaction_bg_rule_ok": "OK — oklch relative color adjusts only the L (lightness) channel, giving visually consistent results in any theme",
+    "effects_interaction_bg_opacity_note": "opacity may only be used for visibility toggles (opacity: 0 → 1). The disabled state may continue to use opacity tokens (--wim-opacity-disabled etc.).",
+    "effects_interaction_bg_multivariant_title": "Multi-variant Components",
+    "effects_interaction_bg_multivariant_desc": "When the background color varies by variant, store it in a local CSS variable (--bg) and reference it in the hover rule.",
+    "effects_interaction_bg_guideline": "Use oklch(from var(--token) calc(l * 0.9) c h) for darkening, calc(l * 1.1) for lightening. Store dynamic backgrounds in a --bg local variable."
   },
   "effects": {
     "common_vars": "Common Variables"

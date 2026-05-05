@@ -148,7 +148,7 @@
     border-radius: var(--wim-radius-md);
     transition:
       box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
-      opacity var(--wim-duration-fast) var(--wim-easing-standard);
+      background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:focus-visible {
       box-shadow: 0 0 0 2px var(--wim-color-bg-component), 0 0 0 4px var(--wim-color-primary);
@@ -158,11 +158,11 @@
       cursor: pointer;
 
       &:hover {
-        opacity: 0.85;
+        background-color: oklch(from var(--gantt-bar-bg, var(--wim-color-primary)) calc(l * 0.9) c h);
       }
 
       &:active {
-        opacity: var(--wim-opacity-secondary);
+        background-color: oklch(from var(--gantt-bar-bg, var(--wim-color-primary)) calc(l * 0.8) c h);
       }
     }
   }

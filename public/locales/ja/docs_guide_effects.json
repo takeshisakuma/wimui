@@ -42,7 +42,15 @@
     "effects_opacity_disabled": "無効化されたコントロール (Checkbox, Radio, Fieldset 等)",
     "effects_opacity_ghost": "ゴースト UI 要素 (閉じるボタン、プレースホルダー等)",
     "effects_opacity_secondary": "二次的な要素や補足テキスト",
-    "effects_opacity_guideline": "0.5, 0.6, 0.7 などの固定値を使わず、disabled / ghost / secondary の3段階を使い分けてください。"
+    "effects_opacity_guideline": "0.5, 0.6, 0.7 などの固定値を使わず、disabled / ghost / secondary の3段階を使い分けてください。",
+    "effects_interaction_bg_title": "インタラクション状態の背景色変更 (oklch)",
+    "effects_interaction_bg_desc": ":hover や :active で背景色を変化させる場合は、opacity や filter: brightness() を使わず、CSS Color Level 4 の oklch 相対色構文を使ってください。ライト・ダークモードの両方で知覚的に均一な明度変化が得られます。",
+    "effects_interaction_bg_rule_ng": "NG — filter: brightness() や opacity は背景・テキスト・ボーダーすべての色を同時に変化させ、ダークモードで挙動が変わります",
+    "effects_interaction_bg_rule_ok": "OK — oklch 相対色は L（明度）チャンネルのみを調整し、どのテーマでも視覚的に一貫した結果が得られます",
+    "effects_interaction_bg_opacity_note": "opacity は表示/非表示の切り替え（opacity: 0 → 1）にのみ使用してください。disabled 状態への opacity トークン（--wim-opacity-disabled 等）の適用は引き続き許可します。",
+    "effects_interaction_bg_multivariant_title": "バリアントによって背景色が異なる場合",
+    "effects_interaction_bg_multivariant_desc": "カラーバリアントによって背景色が変わる場合は、ローカル CSS 変数（--bg）に現在の背景色を保持し、hover ルールでそれを参照してください。",
+    "effects_interaction_bg_guideline": "暗くする場合は oklch(from var(--token) calc(l * 0.9) c h)、明るくする場合は calc(l * 1.1) を使用してください。動的な背景は --bg ローカル変数に格納してください。"
   },
   "effects": {
     "common_vars": "共通変数"

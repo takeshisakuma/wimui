@@ -49,12 +49,12 @@
     cursor: pointer;
     background-color: var(--wim-color-ghost-bg);
     border-radius: 2px;
-    transition: transform var(--wim-duration-fast) var(--wim-easing-standard), 
-                filter var(--wim-duration-fast) var(--wim-easing-standard);
+    transition: transform var(--wim-duration-fast) var(--wim-easing-standard),
+                background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
       z-index: 1;
-      filter: brightness(1.2);
+      background-color: oklch(from var(--wim-color-ghost-bg) calc(l * 1.2) c h);
       transform: scale(1.2);
     }
 

@@ -25,6 +25,8 @@
   }
 
   .action {
+    --bg: var(--wim-color-neutral-subtle);
+
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -35,27 +37,28 @@
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-inverse);
     cursor: pointer;
-    background: var(--wim-color-neutral-subtle);
+    background: var(--bg);
     border: none;
-    transition: filter var(--wim-duration-fast) var(--wim-easing-standard);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
-      filter: brightness(1.1);
+      background-color: oklch(from var(--bg) calc(l * 1.1) c h);
     }
 
     &:active {
-      filter: brightness(0.9);
+      background-color: oklch(from var(--bg) calc(l * 0.9) c h);
     }
 
-    &.primary { background: var(--wim-color-primary); }
-    &.error { background: var(--wim-color-error); }
+    &.primary { --bg: var(--wim-color-primary); }
+    &.error { --bg: var(--wim-color-error); }
 
-    &.warning { 
-      color: var(--wim-color-text); 
-      background: var(--wim-color-warning);
+    &.warning {
+      --bg: var(--wim-color-warning);
+
+      color: var(--wim-color-text);
     }
-    &.success { background: var(--wim-color-success); }
-    &.neutral { background: var(--wim-color-neutral); }
+    &.success { --bg: var(--wim-color-success); }
+    &.neutral { --bg: var(--wim-color-neutral); }
   }
 
   .label {

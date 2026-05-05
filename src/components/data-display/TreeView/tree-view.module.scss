@@ -73,10 +73,9 @@
     &.selected > .labelContainer {
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
-  
+
       &:hover {
-        background-color: var(--wim-color-primary);
-        opacity: 0.9;
+        background-color: oklch(from var(--wim-color-primary) calc(l * 0.95) c h);
       }
   
       .expandBtn {

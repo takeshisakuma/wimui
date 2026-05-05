@@ -318,8 +318,7 @@
       border-radius: var(--wim-radius-lg);
 
       &:hover {
-        background-color: var(--wim-table-scrollbar-thumb-bg);
-        filter: brightness(0.9);
+        background-color: oklch(from var(--wim-table-scrollbar-thumb-bg) calc(l * 0.9) c h);
       }
     }
   }

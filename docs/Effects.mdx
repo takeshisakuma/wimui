@@ -152,6 +152,57 @@ import {
 
 <hr />
 
+<h2><T k="guide.effects_interaction_bg_title" /></h2>
+<p><T k="guide.effects_interaction_bg_desc" /></p>
+
+```scss
+// NG
+&:hover { filter: brightness(0.9); }
+&:hover { opacity: 0.85; }
+
+// OK
+&:hover { background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h); }
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>filter: brightness()</code> / <code>opacity</code></td>
+      <td><T k="guide.effects_interaction_bg_rule_ng" /></td>
+    </tr>
+    <tr>
+      <td><code>oklch(from var(--token) calc(l * 0.9) c h)</code></td>
+      <td><T k="guide.effects_interaction_bg_rule_ok" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><T k="guide.effects_interaction_bg_opacity_note" /></p>
+
+<h3><T k="guide.effects_interaction_bg_multivariant_title" /></h3>
+<p><T k="guide.effects_interaction_bg_multivariant_desc" /></p>
+
+```scss
+.action {
+  --bg: var(--wim-color-neutral-subtle);
+  background: var(--bg);
+
+  &.primary { --bg: var(--wim-color-primary); }
+  &.error   { --bg: var(--wim-color-error); }
+
+  &:hover  { background-color: oklch(from var(--bg) calc(l * 1.1) c h); }
+  &:active { background-color: oklch(from var(--bg) calc(l * 0.9) c h); }
+}
+```
+
+<hr />
+
     <strong><T k="guide.spacings_implementation_guideline" /></strong>
     <table>
       <thead>
@@ -172,6 +223,10 @@ import {
         <tr>
           <td><strong><T k="guide.effects_opacity" /></strong></td>
           <td><T k="guide.effects_opacity_guideline" /></td>
+        </tr>
+        <tr>
+          <td><strong><T k="guide.effects_interaction_bg_title" /></strong></td>
+          <td><T k="guide.effects_interaction_bg_guideline" /></td>
         </tr>
         <tr>
           <td><strong><T k="effects.common_vars" /></strong></td>

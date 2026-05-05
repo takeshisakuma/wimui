@@ -68,9 +68,9 @@
         &.multiple {
           background-color: var(--wim-color-primary);
           box-shadow: var(--wim-shadow-sm);
-  
+
           &:hover {
-            filter: brightness(1.1);
+            background-color: oklch(from var(--wim-color-primary) calc(l * 1.1) c h);
           }
         }
       }

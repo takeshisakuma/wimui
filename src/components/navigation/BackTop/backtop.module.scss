@@ -30,11 +30,7 @@
         transform var(--wim-transition-base);
 
       &:hover {
-        background-color: var(
-          --wim-color-primary
-        ); // Fallback or hover state if defined
-
-        filter: brightness(1.1);
+        background-color: oklch(from var(--wim-color-primary) calc(l * 1.1) c h);
         transform: translateY(-2px);
       }
     }

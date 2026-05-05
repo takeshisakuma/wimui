@@ -72,6 +72,8 @@ $token-colors: (
 
     &.#{$name} {
       &.solid {
+        --bg: #{$base};
+
         color: $on;
         background-color: $base;
         border: 1px solid transparent;
@@ -84,6 +86,8 @@ $token-colors: (
       }
 
       &.subtle {
+        --bg: color-mix(in srgb, #{$base} 15%, transparent);
+
         color: $base;
         background-color: color-mix(in srgb, $base 15%, transparent);
         border: 1px solid transparent;

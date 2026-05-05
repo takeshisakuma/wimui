@@ -51,13 +51,13 @@
   
     &.clickable {
       cursor: pointer;
-  
+
       &:hover {
-        filter: brightness(0.9);
+        background-color: oklch(from var(--bg, transparent) calc(l * 0.9) c h);
       }
-  
+
       &:active {
-        filter: brightness(0.85);
+        background-color: oklch(from var(--bg, transparent) calc(l * 0.85) c h);
       }
     }
   

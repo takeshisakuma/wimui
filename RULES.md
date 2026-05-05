@@ -152,6 +152,32 @@
   - サイズ・間隔: `tokens/spacing.json`
   - 効果（影・透明度・Z-Index・モーション）: `tokens/effects.json`
 
+## インタラクション状態（`:hover` / `:active`）の背景色変更
+
+- `:hover` や `:active` でボタン・タイルなどの **背景色を変化** させる場合は、`opacity` や `filter: brightness()` を使わず、CSS Color Level 4 の **oklch 相対色構文** を使ってください。
+
+  ```scss
+  // NG — ダークモードで知覚的な変化量がバラつく
+  &:hover { filter: brightness(0.9); }
+  &:hover { opacity: 0.85; }
+
+  // OK — oklch 空間で L（明度）のみ調整。ダーク・ライト共に均一な変化
+  &:hover { background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h); }
+  ```
+
+- 背景色がバリアント（カラー種別）によって異なる場合は、ローカル CSS 変数 `--_bg` に現在の背景色を保持し、`:hover` / `:active` でそれを参照してください。
+
+  ```scss
+  .action {
+    --_bg: var(--wim-color-neutral-subtle);
+    background: var(--_bg);
+    &.primary { --_bg: var(--wim-color-primary); }
+    &:hover { background: oklch(from var(--_bg) calc(l * 1.1) c h); }
+  }
+  ```
+
+- `opacity` は **表示/非表示の切り替え**（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
+
 ## `!important` の使用
 
 新規コードで `!important` を使用する場合は以下の方針に従ってください。
