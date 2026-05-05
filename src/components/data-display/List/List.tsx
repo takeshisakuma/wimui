@@ -16,10 +16,13 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   asChild?: boolean;
   size?: ComponentSize;
   spacing?: "tight" | "normal" | "loose";
+  bordered?: boolean;
+  fullWidth?: boolean;
+  hoverable?: boolean;
 }
 
 export const List = React.forwardRef<HTMLElement, ListProps>(
-  ({ asChild = false, size = "md", spacing = "normal", children, className, ...props }, ref) => {
+  ({ asChild = false, size = "md", spacing = "normal", bordered = false, fullWidth = false, hoverable = false, children, className, ...props }, ref) => {
     const Component = asChild ? Slot : "ul";
 
     return (
@@ -29,6 +32,9 @@ export const List = React.forwardRef<HTMLElement, ListProps>(
             styles.root,
             styles[size],
             styles[`spacing-${spacing}`],
+            bordered && styles.bordered,
+            fullWidth && styles.fullWidth,
+            hoverable && styles.hoverable,
             className
           )}
           ref={mergeRefs(ref)}
@@ -47,10 +53,11 @@ export interface ListItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   iconColor?: React.ComponentProps<typeof Icon>["color"];
+  selected?: boolean;
 }
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  ({ asChild = false, children, className, iconName, iconPosition = "left", iconColor, ...props }, ref) => {
+  ({ asChild = false, children, className, iconName, iconPosition = "left", iconColor, selected = false, ...props }, ref) => {
     const { size } = useContext(ListContext);
     const Component = asChild ? Slot : "li";
 
@@ -59,6 +66,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         className={classNames(
           styles.item,
           iconName && styles.withIcon,
+          selected && styles.selected,
           className
         )}
         ref={ref}

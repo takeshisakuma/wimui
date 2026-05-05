@@ -9,6 +9,7 @@ type DescriptionListProps = {
   layout?: "horizontal" | "vertical" | "compact";
   size?: ComponentSize;
   border?: boolean;
+  bordered?: boolean;
 };
 
 export const DescriptionList = ({
@@ -17,15 +18,17 @@ export const DescriptionList = ({
   layout = "horizontal",
   size = "md",
   border = false,
+  bordered = false,
   ...props
 }: DescriptionListProps) => {
+  const isBordered = border || bordered;
   return (
     <dl
       className={classNames(
         styles.root,
         styles[layout],
         styles[size],
-        border && styles.border,
+        isBordered && styles.border,
         className,
       )}
       {...props}
