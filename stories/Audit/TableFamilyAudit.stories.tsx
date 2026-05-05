@@ -5,6 +5,8 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Table,
   DataGrid,
+  List,
+  ListItem,
   Stack,
   Text,
   Box,
@@ -82,11 +84,35 @@ export const Overview: StoryObj = {
       { key: "email", title: "Email" },
     ];
 
-    const data = [
+    const initialData = [
       { id: "1", name: "John Doe", age: 30, email: "john@example.com" },
       { id: "2", name: "Jane Doe", age: 25, email: "jane@example.com" },
       { id: "3", name: "Bob Smith", age: 40, email: "bob@example.com" },
     ];
+
+    const [data, setData] = React.useState(initialData);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
+    const [sortConfig, setSortConfig] = React.useState<{
+      key: string;
+      direction: "asc" | "desc" | "none";
+    }>({ key: "none", direction: "none" });
+
+    const handleSortChange = (key: string, direction: "asc" | "desc" | "none") => {
+      setSortConfig({ key, direction });
+      if (direction === "none") {
+        setData(initialData);
+        return;
+      }
+
+      const sortedData = [...data].sort((a, b) => {
+        const aValue = a[key as keyof typeof a];
+        const bValue = b[key as keyof typeof b];
+        if (aValue < bValue) return direction === "asc" ? -1 : 1;
+        if (aValue > bValue) return direction === "asc" ? 1 : -1;
+        return 0;
+      });
+      setData(sortedData);
+    };
 
     return (
       <Box bg="surface">
@@ -95,7 +121,7 @@ export const Overview: StoryObj = {
         {/* Standard Table Variations */}
         <ComparisonGrid title={t("audit:label_table_standard")}>
           <ComponentGroup label={t("audit:label_table_standard")}>
-            <Table bordered>
+            <Table bordered card>
               <Table.Header>
                 <Table.Row>
                   <Table.Head>Name</Table.Head>
@@ -119,7 +145,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_table_striped")}>
-            <Table striped bordered hoverable>
+            <Table striped bordered hoverable card>
               <Table.Header>
                 <Table.Row>
                   <Table.Head>Name</Table.Head>
@@ -146,23 +172,42 @@ export const Overview: StoryObj = {
         {/* DataGrid Audit */}
         <ComparisonGrid title={t("audit:label_datagrid")}>
           <ComponentGroup label={t("audit:label_datagrid_features")}>
-            <Box w="100%" style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden" }}>
-              <DataGrid
-                columns={columns}
-                data={data}
-                selection={true}
-                stickyHeader
-                bordered
-                striped
-              />
-            </Box>
+            <DataGrid
+              columns={columns}
+              data={data}
+              selection={true}
+              selectedRowKeys={selectedRowKeys}
+              onSelectionChange={(keys) => setSelectedRowKeys(keys)}
+              sortConfig={sortConfig}
+              onSortChange={handleSortChange}
+              stickyHeader
+              bordered
+              striped
+            />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* List Comparison (Interaction & Design Parity) */}
+        <ComparisonGrid title={t("audit:label_list_interactive")}>
+          <ComponentGroup label={t("audit:label_list_standard")}>
+            <List bordered hoverable fullWidth>
+              <ListItem selected={selectedRowKeys.includes("1")}>
+                John Doe (ID: 1)
+              </ListItem>
+              <ListItem selected={selectedRowKeys.includes("2")}>
+                Jane Doe (ID: 2)
+              </ListItem>
+              <ListItem selected={selectedRowKeys.includes("3")}>
+                Bob Smith (ID: 3)
+              </ListItem>
+            </List>
           </ComponentGroup>
         </ComparisonGrid>
 
         {/* Fluid Width Check */}
         <ComparisonGrid title={t("audit:fluid_width_check")}>
           <ComponentGroup label="Table (Full Width)">
-            <Table fullWidth bordered>
+            <Table fullWidth bordered card>
               <Table.Header>
                 <Table.Row>
                   <Table.Head>Full Width Check</Table.Head>

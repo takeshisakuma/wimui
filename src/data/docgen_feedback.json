@@ -342,6 +342,154 @@
       }
     }
   },
+  "Spinner": {
+    "name": "Spinner",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md"
+    ],
+    "anatomy": [],
+    "props": {
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "labelPosition": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"right\" | \"bottom\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"right\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "Snackbar": {
     "name": "Snackbar",
     "tokens": [
@@ -590,154 +738,6 @@
       }
     }
   },
-  "Spinner": {
-    "name": "Spinner",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md"
-    ],
-    "anatomy": [],
-    "props": {
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "labelPosition": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"right\" | \"bottom\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"right\"",
-          "computed": false
-        }
-      }
-    }
-  },
   "Skeleton": {
     "name": "Skeleton",
     "tokens": [
@@ -831,76 +831,6 @@
           ]
         },
         "description": "高さ。CSSの単位（px, %, remなど）を含めて指定します。"
-      }
-    }
-  },
-  "ScrollProgress": {
-    "name": "ScrollProgress",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "進捗バーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "target": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
       }
     }
   },
@@ -1185,6 +1115,244 @@
       }
     }
   },
+  "ScrollProgress": {
+    "name": "ScrollProgress",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "進捗バーの色。",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "target": {
+        "required": false,
+        "tsType": {
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "スクロールを検知するターゲット要素。デフォルトは `window`。"
+      }
+    }
+  },
+  "Progress": {
+    "name": "Progress",
+    "tokens": [
+      "--wim-color-bg-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-disabled",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-easing-standard",
+      "--wim-font-size-sm",
+      "--wim-progress-width",
+      "--wim-radius-full",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "value": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "max": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "showValue": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "indeterminate": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "Notification": {
     "name": "Notification",
     "tokens": [
@@ -1382,6 +1550,165 @@
         "description": "",
         "defaultValue": {
           "value": "\"topRight\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Loader": {
+    "name": "Loader",
+    "tokens": [
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-secondary",
+      "--wim-duration-base",
+      "--wim-duration-circle",
+      "--wim-duration-fast",
+      "--wim-duration-short",
+      "--wim-duration-slow",
+      "--wim-duration-slowest",
+      "--wim-duration-ultra-slow",
+      "--wim-easing-standard",
+      "--wim-loader-dot-gap",
+      "--wim-loader-duration",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-sm",
+      "--wim-spacing-2xl",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"bars\" | \"dots\" | \"pulse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"bars\""
+            },
+            {
+              "name": "literal",
+              "value": "\"dots\""
+            },
+            {
+              "name": "literal",
+              "value": "\"pulse\""
+            }
+          ]
+        },
+        "description": "ローダーのアニメーション形式。",
+        "defaultValue": {
+          "value": "\"bars\"",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "ローダーのサイズ。",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "color": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"currentColor\" | WimColor",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"currentColor\""
+            },
+            {
+              "name": "union",
+              "raw": "T | (string & {})",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "WimColorKey | WimColorToken",
+                  "elements": [
+                    {
+                      "name": "WimColorKey"
+                    },
+                    {
+                      "name": "union",
+                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-color-${WimColorKey})`"
+                        },
+                        {
+                          "name": "literal",
+                          "value": "`var(--wim-${WimColorKey})`"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "unknown"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "ローダーの色。",
+        "defaultValue": {
+          "value": "\"primary\"",
           "computed": false
         }
       }
@@ -1601,547 +1928,6 @@
           "raw": "React.ReactNode"
         },
         "description": "カスタムローディングコンテンツ。"
-      }
-    }
-  },
-  "Progress": {
-    "name": "Progress",
-    "tokens": [
-      "--wim-color-bg-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-disabled",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-easing-standard",
-      "--wim-font-size-sm",
-      "--wim-progress-width",
-      "--wim-radius-full",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "max": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "100",
-          "computed": false
-        }
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"neutral\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "showValue": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "indeterminate": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Loader": {
-    "name": "Loader",
-    "tokens": [
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-secondary",
-      "--wim-duration-base",
-      "--wim-duration-circle",
-      "--wim-duration-fast",
-      "--wim-duration-short",
-      "--wim-duration-slow",
-      "--wim-duration-slowest",
-      "--wim-duration-ultra-slow",
-      "--wim-easing-standard",
-      "--wim-loader-dot-gap",
-      "--wim-loader-duration",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-sm",
-      "--wim-spacing-2xl",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"bars\" | \"dots\" | \"pulse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"bars\""
-            },
-            {
-              "name": "literal",
-              "value": "\"dots\""
-            },
-            {
-              "name": "literal",
-              "value": "\"pulse\""
-            }
-          ]
-        },
-        "description": "ローダーのアニメーション形式。",
-        "defaultValue": {
-          "value": "\"bars\"",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "ローダーのサイズ。",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "color": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"currentColor\" | WimColor",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"currentColor\""
-            },
-            {
-              "name": "union",
-              "raw": "T | (string & {})",
-              "elements": [
-                {
-                  "name": "union",
-                  "raw": "WimColorKey | WimColorToken",
-                  "elements": [
-                    {
-                      "name": "WimColorKey"
-                    },
-                    {
-                      "name": "union",
-                      "raw": "| `var(--wim-color-${WimColorKey})`\n| `var(--wim-${WimColorKey})`",
-                      "elements": [
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-color-${WimColorKey})`"
-                        },
-                        {
-                          "name": "literal",
-                          "value": "`var(--wim-${WimColorKey})`"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "unknown"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "ローダーの色。",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "DefaultFallback": {
-    "name": "DefaultFallback",
-    "tokens": [
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-font-size-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "error": {
-        "required": true,
-        "tsType": {
-          "name": "Error"
-        },
-        "description": ""
-      },
-      "errorInfo": {
-        "required": true,
-        "tsType": {
-          "name": "union",
-          "raw": "ErrorInfo | null",
-          "elements": [
-            {
-              "name": "ErrorInfo"
-            },
-            {
-              "name": "null"
-            }
-          ]
-        },
-        "description": ""
-      },
-      "reset": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "labels": {
-        "required": true,
-        "tsType": {
-          "name": "Required",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "title",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "retry",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "showDetails",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  },
-                  {
-                    "key": "hideDetails",
-                    "value": {
-                      "name": "string",
-                      "required": false
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "Required<ErrorBoundaryLabels>"
-        },
-        "description": ""
-      }
-    }
-  },
-  "ErrorBoundary": {
-    "name": "ErrorBoundary",
-    "tokens": [
-      "--wim-color-border-secondary",
-      "--wim-color-destructive",
-      "--wim-font-size-sm"
-    ],
-    "anatomy": [],
-    "props": {
-      "fallback": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
-          "elements": [
-            {
-              "name": "ReactNode"
-            },
-            {
-              "name": "unknown"
-            }
-          ]
-        },
-        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
-      },
-      "onError": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Error"
-                },
-                "name": "error"
-              },
-              {
-                "type": {
-                  "name": "ErrorInfo"
-                },
-                "name": "errorInfo"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーが発生した時に呼び出されるコールバック。"
-      },
-      "onReset": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "エラーがリセットされた時に呼び出されるコールバック。"
-      },
-      "labels": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "object",
-          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
-          "signature": {
-            "properties": [
-              {
-                "key": "title",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "retry",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "showDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              },
-              {
-                "key": "hideDetails",
-                "value": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            ]
-          }
-        },
-        "description": "手動翻訳用のラベル。"
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "子要素。"
       }
     }
   },
@@ -2455,6 +2241,220 @@
           "raw": "React.ReactNode"
         },
         "description": "子要素"
+      }
+    }
+  },
+  "DefaultFallback": {
+    "name": "DefaultFallback",
+    "tokens": [
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-font-size-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "error": {
+        "required": true,
+        "tsType": {
+          "name": "Error"
+        },
+        "description": ""
+      },
+      "errorInfo": {
+        "required": true,
+        "tsType": {
+          "name": "union",
+          "raw": "ErrorInfo | null",
+          "elements": [
+            {
+              "name": "ErrorInfo"
+            },
+            {
+              "name": "null"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "reset": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "labels": {
+        "required": true,
+        "tsType": {
+          "name": "Required",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "title",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "retry",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "showDetails",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  },
+                  {
+                    "key": "hideDetails",
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "Required<ErrorBoundaryLabels>"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ErrorBoundary": {
+    "name": "ErrorBoundary",
+    "tokens": [
+      "--wim-color-border-secondary",
+      "--wim-color-destructive",
+      "--wim-font-size-sm"
+    ],
+    "anatomy": [],
+    "props": {
+      "fallback": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| ReactNode\r\n| ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
+          "elements": [
+            {
+              "name": "ReactNode"
+            },
+            {
+              "name": "unknown"
+            }
+          ]
+        },
+        "description": "エラーが発生した時に表示されるコンポーネントまたは要素。\r\n関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。"
+      },
+      "onError": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(error: Error, errorInfo: ErrorInfo) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Error"
+                },
+                "name": "error"
+              },
+              {
+                "type": {
+                  "name": "ErrorInfo"
+                },
+                "name": "errorInfo"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーが発生した時に呼び出されるコールバック。"
+      },
+      "onReset": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "エラーがリセットされた時に呼び出されるコールバック。"
+      },
+      "labels": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "object",
+          "raw": "{\r\n  title?: string;\r\n  retry?: string;\r\n  showDetails?: string;\r\n  hideDetails?: string;\r\n}",
+          "signature": {
+            "properties": [
+              {
+                "key": "title",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "retry",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "showDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              {
+                "key": "hideDetails",
+                "value": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            ]
+          }
+        },
+        "description": "手動翻訳用のラベル。"
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "子要素。"
       }
     }
   },

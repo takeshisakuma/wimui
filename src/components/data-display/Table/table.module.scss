@@ -9,6 +9,17 @@
     &.sticky {
       overflow: auto;
     }
+  
+    &.cardContainer {
+      overflow: hidden;
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      border-radius: var(--wim-radius-md);
+
+      .root {
+        margin-bottom: 0;
+        border: none;
+      }
+    }
   }
 
   .root {
@@ -17,7 +28,7 @@
     }
 
     width: 100%;
-    margin-bottom: var(--wim-spacing-xl);
+    margin-bottom: 0;
     vertical-align: top;
     color: var(--wim-color-text-primary);
     border-collapse: collapse;

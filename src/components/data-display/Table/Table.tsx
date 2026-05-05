@@ -22,6 +22,10 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   height?: string | number;
   maxHeight?: string | number;
   containerClassName?: string;
+  /**
+   * Add outer border and border-radius to the container (DataGrid look)
+   */
+  card?: boolean;
 }
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>(
@@ -38,6 +42,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
       height,
       maxHeight,
       containerClassName,
+      card = false,
       className,
       children,
       ...props
@@ -59,6 +64,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
           stickyHeader && styles.sticky,
           scrollbar === "subtle" && styles.subtleScrollbar,
           scrollbar === "hidden" && styles.noScrollbar,
+          card && styles.cardContainer,
           containerClassName,
         )}
         style={containerStyle}

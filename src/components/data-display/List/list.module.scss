@@ -1,27 +1,34 @@
 .root {
   padding: 0;
-  padding-left: 1.5rem;
   margin: 0;
   list-style-position: outside;
 
-  &.spacing-tight {
+  &.spacing-tight:not(.bordered) {
     .item {
       margin-bottom: 0.5rem;
     }
   }
 
+  &.spacing-normal:not(.bordered) {
+    .item {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  &.spacing-loose:not(.bordered) {
+    .item {
+      margin-bottom: 1rem;
+    }
+  }
+
   &.bordered {
-    padding: 0;
     overflow: hidden;
-    list-style-position: inside;
+    background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
 
     .item {
-      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-      padding-left: 1.5rem; // Gutter for markers
-      margin-bottom: 0;
-      text-indent: -1rem; // Pull marker back from text, but keep away from border
+      margin-bottom: 0 !important;
       border-bottom: 1px solid var(--wim-color-border-secondary);
 
       &:last-child {
@@ -30,34 +37,37 @@
     }
   }
 
-  &.spacing-normal {
+  &.hoverable {
     .item {
-      margin-bottom: 0.75rem;
-    }
-  }
+      cursor: pointer;
+      transition: background-color var(--wim-duration-base);
 
-  &.spacing-loose {
-    .item {
-      margin-bottom: 1rem;
+      &:hover {
+        background-color: color-mix(in srgb, var(--wim-color-primary) 8%, var(--wim-color-bg-component));
+      }
     }
   }
 
   // Sizes
-  &.sm {
-    font-size: var(--wim-font-size-sm);
-  }
-
-  &.md {
-    font-size: var(--wim-font-size-md);
-  }
-
-  &.lg {
-    font-size: var(--wim-font-size-lg);
-  }
+  &.sm { font-size: var(--wim-font-size-sm); }
+  &.md { font-size: var(--wim-font-size-md); }
+  &.lg { font-size: var(--wim-font-size-lg); }
 }
 
-:global(ul).root {
+:global(ul).root, :global(ol).root {
+  padding-left: 1.5rem;
   list-style-type: disc;
+
+  &.bordered, &.hoverable {
+    padding-left: 0;
+
+    .item {
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      padding-left: 1.5rem;
+      text-indent: -1.1rem;
+      list-style-position: inside;
+    }
+  }
 }
 
 :global(ol).root {
@@ -71,8 +81,14 @@
     margin-bottom: 0;
   }
 
+  &.selected {
+    background-color: color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
+  }
+
   &.withIcon {
-    margin-left: -1.5rem;
+    padding-left: var(--wim-spacing-md) !important;
+    margin-left: 0;
+    text-indent: 0 !important;
     list-style: none;
 
     .itemContent {
