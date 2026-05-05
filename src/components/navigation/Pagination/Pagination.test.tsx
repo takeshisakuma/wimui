@@ -75,8 +75,10 @@ describe("Pagination", () => {
       />,
     );
 
-    const select = screen.getByLabelText("Items per page");
-    fireEvent.change(select, { target: { value: "20" } });
+    const trigger = screen.getByLabelText("Items per page");
+    fireEvent.click(trigger);
+
+    fireEvent.click(screen.getByText("20 items per page"));
 
     expect(handlePageSizeChange).toHaveBeenCalledWith(20);
     expect(handleChange).toHaveBeenCalledWith(1, 20); // Reset to page 1

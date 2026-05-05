@@ -1,4 +1,158 @@
 {
+  "Tooltip": {
+    "name": "Tooltip",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-duration-fast",
+      "--wim-font-size-sm",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "delay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Delay before showing the tooltip in ms.",
+        "defaultValue": {
+          "value": "200",
+          "computed": false
+        }
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If provided, controls the open state."
+      },
+      "onOpenChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when open state changes."
+      },
+      "placement": {
+        "required": false,
+        "tsType": {
+          "name": "Placement"
+        },
+        "description": "Preferred placement of the tooltip.",
+        "defaultValue": {
+          "value": "\"top\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TooltipTrigger": {
+    "name": "TooltipTrigger",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-duration-fast",
+      "--wim-font-size-sm",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TooltipContent": {
+    "name": "TooltipContent",
+    "tokens": [
+      "--wim-color-bg-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-duration-fast",
+      "--wim-font-size-sm",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-lg",
+      "--wim-spacing-sm",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "Portal": {
     "name": "Portal",
     "tokens": [],
@@ -249,6 +403,342 @@
         "description": ""
       }
     }
+  },
+  "Popconfirm": {
+    "name": "Popconfirm",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-overlay-max-width-sm",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title of the confirmation box"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description of the confirmation box"
+      },
+      "onConfirm": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when the user clicks the confirm button"
+      },
+      "onCancel": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when the user clicks the cancel button"
+      },
+      "okText": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Text of the confirm button",
+        "defaultValue": {
+          "value": "\"OK\"",
+          "computed": false
+        }
+      },
+      "cancelText": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Text of the cancel button",
+        "defaultValue": {
+          "value": "\"Cancel\"",
+          "computed": false
+        }
+      },
+      "okType": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"destructive\" | \"positive\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"destructive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"positive\""
+            }
+          ]
+        },
+        "description": "Color role of the confirm button",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The target element which the Popconfirm will be attached to"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Customize the icon"
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the popconfirm",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "HoverCardInner": {
+    "name": "HoverCardInner",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "openDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Delay before showing the hover card in ms.",
+        "defaultValue": {
+          "value": "700",
+          "computed": false
+        }
+      },
+      "closeDelay": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Delay before hiding the hover card in ms.",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      },
+      "open": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If provided, controls the open state."
+      },
+      "onOpenChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(open: boolean) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "boolean"
+                },
+                "name": "open"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when open state changes."
+      }
+    }
+  },
+  "HoverCardTrigger": {
+    "name": "HoverCardTrigger",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      }
+    }
+  },
+  "HoverCardContent": {
+    "name": "HoverCardContent",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"center\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "side": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"top\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottom\""
+            },
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"bottom\"",
+          "computed": false
+        }
+      },
+      "sideOffset": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "8",
+          "computed": false
+        }
+      }
+    }
+  },
+  "HoverCard": {
+    "name": "HoverCard",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "MenuInner": {
     "name": "MenuInner",
@@ -598,496 +1088,6 @@
       }
     }
   },
-  "HoverCardInner": {
-    "name": "HoverCardInner",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "openDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Delay before showing the hover card in ms.",
-        "defaultValue": {
-          "value": "700",
-          "computed": false
-        }
-      },
-      "closeDelay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Delay before hiding the hover card in ms.",
-        "defaultValue": {
-          "value": "300",
-          "computed": false
-        }
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If provided, controls the open state."
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when open state changes."
-      }
-    }
-  },
-  "HoverCardTrigger": {
-    "name": "HoverCardTrigger",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "HoverCardContent": {
-    "name": "HoverCardContent",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\" | \"center\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        }
-      },
-      "side": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"top\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottom\""
-            },
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"bottom\"",
-          "computed": false
-        }
-      },
-      "sideOffset": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "8",
-          "computed": false
-        }
-      }
-    }
-  },
-  "HoverCard": {
-    "name": "HoverCard",
-    "tokens": [],
-    "anatomy": [],
-    "props": {}
-  },
-  "Popconfirm": {
-    "name": "Popconfirm",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-overlay-max-width-sm",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title of the confirmation box"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description of the confirmation box"
-      },
-      "onConfirm": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when the user clicks the confirm button"
-      },
-      "onCancel": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when the user clicks the cancel button"
-      },
-      "okText": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Text of the confirm button",
-        "defaultValue": {
-          "value": "\"OK\"",
-          "computed": false
-        }
-      },
-      "cancelText": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Text of the cancel button",
-        "defaultValue": {
-          "value": "\"Cancel\"",
-          "computed": false
-        }
-      },
-      "okType": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"destructive\" | \"positive\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"destructive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"positive\""
-            }
-          ]
-        },
-        "description": "Color role of the confirm button",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The target element which the Popconfirm will be attached to"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Customize the icon"
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show the popconfirm",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Tooltip": {
-    "name": "Tooltip",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-duration-fast",
-      "--wim-font-size-sm",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "delay": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Delay before showing the tooltip in ms.",
-        "defaultValue": {
-          "value": "200",
-          "computed": false
-        }
-      },
-      "open": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If provided, controls the open state."
-      },
-      "onOpenChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(open: boolean) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "boolean"
-                },
-                "name": "open"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when open state changes."
-      },
-      "placement": {
-        "required": false,
-        "tsType": {
-          "name": "Placement"
-        },
-        "description": "Preferred placement of the tooltip.",
-        "defaultValue": {
-          "value": "\"top\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "TooltipTrigger": {
-    "name": "TooltipTrigger",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-duration-fast",
-      "--wim-font-size-sm",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TooltipContent": {
-    "name": "TooltipContent",
-    "tokens": [
-      "--wim-color-bg-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-duration-fast",
-      "--wim-font-size-sm",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-lg",
-      "--wim-spacing-sm",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "FocusTrap": {
     "name": "FocusTrap",
     "tokens": [],
@@ -1292,6 +1292,158 @@
         "required": false
       }
     }
+  },
+  "ContextMenuInner": {
+    "name": "ContextMenuInner",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "menu": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Menu items to display in the context menu"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Disable the context menu",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "ContextMenuItem": {
+    "name": "ContextMenuItem",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "onClick": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "danger": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "ContextMenuDivider": {
+    "name": "ContextMenuDivider",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ContextMenuGroup": {
+    "name": "ContextMenuGroup",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "ContextMenu": {
+    "name": "ContextMenu",
+    "tokens": [],
+    "anatomy": [],
+    "props": {}
   },
   "Dialog": {
     "name": "Dialog",
@@ -1932,158 +2084,6 @@
       "--wim-z-overlay",
       "--wim-z-overlay-panel"
     ],
-    "anatomy": [],
-    "props": {}
-  },
-  "ContextMenuInner": {
-    "name": "ContextMenuInner",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "menu": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Menu items to display in the context menu"
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Disable the context menu",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "ContextMenuItem": {
-    "name": "ContextMenuItem",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "onClick": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "danger": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "ContextMenuDivider": {
-    "name": "ContextMenuDivider",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "ContextMenuGroup": {
-    "name": "ContextMenuGroup",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": ""
-      },
-      "title": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "ContextMenu": {
-    "name": "ContextMenu",
-    "tokens": [],
     "anatomy": [],
     "props": {}
   },
