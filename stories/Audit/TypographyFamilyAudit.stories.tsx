@@ -86,7 +86,7 @@ export const Overview: StoryObj = {
         {/* Heading Levels */}
         <ComparisonGrid title={t("audit:label_heading")}>
           {headingLevels.map((level) => (
-            <ComponentGroup key={level} label={`Level ${level}`}>
+            <ComponentGroup key={level} label={t("audit:label_level_n", { level })}>
               <Title tag={`h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"}>
                 {t("audit:sample_typography_heading", { level })}
               </Title>
@@ -97,7 +97,7 @@ export const Overview: StoryObj = {
         {/* Text Sizes */}
         <ComparisonGrid title={t("audit:label_text")}>
           {textSizes.map((size) => (
-            <ComponentGroup key={size} label={`Size: ${size}`}>
+            <ComponentGroup key={size} label={t("audit:label_size_n", { size })}>
               <Text size={size as "xs" | "sm" | "md" | "lg" | "xl"}>
                 {t("audit:sample_typography_text", { size })}
               </Text>

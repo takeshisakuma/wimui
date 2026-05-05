@@ -97,9 +97,9 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
-              <Badge intent={intent}>Badge</Badge>
-              <Chip intent={intent}>Chip</Chip>
-              <Tag intent={intent}>Tag</Tag>
+              <Badge intent={intent}>{t("audit:label_badge")}</Badge>
+              <Chip intent={intent}>{t("audit:label_chip")}</Chip>
+              <Tag intent={intent}>{t("audit:label_tag")}</Tag>
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -108,9 +108,9 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
-              <Badge variant={variant} intent="primary">Badge</Badge>
-              <Chip variant={variant} intent="primary">Chip</Chip>
-              <Tag variant={variant} intent="primary">Tag</Tag>
+              <Badge variant={variant} intent="primary">{t("audit:label_badge")}</Badge>
+              <Chip variant={variant} intent="primary">{t("audit:label_chip")}</Chip>
+              <Tag variant={variant} intent="primary">{t("audit:label_tag")}</Tag>
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -118,22 +118,22 @@ export const Overview: StoryObj = {
         {/* Size Comparison */}
         <ComparisonGrid title={t("audit:size_comparison")}>
           {sizes.map((size) => (
-            <ComponentGroup key={size} label={t("audit:label_size", { size })}>
-              <Badge size={size}>Badge</Badge>
-              <Chip size={size}>Chip</Chip>
-              <Tag size={size}>Tag</Tag>
+            <ComponentGroup key={size} label={t("audit:label_size_n", { size })}>
+              <Badge size={size}>{t("audit:label_badge")}</Badge>
+              <Chip size={size}>{t("audit:label_chip")}</Chip>
+              <Tag size={size}>{t("audit:label_tag")}</Tag>
             </ComponentGroup>
           ))}
         </ComparisonGrid>
 
         {/* Special States */}
-        <ComparisonGrid title="Special States & Interactions">
-          <ComponentGroup label="Interactive Chips & Tags">
-            <Chip onClick={() => alert("Clicked")}>Clickable Chip</Chip>
-            <Chip onDelete={() => alert("Deleted")}>Deletable Chip</Chip>
-            <Tag onDelete={() => alert("Deleted")}>Deletable Tag</Tag>
+        <ComparisonGrid title={t("audit:label_special_states_interactions")}>
+          <ComponentGroup label={t("audit:label_interactive_chips_tags")}>
+            <Chip onClick={() => alert("Clicked")}>{t("audit:label_clickable_chip")}</Chip>
+            <Chip onDelete={() => alert("Deleted")}>{t("audit:label_deletable_chip")}</Chip>
+            <Tag onDelete={() => alert("Deleted")}>{t("audit:label_deletable_tag")}</Tag>
           </ComponentGroup>
-          <ComponentGroup label="Badge Variations">
+          <ComponentGroup label={t("audit:label_badge_variations")}>
             <Badge content="99+" />
             <Badge variant="solid" intent="error" /> {/* Dot badge */}
           </ComponentGroup>

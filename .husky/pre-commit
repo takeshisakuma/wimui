@@ -1,2 +1,2 @@
 #!/bin/sh
-npx lint-staged && node scripts/tsc-check.js
+npx lint-staged --no-stash && node scripts/tsc-check.js

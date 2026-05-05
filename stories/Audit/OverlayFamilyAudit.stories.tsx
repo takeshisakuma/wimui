@@ -91,17 +91,17 @@ export const Overview: StoryObj = {
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
               <Banner
                 intent={intent}
-                title={`Banner ${intent}`}
+                title={`${t("audit:label_banner")} ${intent}`}
                 description={t("audit:sample_feedback_check")}
               />
               <Notification
                 intent={intent}
-                title={`Notification ${intent}`}
+                title={`${t("audit:label_notification")} ${intent}`}
                 description={t("audit:sample_feedback_check")}
               />
               <Alert
                 intent={intent}
-                title={`Alert ${intent}`}
+                title={`${t("audit:label_alert")} ${intent}`}
               >
                 {t("audit:sample_feedback_check")}
               </Alert>

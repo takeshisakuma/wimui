@@ -10,6 +10,26 @@
     }
   }
 
+  &.bordered {
+    padding: 0;
+    overflow: hidden;
+    list-style-position: inside;
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+
+    .item {
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      padding-left: 1.5rem; // Gutter for markers
+      margin-bottom: 0;
+      text-indent: -1rem; // Pull marker back from text, but keep away from border
+      border-bottom: 1px solid var(--wim-color-border-secondary);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
   &.spacing-normal {
     .item {
       margin-bottom: 0.75rem;
@@ -77,14 +97,6 @@
   min-width: 0;
   height: 1.6em;
   overflow: visible;
-
-  &.left {
-    // left specific
-  }
-
-  &.right {
-    // right specific
-  }
 }
 
 .icon {

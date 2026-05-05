@@ -882,80 +882,6 @@
       }
     }
   },
-  "Kbd": {
-    "name": "Kbd",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-font-weight-bold",
-      "--wim-kbd-border-bottom-width",
-      "--wim-kbd-height-lg",
-      "--wim-kbd-height-md",
-      "--wim-kbd-height-sm",
-      "--wim-kbd-min-width-lg",
-      "--wim-kbd-min-width-md",
-      "--wim-kbd-min-width-sm",
-      "--wim-radius-md",
-      "--wim-shadow-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the Kbd will be rendered as its child, merging its props onto that child.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"sm\" | \"md\" | \"lg\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"md\"",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      }
-    }
-  },
   "Highlight": {
     "name": "Highlight",
     "tokens": [
@@ -1032,6 +958,80 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "Kbd": {
+    "name": "Kbd",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-font-weight-bold",
+      "--wim-kbd-border-bottom-width",
+      "--wim-kbd-height-lg",
+      "--wim-kbd-height-md",
+      "--wim-kbd-height-sm",
+      "--wim-kbd-min-width-lg",
+      "--wim-kbd-min-width-md",
+      "--wim-kbd-min-width-sm",
+      "--wim-radius-md",
+      "--wim-shadow-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the Kbd will be rendered as its child, merging its props onto that child.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"sm\" | \"md\" | \"lg\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"md\"",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
       }
     }
   },

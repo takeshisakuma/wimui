@@ -106,28 +106,37 @@
     box-shadow: var(--wim-shadow-sm), var(--wim-inner-highlight);
 
     &.default {
+      --solid-bg: var(--wim-color-primary);
+
       color: var(--wim-color-text-on-primary);
-      background-color: var(--wim-color-primary);
+      background-color: var(--solid-bg);
     }
 
     &.destructive {
+      --solid-bg: var(--wim-color-destructive);
+
       color: var(--wim-color-text-on-destructive);
-      background-color: var(--wim-color-destructive);
+      background-color: var(--solid-bg);
     }
 
     &.positive {
+      --solid-bg: var(--wim-color-positive);
+
       color: var(--wim-color-text-on-positive);
-      background-color: var(--wim-color-positive);
+      background-color: var(--solid-bg);
     }
 
     &:disabled {
+      --solid-bg: var(--wim-color-disabled);
+
       color: var(--wim-color-text-on-disabled);
-      background-color: var(--wim-color-disabled);
+      background-color: var(--solid-bg);
       border-color: transparent;
       box-shadow: none;
     }
 
     &:hover:not(:disabled) {
+      background-color: color-mix(in oklch, var(--solid-bg), black 8%);
       box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-lg)), var(--wim-inner-highlight);
       transform: translateY(var(--wim-lift-md)) translateZ(0);
       transition:

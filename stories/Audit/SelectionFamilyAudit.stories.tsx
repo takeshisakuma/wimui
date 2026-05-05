@@ -123,22 +123,22 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_switch")}>
             <Switch>{t("audit:sample_long_text", { component: "Switch" })}</Switch>
           </ComponentGroup>
-          <ComponentGroup label="SegmentedControl">
+          <ComponentGroup label={t("audit:label_segmented_control")}>
             <InteractiveSegmentedControl
               options={[
-                { label: "Option A", value: "a" },
-                { label: "Option B", value: "b" },
-                { label: "Option C", value: "c" },
+                { label: t("audit:label_option_a"), value: "a" },
+                { label: t("audit:label_option_b"), value: "b" },
+                { label: t("audit:label_option_c"), value: "c" },
               ]}
               value="a"
             />
           </ComponentGroup>
-          <ComponentGroup label="ToggleGroup">
+          <ComponentGroup label={t("audit:label_toggle_group")}>
             <InteractiveToggleGroup
               options={[
-                { label: "Option A", value: "a" },
-                { label: "Option B", value: "b" },
-                { label: "Option C", value: "c" },
+                { label: t("audit:label_option_a"), value: "a" },
+                { label: t("audit:label_option_b"), value: "b" },
+                { label: t("audit:label_option_c"), value: "c" },
               ]}
               defaultValue="a"
             />
@@ -152,61 +152,61 @@ export const Overview: StoryObj = {
               defaultValue={["1"]}
             />
           </ComponentGroup>
-          <ComponentGroup label="CheckboxGroup">
+          <ComponentGroup label={t("audit:label_checkbox_group")}>
             <InteractiveCheckboxGroup
-              label="Checkbox Group (Vertical)"
+              label={t("audit:label_checkbox_group_vertical")}
               options={[
-                { label: "Option 1", value: "1" },
-                { label: "Option 2", value: "2" },
-                { label: "Option 3", value: "3" },
+                { label: t("audit:label_option_1"), value: "1" },
+                { label: t("audit:label_option_2"), value: "2" },
+                { label: t("audit:label_option_3"), value: "3" },
               ]}
               defaultValue={["1"]}
             />
             <InteractiveCheckboxGroup
-              label="Checkbox Group (Horizontal)"
+              label={t("audit:label_checkbox_group_horizontal")}
               direction="horizontal"
               options={[
-                { label: "Option 1", value: "1" },
-                { label: "Option 2", value: "2" },
+                { label: t("audit:label_option_1"), value: "1" },
+                { label: t("audit:label_option_2"), value: "2" },
               ]}
               defaultValue={["1"]}
             />
           </ComponentGroup>
-          <ComponentGroup label="RadioGroup">
+          <ComponentGroup label={t("audit:label_radio_group")}>
             <InteractiveRadioGroup
-              label="Radio Group (Vertical)"
+              label={t("audit:label_radio_group_vertical")}
               options={[
-                { label: "Option A", value: "a" },
-                { label: "Option B", value: "b" },
+                { label: t("audit:label_option_a"), value: "a" },
+                { label: t("audit:label_option_b"), value: "b" },
               ]}
               defaultValue="a"
             />
             <InteractiveRadioGroup
-              label="Radio Group (Horizontal)"
+              label={t("audit:label_radio_group_horizontal")}
               direction="horizontal"
               options={[
-                { label: "Option A", value: "a" },
-                { label: "Option B", value: "b" },
-                { label: "Option C", value: "c" },
+                { label: t("audit:label_option_a"), value: "a" },
+                { label: t("audit:label_option_b"), value: "b" },
+                { label: t("audit:label_option_c"), value: "c" },
               ]}
               defaultValue="a"
             />
           </ComponentGroup>
-          <ComponentGroup label="SwitchGroup">
+          <ComponentGroup label={t("audit:label_switch_group")}>
             <InteractiveSwitchGroup
-              label="Switch Group (Vertical)"
+              label={t("audit:label_switch_group_vertical")}
               options={[
-                { label: "Toggle 1", value: "1" },
-                { label: "Toggle 2", value: "2" },
+                { label: t("audit:label_toggle_1"), value: "1" },
+                { label: t("audit:label_toggle_2"), value: "2" },
               ]}
               defaultValue={["1"]}
             />
             <InteractiveSwitchGroup
-              label="Switch Group (Horizontal)"
+              label={t("audit:label_switch_group_horizontal")}
               direction="horizontal"
               options={[
-                { label: "Toggle 1", value: "1" },
-                { label: "Toggle 2", value: "2" },
+                { label: t("audit:label_toggle_1"), value: "1" },
+                { label: t("audit:label_toggle_2"), value: "2" },
               ]}
               defaultValue={["1"]}
             />
@@ -228,12 +228,12 @@ export const Overview: StoryObj = {
             <InteractiveSegmentedControl
               options={[{ label: "A", value: "a" }, { label: "B", value: "b" }]}
               value="a"
-              error="Error message"
+              error={t("audit:label_error_message")}
             />
             <InteractiveToggleGroup
               options={[{ label: "A", value: "a" }, { label: "B", value: "b" }]}
               defaultValue="a"
-              error="Error message"
+              error={t("audit:label_error_message")}
             />
             <Slider defaultValue={40} style={{ width: "200px" }} aria-label={t("audit:label_intent_error")} />
           </ComponentGroup>

@@ -90,13 +90,13 @@ export const Overview: StoryObj = {
         {/* Size Comparison */}
         <ComparisonGrid title={t("audit:size_comparison")}>
           {sizes.map((size) => (
-            <ComponentGroup key={size} label={t("audit:label_size", { size })}>
+            <ComponentGroup key={size} label={t("audit:label_size_n", { size })}>
               <Button size={size} variant="solid">
-                Button
+                {t("audit:label_button")}
               </Button>
               <IconButton size={size} variant="solid" iconName="CircleIcon" aria-label="Circle" />
               <LinkButton size={size} variant="solid">
-                Link
+                {t("audit:label_link")}
               </LinkButton>
             </ComponentGroup>
           ))}
@@ -107,7 +107,7 @@ export const Overview: StoryObj = {
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
               <Button size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"}>
-                Button
+                {t("audit:label_button")}
               </Button>
               <IconButton size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" aria-label="Circle" />
               <FloatButton intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" position="static" />
@@ -120,11 +120,11 @@ export const Overview: StoryObj = {
           {variants.map((variant) => (
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
               <Button size="md" variant={variant}>
-                Button
+                {t("audit:label_button")}
               </Button>
               <IconButton size="md" variant={variant} iconName="CircleIcon" aria-label="Circle" />
               <LinkButton size="md" variant={variant}>
-                Link
+                {t("audit:label_link")}
               </LinkButton>
             </ComponentGroup>
           ))}
@@ -145,10 +145,10 @@ export const Overview: StoryObj = {
         {/* Mixed Composition */}
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")}>
-            <Button size="md">Button</Button>
+            <Button size="md">{t("audit:label_button")}</Button>
             <IconButton size="md" iconName="SearchIcon" aria-label="Search" />
             <CopyButton size="md" value="test" />
-            <LinkButton size="md">Link</LinkButton>
+            <LinkButton size="md">{t("audit:label_link")}</LinkButton>
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -156,9 +156,9 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:fluid_width_check")}>
           <Box style={{ gridColumn: "1 / -1" }} w="100%">
             <Stack gap="lg">
-              <Button fullWidth variant="solid">Full Width Solid Button</Button>
-              <Button fullWidth variant="outline">Full Width Outline Button</Button>
-              <LinkButton fullWidth variant="solid">Full Width Link Button</LinkButton>
+              <Button fullWidth variant="solid">{t("audit:label_full_width_solid")}</Button>
+              <Button fullWidth variant="outline">{t("audit:label_full_width_outline")}</Button>
+              <LinkButton fullWidth variant="solid">{t("audit:label_full_width_link")}</LinkButton>
             </Stack>
           </Box>
         </ComparisonGrid>
