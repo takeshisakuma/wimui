@@ -83,31 +83,29 @@ export const ViewportAudit: StoryObj = {
              </div>
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_calendar_heatmap")} noStack>
+          <ComponentGroup label={t("audit:label_calendar_heatmap")} noStack width="fit-content">
             <CalendarHeatmap
               data={heatmapData}
               year={2026}
             />
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_kanban")} noStack>
-            <Box style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)" }}>
-              <KanbanBoard>
-                <KanbanBoard.Column id="todo" title="To Do" cardCount={3}>
-                  <KanbanBoard.Card id="c1">Research UI Patterns</KanbanBoard.Card>
-                  <KanbanBoard.Card id="c2">Setup Audit Stories</KanbanBoard.Card>
-                  <KanbanBoard.Card id="c3">Review Tokens</KanbanBoard.Card>
-                </KanbanBoard.Column>
-                <KanbanBoard.Column id="doing" title="In Progress" cardCount={1}>
-                  <KanbanBoard.Card id="c4">Implementing Viewport Audit</KanbanBoard.Card>
-                </KanbanBoard.Column>
-                <KanbanBoard.Column id="done" title="Done" cardCount={2}>
-                  <KanbanBoard.Card id="c5">Interaction Audit</KanbanBoard.Card>
-                  <KanbanBoard.Card id="c6">Input Audit</KanbanBoard.Card>
-                </KanbanBoard.Column>
-                <KanbanBoard.Column id="backlog" title="Backlog" cardCount={0} />
-              </KanbanBoard>
-            </Box>
+          <ComponentGroup label={t("audit:label_kanban")} noStack width="fit-content">
+            <KanbanBoard style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", maxWidth: "100%" }}>
+              <KanbanBoard.Column id="todo" title="To Do" cardCount={3}>
+                <KanbanBoard.Card id="c1">Research UI Patterns</KanbanBoard.Card>
+                <KanbanBoard.Card id="c2">Setup Audit Stories</KanbanBoard.Card>
+                <KanbanBoard.Card id="c3">Review Tokens</KanbanBoard.Card>
+              </KanbanBoard.Column>
+              <KanbanBoard.Column id="doing" title="In Progress" cardCount={1}>
+                <KanbanBoard.Card id="c4">Implementing Viewport Audit</KanbanBoard.Card>
+              </KanbanBoard.Column>
+              <KanbanBoard.Column id="done" title="Done" cardCount={2}>
+                <KanbanBoard.Card id="c5">Interaction Audit</KanbanBoard.Card>
+                <KanbanBoard.Card id="c6">Input Audit</KanbanBoard.Card>
+              </KanbanBoard.Column>
+              <KanbanBoard.Column id="backlog" title="Backlog" cardCount={0} />
+            </KanbanBoard>
           </ComponentGroup>
         </ComparisonGrid>
 

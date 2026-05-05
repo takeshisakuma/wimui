@@ -4,8 +4,9 @@
     flex-direction: row;
     gap: var(--wim-spacing-2xl);
     align-items: stretch;
-    width: 100%;
+    width: fit-content;
     min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
   }
 

@@ -117,6 +117,21 @@
       }
     }
   },
+  "VisuallyHidden": {
+    "name": "VisuallyHidden",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
+      }
+    }
+  },
   "Transition": {
     "name": "Transition",
     "tokens": [
@@ -267,21 +282,6 @@
           "name": "string"
         },
         "description": ""
-      }
-    }
-  },
-  "VisuallyHidden": {
-    "name": "VisuallyHidden",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示されないが、スクリーンリーダーには読み上げられるコンテンツ。"
       }
     }
   },
@@ -2633,184 +2633,54 @@
       }
     }
   },
-  "Group": {
-    "name": "Group",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the group will be rendered as its child, merging its props onto that child."
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"stretch\""
-            },
-            {
-              "name": "literal",
-              "value": "\"baseline\""
-            }
-          ]
-        },
-        "description": "Vertical alignment",
-        "defaultValue": {
-          "value": "\"center\"",
-          "computed": false
-        }
-      },
-      "justify": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"start\""
-            },
-            {
-              "name": "literal",
-              "value": "\"center\""
-            },
-            {
-              "name": "literal",
-              "value": "\"end\""
-            },
-            {
-              "name": "literal",
-              "value": "\"between\""
-            },
-            {
-              "name": "literal",
-              "value": "\"around\""
-            },
-            {
-              "name": "literal",
-              "value": "\"evenly\""
-            }
-          ]
-        },
-        "description": "Horizontal alignment",
-        "defaultValue": {
-          "value": "\"start\"",
-          "computed": false
-        }
-      },
-      "gap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "number | string",
-          "elements": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "description": "Gap between elements",
-        "defaultValue": {
-          "value": "16",
-          "computed": false
-        }
-      },
-      "wrap": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"nowrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap\""
-            },
-            {
-              "name": "literal",
-              "value": "\"wrap-reverse\""
-            }
-          ]
-        },
-        "description": "Whether to wrap children",
-        "defaultValue": {
-          "value": "\"wrap\"",
-          "computed": false
-        }
-      },
-      "grow": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether items should grow to fill available space",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Footer": {
-    "name": "Footer",
+  "Header": {
+    "name": "Header",
     "tokens": [
       "--wim-color-bg-component",
+      "--wim-color-bg-primary",
       "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
       "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
+      "--wim-header-height",
       "--wim-spacing-md",
       "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
+      "--wim-transition-base",
+      "--wim-z-header"
     ],
     "anatomy": [],
     "props": {
+      "fixed": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Fixed position at the top"
+      },
+      "sticky": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Sticky position at the top"
+      },
       "bordered": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Border at the top"
+        "description": "Border at the bottom"
+      },
+      "glass": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Glassmorphism effect"
       },
       "background": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"dark\"",
+          "raw": "\"primary\" | \"secondary\" | \"transparent\"",
           "elements": [
             {
               "name": "literal",
@@ -2822,7 +2692,7 @@
             },
             {
               "name": "literal",
-              "value": "\"dark\""
+              "value": "\"transparent\""
             }
           ]
         },
@@ -2834,61 +2704,48 @@
       }
     }
   },
-  "Footer.Section": {
-    "name": "Footer.Section",
+  "Header.Section": {
+    "name": "Header.Section",
     "tokens": [
       "--wim-color-bg-component",
+      "--wim-color-bg-primary",
       "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
       "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
+      "--wim-header-height",
       "--wim-spacing-md",
       "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
+      "--wim-transition-base",
+      "--wim-z-header"
     ],
     "anatomy": [],
     "props": {
-      "title": {
+      "align": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            }
+          ]
         },
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "\"start\"",
+          "computed": false
+        }
       }
     }
-  },
-  "Footer.Bottom": {
-    "name": "Footer.Bottom",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-inverted",
-      "--wim-color-border-secondary",
-      "--wim-color-surface-inverse",
-      "--wim-color-text-muted-on-inverted",
-      "--wim-color-text-on-dark",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-bold",
-      "--wim-spacing-2xl",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs",
-      "--wim-transition-base"
-    ],
-    "anatomy": [],
-    "props": {}
   },
   "Grid": {
     "name": "Grid",
@@ -3485,97 +3342,23 @@
       }
     }
   },
-  "Header": {
-    "name": "Header",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
+  "Group": {
+    "name": "Group",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "fixed": {
+      "asChild": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Fixed position at the top"
+        "description": "If true, the group will be rendered as its child, merging its props onto that child."
       },
-      "sticky": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Sticky position at the top"
-      },
-      "bordered": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Border at the bottom"
-      },
-      "glass": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Glassmorphism effect"
-      },
-      "background": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"transparent\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"transparent\""
-            }
-          ]
-        },
-        "description": "Background color",
-        "defaultValue": {
-          "value": "\"primary\"",
-          "computed": false
-        }
-      }
-    }
-  },
-  "Header.Section": {
-    "name": "Header.Section",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-primary",
-      "--wim-color-bg-secondary",
-      "--wim-color-border-secondary",
-      "--wim-header-height",
-      "--wim-spacing-md",
-      "--wim-spacing-xl",
-      "--wim-transition-base",
-      "--wim-z-header"
-    ],
-    "anatomy": [],
-    "props": {
       "align": {
         "required": false,
         "tsType": {
           "name": "union",
-          "raw": "\"start\" | \"center\" | \"end\"",
+          "raw": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
           "elements": [
             {
               "name": "literal",
@@ -3588,16 +3371,233 @@
             {
               "name": "literal",
               "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"stretch\""
+            },
+            {
+              "name": "literal",
+              "value": "\"baseline\""
             }
           ]
         },
-        "description": "",
+        "description": "Vertical alignment",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "justify": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"start\""
+            },
+            {
+              "name": "literal",
+              "value": "\"center\""
+            },
+            {
+              "name": "literal",
+              "value": "\"end\""
+            },
+            {
+              "name": "literal",
+              "value": "\"between\""
+            },
+            {
+              "name": "literal",
+              "value": "\"around\""
+            },
+            {
+              "name": "literal",
+              "value": "\"evenly\""
+            }
+          ]
+        },
+        "description": "Horizontal alignment",
         "defaultValue": {
           "value": "\"start\"",
           "computed": false
         }
+      },
+      "gap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "number | string",
+          "elements": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "description": "Gap between elements",
+        "defaultValue": {
+          "value": "16",
+          "computed": false
+        }
+      },
+      "wrap": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"nowrap\" | \"wrap\" | \"wrap-reverse\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"nowrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap\""
+            },
+            {
+              "name": "literal",
+              "value": "\"wrap-reverse\""
+            }
+          ]
+        },
+        "description": "Whether to wrap children",
+        "defaultValue": {
+          "value": "\"wrap\"",
+          "computed": false
+        }
+      },
+      "grow": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether items should grow to fill available space",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
+  },
+  "Footer": {
+    "name": "Footer",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "bordered": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Border at the top"
+      },
+      "background": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"dark\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"dark\""
+            }
+          ]
+        },
+        "description": "Background color",
+        "defaultValue": {
+          "value": "\"primary\"",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Footer.Section": {
+    "name": "Footer.Section",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "Footer.Bottom": {
+    "name": "Footer.Bottom",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-secondary",
+      "--wim-color-border-inverted",
+      "--wim-color-border-secondary",
+      "--wim-color-surface-inverse",
+      "--wim-color-text-muted-on-inverted",
+      "--wim-color-text-on-dark",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-bold",
+      "--wim-spacing-2xl",
+      "--wim-spacing-md",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs",
+      "--wim-transition-base"
+    ],
+    "anatomy": [],
+    "props": {}
   },
   "Flex": {
     "name": "Flex",
@@ -6604,32 +6604,6 @@
       }
     }
   },
-  "AspectRatio": {
-    "name": "AspectRatio",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "ratio": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "子要素"
-      }
-    }
-  },
   "AppShell": {
     "name": "AppShell",
     "tokens": [
@@ -6834,5 +6808,31 @@
     ],
     "anatomy": [],
     "props": {}
+  },
+  "AspectRatio": {
+    "name": "AspectRatio",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "ratio": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "アスペクト比 (例: 16 / 9, 1, 4 / 3)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "子要素"
+      }
+    }
   }
 }

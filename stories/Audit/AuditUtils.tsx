@@ -69,7 +69,7 @@ export const ComparisonGrid = ({
         gridTemplateColumns: "minmax(0, 1fr)",
         gap: "var(--wim-spacing-lg)",
         padding: "var(--wim-spacing-md)",
-        overflowX: overflowX || "visible",
+        overflowX: (overflowX || "visible") as React.CSSProperties["overflowX"],
       }}
     >
       {children}
@@ -80,6 +80,7 @@ export const ComparisonGrid = ({
 interface ComponentGroupProps {
   label: string;
   children: React.ReactNode;
+  width?: string;
   maxWidth?: string;
   align?: "start" | "center" | "end" | "stretch";
   gap?: string | number;
@@ -95,6 +96,7 @@ interface ComponentGroupProps {
 export const ComponentGroup = ({
   label,
   children,
+  width = "100%",
   maxWidth,
   align = "start",
   gap = "md",
@@ -103,13 +105,13 @@ export const ComponentGroup = ({
   direction = "column",
   overflow = "auto",
 }: ComponentGroupProps) => (
-  <Stack gap="var(--wim-spacing-xs)" style={{ width: "100%", minWidth: 0 }}>
+  <Stack gap="var(--wim-spacing-xs)" style={{ width, maxWidth: "100%", minWidth: 0, justifySelf: width === "fit-content" ? "start" : undefined }}>
     <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
       <Text size="xs" color="text-secondary">
         {label}
       </Text>
     </Box>
-    <Box style={{ width: "100%", maxWidth, overflow, minWidth: 0 }}>
+    <Box style={{ width, maxWidth: maxWidth || "100%", overflow, minWidth: 0 }}>
       {noStack ? (
         children
       ) : (
