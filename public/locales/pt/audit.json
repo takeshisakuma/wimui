@@ -279,5 +279,9 @@
   "label_group": "Group",
   "label_center": "Center",
   "label_container": "Container",
-  "label_simple_grid": "SimpleGrid"
+  "label_simple_grid": "SimpleGrid",
+  "heading_hierarchy": "Hierarquia de Títulos (Title H1-H6)",
+  "body_text_styles": "Estilos de Texto (Text, Span)",
+  "specialized_typography": "Tipografia Especializada (Blockquote, Code, etc.)",
+  "decoration_check": "Decorações e Acentos (Sublinhado, Destaque)"
 }

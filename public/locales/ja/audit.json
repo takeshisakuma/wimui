@@ -279,5 +279,9 @@
   "label_group": "Group",
   "label_center": "Center",
   "label_container": "Container",
-  "label_simple_grid": "SimpleGrid"
+  "label_simple_grid": "SimpleGrid",
+  "heading_hierarchy": "見出し階層 (Title H1-H6)",
+  "body_text_styles": "本文スタイル (Text, Span)",
+  "specialized_typography": "特殊タイポグラフィ (Blockquote, Code, etc.)",
+  "decoration_check": "装飾・アクセント (Underline, Highlight)"
 }
