@@ -30,6 +30,7 @@ type PopoverContextValue = {
     userProps?: React.HTMLProps<HTMLElement>,
   ) => Record<string, unknown>;
   close: () => void;
+  variant: "default" | "glass";
 };
 
 // Context to share state between components
@@ -54,6 +55,10 @@ export type PopoverProps = {
    * Preferred placement of the popover.
    */
   placement?: Placement;
+  /**
+   * The variant of the popover content.
+   */
+  variant?: "default" | "glass";
 };
 
 export const Popover = ({
@@ -63,6 +68,7 @@ export const Popover = ({
   open: controlledOpen,
   onOpenChange,
   placement = "bottom-start",
+  variant = "default",
 }: PopoverProps) => {
   const {
     isOpen: open,
@@ -93,6 +99,7 @@ export const Popover = ({
         getReferenceProps,
         getFloatingProps,
         close,
+        variant,
       }}
     >
       <div className={classNames(styles.root, className)}>{children}</div>
@@ -193,7 +200,11 @@ export const PopoverContent = React.forwardRef<
           <div
             ref={ref}
             style={{ ...floatingStyles, ...style }}
-            className={classNames(styles.content, className)}
+            className={classNames(
+              styles.content,
+              styles[context.variant],
+              className
+            )}
             role="dialog"
             {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
           >

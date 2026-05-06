@@ -12,7 +12,11 @@ export type CardProps<C extends React.ElementType = "div"> = {
   /**
    * カードのバリアント
    */
-  variant?: "elevated" | "outline" | "flat";
+  variant?: "elevated" | "outline" | "flat" | "glass";
+  /**
+   * ホバー時のアニメーションやクリック時の効果を有効にするか
+   */
+  interactive?: boolean;
   /**
    * パディングのサイズ
    */
@@ -43,6 +47,7 @@ const CardInner = <C extends React.ElementType = "div">(
     variant = "elevated",
     padding = "md",
     radius = "md",
+    interactive = false,
     as,
     className,
     children,
@@ -60,6 +65,7 @@ const CardInner = <C extends React.ElementType = "div">(
         styles[variant],
         styles[`padding-${padding}`],
         styles[`radius-${radius}`],
+        interactive && styles.interactive,
         className,
       )}
       {...props}

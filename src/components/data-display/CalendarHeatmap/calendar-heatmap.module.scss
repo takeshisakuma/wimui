@@ -58,11 +58,11 @@
       transform: scale(1.2);
     }
 
-    &.level0 { background-color: var(--heatmap-level-0, #ebedf0); }
-    &.level1 { background-color: var(--heatmap-level-1, #9be9a8); }
-    &.level2 { background-color: var(--heatmap-level-2, #40c463); }
-    &.level3 { background-color: var(--heatmap-level-3, #30a14e); }
-    &.level4 { background-color: var(--heatmap-level-4, #216e39); }
+    &.level0 { background-color: var(--heatmap-level-0); }
+    &.level1 { background-color: var(--heatmap-level-1); }
+    &.level2 { background-color: var(--heatmap-level-2); }
+    &.level3 { background-color: var(--heatmap-level-3); }
+    &.level4 { background-color: var(--heatmap-level-4); }
   }
 
   .labels {
@@ -112,12 +112,4 @@
   }
 }
 
-[data-theme="dark"] {
-  .cell {
-    &.level0 { background-color: var(--heatmap-level-0, #161b22); }
-    &.level1 { background-color: var(--heatmap-level-1, #0e4429); }
-    &.level2 { background-color: var(--heatmap-level-2, #006d32); }
-    &.level3 { background-color: var(--heatmap-level-3, #26a641); }
-    &.level4 { background-color: var(--heatmap-level-4, #39d353); }
-  }
-}
+

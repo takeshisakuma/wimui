@@ -1,4 +1,5 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import styles from "./breadcrumb.module.scss";
@@ -18,17 +19,22 @@ type BreadcrumbProps = {
   size?: ComponentSize;
   className?: string;
   ariaLabel?: string;
+  asChild?: boolean;
 };
 
-export const Breadcrumb = ({
+export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
   items,
   separator,
   size = "md",
   className,
   ariaLabel,
-}: BreadcrumbProps) => {
+  asChild,
+  ...props
+}, ref) => {
   const { t } = useTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.breadcrumb");
+  const Component = asChild ? Slot : "nav";
+
   const defaultSeparator = (
     <Icon
       name="ChevronRightIcon"
@@ -56,8 +62,8 @@ export const Breadcrumb = ({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <nav
+    <Component
+      ref={ref}
       aria-label={resolvedAriaLabel}
       className={classNames(
         styles.root,
@@ -65,6 +71,7 @@ export const Breadcrumb = ({
         className,
       )}
       onKeyDown={handleKeyDown}
+      {...props}
     >
       <ol className={styles.list}>
         {items.map((item, index) => {
@@ -114,6 +121,8 @@ export const Breadcrumb = ({
           );
         })}
       </ol>
-    </nav>
+    </Component>
   );
-};
+});
+
+Breadcrumb.displayName = "Breadcrumb";

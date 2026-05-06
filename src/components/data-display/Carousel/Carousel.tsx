@@ -4,7 +4,9 @@ import React, {
   useCallback,
   useRef,
   useMemo,
+  forwardRef,
 } from "react";
+import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./carousel.module.scss";
@@ -69,6 +71,10 @@ export type CarouselProps = {
    * 追加のクラス名
    */
   className?: string;
+  /**
+   * Whether to use the Radix Slot pattern
+   */
+  asChild?: boolean;
 };
 
 const DEFAULT_LABELS: Required<CarouselLabels> = {
@@ -95,7 +101,7 @@ const getSlidesToShow = (
 /**
  * `Carousel` は複数のコンテンツをスライドさせて表示するコンポーネントです。
  */
-export const Carousel = ({
+export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   children,
   autoPlay = false,
   interval = 5000,
@@ -107,7 +113,10 @@ export const Carousel = ({
   objectFit = "cover",
   labels,
   className,
-}: CarouselProps) => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
   const items = useMemo(() => React.Children.toArray(children), [children]);
@@ -244,8 +253,8 @@ export const Carousel = ({
   const offsetX = -currentIndex * slideWidth;
 
   return (
-    /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
-    <div
+    <Component
+      ref={ref}
       className={classNames(styles.root, className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -255,6 +264,7 @@ export const Carousel = ({
       tabIndex={0}
       role="region"
       aria-roledescription="carousel"
+      {...props}
     >
       <div className={styles.viewport}>
         <div
@@ -344,6 +354,8 @@ export const Carousel = ({
           })}
         </div>
       )}
-    </div>
+    </Component>
   );
-};
+});
+
+Carousel.displayName = "Carousel";

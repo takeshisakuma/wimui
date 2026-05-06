@@ -1,4 +1,5 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import styles from "./timeline.module.scss";
 
@@ -6,20 +7,26 @@ export interface TimelineProps {
   children: React.ReactNode;
   align?: "left" | "right" | "alternate";
   className?: string;
+  asChild?: boolean;
 }
 
-export const Timeline = ({
+export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(({
   children,
   align = "left",
   className,
-}: TimelineProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   return (
-    <div
+    <Component
+      ref={ref}
       className={classNames(
         styles.root,
         styles[align],
         className,
       )}
+      {...props}
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
@@ -29,114 +36,156 @@ export const Timeline = ({
         }
         return child;
       })}
-    </div>
+    </Component>
   );
-};
+});
+
+Timeline.displayName = "Timeline";
 
 export interface TimelineItemProps {
   children: React.ReactNode;
   className?: string;
   align?: "left" | "right" | "alternate";
+  asChild?: boolean;
 }
 
-export const TimelineItem = ({
+export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(({
   children,
   className,
   align,
-}: TimelineItemProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   return (
-    <div
+    <Component
+      ref={ref}
       className={classNames(
         styles.item,
         align && styles[align],
         className,
       )}
+      {...props}
     >
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+TimelineItem.displayName = "TimelineItem";
 
 export interface TimelineSeparatorProps {
   children?: React.ReactNode;
   className?: string;
+  asChild?: boolean;
 }
 
-export const TimelineSeparator = ({
+export const TimelineSeparator = forwardRef<HTMLDivElement, TimelineSeparatorProps>(({
   children,
   className,
-}: TimelineSeparatorProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   return (
-    <div className={classNames(styles.separator, className)}>
+    <Component ref={ref} className={classNames(styles.separator, className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+TimelineSeparator.displayName = "TimelineSeparator";
 
 export interface TimelineConnectorProps {
   className?: string;
+  asChild?: boolean;
 }
 
-export const TimelineConnector = ({
+export const TimelineConnector = forwardRef<HTMLDivElement, TimelineConnectorProps>(({
   className,
-}: TimelineConnectorProps): React.ReactElement => {
-  return <div className={classNames(styles.connector, className)} />;
-};
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
+  return <Component ref={ref} className={classNames(styles.connector, className)} {...props} />;
+});
+
+TimelineConnector.displayName = "TimelineConnector";
 
 export interface TimelinePointProps {
   children?: React.ReactNode;
   variant?: "primary" | "secondary" | "error" | "success";
   className?: string;
+  asChild?: boolean;
 }
 
-export const TimelinePoint = ({
+export const TimelinePoint = forwardRef<HTMLDivElement, TimelinePointProps>(({
   children,
   variant,
   className,
-}: TimelinePointProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   const isIcon = !!children;
   return (
-    <div
+    <Component
+      ref={ref}
       className={classNames(
         styles.point,
         variant && styles[variant],
         isIcon && styles.icon,
         className,
       )}
+      {...props}
     >
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+TimelinePoint.displayName = "TimelinePoint";
 
 export interface TimelineContentProps {
   children: React.ReactNode;
   className?: string;
+  asChild?: boolean;
 }
 
-export const TimelineContent = ({
+export const TimelineContent = forwardRef<HTMLDivElement, TimelineContentProps>(({
   children,
   className,
-}: TimelineContentProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   return (
-    <div className={classNames(styles.content, className)}>
+    <Component ref={ref} className={classNames(styles.content, className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+TimelineContent.displayName = "TimelineContent";
 
 export interface TimelineOppositeContentProps {
   children: React.ReactNode;
   className?: string;
+  asChild?: boolean;
 }
 
-export const TimelineOppositeContent = ({
+export const TimelineOppositeContent = forwardRef<HTMLDivElement, TimelineOppositeContentProps>(({
   children,
   className,
-}: TimelineOppositeContentProps): React.ReactElement => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
   return (
-    <div className={classNames(styles.oppositeContent, className)}>
+    <Component ref={ref} className={classNames(styles.oppositeContent, className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+TimelineOppositeContent.displayName = "TimelineOppositeContent";

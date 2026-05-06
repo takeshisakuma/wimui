@@ -5,7 +5,9 @@ import React, {
   useCallback,
   useMemo,
   useId,
+  forwardRef,
 } from "react";
+import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import styles from "./accordion.module.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -37,13 +39,14 @@ export interface AccordionProps {
   className?: string;
   children: React.ReactNode;
   id?: string;
+  asChild?: boolean;
 }
 
 /**
  * 折りたたみ可能なコンテンツのセット。
  * type="single" の場合は一度に一つ、"multiple" の場合は複数開くことができます。
  */
-export const Accordion = ({
+const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(function AccordionRoot({
   type = "single",
   defaultValue: _defaultValue,
   value: valueProp,
@@ -52,7 +55,9 @@ export const Accordion = ({
   className,
   children,
   id: customId,
-}: AccordionProps) => {
+  asChild,
+  ...props
+}, ref) {
   const generatedId = useId();
   const accordionId = customId || generatedId;
 
@@ -61,6 +66,11 @@ export const Accordion = ({
     return Array.isArray(_defaultValue) ? _defaultValue : [_defaultValue];
   });
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const combinedRef = (node: HTMLDivElement | null) => {
+    (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+  };
 
   const isControlled = valueProp !== undefined;
   const activeValue = useMemo(() => {
@@ -96,6 +106,8 @@ export const Accordion = ({
     [activeValue, collapsible, isControlled, onChange, type],
   );
 
+  const Component = asChild ? Slot : "div";
+
   return (
     <AccordionContext.Provider
       value={{
@@ -106,21 +118,23 @@ export const Accordion = ({
         containerRef,
       }}
     >
-      <div
-        ref={containerRef}
+      <Component
+        ref={combinedRef}
         className={classNames(styles.root, className)}
+        {...props}
       >
         {children}
-      </div>
+      </Component>
     </AccordionContext.Provider>
   );
-};
+});
 
 export interface AccordionItemProps {
   value: string;
   disabled?: boolean;
   className?: string;
   children: React.ReactNode;
+  asChild?: boolean;
 }
 
 const AccordionItemContext = createContext<{
@@ -134,43 +148,54 @@ const AccordionItemContext = createContext<{
 /**
  * 各アコーディオン項目。
  */
-export const AccordionItem = ({
+export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(function AccordionItem({
   value,
   disabled = false,
   className,
   children,
-}: AccordionItemProps) => {
+  asChild,
+  ...props
+}, ref) {
   const { value: activeValues, accordionId } = useAccordion();
   const isLogicOpen = activeValues.includes(value);
   const triggerId = `wim-accordion-trigger-${accordionId}-${value}`;
   const contentId = `wim-accordion-content-${accordionId}-${value}`;
 
+  const Component = asChild ? Slot : "div";
+
   return (
     <AccordionItemContext.Provider
       value={{ value, disabled, isLogicOpen, triggerId, contentId }}
     >
-      <div
+      <Component
+        ref={ref}
         className={classNames(
           styles.item,
           disabled && styles.disabled,
           isLogicOpen && styles.open,
           className,
         )}
+        {...props}
       >
         {children}
-      </div>
+      </Component>
     </AccordionItemContext.Provider>
   );
-};
+});
 
 /**
  * アコーディオンを切り替えるトリガー。
  */
-export const AccordionTrigger = ({
+export interface AccordionTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
+  asChild?: boolean;
+}
+
+export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(function AccordionTrigger({
   children,
   className,
+  asChild,
   ...props
-}: React.ComponentPropsWithoutRef<"button">) => {
+}, ref) {
   const { onValueChange } = useAccordion();
   const item = useContext(AccordionItemContext);
   if (!item)
@@ -216,9 +241,12 @@ export const AccordionTrigger = ({
     props.onKeyDown?.(e);
   };
 
+  const Component = asChild ? Slot : "button";
+
   return (
-    <button
-      type="button"
+    <Component
+      ref={ref}
+      type={asChild ? undefined : "button"}
       id={item.triggerId}
       className={classNames(styles.trigger, className)}
       aria-expanded={item.isLogicOpen}
@@ -237,24 +265,32 @@ export const AccordionTrigger = ({
           item.isLogicOpen && styles.open,
         )}
       />
-    </button>
+    </Component>
   );
-};
+});
 
 /**
  * アコーディオンのコンテンツ領域。
  */
-export const AccordionContent = ({
+export interface AccordionContentProps extends React.ComponentPropsWithoutRef<"div"> {
+  asChild?: boolean;
+}
+
+export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(function AccordionContent({
   children,
   className,
+  asChild,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) => {
+}, ref) {
   const item = useContext(AccordionItemContext);
   if (!item)
     throw new Error("AccordionContent must be used within AccordionItem");
 
+  const Component = asChild ? Slot : "div";
+
   return (
-    <div
+    <Component
+      ref={ref}
       id={item.contentId}
       role="region"
       aria-labelledby={item.triggerId}
@@ -268,17 +304,27 @@ export const AccordionContent = ({
       <div className={styles.contentInner}>
         <div className={styles.contentBody}>{children}</div>
       </div>
-    </div>
+    </Component>
   );
+});
+
+export type AccordionComponent = React.ForwardRefExoticComponent<
+  AccordionProps & React.RefAttributes<HTMLDivElement>
+> & {
+  Item: typeof AccordionItem;
+  Trigger: typeof AccordionTrigger;
+  Content: typeof AccordionContent;
 };
+
+export const Accordion = AccordionRoot as AccordionComponent;
+
+Accordion.Item = AccordionItem;
+Accordion.Trigger = AccordionTrigger;
+Accordion.Content = AccordionContent;
 
 Accordion.displayName = "Accordion";
 AccordionItem.displayName = "Accordion.Item";
 AccordionTrigger.displayName = "Accordion.Trigger";
 AccordionContent.displayName = "Accordion.Content";
-
-Accordion.Item = AccordionItem;
-Accordion.Trigger = AccordionTrigger;
-Accordion.Content = AccordionContent;
 
 export default Accordion;

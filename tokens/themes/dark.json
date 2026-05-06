@@ -85,6 +85,11 @@
       "chart-6": { "value": "{pccs.b10}" },
       "chart-7": { "value": "{pccs.b4}" },
       "chart-8": { "value": "{pccs.b14}" },
+      "heatmap-level-0": { "value": "{pccs.gy3-5}" },
+      "heatmap-level-1": { "value": "{pccs.dk12}" },
+      "heatmap-level-2": { "value": "{pccs.d12}" },
+      "heatmap-level-3": { "value": "{pccs.lt12}" },
+      "heatmap-level-4": { "value": "{pccs.b12}" },
 
       "decoration-highlight-color": { "value": "#5c4400" }
     }

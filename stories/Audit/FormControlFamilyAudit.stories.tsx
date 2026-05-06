@@ -1,0 +1,147 @@
+import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+import {
+  Input,
+  Selectbox,
+  Combobox,
+  MultiSelect,
+  Checkbox,
+  CheckboxGroup,
+  RadioGroup,
+  SwitchGroup,
+  Slider,
+  NumberInput,
+  DatePicker,
+  Stack,
+  Box,
+  Text,
+} from "../../src";
+import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
+
+const meta: Meta = {
+  title: "Audit/FormControlFamily",
+  parameters: {
+    layout: "fullscreen",
+  },
+};
+
+export default meta;
+
+export const Overview: StoryObj = {
+  render: () => {
+    const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
+
+    return (
+      <AuditPage 
+        title={t("audit:form_controls_audit_title")}
+        description={t("audit:form_controls_audit_desc")}
+      >
+        {/* Label & Help Text Consistency */}
+        <ComparisonGrid title={t("audit:form_label_consistency")}>
+          <ComponentGroup label={t("audit:label_standard_input")} maxWidth="var(--wim-width-md)" align="stretch">
+            <Input 
+              label={t("audit:label_username")} 
+              placeholder={t("audit:placeholder_username")} 
+              fullWidth
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_selectbox")} maxWidth="var(--wim-width-md)" align="stretch">
+            <Selectbox 
+              label={t("audit:label_country")} 
+              options={[{ label: "United States", value: "us" }, { label: "Japan", value: "jp" }]} 
+              placeholder={t("audit:placeholder_country")}
+              fullWidth
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_checkbox_group")} maxWidth="var(--wim-width-md)" align="stretch">
+            <CheckboxGroup 
+              label={t("audit:label_interests")} 
+              options={[{ label: "Design", value: "d" }, { label: "Development", value: "dev" }]} 
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_switch_group")} maxWidth="var(--wim-width-md)" align="stretch">
+            <SwitchGroup 
+              label={t("audit:label_notifications")} 
+              options={[{ label: "Email", value: "e" }, { label: "Push", value: "p" }]} 
+            />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Validation State Consistency */}
+        <ComparisonGrid title={t("audit:form_validation_consistency")}>
+          <ComponentGroup label={`${t("audit:label_input")} (${t("audit:label_intent_error")})`} maxWidth="var(--wim-width-md)" align="stretch">
+            <Input 
+              label={t("audit:label_email_address")} 
+              defaultValue="invalid-email"
+              intent="error"
+              error={t("audit:error_email_invalid")}
+              fullWidth
+            />
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_number_input")} (${t("audit:label_intent_error")})`} maxWidth="var(--wim-width-md)" align="stretch">
+            <NumberInput 
+              label={t("audit:label_age")} 
+              defaultValue={150}
+              error={t("audit:error_age_range")}
+              fullWidth
+            />
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_multi_select_selection")} (${t("audit:label_intent_error")})`} maxWidth="var(--wim-width-md)" align="stretch">
+            <MultiSelect 
+              label={t("audit:label_tags")} 
+              options={[{ label: "React", value: "r" }]}
+              defaultValue={[]}
+              error={t("audit:error_tag_required")}
+              fullWidth
+            />
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_radio_group")} (${t("audit:label_intent_error")})`} maxWidth="var(--wim-width-md)" align="stretch">
+            <RadioGroup 
+              label={t("audit:label_gender")} 
+              options={[{ label: "Male", value: "m" }, { label: "Female", value: "f" }]}
+              error={t("audit:error_gender_required")}
+            />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Layout: Horizontal vs Vertical */}
+        <ComparisonGrid title={t("audit:form_layout_patterns")}>
+          <ComponentGroup label={t("audit:label_form_layout_vertical")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Stack gap="md">
+              <Input label={t("audit:label_first_name")} fullWidth />
+              <Input label={t("audit:label_last_name")} fullWidth />
+              <Selectbox label={t("audit:label_role")} fullWidth options={[]} />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_form_layout_horizontal")} align="stretch" maxWidth="var(--wim-width-lg)">
+            <Stack direction="row" gap="md" align="end">
+              <Input label={t("audit:label_promo_code")} style={{ width: 'var(--wim-width-md)' }} />
+              <Box pb="xs">
+                <Text size="sm" color="text-secondary" style={{ marginBottom: '8px' }}>&nbsp;</Text>
+                <Checkbox>{t("audit:label_apply")}</Checkbox>
+              </Box>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Complex Components Consistency */}
+        <ComparisonGrid title={t("audit:complex_form_consistency")}>
+          <ComponentGroup label={t("audit:label_date_picker")} maxWidth="var(--wim-width-md)" align="stretch">
+             <DatePicker label={t("audit:label_start_date")} fullWidth />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_slider")} maxWidth="var(--wim-width-md)" align="stretch">
+             <Box pt="md">
+               <Text size="sm" weight="bold" style={{ marginBottom: 'var(--wim-spacing-xs)' }}>{t("audit:label_volume_level")}</Text>
+               <Slider defaultValue={70} />
+             </Box>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_combobox")} maxWidth="var(--wim-width-md)" align="stretch">
+             <Combobox label={t("audit:label_fruit")} options={[{ label: "Apple", value: "a" }, { label: "Banana", value: "b" }]} fullWidth />
+          </ComponentGroup>
+        </ComparisonGrid>
+      </AuditPage>
+    );
+  },
+};

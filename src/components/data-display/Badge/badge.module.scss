@@ -55,6 +55,21 @@
 
     // Colors and Variants
     @include module-token-variants;
+
+    &.interactive {
+      cursor: pointer;
+      transition: all var(--wim-transition-fast);
+
+      &:hover {
+        filter: brightness(1.1);
+        transform: translateY(var(--wim-lift-sm));
+      }
+
+      &:active {
+        filter: brightness(0.9);
+        transform: scale(var(--wim-scale-active));
+      }
+    }
   }
 
   .icon {

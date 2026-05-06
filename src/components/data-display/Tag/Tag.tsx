@@ -26,6 +26,8 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   onDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   /** 無効状態 */
   disabled?: boolean;
+  /** インタラクティブな状態を有効にするか */
+  interactive?: boolean;
 };
 
 /**
@@ -33,7 +35,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
  * onClose を提供することで削除可能なタグとして機能します。
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
-  ({ children, content, icon, onDelete, disabled, ...props }, ref) => {
+  ({ children, content, icon, onDelete, disabled, interactive = false, ...props }, ref) => {
     return (
       <IndicatorBase
         ref={ref}
@@ -41,6 +43,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
         icon={icon}
         content={content}
         className={classNames(props.className, { [styles.disabled]: disabled })}
+        interactive={interactive}
         {...props}
       >
         {children}

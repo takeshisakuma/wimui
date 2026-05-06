@@ -26,6 +26,14 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-md);
+  
+    &.glass {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-surface-glass);
+      border: 1px solid var(--wim-color-glass-border);
+      box-shadow: var(--wim-color-shadow-glass);
+      backdrop-filter: blur(var(--wim-glass-blur, 8px));
+    }
   }
   
   .close {

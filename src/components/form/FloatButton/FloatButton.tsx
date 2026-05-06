@@ -19,7 +19,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | "ArrowUpIcon"
     | string;
   /** Variant of the button */
-  variant?: "default" | "primary";
+  variant?: "default" | "primary" | "glass";
   /** Intent of the button (semantic meaning) */
   intent?: ButtonIntent;
   /** Shape of the button */
@@ -138,6 +138,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
           !variant && styles[intent],
           variant === "default" && styles.variant_default,
           variant === "primary" && styles.primary,
+          variant === "glass" && styles.glass,
           intent === "destructive" && styles.destructive,
           intent === "positive" && styles.positive,
           styles[shape],

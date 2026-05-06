@@ -22,13 +22,15 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   variant?: IndicatorVariant;
   /** サイズ */
   size?: ComponentSize;
+  /** インタラクティブな状態を有効にするか */
+  interactive?: boolean;
 };
 
 /**
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ children, content, icon, className, role, "aria-label": ariaLabel, ...props }, ref) => {
+  ({ children, content, icon, className, role, "aria-label": ariaLabel, interactive = false, ...props }, ref) => {
     const finalContent = content ?? children;
     const isDot = !finalContent && !icon;
 
@@ -40,6 +42,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         className={classNames(isDot && styles.iconOnly, className)}
         role={role ?? (ariaLabel ? "img" : undefined)}
         aria-label={ariaLabel}
+        interactive={interactive}
         {...props}
       >
         {finalContent}

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./stepper.module.scss";
@@ -35,9 +36,11 @@ export interface StepperProps {
   ariaLabel?: string;
   /** Callback function when a step is clicked (if applicable) */
   onChange?: (current: number) => void;
+  /** Whether to use the Radix Slot pattern */
+  asChild?: boolean;
 }
 
-export const Stepper = ({
+export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
   steps = [],
   current = 0,
   direction = "horizontal",
@@ -46,7 +49,11 @@ export const Stepper = ({
   className,
   ariaLabel,
   onChange,
-}: StepperProps) => {
+  asChild,
+  ...props
+}, ref) => {
+  const Component = asChild ? Slot : "div";
+
   const getStepStatus = (
     index: number,
     stepIntent?: StepperIntent,
@@ -109,7 +116,8 @@ export const Stepper = ({
 
   return (
     <div className={styles.container}>
-      <div
+      <Component
+        ref={ref}
         className={classNames(
           styles.root,
           styles[direction],
@@ -120,6 +128,7 @@ export const Stepper = ({
         aria-label={ariaLabel}
         aria-orientation={onChange ? direction : undefined}
         onKeyDown={handleContainerKeyDown}
+        {...props}
       >
         {steps.map((step, index) => {
           const stepIntent = getStepStatus(index, step.intent);
@@ -168,9 +177,11 @@ export const Stepper = ({
             </div>
           );
         })}
-      </div>
+      </Component>
     </div>
   );
-};
+});
+
+Stepper.displayName = "Stepper";
 
 export default Stepper;

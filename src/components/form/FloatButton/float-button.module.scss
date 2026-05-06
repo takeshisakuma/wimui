@@ -140,9 +140,9 @@
       background-color: var(--wim-color-primary);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-primary) calc(l * 1.1) c h);
+        background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: scale(1.05);
+        transform: translateY(var(--wim-lift-sm));
       }
     }
 
@@ -151,9 +151,9 @@
       background-color: var(--wim-color-destructive);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-destructive) calc(l * 1.1) c h);
+        background-color: oklch(from var(--wim-color-destructive) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: scale(1.05);
+        transform: translateY(var(--wim-lift-sm));
       }
     }
 
@@ -162,9 +162,9 @@
       background-color: var(--wim-color-positive);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-positive) calc(l * 1.1) c h);
+        background-color: oklch(from var(--wim-color-positive) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: scale(1.05);
+        transform: translateY(var(--wim-lift-sm));
       }
     }
 
@@ -172,12 +172,25 @@
     &.variant_default {
       color: var(--wim-color-text-primary);
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-disabled);
+      border: 1px solid var(--wim-color-border);
 
       &:hover {
-        background-color: var(--wim-color-disabled);
+        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: scale(1.05);
+        transform: translateY(var(--wim-lift-sm));
+      }
+    }
+
+    &.glass {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-surface-glass);
+      border: 1px solid var(--wim-color-glass-border);
+      box-shadow: var(--wim-color-shadow-glass);
+      backdrop-filter: blur(var(--wim-glass-blur, 8px));
+
+      &:hover {
+        background: oklch(from var(--wim-color-text-white) l c h / 0.15);
+        transform: translateY(var(--wim-lift-sm));
       }
     }
 

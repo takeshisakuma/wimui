@@ -40,10 +40,15 @@
   &.hoverable {
     .item {
       cursor: pointer;
-      transition: background-color var(--wim-duration-base);
+      transition: all var(--wim-transition-fast);
 
       &:hover {
-        background-color: color-mix(in oklch, var(--wim-color-primary) 8%, var(--wim-color-bg-component));
+        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
+      }
+
+      &:active {
+        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.92) c h);
+        transform: scale(var(--wim-scale-active));
       }
     }
   }

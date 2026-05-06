@@ -37,6 +37,7 @@ type TooltipContextValue = {
   ) => Record<string, unknown>;
   arrowRef: React.RefObject<SVGSVGElement | null>;
   placement: string;
+  variant: "default" | "glass";
 };
 
 // Context to share state between components
@@ -61,6 +62,10 @@ export type TooltipProps = {
    * Preferred placement of the tooltip.
    */
   placement?: Placement;
+  /**
+   * The variant of the tooltip content.
+   */
+  variant?: "default" | "glass";
 };
 
 export const Tooltip = ({
@@ -70,6 +75,7 @@ export const Tooltip = ({
   open: controlledOpen,
   onOpenChange,
   placement = "top",
+  variant = "default",
 }: TooltipProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
@@ -141,6 +147,7 @@ export const Tooltip = ({
         getFloatingProps,
         arrowRef,
         placement: finalPlacement,
+        variant,
       }}
     >
       <div className={classNames(styles.root, className)}>
@@ -242,15 +249,20 @@ export const TooltipContent = React.forwardRef<
       <div
         ref={ref}
         style={{ ...floatingStyles, ...style }}
-        className={classNames(styles.content, className)}
+        className={classNames(
+          styles.content,
+          styles[context.variant],
+          className
+        )}
         {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
       >
         {children}
         <FloatingArrow
           ref={arrowRef}
           context={floatingContext}
-          fill="var(--wim-color-bg-inverted)"
-          strokeWidth={0}
+          fill={context.variant === "glass" ? "var(--wim-color-surface-glass)" : "var(--wim-color-bg-inverted)"}
+          strokeWidth={context.variant === "glass" ? 1 : 0}
+          stroke={context.variant === "glass" ? "var(--wim-color-glass-border)" : "transparent"}
           className={styles.arrow}
         />
       </div>

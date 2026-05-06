@@ -44,6 +44,11 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
    */
   styles?: { [key: string]: string };
   /**
+   * Whether the indicator is interactive (shows hover/active states).
+   * @default false
+   */
+  interactive?: boolean;
+  /**
    * The element type to render.
    * @default "span"
    */
@@ -81,6 +86,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     variant = "solid",
     size = "md",
     styles,
+    interactive = false,
     as,
     className,
     ...props
@@ -96,6 +102,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     styles?.[intent],
     styles?.[variant],
     styles?.[size],
+    interactive && styles?.interactive,
     className,
   );
 

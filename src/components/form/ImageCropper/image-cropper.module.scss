@@ -16,7 +16,7 @@
     height: 300px;
     overflow: hidden;
     cursor: grab;
-    background-color: #000;
+    background-color: var(--wim-color-bg-void);
 
     &:active {
       cursor: grabbing;
@@ -46,14 +46,14 @@
     pointer-events: none;
 
     // Semi-transparent mask
-    background-color: rgb(0 0 0 / 0.5);
+    background-color: oklch(from var(--wim-color-bg-void) l c h / 0.5);
   }
 
   .cropArea {
     width: 200px;
     pointer-events: none;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 1000px rgb(0 0 0 / 0.5); // Large shadow to create the mask effect
+    border: 2px solid var(--wim-color-text-white);
+    box-shadow: 0 0 0 1000px oklch(from var(--wim-color-bg-void) l c h / 0.5); // Large shadow to create the mask effect
 
     &.circular {
       border-radius: var(--wim-radius-full);
@@ -66,7 +66,7 @@
     align-items: center;
     padding: var(--wim-spacing-md) var(--wim-spacing-2xl);
     background-color: var(--wim-color-surface-glass);
-    border-top: 1px solid var(--wim-color-border-subtle);
+    border-top: 1px solid var(--wim-color-border-secondary);
   }
 
   .zoomControl {

@@ -11,6 +11,11 @@ import {
   Stack,
   Box,
   Button,
+  Progress,
+  Spinner,
+  Loader,
+  LoadingOverlay,
+  Text,
 } from "../../src";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
@@ -33,18 +38,83 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:feedback_intent_consistency")}>
           <ComponentGroup label={t("audit:label_alert")} align="stretch">
             <Stack gap="md">
-              <Alert intent="info" title="Info Alert" description="This is an informative alert message." />
-              <Alert intent="success" title="Success Alert" description="Operation completed successfully." />
-              <Alert intent="warning" title="Warning Alert" description="Please be careful with this action." />
-              <Alert intent="error" title="Error Alert" description="An error occurred while processing." />
+              <Alert intent="info" title={t("audit:sample_alert_info_title")} description={t("audit:sample_alert_info_desc")} />
+              <Alert intent="success" title={t("audit:sample_alert_success_title")} description={t("audit:sample_alert_success_desc")} />
+              <Alert intent="warning" title={t("audit:sample_alert_warning_title")} description={t("audit:sample_alert_warning_desc")} />
+              <Alert intent="error" title={t("audit:sample_alert_error_title")} description={t("audit:sample_alert_error_desc")} />
             </Stack>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_banner")} align="stretch">
             <Stack gap="md">
-              <Banner intent="info" description="Standard information banner for system-wide updates." />
-              <Banner intent="warning" description="System maintenance scheduled for tonight at 10 PM." />
-              <Banner intent="error" description="Connectivity issues detected in the Asia-Pacific region." />
+              <Banner intent="info" description={t("audit:sample_banner_info")} />
+              <Banner intent="warning" description={t("audit:sample_banner_warning")} />
+              <Banner intent="error" description={t("audit:sample_banner_error")} />
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Loading & Progress Indicators */}
+        <ComparisonGrid title={t("audit:loading_progress_consistency")}>
+          <ComponentGroup label={t("audit:label_spinner")} direction="row" align="center" gap="lg" wrap>
+            <Stack align="center" gap="xs">
+              <Spinner size="sm" />
+              <Text size="xs">sm</Text>
+            </Stack>
+            <Stack align="center" gap="xs">
+              <Spinner size="md" />
+              <Text size="xs">md</Text>
+            </Stack>
+            <Stack align="center" gap="xs">
+              <Spinner size="lg" />
+              <Text size="xs">lg</Text>
+            </Stack>
+            <Stack align="center" gap="xs">
+              <Spinner size="xl" />
+              <Text size="xs">xl</Text>
+            </Stack>
+          </ComponentGroup>
+
+          <ComponentGroup label={t("audit:label_progress")} align="stretch">
+            <Stack gap="md">
+              <Progress value={30} label={t("audit:sample_progress_uploading")} showValue />
+              <Progress value={60} intent="success" label={t("audit:sample_progress_success")} showValue />
+              <Progress value={90} intent="error" label={t("audit:sample_progress_error")} showValue />
+              <Progress indeterminate label={t("audit:sample_progress_processing")} />
+            </Stack>
+          </ComponentGroup>
+
+          <ComponentGroup label={t("audit:label_loader")} direction="row" gap="xl" wrap>
+            <Stack align="center" gap="sm">
+              <Loader variant="bars" />
+              <Text size="xs">Bars</Text>
+            </Stack>
+            <Stack align="center" gap="sm">
+              <Loader variant="dots" />
+              <Text size="xs">Dots</Text>
+            </Stack>
+            <Stack align="center" gap="sm">
+              <Loader variant="pulse" />
+              <Text size="xs">Pulse</Text>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Overlay & Full-screen Feedback */}
+        <ComparisonGrid title={t("audit:overlay_feedback_consistency")}>
+          <ComponentGroup label={t("audit:label_loading_overlay")} align="stretch">
+             <Box style={{ position: "relative", height: "150px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden" }}>
+                <Box p="md">
+                  <Text>{t("audit:sample_overlay_blocked")}</Text>
+                </Box>
+                <LoadingOverlay visible message={t("audit:sample_progress_processing")} blur="sm" />
+             </Box>
+          </ComponentGroup>
+
+          <ComponentGroup label={t("audit:label_toast_batch")} align="stretch">
+            <Stack gap="sm">
+               <Toast title={t("audit:sample_toast_profile_title")} description={t("audit:sample_toast_profile_desc")} intent="success" />
+               <Toast title={t("audit:sample_toast_network_title")} description={t("audit:sample_toast_network_desc")} intent="error" />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
@@ -55,28 +125,28 @@ export const Overview: StoryObj = {
             <Stack gap="md">
               <Notification
                 intent="info"
-                title="New Update Available"
-                description="A new version of the application is available. Please refresh to update."
+                title={t("audit:sample_notif_update_title")}
+                description={t("audit:sample_notif_update_desc")}
               />
               <Notification
                 intent="success"
-                title="File Uploaded"
-                description="The file 'report.pdf' has been successfully uploaded to the server."
+                title={t("audit:sample_notif_file_title")}
+                description={t("audit:sample_notif_file_desc")}
                 closable
               />
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label="Alert with Actions" align="stretch">
+          <ComponentGroup label={t("audit:sample_alert_unsaved_title")} align="stretch">
             <Alert
               intent="warning"
-              title="Unsaved Changes"
-              description="You have unsaved changes. Are you sure you want to leave this page?"
+              title={t("audit:sample_alert_unsaved_title")}
+              description={t("audit:sample_alert_unsaved_desc")}
               onClose={() => {}}
             >
               <Stack direction="row" gap="sm" mt="sm">
-                <Button size="sm" variant="solid">Save Changes</Button>
-                <Button size="sm" variant="outline">Discard</Button>
+                <Button size="sm" variant="solid">{t("audit:sample_action_save")}</Button>
+                <Button size="sm" variant="outline">{t("audit:sample_action_discard")}</Button>
               </Stack>
             </Alert>
           </ComponentGroup>
@@ -87,11 +157,11 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_toast")} align="stretch">
             <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-bg-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
               <Stack gap="sm">
-                 <Toast title="Success" description="Profile updated successfully" intent="success" />
-                 <Toast title="Error" description="Failed to save changes" intent="error" />
+                 <Toast title={t("audit:sample_progress_success")} description={t("audit:sample_toast_profile_desc")} intent="success" />
+                 <Toast title={t("audit:sample_progress_error")} description={t("audit:sample_toast_network_desc")} intent="error" />
               </Stack>
               <Box style={{ position: "absolute", bottom: "10px", right: "10px" }}>
-                 <Toast title="Floating Toast" description="Static preview" intent="info" />
+                 <Toast title={t("audit:sample_toast_floating_title")} description={t("audit:sample_toast_floating_desc")} intent="info" />
               </Box>
             </Box>
           </ComponentGroup>
@@ -99,8 +169,8 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_snackbar")} align="stretch">
              <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-bg-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
                 <Stack gap="sm" align="center" justify="center" h="100%">
-                   <Snackbar message="Simple message snackbar" open intent="info" position="bottom-center" />
-                   <Snackbar message="Action snackbar" open intent="warning" actionLabel="Undo" position="bottom-center" />
+                   <Snackbar message={t("audit:sample_snackbar_simple")} open intent="info" position="bottom-center" />
+                   <Snackbar message={t("audit:sample_snackbar_action")} open intent="warning" actionLabel={t("audit:sample_action_undo")} position="bottom-center" />
                 </Stack>
              </Box>
           </ComponentGroup>

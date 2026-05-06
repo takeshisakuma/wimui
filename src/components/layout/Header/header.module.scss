@@ -22,8 +22,9 @@
   }
 
   &.glass {
-    background-color: oklch(from var(--wim-color-bg-primary) l c h / 0.8);
-    backdrop-filter: blur(8px);
+    background: var(--wim-color-surface-glass);
+    border-bottom: 1px solid var(--wim-color-glass-border);
+    backdrop-filter: blur(var(--wim-glass-blur, 8px));
   }
 
   &.bg-primary {

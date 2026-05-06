@@ -54,10 +54,12 @@
 
       &:hover {
         background-color: oklch(from var(--bg, transparent) calc(l * 0.9) c h);
+        transform: translateY(var(--wim-lift-sm));
       }
 
       &:active {
         background-color: oklch(from var(--bg, transparent) calc(l * 0.85) c h);
+        transform: scale(var(--wim-scale-active));
       }
     }
   
