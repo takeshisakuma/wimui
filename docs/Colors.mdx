@@ -284,6 +284,23 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   <ColorSwatch name="Carousel Indicator BG" value="--wim-color-carousel-indicator-bg" color="var(--wim-color-carousel-indicator-bg)" />
 </ColorGrid>
 
+<h2><T k="token.color_interaction_oklch_title" /></h2>
+<p className="section-desc">
+  <T k="token.color_interaction_oklch_desc" />
+</p>
+
+```scss
+// Recommended hover pattern (Lightness adjustment)
+.my-component {
+  background-color: var(--wim-color-primary);
+
+  &:hover {
+    // 10% darkening for hover in oklch space
+    background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
+  }
+}
+```
+
 <h2><T k="guide.colors_component_specific_title" /></h2>
 <p className="section-desc">
   <T k="guide.colors_component_specific_desc" />

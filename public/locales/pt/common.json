@@ -609,6 +609,8 @@
     "color_pccs_th2": "Características",
     "color_pccs_th3": "Uso Principal",
     "colors": "Cores",
+    "color_interaction_oklch_desc": "Para estados interativos (hover/active), recomendamos o uso da sintaxe de cores relativas oklch para ajustar a luminosidade (L) em vez de opacidade ou filtros. Isso garante um feedback visual consistente tanto no modo claro quanto no escuro.",
+    "color_interaction_oklch_title": "Interação Dinâmica com oklch",
     "effects": "Efeitos",
     "overview_desc": "Esta é uma lista de tokens de design que formam a base das definições de estilo do WIM UI. Recomenda-se o uso dessas variáveis para manter um design consistente.",
     "overview_title": "Visão Geral dos Tokens de Design",

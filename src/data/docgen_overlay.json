@@ -404,6 +404,148 @@
       }
     }
   },
+  "Popconfirm": {
+    "name": "Popconfirm",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-font-weight-medium",
+      "--wim-menu-min-width",
+      "--wim-overlay-max-width-sm",
+      "--wim-radius-lg",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-z-overlay"
+    ],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title of the confirmation box"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description of the confirmation box"
+      },
+      "onConfirm": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when the user clicks the confirm button"
+      },
+      "onCancel": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when the user clicks the cancel button"
+      },
+      "okText": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Text of the confirm button",
+        "defaultValue": {
+          "value": "\"OK\"",
+          "computed": false
+        }
+      },
+      "cancelText": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Text of the cancel button",
+        "defaultValue": {
+          "value": "\"Cancel\"",
+          "computed": false
+        }
+      },
+      "okType": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"default\" | \"destructive\" | \"positive\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"default\""
+            },
+            {
+              "name": "literal",
+              "value": "\"destructive\""
+            },
+            {
+              "name": "literal",
+              "value": "\"positive\""
+            }
+          ]
+        },
+        "description": "Color role of the confirm button",
+        "defaultValue": {
+          "value": "\"default\"",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The target element which the Popconfirm will be attached to"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "Customize the icon"
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the popconfirm",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "MenuInner": {
     "name": "MenuInner",
     "tokens": [
@@ -752,148 +894,6 @@
       }
     }
   },
-  "Popconfirm": {
-    "name": "Popconfirm",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-font-weight-medium",
-      "--wim-menu-min-width",
-      "--wim-overlay-max-width-sm",
-      "--wim-radius-lg",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-z-overlay"
-    ],
-    "anatomy": [],
-    "props": {
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title of the confirmation box"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description of the confirmation box"
-      },
-      "onConfirm": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when the user clicks the confirm button"
-      },
-      "onCancel": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when the user clicks the cancel button"
-      },
-      "okText": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Text of the confirm button",
-        "defaultValue": {
-          "value": "\"OK\"",
-          "computed": false
-        }
-      },
-      "cancelText": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Text of the cancel button",
-        "defaultValue": {
-          "value": "\"Cancel\"",
-          "computed": false
-        }
-      },
-      "okType": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"default\" | \"destructive\" | \"positive\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"default\""
-            },
-            {
-              "name": "literal",
-              "value": "\"destructive\""
-            },
-            {
-              "name": "literal",
-              "value": "\"positive\""
-            }
-          ]
-        },
-        "description": "Color role of the confirm button",
-        "defaultValue": {
-          "value": "\"default\"",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The target element which the Popconfirm will be attached to"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "Customize the icon"
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show the popconfirm",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
   "HoverCardInner": {
     "name": "HoverCardInner",
     "tokens": [],
@@ -1088,6 +1088,50 @@
     "anatomy": [],
     "props": {}
   },
+  "FocusTrap": {
+    "name": "FocusTrap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "トラップされるコンテンツ。"
+      },
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "トラップが有効かどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "initialFocus": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウント時に最初の要素にフォーカスするかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "Dropdown": {
     "name": "Dropdown",
     "tokens": [
@@ -1246,50 +1290,6 @@
           "computed": false
         },
         "required": false
-      }
-    }
-  },
-  "FocusTrap": {
-    "name": "FocusTrap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "トラップされるコンテンツ。"
-      },
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "トラップが有効かどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "initialFocus": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウント時に最初の要素にフォーカスするかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
       }
     }
   },

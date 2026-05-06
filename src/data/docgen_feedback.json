@@ -1353,6 +1353,208 @@
       }
     }
   },
+  "Notification": {
+    "name": "Notification",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-medium",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-notification-border-accent-width",
+      "--wim-notification-width",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The unique identifier of notification"
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The title of notification"
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The description of notification"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactNode"
+        },
+        "description": "The icon of notification"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "The intent of notification"
+      },
+      "onClose": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(id?: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "id"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when notification is closed"
+      },
+      "closable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show close button",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional class name"
+      }
+    }
+  },
+  "NotificationProvider": {
+    "name": "NotificationProvider",
+    "tokens": [
+      "--wim-border-width-thin",
+      "--wim-color-bg-component",
+      "--wim-color-border-secondary",
+      "--wim-color-caution",
+      "--wim-color-destructive",
+      "--wim-color-informative",
+      "--wim-color-positive",
+      "--wim-color-text-disabled",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-font-weight-medium",
+      "--wim-line-height-normal-jp",
+      "--wim-line-height-tight",
+      "--wim-notification-border-accent-width",
+      "--wim-notification-width",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-spacing-2xs",
+      "--wim-spacing-4xl",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xs",
+      "--wim-transition-base",
+      "--wim-z-toast"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "placement": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"topRight\"\r\n| \"topLeft\"\r\n| \"bottomRight\"\r\n| \"bottomLeft\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"topRight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"topLeft\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottomRight\""
+            },
+            {
+              "name": "literal",
+              "value": "\"bottomLeft\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"topRight\"",
+          "computed": false
+        }
+      }
+    }
+  },
   "LoadingOverlay": {
     "name": "LoadingOverlay",
     "tokens": [
@@ -1567,208 +1769,6 @@
           "raw": "React.ReactNode"
         },
         "description": "カスタムローディングコンテンツ。"
-      }
-    }
-  },
-  "Notification": {
-    "name": "Notification",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-medium",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-notification-border-accent-width",
-      "--wim-notification-width",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "The unique identifier of notification"
-      },
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The title of notification"
-      },
-      "description": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The description of notification"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactNode"
-        },
-        "description": "The icon of notification"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"info\" | \"success\" | \"warning\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "The intent of notification"
-      },
-      "onClose": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(id?: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "id"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when notification is closed"
-      },
-      "closable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show close button",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional class name"
-      }
-    }
-  },
-  "NotificationProvider": {
-    "name": "NotificationProvider",
-    "tokens": [
-      "--wim-border-width-thin",
-      "--wim-color-bg-component",
-      "--wim-color-border-secondary",
-      "--wim-color-caution",
-      "--wim-color-destructive",
-      "--wim-color-informative",
-      "--wim-color-positive",
-      "--wim-color-text-disabled",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-font-weight-medium",
-      "--wim-line-height-normal-jp",
-      "--wim-line-height-tight",
-      "--wim-notification-border-accent-width",
-      "--wim-notification-width",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-spacing-2xs",
-      "--wim-spacing-4xl",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xs",
-      "--wim-transition-base",
-      "--wim-z-toast"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "placement": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"topRight\"\r\n| \"topLeft\"\r\n| \"bottomRight\"\r\n| \"bottomLeft\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"topRight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"topLeft\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottomRight\""
-            },
-            {
-              "name": "literal",
-              "value": "\"bottomLeft\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"topRight\"",
-          "computed": false
-        }
       }
     }
   },

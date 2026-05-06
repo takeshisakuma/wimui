@@ -5,8 +5,11 @@
   justify-content: center;
   width: 100%;
   padding: var(--wim-spacing-xl);
+  background-color: var(--_bg);
   border-radius: var(--wim-radius-lg);
   transition: all var(--wim-transition-fast);
+
+  --_bg: transparent;
 
   &.dashed {
     border: 2px dashed var(--wim-color-border);
@@ -21,15 +24,15 @@
   }
 
   &.default {
-    background-color: var(--wim-color-bg-component);
+    --_bg: var(--wim-color-bg-component);
   }
 
   &.transparent {
-    background-color: transparent;
+    --_bg: transparent;
   }
 
   &.muted {
-    background-color: var(--wim-color-bg-secondary);
+    --_bg: var(--wim-color-bg-secondary);
   }
 
   &.sm {
@@ -59,7 +62,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: var(--wim-color-bg-hover);
+      background-color: oklch(from var(--_bg, var(--wim-color-bg-component)) calc(l * 0.95) c h);
       border-color: var(--wim-color-primary);
     }
   }

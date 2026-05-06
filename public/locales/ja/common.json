@@ -603,6 +603,8 @@
     "color_pccs_th2": "特徴",
     "color_pccs_th3": "主な用途",
     "colors": "Colors",
+    "color_interaction_oklch_desc": "ホバーやアクティブなどのインタラクション状態では、不透明度（opacity）やフィルタ（brightness）の代わりに、oklch 相対色構文を使用して明度（L）を調整することを推奨します。これにより、ライト・ダークモードを問わず均一な視覚フィードバックが保証されます。",
+    "color_interaction_oklch_title": "oklch による動的なインタラクション",
     "effects": "Effects",
     "overview_desc": "WIM UI のスタイル定義の基礎となるデザイントークンの一覧です。一貫したデザインを維持するために、これらの変数を使用することを推奨します。",
     "overview_title": "デザイントークン概要",

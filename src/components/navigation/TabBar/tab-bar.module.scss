@@ -46,7 +46,7 @@
       transition: all var(--wim-transition-base);
 
       &:hover {
-        background-color: var(--wim-color-surface-variant-alpha);
+        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
       }
 
       &.active {

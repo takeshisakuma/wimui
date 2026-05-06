@@ -136,7 +136,7 @@
     }
 
     &:hover:not(:disabled) {
-      background-color: color-mix(in oklch, var(--solid-bg), black 8%);
+      background-color: oklch(from var(--solid-bg) calc(l * 0.9) c h);
       box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-lg)), var(--wim-inner-highlight);
       transform: translateY(var(--wim-lift-md)) translateZ(0);
       transition:

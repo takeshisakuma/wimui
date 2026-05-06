@@ -17,6 +17,7 @@
         "ignorePseudoClasses": ["global"]
       }
     ],
-    "media-feature-range-notation": null
+    "media-feature-range-notation": null,
+    "custom-property-pattern": "^_?([a-z][a-z0-9]*)(-[a-z0-9]+)*$"
   }
 }

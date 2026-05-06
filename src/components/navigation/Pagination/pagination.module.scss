@@ -62,12 +62,12 @@
       &:hover:not(.disabled, .active),
       &:focus-within:not(.disabled, .active) {
         color: var(--wim-color-text-primary);
-        background-color: var(--wim-color-bg-hover);
+        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
         border-color: var(--wim-color-primary);
       }
 
       &:active:not(.disabled, .active) {
-        background-color: color-mix(in srgb, var(--wim-color-primary) 15%, transparent);
+        background-color: oklch(from var(--wim-color-primary) l c h / 0.15);
         transform: scale(0.96);
       }
 
