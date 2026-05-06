@@ -5,10 +5,12 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const componentName = process.argv[2];
-const category = process.argv[3]; // e.g. form, layout, feedback
+const category = process.argv[3]; // physical category, e.g. form, layout, feedback
+const targetIdArg = process.argv[4]; // optional category ID in components.json
 
 if (!componentName || !category) {
-  console.log('Usage: npm run scaffold -- <ComponentName> <category>');
+  console.log('Usage: npm run scaffold -- <ComponentName> <category> [categoryId]');
+  console.log('Example: npm run scaffold -- MyInput form basic-inputs');
   process.exit(1);
 }
 
@@ -25,6 +27,10 @@ fs.mkdirSync(componentDir, { recursive: true });
 fs.mkdirSync(storiesDir, { recursive: true });
 
 const kebabName = componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+
+function lowerFirst(s) {
+  return s.charAt(0).toLowerCase() + s.slice(1);
+}
 
 // 1. Component TSX
 const tsx = `import React from "react";
@@ -211,8 +217,72 @@ if (fs.existsSync(exportFilePath)) {
   if (!exportContent.includes(exportLine)) {
     exportContent += exportLine.trim() + '\n';
     fs.writeFileSync(exportFilePath, exportContent);
+    console.log(`✓ Added export to src/${category}.ts`);
   }
 }
 
+// --- Automatic updates for components.json and i18n ---
+
+const componentsJsonPath = path.join(__dirname, '../src/data/components.json');
+if (fs.existsSync(componentsJsonPath)) {
+  const componentsJson = JSON.parse(fs.readFileSync(componentsJsonPath, 'utf8'));
+  
+  // Try to find the target category ID
+  const CATEGORY_MAP = {
+    'form': 'basic-inputs',
+    'layout': 'layout',
+    'feedback': 'alerts',
+    'navigation': 'nav-elements',
+    'overlay': 'overlays',
+    'typography': 'typography-icons',
+    'media': 'media',
+    'data-display': 'data-indicators',
+    'ai': 'ai',
+    'charts': 'visualization'
+  };
+
+  const targetId = targetIdArg || CATEGORY_MAP[category] || category;
+  const categoryObj = componentsJson.find(c => c.id === targetId);
+
+  if (categoryObj) {
+    if (!categoryObj.components.find(c => c.name === componentName)) {
+      categoryObj.components.push({
+        name: componentName,
+        descKey: `doc.${lowerFirst(componentName)}_desc`,
+        pc: true,
+        mobile: true
+      });
+      fs.writeFileSync(componentsJsonPath, JSON.stringify(componentsJson, null, 2) + '\n');
+      console.log(`✓ Added ${componentName} to src/data/components.json (category: ${targetId})`);
+    }
+  } else {
+    console.warn(`! Warning: Could not find category ID "${targetId}" in src/data/components.json.`);
+    console.warn(`  Available IDs: ${componentsJson.map(c => c.id).join(', ')}`);
+  }
+}
+
+// Update i18n files
+const locales = ['en', 'ja', 'pt'];
+const i18nKey = `${lowerFirst(componentName)}_desc`;
+locales.forEach(lang => {
+  const i18nPath = path.join(__dirname, `../public/locales/${lang}/components.json`);
+  if (fs.existsSync(i18nPath)) {
+    try {
+      const i18nJson = JSON.parse(fs.readFileSync(i18nPath, 'utf8'));
+      if (!i18nJson.doc) i18nJson.doc = {};
+      if (!i18nJson.doc[i18nKey]) {
+        i18nJson.doc[i18nKey] = `${componentName} description.`;
+        fs.writeFileSync(i18nPath, JSON.stringify(i18nJson, null, 2) + '\n');
+        console.log(`✓ Added ${i18nKey} to public/locales/${lang}/components.json`);
+      }
+    } catch (e) {
+      console.error(`! Failed to update public/locales/${lang}/components.json:`, e.message);
+    }
+  }
+});
+
 console.log(`✓ ${componentName} scaffolded successfully in src/components/${category}/${componentName}`);
-console.log(`Don't forget to update src/data/components.json and run scripts if needed.`);
+console.log(`Next steps:`);
+console.log(`1. Implement the component logic and styles.`);
+console.log(`2. Update the translation values in public/locales/ and run 'npm run i18n:sync' if needed.`);
+console.log(`3. Complete the MDX documentation.`);

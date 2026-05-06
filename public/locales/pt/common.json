@@ -388,7 +388,7 @@
     "swipe_action_responsive_desc": "Primarily intended for touch devices, but supports mouse drag for desktop.",
     "swipe_action_scenario_1": "Email inbox management (swipe to archive or delete).",
     "swipe_action_scenario_2": "Task list management (swipe to mark complete).",
-    "tag_deletable": "Eliminável",
+    "tag_deletable": "Removível",
     "tag_deletable_desc": "Se a propriedade onDelete for fornecida, um ícone de fechar é exibido e clicar nele aciona o retorno de chamada.",
     "test_description": "Você pode executar os testes unitários para este componente executando o seguinte comando:",
     "test_title": "Testes",

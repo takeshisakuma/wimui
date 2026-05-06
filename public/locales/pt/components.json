@@ -154,7 +154,8 @@
     "tagInput_desc": "Campo de entrada para criação de tags de forma livre.",
     "score": "Pontuação",
     "intent": "Intenção",
-    "levels_title": "Definições de Nível"
+    "levels_title": "Definições de Nível",
+    "scaffoldTest_desc": "ScaffoldTest description."
   },
   "cat": {
     "ai": "IA"

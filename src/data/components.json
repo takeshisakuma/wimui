@@ -1110,31 +1110,31 @@
       }
     ]
   },
-    {
-      "id": "internal",
-      "nameKey": "cat.internal",
-      "guideUrl": "./?path=/docs/architecture-internal-core-components--docs",
-      "components": [
-        {
-          "name": "IndicatorBase",
-          "descKey": "doc.indicator_base_desc",
-          "pc": true,
-          "mobile": true
-        },
-        {
-          "name": "OverlayBase",
-          "descKey": "doc.overlay_base_desc",
-          "pc": true,
-          "mobile": true
-        },
-        {
-          "name": "StatusContent",
-          "descKey": "doc.status_content_desc",
-          "pc": true,
-          "mobile": true
-        }
-      ]
-    },
+  {
+    "id": "internal",
+    "nameKey": "cat.internal",
+    "guideUrl": "./?path=/docs/architecture-internal-core-components--docs",
+    "components": [
+      {
+        "name": "IndicatorBase",
+        "descKey": "doc.indicator_base_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "OverlayBase",
+        "descKey": "doc.overlay_base_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "StatusContent",
+        "descKey": "doc.status_content_desc",
+        "pc": true,
+        "mobile": true
+      }
+    ]
+  },
   {
     "id": "visualization",
     "nameKey": "cat.visualization",

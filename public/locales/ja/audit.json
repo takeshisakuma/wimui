@@ -367,5 +367,14 @@
   "sample_snackbar_action": "アクション付きスナックバー",
   "sample_action_undo": "元に戻す",
   "label_form_layout_vertical": "垂直方向のフォームレイアウト",
-  "label_input": "入力欄"
+  "label_input": "入力欄",
+  "aesthetics_audit_title": "高度なデザイン監査（ガラス・モーション）",
+  "glass_tokenization_variants": "ガラスモーフィズムのトークン化とバリエーション",
+  "glass_levels_label": "ガラスレベル（Blur sm/md/lg）",
+  "interactive_glass_label": "インタラクティブ・ガラス",
+  "refined_skeleton_motion": "洗練されたスケルトンとモーション",
+  "skeleton_shimmer_refinement": "スケルトンのシマー効果の洗練",
+  "motion_easing_emphasized": "モーション・イージング（Emphasized）",
+  "integrated_application_label": "統合アプリケーション例",
+  "glass_header_skeleton_content": "ガラスヘッダー + スケルトンコンテンツ"
 }

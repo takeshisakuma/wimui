@@ -147,7 +147,7 @@
     "emptystate_icons_actions_desc": "Também é possível combinar apenas ícones ou múltiplos botões de ação.",
     "emptystate_long_desc": "Um componente usado como um marcador de posição no estado inicial, quando os dados estão vazios ou não há resultados de pesquisa. Ele informa ao usuário a situação atual e o incentiva para a próxima ação.",
     "emptystate_motion_spec": "Quando a página é exibida, o fade in do ícone e do texto com um leve atraso dá ritmo e uma sensação de segurança a uma tela vazia.",
-    "emptystate_scenario_inbox": "Caixa de Entrada Vazia: Celebra que todas as tarefas ou e-mails foram eliminados, permitindo que o usuário sinta uma sensação de realização (Inbox Zero).",
+    "emptystate_scenario_inbox": "Caixa de Entrada Vazia: Celebra que todas as tarefas ou e-mails foram removidos, permitindo que o usuário sinta uma sensação de realização (Inbox Zero).",
     "emptystate_scenario_init": "Integração Inicial (Onboarding): Incentiva os usuários que acabaram de começar a usar o aplicativo a criar seu primeiro dado.",
     "emptystate_scenario_search": "Zero Resultados de Pesquisa: Informa que dados correspondentes não foram encontrados e sugere ações como 'expandir os critérios'.",
     "emptystate_simple": "Simples",

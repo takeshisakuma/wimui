@@ -65,6 +65,9 @@ export type WimColorKey =
   | "ghost-border-active"
   | "ghost-border-hover"
   | "glass-bg"
+  | "glass-blur"
+  | "glass-blur-lg"
+  | "glass-blur-sm"
   | "glass-border"
   | "heatmap-level-0"
   | "heatmap-level-1"
@@ -147,6 +150,21 @@ export type WimOpacityKey =
   | "ghost"
   | "secondary";
 
+export type WimBlurKey = 
+  | "2xl"
+  | "lg"
+  | "md"
+  | "none"
+  | "sm"
+  | "xl"
+  | "xs";
+
+export type WimGlassKey = 
+  | "bg-opacity"
+  | "bg-opacity-dark"
+  | "border-opacity"
+  | "border-opacity-dark";
+
 export type WimShadowKey = 
   | "error-ring"
   | "field-focus"
@@ -174,6 +192,9 @@ export type WimDurationKey =
   | "ultra-slow";
 
 export type WimEasingKey = 
+  | "emphasized"
+  | "emphasized-accelerate"
+  | "emphasized-decelerate"
   | "entrance"
   | "exit"
   | "gentle"

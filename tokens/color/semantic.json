@@ -62,14 +62,17 @@
       "ghost-border-active": { "value": "rgba(0, 0, 0, 0.25)" },
       "ghost-border-hover": { "value": "color-mix(in srgb, var(--wim-color-primary) 20%, transparent)" },
 
-      "glass-bg": { "value": "rgba(255, 255, 255, 0.7)" },
-      "glass-border": { "value": "rgba(0, 0, 0, 0.12)" },
+      "glass-bg": { "value": "rgba(255, 255, 255, {wim.glass.bg-opacity})" },
+      "glass-border": { "value": "rgba(0, 0, 0, {wim.glass.border-opacity})" },
+      "glass-blur": { "value": "{wim.blur.md}" },
+      "glass-blur-sm": { "value": "{wim.blur.sm}" },
+      "glass-blur-lg": { "value": "{wim.blur.lg}" },
       "surface-glass": { "value": "var(--wim-color-glass-bg)" },
       "surface-inset": { "value": "var(--wim-color-bg-app)" },
       "shadow-glass": { "value": "var(--wim-shadow-md)" },
 
-      "skeleton-bg": { "value": "rgba(0, 0, 0, 0.11)" },
-      "skeleton-shine": { "value": "rgba(255, 255, 255, 0.3)" },
+      "skeleton-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.1)" },
+      "skeleton-shine": { "value": "rgba(255, 255, 255, 0.4)" },
 
       "control-default-fg": { "value": "var(--wim-color-primary)" },
       "control-default-bg": { "value": "var(--wim-color-bg-component)" },

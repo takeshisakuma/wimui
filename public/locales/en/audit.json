@@ -367,5 +367,14 @@
   "sample_snackbar_action": "Action snackbar",
   "sample_action_undo": "Undo",
   "label_form_layout_vertical": "Vertical Form Layout",
-  "label_input": "Input"
+  "label_input": "Input",
+  "aesthetics_audit_title": "Rich Aesthetics Audit (Glass & Motion)",
+  "glass_tokenization_variants": "Glassmorphism Tokenization & Variants",
+  "glass_levels_label": "Glass Levels (Blur sm/md/lg)",
+  "interactive_glass_label": "Interactive Glass",
+  "refined_skeleton_motion": "Refined Skeleton & Motion",
+  "skeleton_shimmer_refinement": "Skeleton Shimmer Refinement",
+  "motion_easing_emphasized": "Motion Easing (Emphasized)",
+  "integrated_application_label": "Integrated Application Example",
+  "glass_header_skeleton_content": "Glass Header + Skeleton Content"
 }

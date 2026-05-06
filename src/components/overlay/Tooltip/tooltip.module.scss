@@ -31,7 +31,7 @@
       background: var(--wim-color-surface-glass);
       border: 1px solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
-      backdrop-filter: blur(var(--wim-glass-blur, 8px));
+      backdrop-filter: blur(var(--wim-color-glass-blur));
     }
   
     @keyframes fadeIn {

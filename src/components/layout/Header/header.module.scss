@@ -24,7 +24,7 @@
   &.glass {
     background: var(--wim-color-surface-glass);
     border-bottom: 1px solid var(--wim-color-glass-border);
-    backdrop-filter: blur(var(--wim-glass-blur, 8px));
+    backdrop-filter: blur(var(--wim-color-glass-blur));
   }
 
   &.bg-primary {

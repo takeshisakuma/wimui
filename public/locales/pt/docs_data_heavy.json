@@ -144,7 +144,7 @@
     "nodegraph_desc": "Um componente para renderizar diagramas interativos baseados em nós. Baseado em React Flow, é usado para visualizar e editar estruturas de grafos complexas, como fluxos de aprovação e pipelines de IA.",
     "nodegraph_design_intent": "Projetado para exploração visual e edição de grafos direcionados. Suporta arrasto de nós, criação de conexões e modos de apenas leitura.",
     "nodegraph_i18n_desc": "O componente em si não possui chaves de tradução; localize os rótulos de nós e bordas nos dados fornecidos.",
-    "nodegraph_keyboard_delete": "Eliminar nós e arestas selecionados",
+    "nodegraph_keyboard_delete": "Excluir nós e arestas selecionados",
     "nodegraph_keyboard_tab": "Mover o foco entre nós",
     "nodegraph_keyboard_undo": "Desfazer (requer implementação personalizada)",
     "nodegraph_motion_drag": "O arrastamento de nós usa o comportamento nativo do navegador.",

@@ -43,12 +43,13 @@
       content: "";
       background: linear-gradient(
         90deg,
-        transparent,
-        var(--wim-color-skeleton-shine),
-        transparent
+        transparent 0%,
+        color-mix(in srgb, var(--wim-color-skeleton-shine) 15%, transparent) 20%,
+        var(--wim-color-skeleton-shine) 50%,
+        color-mix(in srgb, var(--wim-color-skeleton-shine) 15%, transparent) 80%,
+        transparent 100%
       );
-      transform: translateX(-100%);
-      animation: skeleton-wave 1.6s linear infinite;
+      animation: skeleton-wave 2s var(--wim-easing-emphasized) infinite;
       will-change: transform;
     }
   }
@@ -69,7 +70,11 @@
 }
 
 @keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%) skewX(-15deg);
   }
 }

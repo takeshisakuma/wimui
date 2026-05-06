@@ -5,7 +5,7 @@
     z-index: var(--wim-z-overlay);
     display: flex;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(var(--wim-radius-xs));
+    backdrop-filter: blur(var(--wim-blur-xs));
   }
 
   .content {

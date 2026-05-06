@@ -154,7 +154,8 @@
     "tagInput_desc": "自由入力によるタグ作成フィールド。",
     "score": "スコア",
     "intent": "インテント",
-    "levels_title": "強度レベルの定義"
+    "levels_title": "強度レベルの定義",
+    "scaffoldTest_desc": "ScaffoldTest description."
   },
   "cat": {
     "ai": "AI"

@@ -8,7 +8,7 @@
     justify-content: center;
     overflow-y: auto;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(var(--wim-dialog-blur, var(--wim-radius-xs)));
+    backdrop-filter: blur(var(--wim-blur-xs));
   }
 
   .content {

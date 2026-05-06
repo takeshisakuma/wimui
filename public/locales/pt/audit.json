@@ -367,5 +367,14 @@
   "sample_snackbar_action": "Snackbar com ação",
   "sample_action_undo": "Desfazer",
   "label_form_layout_vertical": "Layout de Formulário Vertical",
-  "label_input": "Entrada"
+  "label_input": "Entrada",
+  "aesthetics_audit_title": "Auditoria de Estética Rica (Vidro e Movimento)",
+  "glass_tokenization_variants": "Tokenização e Variantes de Glassmorfismo",
+  "glass_levels_label": "Níveis de Vidro (Desfoque sm/md/lg)",
+  "interactive_glass_label": "Vidro Interativo",
+  "refined_skeleton_motion": "Esqueleto e Movimento Refinados",
+  "skeleton_shimmer_refinement": "Refinamento do Efeito de Brilho do Esqueleto",
+  "motion_easing_emphasized": "Suavização de Movimento (Enfatizada)",
+  "integrated_application_label": "Exemplo de Aplicação Integrada",
+  "glass_header_skeleton_content": "Cabeçalho de Vidro + Conteúdo de Esqueleto"
 }
