@@ -247,5 +247,19 @@
   "label_carousel": "Carousel",
   "label_aspect_ratio": "AspectRatio",
   "media_family_description": "Componentes para exibir e gerenciar mídias externas, como imagens e avatares.",
-  "media_other_components": "Outros Componentes de Mídia"
+  "media_other_components": "Outros Componentes de Mídia",
+  "visualization_family_title": "Auditoria da Família de Visualização (Gráficos)",
+  "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
+  "visualization_legend_tooltip_style": "Estilização Unificada de Legenda e Tooltip",
+  "visualization_responsive_check": "Comportamento Responsivo e Proporção",
+  "label_area_chart": "AreaChart",
+  "label_bar_chart": "BarChart",
+  "label_line_chart": "LineChart",
+  "label_pie_chart": "PieChart",
+  "label_radar_chart": "RadarChart",
+  "label_scatter_chart": "ScatterChart",
+  "label_treemap": "Treemap",
+  "label_gauge_chart": "GaugeChart",
+  "label_funnel_chart": "FunnelChart",
+  "label_heatmap": "Heatmap"
 }

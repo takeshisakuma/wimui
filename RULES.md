@@ -23,6 +23,19 @@
 - ファイルの分割: 単一の JSON ファイルが 1000 行を超える前に、カテゴリー単位（`form.json`, `data-display.json` 等）でファイルを分割してください。新しいファイルを追加した場合は `stories/i18nConstants.ts` に自動で反映されます。
 - ドキュメントの自動化（Docgen）: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）、テスト実行方法は、Vite プラグインによって `src/data/docgen_index.json` およびカテゴリ別の `docgen_<category>.json` へ自動的に分割抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、見出し（H2）を含めてこれらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
 - MDXや TSX/Stories で `<T k="..." />` や `t("...")` を使うキーを新規追加・変更した場合は、必ず en / ja / pt のすべてのロケールファイルに同じキーを追加してください。1言語だけ追加して他を忘れると翻訳キーがそのまま表示されます。
+- **`pt` ロケールはブラジルポルトガル語（PT-BR）に統一してください。** 欧州ポルトガル語（PT-PT）の語彙は使用禁止です。判断に迷う場合は下表を参照してください。
+
+| PT-PT（禁止） | PT-BR（使用する） |
+|---|---|
+| utilizador / utilizadores | usuário / usuários |
+| ficheiro / ficheiros | arquivo / arquivos |
+| ecrã | tela |
+| contentor / contentores | contêiner / contêineres |
+| arrastar e largar | arrastar e soltar |
+| por defeito | por padrão |
+| detetar / detetado / deteção | detectar / detectado / detecção |
+| submissão（フォーム送信の意味で） | envio |
+| inquérito / inquéritos | pesquisa / pesquisas |
 - 既存の汎用キー（`doc.scenario.*` など）を MDX で使う場合は、事前にロケールファイルに存在するか検索して確認してください。存在しなければ追加してください。`doc.scenario.filter_title` は存在するが `doc.scenario.faq_title` は存在しない、といった漏れが起きやすいです。
 
 ---
@@ -164,6 +177,8 @@
   // OK — oklch 空間で L（明度）のみ調整。ダーク・ライト共に均一な変化
   &:hover { background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h); }
   ```
+
+- **原則**: 明度の調整（暗くする・明るくする）を伴うすべての色指定において、`color-mix(in srgb, ...)` よりも `oklch(from ...)` を優先してください。SRGB空間での混色は知覚的に不均一な結果を招くため、新規実装での使用は非推奨です。
 
 - 背景色がバリアント（カラー種別）によって異なる場合は、ローカル CSS 変数 `--_bg` に現在の背景色を保持し、`:hover` / `:active` でそれを参照してください。
 

@@ -15,7 +15,7 @@
     "marquee_new_feature": "Nova Funcionalidade",
     "marquee_update": "Atualização",
     "marquee_welcome": "Bem-vindo ao WIM UI! Este é um componente de letreiro flexível.",
-    "scrollarea_both_desc": "Este contentor tem conteúdo que transborda tanto vertical como horizontalmente. O ScrollArea lida com ambas as direções quando scrollAxis=\"both\" está definido.",
+    "scrollarea_both_desc": "Este contêiner tem conteúdo que transborda tanto vertical como horizontalmente. O ScrollArea lida com ambas as direções quando scrollAxis=\"both\" está definido.",
     "scrollarea_both_title": "Scroll em Ambos os Eixos",
     "scrollarea_box": "Caixa {{count}}",
     "scrollarea_custom_desc": "Pode envolver quaisquer elementos React dentro do ScrollArea.",
@@ -25,7 +25,7 @@
     "scrollarea_wide_content": "Este é um conteúdo largo.",
     "scrollprogress_end": "Alcançou o fim",
     "scrollprogress_h1": "Role para baixo para ver a barra de progresso no topo",
-    "scrollprogress_inside": "Role dentro deste contentor",
+    "scrollprogress_inside": "Role dentro deste contêiner",
     "scrollprogress_middle": "Alcançou o meio",
     "visuallyhidden_accessible": "Este texto está oculto visualmente, mas será lido por leitores de tela.",
     "visuallyhidden_close": "Fechar"
