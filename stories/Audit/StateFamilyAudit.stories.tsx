@@ -82,24 +82,20 @@ export const Overview: StoryObj = {
         {/* Vertical Spacing Check */}
         <ComparisonGrid title={t("audit:vertical_spacing_check")}>
           <ComponentGroup label="Result (Spacing)" align="stretch">
-             <Box style={{ border: "1px solid var(--wim-color-border)", padding: "var(--wim-spacing-xl)", background: "var(--wim-color-bg-surface)" }}>
-                <Result
-                  intent="info"
-                  title="Information Consistency"
-                  description="Checking if the vertical margin between Icon, Title, Description, and Actions is consistent with the design system."
-                  extra={<Button variant="solid">Primary Action</Button>}
-                />
-             </Box>
+            <Result
+              intent="info"
+              title="Information Consistency"
+              description="Checking if the vertical margin between Icon, Title, Description, and Actions is consistent with the design system."
+              extra={<Button variant="solid">Primary Action</Button>}
+            />
           </ComponentGroup>
           <ComponentGroup label="EmptyState (Spacing)" align="stretch">
-             <Box style={{ border: "1px solid var(--wim-color-border)", padding: "var(--wim-spacing-xl)", background: "var(--wim-color-bg-surface)" }}>
-                <EmptyState
-                  icon={<Icon name="CircleIcon" size="xl" color="secondary" />}
-                  title="No Content Available"
-                  description="Check if the vertical gaps match the Result component above."
-                  extra={<Button variant="outline">Secondary Action</Button>}
-                />
-             </Box>
+            <EmptyState
+              icon={<Icon name="CircleIcon" size="xl" color="secondary" />}
+              title="No Content Available"
+              description="Check if the vertical gaps match the Result component above."
+              extra={<Button variant="outline">Secondary Action</Button>}
+            />
           </ComponentGroup>
         </ComparisonGrid>
 
