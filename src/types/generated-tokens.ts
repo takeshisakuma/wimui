@@ -255,6 +255,7 @@ export type WimFontFamilyKey =
   | "default"
   | "en"
   | "ja"
+  | "mono"
   | "pt";
 
 export type WimFontSizeKey = 

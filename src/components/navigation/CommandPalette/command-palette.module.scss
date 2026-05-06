@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .overlay {
     position: fixed;
     inset: 0;
@@ -182,7 +182,7 @@
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-secondary);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-xs);
+    border-radius: var(--wim-radius-sm);
   }
 
   // Add basic styles for the trigger if needed

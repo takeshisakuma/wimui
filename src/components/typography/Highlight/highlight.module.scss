@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     font: inherit;
     color: inherit;
@@ -8,6 +8,6 @@
     padding: 0 var(--wim-spacing-3xs);
     color: inherit;
     background-color: var(--wim-color-decoration-highlight-color);
-    border-radius: var(--wim-radius-xs);
+    border-radius: var(--wim-radius-sm);
   }
 }

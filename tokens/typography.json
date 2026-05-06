@@ -2,6 +2,7 @@
   "wim": {
     "font-family": {
       "default": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
+      "mono": { "value": "\"Noto Sans Mono\", \"Cascadia Code\", \"Fira Code\", \"Consolas\", \"Monaco\", \"Menlo\", monospace" },
       "ja": { "value": "\"Noto Sans JP\", \"游ゴシック体\", \"YuGothic\", \"Yu Gothic\", \"Hiragino Kaku Gothic ProN\", \"ヒラギノ角ゴ ProN W3\", \"メイリオ\", \"Meiryo\", \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
       "en": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
       "pt": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" }

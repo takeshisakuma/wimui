@@ -1,11 +1,11 @@
-@use "../../../tokens/breakpoints" as breakpoints;
+﻿@use "../../../tokens/breakpoints" as breakpoints;
 
 .overlay {
   position: fixed;
   inset: 0;
   z-index: var(--wim-z-mask);
   background-color: var(--wim-color-overlay-bg-sidebar);
-  backdrop-filter: blur(var(--wim-radius-xs));
+  backdrop-filter: blur(var(--wim-radius-sm));
 }
 
 .root {

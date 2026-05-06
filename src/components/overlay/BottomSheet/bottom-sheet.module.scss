@@ -1,4 +1,4 @@
-@use "../../../tokens/breakpoints" as breakpoints;
+﻿@use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .overlay {
@@ -9,7 +9,7 @@
     align-items: flex-end;
     justify-content: center;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(var(--wim-radius-xs));
+    backdrop-filter: blur(var(--wim-radius-sm));
     animation: overlayShow var(--wim-duration-short) var(--wim-easing-snap);
   }
   

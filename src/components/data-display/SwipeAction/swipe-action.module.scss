@@ -25,7 +25,7 @@
   }
 
   .action {
-    --bg: var(--wim-color-neutral-subtle);
+    --bg: var(--wim-color-bg-secondary);
 
     display: flex;
     flex: 1;
@@ -35,7 +35,7 @@
     justify-content: center;
     padding: var(--wim-spacing-md);
     font-size: var(--wim-font-size-xs);
-    color: var(--wim-color-text-inverse);
+    color: var(--wim-color-text-on-inverted);
     cursor: pointer;
     background: var(--bg);
     border: none;
@@ -58,7 +58,7 @@
       color: var(--wim-color-text-primary);
     }
     &.success { --bg: var(--wim-color-positive); }
-    &.neutral { --bg: var(--wim-color-neutral); }
+    &.neutral { --bg: var(--wim-color-secondary); }
   }
 
   .label {

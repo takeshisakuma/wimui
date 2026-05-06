@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -71,7 +71,7 @@
         width: var(--wim-checkbox-indeterminate-width, var(--wim-spacing-xs));
         height: var(--wim-border-width-thick);
         background-color: var(--wim-color-text-white);
-        border-radius: var(--wim-radius-3xs, var(--wim-border-width-thin));
+        border-radius: var(--wim-radius-sm, var(--wim-border-width-thin));
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
       }

@@ -1,4 +1,4 @@
-@use "../../../styles/token-common" as *;
+﻿@use "../../../styles/token-common" as *;
 
 @layer component {
   .root {
@@ -69,7 +69,7 @@
     &.solid.selected {
       box-shadow:
         0 0 0 var(--wim-border-width-thick) white,
-        0 0 0 var(--wim-border-width-extra-thick) currentcolor;
+        0 0 0 var(--wim-border-width-thick) currentcolor;
     }
   
     &:disabled,
