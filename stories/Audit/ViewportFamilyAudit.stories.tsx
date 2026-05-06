@@ -91,7 +91,7 @@ export const ViewportAudit: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_kanban")} noStack width="fit-content">
-            <KanbanBoard style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", maxWidth: "100%" }}>
+            <KanbanBoard style={{ maxWidth: "100%" }}>
               <KanbanBoard.Column id="todo" title="To Do" cardCount={3}>
                 <KanbanBoard.Card id="c1">Research UI Patterns</KanbanBoard.Card>
                 <KanbanBoard.Card id="c2">Setup Audit Stories</KanbanBoard.Card>

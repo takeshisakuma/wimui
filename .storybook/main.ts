@@ -1,3 +1,5 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from "node:module";
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
@@ -5,6 +7,8 @@ import svgr from "vite-plugin-svgr";
 import path from "path";
 import i18nAutoNamespacePlugin from "../scripts/i18n-namespace-plugin.js";
 import docgenPlugin from "../scripts/docgen-plugin.js";
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
