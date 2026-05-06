@@ -1,4 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { SourceCitation, SourceCitationList } from "@/components/ai/SourceCitation/SourceCitation";
 
 const meta: Meta<typeof SourceCitation> = {
@@ -11,49 +14,76 @@ export default meta;
 type Story = StoryObj<typeof SourceCitation>;
 
 export const Default: Story = {
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <SourceCitation
+        {...args}
+        title={args.title || t("story.sourcecitation_react_docs_title")}
+      />
+    );
+  },
   args: {
-    title: "React Documentation",
     url: "https://react.dev",
     index: 1,
   },
 };
 
 export const WithDescription: Story = {
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <SourceCitation
+        {...args}
+        title={args.title || t("story.sourcecitation_react_docs_title")}
+        description={args.description || t("story.sourcecitation_react_docs_desc")}
+      />
+    );
+  },
   args: {
-    title: "React Documentation",
     url: "https://react.dev",
-    description: "The official React documentation covering core concepts, hooks, and API reference.",
     index: 1,
   },
 };
 
 export const NoLink: Story = {
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <SourceCitation
+        {...args}
+        title={args.title || t("story.sourcecitation_internal_guide_title")}
+        description={args.description || t("story.sourcecitation_internal_guide_desc")}
+      />
+    );
+  },
   args: {
-    title: "Internal Design System Guide",
-    description: "This document is for internal use only.",
     index: 2,
   },
 };
 
 export const List: Story = {
-  render: () => (
-    <SourceCitationList
-      sources={[
-        {
-          title: "React Documentation",
-          url: "https://react.dev",
-          description: "Official React docs",
-        },
-        {
-          title: "MDN Web Docs",
-          url: "https://developer.mozilla.org",
-          description: "Comprehensive web technology reference",
-        },
-        {
-          title: "TypeScript Handbook",
-          url: "https://www.typescriptlang.org/docs/",
-        },
-      ]}
-    />
-  ),
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <SourceCitationList
+        sources={[
+          {
+            title: t("story.sourcecitation_react_docs_title"),
+            url: "https://react.dev",
+            description: t("story.sourcecitation_react_docs_desc"),
+          },
+          {
+            title: t("story.sourcecitation_mdn_docs_title"),
+            url: "https://developer.mozilla.org",
+            description: t("story.sourcecitation_mdn_docs_desc"),
+          },
+          {
+            title: t("story.sourcecitation_ts_handbook_title"),
+            url: "https://www.typescriptlang.org/docs/",
+          },
+        ]}
+      />
+    );
+  },
 };

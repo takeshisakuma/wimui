@@ -59,7 +59,7 @@ const excludeWords = [
   // HTML entity names
   'nbsp',
   // PCCS/JS data: property names and JS keywords in JSX expressions
-  'hex', 'map', 'symbol', 'colors', 'tone', 'key',
+  'hex', 'map', 'symbol', 'colors', 'tone', 'key', 'brightness', 'oklch',
   // PCCS notation codes
   'ltg', 'dkg',
   // PCCS tone names used as JS data values (translated via T component)

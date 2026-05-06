@@ -159,7 +159,7 @@ export const Overview: StoryObj = {
               <GaugeChart value={75} height={200} title="System Load" />
             </ComponentGroup>
             <ComponentGroup label={t("audit:label_funnel_chart")} width="300px">
-              <FunnelChart data={funnelData} dataKey="value" nameKey="name" height={250} />
+              <FunnelChart data={funnelData} dataKey="value" nameKey={"name"} height={250} />
             </ComponentGroup>
             <ComponentGroup label={t("audit:label_heatmap")} width="400px">
               <Heatmap 

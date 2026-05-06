@@ -7,13 +7,15 @@ import { Docgen } from "../../Docgen";
 
 <Title />
 
-`AIResponseFeedback` provides thumbs-up/down feedback controls and an optional regenerate button for rating AI-generated responses. It supports both controlled and uncontrolled usage, toggling feedback off when the same button is clicked twice.
+<Title />
+
+<p><T k="docs_ai:doc.aifeedback_intro" /></p>
 
 <Canvas of={AIResponseFeedbackStories.InContext} />
 
 ## <T k="common:doc.design_intent_title" />
 
-Inline feedback signals let users rate individual AI responses without disrupting the reading flow. The compact icon-button layout keeps the UI uncluttered while staying accessible via keyboard and screen readers.
+<p><T k="docs_ai:doc.aifeedback_design_intent" /></p>
 
 ## <T k="common:doc.choice_matrix_title" />
 
@@ -22,9 +24,9 @@ Inline feedback signals let users rate individual AI responses without disruptin
     <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>Rate an AI response as helpful or not helpful</td><td>AIResponseFeedback</td></tr>
-    <tr><td>Request a fresh response from the model</td><td>AIResponseFeedback with showRegenerate</td></tr>
-    <tr><td>General star-based rating</td><td>Rating (form category)</td></tr>
+    <tr><td><T k="docs_ai:doc.aifeedback_choice_rate" /></td><td>AIResponseFeedback</td></tr>
+    <tr><td><T k="docs_ai:doc.aifeedback_choice_regen" /></td><td>AIResponseFeedback with showRegenerate</td></tr>
+    <tr><td><T k="docs_ai:doc.aifeedback_choice_rating" /></td><td>Rating (form category)</td></tr>
   </tbody>
 </table>
 
@@ -33,21 +35,21 @@ Inline feedback signals let users rate individual AI responses without disruptin
 ## <T k="common:doc.content_guidelines_title" />
 
 <ul>
-  <li>Do not add text labels next to the icon buttons — rely on `aria-label` for accessibility.</li>
-  <li>Show a brief confirmation message (e.g. "Thanks for your feedback!") in the parent, not inside this component.</li>
+  <li><T k="docs_ai:doc.aifeedback_guideline_1" /></li>
+  <li><T k="docs_ai:doc.aifeedback_guideline_2" /></li>
 </ul>
 
 ## <T k="common:doc.motion_spec_title" />
 
-Button state transitions (hover/active/selected) use the `--wim-duration-fast` token for immediate tactile feedback.
+<p><T k="docs_ai:doc.aifeedback_motion_desc" /></p>
 
 ## <T k="common:doc.a11y_spec_title" />
 
 <ul>
-  <li>Each button carries a descriptive `aria-label` sourced from i18n keys.</li>
-  <li>`aria-pressed` reflects the current selection state for screen readers.</li>
-  <li>The divider between feedback and regenerate is `aria-hidden`.</li>
-  <li>All interactive elements are keyboard-reachable and show `:focus-visible` outlines.</li>
+  <li><T k="docs_ai:doc.aifeedback_a11y_1" /></li>
+  <li><T k="docs_ai:doc.aifeedback_a11y_2" /></li>
+  <li><T k="docs_ai:doc.aifeedback_a11y_3" /></li>
+  <li><T k="docs_ai:doc.aifeedback_a11y_4" /></li>
 </ul>
 
 ## <T k="common:doc.real_world_scenarios_title" />
@@ -57,18 +59,18 @@ Button state transitions (hover/active/selected) use the `--wim-duration-fast` t
     <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>Chat interface</strong></td><td>Render below each assistant message bubble to collect per-message quality signals.</td></tr>
-    <tr><td><strong>Document summarisation</strong></td><td>Let users mark the summary as helpful or request a revised version via regenerate.</td></tr>
-    <tr><td><strong>Search result ranking</strong></td><td>Track thumbs-up rates to feed into RLHF pipelines or A/B testing metrics.</td></tr>
+    <tr><td><strong><T k="docs_ai:doc.aifeedback_scenario_chat" /></strong></td><td><T k="docs_ai:doc.aifeedback_scenario_chat" /></td></tr>
+    <tr><td><strong><T k="docs_ai:doc.aifeedback_scenario_summary" /></strong></td><td><T k="docs_ai:doc.aifeedback_scenario_summary" /></td></tr>
+    <tr><td><strong><T k="docs_ai:doc.aifeedback_scenario_search" /></strong></td><td><T k="docs_ai:doc.aifeedback_scenario_search" /></td></tr>
   </tbody>
 </table>
 
 ## <T k="common:doc.best_practices_title" />
 
 <ul>
-  <li>Keep the component disabled while a response is still streaming to prevent premature feedback.</li>
-  <li>Persist the feedback value to your backend on selection, not on unmount.</li>
-  <li>Use the controlled `feedback` prop when the parent needs to reset state (e.g. on regenerate).</li>
+  <li><T k="docs_ai:doc.aifeedback_practice_1" /></li>
+  <li><T k="docs_ai:doc.aifeedback_practice_2" /></li>
+  <li><T k="docs_ai:doc.aifeedback_practice_3" /></li>
 </ul>
 
 ## <T k="common:doc.variations" />
@@ -84,22 +86,22 @@ Button state transitions (hover/active/selected) use the `--wim-duration-fast` t
 
 ## <T k="common:doc.responsive_title" />
 
-`AIResponseFeedback` is inline and adapts to its container width. On narrow containers, the compact icon-only layout already fits without adjustment.
+<p><T k="docs_ai:doc.aifeedback_responsive" /></p>
 
 ## <T k="common:doc.keyboard_nav_title" />
 
 <table>
   <thead>
-    <tr><th>Key</th><th><T k="common:doc.summary" /></th></tr>
+    <tr><th><T k="common:doc.key" /></th><th><T k="common:doc.summary" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>Tab</td><td>Move focus between buttons</td></tr>
-    <tr><td>Space / Enter</td><td>Activate the focused button</td></tr>
+    <tr><td>Tab</td><td><T k="docs_ai:doc.aifeedback_kb_tab" /></td></tr>
+    <tr><td>Space / Enter</td><td><T k="docs_ai:doc.aifeedback_kb_activate" /></td></tr>
   </tbody>
 </table>
 
 ## <T k="common:doc.i18n_title" />
 
-All button labels are sourced from the `form` namespace keys `ai_feedback.positive_label`, `ai_feedback.negative_label`, and `ai_feedback.regenerate_label`.
+<p><T k="docs_ai:doc.aifeedback_i18n_desc" /></p>
 
 <Docgen componentName="AIResponseFeedback" section="test" />

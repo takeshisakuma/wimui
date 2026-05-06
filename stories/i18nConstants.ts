@@ -8,6 +8,7 @@ export const ALL_NAMESPACES = [
   "components",
   "data-display",
   "docs_actions",
+  "docs_ai",
   "docs_charts",
   "docs_common",
   "docs_data_display",

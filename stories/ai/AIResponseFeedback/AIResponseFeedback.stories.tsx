@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { AIResponseFeedback } from "@/components/ai/AIResponseFeedback/AIResponseFeedback";
 
 const meta: Meta<typeof AIResponseFeedback> = {
@@ -37,12 +39,12 @@ export const Disabled: Story = {
 
 export const InContext: Story = {
   render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [feedback, setFeedback] = React.useState<"positive" | "negative" | null>(null);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-sm)", maxWidth: 480 }}>
         <p style={{ margin: 0, fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-primary)" }}>
-          React is a JavaScript library for building user interfaces. It lets you compose
-          complex UIs from small isolated pieces of code called components.
+          {t("story.aifeedback_sample_response")}
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: "var(--wim-spacing-sm)" }}>
           <AIResponseFeedback
@@ -53,7 +55,7 @@ export const InContext: Story = {
           />
           {feedback && (
             <span style={{ fontSize: "var(--wim-font-size-xs)", color: "var(--wim-color-text-secondary)" }}>
-              {feedback === "positive" ? "Thanks for your feedback!" : "Thanks for letting us know."}
+              {feedback === "positive" ? t("story.aifeedback_thanks_positive") : t("story.aifeedback_thanks_negative")}
             </span>
           )}
         </div>
