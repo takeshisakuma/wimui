@@ -41,7 +41,7 @@
 
     &:focus {
       border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--wim-color-primary-rgb) 10%, transparent);
+      box-shadow: 0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.1);
     }
 
     &::placeholder {

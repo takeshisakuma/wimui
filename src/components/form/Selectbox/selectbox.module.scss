@@ -168,7 +168,7 @@
     &.selected {
       font-weight: 500;
       color: var(--wim-color-text-primary);
-      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
     }
   }
 

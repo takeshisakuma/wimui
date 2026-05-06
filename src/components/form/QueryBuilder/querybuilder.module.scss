@@ -29,7 +29,7 @@
 
     &:hover {
       color: var(--wim-color-destructive);
-      background-color: color-mix(in srgb, var(--wim-color-destructive) 10%, transparent);
+      background-color: oklch(from var(--wim-color-destructive) l c h / 0.1);
     }
   }
 
@@ -64,10 +64,10 @@
 }
 
 .excluded {
-  border-color: color-mix(in srgb, var(--wim-color-destructive) 20%, var(--wim-color-border-secondary));
+  border-color: color-mix(in oklch, var(--wim-color-destructive) 20%, var(--wim-color-border-secondary));
 
   > .ruleList {
-    background-color: color-mix(in srgb, var(--wim-color-destructive) 6%, var(--wim-color-bg-component));
+    background-color: color-mix(in oklch, var(--wim-color-destructive) 6%, var(--wim-color-bg-component));
   }
 }
 

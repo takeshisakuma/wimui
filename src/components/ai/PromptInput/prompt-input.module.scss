@@ -112,7 +112,7 @@
     color: var(--wim-color-primary);
 
     &:hover {
-      background: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      background: oklch(from var(--wim-color-primary) l c h / 0.1);
     }
   }
 }

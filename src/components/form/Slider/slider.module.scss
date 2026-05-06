@@ -55,7 +55,7 @@
 
     &:hover {
       z-index: var(--wim-z-2);
-      box-shadow: 0 0 0 calc(var(--wim-focus-outline-width) * 2) color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      box-shadow: 0 0 0 calc(var(--wim-focus-outline-width) * 2) oklch(from var(--wim-color-primary) l c h / 0.1);
     }
 
     &:focus-visible {

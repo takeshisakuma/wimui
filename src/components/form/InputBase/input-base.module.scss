@@ -73,12 +73,12 @@
 
       &.warning {
         border-color: var(--wim-color-caution);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
+        box-shadow: 0 0 0 3px oklch(from var(--wim-color-caution) l c h / 0.15);
       }
 
       &.success {
         border-color: var(--wim-color-positive);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
+        box-shadow: 0 0 0 3px oklch(from var(--wim-color-positive) l c h / 0.15);
       }
     }
 

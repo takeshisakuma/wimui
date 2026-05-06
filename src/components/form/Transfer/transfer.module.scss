@@ -67,7 +67,7 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     font-weight: 500;
-    background: color-mix(in srgb, var(--wim-color-primary) 4%, transparent);
+    background: oklch(from var(--wim-color-primary) l c h / 0.04);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     // Ensure the checkbox can truncate
@@ -207,7 +207,7 @@
   }
 
   .active {
-    background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+    background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
     box-shadow: inset 0 0 0 2px var(--wim-color-primary);
 
     @media (forced-colors: active) {

@@ -120,7 +120,7 @@
     &.selected {
       font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-primary);
-      background-color: color-mix(in srgb, var(--wim-color-primary) 8%, transparent);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.08);
     }
   }
 

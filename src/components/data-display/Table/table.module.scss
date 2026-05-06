@@ -56,7 +56,7 @@
   
     &.hoverable {
       tbody tr:hover {
-        --wim-table-row-bg-hover: color-mix(in srgb, var(--wim-color-primary) 8%, var(--wim-table-row-bg, var(--wim-color-bg-component)));
+        --wim-table-row-bg-hover: color-mix(in oklch, var(--wim-color-primary) 8%, var(--wim-table-row-bg, var(--wim-color-bg-component)));
 
         background-color: var(--wim-table-row-bg-hover);
         
@@ -171,7 +171,7 @@
     border-bottom: 1px solid var(--wim-color-border);
 
     &.selected {
-      --wim-table-row-bg: color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
+      --wim-table-row-bg: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
 
       background-color: var(--wim-table-row-bg);
     }

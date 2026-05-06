@@ -43,7 +43,7 @@
       transition: background-color var(--wim-duration-base);
 
       &:hover {
-        background-color: color-mix(in srgb, var(--wim-color-primary) 8%, var(--wim-color-bg-component));
+        background-color: color-mix(in oklch, var(--wim-color-primary) 8%, var(--wim-color-bg-component));
       }
     }
   }
@@ -82,7 +82,7 @@
   }
 
   &.selected {
-    background-color: color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
+    background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
   }
 
   &.withIcon {

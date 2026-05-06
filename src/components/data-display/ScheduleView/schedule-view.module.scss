@@ -47,7 +47,7 @@
     }
 
     .fc-highlight {
-      background: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
+      background: oklch(from var(--wim-color-primary) l c h / 0.12);
     }
 
     td,
@@ -56,7 +56,7 @@
     }
 
     .fc-day-today {
-      background: color-mix(in srgb, var(--wim-color-primary) 5%, var(--wim-color-surface)) !important;
+      background: color-mix(in oklch, var(--wim-color-primary) 5%, var(--wim-color-surface)) !important;
     }
   }
 }

@@ -22,7 +22,7 @@
   }
 
   &.glass {
-    background-color: color-mix(in srgb, var(--wim-color-bg-primary) 80%, transparent);
+    background-color: oklch(from var(--wim-color-bg-primary) l c h / 0.8);
     backdrop-filter: blur(8px);
   }
 

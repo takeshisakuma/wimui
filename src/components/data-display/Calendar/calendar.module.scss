@@ -120,7 +120,7 @@
     &.today {
       font-weight: bold;
       color: var(--wim-color-primary);
-      border-color: color-mix(in srgb, var(--wim-color-primary) 30%, transparent);
+      border-color: oklch(from var(--wim-color-primary) l c h / 0.3);
     }
   
     &.selected {
@@ -134,15 +134,11 @@
     }
   
     &.inRange {
-      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
       border-radius: 0;
-  
+
       &:hover:not(:disabled) {
-        background-color: color-mix(
-          in srgb,
-          var(--wim-color-primary) 20%,
-          transparent
-        );
+        background-color: oklch(from var(--wim-color-primary) l c h / 0.2);
       }
     }
   

@@ -237,11 +237,11 @@
       opacity var(--wim-transition-fast);
   
     &:hover:not(:disabled) {
-      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
     }
-  
+
     &:active:not(:disabled) {
-      background-color: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.2);
     }
   
     &:disabled {
