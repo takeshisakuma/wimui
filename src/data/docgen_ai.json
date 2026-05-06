@@ -228,70 +228,6 @@
       }
     }
   },
-  "CodeBlock": {
-    "name": "CodeBlock",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "code": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "The code string to display"
-      },
-      "language": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Programming language label shown in the header (e.g. \"tsx\", \"bash\")"
-      },
-      "filename": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Optional filename shown in the header instead of the language label"
-      },
-      "showCopy": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show the copy-to-clipboard button (default: true)",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showLineNumbers": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to show line numbers (default: false)",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "maxLines": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Maximum visible height before the block becomes scrollable.\nPass a CSS value (e.g. \"300px\") or a number of lines (e.g. 20).\nWhen set, an expand/collapse toggle is shown."
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Additional CSS class"
-      }
-    }
-  },
   "PromptInput": {
     "name": "PromptInput",
     "tokens": [],
@@ -489,6 +425,70 @@
           ]
         },
         "description": "Layout of the field"
+      }
+    }
+  },
+  "CodeBlock": {
+    "name": "CodeBlock",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "code": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The code string to display"
+      },
+      "language": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Programming language label shown in the header (e.g. \"tsx\", \"bash\")"
+      },
+      "filename": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Optional filename shown in the header instead of the language label"
+      },
+      "showCopy": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the copy-to-clipboard button (default: true)",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showLineNumbers": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show line numbers (default: false)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "maxLines": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum visible height before the block becomes scrollable.\nPass a CSS value (e.g. \"300px\") or a number of lines (e.g. 20).\nWhen set, an expand/collapse toggle is shown."
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
       }
     }
   },

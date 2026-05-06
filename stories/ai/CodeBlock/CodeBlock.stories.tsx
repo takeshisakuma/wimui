@@ -106,6 +106,15 @@ export const JSON: Story = {
   },
 };
 
+export const CustomMaxLines: Story = {
+  args: {
+    code: tsxCode,
+    language: "tsx",
+    showCopy: true,
+    maxLines: 10,
+  },
+};
+
 export const NoCopyButton: Story = {
   args: {
     code: "const x = 1;",
