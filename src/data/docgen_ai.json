@@ -1,40 +1,115 @@
 {
-  "StreamingText": {
-    "name": "StreamingText",
+  "ThoughtStep": {
+    "name": "ThoughtStep",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "content": {
+      "children": {
         "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The content of the step"
+      },
+      "status": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"pending\" | \"completed\" | \"error\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"pending\""
+            },
+            {
+              "name": "literal",
+              "value": "\"completed\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            }
+          ]
+        },
+        "description": "Status of the step",
+        "defaultValue": {
+          "value": "\"completed\"",
+          "computed": false
+        }
+      },
+      "label": {
+        "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "The markdown text content to render"
+        "description": "Optional label or title for the step"
       },
-      "isStreaming": {
+      "isLast": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "When true, a blinking cursor is shown at the end of the content",
+        "description": "Whether this is the last step (hides connector)",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "ThoughtProcess": {
+    "name": "ThoughtProcess",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
       },
-      "components": {
+      "title": {
         "required": false,
         "tsType": {
-          "name": "Components"
+          "name": "string"
         },
-        "description": "Override the default markdown component renderers"
+        "description": "",
+        "defaultValue": {
+          "value": "\"Thinking Process\"",
+          "computed": false
+        }
       },
       "className": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "Additional CSS class"
+        "description": ""
+      },
+      "isCollapsible": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "defaultExpanded": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
       }
     }
   },
@@ -238,117 +313,42 @@
       }
     }
   },
-  "ThoughtStep": {
-    "name": "ThoughtStep",
+  "StreamingText": {
+    "name": "StreamingText",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "children": {
+      "content": {
         "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The content of the step"
-      },
-      "status": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"pending\" | \"completed\" | \"error\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"pending\""
-            },
-            {
-              "name": "literal",
-              "value": "\"completed\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            }
-          ]
-        },
-        "description": "Status of the step",
-        "defaultValue": {
-          "value": "\"completed\"",
-          "computed": false
-        }
-      },
-      "label": {
-        "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "Optional label or title for the step"
+        "description": "The markdown text content to render"
       },
-      "isLast": {
+      "isStreaming": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether this is the last step (hides connector)",
+        "description": "When true, a blinking cursor is shown at the end of the content",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
-      }
-    }
-  },
-  "ThoughtProcess": {
-    "name": "ThoughtProcess",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
       },
-      "title": {
+      "components": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "Components"
         },
-        "description": "",
-        "defaultValue": {
-          "value": "\"Thinking Process\"",
-          "computed": false
-        }
+        "description": "Override the default markdown component renderers"
       },
       "className": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": ""
-      },
-      "isCollapsible": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "defaultExpanded": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
+        "description": "Additional CSS class"
       }
     }
   }

@@ -197,7 +197,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (disabled) return;
 
-      let newValue = currentValue;
+      let newValue: number;
       if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         newValue = Math.max(min, currentValue - step);
       } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {

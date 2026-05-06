@@ -256,7 +256,7 @@ export const RangeSlider = ({
 
     let nextValues: [number, number] = [...currentValue];
     const targetValue = handle === "min" ? nextValues[0] : nextValues[1];
-    let newValue = targetValue;
+    let newValue: number;
 
     if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
       newValue = Math.max(min, targetValue - step);

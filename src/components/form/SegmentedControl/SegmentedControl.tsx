@@ -83,7 +83,7 @@ export const SegmentedControl = ({
   const selectedIndex = options.findIndex((opt) => opt.value === value);
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
-    let nextIndex = index;
+    let nextIndex: number;
 
     switch (event.key) {
       case "ArrowLeft":

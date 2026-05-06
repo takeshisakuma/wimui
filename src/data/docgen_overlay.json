@@ -1088,50 +1088,6 @@
     "anatomy": [],
     "props": {}
   },
-  "FocusTrap": {
-    "name": "FocusTrap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "トラップされるコンテンツ。"
-      },
-      "active": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "トラップが有効かどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "initialFocus": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "マウント時に最初の要素にフォーカスするかどうか。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      }
-    }
-  },
   "Dropdown": {
     "name": "Dropdown",
     "tokens": [
@@ -1290,6 +1246,50 @@
           "computed": false
         },
         "required": false
+      }
+    }
+  },
+  "FocusTrap": {
+    "name": "FocusTrap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "トラップされるコンテンツ。"
+      },
+      "active": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "トラップが有効かどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "initialFocus": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "マウント時に最初の要素にフォーカスするかどうか。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
       }
     }
   },
