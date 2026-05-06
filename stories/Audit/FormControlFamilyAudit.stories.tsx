@@ -115,13 +115,10 @@ export const Overview: StoryObj = {
               <Selectbox label={t("audit:label_role")} fullWidth options={[]} />
             </Stack>
           </ComponentGroup>
-          <ComponentGroup label={t("audit:label_form_layout_horizontal")} align="stretch" maxWidth="var(--wim-width-lg)">
-            <Stack direction="row" gap="md" align="end">
-              <Input label={t("audit:label_promo_code")} style={{ width: 'var(--wim-width-md)' }} />
-              <Box pb="xs">
-                <Text size="sm" color="text-secondary" style={{ marginBottom: '8px' }}>&nbsp;</Text>
-                <Checkbox>{t("audit:label_apply")}</Checkbox>
-              </Box>
+          <ComponentGroup label={t("audit:label_promo_code")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Stack gap="sm">
+              <Input label={t("audit:label_promo_code")} fullWidth />
+              <Checkbox>{t("audit:label_apply")}</Checkbox>
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
