@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
-  Banner,
-  Notification,
-  Alert,
   Stack,
   Text,
   Box,
@@ -40,8 +37,6 @@ import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
-
-    const feedbackIntents = ["info", "success", "warning", "error"] as const;
 
     return (
       <AuditPage title={t("audit:overlay_family_title")}>
@@ -194,32 +189,9 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
-
-        {/* 2. Feedback Consistency (Banners & Notifications) */}
-        <ComparisonGrid title={t("audit:feedback_consistency")}>
-          {feedbackIntents.map((intent) => (
-            <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
-              <Banner
-                intent={intent}
-                title={`${t("audit:label_banner")} ${intent}`}
-                description={t("audit:sample_feedback_check")}
-              />
-              <Notification
-                intent={intent}
-                title={`${t("audit:label_notification")} ${intent}`}
-                description={t("audit:sample_feedback_check")}
-              />
-              <Alert
-                intent={intent}
-                title={`${t("audit:label_alert")} ${intent}`}
-              >
-                {t("audit:sample_feedback_check")}
-              </Alert>
-            </ComponentGroup>
-          ))}
-        </ComparisonGrid>
       </AuditPage>
     );
   },
 };
+
 

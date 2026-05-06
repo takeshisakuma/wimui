@@ -68,6 +68,22 @@
     "placeholder": "AIにメッセージを入力、またはファイルを添付...",
     "send_label": "送信"
   },
+  "ai_feedback": {
+    "positive_label": "役に立った",
+    "negative_label": "役に立たなかった",
+    "regenerate_label": "再生成"
+  },
+  "source_citation": {
+    "open_source": "ソースを開く",
+    "source_label": "ソース {{index}}"
+  },
+  "code_block": {
+    "copy_label": "コードをコピー",
+    "copied_label": "コピーしました",
+    "expand_label": "展開",
+    "collapse_label": "折りたたむ",
+    "lines": "{{count}} 行"
+  },
   "search": {
     "placeholder": "ボタン"
   },

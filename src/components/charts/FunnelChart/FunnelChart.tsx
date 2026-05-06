@@ -38,7 +38,10 @@ export const FunnelChart = ({
       <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsFunnelChart>
-            <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />
+            <Tooltip 
+              contentStyle={CHART_THEME.tooltip.contentStyle} 
+              cursor={CHART_THEME.tooltip.cursor}
+            />
             <Funnel dataKey={dataKey} data={data} isAnimationActive>
               <LabelList
                 position="right"

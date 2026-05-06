@@ -1,8 +1,10 @@
+
 @layer component {
   .root {
     box-sizing: border-box;
     width: 100%;
     margin-bottom: var(--wim-spacing-md);
+    container-type: inline-size;
     overflow: hidden;
     background-color: var(--wim-color-ghost-bg);
     border: 1px solid var(--wim-color-border);
@@ -18,10 +20,20 @@
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
     text-align: left;
-    cursor: pointer;
+    cursor: default;
     background: transparent;
     border: none;
-    transition: background-color var(--wim-transition-fast);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  // Applied only when header is a <button> (isCollapsible=true)
+  button.header {
+    cursor: pointer;
 
     &:hover {
       background-color: var(--wim-color-ghost-bg-hover);
@@ -29,10 +41,9 @@
   }
 
   .chevron {
-    display: inline-block;
+    flex-shrink: 0;
     margin-right: var(--wim-spacing-xs);
-    font-size: 10px;
-    transition: transform var(--wim-transition-fast);
+    transition: transform var(--wim-duration-fast) var(--wim-easing-standard);
 
     &.expanded {
       transform: rotate(90deg);
@@ -45,27 +56,46 @@
     overflow-wrap: break-word;
   }
 
+  // Collapse animation via grid rows trick
+  .bodyWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--wim-duration-normal) var(--wim-easing-standard);
+
+    &.open {
+      grid-template-rows: 1fr;
+    }
+
+    // Override for prefers-reduced-motion
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
   .body {
-    padding: var(--wim-spacing-sm);
+    overflow: hidden;
     border-top: 1px solid var(--wim-color-border);
 
-    // Override Timeline's large default padding for mobile
+    // Override Timeline's padding
     :global(.wim-timeline) {
       padding: var(--wim-spacing-sm);
     }
   }
 
-  @media (max-width: 480px) {
+  // Compact layout at narrow container widths
+  @container (max-width: 480px) {
     .root {
       border-right: none;
       border-left: none;
       border-radius: 0;
     }
-    
+
     .header {
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
     }
   }
+
+  // --- Step styles ---
 
   .item {
     min-height: 48px;
@@ -97,10 +127,15 @@
   .spinner {
     width: 12px;
     height: 12px;
-    border: 2px solid var(--wim-color-primary);
-    border-top-color: transparent;
+    border: 2px solid oklch(from var(--wim-color-primary) l c h / 0.3);
+    border-top-color: var(--wim-color-primary);
     border-radius: 50%;
     animation: thought-spin 0.8s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      border-top-color: var(--wim-color-primary);
+      animation: none;
+    }
   }
 
   @keyframes thought-spin {
@@ -109,17 +144,20 @@
     }
   }
 
-  // Status variations
+  // Status variants
   .pending {
     .text {
       color: var(--wim-color-text-secondary);
-      opacity: 0.8;
     }
   }
 
   .error {
     .label {
       color: var(--wim-color-error);
+    }
+
+    .text {
+      color: var(--wim-color-text-error, var(--wim-color-error));
     }
   }
 }

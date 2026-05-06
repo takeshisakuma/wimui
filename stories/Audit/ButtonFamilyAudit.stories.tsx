@@ -42,7 +42,7 @@ export const Overview: StoryObj = {
               </Button>
               <IconButton size={size} variant="solid" iconName="CircleIcon" aria-label="Circle" />
               <LinkButton size={size} variant="solid">
-                {t("audit:label_link")}
+                {t("audit:label_button")}
               </LinkButton>
             </ComponentGroup>
           ))}
@@ -70,7 +70,7 @@ export const Overview: StoryObj = {
               </Button>
               <IconButton size="md" variant={variant} iconName="CircleIcon" aria-label="Circle" />
               <LinkButton size="md" variant={variant}>
-                {t("audit:label_link")}
+                {t("audit:label_button")}
               </LinkButton>
             </ComponentGroup>
           ))}
@@ -94,7 +94,7 @@ export const Overview: StoryObj = {
             <Button size="md">{t("audit:label_button")}</Button>
             <IconButton size="md" iconName="SearchIcon" aria-label="Search" />
             <CopyButton size="md" value="test" />
-            <LinkButton size="md">{t("audit:label_link")}</LinkButton>
+            <LinkButton size="md">{t("audit:label_button")}</LinkButton>
           </ComponentGroup>
         </ComparisonGrid>
 

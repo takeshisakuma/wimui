@@ -66,7 +66,7 @@ ${componentName}.displayName = "${componentName}";
 `;
 
 // 2. Component SCSS
-const scss = `@use "../../styles/mixins" as *;
+const scss = `// @use "../../../tokens/breakpoints" as *;
 
 @layer component {
   .root {

@@ -10,8 +10,11 @@
     font: inherit;
     font-weight: var(--wim-font-weight-medium);
     line-height: var(--wim-line-height-tight, 1.2);
+    vertical-align: middle;
     color: inherit;
     white-space: nowrap;
+    text-decoration: none;
+    appearance: none;
     cursor: pointer;
     background-color: transparent;
     border: var(--wim-button-border, var(--wim-border-width-thick) solid transparent);
@@ -253,7 +256,14 @@
   }
 
   .content {
-    display: contents;
+    display: inline-flex;
+    flex: 1;
+    gap: inherit;
+    align-items: center;
+    justify-content: inherit;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
   }
 
   .loading {

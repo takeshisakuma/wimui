@@ -1248,6 +1248,24 @@
         "descKey": "doc.thoughtProcess_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "AIResponseFeedback",
+        "descKey": "doc.aiResponseFeedback_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "SourceCitation",
+        "descKey": "doc.sourceCitation_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "CodeBlock",
+        "descKey": "doc.codeBlock_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

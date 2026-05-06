@@ -10,7 +10,7 @@
           "name": "ReactReactNode",
           "raw": "React.ReactNode"
         },
-        "description": "The content of the step"
+        "description": "Content of this reasoning step"
       },
       "status": {
         "required": false,
@@ -32,7 +32,7 @@
             }
           ]
         },
-        "description": "Status of the step",
+        "description": "Current state of the step",
         "defaultValue": {
           "value": "\"completed\"",
           "computed": false
@@ -43,14 +43,14 @@
         "tsType": {
           "name": "string"
         },
-        "description": "Optional label or title for the step"
+        "description": "Optional label shown above the content"
       },
       "isLast": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "Whether this is the last step (hides connector)",
+        "description": "Hides the connector line below this step — use on the last step",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -76,7 +76,7 @@
         "tsType": {
           "name": "string"
         },
-        "description": "",
+        "description": "Header title",
         "defaultValue": {
           "value": "\"Thinking Process\"",
           "computed": false
@@ -87,14 +87,14 @@
         "tsType": {
           "name": "string"
         },
-        "description": ""
+        "description": "Additional CSS class"
       },
       "isCollapsible": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "",
+        "description": "Whether the body can be collapsed",
         "defaultValue": {
           "value": "true",
           "computed": false
@@ -105,11 +105,190 @@
         "tsType": {
           "name": "boolean"
         },
-        "description": "",
+        "description": "Initial expanded state (only relevant when isCollapsible is true)",
         "defaultValue": {
           "value": "true",
           "computed": false
         }
+      }
+    }
+  },
+  "StreamingText": {
+    "name": "StreamingText",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The markdown text content to render"
+      },
+      "isStreaming": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "When true, a blinking cursor is shown at the end of the content",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "components": {
+        "required": false,
+        "tsType": {
+          "name": "Components"
+        },
+        "description": "Override the default markdown component renderers"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
+      }
+    }
+  },
+  "SourceCitation": {
+    "name": "SourceCitation",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Title of the source"
+      },
+      "url": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Source URL. When provided, renders as a clickable link."
+      },
+      "description": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Brief excerpt or description of the source"
+      },
+      "index": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Numeric citation index shown as a badge (e.g. 1, 2, 3)"
+      },
+      "domain": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Domain label shown below the title (auto-derived from url when omitted)"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
+      }
+    }
+  },
+  "SourceCitationList": {
+    "name": "SourceCitationList",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "sources": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "SourceCitationProps"
+            }
+          ],
+          "raw": "SourceCitationProps[]"
+        },
+        "description": "Array of sources to display"
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
+      }
+    }
+  },
+  "CodeBlock": {
+    "name": "CodeBlock",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "code": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "The code string to display"
+      },
+      "language": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Programming language label shown in the header (e.g. \"tsx\", \"bash\")"
+      },
+      "filename": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Optional filename shown in the header instead of the language label"
+      },
+      "showCopy": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show the copy-to-clipboard button (default: true)",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showLineNumbers": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to show line numbers (default: false)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "maxLines": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum visible height before the block becomes scrollable.\nPass a CSS value (e.g. \"300px\") or a number of lines (e.g. 20).\nWhen set, an expand/collapse toggle is shown."
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Additional CSS class"
       }
     }
   },
@@ -313,42 +492,147 @@
       }
     }
   },
-  "StreamingText": {
-    "name": "StreamingText",
+  "AIResponseFeedback": {
+    "name": "AIResponseFeedback",
     "tokens": [],
     "anatomy": [],
     "props": {
-      "content": {
-        "required": true,
+      "feedback": {
+        "required": false,
         "tsType": {
-          "name": "string"
+          "name": "union",
+          "raw": "AIFeedbackValue | null",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"positive\" | \"negative\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"negative\""
+                }
+              ]
+            },
+            {
+              "name": "null"
+            }
+          ]
         },
-        "description": "The markdown text content to render"
+        "description": "Currently selected feedback value (controlled)"
       },
-      "isStreaming": {
+      "defaultFeedback": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "AIFeedbackValue | null",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "\"positive\" | \"negative\"",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "\"positive\""
+                },
+                {
+                  "name": "literal",
+                  "value": "\"negative\""
+                }
+              ]
+            },
+            {
+              "name": "null"
+            }
+          ]
+        },
+        "description": "Default feedback value (uncontrolled)",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "onFeedback": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(value: AIFeedbackValue | null) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "union",
+                  "raw": "AIFeedbackValue | null",
+                  "elements": [
+                    {
+                      "name": "union",
+                      "raw": "\"positive\" | \"negative\"",
+                      "elements": [
+                        {
+                          "name": "literal",
+                          "value": "\"positive\""
+                        },
+                        {
+                          "name": "literal",
+                          "value": "\"negative\""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "null"
+                    }
+                  ]
+                },
+                "name": "value"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Called when user clicks a feedback button. Passes null when deselected."
+      },
+      "showRegenerate": {
         "required": false,
         "tsType": {
           "name": "boolean"
         },
-        "description": "When true, a blinking cursor is shown at the end of the content",
+        "description": "Whether to show the regenerate button",
         "defaultValue": {
           "value": "false",
           "computed": false
         }
       },
-      "components": {
+      "onRegenerate": {
         "required": false,
         "tsType": {
-          "name": "Components"
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
         },
-        "description": "Override the default markdown component renderers"
+        "description": "Called when the regenerate button is clicked"
       },
-      "className": {
+      "disabled": {
         "required": false,
         "tsType": {
-          "name": "string"
+          "name": "boolean"
         },
-        "description": "Additional CSS class"
+        "description": "Whether all buttons are disabled",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   }

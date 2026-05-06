@@ -1,0 +1,105 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as AIResponseFeedbackStories from "./AIResponseFeedback.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={AIResponseFeedbackStories} />
+
+<Title />
+
+`AIResponseFeedback` provides thumbs-up/down feedback controls and an optional regenerate button for rating AI-generated responses. It supports both controlled and uncontrolled usage, toggling feedback off when the same button is clicked twice.
+
+<Canvas of={AIResponseFeedbackStories.InContext} />
+
+## <T k="common:doc.design_intent_title" />
+
+Inline feedback signals let users rate individual AI responses without disrupting the reading flow. The compact icon-button layout keeps the UI uncluttered while staying accessible via keyboard and screen readers.
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rate an AI response as helpful or not helpful</td><td>AIResponseFeedback</td></tr>
+    <tr><td>Request a fresh response from the model</td><td>AIResponseFeedback with showRegenerate</td></tr>
+    <tr><td>General star-based rating</td><td>Rating (form category)</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="AIResponseFeedback" section="anatomy" />
+
+## <T k="common:doc.content_guidelines_title" />
+
+<ul>
+  <li>Do not add text labels next to the icon buttons — rely on `aria-label` for accessibility.</li>
+  <li>Show a brief confirmation message (e.g. "Thanks for your feedback!") in the parent, not inside this component.</li>
+</ul>
+
+## <T k="common:doc.motion_spec_title" />
+
+Button state transitions (hover/active/selected) use the `--wim-duration-fast` token for immediate tactile feedback.
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li>Each button carries a descriptive `aria-label` sourced from i18n keys.</li>
+  <li>`aria-pressed` reflects the current selection state for screen readers.</li>
+  <li>The divider between feedback and regenerate is `aria-hidden`.</li>
+  <li>All interactive elements are keyboard-reachable and show `:focus-visible` outlines.</li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Chat interface</strong></td><td>Render below each assistant message bubble to collect per-message quality signals.</td></tr>
+    <tr><td><strong>Document summarisation</strong></td><td>Let users mark the summary as helpful or request a revised version via regenerate.</td></tr>
+    <tr><td><strong>Search result ranking</strong></td><td>Track thumbs-up rates to feed into RLHF pipelines or A/B testing metrics.</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li>Keep the component disabled while a response is still streaming to prevent premature feedback.</li>
+  <li>Persist the feedback value to your backend on selection, not on unmount.</li>
+  <li>Use the controlled `feedback` prop when the parent needs to reset state (e.g. on regenerate).</li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={AIResponseFeedbackStories.Default} />
+<Canvas of={AIResponseFeedbackStories.WithRegenerate} />
+<Canvas of={AIResponseFeedbackStories.PreselectedPositive} />
+<Canvas of={AIResponseFeedbackStories.Disabled} />
+
+<Docgen componentName="AIResponseFeedback" section="props" />
+
+<Docgen componentName="AIResponseFeedback" section="tokens" />
+
+## <T k="common:doc.responsive_title" />
+
+`AIResponseFeedback` is inline and adapts to its container width. On narrow containers, the compact icon-only layout already fits without adjustment.
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th>Key</th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tab</td><td>Move focus between buttons</td></tr>
+    <tr><td>Space / Enter</td><td>Activate the focused button</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.i18n_title" />
+
+All button labels are sourced from the `form` namespace keys `ai_feedback.positive_label`, `ai_feedback.negative_label`, and `ai_feedback.regenerate_label`.
+
+<Docgen componentName="AIResponseFeedback" section="test" />

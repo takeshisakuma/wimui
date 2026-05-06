@@ -2476,6 +2476,91 @@
       }
     }
   },
+  "PullToRefresh": {
+    "name": "PullToRefresh",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "onRefresh": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => Promise<void> | void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "union",
+              "raw": "Promise<void> | void",
+              "elements": [
+                {
+                  "name": "Promise",
+                  "elements": [
+                    {
+                      "name": "void"
+                    }
+                  ],
+                  "raw": "Promise<void>"
+                },
+                {
+                  "name": "void"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Callback when refresh is triggered. Should return a promise."
+      },
+      "refreshing": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether the refreshing is currently in progress (controlled)"
+      },
+      "threshold": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Distance in pixels to pull before triggering refresh",
+        "defaultValue": {
+          "value": "60",
+          "computed": false
+        }
+      },
+      "maxDistance": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Maximum distance in pixels the container can be pulled",
+        "defaultValue": {
+          "value": "120",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "The content to be wrapped and pulled"
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the content div will be rendered as its child",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
   "QRCode": {
     "name": "QRCode",
     "tokens": [
@@ -2610,91 +2695,6 @@
           "name": "string"
         },
         "description": "Accessible label describing what the QR code represents"
-      }
-    }
-  },
-  "PullToRefresh": {
-    "name": "PullToRefresh",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "onRefresh": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => Promise<void> | void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "union",
-              "raw": "Promise<void> | void",
-              "elements": [
-                {
-                  "name": "Promise",
-                  "elements": [
-                    {
-                      "name": "void"
-                    }
-                  ],
-                  "raw": "Promise<void>"
-                },
-                {
-                  "name": "void"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Callback when refresh is triggered. Should return a promise."
-      },
-      "refreshing": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether the refreshing is currently in progress (controlled)"
-      },
-      "threshold": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Distance in pixels to pull before triggering refresh",
-        "defaultValue": {
-          "value": "60",
-          "computed": false
-        }
-      },
-      "maxDistance": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Maximum distance in pixels the container can be pulled",
-        "defaultValue": {
-          "value": "120",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "The content to be wrapped and pulled"
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the content div will be rendered as its child",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
       }
     }
   },
@@ -2884,6 +2884,63 @@
       }
     }
   },
+  "Markdown": {
+    "name": "Markdown",
+    "tokens": [
+      "--wim-color-bg-subtle",
+      "--wim-color-bg-subtle-alpha",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-font-family-mono",
+      "--wim-font-size-2xl",
+      "--wim-font-size-xl",
+      "--wim-line-height-normal",
+      "--wim-line-height-tight",
+      "--wim-radius-md",
+      "--wim-radius-xs",
+      "--wim-spacing-md",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
+      },
+      "gfm": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      }
+    }
+  },
   "Marquee": {
     "name": "Marquee",
     "tokens": [
@@ -2948,60 +3005,271 @@
       }
     }
   },
-  "Markdown": {
-    "name": "Markdown",
-    "tokens": [
-      "--wim-color-bg-subtle",
-      "--wim-color-bg-subtle-alpha",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-font-family-mono",
-      "--wim-font-size-2xl",
-      "--wim-font-size-xl",
-      "--wim-line-height-normal",
-      "--wim-line-height-tight",
-      "--wim-radius-md",
-      "--wim-radius-xs",
-      "--wim-spacing-md",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-spacing-xs"
-    ],
+  "EditableValue": {
+    "name": "EditableValue",
+    "tokens": [],
     "anatomy": [],
     "props": {
-      "content": {
-        "required": false,
+      "value": {
+        "required": true,
         "tsType": {
-          "name": "string"
+          "name": "unknown"
         },
-        "description": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。"
+        "description": ""
       },
-      "children": {
-        "required": false,
+      "onSave": {
+        "required": true,
         "tsType": {
-          "name": "string"
+          "name": "signature",
+          "type": "function",
+          "raw": "(val: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "val"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
         },
-        "description": "レンダリングするMarkdown文字列（children として渡す場合）。"
-      },
-      "gfm": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
+        "description": ""
       },
       "className": {
         "required": false,
         "tsType": {
           "name": "string"
         },
-        "description": "追加のクラス名。"
+        "description": ""
+      }
+    }
+  },
+  "JsonNode": {
+    "name": "JsonNode",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "label": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "value": {
+        "required": true,
+        "tsType": {
+          "name": "unknown"
+        },
+        "description": ""
+      },
+      "depth": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "currentDepth": {
+        "required": true,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "path": {
+        "required": true,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "unknown"
+            }
+          ],
+          "raw": "(string | number)[]"
+        },
+        "description": ""
+      },
+      "editable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "onUpdate": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[], val: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              },
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "val"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onDelete": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      },
+      "onAdd": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(path: (string | number)[]) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "Array",
+                  "elements": [
+                    {
+                      "name": "unknown"
+                    }
+                  ],
+                  "raw": "(string | number)[]"
+                },
+                "name": "path"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": ""
+      }
+    }
+  },
+  "JsonViewer": {
+    "name": "JsonViewer",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": true,
+        "tsType": {
+          "name": "unknown"
+        },
+        "description": "The JSON data to display"
+      },
+      "expandDepth": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "Initial depth to expand",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "showCopy": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, show copy button",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "showToolbar": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, show toolbar",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "editable": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the data can be edited inline",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(data: unknown) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "unknown"
+                },
+                "name": "data"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Callback when data changes"
       }
     }
   },
@@ -3545,374 +3813,6 @@
       }
     }
   },
-  "EditableValue": {
-    "name": "EditableValue",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": ""
-      },
-      "onSave": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(val: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "val"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "JsonNode": {
-    "name": "JsonNode",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "label": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "value": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": ""
-      },
-      "depth": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "currentDepth": {
-        "required": true,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "path": {
-        "required": true,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "unknown"
-            }
-          ],
-          "raw": "(string | number)[]"
-        },
-        "description": ""
-      },
-      "editable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "onUpdate": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[], val: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              },
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "val"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onDelete": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      },
-      "onAdd": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(path: (string | number)[]) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "Array",
-                  "elements": [
-                    {
-                      "name": "unknown"
-                    }
-                  ],
-                  "raw": "(string | number)[]"
-                },
-                "name": "path"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": ""
-      }
-    }
-  },
-  "JsonViewer": {
-    "name": "JsonViewer",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": true,
-        "tsType": {
-          "name": "unknown"
-        },
-        "description": "The JSON data to display"
-      },
-      "expandDepth": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "Initial depth to expand",
-        "defaultValue": {
-          "value": "1",
-          "computed": false
-        }
-      },
-      "showCopy": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, show copy button",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "showToolbar": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, show toolbar",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "editable": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the data can be edited inline",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onChange": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(data: unknown) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "unknown"
-                },
-                "name": "data"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "Callback when data changes"
-      }
-    }
-  },
-  "InfiniteScroll": {
-    "name": "InfiniteScroll",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ。"
-      },
-      "hasMore": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "さらに読み込むデータがあるかどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "loading": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "ローディング中かどうか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "onLoadMore": {
-        "required": true,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "() => void",
-          "signature": {
-            "arguments": [],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "次のデータを読み込むためのコールバック。"
-      },
-      "loader": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "ローディング中に表示する要素。"
-      },
-      "threshold": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
-        "defaultValue": {
-          "value": "250",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "追加のクラス名。"
-      },
-      "container": {
-        "required": false,
-        "tsType": {
-          "name": "ReactRefObject",
-          "raw": "React.RefObject<HTMLElement | null>",
-          "elements": [
-            {
-              "name": "union",
-              "raw": "HTMLElement | null",
-              "elements": [
-                {
-                  "name": "HTMLElement"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            }
-          ]
-        },
-        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
-      }
-    }
-  },
   "FAQSection": {
     "name": "FAQSection",
     "tokens": [],
@@ -4239,6 +4139,106 @@
           "name": "string"
         },
         "description": ""
+      }
+    }
+  },
+  "InfiniteScroll": {
+    "name": "InfiniteScroll",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ。"
+      },
+      "hasMore": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "さらに読み込むデータがあるかどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "loading": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "ローディング中かどうか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onLoadMore": {
+        "required": true,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "() => void",
+          "signature": {
+            "arguments": [],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "次のデータを読み込むためのコールバック。"
+      },
+      "loader": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "ローディング中に表示する要素。"
+      },
+      "threshold": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。",
+        "defaultValue": {
+          "value": "250",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "追加のクラス名。"
+      },
+      "container": {
+        "required": false,
+        "tsType": {
+          "name": "ReactRefObject",
+          "raw": "React.RefObject<HTMLElement | null>",
+          "elements": [
+            {
+              "name": "union",
+              "raw": "HTMLElement | null",
+              "elements": [
+                {
+                  "name": "HTMLElement"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            }
+          ]
+        },
+        "description": "スクロールイベントを監視するターゲット（デフォルトは window）。"
       }
     }
   },
@@ -5879,6 +5879,165 @@
       }
     }
   },
+  "CalendarHeatmap": {
+    "name": "CalendarHeatmap",
+    "tokens": [],
+    "anatomy": [],
+    "props": {
+      "data": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "signature",
+              "type": "object",
+              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
+              "signature": {
+                "properties": [
+                  {
+                    "key": "date",
+                    "value": {
+                      "name": "string",
+                      "required": true
+                    }
+                  },
+                  {
+                    "key": "count",
+                    "value": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "raw": "CalendarHeatmapData[]"
+        },
+        "description": "Activity data array.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "year": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": "The year to display.\n@default current year",
+        "defaultValue": {
+          "value": "new Date().getFullYear()",
+          "computed": true
+        }
+      },
+      "getColorLevel": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "union",
+              "raw": "0 | 1 | 2 | 3 | 4",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "0"
+                },
+                {
+                  "name": "literal",
+                  "value": "1"
+                },
+                {
+                  "name": "literal",
+                  "value": "2"
+                },
+                {
+                  "name": "literal",
+                  "value": "3"
+                },
+                {
+                  "name": "literal",
+                  "value": "4"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Function to map count to a level (0-4).",
+        "defaultValue": {
+          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": "Custom class name for the root element."
+      },
+      "tooltipFormatter": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(date: string, count: number) => React.ReactNode",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "date"
+              },
+              {
+                "type": {
+                  "name": "number"
+                },
+                "name": "count"
+              }
+            ],
+            "return": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            }
+          }
+        },
+        "description": "Custom tooltip formatter."
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child component.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "Content to render inside."
+      }
+    }
+  },
   "Card": {
     "name": "Card",
     "tokens": [
@@ -6139,165 +6298,6 @@
     ],
     "anatomy": [],
     "props": {}
-  },
-  "CalendarHeatmap": {
-    "name": "CalendarHeatmap",
-    "tokens": [],
-    "anatomy": [],
-    "props": {
-      "data": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "signature",
-              "type": "object",
-              "raw": "{\n  date: string; // YYYY-MM-DD\n  count: number;\n}",
-              "signature": {
-                "properties": [
-                  {
-                    "key": "date",
-                    "value": {
-                      "name": "string",
-                      "required": true
-                    }
-                  },
-                  {
-                    "key": "count",
-                    "value": {
-                      "name": "number",
-                      "required": true
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "raw": "CalendarHeatmapData[]"
-        },
-        "description": "Activity data array.",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "year": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": "The year to display.\n@default current year",
-        "defaultValue": {
-          "value": "new Date().getFullYear()",
-          "computed": true
-        }
-      },
-      "getColorLevel": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(count: number) => 0 | 1 | 2 | 3 | 4",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "union",
-              "raw": "0 | 1 | 2 | 3 | 4",
-              "elements": [
-                {
-                  "name": "literal",
-                  "value": "0"
-                },
-                {
-                  "name": "literal",
-                  "value": "1"
-                },
-                {
-                  "name": "literal",
-                  "value": "2"
-                },
-                {
-                  "name": "literal",
-                  "value": "3"
-                },
-                {
-                  "name": "literal",
-                  "value": "4"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Function to map count to a level (0-4).",
-        "defaultValue": {
-          "value": "(count) => {\n  if (count === 0) return 0;\n  if (count < 3) return 1;\n  if (count < 6) return 2;\n  if (count < 9) return 3;\n  return 4;\n}",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": "Custom class name for the root element."
-      },
-      "tooltipFormatter": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(date: string, count: number) => React.ReactNode",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "date"
-              },
-              {
-                "type": {
-                  "name": "number"
-                },
-                "name": "count"
-              }
-            ],
-            "return": {
-              "name": "ReactReactNode",
-              "raw": "React.ReactNode"
-            }
-          }
-        },
-        "description": "Custom tooltip formatter."
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to render as a child component.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "Content to render inside."
-      }
-    }
   },
   "RangeCalendar": {
     "name": "RangeCalendar",

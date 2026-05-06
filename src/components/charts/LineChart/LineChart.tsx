@@ -54,7 +54,10 @@ export const LineChart = ({
               axisLine={false}
             />
             <YAxis {...CHART_THEME.axis} tickLine={false} axisLine={false} />
-            <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />
+            <Tooltip
+              contentStyle={CHART_THEME.tooltip.contentStyle}
+              cursor={CHART_THEME.tooltip.cursor}
+            />
             <Legend verticalAlign="top" height={36} />
             {keys.map((key, index) => (
               <Line

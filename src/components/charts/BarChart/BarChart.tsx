@@ -56,7 +56,7 @@ export const BarChart = ({
             <YAxis {...CHART_THEME.axis} tickLine={false} axisLine={false} />
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
-              cursor={{ fill: "rgba(0,0,0,0.05)" }}
+              cursor={CHART_THEME.tooltip.cursor}
             />
             <Legend verticalAlign="top" height={36} />
             {keys.map((key, index) => (

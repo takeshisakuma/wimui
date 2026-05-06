@@ -61,7 +61,7 @@ export const ScatterChart = ({
             />
             <ZAxis type="number" dataKey="z" range={[60, 400]} />
             <Tooltip
-              cursor={{ strokeDasharray: "3 3" }}
+              cursor={CHART_THEME.tooltip.cursor}
               contentStyle={CHART_THEME.tooltip.contentStyle}
             />
             <Legend verticalAlign="top" height={36} />

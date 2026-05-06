@@ -68,6 +68,22 @@
     "placeholder": "Pergunte à IA ou anexe um arquivo...",
     "send_label": "Enviar"
   },
+  "ai_feedback": {
+    "positive_label": "Útil",
+    "negative_label": "Não foi útil",
+    "regenerate_label": "Regenerar resposta"
+  },
+  "source_citation": {
+    "open_source": "Abrir fonte",
+    "source_label": "Fonte {{index}}"
+  },
+  "code_block": {
+    "copy_label": "Copiar código",
+    "copied_label": "Copiado!",
+    "expand_label": "Expandir",
+    "collapse_label": "Recolher",
+    "lines": "{{count}} linhas"
+  },
   "search": {
     "placeholder": "Botão"
   },

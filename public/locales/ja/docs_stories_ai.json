@@ -1,5 +1,8 @@
 {
   "story": {
+    "aifeedback_in_context": "フィードバックコントロール付きのAI回答",
+    "sourcecitation_sources_title": "参照ソース",
+    "codeblock_collapsible_hint": "シェブロンをクリックしてコード全体を展開",
     "promptinput_placeholder": "「深海魚の生態について教えて」",
     "promptinput_placeholder_attach": "「このファイルを要約して」",
     "promptinput_placeholder_char": "「500文字以内で解説して」",

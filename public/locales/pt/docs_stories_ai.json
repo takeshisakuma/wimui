@@ -1,5 +1,8 @@
 {
   "story": {
+    "aifeedback_in_context": "Resposta de IA com controles de feedback",
+    "sourcecitation_sources_title": "Fontes Referenciadas",
+    "codeblock_collapsible_hint": "Clique no chevron para expandir o código completo",
     "promptinput_placeholder": "“Conte-me sobre criaturas do mar profundo”",
     "promptinput_placeholder_attach": "“Resuma este arquivo”",
     "promptinput_placeholder_char": "“Resuma isso em 3 linhas”",

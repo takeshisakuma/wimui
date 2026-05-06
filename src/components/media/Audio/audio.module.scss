@@ -159,7 +159,7 @@
     gap: var(--wim-spacing-sm);
     align-items: center;
     padding: 0 var(--wim-spacing-xl) var(--wim-spacing-sm);
-    border-bottom: 1px solid color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
+    border-bottom: 1px solid oklch(from var(--wim-color-text-white) l c h / 0.1);
 
     .radiusFull & {
       padding-right: 2rem;
@@ -172,7 +172,7 @@
     height: var(--wim-height-lg);
     object-fit: cover;
     border-radius: var(--wim-radius-sm);
-    box-shadow: 0 2px 8px color-mix(in srgb, var(--wim-color-bg-void) 30%, transparent);
+    box-shadow: 0 2px 8px oklch(from var(--wim-color-bg-void) l c h / 0.3);
   }
 
   .info {
@@ -192,7 +192,7 @@
   .artist {
     font-size: 0.75rem;
     line-height: 1.2;
-    color: color-mix(in srgb, var(--wim-color-text-white) 60%, transparent);
+    color: oklch(from var(--wim-color-text-white) l c h / 0.6);
   }
 
   .badge {
@@ -254,7 +254,7 @@
 
     &:hover {
       color: var(--wim-color-primary); // Accent color
-      background-color: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
+      background-color: oklch(from var(--wim-color-text-white) l c h / 0.1);
     }
 
     // Active state for toggles
@@ -280,7 +280,7 @@
 
       &:hover {
         color: var(--wim-color-text-on-primary);
-        background-color: color-mix(in srgb, var(--wim-color-primary) 85%, var(--wim-color-text-white));
+        background-color: oklch(from var(--wim-color-primary) calc(l * 0.85) c h);
       }
 
       svg {
@@ -297,7 +297,7 @@
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
-    color: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
+    color: oklch(from var(--wim-color-text-white) l c h / 0.7);
 
     .radiusFull & {
       padding: 0 var(--wim-spacing-3xl);
@@ -309,7 +309,7 @@
     flex: 1;
     height: 4px; /* Exception: Structural Logic — プログレスバーの視認可能な最小高さ */
     cursor: pointer;
-    background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
+    background: oklch(from var(--wim-color-text-white) l c h / 0.2);
     border-radius: var(--wim-radius-sm);
 
     // Expand click area
@@ -351,7 +351,7 @@
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px color-mix(in srgb, var(--wim-color-bg-void) 30%, transparent);
+      box-shadow: 0 0 4px oklch(from var(--wim-color-bg-void) l c h / 0.3);
       transform: translateY(-50%);
     }
   }
@@ -367,7 +367,7 @@
     appearance: none;
     cursor: pointer;
     outline: none;
-    background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
+    background: oklch(from var(--wim-color-text-white) l c h / 0.2);
     border-radius: var(--wim-radius-sm);
     transition:
       width var(--wim-transition-base),

@@ -101,11 +101,11 @@
     }
   }
 
-  // Variants — use feedback mixing tokens for automatic light/dark switching
+  // Variants — use OKLCH for perceptually uniform adjustments
   .info {
-    color: color-mix(in srgb, var(--wim-color-informative) 60%, var(--wim-color-feedback-text-base));
-    background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
-    border-bottom-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
+    color: oklch(from var(--wim-color-informative) calc(l * 0.7) c h);
+    background: oklch(from var(--wim-color-informative) l c h / 0.1);
+    border-bottom-color: oklch(from var(--wim-color-informative) l c h / 0.2);
 
     .icon {
       color: var(--wim-color-informative);
@@ -113,9 +113,9 @@
   }
 
   .success {
-    color: color-mix(in srgb, var(--wim-color-positive) 60%, var(--wim-color-feedback-text-base));
-    background: color-mix(in srgb, var(--wim-color-positive) 10%, var(--wim-color-feedback-bg-base));
-    border-bottom-color: color-mix(in srgb, var(--wim-color-positive) var(--wim-color-feedback-border-strength), transparent);
+    color: oklch(from var(--wim-color-positive) calc(l * 0.7) c h);
+    background: oklch(from var(--wim-color-positive) l c h / 0.1);
+    border-bottom-color: oklch(from var(--wim-color-positive) l c h / 0.2);
 
     .icon {
       color: var(--wim-color-positive);
@@ -123,19 +123,19 @@
   }
 
   .warning {
-    color: color-mix(in srgb, var(--wim-color-caution) 40%, var(--wim-color-feedback-text-base));
-    background: color-mix(in srgb, var(--wim-color-caution) 10%, var(--wim-color-feedback-bg-base));
-    border-bottom-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
+    color: oklch(from var(--wim-color-caution) calc(l * 0.5) c h);
+    background: oklch(from var(--wim-color-caution) l c h / 0.1);
+    border-bottom-color: oklch(from var(--wim-color-caution) l c h / 0.3);
 
     .icon {
-      color: color-mix(in srgb, var(--wim-color-caution) 80%, var(--wim-color-feedback-text-base));
+      color: oklch(from var(--wim-color-caution) calc(l * 0.8) c h);
     }
   }
 
   .error {
-    color: color-mix(in srgb, var(--wim-color-destructive) 60%, var(--wim-color-feedback-text-base));
-    background: color-mix(in srgb, var(--wim-color-destructive) 10%, var(--wim-color-feedback-bg-base));
-    border-bottom-color: color-mix(in srgb, var(--wim-color-destructive) var(--wim-color-feedback-border-strength), transparent);
+    color: oklch(from var(--wim-color-destructive) calc(l * 0.7) c h);
+    background: oklch(from var(--wim-color-destructive) l c h / 0.1);
+    border-bottom-color: oklch(from var(--wim-color-destructive) l c h / 0.2);
 
     .icon {
       color: var(--wim-color-destructive);

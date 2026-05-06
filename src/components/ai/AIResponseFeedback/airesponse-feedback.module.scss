@@ -1,0 +1,78 @@
+
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+  }
+
+  .button {
+    --_bg: transparent;
+
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: var(--_bg);
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-md);
+    transition:
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      background var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover:not(:disabled) {
+      color: var(--wim-color-text-primary);
+      background: oklch(from var(--wim-color-ghost-bg-hover) l c h);
+      border-color: var(--wim-color-border);
+    }
+
+    &:active:not(:disabled) {
+      background: oklch(from var(--wim-color-ghost-bg-hover) calc(l * 0.9) c h);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .positive {
+    color: var(--wim-color-positive);
+    background: oklch(from var(--wim-color-positive) l c h / 0.08);
+    border-color: var(--wim-color-positive);
+
+    &:hover:not(:disabled) {
+      color: var(--wim-color-positive);
+      background: oklch(from var(--wim-color-positive) l c h / 0.14);
+      border-color: var(--wim-color-positive);
+    }
+  }
+
+  .negativeActive {
+    color: var(--wim-color-error);
+    background: oklch(from var(--wim-color-error) l c h / 0.08);
+    border-color: var(--wim-color-error);
+
+    &:hover:not(:disabled) {
+      color: var(--wim-color-error);
+      background: oklch(from var(--wim-color-error) l c h / 0.14);
+      border-color: var(--wim-color-error);
+    }
+  }
+
+  .divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 var(--wim-spacing-2xs);
+    background: var(--wim-color-border);
+  }
+}

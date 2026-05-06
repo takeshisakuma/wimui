@@ -80,7 +80,7 @@ export const Heatmap = ({
             />
             <ZAxis type="number" dataKey="value" range={[400, 400]} />
             <Tooltip
-              cursor={{ strokeDasharray: "3 3" }}
+              cursor={CHART_THEME.tooltip.cursor}
               content={({ active, payload }) => {
                 if (active && payload && payload.length) {
                   const d = payload[0].payload;

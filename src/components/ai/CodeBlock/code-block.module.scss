@@ -1,0 +1,126 @@
+
+@layer component {
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    background: var(--wim-color-bg-subtle);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+  }
+
+  .header {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
+    border-bottom: 1px solid var(--wim-color-border);
+  }
+
+  .lang {
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+  }
+
+  .headerActions {
+    display: flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+  }
+
+  .iconButton {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      background var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .copied {
+    color: var(--wim-color-positive);
+
+    &:hover {
+      color: var(--wim-color-positive);
+    }
+  }
+
+  .chevron {
+    transition: transform var(--wim-duration-fast) var(--wim-easing-standard);
+  }
+
+  .chevronUp {
+    transform: rotate(180deg);
+  }
+
+  .body {
+    overflow-x: auto;
+
+    &.collapsed {
+      // line-height ≈ 1.6 × font-size (normal) — approximated with token
+      max-height: calc(var(--_max-lines, 10) * 1.6em + var(--wim-spacing-xl));
+      overflow-y: hidden;
+    }
+  }
+
+  .pre {
+    padding: var(--wim-spacing-md);
+    margin: 0;
+    overflow: visible;
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-relaxed);
+    color: var(--wim-color-text-primary);
+    white-space: pre;
+    background: transparent;
+    border: none;
+  }
+
+  .code {
+    display: block;
+  }
+
+  // Line-number layout
+  .line {
+    display: flex;
+  }
+
+  .lineNumber {
+    flex-shrink: 0;
+    width: 2.5em;
+    padding-right: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+    text-align: right;
+    user-select: none;
+  }
+
+  .lineContent {
+    flex: 1;
+    min-width: 0;
+    word-break: break-all;
+    white-space: pre;
+  }
+}

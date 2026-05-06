@@ -1,0 +1,104 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as SourceCitationStories from "./SourceCitation.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={SourceCitationStories} />
+
+<Title />
+
+`SourceCitation` displays a single cited reference — title, domain, and optional description — as a compact card. When a URL is provided it becomes a focusable link that opens in a new tab. Use `SourceCitationList` to render multiple sources as a wrapping grid.
+
+<Canvas of={SourceCitationStories.List} />
+
+## <T k="common:doc.design_intent_title" />
+
+Grounding AI responses in verifiable sources is essential for trust. The compact card layout makes citations scannable without overwhelming the answer text. The numeric index badge ties each card back to inline citation markers in the prose.
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Show one or more cited sources below an AI response</td><td>SourceCitationList</td></tr>
+    <tr><td>Single standalone reference card</td><td>SourceCitation</td></tr>
+    <tr><td>Full bibliography or paginated source list</td><td>Custom Table / List component</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="SourceCitation" section="anatomy" />
+
+## <T k="common:doc.content_guidelines_title" />
+
+<ul>
+  <li>Keep titles concise — they are truncated with an ellipsis at the card width.</li>
+  <li>Descriptions should be a single excerpt sentence (≤ 2 lines). Avoid full paragraphs.</li>
+  <li>Domain is auto-derived from the URL. Override only when the hostname is ambiguous.</li>
+</ul>
+
+## <T k="common:doc.motion_spec_title" />
+
+Hover transitions on the link card use `--wim-duration-fast` for border-color and background changes, keeping the interaction snappy.
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li>When rendered as a link, the accessible name comes from the `aria-label` (title or numbered label).</li>
+  <li>The external link icon is `aria-hidden` — the `rel="noopener noreferrer"` and `target="_blank"` attributes are set automatically.</li>
+  <li>The index badge is `aria-hidden` so screen readers skip the number and read the full title instead.</li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>RAG responses</strong></td><td>Attach retrieved document chunks as citations below the answer.</td></tr>
+    <tr><td><strong>Research assistant</strong></td><td>Link academic papers or web pages that the model consulted.</td></tr>
+    <tr><td><strong>Internal knowledge base</strong></td><td>Surface internal wiki pages as non-link citation cards (no URL).</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li>Limit to 5–6 visible citations; additional sources can be hidden behind a "Show more" toggle.</li>
+  <li>Always provide a `title`. If no URL is available, omit the `url` prop rather than passing an empty string.</li>
+  <li>Use the `index` prop only when you also annotate the prose with matching `[n]` markers.</li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={SourceCitationStories.Default} />
+<Canvas of={SourceCitationStories.WithDescription} />
+<Canvas of={SourceCitationStories.NoLink} />
+
+<Docgen componentName="SourceCitation" section="props" />
+
+<Docgen componentName="SourceCitation" section="tokens" />
+
+## <T k="common:doc.responsive_title" />
+
+`SourceCitationList` uses `flex-wrap` so cards reflow naturally on narrow containers. Each `SourceCitation` card has a `max-width` to keep it readable at any viewport.
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th>Key</th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tab</td><td>Move focus to the next citation card (when rendered as a link)</td></tr>
+    <tr><td>Enter</td><td>Open the source URL in a new tab</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.i18n_title" />
+
+The `aria-label` for numbered citations uses the `form` namespace key `source_citation.source_label` (interpolated with `index`).
+
+<Docgen componentName="SourceCitation" section="test" />

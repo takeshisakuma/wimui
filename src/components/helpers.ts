@@ -40,14 +40,21 @@ export const CHART_THEME = {
     strokeDasharray: "3 3",
   },
   // tooltip.contentStyle は div へのインラインスタイルのため CSS カスタムプロパティが使用可能。
-  tooltip: {
-    contentStyle: {
-      backgroundColor: "var(--wim-color-glass-bg)",
-      border: "1px solid var(--wim-color-glass-border)",
-      borderRadius: "var(--wim-radius-md)",
-      fontSize: "var(--wim-font-size-sm)",
-      backdropFilter: "blur(8px)",
-      color: "var(--wim-color-text-primary)",
+    tooltip: {
+      contentStyle: {
+        backgroundColor: "var(--wim-color-glass-bg)",
+        border: "1px solid var(--wim-color-glass-border)",
+        borderRadius: "var(--wim-radius-md)",
+        fontSize: "var(--wim-font-size-sm)",
+        backdropFilter: "blur(8px)",
+        color: "var(--wim-color-text-primary)",
+      },
+      cursor: {
+        fill: "var(--wim-color-text-primary)",
+        stroke: "var(--wim-color-border)",
+        strokeWidth: 1,
+        fillOpacity: 0.05,
+        strokeOpacity: 0.5,
+      },
     },
-  },
 };

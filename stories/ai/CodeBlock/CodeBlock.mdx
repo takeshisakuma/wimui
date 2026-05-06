@@ -1,0 +1,106 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as CodeBlockStories from "./CodeBlock.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={CodeBlockStories} />
+
+<Title />
+
+`CodeBlock` provides a robust container for displaying code snippets with syntax highlighting, optional line numbering, and a built-in "Copy to Clipboard" utility. It supports a collapsible mode to keep long snippets from overwhelming the page layout.
+
+<Canvas of={CodeBlockStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+In AI interfaces, code snippets are frequent and often lengthy. `CodeBlock` standardizes their presentation, ensuring consistent typography (monospaced) and providing essential utilities like copy-pasting. The collapsible feature allows users to scan the surrounding conversation without being forced to scroll through long blocks of code.
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Displaying short snippets of code</td><td>CodeBlock</td></tr>
+    <tr><td>Displaying long files or logs</td><td>CodeBlock with `isCollapsible`</td></tr>
+    <tr><td>Inline code within text</td><td>`<code>` tag or a dedicated inline component</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="CodeBlock" section="anatomy" />
+
+## <T k="common:doc.content_guidelines_title" />
+
+<ul>
+  <li>Always specify the `language` prop to ensure correct syntax highlighting and accessibility hints.</li>
+  <li>Use `showLineNumbers` for multi-line snippets where line-specific discussion might occur.</li>
+  <li>Keep `maxLines` at a reasonable height (e.g., 10-15 lines) when `isCollapsible` is true.</li>
+</ul>
+
+## <T k="common:doc.motion_spec_title" />
+
+Expand/collapse transitions use CSS Grid animations with the `--wim-duration-normal` token. The chevron icon rotates 180 degrees to indicate state change.
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li>The copy button has a descriptive `aria-label` which updates when the content is successfully copied.</li>
+  <li>The code content is wrapped in a `<pre>` and `<code>` tag for semantic correctness.</li>
+  <li>Line numbers are `user-select: none` to prevent them from being included in manual text selections.</li>
+  <li>All buttons are focusable and support keyboard activation.</li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Developer Chat</strong></td><td>Displaying code suggestions or fixes provided by an AI assistant.</td></tr>
+    <tr><td><strong>Documentation</strong></td><td>Rendering code examples with line numbers for easy reference.</td></tr>
+    <tr><td><strong>Log Viewer</strong></td><td>Using the collapsible mode to show truncated stack traces or logs.</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li>Disable the copy button if the code is empty or if the feature is not applicable to the context.</li>
+  <li>Use the `onCopy` callback to trigger analytics or custom toast notifications.</li>
+  <li>Ensure the background color of the `CodeBlock` contrasts well with the surrounding application background.</li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={CodeBlockStories.WithLineNumbers} />
+<Canvas of={CodeBlockStories.Collapsible} />
+<Canvas of={CodeBlockStories.CustomMaxLines} />
+
+<Docgen componentName="CodeBlock" section="props" />
+
+<Docgen componentName="CodeBlock" section="tokens" />
+
+## <T k="common:doc.responsive_title" />
+
+The `CodeBlock` container fills the width of its parent and provides horizontal scrolling for long lines. On narrow viewports, it's recommended to use the collapsible mode to save vertical space.
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th>Key</th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tab</td><td>Navigate between the Copy button, Expand/Collapse toggle, and the code content scroll area.</td></tr>
+    <tr><td>Enter / Space</td><td>Activate buttons or toggles.</td></tr>
+    <tr><td>Arrow Keys</td><td>Scroll the code content horizontally if needed.</td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.i18n_title" />
+
+Labels for the "Copy" and "Expand/Collapse" actions are localized via the `form` namespace.
+
+<Docgen componentName="CodeBlock" section="test" />

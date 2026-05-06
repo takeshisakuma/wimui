@@ -43,7 +43,10 @@ export const RadarChart = ({
             <PolarGrid stroke={CHART_THEME.grid.stroke} />
             <PolarAngleAxis dataKey={indexKey} {...CHART_THEME.axis} />
             <PolarRadiusAxis />
-            <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />
+            <Tooltip 
+              contentStyle={CHART_THEME.tooltip.contentStyle} 
+              cursor={CHART_THEME.tooltip.cursor}
+            />
             <Legend verticalAlign="top" height={36} />
             {keys.map((key, index) => (
               <Radar

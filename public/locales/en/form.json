@@ -5,6 +5,22 @@
     "attach_label": "Attach file",
     "aria_label": "Prompt input"
   },
+  "ai_feedback": {
+    "positive_label": "Helpful",
+    "negative_label": "Not helpful",
+    "regenerate_label": "Regenerate response"
+  },
+  "source_citation": {
+    "open_source": "Open source",
+    "source_label": "Source {{index}}"
+  },
+  "code_block": {
+    "copy_label": "Copy code",
+    "copied_label": "Copied!",
+    "expand_label": "Expand",
+    "collapse_label": "Collapse",
+    "lines": "{{count}} lines"
+  },
   "button": {
     "clear": "Clear",
     "close": "Close",

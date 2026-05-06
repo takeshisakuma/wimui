@@ -149,11 +149,11 @@ padding: var(--wim-spacing-md);
   border-color: var(--wim-color-ghost-border);
 }
 
-// フィードバックコンポーネントのバリアント色
+// フィードバックコンポーネントのバリアント色（OKLCHによる知覚的な明度調整）
 .wim-component--info {
-  color: color-mix(in srgb, var(--wim-color-informative) 65%, var(--wim-color-feedback-text-base));
-  background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
-  border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
+  color: oklch(from var(--wim-color-informative) calc(l * 0.7) c h);
+  background: oklch(from var(--wim-color-informative) l c h / 0.1);
+  border-color: oklch(from var(--wim-color-informative) l c h / 0.2);
 }
 ```
 

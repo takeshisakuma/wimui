@@ -127,7 +127,10 @@ npm run format   # プロジェクト全体をPrettierで整形
 大量のコンポーネント追加や大規模なリファクタリングの前後で実行することを推奨します。
 
 ```bash
-npm run audit:all   # MDX構成、asChild遵守、i18n整合性・ファイル行数を一括チェック
+npm run audit:all               # 全監査を一括実行
+npm run audit-mdx               # ドキュメントの必須セクション漏れをチェック
+npm run i18n:check              # 3言語の整合性をチェック
+node scripts/check-aschild.js   # asChild（Slotパターン）の適用漏れをチェック
 ```
 
 監査内容：

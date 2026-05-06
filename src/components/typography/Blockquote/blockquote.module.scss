@@ -78,7 +78,7 @@
     }
 
     &.primary {
-      color: color-mix(in srgb, var(--wim-color-primary) 85%, var(--wim-color-text-primary));
+      color: oklch(from var(--wim-color-primary) calc(l * 0.7) c h);
 
       &.border {
         border-color: var(--wim-color-primary);
@@ -86,7 +86,7 @@
     }
 
     &.success {
-      color: color-mix(in srgb, var(--wim-color-positive) 85%, var(--wim-color-text-primary));
+      color: oklch(from var(--wim-color-positive) calc(l * 0.7) c h);
 
       &.border {
         border-color: var(--wim-color-positive);
@@ -94,7 +94,7 @@
     }
 
     &.warning {
-      color: color-mix(in srgb, var(--wim-color-caution) 40%, var(--wim-color-text-primary));
+      color: oklch(from var(--wim-color-caution) calc(l * 0.5) c h);
 
       &.border {
         border-color: var(--wim-color-caution);
@@ -102,7 +102,7 @@
     }
 
     &.error {
-      color: color-mix(in srgb, var(--wim-color-text-error) 85%, var(--wim-color-text-primary));
+      color: oklch(from var(--wim-color-text-error) calc(l * 0.7) c h);
 
       &.border {
         border-color: var(--wim-color-text-error);
@@ -110,7 +110,7 @@
     }
 
     &.info {
-      color: color-mix(in srgb, var(--wim-color-informative) 85%, var(--wim-color-text-primary));
+      color: oklch(from var(--wim-color-informative) calc(l * 0.7) c h);
 
       &.border {
         border-color: var(--wim-color-informative);

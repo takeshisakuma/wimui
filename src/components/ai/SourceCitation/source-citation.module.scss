@@ -1,0 +1,108 @@
+
+@layer component {
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+  }
+
+  .root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    max-width: 220px;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    overflow: hidden;
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+  }
+
+  .link {
+    --_bg: var(--wim-color-surface);
+
+    color: inherit;
+    text-decoration: none;
+    background: var(--_bg);
+    transition:
+      background var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      background: oklch(from var(--_bg) calc(l * 0.97) c h);
+      border-color: var(--wim-color-primary);
+
+      .title {
+        color: var(--wim-color-primary);
+      }
+
+      .externalIcon {
+        color: var(--wim-color-primary);
+      }
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .header {
+    display: flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .index {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-on-primary);
+    background: var(--wim-color-primary);
+    border-radius: var(--wim-radius-full);
+  }
+
+  .title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+    transition: color var(--wim-duration-fast) var(--wim-easing-standard);
+  }
+
+  .externalIcon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--wim-color-text-tertiary);
+    transition: color var(--wim-duration-fast) var(--wim-easing-standard);
+  }
+
+  .domain {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+    white-space: nowrap;
+  }
+
+  .description {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: var(--wim-font-size-xs);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-secondary);
+  }
+}

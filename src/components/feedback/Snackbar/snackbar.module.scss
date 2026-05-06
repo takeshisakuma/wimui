@@ -46,12 +46,12 @@
 
   .root {
     /* Component-scoped tokens: Snackbar is always a dark surface */
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-bg-inverted) 90%, transparent);
-    --wim-snackbar-border: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
-    --wim-snackbar-close-idle: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
-    --wim-snackbar-close-hover: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
+    --wim-snackbar-bg: oklch(from var(--wim-color-bg-inverted) calc(l * 0.9) c h);
+    --wim-snackbar-border: oklch(from var(--wim-color-text-white) l c h / 0.1);
+    --wim-snackbar-close-idle: oklch(from var(--wim-color-text-white) l c h / 0.7);
+    --wim-snackbar-close-hover: oklch(from var(--wim-color-text-white) l c h / 0.1);
     --wim-snackbar-action: var(--wim-color-text-white);
-    --wim-snackbar-action-hover: color-mix(in srgb, var(--wim-color-text-white) 15%, transparent);
+    --wim-snackbar-action-hover: oklch(from var(--wim-color-text-white) l c h / 0.15);
 
     position: relative;
     display: flex;
@@ -146,25 +146,25 @@
 
   // Variants: override surface color; action becomes white on colored backgrounds
   .success {
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-positive) 75%, black);
+    --wim-snackbar-bg: oklch(from var(--wim-color-positive) calc(l * 0.75) c h);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .error {
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-destructive) 75%, black);
+    --wim-snackbar-bg: oklch(from var(--wim-color-destructive) calc(l * 0.75) c h);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .warning {
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-caution) 50%, black);
+    --wim-snackbar-bg: oklch(from var(--wim-color-caution) calc(l * 0.5) c h);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .info {
-    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-informative) 75%, black);
+    --wim-snackbar-bg: oklch(from var(--wim-color-informative) calc(l * 0.75) c h);
     --wim-snackbar-action: var(--wim-color-text-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }

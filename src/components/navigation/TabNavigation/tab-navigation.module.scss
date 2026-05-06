@@ -142,7 +142,7 @@
       }
 
       .list:has(.item.active:hover:not(.disabled)) .slider {
-        background-color: color-mix(in srgb, var(--wim-color-primary) 90%, black);
+        background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
       }
 
       &.ready .slider {

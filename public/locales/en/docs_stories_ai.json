@@ -1,5 +1,8 @@
 {
   "story": {
+    "aifeedback_in_context": "AI response with feedback controls",
+    "sourcecitation_sources_title": "Referenced Sources",
+    "codeblock_collapsible_hint": "Click the chevron to expand the full code",
     "promptinput_placeholder": "“Tell me about deep sea creatures”",
     "promptinput_placeholder_attach": "“Summarize this file”",
     "promptinput_placeholder_char": "“Summarize this in 3 lines”",
