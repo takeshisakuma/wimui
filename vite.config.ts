@@ -106,6 +106,13 @@ export default defineConfig(({ mode }) => {
           "react-markdown",
           "remark-gfm",
           "qrcode.react",
+          // 重量級ライブラリ — バンドルに含めると UMD が 160kB 制限を超過するため external に指定
+          "@xyflow/react",
+          "@fullcalendar/core",
+          "@fullcalendar/daygrid",
+          "@fullcalendar/interaction",
+          "@fullcalendar/react",
+          "@fullcalendar/timegrid",
         ],
         output: isUMD
           ? {
@@ -123,6 +130,12 @@ export default defineConfig(({ mode }) => {
                 jsmediatags: "jsmediatags",
                 classnames: "classNames",
                 "@floating-ui/react": "FloatingUI",
+                "@xyflow/react": "ReactFlow",
+                "@fullcalendar/core": "FullCalendarCore",
+                "@fullcalendar/daygrid": "FullCalendarDayGrid",
+                "@fullcalendar/interaction": "FullCalendarInteraction",
+                "@fullcalendar/react": "FullCalendarReact",
+                "@fullcalendar/timegrid": "FullCalendarTimeGrid",
               },
             }
           : [

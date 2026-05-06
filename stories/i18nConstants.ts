@@ -12,6 +12,7 @@ export const ALL_NAMESPACES = [
   "docs_charts",
   "docs_common",
   "docs_data_display",
+  "docs_data_display_complex",
   "docs_data_heavy",
   "docs_feedback",
   "docs_form_advanced",

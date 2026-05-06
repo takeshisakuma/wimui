@@ -71,7 +71,8 @@
   "ai_feedback": {
     "positive_label": "Útil",
     "negative_label": "Não foi útil",
-    "regenerate_label": "Regenerar resposta"
+    "regenerate_label": "Regenerar resposta",
+    "group_label": "Avaliação da resposta"
   },
   "source_citation": {
     "open_source": "Abrir fonte",

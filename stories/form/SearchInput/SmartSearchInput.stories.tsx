@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SmartSearchInput } from "../../../src/components/form/SearchInput/SmartSearchInput";
+import { SmartSearchInput } from "../../../src/components/form/SmartSearchInput/SmartSearchInput";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof SmartSearchInput> = {

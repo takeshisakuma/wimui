@@ -130,7 +130,6 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
         className={className}
       >
         <div
-          id={id}
           className={classNames(
             styles.root,
             {
@@ -156,6 +155,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
             )}
 
             <textarea
+              id={id}
               ref={textareaRef}
               className={styles.textarea}
               value={currentValue}

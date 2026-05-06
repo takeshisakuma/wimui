@@ -7,6 +7,10 @@ import {
   StreamingText,
   ThoughtProcess,
   ThoughtStep,
+  AIResponseFeedback,
+  SourceCitation,
+  SourceCitationList,
+  CodeBlock,
   ChatMessageList,
   ChatMessage,
   ChatInput,
@@ -24,6 +28,22 @@ const meta: Meta = {
 
 export default meta;
 
+const SAMPLE_CODE = `import { useState } from "react";
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(c => c + 1)}>
+      Count: {count}
+    </button>
+  );
+}`;
+
+const SAMPLE_SOURCES = [
+  { title: "React Documentation", url: "https://react.dev/", description: "Official React docs with guides and API reference." },
+  { title: "MDN Web Docs", url: "https://developer.mozilla.org/", description: "Comprehensive web technology reference." },
+  { title: "TypeScript Handbook", url: "https://www.typescriptlang.org/docs/", description: "The TypeScript language reference." },
+];
 
 export const Overview: StoryObj = {
   render: () => {
@@ -45,14 +65,14 @@ export const Overview: StoryObj = {
 
         {/* Streaming Visual Check */}
         <ComparisonGrid title={t("audit:ai_streaming_visual_check")}>
-          <ComponentGroup 
+          <ComponentGroup
             label={`${t("audit:label_streaming_text")} — active`}
             maxWidth="var(--wim-width-md)"
           >
             <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
-              <StreamingText 
-                content="The design system incorporates advanced micro-interactions and a robust token system to ensure consistency across all components." 
-                isStreaming 
+              <StreamingText
+                content="The design system incorporates advanced micro-interactions and a robust token system to ensure consistency across all components."
+                isStreaming
               />
             </Box>
           </ComponentGroup>
@@ -60,8 +80,8 @@ export const Overview: StoryObj = {
             <Box style={{ height: "450px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <ChatMessageList style={{ flex: 1, padding: "var(--wim-spacing-md)" }}>
                 {sampleMessages.map((msg) => (
-                  <ChatMessage 
-                    key={msg.id} 
+                  <ChatMessage
+                    key={msg.id}
                     position={msg.role === "user" ? "right" : "left"}
                     variant={msg.role === "user" ? "primary" : "default"}
                   >
@@ -77,7 +97,7 @@ export const Overview: StoryObj = {
 
         {/* ThoughtProcess Check */}
         <ComparisonGrid title={t("audit:ai_thought_process_check")}>
-          <ComponentGroup 
+          <ComponentGroup
             label={`${t("audit:label_thought_process")} — expanded`}
             maxWidth="var(--wim-width-md)"
           >
@@ -89,13 +109,22 @@ export const Overview: StoryObj = {
               ))}
             </ThoughtProcess>
           </ComponentGroup>
-          <ComponentGroup 
+          <ComponentGroup
             label={`${t("audit:label_thought_process")} — collapsed`}
             maxWidth="var(--wim-width-md)"
           >
             <ThoughtProcess title="Step-by-step reasoning" defaultExpanded={false}>
               <ThoughtStep label="Search" status="completed">Searching for data...</ThoughtStep>
               <ThoughtStep label="Process" status="completed" isLast>Processing data...</ThoughtStep>
+            </ThoughtProcess>
+          </ComponentGroup>
+          <ComponentGroup
+            label={t("audit:label_thought_step_error")}
+            maxWidth="var(--wim-width-md)"
+          >
+            <ThoughtProcess title="Failed reasoning" defaultExpanded>
+              <ThoughtStep label="Search" status="completed">Searching for data...</ThoughtStep>
+              <ThoughtStep label="Validate" status="error" isLast>Connection timeout — could not reach external service.</ThoughtStep>
             </ThoughtProcess>
           </ComponentGroup>
         </ComparisonGrid>
@@ -112,13 +141,58 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_prompt_input")} — with label and error`} align="stretch" maxWidth="var(--wim-width-md)">
-            <PromptInput 
-              label="System Prompt" 
-              error="The prompt exceeds the maximum allowed length." 
+            <PromptInput
+              label="System Prompt"
+              error="The prompt exceeds the maximum allowed length."
               defaultValue="Explain the concept of quantum computing to a 5-year old."
               maxLength={100}
               fullWidth
             />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* AIResponseFeedback Check */}
+        <ComparisonGrid title={t("audit:ai_response_feedback_check")}>
+          <ComponentGroup label={t("audit:label_without_regenerate")}>
+            <Stack gap="lg">
+              <AIResponseFeedback />
+              <AIResponseFeedback defaultFeedback="positive" />
+              <AIResponseFeedback defaultFeedback="negative" />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_with_regenerate")}>
+            <Stack gap="lg">
+              <AIResponseFeedback showRegenerate />
+              <AIResponseFeedback showRegenerate defaultFeedback="positive" />
+              <AIResponseFeedback showRegenerate disabled />
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* SourceCitation Check */}
+        <ComparisonGrid title={t("audit:ai_source_citation_check")}>
+          <ComponentGroup label={t("audit:label_source_citation")} maxWidth="var(--wim-width-md)">
+            <Stack gap="md">
+              <SourceCitation title="React Documentation" url="https://react.dev/" index={1} description="Official React docs with guides and API reference." />
+              <SourceCitation title="Internal Design Guide" description="No URL — rendered as non-interactive card." index={2} />
+              <SourceCitation title="TypeScript Handbook" url="https://www.typescriptlang.org/docs/" />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_source_citation_list")} align="stretch">
+            <SourceCitationList sources={SAMPLE_SOURCES} />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* CodeBlock Check */}
+        <ComparisonGrid title={t("audit:ai_code_block_check")}>
+          <ComponentGroup label={t("audit:label_code_block")} align="stretch" maxWidth="var(--wim-width-md)">
+            <CodeBlock code={SAMPLE_CODE} language="tsx" />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_with_filename")} align="stretch" maxWidth="var(--wim-width-md)">
+            <CodeBlock code={SAMPLE_CODE} filename="Counter.tsx" showLineNumbers />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_collapsible")} align="stretch" maxWidth="var(--wim-width-md)">
+            <CodeBlock code={SAMPLE_CODE} language="tsx" maxLines={4} />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -128,23 +202,23 @@ export const Overview: StoryObj = {
             <Stack gap="lg">
               <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:label_fluid_prompt")} />
               <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
-                <StreamingText 
-                  content="This is a truly full width streaming text component that will span the entire width of its container regardless of length. This confirms that the component can handle extreme horizontal stretches." 
-                  isStreaming 
+                <StreamingText
+                  content="This is a truly full width streaming text component that will span the entire width of its container regardless of length. This confirms that the component can handle extreme horizontal stretches."
+                  isStreaming
                 />
               </Box>
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup 
-            label={t("audit:label_readable_limit")} 
+          <ComponentGroup
+            label={t("audit:label_readable_limit")}
             maxWidth="60rem"
           >
             <Stack gap="lg">
               <PromptInput fullWidth placeholder={t("audit:label_prompt_input_capped")} />
               <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
-                <StreamingText 
-                  content="This streaming text is capped at 60rem (960px) to maintain optimal readability for long-form AI responses, even on ultra-wide displays. Following the same rule as standard InputFamily components ensures a consistent reading experience across the entire platform." 
+                <StreamingText
+                  content="This streaming text is capped at 60rem (960px) to maintain optimal readability for long-form AI responses, even on ultra-wide displays. Following the same rule as standard InputFamily components ensures a consistent reading experience across the entire platform."
                 />
               </Box>
             </Stack>

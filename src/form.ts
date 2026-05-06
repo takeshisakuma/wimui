@@ -27,7 +27,7 @@ export * from "./components/form/RichTextEditor/RichTextEditor";
 export * from "./components/form/RangeSlider/RangeSlider";
 export * from "./components/form/Rating/Rating";
 export * from "./components/form/SearchInput/SearchInput";
-export * from "./components/form/SearchInput/SmartSearchInput";
+export * from "./components/form/SmartSearchInput/SmartSearchInput";
 export * from "./components/form/SegmentedControl/SegmentedControl";
 export * from "./components/form/Selectbox/Selectbox";
 export * from "./components/form/SignaturePad/SignaturePad";

@@ -61,6 +61,8 @@ export const AIResponseFeedback = React.forwardRef<HTMLDivElement, AIResponseFee
     return (
       <div
         ref={ref}
+        role="group"
+        aria-label={t("ai_feedback.group_label")}
         className={classNames(styles.root, className)}
         {...props}
       >

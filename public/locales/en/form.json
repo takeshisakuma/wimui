@@ -8,7 +8,8 @@
   "ai_feedback": {
     "positive_label": "Helpful",
     "negative_label": "Not helpful",
-    "regenerate_label": "Regenerate response"
+    "regenerate_label": "Regenerate response",
+    "group_label": "Response feedback"
   },
   "source_citation": {
     "open_source": "Open source",

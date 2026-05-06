@@ -283,5 +283,19 @@
   "heading_hierarchy": "見出し階層 (Title H1-H6)",
   "body_text_styles": "本文スタイル (Text, Span)",
   "specialized_typography": "特殊タイポグラフィ (Blockquote, Code, etc.)",
-  "decoration_check": "装飾・アクセント (Underline, Highlight)"
+  "decoration_check": "装飾・アクセント (Underline, Highlight)",
+  "ai_response_feedback_check": "AIResponseFeedback の状態とインタラクション",
+  "ai_source_citation_check": "SourceCitation と SourceCitationList",
+  "ai_code_block_check": "CodeBlock の機能",
+  "label_ai_response_feedback": "AIResponseFeedback",
+  "label_source_citation": "SourceCitation",
+  "label_source_citation_list": "SourceCitationList",
+  "label_code_block": "CodeBlock",
+  "label_without_regenerate": "再生成なし",
+  "label_with_regenerate": "再生成あり",
+  "label_feedback_active": "フィードバック選択済み",
+  "label_with_filename": "ファイル名あり",
+  "label_with_line_numbers": "行番号あり",
+  "label_collapsible": "折りたたみ対応（maxLines）",
+  "label_thought_step_error": "ThoughtStep エラー状態"
 }

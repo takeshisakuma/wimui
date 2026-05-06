@@ -283,6 +283,19 @@
   "heading_hierarchy": "Heading Hierarchy (Title H1-H6)",
   "body_text_styles": "Body Text Styles (Text, Span)",
   "specialized_typography": "Specialized Typography (Blockquote, Code, etc.)",
-  "decoration_check": "Decorations & Accents (Underline, Highlight)"
+  "decoration_check": "Decorations & Accents (Underline, Highlight)",
+  "ai_response_feedback_check": "AIResponseFeedback States & Interactions",
+  "ai_source_citation_check": "SourceCitation & SourceCitationList",
+  "ai_code_block_check": "CodeBlock Features",
+  "label_ai_response_feedback": "AIResponseFeedback",
+  "label_source_citation": "SourceCitation",
+  "label_source_citation_list": "SourceCitationList",
+  "label_code_block": "CodeBlock",
+  "label_without_regenerate": "Without regenerate",
+  "label_with_regenerate": "With regenerate",
+  "label_feedback_active": "Feedback active",
+  "label_with_filename": "With filename",
+  "label_with_line_numbers": "With line numbers",
+  "label_collapsible": "Collapsible (maxLines)",
+  "label_thought_step_error": "ThoughtStep error state"
 }
-
