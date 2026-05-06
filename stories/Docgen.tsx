@@ -1,7 +1,7 @@
 import React from 'react';
 import { T } from './T';
 import { Command } from './Command';
-import indexData from '../src/data/docgen_index.json';
+import indexData from '@/data/docgen_index.json';
 import './docgen.scss';
 
 interface DocgenProps {
@@ -41,7 +41,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
   React.useEffect(() => {
     if (!category) return;
     // Dynamic import the specific category data
-    import(`../src/data/docgen_${category}.json`)
+    import(`@/data/docgen_${category}.json`)
       .then((module) => {
         const categoryData = module.default as Record<string, ComponentData>;
         if (categoryData[componentName]) {

@@ -22,4 +22,7 @@ declare module "*.svg" {
   const content: string;
   export default content;
 }
-
+declare module "@/data/docgen_*.json" {
+  const value: unknown;
+  export default value;
+}
