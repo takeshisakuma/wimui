@@ -125,345 +125,6 @@
       }
     }
   },
-  "Timeline": {
-    "name": "Timeline",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\" | \"alternate\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"alternate\""
-            }
-          ]
-        },
-        "description": "",
-        "defaultValue": {
-          "value": "\"left\"",
-          "computed": false
-        }
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelineItem": {
-    "name": "TimelineItem",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "align": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"left\" | \"right\" | \"alternate\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"left\""
-            },
-            {
-              "name": "literal",
-              "value": "\"right\""
-            },
-            {
-              "name": "literal",
-              "value": "\"alternate\""
-            }
-          ]
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelineSeparator": {
-    "name": "TimelineSeparator",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelineConnector": {
-    "name": "TimelineConnector",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelinePoint": {
-    "name": "TimelinePoint",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"primary\" | \"secondary\" | \"error\" | \"success\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            }
-          ]
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelineContent": {
-    "name": "TimelineContent",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "TimelineOppositeContent": {
-    "name": "TimelineOppositeContent",
-    "tokens": [
-      "--wim-border-width-thick",
-      "--wim-color-bg-component",
-      "--wim-color-border",
-      "--wim-color-destructive",
-      "--wim-color-positive",
-      "--wim-color-primary",
-      "--wim-color-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-sm",
-      "--wim-radius-full",
-      "--wim-spacing-2xl",
-      "--wim-spacing-3xl",
-      "--wim-spacing-5xl",
-      "--wim-spacing-sm",
-      "--wim-spacing-xl",
-      "--wim-z-1"
-    ],
-    "anatomy": [],
-    "props": {
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
   "TreeView": {
     "name": "TreeView",
     "tokens": [],
@@ -955,6 +616,345 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "Timeline": {
+    "name": "Timeline",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"alternate\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"alternate\""
+            }
+          ]
+        },
+        "description": "",
+        "defaultValue": {
+          "value": "\"left\"",
+          "computed": false
+        }
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineItem": {
+    "name": "TimelineItem",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "align": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"left\" | \"right\" | \"alternate\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"left\""
+            },
+            {
+              "name": "literal",
+              "value": "\"right\""
+            },
+            {
+              "name": "literal",
+              "value": "\"alternate\""
+            }
+          ]
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineSeparator": {
+    "name": "TimelineSeparator",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineConnector": {
+    "name": "TimelineConnector",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelinePoint": {
+    "name": "TimelinePoint",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"primary\" | \"secondary\" | \"error\" | \"success\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            }
+          ]
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineContent": {
+    "name": "TimelineContent",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "TimelineOppositeContent": {
+    "name": "TimelineOppositeContent",
+    "tokens": [
+      "--wim-border-width-thick",
+      "--wim-color-bg-component",
+      "--wim-color-border",
+      "--wim-color-destructive",
+      "--wim-color-positive",
+      "--wim-color-primary",
+      "--wim-color-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-sm",
+      "--wim-radius-full",
+      "--wim-spacing-2xl",
+      "--wim-spacing-3xl",
+      "--wim-spacing-5xl",
+      "--wim-spacing-sm",
+      "--wim-spacing-xl",
+      "--wim-z-1"
+    ],
+    "anatomy": [],
+    "props": {
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
       }
     }
   },
@@ -3005,6 +3005,318 @@
       }
     }
   },
+  "Kanban": {
+    "name": "Kanban",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "columns": {
+        "required": false,
+        "tsType": {
+          "name": "Array",
+          "elements": [
+            {
+              "name": "KanbanColumnData"
+            }
+          ],
+          "raw": "KanbanColumnData[]"
+        },
+        "description": "カンバンのカラムデータ（Prop-driven用）。"
+      },
+      "onMove": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "itemId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "fromColumnId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "toColumnId"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "カードの移動が発生した時のコールバック。"
+      },
+      "onCardMove": {
+        "required": false,
+        "tsType": {
+          "name": "signature",
+          "type": "function",
+          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
+          "signature": {
+            "arguments": [
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "itemId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "fromColumnId"
+              },
+              {
+                "type": {
+                  "name": "string"
+                },
+                "name": "toColumnId"
+              }
+            ],
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "カードの移動が発生した時のコールバック (Legacy/Alternative name)。"
+      },
+      "forceMobileUI": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "タッチデバイス向けのUIを強制的に表示するか。",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "Whether to render as a child element.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      }
+    }
+  },
+  "KanbanColumn": {
+    "name": "KanbanColumn",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "cardCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "KanbanCard": {
+    "name": "KanbanCard",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": true,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "disabled": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
+  "KanbanColumnWrapper": {
+    "name": "KanbanColumnWrapper",
+    "tokens": [
+      "--wim-color-bg-component",
+      "--wim-color-bg-hover",
+      "--wim-color-bg-secondary",
+      "--wim-color-bg-subtle",
+      "--wim-color-border",
+      "--wim-color-primary",
+      "--wim-color-text-primary",
+      "--wim-color-text-secondary",
+      "--wim-color-text-tertiary",
+      "--wim-font-size-md",
+      "--wim-font-size-sm",
+      "--wim-opacity-disabled",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-radius-md",
+      "--wim-shadow-md",
+      "--wim-shadow-sm",
+      "--wim-spacing-2xl",
+      "--wim-z-10"
+    ],
+    "anatomy": [],
+    "props": {
+      "id": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "title": {
+        "required": true,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      },
+      "cardCount": {
+        "required": false,
+        "tsType": {
+          "name": "number"
+        },
+        "description": ""
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": ""
+      },
+      "className": {
+        "required": false,
+        "tsType": {
+          "name": "string"
+        },
+        "description": ""
+      }
+    }
+  },
   "List": {
     "name": "List",
     "tokens": [
@@ -3498,318 +3810,6 @@
           }
         },
         "description": "Callback when data changes"
-      }
-    }
-  },
-  "Kanban": {
-    "name": "Kanban",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {
-      "columns": {
-        "required": false,
-        "tsType": {
-          "name": "Array",
-          "elements": [
-            {
-              "name": "KanbanColumnData"
-            }
-          ],
-          "raw": "KanbanColumnData[]"
-        },
-        "description": "カンバンのカラムデータ（Prop-driven用）。"
-      },
-      "onMove": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "itemId"
-              },
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "fromColumnId"
-              },
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "toColumnId"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "カードの移動が発生した時のコールバック。"
-      },
-      "onCardMove": {
-        "required": false,
-        "tsType": {
-          "name": "signature",
-          "type": "function",
-          "raw": "(itemId: string, fromColumnId: string, toColumnId: string) => void",
-          "signature": {
-            "arguments": [
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "itemId"
-              },
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "fromColumnId"
-              },
-              {
-                "type": {
-                  "name": "string"
-                },
-                "name": "toColumnId"
-              }
-            ],
-            "return": {
-              "name": "void"
-            }
-          }
-        },
-        "description": "カードの移動が発生した時のコールバック (Legacy/Alternative name)。"
-      },
-      "forceMobileUI": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "タッチデバイス向けのUIを強制的に表示するか。",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "Whether to render as a child element.",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      }
-    }
-  },
-  "KanbanColumn": {
-    "name": "KanbanColumn",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "cardCount": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "KanbanCard": {
-    "name": "KanbanCard",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": true,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "disabled": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      }
-    }
-  },
-  "KanbanColumnWrapper": {
-    "name": "KanbanColumnWrapper",
-    "tokens": [
-      "--wim-color-bg-component",
-      "--wim-color-bg-hover",
-      "--wim-color-bg-secondary",
-      "--wim-color-bg-subtle",
-      "--wim-color-border",
-      "--wim-color-primary",
-      "--wim-color-text-primary",
-      "--wim-color-text-secondary",
-      "--wim-color-text-tertiary",
-      "--wim-font-size-md",
-      "--wim-font-size-sm",
-      "--wim-opacity-disabled",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-radius-md",
-      "--wim-shadow-md",
-      "--wim-shadow-sm",
-      "--wim-spacing-2xl",
-      "--wim-z-10"
-    ],
-    "anatomy": [],
-    "props": {
-      "id": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "title": {
-        "required": true,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
-      },
-      "cardCount": {
-        "required": false,
-        "tsType": {
-          "name": "number"
-        },
-        "description": ""
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": ""
-      },
-      "className": {
-        "required": false,
-        "tsType": {
-          "name": "string"
-        },
-        "description": ""
       }
     }
   },
@@ -6832,6 +6832,164 @@
       }
     }
   },
+  "Badge": {
+    "name": "Badge",
+    "tokens": [
+      "--wim-badge-dot-lg",
+      "--wim-badge-dot-md",
+      "--wim-badge-dot-sm",
+      "--wim-font-size-2xs",
+      "--wim-font-size-sm",
+      "--wim-font-size-xs",
+      "--wim-radius-full",
+      "--wim-radius-lg",
+      "--wim-spacing-2xs",
+      "--wim-spacing-3xs",
+      "--wim-spacing-lg",
+      "--wim-spacing-md",
+      "--wim-spacing-xs"
+    ],
+    "anatomy": [],
+    "props": {
+      "asChild": {
+        "required": false,
+        "tsType": {
+          "name": "boolean"
+        },
+        "description": "If true, the badge will be rendered as its child, merging its props onto that child."
+      },
+      "children": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ"
+      },
+      "content": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "表示するコンテンツ (childrenの代替)"
+      },
+      "icon": {
+        "required": false,
+        "tsType": {
+          "name": "ReactReactNode",
+          "raw": "React.ReactNode"
+        },
+        "description": "アイコン"
+      },
+      "intent": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"primary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"secondary\""
+            },
+            {
+              "name": "literal",
+              "value": "\"success\""
+            },
+            {
+              "name": "literal",
+              "value": "\"warning\""
+            },
+            {
+              "name": "literal",
+              "value": "\"error\""
+            },
+            {
+              "name": "literal",
+              "value": "\"info\""
+            },
+            {
+              "name": "literal",
+              "value": "\"neutral\""
+            }
+          ]
+        },
+        "description": "インテント（意味的状態）"
+      },
+      "variant": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"solid\" | \"outline\" | \"subtle\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"solid\""
+            },
+            {
+              "name": "literal",
+              "value": "\"outline\""
+            },
+            {
+              "name": "literal",
+              "value": "\"subtle\""
+            }
+          ]
+        },
+        "description": "バリアント"
+      },
+      "size": {
+        "required": false,
+        "tsType": {
+          "name": "union",
+          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "elements": [
+            {
+              "name": "literal",
+              "value": "\"xs\""
+            },
+            {
+              "name": "literal",
+              "value": "\"sm\""
+            },
+            {
+              "name": "literal",
+              "value": "\"md\""
+            },
+            {
+              "name": "literal",
+              "value": "\"lg\""
+            },
+            {
+              "name": "literal",
+              "value": "\"xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"2xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"3xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"4xl\""
+            },
+            {
+              "name": "literal",
+              "value": "\"5xl\""
+            }
+          ]
+        },
+        "description": "サイズ"
+      }
+    }
+  },
   "AvatarGroup": {
     "name": "AvatarGroup",
     "tokens": [],
@@ -7091,164 +7249,6 @@
           ]
         },
         "description": ""
-      }
-    }
-  },
-  "Badge": {
-    "name": "Badge",
-    "tokens": [
-      "--wim-badge-dot-lg",
-      "--wim-badge-dot-md",
-      "--wim-badge-dot-sm",
-      "--wim-font-size-2xs",
-      "--wim-font-size-sm",
-      "--wim-font-size-xs",
-      "--wim-radius-full",
-      "--wim-radius-lg",
-      "--wim-spacing-2xs",
-      "--wim-spacing-3xs",
-      "--wim-spacing-lg",
-      "--wim-spacing-md",
-      "--wim-spacing-xs"
-    ],
-    "anatomy": [],
-    "props": {
-      "asChild": {
-        "required": false,
-        "tsType": {
-          "name": "boolean"
-        },
-        "description": "If true, the badge will be rendered as its child, merging its props onto that child."
-      },
-      "children": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ"
-      },
-      "content": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "表示するコンテンツ (childrenの代替)"
-      },
-      "icon": {
-        "required": false,
-        "tsType": {
-          "name": "ReactReactNode",
-          "raw": "React.ReactNode"
-        },
-        "description": "アイコン"
-      },
-      "intent": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "| \"primary\"\n| \"secondary\"\n| \"success\"\n| \"warning\"\n| \"error\"\n| \"info\"\n| \"neutral\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"primary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"secondary\""
-            },
-            {
-              "name": "literal",
-              "value": "\"success\""
-            },
-            {
-              "name": "literal",
-              "value": "\"warning\""
-            },
-            {
-              "name": "literal",
-              "value": "\"error\""
-            },
-            {
-              "name": "literal",
-              "value": "\"info\""
-            },
-            {
-              "name": "literal",
-              "value": "\"neutral\""
-            }
-          ]
-        },
-        "description": "インテント（意味的状態）"
-      },
-      "variant": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"solid\" | \"outline\" | \"subtle\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"solid\""
-            },
-            {
-              "name": "literal",
-              "value": "\"outline\""
-            },
-            {
-              "name": "literal",
-              "value": "\"subtle\""
-            }
-          ]
-        },
-        "description": "バリアント"
-      },
-      "size": {
-        "required": false,
-        "tsType": {
-          "name": "union",
-          "raw": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
-          "elements": [
-            {
-              "name": "literal",
-              "value": "\"xs\""
-            },
-            {
-              "name": "literal",
-              "value": "\"sm\""
-            },
-            {
-              "name": "literal",
-              "value": "\"md\""
-            },
-            {
-              "name": "literal",
-              "value": "\"lg\""
-            },
-            {
-              "name": "literal",
-              "value": "\"xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"2xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"3xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"4xl\""
-            },
-            {
-              "name": "literal",
-              "value": "\"5xl\""
-            }
-          ]
-        },
-        "description": "サイズ"
       }
     }
   },
