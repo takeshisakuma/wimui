@@ -1,11 +1,11 @@
-@layer component {
+﻿@layer component {
   .container {
     position: relative;
     width: 100%;
     overflow: hidden;
     touch-action: pan-y;
     user-select: none;
-    background: var(--wim-color-surface-subtle);
+    background: var(--wim-color-bg-surface-subtle);
   }
 
   .actions {
@@ -50,14 +50,14 @@
     }
 
     &.primary { --bg: var(--wim-color-primary); }
-    &.error { --bg: var(--wim-color-error); }
+    &.error { --bg: var(--wim-color-destructive); }
 
     &.warning {
-      --bg: var(--wim-color-warning);
+      --bg: var(--wim-color-caution);
 
-      color: var(--wim-color-text);
+      color: var(--wim-color-text-primary);
     }
-    &.success { --bg: var(--wim-color-success); }
+    &.success { --bg: var(--wim-color-positive); }
     &.neutral { --bg: var(--wim-color-neutral); }
   }
 

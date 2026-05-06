@@ -1,11 +1,11 @@
-@use "../../../base" as *;
+﻿@use "../../../base" as *;
 @use "../../../tokens/breakpoints" as bp;
 
 @layer component {
   .root {
     position: relative;
     width: 100%;
-    font-family: var(--wim-font-family);
+    font-family: var(--wim-font-family-default);
   }
 
   .label {
@@ -152,7 +152,7 @@
     &.selected {
       font-weight: 500;
       color: var(--wim-color-primary);
-      background: var(--wim-color-primary-alpha-10);
+      background: var(--wim-color-primary-light);
     }
   }
 }

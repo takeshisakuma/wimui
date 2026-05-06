@@ -1,4 +1,4 @@
-@use "../../../tokens/generated/tokens" as tokens;
+﻿@use "../../../tokens/generated/tokens" as tokens;
 
 @layer component {
   .container {
@@ -204,7 +204,7 @@
   
     &.stickyLeft {
       position: sticky;
-      z-index: var(--wim-z-index-sticky-column, 20);
+      z-index: var(--wim-z-sticky, 20);
       background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
@@ -214,7 +214,7 @@
   
     &.stickyRight {
       position: sticky;
-      z-index: var(--wim-z-index-sticky-column, 20);
+      z-index: var(--wim-z-sticky, 20);
       background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
@@ -238,7 +238,7 @@
   
     &.stickyLeft {
       position: sticky;
-      z-index: var(--wim-z-index-sticky, 10);
+      z-index: var(--wim-z-sticky, 10);
       background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
@@ -248,7 +248,7 @@
   
     &.stickyRight {
       position: sticky;
-      z-index: var(--wim-z-index-sticky, 10);
+      z-index: var(--wim-z-sticky, 10);
       background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),

@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     display: flex;
     flex-direction: column;
@@ -92,7 +92,7 @@
     justify-content: center;
     height: 300px;
     color: var(--wim-color-text-secondary);
-    background-color: var(--wim-color-surface-subtle);
+    background-color: var(--wim-color-bg-surface-subtle);
     border: 2px dashed var(--wim-color-border);
   }
 

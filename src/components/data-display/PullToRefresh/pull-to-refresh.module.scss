@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .container {
     position: relative;
     width: 100%;
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--wim-color-surface-subtle);
+    background: var(--wim-color-bg-surface-subtle);
     border-bottom: 1px solid var(--wim-color-border-subtle);
   }
 

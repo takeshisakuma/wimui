@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     width: 100%;
@@ -61,7 +61,7 @@
     &.selected {
       font-weight: 500;
       color: var(--wim-color-primary);
-      background: var(--wim-color-primary-alpha-10);
+      background: var(--wim-color-primary-light);
     }
   }
 

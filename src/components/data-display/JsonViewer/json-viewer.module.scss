@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     width: 100%;
     overflow: hidden;
@@ -6,7 +6,7 @@
     font-size: var(--wim-font-size-sm);
     background: var(--wim-color-surface-elevated);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-border-radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   .toolbar {
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-    background: var(--wim-color-surface-subtle);
+    background: var(--wim-color-bg-surface-subtle);
     border-bottom: 1px solid var(--wim-color-border);
   }
 
@@ -74,17 +74,17 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--wim-border-radius-xs);
+    border-radius: var(--wim-radius-sm);
     transition: all var(--wim-duration-fast);
 
     &:hover {
-      color: var(--wim-color-text);
-      background: var(--wim-color-surface-subtle);
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-bg-surface-subtle);
     }
 
     &.delete:hover {
-      color: var(--wim-color-error);
-      background: var(--wim-color-error-subtle);
+      color: var(--wim-color-destructive);
+      background: var(--wim-color-destructive-subtle);
     }
   }
 
@@ -97,7 +97,7 @@
     outline: none;
     background: var(--wim-color-surface);
     border: 1px solid var(--wim-color-primary);
-    border-radius: var(--wim-border-radius-xs);
+    border-radius: var(--wim-radius-sm);
 
     &.keyInput {
       color: var(--wim-color-informative);

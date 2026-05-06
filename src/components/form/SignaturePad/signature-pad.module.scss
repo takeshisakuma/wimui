@@ -1,4 +1,4 @@
-@use "../../../base" as *;
+﻿@use "../../../base" as *;
 
 @layer component {
   .root {
@@ -7,7 +7,7 @@
     flex-direction: column;
     gap: var(--wim-spacing-md);
     max-width: 90vw;
-    font-family: var(--wim-font-family);
+    font-family: var(--wim-font-family-default);
 
     &.disabled {
       cursor: not-allowed;

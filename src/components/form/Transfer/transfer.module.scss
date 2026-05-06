@@ -1,4 +1,4 @@
-@use "../../../base" as *;
+﻿@use "../../../base" as *;
 
 @layer component {
   .container {
@@ -14,7 +14,7 @@
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    font-family: var(--wim-font-family);
+    font-family: var(--wim-font-family-default);
 
     @container (max-width: 768px) {
       flex-direction: column;

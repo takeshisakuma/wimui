@@ -1,4 +1,4 @@
-
+﻿
 @layer component {
   .root {
     display: inline-flex;
@@ -58,14 +58,14 @@
   }
 
   .negativeActive {
-    color: var(--wim-color-error);
-    background: oklch(from var(--wim-color-error) l c h / 0.08);
-    border-color: var(--wim-color-error);
+    color: var(--wim-color-destructive);
+    background: oklch(from var(--wim-color-destructive) l c h / 0.08);
+    border-color: var(--wim-color-destructive);
 
     &:hover:not(:disabled) {
-      color: var(--wim-color-error);
-      background: oklch(from var(--wim-color-error) l c h / 0.14);
-      border-color: var(--wim-color-error);
+      color: var(--wim-color-destructive);
+      background: oklch(from var(--wim-color-destructive) l c h / 0.14);
+      border-color: var(--wim-color-destructive);
     }
   }
 

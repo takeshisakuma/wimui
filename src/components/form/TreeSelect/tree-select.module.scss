@@ -1,4 +1,4 @@
-@use "../../../base" as *;
+﻿@use "../../../base" as *;
 
 @layer component {
   .container {
@@ -12,7 +12,7 @@
     width: 100%;
     min-width: var(--wim-menu-min-width);
     max-width: var(--wim-input-width, var(--wim-width-md));
-    font-family: var(--wim-font-family);
+    font-family: var(--wim-font-family-default);
 
     @container (max-width: 30rem) {
       min-width: var(--wim-width-sm);

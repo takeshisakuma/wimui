@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     display: block;
@@ -55,7 +55,7 @@
     }
     
     &:focus-visible {
-      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus);
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
       outline-offset: var(--wim-focus-outline-offset);
     }
   }

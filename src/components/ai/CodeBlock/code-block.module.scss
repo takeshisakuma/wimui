@@ -1,4 +1,4 @@
-
+﻿
 @layer component {
   .root {
     box-sizing: border-box;
@@ -91,7 +91,7 @@
     overflow: visible;
     font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
-    line-height: var(--wim-line-height-relaxed);
+    line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-primary);
     white-space: pre;
     background: transparent;

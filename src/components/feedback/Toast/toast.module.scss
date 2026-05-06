@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .container {
     position: fixed;
     z-index: var(--wim-z-toast);
@@ -56,7 +56,7 @@
     background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-lg);
-    box-shadow: var(--wim-shadow-glass);
+    box-shadow: var(--wim-color-shadow-glass);
     backdrop-filter: blur(var(--wim-spacing-lg));
   }
 
@@ -182,8 +182,8 @@
 
   .leave {
     transition:
-      opacity var(--wim-duration-base) var(--wim-easing-base),
-      transform var(--wim-duration-base) var(--wim-easing-base);
+      opacity var(--wim-duration-base) var(--wim-easing-standard),
+      transform var(--wim-duration-base) var(--wim-easing-standard);
   }
 
   .leaveFrom {

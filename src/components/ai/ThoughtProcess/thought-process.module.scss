@@ -1,4 +1,4 @@
-
+﻿
 @layer component {
   .root {
     box-sizing: border-box;
@@ -60,7 +60,7 @@
   .bodyWrapper {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows var(--wim-duration-normal) var(--wim-easing-standard);
+    transition: grid-template-rows var(--wim-duration-base) var(--wim-easing-standard);
 
     &.open {
       grid-template-rows: 1fr;
@@ -153,11 +153,11 @@
 
   .error {
     .label {
-      color: var(--wim-color-error);
+      color: var(--wim-color-destructive);
     }
 
     .text {
-      color: var(--wim-color-text-error, var(--wim-color-error));
+      color: var(--wim-color-text-error, var(--wim-color-destructive));
     }
   }
 }
