@@ -1,4 +1,4 @@
-@use "../../../tokens/breakpoints" as bp;
+﻿@use "../../../tokens/breakpoints" as bp;
 
 @layer component {
   .root {
@@ -66,7 +66,7 @@
     &::before {
       position: absolute;
       inset: 0;
-      z-index: var(--wim-z-5);
+      z-index: 5;
       pointer-events: none;
       content: "";
       background: linear-gradient(
@@ -118,7 +118,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: var(--wim-z-10);
+    z-index: 10;
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-sm);
@@ -204,7 +204,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--wim-z-2);
+    z-index: 2;
     width: 100%;
     height: 100%; // Make it cover the container
     padding: 0;
@@ -217,7 +217,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--wim-z-1);
+    z-index: 1;
     height: 100%;
     pointer-events: none;
     background-color: var(--wim-color-primary);
@@ -305,7 +305,7 @@
     position: absolute;
     right: var(--wim-spacing-md);
     bottom: 60px;
-    z-index: var(--wim-z-20);
+    z-index: 20;
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-xs);
@@ -382,7 +382,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: var(--wim-z-15);
+    z-index: 15;
     display: flex;
     gap: 4px;
     align-items: center;

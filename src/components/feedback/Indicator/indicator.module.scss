@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -19,7 +19,7 @@
 
   .dot {
     position: absolute;
-    z-index: var(--wim-z-10);
+    z-index: 10;
     display: inline-block;
     flex-shrink: 0;
     width: var(--indicator-size, 10px);

@@ -1,4 +1,4 @@
-@use "../../../tokens/breakpoints" as breakpoints;
+﻿@use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/indicator-mixins" as indicator;
 
 .container {
@@ -175,7 +175,7 @@
       }
 
       &:focus-visible {
-        z-index: var(--wim-z-1);
+        z-index: 1;
         outline: none;
         box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
       }
@@ -186,7 +186,7 @@
       padding: var(--wim-spacing-2xl);
 
       &:focus-visible {
-        z-index: var(--wim-z-1);
+        z-index: 1;
         outline: none;
         border-radius: var(--wim-radius-sm);
         box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);

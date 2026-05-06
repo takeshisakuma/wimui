@@ -1,4 +1,4 @@
-@use "../../../tokens/semantic-colors" as *;
+﻿@use "../../../tokens/semantic-colors" as *;
 @use "../../../tokens/spacings" as *;
 
 .root {
@@ -18,7 +18,7 @@
     outline: none;
     
     &:focus-visible {
-        z-index: var(--wim-z-1);
+        z-index: 1;
         box-shadow: var(--wim-shadow-focus);
     }
 

@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     // Component-specific layout values
     --timeline-padding: var(--wim-spacing-2xl);
@@ -86,7 +86,7 @@
     --timeline-icon-size: var(--wim-spacing-3xl);
     --timeline-icon-inner-size: var(--wim-font-size-sm);
 
-    z-index: var(--wim-z-1);
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;

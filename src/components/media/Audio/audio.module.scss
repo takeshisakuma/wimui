@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -74,7 +74,7 @@
     &::before {
       position: absolute;
       inset: 0;
-      z-index: var(--wim-z-5);
+      z-index: 5;
       pointer-events: none;
       content: "";
       background: linear-gradient(
@@ -120,7 +120,7 @@
     --wim-audio-bg-end: var(--wim-color-bg-inverted); // Using same for now or a variation if exists
 
     position: relative;
-    z-index: var(--wim-z-1);
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-lg); // Adjusted for 3 rows
@@ -154,7 +154,7 @@
 
   .metadata {
     position: relative;
-    z-index: var(--wim-z-2);
+    z-index: 2;
     display: flex;
     gap: var(--wim-spacing-sm);
     align-items: center;
@@ -324,7 +324,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--wim-z-2);
+    z-index: 2;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -336,7 +336,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--wim-z-1);
+    z-index: 1;
     height: 100%;
     pointer-events: none;
     background-color: var(--wim-color-primary);

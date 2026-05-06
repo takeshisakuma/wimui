@@ -1,4 +1,4 @@
-@use "../../../tokens/breakpoints" as *;
+﻿@use "../../../tokens/breakpoints" as *;
 @use "../../../tokens/semantic-colors" as *;
 @use "../../../tokens/spacings" as *;
 @use "../../../tokens/typography" as *;
@@ -27,7 +27,7 @@
 
   // Left: task label panel
   .labelPanel {
-    z-index: var(--wim-z-1);
+    z-index: 1;
     flex-shrink: 0;
     width: 160px;
     background-color: var(--wim-color-bg-component);

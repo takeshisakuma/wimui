@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     display: flex;
     flex-direction: row;
@@ -128,7 +128,7 @@
     right: 0;
     bottom: calc(100% + 4px);
     left: 0;
-    z-index: var(--wim-z-10);
+    z-index: 10;
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);

@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     display: inline-flex;
     align-items: stretch;
@@ -45,7 +45,7 @@
       &:focus-within,
       &:focus,
       &:hover {
-        z-index: var(--wim-z-2);
+        z-index: 2;
         box-shadow: none; // Prevent "floating" effects inside group
         transform: none; // Prevent "lift" effects inside group
       }

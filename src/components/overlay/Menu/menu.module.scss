@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     box-sizing: border-box;
     padding: var(--wim-spacing-xs) 0;
@@ -60,7 +60,7 @@
     position: relative;
 
     &:focus-visible {
-      z-index: var(--wim-z-1);
+      z-index: 1;
       outline: none;
       box-shadow: var(--wim-shadow-focus);
     }
@@ -114,7 +114,7 @@
     position: relative;
 
     &:focus-visible {
-      z-index: var(--wim-z-1);
+      z-index: 1;
       outline: none;
       box-shadow: var(--wim-shadow-focus);
     }

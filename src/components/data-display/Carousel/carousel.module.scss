@@ -1,4 +1,4 @@
-@layer component {
+﻿@layer component {
   .root {
     position: relative;
     width: 100%;
@@ -51,7 +51,7 @@
   .control {
     position: absolute;
     top: 50%;
-    z-index: var(--wim-z-10);
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +88,7 @@
     position: absolute;
     bottom: var(--wim-spacing-md);
     left: 50%;
-    z-index: var(--wim-z-10);
+    z-index: 10;
     display: flex;
     gap: var(--wim-spacing-xs);
     transform: translateX(-50%);
