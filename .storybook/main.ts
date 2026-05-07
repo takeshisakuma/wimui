@@ -101,7 +101,23 @@ const config: StorybookConfig = {
           }),
       ].filter(Boolean) as any,
       optimizeDeps: {
-        include: ["jsmediatags"],
+        include: [
+          // React core — avoids per-request CJS→ESM transform
+          "react",
+          "react/jsx-runtime",
+          "react-dom",
+          "react-dom/client",
+          // i18n
+          "i18next",
+          "react-i18next",
+          // UI utilities bundled with components
+          "classnames",
+          "@floating-ui/react",
+          // Heavy visualisation library
+          "recharts",
+          // Media tag reader (has Node.js shims)
+          "jsmediatags",
+        ],
         exclude: ["@storybook/blocks"],
         esbuildOptions: {
           define: {
