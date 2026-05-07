@@ -22,6 +22,7 @@ export type AreaChartProps = {
   width?: string | number;
   title?: string;
   smooth?: boolean;
+  animated?: boolean;
 };
 
 export const AreaChart = ({
@@ -33,6 +34,7 @@ export const AreaChart = ({
   width = "100%",
   title,
   smooth = true,
+  animated = false,
 }: AreaChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -87,6 +89,7 @@ export const AreaChart = ({
                 fillOpacity={1}
                 fill={`url(#grad-${key})`}
                 stackId={stacked ? "stack" : undefined}
+                isAnimationActive={animated}
               />
             ))}
           </RechartsAreaChart>

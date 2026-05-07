@@ -18,6 +18,7 @@ export type FunnelChartProps = {
   height?: number;
   width?: string | number;
   title?: string;
+  animated?: boolean;
 };
 
 export const FunnelChart = ({
@@ -27,6 +28,7 @@ export const FunnelChart = ({
   height = 300,
   width = "100%",
   title,
+  animated = false,
 }: FunnelChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -42,7 +44,7 @@ export const FunnelChart = ({
               contentStyle={CHART_THEME.tooltip.contentStyle} 
               cursor={CHART_THEME.tooltip.cursor}
             />
-            <Funnel dataKey={dataKey} data={data} isAnimationActive>
+            <Funnel dataKey={dataKey} data={data} isAnimationActive={animated}>
               <LabelList
                 position="right"
                 fill="var(--wim-color-text-secondary)"

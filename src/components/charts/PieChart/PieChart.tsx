@@ -18,6 +18,7 @@ export type PieChartProps = {
   width?: string | number;
   title?: string;
   donut?: boolean;
+  animated?: boolean;
 };
 
 export const PieChart = ({
@@ -26,6 +27,7 @@ export const PieChart = ({
   width = "100%",
   title,
   donut = false,
+  animated = false,
 }: PieChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -46,6 +48,7 @@ export const PieChart = ({
               outerRadius="80%"
               paddingAngle={donut ? 5 : 0}
               dataKey="value"
+              isAnimationActive={animated}
             >
               {data.map((entry, index) => (
                 <Cell

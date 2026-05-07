@@ -22,6 +22,7 @@ export type LineChartProps = {
   width?: string | number;
   title?: string;
   smooth?: boolean;
+  animated?: boolean;
 };
 
 export const LineChart = ({
@@ -32,6 +33,7 @@ export const LineChart = ({
   width = "100%",
   title,
   smooth = false,
+  animated = false,
 }: LineChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -68,6 +70,7 @@ export const LineChart = ({
                 strokeWidth={2}
                 dot={{ r: 4, strokeWidth: 2, fill: "var(--wim-color-bg-primary)" }}
                 activeDot={{ r: 6 }}
+                isAnimationActive={animated}
               />
             ))}
           </RechartsLineChart>

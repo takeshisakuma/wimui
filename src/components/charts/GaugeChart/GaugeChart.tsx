@@ -11,6 +11,7 @@ export type GaugeChartProps = {
   title?: string;
   label?: string;
   color?: string;
+  animated?: boolean;
 };
 
 import { Title } from "../../typography/Title/Title";
@@ -27,6 +28,7 @@ export const GaugeChart = ({
   title,
   label,
   color,
+  animated = false,
 }: GaugeChartProps) => {
   // Ensure value is within bounds
   const normalizedValue = Math.max(min, Math.min(max, value));
@@ -58,7 +60,7 @@ export const GaugeChart = ({
               paddingAngle={0}
               dataKey="value"
               stroke="none"
-              isAnimationActive={true}
+              isAnimationActive={animated}
             >
               <Cell fill={fill} />
               <Cell fill="var(--wim-color-bg-secondary)" />

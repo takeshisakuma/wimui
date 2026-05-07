@@ -22,6 +22,7 @@ export type ScatterChartProps = {
   height?: number;
   width?: string | number;
   title?: string;
+  animated?: boolean;
 };
 
 export const ScatterChart = ({
@@ -31,6 +32,7 @@ export const ScatterChart = ({
   height = 300,
   width = "100%",
   title,
+  animated = false,
 }: ScatterChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -65,7 +67,7 @@ export const ScatterChart = ({
               contentStyle={CHART_THEME.tooltip.contentStyle}
             />
             <Legend verticalAlign="top" height={36} />
-            <Scatter name="Data Points" data={data} fill={CHART_COLORS[0]} />
+            <Scatter name="Data Points" data={data} fill={CHART_COLORS[0]} isAnimationActive={animated} />
           </RechartsScatterChart>
         </ResponsiveContainer>
       </div>

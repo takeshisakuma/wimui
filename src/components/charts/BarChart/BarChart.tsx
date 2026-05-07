@@ -22,6 +22,7 @@ export type BarChartProps = {
   height?: number;
   width?: string | number;
   title?: string;
+  animated?: boolean;
 };
 
 export const BarChart = ({
@@ -32,6 +33,7 @@ export const BarChart = ({
   height = 300,
   width = "100%",
   title,
+  animated = false,
 }: BarChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -66,6 +68,7 @@ export const BarChart = ({
                 fill={CHART_COLORS[index % CHART_COLORS.length]}
                 stackId={stacked ? "stack" : undefined}
                 radius={stacked ? 0 : [4, 4, 0, 0]}
+                isAnimationActive={animated}
               />
             ))}
           </RechartsBarChart>

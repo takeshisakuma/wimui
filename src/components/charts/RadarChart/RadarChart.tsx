@@ -20,6 +20,7 @@ export type RadarChartProps = {
   height?: number;
   width?: string | number;
   title?: string;
+  animated?: boolean;
 };
 
 export const RadarChart = ({
@@ -29,6 +30,7 @@ export const RadarChart = ({
   height = 300,
   width = "100%",
   title,
+  animated = false,
 }: RadarChartProps) => {
   return (
     <div className={styles.root} style={{ width }}>
@@ -56,6 +58,7 @@ export const RadarChart = ({
                 stroke={CHART_COLORS[index % CHART_COLORS.length]}
                 fill={CHART_COLORS[index % CHART_COLORS.length]}
                 fillOpacity={0.6}
+                isAnimationActive={animated}
               />
             ))}
           </RechartsRadarChart>
