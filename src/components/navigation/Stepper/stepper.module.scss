@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .container {
     width: 100%;
     container-type: inline-size;
@@ -30,7 +30,7 @@
       }
 
       &.labelVertical {
-        @container (min-width: 769px) {
+        @container (min-width: 481px) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
@@ -147,7 +147,7 @@
       }
 
       &.labelVertical {
-        @container (min-width: 769px) {
+        @container (min-width: 481px) {
           .line {
             width: 100%;
 
@@ -165,7 +165,7 @@
       }
     }
 
-    @container (max-width: 768px) {
+    @container (max-width: 480px) {
       &.horizontal {
         flex-direction: column;
 
@@ -299,7 +299,7 @@
     }
 
     .item.labelVertical .content {
-      @container (min-width: 769px) {
+      @container (min-width: 481px) {
         width: 100%;
         min-width: 100px;
         margin-top: var(--wim-spacing-xs);

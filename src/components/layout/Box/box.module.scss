@@ -3,6 +3,18 @@
 .root {
   box-sizing: border-box;
 
+  // Reset inherited layout variables to prevent unintended responsive overrides
+  --wim-box-w: initial;
+  --wim-box-w-sm: initial;
+  --wim-box-w-md: initial;
+  --wim-box-w-lg: initial;
+  --wim-box-w-xl: initial;
+  --wim-box-h: initial;
+  --wim-box-h-sm: initial;
+  --wim-box-h-md: initial;
+  --wim-box-h-lg: initial;
+  --wim-box-h-xl: initial;
+
   @include breakpoints.up(sm) {
     width: var(--wim-box-w-sm, var(--wim-box-w)) !important;
     height: var(--wim-box-h-sm, var(--wim-box-h)) !important;
