@@ -8,6 +8,7 @@
     min-width: 0;
     max-width: 100%;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
   }
 
   .column {
@@ -110,6 +111,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 2.75rem;
     padding: 0.375rem;
     font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-tertiary);

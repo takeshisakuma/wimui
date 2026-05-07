@@ -239,7 +239,9 @@ export const CommandPaletteContent = ({
               preset="scale"
             >
               <FocusTrap active={open}>
-                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+                {/* role="dialog" legitimately receives keyboard/mouse handlers for focus trapping
+                  and click-stop-propagation; jsx-a11y incorrectly treats dialog as non-interactive. */}
+              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <div
                   role="dialog"
                   aria-modal="true"
@@ -304,6 +306,11 @@ export const CommandPaletteInput = ({
 }: CommandPaletteInputProps) => {
   const { search, setSearch, setActiveIndex, activeIndex } =
     useCommandPalette();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -316,12 +323,11 @@ export const CommandPaletteInput = ({
     <div className={styles.inputWrapper}>
       <Icon name="SearchIcon" size="sm" />
       <input
+        ref={inputRef}
         className={styles.input}
         placeholder={placeholder}
         value={value ?? search}
         onChange={handleChange}
-        /* eslint-disable-next-line jsx-a11y/no-autofocus */
-        autoFocus
         role="combobox"
         aria-autocomplete="list"
         aria-expanded={true}

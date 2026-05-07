@@ -65,20 +65,20 @@
     "search": "検索",
     "submit": "送信"
   },
-  "chat": {
-    "attachment_prefix": "添付: {{fileName}}",
-    "placeholder": "メッセージを入力...",
-    "placeholder_interactive": "メッセージを入力して送信...",
-    "ai_assistant": "AIアシスタント",
-    "you": "あなた",
-    "support": "サポート"
-  },
   "analytics": "分析",
   "aspect": {
     "ratio": "アスペクト比"
   },
   "audience": "オーディエンス",
   "bottom": "下",
+  "chat": {
+    "ai_assistant": "AIアシスタント",
+    "attachment_prefix": "添付: {{fileName}}",
+    "placeholder": "メッセージを入力...",
+    "placeholder_interactive": "メッセージを入力して送信...",
+    "support": "サポート",
+    "you": "あなた"
+  },
   "common": {
     "all": "すべて",
     "appearance": "外観",
@@ -284,6 +284,7 @@
     "scenario_404_title": "404 Not Found",
     "scenario_admin_title": "管理パネル",
     "scenario_agreement_title": "同意",
+    "scenario_ai_title": "AI",
     "scenario_article_title": "記事",
     "scenario_chat_title": "チャット",
     "scenario_collab_title": "コラボレーション",
@@ -599,12 +600,12 @@
     "color_checker_title": "Contrast Checker",
     "color_ct_desc": "セマンティックカラー（背景）の上に配置するテキストやアイコンの色です。",
     "color_ct_title": "Contrast Text Colors",
+    "color_interaction_oklch_desc": "ホバーやアクティブなどのインタラクション状態では、不透明度（opacity）やフィルタ（brightness）の代わりに、oklch 相対色構文を使用して明度（L）を調整することを推奨します。これにより、ライト・ダークモードを問わず均一な視覚フィードバックが保証されます。",
+    "color_interaction_oklch_title": "oklch による動的なインタラクション",
     "color_pccs_th1": "トーン",
     "color_pccs_th2": "特徴",
     "color_pccs_th3": "主な用途",
     "colors": "Colors",
-    "color_interaction_oklch_desc": "ホバーやアクティブなどのインタラクション状態では、不透明度（opacity）やフィルタ（brightness）の代わりに、oklch 相対色構文を使用して明度（L）を調整することを推奨します。これにより、ライト・ダークモードを問わず均一な視覚フィードバックが保証されます。",
-    "color_interaction_oklch_title": "oklch による動的なインタラクション",
     "effects": "Effects",
     "overview_desc": "WIM UI のスタイル定義の基礎となるデザイントークンの一覧です。一貫したデザインを維持するために、これらの変数を使用することを推奨します。",
     "overview_title": "デザイントークン概要",

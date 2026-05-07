@@ -18,13 +18,15 @@ export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
 export const Center = React.forwardRef(
   <C extends React.ElementType = "div">(
     { as, asChild, inline = false, style, className, children, ...props }: CenterProps<C>,
+    // React.forwardRef doesn't support truly generic ref types; Ref<any> is the standard workaround.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ref: React.Ref<any>,
   ) => {
+    // TypeScript cannot verify CenterProps<C>'s spread against BoxProps<C> when C is unresolved.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const BoxComponent = Box as any;
+    const BoxComp = Box as any;
     return (
-      <BoxComponent
+      <BoxComp
         as={as}
         asChild={asChild}
         ref={ref}
@@ -39,7 +41,7 @@ export const Center = React.forwardRef(
         {...props}
       >
         {children}
-      </BoxComponent>
+      </BoxComp>
     );
   },
 );

@@ -43,6 +43,8 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
   demoDelay?: number;
   /** 手動翻訳用のラベル */
   labels?: AudioLabels;
+  /** Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label). */
+  tracks?: React.ComponentPropsWithoutRef<"track">[];
 };
 
 export const Audio = ({
@@ -71,6 +73,7 @@ export const Audio = ({
   loading = "lazy",
   demoDelay,
   labels = {},
+  tracks,
   ...props
 }: AudioProps) => {
   const { unknownTitle = "Unknown Title", unknownArtist = "Unknown Artist" } = labels;
@@ -178,6 +181,8 @@ export const Audio = ({
         <div
           style={{ display: customControls ? "none" : "block", width: "100%" }}
         >
+          {/* Caption tracks are optional; consumers provide them via the `tracks` prop.
+              The second <audio> is a silent preload buffer with no user-facing content. */}
           {/* eslint-disable jsx-a11y/media-has-caption */}
           {isIntersecting && (
             <audio
@@ -206,7 +211,9 @@ export const Audio = ({
                 notifyLoaded();
                 props.onCanPlay?.(e);
               }}
-            />
+            >
+              {tracks?.map((track, i) => <track key={i} {...track} />)}
+            </audio>
           )}
           <audio
             ref={nextAudioRef}

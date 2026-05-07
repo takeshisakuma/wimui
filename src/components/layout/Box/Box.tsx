@@ -114,6 +114,7 @@ export const Box = React.forwardRef(
       children,
       ...props
     }: BoxProps<C>,
+    // React.forwardRef doesn't support truly generic ref types; Ref<any> is the standard workaround.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ref: React.Ref<any>,
   ) => {

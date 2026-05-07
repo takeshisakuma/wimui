@@ -143,6 +143,8 @@ export const Calendar = ({
   }
 
   return (
+    // role="application" is the correct ARIA widget role for a complex interactive calendar,
+    // but jsx-a11y does not recognise it as interactive and incorrectly flags keyboard handlers.
     /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
     <div
       className={classNames(
@@ -151,7 +153,7 @@ export const Calendar = ({
         className,
       )}
       onKeyDown={handleKeyDown}
-      role="group"
+      role="application"
       aria-label="Calendar"
       {...props}
     >

@@ -145,9 +145,9 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
     const ContentComponent = asChild ? Slot : "div";
 
     return (
-      /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
       <div
         className={classNames(localStyles.container, className)}
+        role="none"
         onTouchStart={handleStart}
         onMouseDown={handleStart}
         {...props}

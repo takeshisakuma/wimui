@@ -38,6 +38,7 @@ export const Container = React.forwardRef(
       children,
       ...props
     }: ContainerProps<C>,
+    // React.forwardRef doesn't support truly generic ref types; Ref<any> is the standard workaround.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ref: React.Ref<any>,
   ) => {
@@ -46,10 +47,11 @@ export const Container = React.forwardRef(
       : SIZES[size as keyof typeof SIZES] ||
         (typeof size === "number" ? `${size}px` : size);
 
+    // TypeScript cannot verify ContainerProps<C>'s spread against BoxProps<C> when C is unresolved.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const BoxComponent = Box as any;
+    const BoxComp = Box as any;
     return (
-      <BoxComponent
+      <BoxComp
         as={as}
         asChild={asChild}
         ref={ref}
@@ -60,7 +62,7 @@ export const Container = React.forwardRef(
         {...props}
       >
         {children}
-      </BoxComponent>
+      </BoxComp>
     );
   },
 );

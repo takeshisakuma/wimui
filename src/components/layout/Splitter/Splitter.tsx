@@ -269,6 +269,8 @@ const SplitterHandle = ({
   const resolvedAriaLabel = ariaLabel ?? t("a11y.resize_panel");
   const { onResizeStart, orientation } = useSplitter();
 
+  // role="separator" with tabIndex + aria-value* is a focusable widget per ARIA 1.2,
+  // but jsx-a11y does not recognise this pattern and incorrectly flags it.
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div

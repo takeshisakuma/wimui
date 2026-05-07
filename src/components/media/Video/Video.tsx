@@ -40,6 +40,8 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   demoDelay?: number;
   /** 手動翻訳用のラベル */
   labels?: VideoLabels;
+  /** Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label). */
+  tracks?: React.ComponentPropsWithoutRef<"track">[];
 };
 
 export const Video = ({
@@ -70,6 +72,7 @@ export const Video = ({
   fadeIn = false,
   demoDelay,
   labels = {},
+  tracks,
   ...props
 }: VideoProps) => {
   const { videoAriaLabel = "Video", seconds = "s" } = labels;
@@ -144,6 +147,7 @@ export const Video = ({
         ref={mediaLoaderRef}
         data-testid="video-inner"
       >
+        {/* Caption tracks are optional; consumers provide them via the `tracks` prop. */}
         {/* eslint-disable jsx-a11y/media-has-caption */}
         {isIntersecting && (
           <video
@@ -167,7 +171,9 @@ export const Video = ({
             onClick={player.handleVideoClick}
             data-testid="video-element"
             {...props}
-          />
+          >
+            {tracks?.map((track, i) => <track key={i} {...track} />)}
+          </video>
         )}
         {/* eslint-enable jsx-a11y/media-has-caption */}
 

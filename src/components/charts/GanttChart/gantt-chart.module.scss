@@ -101,6 +101,7 @@
   .bodyScroll {
     flex: 1;
     overflow: auto;
+    overscroll-behavior-x: contain;
     scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track);
 
     &::-webkit-scrollbar {
