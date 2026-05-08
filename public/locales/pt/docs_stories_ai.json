@@ -45,6 +45,11 @@
     "thoughtprocess_title_static": "Log de Processamento",
     "thoughtprocess_static1": "Arquivo enviado: report.pdf",
     "thoughtprocess_static2": "OCR concluído",
-    "thoughtprocess_static3": "Análise finalizada"
+    "thoughtprocess_static3": "Análise finalizada",
+    "agent_status_thinking_msg": "Pesquisando base de conhecimento…",
+    "agent_status_running_msg": "Executando código…",
+    "agent_status_waiting_msg": "Aguardando resposta da ferramenta…",
+    "voice_label_recording": "Gravando entrada de voz",
+    "voice_label_playback": "Reprodução de áudio da IA"
   }
 }

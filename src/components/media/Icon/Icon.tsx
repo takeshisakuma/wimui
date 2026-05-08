@@ -6,7 +6,7 @@ import { ALL_ICONS, IconName } from "../../../icon";
 
 type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
   name?: IconName;
-  component?: React.FC<React.SVGProps<SVGSVGElement>>;
+  component?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   size?: ComponentSize;
   color?:
     | "destructive"

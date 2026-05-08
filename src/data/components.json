@@ -1284,6 +1284,18 @@
         "descKey": "doc.terminal_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "AgentStatus",
+        "descKey": "doc.agentStatus_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "VoiceVisualizer",
+        "descKey": "doc.voiceVisualizer_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

@@ -45,6 +45,11 @@
     "thoughtprocess_title_static": "処理ログ",
     "thoughtprocess_static1": "ファイルをアップロードしました: report.pdf",
     "thoughtprocess_static2": "OCRが完了しました",
-    "thoughtprocess_static3": "分析が終了しました"
+    "thoughtprocess_static3": "分析が終了しました",
+    "agent_status_thinking_msg": "ナレッジベースを検索中…",
+    "agent_status_running_msg": "コードを実行中…",
+    "agent_status_waiting_msg": "ツールの応答を待機中…",
+    "voice_label_recording": "音声入力を録音中",
+    "voice_label_playback": "AI音声再生"
   }
 }

@@ -121,5 +121,13 @@
     "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
     "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",
     "target": "選択済み"
+  },
+  "agent_status": {
+    "idle": "待機中",
+    "thinking": "思考中…",
+    "running": "実行中…",
+    "waiting": "待機中…",
+    "done": "完了",
+    "error": "エラー"
   }
 }

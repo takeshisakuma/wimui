@@ -121,5 +121,13 @@
     "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
     "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
     "target": "Selecionado"
+  },
+  "agent_status": {
+    "idle": "Ocioso",
+    "thinking": "Pensando…",
+    "running": "Executando…",
+    "waiting": "Aguardando…",
+    "done": "Concluído",
+    "error": "Erro"
   }
 }

@@ -1,0 +1,114 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    font-family: var(--wim-font-family-sans, sans-serif);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    line-height: 1;
+    color: var(--wim-color-text-secondary);
+  }
+
+  /* ── Size variants ── */
+  .sm {
+    gap: var(--wim-spacing-2xs);
+    font-size: var(--wim-font-size-xs);
+  }
+
+  .lg {
+    gap: var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-md);
+  }
+
+  /* ── Indicator wrapper ── */
+  .indicator {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  /* ── Dot (used by idle / thinking / running) ── */
+  .dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: currentcolor;
+    border-radius: 50%;
+
+    .sm & {
+      width: 6px;
+      height: 6px;
+    }
+
+    .lg & {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .label {
+    white-space: nowrap;
+  }
+
+  /* ── Status color + animation variants ── */
+
+  .idle {
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .thinking {
+    color: var(--wim-color-primary);
+
+    .dot {
+      animation: agent-pulse 1.6s var(--wim-easing-standard, ease-in-out) infinite;
+    }
+  }
+
+  .running {
+    color: var(--wim-color-primary);
+
+    .dot {
+      background: transparent;
+      border: 2px solid currentcolor;
+      border-top-color: transparent;
+      animation: agent-spin 0.75s linear infinite;
+    }
+  }
+
+  .waiting {
+    color: var(--wim-color-caution);
+  }
+
+  .done {
+    color: var(--wim-color-positive);
+  }
+
+  .error {
+    color: var(--wim-color-destructive);
+  }
+
+  /* ── Animations ── */
+
+  @keyframes agent-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.35;
+      transform: scale(0.65);
+    }
+  }
+
+  @keyframes agent-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot { animation: none !important; }
+  }
+}

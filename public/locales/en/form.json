@@ -121,5 +121,13 @@
     "copy_label": "Copy output",
     "copied_label": "Copied!",
     "clear_label": "Clear"
+  },
+  "agent_status": {
+    "idle": "Idle",
+    "thinking": "Thinking…",
+    "running": "Running…",
+    "waiting": "Waiting…",
+    "done": "Done",
+    "error": "Error"
   }
 }

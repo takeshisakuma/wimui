@@ -6,3 +6,5 @@ export * from "./components/ai/SourceCitation/SourceCitation";
 export * from "./components/ai/CodeBlock/CodeBlock";
 export * from "./components/ai/CodeDiffViewer/CodeDiffViewer";
 export * from "./components/ai/Terminal/Terminal";
+export * from "./components/ai/AgentStatus/AgentStatus";
+export * from "./components/ai/VoiceVisualizer/VoiceVisualizer";

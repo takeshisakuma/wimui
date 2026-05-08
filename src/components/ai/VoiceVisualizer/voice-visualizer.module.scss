@@ -1,0 +1,62 @@
+@layer component {
+  .root {
+    display: block;
+    overflow: hidden;
+
+    &.active { opacity: 1; }
+    &.muted  { opacity: var(--wim-opacity-dim, 0.4); }
+  }
+
+  /* ── Bar fill color ── */
+  .bar {
+    fill: var(--wim-color-primary);
+    transform-origin: bottom center;
+    transition: height var(--wim-duration-fast, 80ms) linear,
+                y var(--wim-duration-fast, 80ms) linear;
+
+    /* Idle: staggered scale-Y pulse */
+    &.idle {
+      animation: voice-bar-idle 1.2s var(--wim-easing-standard, ease-in-out) infinite;
+      animation-delay: var(--delay, 0s);
+    }
+  }
+
+  /* ── Waveform stroke color ── */
+  .wave {
+    stroke: var(--wim-color-primary);
+    stroke-width: 2;
+  }
+
+  /* Idle waveform: translate the double-width path left by 50% (= 1 period) */
+  .waveGroup.idle {
+    animation: voice-wave-scroll 2.4s linear infinite;
+  }
+
+  /* ── Animations ── */
+
+  @keyframes voice-bar-idle {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scaleY(0.15);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scaleY(0.65);
+    }
+  }
+
+  @keyframes voice-wave-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar.idle {
+      transform: scaleY(0.25);
+      animation: none;
+    }
+
+    .waveGroup.idle { animation: none; }
+  }
+}
