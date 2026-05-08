@@ -31,8 +31,8 @@
         border-radius: 0;
         mask-image: linear-gradient(to bottom,
             transparent,
-            var(--wim-tabs-mask-size, var(--wim-spacing-md)) black,
-            black calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
+            var(--wim-tabs-mask-size, var(--wim-spacing-md)) rgb(0 0 0),
+            rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
             transparent);
 
         @include breakpoints.container-down(md) {
@@ -43,8 +43,8 @@
           border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
           mask-image: linear-gradient(to right,
               transparent,
-              var(--wim-tabs-mask-size, 15px) black,
-              black calc(100% - var(--wim-tabs-mask-size, 15px)),
+              var(--wim-tabs-mask-size, 15px) rgb(0 0 0),
+              rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, 15px)),
               transparent);
         }
       }
@@ -104,8 +104,8 @@
       /* スクロール可能であることを示すマスク */
       mask-image: linear-gradient(to right,
           transparent,
-          var(--wim-tabs-mask-size, 15px) black,
-          black calc(100% - var(--wim-tabs-mask-size, 15px)),
+          var(--wim-tabs-mask-size, 15px) rgb(0 0 0),
+          rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, 15px)),
           transparent);
       -ms-overflow-style: none;
 

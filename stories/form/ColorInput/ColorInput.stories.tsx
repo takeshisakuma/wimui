@@ -40,7 +40,7 @@ export const WithIcon: Story = {
     );
   },
   args: {
-    defaultValue: "\n\n",
+    defaultValue: "#0052cc",
     leftIcon: "CheckIcon",
   },
 };

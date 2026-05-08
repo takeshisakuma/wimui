@@ -43,7 +43,7 @@ function relativeLuminance(r: number, g: number, b: number): number {
  */
 function isDarkColor(hex: string): boolean {
   const rgb = hexToRgb(hex);
-  if (!rgb) return false;
+  if (!rgb) return true;
   return relativeLuminance(rgb.r, rgb.g, rgb.b) < 0.4;
 }
 

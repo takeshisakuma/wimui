@@ -1,7 +1,6 @@
 ﻿@use "../../../base" as *;
 
-@layer component {
-  .container {
+.container {
     width: 100%;
     min-width: 0;
     container-type: inline-size;
@@ -149,8 +148,8 @@
     }
 
     &.disabled {
-      color: var(--wim-color-text-tertiary) !important;
-      opacity: 1 !important;
+      color: var(--wim-color-text-tertiary);
+      opacity: 1;
     }
   }
 
@@ -252,7 +251,6 @@
       opacity: var(--wim-opacity-disabled);
     }
   }
-}
 
 @media (forced-colors: active) {
   .list {

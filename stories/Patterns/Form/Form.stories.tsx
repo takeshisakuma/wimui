@@ -637,19 +637,36 @@ export const UserProfileForm: StoryObj = {
             />
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0,250px) 1fr",
-              minHeight: "600px",
-            }}
-          >
-            <div
-              style={{
-                borderRight: "1px solid var(--wim-color-border-secondary)",
-                backgroundColor: "var(--wim-color-surface)",
-              }}
-            >
+          <style>{`
+            .wim-profile-layout {
+              display: flex;
+              flex-wrap: wrap;
+              min-height: 600px;
+              container-type: inline-size;
+            }
+            .wim-profile-sidebar {
+              flex: 0 0 250px;
+              background-color: var(--wim-color-surface);
+              border-right: 1px solid var(--wim-color-border-secondary);
+            }
+            .wim-profile-content {
+              flex: 1 1 350px;
+              min-width: 0;
+              background-color: var(--wim-color-bg-component);
+            }
+            @container (max-width: 599px) {
+              .wim-profile-sidebar {
+                flex-basis: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--wim-color-border-secondary);
+              }
+              .wim-profile-content {
+                flex-basis: 100%;
+              }
+            }
+          `}</style>
+          <div className="wim-profile-layout">
+            <div className="wim-profile-sidebar">
               <div style={{ padding: "var(--wim-spacing-xl)" }}>
                 <Stack gap="sm" align="stretch">
                   <Sidebar.Item active>{t("profile.nav_general")}</Sidebar.Item>
@@ -660,7 +677,7 @@ export const UserProfileForm: StoryObj = {
               </div>
             </div>
 
-            <div style={{ padding: "32px", overflowX: "hidden" }}>
+            <div className="wim-profile-content" style={{ padding: "32px", overflowX: "hidden" }}>
               <form onSubmit={(e) => e.preventDefault()}>
                 <Stack gap="xl">
                   <Stack gap="2xl">

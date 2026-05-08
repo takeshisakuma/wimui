@@ -27,7 +27,10 @@
         "declaration-property-value-disallowed-list": [
           {
             "filter": ["/brightness/"],
-            "/./": ["/color-mix\\(in srgb/"]
+            "/./": [
+              "/color-mix\\(in srgb/",
+              "/(?<![\\w-])(white|black|red|blue|green|yellow|orange|purple|pink|gray|grey|navy|teal|aqua|lime|maroon|olive|silver|fuchsia)(?![\\w-])/"
+            ]
           }
         ]
       }

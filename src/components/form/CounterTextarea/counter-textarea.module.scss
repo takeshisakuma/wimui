@@ -1,42 +1,40 @@
-@layer component {
-  .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: var(--wim-width-md);
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--wim-width-md);
 
-    &.fullWidth {
-      max-width: none;
-    }
+  &.fullWidth {
+    max-width: none;
   }
+}
 
-  .textarea {
-    // Textarea component's root (FieldTemplate)
-    width: 100%;
-    margin-bottom: 0 !important;
-  }
+.textarea {
+  // Textarea component's root (FieldTemplate)
+  width: 100%;
+  margin-bottom: 0;
+}
 
+.counter {
+  padding-right: var(--wim-spacing-xs);
+  margin-top: var(--wim-spacing-xs);
+  text-align: right;
+  pointer-events: none;
+}
+
+// Optional: Overlay style (if we want it inside the textarea)
+.container--overlay {
   .counter {
-    padding-right: var(--wim-spacing-xs);
-    margin-top: var(--wim-spacing-xs);
-    text-align: right;
-    pointer-events: none;
-  }
-
-  // Optional: Overlay style (if we want it inside the textarea)
-  .container--overlay {
-    .counter {
-      position: absolute;
-      right: var(--wim-spacing-md);
-      bottom: var(--wim-spacing-sm);
-      z-index: 1;
-      padding: 2px 6px;
-      margin-top: 0;
-      background: var(--wim-color-surface-glass);
-      border: 1px solid var(--wim-color-glass-border);
-      border-radius: var(--wim-radius-sm);
-      backdrop-filter: blur(4px);
-    }
+    position: absolute;
+    right: var(--wim-spacing-md);
+    bottom: var(--wim-spacing-sm);
+    z-index: 1;
+    padding: 2px 6px;
+    margin-top: 0;
+    background: var(--wim-color-surface-glass);
+    border: 1px solid var(--wim-color-glass-border);
+    border-radius: var(--wim-radius-sm);
+    backdrop-filter: blur(4px);
   }
 }
