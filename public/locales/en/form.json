@@ -108,5 +108,18 @@
   },
   "otp": {
     "digit": "Digit {{index}}"
+  },
+  "code_diff_viewer": {
+    "copy_label": "Copy",
+    "copied_label": "Copied!",
+    "apply": "Apply",
+    "reject": "Reject",
+    "split_view": "Split",
+    "unified_view": "Unified"
+  },
+  "terminal": {
+    "copy_label": "Copy output",
+    "copied_label": "Copied!",
+    "clear_label": "Clear"
   }
 }

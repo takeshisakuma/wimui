@@ -279,5 +279,25 @@
     "virtuallist_overscan_desc": "A prop overscan controla quantos itens extras são renderizados fora da área visível para reduzir o flickering durante a rolagem rápida.",
     "virtuallist_scenario_1": "Logs de Rolagem Infinita: Lidar com dezenas de milhares de entradas de logs do sistema sem degradação de memória.",
     "virtuallist_scenario_2": "Catálogos de Produtos: Renderizar extensas listagens de comércio eletrônico mantendo um desempenho de rolagem suave."
-  }
+  },
+  "doc.jsondiff_intro": "JsonDiffViewer compara dois valores JSON lado a lado ou em forma unificada, com destaque de diff em nível de linha. Serializa ambos os valores com JSON.stringify e delega a renderização ao CodeDiffViewer.",
+  "doc.jsondiff_design_intent": "Otimizado para comparar respostas de API, payloads de webhook e objetos de configuração. Ao delegar ao CodeDiffViewer com language=json, herda todos os controles de diff mantendo sua própria API mínima.",
+  "doc.jsondiff_choice_self": "Comparar dois objetos ou arrays JSON",
+  "doc.jsondiff_choice_codediff": "Comparar strings de código arbitrárias",
+  "doc.jsondiff_choice_jsonviewer": "Exibir um único valor JSON (sem necessidade de diff)",
+  "doc.jsondiff_a11y_1": "Herda todos os atributos de acessibilidade do CodeDiffViewer.",
+  "doc.jsondiff_a11y_2": "Os botões Aplicar e Rejeitar expõem a intenção através de texto de rótulo visível.",
+  "doc.jsondiff_kb_tab": "Mover foco entre os botões Aplicar, Rejeitar, Copiar e alternância de visualização.",
+  "doc.jsondiff_kb_activate": "Ativar o botão em foco.",
+  "doc.jsondiff_content_guidelines_1": "JsonDiffViewer serializa valores com `JSON.stringify(value, null, indent)`. O `indent` padrão de 2 produz diffs legíveis; use 0 para comparações compactas.",
+  "doc.jsondiff_content_guidelines_2": "Passe objetos que compartilham o mesmo esquema lógico para obter diffs significativos em nível de linha.",
+  "doc.jsondiff_motion_desc": "Herda a renderização de diff estática do CodeDiffViewer. Sem animações.",
+  "doc.jsondiff_scenario_1_title": "Comparação de Resposta de API",
+  "doc.jsondiff_scenario_1_desc": "Compare os payloads JSON antes/depois de um webhook ou chamada REST para auditar mudanças em nível de campo.",
+  "doc.jsondiff_scenario_2_title": "Diff de Configuração",
+  "doc.jsondiff_scenario_2_desc": "Exibir um objeto de configuração antes e depois de um agente de IA modificá-lo.",
+  "doc.jsondiff_practice_1": "Pré-ordene as chaves do objeto antes de passar para manter diffs estáveis entre mudanças na ordem de serialização.",
+  "doc.jsondiff_practice_2": "Evite passar objetos profundamente aninhados com arrays grandes — considere achatar ou paginar para legibilidade.",
+  "doc.jsondiff_responsive": "Herda o comportamento responsivo do CodeDiffViewer: muda automaticamente para visualização unificada abaixo de 640 px.",
+  "doc.jsondiff_i18n_desc": "Todos os rótulos voltados ao usuário herdam do CodeDiffViewer. Passe `filename` ou `language` para contexto em vez de incorporar texto traduzido no valor."
 }

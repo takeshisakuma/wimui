@@ -1,0 +1,61 @@
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Terminal, type TerminalLine } from "./Terminal";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
+
+const lines: TerminalLine[] = [
+  { id: "1", type: "input", content: "npm run build" },
+  { id: "2", type: "output", content: "Build complete." },
+  { id: "3", type: "error", content: "Error: module not found" },
+  { id: "4", type: "info", content: "Tip: run with --verbose" },
+];
+
+describe("Terminal", () => {
+  it("renders lines", () => {
+    render(<Terminal lines={lines} />);
+    expect(screen.getByText("npm run build")).toBeInTheDocument();
+    expect(screen.getByText("Build complete.")).toBeInTheDocument();
+    expect(screen.getByText("Error: module not found")).toBeInTheDocument();
+  });
+
+  it("renders title in the title bar", () => {
+    render(<Terminal lines={[]} title="my-app" />);
+    expect(screen.getByText("my-app")).toBeInTheDocument();
+  });
+
+  it("shows prompt prefix for input lines", () => {
+    render(<Terminal lines={[{ type: "input", content: "ls" }]} prompt=">" />);
+    expect(screen.getByText(">")).toBeInTheDocument();
+  });
+
+  it("shows copy button by default", () => {
+    render(<Terminal lines={lines} />);
+    expect(screen.getByLabelText("terminal.copy_label")).toBeInTheDocument();
+  });
+
+  it("hides copy button when showCopy is false", () => {
+    render(<Terminal lines={lines} showCopy={false} />);
+    expect(screen.queryByLabelText("terminal.copy_label")).not.toBeInTheDocument();
+  });
+
+  it("shows clear button when onClear is provided", () => {
+    const onClear = vi.fn();
+    render(<Terminal lines={lines} onClear={onClear} />);
+    const btn = screen.getByLabelText("terminal.clear_label");
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onClear).toHaveBeenCalledOnce();
+  });
+
+  it("renders ANSI-colored output without error", () => {
+    const ansiLines: TerminalLine[] = [
+      { type: "output", content: "\x1b[32mSuccess\x1b[0m: done" },
+    ];
+    render(<Terminal lines={ansiLines} />);
+    expect(screen.getByText("Success")).toBeInTheDocument();
+    expect(screen.getByText(": done")).toBeInTheDocument();
+  });
+});

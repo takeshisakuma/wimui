@@ -1,4 +1,10 @@
 {
+  "ai_feedback": {
+    "group_label": "回答へのフィードバック",
+    "negative_label": "役に立たなかった",
+    "positive_label": "役に立った",
+    "regenerate_label": "再生成"
+  },
   "btn": {
     "page_transition": "標準的なページ遷移またはフッターリンク。"
   },
@@ -28,6 +34,24 @@
     "standard_desc": "一般的なアクション用の標準的な長方形ボタン。",
     "standard_usage": "送信、保存、アイテムの追加などの主要なCTA。"
   },
+  "code_block": {
+    "collapse_label": "折りたたむ",
+    "copied_label": "コピーしました",
+    "copy_label": "コードをコピー",
+    "expand_label": "展開",
+    "lines": "{{count}} 行"
+  },
+  "code_diff_viewer": {
+    "copy_label": "コピー",
+    "copied_label": "コピーしました！",
+    "apply": "適用",
+    "reject": "却下",
+    "split_view": "分割",
+    "unified_view": "統合"
+  },
+  "combobox": {
+    "no_results": "結果が見つかりません"
+  },
   "datepicker": {
     "placeholder": "日付を選択"
   },
@@ -43,14 +67,17 @@
     "required": "必須"
   },
   "image_cropper": {
+    "apply": "クロップを適用",
+    "cancel": "キャンセル",
+    "confirm": "適用",
+    "confirm_message": "この範囲で画像を保存しますか？",
+    "confirm_title": "クロップの適用",
     "no_image": "画像が選択されていません",
     "rotate": "回転",
-    "zoom": "ズーム",
-    "apply": "クロップを適用",
-    "confirm_title": "クロップの適用",
-    "confirm_message": "この範囲で画像を保存しますか？",
-    "confirm": "適用",
-    "cancel": "キャンセル"
+    "zoom": "ズーム"
+  },
+  "otp": {
+    "digit": "{{index}}番目の桁"
   },
   "password_strength": {
     "fair": "普通",
@@ -68,42 +95,28 @@
     "placeholder": "AIにメッセージを入力、またはファイルを添付...",
     "send_label": "送信"
   },
-  "ai_feedback": {
-    "positive_label": "役に立った",
-    "negative_label": "役に立たなかった",
-    "regenerate_label": "再生成",
-    "group_label": "回答へのフィードバック"
-  },
-  "source_citation": {
-    "open_source": "ソースを開く",
-    "source_label": "ソース {{index}}"
-  },
-  "code_block": {
-    "copy_label": "コードをコピー",
-    "copied_label": "コピーしました",
-    "expand_label": "展開",
-    "collapse_label": "折りたたむ",
-    "lines": "{{count}} 行"
-  },
   "search": {
     "placeholder": "ボタン"
   },
   "select": {
     "option": "項目1"
   },
+  "source_citation": {
+    "open_source": "ソースを開く",
+    "source_label": "ソース {{index}}"
+  },
   "tag_input": {
     "placeholder": "タグを入力..."
   },
-  "combobox": {
-    "no_results": "結果が見つかりません"
-  },
-  "otp": {
-    "digit": "{{index}}番目の桁"
+  "terminal": {
+    "copy_label": "出力をコピー",
+    "copied_label": "コピーしました！",
+    "clear_label": "クリア"
   },
   "transfer": {
-    "no_data": "データがありません",
     "move_to_source": "選択可能に移動",
     "move_to_target": "選択済みに移動",
+    "no_data": "データがありません",
     "source": "選択可能",
     "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
     "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",

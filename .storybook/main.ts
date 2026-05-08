@@ -113,8 +113,14 @@ const config: StorybookConfig = {
           // UI utilities bundled with components
           "classnames",
           "@floating-ui/react",
-          // Heavy visualisation library
+          // Heavy visualisation libraries
           "recharts",
+          "@xyflow/react",
+          "@fullcalendar/react",
+          "@fullcalendar/core",
+          "@fullcalendar/daygrid",
+          "@fullcalendar/interaction",
+          "@fullcalendar/timegrid",
           // Media tag reader (has Node.js shims)
           "jsmediatags",
         ],

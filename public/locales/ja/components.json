@@ -155,7 +155,10 @@
     "score": "スコア",
     "intent": "インテント",
     "levels_title": "強度レベルの定義",
-    "scaffoldTest_desc": "ScaffoldTest description."
+    "scaffoldTest_desc": "ScaffoldTest description.",
+    "codeDiffViewer_desc": "CodeDiffViewer description.",
+    "terminal_desc": "Terminal description.",
+    "jsonDiffViewer_desc": "JsonDiffViewer description."
   },
   "cat": {
     "ai": "AI"

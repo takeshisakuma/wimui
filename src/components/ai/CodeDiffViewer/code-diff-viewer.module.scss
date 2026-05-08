@@ -1,0 +1,269 @@
+@layer component {
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: var(--wim-font-size-sm);
+    background: var(--wim-color-bg-subtle);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
+    background: var(--wim-color-bg-subtle);
+    border-bottom: 1px solid var(--wim-color-border);
+  }
+
+  .headerLeft {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .filename {
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .viewToggle {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-sm);
+  }
+
+  .viewBtn {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition:
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      background var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover:not(.active) {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &.active {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    & + & {
+      border-left: 1px solid var(--wim-color-border);
+    }
+  }
+
+  .headerActions {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+  }
+
+  .iconButton {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      background var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .copied {
+    color: var(--wim-color-positive);
+
+    &:hover {
+      color: var(--wim-color-positive);
+    }
+  }
+
+  .actionButton {
+    display: inline-flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
+    font-family: var(--wim-font-family-sans, sans-serif);
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-medium);
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      background var(--wim-duration-fast) var(--wim-easing-standard),
+      color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .applyButton {
+    color: var(--wim-color-text-on-primary);
+    background: var(--wim-color-primary);
+    border-color: var(--wim-color-primary);
+
+    &:hover {
+      background: var(--wim-color-primary-hover);
+      border-color: var(--wim-color-primary-hover);
+    }
+  }
+
+  .rejectButton {
+    color: var(--wim-color-text-primary);
+    background: transparent;
+    border-color: var(--wim-color-border);
+
+    &:hover {
+      background: var(--wim-color-ghost-bg-hover);
+    }
+  }
+
+  /* ── Body ── */
+  .body {
+    overflow-x: auto;
+    line-height: var(--wim-line-height-loose);
+  }
+
+  /* Unified view */
+  .unified {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .row {
+    display: table-row;
+
+    &.added {
+      background: color-mix(in oklch, var(--wim-color-positive) 10%, transparent);
+    }
+
+    &.removed {
+      background: color-mix(in oklch, var(--wim-color-destructive) 10%, transparent);
+    }
+
+    &:hover {
+      background-color: color-mix(in oklch, var(--wim-color-text-primary) 3%, transparent);
+    }
+  }
+
+  /* Split view */
+  .split {
+    display: flex;
+    min-width: 0;
+  }
+
+  .splitPane {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .splitDivider {
+    flex-shrink: 0;
+    width: 1px;
+    background: var(--wim-color-border);
+  }
+
+  .splitCell {
+    display: flex;
+    align-items: baseline;
+
+    &.added {
+      background: color-mix(in oklch, var(--wim-color-positive) 10%, transparent);
+    }
+
+    &.removed {
+      background: color-mix(in oklch, var(--wim-color-destructive) 10%, transparent);
+    }
+
+    &.empty {
+      background: color-mix(in oklch, var(--wim-color-text-tertiary) 5%, transparent);
+    }
+  }
+
+  /* Shared cell parts */
+  .lineNum {
+    display: table-cell;
+    flex-shrink: 0;
+    width: 3em;
+    padding: 0 var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+    text-align: right;
+    user-select: none;
+
+    .splitCell & {
+      display: block;
+    }
+  }
+
+  .prefix {
+    display: table-cell;
+    flex-shrink: 0;
+    width: 1.5em;
+    color: var(--wim-color-text-tertiary);
+    text-align: center;
+    user-select: none;
+
+    .added &,
+    .removed & {
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+    }
+
+    .splitCell & {
+      display: block;
+    }
+  }
+
+  .lineContent {
+    display: table-cell;
+    width: 100%;
+    padding: 0 var(--wim-spacing-md) 0 0;
+    white-space: pre;
+
+    .splitCell & {
+      display: block;
+    }
+  }
+}

@@ -279,5 +279,25 @@
     "virtuallist_overscan_desc": "The overscan prop controls how many extra items are rendered outside the visible area to reduce flickering during fast scrolling.",
     "virtuallist_scenario_1": "Infinite Scrolling Logs: Handling tens of thousands of system log entries without memory degradation.",
     "virtuallist_scenario_2": "Product Catalogs: Rendering extensive e-commerce listings while maintaining smooth scrolling performance."
-  }
+  },
+  "doc.jsondiff_intro": "JsonDiffViewer compares two JSON values side-by-side or in unified form, with line-level diff highlighting. It serializes both values with JSON.stringify and delegates rendering to CodeDiffViewer.",
+  "doc.jsondiff_design_intent": "Optimized for comparing API responses, webhook payloads, and configuration objects. By delegating to CodeDiffViewer with language=json, it inherits all diff controls while keeping its own API minimal.",
+  "doc.jsondiff_choice_self": "Compare two JSON objects or arrays",
+  "doc.jsondiff_choice_codediff": "Compare arbitrary code strings",
+  "doc.jsondiff_choice_jsonviewer": "Display a single JSON value (no diff needed)",
+  "doc.jsondiff_a11y_1": "Inherits all accessibility attributes from CodeDiffViewer.",
+  "doc.jsondiff_a11y_2": "Apply and Reject buttons expose intent via visible label text.",
+  "doc.jsondiff_kb_tab": "Move focus between Apply, Reject, Copy, and view-toggle buttons.",
+  "doc.jsondiff_kb_activate": "Activate the focused button.",
+  "doc.jsondiff_content_guidelines_1": "JsonDiffViewer serializes values with `JSON.stringify(value, null, indent)`. The default `indent` of 2 produces readable diffs; use 0 for compact comparisons.",
+  "doc.jsondiff_content_guidelines_2": "Pass objects that share the same logical schema to produce meaningful line-level diffs.",
+  "doc.jsondiff_motion_desc": "Inherits the static diff rendering of CodeDiffViewer. No animations.",
+  "doc.jsondiff_scenario_1_title": "API Response Comparison",
+  "doc.jsondiff_scenario_1_desc": "Compare the before/after JSON payloads of a webhook or REST call to audit field-level changes.",
+  "doc.jsondiff_scenario_2_title": "Config Diff",
+  "doc.jsondiff_scenario_2_desc": "Show a configuration object before and after an AI agent modifies it.",
+  "doc.jsondiff_practice_1": "Pre-sort object keys before passing to keep diffs stable across serialization order changes.",
+  "doc.jsondiff_practice_2": "Avoid passing deeply nested objects with large arrays — consider flattening or paginating for readability.",
+  "doc.jsondiff_responsive": "Inherits CodeDiffViewer's responsive behavior: auto-switches to unified view below 640 px.",
+  "doc.jsondiff_i18n_desc": "All user-facing labels inherit from CodeDiffViewer. Pass `filename` or `language` for context rather than embedding translated text in the value."
 }

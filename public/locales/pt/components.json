@@ -155,7 +155,10 @@
     "score": "Pontuação",
     "intent": "Intenção",
     "levels_title": "Definições de Nível",
-    "scaffoldTest_desc": "ScaffoldTest description."
+    "scaffoldTest_desc": "ScaffoldTest description.",
+    "codeDiffViewer_desc": "CodeDiffViewer description.",
+    "terminal_desc": "Terminal description.",
+    "jsonDiffViewer_desc": "JsonDiffViewer description."
   },
   "cat": {
     "ai": "IA"

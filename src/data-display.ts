@@ -31,3 +31,4 @@ export * from "./components/data-display/SwipeAction/SwipeAction";
 export * from "./components/data-display/PullToRefresh/PullToRefresh";
 export * from "./components/data-display/JsonViewer/JsonViewer";
 export * from "./components/data-display/CalendarHeatmap/CalendarHeatmap";
+export * from "./components/data-display/JsonDiffViewer/JsonDiffViewer";

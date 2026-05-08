@@ -1,0 +1,132 @@
+@layer component {
+  /* ── macOS-style dark window ── */
+  .root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    background: #1e1e2e;
+    border: 1px solid #313244;
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-md);
+  }
+
+  /* ── Traffic-light title bar ── */
+  .titleBar {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    background: #181825;
+    border-bottom: 1px solid #313244;
+  }
+
+  .dot {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    &[data-color="red"]    { background: #ff5f57; }
+    &[data-color="yellow"] { background: #febc2e; }
+    &[data-color="green"]  { background: #28c840; }
+  }
+
+  .titleText {
+    flex: 1;
+    padding: 0 var(--wim-spacing-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: var(--wim-font-size-xs);
+    color: #6c7086;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .titleActions {
+    display: flex;
+    gap: var(--wim-spacing-3xs);
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .titleBtn {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: #6c7086;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      background var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: #cdd6f4;
+      background: #313244;
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .copied {
+    color: #a6e3a1;
+
+    &:hover {
+      color: #a6e3a1;
+    }
+  }
+
+  /* ── Output body ── */
+  .body {
+    flex: 1;
+    padding: var(--wim-spacing-md);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-family: var(--wim-font-family-mono, monospace);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-loose);
+    color: #cdd6f4;
+  }
+
+  .line {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: baseline;
+    min-height: 1.6em;
+  }
+
+  .prompt {
+    flex-shrink: 0;
+    color: #a6e3a1;
+    user-select: none;
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  /* ── Line type colors ── */
+  .input .content  { color: #cdd6f4; }
+  .output .content { color: #cdd6f4; }
+
+  .error {
+    .prompt  { color: #f38ba8; }
+    .content { color: #f38ba8; }
+  }
+
+  .info .content { color: #89b4fa; }
+}

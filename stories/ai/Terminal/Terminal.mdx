@@ -1,0 +1,102 @@
+import { Meta, Canvas, Title } from "@storybook/blocks";
+import * as TerminalStories from "./Terminal.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={TerminalStories} />
+
+<Title />
+
+<p><T k="docs_ai:doc.terminal_intro" /></p>
+
+<Canvas of={TerminalStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<p><T k="docs_ai:doc.terminal_design_intent" /></p>
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_ai:doc.terminal_choice_agent" /></td><td>Terminal with type="input"/"output"</td></tr>
+    <tr><td><T k="docs_ai:doc.terminal_choice_error" /></td><td>Terminal with type="error"</td></tr>
+    <tr><td><T k="docs_ai:doc.terminal_choice_codeblock" /></td><td>CodeBlock</td></tr>
+    <tr><td><T k="docs_ai:doc.terminal_choice_thought" /></td><td>ThoughtProcess</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Terminal" section="anatomy" />
+
+## <T k="common:doc.content_guidelines_title" />
+
+<ul>
+  <li><T k="docs_ai:doc.terminal_content_guidelines_1" /></li>
+  <li><T k="docs_ai:doc.terminal_content_guidelines_2" /></li>
+</ul>
+
+## <T k="common:doc.motion_spec_title" />
+
+<p><T k="docs_ai:doc.terminal_motion_desc" /></p>
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_ai:doc.terminal_a11y_1" /></li>
+  <li><T k="docs_ai:doc.terminal_a11y_2" /></li>
+  <li><T k="docs_ai:doc.terminal_a11y_3" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong><T k="docs_ai:doc.terminal_scenario_1_title" /></strong></td><td><T k="docs_ai:doc.terminal_scenario_1_desc" /></td></tr>
+    <tr><td><strong><T k="docs_ai:doc.terminal_scenario_2_title" /></strong></td><td><T k="docs_ai:doc.terminal_scenario_2_desc" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_ai:doc.terminal_practice_1" /></li>
+  <li><T k="docs_ai:doc.terminal_practice_2" /></li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={TerminalStories.WithError} />
+<Canvas of={TerminalStories.AgentSession} />
+<Canvas of={TerminalStories.GrowWithContent} />
+
+<Docgen componentName="Terminal" section="props" />
+
+<Docgen componentName="Terminal" section="tokens" />
+
+## <T k="common:doc.responsive_title" />
+
+<p><T k="docs_ai:doc.terminal_responsive" /></p>
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.key" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tab</td><td><T k="docs_ai:doc.terminal_kb_tab" /></td></tr>
+    <tr><td>Enter / Space</td><td><T k="docs_ai:doc.terminal_kb_activate" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.i18n_title" />
+
+<p><T k="docs_ai:doc.terminal_i18n_desc" /></p>
+
+<Docgen componentName="Terminal" section="test" />

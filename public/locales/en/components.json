@@ -95,7 +95,10 @@
     "tagInput_desc": "Input field for creating free-form tags.",
     "score": "Score",
     "intent": "Intent",
-    "levels_title": "Level Definitions"
+    "levels_title": "Level Definitions",
+    "codeDiffViewer_desc": "CodeDiffViewer description.",
+    "terminal_desc": "Terminal description.",
+    "jsonDiffViewer_desc": "JsonDiffViewer description."
   },
   "cat": {
     "ai": "AI"

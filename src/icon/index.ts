@@ -1,5 +1,6 @@
 // This file is auto-generated. Do not edit manually.
 import AlertCircleIcon from "./alert-circle.svg?react";
+import AlignJustifyIcon from "./align-justify.svg?react";
 import BellIcon from "./bell.svg?react";
 import CalendarIcon from "./calendar.svg?react";
 import ChartIcon from "./chart.svg?react";
@@ -13,6 +14,7 @@ import CircleIcon from "./circle.svg?react";
 import ClockIcon from "./clock.svg?react";
 import CloseSmallIcon from "./close-small.svg?react";
 import CloseIcon from "./close.svg?react";
+import ColumnsIcon from "./columns.svg?react";
 import CopyIcon from "./copy.svg?react";
 import CreditCardIcon from "./credit-card.svg?react";
 import DocumentIcon from "./document.svg?react";
@@ -72,6 +74,7 @@ import VolumeIcon from "./volume.svg?react";
 
 export {
   AlertCircleIcon,
+  AlignJustifyIcon,
   BellIcon,
   CalendarIcon,
   ChartIcon,
@@ -85,6 +88,7 @@ export {
   ClockIcon,
   CloseSmallIcon,
   CloseIcon,
+  ColumnsIcon,
   CopyIcon,
   CreditCardIcon,
   DocumentIcon,
@@ -145,6 +149,7 @@ export {
 
 export const ALL_ICONS = {
   AlertCircleIcon,
+  AlignJustifyIcon,
   BellIcon,
   CalendarIcon,
   ChartIcon,
@@ -158,6 +163,7 @@ export const ALL_ICONS = {
   ClockIcon,
   CloseSmallIcon,
   CloseIcon,
+  ColumnsIcon,
   CopyIcon,
   CreditCardIcon,
   DocumentIcon,

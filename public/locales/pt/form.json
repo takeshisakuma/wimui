@@ -1,4 +1,10 @@
 {
+  "ai_feedback": {
+    "group_label": "Avaliação da resposta",
+    "negative_label": "Não foi útil",
+    "positive_label": "Útil",
+    "regenerate_label": "Regenerar resposta"
+  },
   "btn": {
     "page_transition": "Transições de página padrão ou links de rodapé."
   },
@@ -28,6 +34,24 @@
     "standard_desc": "Botão retangular padrão para ações gerais.",
     "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item."
   },
+  "code_block": {
+    "collapse_label": "Recolher",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar código",
+    "expand_label": "Expandir",
+    "lines": "{{count}} linhas"
+  },
+  "code_diff_viewer": {
+    "copy_label": "Copiar",
+    "copied_label": "Copiado!",
+    "apply": "Aplicar",
+    "reject": "Rejeitar",
+    "split_view": "Dividido",
+    "unified_view": "Unificado"
+  },
+  "combobox": {
+    "no_results": "Nenhum resultado encontrado"
+  },
   "datepicker": {
     "placeholder": "Selecionar data"
   },
@@ -43,14 +67,17 @@
     "required": "Obrigatório"
   },
   "image_cropper": {
+    "apply": "Aplicar recorte",
+    "cancel": "Cancelar",
+    "confirm": "Aplicar",
+    "confirm_message": "Deseja salvar a imagem com este recorte?",
+    "confirm_title": "Aplicar recorte",
     "no_image": "Nenhuma imagem selecionada",
     "rotate": "Rodar",
-    "zoom": "Zoom",
-    "apply": "Aplicar recorte",
-    "confirm_title": "Aplicar recorte",
-    "confirm_message": "Deseja salvar a imagem com este recorte?",
-    "confirm": "Aplicar",
-    "cancel": "Cancelar"
+    "zoom": "Zoom"
+  },
+  "otp": {
+    "digit": "Dígito {{index}}"
   },
   "password_strength": {
     "fair": "Razoável",
@@ -68,42 +95,28 @@
     "placeholder": "Pergunte à IA ou anexe um arquivo...",
     "send_label": "Enviar"
   },
-  "ai_feedback": {
-    "positive_label": "Útil",
-    "negative_label": "Não foi útil",
-    "regenerate_label": "Regenerar resposta",
-    "group_label": "Avaliação da resposta"
-  },
-  "source_citation": {
-    "open_source": "Abrir fonte",
-    "source_label": "Fonte {{index}}"
-  },
-  "code_block": {
-    "copy_label": "Copiar código",
-    "copied_label": "Copiado!",
-    "expand_label": "Expandir",
-    "collapse_label": "Recolher",
-    "lines": "{{count}} linhas"
-  },
   "search": {
     "placeholder": "Botão"
   },
   "select": {
     "option": "Opção 1"
   },
+  "source_citation": {
+    "open_source": "Abrir fonte",
+    "source_label": "Fonte {{index}}"
+  },
   "tag_input": {
     "placeholder": "Inserir etiquetas..."
   },
-  "combobox": {
-    "no_results": "Nenhum resultado encontrado"
-  },
-  "otp": {
-    "digit": "Dígito {{index}}"
+  "terminal": {
+    "copy_label": "Copiar saída",
+    "copied_label": "Copiado!",
+    "clear_label": "Limpar"
   },
   "transfer": {
-    "no_data": "Sem dados",
     "move_to_source": "Mover para disponível",
     "move_to_target": "Mover para selecionado",
+    "no_data": "Sem dados",
     "source": "Disponível",
     "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
     "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",

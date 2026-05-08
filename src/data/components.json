@@ -369,6 +369,12 @@
         "descKey": "doc.tag_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "JsonDiffViewer",
+        "descKey": "doc.jsonDiffViewer_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -1264,6 +1270,18 @@
       {
         "name": "CodeBlock",
         "descKey": "doc.codeBlock_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "CodeDiffViewer",
+        "descKey": "doc.codeDiffViewer_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "Terminal",
+        "descKey": "doc.terminal_desc",
         "pc": true,
         "mobile": true
       }
