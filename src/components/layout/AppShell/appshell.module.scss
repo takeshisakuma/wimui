@@ -1,3 +1,5 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 @layer component {
   .root {
     position: fixed;
@@ -65,7 +67,7 @@
   }
 
   // Responsive behavior
-  @media (width <= 768px) {
+  @include breakpoints.down(md) {
     .body {
       flex-direction: column;
     }

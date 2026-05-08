@@ -1,119 +1,117 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-@layer component {
-  .root {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    container-type: inline-size;
-    background-color: var(--wim-color-bg-component);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  background-color: var(--wim-color-bg-component);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border-radius: var(--wim-radius-md);
+}
+
+.container {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior-x: contain;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wim-spacing-md);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--wim-spacing-md);
+  background-color: var(--wim-color-bg-subtle);
+  border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+}
+
+.info {
+  font-size: var(--wim-font-size-sm);
+  color: var(--wim-color-text-secondary);
+
+  @include breakpoints.container-down(sm) {
+    flex-basis: 100%;
+    text-align: left;
   }
+}
 
-  .container {
-    position: relative;
-    flex: 1;
-    overflow: auto;
-    overscroll-behavior-x: contain;
+.pagination {
+  display: flex;
+  flex: 1;
+  align-items: center;
+
+  @include breakpoints.container-down(sm) {
+    flex-basis: 100%;
   }
+}
 
-  .footer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--wim-spacing-md);
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--wim-spacing-md);
-    background-color: var(--wim-color-bg-subtle);
-    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
-  }
+.paginationContent {
+  justify-content: flex-end;
+}
 
-  .info {
-    font-size: var(--wim-font-size-sm);
-    color: var(--wim-color-text-secondary);
+.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
 
-    @include breakpoints.container-down(sm) {
-      flex-basis: 100%;
-      text-align: left;
-    }
-  }
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wim-spacing-md);
+  font-size: var(--wim-font-size-sm);
+  color: var(--wim-color-text-secondary);
+}
 
-  .pagination {
-    display: flex;
-    flex: 1;
-    align-items: center;
+.table {
+  margin: 0;
+  border: none;
+}
 
-    @include breakpoints.container-down(sm) {
-      flex-basis: 100%;
-    }
-  }
+.tableContainer {
+  overflow: visible;
+}
 
-  .paginationContent {
-    justify-content: flex-end !important;
-  }
+.cellFixed {
+  position: sticky;
+  background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
+}
 
-  .loading {
+.cellFixedLeftLast {
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 10px;
     pointer-events: none;
-    opacity: 0.6;
+    content: "";
+    background: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+    transform: translateX(100%);
   }
+}
 
-  .loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--wim-spacing-md);
-    font-size: var(--wim-font-size-sm);
-    color: var(--wim-color-text-secondary);
+.cellFixedRightFirst {
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    pointer-events: none;
+    content: "";
+    background: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+    transform: translateX(-100%);
   }
+}
 
-  .table {
-    margin: 0 !important;
-    border: none !important;
-  }
-
-  .tableContainer {
-    overflow: visible !important;
-  }
-
-  .cellFixed {
-    position: sticky;
-    background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
-  }
-
-  .cellFixedLeftLast {
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 10px;
-      pointer-events: none;
-      content: "";
-      background: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
-      transform: translateX(100%);
-    }
-  }
-
-  .cellFixedRightFirst {
-    &::before {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 10px;
-      pointer-events: none;
-      content: "";
-      background: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
-      transform: translateX(-100%);
-    }
-  }
-
-  .selectionInfo {
-    margin-left: var(--wim-spacing-sm);
-    font-weight: var(--wim-font-weight-medium);
-    color: var(--wim-color-primary);
-  }
+.selectionInfo {
+  margin-left: var(--wim-spacing-sm);
+  font-weight: var(--wim-font-weight-medium);
+  color: var(--wim-color-primary);
 }

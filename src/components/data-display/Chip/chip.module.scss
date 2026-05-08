@@ -68,16 +68,16 @@
   
     &.solid.selected {
       box-shadow:
-        0 0 0 var(--wim-border-width-thick) white,
+        0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component),
         0 0 0 var(--wim-border-width-thick) currentcolor;
     }
   
     &:disabled,
     &.disabled {
-      color: var(--wim-color-text-disabled) !important;
+      color: var(--wim-color-text-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-bg-component) !important;
-      border: var(--wim-border-width-thin) solid var(--wim-color-border) !important;
+      background-color: var(--wim-color-bg-component);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
       opacity: 1;
       filter: none;
 

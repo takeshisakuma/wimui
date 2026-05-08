@@ -93,7 +93,7 @@
 
   &.disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--wim-opacity-disabled);
 
     &:hover {
       background-color: transparent;

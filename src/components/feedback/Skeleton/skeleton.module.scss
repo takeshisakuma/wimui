@@ -44,9 +44,9 @@
       background: linear-gradient(
         90deg,
         transparent 0%,
-        color-mix(in srgb, var(--wim-color-skeleton-shine) 15%, transparent) 20%,
+        oklch(from var(--wim-color-skeleton-shine) l c h / 0.15) 20%,
         var(--wim-color-skeleton-shine) 50%,
-        color-mix(in srgb, var(--wim-color-skeleton-shine) 15%, transparent) 80%,
+        oklch(from var(--wim-color-skeleton-shine) l c h / 0.15) 80%,
         transparent 100%
       );
       animation: skeleton-wave 2s var(--wim-easing-emphasized) infinite;

@@ -19,5 +19,18 @@
     ],
     "media-feature-range-notation": null,
     "custom-property-pattern": "^_?([a-z][a-z0-9]*)(-[a-z0-9]+)*$"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/components/**/*.module.scss"],
+      "rules": {
+        "declaration-property-value-disallowed-list": [
+          {
+            "filter": ["/brightness/"],
+            "/./": ["/color-mix\\(in srgb/"]
+          }
+        ]
+      }
+    }
+  ]
 }

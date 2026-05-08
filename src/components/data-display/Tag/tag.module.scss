@@ -28,10 +28,10 @@
 
     &:disabled,
     &.disabled {
-      color: var(--wim-color-text-disabled) !important;
+      color: var(--wim-color-text-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-bg-component) !important;
-      border: var(--wim-border-width-thin) solid var(--wim-color-border) !important;
+      background-color: var(--wim-color-bg-component);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
       opacity: 1;
       filter: none;
 
@@ -45,12 +45,12 @@
       transition: all var(--wim-transition-fast);
 
       &:hover {
-        filter: brightness(0.95);
+        background-color: oklch(from var(--bg) calc(l * 0.95) c h);
         transform: translateY(var(--wim-lift-sm));
       }
 
       &:active {
-        filter: brightness(0.9);
+        background-color: oklch(from var(--bg) calc(l * 0.9) c h);
         transform: scale(var(--wim-scale-active));
       }
     }

@@ -70,8 +70,9 @@ $token-colors: (
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
 
-    &.#{$name} {
-      &.solid {
+    // :where() で特異度を 0-1-0 に抑え、disabled 等の状態セレクタが !important なしで上書きできるようにする
+    &:where(.#{$name}) {
+      &:where(.solid) {
         --bg: #{$base};
 
         color: $on;
@@ -79,13 +80,13 @@ $token-colors: (
         border: 1px solid transparent;
       }
 
-      &.outline {
+      &:where(.outline) {
         color: $base;
         background-color: transparent;
         border: 1px solid $base;
       }
 
-      &.subtle {
+      &:where(.subtle) {
         --bg: color-mix(in srgb, #{$base} 15%, transparent);
 
         color: $base;

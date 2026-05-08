@@ -1,3 +1,5 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 .root {
   box-sizing: border-box;
   display: flex;
@@ -7,6 +9,7 @@
   min-width: 0;
   max-width: var(--wim-width-md);
   min-height: var(--wim-height-md);
+  container-type: inline-size;
   background: var(--wim-color-surface);
   border: 1px solid var(--wim-color-secondary);
   border-radius: var(--wim-field-radius, var(--wim-radius-md));
@@ -122,7 +125,7 @@
   justify-content: flex-end;
   padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
 
-  @media (max-width: 480px) {
+  @container (max-width: 480px) {
     padding: 0 var(--wim-spacing-sm) var(--wim-spacing-xs);
   }
 }

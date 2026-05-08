@@ -61,12 +61,12 @@
       transition: all var(--wim-transition-fast);
 
       &:hover {
-        filter: brightness(1.1);
+        background-color: oklch(from var(--bg) calc(l * 1.1) c h);
         transform: translateY(var(--wim-lift-sm));
       }
 
       &:active {
-        filter: brightness(0.9);
+        background-color: oklch(from var(--bg) calc(l * 0.9) c h);
         transform: scale(var(--wim-scale-active));
       }
     }

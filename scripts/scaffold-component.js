@@ -72,13 +72,19 @@ ${componentName}.displayName = "${componentName}";
 `;
 
 // 2. Component SCSS
-const scss = `// @use "../../../tokens/breakpoints" as *;
+const scss = `@use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .root {
     display: block;
     // Add styles using tokens. Example:
     // padding: var(--wim-spacing-md);
+
+    // Responsive: UIコンポーネントにはコンテナクエリを使用する。
+    // ビューポート全体に依存するレイアウト（AppShell等）のみメディアクエリ（@include breakpoints.down()）を使う。
+    // @include breakpoints.container-down(md) {
+    //   flex-direction: column;
+    // }
   }
 }
 `;

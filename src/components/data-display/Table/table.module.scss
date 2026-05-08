@@ -1,8 +1,10 @@
-﻿@use "../../../tokens/generated/tokens" as tokens;
+@use "../../../tokens/generated/tokens" as tokens;
+@use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .container {
     width: 100%;
+    container-type: inline-size;
     overflow-x: auto;
     background-color: var(--wim-color-bg-component);
   
@@ -108,7 +110,7 @@
     }
 
     &.mobileCard {
-      @media screen and (max-width: tokens.$wim-breakpoint-md) {
+      @include breakpoints.container-down(md) {
         display: block;
         border: none;
   
