@@ -154,7 +154,7 @@
     margin: var(--wim-spacing-xs) var(--wim-spacing-md);
     list-style: none;
     background-color: var(--wim-color-secondary);
-    opacity: 0.4;
+    opacity: var(--wim-opacity-dim);
   }
 
   @keyframes slideDown {

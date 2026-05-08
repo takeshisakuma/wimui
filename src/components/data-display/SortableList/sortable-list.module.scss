@@ -42,7 +42,7 @@
       background: var(--wim-color-surface-glass);
       border-color: var(--wim-color-primary);
       border-style: dashed;
-      opacity: 0.5;
+      opacity: var(--wim-opacity-ghost);
       backdrop-filter: blur(8px);
       transform: scale(0.98);
     }

@@ -146,9 +146,11 @@ export type WimZIndexKey =
   | "toast";
 
 export type WimOpacityKey = 
+  | "dim"
   | "disabled"
   | "ghost"
-  | "secondary";
+  | "secondary"
+  | "subtle";
 
 export type WimBlurKey = 
   | "2xl"

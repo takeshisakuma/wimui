@@ -15,7 +15,9 @@
     "opacity": {
       "disabled": { "value": "0.6" },
       "ghost": { "value": "0.5" },
-      "secondary": { "value": "0.7" }
+      "secondary": { "value": "0.7" },
+      "dim": { "value": "0.4" },
+      "subtle": { "value": "0.8" }
     },
     "blur": {
       "none": { "value": "0" },

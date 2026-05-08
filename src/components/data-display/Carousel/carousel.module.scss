@@ -71,7 +71,7 @@
   
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.3;
+      opacity: var(--wim-opacity-disabled);
     }
   
     &.prev {

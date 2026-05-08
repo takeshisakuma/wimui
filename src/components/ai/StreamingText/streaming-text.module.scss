@@ -87,7 +87,7 @@
     text-decoration: underline;
 
     &:hover {
-      opacity: 0.8;
+      opacity: var(--wim-opacity-subtle);
     }
   }
 

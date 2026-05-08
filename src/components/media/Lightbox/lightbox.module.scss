@@ -182,7 +182,7 @@
   .caption {
     margin: 0;
     font-size: var(--wim-font-size-md);
-    opacity: 0.8;
+    opacity: var(--wim-opacity-subtle);
   }
 
   .gallery {

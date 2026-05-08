@@ -190,7 +190,7 @@
     margin: var(--wim-spacing-xs) var(--wim-spacing-md);
     overflow: hidden;
     background-color: var(--wim-color-secondary);
-    opacity: 0.4;
+    opacity: var(--wim-opacity-dim);
   }
 
   /* Native Selectbox Styles */

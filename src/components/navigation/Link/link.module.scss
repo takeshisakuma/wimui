@@ -87,7 +87,7 @@
     .externalIcon {
       margin-left: var(--wim-spacing-3xs);
       font-size: 0.8em;
-      opacity: 0.8;
+      opacity: var(--wim-opacity-subtle);
     }
 
     svg {

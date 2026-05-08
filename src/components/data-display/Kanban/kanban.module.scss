@@ -78,7 +78,7 @@
 
     &.dragging {
       cursor: grabbing;
-      opacity: 0.4;
+      opacity: var(--wim-opacity-dim);
     }
 
     &.disabled {
