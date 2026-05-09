@@ -8,6 +8,7 @@ import {
   Badge,
   BentoGrid,
   BentoGridItem,
+  Box,
   Button,
   Card,
   Container,
@@ -21,6 +22,7 @@ import {
   Text,
   Title,
 } from "wimui";
+import { CheckIcon, CloseIcon } from "@/icon";
 
 const meta: Meta = {
   title: "Patterns/Marketing",
@@ -817,6 +819,300 @@ export const ComparisonTable: StoryObj = {
           </table>
         </div>
       </Container>
+    );
+  },
+};
+
+export const FeatureComparison: StoryObj = {
+  render: function Render() {
+    const { t } = useTranslation([...ALL_NAMESPACES, "docs_stories_recipes"]);
+
+    const features = [
+      {
+        category: t("docs_stories_recipes:feature_comparison.cat_core"),
+        items: [
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_components"),
+            starter: true,
+            pro: true,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_updates"),
+            starter: true,
+            pro: true,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_support"),
+            starter: "Community",
+            pro: "Email",
+            enterprise: "24/7 Phone",
+          },
+        ],
+      },
+      {
+        category: t("docs_stories_recipes:feature_comparison.cat_advanced"),
+        items: [
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_patterns"),
+            starter: false,
+            pro: true,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_custom"),
+            starter: false,
+            pro: true,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_analytics"),
+            starter: false,
+            pro: false,
+            enterprise: true,
+          },
+        ],
+      },
+      {
+        category: t("docs_stories_recipes:feature_comparison.cat_security"),
+        items: [
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_sso"),
+            starter: false,
+            pro: false,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_audit"),
+            starter: false,
+            pro: false,
+            enterprise: true,
+          },
+          {
+            name: t("docs_stories_recipes:feature_comparison.feat_sla"),
+            starter: false,
+            pro: "99%",
+            enterprise: "99.9%",
+          },
+        ],
+      },
+    ];
+
+    const Check = () => (
+      <Icon component={CheckIcon} color="positive" size="sm" />
+    );
+    const Cross = () => (
+      <Icon component={CloseIcon} color="disabled" size="sm" />
+    );
+
+    const renderValue = (val: boolean | string) => {
+      if (typeof val === "boolean") {
+        return val ? <Check /> : <Cross />;
+      }
+      return (
+        <Text size="sm" weight="bold">
+          {val}
+        </Text>
+      );
+    };
+
+    return (
+      <Box style={{ paddingTop: "3rem", paddingBottom: "3rem", background: "var(--wim-color-bg-surface)" }}>
+        <Container style={{ maxWidth: "1000px" }}>
+          <Stack
+            gap="md"
+            align="center"
+            style={{ textAlign: "center", marginBottom: "3rem" }}
+          >
+            <Title tag="h2" size="xl">
+              {t("docs_stories_recipes:feature_comparison.title")}
+            </Title>
+            <Text color="text-secondary" size="sm">
+              {t("docs_stories_recipes:feature_comparison.subtitle")}
+            </Text>
+          </Stack>
+
+          <Box style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                border: "1px solid var(--wim-color-border)",
+                background: "var(--wim-color-bg-surface)",
+              }}
+            >
+              <thead>
+                <tr style={{ background: "var(--wim-color-bg-surface-subtle)" }}>
+                  <th
+                    style={{
+                      textAlign: "left",
+                      padding: "1rem 1.5rem",
+                      borderBottom: "2px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Text weight="bold" color="text-secondary" size="sm">
+                      {t("docs_stories_recipes:feature_comparison.col_feature")}
+                    </Text>
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "1rem",
+                      borderBottom: "2px solid var(--wim-color-border)",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Text weight="bold" size="sm">
+                      {t(
+                        "docs_stories_recipes:feature_comparison.col_starter",
+                      )}
+                    </Text>
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "1rem",
+                      borderBottom: "2px solid var(--wim-color-border)",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Text weight="bold" size="sm">
+                      {t("docs_stories_recipes:feature_comparison.col_pro")}
+                    </Text>
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "1rem",
+                      borderBottom: "2px solid var(--wim-color-border)",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Text weight="bold" size="sm">
+                      {t(
+                        "docs_stories_recipes:feature_comparison.col_enterprise",
+                      )}
+                    </Text>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {features.map((cat, i) => (
+                  <React.Fragment key={i}>
+                    <tr>
+                      <td
+                        colSpan={4}
+                        style={{
+                          padding: "0.75rem 1.5rem",
+                          background: "var(--wim-color-bg-surface-variant)",
+                          borderBottom: "1px solid var(--wim-color-border)",
+                        }}
+                      >
+                        <Text size="xs" weight="bold" color="primary">
+                          {cat.category}
+                        </Text>
+                      </td>
+                    </tr>
+                    {cat.items.map((item, j) => (
+                      <tr key={j}>
+                        <td
+                          style={{
+                            padding: "0.75rem 1.5rem",
+                            borderBottom: "1px solid var(--wim-color-border)",
+                          }}
+                        >
+                          <Text size="sm">{item.name}</Text>
+                        </td>
+                        <td
+                          style={{
+                            textAlign: "center",
+                            padding: "0.75rem",
+                            borderBottom: "1px solid var(--wim-color-border)",
+                            borderLeft: "1px solid var(--wim-color-border)",
+                          }}
+                        >
+                          {renderValue(item.starter)}
+                        </td>
+                        <td
+                          style={{
+                            textAlign: "center",
+                            padding: "0.75rem",
+                            borderBottom: "1px solid var(--wim-color-border)",
+                            borderLeft: "1px solid var(--wim-color-border)",
+                          }}
+                        >
+                          {renderValue(item.pro)}
+                        </td>
+                        <td
+                          style={{
+                            textAlign: "center",
+                            padding: "0.75rem",
+                            borderBottom: "1px solid var(--wim-color-border)",
+                            borderLeft: "1px solid var(--wim-color-border)",
+                          }}
+                        >
+                          {renderValue(item.enterprise)}
+                        </td>
+                      </tr>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td
+                    style={{
+                      padding: "1.5rem",
+                    }}
+                  />
+                  <td
+                    style={{
+                      textAlign: "center",
+                      padding: "1.5rem 1rem",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      style={{ width: "100%" }}
+                    >
+                      {t("docs_stories_recipes:feature_comparison.btn_started")}
+                    </Button>
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      padding: "1.5rem 1rem",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Button variant="solid" size="sm" style={{ width: "100%" }}>
+                      {t("docs_stories_recipes:feature_comparison.btn_started")}
+                    </Button>
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      padding: "1.5rem 1rem",
+                      borderLeft: "1px solid var(--wim-color-border)",
+                    }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      style={{ width: "100%" }}
+                    >
+                      Contact
+                    </Button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </Box>
+        </Container>
+      </Box>
     );
   },
 };

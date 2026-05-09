@@ -256,5 +256,41 @@
     "btn_apply": "Apply",
     "btn_checkout": "Proceed to Checkout",
     "btn_continue": "Continue Shopping"
+  },
+  "artifacts": {
+    "chat_placeholder": "Ask AI to generate something...",
+    "canvas_title": "Artifact Preview",
+    "canvas_empty": "Select an artifact from the chat to preview it here.",
+    "tab_preview": "Preview",
+    "tab_code": "Code",
+    "chat": "Chat",
+    "canvas": "Canvas",
+    "btn_copy": "Copy Code",
+    "btn_download": "Download",
+    "btn_publish": "Publish",
+    "status_generating": "Generating artifact...",
+    "status_updated": "Artifact updated"
+  },
+  "feature_comparison": {
+    "title": "Choose the best plan for your team",
+    "subtitle": "Compare features across our flexible plans to find the perfect fit.",
+    "badge_popular": "MOST POPULAR",
+    "btn_started": "Get Started",
+    "col_feature": "Feature",
+    "col_starter": "Starter",
+    "col_pro": "Pro",
+    "col_enterprise": "Enterprise",
+    "cat_core": "Core Features",
+    "cat_advanced": "Advanced Capabilities",
+    "cat_security": "Security & Admin",
+    "feat_components": "Core components library",
+    "feat_updates": "Weekly updates",
+    "feat_support": "Community support",
+    "feat_patterns": "Advanced UI patterns",
+    "feat_custom": "Custom branding",
+    "feat_analytics": "Advanced analytics",
+    "feat_sso": "SSO & SAML",
+    "feat_audit": "Audit logs",
+    "feat_sla": "99.9% SLA"
   }
 }
