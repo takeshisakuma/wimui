@@ -184,7 +184,7 @@ export const WithIcons: Story = {
             <ChatMessage 
               position="left" 
               showAvatar 
-              avatar={<div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}><Icon name="UserIcon" size="sm" /></div>}
+              avatar={<div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--wim-color-text-on-primary)" }}><Icon name="UserIcon" size="sm" /></div>}
             >
               {t("story.chat_msg_12")}
             </ChatMessage>
@@ -325,7 +325,7 @@ export const AiAssistantIntegration: Story = {
                 isTyping={msg.id === "loading"}
                 avatar={
                   msg.position === "left" ? (
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "var(--wim-color-text-on-primary)" }}>
                       <Icon name="StarIcon" size="sm" />
                     </div>
                   ) : (
@@ -347,7 +347,7 @@ export const AiAssistantIntegration: Story = {
                 senderName={t("story.chat_ai_assistant")} 
                 showAvatar 
                 isTyping
-                avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "white" }}><Icon name="StarIcon" size="sm" /></div>}
+                avatar={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--wim-color-primary)", color: "var(--wim-color-text-on-primary)" }}><Icon name="StarIcon" size="sm" /></div>}
               />
             )}
           </ChatMessageList>

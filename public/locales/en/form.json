@@ -113,6 +113,7 @@
     "copy_label": "Copy",
     "copied_label": "Copied!",
     "apply": "Apply",
+    "applied": "Applied",
     "reject": "Reject",
     "split_view": "Split",
     "unified_view": "Unified"

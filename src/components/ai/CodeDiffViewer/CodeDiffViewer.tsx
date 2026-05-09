@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { diffLines, type Change } from "diff";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
-import { AlignJustifyIcon, CheckIcon, CloseIcon, ColumnsIcon, CopyIcon } from "@/icon";
+import { AlignJustifyIcon, CheckIcon, CloseIcon, ColumnsIcon, CopyIcon, SpinnerIcon } from "@/icon";
 import styles from "./code-diff-viewer.module.scss";
 
 export type DiffView = "split" | "unified";
@@ -25,6 +25,10 @@ export interface CodeDiffViewerProps extends React.ComponentPropsWithoutRef<"div
   onReject?: () => void;
   /** Additional CSS class */
   className?: string;
+  /** Whether the change is currently being applied */
+  isApplying?: boolean;
+  /** Whether the change has been successfully applied */
+  isApplied?: boolean;
 }
 
 type LineType = "added" | "removed" | "unchanged" | "empty";
@@ -154,6 +158,8 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
       onApply,
       onReject,
       className,
+      isApplying = false,
+      isApplied = false,
       ...props
     },
     ref
@@ -249,14 +255,25 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
                 {t("code_diff_viewer.reject")}
               </button>
             )}
-            {onApply && (
+            {(onApply || isApplied) && (
               <button
                 type="button"
-                className={classNames(styles.actionButton, styles.applyButton)}
+                className={classNames(
+                  styles.actionButton, 
+                  styles.applyButton,
+                  isApplying && styles.applying,
+                  isApplied && styles.applied
+                )}
                 onClick={onApply}
+                disabled={isApplying || isApplied}
               >
-                <Icon component={CheckIcon} size="sm" aria-hidden="true" />
-                {t("code_diff_viewer.apply")}
+                <Icon 
+                  component={isApplying ? SpinnerIcon : CheckIcon} 
+                  size="sm" 
+                  className={classNames(isApplying && styles.spin)}
+                  aria-hidden="true" 
+                />
+                {isApplied ? t("code_diff_viewer.applied") : t("code_diff_viewer.apply")}
               </button>
             )}
           </div>

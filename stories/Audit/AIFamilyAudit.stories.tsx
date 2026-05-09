@@ -62,8 +62,8 @@ hello("Antigravity");`;
 const TERMINAL_LINES = [
   { type: "info" as const, content: "\u001b[90m[system] Initializing environment...\u001b[0m" },
   { type: "input" as const, content: "npm run build" },
-  { type: "output" as const, content: "\u001b[32m✔\u001b[0m Checking types..." },
-  { type: "output" as const, content: "\u001b[32m✔\u001b[0m Generating bundle..." },
+  { type: "output" as const, content: "\u001b[32m[OK]\u001b[0m Checking types..." },
+  { type: "output" as const, content: "\u001b[32m[OK]\u001b[0m Generating bundle..." },
   { type: "output" as const, content: "Build complete in \u001b[1m1.2s\u001b[0m" },
   { type: "error" as const, content: "\u001b[31m[warning] 12 chunks exceed 500kB.\u001b[0m" },
 ];

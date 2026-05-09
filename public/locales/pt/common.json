@@ -568,7 +568,9 @@
     "std_header_unified_sizing": "Dimensionamento Unificado"
   },
   "story": {
-    "carousel_slide_label": "Slide {{number}}"
+    "carousel_slide_label": "Slide {{number}}",
+    "thoughtprocess_title_thinking": "Estado de Pensamento",
+    "thoughtprocess_title_streaming": "Raciocínio em Fluxo"
   },
   "sun": "Dom",
   "thu": "Qui",

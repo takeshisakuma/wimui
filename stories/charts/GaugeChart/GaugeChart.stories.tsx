@@ -22,6 +22,6 @@ export const CustomColor: Story = {
     title: "Critical Level",
     value: 92,
     label: "DANGER",
-    color: "#ff4d4f",
+    color: "var(--wim-color-negative)",
   },
 };

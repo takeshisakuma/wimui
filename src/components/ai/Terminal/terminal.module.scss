@@ -1,13 +1,19 @@
 @layer component {
   /* ── macOS-style dark window ── */
+
+  /*
+   * Terminal は常にダークテーマで表示する UI です。
+   * Terminal.tsx のルート要素に `data-theme="dark"` を付与することで
+   * ダークモードの CSS トークン値が自動的に適用されます。
+   */
   .root {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    background: #1e1e2e;
-    border: 1px solid #313244;
+    background: var(--wim-color-bg-app);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
   }
@@ -19,8 +25,8 @@
     gap: var(--wim-spacing-2xs);
     align-items: center;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-    background: #181825;
-    border-bottom: 1px solid #313244;
+    background: var(--wim-color-bg-subtle);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .dot {
@@ -29,6 +35,7 @@
     height: 12px;
     border-radius: 50%;
 
+    /* macOS traffic-light colors — intentional brand colors, not semantic tokens */
     &[data-color="red"]    { background: #ff5f57; }
     &[data-color="yellow"] { background: #febc2e; }
     &[data-color="green"]  { background: #28c840; }
@@ -41,7 +48,7 @@
     text-overflow: ellipsis;
     font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-xs);
-    color: #6c7086;
+    color: var(--wim-color-text-disabled);
     text-align: center;
     white-space: nowrap;
   }
@@ -59,7 +66,7 @@
     width: 24px;
     height: 24px;
     padding: 0;
-    color: #6c7086;
+    color: var(--wim-color-text-disabled);
     cursor: pointer;
     background: transparent;
     border: none;
@@ -69,8 +76,8 @@
       background var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
-      color: #cdd6f4;
-      background: #313244;
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-bg-hover);
     }
 
     &:focus-visible {
@@ -80,10 +87,10 @@
   }
 
   .copied {
-    color: #a6e3a1;
+    color: var(--wim-color-positive);
 
     &:hover {
-      color: #a6e3a1;
+      color: var(--wim-color-positive);
     }
   }
 
@@ -96,7 +103,7 @@
     font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
-    color: #cdd6f4;
+    color: var(--wim-color-text-primary);
   }
 
   .line {
@@ -108,7 +115,7 @@
 
   .prompt {
     flex-shrink: 0;
-    color: #a6e3a1;
+    color: var(--wim-color-positive);
     user-select: none;
   }
 
@@ -120,13 +127,13 @@
   }
 
   /* ── Line type colors ── */
-  .input .content  { color: #cdd6f4; }
-  .output .content { color: #cdd6f4; }
+  .input .content  { color: var(--wim-color-text-primary); }
+  .output .content { color: var(--wim-color-text-primary); }
 
   .error {
-    .prompt  { color: #f38ba8; }
-    .content { color: #f38ba8; }
+    .prompt  { color: var(--wim-color-text-error); }
+    .content { color: var(--wim-color-text-error); }
   }
 
-  .info .content { color: #89b4fa; }
+  .info .content { color: var(--wim-color-primary); }
 }

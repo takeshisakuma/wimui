@@ -64,11 +64,6 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
       );
 
     const mappedColors = [
-      "black",
-      "deepgray",
-      "gray",
-      "lightgray",
-      "white",
       "error",
       "primary",
       "success",

@@ -97,12 +97,9 @@ describe("Title", () => {
     expect(screen.getByRole("heading")).toHaveStyle({ marginTop: "20px" });
   });
 
-  it("handles color in mappedColors but missing in styles safely", () => {
-    // This is hard to trigger if styles is a real CSS module, 
-    // but we can try a color that might be missing if we were mocking styles.
-    // Since we are not mocking styles, we just ensure it doesn't crash.
-    render(<Title color="black">Text</Title>);
-    expect(screen.getByRole("heading")).toHaveClass(styles.black);
+  it("handles inline semantic colors correctly", () => {
+    render(<Title color="text-primary">Text</Title>);
+    expect(screen.getByRole("heading")).toHaveStyle({ color: "var(--wim-color-text-primary)" });
   });
 });
 

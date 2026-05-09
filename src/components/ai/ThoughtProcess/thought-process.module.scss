@@ -1,4 +1,4 @@
-﻿
+
 @layer component {
   .root {
     box-sizing: border-box;
@@ -9,6 +9,29 @@
     background-color: var(--wim-color-ghost-bg);
     border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
+    transition: background-color var(--wim-duration-slow) var(--wim-easing-standard);
+
+    &.thinking {
+      background-color: var(--wim-color-ghost-bg);
+      animation: thought-pulse 2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes thought-pulse {
+    0% {
+      background-color: var(--wim-color-ghost-bg);
+      border-color: var(--wim-color-border);
+    }
+
+    50% {
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.05);
+      border-color: oklch(from var(--wim-color-primary) l c h / 0.3);
+    }
+
+    100% {
+      background-color: var(--wim-color-ghost-bg);
+      border-color: var(--wim-color-border);
+    }
   }
 
   .header {
@@ -158,6 +181,30 @@
 
     .text {
       color: var(--wim-color-text-error, var(--wim-color-destructive));
+    }
+  }
+
+  .streaming {
+    &::after {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 2px;
+      vertical-align: middle;
+      content: "";
+      background-color: var(--wim-color-primary);
+      animation: cursor-blink 1s step-end infinite;
+    }
+  }
+
+  @keyframes cursor-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
     }
   }
 }

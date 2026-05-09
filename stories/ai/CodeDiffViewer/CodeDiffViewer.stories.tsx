@@ -86,3 +86,20 @@ export function clamp(value: number, min: number, max: number): number {
 }`,
   },
 };
+export const Applying: Story = {
+  args: {
+    filename: "greet.ts",
+    onApply: fn(),
+    onReject: fn(),
+    isApplying: true,
+  },
+};
+
+export const Applied: Story = {
+  args: {
+    filename: "greet.ts",
+    onApply: fn(),
+    onReject: fn(),
+    isApplied: true,
+  },
+};

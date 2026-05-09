@@ -21,7 +21,7 @@ const ListItem = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <Card padding="md" style={{ borderRadius: 0, border: "none", borderBottom: "1px solid var(--wim-color-border)" }}>
     <Stack gap="xs">
       <Text weight="bold">{title}</Text>
-      <Text size="sm" color="gray">{subtitle}</Text>
+      <Text size="sm" color="text-tertiary">{subtitle}</Text>
     </Stack>
   </Card>
 );

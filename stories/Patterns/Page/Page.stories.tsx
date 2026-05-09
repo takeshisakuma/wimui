@@ -100,7 +100,7 @@ export const DashboardHeader: StoryObj = {
               </div>
               <span
                 style={{
-                  fontSize: "0.9rem",
+                  fontSize: "var(--wim-font-size-sm)",
                   fontWeight: "bold",
                   color: "var(--wim-color-text-primary)",
                 }}
@@ -187,7 +187,7 @@ export const DashboardHeader: StoryObj = {
               <Stack gap="none" className="desktop-only">
                 <span
                   style={{
-                    fontSize: "0.875rem",
+                    fontSize: "var(--wim-font-size-sm)",
                     fontWeight: 600,
                     color: "var(--wim-color-text-primary)",
                   }}
@@ -196,7 +196,7 @@ export const DashboardHeader: StoryObj = {
                 </span>
                 <span
                   style={{
-                    fontSize: "0.75rem",
+                    fontSize: "var(--wim-font-size-xs)",
                     color: "var(--wim-color-text-secondary)",
                   }}
                 >
@@ -327,7 +327,7 @@ export const ErrorPage: StoryObj = {
             </Title>
             <Text
               content={t("error.desc")}
-              color="deepgray"
+              color="text-secondary"
               style={{ textAlign: "center" }}
             />
           </Stack>
@@ -369,15 +369,14 @@ export const MaintenancePage: StoryObj = {
             style={{
               width: "80px",
               height: "80px",
-              borderRadius: "20px",
+              borderRadius: "var(--wim-radius-full)",
               background: "var(--wim-color-warning-light)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "2rem",
             }}
           >
-            🔧
+            <Icon name="SettingsIcon" style={{ width: "40px", height: "40px", color: "var(--wim-color-warning, var(--wim-color-caution))" }} />
           </div>
 
           <Stack gap="md" align="center">
@@ -386,7 +385,7 @@ export const MaintenancePage: StoryObj = {
             </Title>
             <Text
               content={t("maintenance.desc")}
-              color="deepgray"
+              color="text-secondary"
               style={{ textAlign: "center" }}
             />
           </Stack>
@@ -421,7 +420,7 @@ export const MaintenancePage: StoryObj = {
           <Text
             content={t("maintenance.status")}
             size="sm"
-            color="deepgray"
+            color="text-secondary"
           />
         </Stack>
       </Center>
@@ -528,7 +527,7 @@ export const ProductCard: StoryObj = {
                   <Text
                     content={`(${p.count})`}
                     size="xs"
-                    color="deepgray"
+                    color="text-secondary"
                   />
                 </Stack>
                 <Stack
@@ -602,7 +601,7 @@ export const ShoppingCart: StoryObj = {
                     style={{
                       width: "80px",
                       height: "80px",
-                      borderRadius: "8px",
+                      borderRadius: "var(--wim-radius-lg)",
                       background: "var(--wim-color-surface-variant)",
                       flexShrink: 0,
                     }}
@@ -610,7 +609,7 @@ export const ShoppingCart: StoryObj = {
                   <Stack gap="md" style={{ flex: 1, minWidth: 0 }}>
                     <Stack gap="2xs">
                       <Text content={item.name} style={{ fontWeight: 600 }} />
-                      <Text content={item.price} color="deepgray" size="sm" />
+                      <Text content={item.price} color="text-secondary" size="sm" />
                     </Stack>
                     <Stack direction="row" align="center" justify="space-between">
                       <Stack direction="row" align="center" gap="sm">
@@ -670,7 +669,7 @@ export const ShoppingCart: StoryObj = {
               <Stack gap="sm">
                 {summaryRows.map((row, i) => (
                   <Stack key={i} direction="row" justify="space-between">
-                    <Text content={row.label} color="deepgray" size="sm" />
+                    <Text content={row.label} color="text-secondary" size="sm" />
                     <Text content={row.value} size="sm" />
                   </Stack>
                 ))}

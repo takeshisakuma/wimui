@@ -562,7 +562,9 @@
     "std_header_unified_sizing": "サイズ統合"
   },
   "story": {
-    "carousel_slide_label": "スライド {{number}}"
+    "carousel_slide_label": "スライド {{number}}",
+    "thoughtprocess_title_thinking": "思考中状態",
+    "thoughtprocess_title_streaming": "ストリーミング推論"
   },
   "sun": "日",
   "thu": "木",

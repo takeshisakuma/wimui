@@ -98,4 +98,25 @@
   .pointer-events-none {
     pointer-events: none;
   }
+
+  /* --- Glassmorphism --- */
+  .glass-sm {
+    background: var(--wim-glass-bg);
+    border: 1px solid var(--wim-glass-border);
+    backdrop-filter: blur(var(--wim-blur-sm));
+  }
+
+  .glass-md {
+    background: var(--wim-glass-bg);
+    border: 1px solid var(--wim-glass-border);
+    box-shadow: var(--wim-shadow-sm);
+    backdrop-filter: blur(var(--wim-blur-md));
+  }
+
+  .glass-lg {
+    background: var(--wim-glass-bg);
+    border: 1px solid var(--wim-glass-border);
+    box-shadow: var(--wim-shadow-md);
+    backdrop-filter: blur(var(--wim-blur-xl));
+  }
 }

@@ -140,6 +140,7 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
     return (
       <div
         ref={ref}
+        data-theme="dark"
         className={classNames(styles.root, className)}
         style={{ ...(height != null ? { height } : {}), ...style }}
         {...props}

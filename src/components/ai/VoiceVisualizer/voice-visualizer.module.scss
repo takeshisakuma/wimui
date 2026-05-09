@@ -2,20 +2,43 @@
   .root {
     display: block;
     overflow: hidden;
+    color: var(--wim-color-primary);
+    transition: opacity var(--wim-duration-base) var(--wim-easing-standard),
+                color var(--wim-duration-base) var(--wim-easing-standard);
 
     &.active { opacity: 1; }
-    &.muted  { opacity: var(--wim-opacity-dim, 0.4); }
+    
+    &.muted {
+      opacity: var(--wim-opacity-dim, 0.4);
+      filter: grayscale(0.5);
+
+      .bar {
+        animation: voice-muted-breath 3s ease-in-out infinite;
+      }
+
+      .wave {
+        stroke-width: 1px;
+        animation: voice-muted-breath 3s ease-in-out infinite;
+      }
+    }
+
+    /* Sentiment Colors */
+    &.positive { color: var(--wim-color-positive); }
+    &.caution { color: var(--wim-color-caution); }
+    &.negative { color: var(--wim-color-text-error, var(--wim-color-destructive)); }
+    &.informative { color: var(--wim-color-informative); }
   }
 
   /* ── Bar fill color ── */
   .bar {
-    fill: var(--wim-color-primary);
-    transform-origin: bottom center;
+    fill: currentcolor;
+    transform-origin: center;
     transition: height var(--wim-duration-fast, 80ms) linear,
                 y var(--wim-duration-fast, 80ms) linear;
 
     /* Idle: staggered scale-Y pulse */
     &.idle {
+      transform-origin: bottom center;
       animation: voice-bar-idle 1.2s var(--wim-easing-standard, ease-in-out) infinite;
       animation-delay: var(--delay, 0s);
     }
@@ -23,7 +46,7 @@
 
   /* ── Waveform stroke color ── */
   .wave {
-    stroke: var(--wim-color-primary);
+    stroke: currentcolor;
     stroke-width: 2;
   }
 
@@ -49,6 +72,18 @@
   @keyframes voice-wave-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
+  }
+
+  @keyframes voice-muted-breath {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scaleX(0.98);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scaleX(1.02);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -64,7 +64,7 @@ export const HeroSection: StoryObj = {
                   >
                     {t("hero.title")}
                   </Title>
-                  <Text content={t("hero.desc")} size="lg" color="deepgray" />
+                  <Text content={t("hero.desc")} size="lg" color="text-secondary" />
                 </Stack>
               </Stack>
 
@@ -86,7 +86,7 @@ export const HeroSection: StoryObj = {
                 <Text
                   content={t("hero.dev_count")}
                   size="sm"
-                  color="deepgray"
+                  color="text-secondary"
                 />
               </Stack>
             </Stack>
@@ -101,7 +101,7 @@ export const HeroSection: StoryObj = {
                 }}
               >
                 <Stack gap="none">
-                  <div style={{ padding: "24px" }}>
+                  <div style={{ padding: "var(--wim-spacing-xl)" }}>
                     <Stack gap="lg">
                       <Skeleton variant="text" height={20} width="100%" />
                       <Skeleton variant="text" height={20} width="80%" />
@@ -109,19 +109,19 @@ export const HeroSection: StoryObj = {
                         <Skeleton
                           variant="rect"
                           height={100}
-                          style={{ borderRadius: "8px" }}
+                          style={{ borderRadius: "var(--wim-radius-lg)" }}
                         />
                         <Skeleton
                           variant="rect"
                           height={100}
-                          style={{ borderRadius: "8px" }}
+                          style={{ borderRadius: "var(--wim-radius-lg)" }}
                         />
                       </Grid>
                       <Skeleton
                         variant="rect"
                         height={80}
                         width="100%"
-                        style={{ borderRadius: "4px" }}
+                        style={{ borderRadius: "var(--wim-radius-md)" }}
                       />
                     </Stack>
                   </div>
@@ -140,7 +140,7 @@ export const PricingTable: StoryObj = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container
-        style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
       >
         <style>{`
           .pricing-list {
@@ -155,14 +155,14 @@ export const PricingTable: StoryObj = {
             }
           }
         `}</style>
-        <Stack align="center" gap="3xl" style={{ marginBottom: "64px" }}>
+        <Stack align="center" gap="3xl" style={{ marginBottom: "var(--wim-spacing-4xl)" }}>
           <Title tag="h2" size="xl" align="center">
             {t("pricing.title")}
           </Title>
           <Container size="sm">
             <Text
               content={t("pricing.subtitle")}
-              color="deepgray"
+              color="text-secondary"
               style={{ textAlign: "center" }}
             />
           </Container>
@@ -206,7 +206,7 @@ export const PricingTable: StoryObj = {
                 style={{
                   margin: 0,
                   width: "auto",
-                  fontSize: "3.75rem",
+                  fontSize: "var(--wim-font-size-5xl)",
                   letterSpacing: "-0.02em",
                 }}
               >
@@ -214,7 +214,7 @@ export const PricingTable: StoryObj = {
               </Title>
               <Text
                 content={t("pricing.period")}
-                color="black"
+                color="text-primary"
                 size="lg"
                 style={{ marginLeft: "-2px", fontWeight: 600 }}
               />
@@ -229,7 +229,7 @@ export const PricingTable: StoryObj = {
               <Text
                 content={t("pricing.starter_desc")}
                 size="sm"
-                color="deepgray"
+                color="text-secondary"
                 style={{ textAlign: "center", margin: 0 }}
               />
             </div>
@@ -286,7 +286,7 @@ export const PricingTable: StoryObj = {
                 style={{
                   margin: 0,
                   width: "auto",
-                  fontSize: "3.75rem",
+                  fontSize: "var(--wim-font-size-5xl)",
                   letterSpacing: "-0.02em",
                 }}
               >
@@ -294,7 +294,7 @@ export const PricingTable: StoryObj = {
               </Title>
               <Text
                 content={t("pricing.period")}
-                color="black"
+                color="text-primary"
                 size="lg"
                 style={{ marginLeft: "-2px", fontWeight: 600 }}
               />
@@ -309,7 +309,7 @@ export const PricingTable: StoryObj = {
               <Text
                 content={t("pricing.pro_desc")}
                 size="sm"
-                color="deepgray"
+                color="text-secondary"
                 style={{ textAlign: "center", margin: 0 }}
               />
             </div>
@@ -361,7 +361,7 @@ export const PricingTable: StoryObj = {
                 style={{
                   margin: 0,
                   width: "auto",
-                  fontSize: "3.75rem",
+                  fontSize: "var(--wim-font-size-5xl)",
                   letterSpacing: "-0.02em",
                 }}
               >
@@ -369,7 +369,7 @@ export const PricingTable: StoryObj = {
               </Title>
               <Text
                 content={t("pricing.period")}
-                color="black"
+                color="text-primary"
                 size="lg"
                 style={{ marginLeft: "-2px", fontWeight: 600 }}
               />
@@ -384,7 +384,7 @@ export const PricingTable: StoryObj = {
               <Text
                 content={t("pricing.ent_desc")}
                 size="sm"
-                color="deepgray"
+                color="text-secondary"
                 style={{ textAlign: "center", margin: 0 }}
               />
             </div>
@@ -431,7 +431,7 @@ export const Testimonial: StoryObj = {
     ];
     return (
       <Container
-        style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
       >
         <Stack align="center" gap="2xl" style={{ marginBottom: "56px" }}>
           <Title tag="h2" size="xl" align="center">
@@ -439,7 +439,7 @@ export const Testimonial: StoryObj = {
           </Title>
           <Text
             content={t("testimonial.subtitle")}
-            color="deepgray"
+            color="text-secondary"
             style={{ textAlign: "center" }}
           />
         </Stack>
@@ -470,7 +470,7 @@ export const Testimonial: StoryObj = {
                       size="sm"
                       style={{ fontWeight: 600 }}
                     />
-                    <Text content={p.role} size="xs" color="deepgray" />
+                    <Text content={p.role} size="xs" color="text-secondary" />
                   </Stack>
                 </Stack>
               </Stack>
@@ -492,7 +492,7 @@ export const FeatureSection: StoryObj = {
           width: "100%",
           height: "100%",
           minHeight: "6rem",
-          borderRadius: "0.5rem",
+          borderRadius: "var(--wim-radius-lg)",
           background: "var(--wim-color-surface-variant)",
         }}
       />
@@ -525,16 +525,16 @@ export const FeatureSection: StoryObj = {
     ];
     return (
       <Container
-        style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
       >
-        <Stack align="center" gap="2xl" style={{ marginBottom: "48px" }}>
+        <Stack align="center" gap="2xl" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
           <Badge intent="primary" content={t("feature.badge")} />
           <Title tag="h2" size="xl" align="center">
             {t("feature.title")}
           </Title>
           <Text
             content={t("feature.subtitle")}
-            color="deepgray"
+            color="text-secondary"
             style={{ textAlign: "center" }}
           />
         </Stack>
@@ -567,7 +567,7 @@ export const CTASection: StoryObj = {
       <div
         style={{
           background: "var(--wim-color-primary)",
-          padding: "80px 24px",
+          padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)",
           textAlign: "center",
         }}
       >
@@ -585,7 +585,7 @@ export const CTASection: StoryObj = {
               <Container size="sm">
                 <Text
                   content={t("cta.desc")}
-                  style={{ color: "rgba(255,255,255,0.85)", textAlign: "center" }}
+                  style={{ color: "oklch(from var(--wim-color-text-on-primary) l c h / 0.85)", textAlign: "center" }}
                 />
               </Container>
             </Stack>
@@ -594,7 +594,7 @@ export const CTASection: StoryObj = {
                 variant="solid"
                 size="lg"
                 style={{
-                  background: "white",
+                  background: "var(--wim-color-bg-component)",
                   color: "var(--wim-color-primary)",
                   border: "none",
                 }}
@@ -606,8 +606,8 @@ export const CTASection: StoryObj = {
                 size="lg"
                 style={{
                   background: "transparent",
-                  borderColor: "rgba(255,255,255,0.6)",
-                  color: "white",
+                  borderColor: "oklch(from var(--wim-color-text-on-primary) l c h / 0.6)",
+                  color: "var(--wim-color-text-on-primary)",
                 }}
               >
                 {t("cta.btn_secondary")}
@@ -634,7 +634,7 @@ export const CTASection: StoryObj = {
                   <Text
                     content={s.label}
                     size="sm"
-                    style={{ color: "rgba(255,255,255,0.7)" }}
+                    style={{ color: "oklch(from var(--wim-color-text-on-primary) l c h / 0.7)" }}
                   />
                 </Stack>
               ))}
@@ -700,13 +700,13 @@ export const ComparisonTable: StoryObj = {
     );
     return (
       <Container
-        style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
       >
-        <Stack align="center" gap="2xl" style={{ marginBottom: "48px" }}>
+        <Stack align="center" gap="2xl" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
           <Title tag="h2" size="xl" align="center">
             {t("compare.title")}
           </Title>
-          <Text content={t("compare.subtitle")} color="deepgray" />
+          <Text content={t("compare.subtitle")} color="secondary" />
         </Stack>
         <div
           style={{
@@ -720,23 +720,23 @@ export const ComparisonTable: StoryObj = {
               width: "100%",
               borderCollapse: "collapse",
               background: "var(--wim-color-surface)",
-              border: "1px solid var(--wim-color-border-secondary)",
-              borderRadius: "8px",
+              border: "1px solid var(--wim-color-border)",
+              borderRadius: "var(--wim-radius-md)",
               overflow: "hidden",
             }}
           >
             <thead>
               <tr
                 style={{
-                  borderBottom: "1px solid var(--wim-color-border-secondary)",
+                  borderBottom: "1px solid var(--wim-color-border)",
                 }}
               >
                 <th
                   style={{
-                    padding: "16px 24px",
+                    padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "left",
                     fontWeight: 600,
-                    background: "var(--wim-color-surface-variant)",
+                    background: "var(--wim-color-bg-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -744,10 +744,10 @@ export const ComparisonTable: StoryObj = {
                 </th>
                 <th
                   style={{
-                    padding: "16px 24px",
+                    padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 600,
-                    background: "var(--wim-color-surface-variant)",
+                    background: "var(--wim-color-bg-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -755,7 +755,7 @@ export const ComparisonTable: StoryObj = {
                 </th>
                 <th
                   style={{
-                    padding: "16px 24px",
+                    padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 700,
                     background: "var(--wim-color-primary-light)",
@@ -767,10 +767,10 @@ export const ComparisonTable: StoryObj = {
                 </th>
                 <th
                   style={{
-                    padding: "16px 24px",
+                    padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 600,
-                    background: "var(--wim-color-surface-variant)",
+                    background: "var(--wim-color-bg-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -785,32 +785,31 @@ export const ComparisonTable: StoryObj = {
                   style={{
                     borderBottom:
                       i < features.length - 1
-                        ? "1px solid var(--wim-color-border-secondary)"
+                        ? "1px solid var(--wim-color-border)"
                         : "none",
                   }}
                 >
                   <td
                     style={{
-                      padding: "14px 24px",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                       fontSize: "var(--wim-font-size-sm)",
                     }}
                   >
                     {f.label}
                   </td>
-                  <td style={{ padding: "14px 24px", textAlign: "center" }}>
+                  <td style={{ padding: "var(--wim-spacing-md) var(--wim-spacing-xl)", textAlign: "center" }}>
                     {f.free ? <Check /> : <Dash />}
                   </td>
                   <td
                     style={{
-                      padding: "14px 24px",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                       textAlign: "center",
                       background: "var(--wim-color-primary-light)",
-                      opacity: 0.6,
                     }}
                   >
                     {f.pro ? <Check /> : <Dash />}
                   </td>
-                  <td style={{ padding: "14px 24px", textAlign: "center" }}>
+                  <td style={{ padding: "var(--wim-spacing-md) var(--wim-spacing-xl)", textAlign: "center" }}>
                     {f.ent ? <Check /> : <Dash />}
                   </td>
                 </tr>
@@ -918,17 +917,17 @@ export const FeatureComparison: StoryObj = {
     };
 
     return (
-      <Box style={{ paddingTop: "3rem", paddingBottom: "3rem", background: "var(--wim-color-bg-surface)" }}>
+      <Box style={{ paddingTop: "var(--wim-spacing-3xl)", paddingBottom: "var(--wim-spacing-3xl)", background: "var(--wim-color-surface)" }}>
         <Container style={{ maxWidth: "1000px" }}>
           <Stack
             gap="md"
             align="center"
-            style={{ textAlign: "center", marginBottom: "3rem" }}
+            style={{ textAlign: "center", marginBottom: "var(--wim-spacing-3xl)" }}
           >
             <Title tag="h2" size="xl">
               {t("docs_stories_recipes:feature_comparison.title")}
             </Title>
-            <Text color="text-secondary" size="sm">
+            <Text color="secondary" size="sm">
               {t("docs_stories_recipes:feature_comparison.subtitle")}
             </Text>
           </Stack>
@@ -939,16 +938,18 @@ export const FeatureComparison: StoryObj = {
                 width: "100%",
                 borderCollapse: "collapse",
                 border: "1px solid var(--wim-color-border)",
-                background: "var(--wim-color-bg-surface)",
+                background: "var(--wim-color-surface)",
+                borderRadius: "var(--wim-radius-md)",
+                overflow: "hidden",
               }}
             >
               <thead>
-                <tr style={{ background: "var(--wim-color-bg-surface-subtle)" }}>
+                <tr style={{ background: "var(--wim-color-bg-subtle)" }}>
                   <th
                     style={{
                       textAlign: "left",
-                      padding: "1rem 1.5rem",
-                      borderBottom: "2px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
+                      borderBottom: "1px solid var(--wim-color-border)",
                     }}
                   >
                     <Text weight="bold" color="text-secondary" size="sm">
@@ -958,9 +959,8 @@ export const FeatureComparison: StoryObj = {
                   <th
                     style={{
                       textAlign: "center",
-                      padding: "1rem",
-                      borderBottom: "2px solid var(--wim-color-border)",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
+                      borderBottom: "1px solid var(--wim-color-border)",
                     }}
                   >
                     <Text weight="bold" size="sm">
@@ -972,9 +972,8 @@ export const FeatureComparison: StoryObj = {
                   <th
                     style={{
                       textAlign: "center",
-                      padding: "1rem",
-                      borderBottom: "2px solid var(--wim-color-border)",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
+                      borderBottom: "1px solid var(--wim-color-border)",
                     }}
                   >
                     <Text weight="bold" size="sm">
@@ -984,9 +983,8 @@ export const FeatureComparison: StoryObj = {
                   <th
                     style={{
                       textAlign: "center",
-                      padding: "1rem",
-                      borderBottom: "2px solid var(--wim-color-border)",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
+                      borderBottom: "1px solid var(--wim-color-border)",
                     }}
                   >
                     <Text weight="bold" size="sm">
@@ -1004,8 +1002,8 @@ export const FeatureComparison: StoryObj = {
                       <td
                         colSpan={4}
                         style={{
-                          padding: "0.75rem 1.5rem",
-                          background: "var(--wim-color-bg-surface-variant)",
+                          padding: "var(--wim-spacing-sm) var(--wim-spacing-xl)",
+                          background: "var(--wim-color-surface-variant)",
                           borderBottom: "1px solid var(--wim-color-border)",
                         }}
                       >
@@ -1018,7 +1016,7 @@ export const FeatureComparison: StoryObj = {
                       <tr key={j}>
                         <td
                           style={{
-                            padding: "0.75rem 1.5rem",
+                            padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                             borderBottom: "1px solid var(--wim-color-border)",
                           }}
                         >
@@ -1027,9 +1025,8 @@ export const FeatureComparison: StoryObj = {
                         <td
                           style={{
                             textAlign: "center",
-                            padding: "0.75rem",
+                            padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                             borderBottom: "1px solid var(--wim-color-border)",
-                            borderLeft: "1px solid var(--wim-color-border)",
                           }}
                         >
                           {renderValue(item.starter)}
@@ -1037,9 +1034,8 @@ export const FeatureComparison: StoryObj = {
                         <td
                           style={{
                             textAlign: "center",
-                            padding: "0.75rem",
+                            padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                             borderBottom: "1px solid var(--wim-color-border)",
-                            borderLeft: "1px solid var(--wim-color-border)",
                           }}
                         >
                           {renderValue(item.pro)}
@@ -1047,9 +1043,8 @@ export const FeatureComparison: StoryObj = {
                         <td
                           style={{
                             textAlign: "center",
-                            padding: "0.75rem",
+                            padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                             borderBottom: "1px solid var(--wim-color-border)",
-                            borderLeft: "1px solid var(--wim-color-border)",
                           }}
                         >
                           {renderValue(item.enterprise)}
@@ -1063,14 +1058,13 @@ export const FeatureComparison: StoryObj = {
                 <tr>
                   <td
                     style={{
-                      padding: "1.5rem",
+                      padding: "var(--wim-spacing-xl)",
                     }}
                   />
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "1.5rem 1rem",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-xl)",
                     }}
                   >
                     <Button
@@ -1084,8 +1078,7 @@ export const FeatureComparison: StoryObj = {
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "1.5rem 1rem",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-xl)",
                     }}
                   >
                     <Button variant="solid" size="sm" style={{ width: "100%" }}>
@@ -1095,8 +1088,7 @@ export const FeatureComparison: StoryObj = {
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "1.5rem 1rem",
-                      borderLeft: "1px solid var(--wim-color-border)",
+                      padding: "var(--wim-spacing-xl)",
                     }}
                   >
                     <Button

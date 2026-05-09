@@ -55,11 +55,6 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
 
     // For backward compatibility with CSS classes for certain colors
     const mappedColors = [
-      "black",
-      "deepgray",
-      "gray",
-      "lightgray",
-      "white",
       "error",
       "primary",
       "success",

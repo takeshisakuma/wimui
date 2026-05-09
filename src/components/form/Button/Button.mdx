@@ -1,0 +1,24 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as ButtonStories from '../../../../stories/form/Button/Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Buttons allow users to take actions, and make choices, with a single tap.
+
+## When to use
+- **Primary actions**: Use the `solid` variant for the main call-to-action on a page.
+- **Secondary actions**: Use the `outline` or `ghost` variant for less important actions.
+- **Form submissions**: Use `type="submit"` within a form.
+- **Destructive actions**: Use `variant="danger"` for actions that delete data or are irreversible.
+
+## Design Guidelines
+- **Labels**: Keep labels short and action-oriented (e.g., "Save", "Delete", "Send").
+- **Consistency**: Use the same button style for the same type of action across the application.
+- **Placement**: Primary buttons should usually be placed at the end of a group (bottom-right).
+
+<Canvas of={ButtonStories.Solid} />
+
+## Properties
+<Controls />

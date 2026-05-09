@@ -1,0 +1,23 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as ThoughtProcessStories from '../../../../stories/ai/ThoughtProcess/ThoughtProcess.stories';
+
+<Meta of={ThoughtProcessStories} />
+
+# ThoughtProcess
+
+Visualizes the step-by-step reasoning or background processing of an AI model.
+
+## When to use
+- **Transparency**: Use when the user needs to understand *how* the AI reached a conclusion.
+- **Wait Time Management**: Use to provide visual feedback during long-running reasoning tasks.
+- **Debugging**: Useful for developers to trace model logic in an audit log.
+
+## Design Guidelines
+- **States**: Use the `pending` status for the current step and `completed` for finished ones.
+- **Streaming**: Enable `isStreaming` for the very last step to show real-time progress.
+- **Thinking State**: Set `isThinking={true}` on the root component to show an ambient pulse while the overall process is active.
+
+<Canvas of={ThoughtProcessStories.Streaming} />
+
+## Properties
+<Controls />

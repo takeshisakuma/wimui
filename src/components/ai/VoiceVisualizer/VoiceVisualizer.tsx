@@ -21,6 +21,8 @@ export interface VoiceVisualizerProps extends React.ComponentPropsWithoutRef<"sv
   height?: number;
   /** Additional CSS class */
   className?: string;
+  /** Sentiment context for coloring (default 'neutral') */
+  sentiment?: "neutral" | "positive" | "caution" | "negative" | "informative";
 }
 
 /* SVG coordinate constants */
@@ -47,6 +49,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
       barCount = 24,
       height = 40,
       className,
+      sentiment = "neutral",
       style,
       ...props
     },
@@ -102,6 +105,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         className={classNames(
           styles.root,
           styles[mode],
+          styles[sentiment],
           isActive && styles.active,
           !isActive && styles.muted,
           className

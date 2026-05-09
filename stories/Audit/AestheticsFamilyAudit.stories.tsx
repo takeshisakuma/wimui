@@ -44,17 +44,17 @@ export const Glassmorphism: StoryObj = {
               borderRadius: "var(--wim-radius-lg)"
             }}>
               <Stack gap="xl">
-                <Card variant="glass" padding="md" style={{ backdropFilter: "blur(var(--wim-blur-sm))" }}>
-                  <Title tag="h4" size="md">Glass Sm (Blur 8px)</Title>
-                  <Text size="sm">Using --wim-blur-sm token.</Text>
+                <Card className="glass-sm" padding="md">
+                  <Title tag="h4" size="md">Glass Sm</Title>
+                  <Text size="sm">.glass-sm utility (Blur 8px)</Text>
                 </Card>
-                <Card variant="glass" padding="md" style={{ backdropFilter: "blur(var(--wim-blur-md))" }}>
-                  <Title tag="h4" size="md">Glass Md (Blur 12px)</Title>
-                  <Text size="sm">Using --wim-blur-md token (Default).</Text>
+                <Card className="glass-md" padding="md">
+                  <Title tag="h4" size="md">Glass Md</Title>
+                  <Text size="sm">.glass-md utility (Blur 12px + Shadow)</Text>
                 </Card>
-                <Card variant="glass" padding="md" style={{ backdropFilter: "blur(var(--wim-blur-lg))" }}>
-                  <Title tag="h4" size="md">Glass Lg (Blur 16px)</Title>
-                  <Text size="sm">Using --wim-blur-lg token.</Text>
+                <Card className="glass-lg" padding="md">
+                  <Title tag="h4" size="md">Glass Lg</Title>
+                  <Text size="sm">.glass-lg utility (Blur 24px + Shadow)</Text>
                 </Card>
               </Stack>
             </Box>
@@ -97,46 +97,42 @@ export const Glassmorphism: StoryObj = {
           <ComponentGroup label={t("audit:motion_easing_emphasized")} align="stretch">
              <Stack gap="md">
                 <Box>
-                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Emphasized (Standard for Large Movements)</Text>
-                  <Box style={{ 
-                    height: "4px", 
-                    width: "100%", 
-                    background: "var(--wim-color-bg-secondary)", 
-                    borderRadius: "2px",
-                    position: "relative",
-                    overflow: "hidden"
-                  }}>
-                    <Box style={{ 
-                      position: "absolute",
-                      height: "100%",
-                      width: "40px",
-                      background: "var(--wim-color-primary)",
-                      animation: "moveRight 3s var(--wim-easing-emphasized) infinite"
-                    }} />
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Entrance (Bounce / Overshoot)</Text>
+                  <Box className="motion-track">
+                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-entrance) infinite" }} />
                   </Box>
                 </Box>
                 
                 <Box>
-                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Spring (Organic / Playful)</Text>
-                  <Box style={{ 
-                    height: "4px", 
-                    width: "100%", 
-                    background: "var(--wim-color-bg-secondary)", 
-                    borderRadius: "2px",
-                    position: "relative",
-                    overflow: "hidden"
-                  }}>
-                    <Box style={{ 
-                      position: "absolute",
-                      height: "100%",
-                      width: "40px",
-                      background: "var(--wim-color-positive)",
-                      animation: "moveRight 3s var(--wim-easing-spring) infinite"
-                    }} />
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Exit (Fast Fade)</Text>
+                  <Box className="motion-track">
+                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-exit) infinite" }} />
+                  </Box>
+                </Box>
+
+                <Box>
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Layout Transition (Smooth All)</Text>
+                  <Box className="motion-track">
+                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-layout-transition) infinite" }} />
                   </Box>
                 </Box>
 
                 <style>{`
+                  .motion-track {
+                    height: 8px;
+                    width: 100%;
+                    background: var(--wim-color-bg-secondary);
+                    border-radius: 4px;
+                    position: relative;
+                    overflow: hidden;
+                  }
+                  .motion-ball {
+                    position: absolute;
+                    height: 100%;
+                    width: 40px;
+                    background: var(--wim-color-primary);
+                    border-radius: 4px;
+                  }
                   @keyframes moveRight {
                     0% { left: 0; }
                     50% { left: calc(100% - 40px); }
@@ -144,6 +140,26 @@ export const Glassmorphism: StoryObj = {
                   }
                 `}</style>
              </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Dynamic Shadows */}
+        <ComparisonGrid title="OKLCH Dynamic Shadows">
+          <ComponentGroup label="Standard Shadows (Dynamic Color)" direction="row" wrap gap="xl">
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-sm)" }}>
+              <Text size="xs">Shadow SM</Text>
+            </Box>
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-md)" }}>
+              <Text size="xs">Shadow MD</Text>
+            </Box>
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-lg)" }}>
+              <Text size="xs">Shadow LG</Text>
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label="Ambient Glow (Dark Mode Only)">
+            <Text size="sm" color="text-secondary">
+              In dark mode, shadows automatically use a semi-transparent primary color to create a natural glow effect.
+            </Text>
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -160,7 +176,7 @@ export const Glassmorphism: StoryObj = {
             }}>
               <Header glass fixed={false} style={{ position: "absolute", top: 0 }}>
                 <Flex align="center" justify="between" style={{ height: "100%", paddingLeft: "var(--wim-spacing-md)", paddingRight: "var(--wim-spacing-md)", width: "100%" }}>
-                   <Title tag="h4" size="md" style={{ color: "white" }}>WIM UI</Title>
+                   <Title tag="h4" size="md" style={{ color: "var(--wim-color-text-on-primary)" }}>WIM UI</Title>
                    <Avatar size="sm" src="https://i.pravatar.cc/150?u=wim" />
                 </Flex>
               </Header>

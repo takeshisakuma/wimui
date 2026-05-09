@@ -77,7 +77,7 @@ export const FAQSection = ({
           {description && (
             <Text
               content={description}
-              color="deepgray"
+              color="text-secondary"
               className={styles.description}
             />
           )}

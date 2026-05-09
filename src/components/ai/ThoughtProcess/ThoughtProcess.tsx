@@ -21,6 +21,8 @@ export interface ThoughtStepProps {
   label?: string;
   /** Hides the connector line below this step — use on the last step */
   isLast?: boolean;
+  /** Whether the text is currently streaming (shows a typing cursor) */
+  isStreaming?: boolean;
 }
 
 export const ThoughtStep = ({
@@ -28,6 +30,7 @@ export const ThoughtStep = ({
   status = "completed",
   label,
   isLast = false,
+  isStreaming = false,
 }: ThoughtStepProps) => {
   const pointContent =
     status === "pending" ? (
@@ -52,7 +55,9 @@ export const ThoughtStep = ({
       </TimelineSeparator>
       <TimelineContent className={styles.content}>
         {label && <div className={styles.label}>{label}</div>}
-        <div className={styles.text}>{children}</div>
+        <div className={classNames(styles.text, isStreaming && styles.streaming)}>
+          {children}
+        </div>
       </TimelineContent>
     </TimelineItem>
   );
@@ -68,6 +73,8 @@ export interface ThoughtProcessProps {
   isCollapsible?: boolean;
   /** Initial expanded state (only relevant when isCollapsible is true) */
   defaultExpanded?: boolean;
+  /** Whether the AI is currently thinking (shows a pulsating background) */
+  isThinking?: boolean;
 }
 
 /**
@@ -84,12 +91,13 @@ export const ThoughtProcess = ({
   className,
   isCollapsible = true,
   defaultExpanded = true,
+  isThinking = false,
 }: ThoughtProcessProps) => {
   const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
   const bodyId = useId();
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames(styles.root, isThinking && styles.thinking, className)}>
       {isCollapsible ? (
         <button
           type="button"

@@ -145,6 +145,30 @@
       background: var(--wim-color-primary-hover);
       border-color: var(--wim-color-primary-hover);
     }
+
+    &.applying {
+      cursor: wait;
+      opacity: 0.8;
+    }
+
+    &.applied {
+      color: var(--wim-color-text-on-positive);
+      cursor: default;
+      background: var(--wim-color-positive);
+      border-color: var(--wim-color-positive);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .spin {
+    animation: code-spin 1s linear infinite;
+  }
+
+  @keyframes code-spin {
+    to { transform: rotate(360deg); }
   }
 
   .rejectButton {

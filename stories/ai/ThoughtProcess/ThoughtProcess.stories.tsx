@@ -85,3 +85,38 @@ export const Static: Story = {
     );
   },
 };
+export const Thinking: Story = {
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}>
+        <ThoughtProcess title={t("story.thoughtprocess_title_thinking")} isThinking={true}>
+          <ThoughtStep label={t("story.thoughtprocess_step1_label")} status="completed">
+            {t("story.thoughtprocess_step1_content")}
+          </ThoughtStep>
+          <ThoughtStep label={t("story.thoughtprocess_step2_label")} status="pending" isLast>
+            {t("story.thoughtprocess_step2_content")}
+          </ThoughtStep>
+        </ThoughtProcess>
+      </div>
+    );
+  },
+};
+
+export const Streaming: Story = {
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}>
+        <ThoughtProcess title={t("story.thoughtprocess_title_streaming")}>
+          <ThoughtStep label={t("story.thoughtprocess_step1_label")} status="completed">
+            {t("story.thoughtprocess_step1_content")}
+          </ThoughtStep>
+          <ThoughtStep label={t("story.thoughtprocess_step2_label")} status="pending" isStreaming={true} isLast>
+            {t("story.thoughtprocess_step2_content")}
+          </ThoughtStep>
+        </ThoughtProcess>
+      </div>
+    );
+  },
+};

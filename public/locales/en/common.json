@@ -530,7 +530,9 @@
     "std_header_unified_sizing": "Unified Sizing"
   },
   "story": {
-    "carousel_slide_label": "Slide {{number}}"
+    "carousel_slide_label": "Slide {{number}}",
+    "thoughtprocess_title_thinking": "Thinking State",
+    "thoughtprocess_title_streaming": "Streaming Reasoning"
   },
   "sun": "Sun",
   "thu": "Thu",

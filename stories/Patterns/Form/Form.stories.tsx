@@ -61,7 +61,7 @@ export const LoginForm: StoryObj = {
               <Title tag="h2" size="xl" align="center" style={{ lineHeight: 1 }}>
                 {t("login.title")}
               </Title>
-              <Text content={t("login.subtitle")} color="deepgray" size="sm" />
+              <Text content={t("login.subtitle")} color="text-secondary" size="sm" />
             </Stack>
 
             <form onSubmit={(e) => e.preventDefault()}>
@@ -107,9 +107,9 @@ export const LoginForm: StoryObj = {
               <Text
                 content={t("login.no_account")}
                 size="sm"
-                color="gray"
+                color="text-tertiary"
               />
-              <Link href="#" style={{ fontSize: "0.875rem" }}>
+              <Link href="#" style={{ fontSize: "var(--wim-font-size-sm)" }}>
                 {t("login.sign_up")}
               </Link>
             </Stack>
@@ -158,7 +158,7 @@ export const SignupForm: StoryObj = {
               </Title>
               <Text
                 content={t("signup.subtitle")}
-                color="deepgray"
+                color="text-secondary"
                 size="sm"
                 style={{ textAlign: "center" }}
               />
@@ -213,9 +213,9 @@ export const SignupForm: StoryObj = {
               <Text
                 content={t("signup.have_account")}
                 size="sm"
-                color="gray"
+                color="text-tertiary"
               />
-              <Link href="#" style={{ fontSize: "0.875rem" }}>
+              <Link href="#" style={{ fontSize: "var(--wim-font-size-sm)" }}>
                 {t("signup.sign_in")}
               </Link>
             </Stack>
@@ -420,7 +420,7 @@ export const WelcomeScreen: StoryObj = {
               style={{
                 width: "64px",
                 height: "64px",
-                borderRadius: "16px",
+              borderRadius: "var(--wim-radius-xl)",
                 background: "var(--wim-color-primary)",
                 display: "flex",
                 alignItems: "center",
@@ -439,7 +439,7 @@ export const WelcomeScreen: StoryObj = {
               </Title>
               <Text
                 content={t("welcome.subtitle")}
-                color="deepgray"
+                color="text-secondary"
                 style={{ textAlign: "center" }}
               />
             </Stack>
@@ -453,7 +453,7 @@ export const WelcomeScreen: StoryObj = {
                     style={{
                       width: "36px",
                       height: "36px",
-                      borderRadius: "8px",
+                      borderRadius: "var(--wim-radius-lg)",
                       background: "var(--wim-color-primary-light)",
                       display: "flex",
                       alignItems: "center",
@@ -471,7 +471,7 @@ export const WelcomeScreen: StoryObj = {
                   </div>
                   <Stack gap="2xs">
                     <Text content={s.title} style={{ fontWeight: 600 }} />
-                    <Text content={s.desc} size="sm" color="deepgray" />
+                    <Text content={s.desc} size="sm" color="text-secondary" />
                   </Stack>
                 </Stack>
               ))}
@@ -529,7 +529,7 @@ export const ProgressChecklist: StoryObj = {
               </Title>
               <Text
                 content={t("checklist.subtitle")}
-                color="deepgray"
+                color="text-secondary"
                 size="sm"
               />
             </Stack>
@@ -539,7 +539,7 @@ export const ProgressChecklist: StoryObj = {
                 <Text
                   content={`${completedCount} / ${total}`}
                   size="sm"
-                  color="deepgray"
+                  color="text-secondary"
                 />
                 <Text
                   content={`${Math.round((completedCount / total) * 100)}%`}
@@ -559,7 +559,7 @@ export const ProgressChecklist: StoryObj = {
                   key={i}
                   style={{
                     padding: "var(--wim-spacing-md) var(--wim-spacing-lg)",
-                    borderRadius: "8px",
+                    borderRadius: "var(--wim-radius-lg)",
                     background: checked[i]
                       ? "var(--wim-color-surface-variant)"
                       : "transparent",
@@ -632,7 +632,7 @@ export const UserProfileForm: StoryObj = {
             </Title>
             <Text
               content={t("profile.subtitle")}
-              color="deepgray"
+              color="text-secondary"
               style={{ marginTop: "var(--wim-spacing-xs)" }}
             />
           </div>

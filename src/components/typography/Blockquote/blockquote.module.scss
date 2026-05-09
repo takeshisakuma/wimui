@@ -37,45 +37,6 @@
     }
 
     /* Color Variants */
-    &.black {
-      color: var(--wim-color-text-primary);
-
-      &.border {
-        border-color: var(--wim-color-text-primary);
-      }
-    }
-
-    &.deepgray {
-      color: var(--wim-color-text-secondary);
-
-      &.border {
-        border-color: var(--wim-color-text-secondary);
-      }
-    }
-
-    &.gray {
-      color: var(--wim-color-text-secondary);
-
-      &.border {
-        border-color: var(--wim-color-text-secondary);
-      }
-    }
-
-    &.lightgray {
-      color: var(--wim-color-text-tertiary);
-
-      &.border {
-        border-color: var(--wim-color-text-tertiary);
-      }
-    }
-
-    &.white {
-      color: var(--wim-color-text-white);
-
-      &.border {
-        border-color: var(--wim-color-text-white);
-      }
-    }
 
     &.primary {
       color: oklch(from var(--wim-color-primary) calc(l * 0.7) c h);

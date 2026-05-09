@@ -10,6 +10,38 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 import * as mdx from "eslint-plugin-mdx";
 import globals from "globals";
 
+const noEmojiPlugin = {
+  rules: {
+    "no-emoji": {
+      meta: {
+        type: "problem",
+        docs: { description: "Disallow emojis in the codebase" },
+        messages: { noEmoji: "Emojis are prohibited by project rules. Please use SVG icons instead." },
+      },
+      create(context) {
+        const emojiRegex = /\p{Extended_Pictographic}/u;
+        return {
+          Literal(node) {
+            if (typeof node.value === "string" && emojiRegex.test(node.value)) {
+              context.report({ node, messageId: "noEmoji" });
+            }
+          },
+          JSXText(node) {
+            if (emojiRegex.test(node.value)) {
+              context.report({ node, messageId: "noEmoji" });
+            }
+          },
+          TemplateElement(node) {
+            if (emojiRegex.test(node.value.raw)) {
+              context.report({ node, messageId: "noEmoji" });
+            }
+          }
+        };
+      }
+    }
+  }
+};
+
 export default [
   eslint.configs.recommended,
 
@@ -84,6 +116,7 @@ export default [
       "jsx-a11y": jsxA11y,
       react: reactPlugin,
       "react-hooks": reactHooksPlugin,
+      "local-rules": noEmojiPlugin,
     },
     languageOptions: {
       parser: tsParser,
@@ -118,6 +151,7 @@ export default [
         { argsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-explicit-any": "warn",
+      "local-rules/no-emoji": "error",
     },
   },
 

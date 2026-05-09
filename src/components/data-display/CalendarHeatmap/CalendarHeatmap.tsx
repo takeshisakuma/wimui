@@ -116,7 +116,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
       <Component className={classNames(styles.root, className)} ref={ref} {...props}>
         <Slottable>{children}</Slottable>
         <div className={styles.internalWrapper}>
-          <div className={styles.grid}>
+          <div className={styles.grid} role="grid" aria-readonly="true">
             <div className={styles.labels}>
               {dayLabels.map((day, i) => (
                 <span key={i}>
@@ -125,7 +125,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
               ))}
             </div>
             {weeks.map((week, i) => (
-              <div key={i} className={styles.week}>
+              <div key={i} className={styles.week} role="row">
                 {week.map((day) => {
                   const content = tooltipFormatter 
                     ? tooltipFormatter(day.date, day.count)
@@ -138,6 +138,9 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
                           className={classNames(styles.cell, styles[`level${day.level}`])}
                           data-date={day.date}
                           data-count={day.count}
+                          role="gridcell"
+                          aria-label={`${day.count} activities on ${day.date}`}
+                          aria-selected={false}
                         />
                       </TooltipTrigger>
                       <TooltipContent>{content}</TooltipContent>

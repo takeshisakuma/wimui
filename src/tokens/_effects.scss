@@ -16,4 +16,35 @@
       rgb(255 255 255 / 0.05) 0%,
       rgb(0 0 0 / 0.02) 100%);
   --wim-inner-highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+
+  /* --- Advanced Motion Tokens --- */
+  --wim-transition-entrance: var(--wim-duration-base) var(--wim-easing-out-back);
+  --wim-transition-exit: var(--wim-duration-fast) var(--wim-easing-exit);
+  --wim-layout-transition: all var(--wim-duration-base) var(--wim-easing-standard);
+
+  /* --- Dynamic OKLCH Shadows --- */
+  --wim-shadow-color: oklch(0% 0 0deg / 0.1);
+  --wim-shadow-xs: 0 1px 2px var(--wim-shadow-color), 0 1px 1px oklch(0% 0 0deg / 0.05);
+  --wim-shadow-sm: 0 2px 4px var(--wim-shadow-color), 0 1px 2px oklch(0% 0 0deg / 0.12);
+  --wim-shadow-md: 0 4px 12px var(--wim-shadow-color), 0 2px 4px oklch(0% 0 0deg / 0.05);
+  --wim-shadow-lg: 0 12px 24px var(--wim-shadow-color), 0 8px 16px oklch(0% 0 0deg / 0.08);
+
+  /* --- Glassmorphism Tokens --- */
+  --wim-glass-bg: rgb(255 255 255 / 0.7);
+  --wim-glass-border: rgb(255 255 255 / 0.1);
+}
+
+/* Dark mode shadow & glass overrides */
+[data-theme="dark"] {
+  --wim-shadow-color: oklch(from var(--wim-color-primary) calc(l * 0.2) c h / 0.4);
+  --wim-glass-bg: rgb(0 0 0 / 0.6);
+  --wim-glass-border: rgb(255 255 255 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wim-shadow-color: oklch(from var(--wim-color-primary) calc(l * 0.2) c h / 0.4);
+    --wim-glass-bg: rgb(0 0 0 / 0.6);
+    --wim-glass-border: rgb(255 255 255 / 0.08);
+  }
 }

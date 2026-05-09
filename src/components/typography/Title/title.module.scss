@@ -53,25 +53,6 @@
     }
 
     /* Colors */
-    &.black {
-      color: var(--wim-color-text-primary);
-    }
-
-    &.deepgray {
-      color: var(--wim-color-text-secondary);
-    }
-
-    &.gray {
-      color: var(--wim-color-text-tertiary);
-    }
-
-    &.lightgray {
-      color: var(--wim-color-text-disabled);
-    }
-
-    &.white {
-      color: var(--wim-color-text-white);
-    }
 
     &.error {
       color: var(--wim-color-text-error);

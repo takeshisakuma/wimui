@@ -45,6 +45,7 @@
     "copy_label": "コピー",
     "copied_label": "コピーしました！",
     "apply": "適用",
+    "applied": "適用済み",
     "reject": "却下",
     "split_view": "分割",
     "unified_view": "統合"

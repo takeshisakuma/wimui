@@ -71,11 +71,11 @@ export const VariousColors = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        <Blockquote {...args} content={t('story.quote_black')} color="black" />
-        <Blockquote {...args} content={t('story.quote_deepgray')} color="deepgray" />
-        <Blockquote {...args} content={t('story.quote_gray')} color="gray" />
+        <Blockquote {...args} content={t('story.quote_black')} color="text-primary" />
+        <Blockquote {...args} content={t('story.quote_deepgray')} color="text-secondary" />
+        <Blockquote {...args} content={t('story.quote_gray')} color="text-tertiary" />
         <div data-theme="dark" style={{ backgroundColor: "var(--wim-color-bg-void)", padding: "12px", borderRadius: "4px" }}>
-          <Blockquote {...args} content={t('story.quote_lightgray')} color="lightgray" />
+          <Blockquote {...args} content={t('story.quote_lightgray')} color="text-disabled" />
         </div>
       </div>
     );

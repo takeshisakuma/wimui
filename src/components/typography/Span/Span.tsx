@@ -71,11 +71,6 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
     );
 
     const mappedColors = [
-      "black",
-      "deepgray",
-      "gray",
-      "lightgray",
-      "white",
       "error",
       "primary",
       "destructive",
