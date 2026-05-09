@@ -40,6 +40,11 @@ export const Streaming: Story = {
     const full = args.content ?? t("story.streamingtext_sample");
 
     useEffect(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) {
+        setDisplayed(full);
+        return;
+      }
       setDisplayed("");
       let i = 0;
       const timer = setInterval(() => {

@@ -41,11 +41,20 @@ export const WaveformIdle: Story = {
 export const BarsWithData: Story = {
   name: "Bars — Live Data",
   render: () => {
-    const [data, setData] = useState<number[]>(Array(24).fill(0.05));
+    const [data, setData] = useState<number[]>(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) {
+        return Array.from({ length: 24 }, (_, i) => 0.2 + 0.7 * Math.abs(Math.sin(i * 0.5)));
+      }
+      return Array(24).fill(0.05);
+    });
     const frameRef = useRef<number>(0);
     const tRef = useRef(0);
 
     useEffect(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) return;
+
       const tick = () => {
         tRef.current += 0.07;
         const t = tRef.current;
@@ -69,11 +78,23 @@ export const BarsWithData: Story = {
 export const WaveformWithData: Story = {
   name: "Waveform — Live Data",
   render: () => {
-    const [data, setData] = useState<number[]>(Array(64).fill(0.5));
+    const [data, setData] = useState<number[]>(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) {
+        return Array.from({ length: 64 }, (_, i) => {
+          const phase = (i / 63) * Math.PI * 4;
+          return 0.5 + 0.4 * Math.sin(phase);
+        });
+      }
+      return Array(64).fill(0.5);
+    });
     const frameRef = useRef<number>(0);
     const tRef = useRef(0);
 
     useEffect(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) return;
+
       const tick = () => {
         tRef.current += 0.05;
         const t = tRef.current;

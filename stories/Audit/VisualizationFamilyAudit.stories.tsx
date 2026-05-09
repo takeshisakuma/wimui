@@ -86,7 +86,7 @@ const calendarData = Array.from({ length: 50 }, (_, i) => {
   const date = new Date(2024, 0, i + 1);
   return {
     date: date.toISOString().split("T")[0],
-    count: Math.floor(Math.random() * 10),
+    count: i % 10,
   };
 });
 

@@ -25,7 +25,7 @@ const generateMockData = (year: number) => {
   for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
     data.push({
       date: d.toISOString().split("T")[0],
-      count: Math.floor(Math.random() * 10),
+      count: (d.getDate() + d.getMonth()) % 10,
     });
   }
   return data;

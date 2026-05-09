@@ -72,6 +72,8 @@ export const Cycling: Story = {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) return;
       const id = setInterval(() => {
         setIndex((i) => (i + 1) % CYCLE_SEQUENCE.length);
       }, 1800);

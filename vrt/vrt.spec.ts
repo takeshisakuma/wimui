@@ -56,6 +56,11 @@ test.describe("Visual Regression Testing", () => {
           // Fix system time to 2024-01-01 for consistent Calendar rendering
           await page.clock.setFixedTime(new Date("2024-01-01T00:00:00Z"));
 
+          // Set a global flag so components can detect VRT environment
+          await page.addInitScript(() => {
+            (window as any).__VRT__ = true;
+          });
+
           // Navigate to the clean iframe view
           // We force the theme and English for consistency.
           const url = `/iframe.html?id=${story.id}&viewMode=story&globals=theme:${theme};locale:en`;
