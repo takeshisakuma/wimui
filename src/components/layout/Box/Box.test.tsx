@@ -14,7 +14,7 @@ describe("Box", () => {
     const box = container.firstChild as HTMLElement;
     expect(box.style.paddingTop).toBe("10px");
     expect(box.style.backgroundColor).toBe("red");
-    expect(box.style.color).toBe("white");
+    expect(box.style.color).toBe("var(--wim-color-text-white)");
   });
 
   it("renders as a different element", () => {
