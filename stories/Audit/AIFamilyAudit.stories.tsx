@@ -11,6 +11,10 @@ import {
   SourceCitation,
   SourceCitationList,
   CodeBlock,
+  CodeDiffViewer,
+  Terminal,
+  AgentStatus,
+  VoiceVisualizer,
   ChatMessageList,
   ChatMessage,
   ChatInput,
@@ -43,6 +47,25 @@ const SAMPLE_SOURCES = [
   { title: "React Documentation", url: "https://react.dev/", description: "Official React docs with guides and API reference." },
   { title: "MDN Web Docs", url: "https://developer.mozilla.org/", description: "Comprehensive web technology reference." },
   { title: "TypeScript Handbook", url: "https://www.typescriptlang.org/docs/", description: "The TypeScript language reference." },
+];
+
+const DIFF_BEFORE = `function hello() {
+  console.log("Hello, world!");
+}`;
+
+const DIFF_AFTER = `function hello(name: string = "world") {
+  console.log(\`Hello, \${name}!\`);
+}
+
+hello("Antigravity");`;
+
+const TERMINAL_LINES = [
+  { type: "info" as const, content: "\u001b[90m[system] Initializing environment...\u001b[0m" },
+  { type: "input" as const, content: "npm run build" },
+  { type: "output" as const, content: "\u001b[32m✔\u001b[0m Checking types..." },
+  { type: "output" as const, content: "\u001b[32m✔\u001b[0m Generating bundle..." },
+  { type: "output" as const, content: "Build complete in \u001b[1m1.2s\u001b[0m" },
+  { type: "error" as const, content: "\u001b[31m[warning] 12 chunks exceed 500kB.\u001b[0m" },
 ];
 
 export const Overview: StoryObj = {
@@ -193,6 +216,57 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_collapsible")} align="stretch" maxWidth="var(--wim-width-md)">
             <CodeBlock code={SAMPLE_CODE} language="tsx" maxLines={4} />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Agent & Voice Check */}
+        <ComparisonGrid title={t("audit:ai_agent_voice_check")}>
+          <ComponentGroup label={t("audit:label_agent_status")}>
+            <Stack gap="md">
+              <AgentStatus status="thinking" />
+              <AgentStatus status="running" message="Processing large dataset..." />
+              <AgentStatus status="done" />
+              <AgentStatus status="error" message="Connection failed" />
+              <Stack direction="row" gap="lg" align="center">
+                <AgentStatus status="thinking" size="sm" />
+                <AgentStatus status="thinking" size="md" />
+                <AgentStatus status="thinking" size="lg" />
+              </Stack>
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_voice_visualizer")} align="stretch">
+            <Stack gap="xl">
+              <Box>
+                <AgentStatus status="running" message="Listening..." style={{ marginBottom: "var(--wim-spacing-xs)" }} />
+                <VoiceVisualizer mode="bars" height={40} />
+              </Box>
+              <Box>
+                <AgentStatus status="done" message="Voice pattern analyzed" style={{ marginBottom: "var(--wim-spacing-xs)" }} />
+                <VoiceVisualizer mode="waveform" height={60} isActive={false} />
+              </Box>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Terminal & CodeDiffViewer Check */}
+        <ComparisonGrid title={t("audit:ai_terminal_diff_check")}>
+          <ComponentGroup label={t("audit:label_terminal")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Terminal 
+              title="deployment.log" 
+              lines={TERMINAL_LINES} 
+              height={200} 
+              onClear={() => {}}
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_code_diff_viewer")} align="stretch" maxWidth="var(--wim-width-md)">
+            <CodeDiffViewer 
+              filename="hello.ts"
+              before={DIFF_BEFORE}
+              after={DIFF_AFTER}
+              view="unified"
+              onApply={() => {}}
+              onReject={() => {}}
+            />
           </ComponentGroup>
         </ComparisonGrid>
 

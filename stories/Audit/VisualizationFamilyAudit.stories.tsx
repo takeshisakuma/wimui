@@ -13,6 +13,7 @@ import {
   GaugeChart,
   FunnelChart,
   Heatmap,
+  CalendarHeatmap,
   Box,
   Stack,
 } from "../../src";
@@ -80,6 +81,14 @@ const heatmapData = [
   { x: "Wed", y: "10am", value: 50 },
   { x: "Wed", y: "11am", value: 60 },
 ];
+
+const calendarData = Array.from({ length: 50 }, (_, i) => {
+  const date = new Date(2024, 0, i + 1);
+  return {
+    date: date.toISOString().split("T")[0],
+    count: Math.floor(Math.random() * 10),
+  };
+});
 
 export const Overview: StoryObj = {
   render: () => {
@@ -170,6 +179,12 @@ export const Overview: StoryObj = {
               />
             </ComponentGroup>
           </Stack>
+
+          <ComponentGroup label={t("audit:label_calendar_heatmap")} align="stretch">
+            <Box p="md" bg="bg-surface" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
+              <CalendarHeatmap data={calendarData} year={2024} />
+            </Box>
+          </ComponentGroup>
         </ComparisonGrid>
 
       </AuditPage>

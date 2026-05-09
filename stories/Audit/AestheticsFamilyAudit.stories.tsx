@@ -19,7 +19,7 @@ import {
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {
-  title: "Audit/Aesthetics",
+  title: "Audit/AestheticsFamily",
   parameters: {
     layout: "fullscreen",
   },
@@ -32,7 +32,7 @@ export const Glassmorphism: StoryObj = {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     return (
-      <AuditPage title={t("audit:aesthetics_audit_title")}>
+      <AuditPage title={t("audit:aesthetics_family_title")}>
         {/* Glassmorphism Levels */}
         <ComparisonGrid title={t("audit:glass_tokenization_variants")}>
           <ComponentGroup label={t("audit:glass_levels_label")} align="stretch">
