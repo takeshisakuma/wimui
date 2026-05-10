@@ -178,7 +178,7 @@
     flex: 1;
     gap: var(--wim-spacing-xs);
     align-items: center;
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     font-variant-numeric: tabular-nums;
     color: var(--wim-color-text-on-overlay);
   
@@ -294,7 +294,7 @@
   .caption {
     padding-bottom: var(--wim-spacing-xs);
     margin-top: var(--wim-spacing-sm);
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     line-height: 1.5;
     color: var(--wim-color-text-secondary);
     text-align: center;
@@ -311,7 +311,7 @@
     gap: var(--wim-spacing-xs);
     min-width: 160px;
     padding: var(--wim-spacing-sm);
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-on-overlay);
     background: var(--wim-color-overlay-menu-bg);
     border-radius: var(--wim-radius-component);

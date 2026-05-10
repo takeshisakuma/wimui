@@ -32,7 +32,7 @@
     box-sizing: border-box;
     width: 3rem; /* Exception: Structural Logic — OTP セルの固定寸法（操作性確保のため死守） */
     height: 3rem; /* Exception: Structural Logic — OTP セルの固定寸法（操作性確保のため死守） */
-    font-size: 1.25rem; /* Exception: Structural Logic — セル内の視認性を担保する相対サイズ */
+    font-size: var(--wim-font-size-xl); /* Exception: Structural Logic — OTP セル内の視認性確保のため md より大きいサイズを使用 */
     color: var(--wim-color-text-primary);
     text-align: center;
     background-color: var(--wim-color-bg-component);
@@ -43,7 +43,7 @@
     @include breakpoints.container-down(sm) {
       width: 2.5rem;
       height: 2.5rem;
-      font-size: 1rem;
+      font-size: var(--wim-font-size-md);
     }
   
     &:focus {

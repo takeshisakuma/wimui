@@ -126,7 +126,7 @@
       width: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法（アイコン16px + padding 6px×2） */
       height: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法 */
       padding: var(--wim-spacing-xs);
-      font-size: 0.75rem;
+      font-size: var(--wim-font-size-xs);
       font-weight: var(--wim-font-weight-bold);
       line-height: 1;
       color: var(--wim-color-text-secondary, var(--wim-color-text-primary));
@@ -170,7 +170,7 @@
       flex: 1;
       padding: var(--wim-spacing-sm, 8px) var(--wim-spacing-md, 16px);
       overflow-y: auto;
-      font-size: 1rem;
+      font-size: var(--wim-font-size-md);
       line-height: 1.6;
       color: var(--wim-color-text-primary);
       overflow-wrap: break-word;

@@ -65,7 +65,7 @@
     flex-shrink: 0;
     align-items: center;
     align-self: center;
-    font-size: 1.25rem;
+    font-size: var(--wim-font-size-xl);
   }
 
   .content {
@@ -77,14 +77,14 @@
 
   .title {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
     line-height: 1.4;
   }
 
   .description {
     margin: 0;
-    font-size: 0.8125rem;
+    font-size: var(--wim-font-size-xs);
     line-height: 1.5;
 
     .title + & {

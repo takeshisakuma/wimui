@@ -40,7 +40,7 @@
   }
 
   .text {
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     line-height: 1.5;
     color: inherit;
   }

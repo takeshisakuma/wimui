@@ -21,7 +21,7 @@
     flex-shrink: 0;
     align-items: center;
     align-self: center; // Vertically center the icon
-    font-size: 1.25rem;
+    font-size: var(--wim-font-size-xl);
   }
 
   .content {
@@ -41,7 +41,7 @@
 
   .description {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     line-height: 1.5;
     overflow-wrap: break-word;
     opacity: 1;

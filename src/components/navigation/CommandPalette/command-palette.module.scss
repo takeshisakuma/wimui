@@ -88,7 +88,7 @@
   .input {
     flex: 1;
     height: 54px; // Adjusted for 2px border to maintain height
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
     outline: none;
     background: transparent;
@@ -171,7 +171,7 @@
   .kbd {
     padding: var(--wim-spacing-hairline) var(--wim-spacing-xs);
     font-family: inherit;
-    font-size: 0.6rem;
+    font-size: var(--wim-font-size-3xs);
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-secondary);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);

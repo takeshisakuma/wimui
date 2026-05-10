@@ -109,7 +109,7 @@
   .caption {
     padding-bottom: var(--wim-spacing-xs);
     margin-top: var(--wim-spacing-sm);
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     line-height: 1.5;
     color: var(--wim-color-text-secondary);
     text-align: center;
@@ -183,14 +183,14 @@
   }
 
   .title {
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
     line-height: 1.2;
     color: var(--wim-color-text-white);
   }
 
   .artist {
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     line-height: 1.2;
     color: oklch(from var(--wim-color-text-white) l c h / 0.6);
   }
@@ -267,7 +267,7 @@
     &.btnText {
       width: auto;
       padding: 0 var(--wim-spacing-xs);
-      font-size: 0.875rem;
+      font-size: var(--wim-font-size-sm);
       font-weight: var(--wim-font-weight-semibold);
       border-radius: var(--wim-radius-component);
     }
@@ -295,7 +295,7 @@
     flex: 1;
     gap: var(--wim-spacing-sm); // Tighter gap
     align-items: center;
-    font-size: 0.75rem;
+    font-size: var(--wim-font-size-xs);
     font-variant-numeric: tabular-nums;
     color: oklch(from var(--wim-color-text-white) l c h / 0.7);
 
