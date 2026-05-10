@@ -127,7 +127,7 @@
   padding: 24px;
   color: var(--wim-color-text-primary);
   background-color: var(--wim-color-bg-app);
-  border-radius: 12px;
+  border-radius: var(--wim-radius-container);
   transition:
     background-color var(--wim-duration-base) var(--wim-easing-standard),
     color var(--wim-duration-base) var(--wim-easing-standard);
@@ -176,7 +176,7 @@
     padding: 2px 4px;
     color: var(--wim-color-text-primary) !important;
     background-color: var(--wim-color-bg-secondary);
-    border-radius: 4px;
+    border-radius: var(--wim-radius-component);
   }
  
   small {
@@ -222,7 +222,7 @@
   color: var(--wim-color-text-primary) !important;
   background-color: color-mix(in srgb, var(--wim-color-text-primary) 1%, transparent);
   border: 1px solid color-mix(in srgb, var(--wim-color-text-primary) 5%, transparent);
-  border-radius: 3px;
+  border-radius: var(--wim-radius-sm);
 }
 
 /* ─── React Flow SVG override ───────────────────────────────────────

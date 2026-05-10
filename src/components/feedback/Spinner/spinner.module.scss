@@ -29,6 +29,10 @@
       --spinner-size: 48px;
     }
 
+    &.xl {
+      --spinner-size: 64px;
+    }
+
     // Colors
     &.primary {
       color: var(--wim-color-primary);

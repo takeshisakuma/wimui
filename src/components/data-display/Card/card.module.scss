@@ -109,11 +109,11 @@
     }
   
     &.radius-md {
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
   
     &.radius-lg {
-      border-radius: var(--wim-radius-lg);
+      border-radius: var(--wim-radius-container);
     }
   }
 

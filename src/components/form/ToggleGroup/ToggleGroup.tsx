@@ -255,7 +255,7 @@ export const ToggleGroup = ({
           aria-label={option.label || option.value}
           tabIndex={!option.disabled && index === focusedIndex ? 0 : -1}
         >
-          {option.iconName && <Icon name={option.iconName} size={size} />}
+          {option.iconName && <Icon name={option.iconName} size={size} className={styles.icon} />}
           {option.label && (
             <span className={styles.label}>{option.label}</span>
           )}

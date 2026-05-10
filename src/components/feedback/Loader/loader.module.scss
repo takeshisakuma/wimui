@@ -79,6 +79,15 @@
           height: 32px; /* Exception: Geometric Harmony — bars アニメーションの lg サイズ比率 */
         }
       }
+
+      &.xl {
+        gap: var(--wim-spacing-lg);
+
+        .item {
+          width: 12px;
+          height: 48px;
+        }
+      }
     }
 
     // Dots variant
@@ -127,6 +136,15 @@
           height: 16px; /* Exception: Geometric Harmony — dots アニメーションの lg ドット直径（md の 2 倍） */
         }
       }
+
+      &.xl {
+        gap: var(--wim-spacing-xl);
+
+        .item {
+          width: 24px;
+          height: 24px;
+        }
+      }
     }
 
     // Pulse variant
@@ -162,6 +180,11 @@
       &.lg {
         width: 48px; /* Exception: Geometric Harmony — pulse アニメーションの lg サイズ（sm/md がトークン済みのため比率維持） */
         height: 48px; /* Exception: Geometric Harmony — pulse アニメーションの lg サイズ */
+      }
+
+      &.xl {
+        width: 64px;
+        height: 64px;
       }
     }
   }

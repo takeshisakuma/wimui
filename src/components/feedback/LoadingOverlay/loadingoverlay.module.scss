@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: absolute;
     inset: 0;
@@ -31,6 +31,7 @@
   .backdrop {
     position: absolute;
     inset: 0;
+    z-index: 0;
     background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(2px);
     transition: opacity var(--wim-transition-duration-normal, 200ms)
@@ -45,7 +46,7 @@
     }
 
     &.blur-sm {
-      backdrop-filter: blur(1px);
+      backdrop-filter: blur(2px);
     }
 
     &.blur-md {

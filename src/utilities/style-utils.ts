@@ -46,18 +46,30 @@ export const getColorValue = (val?: WimColor): string | undefined => {
     "surface-variant",
     "surface-hover",
     "surface-variant-alpha",
+    "surface-glass",
+    "surface-inset",
+    "surface-inverse",
+    "surface-inverted",
     "bg-app",
     "bg-component",
     "bg-primary",
     "bg-secondary",
     "bg-tertiary",
     "bg-hover",
+    "bg-subtle",
+    "bg-surface-subtle",
+    "bg-void",
+    "bg-white",
+    "bg-inverted",
     "border",
     "border-secondary",
+    "border-inverted",
     "focus-outline",
     "overlay-bg",
     "overlay-bg-light",
     "overlay-bg-dark",
+    "skeleton-bg",
+    "skeleton-shine",
   ];
 
   if (colorKeys.includes(val as string)) {
@@ -111,7 +123,7 @@ export const getRadiusValue = (
   if (val === undefined || val === null) return undefined;
   if (typeof val === "number") return `${val}px`;
 
-  const tokens = ["sm", "md", "lg", "full"];
+  const tokens = ["sm", "md", "lg", "xl", "2xl", "full", "component", "container", "overlay"];
 
   if (tokens.includes(val as string)) {
     return `var(--wim-radius-${val})`;
@@ -206,7 +218,7 @@ export const getLineHeightValue = (val?: WimLineHeight): string | undefined => {
 export const getOpacityValue = (val?: WimOpacity): string | undefined => {
   if (val === undefined || val === null) return undefined;
 
-  const tokens = ["disabled", "ghost", "secondary"];
+  const tokens = ["disabled", "ghost", "secondary", "dim", "subtle"];
 
   if (tokens.includes(val as string)) {
     return `var(--wim-opacity-${val})`;

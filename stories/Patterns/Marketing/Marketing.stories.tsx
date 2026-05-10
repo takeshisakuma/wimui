@@ -712,23 +712,24 @@ export const ComparisonTable: StoryObj = {
           style={{
             maxWidth: "800px",
             margin: "0 auto",
-            overflowX: "auto",
+            overflow: "hidden",
+            borderRadius: "var(--wim-radius-container)",
+            border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
+            boxShadow: "var(--wim-shadow-sm)",
           }}
         >
           <table
             style={{
               width: "100%",
-              borderCollapse: "collapse",
+              borderCollapse: "separate",
+              borderSpacing: 0,
               background: "var(--wim-color-surface)",
-              border: "1px solid var(--wim-color-border)",
-              borderRadius: "var(--wim-radius-md)",
-              overflow: "hidden",
             }}
           >
             <thead>
-              <tr
+                <tr
                 style={{
-                  borderBottom: "1px solid var(--wim-color-border)",
+                  borderBottom: "var(--wim-border-width-thin) solid var(--wim-color-border)",
                 }}
               >
                 <th
@@ -945,16 +946,21 @@ export const FeatureComparison: StoryObj = {
             </Text>
           </Stack>
 
-          <Box style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+          <Box
+            style={{
+              overflow: "hidden",
+              borderRadius: "var(--wim-radius-container)",
+              border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
+              boxShadow: "var(--wim-shadow-sm)",
+            }}
+          >
             <table
               className="wim-feature-comparison-table"
               style={{
                 width: "100%",
-                borderCollapse: "collapse",
-                border: "1px solid var(--wim-color-border)",
+                borderCollapse: "separate",
+                borderSpacing: 0,
                 background: "var(--wim-color-surface)",
-                borderRadius: "var(--wim-radius-md)",
-                overflow: "hidden",
               }}
             >
               <thead>

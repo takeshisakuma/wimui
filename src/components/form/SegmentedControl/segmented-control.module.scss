@@ -25,7 +25,8 @@
 
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-sm);
-          padding: 0;
+          padding: 0 !important;
+          line-height: 0;
         }
       }
     }
@@ -40,7 +41,8 @@
 
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-md);
-          padding: 0;
+          padding: 0 !important;
+          line-height: 0;
         }
       }
     }
@@ -55,7 +57,12 @@
 
         &.iconOnly {
           width: var(--wim-segmented-control-item-size-lg);
-          padding: 0;
+          padding: 0 !important;
+          line-height: 0;
+          
+          .icon {
+            vertical-align: top;
+          }
         }
       }
     }
@@ -77,8 +84,12 @@
   .item {
     @include indicator.indicator-item-base;
 
+    display: flex;
     gap: var(--wim-spacing-sm);
+    align-items: center;
+    justify-content: center;
     font-weight: var(--wim-font-weight-medium);
+    line-height: 1;
     color: var(--wim-color-text-secondary);
     white-space: nowrap;
     text-decoration: none;

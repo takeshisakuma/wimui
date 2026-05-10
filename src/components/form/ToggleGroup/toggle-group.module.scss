@@ -1,4 +1,4 @@
-﻿@use "../../../styles/indicator-mixins" as indicator;
+@use "../../../styles/indicator-mixins" as indicator;
 
 @layer component {
   .root {
@@ -7,6 +7,7 @@
     box-sizing: border-box;
     display: inline-flex;
     gap: var(--wim-spacing-3xs);
+    align-items: center;
     width: fit-content;
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
 
@@ -39,10 +40,14 @@
   
     .item {
       @include indicator.indicator-item-base;
-  
+
+      display: flex;
       gap: var(--wim-spacing-xs);
+      align-items: center;
+      justify-content: center;
       font-family: inherit;
       font-weight: 500;
+      line-height: 1;
       color: var(--wim-color-text-secondary);
       white-space: nowrap;
       border-radius: var(--wim-radius-sm);
@@ -77,7 +82,12 @@
   
       &.iconOnly {
         aspect-ratio: 1 / 1;
-        padding: 0;
+        padding: 0 !important;
+        line-height: 0;
+        
+        .icon {
+          vertical-align: top;
+        }
       }
   
       &:focus-visible {
@@ -94,29 +104,29 @@
     // Sizes
     &.sm {
       height: var(--wim-height-sm);
-  
+
       .item {
-        height: calc(var(--wim-height-sm) - var(--wim-spacing-xs)); // container height - padding/border
+        height: calc(var(--wim-height-sm) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
         padding: 0 var(--wim-spacing-sm);
         font-size: var(--wim-font-size-sm);
       }
     }
-  
+
     &.md {
       height: var(--wim-height-md);
-  
+
       .item {
-        height: calc(var(--wim-height-md) - var(--wim-spacing-xs));
+        height: calc(var(--wim-height-md) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
         padding: 0 var(--wim-spacing-md);
         font-size: var(--wim-font-size-md);
       }
     }
-  
+
     &.lg {
       height: var(--wim-height-lg);
-  
+
       .item {
-        height: calc(var(--wim-height-lg) - var(--wim-spacing-xs));
+        height: calc(var(--wim-height-lg) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
         padding: 0 var(--wim-spacing-lg);
         font-size: var(--wim-font-size-lg);
       }

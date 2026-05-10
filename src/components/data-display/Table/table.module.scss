@@ -15,10 +15,12 @@
     &.cardContainer {
       overflow: hidden;
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-container);
 
       .root {
         margin-bottom: 0;
+        border-spacing: 0;
+        border-collapse: separate;
         border: none;
       }
     }
@@ -125,7 +127,7 @@
             display: block;
             margin-bottom: var(--wim-spacing-lg);
             border: 1px solid var(--wim-color-border);
-            border-radius: var(--wim-radius-md);
+            border-radius: var(--wim-radius-container);
             box-shadow: var(--wim-shadow-sm);
   
             td {

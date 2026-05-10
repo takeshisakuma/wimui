@@ -8,8 +8,8 @@
       "xs": { "value": "0.3rem" },
       "sm": { "value": "0.4rem" },
       "md": { "value": "0.5rem" },
-      "lg": { "value": "0.6rem" },
-      "xl": { "value": "0.7rem" },
+      "lg": { "value": "0.625rem" },
+      "xl": { "value": "0.75rem" },
       "2xl": { "value": "1rem" },
       "3xl": { "value": "1.4rem" },
       "4xl": { "value": "1.8rem" },
@@ -19,8 +19,12 @@
       "sm": { "value": "2px" },
       "md": { "value": "4px" },
       "lg": { "value": "8px" },
-      "xl": { "value": "1rem" },
-      "full": { "value": "9999px" }
+      "xl": { "value": "12px" },
+      "2xl": { "value": "16px" },
+      "full": { "value": "9999px" },
+      "component": { "value": "{wim.radius.md}" },
+      "container": { "value": "{wim.radius.xl}" },
+      "overlay": { "value": "{wim.radius.lg}" }
     },
     "border-width": {
       "thin": { "value": "1px" },

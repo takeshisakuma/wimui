@@ -239,9 +239,13 @@ export type WimSpacingKey =
   | "xs";
 
 export type WimRadiusKey = 
+  | "2xl"
+  | "component"
+  | "container"
   | "full"
   | "lg"
   | "md"
+  | "overlay"
   | "sm"
   | "xl";
 

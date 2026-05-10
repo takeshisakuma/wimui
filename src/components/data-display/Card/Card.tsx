@@ -46,7 +46,7 @@ const CardInner = <C extends React.ElementType = "div">(
     asChild = false,
     variant = "elevated",
     padding = "md",
-    radius = "md",
+    radius = "lg",
     interactive = false,
     as,
     className,
