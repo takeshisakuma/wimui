@@ -66,12 +66,10 @@ export const Overview: StoryObj = {
                     <ArtifactsStories.ArtifactsCanvas.render isMobile={true} />
                  </Box>
               </ComponentGroup>
-              <ComponentGroup label="Mobile Comparison (Scrolled View)" noStack>
-                 <Box style={{ width: "100%", maxWidth: "375px", height: "400px", overflow: "auto", margin: "0 auto" }}>
-                    <Box style={{ transform: "scale(0.9)", transformOrigin: "top left", width: "111%" }}>
-                       {/* @ts-expect-error - Storybook render function */}
-                       <FeatureStories.ComparisonTable.render />
-                    </Box>
+              <ComponentGroup label="Mobile Comparison (Full View)" noStack>
+                 <Box style={{ width: "100%", maxWidth: "375px", margin: "0 auto" }}>
+                    {/* @ts-expect-error - Storybook render function */}
+                    <FeatureStories.ComparisonTable.render />
                  </Box>
               </ComponentGroup>
            </Grid>

@@ -917,7 +917,20 @@ export const FeatureComparison: StoryObj = {
     };
 
     return (
-      <Box style={{ paddingTop: "var(--wim-spacing-3xl)", paddingBottom: "var(--wim-spacing-3xl)", background: "var(--wim-color-surface)" }}>
+      <Box style={{ padding: "var(--wim-spacing-3xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}>
+        <style>{`
+          @media (max-width: 480px) {
+            .wim-feature-comparison-table td,
+            .wim-feature-comparison-table th {
+              padding: var(--wim-spacing-md) var(--wim-spacing-sm) !important;
+            }
+            .wim-feature-comparison-table button {
+              padding-left: var(--wim-spacing-sm) !important;
+              padding-right: var(--wim-spacing-sm) !important;
+              font-size: var(--wim-font-size-xs) !important;
+            }
+          }
+        `}</style>
         <Container style={{ maxWidth: "1000px" }}>
           <Stack
             gap="md"
@@ -932,8 +945,9 @@ export const FeatureComparison: StoryObj = {
             </Text>
           </Stack>
 
-          <Box style={{ overflowX: "auto" }}>
+          <Box style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
             <table
+              className="wim-feature-comparison-table"
               style={{
                 width: "100%",
                 borderCollapse: "collapse",
@@ -1002,7 +1016,7 @@ export const FeatureComparison: StoryObj = {
                       <td
                         colSpan={4}
                         style={{
-                          padding: "var(--wim-spacing-sm) var(--wim-spacing-xl)",
+                          padding: "var(--wim-feature-comparison-cat-padding, var(--wim-spacing-sm)) var(--wim-spacing-xl)",
                           background: "var(--wim-color-surface-variant)",
                           borderBottom: "1px solid var(--wim-color-border)",
                         }}
@@ -1058,13 +1072,13 @@ export const FeatureComparison: StoryObj = {
                 <tr>
                   <td
                     style={{
-                      padding: "var(--wim-spacing-xl)",
+                      padding: "var(--wim-feature-comparison-footer-padding, var(--wim-spacing-xl))",
                     }}
                   />
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "var(--wim-spacing-xl)",
+                      padding: "var(--wim-feature-comparison-footer-padding, var(--wim-spacing-xl))",
                     }}
                   >
                     <Button
@@ -1078,7 +1092,7 @@ export const FeatureComparison: StoryObj = {
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "var(--wim-spacing-xl)",
+                      padding: "var(--wim-feature-comparison-footer-padding, var(--wim-spacing-xl))",
                     }}
                   >
                     <Button variant="solid" size="sm" style={{ width: "100%" }}>
@@ -1088,7 +1102,7 @@ export const FeatureComparison: StoryObj = {
                   <td
                     style={{
                       textAlign: "center",
-                      padding: "var(--wim-spacing-xl)",
+                      padding: "var(--wim-feature-comparison-footer-padding, var(--wim-spacing-xl))",
                     }}
                   >
                     <Button
