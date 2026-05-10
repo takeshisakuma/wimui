@@ -25,7 +25,7 @@ export default meta;
 
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
-export const SurfaceAudit: StoryObj = {
+export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 

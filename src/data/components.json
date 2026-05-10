@@ -1296,6 +1296,24 @@
         "descKey": "doc.voiceVisualizer_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "MarkdownRenderer",
+        "descKey": "doc.markdownrenderer_intro",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "InteractiveGraph",
+        "descKey": "doc.interactivegraph_intro",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "ArtifactsOverlay",
+        "descKey": "doc.artifactsoverlay_intro",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

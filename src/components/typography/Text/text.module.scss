@@ -74,7 +74,7 @@
     }
 
     &.primary {
-      color: var(--wim-color-primary);
+      color: color-mix(in oklch, var(--wim-color-primary) 85%, var(--wim-color-text-primary));
     }
 
     &.success {

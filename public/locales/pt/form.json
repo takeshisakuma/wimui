@@ -130,5 +130,9 @@
     "waiting": "Aguardando…",
     "done": "Concluído",
     "error": "Erro"
+  },
+  "artifact_overlay": {
+    "minimize": "Minimizar",
+    "maximize": "Maximizar"
   }
 }

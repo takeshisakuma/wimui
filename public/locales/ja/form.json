@@ -130,5 +130,9 @@
     "waiting": "待機中…",
     "done": "完了",
     "error": "エラー"
+  },
+  "artifact_overlay": {
+    "minimize": "最小化",
+    "maximize": "最大化"
   }
 }

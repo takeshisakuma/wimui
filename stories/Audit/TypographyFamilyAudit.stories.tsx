@@ -58,7 +58,7 @@ export const Overview: StoryObj = {
                 This is a <Link href="#">Standard Link</Link> inside a paragraph.
               </Trans>
             </Text>
-            <Text color="secondary">
+            <Text color="text-secondary">
               <Trans i18nKey="audit:sample_link_subtle">
                 This is a <Link href="#" priority="secondary">Subtle Link</Link> inside a secondary paragraph.
               </Trans>

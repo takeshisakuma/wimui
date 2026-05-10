@@ -1,103 +1,70 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
-import * as ThoughtProcessStories from "./ThoughtProcess.stories";
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as ThoughtProcessStories from './ThoughtProcess.stories';
 import { T } from "../../T";
 import { Docgen } from "../../Docgen";
 
 <Meta of={ThoughtProcessStories} />
 
-<Title />
+# ThoughtProcess
 
-<p><T k="docs_ai:doc.thoughtprocess_intro" /></p>
+<p><T k="doc.thoughtprocess_intro" /></p>
 
-<Canvas of={ThoughtProcessStories.Basic} />
+## <T k="doc.design_intent_title" />
+<p><T k="doc.thoughtprocess_design_intent" /></p>
 
-## <T k="common:doc.design_intent_title" />
-
-<p><T k="docs_ai:doc.thoughtprocess_design_intent" /></p>
-
-## <T k="common:doc.choice_matrix_title" />
-
+## <T k="doc.choice_matrix_title" />
 <table>
   <thead>
-    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
   </thead>
   <tbody>
-    <tr><td><T k="docs_ai:doc.thoughtprocess_choice_self" /></td><td>ThoughtProcess</td></tr>
-    <tr><td><T k="docs_ai:doc.thoughtprocess_choice_loader" /></td><td>Loader / Spinner</td></tr>
-    <tr><td><T k="docs_ai:doc.thoughtprocess_choice_timeline" /></td><td>Timeline</td></tr>
+    <tr>
+      <td><b>Transparency</b></td>
+      <td><T k="doc.thoughtprocess_choice_transparency" /></td>
+    </tr>
+    <tr>
+      <td><b>Wait Time</b></td>
+      <td><T k="doc.thoughtprocess_choice_wait" /></td>
+    </tr>
   </tbody>
 </table>
 
 <Docgen componentName="ThoughtProcess" section="anatomy" />
 
-## <T k="common:doc.content_guidelines_title" />
+## <T k="doc.content_guidelines_title" />
+<p><T k="doc.thoughtprocess_content_guidelines" /></p>
 
+## <T k="doc.best_practices_title" />
 <ul>
-  <li><T k="docs_ai:doc.thoughtprocess_guideline_1" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_guideline_2" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_guideline_3" /></li>
+  <li><T k="doc.thoughtprocess_best_practice_1" /></li>
+  <li><T k="doc.thoughtprocess_best_practice_2" /></li>
 </ul>
 
-## <T k="common:doc.motion_spec_title" />
+## <T k="doc.real_world_scenarios_title" />
+<p><T k="doc.thoughtprocess_scenarios" /></p>
 
-<p><T k="docs_ai:doc.thoughtprocess_motion_desc" /></p>
-
-## <T k="common:doc.a11y_spec_title" />
-
-<ul>
-  <li><T k="docs_ai:doc.thoughtprocess_a11y_1" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_a11y_2" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_a11y_3" /></li>
-</ul>
-
-## <T k="common:doc.real_world_scenarios_title" />
-
-<table>
-  <thead>
-    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
-  </thead>
-  <tbody>
-    <tr><td><strong>Agentic Workflows</strong></td><td><T k="docs_ai:doc.thoughtprocess_scenario_1" /></td></tr>
-    <tr><td><strong>Code Execution</strong></td><td><T k="docs_ai:doc.thoughtprocess_scenario_2" /></td></tr>
-    <tr><td><strong>RAG Systems</strong></td><td><T k="docs_ai:doc.thoughtprocess_scenario_3" /></td></tr>
-  </tbody>
-</table>
-
-## <T k="common:doc.best_practices_title" />
-
-<ul>
-  <li><T k="docs_ai:doc.thoughtprocess_practice_1" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_practice_2" /></li>
-  <li><T k="docs_ai:doc.thoughtprocess_practice_3" /></li>
-</ul>
-
-## <T k="common:doc.variations" />
-
-<Canvas of={ThoughtProcessStories.ComplexReasoning} />
-<Canvas of={ThoughtProcessStories.Static} />
+<Canvas of={ThoughtProcessStories.Streaming} />
 
 <Docgen componentName="ThoughtProcess" section="props" />
 
 <Docgen componentName="ThoughtProcess" section="tokens" />
 
-## <T k="common:doc.responsive_title" />
+## <T k="doc.responsive_title" />
+<p><T k="doc.thoughtprocess_responsive" /></p>
 
-<p><T k="docs_ai:doc.thoughtprocess_responsive" /></p>
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.thoughtprocess_motion" /></p>
 
-## <T k="common:doc.keyboard_nav_title" />
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.thoughtprocess_a11y" /></p>
 
-<table>
-  <thead>
-    <tr><th><T k="common:doc.key" /></th><th><T k="common:doc.summary" /></th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Space / Enter</td><td><T k="docs_ai:doc.thoughtprocess_kb_toggle" /></td></tr>
-    <tr><td>Tab</td><td><T k="docs_ai:doc.thoughtprocess_kb_focus" /></td></tr>
-  </tbody>
-</table>
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.thoughtprocess_keyboard" /></p>
 
-## <T k="common:doc.i18n_title" />
-
-<p><T k="docs_ai:doc.thoughtprocess_i18n_desc" /></p>
+## <T k="doc.i18n_title" />
+<p><T k="doc.thoughtprocess_i18n" /></p>
 
 <Docgen componentName="ThoughtProcess" section="test" />

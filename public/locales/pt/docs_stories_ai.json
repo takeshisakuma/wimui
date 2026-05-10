@@ -50,6 +50,16 @@
     "agent_status_running_msg": "Executando código…",
     "agent_status_waiting_msg": "Aguardando resposta da ferramenta…",
     "voice_label_recording": "Gravando entrada de voz",
-    "voice_label_playback": "Reprodução de áudio da IA"
+    "voice_label_playback": "Reprodução de áudio da IA",
+    "markdown_renderer_content": "# Exemplo de Markdown WIM UI\n\nEste é um **MarkdownRenderer** demonstrando a tipografia nativa do WIM.\n\n## Recursos\n- Suporte para texto em **negrito** e *itálico*.\n- Listas de tarefas GFM:\n  - [x] Implementar MarkdownRenderer\n  - [ ] Adicionar suporte a KaTeX\n- Código em linha como `const x = 10;`\n- Blocos de código com realce de sintaxe:\n\n```tsx\nimport { Button } from \"wimui\";\n\nexport const App = () => {\n  return <Button variant=\"primary\">Hello WIM</Button>;\n};\n```\n\n> Citações (Blockquotes) também são estilizadas para corresponder ao sistema de design.\n\n### Tabelas\n| Componente | Status | Categoria |\n| :--- | :--- | :--- |\n| MarkdownRenderer | Concluído | AI |\n",
+    "interactive_graph_node1": "Nó de Conhecimento 1",
+    "interactive_graph_node2": "Nó de Conhecimento 2",
+    "interactive_graph_node3": "Nó do Agente",
+    "artifacts_overlay_open_btn": "Abrir Artefato",
+    "artifacts_overlay_title": "Relatório de Análise",
+    "artifacts_overlay_subtitle": "v1.2.0 - Gerado por IA",
+    "artifacts_overlay_content": "# Relatório de Análise Final: Projeto WIM\n\n## Resumo Executivo\nEste artefato ilustra o status atual de adoção do sistema de design e o roteiro futuro.\n\n### Métricas Principais\n| Categoria | Progresso | Prioridade |\n| :--- | :--- | :--- |\n| Tipografia | 100% | Alta |\n| Componentes de IA | 85% | Média |\n| Modo Escuro | 95% | Alta |\n\n### Próximos Passos\n1. Otimização de desempenho para **InteractiveGraph**.\n2. Integração de KaTeX para **MarkdownRenderer**.\n3. Polimento final para responsividade móvel.\n\n```json\n{\n  \"project\": \"WIM UI\",\n  \"status\": \"active\",\n  \"version\": \"1.2.0\"\n}\n```\n",
+    "thoughtprocess_title_thinking": "Estado de Pensamento",
+    "thoughtprocess_title_streaming": "Estado de Streaming"
   }
 }

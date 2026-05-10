@@ -27,7 +27,7 @@ const meta: Meta = {
 
 export default meta;
 
-export const Glassmorphism: StoryObj = {
+export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 

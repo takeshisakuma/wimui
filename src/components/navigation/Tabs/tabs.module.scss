@@ -170,7 +170,7 @@
 
       &.active {
         font-weight: var(--wim-font-weight-bold);
-        color: oklch(from var(--wim-color-primary) calc(l * 0.7) c h);
+        color: color-mix(in oklch, var(--wim-color-primary) 80%, var(--wim-color-text-primary));
         background-color: var(--wim-color-bg-hover);
       }
 

@@ -1,0 +1,76 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-md);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  line-height: var(--wim-line-height-normal);
+  color: var(--wim-color-text-primary);
+  overflow-wrap: break-word;
+}
+
+.heading {
+  margin-top: var(--wim-spacing-lg);
+  margin-bottom: var(--wim-spacing-xs);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.paragraph {
+  margin-bottom: var(--wim-spacing-sm);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.list {
+  padding-left: var(--wim-spacing-xl);
+  margin-bottom: var(--wim-spacing-md);
+}
+
+.listItem {
+  margin-bottom: var(--wim-spacing-xs);
+}
+
+.inlineCode {
+  padding: 0.2em 0.4em;
+  font-family: var(--wim-font-family-mono);
+  font-size: 0.9em;
+  color: var(--wim-color-primary);
+  background-color: var(--wim-color-surface-variant-alpha);
+  border-radius: var(--wim-radius-sm);
+}
+
+.codeBlock {
+  margin: var(--wim-spacing-md) 0;
+}
+
+.tableWrapper {
+  margin: var(--wim-spacing-md) 0;
+  overflow-x: auto;
+  border: 1px solid var(--wim-color-border);
+  border-radius: var(--wim-radius-md);
+}
+
+.table {
+  width: 100%;
+  min-width: 400px; // Ensure table doesn't look too squashed, but wrapper will scroll
+  border-collapse: collapse;
+}
+
+.th {
+  padding: var(--wim-spacing-sm);
+  font-weight: var(--wim-font-weight-bold);
+  text-align: left;
+  background-color: var(--wim-color-surface-variant-alpha);
+  border-bottom: 1px solid var(--wim-color-border);
+}
+
+.td {
+  padding: var(--wim-spacing-sm);
+  border-bottom: 1px solid var(--wim-color-border);
+}

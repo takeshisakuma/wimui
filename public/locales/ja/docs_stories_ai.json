@@ -50,6 +50,16 @@
     "agent_status_running_msg": "コードを実行中…",
     "agent_status_waiting_msg": "ツールの応答を待機中…",
     "voice_label_recording": "音声入力を録音中",
-    "voice_label_playback": "AI音声再生"
+    "voice_label_playback": "AI音声再生",
+    "markdown_renderer_content": "# WIM UI Markdown サンプル\n\nこれは WIM ネイティブのタイポグラフィをデモンストレートする **MarkdownRenderer** です。\n\n## 機能\n- **太字** や *斜体* のサポート。\n- GFM タスクリスト:\n  - [x] MarkdownRenderer の実装\n  - [ ] KaTeX サポートの追加\n- インラインコード: `const x = 10;`\n- シンタックスハイライト付きのコードブロック:\n\n```tsx\nimport { Button } from \"wimui\";\n\nexport const App = () => {\n  return <Button variant=\"primary\">Hello WIM</Button>;\n};\n```\n\n> 引用（Blockquote）もデザインシステムに合わせてスタイル設定されます。\n\n### テーブル\n| コンポーネント | ステータス | カテゴリ |\n| :--- | :--- | :--- |\n| MarkdownRenderer | 完了 | AI |\n",
+    "interactive_graph_node1": "ナレッジノード 1",
+    "interactive_graph_node2": "ナレッジノード 2",
+    "interactive_graph_node3": "エージェントノード",
+    "artifacts_overlay_open_btn": "アーティファクトを開く",
+    "artifacts_overlay_title": "分析レポート",
+    "artifacts_overlay_subtitle": "v1.2.0 - AI 生成",
+    "artifacts_overlay_content": "# 最終分析レポート: プロジェクト・ウィム\n\n## エグゼクティブ・サマリー\nこのアーティファクトは、現在のデザインシステムの採用状況と今後のロードマップを示しています。\n\n### 主要な指標\n| カテゴリ | 達成度 | 優先度 |\n| :--- | :--- | :--- |\n| タイポグラフィ | 100% | 高 |\n| AI コンポーネント | 85% | 中 |\n| ダークモード | 95% | 高 |\n\n### 今後のステップ\n1. **InteractiveGraph** のパフォーマンス最適化。\n2. **MarkdownRenderer** への KaTeX 統合。\n3. モバイル表示の最終調整。\n\n```json\n{\n  \"project\": \"WIM UI\",\n  \"status\": \"active\",\n  \"version\": \"1.2.0\"\n}\n```\n",
+    "thoughtprocess_title_thinking": "思考中の状態",
+    "thoughtprocess_title_streaming": "ストリーミング中の状態"
   }
 }

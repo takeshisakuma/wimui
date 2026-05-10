@@ -1,0 +1,70 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as InteractiveGraphStories from './InteractiveGraph.stories';
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={InteractiveGraphStories} />
+
+# InteractiveGraph
+
+<p><T k="doc.interactivegraph_intro" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.interactivegraph_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Data Visualization</b></td>
+      <td><T k="doc.interactivegraph_choice_viz" /></td>
+    </tr>
+    <tr>
+      <td><b>Process Mapping</b></td>
+      <td><T k="doc.interactivegraph_choice_mapping" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="InteractiveGraph" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+<p><T k="doc.interactivegraph_content_guidelines" /></p>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.interactivegraph_best_practice_1" /></li>
+  <li><T k="doc.interactivegraph_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+<p><T k="doc.interactivegraph_scenarios" /></p>
+
+<Canvas of={InteractiveGraphStories.Default} />
+
+<Docgen componentName="InteractiveGraph" section="props" />
+
+<Docgen componentName="InteractiveGraph" section="tokens" />
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.interactivegraph_responsive" /></p>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.interactivegraph_motion" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.interactivegraph_a11y" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.interactivegraph_keyboard" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.interactivegraph_i18n" /></p>
+
+<Docgen componentName="InteractiveGraph" section="test" />
