@@ -52,7 +52,7 @@
 .tableWrapper {
   margin: var(--wim-spacing-md) 0;
   overflow-x: auto;
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }
 
@@ -67,10 +67,10 @@
   font-weight: var(--wim-font-weight-bold);
   text-align: left;
   background-color: var(--wim-color-surface-variant-alpha);
-  border-bottom: 1px solid var(--wim-color-border);
+  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 }
 
 .td {
   padding: var(--wim-spacing-sm);
-  border-bottom: 1px solid var(--wim-color-border);
+  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 }

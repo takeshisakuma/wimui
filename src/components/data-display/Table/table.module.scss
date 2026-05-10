@@ -126,7 +126,7 @@
           tr {
             display: block;
             margin-bottom: var(--wim-spacing-lg);
-            border: 1px solid var(--wim-color-border);
+            border: var(--wim-border-width-thin) solid var(--wim-color-border);
             border-radius: var(--wim-radius-container);
             box-shadow: var(--wim-shadow-sm);
   
@@ -136,7 +136,7 @@
               justify-content: space-between;
               padding: var(--wim-spacing-md);
               text-align: right;
-              border-bottom: 1px solid var(--wim-color-border-secondary);
+              border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   
               &:last-child {
                 border-bottom: none;
@@ -144,7 +144,7 @@
   
               &::before {
                 flex-shrink: 0;
-                font-weight: 600;
+                font-weight: var(--wim-font-weight-semibold);
                 color: var(--wim-color-text-secondary);
                 text-align: left;
                 content: attr(data-label);
@@ -172,7 +172,7 @@
     --wim-table-row-bg: var(--wim-color-bg-component);
 
     background-color: var(--wim-table-row-bg);
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &.selected {
       --wim-table-row-bg: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
@@ -183,7 +183,7 @@
 
   .head {
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     text-align: left;
     white-space: nowrap;
     border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border);
@@ -318,7 +318,7 @@
     &::-webkit-scrollbar-thumb {
       background-color: var(--wim-table-scrollbar-thumb-bg);
       background-clip: content-box;
-      border: 1px solid transparent;
+      border: var(--wim-border-width-thin) solid transparent;
       border-radius: var(--wim-radius-lg);
 
       &:hover {

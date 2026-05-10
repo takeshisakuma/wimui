@@ -54,7 +54,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--wim-color-bg-secondary);
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
   transition: var(--wim-transition-fast);
 
@@ -75,7 +75,7 @@
   margin-top: var(--wim-spacing-sm);
   margin-bottom: var(--wim-spacing-sm);
   background-color: var(--wim-color-bg-secondary);
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
 }
 
 .groupHeader {
@@ -85,7 +85,7 @@
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   background-color: var(--wim-color-bg-component);
-  border-bottom: 1px solid var(--wim-color-border);
+  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
 }
 
@@ -135,7 +135,7 @@
   align-items: flex-start;
   padding: var(--wim-spacing-md);
   background-color: var(--wim-color-bg-component);
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
   animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
@@ -158,7 +158,7 @@
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   margin-top: auto;
   background-color: var(--wim-color-bg-component);
-  border-top: 1px solid var(--wim-color-border);
+  border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: 0 0 var(--wim-radius-container) var(--wim-radius-container);
 
   @include container-down(sm) {

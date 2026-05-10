@@ -134,7 +134,7 @@
 | `color` | セマンティックカラー全般 | `--wim-color-primary`, `--wim-color-text-secondary` |
 | `spacing` | 余白・間隔 | `--wim-spacing-md` |
 | `radius` | 角丸 | `--wim-radius-component`, `--wim-radius-container`, `--wim-radius-overlay` |
-| `shadow` | 影・elevation | `--wim-shadow-sm` |
+| `shadow` | 影・elevation | `--wim-shadow-overlay`, `--wim-shadow-modal` |
 | `font-size` | フォントサイズ | `--wim-font-size-xl` |
 | `font-weight` | フォントウェイト | `--wim-font-weight-bold` |
 | `font-family` | フォントファミリー | `--wim-font-family-ja` |
@@ -174,6 +174,17 @@ R_outer ≈ R_inner + S
 逆に外側と内側が同じ角丸（例: 外枠 4px の中に 4px のボタン）だと角が視覚的に衝突して見えるため、外側を大きくするか内側を小さくして差をつけてください。
 
 この計算は厳密な強制ではなく、設計判断の拠り所として使用してください。lint では検出されません。
+
+### シャドウ（Shadow）の設計指針
+
+`box-shadow` には値ベースのトークン（`--wim-shadow-md/lg`）を直接使用しないでください。役割ベースのエイリアストークンを使用してください。
+
+| トークン | 値 | 対象 |
+|---|---|---|
+| `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素 |
+| `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer, Notification, Snackbar など重いモーダル |
+
+`--wim-shadow-xs / sm` はボタンやカードの hover/active など UI インタラクション的なシャドウに限り直接使用できます。
 
 - `z-index` の使用ルール： z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
   - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）

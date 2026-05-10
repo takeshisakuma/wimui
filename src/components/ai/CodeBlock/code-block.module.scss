@@ -5,7 +5,7 @@
     width: 100%;
     overflow: hidden;
     background: var(--wim-color-bg-subtle);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }
 
@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .lang {

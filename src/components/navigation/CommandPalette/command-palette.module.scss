@@ -22,9 +22,9 @@
     max-width: var(--wim-status-desc-max-width);
     overflow: hidden;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-glass-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
     animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
     @media (width <= 640px) {
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     padding: 0 var(--wim-spacing-md);
-    border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
+    border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
     transition: var(--wim-transition-fast);
   
     svg {
@@ -121,7 +121,7 @@
   .groupHeading {
     padding: var(--wim-spacing-xs) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
     font-size: var(--wim-font-size-xs);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--wim-letter-spacing-wide);
@@ -159,7 +159,7 @@
     align-items: center;
     padding: var(--wim-spacing-xs) var(--wim-spacing-md);
     background: var(--wim-color-surface-inset);
-    border-top: 1px solid var(--wim-color-border-secondary);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   
     // Hide footer on very small screens or make it more compact
     @media (width <= 480px) {
@@ -174,7 +174,7 @@
     font-size: 0.6rem;
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-secondary);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-sm);
   }
 
@@ -188,7 +188,7 @@
     white-space: nowrap;
     cursor: pointer;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: all var(--wim-transition-fast);
   

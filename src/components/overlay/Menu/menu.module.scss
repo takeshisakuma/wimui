@@ -7,7 +7,7 @@
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-overlay);
 
     &.vertical {
       display: flex;
@@ -84,7 +84,7 @@
   .itemGroupTitle {
     padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
     font-size: var(--wim-font-size-xs);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--wim-letter-spacing-wide);

@@ -2,14 +2,14 @@
   position: relative;
   overflow: hidden;
   background-color: var(--wim-color-bg-app);
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
 
   :global(.react-flow__node) {
     font-family: var(--wim-font-family-base);
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-sm);
   }
@@ -25,7 +25,7 @@
 
   :global(.react-flow__controls-button) {
     background-color: var(--wim-color-bg-component);
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
     fill: var(--wim-color-text-primary);
 
     &:hover {
@@ -36,10 +36,10 @@
 
 .minimap {
   background-color: var(--wim-color-bg-component);
-  border: 1px solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }
 
 .controls {
-  box-shadow: var(--wim-shadow-md);
+  box-shadow: var(--wim-shadow-overlay);
 }

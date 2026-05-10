@@ -33,7 +33,7 @@
     padding: 2px 6px;
     margin-top: 0;
     background: var(--wim-color-surface-glass);
-    border: 1px solid var(--wim-color-glass-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-sm);
     backdrop-filter: blur(4px);
   }

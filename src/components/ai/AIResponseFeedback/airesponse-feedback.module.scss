@@ -17,7 +17,7 @@
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
     background: var(--_bg);
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-component);
     transition:
       color var(--wim-duration-fast) var(--wim-easing-standard),

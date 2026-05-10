@@ -34,7 +34,7 @@
   }
 
   &.bordered {
-    border-top: 1px solid var(--wim-color-border-secondary);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 }
 
@@ -75,7 +75,7 @@
   margin-top: var(--wim-spacing-xl);
   font-size: var(--wim-font-size-sm);
   color: var(--wim-color-text-secondary);
-  border-top: 1px solid var(--wim-color-border-secondary);
+  border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
 
   @include breakpoints.up(sm) {
     flex-direction: row;

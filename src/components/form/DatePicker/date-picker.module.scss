@@ -25,8 +25,8 @@
     min-width: 100%;
     padding: var(--wim-spacing-sm);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-overlay);
   }
 }

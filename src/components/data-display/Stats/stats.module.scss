@@ -12,14 +12,14 @@
 
   .label {
     font-size: var(--wim-font-size-sm);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-secondary);
   }
 
   .value {
     font-size: var(--wim-font-size-display);
-    font-weight: 700;
+    font-weight: var(--wim-font-weight-bold);
     line-height: var(--wim-line-height-snug);
     color: var(--wim-color-text-primary);
   }
@@ -37,7 +37,7 @@
     width: fit-content;
     padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
     font-size: var(--wim-font-size-xs);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     border-radius: var(--wim-radius-sm);
 
     &.up {

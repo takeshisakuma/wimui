@@ -172,7 +172,7 @@
     &.variant_default {
       color: var(--wim-color-text-primary);
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
 
       &:hover {
         background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
@@ -184,7 +184,7 @@
     &.glass {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-surface-glass);
-      border: 1px solid var(--wim-color-glass-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
       backdrop-filter: blur(var(--wim-glass-blur, 8px));
 

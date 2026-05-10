@@ -8,7 +8,7 @@
     max-width: var(--wim-input-width, 320px);
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
   
@@ -103,7 +103,7 @@
       gap: var(--wim-spacing-fine);
       align-items: center;
       padding: var(--wim-spacing-xs, 4px) var(--wim-spacing-sm, 8px);
-      border-bottom: 1px solid var(--wim-color-secondary);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     }
   
     .toolbarSep {
@@ -127,7 +127,7 @@
       height: 28px; /* Exception: Structural Logic — ツールバーボタンのUI chrome固定寸法 */
       padding: var(--wim-spacing-xs);
       font-size: 0.75rem;
-      font-weight: bold;
+      font-weight: var(--wim-font-weight-bold);
       line-height: 1;
       color: var(--wim-color-text-secondary, var(--wim-color-text-primary));
       white-space: nowrap;
@@ -158,7 +158,7 @@
       }
   
       &:focus-visible {
-        outline: 2px solid var(--wim-color-primary);
+        outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
         outline-offset: 1px;
       }
     }
@@ -195,19 +195,19 @@
       h1 {
         margin: 0.25em 0;
         font-size: 1.6em;
-        font-weight: bold;
+        font-weight: var(--wim-font-weight-bold);
       }
   
       h2 {
         margin: 0.25em 0;
         font-size: 1.3em;
-        font-weight: bold;
+        font-weight: var(--wim-font-weight-bold);
       }
   
       h3 {
         margin: 0.25em 0;
         font-size: 1.1em;
-        font-weight: bold;
+        font-weight: var(--wim-font-weight-bold);
       }
   
       p {
@@ -233,7 +233,7 @@
   
       strong,
       b {
-        font-weight: bold;
+        font-weight: var(--wim-font-weight-bold);
       }
   
       em,

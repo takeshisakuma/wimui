@@ -9,11 +9,11 @@
   
     &.border {
       overflow: hidden;
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
       border-radius: var(--wim-radius-lg, 8px);
   
       .item {
-        border-bottom: 1px solid var(--wim-color-border-secondary);
+        border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   
         &:last-child {
           border-bottom: none;
@@ -88,7 +88,7 @@
   .term {
     flex-shrink: 0;
     margin: 0;
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
   }
 

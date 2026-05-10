@@ -69,9 +69,9 @@
     color: var(--wim-color-text-white);
     pointer-events: auto;
     background: var(--wim-snackbar-bg);
-    border: 1px solid var(--wim-snackbar-border);
+    border: var(--wim-border-width-thin) solid var(--wim-snackbar-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
 
     // Initial state for animation
     opacity: 0;
@@ -101,7 +101,7 @@
 
   .message {
     font-size: var(--wim-font-size-sm);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     line-height: var(--wim-line-height-normal);
   }
 

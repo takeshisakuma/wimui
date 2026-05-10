@@ -25,7 +25,7 @@
     background-color: var(--wim-color-bg-component);
     border: none;
     border-radius: var(--wim-radius-container);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
 
     &:focus {
       outline: none;
@@ -43,7 +43,7 @@
   .title {
     margin: 0;
     font-size: var(--wim-font-size-lg);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
 

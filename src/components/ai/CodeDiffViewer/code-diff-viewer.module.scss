@@ -6,7 +6,7 @@
     font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
     background: var(--wim-color-bg-subtle);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }
 
@@ -19,7 +19,7 @@
     justify-content: space-between;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
     background: var(--wim-color-bg-subtle);
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .headerLeft {
@@ -41,7 +41,7 @@
   .viewToggle {
     display: flex;
     overflow: hidden;
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-sm);
   }
 
@@ -70,7 +70,7 @@
     }
 
     & + & {
-      border-left: 1px solid var(--wim-color-border);
+      border-left: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
   }
 
@@ -124,7 +124,7 @@
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-medium);
     cursor: pointer;
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-sm);
     transition:
       background var(--wim-duration-fast) var(--wim-easing-standard),

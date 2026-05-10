@@ -27,7 +27,7 @@
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
     border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
     animation: slideUp var(--wim-duration-base) var(--wim-easing-snap);
     will-change: transform;
   
@@ -64,7 +64,7 @@
   .title {
     margin: 0;
     font-size: var(--wim-font-size-xl);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
   

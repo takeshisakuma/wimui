@@ -29,7 +29,7 @@
 
     .text {
       font-size: var(--wim-font-size-sm);
-      font-weight: bold;
+      font-weight: var(--wim-font-weight-bold);
       color: var(--wim-color-text-primary);
       overflow-wrap: break-word;
     }

@@ -25,7 +25,7 @@
   
   .title {
     font-size: var(--wim-font-size-md);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
   
@@ -71,7 +71,7 @@
     justify-content: center;
     height: var(--wim-calendar-weekday-height, var(--wim-spacing-5xl));
     font-size: var(--wim-font-size-xs);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-tertiary);
     white-space: nowrap;
   
@@ -118,13 +118,13 @@
     }
   
     &.today {
-      font-weight: bold;
+      font-weight: var(--wim-font-weight-bold);
       color: var(--wim-color-primary);
       border-color: oklch(from var(--wim-color-primary) l c h / 0.3);
     }
   
     &.selected {
-      font-weight: 600;
+      font-weight: var(--wim-font-weight-semibold);
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
   

@@ -28,7 +28,7 @@
     display: block;
     margin-bottom: var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-primary);
   }
 
@@ -55,7 +55,7 @@
 
     &:focus-visible:not(.disabled) {
       @media (forced-colors: active) {
-        outline: 2px solid Highlight;
+        outline: var(--wim-border-width-thick) solid Highlight;
         outline-offset: 2px;
       }
     }
@@ -119,7 +119,7 @@
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-overlay);
 
     @media (forced-colors: active) {
       border: 2px solid ButtonBorder;

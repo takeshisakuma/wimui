@@ -29,7 +29,7 @@
     &.glass {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-surface-glass);
-      border: 1px solid var(--wim-color-glass-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
       backdrop-filter: blur(var(--wim-color-glass-blur));
     }

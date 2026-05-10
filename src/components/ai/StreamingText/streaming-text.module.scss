@@ -37,7 +37,7 @@
     font-family: var(--wim-font-family-mono, monospace);
     font-size: 0.875em;
     background: var(--wim-color-ghost-bg);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-sm);
   }
 
@@ -46,7 +46,7 @@
     margin: 0 0 var(--wim-spacing-sm);
     overflow-x: auto;
     background: var(--wim-color-ghost-bg);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
 
     code {
@@ -73,7 +73,7 @@
     td {
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       text-align: left;
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
 
     th {
@@ -94,7 +94,7 @@
   hr {
     margin: var(--wim-spacing-md) 0;
     border: none;
-    border-top: 1px solid var(--wim-color-border);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 }
 

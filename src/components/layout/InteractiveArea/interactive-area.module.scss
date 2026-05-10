@@ -16,7 +16,7 @@
   }
 
   &.solid {
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   &.none {

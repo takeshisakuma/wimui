@@ -13,7 +13,7 @@
     justify-content: center;
     overflow: hidden;
     background: var(--wim-color-bg-surface-subtle);
-    border-bottom: 1px solid var(--wim-color-border-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   .indicatorContent {

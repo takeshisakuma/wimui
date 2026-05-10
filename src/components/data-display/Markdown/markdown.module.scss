@@ -19,7 +19,7 @@
     h6 {
       margin-top: var(--wim-spacing-xl);
       margin-bottom: var(--wim-spacing-md);
-      font-weight: 600;
+      font-weight: var(--wim-font-weight-semibold);
       line-height: var(--wim-line-height-tight);
     }
   
@@ -30,7 +30,7 @@
     h2 {
       padding-bottom: var(--wim-spacing-xs);
       font-size: var(--wim-font-size-xl);
-      border-bottom: 1px solid var(--wim-color-border);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
   
     p {
@@ -84,11 +84,11 @@
       th,
       td {
         padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-        border: 1px solid var(--wim-color-border);
+        border: var(--wim-border-width-thin) solid var(--wim-color-border);
       }
   
       th {
-        font-weight: 600;
+        font-weight: var(--wim-font-weight-semibold);
         background-color: var(--wim-color-bg-subtle);
       }
     }

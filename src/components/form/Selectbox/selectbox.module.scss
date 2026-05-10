@@ -110,7 +110,7 @@
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-overlay);
   }
 
   .search {
@@ -150,7 +150,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--wim-font-size-xs);
-    font-weight: 700;
+    font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--wim-letter-spacing-wide);
@@ -166,7 +166,7 @@
 
   .option {
     &.selected {
-      font-weight: 500;
+      font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-text-primary);
       background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
     }

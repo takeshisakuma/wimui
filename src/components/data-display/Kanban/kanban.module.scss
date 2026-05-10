@@ -19,7 +19,7 @@
     min-height: 200px;
     background: var(--wim-color-bg-subtle);
     border-radius: var(--wim-radius-container);
-    transition: background 0.15s ease, box-shadow 0.15s ease;
+    transition: background var(--wim-duration-short) var(--wim-easing-standard), box-shadow var(--wim-duration-short) var(--wim-easing-standard);
 
     &.dragOver {
       background: var(--wim-color-bg-hover);
@@ -32,12 +32,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .columnTitle {
     font-size: var(--wim-font-size-md);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
 
@@ -49,7 +49,7 @@
     height: 1.5rem;
     padding: 0 0.375rem;
     font-size: var(--wim-font-size-sm);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
     background: var(--wim-color-bg-secondary);
     border-radius: var(--wim-radius-full);
@@ -68,9 +68,9 @@
     box-sizing: border-box;
     cursor: grab;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+    transition: opacity var(--wim-duration-short) var(--wim-easing-standard), box-shadow var(--wim-duration-short) var(--wim-easing-standard);
 
     &:hover:not(.disabled) {
       box-shadow: var(--wim-shadow-sm);
@@ -95,7 +95,7 @@
   .cardMove {
     position: relative;
     display: none;
-    border-top: 1px solid var(--wim-color-border);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     @media (hover: none) and (pointer: coarse) {
       display: block;
@@ -133,7 +133,7 @@
     z-index: 10;
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
   }
@@ -149,7 +149,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &:last-child {
       border-bottom: none;

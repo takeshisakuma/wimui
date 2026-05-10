@@ -4,7 +4,7 @@
     padding: var(--wim-spacing-md, 0.5rem);
     line-height: 0;
     background: var(--wim-color-bg-white);
-    border: 1px solid var(--wim-color-border-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-md, 4px);
   
     svg,

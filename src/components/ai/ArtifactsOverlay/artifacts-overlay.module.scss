@@ -2,8 +2,8 @@
   width: min(600px, 90vw);
   max-width: none;
   background-color: var(--wim-color-bg-app);
-  box-shadow: var(--wim-shadow-lg);
-  transition: width 0.3s ease;
+  box-shadow: var(--wim-shadow-modal);
+  transition: width var(--wim-duration-slow) var(--wim-easing-standard);
 
   &.fullscreen {
     width: 100vw;
@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--wim-spacing-md) var(--wim-spacing-lg);
-  border-bottom: 1px solid var(--wim-color-border);
+  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 }
 
 .titleArea {
@@ -52,7 +52,7 @@
   background: transparent;
   border: none;
   border-radius: var(--wim-radius-sm);
-  transition: background-color 0.2s;
+  transition: background-color var(--wim-duration-fast);
 
   &:hover {
     color: var(--wim-color-text-primary);

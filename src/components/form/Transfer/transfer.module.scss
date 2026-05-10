@@ -65,7 +65,7 @@
     justify-content: space-between;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     background: oklch(from var(--wim-color-primary) l c h / 0.04);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 

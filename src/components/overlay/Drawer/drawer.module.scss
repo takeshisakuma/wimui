@@ -17,7 +17,7 @@
     color: var(--wim-color-text-primary);
     pointer-events: auto;
     background-color: var(--wim-color-bg-component);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
 
     &:focus {
       outline: none;
@@ -75,7 +75,7 @@
   .title {
     margin: 0;
     font-size: var(--wim-font-size-xl);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
 

@@ -6,7 +6,7 @@
     container-type: inline-size;
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-md, 8px);
   }
   
@@ -171,7 +171,7 @@
     align-items: flex-end;
     padding: var(--wim-spacing-sm, 12px);
     background-color: var(--wim-color-bg-component);
-    border-top: 1px solid var(--wim-color-border);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     @container (max-width: 480px) {
       padding: var(--wim-spacing-md);
@@ -185,7 +185,7 @@
     align-items: flex-end;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
     background-color: var(--wim-color-surface);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
     transition: border-color var(--wim-transition-fast), box-shadow var(--wim-transition-fast);
 

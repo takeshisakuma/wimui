@@ -42,7 +42,7 @@
     min-height: var(--wim-height-md, 40px);
     padding: var(--wim-spacing-xs) var(--wim-spacing-md);
     cursor: text;
-    border: 1px solid transparent;
+    border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
 

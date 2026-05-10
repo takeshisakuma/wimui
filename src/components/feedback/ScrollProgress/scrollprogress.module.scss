@@ -11,7 +11,7 @@
     .bar {
       height: 100%;
       background-color: var(--wim-color-primary);
-      transition: width 0.1s ease-out;
+      transition: width var(--wim-duration-extra-fast) var(--wim-easing-standard);
     }
 
     &.secondary {

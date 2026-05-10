@@ -24,9 +24,9 @@
     width: var(--wim-tour-bubble-width, 300px);
     max-width: calc(100vw - var(--wim-spacing-4xl));
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
     transition: var(--wim-transition-base);
   }
 
@@ -37,7 +37,7 @@
   .title {
     margin: 0 0 var(--wim-spacing-md) 0;
     font-size: var(--wim-font-size-lg);
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
   }
 
   .description {

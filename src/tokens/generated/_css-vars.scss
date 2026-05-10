@@ -166,6 +166,8 @@
   --wim-shadow-focus-ring: 0 0 0 3px color-mix(in srgb, #205b85 15%, transparent);
   --wim-shadow-error-ring: 0 0 0 3px color-mix(in srgb, #b01040 15%, transparent);
   --wim-shadow-field-focus: 0 0 0 2px color-mix(in srgb, #205b85 20%, transparent);
+  --wim-shadow-overlay: 0 4px 12px color-mix(in srgb, #000 8%, transparent), 0 2px 4px color-mix(in srgb, #000 12%, transparent);
+  --wim-shadow-modal: 0 12px 24px color-mix(in srgb, #000 12%, transparent), 0 8px 16px color-mix(in srgb, #000 18%, transparent);
   --wim-duration-extra-fast: 0.1s;
   --wim-duration-short: 0.15s;
   --wim-duration-instant: 0.083s;
@@ -247,6 +249,7 @@
   --wim-font-size-7xl: 5.202rem;
   --wim-font-weight-normal: 400;
   --wim-font-weight-medium: 500;
+  --wim-font-weight-semibold: 600;
   --wim-font-weight-bold: 700;
   --wim-line-height-loose-jp: 1.8;
   --wim-line-height-normal-jp: 1.6;

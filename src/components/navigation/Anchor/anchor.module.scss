@@ -8,7 +8,7 @@
     &.horizontal {
       padding-bottom: 0;
       padding-left: 0;
-      border-bottom: 1px solid var(--wim-color-scrollbar-track);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-scrollbar-track);
 
       .ink {
         top: auto;
@@ -90,7 +90,7 @@
 
       &.active {
         > .link {
-          font-weight: 500;
+          font-weight: var(--wim-font-weight-medium);
           color: var(--wim-color-primary);
         }
       }

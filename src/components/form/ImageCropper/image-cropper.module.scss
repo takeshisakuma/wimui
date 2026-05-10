@@ -6,7 +6,7 @@
     width: 100%;
     overflow: hidden;
     background-color: var(--wim-color-surface);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
   }
 
@@ -52,7 +52,7 @@
   .cropArea {
     width: 200px;
     pointer-events: none;
-    border: 2px solid var(--wim-color-text-white);
+    border: var(--wim-border-width-thick) solid var(--wim-color-text-white);
     box-shadow: 0 0 0 1000px oklch(from var(--wim-color-bg-void) l c h / 0.5); // Large shadow to create the mask effect
 
     &.circular {
@@ -66,7 +66,7 @@
     align-items: center;
     padding: var(--wim-spacing-md) var(--wim-spacing-2xl);
     background-color: var(--wim-color-surface-glass);
-    border-top: 1px solid var(--wim-color-border-secondary);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   .zoomControl {

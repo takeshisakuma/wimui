@@ -1,6 +1,6 @@
 @layer component {
   .fallback {
-    border: 1px solid var(--wim-color-destructive);
+    border: var(--wim-border-width-thin) solid var(--wim-color-destructive);
   }
 
   .details {
@@ -10,6 +10,6 @@
     font-size: var(--wim-font-size-sm);
     word-break: break-all;
     white-space: pre-wrap;
-    border: 1px solid var(--wim-color-border-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 }

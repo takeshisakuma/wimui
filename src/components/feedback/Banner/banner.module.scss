@@ -9,7 +9,7 @@
     
     // Glassmorphism effect base
     background: var(--wim-color-overlay-bg-light);
-    border-bottom: 1px solid transparent;
+    border-bottom: var(--wim-border-width-thin) solid transparent;
     backdrop-filter: blur(8px);
     transition: var(--wim-transition-fast);
   }
@@ -46,7 +46,7 @@
   }
 
   .title {
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
   }
 
   .separator {

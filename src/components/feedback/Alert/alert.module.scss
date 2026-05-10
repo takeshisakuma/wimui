@@ -34,7 +34,7 @@
   .title {
     margin: 0;
     font-size: 0.9375rem;
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     line-height: 1.4;
     overflow-wrap: break-word;
   }

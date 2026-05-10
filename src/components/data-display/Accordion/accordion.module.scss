@@ -32,7 +32,7 @@
     margin: 0;
     font-family: inherit;
     font-size: var(--wim-font-size-md);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     color: inherit;
     text-align: left;
     cursor: pointer;
@@ -41,7 +41,7 @@
     transition: var(--wim-transition-fast);
 
     .item.open > & {
-      font-weight: 600;
+      font-weight: var(--wim-font-weight-semibold);
       color: var(--wim-color-primary);
       background-color: var(--wim-color-bg-hover);
     }

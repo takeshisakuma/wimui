@@ -14,7 +14,7 @@
     overflow: hidden;
     outline: none;
     background: var(--wim-color-surface-glass);
-    border: 1px solid var(--wim-color-glass-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-container);
     box-shadow: var(--wim-shadow-md);
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
@@ -33,7 +33,7 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     outline: none;
-    border: 1px solid var(--wim-color-border-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-component);
     transition:
       border-color var(--wim-duration-base) var(--wim-easing-standard),

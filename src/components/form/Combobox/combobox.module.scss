@@ -43,7 +43,7 @@
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-overlay);
   }
 
   .list {
@@ -59,7 +59,7 @@
     }
 
     &.selected {
-      font-weight: 500;
+      font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-primary);
       background: var(--wim-color-primary-light);
     }

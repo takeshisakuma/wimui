@@ -7,7 +7,7 @@
     box-sizing: border-box;
     gap: var(--wim-spacing-xs);
     max-width: 100%;
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     cursor: default;
     user-select: none;
     border-radius: var(--wim-radius-full);
@@ -133,7 +133,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid currentcolor;
+      outline: var(--wim-border-width-thick) solid currentcolor;
       outline-offset: -2px;
     }
   }

@@ -12,7 +12,7 @@
     display: block;
     margin-bottom: var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-primary);
   }
 
@@ -93,9 +93,9 @@
     margin-top: var(--wim-spacing-xs);
     overflow: hidden;
     background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-overlay);
 
     @include bp.down(sm) {
       flex-direction: column;
@@ -108,14 +108,14 @@
     max-height: 240px;
     padding: var(--wim-spacing-xs) 0;
     overflow-y: auto;
-    border-right: 1px solid var(--wim-color-border);
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     @include bp.down(sm) {
       width: 100%;
       min-width: unset;
       max-height: 200px;
       border-right: none;
-      border-bottom: 1px solid var(--wim-color-border);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
       &:last-child {
         border-bottom: none;
@@ -145,12 +145,12 @@
     }
 
     &.active {
-      font-weight: 500;
+      font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-primary);
     }
 
     &.selected {
-      font-weight: 500;
+      font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-primary);
       background: var(--wim-color-primary-light);
     }

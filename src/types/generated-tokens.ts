@@ -175,7 +175,9 @@ export type WimShadowKey =
   | "inset"
   | "lg"
   | "md"
+  | "modal"
   | "none"
+  | "overlay"
   | "sm"
   | "xs";
 
@@ -283,7 +285,8 @@ export type WimFontSizeKey =
 export type WimFontWeightKey = 
   | "bold"
   | "medium"
-  | "normal";
+  | "normal"
+  | "semibold";
 
 export type WimLineHeightKey = 
   | "loose"

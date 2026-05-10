@@ -6,7 +6,7 @@
     min-width: 0;
     padding: var(--wim-spacing-2xl);
     margin: 0;
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
 
     &.fullWidth {

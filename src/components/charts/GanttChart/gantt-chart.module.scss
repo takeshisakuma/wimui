@@ -15,7 +15,7 @@
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
   }
 
@@ -31,7 +31,7 @@
     flex-shrink: 0;
     width: 160px;
     background-color: var(--wim-color-bg-component);
-    border-right: 1px solid var(--wim-color-border);
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     @include container-down(sm) {
       width: 100px;
@@ -45,7 +45,7 @@
     overflow: hidden;
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);
-    border-bottom: 1px solid var(--wim-color-border-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   .labelText {
@@ -67,7 +67,7 @@
   .headerScroll {
     flex-shrink: 0;
     overflow: hidden;
-    border-bottom: 1px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .header {
@@ -86,11 +86,11 @@
     color: var(--wim-color-text-secondary);
     user-select: none;
     background-color: var(--wim-color-bg-subtle);
-    border-right: 1px solid var(--wim-color-border);
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &[data-gantt-header-cell="label"] {
       width: 160px;
-      border-right: 1px solid var(--wim-color-border);
+      border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
 
       @include container-down(sm) {
         width: 100px;
@@ -135,7 +135,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--wim-color-border-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   .bar {
@@ -173,7 +173,7 @@
     inset: 0;
     pointer-events: none;
     background-color: var(--wim-color-overlay-bg-medium);
-    border-right: 1px solid var(--wim-color-glass-border);
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-component) 0 0 var(--wim-radius-component);
   }
 }

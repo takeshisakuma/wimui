@@ -78,7 +78,7 @@
     color: inherit;
     cursor: pointer;
     background: var(--wim-color-surface-glass);
-    border: 1px solid var(--wim-color-glass-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(8px);
     transition: var(--wim-transition-base);
@@ -124,7 +124,7 @@
     user-select: none;
     object-fit: contain;
     border-radius: var(--wim-radius-sm, 4px);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-modal);
     transition: opacity var(--wim-duration-base) var(--wim-easing-standard), 
                 transform var(--wim-duration-base) var(--wim-easing-standard),
                 filter var(--wim-duration-base) var(--wim-easing-standard);
@@ -142,7 +142,7 @@
     color: inherit;
     cursor: pointer;
     background: var(--wim-color-surface-glass);
-    border: 1px solid var(--wim-color-glass-border);
+    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(8px);
     transform: translateY(-50%);

@@ -53,12 +53,18 @@ import {
 </h2>
 <TokenGrid>
   <RadiusSwatch name="Small" value="2px" radius="var(--wim-radius-sm)" />
-
   <RadiusSwatch name="Medium" value="4px" radius="var(--wim-radius-md)" />
-
   <RadiusSwatch name="Large" value="8px" radius="var(--wim-radius-lg)" />
   <RadiusSwatch name="XL" value="1rem (16px)" radius="var(--wim-radius-xl)" />
   <RadiusSwatch name="Full" value="9999px" radius="var(--wim-radius-full)" />
+</TokenGrid>
+
+<h3>Semantic Aliases</h3>
+<p>コンポーネントでは値ベースのスケールトークンを直接使用せず、以下の役割ベースのエイリアスを使用してください。</p>
+<TokenGrid>
+  <RadiusSwatch name="Component" value="4px — Button, Input, Tag など" radius="var(--wim-radius-component)" />
+  <RadiusSwatch name="Overlay" value="8px — Tooltip, Popover など浮遊要素" radius="var(--wim-radius-overlay)" />
+  <RadiusSwatch name="Container" value="12px — Card, Modal など大きな親要素" radius="var(--wim-radius-container)" />
 </TokenGrid>
 
 <hr />

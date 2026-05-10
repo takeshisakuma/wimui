@@ -1,6 +1,6 @@
 @layer component {
   .text {
-    font-weight: 500;
+    font-weight: var(--wim-font-weight-medium);
   }
 
   .badge {

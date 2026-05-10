@@ -73,7 +73,7 @@
 
     .dot {
       background: transparent;
-      border: 2px solid currentcolor;
+      border: var(--wim-border-width-thick) solid currentcolor;
       border-top-color: transparent;
       animation: agent-spin 0.75s linear infinite;
     }

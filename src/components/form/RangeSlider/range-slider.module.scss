@@ -46,7 +46,7 @@
     cursor: grab;
     outline: none;
     background-color: var(--wim-color-text-white);
-    border: 2px solid var(--wim-color-primary);
+    border: var(--wim-border-width-thick) solid var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
     box-shadow: var(--wim-shadow-sm);
     transform: translate(-50%, -50%);

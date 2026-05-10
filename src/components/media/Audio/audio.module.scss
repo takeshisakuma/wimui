@@ -159,7 +159,7 @@
     gap: var(--wim-spacing-sm);
     align-items: center;
     padding: 0 var(--wim-spacing-xl) var(--wim-spacing-sm);
-    border-bottom: 1px solid oklch(from var(--wim-color-text-white) l c h / 0.1);
+    border-bottom: var(--wim-border-width-thin) solid oklch(from var(--wim-color-text-white) l c h / 0.1);
 
     .radiusFull & {
       padding-right: 2rem;
@@ -184,7 +184,7 @@
 
   .title {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: var(--wim-font-weight-semibold);
     line-height: 1.2;
     color: var(--wim-color-text-white);
   }
@@ -205,7 +205,7 @@
     width: var(--wim-spacing-md);
     height: var(--wim-spacing-md);
     font-size: var(--wim-font-size-2xs);
-    font-weight: bold;
+    font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-on-primary);
     background: var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
@@ -268,7 +268,7 @@
       width: auto;
       padding: 0 var(--wim-spacing-xs);
       font-size: 0.875rem;
-      font-weight: 600;
+      font-weight: var(--wim-font-weight-semibold);
       border-radius: var(--wim-radius-component);
     }
 

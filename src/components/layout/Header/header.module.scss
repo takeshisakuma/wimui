@@ -18,12 +18,12 @@
   }
 
   &.bordered {
-    border-bottom: 1px solid var(--wim-color-border-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
   &.glass {
     background: var(--wim-color-surface-glass);
-    border-bottom: 1px solid var(--wim-color-glass-border);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     backdrop-filter: blur(var(--wim-color-glass-blur));
   }
 

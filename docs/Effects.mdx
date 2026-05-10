@@ -23,12 +23,12 @@ import {
 <p><T k="guide.effects_shadow_multi_layer_desc" /></p>
 
 <TokenGrid columns="1fr 1fr">
-  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-md)", backgroundColor: "#ffffff", color: "#1a1a1a", border: "1px solid #e1e4e8" }}>
+  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-container)", backgroundColor: "#ffffff", color: "#1a1a1a", border: "1px solid #e1e4e8" }}>
     <h3 style={{ color: "#1a1a1a", marginTop: 0 }}><T k="guide.effects_shadow_ambient" /> (XS)</h3>
     <p style={{ color: "#666666" }}><T k="guide.effects_shadow_ambient_desc" /></p>
     <div style={{ width: "100%", height: "40px", borderRadius: "var(--wim-radius-sm)", boxShadow: "var(--wim-shadow-xs)", backgroundColor: "#ffffff", border: "1px solid #e1e4e8" }}></div>
   </div>
-  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-md)", backgroundColor: "#ffffff", color: "#1a1a1a", border: "1px solid #e1e4e8" }}>
+  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-container)", backgroundColor: "#ffffff", color: "#1a1a1a", border: "1px solid #e1e4e8" }}>
     <h3 style={{ color: "#1a1a1a", marginTop: 0 }}><T k="guide.effects_shadow_elevation" /> (MD)</h3>
     <p style={{ color: "#666666" }}><T k="guide.effects_shadow_elevation_desc" /></p>
     <div style={{ width: "100%", height: "40px", borderRadius: "var(--wim-radius-sm)", boxShadow: "var(--wim-shadow-md)", backgroundColor: "#ffffff", border: "1px solid #e1e4e8" }}></div>
@@ -54,7 +54,25 @@ import {
     value="var(--wim-shadow-lg)"
     shadow="var(--wim-shadow-lg)"
   />
+</TokenGrid>
 
+<h3>Semantic Aliases</h3>
+<p>コンポーネントでは値ベースのスケールトークンを直接使用せず、以下の役割ベースのエイリアスを使用してください。</p>
+<TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
+  <ShadowSwatch
+    name="Overlay"
+    value="var(--wim-shadow-overlay)"
+    shadow="var(--wim-shadow-overlay)"
+  />
+
+  <ShadowSwatch
+    name="Modal"
+    value="var(--wim-shadow-modal)"
+    shadow="var(--wim-shadow-modal)"
+  />
+</TokenGrid>
+
+<TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <ShadowSwatch
     name="Inset"
     value="var(--wim-shadow-inset)"

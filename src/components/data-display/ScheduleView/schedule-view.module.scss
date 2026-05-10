@@ -20,7 +20,7 @@
       font-size: var(--wim-font-size-sm);
       color: var(--wim-color-text-primary);
       background: var(--wim-color-ghost-bg);
-      border: 1px solid var(--wim-color-border);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
       border-radius: var(--wim-radius-sm);
       transition: background var(--wim-duration-fast) var(--wim-easing-standard);
 
