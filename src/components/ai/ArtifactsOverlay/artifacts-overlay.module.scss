@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   width: 32px;
-  height: 32px;
+  height: var(--wim-height-sm);
   color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: transparent;

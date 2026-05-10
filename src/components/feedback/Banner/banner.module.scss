@@ -41,7 +41,7 @@
 
   .text {
     font-size: var(--wim-font-size-sm);
-    line-height: 1.5;
+    line-height: var(--wim-line-height-snug-jp);
     color: inherit;
   }
 

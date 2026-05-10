@@ -171,7 +171,7 @@
       padding: var(--wim-spacing-sm, 8px) var(--wim-spacing-md, 16px);
       overflow-y: auto;
       font-size: var(--wim-font-size-md);
-      line-height: 1.6;
+      line-height: var(--wim-line-height-loose);
       color: var(--wim-color-text-primary);
       overflow-wrap: break-word;
       outline: none;

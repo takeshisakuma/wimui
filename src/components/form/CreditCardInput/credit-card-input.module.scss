@@ -1,7 +1,7 @@
 
 @layer component {
   .root {
-    display: block;
+    // Ensuring it inherits flex layout from FieldTemplate
 
     // Add styles using tokens. Example:
     // padding: var(--wim-spacing-md);

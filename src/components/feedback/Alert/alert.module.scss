@@ -35,14 +35,14 @@
     margin: 0;
     font-size: 0.9375rem;
     font-weight: var(--wim-font-weight-semibold);
-    line-height: 1.4;
+    line-height: var(--wim-line-height-normal);
     overflow-wrap: break-word;
   }
 
   .description {
     margin: 0;
     font-size: var(--wim-font-size-sm);
-    line-height: 1.5;
+    line-height: var(--wim-line-height-snug-jp);
     overflow-wrap: break-word;
     opacity: 1;
 

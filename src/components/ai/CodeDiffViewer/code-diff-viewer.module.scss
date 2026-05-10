@@ -148,7 +148,7 @@
 
     &.applying {
       cursor: wait;
-      opacity: 0.8;
+      opacity: var(--wim-opacity-subtle);
     }
 
     &.applied {

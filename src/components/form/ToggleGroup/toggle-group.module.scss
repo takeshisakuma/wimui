@@ -41,9 +41,9 @@
     .item {
       @include indicator.indicator-item-base;
 
-      display: flex;
+      display: grid;
       gap: var(--wim-spacing-xs);
-      align-items: center;
+      place-items: center;
       justify-content: center;
       font-family: inherit;
       font-weight: var(--wim-font-weight-medium);
@@ -83,10 +83,11 @@
       &.iconOnly {
         aspect-ratio: 1 / 1;
         padding: 0 !important;
+        font-size: 0;
         line-height: 0;
         
         .icon {
-          vertical-align: top;
+          display: block;
         }
       }
   
@@ -106,7 +107,7 @@
       height: var(--wim-height-sm);
 
       .item {
-        height: calc(var(--wim-height-sm) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
+        height: 100%;
         padding: 0 var(--wim-spacing-sm);
         font-size: var(--wim-font-size-sm);
       }
@@ -116,7 +117,7 @@
       height: var(--wim-height-md);
 
       .item {
-        height: calc(var(--wim-height-md) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
+        height: 100%;
         padding: 0 var(--wim-spacing-md);
         font-size: var(--wim-font-size-md);
       }
@@ -126,7 +127,7 @@
       height: var(--wim-height-lg);
 
       .item {
-        height: calc(var(--wim-height-lg) - var(--wim-spacing-xs) - var(--wim-border-width-thin) * 2);
+        height: 100%;
         padding: 0 var(--wim-spacing-lg);
         font-size: var(--wim-font-size-lg);
       }

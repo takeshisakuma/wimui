@@ -180,7 +180,7 @@ export const Overview: StoryObj = {
               <SearchInput aria-label="Mix Search" placeholder="Search" style={{ flex: 1 }} />
             </Stack>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <PromptInput aria-label="Mix Prompt" placeholder="Prompt" style={{ flex: 1 }} />
+              <Input aria-label="Mix Input 2" placeholder="Message" style={{ flex: 1 }} />
               <Button variant="ghost">Cancel</Button>
               <Button>Send</Button>
             </Stack>
@@ -215,6 +215,7 @@ export const Overview: StoryObj = {
               <Cascader label={t("audit:label_fluid_cascader")} fullWidth options={[{ label: t("audit:label_option_1"), value: "fc1" }]} placeholder={t("audit:label_fluid_cascader")} />
               <PhoneInput label={t("audit:label_fluid_phone")} fullWidth placeholder={t("audit:label_fluid_phone")} />
               <CreditCardInput label={t("audit:label_fluid_cc")} fullWidth placeholder={t("audit:label_fluid_cc")} />
+              <DatePicker label={t("audit:label_fluid_date_picker")} fullWidth placeholder={t("audit:sample_date_placeholder")} />
             </Stack>
           </ComponentGroup>
 

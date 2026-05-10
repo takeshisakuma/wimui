@@ -121,7 +121,7 @@
   // --- Step styles ---
 
   .item {
-    min-height: 48px;
+    min-height: var(--wim-height-lg);
   }
 
   .content {

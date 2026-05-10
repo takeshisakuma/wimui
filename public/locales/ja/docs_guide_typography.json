@@ -19,6 +19,10 @@
     "inline_desc": "文章の一部を強調したり、特定のスタイルを適用したりする。",
     "inline_usage": "インラインテキスト",
     "kbd_desc": "等幅フォントを使用し、キーボード操作やショートカットを明示する。",
+    "lh_jpan_loose": "Loose (1.8)\n日本語の文章において、特にモバイルデバイスなどの小画面で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。",
+    "lh_jpan_normal": "Normal (1.6)\nWIM UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。",
+    "lh_jpan_snug": "[MISSING_TRANSLATION: ja] Snug (1.5)\nSits between tight and normal. Optimal for concise body text, labels, and short UI descriptions in Japanese. Balances density with readability.",
+    "lh_jpan_tight": "Tight (1.4)\n見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。",
     "link_desc": "別のページやリソースへのナビゲーション。ページ遷移には\n`Link`、アクション実行には `Button` を使用するのが原則。",
     "mark_desc": "検索結果のヒット部分や、特に重要な箇所を背景色で強調する。",
     "mark_usage": "注目喚起",
@@ -35,9 +39,6 @@
     "text_usage": "本文のブロック",
     "title_desc": "視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。",
     "title_usage": "セクションの見出し",
-    "u11y_a11y_title": "ユーザビリティとアクセシビリティ",
-    "lh_jpan_loose": "Loose (1.8)\n日本語の文章において、特にモバイルデバイスなどの小画面で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。",
-    "lh_jpan_normal": "Normal (1.6)\nWIM UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。",
-    "lh_jpan_tight": "Tight (1.4)\n見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。"
+    "u11y_a11y_title": "ユーザビリティとアクセシビリティ"
   }
 }

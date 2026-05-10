@@ -47,7 +47,7 @@
     .label {
       display: inline-block;
       font-weight: var(--wim-font-weight-medium);
-      line-height: 1.4;
+      line-height: var(--wim-line-height-normal);
       white-space: nowrap;
       opacity: 1;
       transition:

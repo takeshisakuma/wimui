@@ -260,7 +260,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 readOnly
                 role="combobox"
                 className={classNames(
-                  inputStyles.input,
+                  inputStyles.root,
                   styles.input,
                   fullWidth && inputStyles.fullWidth,
                 )}

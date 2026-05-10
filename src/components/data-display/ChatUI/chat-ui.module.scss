@@ -88,7 +88,7 @@
       display: flex;
       gap: 4px;
       align-items: center;
-      min-height: 24px;
+      min-height: var(--wim-height-xs);
       padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     }
   }
@@ -98,7 +98,7 @@
     height: 6px;
     background-color: currentcolor;
     border-radius: 50%;
-    opacity: 0.4;
+    opacity: var(--wim-opacity-dim);
     animation: chat-typing 1.4s infinite ease-in-out both;
 
     &:nth-child(2) {
@@ -112,7 +112,7 @@
 
   @keyframes chat-typing {
     0%, 80%, 100% {
-      opacity: 0.4;
+      opacity: var(--wim-opacity-dim);
       transform: scale(0.6);
     }
 
@@ -223,7 +223,7 @@
     align-items: center;
     justify-content: center;
     min-width: 32px;
-    height: 32px;
+    height: var(--wim-height-sm);
     padding: 0 var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium, 500);
@@ -256,7 +256,7 @@
     align-items: center;
     justify-content: center;
     width: 32px;
-    height: 32px;
+    height: var(--wim-height-sm);
     margin-bottom: 2px; // Align slightly better with text
     color: var(--wim-color-text-tertiary);
     cursor: pointer;

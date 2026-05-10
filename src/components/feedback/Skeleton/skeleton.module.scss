@@ -63,7 +63,7 @@
   }
 
   50% {
-    opacity: 0.4;
+    opacity: var(--wim-opacity-dim);
   }
 
   100% {

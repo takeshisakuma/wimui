@@ -70,7 +70,7 @@
     .label {
       font-size: var(--wim-font-size-2xs);
       font-weight: var(--wim-font-weight-medium);
-      line-height: 1.2;
+      line-height: var(--wim-line-height-tight);
       white-space: nowrap;
     }
 

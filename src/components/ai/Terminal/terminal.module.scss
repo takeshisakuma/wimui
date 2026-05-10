@@ -64,7 +64,7 @@
     display: grid;
     place-items: center;
     width: 24px;
-    height: 24px;
+    height: var(--wim-height-xs);
     padding: 0;
     color: var(--wim-color-text-disabled);
     cursor: pointer;

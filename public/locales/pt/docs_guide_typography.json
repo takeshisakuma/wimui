@@ -19,6 +19,10 @@
     "inline_desc": "Enfatiza partes do texto ou aplica estilos específicos.",
     "inline_usage": "Texto Inline",
     "kbd_desc": "Usa fonte monoespaçada para indicar claramente operações ou atalhos de teclado.",
+    "lh_jpan_loose": "Loose (1.8)\nProvides a spacious line height, making it easier to read on small screens like mobile devices. It gives a relaxed impression and ensures smooth eye movement.",
+    "lh_jpan_normal": "Normal (1.6)\nThe standard line height for WIM UI. It offers the best balance between readability and information density, ideal for general articles.",
+    "lh_jpan_snug": "[MISSING_TRANSLATION: pt] Snug (1.5)\nSits between tight and normal. Optimal for concise body text, labels, and short UI descriptions in Japanese. Balances density with readability.",
+    "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space.",
     "link_desc": "Navegação para outras páginas ou resources. Use `Link` para navegação e `Button` para execução.",
     "mark_desc": "Enfatiza partes de resultados de pesquisa ou partes críticas com cores de fundo.",
     "mark_usage": "Chamada de Atenção",
@@ -35,9 +39,6 @@
     "text_usage": "Blocos de Texto",
     "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
     "title_usage": "Cabeçalhos de Seção",
-    "u11y_a11y_title": "Usability & Accessibility",
-    "lh_jpan_loose": "Loose (1.8)\nProvides a spacious line height, making it easier to read on small screens like mobile devices. It gives a relaxed impression and ensures smooth eye movement.",
-    "lh_jpan_normal": "Normal (1.6)\nThe standard line height for WIM UI. It offers the best balance between readability and information density, ideal for general articles.",
-    "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space."
+    "u11y_a11y_title": "Usability & Accessibility"
   }
 }

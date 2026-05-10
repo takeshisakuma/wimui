@@ -1,6 +1,6 @@
 @layer component {
   .input {
-    height: 42px; // Match other inputs
+    height: var(--wim-height-md); // Match other inputs
     padding: 0 !important;
     cursor: pointer;
   

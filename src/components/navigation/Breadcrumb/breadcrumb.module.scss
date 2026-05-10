@@ -1,6 +1,6 @@
 @layer component {
   .root {
-    line-height: 1.5;
+    line-height: var(--wim-line-height-snug-jp);
 
     .list {
       display: flex;

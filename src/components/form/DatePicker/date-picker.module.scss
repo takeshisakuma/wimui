@@ -4,7 +4,7 @@
   .root {
     position: relative;
     width: 100%;
-    max-width: 280px;
+    max-width: var(--wim-width-md);
 
     &.fullWidth {
       width: 100%;

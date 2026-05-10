@@ -59,7 +59,7 @@
 
   @keyframes voice-bar-idle {
     0%, 100% {
-      opacity: 0.5;
+      opacity: var(--wim-opacity-ghost);
       transform: scaleY(0.15);
     }
 

@@ -35,7 +35,7 @@
   .node {
     position: relative;
     margin-left: var(--wim-spacing-md);
-    line-height: 1.6;
+    line-height: var(--wim-line-height-loose);
     white-space: nowrap;
 
     &:hover > .actions {
@@ -47,7 +47,7 @@
     display: flex;
     gap: var(--wim-spacing-xs);
     align-items: center;
-    min-height: 24px;
+    min-height: var(--wim-height-xs);
     cursor: default;
 
     &.collapsible {

@@ -65,6 +65,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
       maxRows = 8,
       fullWidth = false,
       className,
+      style,
       label,
       error,
       required,
@@ -128,6 +129,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
         htmlFor={id}
         errorId={errorId}
         className={className}
+        style={fullWidth ? { width: "100%", minWidth: 0, ...style } : style}
       >
         <div
           className={classNames(

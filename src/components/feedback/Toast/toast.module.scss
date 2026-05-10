@@ -79,13 +79,13 @@
     margin: 0;
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
-    line-height: 1.4;
+    line-height: var(--wim-line-height-normal);
   }
 
   .description {
     margin: 0;
     font-size: var(--wim-font-size-xs);
-    line-height: 1.5;
+    line-height: var(--wim-line-height-snug-jp);
 
     .title + & {
       margin-top: var(--wim-spacing-2xs);
