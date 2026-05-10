@@ -120,9 +120,22 @@ export const Button = React.forwardRef<
           : justify === "between" ? "space-between" : justify;
 
     const renderIcon = () => {
+      if (loading) {
+        return (
+          <span className={classNames(localStyles.loader, stylesProp?.loader)}>
+            <Icon name="LoadingIcon" size={size} />
+          </span>
+        );
+      }
       if (!icon) return null;
       if (typeof icon === "string") {
-        return <Icon name={icon as React.ComponentProps<typeof Icon>["name"]} size={size} className={stylesProp?.icon} />;
+        return (
+          <Icon
+            name={icon as React.ComponentProps<typeof Icon>["name"]}
+            size={size}
+            className={stylesProp?.icon}
+          />
+        );
       }
       return icon;
     };
@@ -174,11 +187,6 @@ export const Button = React.forwardRef<
           {iconContent && iconPosition === "left" && iconContent}
           <Slottable>{children}</Slottable>
           {iconContent && iconPosition === "right" && iconContent}
-          {loading && (
-            <span className={classNames(localStyles.loader, stylesProp?.loader)}>
-              <Icon name="LoadingIcon" size={size} />
-            </span>
-          )}
         </span>
       </Root>
     );

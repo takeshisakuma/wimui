@@ -103,6 +103,24 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
       setActiveMobileMenu(null);
     };
 
+    const derivedColumns = React.useMemo(() => {
+      if (columnsProp) return columnsProp;
+      const cols: KanbanColumnData[] = [];
+      React.Children.forEach(children, (child) => {
+        if (React.isValidElement(child)) {
+          const props = child.props as Record<string, unknown>;
+          if (typeof props.id === "string" && typeof props.title === "string") {
+            cols.push({
+              id: props.id,
+              title: props.title,
+              items: [], // Items are not needed for the mobile menu
+            });
+          }
+        }
+      });
+      return cols;
+    }, [children, columnsProp]);
+
     const renderContent = () => {
       if (children) return children;
       if (!columnsProp) return null;
@@ -137,7 +155,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
           handleMobileMove,
           activeMobileMenu,
           setActiveMobileMenu,
-          columns: columnsProp || [], // Used for mobile move menu search
+          columns: derivedColumns, // Used for mobile move menu search
         }}
       >
         <Component

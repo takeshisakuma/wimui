@@ -36,7 +36,7 @@ export const Overview: StoryObj = {
         {/* Size Comparison */}
         <ComparisonGrid title={t("audit:size_comparison")}>
           {sizes.map((size) => (
-            <ComponentGroup key={size} label={t("audit:label_size_n", { size })}>
+            <ComponentGroup key={size} label={t("audit:label_size_n", { size })} direction="row" align="center" wrap>
               <Button size={size} variant="solid">
                 {t("audit:label_button")}
               </Button>
@@ -51,7 +51,7 @@ export const Overview: StoryObj = {
         {/* Intent Comparison */}
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
-            <ComponentGroup key={intent} label={t("audit:label_intent", { intent })}>
+            <ComponentGroup key={intent} label={t("audit:label_intent", { intent })} direction="row" align="center" wrap>
               <Button size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"}>
                 {t("audit:label_button")}
               </Button>
@@ -64,7 +64,7 @@ export const Overview: StoryObj = {
         {/* Variant Comparison */}
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
-            <ComponentGroup key={variant} label={t("audit:label_variant", { variant })}>
+            <ComponentGroup key={variant} label={t("audit:label_variant", { variant })} direction="row" align="center" wrap>
               <Button size="md" variant={variant}>
                 {t("audit:label_button")}
               </Button>
@@ -78,11 +78,11 @@ export const Overview: StoryObj = {
 
         {/* Specialized Buttons */}
         <ComparisonGrid title={t("audit:specialized_buttons")}>
-          <ComponentGroup label={t("audit:label_copy_button")}>
+          <ComponentGroup label={t("audit:label_copy_button")} direction="row" align="center" wrap>
             <CopyButton value="Copied Text" />
             <CopyButton value="Copied Text" />
           </ComponentGroup>
-          <ComponentGroup label={t("audit:label_float_button")}>
+          <ComponentGroup label={t("audit:label_float_button")} direction="row" align="center" wrap>
             <FloatButton iconName="PlusIcon" position="static" />
             <FloatButton iconName="ChevronUpIcon" variant="default" position="static" />
           </ComponentGroup>
@@ -90,7 +90,7 @@ export const Overview: StoryObj = {
 
         {/* Mixed Composition */}
         <ComparisonGrid title={t("audit:mixed_composition")}>
-          <ComponentGroup label={t("audit:label_mix")}>
+          <ComponentGroup label={t("audit:label_mix")} direction="row" align="center" wrap>
             <Button size="md">{t("audit:label_button")}</Button>
             <IconButton size="md" iconName="SearchIcon" aria-label="Search" />
             <CopyButton size="md" value="test" />

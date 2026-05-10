@@ -48,6 +48,34 @@ export const Overview: StoryObj = {
       { date: "2026-05-15", count: 12 },
     ];
 
+    // Kanban state
+    const [kanbanColumns, setKanbanColumns] = React.useState<Record<string, string[]>>({
+      todo: ["c1", "c2", "c3"],
+      doing: ["c4"],
+      done: ["c5", "c6"],
+      backlog: [],
+    });
+
+    const kanbanLabels: Record<string, string> = {
+      c1: "Research UI Patterns",
+      c2: "Setup Audit Stories",
+      c3: "Review Tokens",
+      c4: "Implementing Viewport Audit",
+      c5: "Interaction Audit",
+      c6: "Input Audit",
+    };
+
+    const handleKanbanMove = (cardId: string, fromCol: string, toCol: string) => {
+      setKanbanColumns((prev) => {
+        const next = { ...prev };
+        if (next[fromCol] && next[toCol]) {
+          next[fromCol] = prev[fromCol].filter((id) => id !== cardId);
+          next[toCol] = [...prev[toCol], cardId];
+        }
+        return next;
+      });
+    };
+
     // Sample data for DataGrid
     const gridColumns = [
       { key: "id", title: "ID", width: 100, fixed: "left" as const },
@@ -90,21 +118,28 @@ export const Overview: StoryObj = {
             />
           </ComponentGroup>
 
-          <ComponentGroup label={t("audit:label_kanban")} noStack width="fit-content">
-            <KanbanBoard style={{ maxWidth: "100%" }}>
-              <KanbanBoard.Column id="todo" title="To Do" cardCount={3}>
-                <KanbanBoard.Card id="c1">Research UI Patterns</KanbanBoard.Card>
-                <KanbanBoard.Card id="c2">Setup Audit Stories</KanbanBoard.Card>
-                <KanbanBoard.Card id="c3">Review Tokens</KanbanBoard.Card>
+          <ComponentGroup label={t("audit:label_kanban")} noStack>
+            <KanbanBoard style={{ maxWidth: "100%" }} onCardMove={handleKanbanMove}>
+              <KanbanBoard.Column id="todo" title="To Do" cardCount={kanbanColumns.todo.length}>
+                {kanbanColumns.todo.map((id) => (
+                  <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
+                ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="doing" title="In Progress" cardCount={1}>
-                <KanbanBoard.Card id="c4">Implementing Viewport Audit</KanbanBoard.Card>
+              <KanbanBoard.Column id="doing" title="In Progress" cardCount={kanbanColumns.doing.length}>
+                {kanbanColumns.doing.map((id) => (
+                  <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
+                ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="done" title="Done" cardCount={2}>
-                <KanbanBoard.Card id="c5">Interaction Audit</KanbanBoard.Card>
-                <KanbanBoard.Card id="c6">Input Audit</KanbanBoard.Card>
+              <KanbanBoard.Column id="done" title="Done" cardCount={kanbanColumns.done.length}>
+                {kanbanColumns.done.map((id) => (
+                  <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
+                ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="backlog" title="Backlog" cardCount={0} />
+              <KanbanBoard.Column id="backlog" title="Backlog" cardCount={kanbanColumns.backlog.length}>
+                {kanbanColumns.backlog.map((id) => (
+                  <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
+                ))}
+              </KanbanBoard.Column>
             </KanbanBoard>
           </ComponentGroup>
         </ComparisonGrid>

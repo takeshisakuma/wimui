@@ -103,6 +103,12 @@ export const WithDisabledCard: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
 
+    const cardLabels: Record<string, string> = {
+      "card-1": t("story.kanban_card_design"),
+      "card-2": t("story.kanban_card_locked"),
+      "card-3": t("story.kanban_card_done1"),
+    };
+
     const [columns, setColumns] = useState<Columns>({
       todo: ["card-1", "card-2"],
       done: ["card-3"],
@@ -128,21 +134,22 @@ export const WithDisabledCard: Story = {
           title={t("story.kanban_col_todo")}
           cardCount={columns.todo.length}
         >
-          <KanbanBoard.Card id="card-1">
-            {t("story.kanban_card_design")}
-          </KanbanBoard.Card>
-          <KanbanBoard.Card id="card-2" disabled>
-            {t("story.kanban_card_locked")}
-          </KanbanBoard.Card>
+          {columns.todo.map((id) => (
+            <KanbanBoard.Card key={id} id={id} disabled={id === "card-2"}>
+              {cardLabels[id]}
+            </KanbanBoard.Card>
+          ))}
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="done"
           title={t("story.kanban_col_done")}
           cardCount={columns.done.length}
         >
-          <KanbanBoard.Card id="card-3">
-            {t("story.kanban_card_done1")}
-          </KanbanBoard.Card>
+          {columns.done.map((id) => (
+            <KanbanBoard.Card key={id} id={id} disabled={id === "card-2"}>
+              {cardLabels[id]}
+            </KanbanBoard.Card>
+          ))}
         </KanbanBoard.Column>
       </KanbanBoard>
     );
