@@ -15,7 +15,7 @@
     outline: none;
     background: var(--wim-color-surface-glass);
     border: 1px solid var(--wim-color-glass-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-container);
     box-shadow: var(--wim-shadow-md);
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
@@ -34,7 +34,7 @@
     font-size: var(--wim-font-size-sm);
     outline: none;
     border: 1px solid var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition:
       border-color var(--wim-duration-base) var(--wim-easing-standard),
       box-shadow var(--wim-duration-base) var(--wim-easing-standard);
@@ -67,7 +67,7 @@
     min-width: 0;
     container-type: inline-size;
     outline: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-fast);
   
     &.selected > .labelContainer {
@@ -96,7 +96,7 @@
       box-shadow: none;
       
       & > .labelContainer {
-        border-radius: var(--wim-radius-md);
+        border-radius: var(--wim-radius-component);
         box-shadow: var(--wim-shadow-focus);
       }
     }

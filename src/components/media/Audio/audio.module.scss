@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -26,7 +26,7 @@
 
     &.radiusMd {
       overflow: hidden;
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
 
     &.radiusLg {
@@ -269,7 +269,7 @@
       padding: 0 var(--wim-spacing-xs);
       font-size: 0.875rem;
       font-weight: 600;
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
 
     &.btnPlay {

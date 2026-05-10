@@ -1,4 +1,4 @@
-﻿
+
 @layer component {
   .root {
     display: inline-flex;
@@ -18,7 +18,7 @@
     cursor: pointer;
     background: var(--_bg);
     border: 1px solid transparent;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition:
       color var(--wim-duration-fast) var(--wim-easing-standard),
       background var(--wim-duration-fast) var(--wim-easing-standard),

@@ -130,7 +130,7 @@
     }
 
     &.square:not(.extended) {
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
 
     &.primary,
@@ -277,7 +277,7 @@
       white-space: nowrap;
       pointer-events: none;
       background-color: var(--wim-color-overlay-bg-dark);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
       opacity: 0;
       transition: opacity var(--wim-transition-fast);
     }

@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     display: block;
@@ -43,7 +43,7 @@
     padding: var(--wim-spacing-xs) var(--wim-spacing-md);
     cursor: text;
     border: 1px solid transparent;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
 
     &:hover {

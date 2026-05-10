@@ -1,4 +1,4 @@
-﻿@use "sass:color";
+@use "sass:color";
 @use "../../../styles/indicator-mixins" as indicator;
 
 @layer component {
@@ -177,7 +177,7 @@
       display: inline-flex; // Shrink to fit content
 
       .list {
-        gap: var(--wim-radius-md);
+        gap: var(--wim-radius-component); // TODO: tokenization — spacing token for 4px gap
       }
 
       .slider {

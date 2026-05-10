@@ -1,4 +1,4 @@
-﻿@use "../../../base" as *;
+@use "../../../base" as *;
 
 .container {
     width: 100%;
@@ -43,7 +43,7 @@
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-xs);
     transition: var(--wim-transition-base);
 

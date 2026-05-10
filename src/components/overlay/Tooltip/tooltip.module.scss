@@ -20,7 +20,7 @@
     white-space: nowrap;
     pointer-events: none;
     background-color: var(--bg-tooltip, var(--wim-color-bg-inverted));
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-sm);
     opacity: 0;
     animation: fadeIn var(--wim-duration-fast) forwards;

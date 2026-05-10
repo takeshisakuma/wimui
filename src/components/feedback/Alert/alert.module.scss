@@ -10,7 +10,7 @@
     // Glassmorphism effect base
     background: var(--wim-color-frosted-bg);
     border: var(--wim-border-width-thin) solid transparent;
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-sm);
     backdrop-filter: blur(var(--wim-spacing-lg));
     transition: var(--wim-transition-fast);
@@ -67,7 +67,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     opacity: var(--wim-opacity-ghost);
     transition: var(--wim-transition-fast);
 

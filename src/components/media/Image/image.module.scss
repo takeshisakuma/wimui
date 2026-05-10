@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     display: block;
@@ -35,7 +35,7 @@
 
     &.radiusMd {
       overflow: hidden;
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
 
     &.radiusLg {

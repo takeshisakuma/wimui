@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .container {
     display: inline-block;
   
@@ -19,7 +19,7 @@
     padding: var(--wim-spacing-xs) 0;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-md);
     animation: fadeIn var(--wim-duration-short) ease-in-out;
   }

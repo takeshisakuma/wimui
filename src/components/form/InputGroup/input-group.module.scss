@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     display: inline-flex;
     align-items: stretch;
@@ -72,6 +72,6 @@
     white-space: nowrap;
     background-color: var(--wim-color-disabled);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
   }
 }

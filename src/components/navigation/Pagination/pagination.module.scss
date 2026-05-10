@@ -56,7 +56,7 @@
       user-select: none;
       background: transparent;
       border: var(--wim-border-width-thin) solid transparent;
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
       transition: all var(--wim-transition-base);
 
       &:hover:not(.disabled, .active),

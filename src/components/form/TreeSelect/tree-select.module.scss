@@ -1,4 +1,4 @@
-﻿@use "../../../base" as *;
+@use "../../../base" as *;
 
 @layer component {
   .container {
@@ -95,12 +95,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--wim-radius-md) 0;
+    padding: var(--wim-radius-component) 0; // TODO: tokenization — spacing token for 4px padding
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     background: none;
     border: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-fast);
   }
 
@@ -113,12 +113,12 @@
     min-width: 100%;
     max-width: min(30rem, calc(100vw - var(--wim-spacing-5xl)));
     max-height: 20rem;
-    padding: var(--wim-radius-md) 0;
-    margin-top: var(--wim-radius-md);
+    padding: var(--wim-radius-component) 0; // TODO: tokenization — spacing token for 4px padding
+    margin-top: var(--wim-radius-component); // TODO: tokenization — spacing token for 4px margin
     overflow: hidden auto;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-md);
 
     @media (forced-colors: active) {
@@ -149,7 +149,7 @@
       }
 
       .treeViewSearch {
-        padding: var(--wim-radius-md) var(--wim-spacing-xl);
+        padding: var(--wim-radius-component) var(--wim-spacing-xl); // TODO: tokenization — spacing token for 4px padding
         margin-bottom: var(--wim-spacing-md);
       }
     }

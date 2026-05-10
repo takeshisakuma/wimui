@@ -11,7 +11,7 @@
     min-height: var(--wim-height-md);
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
 
     &.fullWidth {
@@ -56,7 +56,7 @@
     height: 100%;
     padding: 0 var(--wim-spacing-md);
     cursor: pointer;
-    border-radius: var(--wim-radius-md) 0 0 var(--wim-radius-md);
+    border-radius: var(--wim-radius-component) 0 0 var(--wim-radius-component);
     transition: background-color var(--wim-transition-base);
 
     &:hover:not(:disabled) {
@@ -91,7 +91,7 @@
     max-height: 20rem;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-lg);
   }
 

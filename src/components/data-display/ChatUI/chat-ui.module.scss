@@ -80,7 +80,7 @@
     color: var(--wim-chat-bubble-color);
     overflow-wrap: break-word;
     background-color: var(--wim-chat-bubble-bg);
-    border-radius: var(--wim-radius-lg, 12px);
+    border-radius: var(--wim-radius-container);
     box-shadow: var(--wim-shadow-xs);
     transition: background-color var(--wim-transition-fast);
 
@@ -186,7 +186,7 @@
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
     background-color: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-container);
     transition: border-color var(--wim-transition-fast), box-shadow var(--wim-transition-fast);
 
     &:focus-within {
@@ -231,7 +231,7 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition:
       background-color var(--wim-transition-fast),
       opacity var(--wim-transition-fast);
@@ -262,7 +262,7 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition:
       color var(--wim-transition-fast),
       background-color var(--wim-transition-fast);

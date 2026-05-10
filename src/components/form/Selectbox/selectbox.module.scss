@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     width: 100%;
@@ -109,7 +109,7 @@
     z-index: var(--wim-z-overlay);
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-lg);
   }
 
@@ -215,7 +215,7 @@
       cursor: pointer;
       background-color: var(--wim-color-bg-component);
       border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
       transition:
         border-color var(--wim-transition-fast),
         box-shadow var(--wim-transition-fast);

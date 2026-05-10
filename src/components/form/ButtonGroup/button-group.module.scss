@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/breakpoints" as *;
+@use "../../../tokens/breakpoints" as *;
 
 .root {
   display: flex;
@@ -24,13 +24,13 @@
       }
 
       &:first-child {
-        --wim-field-radius-tl: var(--wim-radius-md);
-        --wim-field-radius-bl: var(--wim-radius-md);
+        --wim-field-radius-tl: var(--wim-radius-component);
+        --wim-field-radius-bl: var(--wim-radius-component);
       }
 
       &:last-child {
-        --wim-field-radius-tr: var(--wim-radius-md);
-        --wim-field-radius-br: var(--wim-radius-md);
+        --wim-field-radius-tr: var(--wim-radius-component);
+        --wim-field-radius-br: var(--wim-radius-component);
       }
 
       &:hover,
@@ -54,20 +54,20 @@
           margin-left: 0;
         }
 
-        --wim-field-radius-tl: var(--wim-radius-md);
-        --wim-field-radius-tr: var(--wim-radius-md);
+        --wim-field-radius-tl: var(--wim-radius-component);
+        --wim-field-radius-tr: var(--wim-radius-component);
         --wim-field-radius-bl: 0;
         --wim-field-radius-br: 0;
 
         &:last-child {
           --wim-field-radius-tl: 0;
           --wim-field-radius-tr: 0;
-          --wim-field-radius-bl: var(--wim-radius-md);
-          --wim-field-radius-br: var(--wim-radius-md);
+          --wim-field-radius-bl: var(--wim-radius-component);
+          --wim-field-radius-br: var(--wim-radius-component);
         }
 
         &:first-child:last-child {
-          --wim-field-radius: var(--wim-radius-md);
+          --wim-field-radius: var(--wim-radius-component);
         }
       }
     }

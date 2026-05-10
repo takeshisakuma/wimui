@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     width: 100%;
@@ -42,7 +42,7 @@
     overflow-y: auto;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
   }
 

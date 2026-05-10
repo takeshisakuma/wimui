@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .container {
     position: fixed;
     z-index: var(--wim-z-toast);
@@ -55,7 +55,7 @@
     // Glassmorphism effect — auto-switches via glass tokens
     background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid transparent;
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-color-shadow-glass);
     backdrop-filter: blur(var(--wim-spacing-lg));
   }
@@ -107,7 +107,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     opacity: var(--wim-opacity-ghost);
     transition: var(--wim-transition-fast);
 

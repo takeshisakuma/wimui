@@ -1,4 +1,4 @@
-﻿.root {
+.root {
   font-size: var(--wim-font-size-md);
   line-height: var(--wim-line-height-loose);
   color: var(--wim-color-text-primary);
@@ -47,7 +47,7 @@
     overflow-x: auto;
     background: var(--wim-color-ghost-bg);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
 
     code {
       padding: 0;

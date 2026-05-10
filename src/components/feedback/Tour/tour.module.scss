@@ -25,7 +25,7 @@
     max-width: calc(100vw - var(--wim-spacing-4xl));
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-lg);
     transition: var(--wim-transition-base);
   }

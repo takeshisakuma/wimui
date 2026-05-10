@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     box-sizing: border-box;
     padding: var(--wim-spacing-xs) 0;
@@ -6,7 +6,7 @@
     list-style: none;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-md);
 
     &.vertical {

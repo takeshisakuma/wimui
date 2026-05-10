@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     width: 100%;
     overflow: hidden;
@@ -6,7 +6,7 @@
     font-size: var(--wim-font-size-sm);
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
   }
 
   .toolbar {

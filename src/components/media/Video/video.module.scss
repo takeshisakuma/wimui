@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/breakpoints" as bp;
+@use "../../../tokens/breakpoints" as bp;
 
 @layer component {
   .root {
@@ -23,7 +23,7 @@
   
     &.radiusMd {
       overflow: hidden;
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
   
     &.radiusLg {
@@ -314,7 +314,7 @@
     font-size: 0.875rem;
     color: var(--wim-color-text-on-overlay);
     background: var(--wim-color-overlay-menu-bg);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-lg);
     backdrop-filter: blur(8px);
   

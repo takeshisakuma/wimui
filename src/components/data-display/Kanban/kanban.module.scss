@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     display: flex;
     flex-direction: row;
@@ -18,7 +18,7 @@
     width: 280px;
     min-height: 200px;
     background: var(--wim-color-bg-subtle);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-container);
     transition: background 0.15s ease, box-shadow 0.15s ease;
 
     &.dragOver {
@@ -69,7 +69,7 @@
     cursor: grab;
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: opacity 0.15s ease, box-shadow 0.15s ease;
 
     &:hover:not(.disabled) {
@@ -118,7 +118,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: 0 0 var(--wim-radius-md) var(--wim-radius-md);
+    border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
 
     &:active {
       background: var(--wim-color-bg-hover);
@@ -134,7 +134,7 @@
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
   }
 

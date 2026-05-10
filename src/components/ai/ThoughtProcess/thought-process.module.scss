@@ -8,7 +8,7 @@
     overflow: hidden;
     background-color: var(--wim-color-ghost-bg);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: background-color var(--wim-duration-slow) var(--wim-easing-standard);
 
     &.thinking {

@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .overlay {
@@ -26,7 +26,7 @@
     overflow: hidden;
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
-    border-radius: var(--wim-radius-xl) var(--wim-radius-xl) 0 0;
+    border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
     box-shadow: var(--wim-shadow-lg);
     animation: slideUp var(--wim-duration-base) var(--wim-easing-snap);
     will-change: transform;

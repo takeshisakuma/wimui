@@ -133,7 +133,7 @@
 |---|---|---|
 | `color` | セマンティックカラー全般 | `--wim-color-primary`, `--wim-color-text-secondary` |
 | `spacing` | 余白・間隔 | `--wim-spacing-md` |
-| `radius` | 角丸 | `--wim-radius-lg` |
+| `radius` | 角丸 | `--wim-radius-component`, `--wim-radius-container`, `--wim-radius-overlay` |
 | `shadow` | 影・elevation | `--wim-shadow-sm` |
 | `font-size` | フォントサイズ | `--wim-font-size-xl` |
 | `font-weight` | フォントウェイト | `--wim-font-weight-bold` |
@@ -152,6 +152,29 @@
 | `z` | Z-index 階層 | `--wim-z-overlay` |
 
 - コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は `--wim-` プレフィックス不要です。
+
+### 角丸（Radius）の設計指針
+
+`border-radius` には値ベースのトークン（`--wim-radius-md/lg/xl`）を直接使用しないでください。役割ベースのエイリアストークンを使用してください。`--wim-radius-sm` と `--wim-radius-full` はサブ要素や円形など意味的な代替トークンがないケースに限り引き続き使用できます。
+
+| トークン | 値 | 対象 |
+|---|---|---|
+| `--wim-radius-component` | 4px | Button, Input, Tag, Badge など小〜中要素 |
+| `--wim-radius-container` | 12px | Card, Table, Modal など大きな親要素 |
+| `--wim-radius-overlay` | 8px | Tooltip, Popover など浮遊要素 |
+
+**親子ルール（Nested Radius）:** 要素を別の要素の内側に配置する場合、外側の角丸（R_outer）は内側の角丸（R_inner）に両者の間隔（S）を加えた値を目安にしてください。
+
+```
+R_outer ≈ R_inner + S
+```
+
+例: Card（`--wim-radius-container` = 12px）の内側に Button（`--wim-radius-component` = 4px）を配置し、間隔が 8px の場合 → 12 ≈ 4 + 8 で整合している。
+
+逆に外側と内側が同じ角丸（例: 外枠 4px の中に 4px のボタン）だと角が視覚的に衝突して見えるため、外側を大きくするか内側を小さくして差をつけてください。
+
+この計算は厳密な強制ではなく、設計判断の拠り所として使用してください。lint では検出されません。
+
 - `z-index` の使用ルール： z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
   - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）
   - `--wim-z-overlay: 1000` — Dialog・Drawer・Dropdown・Tooltip・Popover 等

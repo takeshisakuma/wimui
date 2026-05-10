@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .overlay {
     position: fixed;
     inset: 0;
@@ -8,12 +8,10 @@
     justify-content: center;
     padding-top: 20vh;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(var(--wim-radius-md));
+    backdrop-filter: blur(var(--wim-radius-component)); // TODO: tokenization — blur token for 4px
 
-    // Mobile: sticky to top and less padding
     @media (width <= 640px) {
-      align-items: flex-start;
-      padding-top: 0;
+      padding-top: var(--wim-spacing-2xl);
     }
   }
   
@@ -25,19 +23,14 @@
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-glass-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-lg);
     animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
-    // Mobile: full width and no border radius at top
     @media (width <= 640px) {
       max-width: 100%;
       height: auto;
-      max-height: 100vh;
-      border-top: none;
-      border-right: none;
-      border-left: none;
-      border-radius: 0 0 var(--wim-radius-lg) var(--wim-radius-lg);
+      max-height: calc(100vh - var(--wim-spacing-2xl) - var(--wim-spacing-2xl));
     }
   }
   
@@ -79,7 +72,7 @@
       // Keyboard navigation: show full "outline" using box-shadow
       .content[data-keyboard-nav="true"] & {
         border-bottom-color: transparent;
-        border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
+        border-radius: var(--wim-radius-overlay) var(--wim-radius-overlay) 0 0;
         box-shadow: inset 0 0 0 2px var(--wim-color-primary);
       }
     }
@@ -196,7 +189,7 @@
     cursor: pointer;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: all var(--wim-transition-fast);
   
     &:hover {

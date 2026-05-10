@@ -6,7 +6,7 @@
   overflow: hidden;
   background: var(--wim-color-surface);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg);
+  border-radius: var(--wim-radius-container);
 }
 
 .flow {
@@ -26,11 +26,11 @@
   --xy-controls-button-color: var(--wim-color-text-primary);
 
   overflow: hidden;
-  border-radius: var(--wim-radius-md);
+  border-radius: var(--wim-radius-component);
   box-shadow: var(--wim-shadow-sm);
 }
 
 .miniMap {
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-md);
+  border-radius: var(--wim-radius-component);
 }

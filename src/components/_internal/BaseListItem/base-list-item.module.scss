@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/semantic-colors" as *;
 @use "../../../tokens/spacings" as *;
 
 .root {
@@ -22,7 +22,7 @@
         box-shadow: var(--wim-shadow-focus);
     }
 
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition: all var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:active:not(.disabled) {

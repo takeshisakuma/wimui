@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     overflow: hidden;
     background-color: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-container);
   }
 
   .viewer {

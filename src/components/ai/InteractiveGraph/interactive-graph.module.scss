@@ -3,14 +3,14 @@
   overflow: hidden;
   background-color: var(--wim-color-bg-app);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg);
+  border-radius: var(--wim-radius-container);
 
   :global(.react-flow__node) {
     font-family: var(--wim-font-family-base);
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-sm);
   }
 
@@ -37,7 +37,7 @@
 .minimap {
   background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-md);
+  border-radius: var(--wim-radius-component);
 }
 
 .controls {

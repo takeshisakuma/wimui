@@ -20,7 +20,7 @@
     outline: none;
     background: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
     transition:
       transform var(--wim-duration-fast) var(--wim-easing-standard),
       box-shadow var(--wim-duration-fast) var(--wim-easing-standard),

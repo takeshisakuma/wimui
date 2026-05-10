@@ -18,10 +18,10 @@
     resize: vertical;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
-                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
-                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
-                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
+    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-component)));
     transition: var(--wim-transition-base);
 
     &::placeholder {

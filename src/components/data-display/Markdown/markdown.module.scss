@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
@@ -60,7 +60,7 @@
       margin-bottom: var(--wim-spacing-md);
       overflow: auto;
       background-color: var(--wim-color-bg-subtle);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
   
       code {
         padding: 0;
@@ -97,7 +97,7 @@
       max-width: 100%;
       height: auto;
       margin-bottom: var(--wim-spacing-md);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-component);
     }
   
     hr {

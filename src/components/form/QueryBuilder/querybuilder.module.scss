@@ -55,7 +55,7 @@
   flex-direction: column;
   background-color: var(--wim-color-bg-secondary);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg);
+  border-radius: var(--wim-radius-container);
   transition: var(--wim-transition-fast);
 
   &:hover {
@@ -86,7 +86,7 @@
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   background-color: var(--wim-color-bg-component);
   border-bottom: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
+  border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
 }
 
 .groupHeaderLeft {
@@ -136,7 +136,7 @@
   padding: var(--wim-spacing-md);
   background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--wim-radius-lg);
+  border-radius: var(--wim-radius-container);
   animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
   &:hover {
@@ -159,7 +159,7 @@
   margin-top: auto;
   background-color: var(--wim-color-bg-component);
   border-top: 1px solid var(--wim-color-border);
-  border-radius: 0 0 var(--wim-radius-lg) var(--wim-radius-lg);
+  border-radius: 0 0 var(--wim-radius-container) var(--wim-radius-container);
 
   @include container-down(sm) {
     flex-direction: column;
