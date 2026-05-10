@@ -34,3 +34,17 @@
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }
+
+// Fix React Flow attribution contrast for accessibility (WCAG AA)
+:global(.react-flow__attribution) {
+  color: var(--wim-color-text-secondary) !important;
+  background: var(--wim-color-surface) !important;
+
+  a {
+    color: var(--wim-color-text-secondary) !important;
+
+    &:hover {
+      color: var(--wim-color-text-primary) !important;
+    }
+  }
+}
