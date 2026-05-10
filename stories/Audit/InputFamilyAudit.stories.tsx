@@ -100,7 +100,7 @@ export const Overview: StoryObj = {
             <PromptInput label={t("audit:label_ai_prompt")} placeholder={t("audit:sample_prompt_ai")} />
             <SmartSearchInput label={t("audit:label_ai_smart_search")} placeholder={t("audit:sample_smart_search_ai")} />
             <ColorPicker label={t("audit:label_color_picker")} />
-            <ColorInput label={t("audit:label_color_input_hex")} />
+            <ColorInput label={t("audit:label_color_input_hex")} fullWidth />
             <TagInput 
               label={t("audit:label_tag_input_freeform")} 
               defaultValue={[t("audit:sample_tag_a"), t("audit:sample_tag_b")]} 
@@ -222,10 +222,14 @@ export const Overview: StoryObj = {
           {/* Capped for Readability */}
           <ComponentGroup 
             label={t("audit:label_readable_limit")} 
-            maxWidth="60rem"
+            maxWidth="40rem"
           >
             <Stack gap="lg">
-              <Input fullWidth placeholder={t("audit:label_full_width_input_capped")} />
+              <Input 
+                fullWidth 
+                placeholder={t("audit:label_full_width_input_capped")} 
+                defaultValue="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも" 
+              />
               <PromptInput fullWidth placeholder={t("audit:label_prompt_input_capped")} />
               <SmartSearchInput fullWidth placeholder={t("audit:label_smart_search_input_capped")} />
             </Stack>

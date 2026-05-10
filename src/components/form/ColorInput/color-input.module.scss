@@ -60,8 +60,7 @@
 
   // Shell overrides
   .inputBase {
-    width: var(--wim-width-md);
-    min-width: var(--wim-width-md);
+    width: 100%;
     max-width: var(--wim-width-md);
     min-height: var(--wim-height-md);
     overflow: hidden;

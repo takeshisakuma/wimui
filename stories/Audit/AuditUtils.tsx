@@ -98,14 +98,14 @@ export const ComponentGroup = ({
   children,
   width = "100%",
   maxWidth,
-  align = "start",
+  align = "stretch",
   gap = "md",
   noStack = false,
   wrap = false,
   direction = "column",
   overflow = "visible",
 }: ComponentGroupProps) => (
-  <Stack gap="var(--wim-spacing-xs)" style={{ width, maxWidth: "100%", minWidth: 0, justifySelf: width === "fit-content" ? "start" : undefined }}>
+  <Stack gap="var(--wim-spacing-xs)" style={{ width, maxWidth: maxWidth || width, minWidth: 0, justifySelf: width === "fit-content" ? "start" : undefined }}>
     <Box pb="xs" style={{ borderBottom: "1px dashed var(--wim-color-border-secondary)" }}>
       <Text size="xs" color="text-secondary">
         {label}
