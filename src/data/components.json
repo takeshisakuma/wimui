@@ -106,6 +106,12 @@
         "descKey": "doc.popconfirm_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Autosave",
+        "descKey": "doc.autosave_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -373,6 +379,12 @@
       {
         "name": "JsonDiffViewer",
         "descKey": "doc.jsonDiffViewer_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "Reaction",
+        "descKey": "doc.reaction_desc",
         "pc": true,
         "mobile": true
       }
@@ -727,6 +739,12 @@
       {
         "name": "Anchor",
         "descKey": "doc.anchor_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "KeyboardShortcuts",
+        "descKey": "doc.keyboardShortcuts_desc",
         "pc": true,
         "mobile": true
       }

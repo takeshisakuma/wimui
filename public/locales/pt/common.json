@@ -658,5 +658,17 @@
   "upload": "Upload",
   "username": "Nome de usuário",
   "wed": "Qua",
-  "welcome": "Bem-vindo ao nosso aplicativo"
+  "welcome": "Bem-vindo ao nosso aplicativo",
+  "reaction": {
+    "aria_label": "Reações",
+    "react_with": "{{emoji}}, {{count}} reações",
+    "add_reaction": "Adicionar reação"
+  },
+  "autosave": {
+    "aria_label": "Status do salvamento automático",
+    "saving": "Salvando...",
+    "saved": "Salvo",
+    "saved_at": "Salvo às {{time}}",
+    "error": "Falha ao salvar"
+  }
 }

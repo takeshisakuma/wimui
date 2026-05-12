@@ -1,0 +1,95 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xs);
+
+    &.sm .item {
+      gap: var(--wim-spacing-3xs);
+      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-xs);
+    }
+
+    &.md .item {
+      font-size: var(--wim-font-size-sm);
+    }
+
+    &.lg .item {
+      gap: var(--wim-spacing-xs);
+      padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
+    }
+  }
+
+  .item {
+    display: inline-flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
+    font-family: inherit;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-full);
+    transition: var(--wim-transition-base);
+
+    &:hover:not(:disabled) {
+      color: var(--wim-color-primary);
+      background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
+      border-color: var(--wim-color-primary);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(var(--wim-scale-active));
+    }
+
+    &.active {
+      color: var(--wim-color-primary);
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
+      border-color: var(--wim-color-primary);
+
+      &:hover:not(:disabled) {
+        background-color: oklch(from var(--wim-color-primary) l c h / 0.15);
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  .icon {
+    display: flex;
+    width: 1em;
+    height: 1em;
+
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .count {
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .addButton {
+    align-self: center;
+    justify-content: center;
+    padding: var(--wim-spacing-2xs);
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .addIcon {
+    width: 1em;
+    height: 1em;
+  }
+}

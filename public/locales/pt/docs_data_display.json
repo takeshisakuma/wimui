@@ -459,6 +459,24 @@
     "visuallyhidden_keyboard_desc": "Este componente não requer interação de teclado específica. Oculta conteúdo visualmente enquanto o mantém acessível aos leitores de tela.",
     "visuallyhidden_long_desc": "`VisuallyHidden` é um componente utilitário usado quando você deseja ocultar conteúdo visualmente, mas ainda transmitir essa informação para tecnologias assistivas, como leitores de tela.",
     "visuallyhidden_title": "Visualmente Oculto",
-    "visuallyhidden_usage_desc": "O conteúdo envolvido neste componente não será exibido na tela, mas ainda existirá na estrutura HTML."
+    "visuallyhidden_usage_desc": "O conteúdo envolvido neste componente não será exibido na tela, mas ainda existirá na estrutura HTML.",
+    "reaction_desc": "Exibir botões de reação com emoji e estado alternável com contagem",
+    "reaction_long_desc": "Reaction é um componente interativo para expressar emoções ou feedback através de botões de emoji. Os usuários podem alternar reações individuais e a contagem é atualizada em tempo real.",
+    "reaction_design_intent": "Oferecer aos usuários uma forma leve de expressar emoções sem escrever um comentário. As reações com emoji familiares reduzem a barreira de engajamento e humanizam a interface.",
+    "reaction_choice_matrix_desc": "Escolha com base no tipo de interação de feedback necessária.",
+    "reaction_choice_use_when": "Quando os usuários precisam de opções de feedback rápidas e expressivas em conteúdo social, comentários ou mensagens.",
+    "reaction_choice_alt_when": "Use um botão de Curtir quando uma única reação positiva for suficiente. Use Rating para pontuação numérica.",
+    "reaction_content_guideline_1": "Limite a 5–8 opções de emoji para evitar sobrecarga de escolhas.",
+    "reaction_content_guideline_2": "Associe cada emoji a um rótulo acessível que descreva seu significado.",
+    "reaction_motion_spec": "Aumenta brevemente de escala ao alternar para fornecer feedback tátil. A contagem é atualizada sem mudança de layout.",
+    "reaction_a11y_spec": "Cada botão de reação usa aria-pressed para indicar o estado ativo. O contêiner usa role='group' com aria-label. O significado do emoji é transmitido via aria-label, não apenas pelo glifo visual.",
+    "reaction_scenario_social": "Feed social: Mostrar reações abaixo de uma publicação. Os usuários podem ver o que os outros adicionaram e alternar as próprias reações.",
+    "reaction_scenario_message": "Mensagem de chat: Mostrar reações com emoji inline abaixo de um balão de mensagem para feedback rápido sem digitar.",
+    "reaction_scenario_content": "Documentação ou artigo: Permitir que leitores reajam a seções, fornecendo feedback leve aos autores.",
+    "reaction_best_practice_1": "Ordene as reações por contagem decrescente para destacar as mais ressonantes primeiro.",
+    "reaction_best_practice_2": "Mostre o botão de adicionar reação (+) somente quando um seletor de reações completo também estiver disponível.",
+    "reaction_responsive_desc": "As reações quebram automaticamente quando o espaço é restrito. Use o tamanho 'sm' no mobile para manter as áreas de toque.",
+    "reaction_keyboard_desc": "Cada botão de reação pode receber foco via Tab. Espaço ou Enter alterna a reação. O botão de adicionar reação abre um seletor quando conectado.",
+    "reaction_i18n_desc": "As strings de tempo de execução usam o namespace 'common': reaction.aria_label, reaction.react_with, reaction.add_reaction. Os rótulos de emoji são fornecidos pelo consumidor através do campo 'label' de cada ReactionItem."
   }
 }

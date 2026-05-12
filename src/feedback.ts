@@ -13,3 +13,4 @@ export * from "./components/feedback/Snackbar/Snackbar";
 export * from "./components/feedback/Spinner/Spinner";
 export * from "./components/feedback/Toast/Toast";
 export * from "./components/feedback/Tour/Tour";
+export * from "./components/feedback/Autosave/Autosave";

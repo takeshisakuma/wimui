@@ -1,0 +1,45 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+.root {
+  display: inline-flex;
+  gap: var(--wim-spacing-xs);
+  align-items: center;
+  font-size: var(--wim-font-size-sm);
+  color: var(--wim-color-text-secondary);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.label {
+  line-height: 1;
+}
+
+.spinner {
+  animation: spin var(--wim-duration-slow, 1s) linear infinite;
+}
+
+.saving {
+  color: var(--wim-color-text-secondary);
+}
+
+.saved {
+  color: var(--wim-color-success);
+}
+
+.error {
+  color: var(--wim-color-error);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

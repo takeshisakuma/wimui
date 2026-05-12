@@ -1,0 +1,49 @@
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Autosave } from "./Autosave";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (key: string, params?: Record<string, unknown>) => {
+    if (params) return `${key}:${JSON.stringify(params)}`;
+    return key;
+  }}),
+}));
+
+describe("Autosave", () => {
+  it("renders nothing when idle", () => {
+    const { container } = render(<Autosave status="idle" />);
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it("renders saving state", () => {
+    render(<Autosave status="saving" />);
+    expect(screen.getByText("autosave.saving")).toBeInTheDocument();
+  });
+
+  it("renders saved state", () => {
+    render(<Autosave status="saved" />);
+    expect(screen.getByText("autosave.saved")).toBeInTheDocument();
+  });
+
+  it("renders saved state with time", () => {
+    const date = new Date("2024-01-01T12:30:00");
+    render(<Autosave status="saved" savedAt={date} />);
+    expect(screen.getByText(/autosave.saved_at/)).toBeInTheDocument();
+  });
+
+  it("renders error state with default message", () => {
+    render(<Autosave status="error" />);
+    expect(screen.getByText("autosave.error")).toBeInTheDocument();
+  });
+
+  it("renders error state with custom message", () => {
+    render(<Autosave status="error" errorMessage="Network error" />);
+    expect(screen.getByText("Network error")).toBeInTheDocument();
+  });
+
+  it("has role status and aria-live", () => {
+    render(<Autosave status="saving" />);
+    const el = screen.getByRole("status");
+    expect(el).toHaveAttribute("aria-live", "polite");
+  });
+});

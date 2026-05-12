@@ -158,7 +158,10 @@
     "scaffoldTest_desc": "ScaffoldTest description.",
     "codeDiffViewer_desc": "CodeDiffViewer description.",
     "terminal_desc": "Terminal description.",
-    "jsonDiffViewer_desc": "JsonDiffViewer description."
+    "jsonDiffViewer_desc": "JsonDiffViewer description.",
+    "reaction_desc": "トグル可能な状態とカウントを持つ絵文字リアクションボタンを表示する",
+    "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
+    "autosave_desc": "自動保存状態のインラインステータスインジケーター"
   },
   "cat": {
     "ai": "AI"

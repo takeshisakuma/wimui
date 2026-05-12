@@ -96,6 +96,14 @@
     "tabs_sys_desc": "Trilha de auditoria em tempo real e informações de depuração do desenvolvedor.",
     "tabs_sys_logs": "Logs do Sistema",
     "tabs_user_desc": "Visualize e atualize suas informações pessoais e detalhes do perfil público.",
-    "tabs_user_profile": "Perfil do Usuário"
+    "tabs_user_profile": "Perfil do Usuário",
+    "ks_general": "Geral",
+    "ks_editing": "Edição",
+    "ks_open_cmd_palette": "Abrir paleta de comandos",
+    "ks_save": "Salvar",
+    "ks_undo": "Desfazer",
+    "ks_redo": "Refazer",
+    "ks_find": "Localizar",
+    "ks_select_all": "Selecionar tudo"
   }
 }

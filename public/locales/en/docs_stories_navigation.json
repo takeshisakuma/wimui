@@ -96,6 +96,14 @@
     "tabs_sys_desc": "Real-time audit trail and developer debug information.",
     "tabs_sys_logs": "System Logs",
     "tabs_user_desc": "View and update your personal information and public profile details.",
-    "tabs_user_profile": "User Profile"
+    "tabs_user_profile": "User Profile",
+    "ks_general": "General",
+    "ks_editing": "Editing",
+    "ks_open_cmd_palette": "Open command palette",
+    "ks_save": "Save",
+    "ks_undo": "Undo",
+    "ks_redo": "Redo",
+    "ks_find": "Find",
+    "ks_select_all": "Select all"
   }
 }

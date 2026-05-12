@@ -459,6 +459,24 @@
     "visuallyhidden_keyboard_desc": "This component does not require specific keyboard interaction. It hides content visually while keeping it accessible to screen readers.",
     "visuallyhidden_long_desc": "`VisuallyHidden` is a utility component used when you want to hide content visually while still conveying that information to assistive technologies like screen readers.",
     "visuallyhidden_title": "Visually Hidden",
-    "visuallyhidden_usage_desc": "Content wrapped in this component will not be displayed on the screen but will still exist in the HTML structure."
+    "visuallyhidden_usage_desc": "Content wrapped in this component will not be displayed on the screen but will still exist in the HTML structure.",
+    "reaction_desc": "Display emoji reaction buttons with toggleable state and counts",
+    "reaction_long_desc": "Reaction is an interactive component for expressing emotions or feedback through emoji buttons. Users can toggle individual reactions, and the count updates in real time.",
+    "reaction_design_intent": "Give users a lightweight way to express emotion without writing a comment. Familiar emoji reactions lower the barrier to engagement and humanize the interface.",
+    "reaction_choice_matrix_desc": "Choose based on the type of feedback interaction required.",
+    "reaction_choice_use_when": "When users need quick, expressive feedback options on social content, comments, or messages.",
+    "reaction_choice_alt_when": "Use a Like button when a single positive reaction is sufficient. Use Rating for numeric scoring.",
+    "reaction_content_guideline_1": "Limit to 5–8 emoji options to avoid choice overload.",
+    "reaction_content_guideline_2": "Pair each emoji with an accessible label describing its meaning.",
+    "reaction_motion_spec": "Scale up briefly on toggle to provide tactile feedback. Count updates without layout shift.",
+    "reaction_a11y_spec": "Each reaction button uses aria-pressed to indicate active state. The container uses role='group' with an aria-label. Emoji meaning is conveyed via aria-label, not just the visual glyph.",
+    "reaction_scenario_social": "Social feed: Show reactions below a post. Users can see what others have added and toggle their own.",
+    "reaction_scenario_message": "Chat message: Show emoji reactions inline below a message bubble for quick feedback without typing.",
+    "reaction_scenario_content": "Documentation or article: Allow readers to react to sections, providing lightweight feedback to authors.",
+    "reaction_best_practice_1": "Sort reactions by count descending to surface the most resonant ones first.",
+    "reaction_best_practice_2": "Show the add-reaction (+) button only when a full reaction picker is also available, to avoid a dead-end interaction.",
+    "reaction_responsive_desc": "Reactions wrap automatically when space is constrained. Use 'sm' size on mobile to maintain touch targets.",
+    "reaction_keyboard_desc": "Each reaction button is focusable via Tab. Space or Enter toggles the reaction. The add-reaction button opens a picker when connected.",
+    "reaction_i18n_desc": "Runtime strings use the 'common' namespace: reaction.aria_label, reaction.react_with, reaction.add_reaction. Emoji labels are provided by the consumer via the 'label' field of each ReactionItem."
   }
 }

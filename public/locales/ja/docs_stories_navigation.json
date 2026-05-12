@@ -96,6 +96,14 @@
     "tabs_sys_desc": "リアルタイムの監査証跡と開発者向けデバッグ情報です。",
     "tabs_sys_logs": "システムログ",
     "tabs_user_desc": "個人情報や公開プロフィールの詳細を確認・更新します。",
-    "tabs_user_profile": "ユーザープロフィール"
+    "tabs_user_profile": "ユーザープロフィール",
+    "ks_general": "一般",
+    "ks_editing": "編集",
+    "ks_open_cmd_palette": "コマンドパレットを開く",
+    "ks_save": "保存",
+    "ks_undo": "元に戻す",
+    "ks_redo": "やり直し",
+    "ks_find": "検索",
+    "ks_select_all": "すべて選択"
   }
 }

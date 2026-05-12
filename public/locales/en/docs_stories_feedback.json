@@ -89,6 +89,7 @@
     "toast_update_desc": "A new version of the app is available. Please refresh.",
     "toast_update_title": "New update available",
     "toast_upload_failed_desc": "There was an error while uploading your file.",
-    "toast_upload_failed_title": "Failed to upload"
+    "toast_upload_failed_title": "Failed to upload",
+    "autosave_error_connection": "Connection lost. Changes may not be saved."
   }
 }

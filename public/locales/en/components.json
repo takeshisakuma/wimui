@@ -98,7 +98,10 @@
     "levels_title": "Level Definitions",
     "codeDiffViewer_desc": "CodeDiffViewer description.",
     "terminal_desc": "Terminal description.",
-    "jsonDiffViewer_desc": "JsonDiffViewer description."
+    "jsonDiffViewer_desc": "JsonDiffViewer description.",
+    "reaction_desc": "Display emoji reaction buttons with toggleable state and counts",
+    "keyboardShortcuts_desc": "Display a structured list of keyboard shortcuts",
+    "autosave_desc": "Inline status indicator for automatic save state"
   },
   "cat": {
     "ai": "AI"

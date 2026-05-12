@@ -491,6 +491,24 @@
     "sidebar_long_desc": "A sidebar is a navigation or information panel placed on the side of a page.",
     "sidebar_pc_only": "Desktop Only: This component is primarily designed for desktop (mouse and keyboard) use. For small-screen devices like smartphones, consider alternatives such as a `TabBar` or drawer menu.",
     "sidebar_title": "A collapsible navigation or informational panel on the side of the screen",
-    "sidebar_usage_desc": "Place `Sidebar.Header`, `Sidebar.Content`, and `Sidebar.Footer` inside `Sidebar`, and place `Sidebar.Item` inside `Sidebar.Content`."
+    "sidebar_usage_desc": "Place `Sidebar.Header`, `Sidebar.Content`, and `Sidebar.Footer` inside `Sidebar`, and place `Sidebar.Item` inside `Sidebar.Content`.",
+    "ks_desc": "Display a structured list of keyboard shortcuts",
+    "ks_long_desc": "KeyboardShortcuts renders labeled key combinations using semantic dl/dt/dd elements and the Kbd component. Ideal for help dialogs, settings panels, and onboarding overlays.",
+    "ks_design_intent": "Improve discoverability of keyboard shortcuts by presenting them in a structured, scannable format. Using native kbd elements ensures consistent rendering and accessibility.",
+    "ks_choice_matrix_desc": "Choose based on where and how shortcuts will be presented.",
+    "ks_choice_use_when": "When presenting multiple shortcuts in a list — help modal, settings page, onboarding overlay.",
+    "ks_choice_alt_when": "Use Tooltip with a single Kbd for inline hints. Use CommandPalette for an interactive, searchable shortcut launcher.",
+    "ks_content_guideline_1": "Use standard key names: 'Ctrl', 'Shift', 'Alt' on Windows/Linux; '⌘', '⇧', '⌥' on Mac.",
+    "ks_content_guideline_2": "Keep labels concise — describe the action, not the keys (e.g., 'Open search' not 'Ctrl+K shortcut').",
+    "ks_motion_spec": "No motion required. This is a static informational component.",
+    "ks_a11y_spec": "Uses dl (description list) with dt for action label and dd for key combination. Each key is wrapped in a native kbd element for screen reader support.",
+    "ks_scenario_help": "Help dialog: A keyboard shortcuts reference panel opened with '?' or from the Help menu.",
+    "ks_scenario_settings": "Settings page: A dedicated 'Keyboard Shortcuts' section where users can view and optionally customize shortcuts.",
+    "ks_scenario_onboarding": "Onboarding overlay: Highlight a few key shortcuts to help new users work efficiently from day one.",
+    "ks_best_practice_1": "Group shortcuts by category (Navigation, Editing, View) using the 'title' prop for each group.",
+    "ks_best_practice_2": "Provide platform-specific key sets (⌘ vs Ctrl) detected at render time, rather than listing both.",
+    "ks_responsive_desc": "Labels and key lists reflow naturally on narrow containers. Use 'sm' size in compact panels.",
+    "ks_keyboard_desc": "This is a static display component. It does not require keyboard navigation beyond standard Tab focus.",
+    "ks_i18n_desc": "All labels and key strings are provided by the consumer — no internal i18n strings. Translate the shortcuts array before passing it to the component."
   }
 }

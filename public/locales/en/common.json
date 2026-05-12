@@ -638,5 +638,17 @@
     "edit": "Edit JSON",
     "addItem": "Add item",
     "deleteItem": "Delete item"
+  },
+  "reaction": {
+    "aria_label": "Reactions",
+    "react_with": "{{emoji}}, {{count}} reactions",
+    "add_reaction": "Add reaction"
+  },
+  "autosave": {
+    "aria_label": "Autosave status",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "saved_at": "Saved at {{time}}",
+    "error": "Failed to save"
   }
 }

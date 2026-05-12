@@ -158,7 +158,10 @@
     "scaffoldTest_desc": "ScaffoldTest description.",
     "codeDiffViewer_desc": "CodeDiffViewer description.",
     "terminal_desc": "Terminal description.",
-    "jsonDiffViewer_desc": "JsonDiffViewer description."
+    "jsonDiffViewer_desc": "JsonDiffViewer description.",
+    "reaction_desc": "Exibir botões de reação com emoji e estado alternável com contagem",
+    "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
+    "autosave_desc": "Indicador de status inline para o estado de salvamento automático"
   },
   "cat": {
     "ai": "IA"

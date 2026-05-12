@@ -459,6 +459,24 @@
     "visuallyhidden_keyboard_desc": "このコンポーネントは特定のキーボードインタラクションを必要としません。コンテンツを視覚的に非表示にしつつ、スクリーンリーダーからアクセス可能な状態を保ちます。",
     "visuallyhidden_long_desc": "`VisuallyHidden` は、視覚的にはコンテンツを非表示にしつつ、スクリーンリーダーなどの補助技術にはその情報を伝えたい場合に使用するユーティリティコンポーネントです。",
     "visuallyhidden_title": "視覚的非表示",
-    "visuallyhidden_usage_desc": "このコンポーネントで囲まれた内容は、画面上には表示されませんが、HTML構造としては存在し続けます。"
+    "visuallyhidden_usage_desc": "このコンポーネントで囲まれた内容は、画面上には表示されませんが、HTML構造としては存在し続けます。",
+    "reaction_desc": "トグル可能な状態とカウントを持つ絵文字リアクションボタンを表示する",
+    "reaction_long_desc": "Reactionは絵文字ボタンで感情やフィードバックを表現するインタラクティブなコンポーネントです。各リアクションをトグルでき、カウントがリアルタイムで更新されます。",
+    "reaction_design_intent": "コメントを書かずに感情を表現できる手軽な手段を提供します。おなじみの絵文字リアクションはエンゲージメントの障壁を下げ、インターフェースに人間らしさを加えます。",
+    "reaction_choice_matrix_desc": "必要なフィードバックインタラクションの種類に応じて選択します。",
+    "reaction_choice_use_when": "ソーシャルコンテンツ、コメント、メッセージなど、素早く表現力豊かなフィードバックが必要なとき。",
+    "reaction_choice_alt_when": "単一の肯定的なリアクションで十分な場合はLikeボタンを使用します。数値評価にはRatingを使用します。",
+    "reaction_content_guideline_1": "選択過多を避けるため、絵文字の数は5〜8個に制限してください。",
+    "reaction_content_guideline_2": "各絵文字にその意味を説明するアクセシブルなラベルを付けてください。",
+    "reaction_motion_spec": "トグル時に一瞬スケールアップして触覚的なフィードバックを与えます。カウントはレイアウトシフトなしに更新されます。",
+    "reaction_a11y_spec": "各リアクションボタンはaria-pressedでアクティブ状態を示します。コンテナはrole='group'とaria-labelを持ちます。絵文字の意味はaria-labelで伝えられます。",
+    "reaction_scenario_social": "ソーシャルフィード：投稿の下にリアクションを表示します。他のユーザーが追加したリアクションを確認し、自分のリアクションをトグルできます。",
+    "reaction_scenario_message": "チャットメッセージ：メッセージバブルの下にインライン表示し、文字を打たずに素早くフィードバックできます。",
+    "reaction_scenario_content": "ドキュメントや記事：読者がセクションにリアクションし、著者に軽量なフィードバックを提供できます。",
+    "reaction_best_practice_1": "最も共感を呼ぶリアクションが先に来るよう、カウント降順でソートしてください。",
+    "reaction_best_practice_2": "リアクションピッカーが利用可能なときのみ追加ボタン（+）を表示し、行き止まりのインタラクションを避けてください。",
+    "reaction_responsive_desc": "スペースが限られている場合、リアクションは自動で折り返されます。モバイルではタッチターゲットを維持するため'sm'サイズを使用してください。",
+    "reaction_keyboard_desc": "各リアクションボタンはTabでフォーカスできます。SpaceまたはEnterでリアクションをトグルします。追加ボタンは接続時にピッカーを開きます。",
+    "reaction_i18n_desc": "ランタイム文字列はcommonネームスペースのキーを使用します：reaction.aria_label、reaction.react_with、reaction.add_reaction。絵文字のラベルはReactionItemのlabelフィールドで消費者が提供します。"
   }
 }

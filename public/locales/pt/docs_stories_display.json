@@ -229,6 +229,10 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "WIM UI Team",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "reaction_thumbs_up": "Curtir",
+    "reaction_star": "Estrela",
+    "reaction_check": "Concordo",
+    "reaction_thumbs_down": "Não curtir"
   }
 }

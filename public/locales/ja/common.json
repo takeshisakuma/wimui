@@ -652,5 +652,17 @@
   "upload": "アップロード",
   "username": "ユーザー名",
   "wed": "水",
-  "welcome": "アプリケーションへようこそ"
+  "welcome": "アプリケーションへようこそ",
+  "reaction": {
+    "aria_label": "リアクション",
+    "react_with": "{{emoji}}、{{count}}件のリアクション",
+    "add_reaction": "リアクションを追加"
+  },
+  "autosave": {
+    "aria_label": "自動保存の状態",
+    "saving": "保存中...",
+    "saved": "保存済み",
+    "saved_at": "{{time}}に保存済み",
+    "error": "保存に失敗しました"
+  }
 }
