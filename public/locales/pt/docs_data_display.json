@@ -477,6 +477,25 @@
     "reaction_best_practice_2": "Mostre o botão de adicionar reação (+) somente quando um seletor de reações completo também estiver disponível.",
     "reaction_responsive_desc": "As reações quebram automaticamente quando o espaço é restrito. Use o tamanho 'sm' no mobile para manter as áreas de toque.",
     "reaction_keyboard_desc": "Cada botão de reação pode receber foco via Tab. Espaço ou Enter alterna a reação. O botão de adicionar reação abre um seletor quando conectado.",
-    "reaction_i18n_desc": "As strings de tempo de execução usam o namespace 'common': reaction.aria_label, reaction.react_with, reaction.add_reaction. Os rótulos de emoji são fornecidos pelo consumidor através do campo 'label' de cada ReactionItem."
+    "reaction_i18n_desc": "As strings de tempo de execução usam o namespace 'common': reaction.aria_label, reaction.react_with, reaction.add_reaction. Os rótulos de emoji são fornecidos pelo consumidor através do campo 'label' de cada ReactionItem.",
+    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições.",
+    "leaderboard_long_desc": "Leaderboard renderiza uma lista ordenada de entradas, cada uma mostrando um emblema de posição, avatar opcional, nome e pontuação. As posições 1–3 recebem cores de medalha (ouro, prata, bronze) automaticamente. Uma flag de destaque marca a linha do usuário atual com o esquema de cor primária.",
+    "leaderboard_design_intent": "Rankings são uma ferramenta motivacional poderosa. O estilo automático de medalhas para os três primeiros cria hierarquia visual imediata sem configuração extra do consumidor. A prop highlight resolve uma necessidade comum de UX: ajudar usuários a localizar sua própria posição em uma lista longa.",
+    "leaderboard_choice_matrix_desc": "Escolha com base em como os dados classificados precisam ser apresentados:",
+    "leaderboard_choice_use_when": "Quando exibir uma lista classificada onde pontuações e posição são o foco principal, especialmente com ênfase em medalhas para os melhores desempenhos.",
+    "leaderboard_choice_datagrid_when": "Quando os dados têm múltiplas colunas ordenáveis, requerem filtragem, ou o ranking é uma entre várias dimensões igualmente importantes.",
+    "leaderboard_choice_list_when": "Quando os itens têm peso visual igual e classificação ou pontuação não é a preocupação principal.",
+    "leaderboard_content_guideline_1": "Mantenha os nomes das entradas concisos. Nomes longos são truncados com reticências para preservar a integridade do layout.",
+    "leaderboard_content_guideline_2": "Escolha um rótulo de unidade que seja imediatamente compreendido no contexto ('pts', 'km', 'vendas'). Evite abreviações técnicas que os usuários podem não reconhecer.",
+    "leaderboard_motion_spec": "Nenhuma animação é aplicada por padrão. Quando as entradas são reordenadas após uma atualização de pontuação, anime os itens usando transições CSS no container pai.",
+    "leaderboard_a11y_spec": "O elemento raiz é um <ol> (lista ordenada), então leitores de tela anunciam a contagem e posição dos itens automaticamente. O emblema de posição é aria-hidden pois a posição na lista já transmite o ranking. Uma entrada destacada recebe aria-current='true' para indicar a posição do usuário atual.",
+    "leaderboard_scenario_game": "Jogo ou quiz: Exibe classificações finais ao término de uma sessão, permitindo que os jogadores vejam sua posição em relação aos outros.",
+    "leaderboard_scenario_employee": "Reconhecimento de funcionários: Quadro mensal de vendas ou desempenho que motiva com ranking visível e destaques de medalhas.",
+    "leaderboard_scenario_community": "Plataforma comunitária: Principais contribuidores em um fórum ou aplicativo de aprendizado, reforçando o engajamento através de status visível.",
+    "leaderboard_best_practice_1": "Limite a lista a 10–20 entradas. Um leaderboard muito longo perde impacto motivacional; use paginação ou um cartão de resumo 'Sua Posição' para conjuntos de dados maiores.",
+    "leaderboard_best_practice_2": "Sempre forneça um rótulo de unidade quando o significado da pontuação não for óbvio apenas pelo contexto.",
+    "leaderboard_responsive_desc": "O componente preenche a largura do seu container. Nomes longos são truncados via text-overflow: ellipsis. Considere limitar o número de entradas visíveis em viewports estreitos.",
+    "leaderboard_keyboard_desc": "Aplica-se a navegação padrão de teclado para listas. Tab move o foco pelos elementos interativos; os itens da lista não são focáveis a menos que o consumidor adicione interatividade.",
+    "leaderboard_i18n_desc": "Todo o texto exibido vem das props fornecidas pelo consumidor (name, score, unit). Nenhuma string interna é usada. Passe valores traduzidos diretamente pelas props."
   }
 }

@@ -161,7 +161,8 @@
     "jsonDiffViewer_desc": "JsonDiffViewer description.",
     "reaction_desc": "トグル可能な状態とカウントを持つ絵文字リアクションボタンを表示する",
     "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
-    "autosave_desc": "自動保存状態のインラインステータスインジケーター"
+    "autosave_desc": "自動保存状態のインラインステータスインジケーター",
+    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。"
   },
   "cat": {
     "ai": "AI"

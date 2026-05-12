@@ -233,6 +233,12 @@
     "reaction_thumbs_up": "Curtir",
     "reaction_star": "Estrela",
     "reaction_check": "Concordo",
-    "reaction_thumbs_down": "Não curtir"
+    "reaction_thumbs_down": "Não curtir",
+    "lb_alice": "Alice",
+    "lb_bob": "Bob",
+    "lb_charlie": "Carlos",
+    "lb_diana": "Diana",
+    "lb_eve": "Eva",
+    "lb_unit_pts": "pts"
   }
 }

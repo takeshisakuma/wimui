@@ -233,6 +233,12 @@
     "reaction_thumbs_up": "いいね",
     "reaction_star": "スター",
     "reaction_check": "賛成",
-    "reaction_thumbs_down": "いまいち"
+    "reaction_thumbs_down": "いまいち",
+    "lb_alice": "アリス",
+    "lb_bob": "ボブ",
+    "lb_charlie": "チャーリー",
+    "lb_diana": "ダイアナ",
+    "lb_eve": "イヴ",
+    "lb_unit_pts": "pt"
   }
 }

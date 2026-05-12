@@ -233,6 +233,12 @@
     "reaction_thumbs_up": "Thumbs up",
     "reaction_star": "Star",
     "reaction_check": "Agree",
-    "reaction_thumbs_down": "Thumbs down"
+    "reaction_thumbs_down": "Thumbs down",
+    "lb_alice": "Alice",
+    "lb_bob": "Bob",
+    "lb_charlie": "Charlie",
+    "lb_diana": "Diana",
+    "lb_eve": "Eve",
+    "lb_unit_pts": "pts"
   }
 }

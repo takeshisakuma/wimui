@@ -161,7 +161,8 @@
     "jsonDiffViewer_desc": "JsonDiffViewer description.",
     "reaction_desc": "Exibir botões de reação com emoji e estado alternável com contagem",
     "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
-    "autosave_desc": "Indicador de status inline para o estado de salvamento automático"
+    "autosave_desc": "Indicador de status inline para o estado de salvamento automático",
+    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições."
   },
   "cat": {
     "ai": "IA"

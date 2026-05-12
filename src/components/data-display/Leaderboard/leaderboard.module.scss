@@ -1,0 +1,116 @@
+@layer component {
+  .root {
+    --lb-rank-1: oklch(78% 0.17 85deg);
+    --lb-rank-2: oklch(68% 0 0deg);
+    --lb-rank-3: oklch(62% 0.11 55deg);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    padding: 0;
+    list-style: none;
+
+    &.sm .item {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-xs);
+    }
+
+    &.sm .rank,
+    &.sm .avatar {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &.lg .item {
+      padding: var(--wim-spacing-md) var(--wim-spacing-xl);
+      font-size: var(--wim-font-size-md);
+    }
+
+    &.lg .rank,
+    &.lg .avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .item {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+    font-size: var(--wim-font-size-sm);
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+
+    &.highlight {
+      background-color: oklch(from var(--wim-color-primary) l c h / 0.08);
+      border-color: var(--wim-color-primary);
+    }
+
+    &.rank1 .rank {
+      color: var(--wim-color-text-on-caution);
+      background-color: var(--lb-rank-1);
+    }
+
+    &.rank2 .rank {
+      color: var(--wim-color-text-white);
+      background-color: var(--lb-rank-2);
+    }
+
+    &.rank3 .rank {
+      color: var(--wim-color-text-white);
+      background-color: var(--lb-rank-3);
+    }
+  }
+
+  .rank {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--wim-font-size-xs);
+    font-weight: var(--wim-font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--wim-color-text-secondary);
+    background-color: var(--wim-color-bg-secondary);
+    border-radius: var(--wim-radius-full);
+  }
+
+  .avatar {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: var(--wim-radius-full);
+  }
+
+  .name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+  }
+
+  .score {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-3xs);
+    align-items: baseline;
+  }
+
+  .scoreValue {
+    font-weight: var(--wim-font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--wim-color-text-primary);
+  }
+
+  .unit {
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+  }
+}

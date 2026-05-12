@@ -387,6 +387,12 @@
         "descKey": "doc.reaction_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Leaderboard",
+        "descKey": "doc.leaderboard_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

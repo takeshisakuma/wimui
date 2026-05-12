@@ -477,6 +477,25 @@
     "reaction_best_practice_2": "リアクションピッカーが利用可能なときのみ追加ボタン（+）を表示し、行き止まりのインタラクションを避けてください。",
     "reaction_responsive_desc": "スペースが限られている場合、リアクションは自動で折り返されます。モバイルではタッチターゲットを維持するため'sm'サイズを使用してください。",
     "reaction_keyboard_desc": "各リアクションボタンはTabでフォーカスできます。SpaceまたはEnterでリアクションをトグルします。追加ボタンは接続時にピッカーを開きます。",
-    "reaction_i18n_desc": "ランタイム文字列はcommonネームスペースのキーを使用します：reaction.aria_label、reaction.react_with、reaction.add_reaction。絵文字のラベルはReactionItemのlabelフィールドで消費者が提供します。"
+    "reaction_i18n_desc": "ランタイム文字列はcommonネームスペースのキーを使用します：reaction.aria_label、reaction.react_with、reaction.add_reaction。絵文字のラベルはReactionItemのlabelフィールドで消費者が提供します。",
+    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。",
+    "leaderboard_long_desc": "Leaderboard はエントリーの順序付きリストを描画し、各行にランクバッジ・任意のアバター・名前・スコアを表示します。1〜3位にはメダル色（金・銀・銅）が自動付与されます。highlight フラグは現在ユーザーの行をプライマリカラーで強調します。",
+    "leaderboard_design_intent": "ランキングは強力なモチベーションツールです。上位3件への自動メダル色付与により、コンシューマが追加設定をすることなく即座に視覚的ヒエラルキーが生まれます。highlight プロパティは、ユーザーが長いリストの中で自分の位置を見つけるという共通のUXニーズを解決します。",
+    "leaderboard_choice_matrix_desc": "ランクデータの提示方法に応じて選択してください。",
+    "leaderboard_choice_use_when": "スコアと順位が主要な関心事であり、上位者にメダル強調が必要な場合。",
+    "leaderboard_choice_datagrid_when": "複数のソート可能なカラムがある、フィルタリングが必要、またはランキングが複数の重要な軸のひとつに過ぎない場合。",
+    "leaderboard_choice_list_when": "アイテムの視覚的重みが均一で、ランキングやスコアが主眼でない場合。",
+    "leaderboard_content_guideline_1": "エントリー名は簡潔に保ってください。長い名前はテキストオーバーフローで省略されレイアウトは維持されます。",
+    "leaderboard_content_guideline_2": "単位ラベルはコンテキストで即座に理解できるものを選んでください（'pts'、'km'、'件'など）。ユーザーが認識できない技術的略語は避けてください。",
+    "leaderboard_motion_spec": "デフォルトではモーションは適用されません。スコア更新後にエントリーが並べ替えられる場合は、親コンテナでCSSトランジションを使ってアニメーションさせてください。",
+    "leaderboard_a11y_spec": "ルート要素は <ol>（順序付きリスト）のため、スクリーンリーダーは項目数と位置を自動的に読み上げます。ランクバッジはリストの位置がランクを伝えるため aria-hidden です。ハイライトされたエントリーには aria-current='true' が付与され、現在ユーザーの位置を示します。",
+    "leaderboard_scenario_game": "ゲーム・クイズ: セッション終了後の最終ランキングを表示し、他のプレイヤーとの相対的な位置を確認させます。",
+    "leaderboard_scenario_employee": "従業員表彰: 月次の売上・成績ボードで、可視化されたランキングとメダル強調がモチベーションを高めます。",
+    "leaderboard_scenario_community": "コミュニティプラットフォーム: フォーラムや学習アプリのトップ貢献者を表示し、可視的なステータスでエンゲージメントを促進します。",
+    "leaderboard_best_practice_1": "リストは10〜20件に絞ってください。長すぎるリストはモチベーション効果を失います。大規模データセットにはページネーションや「あなたの順位」サマリーカードの併用を検討してください。",
+    "leaderboard_best_practice_2": "スコアの意味がコンテキストだけでは明確でない場合は、必ず unit ラベルを指定してください。",
+    "leaderboard_responsive_desc": "コンポーネントはコンテナ幅に合わせて広がります。長い名前は text-overflow: ellipsis で省略されます。狭いビューポートでは表示件数を絞ることを検討してください。",
+    "leaderboard_keyboard_desc": "標準的なリストのキーボードナビゲーションが適用されます。Tab でインタラクティブな要素間をフォーカス移動できます。リストアイテム自体は、コンシューマがインタラクティブ性を追加しない限りフォーカス不可です。",
+    "leaderboard_i18n_desc": "コンポーネントが表示するすべてのテキストはコンシューマが提供するプロパティ（name、score、unit）から来ます。内部文字列はありません。翻訳済みの値を直接プロパティで渡してください。"
   }
 }
