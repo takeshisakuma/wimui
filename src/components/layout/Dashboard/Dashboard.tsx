@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { CloseSmallIcon, EditIcon, PlusIcon } from "@/icon";
@@ -100,8 +100,13 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       ...style,
     } as React.CSSProperties;
 
+    const contextValue = useMemo(
+      () => ({ editable: editable ?? false, onRemove }),
+      [editable, onRemove],
+    );
+
     return (
-      <DashboardContext.Provider value={{ editable: editable ?? false, onRemove }}>
+      <DashboardContext.Provider value={contextValue}>
         <div
           ref={ref}
           className={classNames(styles.root, className)}

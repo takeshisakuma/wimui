@@ -1,4 +1,5 @@
 {
+  "ignoreFiles": ["src/tokens/generated/**"],
   "extends": [
     "stylelint-config-standard-scss",
     "stylelint-config-recess-order"

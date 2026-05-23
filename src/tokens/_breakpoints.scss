@@ -2,11 +2,13 @@
 @use "generated/tokens" as tokens;
 
 /* --- ブレイクポイントのシングルソース化 --- */
+$xs: tokens.$wim-breakpoint-xs;
 $sm: tokens.$wim-breakpoint-sm;
 $md: tokens.$wim-breakpoint-md;
 $lg: tokens.$wim-breakpoint-lg;
 $xl: tokens.$wim-breakpoint-xl;
 $breakpoints: (
+  xs: $xs,
   sm: $sm,
   md: $md,
   lg: $lg,

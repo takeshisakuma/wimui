@@ -131,7 +131,8 @@ export type WimBreakpointKey =
   | "lg"
   | "md"
   | "sm"
-  | "xl";
+  | "xl"
+  | "xs";
 
 export type WimZIndexKey = 
   | "drawer"

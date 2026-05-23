@@ -1,6 +1,7 @@
 {
   "wim": {
     "breakpoint": {
+      "xs": { "value": "480px" },
       "sm": { "value": "576px" },
       "md": { "value": "768px" },
       "lg": { "value": "992px" },

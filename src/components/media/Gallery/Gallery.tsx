@@ -2,6 +2,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -97,6 +98,40 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
     const [focusedIndex, setFocusedIndex] = useState(0);
     const lastClickedIndex = useRef<number | null>(null);
 
+    const internalRef = useRef<HTMLDivElement>(null);
+    const [actualColumns, setActualColumns] = useState(columns);
+
+    const mergedRef = useCallback(
+      (el: HTMLDivElement | null) => {
+        internalRef.current = el;
+        if (typeof ref === "function") {
+          ref(el);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+        }
+      },
+      [ref],
+    );
+
+    useEffect(() => {
+      const el = internalRef.current;
+      if (!el) return;
+
+      const observer = new ResizeObserver((entries) => {
+        const width = entries[0].contentRect.width;
+        if (width < 480) {
+          setActualColumns(1);
+        } else if (width < 576) {
+          setActualColumns(2);
+        } else {
+          setActualColumns(columns);
+        }
+      });
+
+      observer.observe(el);
+      return () => observer.disconnect();
+    }, [columns]);
+
     const selectedIds = useMemo(
       () => (isControlled ? new Set(controlledSelected) : uncontrolledSelected),
       [isControlled, controlledSelected, uncontrolledSelected],
@@ -150,22 +185,22 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
     // Group items into rows for ARIA grid hierarchy (grid > row > gridcell)
     const rows = useMemo(() => {
       const result: Array<{ rowItems: GalleryItem[]; startIndex: number }> = [];
-      for (let i = 0; i < items.length; i += columns) {
-        result.push({ rowItems: items.slice(i, i + columns), startIndex: i });
+      for (let i = 0; i < items.length; i += actualColumns) {
+        result.push({ rowItems: items.slice(i, i + actualColumns), startIndex: i });
       }
       return result;
-    }, [items, columns]);
+    }, [items, actualColumns]);
 
     const selectedArray = Array.from(selectedIds);
     const hasSelection = selectedArray.length > 0;
 
     const gridStyle: React.CSSProperties = {
-      "--gallery-columns": columns,
+      "--gallery-columns": actualColumns,
       ...style,
     } as React.CSSProperties;
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const cols = columns;
+      const cols = actualColumns;
       const total = items.length;
       let next = focusedIndex;
 
@@ -235,7 +270,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
         }}
       >
         <div
-          ref={ref}
+          ref={mergedRef}
           className={classNames(styles.root, className)}
           {...props}
         >
