@@ -52,7 +52,9 @@
     "effects_interaction_bg_opacity_note": "opacity may only be used for visibility toggles (opacity: 0 → 1). The disabled state may continue to use opacity tokens (--wim-opacity-disabled etc.).",
     "effects_interaction_bg_multivariant_title": "Multi-variant Components",
     "effects_interaction_bg_multivariant_desc": "When the background color varies by variant, store it in a local CSS variable (--bg) and reference it in the hover rule.",
-    "effects_interaction_bg_guideline": "Use oklch(from var(--token) calc(l * 0.9) c h) for darkening, calc(l * 1.1) for lightening. Store dynamic backgrounds in a --bg local variable."
+    "effects_interaction_bg_guideline": "Use oklch(from var(--token) calc(l * 0.9) c h) for darkening, calc(l * 1.1) for lightening. Store dynamic backgrounds in a --bg local variable.",
+    "effects_semantic_aliases": "Semantic Aliases",
+    "effects_semantic_aliases_desc": "Do not use value-based scale tokens directly in components. Use the following role-based aliases instead."
   },
   "effects": {
     "common_vars": "Common Variables"

@@ -21,3 +21,4 @@ export * from "./components/layout/Sidebar/Sidebar";
 export * from "./components/layout/Transition/Transition";
 export * from "./components/layout/VisuallyHidden/VisuallyHidden";
 export * from "./components/layout/Watermark/Watermark";
+export * from "./components/layout/Dashboard/Dashboard";

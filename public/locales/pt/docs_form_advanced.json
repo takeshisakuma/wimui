@@ -403,6 +403,9 @@
     "treeselect_motion_desc": "As transições são mínimas e propositadas, respeitando as preferências de movimento reduzido do usuário.",
     "treeselect_multi_desc": "No modo de seleção múltipla, pode selecionar vários nós utilizando caixas de seleção.",
     "treeselect_scenario_1": "Seleção de departamento numa grande empresa com várias subdivisões.",
-    "treeselect_scenario_2": "Atribuição de tarefas a arquivos específicos dentro de uma árvore de diretórios aninhada."
+    "treeselect_scenario_2": "Atribuição de tarefas a arquivos específicos dentro de uma árvore de diretórios aninhada.",
+    "multiselect_design_intent": "MultiSelect é um componente para os usuários selecionarem eficientemente múltiplos itens de um grande número de escolhas. Os itens selecionados são exibidos como 'tags' dentro do campo, projetado para permitir fácil verificação e exclusão de conteúdo.",
+    "multiselect_ex_multi": "Múltiplos Selecionados",
+    "multiselect_i18n_desc": "Todo o texto visível usa chaves de i18n. Passe strings traduzidas por meio das propriedades label, placeholder e option label."
   }
 }

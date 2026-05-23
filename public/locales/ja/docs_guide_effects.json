@@ -41,12 +41,12 @@
     "effects_motion_ultra_slow": "超低速 (Ultra Slow)",
     "effects_opacity": "不透明度 (Opacity)",
     "effects_opacity_desc": "UI の状態を表現するための不透明度トークンです。固定値ではなく、必ずこれらのトークンを参照してください。",
-    "effects_opacity_dim": "[MISSING_TRANSLATION: ja] Animation start/end states and passive visual decorations (loading dots, typing indicators)",
+    "effects_opacity_dim": "アニメーションの開始/終了状態、および受動的な視覚的装飾（ローディングドット、タイピングインジケーターなど）",
     "effects_opacity_disabled": "無効化されたコントロール (Checkbox, Radio, Fieldset 等)",
     "effects_opacity_ghost": "ゴースト UI 要素 (閉じるボタン、プレースホルダー等)",
     "effects_opacity_guideline": "0.5, 0.6, 0.7 などの固定値を使わず、disabled / ghost / secondary の3段階を使い分けてください。",
     "effects_opacity_secondary": "二次的な要素や補足テキスト",
-    "effects_opacity_subtle": "[MISSING_TRANSLATION: ja] In-progress or applying state — element is still interactive but visually de-emphasized",
+    "effects_opacity_subtle": "処理中または適用中の状態 — 要素はインタラクティブのままですが、視覚的に控えめに表現されます",
     "effects_shadow": "エレベーション (Shadow)",
     "effects_shadow_ambient": "環境光 (Ambient)",
     "effects_shadow_ambient_desc": "周囲の照明による柔らかく拡散した影。安定感やベースとの接地感を与えます。",
@@ -55,7 +55,9 @@
     "effects_shadow_guideline": "Ambient と Elevation を組み合わせたマルチレイヤー設計を採用しています。要素の重なり順（z-index）や重要度に応じて適切なエレベーションレベルを選択します。",
     "effects_shadow_multi_layer": "マルチレイヤー・シャドウ",
     "effects_shadow_multi_layer_desc": "Ambient 層と Elevation 層を重ねることで、現実世界のライティングに近い、リアリティのある奥行きを実現します。",
-    "effects_title": "エフェクト (Effects)"
+    "effects_title": "エフェクト (Effects)",
+    "effects_semantic_aliases": "セマンティック・エイリアス (Semantic Aliases)",
+    "effects_semantic_aliases_desc": "コンポーネントでは値ベースのスケールトークンを直接使用せず、以下の役割ベースのエイリアスを使用してください。"
   },
   "perf": {
     "animation_desc": "継続的または複雑なアニメーションを伴うコンポーネントでは、`will-change` CSS プロパティを使用してブラウザに最適化を促します。",

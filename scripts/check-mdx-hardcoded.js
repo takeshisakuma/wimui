@@ -15,6 +15,7 @@ const multiLineIgnorePatterns = [
   /<style[\s\S]*?<\/style>/g,           // Style blocks
   /import\s+[\s\S]*?from\s+['"].*?['"];?|import\s+['"].*?['"];?/g, // import文
   /```[\s\S]*?```/g,                    // コードブロック
+  /<code>[\s\S]*?<\/code>/g,            // インライン/複数行コードタグ
   /\{(\s*\/\*[\s\S]*?\*\/\s*)\}/g,      // MDXコメント { /* ... */ }
   /<Command[\s\S]*?<\/Command>/g        // Commandコンポーネントの中身
 ];
@@ -42,6 +43,7 @@ const excludeWords = [
   'name', 'value', 'shadow', 'color', 'tokenName', 'tokenValue', 'columns', 'duration', 'easing',
   'standard', 'instant', 'extra', 'fast', 'short', 'base', 'slow', 'entrance', 'exit', 'spring',
   'var', 'wim', 'inset', 'focus', 'ring', 'error', 'primary', 'secondary', 'ghost', 'white', 'black', 'InteractiveSwatch', 'ColorSwatch', 'TokenGrid', 'MotionSwatch', 'ShadowSwatch',
+  'opacity', 'calc', 'token',
   'FileUpload', 'BackTop', 'FloatButton', 'Accordion', 'Button', 'Badge', 'Alert', 'Avatar', 'Calendar', 'Card', 'Carousel', 'ChatUI', 'Chip', 'DataGrid', 'DescriptionList', 'EmptyState', 'FAQSection', 'InfiniteScroll', 'Kanban', 'List', 'Markdown', 'Marquee', 'QRCode', 'Stats', 'Table', 'Tag', 'Timeline', 'TreeView', 'VirtualList',
   'Box', 'Flex', 'Grid', 'Stack', 'Center', 'Container', 'Group', 'Divider', 'AspectRatio', 'SimpleGrid', 'Typography', 'Title', 'Text', 'Highlight', 'Code', 'Kbd', 'Blockquote', 'Link', 'Anchor', 'Breadcrumb', 'Pagination', 'Stepper', 'Tabs', 'Navbar', 'Sidebar', 'Footer', 'AppShell', 'ScrollArea',
   'BentoGrid', 'Splitter', 'Transition', 'VisuallyHidden', 'Watermark', 'Audio', 'Icon', 'Image', 'Video', 'Affix', 'TabBar', 'TabNavigation', 'BottomSheet', 'ContextMenu', 'Dialog', 'Drawer', 'Dropdown', 'FocusTrap', 'HoverCard', 'Menu', 'Popconfirm', 'Popover', 'Portal', 'Tooltip', 'Label', 'Legend', 'Span', 'Indicator', 'Banner', 'ErrorBoundary', 'Loader', 'LoadingOverlay', 'Notification', 'Progress', 'Result', 'ScrollProgress', 'Skeleton', 'Snackbar', 'Spinner', 'Toast', 'Tour',

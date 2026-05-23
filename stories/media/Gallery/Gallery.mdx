@@ -1,0 +1,133 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as GalleryStories from "./Gallery.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={GalleryStories} />
+
+<Title />
+
+<T k="gallery_doc.subtitle" />
+
+<Canvas of={GalleryStories.Default} />
+<Controls of={GalleryStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<T k="gallery_doc.design_intent" />
+
+## <T k="doc.choice_matrix_title" />
+
+<T k="gallery_doc.choice_matrix_desc" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="gallery_doc.choice_header_component" /></th>
+      <th><T k="gallery_doc.choice_header_usage" /></th>
+      <th><T k="gallery_doc.choice_header_selection" /></th>
+      <th><T k="gallery_doc.choice_header_criteria" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Gallery</td>
+      <td><T k="gallery_doc.choice_gallery_usage" /></td>
+      <td><T k="gallery_doc.choice_gallery_selection" /></td>
+      <td><T k="gallery_doc.choice_gallery_when" /></td>
+    </tr>
+    <tr>
+      <td>Masonry</td>
+      <td><T k="gallery_doc.choice_masonry_usage" /></td>
+      <td><T k="gallery_doc.choice_masonry_selection" /></td>
+      <td><T k="gallery_doc.choice_masonry_when" /></td>
+    </tr>
+    <tr>
+      <td>Lightbox</td>
+      <td><T k="gallery_doc.choice_lightbox_usage" /></td>
+      <td><T k="gallery_doc.choice_lightbox_selection" /></td>
+      <td><T k="gallery_doc.choice_lightbox_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Gallery" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li><T k="gallery_doc.content_guideline_1" /></li>
+  <li><T k="gallery_doc.content_guideline_2" /></li>
+  <li><T k="gallery_doc.content_guideline_3" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+<ul>
+  <li><T k="gallery_doc.motion_spec_1" /></li>
+  <li><T k="gallery_doc.motion_spec_2" /></li>
+  <li><T k="gallery_doc.motion_spec_3" /></li>
+</ul>
+
+## <T k="doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="gallery_doc.a11y_spec_1" /></li>
+  <li><T k="gallery_doc.a11y_spec_2" /></li>
+  <li><T k="gallery_doc.a11y_spec_3" /></li>
+  <li><T k="gallery_doc.a11y_spec_4" /></li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li><T k="gallery_doc.scenario_1" /></li>
+  <li><T k="gallery_doc.scenario_2" /></li>
+  <li><T k="gallery_doc.scenario_3" /></li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li><T k="gallery_doc.best_practice_1" /></li>
+  <li><T k="gallery_doc.best_practice_2" /></li>
+  <li><T k="gallery_doc.best_practice_3" /></li>
+</ul>
+
+## <T k="doc.variations" />
+
+### <T k="gallery_doc.variation_selectable" />
+
+<Canvas of={GalleryStories.Selectable} />
+
+<T k="gallery_doc.variation_selectable_desc" />
+
+### <T k="gallery_doc.variation_landscape" />
+
+<Canvas of={GalleryStories.LandscapeAspect} />
+
+### <T k="gallery_doc.variation_four_col" />
+
+<Canvas of={GalleryStories.FourColumns} />
+
+### <T k="gallery_doc.variation_captions" />
+
+<Canvas of={GalleryStories.WithCaptions} />
+
+<Docgen componentName="Gallery" section="props" />
+
+<Docgen componentName="Gallery" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+<T k="gallery_doc.responsive_desc" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<T k="gallery_doc.keyboard_desc" />
+
+## <T k="doc.i18n_title" />
+
+<T k="gallery_doc.i18n_desc" />
+
+<Docgen componentName="Gallery" section="test" />

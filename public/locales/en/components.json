@@ -102,7 +102,9 @@
     "reaction_desc": "Display emoji reaction buttons with toggleable state and counts",
     "keyboardShortcuts_desc": "Display a structured list of keyboard shortcuts",
     "autosave_desc": "Inline status indicator for automatic save state",
-    "leaderboard_desc": "Display a ranked list of entries with scores and medal highlights for the top three positions."
+    "leaderboard_desc": "Display a ranked list of entries with scores and medal highlights for the top three positions.",
+    "gallery_desc": "Gallery description.",
+    "dashboard_desc": "Dashboard description."
   },
   "cat": {
     "ai": "AI"
@@ -585,5 +587,22 @@
     "zoom_in": "Zoom in",
     "zoom_out": "Zoom out",
     "counter": "{{current}} / {{total}}"
+  },
+  "gallery": {
+    "toolbar_label": "Bulk actions toolbar",
+    "selected_count": "{{count}} item selected",
+    "selected_count_plural": "{{count}} items selected",
+    "clear_selection": "Clear selection",
+    "select_item": "Select {{title}}",
+    "deselect_item": "Deselect {{title}}",
+    "grid_label": "Image gallery"
+  },
+  "dashboard_widget": {
+    "label": "Dashboard",
+    "grid_label": "Widget grid",
+    "enter_edit": "Edit",
+    "exit_edit": "Done",
+    "add_widget": "Add widget",
+    "remove_widget": "Remove {{title}}"
   }
 }

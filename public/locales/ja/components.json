@@ -162,7 +162,9 @@
     "reaction_desc": "トグル可能な状態とカウントを持つ絵文字リアクションボタンを表示する",
     "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
     "autosave_desc": "自動保存状態のインラインステータスインジケーター",
-    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。"
+    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。",
+    "gallery_desc": "Gallery description.",
+    "dashboard_desc": "Dashboard description."
   },
   "cat": {
     "ai": "AI"
@@ -586,5 +588,22 @@
   },
   "visual": {
     "accessibility": "視覚性"
+  },
+  "gallery": {
+    "toolbar_label": "一括操作ツールバー",
+    "selected_count": "{{count}}件選択中",
+    "selected_count_plural": "{{count}}件選択中",
+    "clear_selection": "選択を解除",
+    "select_item": "{{title}}を選択",
+    "deselect_item": "{{title}}の選択を解除",
+    "grid_label": "画像ギャラリー"
+  },
+  "dashboard_widget": {
+    "label": "ダッシュボード",
+    "grid_label": "ウィジェットグリッド",
+    "enter_edit": "編集",
+    "exit_edit": "完了",
+    "add_widget": "ウィジェットを追加",
+    "remove_widget": "{{title}}を削除"
   }
 }

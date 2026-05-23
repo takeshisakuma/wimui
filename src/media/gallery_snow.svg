@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A8C4DC"/>
+      <stop offset="100%" stop-color="#D6EAF5"/>
+    </linearGradient>
+    <linearGradient id="snow1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D8EEF8"/>
+    </linearGradient>
+    <linearGradient id="snow2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FC"/>
+      <stop offset="100%" stop-color="#C0DCEE"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)"/>
+  <!-- Distant snowy hills -->
+  <path d="M-20,260 Q60,200 140,240 Q200,270 280,220 Q340,190 420,250 L420,400 L-20,400 Z" fill="url(#snow2)" opacity="0.7"/>
+  <!-- Spruce trees in back (simple triangles) -->
+  <polygon points="50,240 65,175 80,240" fill="#2D5A3D" opacity="0.6"/>
+  <polygon points="55,240 65,190 75,240" fill="#FFFFFF" opacity="0.25"/>
+  <polygon points="310,235 325,168 340,235" fill="#2D5A3D" opacity="0.6"/>
+  <polygon points="315,235 325,183 335,235" fill="#FFFFFF" opacity="0.2"/>
+  <!-- Main snow ground -->
+  <path d="M-10,300 Q100,270 200,285 Q300,300 410,272 L410,400 L-10,400 Z" fill="url(#snow1)"/>
+  <!-- Snow ripples/shadows -->
+  <path d="M0,330 Q80,318 160,328 Q240,338 320,322 Q360,315 400,322" stroke="#B8D8EE" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M0,355 Q100,342 200,352 Q300,362 400,348" stroke="#B8D8EE" stroke-width="2" fill="none" opacity="0.5"/>
+  <!-- Foreground spruce trees with snow -->
+  <rect x="140" y="220" width="10" height="110" fill="#3A6B4A"/>
+  <polygon points="120,240 145,155 170,240" fill="#2D5A3D"/>
+  <polygon points="125,240 145,168 165,240" fill="white" opacity="0.35"/>
+  <polygon points="125,270 145,195 165,270" fill="#2D5A3D" opacity="0.8"/>
+  <polygon points="128,270 145,205 162,270" fill="white" opacity="0.3"/>
+  <rect x="248" y="215" width="10" height="120" fill="#3A6B4A"/>
+  <polygon points="228,235 253,148 278,235" fill="#2D5A3D"/>
+  <polygon points="233,235 253,162 273,235" fill="white" opacity="0.35"/>
+  <polygon points="233,265 253,190 273,265" fill="#2D5A3D" opacity="0.8"/>
+  <polygon points="236,265 253,200 270,265" fill="white" opacity="0.3"/>
+  <!-- Snowflakes -->
+  <circle cx="80" cy="95" r="3" fill="white" opacity="0.9"/>
+  <circle cx="160" cy="70" r="2" fill="white" opacity="0.8"/>
+  <circle cx="220" cy="115" r="2.5" fill="white" opacity="0.85"/>
+  <circle cx="300" cy="85" r="2" fill="white" opacity="0.75"/>
+  <circle cx="360" cy="110" r="3" fill="white" opacity="0.9"/>
+  <circle cx="40" cy="140" r="2" fill="white" opacity="0.7"/>
+  <circle cx="180" cy="50" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="340" cy="55" r="2" fill="white" opacity="0.75"/>
+</svg>

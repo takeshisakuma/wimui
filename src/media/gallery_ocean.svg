@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#C8E6F5"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E90FF"/>
+      <stop offset="100%" stop-color="#00308F"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)"/>
+  <ellipse cx="80" cy="80" rx="50" ry="25" fill="white" opacity="0.8"/>
+  <ellipse cx="100" cy="75" rx="60" ry="22" fill="white" opacity="0.6"/>
+  <ellipse cx="300" cy="60" rx="40" ry="18" fill="white" opacity="0.7"/>
+  <ellipse cx="320" cy="55" rx="50" ry="16" fill="white" opacity="0.5"/>
+  <rect y="190" width="400" height="210" fill="url(#sea)"/>
+  <path d="M0,205 Q50,190 100,205 Q150,220 200,205 Q250,190 300,205 Q350,220 400,205 L400,215 Q350,230 300,215 Q250,200 200,215 Q150,230 100,215 Q50,200 0,215 Z" fill="white" opacity="0.25"/>
+  <path d="M0,240 Q50,225 100,240 Q150,255 200,240 Q250,225 300,240 Q350,255 400,240 L400,250 Q350,265 300,250 Q250,235 200,250 Q150,265 100,250 Q50,235 0,250 Z" fill="white" opacity="0.15"/>
+  <path d="M0,280 Q60,268 120,280 Q180,292 240,280 Q300,268 360,280 Q380,284 400,280 L400,290 Q380,294 360,290 Q300,278 240,290 Q180,302 120,290 Q60,278 0,290 Z" fill="white" opacity="0.12"/>
+  <circle cx="340" cy="70" r="28" fill="#FFD700" opacity="0.9"/>
+</svg>

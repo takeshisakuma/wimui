@@ -21,7 +21,7 @@
     "kbd_desc": "等幅フォントを使用し、キーボード操作やショートカットを明示する。",
     "lh_jpan_loose": "Loose (1.8)\n日本語の文章において、特にモバイルデバイスなどの小画面で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。",
     "lh_jpan_normal": "Normal (1.6)\nWIM UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。",
-    "lh_jpan_snug": "[MISSING_TRANSLATION: ja] Snug (1.5)\nSits between tight and normal. Optimal for concise body text, labels, and short UI descriptions in Japanese. Balances density with readability.",
+    "lh_jpan_snug": "スナッグ (1.5)\ntightとnormalの中間。日本語における簡潔な本文、ラベル、短いUI説明に最適です。情報の密度と読みやすさのバランスを取ります。",
     "lh_jpan_tight": "Tight (1.4)\n見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。",
     "link_desc": "別のページやリソースへのナビゲーション。ページ遷移には\n`Link`、アクション実行には `Button` を使用するのが原則。",
     "mark_desc": "検索結果のヒット部分や、特に重要な箇所を背景色で強調する。",

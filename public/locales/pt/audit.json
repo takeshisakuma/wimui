@@ -386,5 +386,8 @@
   "visualization_family_title": "Auditoria da Família de Visualização (Gráficos)",
   "visualization_legend_tooltip_style": "Estilização Unificada de Legenda e Tooltip",
   "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
-  "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados"
+  "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
+  "pattern_family_title": "Auditoria de Família de Padrões",
+  "label_artifacts_canvas": "Tela de Artefatos",
+  "label_feature_comparison": "Comparação de Recursos"
 }

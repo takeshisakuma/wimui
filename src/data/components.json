@@ -624,6 +624,12 @@
         "descKey": "doc.interactiveArea_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Dashboard",
+        "descKey": "doc.dashboard_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -696,6 +702,12 @@
       {
         "name": "Lightbox",
         "descKey": "doc.lightbox_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "Gallery",
+        "descKey": "doc.gallery_desc",
         "pc": true,
         "mobile": true
       }

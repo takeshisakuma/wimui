@@ -500,6 +500,21 @@
     "textarea_scenario_contact": "Enviar conteúdo de perguntas num formato de descrição livre.",
     "textarea_title": "Campo de texto de várias linhas otimizado para entrada de formato longo",
     "textarea_usage_basic_desc": "Exemplo de utilização padrão do componente `Textarea`.",
-    "textarea_var_ghost_desc": "Um estilo simples sem cor de fundo. Por padrão, não enfatiza o campo como área de entrada, mas fornece feedback visual ao passar o mouse ou receber foco."
+    "textarea_var_ghost_desc": "Um estilo simples sem cor de fundo. Por padrão, não enfatiza o campo como área de entrada, mas fornece feedback visual ao passar o mouse ou receber foco.",
+    "smartsearchinput_title": "Um campo de busca expansível para pesquisa e prompts de IA.",
+    "smartsearchinput_long_desc": "Um campo de busca de expansão automática que transita perfeitamente para uma área de prompt multilinha, preenchendo a lacuna entre campos de busca padrão e interfaces de prompt de IA.",
+    "smartsearchinput_design_intent": "SmartSearchInput atende à crescente necessidade de entradas com funções duplas: busca rápida de palavras-chave e inserção de prompts longos. A área de texto cresce sob demanda para que os usuários nunca se sintam limitados, enquanto Enter para enviar e Shift+Enter para quebra de linha fornecem um comportamento de teclado intuitivo familiar de interfaces de chat.",
+    "smartsearchinput_choice_matrix_desc": "Selecione com base no comprimento da entrada e no modelo de interação necessário.",
+    "smartsearchinput_choice_self_when": "Quando o campo precisar lidar tanto com consultas de busca curtas quanto com prompts longos de IA, ou quando o comportamento de expansão automática for necessário.",
+    "smartsearchinput_choice_alt_when": "Quando uma busca de linha única fixa for suficiente (use SearchInput).",
+    "smartsearchinput_content_placeholder": "Escreva um texto de placeholder que comunique claramente o uso multiuso, como 'Pesquisar ou inserir um prompt…'.",
+    "smartsearchinput_motion_expand": "A altura da área de texto é animada suavemente à medida que o conteúdo aumenta. O número de linhas aumenta até maxRows, após o qual o campo torna-se rolável.",
+    "smartsearchinput_best_practice_1": "Defina um placeholder claro que sugira casos de uso tanto para busca quanto para prompt, por exemplo 'Pesquisar ou fazer uma pergunta…'.",
+    "smartsearchinput_best_practice_2": "Use maxLength com exibição de contagem de caracteres quando a API de destino tiver limites de tokens ou caracteres.",
+    "smartsearchinput_a11y_label": "A área de texto usa seu rótulo para acessibilidade. O botão de limpar inclui uma aria-label acessível. A contagem de caracteres é anunciada via aria-live='polite'.",
+    "smartsearchinput_scenario_ai": "Interface de chat de IA onde os usuários digitam consultas em linguagem natural.",
+    "smartsearchinput_scenario_filter": "Barra de busca avançada que aceita expressões de múltiplas palavras-chave ou booleanas.",
+    "smartsearchinput_keyboard_desc": "Enter envia o valor atual (chama onSubmit). Shift+Enter insere uma nova linha. Tab move o foco para fora do campo.",
+    "smartsearchinput_i18n_desc": "Todo o texto visível usa chaves de i18n. Passe strings traduzidas por meio das propriedades placeholder e label. O placeholder padrão é obtido do namespace 'common'."
   }
 }

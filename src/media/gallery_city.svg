@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D1B2A"/>
+      <stop offset="100%" stop-color="#1B3A5C"/>
+    </linearGradient>
+    <linearGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)"/>
+  <!-- Moon -->
+  <circle cx="340" cy="55" r="22" fill="#FFFDE7" opacity="0.95"/>
+  <circle cx="350" cy="48" r="18" fill="#0D1B2A"/>
+  <!-- Stars -->
+  <circle cx="60" cy="40" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="130" cy="25" r="1" fill="white" opacity="0.8"/>
+  <circle cx="200" cy="35" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="95" cy="70" r="1" fill="white" opacity="0.7"/>
+  <circle cx="170" cy="55" r="1.2" fill="white" opacity="0.8"/>
+  <circle cx="270" cy="30" r="1" fill="white" opacity="0.7"/>
+  <!-- Distant buildings -->
+  <rect x="0" y="220" width="30" height="180" fill="#1E3A5F" opacity="0.7"/>
+  <rect x="20" y="200" width="25" height="200" fill="#1B3560" opacity="0.7"/>
+  <rect x="350" y="210" width="50" height="190" fill="#1E3A5F" opacity="0.7"/>
+  <rect x="365" y="185" width="30" height="215" fill="#1B3560" opacity="0.7"/>
+  <!-- Mid buildings -->
+  <rect x="40" y="180" width="45" height="220" fill="#152B45"/>
+  <rect x="75" y="150" width="35" height="250" fill="#1A3250"/>
+  <rect x="100" y="195" width="50" height="205" fill="#152B45"/>
+  <rect x="260" y="170" width="40" height="230" fill="#152B45"/>
+  <rect x="290" y="140" width="50" height="260" fill="#1A3250"/>
+  <rect x="330" y="185" width="35" height="215" fill="#152B45"/>
+  <!-- Main buildings (foreground) -->
+  <rect x="140" y="120" width="60" height="280" fill="#0F2036"/>
+  <rect x="190" y="90" width="50" height="310" fill="#122540"/>
+  <rect x="230" y="130" width="45" height="270" fill="#0F2036"/>
+  <!-- Windows - left cluster -->
+  <rect x="48" y="195" width="6" height="8" fill="#FFD700" opacity="0.9"/>
+  <rect x="60" y="195" width="6" height="8" fill="#FFD700" opacity="0.7"/>
+  <rect x="48" y="215" width="6" height="8" fill="#FFB300" opacity="0.8"/>
+  <rect x="60" y="215" width="6" height="8" fill="#FFD700" opacity="0.5"/>
+  <rect x="82" y="165" width="5" height="7" fill="#FFD700" opacity="0.9"/>
+  <rect x="92" y="165" width="5" height="7" fill="#FFB300" opacity="0.7"/>
+  <rect x="82" y="185" width="5" height="7" fill="#FFD700" opacity="0.6"/>
+  <rect x="92" y="200" width="5" height="7" fill="#FFD700" opacity="0.8"/>
+  <!-- Windows - main buildings -->
+  <rect x="148" y="135" width="8" height="10" fill="#FFE082" opacity="0.9"/>
+  <rect x="162" y="135" width="8" height="10" fill="#FFD700" opacity="0.7"/>
+  <rect x="176" y="135" width="8" height="10" fill="#FFE082" opacity="0.8"/>
+  <rect x="148" y="158" width="8" height="10" fill="#FFD700" opacity="0.6"/>
+  <rect x="162" y="158" width="8" height="10" fill="#FFE082" opacity="0.9"/>
+  <rect x="176" y="158" width="8" height="10" fill="#FFD700" opacity="0.7"/>
+  <rect x="148" y="181" width="8" height="10" fill="#FFE082" opacity="0.5"/>
+  <rect x="176" y="181" width="8" height="10" fill="#FFD700" opacity="0.8"/>
+  <rect x="198" y="105" width="7" height="9" fill="#FFE082" opacity="0.9"/>
+  <rect x="210" y="105" width="7" height="9" fill="#FFD700" opacity="0.8"/>
+  <rect x="222" y="105" width="7" height="9" fill="#FFE082" opacity="0.6"/>
+  <rect x="198" y="127" width="7" height="9" fill="#FFD700" opacity="0.7"/>
+  <rect x="222" y="127" width="7" height="9" fill="#FFE082" opacity="0.9"/>
+  <rect x="237" y="148" width="7" height="9" fill="#FFD700" opacity="0.8"/>
+  <rect x="250" y="148" width="7" height="9" fill="#FFE082" opacity="0.6"/>
+  <rect x="264" y="185" width="7" height="9" fill="#FFD700" opacity="0.9"/>
+  <rect x="276" y="185" width="7" height="9" fill="#FFE082" opacity="0.7"/>
+  <!-- Ground / road -->
+  <rect y="360" width="400" height="40" fill="#0A1520"/>
+  <rect x="180" y="360" width="40" height="40" fill="#112030"/>
+  <rect y="375" width="400" height="4" fill="#FFD700" opacity="0.3"/>
+</svg>

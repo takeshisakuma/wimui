@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF7043"/>
+      <stop offset="40%" stop-color="#FFA726"/>
+      <stop offset="100%" stop-color="#FFCC80"/>
+    </linearGradient>
+    <linearGradient id="sand1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8A045"/>
+      <stop offset="100%" stop-color="#C47A15"/>
+    </linearGradient>
+    <linearGradient id="sand2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4893A"/>
+      <stop offset="100%" stop-color="#A8620E"/>
+    </linearGradient>
+    <linearGradient id="sand3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0B060"/>
+      <stop offset="100%" stop-color="#CC8820"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)"/>
+  <!-- Sun -->
+  <circle cx="300" cy="80" r="45" fill="#FFE566" opacity="0.95"/>
+  <circle cx="300" cy="80" r="55" fill="#FFE566" opacity="0.2"/>
+  <circle cx="300" cy="80" r="65" fill="#FFF176" opacity="0.1"/>
+  <!-- Sun rays -->
+  <line x1="300" y1="10" x2="300" y2="30" stroke="#FFE566" stroke-width="3" opacity="0.7"/>
+  <line x1="350" y1="30" x2="340" y2="45" stroke="#FFE566" stroke-width="3" opacity="0.7"/>
+  <line x1="370" y1="80" x2="350" y2="80" stroke="#FFE566" stroke-width="3" opacity="0.7"/>
+  <line x1="350" y1="130" x2="340" y2="115" stroke="#FFE566" stroke-width="3" opacity="0.7"/>
+  <line x1="250" y1="30" x2="260" y2="45" stroke="#FFE566" stroke-width="3" opacity="0.7"/>
+  <!-- Back dunes -->
+  <path d="M0,280 Q100,230 200,265 Q300,300 400,250 L400,400 L0,400 Z" fill="url(#sand2)" opacity="0.8"/>
+  <!-- Middle dune -->
+  <path d="M-20,320 Q80,265 180,300 Q280,335 400,285 L400,400 L0,400 Z" fill="url(#sand1)"/>
+  <!-- Front dune -->
+  <path d="M0,360 Q100,330 200,350 Q300,370 400,340 L400,400 L0,400 Z" fill="url(#sand3)"/>
+  <!-- Cactus 1 -->
+  <rect x="88" y="225" width="10" height="65" fill="#4A7C3F"/>
+  <rect x="72" y="235" width="30" height="8" rx="4" fill="#4A7C3F"/>
+  <rect x="72" y="225" width="10" height="25" fill="#4A7C3F"/>
+  <!-- Cactus 2 -->
+  <rect x="275" y="215" width="12" height="75" fill="#5A8A4A"/>
+  <rect x="255" y="228" width="35" height="9" rx="4" fill="#5A8A4A"/>
+  <rect x="255" y="218" width="12" height="28" fill="#5A8A4A"/>
+  <rect x="285" y="240" width="30" height="8" rx="4" fill="#5A8A4A"/>
+  <rect x="305" y="230" width="10" height="25" fill="#5A8A4A"/>
+</svg>

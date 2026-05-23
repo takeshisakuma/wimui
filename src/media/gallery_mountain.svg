@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A90D9"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D0E8F0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)"/>
+  <polygon points="0,400 160,100 320,400" fill="#7A9BAA"/>
+  <polygon points="80,400 240,80 400,400" fill="#8FAFC0"/>
+  <polygon points="160,400 280,140 400,350" fill="#9FC2D5" opacity="0.8"/>
+  <polygon points="80,400 160,200 240,400" fill="#6B8A99"/>
+  <polygon points="140,140 160,100 180,140 175,135 165,125 155,135" fill="url(#snow)"/>
+  <polygon points="210,105 240,80 270,105 260,98 240,82 220,98" fill="url(#snow)"/>
+  <rect y="340" width="400" height="60" fill="#5A7A60" opacity="0.6"/>
+</svg>

@@ -23,7 +23,9 @@
     "spacings_header_value": "Value",
     "spacings_header_token": "Token",
     "spacings_thin": "Thin",
-    "spacings_thick": "Thick"
+    "spacings_thick": "Thick",
+    "spacings_semantic_aliases": "Semantic Aliases",
+    "spacings_semantic_aliases_desc": "Do not use value-based scale tokens directly in components. Use the following role-based aliases instead."
   },
   "perf": {
     "tips_title": "Performance Tips",

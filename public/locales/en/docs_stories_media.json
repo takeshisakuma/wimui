@@ -48,6 +48,20 @@
     "video_premium_features_caption": "Video will start after 2 seconds of skeleton animation",
     "video_premium_features_lazy_load": "Lazy Load & Skeleton (2s delay)",
     "video_premium_features_reload": "Reload Video",
-    "video_premium_features_title": "Premium Features"
+    "video_premium_features_title": "Premium Features",
+    "gallery_alt_mountain": "Mountain landscape",
+    "gallery_alt_ocean": "Ocean view",
+    "gallery_alt_forest": "Forest path",
+    "gallery_alt_city": "City skyline",
+    "gallery_alt_desert": "Desert dunes",
+    "gallery_alt_snow": "Snow peaks",
+    "gallery_title_mountain": "Mountain",
+    "gallery_title_ocean": "Ocean",
+    "gallery_title_forest": "Forest",
+    "gallery_title_city": "City",
+    "gallery_title_desert": "Desert",
+    "gallery_title_snow": "Snow",
+    "gallery_caption_year": "Taken in 2024",
+    "gallery_delete_btn": "Delete"
   }
 }

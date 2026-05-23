@@ -85,6 +85,23 @@
     "stack_gap": "ギャップ: ",
     "stack_item_1": "アイテム 1",
     "stack_item_2": "アイテム 2",
-    "stack_item_3": "アイテム 3"
+    "stack_item_3": "アイテム 3",
+    "dashboard_story_label": "アナリティクスダッシュボード",
+    "dashboard_story_summary": "サマリー",
+    "dashboard_widget_revenue": "売上",
+    "dashboard_widget_revenue_desc": "今月",
+    "dashboard_widget_users": "アクティブユーザー",
+    "dashboard_widget_users_desc": "過去30日間",
+    "dashboard_widget_tasks": "未完了タスク",
+    "dashboard_widget_chart": "週次トレンド",
+    "dashboard_widget_chart_desc": "訪問セッション数",
+    "dashboard_widget_activity": "最近のアクティビティ",
+    "dashboard_chart_placeholder": "グラフ（プレースホルダー）",
+    "dashboard_activity_signup": "ユーザーが登録しました",
+    "dashboard_activity_order": "新しい注文が入りました",
+    "dashboard_activity_export": "レポートが出力されました",
+    "dashboard_new_widget_title": "新しいウィジェット",
+    "dashboard_new_widget_desc": "追加されたウィジェット",
+    "dashboard_new_widget_content": "ウィジェットのコンテンツ"
   }
 }

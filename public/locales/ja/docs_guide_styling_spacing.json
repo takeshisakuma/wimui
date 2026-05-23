@@ -23,7 +23,9 @@
     "spacings_header_value": "値",
     "spacings_header_token": "トークン",
     "spacings_thin": "細 (Thin)",
-    "spacings_thick": "太 (Thick)"
+    "spacings_thick": "太 (Thick)",
+    "spacings_semantic_aliases": "セマンティック・エイリアス (Semantic Aliases)",
+    "spacings_semantic_aliases_desc": "コンポーネントでは値ベースのスケールトークンを直接使用せず、以下の役割ベースのエイリアスを使用してください。"
   },
   "perf": {
     "tips_title": "パフォーマンスのヒント",

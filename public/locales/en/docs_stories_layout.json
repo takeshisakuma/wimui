@@ -85,6 +85,23 @@
     "stack_gap": "Gap: ",
     "stack_item_1": "Item 1",
     "stack_item_2": "Item 2",
-    "stack_item_3": "Item 3"
+    "stack_item_3": "Item 3",
+    "dashboard_story_label": "Analytics Dashboard",
+    "dashboard_story_summary": "Summary",
+    "dashboard_widget_revenue": "Revenue",
+    "dashboard_widget_revenue_desc": "This month",
+    "dashboard_widget_users": "Active Users",
+    "dashboard_widget_users_desc": "Last 30 days",
+    "dashboard_widget_tasks": "Open Tasks",
+    "dashboard_widget_chart": "Weekly Trend",
+    "dashboard_widget_chart_desc": "Visitor sessions",
+    "dashboard_widget_activity": "Recent Activity",
+    "dashboard_chart_placeholder": "Chart placeholder",
+    "dashboard_activity_signup": "User signed up",
+    "dashboard_activity_order": "New order placed",
+    "dashboard_activity_export": "Report exported",
+    "dashboard_new_widget_title": "New Widget",
+    "dashboard_new_widget_desc": "Added widget",
+    "dashboard_new_widget_content": "Widget content"
   }
 }

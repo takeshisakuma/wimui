@@ -48,6 +48,20 @@
     "video_premium_features_caption": "スケルトンアニメーションが2秒間表示された後、ビデオが開始されます",
     "video_premium_features_lazy_load": "遅延読み込みとスケルトン（2秒待機）",
     "video_premium_features_reload": "ビデオを再読み込み",
-    "video_premium_features_title": "プレミアム機能"
+    "video_premium_features_title": "プレミアム機能",
+    "gallery_alt_mountain": "山の風景",
+    "gallery_alt_ocean": "海の眺め",
+    "gallery_alt_forest": "森の小道",
+    "gallery_alt_city": "都市のスカイライン",
+    "gallery_alt_desert": "砂漠の砂丘",
+    "gallery_alt_snow": "雪山の峰",
+    "gallery_title_mountain": "山",
+    "gallery_title_ocean": "海",
+    "gallery_title_forest": "森",
+    "gallery_title_city": "都市",
+    "gallery_title_desert": "砂漠",
+    "gallery_title_snow": "雪山",
+    "gallery_caption_year": "2024年撮影",
+    "gallery_delete_btn": "削除"
   }
 }

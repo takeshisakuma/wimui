@@ -41,12 +41,12 @@
     "effects_motion_ultra_slow": "Ultra Lento",
     "effects_opacity": "Opacidade (Opacity)",
     "effects_opacity_desc": "Tokens de opacidade para expressar estados da UI. Sempre referencie esses tokens em vez de valores fixos.",
-    "effects_opacity_dim": "[MISSING_TRANSLATION: pt] Animation start/end states and passive visual decorations (loading dots, typing indicators)",
+    "effects_opacity_dim": "Estados de início/fim de animação e decorações visuais passivas (pontos de carregamento, indicadores de digitação)",
     "effects_opacity_disabled": "Controles desativados (checkbox, radio, fieldset, etc.)",
     "effects_opacity_ghost": "Elementos de UI fantasmagóricos (botões de fechar, ícones de placeholder, etc.)",
     "effects_opacity_guideline": "Use estes três níveis — disabled / ghost / secondary — em vez de valores fixos (0.5, 0.6, 0.7).",
     "effects_opacity_secondary": "Elementos secundários e texto complementar",
-    "effects_opacity_subtle": "[MISSING_TRANSLATION: pt] In-progress or applying state — element is still interactive but visually de-emphasized",
+    "effects_opacity_subtle": "Estado em andamento ou aplicação — o elemento ainda é interativo, mas visualmente suavizado",
     "effects_shadow": "Elevação (Shadow)",
     "effects_shadow_ambient": "Luz Ambiente (Ambient Light)",
     "effects_shadow_ambient_desc": "Sombra suave e difusa causada pelo ambiente de iluminação. Proporciona estabilidade e base.",
@@ -55,7 +55,9 @@
     "effects_shadow_guideline": "Utiliza um design de múltiplas camadas combinando luzes de Ambiente e Elevação. Escolha o nível de elevação com base na ordem de empilhamento dos elementos (z-index) e importância.",
     "effects_shadow_multi_layer": "Sombras Multicamadas",
     "effects_shadow_multi_layer_desc": "Ao combinar as camadas Ambiente e Elevação, alcançamos uma profundidade mais realista que imita a iluminação do mundo real.",
-    "effects_title": "Efeitos (Effects)"
+    "effects_title": "Efeitos (Effects)",
+    "effects_semantic_aliases": "Aliases Semânticos",
+    "effects_semantic_aliases_desc": "Não use tokens de escala baseados em valor diretamente nos componentes. Em vez disso, use os seguintes aliases baseados em função."
   },
   "perf": {
     "animation_desc": "Para componentes com animações contínuas ou complexas, use a propriedade CSS `will-change` para solicitar a otimização do navegador.",

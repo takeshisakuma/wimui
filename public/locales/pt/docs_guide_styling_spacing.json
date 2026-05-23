@@ -23,7 +23,9 @@
     "spacings_header_value": "Valor",
     "spacings_header_token": "Token",
     "spacings_thin": "Fino (Thin)",
-    "spacings_thick": "Grosso (Thick)"
+    "spacings_thick": "Grosso (Thick)",
+    "spacings_semantic_aliases": "Aliases Semânticos",
+    "spacings_semantic_aliases_desc": "Não use tokens de escala baseados em valor diretamente nos componentes. Em vez disso, use os seguintes aliases baseados em função."
   },
   "perf": {
     "tips_title": "Dicas de Performance",

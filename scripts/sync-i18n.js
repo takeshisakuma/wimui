@@ -86,7 +86,11 @@ async function sync() {
                 result[key] = nestedMissing;
               }
             }
-          } else if (!target[key]) {
+          } else if (
+            !target[key] ||
+            target[key] === "" ||
+            (typeof target[key] === "string" && target[key].includes("MISSING_TRANSLATION"))
+          ) {
             result[key] = source[key];
           }
         }

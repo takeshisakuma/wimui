@@ -48,6 +48,20 @@
     "video_premium_features_caption": "O vídeo começará após 2 segundos de animação de esqueleto",
     "video_premium_features_lazy_load": "Carregamento Lento e Esqueleto (atraso de 2s)",
     "video_premium_features_reload": "Recarregar Vídeo",
-    "video_premium_features_title": "Recursos Premium"
+    "video_premium_features_title": "Recursos Premium",
+    "gallery_alt_mountain": "Paisagem de montanha",
+    "gallery_alt_ocean": "Vista do oceano",
+    "gallery_alt_forest": "Caminho na floresta",
+    "gallery_alt_city": "Horizonte da cidade",
+    "gallery_alt_desert": "Dunas do deserto",
+    "gallery_alt_snow": "Picos nevados",
+    "gallery_title_mountain": "Montanha",
+    "gallery_title_ocean": "Oceano",
+    "gallery_title_forest": "Floresta",
+    "gallery_title_city": "Cidade",
+    "gallery_title_desert": "Deserto",
+    "gallery_title_snow": "Neve",
+    "gallery_caption_year": "Tirado em 2024",
+    "gallery_delete_btn": "Excluir"
   }
 }

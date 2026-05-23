@@ -162,7 +162,9 @@
     "reaction_desc": "Exibir botões de reação com emoji e estado alternável com contagem",
     "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
     "autosave_desc": "Indicador de status inline para o estado de salvamento automático",
-    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições."
+    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições.",
+    "gallery_desc": "Gallery description.",
+    "dashboard_desc": "Dashboard description."
   },
   "cat": {
     "ai": "IA"
@@ -586,5 +588,22 @@
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
+  },
+  "gallery": {
+    "toolbar_label": "Barra de ações em massa",
+    "selected_count": "{{count}} item selecionado",
+    "selected_count_plural": "{{count}} itens selecionados",
+    "clear_selection": "Limpar seleção",
+    "select_item": "Selecionar {{title}}",
+    "deselect_item": "Desmarcar {{title}}",
+    "grid_label": "Galeria de imagens"
+  },
+  "dashboard_widget": {
+    "label": "Painel",
+    "grid_label": "Grade de widgets",
+    "enter_edit": "Editar",
+    "exit_edit": "Concluir",
+    "add_widget": "Adicionar widget",
+    "remove_widget": "Remover {{title}}"
   }
 }
