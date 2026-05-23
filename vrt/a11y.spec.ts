@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import type { Result } from "axe-core";
 import fs from "fs";
@@ -36,6 +36,21 @@ const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
 // iframes intentionally omit — these are not component-level issues.
 const DISABLED_RULES = ["landmark-one-main", "page-has-heading-one", "region"];
 
+async function analyzeWithRetry(page: Page, builder: AxeBuilder, retries = 3): Promise<Awaited<ReturnType<AxeBuilder["analyze"]>>> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await builder.analyze();
+    } catch (err) {
+      if (i < retries - 1 && (err as Error).message?.includes("Axe is already running")) {
+        await page.waitForTimeout(500 * (i + 1));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw new Error("axe analyze failed after retries");
+}
+
 function formatViolations(violations: Result[]): string {
   if (violations.length === 0) return "";
   return violations
@@ -65,10 +80,12 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
           await page.goto(url, { waitUntil: "load" });
           await page.waitForTimeout(300);
 
-          const results = await new AxeBuilder({ page })
-            .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
-            .disableRules(DISABLED_RULES)
-            .analyze();
+          const results = await analyzeWithRetry(
+            page,
+            new AxeBuilder({ page })
+              .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
+              .disableRules(DISABLED_RULES),
+          );
 
           expect(results.violations, formatViolations(results.violations)).toEqual([]);
         });
