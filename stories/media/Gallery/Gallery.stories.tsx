@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Gallery } from "@/components/media/Gallery/Gallery";
 import type { GalleryItem } from "@/components/media/Gallery/Gallery";
+import { Button } from "@/components/form/Button/Button";
 import galleryMountain from "@/media/gallery_mountain.svg";
 import galleryOcean from "@/media/gallery_ocean.svg";
 import galleryForest from "@/media/gallery_forest.svg";
@@ -71,22 +72,14 @@ export const Selectable: Story = {
         selected={selected}
         onSelectionChange={setSelected}
         renderActions={({ selectedIds, clearSelection }) => (
-          <button
-            onClick={() => {
-              clearSelection();
-            }}
-            style={{
-              padding: "4px 12px",
-              fontSize: "var(--wim-font-size-sm)",
-              cursor: "pointer",
-              background: "oklch(from var(--wim-color-error) l c h / 0.1)",
-              color: "var(--wim-color-error)",
-              border: "1px solid oklch(from var(--wim-color-error) l c h / 0.3)",
-              borderRadius: "var(--wim-radius-component)",
-            }}
+          <Button
+            size="sm"
+            variant="outline"
+            intent="destructive"
+            onClick={clearSelection}
           >
             {t("story.gallery_delete_btn")} ({selectedIds.length})
-          </button>
+          </Button>
         )}
       />
     );

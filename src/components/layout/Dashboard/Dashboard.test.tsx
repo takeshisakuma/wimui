@@ -99,6 +99,20 @@ describe("Dashboard", () => {
     expect(screen.queryByRole("button", { name: /remove/i })).not.toBeInTheDocument();
   });
 
+  it("calls onEditChange when edit toggle is clicked", () => {
+    const onEditChange = vi.fn();
+    render(
+      <Dashboard
+        widgets={sampleWidgets}
+        editable={false}
+        onEditChange={onEditChange}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "dashboard_widget.enter_edit" }));
+    expect(onEditChange).toHaveBeenCalledTimes(1);
+    expect(onEditChange).toHaveBeenCalledWith(true);
+  });
+
   it("renders label as heading when provided", () => {
     render(<Dashboard widgets={sampleWidgets} label="My Dashboard" />);
     expect(screen.getByText("My Dashboard")).toBeInTheDocument();

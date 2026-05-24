@@ -131,6 +131,8 @@
   gap: var(--wim-spacing-xs);
   align-items: center;
   justify-content: center;
+
+  // TODO: tokenization — ウィジェット追加ボタンの最小高。--wim-size-widget-min 相当のトークンが未定義
   min-height: 120px;
   padding: var(--wim-spacing-md);
   font-size: var(--wim-font-size-sm);

@@ -1,6 +1,7 @@
 @use "../../../tokens/semantic-colors" as *;
 @use "../../../tokens/spacings" as *;
 
+@layer component {
 .root {
     box-sizing: border-box;
     display: flex;
@@ -82,4 +83,6 @@
     margin-left: auto;
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
-}
+}
+
+} // @layer component

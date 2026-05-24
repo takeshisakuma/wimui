@@ -104,10 +104,12 @@
 }
 
 .aspect-landscape .imageWrapper {
+  // 幾何学的整合性: 標準的な映像比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
   aspect-ratio: 16 / 9;
 }
 
 .aspect-portrait .imageWrapper {
+  // 幾何学的整合性: 標準的なポートレート比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
   aspect-ratio: 3 / 4;
 }
 

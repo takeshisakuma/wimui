@@ -1,5 +1,8 @@
+@layer component {
 .root {
   position: fixed;
   inset: 0;
   z-index: var(--wim-z-overlay);
 }
+
+} // @layer component

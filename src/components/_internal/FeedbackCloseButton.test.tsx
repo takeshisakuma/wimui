@@ -2,6 +2,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { FeedbackCloseButton } from "./FeedbackCloseButton";
 
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => (key === "a11y.close" ? "Close" : key),
+  }),
+}));
+
 describe("FeedbackCloseButton", () => {
   it("renders nothing when onClose is not provided", () => {
     const { container } = render(<FeedbackCloseButton />);
