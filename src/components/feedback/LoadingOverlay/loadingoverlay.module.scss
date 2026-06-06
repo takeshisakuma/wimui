@@ -33,7 +33,7 @@
     inset: 0;
     z-index: 0;
     background-color: var(--wim-color-overlay-bg);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(var(--wim-blur-2xs));
     transition: opacity var(--wim-transition-duration-normal, 200ms)
       var(--wim-easing-exit, ease-out);
 
@@ -46,15 +46,15 @@
     }
 
     &.blur-sm {
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(var(--wim-blur-2xs));
     }
 
     &.blur-md {
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(var(--wim-blur-xs));
     }
 
     &.blur-lg {
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(var(--wim-blur-glass));
     }
 
     &.blur-none {

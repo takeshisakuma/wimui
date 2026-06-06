@@ -43,7 +43,7 @@
       border-color: var(--wim-color-primary);
       border-style: dashed;
       opacity: var(--wim-opacity-ghost);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(var(--wim-blur-glass));
       transform: scale(0.98);
     }
 

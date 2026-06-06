@@ -35,6 +35,6 @@
     background: var(--wim-color-surface-glass);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-sm);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(var(--wim-blur-xs));
   }
 }

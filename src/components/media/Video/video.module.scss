@@ -316,7 +316,7 @@
     background: var(--wim-color-overlay-menu-bg);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-overlay);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--wim-blur-glass));
   
     .menuTitle {
       display: flex;

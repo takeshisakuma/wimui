@@ -150,14 +150,18 @@ export type WimOpacityKey =
   | "dim"
   | "disabled"
   | "ghost"
+  | "hover"
   | "secondary"
   | "subtle";
 
 export type WimBlurKey = 
   | "2xl"
+  | "2xs"
+  | "glass"
   | "lg"
   | "md"
   | "none"
+  | "overlay"
   | "sm"
   | "xl"
   | "xs";
@@ -224,7 +228,8 @@ export type WimLiftKey =
   | "sm";
 
 export type WimScaleKey = 
-  | "active";
+  | "active"
+  | "hover";
 
 export type WimSpacingKey = 
   | "2xl"

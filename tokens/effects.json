@@ -17,16 +17,20 @@
       "ghost": { "value": "0.5" },
       "secondary": { "value": "0.7" },
       "dim": { "value": "0.4" },
-      "subtle": { "value": "0.8" }
+      "subtle": { "value": "0.8" },
+      "hover": { "value": "0.8" }
     },
     "blur": {
       "none": { "value": "0" },
+      "2xs": { "value": "2px" },
       "xs": { "value": "4px" },
       "sm": { "value": "8px" },
       "md": { "value": "12px" },
       "lg": { "value": "16px" },
       "xl": { "value": "24px" },
-      "2xl": { "value": "40px" }
+      "2xl": { "value": "40px" },
+      "overlay": { "value": "{wim.blur.sm}" },
+      "glass": { "value": "{wim.blur.sm}" }
     },
     "glass": {
       "bg-opacity": { "value": "0.7" },
@@ -90,7 +94,8 @@
       "none": { "value": "0" }
     },
     "scale": {
-      "active": { "value": "0.98" }
+      "active": { "value": "0.98" },
+      "hover": { "value": "1.02" }
     }
   }
 }

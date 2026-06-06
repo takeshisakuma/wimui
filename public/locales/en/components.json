@@ -104,7 +104,8 @@
     "autosave_desc": "Inline status indicator for automatic save state",
     "leaderboard_desc": "Display a ranked list of entries with scores and medal highlights for the top three positions.",
     "gallery_desc": "Gallery description.",
-    "dashboard_desc": "Dashboard description."
+    "dashboard_desc": "Dashboard description.",
+    "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs."
   },
   "cat": {
     "ai": "AI"

@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/breakpoints" as *;
+@use "../../../tokens/breakpoints" as *;
 
 @layer component {
   .root {
@@ -6,26 +6,40 @@
   }
 
   .trigger {
+    position: relative;
     padding: 0;
     cursor: pointer;
     background: transparent;
     border: none;
     transition: var(--wim-transition-base);
 
+    &::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background-color: oklch(from var(--wim-color-bg-void) l c h / 0);
+      border-radius: inherit;
+      transition: background-color var(--wim-transition-base);
+    }
+
     &:hover {
-      opacity: var(--wim-opacity-hover, 0.8);
-      transform: scale(var(--wim-scale-hover, 1.02));
+      transform: scale(var(--wim-scale-hover));
+
+      &::after {
+        background-color: oklch(from var(--wim-color-bg-void) l c h / 0.15);
+      }
     }
 
     &:active {
-      transform: scale(var(--wim-scale-active, 0.98));
+      transform: scale(var(--wim-scale-active));
     }
   }
 
   .overlay {
     z-index: var(--wim-z-overlay);
     background-color: oklch(from var(--wim-color-bg-void) l c h / 0.85);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--wim-blur-overlay));
   }
 
   .contentRoot {
@@ -80,7 +94,7 @@
     background: var(--wim-color-surface-glass);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--wim-blur-glass));
     transition: var(--wim-transition-base);
 
     &:hover {
@@ -144,7 +158,7 @@
     background: var(--wim-color-surface-glass);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--wim-blur-glass));
     transform: translateY(-50%);
     transition: var(--wim-transition-base);
 

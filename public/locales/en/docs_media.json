@@ -291,7 +291,7 @@
     "lightbox_design_intent": "Lightbox provides an immersive, premium viewing experience for media content, minimizing surrounding noise and focusing the user's attention on visual assets.",
     "lightbox_i18n_desc": "Labels for controls (Close, Previous, Next) are fully localized.",
     "lightbox_keyboard_desc": "Supports Escape to close, left/right arrow keys for gallery navigation, and Tab for control focus.",
-    "lightbox_motion_desc": "Subtle scale and opacity transitions are used to provide a sense of depth and focus. Backdrop blur enhances the immersive feel.",
+    "lightbox_motion_desc": "Scale transitions on the trigger and a subtle color overlay provide interaction depth on hover. Entry animations combine scale and fade for an immersive opening. Backdrop blur enhances the ambient feel.",
     "lightbox_responsive_desc": "The lightbox scales media to fit the viewport, ensuring visibility across all device sizes. Navigation controls are adjusted for touch targets on mobile.",
     "lightbox_scenario_1": "Product image gallery in an e-commerce application.",
     "lightbox_scenario_2": "Expanding a chart or infographic in a data-rich dashboard.",

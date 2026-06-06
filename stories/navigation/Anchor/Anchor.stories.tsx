@@ -78,7 +78,7 @@ export const Default: Story = {
             width: isMobile ? "100%" : "200px",
             flexShrink: 0,
             background: "var(--wim-color-surface)",
-            backdropFilter: "blur(8px)",
+            backdropFilter: "blur(var(--wim-blur-glass))",
             alignSelf: "flex-start",
             padding: isMobile ? "0" : "20px 0",
             borderBottom: isMobile ? "1px solid var(--wim-color-border)" : "none",

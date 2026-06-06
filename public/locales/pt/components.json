@@ -2,6 +2,10 @@
   "a11y": {
     "avatar": "Avatar (Ícone de Identidade)",
     "close": "Fechar",
+    "collapse": "Recolher",
+    "collapse_label": "Recolher {{label}}",
+    "expand": "Expandir",
+    "expand_label": "Expandir {{label}}",
     "rte_bold": "Negrito",
     "rte_h1": "Título 1",
     "rte_h2": "Título 2",
@@ -15,11 +19,7 @@
     "rte_toolbar": "Barra de formatação",
     "rte_ul": "Lista com marcadores",
     "rte_underline": "Sublinhado",
-    "rte_unlink": "Remover link",
-    "expand": "Expandir",
-    "collapse": "Recolher",
-    "expand_label": "Expandir {{label}}",
-    "collapse_label": "Recolher {{label}}"
+    "rte_unlink": "Remover link"
   },
   "annotation": {
     "outside_field": "As notas devem estar fora do campo, não como placeholders."
@@ -32,6 +32,9 @@
   "btn": {
     "guide_link_btn": "Guia: Link vs Button (A diferença e o seu uso)",
     "page_transition": "Quando mudar de página, mas for necessário dar ênfase visual como botão (semântica é `<a>`)."
+  },
+  "cat": {
+    "ai": "IA"
   },
   "chat": {
     "placeholder": "Olá!",
@@ -50,6 +53,14 @@
     "progress": "Progresso Geral do Desenvolvimento",
     "title": "Painel de Desenvolvimento de Componentes",
     "total_components": "Total de Componentes"
+  },
+  "dashboard_widget": {
+    "add_widget": "Adicionar widget",
+    "enter_edit": "Editar",
+    "exit_edit": "Concluir",
+    "grid_label": "Grade de widgets",
+    "label": "Painel",
+    "remove_widget": "Remover {{title}}"
   },
   "datacontainer": {
     "accordion_desc": "Economiza espaço enquanto divulga detalhes progressivamente.",
@@ -89,14 +100,30 @@
     "watermark_usage": "Confidencialidade, imagens de prévia."
   },
   "doc": {
+    "aiResponseFeedback_desc": "Controles de feedback positivo/negativo e botão de regeneração para respostas de IA.",
+    "autosave_desc": "Indicador de status inline para o estado de salvamento automático",
     "base_list_desc": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectboxes e TreeViews.",
     "blockquote_desc": "Separa visualmente citações externas ou textos a serem enfatizados.",
+    "codeBlock_desc": "Bloco de código com destaque de sintaxe, botão de cópia, numeração de linhas e colapso de conteúdo longo.",
+    "codeDiffViewer_desc": "CodeDiffViewer description.",
+    "dashboard_desc": "Dashboard description.",
+    "field_character_count_desc": "[MISSING_TRANSLATION: pt] Standardizes the display of character counts and limit indicators across text-based form inputs.",
     "field_template_desc": "Padroniza a colocação de rótulos, marcações obrigatórias e exibição de mensagens de erro para todos os componentes relacionados a formulários.",
+    "gallery_desc": "Gallery description.",
     "ganttchart_visual_guideline_progress": "O progresso (parte concluída) é claramente distinguido da parte incompleta através da sobreposição de preto semitransparente na cor de base e da adição de um separador sutil para aumentar o contraste.",
+    "imageCropper_desc": "Ferramenta front-end para recorte e rotação de imagens.",
     "indicator_base_desc": "Padroniza o estilo visual e a animation para pontos de status e emblemas.",
     "input_base_desc": "Padroniza o contêiner visual, os slots de ícone (Prefixo/Sufixo) e o comportamento do botão de limpeza para entradas baseadas em texto.",
+    "intent": "Intenção",
     "interactiveArea_desc": "Componente base para áreas interativas consistentes com bordas e estados.",
+    "jsonDiffViewer_desc": "JsonDiffViewer description.",
+    "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
+    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições.",
+    "levels_title": "Definições de Nível",
+    "nodeGraph_desc": "Visualiza redes complexas e relações entre nós.",
     "overlay_base_desc": "Padroniza a renderização baseada em portal, o plano de fundo e o gerenciamento de foco para Diálogos, Gavetas e BottomSheets.",
+    "passwordStrength_desc": "Medidor visual para indicar o nível de segurança da senha.",
+    "promptInput_desc": "Entrada interativa otimizada para engenharia de prompts de IA com suporte a múltiplas linhas e gatilhos de ação.",
     "queryBuilder_desc": "Construtor visual para criar consultas de pesquisa complexas.",
     "querybuilder_a11y_desc": "O elemento raiz possui role=\"region\" com aria-label. Cada linha de regra tem role=\"group\". Campos, Operadores e Valores possuem aria-labels individuais. Adições e remoções são anunciadas via região aria-live=\"polite\".",
     "querybuilder_anatomy_combinator": "SegmentedControl (AND / OR) que determina como as regras dentro do grupo são unidas.",
@@ -135,39 +162,21 @@
     "querybuilder_token_destructive": "Cor de borda e destaque de fundo para grupos excluídos.",
     "querybuilder_token_radius": "Raio de canto para grupos e regras (8px).",
     "querybuilder_token_transition": "Animação de mudança de cor da borda ao passar o mouse.",
-    "richTextEditor_desc": "Editor de texto rico WYSIWYG",
-    "status_content_desc": "Padroniza o layout para resultados e estados vazios, incluindo ícone, título e descrição.",
-    "text_desc": "Tem entrelinha e espaçamento apropriados para garantir a legibilidade de textos longos.",
-    "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
-    "visual_guideline_title": "Diretrizes Visuais",
-    "nodeGraph_desc": "Visualiza redes complexas e relações entre nós.",
-    "scheduleView_desc": "Exibe tarefas ou eventos em uma linha do tempo cronológica ou visualização de calendário.",
-    "promptInput_desc": "Entrada interativa otimizada para engenharia de prompts de IA com suporte a múltiplas linhas e gatilhos de ação.",
-    "streamingText_desc": "Renderiza texto com uma animação tipo máquina de escrever, ideal para respostas de chat de IA.",
-    "smartSearchInput_desc": "Entrada de busca inteligente que permite tanto a busca tradicional quanto prompte de IA.",
-    "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo.",
-    "aiResponseFeedback_desc": "Controles de feedback positivo/negativo e botão de regeneração para respostas de IA.",
-    "sourceCitation_desc": "Exibe fontes citadas com título, domínio e link externo para conteúdo gerado por IA.",
-    "codeBlock_desc": "Bloco de código com destaque de sintaxe, botão de cópia, numeração de linhas e colapso de conteúdo longo.",
-    "passwordStrength_desc": "Medidor visual para indicar o nível de segurança da senha.",
-    "imageCropper_desc": "Ferramenta front-end para recorte e rotação de imagens.",
-    "tagInput_desc": "Campo de entrada para criação de tags de forma livre.",
-    "score": "Pontuação",
-    "intent": "Intenção",
-    "levels_title": "Definições de Nível",
-    "scaffoldTest_desc": "ScaffoldTest description.",
-    "codeDiffViewer_desc": "CodeDiffViewer description.",
-    "terminal_desc": "Terminal description.",
-    "jsonDiffViewer_desc": "JsonDiffViewer description.",
     "reaction_desc": "Exibir botões de reação com emoji e estado alternável com contagem",
-    "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
-    "autosave_desc": "Indicador de status inline para o estado de salvamento automático",
-    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições.",
-    "gallery_desc": "Gallery description.",
-    "dashboard_desc": "Dashboard description."
-  },
-  "cat": {
-    "ai": "IA"
+    "richTextEditor_desc": "Editor de texto rico WYSIWYG",
+    "scaffoldTest_desc": "ScaffoldTest description.",
+    "scheduleView_desc": "Exibe tarefas ou eventos em uma linha do tempo cronológica ou visualização de calendário.",
+    "score": "Pontuação",
+    "smartSearchInput_desc": "Entrada de busca inteligente que permite tanto a busca tradicional quanto prompte de IA.",
+    "sourceCitation_desc": "Exibe fontes citadas com título, domínio e link externo para conteúdo gerado por IA.",
+    "status_content_desc": "Padroniza o layout para resultados e estados vazios, incluindo ícone, título e descrição.",
+    "streamingText_desc": "Renderiza texto com uma animação tipo máquina de escrever, ideal para respostas de chat de IA.",
+    "tagInput_desc": "Campo de entrada para criação de tags de forma livre.",
+    "terminal_desc": "Terminal description.",
+    "text_desc": "Tem entrelinha e espaçamento apropriados para garantir a legibilidade de textos longos.",
+    "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo.",
+    "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
+    "visual_guideline_title": "Diretrizes Visuais"
   },
   "effects": {
     "common_vars": "Variáveis Comuns"
@@ -187,6 +196,15 @@
     "checkbox": "Selecionar Vários → Clicar em Aplicar",
     "radio": "Selecionar → Aplicado (Botão de salvar não necessário)",
     "switch": "Alternar → Aplicado (Botão de salvar não necessário)"
+  },
+  "gallery": {
+    "clear_selection": "Limpar seleção",
+    "deselect_item": "Desmarcar {{title}}",
+    "grid_label": "Galeria de imagens",
+    "select_item": "Selecionar {{title}}",
+    "selected_count": "{{count}} item selecionado",
+    "selected_count_plural": "{{count}} itens selecionados",
+    "toolbar_label": "Barra de ações em massa"
   },
   "ganttchart": {
     "aria_chart": "Gráfico de Gantt",
@@ -273,6 +291,14 @@
     "all_devices": "Todos os Dispositivos (PC, Tablet, Celular)",
     "mobile_only": "Apenas Celular (Otimizado para Toque/Telas Pequenas)",
     "pc_only": "Apenas PC (Otimizado para Mouse/Teclado)"
+  },
+  "lightbox": {
+    "close": "Fechar",
+    "counter": "{{current}} / {{total}}",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "zoom_in": "Aumentar zoom",
+    "zoom_out": "Diminuir zoom"
   },
   "linkvsbutton": {
     "btn_examples": "Envio de formulários, abertura de modais, alteração de estados, execução de cálculos.",
@@ -375,14 +401,6 @@
     "keyboard_instruction": "Pressione Espaço ou Enter para pegar um item. Use as setas para mover e Espaço ou Enter para soltar.",
     "keyboard_moved": "Item movido de {{oldIndex}} para {{newIndex}}",
     "keyboard_moving": "Movendo item na posição {{index}}"
-  },
-  "lightbox": {
-    "close": "Fechar",
-    "previous": "Anterior",
-    "next": "Próximo",
-    "zoom_in": "Aumentar zoom",
-    "zoom_out": "Diminuir zoom",
-    "counter": "{{current}} / {{total}}"
   },
   "status": {
     "disabled": "Desativado",
@@ -588,22 +606,5 @@
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
-  },
-  "gallery": {
-    "toolbar_label": "Barra de ações em massa",
-    "selected_count": "{{count}} item selecionado",
-    "selected_count_plural": "{{count}} itens selecionados",
-    "clear_selection": "Limpar seleção",
-    "select_item": "Selecionar {{title}}",
-    "deselect_item": "Desmarcar {{title}}",
-    "grid_label": "Galeria de imagens"
-  },
-  "dashboard_widget": {
-    "label": "Painel",
-    "grid_label": "Grade de widgets",
-    "enter_edit": "Editar",
-    "exit_edit": "Concluir",
-    "add_widget": "Adicionar widget",
-    "remove_widget": "Remover {{title}}"
   }
 }

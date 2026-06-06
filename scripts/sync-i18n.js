@@ -9,6 +9,7 @@ const API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 const localesDir = './public/locales';
 const sourceLang = 'en';
 const targetLangs = ['ja', 'pt'];
+const snapshotPath = path.join(localesDir, '.sync-snapshot.json');
 const namespaces = fs.readdirSync(path.join(localesDir, sourceLang))
   .filter(file => file.endsWith('.json'))
   .map(file => file.replace('.json', ''));
@@ -16,7 +17,7 @@ const namespaces = fs.readdirSync(path.join(localesDir, sourceLang))
 async function translateKeys(keysAndValues, targetLang) {
   if (!API_KEY) {
     console.log(`  [Skip] GOOGLE_GENERATIVE_AI_API_KEY not found in .env. Using placeholders.`);
-    
+
     function generatePlaceholders(src, targetLang) {
       if (typeof src === 'object' && src !== null && !Array.isArray(src)) {
         const result = {};
@@ -61,83 +62,131 @@ ${JSON.stringify(keysAndValues, null, 2)}
   }
 }
 
+// en に存在するが target に存在しない（または空・プレースホルダー）キーを収集
+function findMissingKeysRecursive(source, target, result = {}) {
+  for (const key in source) {
+    if (typeof source[key] === 'object' && source[key] !== null) {
+      if (!target[key] || typeof target[key] !== 'object') {
+        result[key] = source[key];
+      } else {
+        const nestedMissing = findMissingKeysRecursive(source[key], target[key]);
+        if (Object.keys(nestedMissing).length > 0) {
+          result[key] = nestedMissing;
+        }
+      }
+    } else if (
+      !target[key] ||
+      target[key] === "" ||
+      (typeof target[key] === "string" && target[key].includes("MISSING_TRANSLATION"))
+    ) {
+      result[key] = source[key];
+    }
+  }
+  return result;
+}
+
+// target には訳があるが、前回スナップショット以降に en 値が変わったキーを収集
+function findStaleKeysRecursive(source, target, prevSource, result = {}) {
+  for (const key in source) {
+    if (typeof source[key] === 'object' && source[key] !== null) {
+      const nested = findStaleKeysRecursive(
+        source[key],
+        target?.[key] || {},
+        prevSource?.[key] || {}
+      );
+      if (Object.keys(nested).length > 0) result[key] = nested;
+    } else {
+      const isTranslated =
+        target?.[key] &&
+        typeof target[key] === 'string' &&
+        !target[key].includes('MISSING_TRANSLATION') &&
+        target[key] !== '';
+      const prevVal = prevSource?.[key];
+      // スナップショットに記録があり、かつ en 値が変わっていれば stale
+      if (isTranslated && prevVal !== undefined && prevVal !== source[key]) {
+        result[key] = source[key];
+      }
+    }
+  }
+  return result;
+}
+
+function deepMerge(target, source) {
+  for (const key in source) {
+    if (typeof source[key] === 'object' && source[key] !== null && !Array.isArray(source[key])) {
+      if (!target[key]) target[key] = {};
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+
+function sortObject(obj) {
+  if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return obj;
+  const sorted = {};
+  Object.keys(obj).sort().forEach(k => {
+    sorted[k] = sortObject(obj[k]);
+  });
+  return sorted;
+}
+
+// ネストを含むリーフキー数を返す
+function countLeafKeys(obj) {
+  if (typeof obj !== 'object' || obj === null) return 1;
+  return Object.values(obj).reduce((sum, v) => sum + countLeafKeys(v), 0);
+}
+
 async function sync() {
+  const snapshot = fs.existsSync(snapshotPath)
+    ? JSON.parse(fs.readFileSync(snapshotPath, 'utf8'))
+    : {};
+
   for (const ns of namespaces) {
     const sourcePath = path.join(localesDir, sourceLang, `${ns}.json`);
     if (!fs.existsSync(sourcePath)) continue;
 
     const sourceData = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
-    
+    const nsSnapshot = snapshot[ns] || {};
+
     for (const targetLang of targetLangs) {
       const targetPath = path.join(localesDir, targetLang, `${ns}.json`);
-      let targetData = fs.existsSync(targetPath) 
-        ? JSON.parse(fs.readFileSync(targetPath, 'utf8')) 
+      let targetData = fs.existsSync(targetPath)
+        ? JSON.parse(fs.readFileSync(targetPath, 'utf8'))
         : {};
 
-      function findMissingKeysRecursive(source, target, result = {}) {
-        for (const key in source) {
-          if (typeof source[key] === 'object' && source[key] !== null) {
-            if (!target[key] || typeof target[key] !== 'object') {
-              // If target doesn't have the object, we need the whole object or its children
-              result[key] = source[key];
-            } else {
-              const nestedMissing = findMissingKeysRecursive(source[key], target[key]);
-              if (Object.keys(nestedMissing).length > 0) {
-                result[key] = nestedMissing;
-              }
-            }
-          } else if (
-            !target[key] ||
-            target[key] === "" ||
-            (typeof target[key] === "string" && target[key].includes("MISSING_TRANSLATION"))
-          ) {
-            result[key] = source[key];
-          }
-        }
-        return result;
-      }
-
       const missingKeys = findMissingKeysRecursive(sourceData, targetData);
+      const staleKeys = findStaleKeysRecursive(sourceData, targetData, nsSnapshot);
+      const keysToTranslate = deepMerge({ ...missingKeys }, staleKeys);
 
-      const missingCount = Object.keys(missingKeys).length;
-      if (missingCount > 0) {
-        console.log(`\n[${ns}] Found ${missingCount} missing keys for ${targetLang}`);
-        
-        // Batch translation if needed, but for now just translate all together
-        const translated = await translateKeys(missingKeys, targetLang);
-        
-        function deepMerge(target, source) {
-          for (const key in source) {
-            if (typeof source[key] === 'object' && source[key] !== null && !Array.isArray(source[key])) {
-              if (!target[key]) target[key] = {};
-              deepMerge(target[key], source[key]);
-            } else {
-              target[key] = source[key];
-            }
-          }
-          return target;
-        }
-        
-        // Merge
+      const missingCount = countLeafKeys(missingKeys);
+      const staleCount = countLeafKeys(staleKeys);
+      const totalCount = missingCount + staleCount;
+
+      if (totalCount > 0) {
+        const parts = [];
+        if (missingCount > 0) parts.push(`${missingCount} missing`);
+        if (staleCount > 0) parts.push(`${staleCount} stale`);
+        console.log(`\n[${ns}] Found ${parts.join(', ')} keys for ${targetLang}`);
+
+        const translated = await translateKeys(keysToTranslate, targetLang);
+
         targetData = deepMerge(targetData, translated);
-        
-        function sortObject(obj) {
-          if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return obj;
-          const sorted = {};
-          Object.keys(obj).sort().forEach(k => {
-            sorted[k] = sortObject(obj[k]);
-          });
-          return sorted;
-        }
 
         const sortedData = sortObject(targetData);
-        fs.writeFileSync(targetPath, JSON.stringify(sortedData, null, 2), 'utf8');
+        fs.writeFileSync(targetPath, JSON.stringify(sortedData, null, 2) + '\n', 'utf8');
         console.log(`  Successfully updated ${targetPath}`);
       } else {
         console.log(`[${ns}] ${targetLang} is up to date.`);
       }
     }
+
+    // 全言語処理後にスナップショットを更新
+    snapshot[ns] = sourceData;
   }
+
+  fs.writeFileSync(snapshotPath, JSON.stringify(snapshot, null, 2) + '\n');
 }
 
 sync().catch(err => console.error(err));

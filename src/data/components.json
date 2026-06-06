@@ -1174,6 +1174,12 @@
         "descKey": "doc.status_content_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "FieldCharacterCount",
+        "descKey": "doc.field_character_count_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

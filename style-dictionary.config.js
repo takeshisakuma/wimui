@@ -88,8 +88,9 @@ const getSDConfig = (theme) => {
   const isLight = theme === 'light';
   
   const config = {
-    source: isDark 
-      ? ['tokens/color/*.json', 'tokens/themes/dark.json', 'tokens/*.json'] 
+    include: isDark ? ['tokens/color/*.json'] : [],
+    source: isDark
+      ? ['tokens/themes/dark.json', 'tokens/*.json']
       : ['tokens/color/*.json', 'tokens/*.json'],
     platforms: {
       scss: {

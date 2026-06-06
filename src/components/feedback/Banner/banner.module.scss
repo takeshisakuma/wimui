@@ -10,7 +10,7 @@
     // Glassmorphism effect base
     background: var(--wim-color-overlay-bg-light);
     border-bottom: var(--wim-border-width-thin) solid transparent;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--wim-blur-glass));
     transition: var(--wim-transition-fast);
   }
 

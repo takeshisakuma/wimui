@@ -2,6 +2,10 @@
   "a11y": {
     "avatar": "アバター",
     "close": "閉じる",
+    "collapse": "折りたたむ",
+    "collapse_label": "{{label}} を折りたたむ",
+    "expand": "展開",
+    "expand_label": "{{label}} を展開",
     "rte_bold": "太字",
     "rte_h1": "見出し1",
     "rte_h2": "見出し2",
@@ -15,11 +19,7 @@
     "rte_toolbar": "書式設定ツールバー",
     "rte_ul": "箇条書き",
     "rte_underline": "下線",
-    "rte_unlink": "リンクを削除",
-    "expand": "展開",
-    "collapse": "折りたたむ",
-    "expand_label": "{{label}} を展開",
-    "collapse_label": "{{label}} を折りたたむ"
+    "rte_unlink": "リンクを削除"
   },
   "annotation": {
     "outside_field": "注釈はプレースホルダーではなく欄外に記載"
@@ -32,6 +32,9 @@
   "btn": {
     "guide_link_btn": "Guide: Link vs Button (リンクとボタンの使い分け)",
     "page_transition": "ページ遷移を行うが、視覚的にボタンとして強調したい場合（セマンティクスは `<a>`）。"
+  },
+  "cat": {
+    "ai": "AI"
   },
   "chat": {
     "placeholder": "こんにちは！",
@@ -50,6 +53,14 @@
     "progress": "全体の進捗状況",
     "title": "コンポーネント開発ダッシュボード",
     "total_components": "合計コンポーネント数"
+  },
+  "dashboard_widget": {
+    "add_widget": "ウィジェットを追加",
+    "enter_edit": "編集",
+    "exit_edit": "完了",
+    "grid_label": "ウィジェットグリッド",
+    "label": "ダッシュボード",
+    "remove_widget": "{{title}}を削除"
   },
   "datacontainer": {
     "accordion_desc": "表示スペースを節約しつつ、詳細を段階的に開示する。",
@@ -89,14 +100,30 @@
     "watermark_usage": "社外秘、プレビュー画像。"
   },
   "doc": {
+    "aiResponseFeedback_desc": "AI回答に対するサムズアップ/ダウンのフィードバックボタンと再生成ボタン。",
+    "autosave_desc": "自動保存状態のインラインステータスインジケーター",
     "base_list_desc": "Menu, Selectbox, TreeView などで使用されるリスト形式のアイテムのレイアウトとインタラクション状態を標準化します。",
     "blockquote_desc": "外部からの引用や強調したい文章を視覚的に分離する。",
+    "codeBlock_desc": "コピーボタン・行番号・折りたたみ機能付きのシンタックスハイライトコードブロック。",
+    "codeDiffViewer_desc": "CodeDiffViewer description.",
+    "dashboard_desc": "Dashboard description.",
+    "field_character_count_desc": "[MISSING_TRANSLATION: ja] Standardizes the display of character counts and limit indicators across text-based form inputs.",
     "field_template_desc": "すべてのフォーム系コンポーネントに対して、ラベルの配置、必須マーク、エラーメッセージの表示を標準化します。",
+    "gallery_desc": "Gallery description.",
     "ganttchart_visual_guideline_progress": "進捗（完了部分）は、タスクバーのベースカラーの上に半透明の黒を重ね、境界線を引くことでコントラストを強調し、未完了部分と明確に区別されます。",
+    "imageCropper_desc": "フロントエンドでの画像切り抜き・回転ツール。",
     "indicator_base_desc": "ステータスドットやバッジの視覚スタイルとアニメーションを標準化します。",
     "input_base_desc": "テキストベースの入力欄に対して、視覚的な外殻、アイコンスロット（Prefix/Suffix）、クリアボタンの振る舞いを標準化します。",
+    "intent": "インテント",
     "interactiveArea_desc": "枠線やホバー状態を持つ、一貫したインタラクティブエリアの基盤コンポーネント。",
+    "jsonDiffViewer_desc": "JsonDiffViewer description.",
+    "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
+    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。",
+    "levels_title": "強度レベルの定義",
+    "nodeGraph_desc": "ノード間の複雑なネットワークや関係性を視覚化します。",
     "overlay_base_desc": "Dialog, Drawer, BottomSheet に対して、ポータルによるレンダリング、バックドロップ、フォーカス管理を標準化します。",
+    "passwordStrength_desc": "パスワードの安全性を視覚的に表示するメーター。",
+    "promptInput_desc": "AIプロンプトエンジニアリングに最適化された、複数行サポートとアクション・トリガーを備えた入力コンポーネント。",
     "queryBuilder_desc": "複雑な検索条件を視覚的に組み立てるためのビルダー。",
     "querybuilder_a11y_desc": "ルート要素は role=\"region\" と aria-label を持ちます。各ルール行は role=\"group\"。フィールド・演算子・値の入力にはそれぞれ aria-label が付与されています。追加・削除の操作は aria-live=\"polite\" ライブリージョンでアナウンスされます。",
     "querybuilder_anatomy_combinator": "グループ内のルールの結合方法を決定する SegmentedControl（AND / OR）。",
@@ -135,39 +162,21 @@
     "querybuilder_token_destructive": "excludedグループのボーダー・背景ハイライトカラー",
     "querybuilder_token_radius": "グループ・ルールの角丸（8px）",
     "querybuilder_token_transition": "ホバー時のボーダー色変化アニメーション",
-    "richTextEditor_desc": "WYSIWYGリッチテキストエディタ",
-    "status_content_desc": "リザルトや空状態のレイアウト（アイコン、タイトル、説明文）を標準化します。",
-    "text_desc": "適切な行間と余白を持ち、長い文章の可読性を確保する。",
-    "title_desc": "視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。",
-    "visual_guideline_title": "視覚的ガイドライン",
-    "nodeGraph_desc": "ノード間の複雑なネットワークや関係性を視覚化します。",
-    "scheduleView_desc": "タスクやイベントを時系列のタイムラインやカレンダー形式で表示します。",
-    "promptInput_desc": "AIプロンプトエンジニアリングに最適化された、複数行サポートとアクション・トリガーを備えた入力コンポーネント。",
-    "streamingText_desc": "AIのチャット応答などに適した、タイプライターのようなアニメーションでテキストを描画します。",
-    "smartSearchInput_desc": "検索とAIプロンプトの両立を可能にするスマート検索入力。",
-    "thoughtProcess_desc": "AIの推論過程やステップごとの処理状態を可視化するコンポーネント。",
-    "aiResponseFeedback_desc": "AI回答に対するサムズアップ/ダウンのフィードバックボタンと再生成ボタン。",
-    "sourceCitation_desc": "AI生成コンテンツにおいてタイトル・ドメイン・外部リンク付きで引用ソースを表示するコンポーネント。",
-    "codeBlock_desc": "コピーボタン・行番号・折りたたみ機能付きのシンタックスハイライトコードブロック。",
-    "passwordStrength_desc": "パスワードの安全性を視覚的に表示するメーター。",
-    "imageCropper_desc": "フロントエンドでの画像切り抜き・回転ツール。",
-    "tagInput_desc": "自由入力によるタグ作成フィールド。",
-    "score": "スコア",
-    "intent": "インテント",
-    "levels_title": "強度レベルの定義",
-    "scaffoldTest_desc": "ScaffoldTest description.",
-    "codeDiffViewer_desc": "CodeDiffViewer description.",
-    "terminal_desc": "Terminal description.",
-    "jsonDiffViewer_desc": "JsonDiffViewer description.",
     "reaction_desc": "トグル可能な状態とカウントを持つ絵文字リアクションボタンを表示する",
-    "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
-    "autosave_desc": "自動保存状態のインラインステータスインジケーター",
-    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。",
-    "gallery_desc": "Gallery description.",
-    "dashboard_desc": "Dashboard description."
-  },
-  "cat": {
-    "ai": "AI"
+    "richTextEditor_desc": "WYSIWYGリッチテキストエディタ",
+    "scaffoldTest_desc": "ScaffoldTest description.",
+    "scheduleView_desc": "タスクやイベントを時系列のタイムラインやカレンダー形式で表示します。",
+    "score": "スコア",
+    "smartSearchInput_desc": "検索とAIプロンプトの両立を可能にするスマート検索入力。",
+    "sourceCitation_desc": "AI生成コンテンツにおいてタイトル・ドメイン・外部リンク付きで引用ソースを表示するコンポーネント。",
+    "status_content_desc": "リザルトや空状態のレイアウト（アイコン、タイトル、説明文）を標準化します。",
+    "streamingText_desc": "AIのチャット応答などに適した、タイプライターのようなアニメーションでテキストを描画します。",
+    "tagInput_desc": "自由入力によるタグ作成フィールド。",
+    "terminal_desc": "Terminal description.",
+    "text_desc": "適切な行間と余白を持ち、長い文章の可読性を確保する。",
+    "thoughtProcess_desc": "AIの推論過程やステップごとの処理状態を可視化するコンポーネント。",
+    "title_desc": "視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。",
+    "visual_guideline_title": "視覚的ガイドライン"
   },
   "effects": {
     "common_vars": "共通変数"
@@ -187,6 +196,15 @@
     "checkbox": "複数選択 → 適用ボタン",
     "radio": "選択 → 適用（保存ボタン不要）",
     "switch": "切り替え → 適用（保存ボタン不要）"
+  },
+  "gallery": {
+    "clear_selection": "選択を解除",
+    "deselect_item": "{{title}}の選択を解除",
+    "grid_label": "画像ギャラリー",
+    "select_item": "{{title}}を選択",
+    "selected_count": "{{count}}件選択中",
+    "selected_count_plural": "{{count}}件選択中",
+    "toolbar_label": "一括操作ツールバー"
   },
   "ganttchart": {
     "aria_chart": "ガントチャート",
@@ -273,6 +291,14 @@
     "all_devices": "全デバイス (PC, タブレット, モバイル)",
     "mobile_only": "モバイルのみ (タッチ操作/小画面に最適)",
     "pc_only": "PCのみ (マウス/キーボード操作に最適)"
+  },
+  "lightbox": {
+    "close": "閉じる",
+    "counter": "{{current}} / {{total}}",
+    "next": "次へ",
+    "previous": "前へ",
+    "zoom_in": "拡大",
+    "zoom_out": "縮小"
   },
   "linkvsbutton": {
     "btn_examples": "フォームの送信、モーダルの開閉、状態の変更、計算の実行",
@@ -375,14 +401,6 @@
     "keyboard_instruction": "スペースまたはEnterキーでアイテムを掴みます。矢印キーで移動し、再度スペースまたはEnterキーで配置を確定します。",
     "keyboard_moved": "アイテムを {{oldIndex}} から {{newIndex}} へ移動しました",
     "keyboard_moving": "アイテム（位置: {{index}}）を移動中"
-  },
-  "lightbox": {
-    "close": "閉じる",
-    "previous": "前へ",
-    "next": "次へ",
-    "zoom_in": "拡大",
-    "zoom_out": "縮小",
-    "counter": "{{current}} / {{total}}"
   },
   "status": {
     "disabled": "Disabled",
@@ -588,22 +606,5 @@
   },
   "visual": {
     "accessibility": "視覚性"
-  },
-  "gallery": {
-    "toolbar_label": "一括操作ツールバー",
-    "selected_count": "{{count}}件選択中",
-    "selected_count_plural": "{{count}}件選択中",
-    "clear_selection": "選択を解除",
-    "select_item": "{{title}}を選択",
-    "deselect_item": "{{title}}の選択を解除",
-    "grid_label": "画像ギャラリー"
-  },
-  "dashboard_widget": {
-    "label": "ダッシュボード",
-    "grid_label": "ウィジェットグリッド",
-    "enter_edit": "編集",
-    "exit_edit": "完了",
-    "add_widget": "ウィジェットを追加",
-    "remove_widget": "{{title}}を削除"
   }
 }
