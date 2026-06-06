@@ -58,6 +58,8 @@ npm run test:vrt:report                                 # 差分をスライダ�
 $env:FILTER='Calendar'; npm run test:vrt:update         # Calendarのスナップショットのみ更新
 ```
 
+> Playwright のバージョンを更新した後は `npx playwright install` でブラウザを再取得してください。
+
 #### 環境変数
 
 ```
