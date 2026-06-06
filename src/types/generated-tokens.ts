@@ -150,7 +150,6 @@ export type WimOpacityKey =
   | "dim"
   | "disabled"
   | "ghost"
-  | "hover"
   | "secondary"
   | "subtle";
 
@@ -193,11 +192,11 @@ export type WimDurationKey =
   | "extra-fast"
   | "extra-slow"
   | "fast"
-  | "instant"
   | "short"
   | "slow"
   | "slower"
   | "slowest"
+  | "ultra-fast"
   | "ultra-slow";
 
 export type WimEasingKey = 

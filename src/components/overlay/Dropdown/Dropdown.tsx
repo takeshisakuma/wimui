@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, ReactNode, useId, forwardRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { Transition } from "../../layout/Transition/Transition";
 import styles from "./dropdown.module.scss";
@@ -230,7 +230,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 );
 DropdownMenu.displayName = "Dropdown.Menu";
 
-export interface DropdownItemProps extends React.ComponentPropsWithoutRef<typeof BaseListItem> {
+export interface DropdownItemProps extends BaseListItemProps {
   children: ReactNode;
   onClick?: () => void;
 }

@@ -168,7 +168,7 @@ export type MenuItemProps = {
   icon?: ReactNode;
   /** Unique key for this item */
   itemKey?: string;
-} & React.ComponentPropsWithoutRef<"li">;
+} & React.ComponentPropsWithoutRef<"div">;
 
 export const MenuItem = ({
   children,
@@ -191,7 +191,7 @@ export const MenuItem = ({
 
   return (
     <BaseListItem
-      as="li"
+      asChild
       className={classNames(styles.item, className)}
       onClick={handleClick}
       onFocus={() => setFocusedIndex(index)}
@@ -200,7 +200,7 @@ export const MenuItem = ({
       icon={icon}
       role="menuitem"
       tabIndex={isFocused ? 0 : -1}
-      onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => {
+      onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e);
@@ -208,7 +208,7 @@ export const MenuItem = ({
       }}
       {...props}
     >
-      {children}
+      <li>{children}</li>
     </BaseListItem>
   );
 };

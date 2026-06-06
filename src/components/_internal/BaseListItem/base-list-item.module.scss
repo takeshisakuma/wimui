@@ -28,7 +28,7 @@
 
     &:active:not(.disabled) {
         transform: scale(var(--wim-scale-active));
-        transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+        transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);
     }
 
     &:hover:not(.disabled, .danger) {

@@ -203,7 +203,7 @@ export const Combobox = ({
             >
               {filteredOptions.map((option, index) => (
                 <BaseListItem
-                  as="li"
+                  asChild
                   key={option.value}
                   id={`${listboxId}-option-${index}`}
                   className={classNames(
@@ -216,7 +216,7 @@ export const Combobox = ({
                   role="option"
                   aria-selected={index === activeIndex}
                 >
-                  {option.label}
+                  <li>{option.label}</li>
                 </BaseListItem>
               ))}
             </ul>

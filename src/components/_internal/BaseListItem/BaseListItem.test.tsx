@@ -11,10 +11,10 @@ describe("BaseListItem", () => {
         expect(screen.getByText("Test Item").parentElement).toHaveClass(styles.root);
     });
 
-    it("renders as a different element when 'as' prop is provided", () => {
+    it("renders as a different element when 'asChild' prop is provided", () => {
         render(
-            <BaseListItem as="button" type="button">
-                Button Item
+            <BaseListItem asChild>
+                <button type="button">Button Item</button>
             </BaseListItem>
         );
         const element = screen.getByRole("button");

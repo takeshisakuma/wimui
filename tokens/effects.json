@@ -17,8 +17,7 @@
       "ghost": { "value": "0.5" },
       "secondary": { "value": "0.7" },
       "dim": { "value": "0.4" },
-      "subtle": { "value": "0.8" },
-      "hover": { "value": "0.8" }
+      "subtle": { "value": "0.8" }
     },
     "blur": {
       "none": { "value": "0" },
@@ -40,22 +39,22 @@
     },
     "shadow": {
       "none": { "value": "none" },
-      "xs": { "value": "0 1px 2px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 1px 1px color-mix(in srgb, {pccs.bk} 5%, transparent)" },
-      "sm": { "value": "0 2px 4px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 1px 2px color-mix(in srgb, {pccs.bk} 12%, transparent)" },
-      "md": { "value": "0 4px 12px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 2px 4px color-mix(in srgb, {pccs.bk} 12%, transparent)" },
-      "lg": { "value": "0 12px 24px color-mix(in srgb, {pccs.bk} 12%, transparent), 0 8px 16px color-mix(in srgb, {pccs.bk} 18%, transparent)" },
-      "inset": { "value": "inset 0 2px 4px color-mix(in srgb, {pccs.bk} 10%, transparent)" },
-      "focus": { "value": "0 0 0 2px {pccs.w}, 0 0 0 4px color-mix(in srgb, {wim.color.primary} 50%, transparent)" },
-      "focus-ring": { "value": "0 0 0 3px color-mix(in srgb, {wim.color.primary} 15%, transparent)" },
-      "error-ring": { "value": "0 0 0 3px color-mix(in srgb, {wim.color.destructive} 15%, transparent)" },
-      "field-focus": { "value": "0 0 0 2px color-mix(in srgb, {wim.color.primary} 20%, transparent)" },
+      "xs": { "value": "0 1px 2px oklch(0 0 0 / 0.08), 0 1px 1px oklch(0 0 0 / 0.05)" },
+      "sm": { "value": "0 2px 4px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.12)" },
+      "md": { "value": "0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12)" },
+      "lg": { "value": "0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18)" },
+      "inset": { "value": "inset 0 2px 4px oklch(0 0 0 / 0.1)" },
+      "focus": { "value": "0 0 0 2px {pccs.w}, 0 0 0 4px oklch(from var(--wim-color-primary) l c h / 0.5)" },
+      "focus-ring": { "value": "0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.15)" },
+      "error-ring": { "value": "0 0 0 3px oklch(from var(--wim-color-destructive) l c h / 0.15)" },
+      "field-focus": { "value": "0 0 0 2px oklch(from var(--wim-color-primary) l c h / 0.2)" },
       "overlay": { "value": "{wim.shadow.md}" },
       "modal": { "value": "{wim.shadow.lg}" }
     },
     "duration": {
+      "ultra-fast": { "value": "0.083s" },
       "extra-fast": { "value": "0.1s" },
       "short": { "value": "0.15s" },
-      "instant": { "value": "0.083s" },
       "fast": { "value": "0.167s" },
       "base": { "value": "0.25s" },
       "slow": { "value": "0.333s" },
@@ -75,10 +74,10 @@
       "emphasized-accelerate": { "value": "cubic-bezier(0.3, 0, 0.8, 0.15)" },
       "spring": { "value": "cubic-bezier(0.34, 1.56, 0.64, 1)" },
       "out-back": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)" },
-      "smooth": { "value": "cubic-bezier(0.2, 0, 0, 1)" },
+      "smooth": { "value": "cubic-bezier(0.4, 0, 0.2, 1)" },
       "snap": { "value": "cubic-bezier(0.16, 1, 0.3, 1)" },
       "sharp": { "value": "cubic-bezier(0.4, 0, 0.6, 1)" },
-      "gentle": { "value": "cubic-bezier(0.4, 0, 0.6, 1)" }
+      "gentle": { "value": "cubic-bezier(0.37, 0, 0.63, 1)" }
     },
     "transition": {
       "fast": { "value": "{wim.duration.fast} {wim.easing.standard}" },

@@ -3,6 +3,7 @@ import {
   Treemap as RechartsTreemap,
   ResponsiveContainer,
   Tooltip,
+  type TreemapNode,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import {
@@ -49,10 +50,7 @@ export type TreemapProps = {
 /**
  * A custom renderer for Treemap content to show labels and varied colors.
  */
-const CustomizedContent = (props: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-  const { x, y, width, height, index = 0, name } = props;
-
-
+const CustomizedContent = ({ x, y, width, height, index, name }: TreemapNode) => {
   return (
     <g>
       <rect
@@ -79,17 +77,14 @@ const CustomizedContent = (props: any) => { // eslint-disable-line @typescript-e
             strokeWidth: 0,
             pointerEvents: "none",
             userSelect: "none",
-
           }}
         >
           {name}
         </text>
-
       )}
     </g>
   );
 };
-
 
 export const Treemap = ({
   data,
@@ -120,12 +115,12 @@ export const Treemap = ({
             dataKey={dataKey}
             aspectRatio={aspectRatio}
             stroke="none"
-            content={<CustomizedContent />}
+            content={CustomizedContent}
             isAnimationActive={false}
           >
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
-              formatter={(value: any, name: any) => [value, name]} // eslint-disable-line @typescript-eslint/no-explicit-any
+              formatter={(value, name) => [value, name]}
             />
           </RechartsTreemap>
         </ResponsiveContainer>

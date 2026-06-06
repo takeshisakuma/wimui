@@ -33,8 +33,12 @@ describe("Card", () => {
     expect(screen.getByText("Footer")).toHaveClass(styles.footer);
   });
 
-  it("renders as custom element", () => {
-    const { container } = render(<Card as="section">Content</Card>);
+  it("renders as custom element via asChild", () => {
+    const { container } = render(
+      <Card asChild>
+        <section>Content</section>
+      </Card>,
+    );
     expect(container.querySelector("section")).toBeInTheDocument();
   });
 });

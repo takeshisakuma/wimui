@@ -37,7 +37,7 @@
 
     &:active:not(:disabled) {
       transform: var(--wim-button-transform-active, scale(var(--wim-scale-active)) translateZ(0));
-      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+      transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);
     }
   }
 
@@ -148,7 +148,7 @@
       background-image: none;
       box-shadow: var(--wim-shadow-xs), var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+      transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);
     }
   }
 
@@ -190,7 +190,7 @@
     &:active:not(:disabled) {
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+      transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);
     }
   }
 
@@ -235,7 +235,7 @@
       border-color: var(--wim-color-ghost-border-active);
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+      transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);
     }
   }
 

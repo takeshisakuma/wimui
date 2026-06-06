@@ -36,7 +36,7 @@
       "ghost-border": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.15)" },
       "ghost-bg-active": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.12)" },
       "ghost-border-active": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.3)" },
-      "ghost-border-hover": { "value": "color-mix(in srgb, var(--wim-color-primary) 40%, transparent)" },
+      "ghost-border-hover": { "value": "oklch(from var(--wim-color-primary) l c h / 0.4)" },
 
       "glass-bg": { "value": "rgba(20, 20, 20, {wim.glass.bg-opacity-dark})" },
       "glass-border": { "value": "rgba(255, 255, 255, {wim.glass.border-opacity-dark})" },
@@ -57,7 +57,7 @@
       "feedback-text-base": { "value": "white" },
       "feedback-bg-base": { "value": "black" },
       "feedback-border-strength": { "value": "40%" },
-      "frosted-bg": { "value": "color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent)" },
+      "frosted-bg": { "value": "oklch(from var(--wim-color-bg-component) l c h / 0.6)" },
 
       "bg-subtle": { "value": "#262626" },
       "close-hover": { "value": "rgba(255, 255, 255, 0.1)" },
@@ -77,8 +77,8 @@
       "avatar-s22": { "value": "{pccs.b22}" },
       "avatar-s24": { "value": "{pccs.b24}" },
 
-      "chat-bubble-received": { "value": "color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary))" },
-      "chat-bubble-sent": { "value": "color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
 
       "chart-1": { "value": "{pccs.b16}" },
       "chart-2": { "value": "{pccs.b6}" },

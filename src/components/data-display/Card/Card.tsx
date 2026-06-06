@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import type { ComponentSize } from "../../../types/tokens";
 import styles from "./card.module.scss";
 
-export type CardProps<C extends React.ElementType = "div"> = {
+export type CardProps = {
   /**
    * If true, the card will be rendered as its child, merging its props onto that child.
    */
@@ -25,38 +25,30 @@ export type CardProps<C extends React.ElementType = "div"> = {
    * 角丸のサイズ
    */
   radius?: ComponentSize | "none";
-  /**
-   * レンダリングするHTML要素
-   */
-  as?: C;
-} & React.ComponentPropsWithoutRef<C>;
+} & React.ComponentPropsWithoutRef<"div">;
 
 interface CardComponent {
-  <C extends React.ElementType = "div">(
-    props: CardProps<C> & { ref?: React.Ref<React.ComponentRef<C>> },
-  ): React.ReactElement;
+  (props: CardProps & { ref?: React.Ref<HTMLDivElement> }): React.ReactElement;
   displayName?: string;
   Header: typeof CardHeader;
   Body: typeof CardBody;
   Footer: typeof CardFooter;
 }
 
-const CardInner = <C extends React.ElementType = "div">(
+const CardInner = (
   {
     asChild = false,
     variant = "elevated",
     padding = "md",
     radius = "lg",
     interactive = false,
-    as,
     className,
     children,
     ...props
-  }: CardProps<C>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: React.ForwardedRef<any>,
+  }: CardProps,
+  ref: React.Ref<HTMLDivElement>,
 ) => {
-  const Component = (asChild ? Slot : (as || "div")) as React.ElementType;
+  const Component = asChild ? Slot : "div";
   return (
     <Component
       ref={ref}

@@ -64,7 +64,7 @@ describe("Menu", () => {
       </Menu>,
     );
 
-    const item = screen.getByText("Disabled Item").parentElement;
+    const item = screen.getByText("Disabled Item");
     expect(item).toHaveAttribute("aria-disabled", "true");
 
     fireEvent.click(screen.getByText("Disabled Item"));
@@ -152,7 +152,7 @@ describe("Menu", () => {
         </SubMenu>
       </Menu>
     );
-    const item = screen.getByText("Item").parentElement as HTMLElement;
+    const item = screen.getByText("Item") as HTMLElement;
     fireEvent.keyDown(item, { key: "Enter" });
     expect(onClick).toHaveBeenCalledTimes(1);
     

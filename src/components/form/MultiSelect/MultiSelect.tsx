@@ -326,7 +326,7 @@ export const MultiSelect = ({
               const isFocused = index === focusedIndex;
               return (
                 <BaseListItem
-                  as="li"
+                  asChild
                   key={option.value}
                   id={`${id}-option-${index}`}
                   className={classNames(
@@ -344,7 +344,7 @@ export const MultiSelect = ({
                   aria-selected={isSelected}
                   tabIndex={-1}
                 >
-                  {option.label}
+                  <li>{option.label}</li>
                 </BaseListItem>
               );
             })}

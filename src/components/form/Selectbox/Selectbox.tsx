@@ -192,7 +192,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
 
                 return (
                   <BaseListItem
-                    as="li"
+                    asChild
                     key={option.value}
                     id={optionId}
                     ref={(el) => {
@@ -213,7 +213,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
                     role="option"
                     aria-selected={isSelected}
                   >
-                    {option.label}
+                    <li>{option.label}</li>
                   </BaseListItem>
                 );
               })}
@@ -240,7 +240,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
 
         return (
           <BaseListItem
-            as="li"
+            asChild
             key={option.value}
             id={optionId}
             ref={(el) => {
@@ -261,7 +261,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
             role="option"
             aria-selected={isSelected}
           >
-            {option.label}
+            <li>{option.label}</li>
           </BaseListItem>
         );
       });
