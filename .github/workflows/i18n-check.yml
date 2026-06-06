@@ -16,6 +16,9 @@ on:
       - "scripts/check-i18n.js"
       - "scripts/check-i18n-components.js"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   check-translations:
     name: Check translation key consistency

@@ -21,6 +21,9 @@ on:
         type: boolean
         default: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   vrt:
     name: VRT (${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }})

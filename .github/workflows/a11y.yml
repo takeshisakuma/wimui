@@ -15,6 +15,9 @@ on:
       - "stories/**"
       - "public/locales/**"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   a11y:
     name: WCAG 2.1 AA (axe-core)
