@@ -4,11 +4,7 @@ import { Box, BoxProps } from "../../layout/Box/Box";
 import { ResponsiveProp } from "../../layout/Grid/grid-utils";
 import styles from "./stack.module.scss";
 
-export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
-  /**
-   * If true, the stack will be rendered as its child, merging its props onto that child.
-   */
-  asChild?: boolean;
+export type StackProps = Omit<BoxProps, "as"> & {
   /** Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg'). */
   gap?: number | string;
   /** Stack direction */
@@ -35,6 +31,9 @@ export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
   wrap?: boolean | React.CSSProperties["flexWrap"];
 };
 
+/** @deprecated Use `typeof Stack` directly. Kept for backward compatibility. */
+export type StackComponent = typeof Stack;
+
 const mapAlign = (val?: string) => {
   if (val === "start") return "flex-start";
   if (val === "end") return "flex-end";
@@ -53,18 +52,9 @@ const mapJustify = (val?: string) => {
 /**
  * Stack component is used to distribute space between elements in a vertical or horizontal layout.
  */
-export interface StackComponent {
-  <C extends React.ElementType = "div">(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    props: StackProps<C> & { ref?: React.Ref<any> },
-  ): React.ReactElement | null;
-  displayName?: string;
-}
-
-export const Stack = React.forwardRef(
-  <C extends React.ElementType = "div">(
+export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
+  (
     {
-      as,
       asChild = false,
       direction = "column",
       gap = "md",
@@ -75,10 +65,8 @@ export const Stack = React.forwardRef(
       className,
       children,
       ...props
-    }: StackProps<C>,
-    // React.forwardRef doesn't support truly generic ref types; Ref<any> is the standard workaround.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ref: React.Ref<any>,
+    },
+    ref,
   ) => {
     const getGapValue = (val?: number | string) => {
       if (typeof val === "number") return `${val}px`;
@@ -109,25 +97,20 @@ export const Stack = React.forwardRef(
       if (dir === undefined) return {};
       if (typeof dir === "string") return { "--wim-stack-dir": dir };
 
-      const styles: Record<string, string> = {
+      const responsiveStyles: Record<string, string> = {
         "--wim-stack-dir": dir.base || "column",
       };
-      if (dir.sm) styles["--wim-stack-dir-sm"] = dir.sm;
-      if (dir.md) styles["--wim-stack-dir-md"] = dir.md;
-      if (dir.lg) styles["--wim-stack-dir-lg"] = dir.lg;
-      if (dir.xl) styles["--wim-stack-dir-xl"] = dir.xl;
-      return styles;
+      if (dir.sm) responsiveStyles["--wim-stack-dir-sm"] = dir.sm;
+      if (dir.md) responsiveStyles["--wim-stack-dir-md"] = dir.md;
+      if (dir.lg) responsiveStyles["--wim-stack-dir-lg"] = dir.lg;
+      if (dir.xl) responsiveStyles["--wim-stack-dir-xl"] = dir.xl;
+      return responsiveStyles;
     };
 
     const responsiveStyles = generateResponsiveDirection(direction);
 
-    // TypeScript cannot verify that StackProps<C>'s spread is assignable to BoxProps<C>
-    // when both are generic and C is not yet resolved. `as any` is the standard workaround.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const BoxComp = Box as any;
     return (
-      <BoxComp
-        as={as}
+      <Box
         asChild={asChild}
         ref={ref}
         display="flex"
@@ -145,9 +128,9 @@ export const Stack = React.forwardRef(
         {...props}
       >
         {children}
-      </BoxComp>
+      </Box>
     );
   },
-) as StackComponent;
+);
 
 Stack.displayName = "Stack";

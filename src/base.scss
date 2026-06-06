@@ -220,8 +220,8 @@
   line-height: 1;
   vertical-align: middle;
   color: var(--wim-color-text-primary) !important;
-  background-color: color-mix(in srgb, var(--wim-color-text-primary) 1%, transparent);
-  border: 1px solid color-mix(in srgb, var(--wim-color-text-primary) 5%, transparent);
+  background-color: oklch(from var(--wim-color-text-primary) l c h / 0.01);
+  border: 1px solid oklch(from var(--wim-color-text-primary) l c h / 0.05);
   border-radius: var(--wim-radius-sm);
 }
 

@@ -237,6 +237,7 @@ export type WimSpacingKey =
   | "hairline"
   | "lg"
   | "md"
+  | "quarter"
   | "sm"
   | "xl"
   | "xs";

@@ -12,7 +12,7 @@
     &.md {
       --wim-rating-star-size: var(--wim-height-xs); // 24px
 
-      gap: var(--wim-radius-component); // TODO: tokenization — spacing token for 4px gap
+      gap: var(--wim-spacing-quarter);
     }
 
     &.lg {

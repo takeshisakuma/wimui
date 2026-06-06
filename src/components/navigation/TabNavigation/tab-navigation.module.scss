@@ -177,7 +177,7 @@
       display: inline-flex; // Shrink to fit content
 
       .list {
-        gap: var(--wim-radius-component); // TODO: tokenization — spacing token for 4px gap
+        gap: var(--wim-spacing-quarter);
       }
 
       .slider {

@@ -183,7 +183,7 @@ describe("Stack", () => {
   });
 
   it("forwards ref to the element", () => {
-    const ref = { current: null } as React.RefObject<HTMLElement | null>;
+    const ref = { current: null } as React.RefObject<HTMLDivElement | null>;
     const { container } = render(<Stack ref={ref} />);
     expect(ref.current).toBe(container.firstChild);
   });

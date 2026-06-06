@@ -31,12 +31,31 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
       onSelect,
       asChild = false,
       children,
-      ...props
+      // TextareaProps custom fields — not valid on a wrapper div
+      intent,
+      variant,
+      fullWidth,
+      fieldSizing,
+      label,
+      error,
+      required,
+      layout,
+      width,
+      // Textarea HTML attributes — not valid on a wrapper div
+      placeholder,
+      rows,
+      cols,
+      // Clipboard handlers — extracted to avoid double-firing from wrapper and inner textarea
+      onCopy,
+      onCut,
+      onPaste,
+      // divProps: only div-compatible attributes remain
+      ...divProps
     },
     ref,
   ) => {
     const generatedId = useId();
-    const id = props.id || `wim-mentions-${generatedId}`;
+    const id = divProps.id || `wim-mentions-${generatedId}`;
 
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const isControlled = value !== undefined;
@@ -151,29 +170,30 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
 
     const Component = asChild ? Slot : "div";
 
-    // Separate props to avoid duplicates on the wrapper
-    const {
-      /* eslint-disable @typescript-eslint/no-unused-vars */
-      onCopy: _unusedOnCopy,
-      onCut: _unusedOnCut,
-      onPaste: _unusedOnPaste,
-      onSelect: _unusedOnSelectProp,
-      placeholder,
-      rows,
-      cols,
-      defaultValue: _unusedDefaultValue,
-      /* eslint-enable @typescript-eslint/no-unused-vars */
-      ...divProps
-      // MentionsProps は Textarea の props を継承した複合型のため、TypeScript がデストラクチャ後の残余型を
-      // 正確に推論できない。`as any` はその型推論の限界を回避するためのもので、実行時の安全性に影響しない。
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } = props as any;
+    // Textarea receives all its own props; wrapper div receives only divProps
+    const textareaOnlyProps = {
+      intent, variant, fullWidth, fieldSizing, label, error, required, layout, width,
+      placeholder, rows, cols, onCopy, onCut, onPaste,
+    };
+
+    // MentionsProps event handlers are typed for HTMLTextAreaElement (via extending TextareaProps).
+    // Asserting to HTMLElement (common base for div and Slot) satisfies both union members;
+    // bivariance makes ClipboardEventHandler<HTMLTextAreaElement> compatible at runtime.
+    const wrapperSpread = (asChild
+      ? { ...textareaOnlyProps, ...divProps }
+      : divProps
+    ) as unknown as React.HTMLAttributes<HTMLElement>;
 
     return (
-      <Component className={styles.container} ref={combinedRef} {...(asChild ? props : divProps)}>
+      <Component
+        className={styles.container}
+        ref={combinedRef}
+        {...wrapperSpread}
+      >
         <Slottable>
           <Textarea
-            {...props}
+            {...divProps}
+            {...textareaOnlyProps}
             ref={textareaRef}
             value={currentValue}
             onChange={handleInputChange}

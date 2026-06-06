@@ -110,30 +110,32 @@ export const DashboardHeader: StoryObj = {
             </Stack>
 
             <Stack
-              as="nav"
+              asChild
               direction="row"
               gap="lg"
               className="desktop-only"
               style={{ marginLeft: "var(--wim-spacing-4xl)" }}
             >
-              {[
-                t("dashboard.header_dashboard"),
-                t("dashboard.header_projects"),
-                t("dashboard.header_team"),
-                t("dashboard.header_settings"),
-              ].map((label) => (
-                <a
-                  key={label}
-                  href="/"
-                  style={{
-                    color: "var(--wim-color-text-primary)",
-                    textDecoration: "none",
-                    fontSize: "var(--wim-font-size-sm)",
-                  }}
-                >
-                  {label}
-                </a>
-              ))}
+              <nav>
+                {[
+                  t("dashboard.header_dashboard"),
+                  t("dashboard.header_projects"),
+                  t("dashboard.header_team"),
+                  t("dashboard.header_settings"),
+                ].map((label) => (
+                  <a
+                    key={label}
+                    href="/"
+                    style={{
+                      color: "var(--wim-color-text-primary)",
+                      textDecoration: "none",
+                      fontSize: "var(--wim-font-size-sm)",
+                    }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
             </Stack>
           </Header.Section>
 

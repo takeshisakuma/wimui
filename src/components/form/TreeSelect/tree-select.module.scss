@@ -95,7 +95,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--wim-radius-component) 0; // TODO: tokenization — spacing token for 4px padding
+    padding: var(--wim-spacing-quarter) 0;
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     background: none;
@@ -113,8 +113,8 @@
     min-width: 100%;
     max-width: min(30rem, calc(100vw - var(--wim-spacing-5xl)));
     max-height: 20rem;
-    padding: var(--wim-radius-component) 0; // TODO: tokenization — spacing token for 4px padding
-    margin-top: var(--wim-radius-component); // TODO: tokenization — spacing token for 4px margin
+    padding: var(--wim-spacing-quarter) 0;
+    margin-top: var(--wim-spacing-quarter);
     overflow: hidden auto;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -139,7 +139,7 @@
     .treeView {
       width: max-content;
       min-width: 100%;
-      padding: 4px 0;
+      padding: var(--wim-spacing-quarter) 0;
       overflow: visible;
       border: none;
       box-shadow: none;
@@ -149,7 +149,7 @@
       }
 
       .treeViewSearch {
-        padding: var(--wim-radius-component) var(--wim-spacing-xl); // TODO: tokenization — spacing token for 4px padding
+        padding: var(--wim-spacing-quarter) var(--wim-spacing-xl);
         margin-bottom: var(--wim-spacing-md);
       }
     }

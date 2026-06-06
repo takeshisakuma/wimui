@@ -3,17 +3,12 @@ import classNames from "classnames";
 import { Box, BoxProps } from "../../layout/Box/Box";
 import styles from "./container.module.scss";
 
-export type ContainerProps<C extends React.ElementType = "div"> =
-  BoxProps<C> & {
-    /**
-     * If true, the container will be rendered as its child, merging its props onto that child.
-     */
-    asChild?: boolean;
-    /** Container max-width */
-    size?: "xs" | "sm" | "md" | "lg" | "xl" | number | string;
-    /** Whether the container should be fluid (100% width) */
-    fluid?: boolean;
-  };
+export type ContainerProps = Omit<BoxProps, "as"> & {
+  /** Container max-width */
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | number | string;
+  /** Whether the container should be fluid (100% width) */
+  fluid?: boolean;
+};
 
 const SIZES = {
   xs: "540px",
@@ -26,34 +21,15 @@ const SIZES = {
 /**
  * Container component is used to center content horizontally and limit its maximum width.
  */
-export const Container = React.forwardRef(
-  <C extends React.ElementType = "div">(
-    {
-      as,
-      asChild,
-      size = "lg",
-      fluid = false,
-      style,
-      className,
-      children,
-      ...props
-    }: ContainerProps<C>,
-    // React.forwardRef doesn't support truly generic ref types; Ref<any> is the standard workaround.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ref: React.Ref<any>,
-  ) => {
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  ({ size = "lg", fluid = false, style, className, children, ...props }, ref) => {
     const maxWidth = fluid
       ? "100%"
       : SIZES[size as keyof typeof SIZES] ||
         (typeof size === "number" ? `${size}px` : size);
 
-    // TypeScript cannot verify ContainerProps<C>'s spread against BoxProps<C> when C is unresolved.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const BoxComp = Box as any;
     return (
-      <BoxComp
-        as={as}
-        asChild={asChild}
+      <Box
         ref={ref}
         className={classNames(styles.root, className)}
         mx="auto"
@@ -62,7 +38,7 @@ export const Container = React.forwardRef(
         {...props}
       >
         {children}
-      </BoxComp>
+      </Box>
     );
   },
 );

@@ -4,8 +4,6 @@ $hamburger-layer-height: 2px !default;
 $hamburger-layer-spacing: 6px !default;
 $hamburger-layer-color: var(--wim-color-text-primary) !default;
 $hamburger-layer-border-radius: 4px !default;
-$hamburger-hover-opacity: 0.7 !default;
-$hamburger-active-hover-opacity: 1 !default;
 
 @layer component {
   .root {
@@ -21,12 +19,10 @@ $hamburger-active-hover-opacity: 1 !default;
     cursor: pointer;
     background-color: transparent;
     border: none;
-    transition-timing-function: linear;
-    transition-duration: var(--wim-duration-short);
-    transition-property: opacity, filter;
 
     &:hover {
-      opacity: $hamburger-hover-opacity;
+      // oklch alpha dims the bars only; avoids opacity on the whole element
+      --wim-hamburger-color: oklch(from var(--wim-color-text-primary) l c h / 0.7);
     }
 
     .box {
@@ -40,10 +36,11 @@ $hamburger-active-hover-opacity: 1 !default;
       top: 50%;
       display: block;
       margin-top: $hamburger-layer-height * -0.5;
-      transition-timing-function: var(--wim-easing-sharp);
 
-      // Default state animation logic
-      transition-duration: var(--wim-duration-extra-fast);
+      // transform uses extra-fast; background-color uses short for a smooth hover fade
+      transition:
+        transform var(--wim-duration-extra-fast) var(--wim-easing-sharp),
+        background-color var(--wim-duration-short) linear;
 
       &,
       &::before,
@@ -53,9 +50,6 @@ $hamburger-active-hover-opacity: 1 !default;
         height: $hamburger-layer-height;
         background-color: var(--wim-hamburger-color, #{$hamburger-layer-color});
         border-radius: $hamburger-layer-border-radius;
-        transition-timing-function: ease;
-        transition-duration: var(--wim-duration-short);
-        transition-property: transform;
       }
 
       &::before,
@@ -68,19 +62,17 @@ $hamburger-active-hover-opacity: 1 !default;
         top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
         transition:
           top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
-          opacity var(--wim-duration-extra-fast) var(--wim-easing-exit);
+          opacity var(--wim-duration-extra-fast) var(--wim-easing-exit),
+          background-color var(--wim-duration-short) linear;
       }
 
       &::after {
         top: ($hamburger-layer-spacing + $hamburger-layer-height);
         transition:
           top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
-          transform var(--wim-duration-extra-fast) var(--wim-easing-sharp);
+          transform var(--wim-duration-extra-fast) var(--wim-easing-sharp),
+          background-color var(--wim-duration-short) linear;
       }
-
-      // When open, we override the transitions in the --open block above
-      // But we need to handle the closing animation too.
-      // The default state logic above handles the closing transition.
     }
 
     // Size variants
@@ -127,15 +119,15 @@ $hamburger-active-hover-opacity: 1 !default;
         margin-top: -1.5px;
       }
 
-      .inner::after { // Wait, original was top: 10px; Let me fix.
+      .inner::after {
         top: 10px;
       }
     }
 
-    // Open state transition for the main element needs to be coordinated
     &.open {
       &:hover {
-        opacity: $hamburger-active-hover-opacity;
+        // Higher specificity — overrides the dimming applied by plain :hover
+        --wim-hamburger-color: var(--wim-color-text-primary);
       }
 
       .inner {
@@ -145,10 +137,11 @@ $hamburger-active-hover-opacity: 1 !default;
 
         &::before {
           top: 0;
-          opacity: 0;
+          opacity: 0; // show/hide — permitted use of opacity per RULES.md
           transition:
             top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
-            opacity var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-entrance);
+            opacity var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-entrance),
+            background-color var(--wim-duration-short) linear;
         }
 
         &::after {
@@ -156,7 +149,8 @@ $hamburger-active-hover-opacity: 1 !default;
           transform: rotate(-90deg);
           transition:
             top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
-            transform var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-standard);
+            transform var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-standard),
+            background-color var(--wim-duration-short) linear;
         }
       }
     }

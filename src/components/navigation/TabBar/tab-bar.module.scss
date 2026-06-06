@@ -18,7 +18,7 @@
 
     &.glass {
       background-color: var(--wim-color-glass-bg);
-      backdrop-filter: blur(var(--wim-radius-component)); // TODO: tokenization — blur token for 4px
+      backdrop-filter: blur(var(--wim-blur-xs));
     }
 
     .container {

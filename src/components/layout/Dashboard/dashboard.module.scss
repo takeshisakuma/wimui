@@ -1,6 +1,8 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
 .root {
+  --wim-dashboard-widget-min: 7.5rem; // 120px — overridable by consumers
+
   display: flex;
   flex-direction: column;
   gap: var(--wim-spacing-md);
@@ -131,9 +133,7 @@
   gap: var(--wim-spacing-xs);
   align-items: center;
   justify-content: center;
-
-  // TODO: tokenization — ウィジェット追加ボタンの最小高。--wim-size-widget-min 相当のトークンが未定義
-  min-height: 120px;
+  min-height: var(--wim-dashboard-widget-min);
   padding: var(--wim-spacing-md);
   font-size: var(--wim-font-size-sm);
   font-weight: var(--wim-font-weight-medium);

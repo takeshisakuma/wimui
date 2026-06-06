@@ -5,6 +5,9 @@
 
   :global {
     .fc {
+      // Override FullCalendar's CSS custom property — no !important needed
+      --fc-today-bg-color: oklch(from var(--wim-color-primary) l c h / 0.05);
+
       font-family: inherit;
       font-size: var(--wim-font-size-sm);
       color: var(--wim-color-text-primary);
@@ -55,8 +58,5 @@
       border-color: var(--wim-color-border);
     }
 
-    .fc-day-today {
-      background: color-mix(in oklch, var(--wim-color-primary) 5%, var(--wim-color-surface)) !important;
-    }
   }
 }

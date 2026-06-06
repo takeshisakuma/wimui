@@ -59,7 +59,7 @@ $token-colors: (
 
     &--#{$name}.#{$prefix}--subtle {
       color: $base;
-      background-color: color-mix(in srgb, $base 15%, transparent);
+      background-color: oklch(from #{$base} l c h / 0.15);
       border: 1px solid transparent;
     }
   }
@@ -87,10 +87,10 @@ $token-colors: (
       }
 
       &:where(.subtle) {
-        --bg: color-mix(in srgb, #{$base} 15%, transparent);
+        --bg: oklch(from #{$base} l c h / 0.15);
 
         color: $base;
-        background-color: color-mix(in srgb, $base 15%, transparent);
+        background-color: oklch(from #{$base} l c h / 0.15);
         border: 1px solid transparent;
       }
     }
