@@ -24,41 +24,33 @@ export function useAudioMetadata({
     if (!currentTrack) return;
 
     if (showMetadata && !currentTrack.title && !currentTrack.artist && !currentTrack.coverArt) {
-      import("jsmediatags")
-        .then((jsmediatagsModule) => {
-          const jmt = jsmediatagsModule.default || jsmediatagsModule;
-          jmt.read(currentTrack.src, {
-            onSuccess: (tag: unknown) => {
-              type MediaTags = {
-                title?: string;
-                artist?: string;
-                picture?: { data: number[]; format: string };
-              };
-              const t = (tag as { tags: MediaTags }).tags;
-              setFetchedMeta((prev) => {
-                const newMeta = { ...prev };
-                if (t.title) newMeta.title = t.title;
-                if (t.artist) newMeta.artist = t.artist;
+      import("music-metadata")
+        .then(async (mm) => {
+          const response = await fetch(currentTrack.src);
+          if (!response.ok || !response.body) {
+            throw new Error(`Failed to fetch audio file: ${response.status}`);
+          }
+          const { common } = await mm.parseWebStream(response.body, {
+            mimeType: response.headers.get("content-type") ?? undefined,
+          });
+          const cover = mm.selectCover(common.picture);
+          setFetchedMeta((prev) => {
+            const newMeta = { ...prev };
+            if (common.title) newMeta.title = common.title;
+            if (common.artist) newMeta.artist = common.artist;
 
-                if (t.picture) {
-                  const { data, format } = t.picture;
-                  let base64String = "";
-                  data.forEach((char: number) => {
-                    base64String += String.fromCharCode(char);
-                  });
-                  const base64 = btoa(base64String);
-                  newMeta.cover = `data:${format};base64,${base64}`;
-                }
-                return newMeta;
+            if (cover) {
+              let base64String = "";
+              cover.data.forEach((byte) => {
+                base64String += String.fromCharCode(byte);
               });
-            },
-            onError: (err: unknown) => {
-              if (isDev) console.warn("jsmediatags parse error:", err);
-            },
+              newMeta.cover = `data:${cover.format};base64,${btoa(base64String)}`;
+            }
+            return newMeta;
           });
         })
         .catch((err) => {
-          if (isDev) console.warn("Failed to load jsmediatags dynamically:", err);
+          if (isDev) console.warn("Failed to read audio metadata:", err);
         });
     }
   }, [currentTrack, showMetadata]);

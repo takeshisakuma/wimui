@@ -1,31 +1,58 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, waitFor, act } from "@testing-library/react";
 import { useAudioMetadata } from "./useAudioMetadata";
 import type { AudioTrack } from "../Audio";
 
-// Mock jsmediatags
-const mockRead = vi.fn((src, callbacks) => {
-  callbacks.onSuccess({
-    tags: {
-      title: "Parsed Title",
-      artist: "Parsed Artist",
-      picture: {
-        data: [72, 101, 108, 108, 111], // "Hello"
+// Mock music-metadata
+type MockMetadata = {
+  common: {
+    title?: string;
+    artist?: string;
+    picture?: { data: Uint8Array; format: string }[];
+  };
+};
+
+const defaultMetadata: MockMetadata = {
+  common: {
+    title: "Parsed Title",
+    artist: "Parsed Artist",
+    picture: [
+      {
+        data: new Uint8Array([72, 101, 108, 108, 111]), // "Hello"
         format: "image/png",
       },
-    },
-  });
-});
-
-vi.mock("jsmediatags/build2/jsmediatags.js", () => ({
-  default: {
-    read: (...args: Parameters<typeof mockRead>) => mockRead(...args),
+    ],
   },
+};
+
+const mockParseWebStream =
+  vi.fn<(stream: unknown, fileInfo?: unknown) => Promise<MockMetadata>>();
+
+vi.mock("music-metadata", () => ({
+  parseWebStream: (...args: Parameters<typeof mockParseWebStream>) =>
+    mockParseWebStream(...args),
+  selectCover: (pictures?: { data: Uint8Array; format: string }[]) =>
+    pictures?.[0] ?? null,
 }));
+
+const mockFetch = vi.fn(
+  async () =>
+    ({
+      ok: true,
+      body: new ReadableStream(),
+      headers: new Headers({ "content-type": "audio/mpeg" }),
+    }) as unknown as Response,
+);
 
 describe("useAudioMetadata", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockParseWebStream.mockResolvedValue(defaultMetadata);
+    vi.stubGlobal("fetch", mockFetch);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
   });
 
   it("sets metadata from currentTrack immediately", () => {
@@ -65,13 +92,13 @@ describe("useAudioMetadata", () => {
     // Initial state from track (empty)
     expect(result.current.metaTitle).toBe("");
 
-    // Wait for mock jsmediatags to trigger onSuccess
+    // Wait for mock music-metadata to resolve
     await waitFor(() => expect(result.current.metaTitle).toBe("Parsed Title"));
     expect(result.current.metaArtist).toBe("Parsed Artist");
     expect(result.current.metaCover).toContain("data:image/png;base64,");
   });
 
-  it("does not call jsmediatags when showMetadata is false", async () => {
+  it("does not call music-metadata when showMetadata is false", async () => {
     renderHook(() =>
       useAudioMetadata({ currentTrack: { src: "test.mp3" }, showMetadata: false }),
     );
@@ -79,10 +106,10 @@ describe("useAudioMetadata", () => {
     // Allow any pending microtasks to settle
     await new Promise((resolve) => setTimeout(resolve, 50));
 
-    expect(mockRead).not.toHaveBeenCalled();
+    expect(mockParseWebStream).not.toHaveBeenCalled();
   });
 
-  it("does not call jsmediatags when track already has title and artist", async () => {
+  it("does not call music-metadata when track already has title and artist", async () => {
     renderHook(() =>
       useAudioMetadata({
         currentTrack: { src: "test.mp3", title: "Title", artist: "Artist" },
@@ -92,7 +119,7 @@ describe("useAudioMetadata", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 50));
 
-    expect(mockRead).not.toHaveBeenCalled();
+    expect(mockParseWebStream).not.toHaveBeenCalled();
   });
 
   it("updates metadata when currentTrack changes", () => {
@@ -117,10 +144,8 @@ describe("useAudioMetadata", () => {
     expect(result.current.metaArtist).toBe("Artist B");
   });
 
-  it("handles jsmediatags onError gracefully", async () => {
-    mockRead.mockImplementationOnce((_src, callbacks) => {
-      callbacks.onError(new Error("parse error"));
-    });
+  it("handles metadata read failure gracefully", async () => {
+    mockParseWebStream.mockRejectedValue(new Error("parse error"));
 
     const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
@@ -144,25 +169,25 @@ describe("useAudioMetadata", () => {
     expect(result.current.metaCover).toBe("");
   });
 
-  it("warns via onError when jsmediatags read fails with an exception", async () => {
+  it("warns when metadata read fails with an exception", async () => {
     const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
-    mockRead.mockImplementationOnce((_src, callbacks) => {
-      callbacks.onError(new Error("read exception"));
-    });
+    mockParseWebStream.mockRejectedValue(new Error("read exception"));
 
     renderHook(() =>
       useAudioMetadata({ currentTrack: { src: "test.mp3" }, showMetadata: true }),
     );
 
-    await waitFor(() => expect(consoleSpy).toHaveBeenCalledWith(
-      "jsmediatags parse error:",
-      expect.any(Error),
-    ));
+    await waitFor(() =>
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Failed to read audio metadata:",
+        expect.any(Error),
+      ),
+    );
     consoleSpy.mockRestore();
   });
 
-  it("does not call jsmediatags when only coverArt is present", async () => {
+  it("does not call music-metadata when only coverArt is present", async () => {
     renderHook(() =>
       useAudioMetadata({
         currentTrack: { src: "test.mp3", coverArt: "cover.jpg" },
@@ -170,10 +195,10 @@ describe("useAudioMetadata", () => {
       }),
     );
     await new Promise((r) => setTimeout(r, 50));
-    expect(mockRead).not.toHaveBeenCalled();
+    expect(mockParseWebStream).not.toHaveBeenCalled();
   });
 
-  it("does not call jsmediatags when only title is present", async () => {
+  it("does not call music-metadata when only title is present", async () => {
     renderHook(() =>
       useAudioMetadata({
         currentTrack: { src: "test.mp3", title: "Only Title" },
@@ -181,10 +206,10 @@ describe("useAudioMetadata", () => {
       }),
     );
     await new Promise((r) => setTimeout(r, 50));
-    expect(mockRead).not.toHaveBeenCalled();
+    expect(mockParseWebStream).not.toHaveBeenCalled();
   });
 
-  it("does not call jsmediatags when only artist is present", async () => {
+  it("does not call music-metadata when only artist is present", async () => {
     renderHook(() =>
       useAudioMetadata({
         currentTrack: { src: "test.mp3", artist: "Only Artist" },
@@ -192,25 +217,23 @@ describe("useAudioMetadata", () => {
       }),
     );
     await new Promise((r) => setTimeout(r, 50));
-    expect(mockRead).not.toHaveBeenCalled();
+    expect(mockParseWebStream).not.toHaveBeenCalled();
   });
 
   it("does not set metaCover when tag has no picture field", async () => {
-    // Default mockRead calls onSuccess with a picture.
-    // Verify that when picture is absent (using onError path), metaCover stays empty.
-    mockRead.mockImplementationOnce((_src, callbacks) => {
-      callbacks.onError(new Error("no picture"));
+    mockParseWebStream.mockResolvedValue({
+      common: {
+        title: "No Cover Title",
+        artist: "No Cover Artist",
+      },
     });
 
-    const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
     const { result } = renderHook(() =>
       useAudioMetadata({ currentTrack: { src: "test.mp3" }, showMetadata: true }),
     );
 
-    await waitFor(() => expect(consoleSpy).toHaveBeenCalled());
-    // When read fails, metadata stays as empty strings from the track
+    await waitFor(() => expect(result.current.metaTitle).toBe("No Cover Title"));
     expect(result.current.metaCover).toBe("");
-    consoleSpy.mockRestore();
   });
 
   it("clears metadata when track changes to null", () => {

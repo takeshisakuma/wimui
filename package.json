@@ -2,10 +2,10 @@
   "name": "wimui",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
-  "main": "dist/wimui.umd.js",
+  "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 190+ components documented in Storybook.",
+  "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
@@ -16,67 +16,94 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/wimui.umd.js"
+      "require": "./dist/index.cjs"
     },
     "./layout": {
-      "types": "./dist/layout.d.ts",
+      "types": "./dist/src/layout.d.ts",
       "import": "./dist/layout.js",
       "require": "./dist/layout.cjs"
     },
     "./form": {
-      "types": "./dist/form.d.ts",
+      "types": "./dist/src/form.d.ts",
       "import": "./dist/form.js",
       "require": "./dist/form.cjs"
     },
     "./feedback": {
-      "types": "./dist/feedback.d.ts",
+      "types": "./dist/src/feedback.d.ts",
       "import": "./dist/feedback.js",
       "require": "./dist/feedback.cjs"
     },
     "./navigation": {
-      "types": "./dist/navigation.d.ts",
+      "types": "./dist/src/navigation.d.ts",
       "import": "./dist/navigation.js",
       "require": "./dist/navigation.cjs"
     },
     "./data-display": {
-      "types": "./dist/data-display.d.ts",
+      "types": "./dist/src/data-display.d.ts",
       "import": "./dist/data-display.js",
       "require": "./dist/data-display.cjs"
     },
     "./overlay": {
-      "types": "./dist/overlay.d.ts",
+      "types": "./dist/src/overlay.d.ts",
       "import": "./dist/overlay.js",
       "require": "./dist/overlay.cjs"
     },
     "./typography": {
-      "types": "./dist/typography.d.ts",
+      "types": "./dist/src/typography.d.ts",
       "import": "./dist/typography.js",
       "require": "./dist/typography.cjs"
     },
     "./media": {
-      "types": "./dist/media.d.ts",
+      "types": "./dist/src/media.d.ts",
       "import": "./dist/media.js",
       "require": "./dist/media.cjs"
     },
     "./charts": {
-      "types": "./dist/charts.d.ts",
+      "types": "./dist/src/charts.d.ts",
       "import": "./dist/charts.js",
       "require": "./dist/charts.cjs"
     },
+    "./ai": {
+      "types": "./dist/src/ai.d.ts",
+      "import": "./dist/ai.js",
+      "require": "./dist/ai.cjs"
+    },
     "./tokens": {
-      "types": "./dist/tokens.d.ts",
+      "types": "./dist/src/tokens.d.ts",
       "import": "./dist/tokens.js",
       "require": "./dist/tokens.cjs"
     }
   },
   "size-limit": [
     {
-      "name": "ES Module entry (gzip)",
-      "path": "dist/index.js",
+      "name": "ESM library total (gzip)",
+      "path": [
+        "dist/src/**/*.js",
+        "dist/_virtual/**/*.js",
+        "dist/node_modules/**/*.js"
+      ],
       "gzip": true,
-      "limit": "440 kB"
+      "limit": "340 kB"
+    },
+    {
+      "name": "Bundled third-party code (gzip)",
+      "path": "dist/node_modules/**/*.js",
+      "gzip": true,
+      "limit": "35 kB"
+    },
+    {
+      "name": "form components (gzip)",
+      "path": "dist/src/components/form/**/*.js",
+      "gzip": true,
+      "limit": "85 kB"
+    },
+    {
+      "name": "charts components (gzip)",
+      "path": "dist/src/components/charts/**/*.js",
+      "gzip": true,
+      "limit": "15 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
@@ -91,7 +118,7 @@
   },
   "scripts": {
     "dev": "npm run generate:icons && vite",
-    "build": "npm run generate:icons && vite build && vite build --mode umd",
+    "build": "npm run generate:icons && vite build && vite build --mode umd && node scripts/fix-cjs-empty-css.js",
     "generate:icons": "node scripts/generate-icons.js",
     "size": "size-limit",
     "test": "vitest run",
@@ -127,27 +154,31 @@
     "audit:all": "node scripts/audit-all.js",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish",
     "prepare": "husky"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/takeshisakuma/wimui.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "takeshi sakuma",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/takeshisakuma/wimui/issues"
   },
   "homepage": "./",
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
+    "@changesets/cli": "2.31.0",
     "@eslint/js": "9.39.4",
     "@fullcalendar/core": "6.1.20",
     "@fullcalendar/daygrid": "6.1.20",
     "@fullcalendar/interaction": "6.1.20",
     "@fullcalendar/react": "6.1.20",
     "@fullcalendar/timegrid": "6.1.20",
-    "@google/generative-ai": "^0.24.1",
+    "@google/genai": "2.8.0",
     "@playwright/test": "^1.59.0",
     "@size-limit/file": "^12.0.1",
     "@storybook/addon-a11y": "^10.3.6",
@@ -173,6 +204,7 @@
     "@vitest/browser-playwright": "^4.1.2",
     "@vitest/coverage-v8": "^4.1.2",
     "@xyflow/react": "12.11.0",
+    "diff": "9.0.0",
     "dotenv": "^17.3.1",
     "eslint": "9.39.4",
     "eslint-config-prettier": "^10.1.8",
@@ -194,11 +226,14 @@
     "imagemin-webp": "^8.0.0",
     "jsdom": "^29.0.1",
     "lint-staged": "17.0.7",
-    "music-metadata": "^11.12.3",
     "playwright": "^1.59.0",
     "prettier": "^3.8.1",
     "prop-types": "^15.8.1",
+    "qrcode.react": "^4.2.0",
     "react-i18next": "17.0.8",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.8.1",
+    "remark-gfm": "^4.0.1",
     "rimraf": "^6.1.3",
     "sass": "^1.98.0",
     "size-limit": "^12.0.1",
@@ -223,13 +258,33 @@
     "@fullcalendar/react": ">=6.0.0",
     "@fullcalendar/timegrid": ">=6.0.0",
     "@xyflow/react": ">=12.0.0",
+    "diff": ">=9.0.0",
     "i18next": ">=23.0.0",
+    "qrcode.react": ">=4.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "react-i18next": ">=14.0.0"
+    "react-i18next": ">=14.0.0",
+    "react-markdown": ">=10.0.0",
+    "recharts": ">=3.0.0",
+    "remark-gfm": ">=4.0.0"
   },
   "peerDependenciesMeta": {
     "@xyflow/react": {
+      "optional": true
+    },
+    "diff": {
+      "optional": true
+    },
+    "qrcode.react": {
+      "optional": true
+    },
+    "react-markdown": {
+      "optional": true
+    },
+    "recharts": {
+      "optional": true
+    },
+    "remark-gfm": {
       "optional": true
     },
     "@fullcalendar/core": {
@@ -276,12 +331,7 @@
     "@floating-ui/react": "^0.27.19",
     "@radix-ui/react-slot": "1.2.4",
     "classnames": "^2.5.1",
-    "diff": "9.0.0",
-    "jsmediatags": "^3.9.7",
-    "qrcode.react": "^4.2.0",
-    "react-is": "19.2.7",
-    "react-markdown": "^10.1.0",
-    "recharts": "^3.8.1",
-    "remark-gfm": "^4.0.1"
+    "music-metadata": "^11.12.3",
+    "react-is": "19.2.7"
   }
 }

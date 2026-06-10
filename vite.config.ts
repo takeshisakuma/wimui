@@ -42,7 +42,11 @@ export default defineConfig(({ mode }) => {
       !isUMD &&
         dts({
           include: ["src/**/*.ts", "src/**/*.tsx"],
-          exclude: ["**/*.stories.tsx", "**/*.test.tsx"],
+          exclude: ["**/*.stories.*", "**/*.test.*"],
+          // d.ts は dist/src/ 配下に出力される（dist には node_modules / _virtual も
+          // 含まれるため共通ルートがプロジェクトルートになる）。entryRoot 指定は
+          // この環境（unplugin-dts + rolldown-vite）では効かないため、package.json の
+          // types 側を ./dist/src/*.d.ts に合わせている
           insertTypesEntry: true,
         }),
     ].filter(Boolean),
@@ -55,14 +59,8 @@ export default defineConfig(({ mode }) => {
         "react-dom",
         "@floating-ui/react",
         "recharts",
-        "jsmediatags",
+        "music-metadata",
       ],
-      // jsmediatags が Node.js 依存（fsなど）を持つのを回避
-      esbuildOptions: {
-        define: {
-          global: "globalThis",
-        },
-      },
     },
     build: {
       emptyOutDir: !isUMD,
@@ -85,6 +83,7 @@ export default defineConfig(({ mode }) => {
               typography: path.resolve(__dirname, "src/typography.ts"),
               media: path.resolve(__dirname, "src/media.ts"),
               charts: path.resolve(__dirname, "src/charts.ts"),
+              ai: path.resolve(__dirname, "src/ai.ts"),
               tokens: path.resolve(__dirname, "src/tokens.ts"),
             },
             formats: ["es", "cjs"],
@@ -94,18 +93,16 @@ export default defineConfig(({ mode }) => {
           "react",
           "react-dom",
           "react/jsx-runtime",
-          // jsmediatags/build2/jsmediatags.js が ReactNativeFileReader 経由で
-          // require("react-native-fs") を呼ぶため、ブラウザビルドでのエラーを防ぐために external 指定が必要
-          "react-native-fs",
           "i18next",
           "react-i18next",
-          "jsmediatags",
+          "music-metadata",
           "classnames",
           "@floating-ui/react",
           "recharts",
           "react-markdown",
           "remark-gfm",
           "qrcode.react",
+          "diff",
           // 重量級ライブラリ — バンドルに含めると UMD が 160kB 制限を超過するため external に指定
           "@xyflow/react",
           "@fullcalendar/core",
@@ -126,8 +123,8 @@ export default defineConfig(({ mode }) => {
                 "react-markdown": "ReactMarkdown",
                 "remark-gfm": "remarkGfm",
                 "qrcode.react": "QrcodeReact",
-                "react-native-fs": "ReactNativeFs",
-                jsmediatags: "jsmediatags",
+                diff: "Diff",
+                "music-metadata": "musicMetadata",
                 classnames: "classNames",
                 "@floating-ui/react": "FloatingUI",
                 "@xyflow/react": "ReactFlow",

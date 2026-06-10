@@ -347,12 +347,16 @@ Vite の設定（`vite.config.ts`, `.storybook/main.ts`）で以下の最適化�
 - imagemin の限定実行: 重い画像圧縮処理（`vite-plugin-imagemin`）は `mode === "production"` の時のみ実行されます。開発時はスキップされ、起動時間が短縮されます。
 - optimizeDeps の活用: 頻繁に使用する巨大なライブラリ（`react`, `recharts` 等）を `optimizeDeps.include` に明示することで、初動の依存解決を高速化しています。
 
-### 依存関係のトラブルシューティング（jsmediatags 等）
-Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザビルドで `fs` や `path` のエラーを引き起こすことがあります。
+### CJS 出力の後処理（fix-cjs-empty-css）
+rolldown ベースの Vite 8 には、エントリモジュール直下の CSS import を CJS/UMD 出力で `/* empty css */` コメントへ置換する際にカンマ演算子が残り、`dist/index.cjs` が構文エラーになるバグがあります（`src/index.ts` がグローバル SCSS を import しているため発生）。`npm run build` の最後に `scripts/fix-cjs-empty-css.js` が実行され、該当パターンを自動修正します。Vite 側でバグが修正されれば何もしなくなる（no-op）ため、そのまま残して問題ありません。
 
-1. Vite での define: `optimizeDeps.esbuildOptions.define` で `global: "globalThis"` を定義し、Node.js 固有のグローバル変数参照を解決します。
-2. Storybook での Alias: `jsmediatags` は Storybook の `viteFinal` で `dist/jsmediatags.min.js` を直接参照するようにエイリアスを貼っています。これにより、内部で外部モジュールを require しようとする挙動を防ぎます。
-3. External 指定: ライブラリビルド（`vite.config.ts` の `rollupOptions.external`）では、利用側で解決してもらうためにこれらを external に含めています。
+### 重量級依存の扱い（optional peerDependencies）
+特定のコンポーネントでしか使わない重量級ライブラリは、利用者のインストールサイズを抑えるため `dependencies` に入れず、optional な `peerDependencies` として宣言しています（`peerDependenciesMeta` で `"optional": true`）。
+
+- 対象: `recharts`（charts）、`react-markdown` / `remark-gfm`（Markdown）、`diff`（CodeDiffViewer）、`qrcode.react`（QRCode）、`@xyflow/react`（NodeGraph / InteractiveGraph）、`@fullcalendar/*`（ScheduleView）
+- 該当コンポーネントを使う利用者は、対応するライブラリを自分でインストールする必要があります。
+- 新しい重量級ライブラリを追加する場合は、(1) `peerDependencies` + `peerDependenciesMeta`（optional）に追加、(2) リポジトリ内の開発用に `devDependencies` にも追加、(3) `vite.config.ts` の `rollupOptions.external` と UMD の `globals` に追加、の3点をセットで行ってください。
+- 例外: `music-metadata`（Audio のタグ読み取り）は動的 `import()` で遅延読み込みしているため、利用側ビルドでの未解決エラーを避けるべく通常の `dependencies` に置いています。
 
 ---
 

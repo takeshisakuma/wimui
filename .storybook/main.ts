@@ -39,13 +39,6 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
-            find: "jsmediatags",
-            replacement: path.resolve(
-              process.cwd(),
-              "node_modules/jsmediatags/dist/jsmediatags.min.js",
-            ),
-          },
-          {
             find: "storybook/theming",
             replacement: path.resolve(
               process.cwd(),
@@ -121,23 +114,13 @@ const config: StorybookConfig = {
           "@fullcalendar/daygrid",
           "@fullcalendar/interaction",
           "@fullcalendar/timegrid",
-          // Media tag reader (has Node.js shims)
-          "jsmediatags",
+          // Media tag reader
+          "music-metadata",
         ],
         exclude: ["@storybook/blocks"],
-        esbuildOptions: {
-          define: {
-            global: "globalThis",
-          },
-        },
       },
       build: {
         chunkSizeWarningLimit: 2000,
-        rollupOptions: {
-          // jsmediatags/build2/jsmediatags.js が ReactNativeFileReader 経由で
-          // require("react-native-fs") を呼ぶため、ブラウザビルドでのエラーを防ぐために external 指定が必要
-          external: ["react-native-fs"],
-        },
       },
     });
   },
