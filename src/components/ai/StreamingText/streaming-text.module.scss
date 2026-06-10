@@ -33,7 +33,7 @@
   }
 
   code {
-    padding: 2px var(--wim-spacing-xs);
+    padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
     font-family: var(--wim-font-family-mono, monospace);
     font-size: 0.875em;
     background: var(--wim-color-ghost-bg);
@@ -102,7 +102,7 @@
   display: inline-block;
   width: 2px;
   height: 1.1em;
-  margin-left: 2px;
+  margin-left: var(--wim-spacing-3xs);
   vertical-align: text-bottom;
   background: var(--wim-color-text-primary);
   border-radius: 1px;

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./kbd.module.scss";
 
 export interface KbdProps extends React.HTMLAttributes<HTMLElement> {
@@ -8,7 +9,7 @@ export interface KbdProps extends React.HTMLAttributes<HTMLElement> {
    * If true, the Kbd will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: ComponentSizeBasic;
   children?: React.ReactNode;
 }
 

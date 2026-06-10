@@ -33,7 +33,7 @@ describe("IndicatorSlider", () => {
   it("applies variant class", () => {
     // Note: styles[variant] will be undefined in tests unless we mock styles,
     // but we can still check if it handles the variant prop logic.
-    render(<IndicatorSlider activeSelector=".active" variant="primary" />);
+    render(<IndicatorSlider activeSelector=".active" variant="underline" />);
     const slider = screen.getByTestId("indicator-slider");
     expect(slider).toBeInTheDocument();
   });

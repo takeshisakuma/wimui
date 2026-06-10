@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Kbd } from "../../typography/Kbd/Kbd";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./keyboard-shortcuts.module.scss";
 
 export type ShortcutItem = {
@@ -18,7 +19,7 @@ export type KeyboardShortcutsProps = React.ComponentPropsWithoutRef<"dl"> & {
   /** キー間のセパレーター */
   separator?: string;
   /** サイズ */
-  size?: "sm" | "md" | "lg";
+  size?: ComponentSizeBasic;
 };
 
 /**

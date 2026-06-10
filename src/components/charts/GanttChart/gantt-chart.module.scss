@@ -41,7 +41,7 @@
   .labelRow {
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 var(--wim-spacing-xl);
     overflow: hidden;
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);

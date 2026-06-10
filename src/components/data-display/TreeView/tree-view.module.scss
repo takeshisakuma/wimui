@@ -212,7 +212,7 @@
       opacity var(--wim-duration-slow) var(--wim-easing-standard);
 
     @container (width <= 480px) {
-      padding-left: 12px;
+      padding-left: var(--wim-spacing-xl);
     }
   }
 

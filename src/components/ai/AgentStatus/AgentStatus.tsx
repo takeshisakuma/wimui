@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { CheckCircleIcon, AlertCircleIcon, HourglassIcon } from "@/icon";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./agent-status.module.scss";
 
 export type AgentStatusValue = "idle" | "thinking" | "running" | "waiting" | "done" | "error";
@@ -13,7 +14,7 @@ export interface AgentStatusProps extends React.ComponentPropsWithoutRef<"div"> 
   /** Optional description of what the agent is doing; falls back to the localized status label */
   message?: string;
   /** Size variant */
-  size?: "sm" | "md" | "lg";
+  size?: ComponentSizeBasic;
   /** Whether to show the text label next to the indicator */
   showLabel?: boolean;
   /** Additional CSS class */

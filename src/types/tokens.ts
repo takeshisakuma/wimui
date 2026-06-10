@@ -11,6 +11,14 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 export type ComponentSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 
 /**
+ * Basic size values for components.
+ * A deliberate subset of ComponentSize for components that only
+ * provide styles for the three core sizes (AgentStatus, Kbd,
+ * KeyboardShortcuts, Leaderboard).
+ */
+export type ComponentSizeBasic = Extract<ComponentSize, "sm" | "md" | "lg">;
+
+/**
  * Standard width values for form field components.
  */
 export type FieldWidth = "xs" | "sm" | "md" | "lg" | "xl";

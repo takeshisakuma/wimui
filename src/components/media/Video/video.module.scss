@@ -356,7 +356,7 @@
       gap: var(--wim-spacing-sm);
       align-items: center;
       justify-content: space-between;
-      padding: 10px var(--wim-spacing-sm); // よりゆとりを持たせて 10px に拡大
+      padding: var(--wim-spacing-lg) var(--wim-spacing-sm); // よりゆとりを持たせて lg (10px) に拡大
       color: var(--wim-color-text-on-overlay);
       text-align: left;
       cursor: pointer;
@@ -384,7 +384,7 @@
     left: 50%;
     z-index: 15;
     display: flex;
-    gap: 4px;
+    gap: var(--wim-spacing-2xs);
     align-items: center;
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     font-weight: var(--wim-font-weight-bold);

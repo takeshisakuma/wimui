@@ -23,7 +23,7 @@
   }
 
   .separator {
-    margin: 0 2px;
+    margin: 0 var(--wim-spacing-3xs);
     opacity: var(--wim-opacity-disabled);
   }
 

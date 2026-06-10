@@ -38,3 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # setup-node の registry-url が生成する .npmrc は NODE_AUTH_TOKEN を
+          # 参照するため、これがないと npm publish が E404 で失敗する
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

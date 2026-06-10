@@ -169,7 +169,7 @@
   "bugs": {
     "url": "https://github.com/takeshisakuma/wimui/issues"
   },
-  "homepage": "./",
+  "homepage": "https://takeshisakuma.github.io/wimui/",
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@changesets/cli": "2.31.0",

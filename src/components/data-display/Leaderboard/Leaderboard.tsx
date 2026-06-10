@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./leaderboard.module.scss";
 
 export type LeaderboardEntry = {
@@ -16,7 +17,7 @@ export type LeaderboardProps = React.ComponentPropsWithoutRef<"ol"> & {
   /** スコア単位ラベル */
   unit?: string;
   /** サイズ */
-  size?: "sm" | "md" | "lg";
+  size?: ComponentSizeBasic;
 };
 
 /**

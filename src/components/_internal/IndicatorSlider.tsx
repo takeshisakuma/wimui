@@ -4,6 +4,12 @@ import { useIndicator, IndicatorOrientation } from "./useIndicator";
 import styles from "./indicator-slider.module.scss";
 
 /**
+ * Visual variants of the slider, matching the classes defined in
+ * indicator-slider.module.scss.
+ */
+export type IndicatorSliderVariant = "underline" | "contained";
+
+/**
  * Props for the IndicatorSlider component.
  */
 export type IndicatorSliderProps = {
@@ -25,10 +31,10 @@ export type IndicatorSliderProps = {
    * Custom Inline styles for the slider element.
    */
   style?: React.CSSProperties;
-  /** 
+  /**
    * Visual variant of the slider. Maps to CSS Module classes.
    */
-  variant?: string;
+  variant?: IndicatorSliderVariant;
   /** 
    * Dependency value that triggers a repositioning when changed (e.g., active tab ID).
    */

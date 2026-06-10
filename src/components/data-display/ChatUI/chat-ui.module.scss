@@ -86,7 +86,7 @@
 
     &.typing {
       display: flex;
-      gap: 4px;
+      gap: var(--wim-spacing-2xs);
       align-items: center;
       min-height: var(--wim-height-xs);
       padding: var(--wim-spacing-sm) var(--wim-spacing-md);
@@ -125,7 +125,7 @@
   .actions {
     display: flex;
     gap: var(--wim-spacing-xs);
-    margin-top: 4px;
+    margin-top: var(--wim-spacing-2xs);
     opacity: 0;
     transition: opacity var(--wim-transition-fast);
 
@@ -257,7 +257,7 @@
     justify-content: center;
     width: 32px;
     height: var(--wim-height-sm);
-    margin-bottom: 2px; // Align slightly better with text
+    margin-bottom: var(--wim-spacing-3xs); // Align slightly better with text
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
     background-color: transparent;

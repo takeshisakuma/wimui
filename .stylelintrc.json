@@ -31,6 +31,9 @@
             "/./": [
               "/color-mix\\(in srgb/",
               "/(?<![\\w-])(white|black|red|blue|green|yellow|orange|purple|pink|gray|grey|navy|teal|aqua|lime|maroon|olive|silver|fuchsia)(?![\\w-])/"
+            ],
+            "/^(margin|padding|gap|row-gap|column-gap|inset)/": [
+              "/(?<!var\\([^)]*)(?<![\\d.-])([2-9]|\\d{2,})(\\.\\d+)?px/"
             ]
           }
         ]

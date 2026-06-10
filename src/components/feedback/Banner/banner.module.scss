@@ -51,7 +51,7 @@
 
   .separator {
     display: none;
-    margin: 0 4px;
+    margin: 0 var(--wim-spacing-2xs);
     opacity: var(--wim-opacity-ghost);
 
     @container (width >= 640px) {

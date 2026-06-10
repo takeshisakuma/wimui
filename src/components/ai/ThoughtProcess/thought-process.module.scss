@@ -129,7 +129,7 @@
   }
 
   .label {
-    margin-bottom: 2px;
+    margin-bottom: var(--wim-spacing-3xs);
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-secondary);
@@ -189,7 +189,7 @@
       display: inline-block;
       width: 2px;
       height: 1em;
-      margin-left: 2px;
+      margin-left: var(--wim-spacing-3xs);
       vertical-align: middle;
       content: "";
       background-color: var(--wim-color-primary);
