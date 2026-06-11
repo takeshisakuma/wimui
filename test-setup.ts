@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
+// 文字列ベースの icon/name API をテスト全体で有効化（全アイコン登録）
+import "./src/icons";
 
 // Mock ResizeObserver
 class ResizeObserver {
@@ -72,6 +74,7 @@ window.cancelAnimationFrame = (id) => clearTimeout(id);
 
 // Mock react-i18next
 vi.mock("react-i18next", () => {
+  const React = require("react");
   const fs = require("node:fs");
   const path = require("node:path");
   const loadJSON = (filePath: string) => {
@@ -123,5 +126,9 @@ vi.mock("react-i18next", () => {
       type: "3rdParty",
       init: () => {},
     },
+    // useWimTranslation（内蔵 i18next フォールバック）が参照する API。
+    // テストでは上記モックの t が常に使われるよう、外部インスタンスなしを返す
+    I18nContext: React.createContext(null),
+    getI18n: () => undefined,
   };
 });

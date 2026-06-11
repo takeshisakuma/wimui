@@ -4,6 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import type { WimIntent } from "../../../types/tokens";
 import styles from "./result.module.scss";
+import { CircleIcon, CheckIcon } from "@/icon";
 
 export type ResultIntent = Extract<WimIntent, "success" | "error" | "info" | "warning">;
 
@@ -54,16 +55,16 @@ const DefaultIcon = ({
   status?: ResultHttpStatus;
   className?: string;
 }) => {
-  if (status) return <Icon name="CircleIcon" color="secondary" className={className} />;
+  if (status) return <Icon component={CircleIcon} color="secondary" className={className} />;
   switch (intent) {
     case "success":
-      return <Icon name="CheckIcon" color="positive" className={className} />;
+      return <Icon component={CheckIcon} color="positive" className={className} />;
     case "error":
-      return <Icon name="CircleIcon" color="destructive" className={className} />;
+      return <Icon component={CircleIcon} color="destructive" className={className} />;
     case "warning":
-      return <Icon name="CircleIcon" color="caution" className={className} />;
+      return <Icon component={CircleIcon} color="caution" className={className} />;
     case "info":
-      return <Icon name="CircleIcon" color="informative" className={className} />;
+      return <Icon component={CircleIcon} color="informative" className={className} />;
     default:
       return null;
   }

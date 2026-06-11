@@ -3,7 +3,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { Dashboard } from "./Dashboard";
 import type { DashboardWidget } from "./Dashboard";
 
-vi.mock("react-i18next", () => ({
+vi.mock("react-i18next", async () => ({
+  // useWimTranslation（内蔵 i18next フォールバック）が参照する API
+  I18nContext: (await import("react")).createContext(null),
+  getI18n: () => undefined,
   useTranslation: () => ({
     t: (key: string, opts?: Record<string, unknown>) => {
       if (opts && "title" in opts) return `${key}:${opts.title}`;

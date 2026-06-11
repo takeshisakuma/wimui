@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./backtop.module.scss";
+import { ChevronUpIcon } from "@/icon";
 
 export interface BackTopProps {
   /** Target container that will be scrolled */
@@ -30,7 +31,7 @@ export const BackTop = ({
   style,
   "aria-label": ariaLabel,
 }: BackTopProps) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const [visible, setVisible] = useState(false);
 
   const getScrollTop = useCallback(
@@ -93,7 +94,7 @@ export const BackTop = ({
 
   const defaultElement = (
     <div className={styles.content}>
-      <Icon name="ChevronUpIcon" className={styles.icon} />
+      <Icon component={ChevronUpIcon} className={styles.icon} />
     </div>
   );
 

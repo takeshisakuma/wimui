@@ -605,5 +605,9 @@
     "exit_edit": "Done",
     "add_widget": "Add widget",
     "remove_widget": "Remove {{title}}"
+  },
+  "calendar_heatmap": {
+    "less": "Less",
+    "more": "More"
   }
 }

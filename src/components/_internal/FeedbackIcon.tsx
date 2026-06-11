@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize, WimIntent } from "../../types/tokens";
+import { CheckIcon, CircleIcon } from "@/icon";
 
 /**
  * Props for the FeedbackIcon component.
@@ -55,7 +56,7 @@ export const FeedbackIcon = ({
     case "success":
       return (
         <Icon
-          name="CheckIcon"
+          component={CheckIcon}
           size={size}
           className={className}
           color={color}
@@ -64,7 +65,7 @@ export const FeedbackIcon = ({
     default:
       return (
         <Icon
-          name="CircleIcon"
+          component={CircleIcon}
           size={size}
           className={className}
           color={color}

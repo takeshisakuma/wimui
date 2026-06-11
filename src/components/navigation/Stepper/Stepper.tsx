@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./stepper.module.scss";
+import { CheckIcon, CloseIcon } from "@/icon";
 
 export type StepperIntent = "wait" | "process" | "finish" | "error";
 
@@ -72,10 +73,10 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
     if (icon) return icon;
 
     if (stepIntent === "finish") {
-      return <Icon name="CheckIcon" size="sm" />;
+      return <Icon component={CheckIcon} size="sm" />;
     }
     if (stepIntent === "error") {
-      return <Icon name="CloseIcon" size="sm" />;
+      return <Icon component={CloseIcon} size="sm" />;
     }
     return <span>{index + 1}</span>;
   };

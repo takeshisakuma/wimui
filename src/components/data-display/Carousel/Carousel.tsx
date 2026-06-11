@@ -10,6 +10,7 @@ import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./carousel.module.scss";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 export type Breakpoints = {
   base?: number;
@@ -316,7 +317,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             disabled={!loop && currentIndex === 0}
             tabIndex={-1}
           >
-            <Icon name="ChevronLeftIcon" size="md" />
+            <Icon component={ChevronLeftIcon} size="md" />
           </button>
           <button
             className={classNames(styles.control, styles.next)}
@@ -327,7 +328,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             }
             tabIndex={-1}
           >
-            <Icon name="ChevronRightIcon" size="md" />
+            <Icon component={ChevronRightIcon} size="md" />
           </button>
         </>
       )}

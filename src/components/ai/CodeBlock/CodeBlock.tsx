@@ -1,6 +1,6 @@
 import React, { useCallback, useId } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { CopyIcon, CheckIcon, ChevronDownIcon } from "@/icon";
 import styles from "./code-block.module.scss";
@@ -48,7 +48,7 @@ export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
     },
     ref
   ) => {
-    const { t } = useTranslation("form");
+    const { t } = useWimTranslation("form");
     const [copied, setCopied] = React.useState(false);
     const [expanded, setExpanded] = React.useState(false);
     const bodyId = useId();

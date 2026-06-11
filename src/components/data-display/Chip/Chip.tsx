@@ -1,11 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./chip.module.scss";
+import { CloseIcon } from "@/icon";
 
 export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   /**
@@ -64,7 +65,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation("common");
+    const { t } = useWimTranslation("common");
     const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
     const Component = asChild ? Slot : (onClick ? "button" : "span");
     const finalContent = content ?? children;
@@ -103,7 +104,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
             }}
             aria-label={resolvedDeleteAriaLabel}
           >
-            <Icon name="CloseIcon" size="sm" />
+            <Icon component={CloseIcon} size="sm" />
           </button>
         )}
       </Component>

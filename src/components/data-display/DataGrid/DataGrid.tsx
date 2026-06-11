@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
@@ -94,7 +94,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   className,
   ariaLabel,
 }: DataGridProps<T>) {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   // Normalize selection to a consistent object form
   const selection: SelectionConfig<T> | null = useMemo(() => {
     if (!selectionProp) return null;

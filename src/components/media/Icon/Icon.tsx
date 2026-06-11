@@ -2,12 +2,20 @@ import React from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
 import styles from "./icon.module.scss";
-import { ALL_ICONS, IconName } from "../../../icon";
+import type { IconName } from "../../../icon";
+import {
+  registeredIcons,
+  warnUnregisteredIcon,
+} from "../../../icon/registry";
 
 type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
+  /** Icon name. Requires `import "wimui/icons"` once at the app entry to register icons. */
   name?: IconName;
+  /** Icon component passed directly. Works without registration and is tree-shakable. */
   component?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   size?: ComponentSize;
+  /** Apply the loading rotation animation */
+  spin?: boolean;
   color?:
     | "destructive"
     | "positive"
@@ -24,11 +32,15 @@ export const Icon = ({
   component,
   size = "md",
   color,
+  spin,
   className,
   ...props
 }: IconProps) => {
-  const IconComponent = component || (name ? ALL_ICONS[name] : null);
-  if (!IconComponent) return null;
+  const IconComponent = component || (name ? registeredIcons[name] : null);
+  if (!IconComponent) {
+    if (name) warnUnregisteredIcon(name);
+    return null;
+  }
 
   return (
     <IconComponent
@@ -36,7 +48,8 @@ export const Icon = ({
         styles.root,
         size && styles[`size-${size}`],
         color && styles[color],
-        name && (name === "LoadingIcon" || name === "SpinnerIcon") &&
+        (spin ||
+          (name && (name === "LoadingIcon" || name === "SpinnerIcon"))) &&
           styles.loading,
         className,
       )}

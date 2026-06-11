@@ -4,6 +4,7 @@ import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
 import styles from "./phone-input.module.scss";
+import { ChevronDownIcon } from "@/icon";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
@@ -148,7 +149,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
               <span className={styles.dialCode}>+{selectedCountry.dialCode}</span>
               <Icon
-                name="ChevronDownIcon"
+                component={ChevronDownIcon}
                 size="sm"
                 className={classNames(
                   styles.chevron,

@@ -2,6 +2,8 @@ import type { Preview } from "@storybook/react";
 import { addons } from "storybook/internal/preview-api";
 
 import i18n from "./i18n";
+// 文字列ベースの icon/name API を Storybook 全体で有効化（全アイコン登録）
+import "../src/icons";
 import "../src/layers.scss";
 import "../src/reset.scss";
 import "../src/base.scss";

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import { Icon } from "../Icon/Icon";
@@ -179,7 +179,7 @@ export const LightboxContent = ({
   ...props
 }: LightboxContentProps) => {
   const { open, setOpen, currentIndex, setCurrentIndex, items } = useLightbox();
-  const { t } = useTranslation("components");
+  const { t } = useWimTranslation("components");
   const [zoom, setZoom] = useState(1);
 
   const handlePrev = useCallback(() => {

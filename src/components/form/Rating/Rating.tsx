@@ -4,6 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import styles from "./rating.module.scss";
+import { StarIcon } from "@/icon";
 
 export type RatingLabels = {
   star?: (count: number) => string;
@@ -222,10 +223,10 @@ export const Rating = ({
         aria-label={readOnly ? undefined : star(index + 1)}
       >
         <div className={styles.background}>
-          <Icon name="StarIcon" size={size} className={styles.icon} />
+          <Icon component={StarIcon} size={size} className={styles.icon} />
         </div>
         <div className={styles.foreground}>
-          <Icon name="StarIcon" size={size} className={styles.icon} />
+          <Icon component={StarIcon} size={size} className={styles.icon} />
         </div>
       </div>
     );

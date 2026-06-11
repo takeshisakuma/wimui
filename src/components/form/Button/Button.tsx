@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./button.module.scss";
@@ -7,6 +7,7 @@ import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { LoadingIcon } from "@/icon";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /**
@@ -98,7 +99,7 @@ export const Button = React.forwardRef<
       return () => cancelAnimationFrame(frame);
     }, [children, animateWidth]);
 
-    const { t } = useTranslation("common");
+    const { t } = useWimTranslation("common");
     const isDisabled = disabled;
 
     let resolvedAriaLabel: string | undefined;
@@ -123,7 +124,7 @@ export const Button = React.forwardRef<
       if (loading) {
         return (
           <span className={classNames(localStyles.loader, stylesProp?.loader)}>
-            <Icon name="LoadingIcon" size={size} />
+            <Icon component={LoadingIcon} spin size={size} />
           </span>
         );
       }

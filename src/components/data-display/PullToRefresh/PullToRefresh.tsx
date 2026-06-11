@@ -3,7 +3,8 @@ import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import localStyles from "./pull-to-refresh.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { LoadingIcon, ChevronDownIcon } from "@/icon";
 
 export interface PullToRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Callback when refresh is triggered. Should return a promise. */
@@ -41,7 +42,7 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
     },
     ref
   ) => {
-    const { t } = useTranslation();
+    const { t } = useWimTranslation();
     const [pullDistance, setPullDistance] = useState(0);
     const [internalRefreshing, setInternalRefreshing] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
@@ -162,10 +163,10 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
         >
           <div className={localStyles.indicatorContent}>
             {state === "refreshing" ? (
-              <Icon name="LoadingIcon" className={localStyles.spinner} />
+              <Icon component={LoadingIcon} spin className={localStyles.spinner} />
             ) : (
               <Icon
-                name="ChevronDownIcon"
+                component={ChevronDownIcon}
                 className={classNames(localStyles.arrow, state === "releasing" && localStyles.rotate)}
               />
             )}

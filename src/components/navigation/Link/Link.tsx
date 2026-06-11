@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./link.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
+import { ExternalLinkIcon } from "@/icon";
 
 export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
   /**
@@ -73,7 +74,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           )}
           {external && (
             <Icon
-              name="ExternalLinkIcon"
+              component={ExternalLinkIcon}
               size={size}
               className={classNames(localStyles.externalIcon, stylesProp?.externalIcon)}
             />

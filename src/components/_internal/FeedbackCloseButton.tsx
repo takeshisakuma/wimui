@@ -1,7 +1,8 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize } from "../../types/tokens";
+import { CloseIcon } from "@/icon";
 
 /**
  * Props for the FeedbackCloseButton component.
@@ -47,7 +48,7 @@ export const FeedbackCloseButton = ({
   ariaLabel,
   size = "sm",
 }: FeedbackCloseButtonProps) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.close");
 
   if (!onClose) return null;
@@ -64,7 +65,7 @@ export const FeedbackCloseButton = ({
       onClick={handleClose}
       aria-label={resolvedAriaLabel}
     >
-      <Icon name="CloseIcon" size={size} />
+      <Icon component={CloseIcon} size={size} />
     </button>
   );
 };

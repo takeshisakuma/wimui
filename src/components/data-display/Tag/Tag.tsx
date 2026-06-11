@@ -4,6 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./tag.module.scss";
+import { CloseIcon } from "@/icon";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /**
@@ -57,7 +58,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
             }}
             aria-label="Close"
           >
-            <Icon name="CloseIcon" size="sm" />
+            <Icon component={CloseIcon} size="sm" />
           </button>
         )}
       </IndicatorBase>

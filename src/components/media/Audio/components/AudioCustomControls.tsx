@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
+import { RepeatIcon, ShuffleIcon, ChartIcon, ClockIcon, ChevronLeftIcon, ChevronRightIcon, MuteIcon, VolumeIcon, PauseIcon, PlayIcon } from "@/icon";
 
 export type AudioLabels = {
   seek?: string;
@@ -133,7 +134,7 @@ export function AudioCustomControls({
             onClick={() => setRepeatMode((m) => ((m + 1) % 3) as 0 | 1 | 2)}
             title={repeatTitle}
           >
-            <Icon name="RepeatIcon" size="sm" />
+            <Icon component={RepeatIcon} size="sm" />
             {repeatMode === 1 && <span className={classNames(styles.badge)}>1</span>}
           </button>
           <button
@@ -142,7 +143,7 @@ export function AudioCustomControls({
             onClick={() => setShuffleMode((s) => !s)}
             title={shuffle}
           >
-            <Icon name="ShuffleIcon" size="sm" />
+            <Icon component={ShuffleIcon} size="sm" />
           </button>
           {playbackRate && (
             <button
@@ -169,7 +170,7 @@ export function AudioCustomControls({
               onClick={() => setIsBassBoost(!isBassBoost)}
               title={bassBoost}
             >
-              <Icon name="ChartIcon" size="sm" />
+              <Icon component={ChartIcon} size="sm" />
             </button>
           )}
 
@@ -183,7 +184,7 @@ export function AudioCustomControls({
               onClick={toggleSleepTimer}
               title={sleepTimerLabel}
             >
-              <Icon name="ClockIcon" size="sm" />
+              <Icon component={ClockIcon} size="sm" />
               {remainingSleepTime !== null && (
                 <span className={classNames(styles.badge)} style={{ fontSize: "7px" }}>
                   {Math.ceil(remainingSleepTime / 60)}
@@ -200,7 +201,7 @@ export function AudioCustomControls({
               aria-label={isMuted ? unmute : mute}
             >
               <Icon
-                name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
+                component={isMuted || volume === 0 ? MuteIcon : VolumeIcon}
                 size="sm"
               />
             </button>
@@ -230,7 +231,7 @@ export function AudioCustomControls({
             onClick={() => playNext(-1)}
             title={prev}
           >
-            <Icon name="ChevronLeftIcon" size="sm" />
+            <Icon component={ChevronLeftIcon} size="sm" />
           </button>
           <button
             type="button"
@@ -239,7 +240,7 @@ export function AudioCustomControls({
             title={isPlaying ? pause : play}
             aria-label={isPlaying ? pause : play}
           >
-            <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
+            <Icon component={isPlaying ? PauseIcon : PlayIcon} size="sm" />
           </button>
           <button
             type="button"
@@ -247,7 +248,7 @@ export function AudioCustomControls({
             onClick={() => playNext(1)}
             title={next}
           >
-            <Icon name="ChevronRightIcon" size="sm" />
+            <Icon component={ChevronRightIcon} size="sm" />
           </button>
         </div>
       </div>

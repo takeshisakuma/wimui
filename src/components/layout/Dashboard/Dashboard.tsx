@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { CloseSmallIcon, EditIcon, PlusIcon } from "@/icon";
 import { Icon } from "../../media/Icon/Icon";
 import { Card } from "../../data-display/Card/Card";
@@ -80,7 +80,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation("components");
+    const { t } = useWimTranslation("components");
     const isControlled = controlledEditable !== undefined;
     const [uncontrolledEditable, setUncontrolledEditable] =
       useState(defaultEditable);
@@ -182,7 +182,7 @@ export const DashboardWidgetCard = ({
   ...props
 }: DashboardWidgetProps) => {
   const { editable, onRemove } = useDashboardContext();
-  const { t } = useTranslation("components");
+  const { t } = useWimTranslation("components");
 
   const { id, title, description, content, span = 1, rowSpan = 1 } = widget;
 

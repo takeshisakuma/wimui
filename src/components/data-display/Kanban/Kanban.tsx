@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./kanban.module.scss";
+import { MoreHorizontalIcon } from "@/icon";
 
 export interface KanbanItem {
   id: string;
@@ -300,7 +301,7 @@ export const KanbanCard = ({
           aria-label="Move card"
           disabled={disabled}
         >
-          <Icon name="MoreHorizontalIcon" size="sm" />
+          <Icon component={MoreHorizontalIcon} size="sm" />
         </button>
 
         {activeMobileMenu === id && (

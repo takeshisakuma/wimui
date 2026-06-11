@@ -14,6 +14,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import styles from "./command-palette.module.scss";
+import { SearchIcon } from "@/icon";
 
 // --- Context ---
 type CommandPaletteContextType = {
@@ -321,7 +322,7 @@ export const CommandPaletteInput = ({
 
   return (
     <div className={styles.inputWrapper}>
-      <Icon name="SearchIcon" size="sm" />
+      <Icon component={SearchIcon} size="sm" />
       <input
         ref={inputRef}
         className={styles.input}

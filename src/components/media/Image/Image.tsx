@@ -4,6 +4,7 @@ import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { Icon } from "../Icon/Icon";
 import type { ComponentSize, WimRadiusKey } from "../../../types/tokens";
 import styles from "./image.module.scss";
+import { ImageIcon } from "@/icon";
 
 /**
  * フィルタの強さを定義する型
@@ -410,7 +411,7 @@ export const Image = ({
           <div className={styles.fallback} data-testid="image-fallback">
             {fallback || (
               <div className={styles.defaultFallback}>
-                <Icon name="ImageIcon" size="lg" color="secondary" />
+                <Icon component={ImageIcon} size="lg" color="secondary" />
                 {alt && <span className={styles.fallbackText}>{alt}</span>}
               </div>
             )}

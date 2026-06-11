@@ -114,8 +114,6 @@
     "heading_text": "heading_text",
     "heading_underline": "Underline Heading",
     "heatmap_label": "Mapa de Calor de Atividade",
-    "heatmap_less": "Menos",
-    "heatmap_more": "Mais",
     "kanban_card_deploy": "Deploy para Staging",
     "kanban_card_design": "Design de UI",
     "kanban_card_develop": "Implementar API",

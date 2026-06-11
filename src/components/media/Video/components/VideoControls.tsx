@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
+import { DocumentIcon, ChevronLeftIcon, ChevronRightIcon, SettingsIcon, MonitorIcon, PauseIcon, PlayIcon, MuteIcon, VolumeIcon, MinimizeIcon, MaximizeIcon } from "@/icon";
 
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
 
@@ -113,7 +114,7 @@ export function VideoControls({
           }}
           aria-label={playlistLabel}
         >
-          <Icon name="DocumentIcon" size="sm" />
+          <Icon component={DocumentIcon} size="sm" />
         </button>
       )}
 
@@ -127,7 +128,7 @@ export function VideoControls({
           }}
           aria-label={skipBackward}
         >
-          <Icon name="ChevronLeftIcon" size="sm" />
+          <Icon component={ChevronLeftIcon} size="sm" />
         </button>
       )}
 
@@ -140,7 +141,7 @@ export function VideoControls({
         }}
         aria-label={isPlaying ? pause : play}
       >
-        <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
+        <Icon component={isPlaying ? PauseIcon : PlayIcon} size="sm" />
       </button>
 
       {advancedControls && (
@@ -153,7 +154,7 @@ export function VideoControls({
           }}
           aria-label={skipForward}
         >
-          <Icon name="ChevronRightIcon" size="sm" />
+          <Icon component={ChevronRightIcon} size="sm" />
         </button>
       )}
 
@@ -173,7 +174,7 @@ export function VideoControls({
           }}
           aria-label={nextTrack}
         >
-          <Icon name="ChevronRightIcon" size="md" />
+          <Icon component={ChevronRightIcon} size="md" />
         </button>
       )}
 
@@ -209,7 +210,7 @@ export function VideoControls({
           aria-label={isMuted ? unmute : mute}
         >
           <Icon
-            name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
+            component={isMuted || volume === 0 ? MuteIcon : VolumeIcon}
             size="sm"
           />
         </button>
@@ -239,7 +240,7 @@ export function VideoControls({
           }}
           aria-label={settings}
         >
-          <Icon name="SettingsIcon" size="sm" />
+          <Icon component={SettingsIcon} size="sm" />
         </button>
       )}
 
@@ -254,7 +255,7 @@ export function VideoControls({
           aria-label={pip}
           title={pip}
         >
-          <Icon name="MonitorIcon" size="sm" />
+          <Icon component={MonitorIcon} size="sm" />
         </button>
       )}
 
@@ -268,7 +269,7 @@ export function VideoControls({
         aria-label={isFullscreen ? exitFullscreen : fullscreen}
       >
         <Icon
-          name={isFullscreen ? "MinimizeIcon" : "MaximizeIcon"}
+          component={isFullscreen ? MinimizeIcon : MaximizeIcon}
           size="sm"
         />
       </button>

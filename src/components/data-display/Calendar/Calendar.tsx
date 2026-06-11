@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./calendar.module.scss";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 export type CalendarRange = {
   start: Date | null;
@@ -165,7 +166,7 @@ export const Calendar = ({
           disabled={disabled}
           aria-label="Previous month"
         >
-          <Icon name="ChevronLeftIcon" size="sm" />
+          <Icon component={ChevronLeftIcon} size="sm" />
         </button>
         <div className={styles.title} aria-live="polite">
           {year} / {month + 1}
@@ -177,7 +178,7 @@ export const Calendar = ({
           disabled={disabled}
           aria-label="Next month"
         >
-          <Icon name="ChevronRightIcon" size="sm" />
+          <Icon component={ChevronRightIcon} size="sm" />
         </button>
       </div>
 

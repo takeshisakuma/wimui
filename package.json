@@ -13,7 +13,8 @@
   "sideEffects": [
     "**/*.css",
     "**/*.scss",
-    "./dist/index.js"
+    "./dist/icons.js",
+    "./dist/icons.cjs"
   ],
   "exports": {
     ".": {
@@ -75,7 +76,14 @@
       "types": "./dist/src/tokens.d.ts",
       "import": "./dist/tokens.js",
       "require": "./dist/tokens.cjs"
-    }
+    },
+    "./icons": {
+      "types": "./dist/src/icons.d.ts",
+      "import": "./dist/icons.js",
+      "require": "./dist/icons.cjs"
+    },
+    "./styles.css": "./dist/wimui.css",
+    "./locales/*": "./dist/locales/*"
   },
   "size-limit": [
     {
@@ -118,8 +126,8 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "dev": "npm run generate:icons && vite",
-    "build": "npm run generate:icons && vite build && vite build --mode umd && node scripts/fix-cjs-empty-css.js",
+    "dev": "npm run generate:icons && npm run i18n:bundle && vite",
+    "build": "npm run generate:icons && npm run i18n:bundle && vite build && vite build --mode umd && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
     "generate:icons": "node scripts/generate-icons.js",
     "size": "size-limit",
     "test": "vitest run",
@@ -141,6 +149,7 @@
     "test:vrt:update": "playwright test --update-snapshots",
     "test:vrt:report": "playwright show-report",
     "i18n:sync": "node scripts/sync-i18n.js",
+    "i18n:bundle": "node scripts/generate-i18n-resources.js",
     "i18n:check": "node scripts/check-i18n.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",
@@ -308,7 +317,9 @@
     "{src,stories}/**/*.{ts,tsx}": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
       "node scripts/check-i18n-components.js",
-      "node scripts/check-git-casing.cjs"
+      "node scripts/check-git-casing.cjs",
+      "node scripts/generate-i18n-resources.js",
+      "git add src/i18n/generated/resources.ts"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache"
@@ -321,7 +332,9 @@
       "node scripts/audit-mdx.js"
     ],
     "public/locales/**/*.json": [
-      "node scripts/check-i18n.js"
+      "node scripts/check-i18n.js",
+      "node scripts/generate-i18n-resources.js",
+      "git add src/i18n/generated/resources.ts"
     ],
     "src/icon/*.svg": [
       "npm run generate:icons",

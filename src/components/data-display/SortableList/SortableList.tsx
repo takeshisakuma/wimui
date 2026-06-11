@@ -1,10 +1,11 @@
 import React, { useState, useRef, createContext, useContext, useCallback } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./sortable-list.module.scss";
+import { GripVerticalIcon } from "@/icon";
 
 // --- Context ---
 interface SortableListContextType {
@@ -109,7 +110,7 @@ export const SortableListItem = React.forwardRef<HTMLLIElement, SortableListItem
       disabled: listDisabled,
     } = useSortableList();
     const itemRef = useRef<HTMLLIElement>(null);
-    const { t } = useTranslation("components");
+    const { t } = useWimTranslation("components");
 
     const disabled = listDisabled || itemDisabled;
     const isDragging = draggingIndex === index;
@@ -200,7 +201,7 @@ export const SortableListDragHandle = React.forwardRef<HTMLDivElement, SortableL
         className={classNames(styles.dragHandle, className)}
         {...props}
       >
-        <Icon name="GripVerticalIcon" size="sm" />
+        <Icon component={GripVerticalIcon} size="sm" />
       </Component>
     );
   }

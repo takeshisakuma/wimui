@@ -66,7 +66,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: !isUMD,
       lib: isUMD
         ? {
-            entry: path.resolve(__dirname, "src/index.ts"),
+            entry: path.resolve(__dirname, "src/index.umd.ts"),
             name: "WimUI",
             formats: ["umd"],
             fileName: () => "wimui.umd.js",
@@ -85,6 +85,7 @@ export default defineConfig(({ mode }) => {
               charts: path.resolve(__dirname, "src/charts.ts"),
               ai: path.resolve(__dirname, "src/ai.ts"),
               tokens: path.resolve(__dirname, "src/tokens.ts"),
+              icons: path.resolve(__dirname, "src/icons.ts"),
             },
             formats: ["es", "cjs"],
           },

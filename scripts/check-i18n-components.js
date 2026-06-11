@@ -57,14 +57,14 @@ const files = filesFromArgs.length > 0
 // Extract namespaces from useTranslation("ns"), useTranslation(['ns1','ns2']), etc.
 // Returns an array of namespaces. Defaults to ["common"] if not specified.
 function detectNamespaces(source) {
-  // Array form: useTranslation(["ns1", "ns2", ...])
-  const arrayMatch = source.match(/useTranslation\(\s*\[([^\]]+)\]/);
+  // Array form: useTranslation(["ns1", "ns2", ...]) / useWimTranslation([...])
+  const arrayMatch = source.match(/use(?:Wim)?Translation\(\s*\[([^\]]+)\]/);
   if (arrayMatch) {
     const ns = [...arrayMatch[1].matchAll(/["']([^"']+)["']/g)].map((m) => m[1]);
     if (ns.length > 0) return ns;
   }
-  // String form: useTranslation("ns") or useTranslation('ns')
-  const stringMatch = source.match(/useTranslation\(\s*["']([^"']+)["']\s*\)/);
+  // String form: useTranslation("ns") / useWimTranslation("ns")
+  const stringMatch = source.match(/use(?:Wim)?Translation\(\s*["']([^"']+)["']\s*\)/);
   if (stringMatch) return [stringMatch[1]];
   return ["common"];
 }

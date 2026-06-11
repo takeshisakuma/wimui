@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useId, useCallback, useLayoutEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { FieldTemplate } from "../FieldTemplate";
@@ -51,7 +51,7 @@ export const SignaturePad = ({
   layout = "vertical",
   canvasAriaLabel,
 }: SignaturePadProps) => {
-  const { t } = useTranslation(["common", "components"]);
+  const { t } = useWimTranslation(["common", "components"]);
   const resolvedClearLabel = clearLabel ?? t("signature.clear", { ns: "components", defaultValue: t("button.clear") });
   const resolvedCanvasAriaLabel = canvasAriaLabel ?? t("a11y.signature_canvas");
   const canvasRef = useRef<HTMLCanvasElement>(null);

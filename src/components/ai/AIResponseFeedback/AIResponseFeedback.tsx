@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { ThumbUpIcon, ThumbDownIcon, RefreshIcon } from "@/icon";
 import styles from "./airesponse-feedback.module.scss";
@@ -44,7 +44,7 @@ export const AIResponseFeedback = React.forwardRef<HTMLDivElement, AIResponseFee
     },
     ref
   ) => {
-    const { t } = useTranslation("form");
+    const { t } = useWimTranslation("form");
     const isControlled = controlledFeedback !== undefined;
     const [internalFeedback, setInternalFeedback] = React.useState<AIFeedbackValue | null>(
       defaultFeedback

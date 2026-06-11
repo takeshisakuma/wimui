@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "../../../media/Icon/Icon";
 import { type VideoLabels } from "./VideoControls";
+import { ChevronRightIcon, ChevronLeftIcon, CheckIcon, CloseIcon, PlayIcon } from "@/icon";
 
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
@@ -98,7 +99,7 @@ export function VideoAdvancedMenu({
                 <span>{quality}</span>
                 <span style={{ opacity: 0.7 }}>
                   {qualities[currentQualityIndex].label}{" "}
-                  <Icon name="ChevronRightIcon" size="sm" />
+                  <Icon component={ChevronRightIcon} size="sm" />
                 </span>
               </button>
             )}
@@ -108,7 +109,7 @@ export function VideoAdvancedMenu({
             >
               <span>{playbackRateLabel}</span>
               <span style={{ opacity: 0.7 }}>
-                {playbackRate}x <Icon name="ChevronRightIcon" size="sm" />
+                {playbackRate}x <Icon component={ChevronRightIcon} size="sm" />
               </span>
             </button>
             <button
@@ -117,7 +118,7 @@ export function VideoAdvancedMenu({
             >
               <span>{aspectRatio}</span>
               <span style={{ opacity: 0.7 }}>
-                {getFitLabel(activeFit)} <Icon name="ChevronRightIcon" size="sm" />
+                {getFitLabel(activeFit)} <Icon component={ChevronRightIcon} size="sm" />
               </span>
             </button>
           </div>
@@ -139,7 +140,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className={styles.btn}
             >
-              <Icon name="ChevronLeftIcon" size="sm" />
+              <Icon component={ChevronLeftIcon} size="sm" />
             </button>
             <span>{quality}</span>
           </div>
@@ -152,7 +153,7 @@ export function VideoAdvancedMenu({
                 onClick={() => handleQualityChange(i)}
               >
                 {currentQualityIndex === i && (
-                  <Icon name="CheckIcon" size="sm" />
+                  <Icon component={CheckIcon} size="sm" />
                 )}
                 <span
                   style={{ marginLeft: currentQualityIndex === i ? 0 : 24 }}
@@ -180,7 +181,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className={styles.btn}
             >
-              <Icon name="ChevronLeftIcon" size="sm" />
+              <Icon component={ChevronLeftIcon} size="sm" />
             </button>
             <span>{playbackRateLabel}</span>
           </div>
@@ -195,7 +196,7 @@ export function VideoAdvancedMenu({
                   setActiveMenu("main");
                 }}
               >
-                {playbackRate === r && <Icon name="CheckIcon" size="sm" />}
+                {playbackRate === r && <Icon component={CheckIcon} size="sm" />}
                 <span style={{ marginLeft: playbackRate === r ? 0 : 24 }}>
                   {r === 1.0 ? standard : `${r}x`}
                 </span>
@@ -220,7 +221,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className={styles.btn}
             >
-              <Icon name="ChevronLeftIcon" size="sm" />
+              <Icon component={ChevronLeftIcon} size="sm" />
             </button>
             <span>{aspectRatio}</span>
           </div>
@@ -235,7 +236,7 @@ export function VideoAdvancedMenu({
                   setActiveMenu("main");
                 }}
               >
-                {activeFit === f && <Icon name="CheckIcon" size="sm" />}
+                {activeFit === f && <Icon component={CheckIcon} size="sm" />}
                 <span style={{ marginLeft: activeFit === f ? 0 : 24 }}>
                   {getFitLabel(f)}
                 </span>
@@ -263,7 +264,7 @@ export function VideoAdvancedMenu({
               style={{ marginLeft: "auto" }}
               className={styles.btn}
             >
-              <Icon name="CloseIcon" size="sm" />
+              <Icon component={CloseIcon} size="sm" />
             </button>
           </div>
           <div className={styles.menuItems}>
@@ -281,7 +282,7 @@ export function VideoAdvancedMenu({
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   {currentPlayIndex === i ? (
-                    <Icon name="PlayIcon" size="sm" />
+                    <Icon component={PlayIcon} size="sm" />
                   ) : (
                     <div style={{ width: 20 }} />
                   )}

@@ -5,7 +5,10 @@ import { Blockquote } from "./Blockquote";
 import styles from "./blockquote.module.scss";
 
 // Mock translation
-vi.mock("react-i18next", () => ({
+vi.mock("react-i18next", async () => ({
+  // useWimTranslation（内蔵 i18next フォールバック）が参照する API
+  I18nContext: (await import("react")).createContext(null),
+  getI18n: () => undefined,
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 

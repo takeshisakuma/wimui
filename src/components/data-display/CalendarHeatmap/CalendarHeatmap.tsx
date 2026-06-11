@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import styles from "./calendar-heatmap.module.scss";
 
@@ -66,7 +66,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
     },
     ref,
   ) => {
-    const { t } = useTranslation("common");
+    const { t } = useWimTranslation("common");
     const Component = asChild ? Slot : "div";
     const dataMap = useMemo(() => {
       const map = new Map<string, number>();
@@ -152,13 +152,13 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
           </div>
         </div>
         <div className={styles.footer}>
-          <span>{t("story.heatmap_less", { defaultValue: "Less" })}</span>
+          <span>{t("calendar_heatmap.less")}</span>
           <div className={styles.legend}>
             {[0, 1, 2, 3, 4].map((level) => (
               <div key={level} className={classNames(styles.cell, styles[`level${level}`])} />
             ))}
           </div>
-          <span>{t("story.heatmap_more", { defaultValue: "More" })}</span>
+          <span>{t("calendar_heatmap.more")}</span>
         </div>
       </Component>
     );

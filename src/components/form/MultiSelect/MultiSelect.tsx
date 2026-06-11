@@ -7,6 +7,7 @@ import { InputBase } from "../InputBase";
 import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
+import { CheckIcon } from "@/icon";
 
 export type MultiSelectOption = {
   label: string;
@@ -338,7 +339,7 @@ export const MultiSelect = ({
                   onClick={() => !option.disabled && handleSelect(option.value)}
                   onMouseEnter={() => setFocusedIndex(index)}
                   rightSection={
-                    isSelected ? <Icon name="CheckIcon" size="sm" /> : undefined
+                    isSelected ? <Icon component={CheckIcon} size="sm" /> : undefined
                   }
                   role="option"
                   aria-selected={isSelected}

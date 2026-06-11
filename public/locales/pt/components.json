@@ -606,5 +606,9 @@
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
+  },
+  "calendar_heatmap": {
+    "less": "Menos",
+    "more": "Mais"
   }
 }

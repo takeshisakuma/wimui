@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, IndicatorIntent } from "../../../types/tokens";
 import styles from "./avatar.module.scss";
+import { UserIcon } from "@/icon";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   src?: string;
@@ -42,7 +43,7 @@ export const Avatar = ({
     // Default Icon (User)
     return (
       <span className={styles.icon}>
-        <Icon name="UserIcon" />
+        <Icon component={UserIcon} />
       </span>
     );
   };

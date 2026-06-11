@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useId } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
@@ -57,7 +57,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
     },
     ref
   ) => {
-    const { t } = useTranslation("common");
+    const { t } = useWimTranslation("common");
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = React.useState(defaultValue as string);
     const currentValue = isControlled ? (controlledValue as string) : internalValue;

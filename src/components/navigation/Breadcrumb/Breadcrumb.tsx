@@ -1,11 +1,12 @@
 import React, { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import styles from "./breadcrumb.module.scss";
 import { Link } from "../../navigation/Link/Link";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
+import { ChevronRightIcon } from "@/icon";
 
 type BreadcrumbItem = {
   label: React.ReactNode;
@@ -31,13 +32,13 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
   asChild,
   ...props
 }, ref) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.breadcrumb");
   const Component = asChild ? Slot : "nav";
 
   const defaultSeparator = (
     <Icon
-      name="ChevronRightIcon"
+      component={ChevronRightIcon}
       size={size}
       className={styles.separatorIcon}
     />

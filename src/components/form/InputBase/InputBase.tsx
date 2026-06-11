@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { WimIntent, FieldIntent, FieldWidth } from "../../../types/tokens";
@@ -67,7 +67,7 @@ export const InputBase = ({
   clearAriaLabel,
   styles: stylesProp,
 }: InputBaseProps) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const resolvedLeftIconAriaLabel = leftIconAriaLabel ?? t("a11y.left_icon_action");
   const resolvedClearAriaLabel = clearAriaLabel ?? t("a11y.clear_input");
   const isSemanticWidth =

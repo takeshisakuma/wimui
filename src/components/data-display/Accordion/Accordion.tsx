@@ -11,6 +11,7 @@ import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import styles from "./accordion.module.scss";
 import { Icon } from "../../media/Icon/Icon";
+import { ChevronDownIcon } from "@/icon";
 
 type AccordionContextType = {
   value: string[];
@@ -259,7 +260,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
     >
       <span className={styles.triggerContent}>{children}</span>
       <Icon
-        name="ChevronDownIcon"
+        component={ChevronDownIcon}
         className={classNames(
           styles.chevron,
           item.isLogicOpen && styles.open,

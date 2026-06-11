@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Slider } from "../Slider/Slider";
 import { IconButton } from "../IconButton/IconButton";
 import { Button } from "../Button/Button";
@@ -75,7 +75,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation("form");
+    const { t } = useWimTranslation("form");
     const [zoom, setZoom] = useState(1);
     const [rotation, setRotation] = useState(0);
     const [position, setPosition] = useState({ x: 0, y: 0 });

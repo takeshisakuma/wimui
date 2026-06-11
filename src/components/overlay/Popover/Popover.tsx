@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import {
   FloatingPortal,
   useMergeRefs,
@@ -14,6 +14,7 @@ import { Icon } from "../../media/Icon/Icon";
 import styles from "./popover.module.scss";
 
 import { useFloatingElement } from "../../_internal/useFloatingElement";
+import { CloseSmallIcon } from "@/icon";
 
 type FloatingRefs = ReturnType<typeof useFloatingElement>["refs"];
 
@@ -228,7 +229,7 @@ export const PopoverClose = ({
   asChild?: boolean;
   ariaLabel?: string;
 }) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.close");
   const context = React.useContext(PopoverContext);
   if (!context) return null;
@@ -264,7 +265,7 @@ export const PopoverClose = ({
       aria-label={resolvedAriaLabel}
       {...props}
     >
-      {children || <Icon name="CloseSmallIcon" width={15} height={15} />}
+      {children || <Icon component={CloseSmallIcon} width={15} height={15} />}
     </button>
   );
 };

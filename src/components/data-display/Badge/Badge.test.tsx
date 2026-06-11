@@ -4,7 +4,10 @@ import { Badge } from "./Badge";
 import styles from "./badge.module.scss";
 
 // Mock useTranslation
-vi.mock("react-i18next", () => ({
+vi.mock("react-i18next", async () => ({
+  // useWimTranslation（内蔵 i18next フォールバック）が参照する API
+  I18nContext: (await import("react")).createContext(null),
+  getI18n: () => undefined,
   useTranslation: () => ({
     t: (str: string) => str,
   }),

@@ -1,5 +1,133 @@
 # wimui
 
+React コンポーネントライブラリ。190+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt-BR）・WAI-ARIA 準拠のアクセシビリティを備えています。
+
+- ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
+- 動作要件: React >= 18 / react-dom >= 18
+
+## インストール
+
+現在 npm には未公開です（`package.json` の `private: true`）。利用するにはこのリポジトリからパッケージを生成してください。
+
+```bash
+# このリポジトリ側
+git clone https://github.com/takeshisakuma/wimui.git
+cd wimui
+npm install
+npm run build
+npm pack    # wimui-1.0.0.tgz が生成される
+
+# 利用するアプリ側
+npm install /path/to/wimui-1.0.0.tgz
+```
+
+`i18next` / `react-i18next` は必須の peerDependencies ですが、npm 7 以降では自動的にインストールされます。アプリ側でのセットアップは不要です（後述の「多言語化」を参照）。
+
+## クイックスタート
+
+アプリのエントリポイントでスタイルを一度だけ読み込みます。
+
+```tsx
+import "wimui/styles.css"; // リセット・デザイントークン・全コンポーネントのスタイル
+
+import { Button } from "wimui";
+
+export const App = () => <Button>保存</Button>;
+```
+
+これだけで動作します。i18next の初期化やテーマ設定は不要です。
+
+## アイコン
+
+アイコンの指定方法は2通りあります。
+
+**1. コンポーネントを直接渡す（推奨・tree-shaking が効く）**
+
+```tsx
+import { Button, Icon, CheckIcon } from "wimui";
+
+<Button icon={<Icon component={CheckIcon} />}>保存</Button>
+<Icon component={CheckIcon} size="sm" />
+```
+
+**2. 文字列で指定する**
+
+`icon="CheckIcon"` のような文字列ベースの指定を使う場合は、エントリポイントで一度だけアイコンを登録してください（未登録のまま文字列指定すると開発時に警告が出ます）。
+
+```tsx
+import "wimui/icons"; // 全アイコン（約 30KB minify / 5KB gzip）を登録
+
+<Button icon="CheckIcon">保存</Button>
+```
+
+文字列指定を使わなければ `wimui/icons` の読み込みは不要で、アイコンはバンドルに含まれません。
+
+## 多言語化（i18n）
+
+セットアップなしで英語表示で動作します（コンポーネントが使用する翻訳キーのみを内蔵）。表示言語を切り替えるには:
+
+```tsx
+import { wimuiI18n } from "wimui";
+
+wimuiI18n.changeLanguage("ja"); // "en" | "ja" | "pt"
+```
+
+アプリ自体が i18next を使用している場合（`I18nextProvider` または `initReactI18next` で初期化済み）、wimui のコンポーネントは自動的にそのインスタンスを優先します。その場合は wimui の翻訳リソースをアプリ側のインスタンスに登録してください。
+
+```ts
+import common from "wimui/locales/ja/common.json";
+import components from "wimui/locales/ja/components.json";
+import form from "wimui/locales/ja/form.json";
+
+i18n.init({
+  // ...アプリの設定...
+  fallbackNS: ["common", "components", "form"],
+});
+i18n.addResourceBundle("ja", "common", common, true);
+i18n.addResourceBundle("ja", "components", components, true);
+i18n.addResourceBundle("ja", "form", form, true);
+```
+
+## ダークモード
+
+`<html>` の `data-theme` 属性で制御します。未指定の場合は OS の `prefers-color-scheme` に追従します。
+
+```html
+<html data-theme="dark">  <!-- ダーク固定 -->
+<html data-theme="light"> <!-- ライト固定 -->
+<html>                    <!-- OS 設定に追従 -->
+```
+
+## バンドルサイズと import 方法
+
+ルートからの named import で未使用コンポーネントはバンドルに含まれません（`sideEffects` 設定済み）。カテゴリ別のサブパスも利用できます。
+
+```tsx
+import { Button } from "wimui";        // tree-shaking が効く
+import { Button } from "wimui/form";   // カテゴリ別サブパス
+```
+
+カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens`
+
+## オプショナルな peerDependencies
+
+以下のコンポーネントを使う場合のみ、対応するパッケージを追加インストールしてください。使わない場合は不要です。
+
+| コンポーネント | 必要なパッケージ |
+|---|---|
+| `charts/*`（AreaChart, BarChart 等） | `recharts` |
+| ScheduleView | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| NodeGraph, InteractiveGraph | `@xyflow/react` |
+| Markdown, MarkdownRenderer, StreamingText | `react-markdown` `remark-gfm` |
+| QRCode | `qrcode.react` |
+| CodeDiffViewer | `diff` |
+
+## npm 公開について
+
+`npm run release`（changesets）によるリリースフローは整備済みですが、`private: true` のため現在は公開されません。公開する場合は `package.json` から `"private": true` を削除してください（パッケージ名 `wimui` は npm で未取得であることを確認済み・2026年6月時点）。
+
+---
+
 ## 開発
 
 ### Storybook 起動

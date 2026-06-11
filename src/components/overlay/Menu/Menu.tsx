@@ -4,6 +4,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./menu.module.scss";
+import { ChevronRightIcon } from "@/icon";
 
 // Context to share state between components
 const MenuContext = React.createContext<{
@@ -292,7 +293,7 @@ export const SubMenu = ({
               isOpen && styles.open,
             )}
           >
-            <Icon name="ChevronRightIcon" size="sm" />
+            <Icon component={ChevronRightIcon} size="sm" />
           </span>
         }
         role="menuitem"

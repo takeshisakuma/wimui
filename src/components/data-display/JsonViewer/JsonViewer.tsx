@@ -3,7 +3,8 @@ import classNames from "classnames";
 import localStyles from "./json-viewer.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { IconButton } from "../../form/IconButton/IconButton";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { PlusIcon, TrashIcon, ChevronDownIcon, ChevronRightIcon } from "@/icon";
 
 export interface JsonViewerProps extends React.HTMLAttributes<HTMLDivElement> {
   /** The JSON data to display */
@@ -176,7 +177,7 @@ const JsonNode = ({
   onDelete: (path: (string | number)[]) => void;
   onAdd: (path: (string | number)[]) => void;
 }) => {
-  const { t } = useTranslation();
+  const { t } = useWimTranslation();
   const [expanded, setExpanded] = useState(currentDepth < depth);
   const isObject = value !== null && typeof value === "object";
   const isArray = Array.isArray(value);
@@ -195,7 +196,7 @@ const JsonNode = ({
             title={t("jsonViewer.addItem")}
             aria-label={t("jsonViewer.addItem")}
           >
-            <Icon name="PlusIcon" size="xs" />
+            <Icon component={PlusIcon} size="xs" />
           </button>
         )}
         {currentDepth > 0 && (
@@ -206,7 +207,7 @@ const JsonNode = ({
             title={t("jsonViewer.deleteItem")}
             aria-label={t("jsonViewer.deleteItem")}
           >
-            <Icon name="TrashIcon" size="xs" />
+            <Icon component={TrashIcon} size="xs" />
           </button>
         )}
       </div>
@@ -251,7 +252,7 @@ const JsonNode = ({
       >
         {!isEmpty && (
           <Icon
-            name={expanded ? "ChevronDownIcon" : "ChevronRightIcon"}
+            component={expanded ? ChevronDownIcon : ChevronRightIcon}
             size="sm"
             className={localStyles.toggle}
           />
@@ -314,7 +315,7 @@ const JsonNode = ({
  */
 export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
   ({ data: initialData, expandDepth = 1, showCopy = true, showToolbar = true, editable = false, onChange, className, ...props }, ref) => {
-    const { t } = useTranslation();
+    const { t } = useWimTranslation();
     const [data, setData] = useState(initialData);
     const [prevInitialData, setPrevInitialData] = useState(initialData);
     const titleId = useId();

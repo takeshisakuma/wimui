@@ -3,7 +3,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Reaction } from "./Reaction";
 
-vi.mock("react-i18next", () => ({
+vi.mock("react-i18next", async () => ({
+  // useWimTranslation（内蔵 i18next フォールバック）が参照する API
+  I18nContext: (await import("react")).createContext(null),
+  getI18n: () => undefined,
   useTranslation: () => ({ t: (key: string, params?: Record<string, unknown>) => {
     if (params) return `${key}:${JSON.stringify(params)}`;
     return key;

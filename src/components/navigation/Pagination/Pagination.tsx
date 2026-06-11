@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { Selectbox } from "../../form/Selectbox/Selectbox";
 import { Input } from "../../form/Input/Input";
 import { Button } from "../../form/Button/Button";
 import styles from "./pagination.module.scss";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 export interface PaginationProps {
   /** Total number of items */
@@ -67,7 +68,7 @@ export const Pagination = ({
   showQuickJumper = false,
   labels = {},
 }: PaginationProps) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const {
     prevPage = t("a11y.go_to_prev_page"),
     nextPage = t("a11y.go_to_next_page"),
@@ -191,7 +192,7 @@ export const Pagination = ({
               disabled={current === 1}
               aria-label={prevPage}
             >
-              <Icon name="ChevronLeftIcon" size="sm" />
+              <Icon component={ChevronLeftIcon} size="sm" />
             </button>
           </li>
           <li className={classNames(styles.item, styles.simplePager)}>
@@ -211,7 +212,7 @@ export const Pagination = ({
               disabled={current === totalPages}
               aria-label={nextPage}
             >
-              <Icon name="ChevronRightIcon" size="sm" />
+              <Icon component={ChevronRightIcon} size="sm" />
             </button>
           </li>
         </ul>
@@ -242,7 +243,7 @@ export const Pagination = ({
                 disabled={current === 1}
                 aria-label={prevPage}
               >
-                <Icon name="ChevronLeftIcon" size="sm" />
+                <Icon component={ChevronLeftIcon} size="sm" />
               </button>
             </li>
 
@@ -301,7 +302,7 @@ export const Pagination = ({
                 disabled={current === totalPages}
                 aria-label={nextPage}
               >
-                <Icon name="ChevronRightIcon" size="sm" />
+                <Icon component={ChevronRightIcon} size="sm" />
               </button>
             </li>
           </ul>

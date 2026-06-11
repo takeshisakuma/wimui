@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./table.module.scss";
 import { Icon } from "../../media/Icon/Icon";
+import { ChevronDownIcon } from "@/icon";
 
 export { useTableSort, getNextSortDirection } from "./useTableSort";
 export type { SortDirection, SortConfig, UseTableSortOptions, UseTableSortReturn } from "./useTableSort";
@@ -243,7 +244,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
           <Slottable>{children}</Slottable>
           {sortable && (
             <span className={classNames(styles.sortIcon, styles[sortDirection])}>
-              <Icon name="ChevronDownIcon" size="sm" />
+              <Icon component={ChevronDownIcon} size="sm" />
             </span>
           )}
         </div>

@@ -11,6 +11,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
+import { ChevronRightIcon } from "@/icon";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -580,7 +581,7 @@ const TreeView = ({
                     }
                     tabIndex={-1}
                   >
-                    <Icon name="ChevronRightIcon" size="sm" />
+                    <Icon component={ChevronRightIcon} size="sm" />
                   </button>
                 ) : (
                   <span className={localStyles.spacer} />
@@ -923,7 +924,7 @@ export const TreeViewItem = ({
                 aria-label={isExpanded ? `Collapse ${typeof label === "string" ? label : ""}` : `Expand ${typeof label === "string" ? label : ""}`}
                 tabIndex={-1}
               >
-                <Icon name="ChevronRightIcon" size="sm" />
+                <Icon component={ChevronRightIcon} size="sm" />
               </button>
             )}
             {!hasChildren && <span className={localStyles.spacer} />}

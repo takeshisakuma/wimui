@@ -7,7 +7,7 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import styles from "./splitter.module.scss";
 
@@ -265,7 +265,7 @@ const SplitterHandle = ({
   ariaLabel,
   ...props
 }: SplitterHandleProps & { ariaLabel?: string }) => {
-  const { t } = useTranslation("common");
+  const { t } = useWimTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.resize_panel");
   const { onResizeStart, orientation } = useSplitter();
 

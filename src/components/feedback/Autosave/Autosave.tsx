@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { CheckCircleIcon, AlertCircleIcon, SpinnerIcon } from "../../../icon";
 import styles from "./autosave.module.scss";
 
@@ -20,7 +20,7 @@ export type AutosaveProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Autosave = React.forwardRef<HTMLDivElement, AutosaveProps>(
   ({ status, savedAt, errorMessage, className, ...props }, ref) => {
-    const { t } = useTranslation("common");
+    const { t } = useWimTranslation("common");
 
     if (status === "idle") return null;
 

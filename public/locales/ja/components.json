@@ -606,5 +606,9 @@
   },
   "visual": {
     "accessibility": "視覚性"
+  },
+  "calendar_heatmap": {
+    "less": "少ない",
+    "more": "多い"
   }
 }

@@ -20,6 +20,7 @@ npm run stylelint         # Stylelint (--max-warnings=0)
 npm run tokens:build      # デザイントークン再生成
 npm run i18n:sync         # 翻訳キーを en→ja/pt へ自動翻訳
 npm run i18n:check        # 3言語間の翻訳キー整合性チェック
+npm run i18n:bundle       # コンポーネント使用キーの内蔵リソース再生成 (src/i18n/generated/)
 npm run audit-mdx         # MDX 必須セクション欠落チェック
 npm run scaffold -- <Name> <category>  # コンポーネント雛形生成
 ```

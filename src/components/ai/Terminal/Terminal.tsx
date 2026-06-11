@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { CheckIcon, CopyIcon, CloseSmallIcon } from "@/icon";
 import styles from "./terminal.module.scss";
@@ -114,7 +114,7 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
     },
     ref
   ) => {
-    const { t } = useTranslation("form");
+    const { t } = useWimTranslation("form");
     const [copied, setCopied] = React.useState(false);
     const bodyRef = useRef<HTMLDivElement>(null);
 

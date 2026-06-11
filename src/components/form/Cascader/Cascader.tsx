@@ -7,6 +7,7 @@ import { InputBase } from "../InputBase";
 import styles from "./cascader.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
+import { ChevronRightIcon } from "@/icon";
 
 function getLabelText(label: React.ReactNode): string {
   if (typeof label === "string") return label;
@@ -438,7 +439,7 @@ export const Cascader = ({
                     }}
                     rightSection={
                       hasChildren ? (
-                        <Icon name="ChevronRightIcon" size="sm" />
+                        <Icon component={ChevronRightIcon} size="sm" />
                       ) : undefined
                     }
                     role="option"
