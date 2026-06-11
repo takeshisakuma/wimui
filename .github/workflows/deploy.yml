@@ -28,3 +28,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
+          # ビルド成果物の履歴は不要なため、常に1コミットの orphan ブランチとして
+          # force push する（リポジトリ肥大化防止。過去は644コミット/約250MBが蓄積）
+          force_orphan: true
