@@ -259,6 +259,10 @@ export const wimResources: Resource = {
       "a11y": {
         "close": "閉じる"
       },
+      "calendar_heatmap": {
+        "less": "少ない",
+        "more": "多い"
+      },
       "dashboard_widget": {
         "add_widget": "ウィジェットを追加",
         "enter_edit": "編集",
@@ -288,10 +292,6 @@ export const wimResources: Resource = {
       },
       "sortable_list": {
         "drag_handle_label": "ドラッグして並べ替え"
-      },
-      "calendar_heatmap": {
-        "less": "少ない",
-        "more": "多い"
       }
     },
     "form": {
@@ -441,6 +441,10 @@ export const wimResources: Resource = {
       "a11y": {
         "close": "Fechar"
       },
+      "calendar_heatmap": {
+        "less": "Menos",
+        "more": "Mais"
+      },
       "dashboard_widget": {
         "add_widget": "Adicionar widget",
         "enter_edit": "Editar",
@@ -470,10 +474,6 @@ export const wimResources: Resource = {
       },
       "sortable_list": {
         "drag_handle_label": "Arraste para reordenar"
-      },
-      "calendar_heatmap": {
-        "less": "Menos",
-        "more": "Mais"
       }
     },
     "form": {

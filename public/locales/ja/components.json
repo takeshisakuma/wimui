@@ -33,6 +33,10 @@
     "guide_link_btn": "Guide: Link vs Button (リンクとボタンの使い分け)",
     "page_transition": "ページ遷移を行うが、視覚的にボタンとして強調したい場合（セマンティクスは `<a>`）。"
   },
+  "calendar_heatmap": {
+    "less": "少ない",
+    "more": "多い"
+  },
   "cat": {
     "ai": "AI"
   },
@@ -606,9 +610,5 @@
   },
   "visual": {
     "accessibility": "視覚性"
-  },
-  "calendar_heatmap": {
-    "less": "少ない",
-    "more": "多い"
   }
 }

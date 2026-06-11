@@ -33,6 +33,10 @@
     "guide_link_btn": "Guia: Link vs Button (A diferença e o seu uso)",
     "page_transition": "Quando mudar de página, mas for necessário dar ênfase visual como botão (semântica é `<a>`)."
   },
+  "calendar_heatmap": {
+    "less": "Menos",
+    "more": "Mais"
+  },
   "cat": {
     "ai": "IA"
   },
@@ -606,9 +610,5 @@
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
-  },
-  "calendar_heatmap": {
-    "less": "Menos",
-    "more": "Mais"
   }
 }
