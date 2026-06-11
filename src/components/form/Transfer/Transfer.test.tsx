@@ -246,3 +246,134 @@ describe("Transfer", () => {
     });
   });
 });
+
+describe("Transfer edge cases", () => {
+  it("works uncontrolled (internal state)", () => {
+    render(<Transfer dataSource={dataSource} />);
+    fireEvent.click(screen.getAllByRole("option")[0]); // Content 1 を選択
+    fireEvent.click(screen.getAllByRole("button")[0]); // 右へ移動
+    // target 側にも listbox ができ、Content 1 が移動している
+    const listboxes = screen.getAllByRole("listbox");
+    expect(listboxes).toHaveLength(2);
+    expect(listboxes[1].textContent).toContain("Content 1");
+    expect(listboxes[0].textContent).not.toContain("Content 1");
+  });
+
+  it("does nothing when disabled", () => {
+    const onChange = vi.fn();
+    render(<Transfer dataSource={dataSource} disabled onChange={onChange} />);
+    const option = screen.getAllByRole("option")[0];
+    fireEvent.click(option);
+    expect(option).toHaveAttribute("aria-selected", "false");
+    const [sourceListbox] = screen.getAllByRole("listbox");
+    // disabled 中はキーボード操作でフォーカスが進まない（クリック時の値のまま）
+    const focusedBefore = sourceListbox.getAttribute("aria-activedescendant");
+    fireEvent.keyDown(sourceListbox, { key: "ArrowDown" });
+    expect(sourceListbox.getAttribute("aria-activedescendant")).toBe(focusedBefore);
+    screen.getAllByRole("button").forEach((b) => expect(b).toBeDisabled());
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("toggles select-all on and off via the header checkbox", () => {
+    render(<Transfer dataSource={dataSource} />);
+    const headerCheckbox = screen.getAllByRole("checkbox")[0];
+    fireEvent.click(headerCheckbox);
+    expect(screen.getByText("3/4")).toBeInTheDocument();
+    fireEvent.click(headerCheckbox);
+    expect(screen.getAllByText("0/4")[0]).toBeInTheDocument();
+  });
+
+  it("shows noData message for empty lists", () => {
+    render(<Transfer dataSource={[]} labels={{ noData: "Empty!" }} />);
+    expect(screen.getAllByText("Empty!")).toHaveLength(2);
+    expect(screen.queryAllByRole("listbox")).toHaveLength(0);
+  });
+
+  it("uses custom button labels", () => {
+    render(
+      <Transfer
+        dataSource={dataSource}
+        labels={{ moveToTarget: "右へ", moveToSource: "左へ" }}
+      />,
+    );
+    expect(screen.getByLabelText("右へ")).toBeInTheDocument();
+    expect(screen.getByLabelText("左へ")).toBeInTheDocument();
+  });
+
+  it("announces moves via the aria-live region", async () => {
+    render(<Transfer dataSource={dataSource} />);
+    fireEvent.click(screen.getAllByRole("option")[0]);
+    fireEvent.click(screen.getAllByRole("option")[1]);
+    fireEvent.click(screen.getAllByRole("button")[0]);
+    expect(await screen.findByText("Moved 2 items to target")).toBeInTheDocument();
+    // 戻すと単数形のメッセージ
+    const listboxes = screen.getAllByRole("listbox");
+    const targetOption = screen
+      .getAllByRole("option")
+      .filter((o) => listboxes[1].contains(o))[0];
+    fireEvent.click(targetOption);
+    fireEvent.click(screen.getAllByRole("button")[1]);
+    expect(await screen.findByText("Moved 1 item to source")).toBeInTheDocument();
+  });
+
+  it("focuses the first enabled item when the list receives focus", () => {
+    render(<Transfer dataSource={dataSource} />);
+    const [sourceListbox] = screen.getAllByRole("listbox");
+    fireEvent.focus(sourceListbox);
+    const options = screen
+      .getAllByRole("option")
+      .filter((o) => sourceListbox.contains(o));
+    expect(sourceListbox.getAttribute("aria-activedescendant")).toBe(options[0].id);
+  });
+
+  it("ignores Space without focus and Enter without selection", () => {
+    const onChange = vi.fn();
+    render(<Transfer dataSource={dataSource} onChange={onChange} />);
+    const [sourceListbox] = screen.getAllByRole("listbox");
+    fireEvent.keyDown(sourceListbox, { key: " " });
+    fireEvent.keyDown(sourceListbox, { key: "Enter" });
+    expect(onChange).not.toHaveBeenCalled();
+    expect(
+      screen.getAllByRole("option").every((o) => o.getAttribute("aria-selected") === "false"),
+    ).toBe(true);
+  });
+
+  it("uses a virtual list for large datasets", () => {
+    // 高さを返す ResizeObserver に差し替えて仮想化を有効にする
+    const RealRO = window.ResizeObserver;
+    window.ResizeObserver = class {
+      private cb: ResizeObserverCallback;
+      constructor(cb: ResizeObserverCallback) {
+        this.cb = cb;
+      }
+      observe() {
+        this.cb(
+          [{ contentRect: { height: 200 } } as ResizeObserverEntry],
+          this as unknown as ResizeObserver,
+        );
+      }
+      unobserve() {}
+      disconnect() {}
+    } as unknown as typeof ResizeObserver;
+
+    try {
+      const bigData: TransferItem[] = Array.from({ length: 60 }, (_, i) => ({
+        key: String(i),
+        title: `Item ${i}`,
+      }));
+      render(<Transfer dataSource={bigData} />);
+      const options = screen.getAllByRole("option");
+      // 仮想化により全件はレンダリングされない
+      expect(options.length).toBeLessThan(60);
+      expect(options[0]).toHaveAttribute("aria-setsize", "60");
+      // End キーで末尾へ移動するとスクロール調整パスを通る
+      const [sourceListbox] = screen.getAllByRole("listbox");
+      fireEvent.keyDown(sourceListbox, { key: "End" });
+      expect(sourceListbox.getAttribute("aria-activedescendant")).toContain("option-59");
+      fireEvent.keyDown(sourceListbox, { key: "Home" });
+      expect(sourceListbox.getAttribute("aria-activedescendant")).toContain("option-0");
+    } finally {
+      window.ResizeObserver = RealRO;
+    }
+  });
+});
