@@ -152,6 +152,7 @@ eslint_output.txt
 # Playwright
 playwright-report/
 test-results/
+test-results.json
 
 
 .claude/
@@ -160,6 +161,7 @@ missing_en_*.txt
 
 # Temporary work scripts and files
 tmp/
+tmp-charts/
 scripts/tmp_*.cjs
 # Temporary scratch scripts
 scratch/
@@ -168,6 +170,6 @@ scratch/
 src/data/docgen_*.json
 src/data/.docgen-cache.json
 
-
-
+# Test run output dumps
 test_output.txt
+test-output.txt
