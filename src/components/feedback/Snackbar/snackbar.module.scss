@@ -124,8 +124,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--wim-snackbar-close-size, var(--wim-spacing-3xl, 24px));
-    height: var(--wim-snackbar-close-size, var(--wim-spacing-3xl, 24px));
+    width: var(--wim-snackbar-close-size, var(--wim-spacing-3xl));
+    height: var(--wim-snackbar-close-size, var(--wim-spacing-3xl));
     padding: 0;
     color: var(--wim-snackbar-close-idle);
     cursor: pointer;

@@ -15,7 +15,8 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
   - `RangeSlider`: トラック高さ（6px）・サム直径（18px）— サムがトラックの3倍径になる比率。ヒット領域（24px）はサムを確実にカバーする最小タッチ領域。
   - `Loader (bars)`: 各サイズのバー寸法（sm: 3×12px、md: 4×16px、lg: 8×32px）— 幅:高さ = 1:4 の比率を維持。
   - `Loader (dots)`: 各サイズのドット直径（sm: 4px、md: 8px、lg: 16px）— sm を基準とした倍増スケール。
-  - `ChatUI`: 吹き出し矢印の `border-width: 6px 6px 6px 0` — CSS border-trick による三角形描画は px 固定が必須。
+  - `ChatUI`: 吹き出し矢印の `border-width`（6px 系）と配置オフセット（`top: 10px` / `±6px` / `calc(50% - 6px)`）— CSS border-trick による三角形描画と、矢印寸法（6px）に連動する配置は px 固定が必須。
+  - `ChatUI`: タイピングドットの直径（6px × 6px）— typing バブル高さ（24px）に対する比率を維持するドット寸法。
   - `Cascader / TreeSelect`: スクロールバー `border-radius: 3px`（スクロールバー幅6pxの半分 = 真円）。
   - `Splitter`: ハンドルの負マージン（-4px = ハンドル幅8pxの半分）— パネルとのオーバーラップ量の幾何学的計算値。
   - `Alert / Banner`: アイコンの `svg` 寸法（Alert: 18px、Banner: 16px）— ボタン領域に対する適正比率。

@@ -388,6 +388,9 @@ export const Image = ({
           fadeIn && isLoaded && styles.isLoaded,
           shouldShowSkeleton && fadeIn && styles.loading,
         )}
+        // 遅延読み込みで img 未描画でも高さを確保し、レイアウトシフトや
+        // 高さがコンテンツ依存の親（Carousel 等）の崩壊を防ぐ
+        style={height !== undefined ? { height } : undefined}
         data-testid="image-inner"
       >
         {isIntersecting && !hasError && (

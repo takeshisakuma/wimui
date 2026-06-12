@@ -154,7 +154,12 @@ export const Box = React.forwardRef(
     return (
       <Component
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames(
+          styles.root,
+          typeof w === "object" && w !== null && styles.responsiveW,
+          typeof h === "object" && h !== null && styles.responsiveH,
+          className,
+        )}
         style={boxStyle}
         {...props}
       >

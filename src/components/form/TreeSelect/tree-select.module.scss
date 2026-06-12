@@ -127,7 +127,7 @@
     }
 
     &::-webkit-scrollbar {
-      width: var(--wim-spacing-lg, 0.6rem);
+      width: var(--wim-spacing-lg);
     }
 
     &::-webkit-scrollbar-thumb {

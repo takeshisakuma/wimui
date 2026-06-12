@@ -48,6 +48,7 @@
   .wave {
     stroke: currentcolor;
     stroke-width: 2;
+    vector-effect: non-scaling-stroke; /* preserveAspectRatio="none" の横伸縮でストロークが歪むのを防ぐ */
   }
 
   /* Idle waveform: translate the double-width path left by 50% (= 1 period) */

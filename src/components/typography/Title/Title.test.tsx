@@ -39,8 +39,8 @@ describe("Title", () => {
   it("handles numeric sizes (e.g., 2xl)", () => {
     render(<Title size="2xl">Title Text</Title>);
     const heading = screen.getByRole("heading");
-    // "2xl".replace(/^(\d+)/, 'xl$1') => "xl2xl"
-    expect(heading).toHaveClass(styles.xl2xl);
+    // "2xl".replace(/^(\d+)xl$/, "xl$1") => "xl2"
+    expect(heading).toHaveClass(styles.xl2);
   });
 
   it("handles decoration underline", () => {

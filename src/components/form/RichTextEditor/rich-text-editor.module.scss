@@ -102,7 +102,7 @@
       flex-flow: row wrap;
       gap: var(--wim-spacing-fine);
       align-items: center;
-      padding: var(--wim-spacing-xs, 4px) var(--wim-spacing-sm, 8px);
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     }
   
@@ -111,7 +111,7 @@
       flex-shrink: 0;
       width: 1px;
       height: 20px;
-      margin: 0 var(--wim-spacing-xs, 4px);
+      margin: 0 var(--wim-spacing-xs);
       background-color: var(--wim-color-secondary);
     }
   
@@ -168,7 +168,7 @@
     .content {
       box-sizing: border-box;
       flex: 1;
-      padding: var(--wim-spacing-sm, 8px) var(--wim-spacing-md, 16px);
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
       overflow-y: auto;
       font-size: var(--wim-font-size-md);
       line-height: var(--wim-line-height-loose);

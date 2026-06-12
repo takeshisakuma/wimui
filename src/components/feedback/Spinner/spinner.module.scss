@@ -13,8 +13,8 @@
 
   .root {
     display: block;
-    width: var(--spinner-size, var(--wim-spacing-3xl, 24px));
-    height: var(--spinner-size, var(--wim-spacing-3xl, 24px));
+    width: var(--spinner-size, var(--wim-spacing-3xl));
+    height: var(--spinner-size, var(--wim-spacing-3xl));
     animation: wim-spinner-rotate var(--spinner-rotate-duration, 2s) linear infinite;
 
     &.sm {
@@ -22,7 +22,7 @@
     }
 
     &.md {
-      --spinner-size: var(--wim-spacing-3xl, 24px);
+      --spinner-size: var(--wim-spacing-3xl);
     }
 
     &.lg {

@@ -107,7 +107,7 @@ export const Overview: StoryObj = {
         </ComparisonGrid>
 
         {/* Specialized Lists */}
-        <ComparisonGrid title={t("audit:specialized_inputs")}>
+        <ComparisonGrid title={t("audit:specialized_lists")}>
           <ComponentGroup label={t("audit:label_sortable_list")}>
             <Box style={{ width: "100%", maxWidth: "400px" }}>
               <SortableList onSortEnd={handleSortEnd}>

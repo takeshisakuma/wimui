@@ -7,22 +7,22 @@
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md, 8px);
+    border-radius: var(--wim-radius-md);
   }
   
   .messageList {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: var(--wim-spacing-xl, 32px);
-    padding: var(--wim-spacing-md, 16px);
+    gap: var(--wim-spacing-xl);
+    padding: var(--wim-spacing-md);
     overflow-y: auto;
     background-color: var(--wim-color-surface-variant);
   }
   
   .message {
     display: flex;
-    gap: var(--wim-spacing-sm, 12px);
+    gap: var(--wim-spacing-sm);
     align-items: flex-start;
     max-width: 80%;
   
@@ -48,11 +48,11 @@
     }
 
     &.primary {
-      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-sent);
     }
 
     &.secondary {
-      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-bg: var(--wim-color-bg-secondary);
     }
   }
   
@@ -63,20 +63,20 @@
   .contentWrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--wim-spacing-xs, 8px);
+    gap: var(--wim-spacing-xs);
     min-width: 0;
   }
   
   .sender {
-    font-size: var(--wim-font-size-sm, 14px);
-    font-weight: var(--wim-font-weight-medium, 500);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
   }
   
   .bubble {
     position: relative;
-    padding: var(--wim-spacing-md, 16px) var(--wim-spacing-lg, 24px);
-    line-height: var(--wim-line-height-normal, 1.5);
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-chat-bubble-color);
     overflow-wrap: break-word;
     background-color: var(--wim-chat-bubble-bg);
@@ -94,8 +94,8 @@
   }
 
   .typingDot {
-    width: 6px;
-    height: 6px;
+    width: 6px; /* Exception: Geometric Harmony — タイピングドット直径、バブル高さに対する比率を維持 */
+    height: 6px; /* Exception: Geometric Harmony — タイピングドット直径、バブル高さに対する比率を維持 */
     background-color: currentcolor;
     border-radius: 50%;
     opacity: var(--wim-opacity-dim);
@@ -142,8 +142,8 @@
 
   .message.left.hasAvatar .bubble::before {
     position: absolute;
-    top: 10px;
-    left: -6px;
+    top: 10px; /* Exception: Geometric Harmony — 矢印(高さ12px)を1行目テキストに揃える固定位置 */
+    left: -6px; /* Exception: Geometric Harmony — 矢印幅(6px)分の突き出しオフセット */
     content: "";
     border-color: transparent var(--wim-chat-bubble-bg) transparent transparent;
     border-style: solid;
@@ -152,24 +152,36 @@
 
   .message.right.hasAvatar .bubble::before {
     position: absolute;
-    top: 10px;
-    right: -6px;
+    top: 10px; /* Exception: Geometric Harmony — 矢印(高さ12px)を1行目テキストに揃える固定位置 */
+    right: -6px; /* Exception: Geometric Harmony — 矢印幅(6px)分の突き出しオフセット */
     content: "";
     border-color: transparent transparent transparent var(--wim-chat-bubble-bg);
     border-style: solid;
     border-width: 6px 0 6px 6px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
+
+  /* typing バブルは高さが radius の2倍のピル形状になり側辺が全て曲線のため、
+     三角を縦中央に置き、底辺を 2px バブル内に食い込ませて本体との隙間を防ぐ */
+  .message.left.hasAvatar .bubble.typing::before {
+    top: calc(50% - 6px);
+    border-width: 6px 8px 6px 0; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
+  }
+
+  .message.right.hasAvatar .bubble.typing::before {
+    top: calc(50% - 6px);
+    border-width: 6px 0 6px 8px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
+  }
   
   .timestamp {
-    font-size: var(--wim-font-size-xs, 12px);
+    font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
   }
   
   .inputArea {
     display: flex;
-    gap: var(--wim-spacing-sm, 12px);
+    gap: var(--wim-spacing-sm);
     align-items: flex-end;
-    padding: var(--wim-spacing-sm, 12px);
+    padding: var(--wim-spacing-sm);
     background-color: var(--wim-color-bg-component);
     border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
@@ -201,7 +213,7 @@
     min-width: 0;
     padding: var(--wim-spacing-xs) 0;
     font-family: inherit;
-    font-size: var(--wim-font-size-md, 16px);
+    font-size: var(--wim-font-size-md);
     line-height: normal;
     color: var(--wim-color-text-primary);
     appearance: none;
@@ -222,11 +234,11 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
+    min-width: var(--wim-height-sm);
     height: var(--wim-height-sm);
     padding: 0 var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
-    font-weight: var(--wim-font-weight-medium, 500);
+    font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-primary);
     cursor: pointer;
     background-color: transparent;
@@ -255,7 +267,7 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    width: var(--wim-height-sm);
     height: var(--wim-height-sm);
     margin-bottom: var(--wim-spacing-3xs); // Align slightly better with text
     color: var(--wim-color-text-tertiary);
@@ -273,7 +285,7 @@
     }
 
     &:active {
-      background-color: var(--wim-color-bg-active);
+      background-color: oklch(from var(--wim-color-bg-secondary) calc(l * 0.9) c h);
     }
   }
   
@@ -282,7 +294,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-weight: var(--wim-font-weight-medium, 500);
+    font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-white);
     background-color: var(--wim-color-avatar-default);
     border-radius: var(--wim-radius-full);

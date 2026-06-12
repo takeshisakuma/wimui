@@ -24,6 +24,7 @@ export const Overview: StoryObj = {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     const headingLevels = [1, 2, 3, 4, 5, 6] as const;
+    const headingSizes = { 1: "3xl", 2: "2xl", 3: "xl", 4: "lg", 5: "md", 6: "sm" } as const;
     const textSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
     return (
@@ -32,7 +33,7 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:label_heading")}>
           {headingLevels.map((level) => (
             <ComponentGroup key={level} label={t("audit:label_level_n", { level })}>
-              <Title tag={`h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"}>
+              <Title tag={`h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"} size={headingSizes[level]}>
                 {t("audit:sample_typography_heading", { level })}
               </Title>
             </ComponentGroup>
@@ -54,14 +55,10 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:label_link_styles")}>
           <ComponentGroup label={t("audit:label_link_styles")}>
             <Text>
-              <Trans i18nKey="audit:sample_link_standard">
-                This is a <Link href="#">Standard Link</Link> inside a paragraph.
-              </Trans>
+              <Trans i18nKey="audit:sample_link_standard" components={[<Link key="link" href="#" />]} />
             </Text>
             <Text color="text-secondary">
-              <Trans i18nKey="audit:sample_link_subtle">
-                This is a <Link href="#" priority="secondary">Subtle Link</Link> inside a secondary paragraph.
-              </Trans>
+              <Trans i18nKey="audit:sample_link_subtle" components={[<Link key="link" href="#" priority="secondary" />]} />
             </Text>
           </ComponentGroup>
         </ComparisonGrid>

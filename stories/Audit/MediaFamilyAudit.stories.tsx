@@ -77,7 +77,7 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:media_image_radius_check")}>
           <Stack direction="row" gap="lg" wrap>
             {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
-              <ComponentGroup key={r} label={`radius: ${r}`}>
+              <ComponentGroup key={r} label={`radius: ${r}`} width="fit-content">
                 <Image 
                   src={sampleImages[0]} 
                   alt={r} 
@@ -138,14 +138,14 @@ export const Overview: StoryObj = {
         {/* Other Media Components */}
         <ComparisonGrid title={t("audit:media_other_components")}>
           <Stack direction="row" gap="xl" wrap align="start">
-            <ComponentGroup label={t("audit:label_aspect_ratio")}>
+            <ComponentGroup label={t("audit:label_aspect_ratio")} width="fit-content">
               <Box style={{ width: "240px" }}>
                 <AspectRatio ratio={16 / 9}>
                   <Image src={sampleImages[1]} alt="16:9" radius="md" />
                 </AspectRatio>
               </Box>
             </ComponentGroup>
-            <ComponentGroup label={t("audit:label_carousel")}>
+            <ComponentGroup label={t("audit:label_carousel")} width="fit-content">
               <Box style={{ width: "400px" }}>
                 <Carousel showIndicators showControls loop>
                   {sampleImages.map((src, i) => (

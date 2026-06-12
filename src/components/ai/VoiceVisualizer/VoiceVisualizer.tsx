@@ -101,7 +101,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         viewBox={`0 0 ${VB_W} ${height}`}
         width="100%"
         height={height}
-        preserveAspectRatio={mode === "bars" ? "none" : "xMidYMid meet"}
+        preserveAspectRatio="none"
         className={classNames(
           styles.root,
           styles[mode],
@@ -110,7 +110,8 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
           !isActive && styles.muted,
           className
         )}
-        style={style}
+        /* グローバルリセット svg { height: auto } が height 属性を打ち消すため CSS でも指定する */
+        style={{ height, ...style }}
         {...props}
       >
         {mode === "bars" &&
@@ -138,7 +139,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
           >
             <polyline
               className={styles.wave}
-              points={useIdle ? idleWavePoints : (wavePoints ?? "")}
+              points={wavePoints ?? idleWavePoints}
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
