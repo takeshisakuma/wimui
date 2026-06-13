@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, forwardRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import styles from "./toggle-group.module.scss";
@@ -56,7 +57,7 @@ type ToggleGroupProps = {
 /**
  * ToggleGroup component allows users to select one or multiple options from a set of buttons.
  */
-export const ToggleGroup = ({
+export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
   options,
   value,
   defaultValue,
@@ -73,7 +74,7 @@ export const ToggleGroup = ({
   required,
   layout = "vertical",
   id: customId,
-}: ToggleGroupProps) => {
+}, ref) => {
   const generatedId = React.useId();
   const id = customId || `wim-toggle-group-${generatedId}`;
   const labelId = `${id}-label`;
@@ -111,7 +112,6 @@ export const ToggleGroup = ({
   useEffect(() => {
     if (selectionMode === "single" && isControlled && typeof value === "string") {
       const idx = options.findIndex((o) => !o.disabled && o.value === value);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (idx >= 0) setFocusedIndex(idx);
     }
   }, [value, selectionMode, isControlled, options]);
@@ -201,7 +201,7 @@ export const ToggleGroup = ({
       className={className}
     >
       <div
-        ref={containerRef}
+        ref={useMergedRef(containerRef, ref)}
         id={id}
         className={classNames(
           styles.root,
@@ -267,4 +267,6 @@ export const ToggleGroup = ({
       </div>
     </FieldTemplate>
   );
-};
+});
+
+ToggleGroup.displayName = "ToggleGroup";

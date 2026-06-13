@@ -1,7 +1,8 @@
-import React, { useId, useRef } from "react";
+import React, { useId, useRef, forwardRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import localStyles from "./segmented-control.module.scss";
@@ -54,7 +55,7 @@ type SegmentedControlProps = {
   };
 };
 
-export const SegmentedControl = ({
+export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(({
   options,
   value,
   onChange,
@@ -68,7 +69,7 @@ export const SegmentedControl = ({
   disabled = false,
   id: customId,
   styles: stylesProp,
-}: SegmentedControlProps) => {
+}, ref) => {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
   const id = customId || `wim-segmented-${generatedId}`;
@@ -119,7 +120,7 @@ export const SegmentedControl = ({
         className={className}
       >
         <div
-          ref={containerRef}
+          ref={useMergedRef(containerRef, ref)}
           id={id}
           className={classNames(
             localStyles.root,
@@ -185,4 +186,6 @@ export const SegmentedControl = ({
       </div>
     </FieldTemplate>
   );
-};
+});
+
+SegmentedControl.displayName = "SegmentedControl";

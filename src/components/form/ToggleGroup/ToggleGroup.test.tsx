@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { ToggleGroup } from "./ToggleGroup";
@@ -522,5 +523,13 @@ describe("ToggleGroup", () => {
     const message = screen.getByRole("alert");
     expect(group).toHaveAttribute("aria-describedby", message.id);
     expect(message).toHaveTextContent("Required");
+  });
+
+  it("forwards ref to the container element", async () => {
+    const ref = createRef<HTMLDivElement>();
+    await act(async () => {
+      render(<ToggleGroup ref={ref} options={options} defaultValue="opt1" />);
+    });
+    expect(ref.current).toBe(screen.getByRole("radiogroup"));
   });
 });

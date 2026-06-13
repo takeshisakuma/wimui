@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { SegmentedControl } from "./SegmentedControl";
@@ -172,5 +173,13 @@ describe("SegmentedControl", () => {
     expect(group).toHaveAttribute("aria-invalid", "true");
     expect(group).toHaveAttribute("aria-describedby");
     expect(screen.getByRole("alert")).toHaveTextContent("Required");
+  });
+
+  it("forwards ref to the container element", async () => {
+    const ref = createRef<HTMLDivElement>();
+    await act(async () => {
+      render(<SegmentedControl ref={ref} options={options} value="1" onChange={() => {}} />);
+    });
+    expect(ref.current).toBe(screen.getByRole("radiogroup"));
   });
 });

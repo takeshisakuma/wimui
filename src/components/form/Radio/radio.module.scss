@@ -1,3 +1,5 @@
+@use "../../../styles/field-mixins" as field;
+
 @layer component {
   .root {
     position: relative;
@@ -69,7 +71,7 @@
 
     // Error state
     &.error:not(:disabled) {
-      border-color: var(--wim-color-text-error);
+      @include field.error-border;
 
       &::after {
         background-color: var(--wim-color-destructive);

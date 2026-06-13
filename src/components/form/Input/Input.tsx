@@ -106,13 +106,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       const input = inputRef.current;
       if (!input) return;
 
+      // `getOwnPropertyDescriptor(...).set` は汎用的な PropertyDescriptor として扱われるため、
+      // ネイティブセッターとして呼び出せるよう具体的な関数型へキャストする。
       const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
         "value",
-        // `getOwnPropertyDescriptor(...).set` の型は汎用的な PropertyDescriptor として扱われるため、
-        // ネイティブセッターとして呼び出すには `as any` でキャストする必要がある。
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      )?.set as any;
+      )?.set as ((value: string) => void) | undefined;
 
       if (nativeInputValueSetter) {
         nativeInputValueSetter.call(input, "");

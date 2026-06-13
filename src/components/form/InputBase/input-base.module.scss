@@ -1,3 +1,5 @@
+@use "../../../styles/field-mixins" as field;
+
 @layer component {
   .root {
     --wim-input-offset-left: var(--wim-spacing-md);
@@ -51,7 +53,7 @@
     }
 
     &.error {
-      border-color: var(--wim-color-text-error);
+      @include field.error-border;
     }
 
     &.warning {
@@ -67,7 +69,8 @@
       box-shadow: var(--wim-shadow-focus-ring);
 
       &.error {
-        border-color: var(--wim-color-text-error);
+        @include field.error-border;
+
         box-shadow: var(--wim-shadow-error-ring);
       }
 

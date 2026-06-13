@@ -1,3 +1,5 @@
+@use "../../../styles/field-mixins" as field;
+
 @layer component {
   .root {
     box-sizing: border-box;
@@ -40,11 +42,11 @@
     }
   
     &.error {
-      border-color: var(--wim-color-text-error);
+      @include field.error-border;
 
       &:focus-within {
-        border-color: var(--wim-color-text-error);
-        box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
+        @include field.error-border;
+        @include field.error-ring(1px);
       }
     }
 

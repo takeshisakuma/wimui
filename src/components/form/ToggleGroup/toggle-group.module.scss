@@ -1,4 +1,5 @@
 @use "../../../styles/indicator-mixins" as indicator;
+@use "../../../styles/field-mixins" as field;
 
 @layer component {
   .root {
@@ -12,8 +13,8 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &.error {
-      border-color: var(--wim-color-text-error);
-      box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-text-error);
+      @include field.error-border;
+      @include field.error-ring(var(--wim-border-width-thin));
     }
 
     &.fullWidth {

@@ -76,8 +76,7 @@ export const InputBase = ({
   const childrenWithClasses = React.Children.map(children, (child) => {
     if (!React.isValidElement(child)) return child;
     
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return React.cloneElement(child as React.ReactElement<any>, {
+    return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
       disabled: isDisabled ? true : (child.props as Record<string, unknown>).disabled,
       className: classNames((child.props as Record<string, unknown>).className as string, localStyles.inner, stylesProp?.inner),
     });

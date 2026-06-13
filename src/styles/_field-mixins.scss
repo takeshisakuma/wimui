@@ -1,0 +1,21 @@
+/**
+ * Shared error-state styling primitives for form fields.
+ *
+ * These mixins emit no CSS on their own (only when `@include`-ed), so `@use`-ing
+ * this partial from a component module adds nothing to the bundle until used.
+ * Include them inside a component's error selector (e.g. `&.error { @include error-border; }`).
+ */
+
+/* Solid validation-error border. */
+@mixin error-border {
+  border-color: var(--wim-color-text-error);
+}
+
+/*
+ * Inset validation-error ring for border-less / filled controls
+ * (Switch track, SegmentedControl, etc.). `$width` matches the control's
+ * existing border weight.
+ */
+@mixin error-ring($width: var(--wim-border-width-thick)) {
+  box-shadow: inset 0 0 0 $width var(--wim-color-text-error);
+}

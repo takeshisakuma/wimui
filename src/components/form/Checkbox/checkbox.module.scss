@@ -1,4 +1,6 @@
-﻿@layer component {
+﻿@use "../../../styles/field-mixins" as field;
+
+@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -86,7 +88,7 @@
 
     // Error state
     &.error:not(:disabled) {
-      border-color: var(--wim-color-text-error);
+      @include field.error-border;
 
       &:checked,
       &:indeterminate {
