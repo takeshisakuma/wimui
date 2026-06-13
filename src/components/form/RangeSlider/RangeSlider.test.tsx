@@ -25,6 +25,15 @@ describe("RangeSlider", () => {
     });
   });
 
+  it("applies error state to the slider visuals", () => {
+    render(<RangeSlider error="Field error" defaultValue={[20, 80]} />);
+    expect(screen.getByTestId("range-slider-root")).toHaveClass(styles.error);
+    screen.getAllByRole("slider").forEach((thumb) => {
+      expect(thumb).toHaveAttribute("aria-invalid", "true");
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent("Field error");
+  });
+
   it("handles keyboard navigation", () => {
     const onChange = vi.fn();
     render(<RangeSlider min={0} max={100} defaultValue={[20, 80]} onChange={onChange} />);

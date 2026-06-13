@@ -84,6 +84,22 @@
       box-shadow: var(--wim-shadow-focus);
     }
 
+    // Error state
+    &.error:not(:disabled) {
+      border-color: var(--wim-color-text-error);
+
+      &:checked,
+      &:indeterminate {
+        background-color: var(--wim-color-destructive);
+        border-color: var(--wim-color-destructive);
+      }
+
+      &:focus-visible {
+        outline-color: var(--wim-color-text-error);
+        box-shadow: var(--wim-shadow-error-ring);
+      }
+    }
+
     // Disabled state
     &:disabled {
       cursor: not-allowed;

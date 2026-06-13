@@ -233,7 +233,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       >
         <Component
           role="presentation"
-          className={classNames(styles.root, disabled && styles.disabled)}
+          className={classNames(styles.root, disabled && styles.disabled, error && styles.error)}
           onMouseDown={handleMouseDown}
           onTouchStart={handleMouseDown}
           ref={ref}
@@ -258,6 +258,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
                 aria-labelledby={label ? labelId : ariaLabelledBy}
                 aria-label={label ? undefined : ariaLabel}
                 aria-describedby={error ? errorId : undefined}
+                aria-invalid={error ? true : undefined}
                 tabIndex={disabled ? -1 : 0}
                 onKeyDown={handleKeyDown}
               />

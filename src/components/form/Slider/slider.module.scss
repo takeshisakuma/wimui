@@ -20,6 +20,24 @@
         cursor: not-allowed;
       }
     }
+
+    &.error:not(.disabled) {
+      .track {
+        background-color: var(--wim-color-destructive);
+      }
+
+      .thumb {
+        border-color: var(--wim-color-destructive);
+
+        &:hover {
+          box-shadow: 0 0 0 calc(var(--wim-focus-outline-width) * 2) oklch(from var(--wim-color-destructive) l c h / 0.1);
+        }
+
+        &:focus-visible {
+          box-shadow: inset 0 0 0 2px var(--wim-color-destructive);
+        }
+      }
+    }
   }
 
   .trackContainer {

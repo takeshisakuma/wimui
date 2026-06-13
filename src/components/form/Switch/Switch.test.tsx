@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Switch } from "./Switch";
+import styles from "./switch.module.scss";
 
 describe("Switch", () => {
   it("renders with children", () => {
@@ -24,5 +25,12 @@ describe("Switch", () => {
   it("is disabled when disabled prop is true", () => {
     render(<Switch disabled />);
     expect(screen.getByRole("switch")).toBeDisabled();
+  });
+
+  it("applies error state", () => {
+    render(<Switch error />);
+    const input = screen.getByRole("switch");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveClass(styles.error);
   });
 });

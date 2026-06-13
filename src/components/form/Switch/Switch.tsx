@@ -9,6 +9,8 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
   size?: ComponentSize;
   className?: string;
   children?: React.ReactNode;
+  /** エラー状態として表示する（aria-invalid が付与される） */
+  error?: boolean;
 };
 
 /**
@@ -16,7 +18,7 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
  */
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { children, size = "md", className, disabled, id: customId, ...props },
+    { children, size = "md", error = false, className, disabled, id: customId, ...props },
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement>(null);
@@ -43,8 +45,10 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           className={classNames(
             styles.input,
             size !== "md" && styles[size],
+            error && styles.error,
           )}
           disabled={disabled}
+          aria-invalid={error || undefined}
           ref={mergedRef}
           {...props}
         />

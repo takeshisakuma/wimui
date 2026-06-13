@@ -8,13 +8,15 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
   asChild?: boolean;
   children?: React.ReactNode;
   indeterminate?: boolean;
+  /** エラー状態として表示する（aria-invalid が付与される） */
+  error?: boolean;
 }
 
 /**
  * Checkbox component for boolean user input.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ asChild = false, children, indeterminate = false, className, disabled, ...props }, ref) => {
+  ({ asChild = false, children, indeterminate = false, error = false, className, disabled, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(inputRef, ref);
 
@@ -32,8 +34,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <input
           type="checkbox"
-          className={styles.input}
+          className={classNames(styles.input, error && styles.error)}
           disabled={disabled}
+          aria-invalid={error || undefined}
           ref={mergedRef}
           {...props}
         />

@@ -89,6 +89,7 @@ export const SwitchGroup = ({
             value={option.value}
             checked={(currentValue || []).includes(option.value)}
             disabled={disabled || option.disabled}
+            error={!!error}
             name={name}
             onChange={(e) => handleChange(option.value, e.target.checked)}
           >{option.label}</Switch>

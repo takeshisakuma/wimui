@@ -82,6 +82,21 @@
       }
     }
 
+    // Error state
+    &.error:not(:disabled) {
+      box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-text-error);
+
+      &:checked {
+        background-color: var(--wim-color-destructive);
+        box-shadow: none;
+      }
+
+      &:focus-visible {
+        outline-color: var(--wim-color-text-error);
+        box-shadow: var(--wim-shadow-error-ring);
+      }
+    }
+
     &:disabled {
       cursor: not-allowed;
       opacity: var(--wim-opacity-ghost);

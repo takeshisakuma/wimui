@@ -7,13 +7,15 @@ import styles from "./radio.module.scss";
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
   asChild?: boolean;
   children?: React.ReactNode;
+  /** エラー状態として表示する（aria-invalid は radio ロールで非サポートのため RadioGroup 側に付与される） */
+  error?: boolean;
 }
 
 /**
  * Radio component for single selection from a list.
  */
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  ({ asChild = false, children, className, disabled, ...props }, ref) => {
+  ({ asChild = false, children, error = false, className, disabled, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(inputRef, ref);
 
@@ -25,7 +27,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       >
         <input
           type="radio"
-          className={styles.input}
+          className={classNames(styles.input, error && styles.error)}
           disabled={disabled}
           ref={mergedRef}
           {...props}

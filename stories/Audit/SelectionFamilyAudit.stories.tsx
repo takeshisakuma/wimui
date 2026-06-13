@@ -166,9 +166,9 @@ export const Overview: StoryObj = {
             <Slider defaultValue={50} style={{ width: "200px" }} aria-label={t("audit:label_intent_default")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_intent_error")}>
-            <Checkbox defaultChecked>{t("audit:label_intent_error")}</Checkbox>
-            <Radio defaultChecked>{t("audit:label_intent_error")}</Radio>
-            <Switch defaultChecked>{t("audit:label_intent_error")}</Switch>
+            <Checkbox defaultChecked error>{t("audit:label_intent_error")}</Checkbox>
+            <Radio defaultChecked error>{t("audit:label_intent_error")}</Radio>
+            <Switch defaultChecked error>{t("audit:label_intent_error")}</Switch>
             <InteractiveSegmentedControl
               options={[{ label: "A", value: "a" }, { label: "B", value: "b" }]}
               value="a"
@@ -179,7 +179,7 @@ export const Overview: StoryObj = {
               defaultValue="a"
               error={t("audit:label_error_message")}
             />
-            <Slider defaultValue={40} style={{ width: "200px" }} aria-label={t("audit:label_intent_error")} />
+            <Slider defaultValue={40} style={{ width: "200px" }} aria-label={t("audit:label_intent_error")} error={t("audit:label_error_message")} />
           </ComponentGroup>
         </ComparisonGrid>
 

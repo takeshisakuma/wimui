@@ -103,6 +103,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                 value={option.value}
                 checked={currentValue.includes(option.value)}
                 disabled={disabled || option.disabled}
+                error={!!error}
                 name={name}
                 onChange={(e) => handleChange(option.value, e.target.checked)}
               >

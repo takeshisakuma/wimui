@@ -26,6 +26,18 @@ describe("Checkbox", () => {
     expect(checkbox.indeterminate).toBe(true);
   });
 
+  it("applies error state", () => {
+    render(<Checkbox error>With error</Checkbox>);
+    const checkbox = screen.getByLabelText("With error");
+    expect(checkbox).toHaveAttribute("aria-invalid", "true");
+    expect(checkbox).toHaveClass(styles.error);
+  });
+
+  it("does not set aria-invalid without error", () => {
+    render(<Checkbox>No error</Checkbox>);
+    expect(screen.getByLabelText("No error")).not.toHaveAttribute("aria-invalid");
+  });
+
   it("supports asChild prop", () => {
     render(
       <Checkbox asChild>

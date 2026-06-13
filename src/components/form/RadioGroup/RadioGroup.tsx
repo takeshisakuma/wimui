@@ -100,6 +100,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
                 value={option.value}
                 checked={currentValue === option.value}
                 disabled={disabled || option.disabled}
+                error={!!error}
                 name={name}
                 onChange={() => handleChange(option.value)}
               >
