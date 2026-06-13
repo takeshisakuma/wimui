@@ -511,4 +511,16 @@ describe("ToggleGroup", () => {
       expect(onChange).not.toHaveBeenCalled();
     });
   });
+
+  it("applies error state visuals and links the message via aria", async () => {
+    await act(async () => {
+      render(<ToggleGroup options={options} defaultValue="opt1" error="Required" />);
+    });
+    const group = screen.getByRole("radiogroup");
+    expect(group).toHaveClass(styles.error);
+    expect(group).toHaveAttribute("aria-invalid", "true");
+    const message = screen.getByRole("alert");
+    expect(group).toHaveAttribute("aria-describedby", message.id);
+    expect(message).toHaveTextContent("Required");
+  });
 });

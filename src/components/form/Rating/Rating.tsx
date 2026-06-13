@@ -261,6 +261,7 @@ export const Rating = ({
         aria-disabled={!readOnly && disabled ? true : undefined}
         aria-required={!readOnly ? required : undefined}
         aria-describedby={!readOnly && error ? errorId : undefined}
+        aria-invalid={!readOnly && error ? true : undefined}
         {...props}
       >
         {stars}

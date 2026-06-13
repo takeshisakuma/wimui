@@ -162,4 +162,15 @@ describe("SegmentedControl", () => {
     await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
     expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
   });
+
+  it("applies error state visuals and aria", async () => {
+    await act(async () => {
+      render(<SegmentedControl options={options} value="1" onChange={() => {}} error="Required" />);
+    });
+    const group = screen.getByRole("radiogroup");
+    expect(group).toHaveClass(styles.error);
+    expect(group).toHaveAttribute("aria-invalid", "true");
+    expect(group).toHaveAttribute("aria-describedby");
+    expect(screen.getByRole("alert")).toHaveTextContent("Required");
+  });
 });

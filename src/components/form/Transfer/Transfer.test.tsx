@@ -376,4 +376,11 @@ describe("Transfer edge cases", () => {
       window.ResizeObserver = RealRO;
     }
   });
+
+  it("links the error message to the group via aria-describedby", () => {
+    render(<Transfer dataSource={dataSource} error="Required" />);
+    const message = screen.getByRole("alert");
+    expect(message).toHaveTextContent("Required");
+    expect(screen.getByRole("group")).toHaveAttribute("aria-describedby", message.id);
+  });
 });

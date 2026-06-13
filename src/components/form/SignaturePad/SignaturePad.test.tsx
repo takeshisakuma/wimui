@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { SignaturePad } from "./SignaturePad";
+import styles from "./signature-pad.module.scss";
 
 describe("SignaturePad", () => {
   let mockCtx: {
@@ -118,5 +119,14 @@ describe("SignaturePad", () => {
     fireEvent.mouseUp(canvas);
     
     expect(handleChange).not.toHaveBeenCalled();
+  });
+
+  it("applies error state visuals and links the message via aria", () => {
+    render(<SignaturePad error="Required" />);
+    const canvas = screen.getByRole("img");
+    expect(canvas.closest(`.${styles.root}`)).toHaveClass(styles.error);
+    const message = screen.getByRole("alert");
+    expect(message).toHaveTextContent("Required");
+    expect(canvas).toHaveAttribute("aria-describedby", message.id);
   });
 });

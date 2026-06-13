@@ -126,11 +126,13 @@ export const SegmentedControl = ({
             localStyles[size],
             fullWidth && localStyles.fullWidth,
             isReady && localStyles.ready,
+            error && localStyles.error,
             stylesProp?.root,
           )}
           role="radiogroup"
           aria-labelledby={label ? labelId : undefined}
           aria-required={required}
+          aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
         >
           <div

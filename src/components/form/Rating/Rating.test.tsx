@@ -320,4 +320,10 @@ describe("Rating", () => {
       expect(stars[1]).toHaveAttribute("aria-checked", "false");
     });
   });
+
+  it("sets aria-invalid on the radiogroup when error is present", () => {
+    render(<Rating count={5} error="Required" />);
+    expect(screen.getByRole("radiogroup")).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByRole("alert")).toHaveTextContent("Required");
+  });
 });

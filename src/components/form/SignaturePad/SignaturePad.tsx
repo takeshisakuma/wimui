@@ -208,6 +208,7 @@ export const SignaturePad = ({
         className={classNames(
           styles.root,
           disabled && styles.disabled,
+          error && styles.error,
         )}
         style={style}
       >

@@ -48,4 +48,10 @@ describe("FileUpload", () => {
     render(<FileUpload noFileLabel="No document chosen" />);
     expect(screen.getByText("No document chosen")).toBeInTheDocument();
   });
+
+  it("sets aria-invalid on the trigger when error is present", () => {
+    render(<FileUpload error="Required" />);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByRole("alert")).toHaveTextContent("Required");
+  });
 });

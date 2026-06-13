@@ -209,11 +209,14 @@ export const ToggleGroup = ({
           styles[selectionMode],
           fullWidth && styles.fullWidth,
           isReady && styles.ready,
+          error && styles.error,
         )}
         role={containerRole}
         aria-label={ariaLabel}
         aria-labelledby={label ? labelId : ariaLabelledBy}
         aria-orientation="horizontal"
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
       >
       <div
         className={classNames(

@@ -104,6 +104,7 @@ export const FileUpload = ({
           aria-labelledby={labelId}
           aria-describedby={errorId}
           aria-required={required}
+          aria-invalid={error ? true : undefined}
         >{buttonLabel}</Button>
         <span
           className={classNames(
