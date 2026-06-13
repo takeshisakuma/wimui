@@ -40,7 +40,7 @@
     transition: var(--wim-transition-base);
 
     &:hover:not(:disabled) {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
       border-color: var(--wim-color-primary);
     }
@@ -50,7 +50,7 @@
     }
 
     &.active {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
       border-color: var(--wim-color-primary);
 

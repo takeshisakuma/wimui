@@ -2,7 +2,7 @@
   .root {
     display: block;
     overflow: hidden;
-    color: var(--wim-color-primary);
+    color: var(--wim-color-text-accent);
     transition: opacity var(--wim-duration-base) var(--wim-easing-standard),
                 color var(--wim-duration-base) var(--wim-easing-standard);
 

@@ -21,6 +21,7 @@
       "text-disabled": { "value": "{pccs.gy6-5}" },
       "text-white": { "value": "{pccs.w}" },
       "text-error": { "value": "{pccs.s2}" },
+      "text-accent": { "value": "{wim.color.primary}" },
       "bg-app": { "value": "{pccs.w}" },
       "bg-component": { "value": "{pccs.w}" },
       "bg-primary": { "value": "{pccs.s16}" },

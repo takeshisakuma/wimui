@@ -50,7 +50,7 @@
       }
 
       &.active {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-text-accent);
 
         .icon {
           transform: translateY(calc(var(--wim-spacing-3xs) * -1));

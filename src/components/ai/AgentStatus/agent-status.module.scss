@@ -61,7 +61,7 @@
   }
 
   .thinking {
-    color: var(--wim-color-primary);
+    color: var(--wim-color-text-accent);
 
     .dot {
       animation: agent-pulse 1.6s var(--wim-easing-standard, ease-in-out) infinite;
@@ -69,7 +69,7 @@
   }
 
   .running {
-    color: var(--wim-color-primary);
+    color: var(--wim-color-text-accent);
 
     .dot {
       background: transparent;

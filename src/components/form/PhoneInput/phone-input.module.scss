@@ -119,7 +119,7 @@
 
     &.selected {
       font-weight: var(--wim-font-weight-medium);
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: oklch(from var(--wim-color-primary) l c h / 0.08);
     }
   }

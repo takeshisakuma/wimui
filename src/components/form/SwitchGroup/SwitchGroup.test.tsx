@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { SwitchGroup } from "./SwitchGroup";
@@ -80,8 +81,33 @@ describe("SwitchGroup", () => {
     expect(group).toHaveAttribute("aria-labelledby");
   });
 
-  it("renders error message", () => {
-    render(<SwitchGroup options={options} error="Required" />);
+  it("renders error message and links it to the group via aria-describedby", () => {
+    const { container } = render(<SwitchGroup options={options} error="Required" />);
     expect(screen.getByText("Required")).toBeInTheDocument();
+    const message = screen.getByRole("alert");
+    const group = container.querySelector("[role='group']");
+    expect(group).toHaveAttribute("aria-describedby", message.id);
+    expect(message.id).toBeTruthy();
+  });
+
+  it("forwards ref to the group element", () => {
+    const ref = createRef<HTMLDivElement>();
+    render(<SwitchGroup options={options} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    expect(ref.current).toHaveAttribute("role", "group");
+  });
+
+  it("spreads extra props onto the group element", () => {
+    const { container } = render(
+      <SwitchGroup options={options} data-testid="switch-group" id="my-group" />,
+    );
+    const group = container.querySelector("[role='group']");
+    expect(group).toHaveAttribute("data-testid", "switch-group");
+    expect(group).toHaveAttribute("id", "my-group");
+  });
+
+  it("propagates error state to the switches", () => {
+    render(<SwitchGroup options={options} error="Required" />);
+    expect(screen.getByLabelText("Option 1")).toHaveAttribute("aria-invalid", "true");
   });
 });

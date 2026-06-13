@@ -146,12 +146,12 @@
 
     &.active {
       font-weight: var(--wim-font-weight-medium);
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
     }
 
     &.selected {
       font-weight: var(--wim-font-weight-medium);
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background: var(--wim-color-primary-light);
     }
   }

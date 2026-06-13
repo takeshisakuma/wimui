@@ -277,12 +277,12 @@
     transition: transform var(--wim-duration-base);
   
     &.asc {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       transform: rotate(180deg);
     }
   
     &.desc {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
     }
   }
 

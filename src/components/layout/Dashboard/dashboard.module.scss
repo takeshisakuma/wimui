@@ -145,7 +145,7 @@
   transition: var(--wim-transition-base);
 
   &:hover {
-    color: var(--wim-color-primary);
+    color: var(--wim-color-text-accent);
     background: var(--wim-color-primary-subtle);
     border-color: var(--wim-color-primary-muted);
   }

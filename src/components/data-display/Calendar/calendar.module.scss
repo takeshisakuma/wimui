@@ -119,7 +119,7 @@
   
     &.today {
       font-weight: var(--wim-font-weight-bold);
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       border-color: oklch(from var(--wim-color-primary) l c h / 0.3);
     }
   

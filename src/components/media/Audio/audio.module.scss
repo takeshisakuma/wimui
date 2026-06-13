@@ -253,13 +253,13 @@
       color var(--wim-transition-fast);
 
     &:hover {
-      color: var(--wim-color-primary); // Accent color
+      color: var(--wim-color-text-accent); // Accent color
       background-color: oklch(from var(--wim-color-text-white) l c h / 0.1);
     }
 
     // Active state for toggles
     &.active {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: var(--wim-color-primary-light);
     }
 

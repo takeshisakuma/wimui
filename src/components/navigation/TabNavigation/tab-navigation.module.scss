@@ -77,7 +77,7 @@
       text-decoration: none;
 
       &:hover:not(.disabled) {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-text-accent);
         background-color: var(--wim-color-bg-hover);
       }
 
@@ -117,13 +117,13 @@
         border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
 
         &:hover:not(.disabled) {
-          color: var(--wim-color-primary);
+          color: var(--wim-color-text-accent);
           background-color: transparent;
         }
 
         &.active {
           font-weight: var(--wim-font-weight-bold);
-          color: var(--wim-color-primary);
+          color: var(--wim-color-text-accent);
         }
       }
     }

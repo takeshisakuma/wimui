@@ -108,6 +108,7 @@ export type WimColorKey =
   | "surface-inverted"
   | "surface-variant"
   | "surface-variant-alpha"
+  | "text-accent"
   | "text-disabled"
   | "text-error"
   | "text-muted-on-inverted"

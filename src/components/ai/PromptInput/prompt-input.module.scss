@@ -112,7 +112,7 @@
 
 .sendButton {
   &:not(:disabled) {
-    color: var(--wim-color-primary);
+    color: var(--wim-color-text-accent);
 
     &:hover {
       background: oklch(from var(--wim-color-primary) l c h / 0.1);

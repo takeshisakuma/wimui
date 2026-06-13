@@ -148,7 +148,7 @@
       }
   
       &.active {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-text-accent);
         background-color: oklch(from var(--wim-color-primary) l c h / 0.12);
       }
   
@@ -227,7 +227,7 @@
       }
   
       a {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-text-accent);
         text-decoration: underline;
       }
   

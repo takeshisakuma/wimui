@@ -52,7 +52,7 @@
 
     &.collapsible {
       cursor: pointer;
-      &:hover { .toggle { color: var(--wim-color-primary); } }
+      &:hover { .toggle { color: var(--wim-color-text-accent); } }
     }
   }
 
@@ -126,7 +126,7 @@
 
   .value {
     &.string { color: var(--wim-color-positive); }
-    &.number { color: var(--wim-color-primary); }
+    &.number { color: var(--wim-color-text-accent); }
     &.boolean { color: var(--wim-color-destructive); }
     &.null { color: var(--wim-color-text-tertiary); }
   }

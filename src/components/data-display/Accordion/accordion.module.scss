@@ -42,12 +42,12 @@
 
     .item.open > & {
       font-weight: var(--wim-font-weight-semibold);
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: var(--wim-color-bg-hover);
     }
 
     &:hover:not(:disabled) {
-      color: var(--wim-color-primary);
+      color: var(--wim-color-text-accent);
       background-color: var(--wim-color-bg-hover);
     }
 

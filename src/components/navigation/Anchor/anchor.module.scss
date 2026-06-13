@@ -91,7 +91,7 @@
       &.active {
         > .link {
           font-weight: var(--wim-font-weight-medium);
-          color: var(--wim-color-primary);
+          color: var(--wim-color-text-accent);
         }
       }
     }
@@ -111,7 +111,7 @@
       transition: color var(--wim-transition-base);
 
       &:hover {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-text-accent);
       }
     }
   }
