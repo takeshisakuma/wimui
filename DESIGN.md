@@ -85,6 +85,23 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | `--wim-color-surface-inset` | `--wim-color-bg-app` |
 | `--wim-color-surface-inverse` | `--wim-color-bg-inverted` |
 
+### 不透明度の扱い（RGB トークン）
+
+上記のセマンティックカラーは HEX で定義されていますが、**不透明度（アルファ）を伴う色を作る場合は HEX をハードコードせず、自動生成される RGB トークンを使用すること。** `tokens:build` は各色について `R, G, B` のカンマ区切り値を持つ `*-rgb` トークン（`src/tokens/generated/_css-vars-rgb.scss`）を生成します。
+
+```scss
+// ✅ rgba() で不透明度を付与する場合は RGB トークンを使う
+background: rgba(var(--wim-color-primary-rgb), 0.12);
+
+// ✅ color-mix() で透明・他色と混ぜる場合はセマンティックトークンをそのまま渡す
+background: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
+
+// ❌ HEX をハードコードしない（テーマ切替・トークン変更に追従できない）
+background: rgba(32, 91, 133, 0.12);
+```
+
+`*-rgb` トークンはライト/ダーク双方（`_css-vars-rgb.scss` / `_css-vars-rgb-dark.scss`）で生成されるため、`rgba(var(--wim-color-primary-rgb), …)` だけでテーマ追従も自動的に成立します。
+
 ### 特殊なカラーカテゴリ
 
 #### Ghost（ゴースト）
@@ -226,6 +243,31 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-line-height-normal-jp` | 1.6 | 日本語 |
 | `--wim-line-height-loose-jp` | 1.8 | 日本語 |
 
+### 言語による行高・フォントファミリーの出し分け規約
+
+「いつ欧文用トークン（`--wim-line-height-normal`）を使い、いつ日本語用（`-jp`）を使うか」は次の優先順位で判断する。**コンポーネント SCSS 内に `i18next` の言語判定ロジックを書かないこと。**
+
+1. **コンポーネントが行高を選べる API を持つ場合は prop に委ねる。**
+   例: `Text` は `lineHeight` prop（`normal` / `normal-jp` など）を受け取り、`getLineHeightValue()` が対応するトークンへ解決する。利用側が言語に応じて値を指定する。
+
+2. **本文・複数行テキストを内包するコンポーネントは、既定で `-jp`（広いほう）を採用する。**
+   日本語は字形が正方形に近く詰まって見えるため、CJK・欧文混在のテキストでは広い行高のほうが安全。`List`, `status-content` の `.description` 等はこの方針で `--wim-line-height-normal-jp` を直接使用している。
+
+3. **`lang` 属性に連動して自動で切り替えたい場合**は、最上層の `<html lang="…">` から伝播する `lang` 属性をセレクタで拾う。グローバルな `:root[lang="ja"]` ではなく、コンポーネントのルートに付く `lang` を起点にする。
+
+   ```scss
+   .text {
+     font-family: var(--wim-font-family-default);
+     line-height: var(--wim-line-height-normal);
+
+     &:global([lang="ja"]),
+     :global([lang="ja"]) & {
+       font-family: var(--wim-font-family-ja);
+       line-height: var(--wim-line-height-normal-jp);
+     }
+   }
+   ```
+
 ### テキスト装飾
 
 | トークン | 値 |
@@ -239,19 +281,22 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ### 間隔
 
-コンパクトな 11 段階のスケール。
+Major Second (1.125) に近い比率に基づく、意図的にコンパクトなスケール。8px グリッドに沿う段（`md` = 8px、`2xl` = 16px）と、それを補間する非整数の段（`xs` = 4.8px、`sm` = 6.4px 等）が混在する。`3xs` / `2xs` はそれぞれ `fine` / `quarter` のエイリアス。
+
+> **制約:** 余白（`margin` / `padding` / `gap` 等）は必ずこれらのトークンを使用し、`8px` や `12px` のような数値を手動でハードコードしてはならない。「8px ベースで」のような口頭指示を受けても、最も近い spacing トークンに置き換えること（例: 8px → `--wim-spacing-md`、16px → `--wim-spacing-2xl`）。
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-spacing-hairline` | 1px | 極細境界線、ヘアライン |
-| `--wim-spacing-fine` | 2px | 微細な間隔 |
-| `--wim-spacing-3xs` | 0.1rem (1.6px) | 最小マイクロ間隔 |
-| `--wim-spacing-2xs` | 0.2rem (3.2px) | アイコン間隔 |
+| `--wim-spacing-hairline` | 0.0625rem (1px) | 極細境界線、ヘアライン |
+| `--wim-spacing-fine` | 0.125rem (2px) | 微細な間隔 |
+| `--wim-spacing-quarter` | 0.25rem (4px) | 4px 基準の最小単位 |
+| `--wim-spacing-3xs` | = `fine` (2px) | 最小マイクロ間隔 |
+| `--wim-spacing-2xs` | = `quarter` (4px) | アイコン間隔 |
 | `--wim-spacing-xs` | 0.3rem (4.8px) | インライン要素間 |
 | `--wim-spacing-sm` | 0.4rem (6.4px) | タイトなパディング |
 | `--wim-spacing-md` | 0.5rem (8px) | 標準パディング |
-| `--wim-spacing-lg` | 0.6rem (9.6px) | ゆったりとしたパディング |
-| `--wim-spacing-xl` | 0.7rem (11.2px) | セクション内間隔 |
+| `--wim-spacing-lg` | 0.625rem (10px) | ゆったりとしたパディング |
+| `--wim-spacing-xl` | 0.75rem (12px) | セクション内間隔 |
 | `--wim-spacing-2xl` | 1rem (16px) | カード内余白 |
 | `--wim-spacing-3xl` | 1.4rem (22.4px) | セクション間隔 |
 | `--wim-spacing-4xl` | 1.8rem (28.8px) | 大きな区切り |
@@ -264,8 +309,17 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-radius-sm` | 2px | 微小な角丸（Badge, Chip） |
 | `--wim-radius-md` | 4px | 標準角丸（Input, Card） |
 | `--wim-radius-lg` | 8px | 目立つ角丸（Dialog, Toast） |
-| `--wim-radius-xl` | 1rem | 大きな角丸（モバイルカード等） |
+| `--wim-radius-xl` | 12px | 大きな角丸（Card, Modal 等） |
+| `--wim-radius-2xl` | 16px | より大きな角丸（モバイルカード等） |
 | `--wim-radius-full` | 9999px | 完全な丸（Avatar, Pill） |
+
+値ベースのトークンを直接使わず、役割ベースのセマンティックエイリアスを優先する。
+
+| エイリアス | 参照先 | 用途 |
+|-----------|--------|------|
+| `--wim-radius-component` | `--wim-radius-md` (4px) | Button, Input, Tag など |
+| `--wim-radius-overlay` | `--wim-radius-lg` (8px) | Tooltip, Popover など浮遊要素 |
+| `--wim-radius-container` | `--wim-radius-xl` (12px) | Card, Modal など大きな親要素 |
 
 ### ボーダー幅
 
@@ -420,6 +474,8 @@ Major Second (1.125) に近い Type Scale を採用。
 ---
 
 ## コンポーネントカタログ
+
+> **注意（実装状況とインポートの扱い）:** ここに列挙するコンポーネントは WIM UI が最終的に内包する**標準ターゲットの仕様一覧**であり、すべてが実装済みであることを意味しない。存在を推測して未実装コンポーネントを勝手にインポートしない（例: `import { CopyButton } from '...'`）。目的のコンポーネントが未実装の場合は、新規に作成するか、既存の最小部品（`InputBase`, `Button` 等）を組み合わせて構築すること。実装済みかどうかは `src/<category>.ts` のエクスポートおよび `src/data/components.json` を正とする。
 
 ### Form（フォーム）-- 47 コンポーネント
 

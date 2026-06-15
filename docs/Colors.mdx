@@ -301,6 +301,22 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 }
 ```
 
+<h2><T k="token.color_rgb_alpha_title" /></h2>
+<p className="section-desc">
+  <T k="token.color_rgb_alpha_desc" />
+</p>
+
+```scss
+// ✅ Apply opacity via the generated RGB token
+background: rgba(var(--wim-color-primary-rgb), 0.12);
+
+// ✅ Or mix with transparent / another color (theme-safe)
+background: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
+
+// ❌ Never hardcode HEX — won't follow theme or token changes
+background: rgba(32, 91, 133, 0.12);
+```
+
 <h2><T k="guide.colors_component_specific_title" /></h2>
 <p className="section-desc">
   <T k="guide.colors_component_specific_desc" />

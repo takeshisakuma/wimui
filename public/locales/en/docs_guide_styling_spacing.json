@@ -15,6 +15,8 @@
     "spacings_radius_desc": "Use according to component size (Button: sm/md, Card: lg).",
     "spacings_radius_item": "Border Radius",
     "spacings_scale": "Spacing Scale",
+    "spacings_no_hardcode_title": "Always Use Spacing Tokens",
+    "spacings_no_hardcode_desc": "Always use these tokens for `margin` / `padding` / `gap`; never hardcode raw values like `8px` or `12px`. Even when asked to \"use an 8px base\", map to the nearest token (8px → `--wim-spacing-md`, 16px → `--wim-spacing-2xl`). This scale is intentionally compact (based on a Major Second-like ratio), so some steps are non-integer — relying on tokens keeps spacing consistent and theme-safe.",
     "spacings_title": "Spacings & Radius",
     "tokens_title": "Design Tokens",
     "usage": "Usage Guide",

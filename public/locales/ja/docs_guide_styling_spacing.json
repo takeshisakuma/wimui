@@ -15,6 +15,8 @@
     "spacings_radius_desc": "コンポーネントのサイズ感に合わせて使い分けます（Button: sm/md, Card: lg）。",
     "spacings_radius_item": "ボーダー半径",
     "spacings_scale": "スペーシング・スケール",
+    "spacings_no_hardcode_title": "余白は必ずトークンを使う",
+    "spacings_no_hardcode_desc": "`margin` / `padding` / `gap` には必ずこれらのトークンを使用し、`8px` や `12px` のような数値を手動でハードコードしないでください。「8px ベースで」と指示された場合でも、最も近いトークンに置き換えます（8px → `--wim-spacing-md`、16px → `--wim-spacing-2xl`）。このスケールは Major Second に近い比率に基づく意図的にコンパクトなもので、一部の刻みは非整数になります。トークンに揃えることで余白の一貫性とテーマ追従性が保たれます。",
     "spacings_title": "余白と角丸 (Spacings & Radius)",
     "tokens_title": "デザイントークン",
     "usage": "使い分けの基準",

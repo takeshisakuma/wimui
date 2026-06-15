@@ -15,6 +15,8 @@
     "spacings_radius_desc": "Use de acordo com o tamanho do componente (Botão: sm/md, Cartão: lg).",
     "spacings_radius_item": "Raio da Borda",
     "spacings_scale": "Escala de Espaçamento",
+    "spacings_no_hardcode_title": "Sempre Use Tokens de Espaçamento",
+    "spacings_no_hardcode_desc": "Use sempre estes tokens para `margin` / `padding` / `gap`; nunca codifique valores fixos como `8px` ou `12px`. Mesmo quando solicitado a \"usar uma base de 8px\", mapeie para o token mais próximo (8px → `--wim-spacing-md`, 16px → `--wim-spacing-2xl`). Esta escala é intencionalmente compacta (baseada em uma proporção próxima a Major Second), então alguns passos não são inteiros — usar tokens mantém o espaçamento consistente e compatível com temas.",
     "spacings_title": "Espaçamentos e Raio",
     "tokens_title": "Tokens de Design",
     "usage": "Guia de Uso",

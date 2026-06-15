@@ -234,6 +234,23 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
   </div>
 
+<h3><T k="token.type_lineheight_lang_title" /></h3>
+<p><T k="token.type_lineheight_lang_desc" /></p>
+
+```scss
+.text {
+  font-family: var(--wim-font-family-default);
+  line-height: var(--wim-line-height-normal);
+
+  // Switch to Japanese stack & wider line-height via the lang attribute
+  &:global([lang="ja"]),
+  :global([lang="ja"]) & {
+    font-family: var(--wim-font-family-ja);
+    line-height: var(--wim-line-height-normal-jp);
+  }
+}
+```
+
 <hr />
 
 <h2><T k="token.type_decor" /></h2>
