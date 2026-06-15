@@ -111,7 +111,7 @@
     "codeBlock_desc": "コピーボタン・行番号・折りたたみ機能付きのシンタックスハイライトコードブロック。",
     "codeDiffViewer_desc": "CodeDiffViewer description.",
     "dashboard_desc": "Dashboard description.",
-    "field_character_count_desc": "[MISSING_TRANSLATION: ja] Standardizes the display of character counts and limit indicators across text-based form inputs.",
+    "field_character_count_desc": "テキストベースのフォーム入力全体で、文字数や上限を示すインジケーターの表示を標準化します。",
     "field_template_desc": "すべてのフォーム系コンポーネントに対して、ラベルの配置、必須マーク、エラーメッセージの表示を標準化します。",
     "gallery_desc": "Gallery description.",
     "ganttchart_visual_guideline_progress": "進捗（完了部分）は、タスクバーのベースカラーの上に半透明の黒を重ね、境界線を引くことでコントラストを強調し、未完了部分と明確に区別されます。",

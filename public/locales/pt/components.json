@@ -111,7 +111,7 @@
     "codeBlock_desc": "Bloco de código com destaque de sintaxe, botão de cópia, numeração de linhas e colapso de conteúdo longo.",
     "codeDiffViewer_desc": "CodeDiffViewer description.",
     "dashboard_desc": "Dashboard description.",
-    "field_character_count_desc": "[MISSING_TRANSLATION: pt] Standardizes the display of character counts and limit indicators across text-based form inputs.",
+    "field_character_count_desc": "Padroniza a exibição de contagens de caracteres e indicadores de limite em todos os campos de formulário baseados em texto.",
     "field_template_desc": "Padroniza a colocação de rótulos, marcações obrigatórias e exibição de mensagens de erro para todos os componentes relacionados a formulários.",
     "gallery_desc": "Gallery description.",
     "ganttchart_visual_guideline_progress": "O progresso (parte concluída) é claramente distinguido da parte incompleta através da sobreposição de preto semitransparente na cor de base e da adição de um separador sutil para aumentar o contraste.",
