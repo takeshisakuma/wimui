@@ -339,6 +339,8 @@
       "node scripts/audit-mdx.js"
     ],
     "public/locales/**/*.json": [
+      "node scripts/sync-i18n.js",
+      "git add public/locales",
       "node scripts/check-i18n.js",
       "node scripts/generate-i18n-resources.js",
       "git add src/i18n/generated/resources.ts"
