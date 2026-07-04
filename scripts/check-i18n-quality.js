@@ -12,6 +12,64 @@ import path from 'path';
 const localesDir = 'public/locales';
 const langs = ['en', 'ja', 'pt'];
 
+// en と同一でも正当なキー（レビュー済み）。
+// コンポーネント名・キーボードキー・技術用語・補間のみ・プレースホルダー・固有名詞など、
+// 翻訳しないことが正しい値。新たに en 完全一致の警告が出た場合は、
+// 翻訳するか、レビューの上ここに追加すること
+const IDENTICAL_ALLOWLIST = new Set([
+  // コンポーネント名・技術用語
+  'ai_agent_voice_check',
+  'ai_terminal_diff_check',
+  'config.test_tool_a11y_detail',
+  'config.test_tool_unit_detail',
+  'doc.icon_comp_icon_type',
+  'guide.css_layers_title',
+  'guide.external_react_flow',
+  'guide.lvb_title',
+  'guide.rvc_title',
+  'guide.z_overlay_desc',
+  'nav.steps_type',
+  'selection.btn_group_joined_label',
+  'selection.seg_vs_btn_group_title',
+  'selection.seg_vs_dropdown_title',
+  'selection.seg_vs_tabs_title',
+  'loading.spinner_vs_loader',
+  'token.bp_cq_label',
+  'token.bp_mq_label',
+  'doc.scenario_hero_title',
+  'doc.scenario_status_title',
+  'doc.scenario_toggle_title',
+  'doc.scenario_404_title',
+  'doc.std_column_horiz_vert',
+  'doc.std_column_manual_sort',
+  'doc.std_column_sm_md',
+  'doc.std_column_sm_md_lg',
+  'doc.numeric_std_browser_chrome_firefox',
+  'doc.segmentedcontrol_ex_size',
+  'story.splitter_logs',
+  // キーボードキー
+  'table.key_delete',
+  'table.key_page_up_down',
+  'table.key_shift_enter',
+  'table.key_tab',
+  // 補間のみ・プレースホルダー
+  'ganttchart.aria_task_bar',
+  'lightbox.counter',
+  'sample_credit_card_placeholder',
+  'story.credit_card_placeholder',
+  // 固有名詞・定型句
+  'compare.feat_4',
+  'feature_comparison.feat_sso',
+  'pricing.ent_feat_2',
+  'picker.call_to_action_annotation',
+  'story.appshell_rights',
+  'story.footer_rights',
+  'story.sourcecitation_mdn_docs_title',
+  'story.thoughtprocess_title_complex',
+  // en 側もプレースホルダーのままのキー（翻訳ではなく en の改善が必要）
+  'doc.common_customization_desc_generic',
+]);
+
 // RULES.md「PT-PT（禁止）」の表 + 明確な PT-PT 語彙
 const PT_PT_FORBIDDEN = [
   /\butilizador(es)?\b/i,
@@ -127,6 +185,7 @@ for (const lang of ['ja', 'pt']) {
       if (typeof value !== 'string' || value !== en[key]) continue;
       // "Props" や固有名詞のような1〜2語の一致は正当なので、3語以上の文のみ疑う
       if (wordCount(value) < 3) continue;
+      if (IDENTICAL_ALLOWLIST.has(key)) continue;
       console.log(`[WARN] ${lang}/${file} > ${key}: en と完全一致（翻訳漏れの疑い）`);
       identicalWarnings++;
     }
