@@ -12,6 +12,8 @@
     "data_grid": "Grade de Dados",
     "delete": "Excluir",
     "edit": "Editar",
+    "exit_fullscreen": "Sair da tela cheia",
+    "fullscreen": "Tela cheia",
     "go_to_next_page": "Ir para a próxima página",
     "go_to_page": "Ir para a página {{page}}",
     "go_to_prev_page": "Ir para a página anterior",

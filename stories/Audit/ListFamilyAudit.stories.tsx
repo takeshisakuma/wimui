@@ -31,9 +31,9 @@ export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
     const [sortableItems, setSortableItems] = React.useState([
-      { id: "1", content: "Item 1" },
-      { id: "2", content: "Item 2" },
-      { id: "3", content: "Item 3" },
+      { id: "1", content: t("audit:list_item_n", { n: 1 }) },
+      { id: "2", content: t("audit:list_item_n", { n: 2 }) },
+      { id: "3", content: t("audit:list_item_n", { n: 3 }) },
     ]);
 
     const handleSortEnd = (oldIndex: number, newIndex: number) => {

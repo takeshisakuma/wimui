@@ -49,7 +49,7 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_selectbox")} maxWidth="var(--wim-width-md)" align="stretch">
             <Selectbox 
               label={t("audit:label_country")} 
-              options={[{ label: "United States", value: "us" }, { label: "Japan", value: "jp" }]} 
+              options={[{ label: t("audit:option_us"), value: "us" }, { label: t("audit:option_japan"), value: "jp" }]} 
               placeholder={t("audit:placeholder_country")}
               fullWidth
             />

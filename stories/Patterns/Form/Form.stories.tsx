@@ -748,9 +748,9 @@ export const UserProfileForm: StoryObj = {
                         label={t("profile.tz_label")}
                         options={[
                           { label: "UTC", value: "utc" },
-                          { label: "JST (Japan Standard Time)", value: "jst" },
+                          { label: t("signup.tz_jst"), value: "jst" },
                           {
-                            label: "EST (Eastern Standard Time)",
+                            label: t("signup.tz_est"),
                             value: "est",
                           },
                         ]}

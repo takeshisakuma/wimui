@@ -16,35 +16,38 @@ const meta: Meta<typeof Lightbox> = {
 export default meta;
 type Story = StoryObj<typeof Lightbox>;
 
-const DEMO_IMAGES = [
+const demoImages = (t: (k: string) => string) => [
   {
     src: "/demo/lightbox_1.png",
-    alt: "Mountain landscape",
-    title: "Mountain Sunset",
-    caption: "A stunning mountain landscape at sunset with a lake in the foreground.",
+    alt: t("story.lightbox_alt_mountain"),
+    title: t("story.lightbox_title_mountain"),
+    caption: t("story.lightbox_caption_mountain"),
   },
   {
     src: "/demo/lightbox_2.png",
-    alt: "Modern building",
-    title: "Minimalist Architecture",
-    caption: "A modern architectural building with glass facade and blue sky.",
+    alt: t("story.lightbox_alt_building"),
+    title: t("story.lightbox_title_architecture"),
+    caption: t("story.lightbox_caption_architecture"),
   },
   {
     src: "/demo/lightbox_3.png",
-    alt: "Tropical flower",
-    title: "Exotic Flora",
-    caption: "A close-up of a vibrant tropical flower with dew drops.",
+    alt: t("story.lightbox_alt_tropical"),
+    title: t("story.lightbox_title_flora"),
+    caption: t("story.lightbox_caption_flora"),
   },
 ];
 
 export const Default: Story = {
-  render: () => (
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const images = demoImages(t);
+    return (
     <Lightbox>
-      <LightboxGallery items={[{ src: DEMO_IMAGES[0].src, alt: DEMO_IMAGES[0].alt }]}>
-        <LightboxTrigger src={DEMO_IMAGES[0].src}>
+      <LightboxGallery items={[{ src: images[0].src, alt: images[0].alt }]}>
+        <LightboxTrigger src={images[0].src}>
           <Image
-            src={DEMO_IMAGES[0].src}
-            alt={DEMO_IMAGES[0].alt}
+            src={images[0].src}
+            alt={images[0].alt}
             width={300}
             radius="md"
             shadow
@@ -53,14 +56,18 @@ export const Default: Story = {
       </LightboxGallery>
       <LightboxContent />
     </Lightbox>
-  ),
+    );
+  },
 };
 
 export const Gallery: Story = {
-  render: () => (
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const images = demoImages(t);
+    return (
     <Lightbox>
-      <LightboxGallery items={DEMO_IMAGES}>
-        {DEMO_IMAGES.map((item, index) => (
+      <LightboxGallery items={images}>
+        {images.map((item, index) => (
           <LightboxTrigger key={index} index={index}>
             <Image
               src={item.src}
@@ -76,19 +83,21 @@ export const Gallery: Story = {
       </LightboxGallery>
       <LightboxContent />
     </Lightbox>
-  ),
+    );
+  },
 };
 
 export const WithCaptions: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const images = demoImages(t);
     return (
     <Lightbox>
-      <LightboxGallery items={[DEMO_IMAGES[2]]}>
-        <LightboxTrigger src={DEMO_IMAGES[2].src} title={t("story.lightbox_flower_title")} caption={t("story.lightbox_flower_caption")}>
+      <LightboxGallery items={[images[2]]}>
+        <LightboxTrigger src={images[2].src} title={t("story.lightbox_flower_title")} caption={t("story.lightbox_flower_caption")}>
           <Image
-            src={DEMO_IMAGES[2].src}
-            alt="Flower"
+            src={images[2].src}
+            alt={t("story.lightbox_alt_flower")}
             width={400}
             radius="lg"
             shadow

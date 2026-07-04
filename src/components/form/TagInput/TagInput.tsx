@@ -1,6 +1,5 @@
 import React, { useState, useRef, useId } from "react";
 import classNames from "classnames";
-import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Tag } from "../../data-display/Tag/Tag";
 import { InputBase } from "../InputBase/InputBase";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
@@ -97,7 +96,6 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("form");
     const [internalTags, setInternalTags] = useState<string[]>(defaultValue);
     const [inputValue, setInputValue] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
@@ -105,7 +103,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const isControlled = value !== undefined;
     const tags = isControlled ? value : internalTags;
 
-    const resolvedPlaceholder = placeholder ?? t("tag_input.placeholder");
+    const resolvedPlaceholder = placeholder;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);

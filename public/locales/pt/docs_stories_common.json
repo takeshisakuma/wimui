@@ -82,6 +82,8 @@
     "fruit_watermelon": "Melancia",
     "iconbutton_close": "Fechar",
     "iconbutton_search": "Buscar",
+    "label_email_address": "Endereço de E-mail",
+    "label_phone_number": "Número de Telefone",
     "legend_long": "Exemplo de um título muito longo. Usado como título de seção para agrupar elementos de formulário relacionados.",
     "legend_title": "Título do Formulário",
     "loading_overlay_blur": "Blur",

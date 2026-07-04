@@ -85,7 +85,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
     // Merge refs
     React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
 
-    const placeholderText = placeholder ?? t("prompt_input.placeholder");
+    const placeholderText = placeholder;
 
     const generatedId = React.useId();
     const id = customId || `prompt-input-${generatedId}`;

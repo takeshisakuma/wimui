@@ -10,7 +10,7 @@ describe("DatePicker", () => {
   });
 
   it("opens calendar on click", async () => {
-    render(<DatePicker />);
+    render(<DatePicker placeholder="Select date" />);
     const input = screen.getByPlaceholderText(/Select date/i);
 
     expect(

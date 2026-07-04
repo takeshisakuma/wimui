@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { RadarChart } from "wimui";
 
 const meta: Meta<typeof RadarChart> = {
@@ -20,9 +22,12 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "User Skills Comparison",
     data,
     indexKey: "subject",
     keys: ["A", "B"],
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <RadarChart {...args} title={t("story.chart_user_skills")} />;
   },
 };

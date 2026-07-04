@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { FunnelChart } from "wimui";
 
 const meta: Meta<typeof FunnelChart> = {
@@ -19,9 +21,12 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Sales Funnel",
     data,
     dataKey: "value",
     nameKey: "name",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FunnelChart {...args} title={t("story.chart_sales_funnel")} />;
   },
 };

@@ -12,6 +12,8 @@
     "data_grid": "データグリッド",
     "delete": "削除",
     "edit": "編集",
+    "exit_fullscreen": "全画面を終了",
+    "fullscreen": "全画面",
     "go_to_next_page": "次のページへ",
     "go_to_page": "{{page}}ページへ移動",
     "go_to_prev_page": "前のページへ",

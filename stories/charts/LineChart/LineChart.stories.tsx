@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { LineChart } from "wimui";
 
 const meta: Meta<typeof LineChart> = {
@@ -21,19 +23,25 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Daily Users",
     data,
     xAxisKey: "name",
     keys: ["users", "active"],
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <LineChart {...args} title={t("story.chart_daily_users")} />;
   },
 };
 
 export const Smooth: Story = {
   args: {
-    title: "Daily Users (Smooth)",
     data,
     xAxisKey: "name",
     keys: ["users", "active"],
     smooth: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <LineChart {...args} title={t("story.chart_daily_users_smooth")} />;
   },
 };

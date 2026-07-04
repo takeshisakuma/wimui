@@ -67,33 +67,20 @@ export const Rounded: Story = {
 export const CustomControls: Story = {
   name: "Custom Design",
   args: {
-    src: {
-      src: audioSample,
-      title: "Custom Player",
-      artist: "Wim UI",
-    },
     customControls: true,
     showMetadata: true,
     radius: "md",
     shadow: true,
     border: true,
   },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Audio {...args} src={{ src: audioSample, title: t("story.audio_custom_player"), artist: "Wim UI" }} />;
+  },
 };
 
 export const FullFeatured: Story = {
   args: {
-    src: [
-      {
-        src: audioSample,
-        title: "Sample Web Audio API",
-        artist: "Wim UI",
-      },
-      {
-        src: audioSample,
-        title: "Track 2",
-        artist: "Wim UI",
-      },
-    ],
     customControls: true,
     radius: "md",
     shadow: true,
@@ -107,6 +94,18 @@ export const FullFeatured: Story = {
     hotkeys: true,
     presets: true,
     sleepTimer: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Audio
+        {...args}
+        src={[
+          { src: audioSample, title: t("story.audio_sample_web_api"), artist: "Wim UI" },
+          { src: audioSample, title: t("story.audio_track_2"), artist: "Wim UI" },
+        ]}
+      />
+    );
   },
 };
 export const PremiumFeatures: Story = {

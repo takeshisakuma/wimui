@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Input, Label } from "wimui";
 
 const meta: Meta<typeof Label> = {
@@ -28,16 +30,22 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    label: "Email Address",
     required: true,
     children: <Input type="email" placeholder="email@example.com" />,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Label {...args} label={t("story.label_email_address")} />;
   },
 };
 
 export const Optional: Story = {
   args: {
-    label: "Phone Number",
     showOptional: true,
     children: <Input type="tel" placeholder="000-0000-0000" />,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Label {...args} label={t("story.label_phone_number")} />;
   },
 };

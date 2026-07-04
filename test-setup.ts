@@ -111,9 +111,11 @@ vi.mock("react-i18next", () => {
   };
   const commonData = loadJSON("public/locales/en/common.json");
   const componentsData = loadJSON("public/locales/en/components.json");
+  const formData = loadJSON("public/locales/en/form.json");
   const translations = {
     ...flatten(commonData),
     ...flatten(componentsData),
+    ...flatten(formData),
   };
 
   return {

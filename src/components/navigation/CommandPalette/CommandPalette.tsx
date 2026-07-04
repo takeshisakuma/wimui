@@ -7,6 +7,7 @@ import React, {
   useRef,
   ReactNode,
 } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Transition } from "../../layout/Transition/Transition";
@@ -300,7 +301,7 @@ export interface CommandPaletteInputProps {
 }
 
 export const CommandPaletteInput = ({
-  placeholder = "Search commands...",
+  placeholder,
   value,
   onChange,
   rightSection,
@@ -441,10 +442,12 @@ export const CommandPaletteItem = ({
 
 // --- Empty ---
 export const CommandPaletteEmpty = ({
-  children = "No results found.",
+  children,
 }: {
   children?: ReactNode;
 }) => {
+  const { t } = useWimTranslation("components");
+  const resolvedChildren = children ?? t("command_palette.no_results");
   const { open, search } = useCommandPalette();
   const [isEmpty, setIsEmpty] = useState(false);
 
@@ -460,7 +463,7 @@ export const CommandPaletteEmpty = ({
   }, [open, search]);
 
   if (!open || !isEmpty) return null;
-  return <div className={styles.empty}>{children}</div>;
+  return <div className={styles.empty}>{resolvedChildren}</div>;
 };
 
 // --- Footer ---

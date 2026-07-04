@@ -283,19 +283,26 @@ const HARDCODED_TEXT_ALLOWLIST = new Set([
   'Pulse',
   // ブランド・コンポーネント名・固有名詞
   'WIM UI', 'HoverCard', 'GitHub', 'WelcomeCard.tsx',
-  'State of JS 2023', 'React 19 release notes', 'Vue 3.4 performance benchmarks',
+  'State of JS 2023', 'React 19 release notes', 'Vue 3.4 performance benchmarks', 'MDN Web Docs',
   // 引用元サンプルのドキュメント名（実在文書の固有名詞として英語のまま）
   'React Documentation', 'Internal Design Guide', 'TypeScript Handbook',
   // コード例の内容（コードとその描画結果の一致を保つため翻訳しない）
   'Hello World', 'This is a long code block to test scrolling behavior.',
+  // ターミナル出力モック（コード類）
+  'Starting server on port 3000...',
+  'Error: EADDRINUSE: address already in use :::3000',
+  'Tip: run `lsof -i :3000` to find the conflicting process',
   // サンプル人名・サービス名
   'John Doe', 'Sarah Miller', 'WimStore',
 ]);
 const JSX_TEXT_RE = />([A-Z][a-zA-Z0-9 .,&!?()'/-]{4,})<\/(Text|Title|Button|Badge|Tag|span|p|h[1-6]|Label|Legend|strong|b|li|td|th|Dialog\.Title|Drawer\.Title|BottomSheet\.Title)>/g;
 // 複数行のテキストノード（<Text>\n  English text\n</Text> 形式）
 const JSX_MULTILINE_TEXT_RE = />\s*\n\s*([A-Z][a-zA-Z0-9 .,&!?()'’/;:-]{4,}?)\s*\n\s*<\//g;
-// title= / label= / caption= 属性のハードコード英文
-const JSX_ATTR_TEXT_RE = /\b(title|label|caption)="([A-Z][a-zA-Z0-9 .,&!?()'/-]{4,})"/g;
+// テキストを持つ属性のハードコード英文
+const JSX_ATTR_TEXT_RE = /\b(title|label|caption|description|message|subtitle|alt|content|error)="([A-Z][^"{}<>\n]{4,})"/g;
+// オブジェクトリテラル内のテキスト（{ label: "English text" } 形式。
+// 誤検出を避けるため、値にスペースを含む文のみ対象）
+const OBJ_TEXT_RE = /\b(label|title|description|content|message|subtitle|text):\s*"([A-Z][^"\n]* [^"\n]*)"/g;
 
 let hardcodedWarnings = 0;
 {
@@ -318,6 +325,20 @@ let hardcodedWarnings = 0;
     for (const m of src.matchAll(JSX_TEXT_RE)) report(m[1], 'テキスト');
     for (const m of src.matchAll(JSX_MULTILINE_TEXT_RE)) report(m[1], 'テキスト（複数行）');
     for (const m of src.matchAll(JSX_ATTR_TEXT_RE)) report(m[2], `属性 ${m[1]}`);
+    for (const m of src.matchAll(OBJ_TEXT_RE)) {
+      //  等を含む値はターミナル出力等のコード類なので対象外
+      if (/\\u00/.test(m[2])) continue;
+      // Storybook のサイドバー階層パス（meta.title）は構造識別子なので対象外
+      if (m[1] === 'title' && /^(Components|Audit|Patterns)\//.test(m[2])) continue;
+      // argTypes 内の description は Storybook Controls パネル用メタデータなので対象外
+      if (m[1] === 'description') {
+        const before = src.slice(0, m.index);
+        const ctx = before.lastIndexOf('argTypes');
+        const other = Math.max(before.lastIndexOf('render:'), before.lastIndexOf(' args:'), before.lastIndexOf('= ['));
+        if (ctx > other) continue;
+      }
+      report(m[2], `オブジェクト ${m[1]}`);
+    }
   }
 }
 

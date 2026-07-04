@@ -254,7 +254,7 @@ export const Overview: StoryObj = {
                 visible
                 loaderType="spinner"
                 loaderSize="lg"
-                message="Uploading files... Please wait."
+                message={t("audit:skeleton_uploading")}
                 blur="md"
               />
             </div>

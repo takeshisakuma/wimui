@@ -31,7 +31,7 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.datepicker_select")}>
-        <DatePicker {...args} placeholder={t("form:datepicker.placeholder")} />
+        <DatePicker {...args} placeholder="2026-07-04" />
       </Label>
     );
   },
@@ -43,7 +43,7 @@ export const Outline: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.datepicker_outline")}>
-        <DatePicker {...args} variant="outline" />
+        <DatePicker {...args} variant="outline" placeholder="2026-07-04" />
       </Label>
     );
   },
@@ -55,7 +55,7 @@ export const Ghost: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.datepicker_ghost")}>
-        <DatePicker {...args} variant="ghost" />
+        <DatePicker {...args} variant="ghost" placeholder="2026-07-04" />
       </Label>
     );
   },
@@ -67,7 +67,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_error")}>
-        <DatePicker {...args} intent="error" />
+        <DatePicker {...args} intent="error" placeholder="2026-07-04" />
       </Label>
     );
   },
@@ -79,7 +79,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_disabled")}>
-        <DatePicker {...args} disabled />
+        <DatePicker {...args} disabled placeholder="2026-07-04" />
       </Label>
     );
   },
@@ -91,7 +91,7 @@ export const FullWidth: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_fullwidth")} style={{ width: "100%" }}>
-        <DatePicker {...args} fullWidth />
+        <DatePicker {...args} fullWidth placeholder="2026-07-04" />
       </Label>
     );
   },

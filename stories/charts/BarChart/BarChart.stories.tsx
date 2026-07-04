@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { BarChart } from "wimui";
 
 const meta: Meta<typeof BarChart> = {
@@ -20,19 +22,25 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Monthly Sales",
     data,
     xAxisKey: "name",
     keys: ["sales", "profit"],
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <BarChart {...args} title={t("story.chart_monthly_sales")} />;
   },
 };
 
 export const Stacked: Story = {
   args: {
-    title: "Monthly Sales (Stacked)",
     data,
     xAxisKey: "name",
     keys: ["sales", "profit"],
     stacked: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <BarChart {...args} title={t("story.chart_monthly_sales_stacked")} />;
   },
 };

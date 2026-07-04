@@ -187,7 +187,7 @@ export const LoadingToggle: Story = {
               </div>
               <img
                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=350&q=80"
-                alt="Content"
+                alt={t("common.content")}
                 style={{
                   width: "100%",
                   height: "120px",

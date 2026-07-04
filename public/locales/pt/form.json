@@ -65,9 +65,6 @@
   "combobox": {
     "no_results": "Nenhum resultado encontrado"
   },
-  "datepicker": {
-    "placeholder": "2026-07-04"
-  },
   "dropzone": {
     "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
   },
@@ -105,21 +102,15 @@
   "prompt_input": {
     "aria_label": "Campo de prompt",
     "attach_label": "Anexar arquivo",
-    "placeholder": "Resuma este documento em três pontos",
     "send_label": "Enviar"
   },
-  "search": {
-    "placeholder": "Relatório trimestral"
-  },
   "select": {
+    "no_options": "Nenhuma opção encontrada",
     "option": "Opção 1"
   },
   "source_citation": {
     "open_source": "Abrir fonte",
     "source_label": "Fonte {{index}}"
-  },
-  "tag_input": {
-    "placeholder": "frontend"
   },
   "terminal": {
     "clear_label": "Limpar",

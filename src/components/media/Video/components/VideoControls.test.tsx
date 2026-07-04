@@ -36,8 +36,8 @@ describe("VideoControls", () => {
   it("renders playback controls", () => {
     render(<VideoControls {...defaultProps} />);
     expect(screen.getByLabelText("Play")).toBeInTheDocument();
-    expect(screen.getByLabelText("Skip Backward")).toBeInTheDocument();
-    expect(screen.getByLabelText("Skip Forward")).toBeInTheDocument();
+    expect(screen.getByLabelText("Skip back 10s")).toBeInTheDocument();
+    expect(screen.getByLabelText("Skip forward 10s")).toBeInTheDocument();
   });
 
   it("calls togglePlay when play button is clicked", () => {
@@ -48,9 +48,9 @@ describe("VideoControls", () => {
 
   it("calls skip when skip buttons are clicked", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.click(screen.getByLabelText("Skip Backward"));
+    fireEvent.click(screen.getByLabelText("Skip back 10s"));
     expect(defaultProps.skip).toHaveBeenCalledWith(-10);
-    fireEvent.click(screen.getByLabelText("Skip Forward"));
+    fireEvent.click(screen.getByLabelText("Skip forward 10s"));
     expect(defaultProps.skip).toHaveBeenCalledWith(10);
   });
 
@@ -80,7 +80,7 @@ describe("VideoControls", () => {
 
   it("calls togglePiP when PiP button is clicked", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.click(screen.getByLabelText("Picture in Picture"));
+    fireEvent.click(screen.getByLabelText("Picture-in-Picture"));
     expect(defaultProps.togglePiP).toHaveBeenCalled();
   });
 
@@ -96,7 +96,7 @@ describe("VideoControls", () => {
       { src: "v2.mp4", title: "v2" },
     ];
     render(<VideoControls {...defaultProps} playlist={playlist} />);
-    fireEvent.click(screen.getByLabelText("Next Track"));
+    fireEvent.click(screen.getByLabelText("Next track"));
     expect(defaultProps.setCurrentPlayIndex).toHaveBeenCalled();
   });
 });

@@ -276,7 +276,9 @@
     "sign_in": "Entrar",
     "subtitle": "Inicie seu teste gratuito de 14 dias. Sem cartão de crédito.",
     "terms": "Concordo com os Termos de Serviço e a Política de Privacidade",
-    "title": "Criar uma conta"
+    "title": "Criar uma conta",
+    "tz_est": "EST (Horário Padrão do Leste)",
+    "tz_jst": "JST (Horário Padrão do Japão)"
   },
   "testimonial": {
     "p1_name": "Sarah Chen",

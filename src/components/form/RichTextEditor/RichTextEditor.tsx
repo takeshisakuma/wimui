@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
@@ -212,21 +213,22 @@ export const RichTextEditor = ({
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
 }: RichTextEditorProps) => {
+  const { t } = useWimTranslation("components");
   const {
-    bold = "Bold",
-    italic = "Italic",
-    underline = "Underline",
-    strikethrough = "Strikethrough",
-    h1 = "Heading 1",
-    h2 = "Heading 2",
-    h3 = "Heading 3",
-    ul = "Unordered List",
-    ol = "Ordered List",
-    link = "Link",
-    unlink = "Unlink",
-    removeFormat = "Remove Formatting",
-    toolbar: toolbarAriaLabel = "Rich Text Editor Toolbar",
-    linkPrompt = "Enter URL",
+    bold = t("a11y.rte_bold"),
+    italic = t("a11y.rte_italic"),
+    underline = t("a11y.rte_underline"),
+    strikethrough = t("a11y.rte_strikethrough"),
+    h1 = t("a11y.rte_h1"),
+    h2 = t("a11y.rte_h2"),
+    h3 = t("a11y.rte_h3"),
+    ul = t("a11y.rte_ul"),
+    ol = t("a11y.rte_ol"),
+    link = t("a11y.rte_link"),
+    unlink = t("a11y.rte_unlink"),
+    removeFormat = t("a11y.rte_remove_format"),
+    toolbar: toolbarAriaLabel = t("a11y.rte_toolbar"),
+    linkPrompt = t("a11y.rte_link_prompt"),
   } = labels;
 
   const editorRef = React.useRef<HTMLDivElement>(null);

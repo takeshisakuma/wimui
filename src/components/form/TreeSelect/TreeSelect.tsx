@@ -66,7 +66,7 @@ export const TreeSelect = ({
   treeData = [],
   value,
   onChange,
-  placeholder = "Select",
+  placeholder,
   label,
   error,
   required,

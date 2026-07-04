@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
 import { DocumentIcon, ChevronLeftIcon, ChevronRightIcon, SettingsIcon, MonitorIcon, PauseIcon, PlayIcon, MuteIcon, VolumeIcon, MinimizeIcon, MaximizeIcon } from "@/icon";
@@ -85,21 +86,22 @@ export function VideoControls({
   labels = {},
   styles,
 }: VideoControlsProps) {
+  const { t } = useWimTranslation("common");
   const {
-    playlist: playlistLabel = "Playlist",
-    skipBackward = "Skip Backward",
-    skipForward = "Skip Forward",
-    play = "Play",
-    pause = "Pause",
-    nextTrack = "Next Track",
-    seek = "Seek",
-    mute = "Mute",
-    unmute = "Unmute",
-    volume: volumeLabel = "Volume",
-    settings = "Settings",
-    pip = "Picture in Picture",
-    fullscreen = "Fullscreen",
-    exitFullscreen = "Exit Fullscreen",
+    playlist: playlistLabel = t("a11y.playlist"),
+    skipBackward = t("a11y.skip_backward"),
+    skipForward = t("a11y.skip_forward"),
+    play = t("a11y.play"),
+    pause = t("a11y.pause"),
+    nextTrack = t("a11y.next_track"),
+    seek = t("a11y.seek"),
+    mute = t("a11y.mute"),
+    unmute = t("a11y.unmute"),
+    volume: volumeLabel = t("a11y.volume"),
+    settings = t("a11y.settings"),
+    pip = t("a11y.picture_in_picture"),
+    fullscreen = t("a11y.fullscreen"),
+    exitFullscreen = t("a11y.exit_fullscreen"),
   } = labels;
 
   return (

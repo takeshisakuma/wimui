@@ -609,5 +609,13 @@
   "calendar_heatmap": {
     "less": "Less",
     "more": "More"
+  },
+  "command_palette": {
+    "no_results": "No results found."
+  },
+  "treeview": {
+    "collapse": "Collapse {{label}}",
+    "expand": "Expand {{label}}",
+    "search_aria": "Search tree items"
   }
 }

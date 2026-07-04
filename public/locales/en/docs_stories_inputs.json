@@ -105,6 +105,9 @@
     "numberinput_decimal_negative": "Decimal & Negative",
     "numberinput_decimal_negative_desc": "Example configuration allowing decimal and negative numbers.",
     "numberinput_label": "Number Input",
+    "numberinput_label_decimal": "Decimal and Negative",
+    "numberinput_label_id": "ID Number",
+    "numberinput_label_standard": "Standard Number Input",
     "numberinput_numeric_mode": "Numeric Mode (Quantity etc.)",
     "numberinput_numeric_mode_desc": "Standard numeric input suitable for quantity adjustments. Restricts invalid characters by default.",
     "numberinput_placeholder": "100",
@@ -188,6 +191,7 @@
     "slider_range": "Range Slider",
     "slider_step": "Step Specification",
     "slider_vertical": "Vertical Slider",
+    "smartsearch_error_invalid": "Invalid query",
     "smartsearchinput_ai_placeholder": "Summarize this page",
     "smartsearchinput_interactive_hint": "Try typing a long search or multiline prompt (Shift+Enter for newline)",
     "smartsearchinput_placeholder": "What types of buttons are in WIM UI?",
@@ -217,6 +221,10 @@
     "textarea_value_none": "None in particular",
     "timepicker_ghost": "Ghost TimePicker",
     "timepicker_outline": "Outline TimePicker",
-    "timepicker_select": "Select Time"
+    "timepicker_select": "Select Time",
+    "transfer_long_desc": "This is a very very very very very very very very very very very long description",
+    "transfer_long_title": "This is a very very very very very very very very very very very very very very very long title that should be truncated",
+    "transfer_short_desc": "Short Description",
+    "transfer_short_title": "Short Title"
   }
 }

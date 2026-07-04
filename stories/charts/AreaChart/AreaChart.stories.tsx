@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { AreaChart } from "wimui";
 
 const meta: Meta<typeof AreaChart> = {
@@ -19,19 +21,25 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Performance Trends",
     data,
     xAxisKey: "name",
     keys: ["value", "secondary"],
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <AreaChart {...args} title={t("story.chart_performance_trends")} />;
   },
 };
 
 export const Stacked: Story = {
   args: {
-    title: "Stacked Performance",
     data,
     xAxisKey: "name",
     keys: ["value", "secondary"],
     stacked: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <AreaChart {...args} title={t("story.chart_stacked_performance")} />;
   },
 };

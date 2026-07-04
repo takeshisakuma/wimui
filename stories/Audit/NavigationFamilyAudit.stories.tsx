@@ -89,7 +89,7 @@ export const Overview: StoryObj = {
               items={[
                 { label: "Home", href: "/" },
                 { label: "Category", href: "/category" },
-                { label: "Current Page" },
+                { label: t("audit:nav_current_page") },
               ]}
             />
           </ComponentGroup>

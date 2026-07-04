@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import localStyles from "./tree-view.module.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -281,11 +282,12 @@ const TreeView = ({
   labelId,
   styles: stylesProp,
 }: TreeViewProps) => {
+  const { t } = useWimTranslation("components");
   const {
-    searchPlaceholder = "Search...",
-    searchAriaLabel = "Search tree items",
-    expandLabel = (l: string) => `Expand ${l}`,
-    collapseLabel = (l: string) => `Collapse ${l}`,
+    searchPlaceholder,
+    searchAriaLabel = t("treeview.search_aria"),
+    expandLabel = (l: string) => t("treeview.expand", { label: l }),
+    collapseLabel = (l: string) => t("treeview.collapse", { label: l }),
   } = labels;
 
   const [expandedValues, setExpandedValues] = useState<string[]>(

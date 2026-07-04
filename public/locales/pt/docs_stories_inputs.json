@@ -105,6 +105,9 @@
     "numberinput_decimal_negative": "Decimal e Negativo",
     "numberinput_decimal_negative_desc": "Exemplo de configuração que permite números decimais e negativos.",
     "numberinput_label": "Entrada Numérica",
+    "numberinput_label_decimal": "Decimal e Negativo",
+    "numberinput_label_id": "Número de ID",
+    "numberinput_label_standard": "Entrada Numérica Padrão",
     "numberinput_numeric_mode": "Modo Numérico (Quantidade etc.)",
     "numberinput_numeric_mode_desc": "Entrada numérica padrão adequada para ajuste de quantidades. Restringe caracteres inválidos por padrão.",
     "numberinput_placeholder": "100",
@@ -188,6 +191,7 @@
     "slider_range": "Slider de alcance",
     "slider_step": "Especificação de passo",
     "slider_vertical": "Slider vertical",
+    "smartsearch_error_invalid": "Consulta inválida",
     "smartsearchinput_ai_placeholder": "Resuma esta página",
     "smartsearchinput_interactive_hint": "Tente digitar uma pesquisa longa ou prompt de várias linhas (Shift+Enter para nova linha)",
     "smartsearchinput_placeholder": "Quais tipos de botões existem no WIM UI?",
@@ -217,6 +221,10 @@
     "textarea_value_none": "Nada em particular",
     "timepicker_ghost": "Seletor de Hora Fantasma",
     "timepicker_outline": "Seletor de Hora de Contorno",
-    "timepicker_select": "Selecionar Hora"
+    "timepicker_select": "Selecionar Hora",
+    "transfer_long_desc": "Esta é uma descrição muito muito muito muito muito muito muito longa",
+    "transfer_long_title": "Este é um título muito muito muito muito muito muito muito muito muito muito longo que deve ser truncado",
+    "transfer_short_desc": "Descrição Curta",
+    "transfer_short_title": "Título Curto"
   }
 }

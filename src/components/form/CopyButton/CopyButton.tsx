@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { isDev } from "@/utilities/dev-utils";
@@ -18,9 +19,10 @@ export const CopyButton = ({
   size = "md",
   className,
   "aria-label": ariaLabel,
-  copyLabel = "Copy to clipboard",
-  copiedLabel = "Copied",
+  copyLabel,
+  copiedLabel,
 }: CopyButtonProps) => {
+  const { t } = useWimTranslation("common");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export const CopyButton = ({
     }
   };
 
-  const labelText = copied ? copiedLabel : copyLabel;
+  const labelText = copied ? (copiedLabel ?? t("copied")) : (copyLabel ?? t("copy.to_clipboard"));
 
   return (
     <Tooltip>

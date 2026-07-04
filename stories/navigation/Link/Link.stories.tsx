@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Link } from "wimui";
 
 const meta: Meta<typeof Link> = {
@@ -41,66 +43,90 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: "Primary Link",
     priority: "primary",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_primary")} />;
   },
 };
 
 export const External: Story = {
   args: {
-    label: "External Link",
     external: true,
     href: "https://storybook.js.org/",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_external")} />;
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: "Secondary Link",
     priority: "secondary",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_secondary")} />;
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    label: "Tertiary Link",
     priority: "tertiary",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_tertiary")} />;
   },
 };
 
 export const WithIconLeft: Story = {
   args: {
-    label: "Link with Icon",
     iconName: "CircleIcon",
     iconPosition: "left",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_with_icon")} />;
   },
 };
 
 export const WithIconRight: Story = {
   args: {
-    label: "Link with Icon",
     iconName: "SquareIcon",
     iconPosition: "right",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_with_icon")} />;
   },
 };
 
 export const Small: Story = {
   args: {
-    label: "Small Link",
     size: "sm",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_small")} />;
   },
 };
 
 export const Large: Story = {
   args: {
-    label: "Large Link",
     size: "lg",
     href: "#",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Link {...args} label={t("story.link_large")} />;
   },
 };

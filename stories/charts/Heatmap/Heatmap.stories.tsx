@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Heatmap } from "wimui";
 
 const meta: Meta<typeof Heatmap> = {
@@ -27,9 +29,12 @@ for (let x of xAxisKey) {
 
 export const Default: Story = {
   args: {
-    title: "Activity Heatmap",
     data,
     xAxisKey,
     yAxisKey,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Heatmap {...args} title={t("story.chart_activity_heatmap")} />;
   },
 };

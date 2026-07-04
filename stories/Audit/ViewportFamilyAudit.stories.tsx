@@ -34,8 +34,8 @@ export const Overview: StoryObj = {
 
     // Sample data for Gantt
     const ganttTasks = [
-      { id: "1", label: "Project Planning", startDate: new Date(2026, 4, 1), endDate: new Date(2026, 4, 5) },
-      { id: "2", label: "Design Phase", startDate: new Date(2026, 4, 4), endDate: new Date(2026, 4, 15) },
+      { id: "1", label: t("audit:viewport_project_planning"), startDate: new Date(2026, 4, 1), endDate: new Date(2026, 4, 5) },
+      { id: "2", label: t("audit:viewport_design_phase"), startDate: new Date(2026, 4, 4), endDate: new Date(2026, 4, 15) },
       { id: "3", label: "Implementation", startDate: new Date(2026, 4, 12), endDate: new Date(2026, 4, 28), progress: 45 },
       { id: "4", label: "Review", startDate: new Date(2026, 4, 25), endDate: new Date(2026, 5, 5) },
     ];
@@ -79,11 +79,11 @@ export const Overview: StoryObj = {
     // Sample data for DataGrid
     const gridColumns = [
       { key: "id", title: "ID", width: 100, fixed: "left" as const },
-      { key: "name", title: "Full Name", width: 250 },
-      { key: "email", title: "Email Address", width: 300 },
+      { key: "name", title: t("audit:viewport_col_full_name"), width: 250 },
+      { key: "email", title: t("audit:viewport_col_email"), width: 300 },
       { key: "role", title: "Role", width: 150 },
       { key: "status", title: "Status", width: 120 },
-      { key: "lastLogin", title: "Last Login", width: 200 },
+      { key: "lastLogin", title: t("audit:viewport_col_last_login"), width: 200 },
       { key: "action", title: "Action", width: 100, fixed: "right" as const },
     ];
     const gridData = Array.from({ length: 30 }, (_, i) => ({

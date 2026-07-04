@@ -327,7 +327,7 @@
       "node scripts/check-i18n-components.js",
       "node scripts/check-git-casing.cjs",
       "node scripts/generate-i18n-resources.js",
-      "git add src/i18n/generated/resources.ts"
+      "node scripts/stage-generated.js src/i18n/generated/resources.ts --"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache"
@@ -341,15 +341,15 @@
     ],
     "public/locales/**/*.json": [
       "node scripts/sync-i18n.js",
-      "git add public/locales",
+      "node scripts/stage-generated.js public/locales --",
       "node scripts/check-i18n.js",
       "node scripts/check-i18n-quality.js",
       "node scripts/generate-i18n-resources.js",
-      "git add src/i18n/generated/resources.ts"
+      "node scripts/stage-generated.js src/i18n/generated/resources.ts --"
     ],
     "src/icon/*.svg": [
       "npm run generate:icons",
-      "git add src/icon/index.ts"
+      "node scripts/stage-generated.js src/icon/index.ts --"
     ]
   },
   "dependencies": {

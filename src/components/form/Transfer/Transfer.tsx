@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useId, useEffect, useRef } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
@@ -240,11 +241,12 @@ export const Transfer = ({
   layout = "vertical",
   labels = {},
 }: TransferProps) => {
+  const { t } = useWimTranslation("form");
   const {
-    moveToTarget = "Move to Target",
-    moveToSource = "Move to Source",
-    statusMovedToTarget = (c: number) => `Moved ${c} item${c !== 1 ? "s" : ""} to target`,
-    statusMovedToSource = (c: number) => `Moved ${c} item${c !== 1 ? "s" : ""} to source`,
+    moveToTarget = t("transfer.move_to_target"),
+    moveToSource = t("transfer.move_to_source"),
+    statusMovedToTarget = (c: number) => t("transfer.status_moved_to_target", { count: c }),
+    statusMovedToSource = (c: number) => t("transfer.status_moved_to_source", { count: c }),
   } = labels;
 
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);

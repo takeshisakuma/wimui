@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { ScatterChart } from "wimui";
 
 const meta: Meta<typeof ScatterChart> = {
@@ -20,9 +22,12 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Price vs Quantity",
     data,
     xAxisName: "Price",
     yAxisName: "Quantity",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <ScatterChart {...args} title={t("story.chart_price_vs_quantity")} />;
   },
 };

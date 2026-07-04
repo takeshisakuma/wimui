@@ -609,5 +609,13 @@
   },
   "visual": {
     "accessibility": "視覚性"
+  },
+  "command_palette": {
+    "no_results": "該当する結果がありません。"
+  },
+  "treeview": {
+    "collapse": "{{label}} を折りたたむ",
+    "expand": "{{label}} を展開",
+    "search_aria": "ツリー項目を検索"
   }
 }

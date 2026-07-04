@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { PieChart } from "wimui";
 
 const meta: Meta<typeof PieChart> = {
@@ -18,15 +20,21 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Traffic Sources",
     data,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <PieChart {...args} title={t("story.chart_traffic_sources")} />;
   },
 };
 
 export const Donut: Story = {
   args: {
-    title: "Traffic Sources (Donut)",
     data,
     donut: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <PieChart {...args} title={t("story.chart_traffic_sources_donut")} />;
   },
 };

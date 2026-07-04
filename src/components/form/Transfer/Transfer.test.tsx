@@ -305,7 +305,7 @@ describe("Transfer edge cases", () => {
     fireEvent.click(screen.getAllByRole("option")[0]);
     fireEvent.click(screen.getAllByRole("option")[1]);
     fireEvent.click(screen.getAllByRole("button")[0]);
-    expect(await screen.findByText("Moved 2 items to target")).toBeInTheDocument();
+    expect(await screen.findByText("2 item(s) moved to selected")).toBeInTheDocument();
     // 戻すと単数形のメッセージ
     const listboxes = screen.getAllByRole("listbox");
     const targetOption = screen
@@ -313,7 +313,7 @@ describe("Transfer edge cases", () => {
       .filter((o) => listboxes[1].contains(o))[0];
     fireEvent.click(targetOption);
     fireEvent.click(screen.getAllByRole("button")[1]);
-    expect(await screen.findByText("Moved 1 item to source")).toBeInTheDocument();
+    expect(await screen.findByText("1 item(s) moved to available")).toBeInTheDocument();
   });
 
   it("focuses the first enabled item when the list receives focus", () => {

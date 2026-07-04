@@ -87,16 +87,16 @@ export const Overview: StoryObj = {
         {/* Core Surface Comparison (InteractiveArea) */}
         <ComparisonGrid title={t("audit:label_surface_comparison") + " (InteractiveArea)"}>
           <ComponentGroup label={t("audit:interaction_dashed_default")}>
-            <InteractiveArea variant="dashed" description="Default dashed surface" />
+            <InteractiveArea variant="dashed" description={t("audit:interaction_dashed_surface")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:interaction_solid_label")}>
-            <InteractiveArea variant="solid" description="Solid border surface" />
+            <InteractiveArea variant="solid" description={t("audit:interaction_solid_surface")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:interaction_muted_bg")}>
-            <InteractiveArea variant="dashed" bgVariant="muted" description="Muted background surface" />
+            <InteractiveArea variant="dashed" bgVariant="muted" description={t("audit:interaction_muted_surface")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:interaction_dragging")}>
-            <InteractiveArea variant="dashed" isDragging description="Currently dragging..." />
+            <InteractiveArea variant="dashed" isDragging description={t("audit:interaction_dragging_desc")} />
           </ComponentGroup>
         </ComparisonGrid>
 

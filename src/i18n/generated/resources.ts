@@ -14,6 +14,8 @@ export const wimResources: Resource = {
         "close": "Close",
         "data_grid": "Data Grid",
         "delete": "Delete",
+        "exit_fullscreen": "Exit Fullscreen",
+        "fullscreen": "Fullscreen",
         "go_to_next_page": "Go to next page",
         "go_to_page": "Go to page {{page}}",
         "go_to_prev_page": "Go to previous page",
@@ -22,19 +24,35 @@ export const wimResources: Resource = {
         "jump_to_page": "Jump to page",
         "left_icon_action": "Perform action",
         "loading": "Loading",
+        "mute": "Mute",
+        "next_track": "Next track",
         "pagination_nav": "Pagination navigation",
+        "pause": "Pause",
+        "picture_in_picture": "Picture-in-Picture",
+        "play": "Play",
+        "playlist": "Playlist",
         "resize_panel": "Resize panel",
         "right_icon_action": "Perform action",
         "scroll_progress": "Scroll progress",
+        "seek": "Seek",
         "select_all_rows": "Select all rows",
         "select_row": "Select row",
+        "settings": "Settings",
         "show_password": "Show password",
-        "signature_canvas": "Signature canvas"
+        "signature_canvas": "Signature canvas",
+        "skip_backward": "Skip back 10s",
+        "skip_forward": "Skip forward 10s",
+        "unmute": "Unmute",
+        "volume": "Volume"
       },
       "action": {
         "cancel": "Cancel",
         "edit": "Edit",
         "save": "Save"
+      },
+      "copied": "Copied",
+      "copy": {
+        "to_clipboard": "Copy to clipboard"
       },
       "fri": "Fri",
       "mon": "Mon",
@@ -75,10 +93,43 @@ export const wimResources: Resource = {
     },
     "components": {
       "a11y": {
-        "close": "Close"
+        "close": "Close",
+        "rte_toolbar": "Formatting toolbar",
+        "rte_bold": "Bold",
+        "rte_italic": "Italic",
+        "rte_underline": "Underline",
+        "rte_strikethrough": "Strikethrough",
+        "rte_h1": "Heading 1",
+        "rte_h2": "Heading 2",
+        "rte_h3": "Heading 3",
+        "rte_ul": "Bullet list",
+        "rte_ol": "Numbered list",
+        "rte_link": "Insert link",
+        "rte_unlink": "Remove link",
+        "rte_remove_format": "Remove formatting",
+        "rte_link_prompt": "Enter URL"
       },
       "signature": {
         "clear": "Clear"
+      },
+      "query": {
+        "builder": {
+          "rule_added": "Rule added",
+          "group_added": "Group added",
+          "removed": "Removed",
+          "rule": "Rule",
+          "combinator": "Combinator",
+          "region_label": "Query Builder",
+          "add_rule": "Add rule",
+          "add_group": "Add group",
+          "remove_rule": "Remove",
+          "remove_group": "Remove group",
+          "field": "Field",
+          "operator": "Operator",
+          "value": "Value",
+          "true": "True",
+          "false": "False"
+        }
       },
       "sortable_list": {
         "drag_handle_label": "Drag to reorder"
@@ -110,11 +161,18 @@ export const wimResources: Resource = {
       "calendar_heatmap": {
         "less": "Less",
         "more": "More"
+      },
+      "command_palette": {
+        "no_results": "No results found."
+      },
+      "treeview": {
+        "collapse": "Collapse {{label}}",
+        "expand": "Expand {{label}}",
+        "search_aria": "Search tree items"
       }
     },
     "form": {
       "prompt_input": {
-        "placeholder": "Summarize this document in three points",
         "send_label": "Send",
         "attach_label": "Attach file"
       },
@@ -136,8 +194,21 @@ export const wimResources: Resource = {
       "button": {
         "clear": "Clear"
       },
-      "search": {
-        "placeholder": "Quarterly report"
+      "dropzone": {
+        "description": "Drag and drop files here, or click to select"
+      },
+      "fileupload": {
+        "button": "Choose file",
+        "no_file": "No file selected"
+      },
+      "select": {
+        "no_options": "No options found"
+      },
+      "transfer": {
+        "move_to_source": "Move to available",
+        "move_to_target": "Move to selected",
+        "status_moved_to_source": "{{count}} item(s) moved to available",
+        "status_moved_to_target": "{{count}} item(s) moved to selected"
       },
       "password_strength": {
         "very_weak": "Very weak",
@@ -155,9 +226,6 @@ export const wimResources: Resource = {
         "confirm_message": "Do you want to save the image with this crop?",
         "confirm": "Apply",
         "cancel": "Cancel"
-      },
-      "tag_input": {
-        "placeholder": "frontend"
       },
       "code_diff_viewer": {
         "copy_label": "Copy",
@@ -196,6 +264,8 @@ export const wimResources: Resource = {
         "close": "閉じる",
         "data_grid": "データグリッド",
         "delete": "削除",
+        "exit_fullscreen": "全画面を終了",
+        "fullscreen": "全画面",
         "go_to_next_page": "次のページへ",
         "go_to_page": "{{page}}ページへ移動",
         "go_to_prev_page": "前のページへ",
@@ -204,14 +274,26 @@ export const wimResources: Resource = {
         "jump_to_page": "特定のページへ移動",
         "left_icon_action": "アクションを実行",
         "loading": "読み込み中",
+        "mute": "ミュート",
+        "next_track": "次のトラック",
         "pagination_nav": "ページネーション ナビゲーション",
+        "pause": "一時停止",
+        "picture_in_picture": "ピクチャーインピクチャー",
+        "play": "再生",
+        "playlist": "プレイリスト",
         "resize_panel": "パネルのサイズ変更",
         "right_icon_action": "アクションを実行",
         "scroll_progress": "スクロール進捗",
+        "seek": "シーク",
         "select_all_rows": "すべての行を選択",
         "select_row": "行を選択",
+        "settings": "設定",
         "show_password": "パスワードを表示",
-        "signature_canvas": "署名キャンバス"
+        "signature_canvas": "署名キャンバス",
+        "skip_backward": "10秒戻る",
+        "skip_forward": "10秒進む",
+        "unmute": "ミュート解除",
+        "volume": "音量"
       },
       "action": {
         "cancel": "キャンセル",
@@ -224,6 +306,10 @@ export const wimResources: Resource = {
         "saved": "保存済み",
         "saved_at": "{{time}}に保存済み",
         "saving": "保存中..."
+      },
+      "copied": "コピーしました",
+      "copy": {
+        "to_clipboard": "クリップボードにコピー"
       },
       "fri": "金",
       "jsonViewer": {
@@ -257,7 +343,21 @@ export const wimResources: Resource = {
     },
     "components": {
       "a11y": {
-        "close": "閉じる"
+        "close": "閉じる",
+        "rte_bold": "太字",
+        "rte_h1": "見出し1",
+        "rte_h2": "見出し2",
+        "rte_h3": "見出し3",
+        "rte_italic": "斜体",
+        "rte_link": "リンクを挿入",
+        "rte_link_prompt": "URLを入力してください",
+        "rte_ol": "番号付きリスト",
+        "rte_remove_format": "書式をクリア",
+        "rte_strikethrough": "取り消し線",
+        "rte_toolbar": "書式設定ツールバー",
+        "rte_ul": "箇条書き",
+        "rte_underline": "下線",
+        "rte_unlink": "リンクを削除"
       },
       "calendar_heatmap": {
         "less": "少ない",
@@ -287,11 +387,38 @@ export const wimResources: Resource = {
         "zoom_in": "拡大",
         "zoom_out": "縮小"
       },
+      "query": {
+        "builder": {
+          "add_group": "グループを追加",
+          "add_rule": "条件を追加",
+          "combinator": "結合演算子",
+          "false": "無効",
+          "field": "項目",
+          "group_added": "グループを追加しました",
+          "operator": "演算子",
+          "region_label": "クエリビルダー",
+          "remove_group": "グループを削除",
+          "remove_rule": "削除",
+          "removed": "削除しました",
+          "rule": "ルール",
+          "rule_added": "ルールを追加しました",
+          "true": "有効",
+          "value": "値"
+        }
+      },
       "signature": {
         "clear": "クリア"
       },
       "sortable_list": {
         "drag_handle_label": "ドラッグして並べ替え"
+      },
+      "command_palette": {
+        "no_results": "該当する結果がありません。"
+      },
+      "treeview": {
+        "collapse": "{{label}} を折りたたむ",
+        "expand": "{{label}} を展開",
+        "search_aria": "ツリー項目を検索"
       }
     },
     "form": {
@@ -331,6 +458,13 @@ export const wimResources: Resource = {
         "split_view": "分割",
         "unified_view": "統合"
       },
+      "dropzone": {
+        "description": "ここにファイルをドラッグ＆ドロップ、またはクリックして選択"
+      },
+      "fileupload": {
+        "button": "ファイルを選択",
+        "no_file": "選択されていません"
+      },
       "image_cropper": {
         "apply": "クロップを適用",
         "cancel": "キャンセル",
@@ -350,22 +484,24 @@ export const wimResources: Resource = {
       },
       "prompt_input": {
         "attach_label": "ファイルを添付",
-        "placeholder": "この資料を3点で要約して",
         "send_label": "送信"
       },
-      "search": {
-        "placeholder": "四半期レポート"
+      "select": {
+        "no_options": "該当する選択肢がありません"
       },
       "source_citation": {
         "source_label": "ソース {{index}}"
-      },
-      "tag_input": {
-        "placeholder": "フロントエンド"
       },
       "terminal": {
         "clear_label": "クリア",
         "copied_label": "コピーしました！",
         "copy_label": "出力をコピー"
+      },
+      "transfer": {
+        "move_to_source": "選択可能に移動",
+        "move_to_target": "選択済みに移動",
+        "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
+        "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました"
       }
     }
   },
@@ -378,6 +514,8 @@ export const wimResources: Resource = {
         "close": "Fechar",
         "data_grid": "Grade de Dados",
         "delete": "Excluir",
+        "exit_fullscreen": "Sair da tela cheia",
+        "fullscreen": "Tela cheia",
         "go_to_next_page": "Ir para a próxima página",
         "go_to_page": "Ir para a página {{page}}",
         "go_to_prev_page": "Ir para a página anterior",
@@ -386,14 +524,26 @@ export const wimResources: Resource = {
         "jump_to_page": "Ir para a página",
         "left_icon_action": "Executar ação",
         "loading": "Carregando",
+        "mute": "Mudo",
+        "next_track": "Próxima faixa",
         "pagination_nav": "Navegação da paginação",
+        "pause": "Pausar",
+        "picture_in_picture": "Picture-in-Picture",
+        "play": "Reproduzir",
+        "playlist": "Lista de reprodução",
         "resize_panel": "Redimensionar painel",
         "right_icon_action": "Executar ação",
         "scroll_progress": "Progresso de rolagem",
+        "seek": "Procurar",
         "select_all_rows": "Selecionar todas as linhas",
         "select_row": "Selecionar linha",
+        "settings": "Configurações",
         "show_password": "Mostrar senha",
-        "signature_canvas": "Tela de assinatura"
+        "signature_canvas": "Tela de assinatura",
+        "skip_backward": "Retroceder 10s",
+        "skip_forward": "Avançar 10s",
+        "unmute": "Ativar som",
+        "volume": "Volume"
       },
       "action": {
         "cancel": "Cancelar",
@@ -406,6 +556,10 @@ export const wimResources: Resource = {
         "saved": "Salvo",
         "saved_at": "Salvo às {{time}}",
         "saving": "Salvando..."
+      },
+      "copied": "Copiado",
+      "copy": {
+        "to_clipboard": "Copiar para a área de transferência"
       },
       "fri": "Sex",
       "jsonViewer": {
@@ -439,7 +593,21 @@ export const wimResources: Resource = {
     },
     "components": {
       "a11y": {
-        "close": "Fechar"
+        "close": "Fechar",
+        "rte_bold": "Negrito",
+        "rte_h1": "Título 1",
+        "rte_h2": "Título 2",
+        "rte_h3": "Título 3",
+        "rte_italic": "Itálico",
+        "rte_link": "Inserir link",
+        "rte_link_prompt": "Digite a URL",
+        "rte_ol": "Lista numerada",
+        "rte_remove_format": "Remover formatação",
+        "rte_strikethrough": "Tachado",
+        "rte_toolbar": "Barra de formatação",
+        "rte_ul": "Lista com marcadores",
+        "rte_underline": "Sublinhado",
+        "rte_unlink": "Remover link"
       },
       "calendar_heatmap": {
         "less": "Menos",
@@ -469,11 +637,38 @@ export const wimResources: Resource = {
         "zoom_in": "Aumentar zoom",
         "zoom_out": "Diminuir zoom"
       },
+      "query": {
+        "builder": {
+          "add_group": "Adicionar grupo",
+          "add_rule": "Adicionar regra",
+          "combinator": "Combinador",
+          "false": "Falso",
+          "field": "Campo",
+          "group_added": "Grupo adicionado",
+          "operator": "Operador",
+          "region_label": "Construtor de consultas",
+          "remove_group": "Remover grupo",
+          "remove_rule": "Remover",
+          "removed": "Removido",
+          "rule": "Regra",
+          "rule_added": "Regra adicionada",
+          "true": "Verdadeiro",
+          "value": "Valor"
+        }
+      },
       "signature": {
         "clear": "Limpar"
       },
       "sortable_list": {
         "drag_handle_label": "Arraste para reordenar"
+      },
+      "command_palette": {
+        "no_results": "Nenhum resultado encontrado."
+      },
+      "treeview": {
+        "collapse": "Recolher {{label}}",
+        "expand": "Expandir {{label}}",
+        "search_aria": "Buscar itens da árvore"
       }
     },
     "form": {
@@ -513,6 +708,13 @@ export const wimResources: Resource = {
         "split_view": "Dividido",
         "unified_view": "Unificado"
       },
+      "dropzone": {
+        "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
+      },
+      "fileupload": {
+        "button": "Selecionar arquivo",
+        "no_file": "Nenhum arquivo selecionado"
+      },
       "image_cropper": {
         "apply": "Aplicar recorte",
         "cancel": "Cancelar",
@@ -532,22 +734,24 @@ export const wimResources: Resource = {
       },
       "prompt_input": {
         "attach_label": "Anexar arquivo",
-        "placeholder": "Resuma este documento em três pontos",
         "send_label": "Enviar"
       },
-      "search": {
-        "placeholder": "Relatório trimestral"
+      "select": {
+        "no_options": "Nenhuma opção encontrada"
       },
       "source_citation": {
         "source_label": "Fonte {{index}}"
-      },
-      "tag_input": {
-        "placeholder": "frontend"
       },
       "terminal": {
         "clear_label": "Limpar",
         "copied_label": "Copiado!",
         "copy_label": "Copiar saída"
+      },
+      "transfer": {
+        "move_to_source": "Mover para disponível",
+        "move_to_target": "Mover para selecionado",
+        "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
+        "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada"
       }
     }
   }

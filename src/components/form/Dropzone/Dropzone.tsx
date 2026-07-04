@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea, InteractiveAreaProps } from "../../layout/InteractiveArea/InteractiveArea";
 import { FieldTemplate } from "../FieldTemplate";
@@ -61,7 +62,7 @@ type DropzoneProps = {
  */
 export const Dropzone = ({
   label,
-  description = "Drag and drop files here, or click to select",
+  description,
   accept,
   multiple = false,
   disabled = false,
@@ -73,6 +74,8 @@ export const Dropzone = ({
   layout = "vertical",
   size = "md",
 }: DropzoneProps) => {
+  const { t } = useWimTranslation("form");
+  const resolvedDescription = description ?? t("dropzone.description");
   const generatedId = React.useId();
   const id = `wim-dropzone-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -154,7 +157,7 @@ export const Dropzone = ({
             />
           )
         }
-        description={description}
+        description={resolvedDescription}
       >
         <input
           type="file"

@@ -39,7 +39,7 @@ export type ComboboxProps = {
 export const Combobox = ({
   options = [],
   onChange,
-  placeholder = "Select option",
+  placeholder,
   showSearchIcon = true,
   allowClear = true,
   defaultValue = "",

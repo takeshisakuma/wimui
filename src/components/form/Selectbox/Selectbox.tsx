@@ -1,4 +1,5 @@
 import React, { useId, forwardRef } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Transition } from "../../layout/Transition/Transition";
@@ -79,7 +80,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
       options = [],
       value,
       onChange,
-      placeholder = "Select an option",
+      placeholder,
       label,
       error,
       required,
@@ -88,14 +89,14 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
       disabled = false,
       defaultValue,
       searchable = false,
-      searchPlaceholder = "Search...",
+      searchPlaceholder,
       filterOption,
       grouped = false,
       allowClear = false,
       fullWidth = false,
       intent = "default",
       id: customId,
-      noOptionsFoundLabel = "No options found",
+      noOptionsFoundLabel,
       width,
       styles: stylesProp,
       asChild = false,
@@ -104,6 +105,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
     },
     ref,
   ) => {
+    const { t } = useWimTranslation("form");
     const generatedId = useId();
     const id = customId || `wim-selectbox-${generatedId}`;
     const labelId = label ? `${id}-label` : undefined;
@@ -396,7 +398,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
                     role="option"
                     aria-selected="false"
                   >
-                    {noOptionsFoundLabel}
+                    {noOptionsFoundLabel ?? t("select.no_options")}
                   </li>
                 ) : (
                   renderOptions()

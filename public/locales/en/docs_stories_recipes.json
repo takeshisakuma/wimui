@@ -156,18 +156,20 @@
     "feat_6": "Unlimited projects"
   },
   "signup": {
-    "title": "Create an account",
-    "subtitle": "Start your 14-day free trial. No credit card required.",
-    "name": "Full Name",
-    "name_placeholder": "John Doe",
+    "btn": "Create Account",
+    "confirm_password": "Confirm Password",
     "email": "Email",
     "email_placeholder": "you@example.com",
-    "password": "Password",
-    "confirm_password": "Confirm Password",
-    "terms": "I agree to the Terms of Service and Privacy Policy",
-    "btn": "Create Account",
     "have_account": "Already have an account?",
-    "sign_in": "Sign in"
+    "name": "Full Name",
+    "name_placeholder": "John Doe",
+    "password": "Password",
+    "sign_in": "Sign in",
+    "subtitle": "Start your 14-day free trial. No credit card required.",
+    "terms": "I agree to the Terms of Service and Privacy Policy",
+    "title": "Create an account",
+    "tz_est": "EST (Eastern Standard Time)",
+    "tz_jst": "JST (Japan Standard Time)"
   },
   "multistep": {
     "title": "Set up your workspace",

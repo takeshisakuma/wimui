@@ -1,4 +1,5 @@
 import React, { useState, useId, useCallback, useRef } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { IconButton } from "../IconButton/IconButton";
 import { Button } from "../../form/Button/Button";
@@ -139,22 +140,23 @@ export const QueryBuilder = ({
   id: customId,
   labels = {},
 }: QueryBuilderProps) => {
+  const { t } = useWimTranslation("components");
   const {
-    ruleAdded = "Rule added",
-    groupAdded = "Group added",
-    removed = "Removed",
-    ruleAriaLabel = "Rule",
-    fieldAriaLabel = "Field",
-    operatorAriaLabel = "Operator",
-    valueAriaLabel = "Value",
-    trueLabel = "True",
-    falseLabel = "False",
-    removeRuleAriaLabel = "Remove rule",
-    removeGroupAriaLabel = "Remove group",
-    addRuleLabel = "Add rule",
-    addGroupLabel = "Add group",
-    regionAriaLabel = "Query Builder",
-    combinatorAriaLabel = "Combinator",
+    ruleAdded = t("query.builder.rule_added"),
+    groupAdded = t("query.builder.group_added"),
+    removed = t("query.builder.removed"),
+    ruleAriaLabel = t("query.builder.rule"),
+    fieldAriaLabel = t("query.builder.field"),
+    operatorAriaLabel = t("query.builder.operator"),
+    valueAriaLabel = t("query.builder.value"),
+    trueLabel = t("query.builder.true"),
+    falseLabel = t("query.builder.false"),
+    removeRuleAriaLabel = t("query.builder.remove_rule"),
+    removeGroupAriaLabel = t("query.builder.remove_group"),
+    addRuleLabel = t("query.builder.add_rule"),
+    addGroupLabel = t("query.builder.add_group"),
+    regionAriaLabel = t("query.builder.region_label"),
+    combinatorAriaLabel = t("query.builder.combinator"),
     operators: operatorOverrides = {},
   } = labels;
 

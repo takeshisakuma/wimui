@@ -115,7 +115,7 @@ describe("QueryBuilder", () => {
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
 
     act(() => {
-      fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+      fireEvent.click(screen.getByRole("button", { name: "Remove" }));
     });
     expect(screen.queryByRole("group", { name: "Rule" })).not.toBeInTheDocument();
   });
@@ -127,7 +127,7 @@ describe("QueryBuilder", () => {
     await renderQB({ query, onChange });
 
     act(() => {
-      fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
+      fireEvent.click(screen.getByRole("button", { name: "Remove" }));
     });
 
     expect(onChange).toHaveBeenCalledOnce();

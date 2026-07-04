@@ -202,9 +202,9 @@ export const AdvancedEffects: Story = {
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_noise")}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <Image {...args} alt="Low noise" noise="sm" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: sm`} />
-            <Image {...args} alt="Medium noise" noise="md" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: md`} />
-            <Image {...args} alt="High noise" noise="lg" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: lg`} />
+            <Image {...args} alt={t("story.image_alt_low_noise")} noise="sm" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: sm`} />
+            <Image {...args} alt={t("story.image_alt_medium_noise")} noise="md" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: md`} />
+            <Image {...args} alt={t("story.image_alt_high_noise")} noise="lg" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: lg`} />
           </div>
         </div>
 
@@ -213,14 +213,14 @@ export const AdvancedEffects: Story = {
           <div style={{ display: "flex", gap: "1rem" }}>
             <Image
               {...args}
-              alt="Duotone gold"
+              alt={t("story.image_alt_duotone_gold")}
               duotone={{ light: "#f0dfaf", dark: "#3f3f3f" }}
               width={300}
               caption={t("story.image_advanced_goldish")}
             />
             <Image
               {...args}
-              alt="Duotone cyber"
+              alt={t("story.image_alt_duotone_cyber")}
               duotone={{ light: "#00fff2", dark: "#6000ff" }}
               width={300}
               caption={t("story.image_advanced_cyberpunk")}
@@ -234,7 +234,7 @@ export const AdvancedEffects: Story = {
             <div style={{ position: "relative" }}>
               <Image
                 {...args}
-                alt="Overlay"
+                alt={t("story.image_alt_overlay")}
                 overlay={{
                   color: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
                   intensity: "md",
@@ -249,7 +249,7 @@ export const AdvancedEffects: Story = {
             
             <Image
               {...args}
-              alt="Hover overlay"
+              alt={t("story.image_alt_hover_overlay")}
               overlay={{
                 color: "rgba(100, 108, 255, 0.4)",
                 showOnHover: true,
@@ -280,7 +280,7 @@ export const MotionEffects: Story = {
             <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_smooth_zoom")}</p>
             <Image
               {...args}
-              alt="Zoom effect"
+              alt={t("story.image_alt_zoom")}
               zoom={1.1}
               width={300}
               radius="md"
@@ -291,7 +291,7 @@ export const MotionEffects: Story = {
             <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_3d_tilt")}</p>
             <Image
               {...args}
-              alt="Tilt effect"
+              alt={t("story.image_alt_tilt")}
               tilt
               width={300}
               radius="md"
@@ -332,7 +332,7 @@ export const MotionEffects: Story = {
           <div style={{ maxWidth: "500px" }}>
             <Image
               {...args}
-              alt="Combo"
+              alt={t("story.image_alt_combo")}
               zoom
               tilt
               noise="sm"
@@ -345,7 +345,7 @@ export const MotionEffects: Story = {
               width="100%"
               radius="lg"
               shadow
-              caption="Zoom + Tilt + Noise + Overlay + Filter"
+              caption={t("story.image_caption_combo")}
             />
           </div>
         </div>

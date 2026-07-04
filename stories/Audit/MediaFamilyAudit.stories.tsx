@@ -44,7 +44,7 @@ export const Overview: StoryObj = {
           <ComponentGroup label={`${t("audit:label_avatar")} — fallbacks`}>
             <Stack direction="row" gap="md" align="center">
               <Avatar initials="JD" />
-              <Avatar src="invalid-url" alt="Broken Image" />
+              <Avatar src="invalid-url" alt={t("audit:media_alt_broken")} />
               <Avatar initials="AI" intent="primary" />
               <Avatar initials="ER" intent="error" />
             </Stack>
@@ -55,7 +55,7 @@ export const Overview: StoryObj = {
                 <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_loading_state")}</Text>
                 <Image 
                   src={sampleImages[0]} 
-                  alt="Delayed Image" 
+                  alt={t("audit:media_alt_delayed")} 
                   demoDelay={3000}
                   fadeIn
                   height={120}
@@ -65,7 +65,7 @@ export const Overview: StoryObj = {
                 <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_broken_src")}</Text>
                 <Image 
                   src="invalid-path" 
-                  alt="Broken" 
+                  alt={t("audit:media_alt_broken")} 
                   height={120}
                 />
               </Box>

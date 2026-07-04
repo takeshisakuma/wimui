@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { PullToRefresh } from "@/components/data-display/PullToRefresh/PullToRefresh";
 import { List, ListItem } from "@/components/data-display/List/List";
 import { Stack } from "@/components/layout/Stack/Stack";
@@ -14,10 +16,11 @@ export default meta;
 type Story = StoryObj<typeof PullToRefresh>;
 
 const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) => {
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [items, setItems] = useState([
-    { id: 1, text: "Initial Item 1", count: 0 },
-    { id: 2, text: "Initial Item 2", count: 0 },
-    { id: 3, text: "Initial Item 3", count: 0 },
+    { id: 1, text: t("story.pull_initial_item", { n: 1 }), count: 0 },
+    { id: 2, text: t("story.pull_initial_item", { n: 2 }), count: 0 },
+    { id: 3, text: t("story.pull_initial_item", { n: 3 }), count: 0 },
   ]);
 
   const handleRefresh = async () => {

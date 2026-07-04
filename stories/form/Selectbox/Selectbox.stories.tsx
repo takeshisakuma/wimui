@@ -148,6 +148,7 @@ export const Searchable: Story = {
         {...args}
         options={options}
         searchable={true}
+        searchPlaceholder={t("story.selectbox_placeholder")}
         placeholder={t("story.selectbox_placeholder")}
       />
     );
@@ -209,6 +210,7 @@ export const AdvancedSearch: Story = {
         options={groupedOptions}
         grouped={true}
         searchable={true}
+        searchPlaceholder={t("story.selectbox_placeholder")}
         allowClear={true}
         placeholder={t("story.selectbox_placeholder")}
       />

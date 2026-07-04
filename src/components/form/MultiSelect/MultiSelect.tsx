@@ -45,7 +45,7 @@ export const MultiSelect = ({
   options = [],
   value,
   onChange,
-  placeholder = "Select options...",
+  placeholder,
   label,
   error,
   required,

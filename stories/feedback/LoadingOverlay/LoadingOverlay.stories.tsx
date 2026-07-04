@@ -86,7 +86,6 @@ export const WithMessage: Story = {
     loaderType: "spinner",
     loaderSize: "lg",
     loaderColor: "primary",
-    message: "Loading data...",
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -238,7 +237,6 @@ export const FullScreen: Story = {
     fixed: true,
     loaderType: "spinner",
     loaderSize: "xl",
-    message: "Loading application...",
   },
   render: function FullScreenStory(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

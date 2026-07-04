@@ -106,7 +106,7 @@ describe("TreeView", () => {
 
   it("filters items by search query and shows parent if child matches", () => {
     render(
-      <TreeView searchable>
+      <TreeView searchable labels={{ searchPlaceholder: "Search..." }}>
         <TreeViewItem value="parent" label="Parent">
           <TreeViewItem value="apple" label="Apple" />
           <TreeViewItem value="banana" label="Banana" />
@@ -347,7 +347,7 @@ describe("TreeView", () => {
     });
 
     it("filters nodes by search query and shows matching ancestors", () => {
-      render(<TreeView nodes={treeNodes} searchable />);
+      render(<TreeView nodes={treeNodes} searchable labels={{ searchPlaceholder: "Search..." }} />);
       fireEvent.change(screen.getByTestId("tree-view-search-input"), {
         target: { value: "1.1" },
       });
@@ -358,7 +358,7 @@ describe("TreeView", () => {
     });
 
     it("shows no results when search matches nothing", () => {
-      render(<TreeView nodes={treeNodes} searchable />);
+      render(<TreeView nodes={treeNodes} searchable labels={{ searchPlaceholder: "Search..." }} />);
       fireEvent.change(screen.getByTestId("tree-view-search-input"), {
         target: { value: "zzz" },
       });

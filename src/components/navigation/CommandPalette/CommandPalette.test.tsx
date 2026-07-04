@@ -23,7 +23,7 @@ describe("CommandPalette", () => {
       <CommandPalette>
         <CommandPaletteTrigger>Open Palette</CommandPaletteTrigger>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
           <CommandPaletteList>
             <CommandPaletteItem>Item 1</CommandPaletteItem>
           </CommandPaletteList>
@@ -49,7 +49,7 @@ describe("CommandPalette", () => {
     render(
       <CommandPalette>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
           <CommandPaletteList>
             <CommandPaletteItem>Item 1</CommandPaletteItem>
           </CommandPaletteList>
@@ -71,7 +71,7 @@ describe("CommandPalette", () => {
     const { rerender } = render(
       <CommandPalette open={false} onOpenChange={onOpenChange}>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
         </CommandPaletteContent>
       </CommandPalette>,
     );
@@ -81,7 +81,7 @@ describe("CommandPalette", () => {
     rerender(
       <CommandPalette open={true} onOpenChange={onOpenChange}>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
         </CommandPaletteContent>
       </CommandPalette>,
     );
@@ -95,7 +95,7 @@ describe("CommandPalette", () => {
     render(
       <CommandPalette open={true}>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
           <CommandPaletteList>
             <CommandPaletteItem>Item 1</CommandPaletteItem>
             <CommandPaletteItem>Item 2</CommandPaletteItem>
@@ -187,7 +187,7 @@ describe("CommandPalette", () => {
           <button onClick={handleTriggerClick}>Custom Trigger</button>
         </CommandPaletteTrigger>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
         </CommandPaletteContent>
       </CommandPalette>,
     );
@@ -225,7 +225,7 @@ describe("CommandPalette", () => {
     render(
       <CommandPalette open={true}>
         <CommandPaletteContent>
-          <CommandPaletteInput />
+          <CommandPaletteInput placeholder="Search commands..." />
           <CommandPaletteList>
             {null}
           </CommandPaletteList>
@@ -319,7 +319,7 @@ describe("CommandPalette", () => {
     render(
       <CommandPalette open={true}>
         <CommandPaletteContent>
-          <CommandPaletteInput onChange={handleChange} />
+          <CommandPaletteInput placeholder="Search commands..." onChange={handleChange} />
         </CommandPaletteContent>
       </CommandPalette>,
     );

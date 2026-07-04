@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Treemap } from "wimui";
 
 const meta: Meta<typeof Treemap> = {
@@ -20,8 +22,11 @@ const data = [
 
 export const Default: Story = {
   args: {
-    title: "Category Distribution",
     data,
     dataKey: "value",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Treemap {...args} title={t("story.chart_category_distribution")} />;
   },
 };

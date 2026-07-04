@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Transfer } from "../../../src/components/form/Transfer/Transfer";
 import { expect, userEvent, within } from "storybook/test";
 
@@ -135,17 +136,18 @@ export const Disabled: Story = {
   render: (args) => <DisabledTransfer {...args} />,
 };
 export const LongText: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const dataSource = [
       {
         key: "1",
-        title: "This is a very very very very very very very very very very very very very very very long title that should be truncated",
-        description: "This is a very very very very very very very very very very very long description",
+        title: t("story.transfer_long_title"),
+        description: t("story.transfer_long_desc"),
       },
       {
         key: "2",
-        title: "Short Title",
-        description: "Short Description",
+        title: t("story.transfer_short_title"),
+        description: t("story.transfer_short_desc"),
       },
     ];
     return <Transfer {...args} dataSource={dataSource} titles={["Very Long Title for the Source Panel Header", "Very Long Title for the Target Panel Header"]} />;

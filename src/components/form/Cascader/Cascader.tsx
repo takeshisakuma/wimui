@@ -54,7 +54,7 @@ export const Cascader = ({
   options = [],
   value,
   onChange,
-  placeholder = "Select option",
+  placeholder,
   label,
   error,
   required,

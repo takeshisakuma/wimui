@@ -23,10 +23,10 @@ describe("TagInput", () => {
   });
 
   it("shows placeholder only while empty", () => {
-    const { unmount } = render(<TagInput />);
-    expect(getInput()).toHaveAttribute("placeholder", "tag_input.placeholder");
+    const { unmount } = render(<TagInput placeholder="frontend" />);
+    expect(getInput()).toHaveAttribute("placeholder", "frontend");
     unmount();
-    render(<TagInput defaultValue={["a"]} />);
+    render(<TagInput placeholder="frontend" defaultValue={["a"]} />);
     expect(getInput()).toHaveAttribute("placeholder", "");
   });
 

@@ -237,13 +237,13 @@ describe("RichTextEditor", () => {
 
   it("renders ul and ol toolbar items", () => {
     render(<RichTextEditor toolbar={["ul", "ol"]} />);
-    expect(screen.getByRole("button", { name: "Unordered List" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Ordered List" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Bullet list" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Numbered list" })).toBeInTheDocument();
   });
 
   it("renders unlink toolbar item", () => {
     render(<RichTextEditor toolbar={["unlink"]} />);
-    expect(screen.getByRole("button", { name: /unlink/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /remove link/i })).toBeInTheDocument();
   });
 
   it("bold button is rendered and accessible when not disabled", () => {

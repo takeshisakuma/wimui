@@ -105,6 +105,9 @@
     "numberinput_decimal_negative": "小数・負の数",
     "numberinput_decimal_negative_desc": "小数や負の数を許可する設定例です。",
     "numberinput_label": "数値入力",
+    "numberinput_label_decimal": "小数と負数",
+    "numberinput_label_id": "ID番号",
+    "numberinput_label_standard": "標準の数値入力",
     "numberinput_numeric_mode": "数値モード (数量など)",
     "numberinput_numeric_mode_desc": "数量の増減などに適した標準的な数値入力です。デフォルトで不適切な文字の入力を制限します。",
     "numberinput_placeholder": "100",
@@ -188,6 +191,7 @@
     "slider_range": "範囲スライダー",
     "slider_step": "ステップ指定",
     "slider_vertical": "垂直スライダー",
+    "smartsearch_error_invalid": "無効なクエリ",
     "smartsearchinput_ai_placeholder": "このページを要約して",
     "smartsearchinput_interactive_hint": "長い検索キーワードや複数行のプロンプトを入力してみてください（Shift+Enterで改行）",
     "smartsearchinput_placeholder": "WIM UI にはどんな種類のボタンがありますか？",
@@ -217,6 +221,10 @@
     "textarea_value_none": "特になし",
     "timepicker_ghost": "ゴースト時間選択",
     "timepicker_outline": "アウトライン時間選択",
-    "timepicker_select": "時間を選択"
+    "timepicker_select": "時間を選択",
+    "transfer_long_desc": "これはとてもとてもとてもとてもとてもとてもとてもとても長い説明です",
+    "transfer_long_title": "これは切り捨てられるべき、とてもとてもとてもとてもとてもとてもとてもとてもとてもとても長いタイトルです",
+    "transfer_short_desc": "短い説明",
+    "transfer_short_title": "短いタイトル"
   }
 }

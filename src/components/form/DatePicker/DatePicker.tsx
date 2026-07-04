@@ -51,10 +51,6 @@ export interface DatePickerProps extends Omit<
   asChild?: boolean;
 }
 
-const DEFAULT_LABELS: Required<DatePickerLabels> = {
-  placeholder: "Select date",
-};
-
 /**
  * ユーザーが日付を選択するためのコンポーネント。
  */
@@ -88,7 +84,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     },
     ref,
   ) => {
-    const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
     const [isOpen, setIsOpen] = useState(false);
     const [internalValue, setInternalValue] = useState<Date | null>(
@@ -109,7 +104,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
-    const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
+    const actualPlaceholder = placeholder ?? labels?.placeholder;
     const isDisabled = disabled;
     const currentIntent = error ? "error" : intent;
 

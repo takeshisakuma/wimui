@@ -82,6 +82,8 @@
     "fruit_watermelon": "スイカ",
     "iconbutton_close": "閉じる",
     "iconbutton_search": "検索",
+    "label_email_address": "メールアドレス",
+    "label_phone_number": "電話番号",
     "legend_long": "非常に長いタイトルの例。関連するフォーム要素をグループ化するためのセクションタイトルとして使用されます。",
     "legend_title": "フォームのタイトル",
     "loading_overlay_blur": "ぼかし",

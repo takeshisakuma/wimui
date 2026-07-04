@@ -109,7 +109,7 @@ export const MultipleActions: Story = {
             { icon: "TrashIcon", label: t("action.delete"), intent: "error", onClick: () => handleAction("Delete") },
           ]}
         >
-          <ListItem title={t("story.swipeaction_multiple")} subtitle="Try swiping both ways" />
+          <ListItem title={t("story.swipeaction_multiple")} subtitle={t("story.swipe_subtitle_both")} />
         </SwipeAction>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -193,7 +193,7 @@ export const ExclusiveList: Story = {
                   },
                 ]}
               >
-                <ListItem title={`Task ${i}`} subtitle="Swipe left or right. Exclusive mode is on." />
+                <ListItem title={`Task ${i}`} subtitle={t("story.swipe_subtitle_exclusive")} />
               </SwipeAction>
             ))}
           </List>

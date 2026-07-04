@@ -101,7 +101,7 @@ export const Overview: StoryObj = {
 
               <Popconfirm
                 title={t("audit:overlay_confirm_title")}
-                description="This action cannot be undone."
+                description={t("audit:overlay_cannot_undo")}
               >
                 <Button variant="outline" size="sm">{t("audit:label_popconfirm")}</Button>
               </Popconfirm>

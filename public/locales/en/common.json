@@ -12,6 +12,8 @@
     "data_grid": "Data Grid",
     "delete": "Delete",
     "edit": "Edit",
+    "exit_fullscreen": "Exit Fullscreen",
+    "fullscreen": "Fullscreen",
     "go_to_next_page": "Go to next page",
     "go_to_page": "Go to page {{page}}",
     "go_to_prev_page": "Go to previous page",

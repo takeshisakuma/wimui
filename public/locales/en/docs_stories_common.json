@@ -82,6 +82,8 @@
     "fruit_watermelon": "Watermelon",
     "iconbutton_close": "Close",
     "iconbutton_search": "Search",
+    "label_email_address": "Email Address",
+    "label_phone_number": "Phone Number",
     "legend_long": "Example of a very long title. Used as a section title to group related form elements.",
     "legend_title": "Form Title",
     "loading_overlay_blur": "Blur",

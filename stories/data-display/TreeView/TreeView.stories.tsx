@@ -177,46 +177,46 @@ export const Overflow: Story = {
 
 // ─── checkStrategy デモ用ノード ────────────────────────────────────────────────
 
-const regionNodes: TreeViewNode[] = [
+const regionNodes = (t: (k: string) => string): TreeViewNode[] => [
   {
     value: "asia",
-    label: "Asia",
+    label: t("story.tree_asia"),
     children: [
       {
         value: "east-asia",
-        label: "East Asia",
+        label: t("story.tree_east_asia"),
         children: [
-          { value: "japan", label: "Japan" },
-          { value: "korea", label: "Korea" },
-          { value: "china", label: "China" },
+          { value: "japan", label: t("story.tree_japan") },
+          { value: "korea", label: t("story.tree_korea") },
+          { value: "china", label: t("story.tree_china") },
         ],
       },
       {
         value: "southeast-asia",
-        label: "Southeast Asia",
+        label: t("story.tree_southeast_asia"),
         children: [
-          { value: "thailand", label: "Thailand" },
-          { value: "vietnam", label: "Vietnam" },
+          { value: "thailand", label: t("story.tree_thailand") },
+          { value: "vietnam", label: t("story.tree_vietnam") },
         ],
       },
     ],
   },
   {
     value: "europe",
-    label: "Europe",
+    label: t("story.tree_europe"),
     children: [
-      { value: "france", label: "France" },
-      { value: "germany", label: "Germany" },
-      { value: "italy", label: "Italy" },
+      { value: "france", label: t("story.tree_france") },
+      { value: "germany", label: t("story.tree_germany") },
+      { value: "italy", label: t("story.tree_italy") },
     ],
   },
   {
     value: "americas",
-    label: "Americas",
+    label: t("story.tree_americas"),
     children: [
-      { value: "usa", label: "United States" },
-      { value: "canada", label: "Canada" },
-      { value: "brazil", label: "Brazil" },
+      { value: "usa", label: t("story.tree_united_states") },
+      { value: "canada", label: t("story.tree_canada") },
+      { value: "brazil", label: t("story.tree_brazil") },
     ],
   },
 ];
@@ -227,11 +227,12 @@ const regionNodes: TreeViewNode[] = [
  */
 export const CascadeCheckable: Story = {
   render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [checked, setChecked] = React.useState<string[]>([]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <TreeView
-          nodes={regionNodes}
+          nodes={regionNodes(t)}
           checkable
           checkStrategy="cascade"
           multiSelect
@@ -253,11 +254,12 @@ export const CascadeCheckable: Story = {
  */
 export const ExclusiveCheckable: Story = {
   render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [checked, setChecked] = React.useState<string[]>([]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <TreeView
-          nodes={regionNodes}
+          nodes={regionNodes(t)}
           checkable
           checkStrategy="exclusive"
           multiSelect

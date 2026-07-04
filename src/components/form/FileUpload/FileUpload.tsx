@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
@@ -28,8 +29,8 @@ type FileUploadProps = {
  */
 export const FileUpload = ({
   label,
-  buttonLabel = "Choose File",
-  noFileLabel = "No file chosen",
+  buttonLabel,
+  noFileLabel,
   accept,
   multiple = false,
   disabled = false,
@@ -42,6 +43,7 @@ export const FileUpload = ({
   required,
   layout = "vertical",
 }: FileUploadProps) => {
+  const { t } = useWimTranslation("form");
   const generatedId = React.useId();
   const id = `wim-fileupload-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -66,7 +68,7 @@ export const FileUpload = ({
     ? Array.from(selectedFiles)
         .map((file) => file.name)
         .join(", ")
-    : noFileLabel;
+    : (noFileLabel ?? t("fileupload.no_file"));
 
   return (
     <FieldTemplate
@@ -105,7 +107,7 @@ export const FileUpload = ({
           aria-describedby={errorId}
           aria-required={required}
           aria-invalid={error ? true : undefined}
-        >{buttonLabel}</Button>
+        >{buttonLabel ?? t("fileupload.button")}</Button>
         <span
           className={classNames(
             styles.fileNames,

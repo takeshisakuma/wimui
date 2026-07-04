@@ -1,6 +1,5 @@
 {
   "prompt_input": {
-    "placeholder": "Summarize this document in three points",
     "send_label": "Send",
     "attach_label": "Attach file",
     "aria_label": "Prompt input"
@@ -51,9 +50,6 @@
   "btn": {
     "page_transition": "Standard page transitions or footer links."
   },
-  "datepicker": {
-    "placeholder": "2026-07-04"
-  },
   "dropzone": {
     "description": "Drag and drop files here, or click to select"
   },
@@ -68,10 +64,8 @@
   "phone": {
     "number": "Phone number"
   },
-  "search": {
-    "placeholder": "Quarterly report"
-  },
   "select": {
+    "no_options": "No options found",
     "option": "Option 1"
   },
   "transfer": {
@@ -99,9 +93,6 @@
     "confirm_message": "Do you want to save the image with this crop?",
     "confirm": "Apply",
     "cancel": "Cancel"
-  },
-  "tag_input": {
-    "placeholder": "frontend"
   },
   "combobox": {
     "no_results": "No results found"

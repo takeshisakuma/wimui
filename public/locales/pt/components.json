@@ -609,5 +609,13 @@
   },
   "visual": {
     "accessibility": "Acessibilidade Visual"
+  },
+  "command_palette": {
+    "no_results": "Nenhum resultado encontrado."
+  },
+  "treeview": {
+    "collapse": "Recolher {{label}}",
+    "expand": "Expandir {{label}}",
+    "search_aria": "Buscar itens da árvore"
   }
 }
