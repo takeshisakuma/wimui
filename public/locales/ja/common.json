@@ -70,12 +70,19 @@
     "ratio": "アスペクト比"
   },
   "audience": "オーディエンス",
+  "autosave": {
+    "aria_label": "自動保存の状態",
+    "error": "保存に失敗しました",
+    "saved": "保存済み",
+    "saved_at": "{{time}}に保存済み",
+    "saving": "保存中..."
+  },
   "bottom": "下",
   "chat": {
     "ai_assistant": "AIアシスタント",
     "attachment_prefix": "添付: {{fileName}}",
-    "placeholder": "メッセージを入力...",
-    "placeholder_interactive": "メッセージを入力して送信...",
+    "placeholder": "こんにちは！",
+    "placeholder_interactive": "明日の会議は何時ですか？",
     "support": "サポート",
     "you": "あなた"
   },
@@ -140,6 +147,7 @@
   },
   "doc": {
     "a11y_spec_title": "アクセシビリティ仕様",
+    "anatomy_module_note": "このコンポーネントは CSS Modules を使用しており、上記のクラス名はビルド時にハッシュ化されるローカル名です。スタイルの上書きにはクラスを直接指定せず、デザイントークンの CSS 変数を使用してください。",
     "anatomy_title": "アナトミー",
     "api_reference": "APIリファレンス",
     "baseListItem_a11y_desc": "ルート要素は適切なリストセマンティクスを使用します。インタラクティブなアイテムはキーボードフォーカスとrole属性を受け取ります。",
@@ -262,9 +270,8 @@
     "op_cancel": "変更をキャンセル",
     "op_edit_save": "変更を保存",
     "op_navigate": "項目を移動",
-    "props_title": "Props",
     "props_none": "このコンポーネントに固有の Props はありません。HTML 標準属性を継承します。",
-    "anatomy_module_note": "このコンポーネントは CSS Modules を使用しており、上記のクラス名はビルド時にハッシュ化されるローカル名です。スタイルの上書きにはクラスを直接指定せず、デザイントークンの CSS 変数を使用してください。",
+    "props_title": "Props",
     "pull_to_refresh_a11y_desc": "ライブリージョンを使用して、更新状況をスクリーンリーダーに通知する必要があります。",
     "pull_to_refresh_best_practice_1": "トリガーのしきい値は、到達しやすく、かつ誤操作しにくい適切な値に設定してください。",
     "pull_to_refresh_best_practice_2": "スクロール可能なコンテナの最上部でのみ使用してください。",
@@ -512,8 +519,8 @@
   },
   "placeholder": {
     "email": "example@email.com",
-    "name": "氏名",
-    "search": "検索..."
+    "name": "山田太郎",
+    "search": "四半期レポート"
   },
   "playback": {
     "rate": "再生速度"
@@ -526,6 +533,11 @@
     "release": "離して更新"
   },
   "quality": "画質",
+  "reaction": {
+    "add_reaction": "リアクションを追加",
+    "aria_label": "リアクション",
+    "react_with": "{{emoji}}、{{count}}件のリアクション"
+  },
   "reports": "レポート",
   "required": "必須",
   "right": "右",
@@ -565,8 +577,8 @@
   },
   "story": {
     "carousel_slide_label": "スライド {{number}}",
-    "thoughtprocess_title_thinking": "思考中状態",
-    "thoughtprocess_title_streaming": "ストリーミング推論"
+    "thoughtprocess_title_streaming": "ストリーミング推論",
+    "thoughtprocess_title_thinking": "思考中状態"
   },
   "sun": "日",
   "thu": "木",
@@ -606,11 +618,11 @@
     "color_ct_title": "コントラスト用テキストカラー",
     "color_interaction_oklch_desc": "ホバーやアクティブなどのインタラクション状態では、不透明度（opacity）やフィルタ（brightness）の代わりに、oklch 相対色構文を使用して明度（L）を調整することを推奨します。これにより、ライト・ダークモードを問わず均一な視覚フィードバックが保証されます。",
     "color_interaction_oklch_title": "oklch による動的なインタラクション",
-    "color_rgb_alpha_title": "RGB トークンによる不透明度",
-    "color_rgb_alpha_desc": "不透明度を伴う色が必要な場合は HEX をハードコードしないでください。自動生成される `*-rgb` トークン（カンマ区切りの `R, G, B`）を `rgba()` の中で使うか、セマンティックトークンをそのまま `color-mix()` に渡します。どちらの方法もライト/ダークテーマに自動で追従します。",
     "color_pccs_th1": "トーン",
     "color_pccs_th2": "特徴",
     "color_pccs_th3": "主な用途",
+    "color_rgb_alpha_desc": "不透明度を伴う色が必要な場合は HEX をハードコードしないでください。自動生成される `*-rgb` トークン（カンマ区切りの `R, G, B`）を `rgba()` の中で使うか、セマンティックトークンをそのまま `color-mix()` に渡します。どちらの方法もライト/ダークテーマに自動で追従します。",
+    "color_rgb_alpha_title": "RGB トークンによる不透明度",
     "colors": "Colors",
     "effects": "Effects",
     "overview_desc": "WIM UI のスタイル定義の基礎となるデザイントークンの一覧です。一貫したデザインを維持するために、これらの変数を使用することを推奨します。",
@@ -641,8 +653,8 @@
     "type_lh_latn_normal": "Normal (1.4)\n標準の行間は、ほとんどのアプリのUI要素に向けです。密度とバランスが取れています。",
     "type_lh_latn_tight": "Tight (1.2)\n見出しに特に設計されています。",
     "type_lineheight": "行間 (Line Heights)",
-    "type_lineheight_lang_title": "言語による行高・フォントの出し分け",
     "type_lineheight_lang_desc": "行高・フォントファミリーのトークン選択は次の優先順位で判断します。(1) コンポーネントに該当する prop があればそれに委ねる（例: `Text` の `lineHeight`）。(2) 本文や複数行テキストは、CJK の字形が縦の余白を必要とするため、既定で広いほうの `-jp` バリアントを使う。(3) 自動で切り替えたい場合は、グローバルな `:root[lang]` ではなく `<html lang>` から伝播する `lang` 属性を起点にする。コンポーネントの SCSS 内に i18next の言語判定を書いてはいけません。",
+    "type_lineheight_lang_title": "言語による行高・フォントの出し分け",
     "type_size": "フォントサイズ (Font Sizes)",
     "type_text_ex_large": "Extra Large Text (20.25px)\n1.125の2乗の比率（$font-size-2）を使用しています。",
     "type_text_ex_small": "Extra Small Text (12.64px)\n1.125の-2乗の比率（$font-size-minus-2）を使用しています。",
@@ -658,17 +670,5 @@
   "upload": "アップロード",
   "username": "ユーザー名",
   "wed": "水",
-  "welcome": "アプリケーションへようこそ",
-  "reaction": {
-    "aria_label": "リアクション",
-    "react_with": "{{emoji}}、{{count}}件のリアクション",
-    "add_reaction": "リアクションを追加"
-  },
-  "autosave": {
-    "aria_label": "自動保存の状態",
-    "saving": "保存中...",
-    "saved": "保存済み",
-    "saved_at": "{{time}}に保存済み",
-    "error": "保存に失敗しました"
-  }
+  "welcome": "アプリケーションへようこそ"
 }

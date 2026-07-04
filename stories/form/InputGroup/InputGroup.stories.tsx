@@ -25,7 +25,7 @@ export const Basic: Story = {
 export const WithButton: Story = {
   render: (args) => (
     <InputGroup {...args}>
-      <Input placeholder="Search..." />
+      <Input placeholder="Quarterly report" />
       <Button variant="solid" icon="SearchIcon">Search</Button>
     </InputGroup>
   ),
@@ -59,7 +59,7 @@ export const FullWidth: Story = {
     <div style={{ width: "100%", maxWidth: "600px" }}>
       <InputGroup {...args}>
         <InputGroupText>Search</InputGroupText>
-        <Input placeholder="Type something..." />
+        <Input placeholder="Hello, world" />
         <Button variant="solid">Go</Button>
       </InputGroup>
     </div>

@@ -31,7 +31,7 @@ export const Controlled: Story = {
         <TagInput 
           value={tags} 
           onChange={setTags} 
-          placeholder="Add tags..." 
+          placeholder="frontend" 
         />
       </div>
     );

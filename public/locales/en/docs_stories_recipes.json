@@ -3,7 +3,7 @@
     "title": "Welcome back",
     "subtitle": "Please enter your details to sign in",
     "email": "Email",
-    "email_placeholder": "Enter your email",
+    "email_placeholder": "example@email.com",
     "password": "Password",
     "remember_me": "Remember me",
     "forgot_password": "Forgot password?",
@@ -13,7 +13,7 @@
     "sign_up": "Sign up"
   },
   "dashboard": {
-    "header_search_placeholder": "Search...",
+    "header_search_placeholder": "Quarterly report",
     "header_dashboard": "Dashboard",
     "header_projects": "Projects",
     "header_team": "Team",
@@ -162,9 +162,9 @@
     "email": "Email",
     "email_placeholder": "you@example.com",
     "password": "Password",
-    "password_placeholder": "Min. 8 characters",
+    "password_placeholder": "••••••••",
     "confirm_password": "Confirm Password",
-    "confirm_placeholder": "Re-enter your password",
+    "confirm_placeholder": "••••••••",
     "terms": "I agree to the Terms of Service and Privacy Policy",
     "btn": "Create Account",
     "have_account": "Already have an account?",
@@ -258,7 +258,7 @@
     "btn_continue": "Continue Shopping"
   },
   "artifacts": {
-    "chat_placeholder": "Ask AI to generate something...",
+    "chat_placeholder": "Create a landing page for a coffee shop",
     "canvas_title": "Artifact Preview",
     "canvas_empty": "Select an artifact from the chat to preview it here.",
     "tab_preview": "Preview",

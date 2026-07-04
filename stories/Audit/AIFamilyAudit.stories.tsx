@@ -113,7 +113,7 @@ export const Overview: StoryObj = {
                 ))}
                 <ChatMessage isTyping />
               </ChatMessageList>
-              <ChatInput placeholder="Type a message..." showAttach />
+              <ChatInput placeholder="Hello!" showAttach />
             </Box>
           </ComponentGroup>
         </ComparisonGrid>
@@ -155,7 +155,7 @@ export const Overview: StoryObj = {
         {/* PromptInput Action Check */}
         <ComparisonGrid title={t("audit:ai_prompt_action_check")}>
           <ComponentGroup label={`${t("audit:label_prompt_input")} — default`} align="stretch" maxWidth="var(--wim-width-md)">
-            <PromptInput placeholder="Ask anything..." showAttach fullWidth />
+            <PromptInput placeholder="What time is the meeting tomorrow?" showAttach fullWidth />
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_prompt_input")} — loading & disabled`} align="stretch" maxWidth="var(--wim-width-md)">
             <Stack gap="md">

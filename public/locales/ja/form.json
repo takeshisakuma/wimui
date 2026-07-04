@@ -1,9 +1,21 @@
 {
+  "agent_status": {
+    "done": "完了",
+    "error": "エラー",
+    "idle": "待機中",
+    "running": "実行中…",
+    "thinking": "思考中…",
+    "waiting": "待機中…"
+  },
   "ai_feedback": {
     "group_label": "回答へのフィードバック",
     "negative_label": "役に立たなかった",
     "positive_label": "役に立った",
     "regenerate_label": "再生成"
+  },
+  "artifact_overlay": {
+    "maximize": "最大化",
+    "minimize": "最小化"
   },
   "btn": {
     "page_transition": "標準的なページ遷移またはフッターリンク。"
@@ -42,10 +54,10 @@
     "lines": "{{count}} 行"
   },
   "code_diff_viewer": {
-    "copy_label": "コピー",
-    "copied_label": "コピーしました！",
-    "apply": "適用",
     "applied": "適用済み",
+    "apply": "適用",
+    "copied_label": "コピーしました！",
+    "copy_label": "コピー",
     "reject": "却下",
     "split_view": "分割",
     "unified_view": "統合"
@@ -54,7 +66,7 @@
     "no_results": "結果が見つかりません"
   },
   "datepicker": {
-    "placeholder": "日付を選択"
+    "placeholder": "2026-07-04"
   },
   "dropzone": {
     "description": "ここにファイルをドラッグ＆ドロップ、またはクリックして選択"
@@ -93,11 +105,11 @@
   "prompt_input": {
     "aria_label": "プロンプト入力",
     "attach_label": "ファイルを添付",
-    "placeholder": "AIにメッセージを入力、またはファイルを添付...",
+    "placeholder": "この資料を3点で要約して",
     "send_label": "送信"
   },
   "search": {
-    "placeholder": "ボタン"
+    "placeholder": "四半期レポート"
   },
   "select": {
     "option": "項目1"
@@ -107,12 +119,12 @@
     "source_label": "ソース {{index}}"
   },
   "tag_input": {
-    "placeholder": "タグを入力..."
+    "placeholder": "フロントエンド"
   },
   "terminal": {
-    "copy_label": "出力をコピー",
+    "clear_label": "クリア",
     "copied_label": "コピーしました！",
-    "clear_label": "クリア"
+    "copy_label": "出力をコピー"
   },
   "transfer": {
     "move_to_source": "選択可能に移動",
@@ -122,17 +134,5 @@
     "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
     "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",
     "target": "選択済み"
-  },
-  "agent_status": {
-    "idle": "待機中",
-    "thinking": "思考中…",
-    "running": "実行中…",
-    "waiting": "待機中…",
-    "done": "完了",
-    "error": "エラー"
-  },
-  "artifact_overlay": {
-    "minimize": "最小化",
-    "maximize": "最大化"
   }
 }

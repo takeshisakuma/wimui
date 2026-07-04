@@ -164,21 +164,21 @@
     "sample_link_subtle": "This is a <0>subtle link</0> inside secondary text.",
     "sample_overlay_check": "Consistency of Dialog, Popover, and Tooltip is checked via container styles (Shadow & Radius).",
     "sample_feedback_check": "Check if the background color and icon match the design system tokens.",
-    "sample_inline_edit_placeholder": "Click to edit...",
+    "sample_inline_edit_placeholder": "Project title",
     "sample_prompt_ai": "Enter AI prompt...",
     "sample_smart_search_ai": "Search with AI...",
     "sample_tag_a": "Tag A",
     "sample_tag_b": "Tag B",
-    "sample_tag_input_placeholder": "Add tag...",
-    "sample_multi_select_placeholder": "Select from list...",
-    "sample_combobox_placeholder": "Search or select...",
-    "sample_select_placeholder": "Select option...",
-    "sample_tree_select_placeholder": "Select from tree...",
-    "sample_cascader_placeholder": "Select cascade...",
+    "sample_tag_input_placeholder": "frontend",
+    "sample_multi_select_placeholder": "Design, Engineering",
+    "sample_combobox_placeholder": "Tokyo",
+    "sample_select_placeholder": "Option A",
+    "sample_tree_select_placeholder": "Documents / Reports",
+    "sample_cascader_placeholder": "Tokyo / Shibuya",
     "sample_phone_placeholder": "000-0000-0000",
     "sample_credit_card_placeholder": "xxxx xxxx xxxx xxxx",
-    "sample_date_placeholder": "Select date...",
-    "sample_name_placeholder": "Enter name...",
+    "sample_date_placeholder": "2026-07-04",
+    "sample_name_placeholder": "John Doe",
     "sample_textarea_rows": "{{rows}} rows textarea",
     "action_check_dialog": "Check Dialog Shadow",
     "action_check_popover": "Check Popover Shadow",
@@ -336,7 +336,7 @@
     "label_volume_level": "Volume Level",
     "label_fruit": "Fruit",
     "placeholder_username": "e.g. johndoe",
-    "placeholder_country": "Select your country",
+    "placeholder_country": "Japan",
     "help_text_username": "Enter your unique username.",
     "help_text_country": "Used for regional settings.",
     "help_text_interests": "Select at least one interest.",
@@ -459,8 +459,8 @@
     },
     "chat": {
       "attachment_prefix": "Attached: {{fileName}}",
-      "placeholder": "Type a message...",
-      "placeholder_interactive": "Type a message and press Enter...",
+      "placeholder": "Hello!",
+      "placeholder_interactive": "What time is the meeting tomorrow?",
       "ai_assistant": "AI Assistant",
       "you": "You",
       "support": "Support"
@@ -881,8 +881,8 @@
     },
     "placeholder": {
       "email": "example@email.com",
-      "name": "Full name",
-      "search": "Search..."
+      "name": "John Doe",
+      "search": "Quarterly report"
     },
     "playback": {
       "rate": "Playback rate"
@@ -5168,7 +5168,7 @@
       "searchinput_choice_alt_when": "When the input is part of a complex filter form (use Input with custom icons).",
       "searchinput_choice_matrix_desc": "Select based on the search interaction model needed.",
       "searchinput_choice_self_when": "When you need a dedicated search field with clear button and search icon.",
-      "searchinput_content_placeholder": "Set text that specifically indicates the search target, such as 'Enter keyword' or 'Search server'.",
+      "searchinput_content_placeholder": "Use an example of an actual search query (e.g., 'Quarterly report') as the placeholder, not instructions like 'Enter keyword'.",
       "searchinput_design_intent": "SearchInput is an input component specialized for searching information. It comes standard with a search icon that communicates 'searching purpose' at a glance and a clear button to quickly discard complex search terms, optimizing the user's discovery experience.",
       "searchinput_long_desc": "A component that provides a search interface.",
       "searchinput_motion_clear": "A fade effect is applied to the appearance and disappearance of the clear button to communicate UI changes naturally.",
@@ -5206,7 +5206,7 @@
       "selectbox_choice_radio_when": "When there are few options (5 or fewer) and you want to show all options at once.",
       "selectbox_choice_select_when": "When there are 6 or more options, or when you want to save space.",
       "selectbox_content_labels": "Keep labels in the list concise and ideally fitting on a single line.",
-      "selectbox_content_placeholder": "Set text like 'Select...' that prompts the user for the next action.",
+      "selectbox_content_placeholder": "Show a representative example option (e.g., 'Tokyo') as the placeholder instead of instructions like 'Select...'.",
       "selectbox_custom_filter_desc": "By default, a case-insensitive partial match search is performed, but you can also provide a custom filter function.",
       "selectbox_custom_filter_title": "Custom Filter Function",
       "selectbox_desc": "A dropdown menu for selecting one option from a predefined list",
@@ -5334,7 +5334,7 @@
       "smartsearchinput_choice_matrix_desc": "Select based on the input length and interaction model needed.",
       "smartsearchinput_choice_self_when": "When the field needs to handle both short search queries and long AI prompts, or when auto-expanding behaviour is required.",
       "smartsearchinput_choice_alt_when": "When a fixed single-line search is sufficient (use SearchInput).",
-      "smartsearchinput_content_placeholder": "Write placeholder text that clearly communicates multi-purpose use, such as 'Search or enter a prompt…'.",
+      "smartsearchinput_content_placeholder": "Use a sample sentence the user might actually type (e.g., 'What types of buttons are in WIM UI?') as the placeholder.",
       "smartsearchinput_motion_expand": "The textarea height animates smoothly as content grows. Row count increases up to maxRows, after which the field becomes scrollable.",
       "smartsearchinput_best_practice_1": "Set a clear placeholder that hints at both search and prompt use cases, for example 'Search or ask a question…'.",
       "smartsearchinput_best_practice_2": "Use maxLength with character count display when the downstream API has token or character limits.",
@@ -11021,7 +11021,7 @@
       "otp_clear": "Clear",
       "otp_current_value": "Current Value",
       "passwordinput_label": "Password",
-      "passwordinput_placeholder": "",
+      "passwordinput_placeholder": "••••••••",
       "phoneinput_error": "Please enter a valid phone number.",
       "phoneinput_label": "Phone Number",
       "phoneinput_placeholder": "000-000-0000",
@@ -11113,9 +11113,9 @@
       "credit_card_visa_label": "Visa (Starts with 4)",
       "credit_card_amex_label": "Amex (Starts with 34/37, 4-6-5 format)",
       "counter_textarea_label": "Message with Counter",
-      "counter_textarea_placeholder": "Type your message here...",
-      "smartsearchinput_placeholder": "Search or ask a question…",
-      "smartsearchinput_ai_placeholder": "Search or ask AI…",
+      "counter_textarea_placeholder": "I have some feedback about the new design.",
+      "smartsearchinput_placeholder": "What types of buttons are in WIM UI?",
+      "smartsearchinput_ai_placeholder": "Summarize this page",
       "smartsearchinput_interactive_hint": "Try typing a long search or multiline prompt (Shift+Enter for newline)",
       "smartsearchinput_submitted_label": "Recent Queries:"
     }
@@ -11640,7 +11640,7 @@
       "title": "Welcome back",
       "subtitle": "Please enter your details to sign in",
       "email": "Email",
-      "email_placeholder": "Enter your email",
+      "email_placeholder": "example@email.com",
       "password": "Password",
       "remember_me": "Remember me",
       "forgot_password": "Forgot password?",
@@ -11650,7 +11650,7 @@
       "sign_up": "Sign up"
     },
     "dashboard": {
-      "header_search_placeholder": "Search...",
+      "header_search_placeholder": "Quarterly report",
       "header_dashboard": "Dashboard",
       "header_projects": "Projects",
       "header_team": "Team",
@@ -11799,9 +11799,9 @@
       "email": "Email",
       "email_placeholder": "you@example.com",
       "password": "Password",
-      "password_placeholder": "Min. 8 characters",
+      "password_placeholder": "••••••••",
       "confirm_password": "Confirm Password",
-      "confirm_placeholder": "Re-enter your password",
+      "confirm_placeholder": "••••••••",
       "terms": "I agree to the Terms of Service and Privacy Policy",
       "btn": "Create Account",
       "have_account": "Already have an account?",
@@ -11895,7 +11895,7 @@
       "btn_continue": "Continue Shopping"
     },
     "artifacts": {
-      "chat_placeholder": "Ask AI to generate something...",
+      "chat_placeholder": "Create a landing page for a coffee shop",
       "canvas_title": "Artifact Preview",
       "canvas_empty": "Select an artifact from the chat to preview it here.",
       "tab_preview": "Preview",
@@ -12376,7 +12376,7 @@
   },
   "form": {
     "prompt_input": {
-      "placeholder": "Ask AI or attach a file...",
+      "placeholder": "Summarize this document in three points",
       "send_label": "Send",
       "attach_label": "Attach file",
       "aria_label": "Prompt input"
@@ -12428,7 +12428,7 @@
       "page_transition": "Standard page transitions or footer links."
     },
     "datepicker": {
-      "placeholder": "Select date"
+      "placeholder": "2026-07-04"
     },
     "dropzone": {
       "description": "Drag and drop files here, or click to select"
@@ -12445,7 +12445,7 @@
       "number": "Phone number"
     },
     "search": {
-      "placeholder": "Search"
+      "placeholder": "Quarterly report"
     },
     "select": {
       "option": "Option 1"
@@ -12477,7 +12477,7 @@
       "cancel": "Cancel"
     },
     "tag_input": {
-      "placeholder": "Enter tags..."
+      "placeholder": "frontend"
     },
     "combobox": {
       "no_results": "No results found"

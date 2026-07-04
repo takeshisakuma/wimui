@@ -1,6 +1,6 @@
 {
   "prompt_input": {
-    "placeholder": "Ask AI or attach a file...",
+    "placeholder": "Summarize this document in three points",
     "send_label": "Send",
     "attach_label": "Attach file",
     "aria_label": "Prompt input"
@@ -52,7 +52,7 @@
     "page_transition": "Standard page transitions or footer links."
   },
   "datepicker": {
-    "placeholder": "Select date"
+    "placeholder": "2026-07-04"
   },
   "dropzone": {
     "description": "Drag and drop files here, or click to select"
@@ -69,7 +69,7 @@
     "number": "Phone number"
   },
   "search": {
-    "placeholder": "Search"
+    "placeholder": "Quarterly report"
   },
   "select": {
     "option": "Option 1"
@@ -101,7 +101,7 @@
     "cancel": "Cancel"
   },
   "tag_input": {
-    "placeholder": "Enter tags..."
+    "placeholder": "frontend"
   },
   "combobox": {
     "no_results": "No results found"

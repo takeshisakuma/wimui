@@ -70,12 +70,19 @@
     "ratio": "Proporção"
   },
   "audience": "Público",
+  "autosave": {
+    "aria_label": "Status do salvamento automático",
+    "error": "Falha ao salvar",
+    "saved": "Salvo",
+    "saved_at": "Salvo às {{time}}",
+    "saving": "Salvando..."
+  },
   "bottom": "Base",
   "chat": {
     "ai_assistant": "Assistente de IA",
     "attachment_prefix": "Anexo: {{fileName}}",
-    "placeholder": "Digite uma mensagem...",
-    "placeholder_interactive": "Digite uma mensagem e pressione Enter...",
+    "placeholder": "Olá!",
+    "placeholder_interactive": "A que horas é a reunião amanhã?",
     "support": "Suporte",
     "you": "Você"
   },
@@ -143,6 +150,7 @@
   },
   "doc": {
     "a11y_spec_title": "Especificações de Acessibilidade",
+    "anatomy_module_note": "Este componente usa CSS Modules; os nomes de classe acima são nomes locais que recebem hash no build. Para sobrescrever estilos, use as variáveis CSS dos design tokens em vez de segmentar essas classes.",
     "anatomy_title": "Anatomia",
     "api_reference": "Referência da API",
     "baseListItem_a11y_desc": "Suporta aria-selected e mapeamento de função adequado em controles complexos.",
@@ -268,9 +276,8 @@
     "op_cancel": "Cancelar alterações",
     "op_edit_save": "Salvar alterações",
     "op_navigate": "Navegar pelos itens",
-    "props_title": "Props",
     "props_none": "Este componente não possui props próprias. Ele herda os atributos HTML padrão.",
-    "anatomy_module_note": "Este componente usa CSS Modules; os nomes de classe acima são nomes locais que recebem hash no build. Para sobrescrever estilos, use as variáveis CSS dos design tokens em vez de segmentar essas classes.",
+    "props_title": "Props",
     "pull_to_refresh_a11y_desc": "Deve oferecer suporte a leitores de tela com regiões dinâmicas (live regions) para o status da atualização.",
     "pull_to_refresh_best_practice_1": "Garanta que o limite de acionamento seja fácil de alcançar, mas difícil de acionar acidentalmente.",
     "pull_to_refresh_best_practice_2": "Use apenas no topo de um contêiner rolável.",
@@ -518,8 +525,8 @@
   },
   "placeholder": {
     "email": "example@email.com",
-    "name": "Nome completo",
-    "search": "Pesquisar..."
+    "name": "João Silva",
+    "search": "Relatório trimestral"
   },
   "playback": {
     "rate": "Velocidade de Reprodução"
@@ -532,6 +539,11 @@
     "release": "Solte para atualizar"
   },
   "quality": "Qualidade",
+  "reaction": {
+    "add_reaction": "Adicionar reação",
+    "aria_label": "Reações",
+    "react_with": "{{emoji}}, {{count}} reações"
+  },
   "reports": "Relatórios",
   "required": "Obrigatório",
   "right": "Direita",
@@ -571,8 +583,8 @@
   },
   "story": {
     "carousel_slide_label": "Slide {{number}}",
-    "thoughtprocess_title_thinking": "Estado de Pensamento",
-    "thoughtprocess_title_streaming": "Raciocínio em Fluxo"
+    "thoughtprocess_title_streaming": "Raciocínio em Fluxo",
+    "thoughtprocess_title_thinking": "Estado de Pensamento"
   },
   "sun": "Dom",
   "thu": "Qui",
@@ -612,11 +624,11 @@
     "color_ct_title": "Cores de Texto de Contraste",
     "color_interaction_oklch_desc": "Para estados interativos (hover/active), recomendamos o uso da sintaxe de cores relativas oklch para ajustar a luminosidade (L) em vez de opacidade ou filtros. Isso garante um feedback visual consistente tanto no modo claro quanto no escuro.",
     "color_interaction_oklch_title": "Interação Dinâmica com oklch",
-    "color_rgb_alpha_title": "Opacidade com Tokens RGB",
-    "color_rgb_alpha_desc": "Quando precisar de uma cor com opacidade, não use valores HEX fixos. Utilize os tokens `*-rgb` gerados automaticamente (valores `R, G, B` separados por vírgula) dentro de `rgba()`, ou passe o token semântico diretamente para `color-mix()`. Ambas as abordagens acompanham os temas claro/escuro automaticamente.",
     "color_pccs_th1": "Tom",
     "color_pccs_th2": "Características",
     "color_pccs_th3": "Uso Principal",
+    "color_rgb_alpha_desc": "Quando precisar de uma cor com opacidade, não use valores HEX fixos. Utilize os tokens `*-rgb` gerados automaticamente (valores `R, G, B` separados por vírgula) dentro de `rgba()`, ou passe o token semântico diretamente para `color-mix()`. Ambas as abordagens acompanham os temas claro/escuro automaticamente.",
+    "color_rgb_alpha_title": "Opacidade com Tokens RGB",
     "colors": "Cores",
     "effects": "Efeitos",
     "overview_desc": "Esta é uma lista de tokens de design que formam a base das definições de estilo do WIM UI. Recomenda-se o uso dessas variáveis para manter um design consistente.",
@@ -647,8 +659,8 @@
     "type_lh_latn_normal": "Normal (1.4)\nAltura de linha equilibrada, Ideal para o corpo do texto.",
     "type_lh_latn_tight": "Compacto (1.2)\nProjetado especificamente para títulos e cabeçalhos.",
     "type_lineheight": "Alturas de Linha (Line Heights)",
-    "type_lineheight_lang_title": "Escolhendo Altura de Linha e Fonte por Idioma",
     "type_lineheight_lang_desc": "Decida quais tokens de altura de linha/família de fonte usar nesta prioridade: (1) delegue a uma prop do componente quando disponível (ex.: `lineHeight` do `Text`); (2) para texto de corpo ou de várias linhas, use por padrão a variante mais ampla `-jp`, pois os glifos CJK precisam de mais espaço vertical; (3) para alternar automaticamente, baseie-se no atributo `lang` propagado a partir de `<html lang>`, e não em um `:root[lang]` global. Nunca escreva verificações de idioma do i18next dentro do SCSS do componente.",
+    "type_lineheight_lang_title": "Escolhendo Altura de Linha e Fonte por Idioma",
     "type_size": "Tamanhos de Fonte",
     "type_text_ex_large": "Texto Extra Grande (20.25px)\nUsa a proporção de 1.125 ao quadrado ($font-size-2).",
     "type_text_ex_small": "Texto Extra Pequeno (12.64px)\nUsa a proporção de 1.125 elevado a -2 ($font-size-minus-2).",
@@ -664,17 +676,5 @@
   "upload": "Upload",
   "username": "Nome de usuário",
   "wed": "Qua",
-  "welcome": "Bem-vindo ao nosso aplicativo",
-  "reaction": {
-    "aria_label": "Reações",
-    "react_with": "{{emoji}}, {{count}} reações",
-    "add_reaction": "Adicionar reação"
-  },
-  "autosave": {
-    "aria_label": "Status do salvamento automático",
-    "saving": "Salvando...",
-    "saved": "Salvo",
-    "saved_at": "Salvo às {{time}}",
-    "error": "Falha ao salvar"
-  }
+  "welcome": "Bem-vindo ao nosso aplicativo"
 }

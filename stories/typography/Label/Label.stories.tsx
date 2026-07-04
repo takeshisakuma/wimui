@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Label>;
 export const Default: Story = {
   args: {
     label: "Username",
-    children: <Input placeholder="Enter your username" />,
+    children: <Input placeholder="johndoe" />,
   },
 };
 

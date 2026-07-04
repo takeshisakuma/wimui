@@ -177,7 +177,7 @@ export const Overview: StoryObj = {
             <Stack direction="row" gap="md" align="center" w="100%">
               <Input aria-label="Mix Input 1" placeholder="Align Check" style={{ flex: 1 }} />
               <Button>Action</Button>
-              <SearchInput aria-label="Mix Search" placeholder="Search" style={{ flex: 1 }} />
+              <SearchInput aria-label="Mix Search" placeholder="Quarterly report" style={{ flex: 1 }} />
             </Stack>
             <Stack direction="row" gap="md" align="center" w="100%">
               <Input aria-label="Mix Input 2" placeholder="Message" style={{ flex: 1 }} />

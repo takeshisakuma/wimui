@@ -67,8 +67,8 @@
   },
   "chat": {
     "attachment_prefix": "Attached: {{fileName}}",
-    "placeholder": "Type a message...",
-    "placeholder_interactive": "Type a message and press Enter...",
+    "placeholder": "Hello!",
+    "placeholder_interactive": "What time is the meeting tomorrow?",
     "ai_assistant": "AI Assistant",
     "you": "You",
     "support": "Support"
@@ -489,8 +489,8 @@
   },
   "placeholder": {
     "email": "example@email.com",
-    "name": "Full name",
-    "search": "Search..."
+    "name": "John Doe",
+    "search": "Quarterly report"
   },
   "playback": {
     "rate": "Playback rate"

@@ -51,7 +51,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_rich_text_editor")}>
-            <RichTextEditor placeholder="Enter content..." minHeight={200} fullWidth />
+            <RichTextEditor placeholder="Project title" minHeight={200} fullWidth />
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_context_menu")}>

@@ -114,7 +114,7 @@ export const wimResources: Resource = {
     },
     "form": {
       "prompt_input": {
-        "placeholder": "Ask AI or attach a file...",
+        "placeholder": "Summarize this document in three points",
         "send_label": "Send",
         "attach_label": "Attach file"
       },
@@ -137,7 +137,7 @@ export const wimResources: Resource = {
         "clear": "Clear"
       },
       "search": {
-        "placeholder": "Search"
+        "placeholder": "Quarterly report"
       },
       "password_strength": {
         "very_weak": "Very weak",
@@ -157,7 +157,7 @@ export const wimResources: Resource = {
         "cancel": "Cancel"
       },
       "tag_input": {
-        "placeholder": "Enter tags..."
+        "placeholder": "frontend"
       },
       "code_diff_viewer": {
         "copy_label": "Copy",
@@ -218,6 +218,13 @@ export const wimResources: Resource = {
         "edit": "編集",
         "save": "保存"
       },
+      "autosave": {
+        "aria_label": "自動保存の状態",
+        "error": "保存に失敗しました",
+        "saved": "保存済み",
+        "saved_at": "{{time}}に保存済み",
+        "saving": "保存中..."
+      },
       "fri": "金",
       "jsonViewer": {
         "addItem": "項目の追加",
@@ -237,23 +244,16 @@ export const wimResources: Resource = {
         "pull": "引っ張って更新",
         "release": "離して更新"
       },
+      "reaction": {
+        "add_reaction": "リアクションを追加",
+        "aria_label": "リアクション",
+        "react_with": "{{emoji}}、{{count}}件のリアクション"
+      },
       "sat": "土",
       "sun": "日",
       "thu": "木",
       "tue": "火",
-      "wed": "水",
-      "reaction": {
-        "aria_label": "リアクション",
-        "react_with": "{{emoji}}、{{count}}件のリアクション",
-        "add_reaction": "リアクションを追加"
-      },
-      "autosave": {
-        "aria_label": "自動保存の状態",
-        "saving": "保存中...",
-        "saved": "保存済み",
-        "saved_at": "{{time}}に保存済み",
-        "error": "保存に失敗しました"
-      }
+      "wed": "水"
     },
     "components": {
       "a11y": {
@@ -295,11 +295,23 @@ export const wimResources: Resource = {
       }
     },
     "form": {
+      "agent_status": {
+        "done": "完了",
+        "error": "エラー",
+        "idle": "待機中",
+        "running": "実行中…",
+        "thinking": "思考中…",
+        "waiting": "待機中…"
+      },
       "ai_feedback": {
         "group_label": "回答へのフィードバック",
         "negative_label": "役に立たなかった",
         "positive_label": "役に立った",
         "regenerate_label": "再生成"
+      },
+      "artifact_overlay": {
+        "maximize": "最大化",
+        "minimize": "最小化"
       },
       "button": {
         "clear": "クリア"
@@ -311,10 +323,10 @@ export const wimResources: Resource = {
         "expand_label": "展開"
       },
       "code_diff_viewer": {
-        "copy_label": "コピー",
-        "copied_label": "コピーしました！",
-        "apply": "適用",
         "applied": "適用済み",
+        "apply": "適用",
+        "copied_label": "コピーしました！",
+        "copy_label": "コピー",
         "reject": "却下",
         "split_view": "分割",
         "unified_view": "統合"
@@ -338,34 +350,22 @@ export const wimResources: Resource = {
       },
       "prompt_input": {
         "attach_label": "ファイルを添付",
-        "placeholder": "AIにメッセージを入力、またはファイルを添付...",
+        "placeholder": "この資料を3点で要約して",
         "send_label": "送信"
       },
       "search": {
-        "placeholder": "ボタン"
+        "placeholder": "四半期レポート"
       },
       "source_citation": {
         "source_label": "ソース {{index}}"
       },
       "tag_input": {
-        "placeholder": "タグを入力..."
+        "placeholder": "フロントエンド"
       },
       "terminal": {
-        "copy_label": "出力をコピー",
+        "clear_label": "クリア",
         "copied_label": "コピーしました！",
-        "clear_label": "クリア"
-      },
-      "agent_status": {
-        "idle": "待機中",
-        "thinking": "思考中…",
-        "running": "実行中…",
-        "waiting": "待機中…",
-        "done": "完了",
-        "error": "エラー"
-      },
-      "artifact_overlay": {
-        "minimize": "最小化",
-        "maximize": "最大化"
+        "copy_label": "出力をコピー"
       }
     }
   },
@@ -400,6 +400,13 @@ export const wimResources: Resource = {
         "edit": "Editar",
         "save": "Salvar"
       },
+      "autosave": {
+        "aria_label": "Status do salvamento automático",
+        "error": "Falha ao salvar",
+        "saved": "Salvo",
+        "saved_at": "Salvo às {{time}}",
+        "saving": "Salvando..."
+      },
       "fri": "Sex",
       "jsonViewer": {
         "addItem": "Adicionar item",
@@ -419,23 +426,16 @@ export const wimResources: Resource = {
         "pull": "Puxe para atualizar",
         "release": "Solte para atualizar"
       },
+      "reaction": {
+        "add_reaction": "Adicionar reação",
+        "aria_label": "Reações",
+        "react_with": "{{emoji}}, {{count}} reações"
+      },
       "sat": "Sáb",
       "sun": "Dom",
       "thu": "Qui",
       "tue": "Ter",
-      "wed": "Qua",
-      "reaction": {
-        "aria_label": "Reações",
-        "react_with": "{{emoji}}, {{count}} reações",
-        "add_reaction": "Adicionar reação"
-      },
-      "autosave": {
-        "aria_label": "Status do salvamento automático",
-        "saving": "Salvando...",
-        "saved": "Salvo",
-        "saved_at": "Salvo às {{time}}",
-        "error": "Falha ao salvar"
-      }
+      "wed": "Qua"
     },
     "components": {
       "a11y": {
@@ -477,11 +477,23 @@ export const wimResources: Resource = {
       }
     },
     "form": {
+      "agent_status": {
+        "done": "Concluído",
+        "error": "Erro",
+        "idle": "Ocioso",
+        "running": "Executando…",
+        "thinking": "Pensando…",
+        "waiting": "Aguardando…"
+      },
       "ai_feedback": {
         "group_label": "Avaliação da resposta",
         "negative_label": "Não foi útil",
         "positive_label": "Útil",
         "regenerate_label": "Regenerar resposta"
+      },
+      "artifact_overlay": {
+        "maximize": "Maximizar",
+        "minimize": "Minimizar"
       },
       "button": {
         "clear": "Limpar"
@@ -493,10 +505,10 @@ export const wimResources: Resource = {
         "expand_label": "Expandir"
       },
       "code_diff_viewer": {
-        "copy_label": "Copiar",
-        "copied_label": "Copiado!",
-        "apply": "Aplicar",
         "applied": "Aplicado",
+        "apply": "Aplicar",
+        "copied_label": "Copiado!",
+        "copy_label": "Copiar",
         "reject": "Rejeitar",
         "split_view": "Dividido",
         "unified_view": "Unificado"
@@ -520,34 +532,22 @@ export const wimResources: Resource = {
       },
       "prompt_input": {
         "attach_label": "Anexar arquivo",
-        "placeholder": "Pergunte à IA ou anexe um arquivo...",
+        "placeholder": "Resuma este documento em três pontos",
         "send_label": "Enviar"
       },
       "search": {
-        "placeholder": "Botão"
+        "placeholder": "Relatório trimestral"
       },
       "source_citation": {
         "source_label": "Fonte {{index}}"
       },
       "tag_input": {
-        "placeholder": "Inserir etiquetas..."
+        "placeholder": "frontend"
       },
       "terminal": {
-        "copy_label": "Copiar saída",
+        "clear_label": "Limpar",
         "copied_label": "Copiado!",
-        "clear_label": "Limpar"
-      },
-      "agent_status": {
-        "idle": "Ocioso",
-        "thinking": "Pensando…",
-        "running": "Executando…",
-        "waiting": "Aguardando…",
-        "done": "Concluído",
-        "error": "Erro"
-      },
-      "artifact_overlay": {
-        "minimize": "Minimizar",
-        "maximize": "Maximizar"
+        "copy_label": "Copiar saída"
       }
     }
   }

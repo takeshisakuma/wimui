@@ -1,11 +1,12 @@
 // 翻訳品質チェック
 //
-// 1. duplicate  — 同一オブジェクト内のキー重複（JSON.parse では後勝ちで静かに握り潰される）→ エラー
-// 2. pt-pt      — pt ロケールへの欧州ポルトガル語（PT-PT）語彙の混入（RULES.md の禁止表）→ エラー
-// 3. identical  — ja / pt の値が en と完全一致する複数語の文（翻訳漏れの疑い）→ 警告
+// 1. duplicate    — 同一オブジェクト内のキー重複（JSON.parse では後勝ちで静かに握り潰される）→ エラー
+// 2. pt-pt        — pt ロケールへの欧州ポルトガル語（PT-PT）語彙の混入（RULES.md の禁止表）→ エラー
+// 3. identical    — ja / pt の値が en と完全一致する複数語の文（翻訳漏れの疑い）→ 警告
+// 4. placeholder  — placeholder 値が指示形（RULES.md: 実際の入力例にすべき）→ 警告
 //
 // 使い方: node scripts/check-i18n-quality.js
-// 終了コード: duplicate / pt-pt が1件でもあれば 1、identical のみなら 0（警告表示）
+// 終了コード: duplicate / pt-pt が1件でもあれば 1、identical / placeholder のみなら 0（警告表示）
 import fs from 'fs';
 import path from 'path';
 
@@ -192,8 +193,42 @@ for (const lang of ['ja', 'pt']) {
   }
 }
 
+// 4. placeholder の指示形チェック
+// RULES.md: 「placeholder は説明・指示・制限事項ではなく、実際にユーザーが入力する
+// ような内容にしてください」— 命令形で始まる値を警告する
+const INSTRUCTION_PATTERNS = {
+  en: /^(enter|type|select|search|choose|add|write|click|input|pick|ask|use)\b/i,
+  ja: /(してください|を入力|を選択|を検索|を追加)/,
+  pt: /^(digite|selecione|escolha|insira|adicione|pesquise|busque|clique|use|escreva|pergunte)\b/i,
+};
+// placeholder の「値」として使われるキーのみ対象（*_content_placeholder 等の
+// ガイドライン文書キーは除外）
+const isPlaceholderValueKey = (key, file) => {
+  if (/content_placeholder$/.test(key)) return false;
+  if (/(_|\.)placeholder(_interactive)?$/i.test(key)) return true;
+  // common.json 等の placeholder.xxx 値グループ。
+  // docs_guide_* の placeholder.* は「placeholder についての解説文」なので対象外
+  return !/^docs_guide/.test(file) && /(^|\.)placeholder\.[^.]+$/.test(key);
+};
+
+let placeholderWarnings = 0;
+for (const lang of langs) {
+  const re = INSTRUCTION_PATTERNS[lang];
+  const dir = path.join(localesDir, lang);
+  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    const flat = flatten(JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8')));
+    for (const [key, value] of Object.entries(flat)) {
+      if (typeof value !== 'string' || !isPlaceholderValueKey(key, file)) continue;
+      if (re.test(value)) {
+        console.log(`[WARN] ${lang}/${file} > ${key}: placeholder が指示形です（実際の入力例にしてください）: "${value}"`);
+        placeholderWarnings++;
+      }
+    }
+  }
+}
+
 console.log('');
-console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件`);
+console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件 / 指示形 placeholder（警告）: ${placeholderWarnings} 件`);
 
 if (duplicateErrors > 0 || ptPtErrors > 0) {
   process.exit(1);

@@ -1,9 +1,21 @@
 {
+  "agent_status": {
+    "done": "Concluído",
+    "error": "Erro",
+    "idle": "Ocioso",
+    "running": "Executando…",
+    "thinking": "Pensando…",
+    "waiting": "Aguardando…"
+  },
   "ai_feedback": {
     "group_label": "Avaliação da resposta",
     "negative_label": "Não foi útil",
     "positive_label": "Útil",
     "regenerate_label": "Regenerar resposta"
+  },
+  "artifact_overlay": {
+    "maximize": "Maximizar",
+    "minimize": "Minimizar"
   },
   "btn": {
     "page_transition": "Transições de página padrão ou links de rodapé."
@@ -42,10 +54,10 @@
     "lines": "{{count}} linhas"
   },
   "code_diff_viewer": {
-    "copy_label": "Copiar",
-    "copied_label": "Copiado!",
-    "apply": "Aplicar",
     "applied": "Aplicado",
+    "apply": "Aplicar",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar",
     "reject": "Rejeitar",
     "split_view": "Dividido",
     "unified_view": "Unificado"
@@ -54,7 +66,7 @@
     "no_results": "Nenhum resultado encontrado"
   },
   "datepicker": {
-    "placeholder": "Selecionar data"
+    "placeholder": "2026-07-04"
   },
   "dropzone": {
     "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
@@ -93,11 +105,11 @@
   "prompt_input": {
     "aria_label": "Campo de prompt",
     "attach_label": "Anexar arquivo",
-    "placeholder": "Pergunte à IA ou anexe um arquivo...",
+    "placeholder": "Resuma este documento em três pontos",
     "send_label": "Enviar"
   },
   "search": {
-    "placeholder": "Botão"
+    "placeholder": "Relatório trimestral"
   },
   "select": {
     "option": "Opção 1"
@@ -107,12 +119,12 @@
     "source_label": "Fonte {{index}}"
   },
   "tag_input": {
-    "placeholder": "Inserir etiquetas..."
+    "placeholder": "frontend"
   },
   "terminal": {
-    "copy_label": "Copiar saída",
+    "clear_label": "Limpar",
     "copied_label": "Copiado!",
-    "clear_label": "Limpar"
+    "copy_label": "Copiar saída"
   },
   "transfer": {
     "move_to_source": "Mover para disponível",
@@ -122,17 +134,5 @@
     "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
     "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
     "target": "Selecionado"
-  },
-  "agent_status": {
-    "idle": "Ocioso",
-    "thinking": "Pensando…",
-    "running": "Executando…",
-    "waiting": "Aguardando…",
-    "done": "Concluído",
-    "error": "Erro"
-  },
-  "artifact_overlay": {
-    "minimize": "Minimizar",
-    "maximize": "Maximizar"
   }
 }

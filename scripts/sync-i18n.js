@@ -159,10 +159,23 @@ async function sync() {
 
       const missingKeys = findMissingKeysRecursive(sourceData, targetData);
       const staleKeys = findStaleKeysRecursive(sourceData, targetData, nsSnapshot);
-      const keysToTranslate = deepMerge({ ...missingKeys }, staleKeys);
+      // API キーがない場合、stale（en 変更に伴う再翻訳）を実行すると既存の正常な訳を
+      // [MISSING_TRANSLATION] プレースホルダーで上書きしてしまう。
+      // en と同時に ja/pt を手動更新するワークフローを壊さないよう、missing のみ扱う
+      const includeStale = Boolean(API_KEY);
+      const keysToTranslate = includeStale
+        ? deepMerge({ ...missingKeys }, staleKeys)
+        : { ...missingKeys };
+
+      const skippedStale = includeStale ? 0 : countLeafKeys(staleKeys);
+      if (skippedStale > 0) {
+        console.log(
+          `[${ns}] ${targetLang}: ${skippedStale} stale keys detected (en changed) but no API key — existing translations kept.`
+        );
+      }
 
       const missingCount = countLeafKeys(missingKeys);
-      const staleCount = countLeafKeys(staleKeys);
+      const staleCount = includeStale ? countLeafKeys(staleKeys) : 0;
       const totalCount = missingCount + staleCount;
 
       if (totalCount > 0) {

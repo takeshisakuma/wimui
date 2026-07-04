@@ -114,7 +114,7 @@
     "otp_clear": "Clear",
     "otp_current_value": "Current Value",
     "passwordinput_label": "Password",
-    "passwordinput_placeholder": "",
+    "passwordinput_placeholder": "••••••••",
     "phoneinput_error": "Please enter a valid phone number.",
     "phoneinput_label": "Phone Number",
     "phoneinput_placeholder": "000-000-0000",
@@ -206,9 +206,9 @@
     "credit_card_visa_label": "Visa (Starts with 4)",
     "credit_card_amex_label": "Amex (Starts with 34/37, 4-6-5 format)",
     "counter_textarea_label": "Message with Counter",
-    "counter_textarea_placeholder": "Type your message here...",
-    "smartsearchinput_placeholder": "Search or ask a question…",
-    "smartsearchinput_ai_placeholder": "Search or ask AI…",
+    "counter_textarea_placeholder": "I have some feedback about the new design.",
+    "smartsearchinput_placeholder": "What types of buttons are in WIM UI?",
+    "smartsearchinput_ai_placeholder": "Summarize this page",
     "smartsearchinput_interactive_hint": "Try typing a long search or multiline prompt (Shift+Enter for newline)",
     "smartsearchinput_submitted_label": "Recent Queries:"
   }
