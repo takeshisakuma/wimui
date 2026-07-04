@@ -16,7 +16,6 @@ import {
   DatePicker,
   Stack,
   Box,
-  Text,
 } from "../../src";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
@@ -130,8 +129,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_slider")} maxWidth="var(--wim-width-md)" align="stretch">
              <Box pt="md">
-               <Text size="sm" weight="bold" style={{ marginBottom: 'var(--wim-spacing-xs)' }}>{t("audit:label_volume_level")}</Text>
-               <Slider defaultValue={70} />
+               <Slider label={t("audit:label_volume_level")} defaultValue={70} />
              </Box>
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_combobox")} maxWidth="var(--wim-width-md)" align="stretch">

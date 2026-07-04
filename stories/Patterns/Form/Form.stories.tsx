@@ -76,7 +76,6 @@ export const LoginForm: StoryObj = {
                   id="login-password"
                   label={t("login.password")}
                   type="password"
-                  placeholder="••••••••"
                   fullWidth
                 />
                 <Stack direction="column" gap="sm" align="start">
@@ -183,7 +182,6 @@ export const SignupForm: StoryObj = {
                   <PasswordInput
                     id="signup-password"
                     label={t("signup.password")}
-                    placeholder={t("signup.password_placeholder")}
                     fullWidth
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -199,7 +197,6 @@ export const SignupForm: StoryObj = {
                   id="signup-confirm"
                   label={t("signup.confirm_password")}
                   type="password"
-                  placeholder={t("signup.confirm_placeholder")}
                   fullWidth
                 />
                 <Checkbox id="signup-terms">{t("signup.terms")}</Checkbox>

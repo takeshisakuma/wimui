@@ -111,7 +111,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
           className
         )}
         /* グローバルリセット svg { height: auto } が height 属性を打ち消すため CSS でも指定する */
-        style={{ height, ...style }}
+        style={{ height: `${height}px`, ...style }}
         {...props}
       >
         {mode === "bars" &&

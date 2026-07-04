@@ -97,7 +97,7 @@ export const Overview: StoryObj = {
               </ListItem>
             </List>
           </ComponentGroup>
-          <ComponentGroup label="Bordered List">
+          <ComponentGroup label={t("audit:list_bordered")}>
             <List bordered>
               <ListItem>{t("audit:label_list")} 1</ListItem>
               <ListItem>{t("audit:label_list")} 2</ListItem>
@@ -140,7 +140,7 @@ export const Overview: StoryObj = {
 
         {/* Description List */}
         <ComparisonGrid title={t("audit:label_description_list")}>
-          <ComponentGroup label="Horizontal (Default)">
+          <ComponentGroup label={t("audit:list_horizontal_default")}>
             <DescriptionList layout="horizontal" bordered>
               <DescriptionListItem>
                 <DescriptionListTerm>Label 1</DescriptionListTerm>
@@ -152,7 +152,7 @@ export const Overview: StoryObj = {
               </DescriptionListItem>
             </DescriptionList>
           </ComponentGroup>
-          <ComponentGroup label="Vertical">
+          <ComponentGroup label={t("common.vertical")}>
             <DescriptionList layout="vertical">
               <DescriptionListItem>
                 <DescriptionListTerm>Label 1</DescriptionListTerm>
@@ -168,7 +168,7 @@ export const Overview: StoryObj = {
 
         {/* Fluid Width Check */}
         <ComparisonGrid title={t("audit:fluid_width_check")}>
-          <ComponentGroup label="List (Full Width)">
+          <ComponentGroup label={t("audit:list_full_width")}>
             <List fullWidth bordered>
               <ListItem>{t("audit:label_list")} 1</ListItem>
               <ListItem>{t("audit:label_list")} 2</ListItem>

@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Spinner } from "wimui";
 
 const meta: Meta<typeof Spinner> = {
@@ -63,10 +65,13 @@ export const Sizes: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args) => (
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-      <Spinner {...args} label="Loading right..." labelPosition="right" />
-      <Spinner {...args} label="Loading bottom..." labelPosition="bottom" />
+      <Spinner {...args} label={t("story.spinner_loading_right")} labelPosition="right" />
+      <Spinner {...args} label={t("story.spinner_loading_bottom")} labelPosition="bottom" />
     </div>
-  ),
+    );
+  },
 };

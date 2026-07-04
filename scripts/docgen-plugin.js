@@ -37,7 +37,7 @@ const CROSS_FILE_PROPS = {
   // type PasswordInputProps = ComponentProps<typeof Input> を引数側で Omit する2段構え
   PasswordInput: {
     from: 'Input',
-    omit: ['type', 'rightIcon', 'onRightIconClick', 'showPasswordToggle'],
+    omit: ['type', 'rightIcon', 'onRightIconClick', 'showPasswordToggle', 'placeholder'],
   },
 };
 

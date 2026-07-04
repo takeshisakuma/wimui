@@ -104,7 +104,7 @@ export const Filters: Story = {
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem" }}>
         <div>
-          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Grayscale to Color (Hover)</p>
+          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>{t("story.image_filter_grayscale")}</p>
           <Image
             {...args}
             alt={t("story.image_alt")}
@@ -114,7 +114,7 @@ export const Filters: Story = {
           />
         </div>
         <div>
-          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Blur to Clear (Hover)</p>
+          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>{t("story.image_filter_blur")}</p>
           <Image
             {...args}
             alt={t("story.image_alt")}
@@ -124,7 +124,7 @@ export const Filters: Story = {
           />
         </div>
         <div>
-          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Sepia (Fixed)</p>
+          <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>{t("story.image_filter_sepia")}</p>
           <Image
             {...args}
             alt={t("story.image_alt")}
@@ -328,7 +328,7 @@ export const MotionEffects: Story = {
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>Ultimate Combo</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_filter_combo")}</p>
           <div style={{ maxWidth: "500px" }}>
             <Image
               {...args}

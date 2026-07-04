@@ -60,8 +60,8 @@ export const Default: Story = {
                     <p>
                       {t("story.focustrap_trapped_desc")}
                     </p>
-                    <Input placeholder={t("story.focustrap_input_first")} fullWidth />
-                    <Input placeholder={t("story.focustrap_input_second")} fullWidth />
+                    <Input defaultValue={t("story.focustrap_input_first")} fullWidth />
+                    <Input defaultValue={t("story.focustrap_input_second")} fullWidth />
                     <Button onClick={() => setActive(false)} variant="solid">
                       {t("story.focustrap_btn_close")}
                     </Button>
@@ -107,7 +107,7 @@ export const InitialFocus: Story = {
                 </Card.Header>
                 <Card.Body>
                   <Stack gap="md">
-                    <Input placeholder={t("story.focustrap_input_autofocus")} fullWidth />
+                    <Input defaultValue={t("story.focustrap_input_autofocus")} fullWidth />
                     <Button variant="outline">{t("story.focustrap_btn_another")}</Button>
                     <Button onClick={() => setActive(false)} variant="solid">
                       {t("story.focustrap_btn_close_short")}

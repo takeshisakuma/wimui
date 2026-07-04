@@ -56,9 +56,9 @@ export const Overview: StoryObj = {
         {/* 1. Basic Comparison */}
         <ComparisonGrid title={t("audit:basic_comparison")}>
           <ComponentGroup label={t("audit:label_standard_inputs")} align="stretch" maxWidth="var(--wim-width-md)">
-            <Input label={t("audit:label_standard_input")} placeholder={t("audit:label_standard_input")} />
-            <SearchInput label={t("audit:label_search_input")} placeholder={t("audit:label_search_input")} />
-            <NumberInput label={t("audit:label_number_input")} placeholder={t("audit:label_number_input")} />
+            <Input label={t("audit:label_standard_input")} placeholder={t("audit:sample_name_placeholder")} />
+            <SearchInput label={t("audit:label_search_input")} placeholder={t("audit:sample_search_placeholder")} />
+            <NumberInput label={t("audit:label_number_input")} placeholder={t("audit:sample_number_placeholder")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_otp_input")} align="stretch" maxWidth="var(--wim-width-md)">
             <OtpInput label={t("audit:label_otp_input")} length={6} />
@@ -69,8 +69,8 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:variant_comparison")}>
           {variants.map((variant) => (
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })} align="stretch" maxWidth="var(--wim-width-md)">
-              <Input label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:label_variant", { variant })} />
-              <Textarea label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:label_variant", { variant })} />
+              <Input label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:sample_name_placeholder")} />
+              <Textarea label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:sample_textarea_placeholder")} />
               {variant === "ghost" && (
                 <InlineEdit label={t("audit:label_inline_edit_comparison")} defaultValue={t("audit:sample_inline_edit_placeholder")} />
               )}
@@ -82,14 +82,14 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })} align="stretch" maxWidth="var(--wim-width-md)">
-              <InputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
-              <PasswordInputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
-              <SmartSearchInput label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:label_intent", { intent })} />
-              <PromptInput label={t("audit:label_intent", { intent })} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:label_intent", { intent })} />
-              <Combobox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:label_intent", { intent })} />
-              <TagInput label={t("audit:label_intent", { intent })} defaultValue={[t("audit:sample_tag_a")]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:label_intent", { intent })} />
-              <Selectbox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:label_intent", { intent })} />
-              <MultiSelect label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:label_intent", { intent })} />
+              <InputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:sample_name_placeholder")} />
+              <PasswordInputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} />
+              <SmartSearchInput label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:sample_smart_search_ai")} />
+              <PromptInput label={t("audit:label_intent", { intent })} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_prompt_ai")} />
+              <Combobox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_combobox_placeholder")} />
+              <TagInput label={t("audit:label_intent", { intent })} defaultValue={[t("audit:sample_tag_a")]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_tag_input_placeholder")} />
+              <Selectbox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_select_placeholder")} />
+              <MultiSelect label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_multi_select_placeholder")} />
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -165,9 +165,9 @@ export const Overview: StoryObj = {
             />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_large_text_fields")} align="stretch" maxWidth="var(--wim-width-md)">
-            <Textarea label={t("audit:label_standard_textarea")} placeholder={t("audit:label_standard_textarea")} />
-            <CounterTextarea label={t("audit:label_counter_textarea")} maxLength={100} placeholder={t("audit:label_counter_textarea")} />
-            <Textarea label={t("audit:label_large_textarea")} rows={5} placeholder={t("audit:sample_textarea_rows", { rows: 5 })} />
+            <Textarea label={t("audit:label_standard_textarea")} placeholder={t("audit:sample_textarea_placeholder")} />
+            <CounterTextarea label={t("audit:label_counter_textarea")} maxLength={100} placeholder={t("audit:sample_textarea_placeholder")} />
+            <Textarea label={t("audit:label_large_textarea")} rows={5} placeholder={t("audit:sample_textarea_placeholder")} />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -175,13 +175,13 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")}>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <Input aria-label="Mix Input 1" placeholder="Align Check" style={{ flex: 1 }} />
-              <Button>Action</Button>
-              <SearchInput aria-label="Mix Search" placeholder="Quarterly report" style={{ flex: 1 }} />
+              <Input aria-label={t("audit:mix_input_1")} placeholder="John Doe" style={{ flex: 1 }} />
+              <Button>{t("audit:demo_action")}</Button>
+              <SearchInput aria-label={t("audit:mix_search")} placeholder="Quarterly report" style={{ flex: 1 }} />
             </Stack>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <Input aria-label="Mix Input 2" placeholder="Message" style={{ flex: 1 }} />
-              <Button variant="ghost">Cancel</Button>
+              <Input aria-label={t("audit:mix_input_2")} placeholder="Hello!" style={{ flex: 1 }} />
+              <Button variant="ghost">{t("action.cancel")}</Button>
               <Button>Send</Button>
             </Stack>
           </ComponentGroup>
@@ -190,9 +190,9 @@ export const Overview: StoryObj = {
         {/* 6. Focus & Disabled States */}
         <ComparisonGrid title={t("audit:states_disabled")}>
           <ComponentGroup label={t("audit:label_disabled")} align="stretch" maxWidth="var(--wim-width-md)">
-            <Input label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
-            <SearchInput label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
-            <Textarea label={t("audit:label_disabled")} disabled placeholder={t("audit:label_disabled")} />
+            <Input label={t("audit:label_disabled")} disabled placeholder={t("audit:sample_name_placeholder")} />
+            <SearchInput label={t("audit:label_disabled")} disabled placeholder={t("audit:sample_search_placeholder")} />
+            <Textarea label={t("audit:label_disabled")} disabled placeholder={t("audit:sample_textarea_placeholder")} />
           </ComponentGroup>
         </ComparisonGrid>
 
@@ -201,20 +201,20 @@ export const Overview: StoryObj = {
           {/* Fully Fluid */}
           <ComponentGroup label={t("audit:label_truly_full_width")}>
             <Stack gap="lg">
-              <Input label={t("audit:label_fluid_input")} fullWidth placeholder={t("audit:label_fluid_input")} />
-              <SearchInput label={t("audit:label_fluid_search")} fullWidth placeholder={t("audit:label_fluid_search")} />
-              <PasswordInput label={t("audit:label_fluid_password")} fullWidth placeholder={t("audit:label_fluid_password")} />
+              <Input label={t("audit:label_fluid_input")} fullWidth placeholder={t("audit:sample_name_placeholder")} />
+              <SearchInput label={t("audit:label_fluid_search")} fullWidth placeholder={t("audit:sample_search_placeholder")} />
+              <PasswordInput label={t("audit:label_fluid_password")} fullWidth />
               <OtpInput label={t("audit:label_fluid_otp")} length={6} fullWidth />
-              <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:label_fluid_prompt")} />
-              <SmartSearchInput label={t("audit:label_fluid_smart_search")} fullWidth placeholder={t("audit:label_fluid_smart_search")} />
-              <Combobox label={t("audit:label_fluid_combobox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:label_fluid_combobox")} />
+              <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:sample_prompt_ai")} />
+              <SmartSearchInput label={t("audit:label_fluid_smart_search")} fullWidth placeholder={t("audit:sample_smart_search_ai")} />
+              <Combobox label={t("audit:label_fluid_combobox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_combobox_placeholder")} />
               <TagInput label={t("audit:label_fluid_tag_input")} fullWidth defaultValue={[t("audit:label_mix")]} />
-              <Selectbox label={t("audit:label_fluid_selectbox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:label_fluid_selectbox")} />
-              <MultiSelect label={t("audit:label_fluid_multi_select")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:label_fluid_multi_select")} />
-              <TreeSelect label={t("audit:label_fluid_tree_select")} fullWidth treeData={[{ label: t("audit:label_option_1"), value: "fn1" }]} placeholder={t("audit:label_fluid_tree_select")} />
-              <Cascader label={t("audit:label_fluid_cascader")} fullWidth options={[{ label: t("audit:label_option_1"), value: "fc1" }]} placeholder={t("audit:label_fluid_cascader")} />
-              <PhoneInput label={t("audit:label_fluid_phone")} fullWidth placeholder={t("audit:label_fluid_phone")} />
-              <CreditCardInput label={t("audit:label_fluid_cc")} fullWidth placeholder={t("audit:label_fluid_cc")} />
+              <Selectbox label={t("audit:label_fluid_selectbox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_select_placeholder")} />
+              <MultiSelect label={t("audit:label_fluid_multi_select")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_multi_select_placeholder")} />
+              <TreeSelect label={t("audit:label_fluid_tree_select")} fullWidth treeData={[{ label: t("audit:label_option_1"), value: "fn1" }]} placeholder={t("audit:sample_tree_select_placeholder")} />
+              <Cascader label={t("audit:label_fluid_cascader")} fullWidth options={[{ label: t("audit:label_option_1"), value: "fc1" }]} placeholder={t("audit:sample_cascader_placeholder")} />
+              <PhoneInput label={t("audit:label_fluid_phone")} fullWidth placeholder={t("audit:sample_phone_placeholder")} />
+              <CreditCardInput label={t("audit:label_fluid_cc")} fullWidth placeholder={t("audit:sample_credit_card_placeholder")} />
               <DatePicker label={t("audit:label_fluid_date_picker")} fullWidth placeholder={t("audit:sample_date_placeholder")} />
             </Stack>
           </ComponentGroup>
@@ -227,11 +227,11 @@ export const Overview: StoryObj = {
             <Stack gap="lg">
               <Input 
                 fullWidth 
-                placeholder={t("audit:label_full_width_input_capped")} 
+                placeholder={t("audit:sample_name_placeholder")} 
                 defaultValue="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも" 
               />
-              <PromptInput fullWidth placeholder={t("audit:label_prompt_input_capped")} />
-              <SmartSearchInput fullWidth placeholder={t("audit:label_smart_search_input_capped")} />
+              <PromptInput fullWidth placeholder={t("audit:sample_prompt_ai")} />
+              <SmartSearchInput fullWidth placeholder={t("audit:sample_smart_search_ai")} />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>

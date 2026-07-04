@@ -78,7 +78,7 @@ export const Overview: StoryObj = {
                   width: "100%",
                 }}
               >
-                <Text color="text-secondary">Right click here (Full Width Trigger Area)</Text>
+                <Text color="text-secondary">{t("audit:interaction_context_trigger")}</Text>
               </Box>
             </ContextMenu>
           </ComponentGroup>
@@ -86,16 +86,16 @@ export const Overview: StoryObj = {
 
         {/* Core Surface Comparison (InteractiveArea) */}
         <ComparisonGrid title={t("audit:label_surface_comparison") + " (InteractiveArea)"}>
-          <ComponentGroup label="Dashed (Default)">
+          <ComponentGroup label={t("audit:interaction_dashed_default")}>
             <InteractiveArea variant="dashed" description="Default dashed surface" />
           </ComponentGroup>
-          <ComponentGroup label="Solid">
+          <ComponentGroup label={t("audit:interaction_solid_label")}>
             <InteractiveArea variant="solid" description="Solid border surface" />
           </ComponentGroup>
-          <ComponentGroup label="Muted Background">
+          <ComponentGroup label={t("audit:interaction_muted_bg")}>
             <InteractiveArea variant="dashed" bgVariant="muted" description="Muted background surface" />
           </ComponentGroup>
-          <ComponentGroup label="Dragging State">
+          <ComponentGroup label={t("audit:interaction_dragging")}>
             <InteractiveArea variant="dashed" isDragging description="Currently dragging..." />
           </ComponentGroup>
         </ComparisonGrid>
@@ -108,12 +108,12 @@ export const Overview: StoryObj = {
           <Stack gap="lg">
             <Stack direction="row" gap="md" align="start">
                <Box p="md" radius="md" style={{ border: "2px dashed var(--wim-color-primary)", flex: 1 }}>
-                  <Text size="sm" weight="bold" color="primary">Primary Dashed (Dropzone Style)</Text>
-                  <Text size="xs" color="text-secondary">Ensuring consistent dash gaps and weights.</Text>
+                  <Text size="sm" weight="bold" color="primary">{t("audit:interaction_dashed_title")}</Text>
+                  <Text size="xs" color="text-secondary">{t("audit:interaction_dashed_desc")}</Text>
                </Box>
                <Box p="md" radius="md" style={{ border: "1px solid var(--wim-color-border)", flex: 1 }}>
-                  <Text size="sm" weight="bold">Standard Solid (Editor Style)</Text>
-                  <Text size="xs" color="text-secondary">Comparing with standard input borders.</Text>
+                  <Text size="sm" weight="bold">{t("audit:interaction_solid_title")}</Text>
+                  <Text size="xs" color="text-secondary">{t("audit:interaction_solid_desc")}</Text>
                </Box>
             </Stack>
           </Stack>

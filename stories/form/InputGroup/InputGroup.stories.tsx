@@ -1,6 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button, Input, InputGroup, InputGroupText } from "wimui";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 
 const meta: Meta<typeof InputGroup> = {
   title: "Components/Form Layout/InputGroup",
@@ -23,12 +25,15 @@ export const Basic: Story = {
 };
 
 export const WithButton: Story = {
-  render: (args) => (
-    <InputGroup {...args}>
-      <Input placeholder="Quarterly report" />
-      <Button variant="solid" icon="SearchIcon">Search</Button>
-    </InputGroup>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <InputGroup {...args}>
+        <Input placeholder="Quarterly report" />
+        <Button variant="solid" icon="SearchIcon">{t("action.search")}</Button>
+      </InputGroup>
+    );
+  },
 };
 
 export const Suffix: Story = {
@@ -55,13 +60,16 @@ export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
-  render: (args) => (
-    <div style={{ width: "100%", maxWidth: "600px" }}>
-      <InputGroup {...args}>
-        <InputGroupText>Search</InputGroupText>
-        <Input placeholder="Hello, world" />
-        <Button variant="solid">Go</Button>
-      </InputGroup>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ width: "100%", maxWidth: "600px" }}>
+        <InputGroup {...args}>
+          <InputGroupText>{t("action.search")}</InputGroupText>
+          <Input placeholder="Hello, world" />
+          <Button variant="solid">{t("story.inputgroup_go")}</Button>
+        </InputGroup>
+      </div>
+    );
+  },
 };

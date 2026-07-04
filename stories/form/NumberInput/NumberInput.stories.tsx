@@ -19,7 +19,7 @@ export const Default: Story = {
     return (
       <NumberInput
         {...args}
-        label="Number Input"
+        label={t("story.numberinput_label")}
         placeholder={t("story.numberinput_placeholder")}
       />
     );

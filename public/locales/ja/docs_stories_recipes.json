@@ -1,5 +1,6 @@
 {
   "artifacts": {
+    "assistant_message": "ウェルカムカード用の React コンポーネントを作成しました。右側のパネルでプレビューとコードを確認できます。",
     "btn_copy": "コードをコピー",
     "btn_download": "ダウンロード",
     "btn_publish": "公開",
@@ -8,10 +9,17 @@
     "canvas_title": "アーティファクト・プレビュー",
     "chat": "チャット",
     "chat_placeholder": "カフェのランディングページを作って",
+    "device_desktop": "デスクトップ",
+    "get_started": "はじめる",
+    "hello_desc": "これは AI が生成したライブプレビューです。",
+    "hello_title": "こんにちは、Artifacts！",
+    "published": "公開済み",
+    "react_component": "React コンポーネント",
     "status_generating": "アーティファクトを生成中...",
     "status_updated": "アーティファクトが更新されました",
     "tab_code": "コード",
-    "tab_preview": "プレビュー"
+    "tab_preview": "プレビュー",
+    "user_reply": "いい感じです！グラスモーフィックにできますか？"
   },
   "cart": {
     "btn_apply": "適用",
@@ -25,6 +33,7 @@
     "item_2_price": "¥27,800",
     "item_3_name": "USB-C ハブ Pro",
     "item_3_price": "¥12,800",
+    "order_summary": "注文概要",
     "shipping": "送料",
     "shipping_free": "無料",
     "subtotal": "小計",
@@ -121,6 +130,8 @@
     "feat_sso": "SSO & SAML",
     "feat_support": "コミュニティ・サポート",
     "feat_updates": "毎週のアップデート",
+    "included": "含まれる",
+    "not_included": "含まれない",
     "subtitle": "柔軟なプランの機能を比較して、最適なものを見つけましょう。",
     "title": "チームに最適なプランを選択"
   },
@@ -176,6 +187,7 @@
   },
   "pricing": {
     "badge": "料金プラン",
+    "contact": "お問い合わせ",
     "ent_btn": "営業に問い合わせる",
     "ent_desc": "大規模組織向けのカスタムソリューション。",
     "ent_feat_1": "カスタムインフラストラクチャ",
@@ -255,14 +267,12 @@
   "signup": {
     "btn": "アカウントを作成",
     "confirm_password": "パスワードの確認",
-    "confirm_placeholder": "••••••••",
     "email": "メールアドレス",
     "email_placeholder": "you@example.com",
     "have_account": "すでにアカウントをお持ちですか？",
     "name": "氏名",
     "name_placeholder": "山田 太郎",
     "password": "パスワード",
-    "password_placeholder": "••••••••",
     "sign_in": "サインイン",
     "subtitle": "14日間の無料トライアルを開始。クレジットカード不要。",
     "terms": "利用規約とプライバシーポリシーに同意します",
@@ -292,5 +302,10 @@
     "step_3_title": "コミュニティに参加する",
     "subtitle": "アカウントの準備ができました。始め方をご確認ください。",
     "title": "WIM UIへようこそ！"
+  },
+  "page": {
+    "notifications": "通知",
+    "remove_item": "アイテムを削除",
+    "toggle_menu": "メニューを開閉"
   }
 }

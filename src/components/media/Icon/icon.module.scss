@@ -7,7 +7,6 @@
     overflow: visible;
     vertical-align: middle;
     color: inherit;
-    cursor: pointer;
     border: 0;
 
     // SVGそのもの、または子要素のsvgへの設定
@@ -40,10 +39,9 @@
       height: 100%;
     }
 
-    &:hover {
-      opacity: var(--wim-opacity-disabled);
-      transition: opacity var(--wim-transition-fast);
-    }
+    // Icon は非インタラクティブな表示コンポーネントのため、独自の :hover や
+    // cursor: pointer を持たない。ホバー効果は Button 等の包む側が単位全体で表現する
+    // （アイコンだけが個別に反応すると、誤ったクリック対象のアフォーダンスになる）
 
     &.size-xs {
       font-size: var(--wim-font-size-xs);

@@ -13,6 +13,7 @@
     "alert_update_title": "アップデートが利用可能です",
     "alert_warning_desc": "この操作には注意してください。",
     "alert_warning_title": "警告",
+    "autosave_error_connection": "接続が切断されました。変更が保存されない可能性があります。",
     "badge_content": "バッジ",
     "badge_error": "エラー",
     "badge_neutral": "ニュートラル",
@@ -61,6 +62,7 @@
     "result_success_title": "クラウドサーバーを購入しました",
     "result_warning_title": "操作にいくつかの問題があります。",
     "skeleton_demo_desc": "これは実際にコンテンツが読み込まれた状態のデモです。スケルトンが提供したプレースホルダーと同じ位置に、本来のテキストや画像が表示されます。",
+    "skeleton_sample_role": "ソフトウェアエンジニア",
     "skeleton_show_content": "コンテンツを表示",
     "skeleton_show_skeleton": "スケルトンを表示",
     "snackbar_deleted": "アイテムを正常に削除しました。",
@@ -75,6 +77,8 @@
     "snackbar_undo": "元に戻す",
     "snackbar_undo_clicked": "元に戻すがクリックされました！",
     "snackbar_update_available": "新しいアップデートがあります。",
+    "spinner_loading_bottom": "読み込み中（下）...",
+    "spinner_loading_right": "読み込み中（右）...",
     "toast_5s_desc": "これは5秒後に消えます。",
     "toast_connection_desc": "インターネット接続が不安定なようです。",
     "toast_connection_title": "接続を確認してください",
@@ -89,7 +93,6 @@
     "toast_update_desc": "アプリの新しいバージョンが利用可能です。更新してください。",
     "toast_update_title": "新しいアップデートがあります",
     "toast_upload_failed_desc": "ファイルのアップロード中にエラーが発生しました。",
-    "toast_upload_failed_title": "アップロード失敗",
-    "autosave_error_connection": "接続が切断されました。変更が保存されない可能性があります。"
+    "toast_upload_failed_title": "アップロード失敗"
   }
 }

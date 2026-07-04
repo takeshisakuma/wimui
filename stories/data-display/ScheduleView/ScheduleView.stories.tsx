@@ -157,7 +157,7 @@ const ScheduleTemplate = (args: React.ComponentProps<typeof ScheduleView>) => {
               label={t("common:common.title")}
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              placeholder={t("common:common.title")}
+              placeholder={t("story.schedule_event_placeholder")}
               autoFocus
               fullWidth
             />

@@ -227,8 +227,102 @@ for (const lang of langs) {
   }
 }
 
+// 5. stories の placeholder 配線チェック
+// - placeholder={t("...")} に placeholder/sample 系でないキー（label 等）を流用していないか
+// - ハードコードの placeholder="..." が指示形になっていないか
+// どちらも「説明・指示ではなく実際の入力例にする」ルール（RULES.md）の担保
+// キー名は placeholder/sample 系でないが、値が入力例として適正なレビュー済みキー
+const WIRING_ALLOWLIST = new Set([
+  'story.multiselect_fruits', // "Grapes"（果物の例示）
+  'story.command_type_command', // "/settings"（コマンドの例示）
+  'doc.ft_no_label', // "John Doe"（ラベルなしデモの入力例）
+]);
+
+let wiringWarnings = 0;
+{
+  const storyFiles = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(tsx|mdx)$/.test(e.name)) storyFiles.push(p);
+    }
+  })('stories');
+  for (const file of storyFiles) {
+    const src = fs.readFileSync(file, 'utf8');
+    for (const m of src.matchAll(/placeholder=\{t\(\s*["']([^"']+)["']/g)) {
+      const key = m[1];
+      if (WIRING_ALLOWLIST.has(key.replace(/^[\w-]+:/, ''))) continue;
+      if (!/placeholder|sample/i.test(key)) {
+        console.log(`[WARN] ${path.relative('.', file)}: placeholder に非 placeholder キーを流用: ${key}（label の使い回しは説明文表示になります）`);
+        wiringWarnings++;
+      }
+    }
+    for (const m of src.matchAll(/placeholder="([^"]+)"/g)) {
+      if (INSTRUCTION_PATTERNS.en.test(m[1]) || INSTRUCTION_PATTERNS.ja.test(m[1])) {
+        console.log(`[WARN] ${path.relative('.', file)}: ハードコード placeholder が指示形です: "${m[1]}"`);
+        wiringWarnings++;
+      }
+    }
+    // パスワード入力に placeholder は付けない（平文表示は入力例として機能せず、
+    // 伏字風の文字列は「入力済み」と誤認されるため）
+    for (const m of src.matchAll(/<(?:PasswordInput\w*|Input\b[^>]*type="password")[^>]*placeholder=/g)) {
+      console.log(`[WARN] ${path.relative('.', file)}: パスワード入力に placeholder が指定されています（不要です）: ${m[0].slice(0, 60)}...`);
+      wiringWarnings++;
+    }
+  }
+}
+
+// 6. stories TSX の JSX ハードコードテキスト
+// t() を通らない英文はロケールを切り替えても翻訳されない。
+// MDX には check-mdx-hardcoded.js があるが .stories.tsx は対象外だったため、ここで検査する
+const HARDCODED_TEXT_ALLOWLIST = new Set([
+  // ユーティリティクラス・トークン・アニメーション名（翻訳すべきでない技術識別子）
+  'Glass Sm', 'Glass Md', 'Glass Lg',
+  'Shadow SM', 'Shadow MD', 'Shadow LG',
+  'Pulse',
+  // ブランド・コンポーネント名・固有名詞
+  'WIM UI', 'HoverCard', 'GitHub', 'WelcomeCard.tsx',
+  'State of JS 2023', 'React 19 release notes', 'Vue 3.4 performance benchmarks',
+  // 引用元サンプルのドキュメント名（実在文書の固有名詞として英語のまま）
+  'React Documentation', 'Internal Design Guide', 'TypeScript Handbook',
+  // コード例の内容（コードとその描画結果の一致を保つため翻訳しない）
+  'Hello World', 'This is a long code block to test scrolling behavior.',
+  // サンプル人名・サービス名
+  'John Doe', 'Sarah Miller', 'WimStore',
+]);
+const JSX_TEXT_RE = />([A-Z][a-zA-Z0-9 .,&!?()'/-]{4,})<\/(Text|Title|Button|Badge|Tag|span|p|h[1-6]|Label|Legend|strong|b|li|td|th|Dialog\.Title|Drawer\.Title|BottomSheet\.Title)>/g;
+// 複数行のテキストノード（<Text>\n  English text\n</Text> 形式）
+const JSX_MULTILINE_TEXT_RE = />\s*\n\s*([A-Z][a-zA-Z0-9 .,&!?()'’/;:-]{4,}?)\s*\n\s*<\//g;
+// title= / label= / caption= 属性のハードコード英文
+const JSX_ATTR_TEXT_RE = /\b(title|label|caption)="([A-Z][a-zA-Z0-9 .,&!?()'/-]{4,})"/g;
+
+let hardcodedWarnings = 0;
+{
+  const storyFiles = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith('.stories.tsx')) storyFiles.push(p);
+    }
+  })('stories');
+  for (const file of storyFiles) {
+    const src = fs.readFileSync(file, 'utf8');
+    const report = (text, kind) => {
+      const trimmed = text.trim();
+      if (HARDCODED_TEXT_ALLOWLIST.has(trimmed)) return;
+      console.log(`[WARN] ${path.relative('.', file)}: ハードコード${kind}（t() 未使用のため翻訳されません）: "${trimmed}"`);
+      hardcodedWarnings++;
+    };
+    for (const m of src.matchAll(JSX_TEXT_RE)) report(m[1], 'テキスト');
+    for (const m of src.matchAll(JSX_MULTILINE_TEXT_RE)) report(m[1], 'テキスト（複数行）');
+    for (const m of src.matchAll(JSX_ATTR_TEXT_RE)) report(m[2], `属性 ${m[1]}`);
+  }
+}
+
 console.log('');
-console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件 / 指示形 placeholder（警告）: ${placeholderWarnings} 件`);
+console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件 / 指示形 placeholder（警告）: ${placeholderWarnings} 件 / stories 配線（警告）: ${wiringWarnings} 件 / TSX ハードコード（警告）: ${hardcodedWarnings} 件`);
 
 if (duplicateErrors > 0 || ptPtErrors > 0) {
   process.exit(1);

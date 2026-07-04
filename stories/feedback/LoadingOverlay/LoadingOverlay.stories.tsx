@@ -306,17 +306,6 @@ export const Interactive: Story = {
 export const CustomLoader: Story = {
   args: {
     visible: true,
-    children: (
-      <div style={{ textAlign: "center", color: "var(--wim-color-text-on-primary)" }}>
-        <Icon
-          name="ClockIcon"
-          style={{ width: "48px", height: "48px", marginBottom: "16px" }}
-        />
-        <div style={{ fontSize: "18px", fontWeight: "bold" }}>
-          Please wait...
-        </div>
-      </div>
-    ),
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

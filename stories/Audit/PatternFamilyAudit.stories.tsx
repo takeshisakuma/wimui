@@ -29,7 +29,7 @@ export const Overview: StoryObj = {
       <AuditPage title={t("audit:pattern_family_title")}>
         {/* ArtifactsCanvas Audit */}
         <ComparisonGrid title={t("audit:label_artifacts_canvas")}>
-          <ComponentGroup label="AI Artifacts Layout (Split Pane)" noStack>
+          <ComponentGroup label={t("audit:pattern_artifacts_layout")} noStack>
              <Box style={{ height: "600px", overflow: "hidden" }}>
                 {/* @ts-expect-error - Storybook render function */}
                 <ArtifactsStories.ArtifactsCanvas.render />
@@ -38,8 +38,8 @@ export const Overview: StoryObj = {
         </ComparisonGrid>
 
         {/* ComparisonTable (Original) Audit */}
-        <ComparisonGrid title="ComparisonTable (Standard)">
-          <ComponentGroup label="Original simple comparison table" noStack>
+        <ComparisonGrid title={t("audit:pattern_comparison_std_title")}>
+          <ComponentGroup label={t("audit:pattern_comparison_std_label")} noStack>
              <Box>
                 {/* @ts-expect-error - Storybook render function */}
                 <FeatureStories.ComparisonTable.render />
@@ -49,7 +49,7 @@ export const Overview: StoryObj = {
 
         {/* FeatureComparison (Advanced) Audit */}
         <ComparisonGrid title={t("audit:label_feature_comparison")}>
-          <ComponentGroup label="Advanced tiered feature comparison" noStack>
+          <ComponentGroup label={t("audit:pattern_feature_comp_label")} noStack>
              <Box>
                 {/* @ts-expect-error - Storybook render function */}
                 <FeatureStories.FeatureComparison.render />
@@ -58,15 +58,15 @@ export const Overview: StoryObj = {
         </ComparisonGrid>
 
         {/* Responsive Check */}
-        <ComparisonGrid title="Responsive Composition Check">
+        <ComparisonGrid title={t("audit:pattern_responsive_title")}>
            <Grid cols={{ base: 1, lg: 2 }} gap="xl">
-              <ComponentGroup label="Mobile Artifacts (Partial View)" noStack>
+              <ComponentGroup label={t("audit:pattern_mobile_artifacts")} noStack>
                  <Box style={{ width: "100%", maxWidth: "375px", height: "400px", overflow: "hidden", margin: "0 auto" }}>
                     {/* @ts-expect-error - Storybook render function */}
                     <ArtifactsStories.ArtifactsCanvas.render isMobile={true} />
                  </Box>
               </ComponentGroup>
-              <ComponentGroup label="Mobile Comparison (Full View)" noStack>
+              <ComponentGroup label={t("audit:pattern_mobile_comparison")} noStack>
                  <Box style={{ width: "100%", maxWidth: "375px", margin: "0 auto" }}>
                     {/* @ts-expect-error - Storybook render function */}
                     <FeatureStories.ComparisonTable.render />

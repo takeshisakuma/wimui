@@ -52,7 +52,7 @@ export const Overview: StoryObj = {
           <ComponentGroup label={`${t("audit:label_image")} — loading & fallback behavior`}>
             <Stack direction="row" gap="lg" align="start">
               <Box style={{ width: "200px" }}>
-                <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Loading state (3s delay)</Text>
+                <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_loading_state")}</Text>
                 <Image 
                   src={sampleImages[0]} 
                   alt="Delayed Image" 
@@ -62,7 +62,7 @@ export const Overview: StoryObj = {
                 />
               </Box>
               <Box style={{ width: "200px" }}>
-                <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Broken src fallback</Text>
+                <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_broken_src")}</Text>
                 <Image 
                   src="invalid-path" 
                   alt="Broken" 
@@ -96,7 +96,7 @@ export const Overview: StoryObj = {
             <Stack gap="xl">
               <Stack direction="row" gap="xl" align="center" wrap>
                 <Box>
-                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Small</Text>
+                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("common.small")}</Text>
                   <AvatarGroup size="sm">
                     <Avatar initials="A" />
                     <Avatar initials="B" />
@@ -105,7 +105,7 @@ export const Overview: StoryObj = {
                   </AvatarGroup>
                 </Box>
                 <Box>
-                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Medium (Standard)</Text>
+                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_medium_standard")}</Text>
                   <AvatarGroup size="md">
                     <Avatar src={sampleImages[0]} />
                     <Avatar src={sampleImages[1]} />
@@ -113,7 +113,7 @@ export const Overview: StoryObj = {
                   </AvatarGroup>
                 </Box>
                 <Box>
-                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Large</Text>
+                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("common.large")}</Text>
                   <AvatarGroup size="lg" max={3} total={10}>
                     <Avatar initials="U1" />
                     <Avatar initials="U2" />
@@ -123,7 +123,7 @@ export const Overview: StoryObj = {
               </Stack>
               
               <Box p="lg" bg="bg-app" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
-                 <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-md)" }}>Dark Surface Consistency (Border should be visible)</Text>
+                 <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-md)" }}>{t("audit:media_dark_surface")}</Text>
                  <AvatarGroup size="md">
                     <Avatar src={sampleImages[0]} />
                     <Avatar src={sampleImages[1]} />

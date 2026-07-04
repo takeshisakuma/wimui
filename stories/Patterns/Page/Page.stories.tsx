@@ -65,7 +65,7 @@ export const DashboardHeader: StoryObj = {
             style={{ gap: "16px", flex: 1, overflow: "hidden" }}
           >
             <button
-              aria-label="Toggle Menu"
+              aria-label={t("docs_stories_recipes:page.toggle_menu")}
               className="mobile-only"
               style={{
                 background: "none",
@@ -163,7 +163,7 @@ export const DashboardHeader: StoryObj = {
                 name="BellIcon"
                 size="md"
                 color="secondary"
-                aria-label="Notifications"
+                aria-label={t("docs_stories_recipes:page.notifications")}
               />
               <Badge
                 intent="error"
@@ -645,7 +645,7 @@ export const ShoppingCart: StoryObj = {
                         size="sm"
                         variant="ghost"
                         style={{ color: "var(--wim-color-error)", padding: "4px 8px" }}
-                        aria-label="Remove item"
+                        aria-label={t("docs_stories_recipes:page.remove_item")}
                       >
                         <Icon name="CloseIcon" size="sm" />
                       </Button>
@@ -665,7 +665,7 @@ export const ShoppingCart: StoryObj = {
           >
             <Stack gap="lg">
               <Title tag="h3" size="md">
-                Order Summary
+                {t("docs_stories_recipes:cart.order_summary")}
               </Title>
               <Divider />
               <Stack gap="sm">

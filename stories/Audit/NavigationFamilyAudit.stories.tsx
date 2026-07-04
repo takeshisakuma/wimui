@@ -66,10 +66,10 @@ export const Overview: StoryObj = {
                 <TabsTrigger value="3" disabled>Disabled Tab</TabsTrigger>
               </TabsList>
               <TabsContent value="1">
-                <Box p="md"><Text>Active Content</Text></Box>
+                <Box p="md"><Text>{t("audit:nav_active_content")}</Text></Box>
               </TabsContent>
               <TabsContent value="2">
-                <Box p="md"><Text>Default Content</Text></Box>
+                <Box p="md"><Text>{t("audit:nav_default_content")}</Text></Box>
               </TabsContent>
             </Tabs>
           </ComponentGroup>

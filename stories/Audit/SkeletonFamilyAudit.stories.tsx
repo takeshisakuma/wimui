@@ -120,8 +120,8 @@ export const Overview: StoryObj = {
 
           <ComponentGroup label={`${t("audit:label_spinner")} — label (right / bottom)`}>
             <Stack direction="row" gap="xl" align="start" wrap>
-              <Spinner label="Loading..." labelPosition="right" />
-              <Spinner label="Loading..." labelPosition="bottom" />
+              <Spinner label={t("audit:demo_loading")} labelPosition="right" />
+              <Spinner label={t("audit:demo_loading")} labelPosition="bottom" />
             </Stack>
           </ComponentGroup>
 
@@ -177,7 +177,7 @@ export const Overview: StoryObj = {
                     }}
                   >
                     <Box p="md">
-                      <Text size="sm">Content underneath</Text>
+                      <Text size="sm">{t("audit:skeleton_content_underneath")}</Text>
                     </Box>
                     <LoadingOverlay visible backdropVariant={variant} loaderSize="md" />
                   </div>

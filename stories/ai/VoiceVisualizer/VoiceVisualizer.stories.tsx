@@ -151,24 +151,27 @@ export const WithAriaLabel: Story = {
   },
 };
 export const SentimentVariants: Story = {
-  render: () => (
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>Positive</p>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>{t("story.voice_sentiment_positive")}</p>
         <VoiceVisualizer sentiment="positive" isActive />
       </div>
       <div>
-        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>Negative (Error)</p>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>{t("story.voice_sentiment_negative")}</p>
         <VoiceVisualizer sentiment="negative" isActive />
       </div>
       <div>
-        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>Caution</p>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>{t("story.voice_sentiment_caution")}</p>
         <VoiceVisualizer sentiment="caution" isActive />
       </div>
       <div>
-        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>Informative</p>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>{t("story.voice_sentiment_informative")}</p>
         <VoiceVisualizer sentiment="informative" isActive />
       </div>
     </div>
-  ),
+    );
+  },
 };

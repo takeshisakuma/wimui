@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Progress } from "wimui";
 
 const meta: Meta<typeof Progress> = {
@@ -38,7 +40,9 @@ export const Default: Story = {
 };
 
 export const Colors: Story = {
-  render: (args) => (
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <div
       style={{
         display: "flex",
@@ -47,18 +51,21 @@ export const Colors: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} intent="primary" value={20} label="Primary" />
-      <Progress {...args} intent="secondary" value={40} label="Secondary" />
-      <Progress {...args} intent="success" value={60} label="Success" />
-      <Progress {...args} intent="warning" value={80} label="Warning" />
-      <Progress {...args} intent="error" value={90} label="Error" />
-      <Progress {...args} intent="neutral" value={50} label="Neutral" />
+      <Progress {...args} intent="primary" value={20} label={t("common.primary")} />
+      <Progress {...args} intent="secondary" value={40} label={t("common.secondary")} />
+      <Progress {...args} intent="success" value={60} label={t("common.success")} />
+      <Progress {...args} intent="warning" value={80} label={t("common.warning")} />
+      <Progress {...args} intent="error" value={90} label={t("common.error")} />
+      <Progress {...args} intent="neutral" value={50} label={t("common.neutral")} />
     </div>
-  ),
+    );
+  },
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <div
       style={{
         display: "flex",
@@ -67,11 +74,12 @@ export const Sizes: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} size="sm" value={50} label="Small" />
-      <Progress {...args} size="md" value={50} label="Medium" />
-      <Progress {...args} size="lg" value={50} label="Large" />
+      <Progress {...args} size="sm" value={50} label={t("common.small")} />
+      <Progress {...args} size="md" value={50} label={t("common.medium")} />
+      <Progress {...args} size="lg" value={50} label={t("common.large")} />
     </div>
-  ),
+    );
+  },
 };
 
 export const Indeterminate: Story = {

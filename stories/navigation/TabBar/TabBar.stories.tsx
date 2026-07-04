@@ -71,6 +71,7 @@ export const Default: Story = {
 
 export const WithoutLabels: Story = {
   render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
@@ -93,7 +94,7 @@ export const WithoutLabels: Story = {
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
-            aria-label="Search"
+            aria-label={t("action.search")}
           />
         </TabBar>
       </div>

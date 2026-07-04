@@ -13,6 +13,7 @@
     "alert_update_title": "Update Available",
     "alert_warning_desc": "Please be careful with this action.",
     "alert_warning_title": "Warning",
+    "autosave_error_connection": "Connection lost. Changes may not be saved.",
     "badge_content": "Badge",
     "badge_error": "Error",
     "badge_neutral": "Neutral",
@@ -61,6 +62,7 @@
     "result_success_title": "Successfully Purchased Cloud Server ECS!",
     "result_warning_title": "There are some problems with your operation.",
     "skeleton_demo_desc": "This is a demo with the actual content loaded. The original text and image are displayed in the same positions as the placeholders provided by the skeleton.",
+    "skeleton_sample_role": "Software Engineer",
     "skeleton_show_content": "Show Content",
     "skeleton_show_skeleton": "Show Skeleton",
     "snackbar_deleted": "Successfully deleted the item.",
@@ -75,6 +77,8 @@
     "snackbar_undo": "UNDO",
     "snackbar_undo_clicked": "Undo clicked!",
     "snackbar_update_available": "New update available.",
+    "spinner_loading_bottom": "Loading bottom...",
+    "spinner_loading_right": "Loading right...",
     "toast_5s_desc": "This will disappear in 5 seconds.",
     "toast_connection_desc": "The internet connection seems unstable.",
     "toast_connection_title": "Check your connection",
@@ -89,7 +93,6 @@
     "toast_update_desc": "A new version of the app is available. Please refresh.",
     "toast_update_title": "New update available",
     "toast_upload_failed_desc": "There was an error while uploading your file.",
-    "toast_upload_failed_title": "Failed to upload",
-    "autosave_error_connection": "Connection lost. Changes may not be saved."
+    "toast_upload_failed_title": "Failed to upload"
   }
 }

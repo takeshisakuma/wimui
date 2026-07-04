@@ -191,7 +191,7 @@ export const CustomSeparator: Story = {
         options={options}
         separator=" > "
         defaultValue={["tokyo", "shibuya", "dogenzaka"]}
-        aria-label="Location"
+        aria-label={t("story.cascader_location")}
       />
     );
   },

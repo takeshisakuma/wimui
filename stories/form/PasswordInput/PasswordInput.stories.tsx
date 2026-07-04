@@ -27,7 +27,7 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.passwordinput_label")}>
-        <PasswordInput {...args} placeholder={t("story.passwordinput_placeholder")} />
+        <PasswordInput {...args} />
       </Label>
     );
   },

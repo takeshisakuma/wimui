@@ -124,7 +124,7 @@ export const Overview: StoryObj = {
             label={`${t("audit:label_thought_process")} — expanded`}
             maxWidth="var(--wim-width-md)"
           >
-            <ThoughtProcess title="Analysis in progress" defaultExpanded>
+            <ThoughtProcess title={t("audit:ai_analysis_progress")} defaultExpanded>
               {sampleSteps.map((step, i) => (
                 <ThoughtStep key={i} label={step.label} status={step.status} isLast={i === sampleSteps.length - 1}>
                   {step.content}
@@ -136,18 +136,18 @@ export const Overview: StoryObj = {
             label={`${t("audit:label_thought_process")} — collapsed`}
             maxWidth="var(--wim-width-md)"
           >
-            <ThoughtProcess title="Step-by-step reasoning" defaultExpanded={false}>
-              <ThoughtStep label="Search" status="completed">Searching for data...</ThoughtStep>
-              <ThoughtStep label="Process" status="completed" isLast>Processing data...</ThoughtStep>
+            <ThoughtProcess title={t("audit:ai_step_reasoning")} defaultExpanded={false}>
+              <ThoughtStep label={t("action.search")} status="completed">Searching for data...</ThoughtStep>
+              <ThoughtStep label={t("audit:ai_step_process")} status="completed" isLast>Processing data...</ThoughtStep>
             </ThoughtProcess>
           </ComponentGroup>
           <ComponentGroup
             label={t("audit:label_thought_step_error")}
             maxWidth="var(--wim-width-md)"
           >
-            <ThoughtProcess title="Failed reasoning" defaultExpanded>
-              <ThoughtStep label="Search" status="completed">Searching for data...</ThoughtStep>
-              <ThoughtStep label="Validate" status="error" isLast>Connection timeout — could not reach external service.</ThoughtStep>
+            <ThoughtProcess title={t("audit:ai_failed_reasoning")} defaultExpanded>
+              <ThoughtStep label={t("action.search")} status="completed">Searching for data...</ThoughtStep>
+              <ThoughtStep label={t("audit:ai_step_validate")} status="error" isLast>Connection timeout — could not reach external service.</ThoughtStep>
             </ThoughtProcess>
           </ComponentGroup>
         </ComparisonGrid>
@@ -165,7 +165,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_prompt_input")} — with label and error`} align="stretch" maxWidth="var(--wim-width-md)">
             <PromptInput
-              label="System Prompt"
+              label={t("audit:ai_system_prompt")}
               error="The prompt exceeds the maximum allowed length."
               defaultValue="Explain the concept of quantum computing to a 5-year old."
               maxLength={100}
@@ -274,7 +274,7 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:fluid_width_check")}>
           <ComponentGroup label={t("audit:label_truly_full_width")} align="stretch">
             <Stack gap="lg">
-              <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:label_fluid_prompt")} />
+              <PromptInput label={t("audit:label_fluid_prompt")} fullWidth placeholder={t("audit:sample_prompt_ai")} />
               <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
                 <StreamingText
                   content="This is a truly full width streaming text component that will span the entire width of its container regardless of length. This confirms that the component can handle extreme horizontal stretches."
@@ -289,7 +289,7 @@ export const Overview: StoryObj = {
             maxWidth="60rem"
           >
             <Stack gap="lg">
-              <PromptInput fullWidth placeholder={t("audit:label_prompt_input_capped")} />
+              <PromptInput fullWidth placeholder={t("audit:sample_prompt_ai")} />
               <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
                 <StreamingText
                   content="This streaming text is capped at 60rem (960px) to maintain optimal readability for long-form AI responses, even on ultra-wide displays. Following the same rule as standard InputFamily components ensures a consistent reading experience across the entire platform."

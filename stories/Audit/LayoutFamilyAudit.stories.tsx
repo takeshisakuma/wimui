@@ -53,43 +53,43 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:layout_primitive_check")}>
           <ComponentGroup label={t("audit:label_stack")} align="stretch">
             <Stack gap="md">
-              <Placeholder label="Stack 1" />
-              <Placeholder label="Stack 2" />
-              <Placeholder label="Stack 3" />
+              <Placeholder label={t("audit:layout_stack_item", { n: 1 })} />
+              <Placeholder label={t("audit:layout_stack_item", { n: 2 })} />
+              <Placeholder label={t("audit:layout_stack_item", { n: 3 })} />
             </Stack>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_group")} align="stretch">
             <Group gap="md">
-              <Placeholder label="Group 1" />
-              <Placeholder label="Group 2" />
-              <Placeholder label="Group 3" />
+              <Placeholder label={t("audit:layout_group_item", { n: 1 })} />
+              <Placeholder label={t("audit:layout_group_item", { n: 2 })} />
+              <Placeholder label={t("audit:layout_group_item", { n: 3 })} />
             </Group>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_flex")} align="stretch">
             <Flex justify="between" align="center" style={{ background: "var(--wim-color-bg-surface)", padding: "0.5rem" }}>
-              <Placeholder label="Flex Start" />
-              <Placeholder label="Flex Center" />
-              <Placeholder label="Flex End" />
+              <Placeholder label={t("audit:layout_flex_start")} />
+              <Placeholder label={t("audit:layout_flex_center")} />
+              <Placeholder label={t("audit:layout_flex_end")} />
             </Flex>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_grid")} align="stretch">
             <Grid cols={12} gap="md">
-              <Box style={{ gridColumn: "span 4" }}><Placeholder label="Span 4" /></Box>
-              <Box style={{ gridColumn: "span 8" }}><Placeholder label="Span 8" /></Box>
-              <Box style={{ gridColumn: "span 6" }}><Placeholder label="Span 6" /></Box>
-              <Box style={{ gridColumn: "span 3" }}><Placeholder label="Span 3" /></Box>
-              <Box style={{ gridColumn: "span 3" }}><Placeholder label="Span 3" /></Box>
+              <Box style={{ gridColumn: "span 4" }}><Placeholder label={t("audit:layout_span_item", { n: 4 })} /></Box>
+              <Box style={{ gridColumn: "span 8" }}><Placeholder label={t("audit:layout_span_item", { n: 8 })} /></Box>
+              <Box style={{ gridColumn: "span 6" }}><Placeholder label={t("audit:layout_span_item", { n: 6 })} /></Box>
+              <Box style={{ gridColumn: "span 3" }}><Placeholder label={t("audit:layout_span_item", { n: 3 })} /></Box>
+              <Box style={{ gridColumn: "span 3" }}><Placeholder label={t("audit:layout_span_item", { n: 3 })} /></Box>
             </Grid>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_simple_grid")} align="stretch">
             <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
-              <Placeholder label="Auto 1" />
-              <Placeholder label="Auto 2" />
-              <Placeholder label="Auto 3" />
+              <Placeholder label={t("audit:layout_auto_item", { n: 1 })} />
+              <Placeholder label={t("audit:layout_auto_item", { n: 2 })} />
+              <Placeholder label={t("audit:layout_auto_item", { n: 3 })} />
             </SimpleGrid>
           </ComponentGroup>
         </ComparisonGrid>
@@ -99,20 +99,20 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_container")} align="stretch">
             <Stack gap="sm">
               <Container size="xs" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
-                <Placeholder label="Container XS" />
+                <Placeholder label={t("audit:layout_container_xs")} />
               </Container>
               <Container size="sm" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
-                <Placeholder label="Container SM" />
+                <Placeholder label={t("audit:layout_container_sm")} />
               </Container>
               <Container size="md" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
-                <Placeholder label="Container MD" />
+                <Placeholder label={t("audit:layout_container_md")} />
               </Container>
             </Stack>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_center")} align="stretch">
             <Center style={{ height: "150px", background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
-              <Placeholder label="Centered Content" />
+              <Placeholder label={t("audit:layout_centered_content")} />
             </Center>
           </ComponentGroup>
         </ComparisonGrid>
@@ -127,22 +127,22 @@ export const Overview: StoryObj = {
                 >
                   <AppShell.Header>
                     <Box h="40px" bg="var(--wim-color-bg-surface-subtle)" style={{ display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid var(--wim-color-border)" }}>
-                      <Text size="xs" weight="bold">Header</Text>
+                      <Text size="xs" weight="bold">{t("audit:layout_header_label")}</Text>
                     </Box>
                   </AppShell.Header>
                   <AppShell.Body>
                     <AppShell.Sidebar style={{ width: "120px", borderRight: "1px solid var(--wim-color-border)", background: "var(--wim-color-bg-surface)" }}>
                       <Stack gap="xs" p="xs">
-                        <Placeholder height="30px" label="Nav 1" />
-                        <Placeholder height="30px" label="Nav 2" />
+                        <Placeholder height="30px" label={t("audit:layout_nav_item", { n: 1 })} />
+                        <Placeholder height="30px" label={t("audit:layout_nav_item", { n: 2 })} />
                       </Stack>
                     </AppShell.Sidebar>
                     <AppShell.Main>
                       <Stack gap="md">
-                        <Text weight="bold">Main Content Area</Text>
+                        <Text weight="bold">{t("audit:layout_main_content")}</Text>
                         <SimpleGrid cols={2} spacing="sm">
-                          <Placeholder height="100px" label="Card 1" />
-                          <Placeholder height="100px" label="Card 2" />
+                          <Placeholder height="100px" label={t("audit:layout_card_item", { n: 1 })} />
+                          <Placeholder height="100px" label={t("audit:layout_card_item", { n: 2 })} />
                         </SimpleGrid>
                       </Stack>
                     </AppShell.Main>

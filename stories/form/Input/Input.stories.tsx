@@ -230,21 +230,22 @@ export const SearchIndicator: Story = {
 
 export const CustomWidth: Story = {
   render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", maxWidth: "800px" }}>
-        <Label label="XS (80px - Secure Code)">
+        <Label label={t("story.input_width_xs")}>
           <Input {...args} width="xs" placeholder="000" />
         </Label>
-        <Label label="SM (160px - Zip Code)">
+        <Label label={t("story.input_width_sm")}>
           <Input {...args} width="sm" placeholder="000-0000" />
         </Label>
-        <Label label="MD (320px - Name)">
+        <Label label={t("story.input_width_md")}>
           <Input {...args} width="md" placeholder="John Doe" />
         </Label>
-        <Label label="LG (480px - Company)">
+        <Label label={t("story.input_width_lg")}>
           <Input {...args} width="lg" placeholder="Antigravity Inc." />
         </Label>
-        <Label label="Custom (8ch - Always 8 chars)">
+        <Label label={t("story.input_width_custom")}>
           <Input {...args} width="8ch" placeholder="12345678" />
         </Label>
       </div>

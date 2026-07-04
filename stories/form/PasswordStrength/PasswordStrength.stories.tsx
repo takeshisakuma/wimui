@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { PasswordStrength } from "@/components/form/PasswordStrength/PasswordStrength";
 import { PasswordInput } from "@/components/form/PasswordInput/PasswordInput";
 import { FieldTemplate } from "@/components/form/FieldTemplate/FieldTemplate";
@@ -26,7 +28,8 @@ export const Default: Story = {
 };
 
 export const WithPasswordInput: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [password, setPassword] = React.useState("");
 
     // Simple strength calculation logic for demo
@@ -42,11 +45,10 @@ export const WithPasswordInput: Story = {
 
     return (
       <div style={{ width: "320px" }}>
-        <FieldTemplate label="Password" htmlFor="password-input">
+        <FieldTemplate label={t("common.password")} htmlFor="password-input">
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <PasswordInput
               id="password-input"
-              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

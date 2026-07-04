@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { SwipeAction, SwipeActionRef } from "@/components/data-display/SwipeAction/SwipeAction";
 import { SwipeableList } from "@/components/data-display/SwipeAction/SwipeableList";
 import { List } from "@/components/data-display/List/List";
@@ -27,7 +29,8 @@ const ListItem = ({ title, subtitle }: { title: string; subtitle: string }) => (
 );
 
 export const Default: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedAction, setSelectedAction] = useState<string>("");
     const swipeActionRef = useRef<SwipeActionRef>(null);
@@ -43,14 +46,14 @@ export const Default: Story = {
           ref={swipeActionRef}
           closeOnAction={false}
           leftActions={[
-            { icon: "CheckIcon", label: "Done", intent: "success", onClick: () => handleAction("Done") },
+            { icon: "CheckIcon", label: t("common.done"), intent: "success", onClick: () => handleAction("Done") },
           ]}
           rightActions={[
-            { icon: "EditIcon", label: "Edit", intent: "primary", onClick: () => handleAction("Edit") },
-            { icon: "TrashIcon", label: "Delete", intent: "error", onClick: () => handleAction("Delete") },
+            { icon: "EditIcon", label: t("action.edit"), intent: "primary", onClick: () => handleAction("Edit") },
+            { icon: "TrashIcon", label: t("action.delete"), intent: "error", onClick: () => handleAction("Delete") },
           ]}
         >
-          <ListItem title="Swipe me" subtitle="Slide left or right to see actions" />
+          <ListItem title={t("story.swipeaction_swipe_me")} subtitle={t("story.swipeaction_subtitle")} />
         </SwipeAction>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -64,7 +67,7 @@ export const Default: Story = {
             <DialogFooter>
               <Stack direction="row" gap="sm" justify="end" style={{ width: "100%" }}>
                 <Button variant="ghost" onClick={() => setDialogOpen(false)}>
-                  Close
+                  {t("action.close")}
                 </Button>
                 <Button variant="solid" intent="default" onClick={() => {
                   swipeActionRef.current?.close();
@@ -82,7 +85,8 @@ export const Default: Story = {
 };
 
 export const MultipleActions: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedAction, setSelectedAction] = useState<string>("");
     const swipeActionRef = useRef<SwipeActionRef>(null);
@@ -102,10 +106,10 @@ export const MultipleActions: Story = {
             { icon: "EmailIcon", label: "Archive", intent: "neutral", onClick: () => handleAction("Archive") },
           ]}
           rightActions={[
-            { icon: "TrashIcon", label: "Delete", intent: "error", onClick: () => handleAction("Delete") },
+            { icon: "TrashIcon", label: t("action.delete"), intent: "error", onClick: () => handleAction("Delete") },
           ]}
         >
-          <ListItem title="Multiple Actions" subtitle="Try swiping both ways" />
+          <ListItem title={t("story.swipeaction_multiple")} subtitle="Try swiping both ways" />
         </SwipeAction>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -119,13 +123,13 @@ export const MultipleActions: Story = {
             <DialogFooter>
               <Stack direction="row" gap="sm" justify="end" style={{ width: "100%" }}>
                 <Button variant="ghost" onClick={() => setDialogOpen(false)}>
-                  Cancel
+                  {t("action.cancel")}
                 </Button>
                 <Button variant="solid" intent="default" onClick={() => {
                   swipeActionRef.current?.close();
                   setDialogOpen(false);
                 }}>
-                  Confirm
+                  {t("action.confirm")}
                 </Button>
               </Stack>
             </DialogFooter>
@@ -137,7 +141,8 @@ export const MultipleActions: Story = {
 };
 
 export const ExclusiveList: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState<{ id: number; action: string } | null>(null);
     const swipeActionRefs = useRef<Record<number, SwipeActionRef | null>>({});
@@ -205,14 +210,14 @@ export const ExclusiveList: Story = {
             <DialogFooter>
               <Stack direction="row" gap="sm" justify="end" style={{ width: "100%" }}>
                 <Button variant="ghost" onClick={() => setDialogOpen(false)}>
-                  Cancel
+                  {t("action.cancel")}
                 </Button>
                 <Button 
                   variant="solid"
                   intent={selectedItem?.action === "Cancelled" ? "destructive" : "default"}
                   onClick={confirmAction}
                 >
-                  Confirm
+                  {t("action.confirm")}
                 </Button>
               </Stack>
             </DialogFooter>

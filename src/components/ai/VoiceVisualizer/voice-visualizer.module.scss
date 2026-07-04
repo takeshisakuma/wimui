@@ -33,8 +33,6 @@
   .bar {
     fill: currentcolor;
     transform-origin: center;
-    transition: height var(--wim-duration-fast, 80ms) linear,
-                y var(--wim-duration-fast, 80ms) linear;
 
     /* Idle: staggered scale-Y pulse */
     &.idle {

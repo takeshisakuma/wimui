@@ -34,12 +34,12 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_result")} align="stretch">
             <Result
               intent="success"
-              title="Payment Successful"
+              title={t("audit:state_payment_success")}
               description="Your transaction has been completed successfully. A confirmation email has been sent to your registered address."
               extra={
                 <Stack direction="row" gap="sm" wrap justify="center">
-                  <Button variant="solid">Print Receipt</Button>
-                  <Button variant="outline">Back to Home</Button>
+                  <Button variant="solid">{t("audit:state_print_receipt")}</Button>
+                  <Button variant="outline">{t("audit:state_back_home")}</Button>
                 </Stack>
               }
             />
@@ -48,9 +48,9 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_empty_state")} align="stretch">
             <EmptyState
               icon={<Icon name="SearchIcon" size="xl" color="secondary" />}
-              title="No data found"
+              title={t("audit:state_no_data")}
               description="Try adjusting your search filters or searching for something else to see results here."
-              extra={<Button variant="outline">Reset Filters</Button>}
+              extra={<Button variant="outline">{t("audit:state_reset_filters")}</Button>}
             />
           </ComponentGroup>
 
@@ -62,15 +62,15 @@ export const Overview: StoryObj = {
               style={{ border: "1px solid var(--wim-color-destructive-border)" }}
             >
               <Stack gap="md">
-                <Text weight="bold" color="destructive">ErrorBoundary Mock (Default UI)</Text>
+                <Text weight="bold" color="destructive">{t("audit:state_error_boundary_mock")}</Text>
                 <Result
                   intent="error"
-                  title="Something went wrong"
+                  title={t("audit:state_something_wrong")}
                   description="An unexpected error occurred while loading the content. This is a fallback UI provided by ErrorBoundary."
                   extra={
                     <Stack direction="row" gap="sm" wrap justify="center">
-                      <Button variant="solid">Retry</Button>
-                      <Button variant="outline">Show Details</Button>
+                      <Button variant="solid">{t("audit:state_retry")}</Button>
+                      <Button variant="outline">{t("audit:state_show_details")}</Button>
                     </Stack>
                   }
                 />
@@ -81,20 +81,20 @@ export const Overview: StoryObj = {
 
         {/* Vertical Spacing Check */}
         <ComparisonGrid title={t("audit:vertical_spacing_check")}>
-          <ComponentGroup label="Result (Spacing)" align="stretch">
+          <ComponentGroup label={t("audit:state_result_spacing")} align="stretch">
             <Result
               intent="info"
-              title="Information Consistency"
+              title={t("audit:state_info_consistency")}
               description="Checking if the vertical margin between Icon, Title, Description, and Actions is consistent with the design system."
-              extra={<Button variant="solid">Primary Action</Button>}
+              extra={<Button variant="solid">{t("audit:state_primary_action")}</Button>}
             />
           </ComponentGroup>
-          <ComponentGroup label="EmptyState (Spacing)" align="stretch">
+          <ComponentGroup label={t("audit:state_empty_spacing")} align="stretch">
             <EmptyState
               icon={<Icon name="CircleIcon" size="xl" color="secondary" />}
-              title="No Content Available"
+              title={t("audit:state_no_content")}
               description="Check if the vertical gaps match the Result component above."
-              extra={<Button variant="outline">Secondary Action</Button>}
+              extra={<Button variant="outline">{t("audit:state_secondary_action")}</Button>}
             />
           </ComponentGroup>
         </ComparisonGrid>
@@ -105,14 +105,14 @@ export const Overview: StoryObj = {
             <ComponentGroup label="Success/Info: Recommended Solid Button" align="stretch">
               <Result
                 intent="success"
-                title="Process Completed"
+                title={t("audit:state_process_completed")}
                 extra={<Button variant="solid">Done</Button>}
               />
             </ComponentGroup>
             <ComponentGroup label="Empty/Neutral: Recommended Outline Button" align="stretch">
               <EmptyState
-                title="No items to show"
-                extra={<Button variant="outline">Create New Item</Button>}
+                title={t("audit:state_no_items")}
+                extra={<Button variant="outline">{t("audit:state_create_item")}</Button>}
               />
             </ComponentGroup>
           </Stack>

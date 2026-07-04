@@ -13,6 +13,7 @@
     "alert_update_title": "Atualização Disponível",
     "alert_warning_desc": "Tenha cuidado com esta ação.",
     "alert_warning_title": "Aviso",
+    "autosave_error_connection": "Conexão perdida. As alterações podem não ter sido salvas.",
     "badge_content": "Distintivo",
     "badge_error": "Erro",
     "badge_neutral": "Neutro",
@@ -61,6 +62,7 @@
     "result_success_title": "Servidor Cloud ECS Adquirido com Sucesso!",
     "result_warning_title": "Existem alguns problemas com sua operação.",
     "skeleton_demo_desc": "Esta é uma demonstração com o conteúdo real carregado. O texto e a imagem originais são exibidos nas mesmas posições dos espaços reservados fornecidos pelo esqueleto.",
+    "skeleton_sample_role": "Engenheiro de Software",
     "skeleton_show_content": "Mostrar Conteúdo",
     "skeleton_show_skeleton": "Mostrar Esqueleto",
     "snackbar_deleted": "Item removido com sucesso.",
@@ -75,6 +77,8 @@
     "snackbar_undo": "DESFAZER",
     "snackbar_undo_clicked": "Desfazer clicado!",
     "snackbar_update_available": "Nova atualização disponível.",
+    "spinner_loading_bottom": "Carregando abaixo...",
+    "spinner_loading_right": "Carregando à direita...",
     "toast_5s_desc": "Este desaparecerá em 5 segundos.",
     "toast_connection_desc": "A conexão com a internet parece instável.",
     "toast_connection_title": "Verifique sua conexão",
@@ -89,7 +93,6 @@
     "toast_update_desc": "Uma nova versão do aplicativo está disponível. Por favor, atualize.",
     "toast_update_title": "Nova atualização disponível",
     "toast_upload_failed_desc": "Ocorreu um erro ao carregar o seu arquivo.",
-    "toast_upload_failed_title": "Falha no upload",
-    "autosave_error_connection": "Conexão perdida. As alterações podem não ter sido salvas."
+    "toast_upload_failed_title": "Falha no upload"
   }
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Lightbox, LightboxTrigger, LightboxContent, LightboxGallery } from "@/components/media/Lightbox/Lightbox";
 import { Image } from "@/components/media/Image/Image";
 
@@ -78,10 +80,12 @@ export const Gallery: Story = {
 };
 
 export const WithCaptions: Story = {
-  render: () => (
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <Lightbox>
       <LightboxGallery items={[DEMO_IMAGES[2]]}>
-        <LightboxTrigger src={DEMO_IMAGES[2].src} title="Beautiful Flower" caption="Macro photography of a tropical flower.">
+        <LightboxTrigger src={DEMO_IMAGES[2].src} title={t("story.lightbox_flower_title")} caption={t("story.lightbox_flower_caption")}>
           <Image
             src={DEMO_IMAGES[2].src}
             alt="Flower"
@@ -93,5 +97,6 @@ export const WithCaptions: Story = {
       </LightboxGallery>
       <LightboxContent showCounter={false} />
     </Lightbox>
-  ),
+  );
+  },
 };

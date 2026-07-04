@@ -40,7 +40,7 @@ export const Overview: StoryObj = {
               <Button size={size} variant="solid">
                 {t("audit:label_button")}
               </Button>
-              <IconButton size={size} variant="solid" iconName="CircleIcon" aria-label="Circle" />
+              <IconButton size={size} variant="solid" iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
               <LinkButton size={size} variant="solid">
                 {t("audit:label_link")}
               </LinkButton>
@@ -55,7 +55,7 @@ export const Overview: StoryObj = {
               <Button size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"}>
                 {t("audit:label_button")}
               </Button>
-              <IconButton size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" aria-label="Circle" />
+              <IconButton size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
               <FloatButton intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" position="static" />
             </ComponentGroup>
           ))}
@@ -68,7 +68,7 @@ export const Overview: StoryObj = {
               <Button size="md" variant={variant}>
                 {t("audit:label_button")}
               </Button>
-              <IconButton size="md" variant={variant} iconName="CircleIcon" aria-label="Circle" />
+              <IconButton size="md" variant={variant} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
               <LinkButton size="md" variant={variant}>
                 {t("audit:label_link")}
               </LinkButton>
@@ -92,7 +92,7 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")} direction="row" align="center" wrap>
             <Button size="md">{t("audit:label_button")}</Button>
-            <IconButton size="md" iconName="SearchIcon" aria-label="Search" />
+            <IconButton size="md" iconName="SearchIcon" aria-label={t("action.search")} />
             <CopyButton size="md" value="test" />
             <LinkButton size="md">{t("audit:label_link")}</LinkButton>
           </ComponentGroup>

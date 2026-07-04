@@ -120,12 +120,12 @@ export const Overview: StoryObj = {
 
           <ComponentGroup label={t("audit:label_kanban")} noStack>
             <KanbanBoard style={{ maxWidth: "100%" }} onCardMove={handleKanbanMove}>
-              <KanbanBoard.Column id="todo" title="To Do" cardCount={kanbanColumns.todo.length}>
+              <KanbanBoard.Column id="todo" title={t("audit:viewport_todo")} cardCount={kanbanColumns.todo.length}>
                 {kanbanColumns.todo.map((id) => (
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="doing" title="In Progress" cardCount={kanbanColumns.doing.length}>
+              <KanbanBoard.Column id="doing" title={t("audit:viewport_in_progress")} cardCount={kanbanColumns.doing.length}>
                 {kanbanColumns.doing.map((id) => (
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}
@@ -135,7 +135,7 @@ export const Overview: StoryObj = {
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="backlog" title="Backlog" cardCount={kanbanColumns.backlog.length}>
+              <KanbanBoard.Column id="backlog" title={t("audit:viewport_backlog")} cardCount={kanbanColumns.backlog.length}>
                 {kanbanColumns.backlog.map((id) => (
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}
@@ -166,8 +166,8 @@ export const Overview: StoryObj = {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <Text weight="bold">Requirement Analysis</Text>
-                      <Text size="xs" color="text-secondary">Completed on May 1st</Text>
+                      <Text weight="bold">{t("audit:viewport_req_analysis")}</Text>
+                      <Text size="xs" color="text-secondary">{t("audit:viewport_req_analysis_desc")}</Text>
                     </TimelineContent>
                   </TimelineItem>
                   <TimelineItem>
@@ -176,8 +176,8 @@ export const Overview: StoryObj = {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <Text weight="bold">Design Specification</Text>
-                      <Text size="xs" color="text-secondary">Approved by stakeholders</Text>
+                      <Text weight="bold">{t("audit:viewport_design_spec")}</Text>
+                      <Text size="xs" color="text-secondary">{t("audit:viewport_design_spec_desc")}</Text>
                     </TimelineContent>
                   </TimelineItem>
                   <TimelineItem>
@@ -186,8 +186,8 @@ export const Overview: StoryObj = {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <Text weight="bold">Development Start</Text>
-                      <Text size="xs" color="text-secondary">Environment setup complete</Text>
+                      <Text weight="bold">{t("audit:viewport_dev_start")}</Text>
+                      <Text size="xs" color="text-secondary">{t("audit:viewport_dev_start_desc")}</Text>
                     </TimelineContent>
                   </TimelineItem>
                   <TimelineItem>
@@ -195,8 +195,8 @@ export const Overview: StoryObj = {
                       <TimelinePoint />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <Text weight="bold">Testing Phase</Text>
-                      <Text size="xs" color="text-secondary">Scheduled for next week</Text>
+                      <Text weight="bold">{t("audit:viewport_testing")}</Text>
+                      <Text size="xs" color="text-secondary">{t("audit:viewport_testing_desc")}</Text>
                     </TimelineContent>
                   </TimelineItem>
                 </Timeline>

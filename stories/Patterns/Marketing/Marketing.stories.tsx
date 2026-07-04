@@ -688,12 +688,12 @@ export const ComparisonTable: StoryObj = {
       },
     ];
     const Check = () => (
-      <Icon name="CheckIcon" size="sm" color="positive" aria-label="Included" />
+      <Icon name="CheckIcon" size="sm" color="positive" aria-label={t("docs_stories_recipes:feature_comparison.included")} />
     );
     const Dash = () => (
       <span
         style={{ color: "var(--wim-color-text-disabled)", fontWeight: 300 }}
-        aria-label="Not included"
+        aria-label={t("docs_stories_recipes:feature_comparison.not_included")}
       >
         —
       </span>
@@ -1116,7 +1116,7 @@ export const FeatureComparison: StoryObj = {
                       size="sm"
                       style={{ width: "100%" }}
                     >
-                      Contact
+                      {t("docs_stories_recipes:pricing.contact")}
                     </Button>
                   </td>
                 </tr>

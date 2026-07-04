@@ -165,7 +165,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <Stack direction="row" gap="lg" wrap>
             <ComponentGroup label={t("audit:label_gauge_chart")} width="300px">
-              <GaugeChart value={75} height={200} title="System Load" />
+              <GaugeChart value={75} height={200} title={t("audit:viz_system_load")} />
             </ComponentGroup>
             <ComponentGroup label={t("audit:label_funnel_chart")} width="300px">
               <FunnelChart data={funnelData} dataKey="value" nameKey={"name"} height={250} />

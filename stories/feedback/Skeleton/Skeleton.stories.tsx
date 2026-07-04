@@ -181,7 +181,7 @@ export const LoadingToggle: Story = {
                     John Doe
                   </div>
                   <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>
-                    Software Engineer
+                    {t("story.skeleton_sample_role")}
                   </div>
                 </div>
               </div>

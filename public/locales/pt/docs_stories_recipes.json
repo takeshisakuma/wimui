@@ -1,5 +1,6 @@
 {
   "artifacts": {
+    "assistant_message": "Criei um componente React para seu cartão de boas-vindas. Você pode visualizá-lo e conferir o código no painel à direita.",
     "btn_copy": "Copiar Código",
     "btn_download": "Baixar",
     "btn_publish": "Publicar",
@@ -8,10 +9,17 @@
     "canvas_title": "Visualização do Artefato",
     "chat": "Chat",
     "chat_placeholder": "Crie uma landing page para uma cafeteria",
+    "device_desktop": "Desktop",
+    "get_started": "Começar",
+    "hello_desc": "Esta é uma prévia ao vivo gerada por IA.",
+    "hello_title": "Olá, Artifacts!",
+    "published": "Publicado",
+    "react_component": "Componente React",
     "status_generating": "Gerando artefato...",
     "status_updated": "Artefato atualizado",
     "tab_code": "Código",
-    "tab_preview": "Visualização"
+    "tab_preview": "Visualização",
+    "user_reply": "Ficou ótimo! Pode deixá-lo com efeito glassmórfico?"
   },
   "cart": {
     "btn_apply": "Aplicar",
@@ -25,6 +33,7 @@
     "item_2_price": "R$949,00",
     "item_3_name": "Hub USB-C Pro",
     "item_3_price": "R$399,00",
+    "order_summary": "Resumo do Pedido",
     "shipping": "Frete",
     "shipping_free": "Grátis",
     "subtotal": "Subtotal",
@@ -121,6 +130,8 @@
     "feat_sso": "SSO e SAML",
     "feat_support": "Suporte da comunidade",
     "feat_updates": "Atualizações semanais",
+    "included": "Incluído",
+    "not_included": "Não incluído",
     "subtitle": "Compare os recursos entre nossos planos flexíveis para encontrar a opção ideal.",
     "title": "Escolha o melhor plano para sua equipe"
   },
@@ -176,6 +187,7 @@
   },
   "pricing": {
     "badge": "PLANOS DE PREÇOS",
+    "contact": "Contato",
     "ent_btn": "Contatar Vendas",
     "ent_desc": "Soluções personalizadas para grandes organizações.",
     "ent_feat_1": "Infraestrutura personalizada",
@@ -255,14 +267,12 @@
   "signup": {
     "btn": "Criar Conta",
     "confirm_password": "Confirmar Senha",
-    "confirm_placeholder": "••••••••",
     "email": "E-mail",
     "email_placeholder": "você@exemplo.com",
     "have_account": "Já tem uma conta?",
     "name": "Nome Completo",
     "name_placeholder": "João Silva",
     "password": "Senha",
-    "password_placeholder": "••••••••",
     "sign_in": "Entrar",
     "subtitle": "Inicie seu teste gratuito de 14 dias. Sem cartão de crédito.",
     "terms": "Concordo com os Termos de Serviço e a Política de Privacidade",
@@ -292,5 +302,10 @@
     "step_3_title": "Participe da comunidade",
     "subtitle": "Sua conta está pronta. Veja como começar.",
     "title": "Bem-vindo ao WIM UI!"
+  },
+  "page": {
+    "notifications": "Notificações",
+    "remove_item": "Remover item",
+    "toggle_menu": "Alternar Menu"
   }
 }

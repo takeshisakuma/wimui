@@ -54,7 +54,7 @@ export const Overview: StoryObj = {
                   <Button variant="outline" size="sm">{t("audit:label_tooltip")}</Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  Standardized Tooltip (Level 1): shadow-sm, radius-md
+                  {t("audit:overlay_tooltip_l1")}
                 </TooltipContent>
               </Tooltip>
             </Stack>
@@ -69,7 +69,7 @@ export const Overview: StoryObj = {
                 </PopoverTrigger>
                 <PopoverContent>
                   <Box p="md">
-                    <Text weight="bold">Popover Header</Text>
+                    <Text weight="bold">{t("audit:overlay_popover_header")}</Text>
                     <Text size="sm">Standardized Level 2: shadow-md, radius-lg.</Text>
                   </Box>
                 </PopoverContent>
@@ -100,7 +100,7 @@ export const Overview: StoryObj = {
               </Dropdown>
 
               <Popconfirm
-                title="Are you sure?"
+                title={t("audit:overlay_confirm_title")}
                 description="This action cannot be undone."
               >
                 <Button variant="outline" size="sm">{t("audit:label_popconfirm")}</Button>
@@ -113,7 +113,7 @@ export const Overview: StoryObj = {
                 <HoverCard.Content>
                   <Box p="xs">
                     <Text weight="bold">HoverCard</Text>
-                    <Text size="xs">Level 2 elevation with shadow-md.</Text>
+                    <Text size="xs">{t("audit:overlay_elevation_desc")}</Text>
                   </Box>
                 </HoverCard.Content>
               </HoverCard>
@@ -142,19 +142,19 @@ export const Overview: StoryObj = {
                 </Dialog.Trigger>
                 <Dialog.Content>
                   <Dialog.Header>
-                    <Dialog.Title>Standardized Dialog</Dialog.Title>
+                    <Dialog.Title>{t("audit:overlay_std_dialog")}</Dialog.Title>
                     <Dialog.Description>
-                      Level 3: shadow-lg, radius-xl. Backdrop blur applied.
+                      {t("audit:overlay_l3_blur")}
                     </Dialog.Description>
                   </Dialog.Header>
                   <Box py="md">
-                    Standard content area.
+                    {t("audit:overlay_standard_content")}
                   </Box>
                   <Dialog.Footer>
                     <Dialog.Close asChild>
-                      <Button variant="ghost">Cancel</Button>
+                      <Button variant="ghost">{t("action.cancel")}</Button>
                     </Dialog.Close>
-                    <Button>Confirm</Button>
+                    <Button>{t("action.confirm")}</Button>
                   </Dialog.Footer>
                 </Dialog.Content>
               </Dialog>
@@ -165,10 +165,10 @@ export const Overview: StoryObj = {
                 </Drawer.Trigger>
                 <Drawer.Content>
                   <Drawer.Header>
-                    <Drawer.Title>Standardized Drawer</Drawer.Title>
+                    <Drawer.Title>{t("audit:overlay_std_drawer")}</Drawer.Title>
                   </Drawer.Header>
                   <Box p="lg">
-                    Level 3: shadow-lg.
+                    {t("audit:overlay_l3")}
                   </Box>
                 </Drawer.Content>
               </Drawer>
@@ -179,10 +179,10 @@ export const Overview: StoryObj = {
                 </BottomSheet.Trigger>
                 <BottomSheet.Content>
                   <BottomSheet.Header>
-                    <BottomSheet.Title>Standardized BottomSheet</BottomSheet.Title>
+                    <BottomSheet.Title>{t("audit:overlay_std_bottomsheet")}</BottomSheet.Title>
                   </BottomSheet.Header>
                   <BottomSheet.Body>
-                    Level 3: shadow-lg, radius-xl.
+                    {t("audit:overlay_l3_radius")}
                   </BottomSheet.Body>
                 </BottomSheet.Content>
               </BottomSheet>

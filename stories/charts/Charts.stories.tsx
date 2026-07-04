@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { BarChart, LineChart, PieChart, Stack, Title } from "wimui";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 const meta: Meta = {
   title: "Components/Visualization/Charts",
@@ -15,14 +17,17 @@ const data = [
 ];
 
 export const Dashboard: StoryObj = {
-  render: () => (
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
     <Stack gap="lg">
-      <Title tag="h3" size="lg">Visualization Suite Overview</Title>
+      <Title tag="h3" size="lg">{t("story.charts_overview_title")}</Title>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-        <BarChart title="Sales by Month" data={data} xAxisKey="name" keys={["sales"]} />
-        <LineChart title="Profit Trend" data={data} xAxisKey="name" keys={["profit"]} />
-        <PieChart title="Market Share" data={data.map(d => ({ name: d.name, value: d.sales }))} />
+        <BarChart title={t("story.charts_sales_by_month")} data={data} xAxisKey="name" keys={["sales"]} />
+        <LineChart title={t("story.charts_profit_trend")} data={data} xAxisKey="name" keys={["profit"]} />
+        <PieChart title={t("story.charts_market_share")} data={data.map(d => ({ name: d.name, value: d.sales }))} />
       </div>
     </Stack>
-  )
+    );
+  }
 };

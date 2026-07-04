@@ -46,15 +46,15 @@ export const Overview: StoryObj = {
               <Stack gap="xl">
                 <Card className="glass-sm" padding="md">
                   <Title tag="h4" size="md">Glass Sm</Title>
-                  <Text size="sm">.glass-sm utility (Blur 8px)</Text>
+                  <Text size="sm">{t("audit:aesthetics_glass_sm_desc")}</Text>
                 </Card>
                 <Card className="glass-md" padding="md">
                   <Title tag="h4" size="md">Glass Md</Title>
-                  <Text size="sm">.glass-md utility (Blur 12px + Shadow)</Text>
+                  <Text size="sm">{t("audit:aesthetics_glass_md_desc")}</Text>
                 </Card>
                 <Card className="glass-lg" padding="md">
                   <Title tag="h4" size="md">Glass Lg</Title>
-                  <Text size="sm">.glass-lg utility (Blur 24px + Shadow)</Text>
+                  <Text size="sm">{t("audit:aesthetics_glass_lg_desc")}</Text>
                 </Card>
               </Stack>
             </Box>
@@ -63,12 +63,12 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:interactive_glass_label")} align="stretch">
              <Grid cols={2} gap="md">
                 <Card variant="glass" interactive padding="md">
-                   <Text weight="bold">Hover Me</Text>
-                   <Text size="xs">Lifts and intensifies glass effect.</Text>
+                   <Text weight="bold">{t("audit:aesthetics_hover_me")}</Text>
+                   <Text size="xs">{t("audit:aesthetics_hover_me_desc")}</Text>
                 </Card>
                 <Card variant="glass" interactive padding="md">
-                   <Text weight="bold">Tap Me</Text>
-                   <Text size="xs">Scales down on active state.</Text>
+                   <Text weight="bold">{t("audit:aesthetics_tap_me")}</Text>
+                   <Text size="xs">{t("audit:aesthetics_tap_me_desc")}</Text>
                 </Card>
              </Grid>
           </ComponentGroup>
@@ -97,21 +97,21 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:motion_easing_emphasized")} align="stretch">
              <Stack gap="md">
                 <Box>
-                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Entrance (Bounce / Overshoot)</Text>
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_entrance")}</Text>
                   <Box className="motion-track">
                     <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-entrance) infinite" }} />
                   </Box>
                 </Box>
                 
                 <Box>
-                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Exit (Fast Fade)</Text>
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_exit")}</Text>
                   <Box className="motion-track">
                     <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-exit) infinite" }} />
                   </Box>
                 </Box>
 
                 <Box>
-                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>Layout Transition (Smooth All)</Text>
+                  <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_layout")}</Text>
                   <Box className="motion-track">
                     <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-layout-transition) infinite" }} />
                   </Box>
@@ -144,8 +144,8 @@ export const Overview: StoryObj = {
         </ComparisonGrid>
 
         {/* Dynamic Shadows */}
-        <ComparisonGrid title="OKLCH Dynamic Shadows">
-          <ComponentGroup label="Standard Shadows (Dynamic Color)" direction="row" wrap gap="xl">
+        <ComparisonGrid title={t("audit:aesthetics_oklch_shadows_title")}>
+          <ComponentGroup label={t("audit:aesthetics_standard_shadows_label")} direction="row" wrap gap="xl">
             <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-sm)" }}>
               <Text size="xs">Shadow SM</Text>
             </Box>
@@ -156,9 +156,9 @@ export const Overview: StoryObj = {
               <Text size="xs">Shadow LG</Text>
             </Box>
           </ComponentGroup>
-          <ComponentGroup label="Ambient Glow (Dark Mode Only)">
+          <ComponentGroup label={t("audit:aesthetics_ambient_glow_label")}>
             <Text size="sm" color="text-secondary">
-              In dark mode, shadows automatically use a semi-transparent primary color to create a natural glow effect.
+              {t("audit:aesthetics_ambient_glow_desc")}
             </Text>
           </ComponentGroup>
         </ComparisonGrid>
@@ -189,7 +189,7 @@ export const Overview: StoryObj = {
                           <Skeleton variant="text" width="100%" height={16} animation="wave" />
                           <Skeleton variant="text" width="60%" height={16} animation="wave" />
                           <Button size="sm" variant="solid" style={{ alignSelf: "flex-start", marginTop: "1rem" }}>
-                             Action
+                             {t("audit:aesthetics_action_button")}
                           </Button>
                        </Stack>
                     </Card>

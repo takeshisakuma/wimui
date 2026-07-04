@@ -136,13 +136,13 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_list_standard")}>
             <List bordered hoverable fullWidth>
               <ListItem selected={selectedRowKeys.includes("1")}>
-                John Doe (ID: 1)
+                {t("audit:table_sample_row_1")}
               </ListItem>
               <ListItem selected={selectedRowKeys.includes("2")}>
-                Jane Doe (ID: 2)
+                {t("audit:table_sample_row_2")}
               </ListItem>
               <ListItem selected={selectedRowKeys.includes("3")}>
-                Bob Smith (ID: 3)
+                {t("audit:table_sample_row_3")}
               </ListItem>
             </List>
           </ComponentGroup>
@@ -150,7 +150,7 @@ export const Overview: StoryObj = {
 
         {/* Fluid Width Check */}
         <ComparisonGrid title={t("audit:fluid_width_check")}>
-          <ComponentGroup label="Table (Full Width)">
+          <ComponentGroup label={t("audit:table_full_width")}>
             <Table fullWidth bordered card>
               <Table.Header>
                 <Table.Row>
