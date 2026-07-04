@@ -37,6 +37,7 @@
     "charts_heatmap_desc": "Representa densidade ou valores de dados por variações de cor.",
     "charts_i18n_desc": "Todos os rótulos, títulos de eixos e dicas de ferramentas são localizados através de chaves i18n. Passe strings pré-traduzidas através das respectivas props.",
     "charts_keyboard_desc": "Use Tab para focar em elementos interativos do gráfico. As setas esquerda/direita navegam através dos pontos de dados ou itens da legenda.",
+    "charts_props_desc": "Props principais como data, height, width, title e animated são compartilhadas por todos os componentes de gráfico. A tabela acima mostra o AreaChart como exemplo representativo; consulte a definição de tipo de cada gráfico para props específicas.",
     "charts_linechart_desc": "Ideal para mostrar tendências ao longo do tempo.",
     "charts_motion_desc": "As animações são usadas para mostrar transições de dados suavemente quando os valores mudam ou no carregamento inicial. Elas respeitam as configurações de movimento reduzido.",
     "charts_piechart_desc": "Mostra partes de um todo proporcionalmente.",

@@ -263,6 +263,7 @@
     "op_edit_save": "変更を保存",
     "op_navigate": "項目を移動",
     "props_title": "Props",
+    "props_none": "このコンポーネントに固有の Props はありません。HTML 標準属性を継承します。",
     "pull_to_refresh_a11y_desc": "ライブリージョンを使用して、更新状況をスクリーンリーダーに通知する必要があります。",
     "pull_to_refresh_best_practice_1": "トリガーのしきい値は、到達しやすく、かつ誤操作しにくい適切な値に設定してください。",
     "pull_to_refresh_best_practice_2": "スクロール可能なコンテナの最上部でのみ使用してください。",

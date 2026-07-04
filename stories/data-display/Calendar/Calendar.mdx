@@ -87,7 +87,7 @@ import { Docgen } from "../../Docgen";
 </ul>
 
 ```tsx
-import { Calendar } from "@/components/data-display/Calendar/Calendar";
+import { Calendar } from "wimui";
 
 <Calendar onChange={(date) => console.log(date)} />;
 ```
@@ -250,8 +250,7 @@ const [date, setDate] = useState(new Date());
 <p><T k="doc.typescript_support_desc" /></p>
 
 ```tsx
-import { Calendar } from "./Calendar";
-import { T } from "../../T";
+import { Calendar } from "wimui";
 
 <>
   {/* Single date selection */}

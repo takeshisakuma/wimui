@@ -1,6 +1,6 @@
 # wimui
 
-React コンポーネントライブラリ。190+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt-BR）・WAI-ARIA 準拠のアクセシビリティを備えています。
+React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt-BR）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
 - 動作要件: React >= 18 / react-dom >= 18
@@ -121,6 +121,13 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 | Markdown, MarkdownRenderer, StreamingText | `react-markdown` `remark-gfm` |
 | QRCode | `qrcode.react` |
 | CodeDiffViewer | `diff` |
+| Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
+
+## Next.js App Router（RSC）対応
+
+ビルド成果物の各モジュール先頭には `"use client"` ディレクティブが自動付与されています。App Router のサーバーコンポーネントから追加のラップなしで直接 import できます（各コンポーネントは client boundary として扱われます）。
+
+例外として `wimui/tokens` は型定義のみのモジュールのため `"use client"` を持たず、サーバーコンポーネントからも参照できます。
 
 ## npm 公開について
 

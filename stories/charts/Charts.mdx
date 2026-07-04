@@ -2,6 +2,7 @@ import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import * as ChartsStories from "./Charts.stories";
 import { T } from "../T";
 import { Docgen } from "../Docgen";
+import { Command } from "../Command";
 
 <Meta title="Components/Visualization/Charts" of={ChartsStories} />
 
@@ -128,6 +129,13 @@ import { Docgen } from "../Docgen";
   <li><T k="doc.charts_best_practice_1" /></li>
 </ul>
 
+{/* Props: 主要 Props は全チャート共通のため、代表として AreaChart の表を掲載する
+    （見出しは Docgen が出力する） */}
+
+<Docgen componentName="AreaChart" section="props" />
+
+<p><T k="doc.charts_props_desc" /></p>
+
 ## <T k="doc.tokens_title" />
 <p><T k="doc.tokens_desc" /></p>
 
@@ -140,4 +148,11 @@ import { Docgen } from "../Docgen";
 ## <T k="doc.i18n_title" />
 <p><T k="doc.charts_i18n_desc" /></p>
 
-<Docgen componentName="Chart" section="test" />
+{/* カテゴリ全体の概要ページのため、Docgen ではなくチャート全種のテストコマンドを直接記載する
+    （"Chart" という単一コンポーネントは存在しない） */}
+
+## <T k="doc.test_title" />
+
+<p><T k="doc.test_description" /></p>
+
+<Command>npm run test -- src/components/charts</Command>

@@ -74,7 +74,16 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
 
   const renderProps = () => {
     const props = data.props;
-    if (!props || Object.keys(props).length === 0) return null;
+    // 固有 props を持たないコンポーネント（HTML 属性のみ継承するサブパーツ等）でも
+    // セクションを黙って消さず、注記を表示する
+    if (!props || Object.keys(props).length === 0) {
+      return (
+        <section id="props">
+          <h2><T k="doc.props_title" /></h2>
+          <p><T k="doc.props_none" /></p>
+        </section>
+      );
+    }
 
     return (
       <section id="props">

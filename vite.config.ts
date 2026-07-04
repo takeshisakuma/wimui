@@ -1,4 +1,5 @@
 import { defineConfig } from "vitest/config";
+import type { Plugin } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import react from "@vitejs/plugin-react";
@@ -9,6 +10,28 @@ import i18nAutoNamespacePlugin from "./scripts/i18n-namespace-plugin.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Next.js App Router (RSC) 対応: 出力チャンクの先頭に "use client" を付与する。
+// ほぼ全コンポーネントが hooks（useTranslation 等）を使うため一律 client 扱いとし、
+// サーバーコンポーネントからも参照しうる純粋データ・型のみのモジュールは除外する
+// （"use client" 付きモジュールの非コンポーネントエクスポートは RSC から利用できないため）。
+const SERVER_SAFE_MODULES = [/[\\/]src[\\/]tokens\.ts$/, /[\\/]src[\\/]types[\\/]/];
+
+function useClientBanner(): Plugin {
+  return {
+    name: "wimui:use-client-banner",
+    apply: "build",
+    enforce: "post",
+    generateBundle(_options, bundle) {
+      for (const chunk of Object.values(bundle)) {
+        if (chunk.type !== "chunk") continue;
+        const id = chunk.facadeModuleId;
+        if (id && SERVER_SAFE_MODULES.some((re) => re.test(id))) continue;
+        chunk.code = `"use client";\n${chunk.code}`;
+      }
+    },
+  };
+}
 
 export default defineConfig(({ mode }) => {
   const isUMD = mode === "umd";
@@ -38,6 +61,8 @@ export default defineConfig(({ mode }) => {
             ],
           },
         }),
+      // UMD は <script> 直読み用で RSC と無関係のためバナー不要
+      !isUMD && useClientBanner(),
       // Only generate types once
       !isUMD &&
         dts({

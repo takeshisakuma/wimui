@@ -13,6 +13,9 @@ const emptySubscribe = () => () => {};
 /**
  * A component that renders its children into a new DOM node, outside of the
  * parent component's DOM hierarchy.
+ *
+ * @component — createPortal を返すため react-docgen が JSX として認識できず、
+ * この注釈がないと docgen（Props 表）から漏れる
  */
 export const Portal = ({ children, container }: PortalProps) => {
   const mounted = React.useSyncExternalStore(

@@ -84,6 +84,35 @@ guideFiles.forEach(file => {
   }
 });
 
+console.log('\n--- Auditing Docgen References ---');
+// MDX 内の <Docgen componentName="X" ... /> が docgen データに実在するか検証する。
+// 参照先が存在しないと Storybook 上では赤いエラーボックスが表示され、
+// Props / Anatomy / Tokens / Test セクションが機能しない
+{
+  const docgenAll = {};
+  const dataDir = 'src/data';
+  if (fs.existsSync(dataDir)) {
+    fs.readdirSync(dataDir)
+      .filter(f => /^docgen_(?!index).+\.json$/.test(f))
+      .forEach(f => {
+        Object.assign(docgenAll, JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')));
+      });
+  }
+  if (Object.keys(docgenAll).length === 0) {
+    console.log('[WARN] docgen data not found — run a build or storybook once to generate src/data/docgen_*.json');
+  } else {
+    componentFiles.forEach(file => {
+      const content = fs.readFileSync(file, 'utf8');
+      for (const m of content.matchAll(/componentName="([^"]+)"/g)) {
+        if (!docgenAll[m[1]]) {
+          console.log(`[FAIL] ${file} references <Docgen componentName="${m[1]}"> but no docgen entry exists (renders an error box in Storybook)`);
+          allPass = false;
+        }
+      }
+    });
+  }
+}
+
 console.log('\n--- Auditing I18n File Governance ---');
 const localeFiles = globSync('public/locales/en/*.json', { posix: true });
 localeFiles.forEach(file => {

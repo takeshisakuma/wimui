@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 190+ components documented in Storybook.",
+  "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/src/index.d.ts",
@@ -95,31 +95,31 @@
         "dist/node_modules/**/*.js"
       ],
       "gzip": true,
-      "limit": "340 kB"
+      "limit": "330 kB"
     },
     {
       "name": "Bundled third-party code (gzip)",
       "path": "dist/node_modules/**/*.js",
       "gzip": true,
-      "limit": "35 kB"
+      "limit": "31 kB"
     },
     {
       "name": "form components (gzip)",
       "path": "dist/src/components/form/**/*.js",
       "gzip": true,
-      "limit": "85 kB"
+      "limit": "77 kB"
     },
     {
       "name": "charts components (gzip)",
       "path": "dist/src/components/charts/**/*.js",
       "gzip": true,
-      "limit": "15 kB"
+      "limit": "12.5 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "160 kB"
+      "limit": "140 kB"
     }
   ],
   "engines": {
@@ -208,6 +208,7 @@
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/react-is": "19.2.0",
     "@typescript-eslint/eslint-plugin": "8.60.1",
     "@typescript-eslint/parser": "8.60.1",
     "@vitejs/plugin-react": "6.0.2",
@@ -237,6 +238,7 @@
     "imagemin-webp": "^8.0.0",
     "jsdom": "^29.0.1",
     "lint-staged": "17.0.7",
+    "music-metadata": "^11.12.3",
     "playwright": "^1.59.0",
     "prettier": "^3.8.1",
     "prop-types": "^15.8.1",
@@ -271,6 +273,7 @@
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
     "i18next": ">=23.0.0",
+    "music-metadata": ">=11.0.0",
     "qrcode.react": ">=4.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
@@ -284,6 +287,9 @@
       "optional": true
     },
     "diff": {
+      "optional": true
+    },
+    "music-metadata": {
       "optional": true
     },
     "qrcode.react": {
@@ -346,7 +352,6 @@
     "@floating-ui/react": "^0.27.19",
     "@radix-ui/react-slot": "1.2.4",
     "classnames": "^2.5.1",
-    "music-metadata": "^11.12.3",
     "react-is": "19.2.7"
   }
 }

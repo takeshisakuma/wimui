@@ -41,6 +41,7 @@
     "charts_heatmap_desc": "Represents data density or values through color variations.",
     "charts_i18n_desc": "All labels, axis titles, and tooltips are localized via i18n keys. Pass pre-translated strings through the respective props.",
     "charts_keyboard_desc": "Use Tab to focus on interactive chart elements. Left/Right arrows navigate through data points or legend items.",
+    "charts_props_desc": "Core props such as data, height, width, title, and animated are shared across all chart components. The table above shows AreaChart as a representative example; see each chart's type definition for chart-specific props.",
     "charts_linechart_desc": "Ideal for showing trends over time.",
     "charts_motion_desc": "Animations are used to show data transitions smoothly when values change or on initial load. They respect reduced-motion settings.",
     "charts_piechart_desc": "Shows parts of a whole proportionally.",
