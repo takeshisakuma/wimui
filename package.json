@@ -152,6 +152,7 @@
     "i18n:sync": "node scripts/sync-i18n.js",
     "i18n:bundle": "node scripts/generate-i18n-resources.js",
     "i18n:check": "node scripts/check-i18n.js",
+    "i18n:quality": "node scripts/check-i18n-quality.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",
     "i18n:check:mdx": "node scripts/check-mdx-hardcoded.js",
@@ -342,6 +343,7 @@
       "node scripts/sync-i18n.js",
       "git add public/locales",
       "node scripts/check-i18n.js",
+      "node scripts/check-i18n-quality.js",
       "node scripts/generate-i18n-resources.js",
       "git add src/i18n/generated/resources.ts"
     ],

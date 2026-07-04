@@ -270,6 +270,7 @@
     "op_navigate": "Navegar pelos itens",
     "props_title": "Props",
     "props_none": "Este componente não possui props próprias. Ele herda os atributos HTML padrão.",
+    "anatomy_module_note": "Este componente usa CSS Modules; os nomes de classe acima são nomes locais que recebem hash no build. Para sobrescrever estilos, use as variáveis CSS dos design tokens em vez de segmentar essas classes.",
     "pull_to_refresh_a11y_desc": "Should support screen readers with live regions for refresh status.",
     "pull_to_refresh_best_practice_1": "Ensure the trigger threshold is easy to reach but hard to trigger accidentally.",
     "pull_to_refresh_best_practice_2": "Only use at the top of a scrollable container.",

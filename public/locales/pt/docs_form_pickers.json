@@ -103,7 +103,7 @@
     "datepicker_guideline_2": "Para datas que os usuários conhecem de cor (ex: datas de nascimento, datas de validade), a entrada direta de texto é muitas vezes mais eficiente.",
     "datepicker_i18n_desc": "Todo o texto visível utiliza chaves i18n. Passe as strings traduzidas através das props placeholder e aria-label, ou substitua via namespace i18n.",
     "datepicker_integration": "Integração com Calendário",
-    "datepicker_integration_desc": "O DatePicker utiliza internamente o componente Calendário partilhado. Consulte a documentação do Calendário para mais detalhes.",
+    "datepicker_integration_desc": "O DatePicker utiliza internamente o componente Calendário compartilhado. Consulte a documentação do Calendário para mais detalhes.",
     "datepicker_kb_1": "Prima Enter ou Espaço no campo de entrada para abrir o calendário.",
     "datepicker_kb_2": "Navegue pelas datas com as teclas de seta e prima Enter para selecionar.",
     "datepicker_kb_3": "Feche o calendário a qualquer momento premindo a tecla Escape.",

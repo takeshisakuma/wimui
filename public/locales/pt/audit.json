@@ -60,7 +60,7 @@
   "label_app_shell": "AppShell",
   "label_apply": "Aplicar",
   "label_area_chart": "AreaChart",
-  "label_artifacts_canvas": "[MISSING_TRANSLATION: pt] ArtifactsCanvas",
+  "label_artifacts_canvas": "Tela de Artefatos",
   "label_aspect_ratio": "AspectRatio",
   "label_avatar": "Avatar",
   "label_avatar_group": "AvatarGroup",
@@ -115,7 +115,7 @@
   "label_empty_state": "Estado Vazio",
   "label_error_boundary": "ErrorBoundary (UI Padrão)",
   "label_error_message": "Mensagem de Erro",
-  "label_feature_comparison": "[MISSING_TRANSLATION: pt] FeatureComparison",
+  "label_feature_comparison": "Comparação de Recursos",
   "label_feedback_active": "Avaliação ativa",
   "label_first_name": "Nome",
   "label_flex": "Flex",
@@ -299,7 +299,7 @@
   "navigation_family_title": "Auditoria de Navegação e Progresso",
   "overlay_family_title": "Auditoria de Overlays",
   "overlay_feedback_consistency": "Feedback de Overlay e Bloqueio",
-  "pattern_family_title": "[MISSING_TRANSLATION: pt] Pattern Family Audit",
+  "pattern_family_title": "Auditoria de Família de Padrões",
   "placeholder_country": "Selecione seu país",
   "placeholder_username": "ex: johndoe",
   "refined_skeleton_motion": "Esqueleto e Movimento Refinados",
@@ -387,8 +387,5 @@
   "visualization_family_title": "Auditoria da Família de Visualização (Gráficos)",
   "visualization_legend_tooltip_style": "Estilização Unificada de Legenda e Tooltip",
   "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
-  "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
-  "pattern_family_title": "Auditoria de Família de Padrões",
-  "label_artifacts_canvas": "Tela de Artefatos",
-  "label_feature_comparison": "Comparação de Recursos"
+  "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados"
 }

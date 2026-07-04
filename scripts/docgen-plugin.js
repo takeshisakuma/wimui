@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Bump this when parsing logic changes to force a full cache invalidation
-const CACHE_VERSION = 4;
+const CACHE_VERSION = 5;
 
 // FindAll: JSX を返す通常のコンポーネントを検出
 // FindAnnotated: createPortal 返しなど JSX と認識されない定義を JSDoc の @component 注釈で検出
@@ -90,6 +90,32 @@ function applyCrossFileProps(categoryData, lookup) {
   return out;
 }
 
+// Anatomy の動的フィルタ用に、抽出済み props から修飾子候補を収集する。
+// - boolean 型の prop 名（bordered, hoverable 等）→ 同名クラスは状態修飾子
+// - 文字列リテラル union の値（"elevated" | "flat" 等）→ 同名クラスはバリアント修飾子
+// label（ReactNode 型）のような構造パーツと同名の prop は boolean でないため除外されない
+function collectModifierFilters(entries) {
+  const names = new Set();
+  const values = new Set();
+  for (const e of entries) {
+    for (const [propName, def] of Object.entries(e.props ?? {})) {
+      const t = def.tsType;
+      if (!t) continue;
+      if (t.name === 'boolean') names.add(propName);
+      if (t.name === 'union' && Array.isArray(t.elements)) {
+        for (const el of t.elements) {
+          if (el.name === 'literal' && typeof el.value === 'string') {
+            values.add(el.value.replace(/^["']|["']$/g, ''));
+          } else if (typeof el.raw === 'string' && /^["'].*["']$/.test(el.raw)) {
+            values.add(el.raw.slice(1, -1));
+          }
+        }
+      }
+    }
+  }
+  return { names, values };
+}
+
 /**
  * react-docgen の解析結果を docgen エントリへ変換する。
  * - 同名の定義が複数ある場合（Inner に displayName を付けた上で薄い Compound を
@@ -103,7 +129,7 @@ function toDocgenEntries(found, componentName, tokens, anatomy, tsxContent) {
   for (const c of found) {
     const name = c.displayName || componentName;
     if (name.startsWith('_')) continue;
-    const entry = { name, tokens, anatomy, props: c.props || {} };
+    const entry = { name, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: c.props || {} };
     if (inheritance[name]) entry.inherits = inheritance[name];
     const prev = byName.get(name);
     if (!prev || (Object.keys(prev.props).length === 0 && Object.keys(entry.props).length > 0)) {
@@ -134,7 +160,13 @@ function toDocgenEntries(found, componentName, tokens, anatomy, tsxContent) {
   // 関連コンポーネント群をまとめたファイル）は、MDX が Anatomy / Tokens / Test
   // セクションでファイル名を参照できるようエントリを補完する
   if (!byName.has(componentName)) {
-    byName.set(componentName, { name: componentName, tokens, anatomy, props: {} });
+    byName.set(componentName, { name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} });
+  }
+  // CSS Modules の anatomy から、props 情報に基づく修飾子クラスを除外する
+  if (anatomy.style === 'module' && anatomy.parts.length > 0) {
+    const { names, values } = collectModifierFilters([...byName.values()]);
+    const filtered = anatomy.parts.filter((p) => !names.has(p) && !values.has(p));
+    for (const entry of byName.values()) entry.anatomy = filtered;
   }
   return [...byName.values()];
 }
@@ -160,15 +192,49 @@ function extractTokens(scssContent) {
   return [...new Set(matches)].sort();
 }
 
-function extractAnatomy(scssContent, componentName) {
+// Anatomy 抽出から除外する共通修飾子クラス（RULES.md の Anatomy 仕様）。
+// 構成要素（構造パーツ）ではなく、props の値に対応する見た目・状態の切り替えクラス
+const ANATOMY_MODIFIER_CLASSES = new Set([
+  'root',
+  // サイズ修飾子
+  'xs', 'sm', 'md', 'lg', 'xl',
+  // 色・意図修飾子
+  'default', 'primary', 'secondary', 'success', 'warning', 'error', 'info',
+  'neutral', 'destructive', 'positive',
+  // バリアント修飾子
+  'solid', 'outline', 'ghost', 'subtle',
+  // 状態・レイアウト修飾子
+  'active', 'disabled', 'loading', 'checked', 'selected', 'open', 'closed',
+  'fullWidth', 'full-width', 'inline', 'vertical', 'horizontal',
+]);
+
+// Anatomy（構成要素）を SCSS から抽出する。
+// - 旧式グローバルクラス（.wim-<kebab>__<part>）があればそれを優先（style: 'global'）
+// - CSS Modules（*.module.scss）は .root と共通修飾子を除いたユニークなクラス名を
+//   構成要素として抽出する（style: 'module'。クラス名はビルド時にハッシュ化される）
+// 返り値: { style: 'global' | 'module', parts: string[] }
+function extractAnatomy(scssContent, componentName, isModule) {
   const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
   const anatomyRegex = new RegExp(`\\.wim-${kebabName}__([\\w-]+)`, 'g');
-  const matches = [];
+  const legacy = [];
   let match;
   while ((match = anatomyRegex.exec(scssContent)) !== null) {
-    if (!matches.includes(match[1])) matches.push(match[1]);
+    if (!legacy.includes(match[1])) legacy.push(match[1]);
   }
-  return matches.sort();
+  if (legacy.length > 0 || !isModule) {
+    return { style: 'global', parts: legacy.sort() };
+  }
+
+  const parts = new Set();
+  for (const m of scssContent.matchAll(/(?<![\w-])\.(-?[a-zA-Z_][\w-]*)/g)) {
+    const cls = m[1];
+    if (ANATOMY_MODIFIER_CLASSES.has(cls)) continue;
+    if (cls.startsWith('wim-')) continue; // :global(.wim-*) の安定オーバーライドポイント
+    // padding-lg / radius-sm のような「プロパティ-サイズ値」合成修飾子を除外
+    if (/^[a-z]+-(?:none|xs|sm|md|lg|xl)$/.test(cls)) continue;
+    parts.add(cls);
+  }
+  return { style: 'module', parts: [...parts].sort() };
 }
 
 function md5(content) {
@@ -203,12 +269,12 @@ function processComponent(rootDir, componentRelPath) {
   const effectiveScss = resolveScssPath(componentDir, componentName);
 
   let tokens = [];
-  let anatomy = [];
+  let anatomy = { style: 'global', parts: [] };
   let scssContent = '';
   if (effectiveScss) {
     scssContent = fs.readFileSync(effectiveScss, 'utf8');
     tokens = extractTokens(scssContent);
-    anatomy = extractAnatomy(scssContent, componentName);
+    anatomy = extractAnatomy(scssContent, componentName, effectiveScss.endsWith('.module.scss'));
   }
 
   let tsxContent;
@@ -229,7 +295,7 @@ function processComponent(rootDir, componentRelPath) {
     const found = Array.isArray(docgen) ? docgen : [docgen];
     parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
   } catch {
-    parsedComponents = [{ name: componentName, tokens, anatomy, props: {} }];
+    parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
   }
 
   return { contentHash, componentName, parsedComponents };
@@ -290,10 +356,10 @@ export async function generateDocgenData() {
 
     // Cache miss — parse and store result
     let tokens = [];
-    let anatomy = [];
+    let anatomy = { style: 'global', parts: [] };
     if (effectiveScss) {
       tokens = extractTokens(scssContent);
-      anatomy = extractAnatomy(scssContent, componentName);
+      anatomy = extractAnatomy(scssContent, componentName, effectiveScss.endsWith('.module.scss'));
     }
 
     let parsedComponents;
@@ -305,7 +371,7 @@ export async function generateDocgenData() {
       const found = Array.isArray(docgen) ? docgen : [docgen];
       parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
     } catch {
-      parsedComponents = [{ name: componentName, tokens, anatomy, props: {} }];
+      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
     }
 
     cache[componentRelPath] = { contentHash, parsedComponents };
@@ -410,10 +476,10 @@ async function handleHotFile(file) {
     if (cached && cached.contentHash === contentHash) continue; // truly unchanged
 
     let tokens = [];
-    let anatomy = [];
+    let anatomy = { style: 'global', parts: [] };
     if (effectiveScss) {
       tokens = extractTokens(scssContent);
-      anatomy = extractAnatomy(scssContent, componentName);
+      anatomy = extractAnatomy(scssContent, componentName, effectiveScss.endsWith('.module.scss'));
     }
 
     let parsedComponents;
@@ -425,7 +491,7 @@ async function handleHotFile(file) {
       const found = Array.isArray(docgen) ? docgen : [docgen];
       parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
     } catch {
-      parsedComponents = [{ name: componentName, tokens, anatomy, props: {} }];
+      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
     }
 
     cache[componentRelPath] = { contentHash, parsedComponents };

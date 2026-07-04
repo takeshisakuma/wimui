@@ -45,6 +45,9 @@ jobs:
           npm run i18n:sync
           git diff --exit-code public/locales/ || (echo "::error::Run \`npm run i18n:sync\` and commit the result." && exit 1)
 
+      - name: Check translation quality (duplicate keys / PT-PT vocabulary)
+        run: npm run i18n:quality
+
       - name: Warn on untranslated values
         continue-on-error: true
         run: |

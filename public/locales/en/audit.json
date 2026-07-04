@@ -206,7 +206,6 @@
   "masking_fade_check": "Masking Fade Check (Masking)",
   "sticky_boundary_check": "Sticky Boundary Consistency (Header/Column Fix)",
   "label_gantt_chart": "Gantt Chart",
-  "label_calendar_heatmap": "Calendar Heatmap",
   "label_kanban": "Kanban",
   "label_timeline": "Timeline",
   "label_viewport_grid": "Data Grid (Viewport Audit)",

@@ -20,6 +20,8 @@ interface ComponentData {
   props?: Record<string, PropInfo>;
   tokens?: string[];
   anatomy?: string[];
+  /** anatomy の抽出元: 'global' = 旧式 .wim-x__y クラス / 'module' = CSS Modules ローカルクラス */
+  anatomyStyle?: 'global' | 'module';
 }
 
 const typedIndexData = indexData as Record<string, string>;
@@ -130,6 +132,9 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
   const renderAnatomy = () => {
     if (!data.anatomy || data.anatomy.length === 0) return null;
 
+    const isModule = data.anatomyStyle === 'module';
+    const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
     return (
       <section id="anatomy">
         <h2><T k="doc.anatomy_title" /></h2>
@@ -141,17 +146,17 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
             </tr>
           </thead>
           <tbody>
-            {data.anatomy.map((part: string) => {
-               const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-               return (
-                <tr key={part}>
-                  <td><b>{part}</b></td>
-                  <td><code>.wim-{kebabName}__{part}</code></td>
-                </tr>
-              );
-            })}
+            {data.anatomy.map((part: string) => (
+              <tr key={part}>
+                <td><b>{part}</b></td>
+                <td>
+                  <code>{isModule ? `.${part}` : `.wim-${kebabName}__${part}`}</code>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        {isModule && <p><T k="doc.anatomy_module_note" /></p>}
       </section>
     );
   };
