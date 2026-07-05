@@ -44,6 +44,7 @@ export const Overview: StoryObj = {
               borderRadius: "var(--wim-radius-lg)"
             }}>
               <Stack gap="xl">
+                {/* i18n-ignore-start — Glass/Shadow はトークン名の表示のため英語のまま */}
                 <Card className="glass-sm" padding="md">
                   <Title tag="h4" size="md">Glass Sm</Title>
                   <Text size="sm">{t("audit:aesthetics_glass_sm_desc")}</Text>
@@ -56,6 +57,7 @@ export const Overview: StoryObj = {
                   <Title tag="h4" size="md">Glass Lg</Title>
                   <Text size="sm">{t("audit:aesthetics_glass_lg_desc")}</Text>
                 </Card>
+                {/* i18n-ignore-end */}
               </Stack>
             </Box>
           </ComponentGroup>
@@ -146,6 +148,7 @@ export const Overview: StoryObj = {
         {/* Dynamic Shadows */}
         <ComparisonGrid title={t("audit:aesthetics_oklch_shadows_title")}>
           <ComponentGroup label={t("audit:aesthetics_standard_shadows_label")} direction="row" wrap gap="xl">
+            {/* i18n-ignore-start — Shadow はトークン名の表示のため英語のまま */}
             <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-sm)" }}>
               <Text size="xs">Shadow SM</Text>
             </Box>
@@ -155,6 +158,7 @@ export const Overview: StoryObj = {
             <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-lg)" }}>
               <Text size="xs">Shadow LG</Text>
             </Box>
+            {/* i18n-ignore-end */}
           </ComponentGroup>
           <ComponentGroup label={t("audit:aesthetics_ambient_glow_label")}>
             <Text size="sm" color="text-secondary">
@@ -176,6 +180,7 @@ export const Overview: StoryObj = {
             }}>
               <Header glass fixed={false} style={{ position: "absolute", top: 0 }}>
                 <Flex align="center" justify="between" style={{ height: "100%", paddingLeft: "var(--wim-spacing-md)", paddingRight: "var(--wim-spacing-md)", width: "100%" }}>
+                   {/* i18n-ignore-next-line — ブランド名 */}
                    <Title tag="h4" size="md" style={{ color: "var(--wim-color-text-on-primary)" }}>WIM UI</Title>
                    <Avatar size="sm" src="https://i.pravatar.cc/150?u=wim" />
                 </Flex>

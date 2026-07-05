@@ -37,6 +37,7 @@ export const Block: Story = {
 export const LongContent: Story = {
   args: {
     block: true,
+    // i18n-ignore-start — コードサンプルの内容のため翻訳対象外
     children: `import React from "react";
 
 // export を含む文字列が Indexing エラーの原因になる可能性があるため、コメントアウトなどで回避
@@ -49,6 +50,7 @@ const Example = () => {
         </div>
     );
 };`,
+    // i18n-ignore-end
     language: "tsx",
   },
 };

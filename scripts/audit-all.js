@@ -33,6 +33,10 @@ const checks = [
   {
     name: "Hardcoded Values (colors / px ratchet)",
     command: "node scripts/check-hardcoded-values.js",
+  },
+  {
+    name: "Hardcoded UI Text in Stories (i18n)",
+    command: "node scripts/check-stories-hardcoded.js --all",
   }
 ];
 

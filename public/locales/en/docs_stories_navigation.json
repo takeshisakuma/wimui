@@ -86,6 +86,8 @@
     "stepper_step_desc": "Step description",
     "stepper_verification": "Verification",
     "stepper_waiting": "Waiting",
+    "tabbar_aria_grid": "Grid",
+    "tabbar_aria_home": "Home",
     "tabbar_content_prefix": "Current Tab:",
     "tabbar_fixed_desc": "The Tab Bar is fixed at the bottom of the screen.",
     "tabbar_fixed_title": "Fixed Tab Bar",

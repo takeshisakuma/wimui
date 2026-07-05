@@ -240,10 +240,10 @@ export const CustomWidth: Story = {
           <Input {...args} width="sm" placeholder="000-0000" />
         </Label>
         <Label label={t("story.input_width_md")}>
-          <Input {...args} width="md" placeholder="John Doe" />
+          <Input {...args} width="md" placeholder={t("story.input_placeholder_name")} />
         </Label>
         <Label label={t("story.input_width_lg")}>
-          <Input {...args} width="lg" placeholder="Antigravity Inc." />
+          <Input {...args} width="lg" placeholder={t("story.input_placeholder_company")} />
         </Label>
         <Label label={t("story.input_width_custom")}>
           <Input {...args} width="8ch" placeholder="12345678" />

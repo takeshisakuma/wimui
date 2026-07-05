@@ -61,9 +61,9 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_tabs")}>
             <Tabs defaultValue="1">
               <TabsList>
-                <TabsTrigger value="1">Active Tab</TabsTrigger>
-                <TabsTrigger value="2">Default Tab</TabsTrigger>
-                <TabsTrigger value="3" disabled>Disabled Tab</TabsTrigger>
+                <TabsTrigger value="1">{t("audit:nav_tab_active")}</TabsTrigger>
+                <TabsTrigger value="2">{t("audit:nav_tab_default")}</TabsTrigger>
+                <TabsTrigger value="3" disabled>{t("audit:nav_tab_disabled")}</TabsTrigger>
               </TabsList>
               <TabsContent value="1">
                 <Box p="md"><Text>{t("audit:nav_active_content")}</Text></Box>

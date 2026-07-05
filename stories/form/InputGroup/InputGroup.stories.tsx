@@ -29,7 +29,7 @@ export const WithButton: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputGroup {...args}>
-        <Input placeholder="Quarterly report" />
+        <Input placeholder={t("story.inputgroup_placeholder_subject")} />
         <Button variant="solid" icon="SearchIcon">{t("action.search")}</Button>
       </InputGroup>
     );
@@ -37,23 +37,29 @@ export const WithButton: Story = {
 };
 
 export const Suffix: Story = {
-  render: (args) => (
-    <InputGroup {...args}>
-      <Input placeholder="Recipient's username" />
-      <InputGroupText>@example.com</InputGroupText>
-    </InputGroup>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <InputGroup {...args}>
+        <Input placeholder={t("story.inputgroup_placeholder_username")} />
+        <InputGroupText>@example.com</InputGroupText>
+      </InputGroup>
+    );
+  },
 };
 
 export const MultipleAddons: Story = {
-  render: (args) => (
-    <InputGroup {...args}>
-      <InputGroupText>$</InputGroupText>
-      <InputGroupText>0.00</InputGroupText>
-      <Input placeholder="Price" />
-      <InputGroupText>.00</InputGroupText>
-    </InputGroup>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <InputGroup {...args}>
+        <InputGroupText>$</InputGroupText>
+        <InputGroupText>0.00</InputGroupText>
+        <Input placeholder={t("story.inputgroup_placeholder_price")} />
+        <InputGroupText>.00</InputGroupText>
+      </InputGroup>
+    );
+  },
 };
 
 export const FullWidth: Story = {
@@ -66,7 +72,7 @@ export const FullWidth: Story = {
       <div style={{ width: "100%", maxWidth: "600px" }}>
         <InputGroup {...args}>
           <InputGroupText>{t("action.search")}</InputGroupText>
-          <Input placeholder="Hello, world" />
+          <Input placeholder={t("story.inputgroup_placeholder_message")} />
           <Button variant="solid">{t("story.inputgroup_go")}</Button>
         </InputGroup>
       </div>

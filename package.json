@@ -165,6 +165,7 @@
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",
+    "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js",
     "changeset": "changeset",

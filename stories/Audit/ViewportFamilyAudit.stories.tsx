@@ -130,7 +130,7 @@ export const Overview: StoryObj = {
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}
               </KanbanBoard.Column>
-              <KanbanBoard.Column id="done" title="Done" cardCount={kanbanColumns.done.length}>
+              <KanbanBoard.Column id="done" title={t("audit:viewport_col_done")} cardCount={kanbanColumns.done.length}>
                 {kanbanColumns.done.map((id) => (
                   <KanbanBoard.Card key={id} id={id}>{kanbanLabels[id]}</KanbanBoard.Card>
                 ))}

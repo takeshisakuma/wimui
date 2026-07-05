@@ -88,6 +88,7 @@
     "header_login": "ログイン",
     "header_playground_desc": "ヘッダーコンテンツが上に表示されています。",
     "header_scroll_desc": "スクロールして粘着効果を確認してください。",
+    "header_sticky_title": "固定ヘッダー",
     "splitter_bottom": "下パネル",
     "splitter_flexible": "フレキシブルパネル",
     "splitter_left": "左パネル",

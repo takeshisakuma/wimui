@@ -88,6 +88,7 @@
     "header_login": "Login",
     "header_playground_desc": "Header content is displayed above.",
     "header_scroll_desc": "Scroll down to see the sticky effect.",
+    "header_sticky_title": "Sticky Header",
     "splitter_bottom": "Bottom Panel",
     "splitter_flexible": "Flexible Panel",
     "splitter_left": "Left Panel",

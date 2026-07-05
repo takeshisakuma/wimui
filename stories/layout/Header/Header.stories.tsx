@@ -42,7 +42,7 @@ export const Default: Story = {
     return (
       <Header {...args}>
         <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
+          {/* i18n-ignore */} <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
@@ -65,7 +65,7 @@ export const Bordered: Story = {
     return (
       <Header {...args} bordered>
         <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
+          {/* i18n-ignore */} <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
@@ -91,7 +91,7 @@ export const Glass: Story = {
     return (
       <Header {...args} glass background="transparent">
         <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
+          {/* i18n-ignore */} <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
@@ -120,7 +120,7 @@ export const Sticky: Story = {
       >
         <Header {...args} sticky bordered>
           <Header.Section align="start">
-            <div style={{ fontWeight: "bold" }}>Sticky Header</div>
+            <div style={{ fontWeight: "bold" }}>{t("story.header_sticky_title")}</div>
           </Header.Section>
           <Header.Section align="end">
             <button>{t("story.header_action")}</button>
@@ -160,7 +160,7 @@ export const Playground: Story = {
           style={{ position: "absolute", top: 0, left: 0, width: "100%" }}
         >
           <Header.Section align="start">
-            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
+            {/* i18n-ignore */} <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
           </Header.Section>
           <Header.Section align="center">
             <nav style={{ display: "flex", gap: "20px" }}>

@@ -86,6 +86,8 @@
     "stepper_step_desc": "ステップの説明",
     "stepper_verification": "確認",
     "stepper_waiting": "待機中",
+    "tabbar_aria_grid": "グリッド",
+    "tabbar_aria_home": "ホーム",
     "tabbar_content_prefix": "現在のタブ:",
     "tabbar_fixed_desc": "タブバーは画面の下部に固定されています。",
     "tabbar_fixed_title": "固定タブバー",

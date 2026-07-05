@@ -88,6 +88,7 @@
     "header_login": "Entrar",
     "header_playground_desc": "O conteúdo do cabeçalho é exibido acima.",
     "header_scroll_desc": "Role para baixo para ver o efeito fixo.",
+    "header_sticky_title": "Cabeçalho fixo",
     "splitter_bottom": "Painel Inferior",
     "splitter_flexible": "Painel Flexível",
     "splitter_left": "Painel Esquerdo",

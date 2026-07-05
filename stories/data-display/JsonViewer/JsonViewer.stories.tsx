@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { JsonViewer } from "@/components/data-display/JsonViewer/JsonViewer";
 
 const meta: Meta<typeof JsonViewer> = {
@@ -52,14 +54,14 @@ export const NoToolbar: Story = {
 };
 
 export const Editable: Story = {
-  render: (args) => {
-     
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [data, setData] = React.useState(mockData);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <JsonViewer {...args} data={data} editable onChange={(newData) => setData(newData as typeof mockData)} />
         <div style={{ padding: "10px", background: "var(--wim-color-surface-subtle)", borderRadius: "4px" }}>
-          <h4 style={{ margin: "0 0 10px 0", fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>PARENT STATE PREVIEW:</h4>
+          <h4 style={{ margin: "0 0 10px 0", fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>{t("story.jsonviewer_parent_state")}</h4>
           <pre style={{ margin: 0, fontSize: "12px" }}>{JSON.stringify(data, null, 2)}</pre>
         </div>
       </div>

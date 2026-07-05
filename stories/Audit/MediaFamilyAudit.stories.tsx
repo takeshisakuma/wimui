@@ -41,7 +41,7 @@ export const Overview: StoryObj = {
       >
         {/* Placeholder Tone Check */}
         <ComparisonGrid title={t("audit:media_placeholder_tone_check")}>
-          <ComponentGroup label={`${t("audit:label_avatar")} — fallbacks`}>
+          <ComponentGroup label={`${t("audit:label_avatar")} — ${t("audit:sfx_fallbacks")}`}>
             <Stack direction="row" gap="md" align="center">
               <Avatar initials="JD" />
               <Avatar src="invalid-url" alt={t("audit:media_alt_broken")} />
@@ -49,7 +49,7 @@ export const Overview: StoryObj = {
               <Avatar initials="ER" intent="error" />
             </Stack>
           </ComponentGroup>
-          <ComponentGroup label={`${t("audit:label_image")} — loading & fallback behavior`}>
+          <ComponentGroup label={`${t("audit:label_image")} — ${t("audit:sfx_loading_fallback_behavior")}`}>
             <Stack direction="row" gap="lg" align="start">
               <Box style={{ width: "200px" }}>
                 <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:media_loading_state")}</Text>
@@ -92,7 +92,7 @@ export const Overview: StoryObj = {
 
         {/* AvatarGroup Overlap & Border */}
         <ComparisonGrid title={t("audit:media_avatar_group_overlap")}>
-          <ComponentGroup label={`${t("audit:label_avatar_group")} — overlap, border & background contrast`}>
+          <ComponentGroup label={`${t("audit:label_avatar_group")} — ${t("audit:sfx_overlap_border_bg")}`}>
             <Stack gap="xl">
               <Stack direction="row" gap="xl" align="center" wrap>
                 <Box>

@@ -59,9 +59,9 @@ export const Default: Story = {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Action Confirmed</DialogTitle>
+              <DialogTitle>{t("story.swipe_confirm_title")}</DialogTitle>
               <DialogDescription>
-                You clicked the &quot;{selectedAction}&quot; action.
+                {t("story.swipe_confirm_desc", { action: selectedAction })}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -115,9 +115,9 @@ export const MultipleActions: Story = {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Action Executed</DialogTitle>
+              <DialogTitle>{t("story.swipe_exec_title")}</DialogTitle>
               <DialogDescription>
-                Performing &quot;{selectedAction}&quot; operation on this item.
+                {t("story.swipe_exec_desc", { action: selectedAction })}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -202,9 +202,9 @@ export const ExclusiveList: Story = {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Update Status</DialogTitle>
+              <DialogTitle>{t("story.swipe_update_title")}</DialogTitle>
               <DialogDescription>
-                Are you sure you want to change Task {selectedItem?.id} status to &quot;{selectedItem?.action}&quot;?
+                {t("story.swipe_update_desc", { id: selectedItem?.id, action: selectedItem?.action })}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>

@@ -462,6 +462,7 @@ export const DecorationVisualizer = ({
 };
 
 export const FocusOutlineSwatch = () => {
+  const { t } = useTranslation();
   return (
     <div
       style={{
@@ -491,10 +492,10 @@ export const FocusOutlineSwatch = () => {
           fontSize: "14px",
         }}
       >
-        Focused
+        {t("doc.tokviz_focused")}
       </div>
       <div style={{ textAlign: "center", marginTop: "8px" }}>
-        <div style={{ fontSize: "14px", fontWeight: 600 }}>Focus Ring</div>
+        <div style={{ fontSize: "14px", fontWeight: 600 }}>{t("doc.tokviz_focus_ring")}</div>
         <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
           <code style={{ background: "var(--wim-color-surface-variant-alpha)", padding: "2px 4px", borderRadius: "4px" }}>--wim-focus-outline-width</code> (2px)<br />
           <code style={{ background: "var(--wim-color-surface-variant-alpha)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--wim-focus-outline-offset</code> (2px)

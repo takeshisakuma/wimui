@@ -58,6 +58,7 @@ export const LargeDiff: Story = {
     filename: "utils.ts",
     onApply: fn(),
     onReject: fn(),
+    // i18n-ignore-start — before/after はコードサンプルの内容のため翻訳対象外
     before: `import { useState } from "react";
 
 export function useCounter(initial = 0) {
@@ -84,6 +85,7 @@ export function clamp(value: number, min: number, max: number): number {
   if (min > max) throw new RangeError("min must be <= max");
   return Math.min(Math.max(value, min), max);
 }`,
+    // i18n-ignore-end
   },
 };
 export const Applying: Story = {

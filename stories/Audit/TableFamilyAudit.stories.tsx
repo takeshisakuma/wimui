@@ -75,12 +75,12 @@ export const Overview: StoryObj = {
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>John Doe</Table.Cell>
+                  <Table.Cell>{t("audit:sample_name_john")}</Table.Cell>
                   <Table.Cell>30</Table.Cell>
                   <Table.Cell>john@example.com</Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                  <Table.Cell>Jane Doe</Table.Cell>
+                  <Table.Cell>{t("audit:sample_name_jane")}</Table.Cell>
                   <Table.Cell>25</Table.Cell>
                   <Table.Cell>jane@example.com</Table.Cell>
                 </Table.Row>
@@ -99,12 +99,12 @@ export const Overview: StoryObj = {
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>John Doe</Table.Cell>
+                  <Table.Cell>{t("audit:sample_name_john")}</Table.Cell>
                   <Table.Cell>30</Table.Cell>
                   <Table.Cell>john@example.com</Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                  <Table.Cell>Jane Doe</Table.Cell>
+                  <Table.Cell>{t("audit:sample_name_jane")}</Table.Cell>
                   <Table.Cell>25</Table.Cell>
                   <Table.Cell>jane@example.com</Table.Cell>
                 </Table.Row>
@@ -154,12 +154,12 @@ export const Overview: StoryObj = {
             <Table fullWidth bordered card>
               <Table.Header>
                 <Table.Row>
-                  <Table.Head>Full Width Check</Table.Head>
+                  <Table.Head>{t("audit:table_full_width_check")}</Table.Head>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>This table spans 100% width.</Table.Cell>
+                  <Table.Cell>{t("audit:table_full_width_desc")}</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>

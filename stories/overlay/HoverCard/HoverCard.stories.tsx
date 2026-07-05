@@ -39,7 +39,7 @@ export const Default: Story = {
             >
               <Avatar
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120"
-                alt="Sarah Miller"
+                alt={t("story.hovercard_name")}
               />
             </a>
           </HoverCardTrigger>
@@ -49,14 +49,14 @@ export const Default: Story = {
             >
               <Avatar
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120"
-                alt="Sarah Miller"
+                alt={t("story.hovercard_name")}
                 size="lg"
               />
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "4px" }}
               >
                 <div style={{ fontWeight: "bold", fontSize: "16px" }}>
-                  Sarah Miller
+                  {t("story.hovercard_name")}
                 </div>
                 <div
                   style={{ color: "var(--wim-color-text-secondary)", fontSize: "14px" }}

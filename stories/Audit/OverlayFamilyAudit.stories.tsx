@@ -70,7 +70,7 @@ export const Overview: StoryObj = {
                 <PopoverContent>
                   <Box p="md">
                     <Text weight="bold">{t("audit:overlay_popover_header")}</Text>
-                    <Text size="sm">Standardized Level 2: shadow-md, radius-lg.</Text>
+                    <Text size="sm">{t("audit:overlay_level2_desc")}</Text>
                   </Box>
                 </PopoverContent>
               </Popover>

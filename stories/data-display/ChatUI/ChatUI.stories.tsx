@@ -303,9 +303,9 @@ export const AiAssistantIntegration: Story = {
 
     const MessageActions = () => (
       <div style={{ display: "flex", gap: "4px" }}>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Copy"><Icon name="CopyIcon" size="sm" /></button>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Good"><Icon name="ThumbUpIcon" size="sm" /></button>
-        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title="Bad"><Icon name="ThumbDownIcon" size="sm" /></button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title={t("action.copy")}><Icon name="CopyIcon" size="sm" /></button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title={t("story.chatui_action_good")}><Icon name="ThumbUpIcon" size="sm" /></button>
+        <button style={{ border: "none", background: "transparent", cursor: "pointer", fontSize: "14px", color: "var(--wim-color-text-tertiary)" }} title={t("story.chatui_action_bad")}><Icon name="ThumbDownIcon" size="sm" /></button>
       </div>
     );
 

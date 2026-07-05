@@ -79,7 +79,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
   }
 
   if (loading) {
-    return <div className="docgen-loading">Loading documentation data...</div>;
+    return <div className="docgen-loading"><T k="doc.docgen_loading" /></div>;
   }
 
   if (error || !data) {
@@ -153,8 +153,8 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
         <table className="docgen-table">
           <thead>
             <tr>
-              <th>Part</th>
-              <th>CSS Class</th>
+              <th><T k="doc.docgen_part" /></th>
+              <th><T k="doc.docgen_css_class" /></th>
             </tr>
           </thead>
           <tbody>

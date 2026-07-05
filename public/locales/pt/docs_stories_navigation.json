@@ -86,6 +86,8 @@
     "stepper_step_desc": "Descrição do passo",
     "stepper_verification": "Verificação",
     "stepper_waiting": "Esperando",
+    "tabbar_aria_grid": "Grade",
+    "tabbar_aria_home": "Início",
     "tabbar_content_prefix": "Aba Atual:",
     "tabbar_fixed_desc": "A Barra de Abas está fixada na parte inferior da tela.",
     "tabbar_fixed_title": "Barra de Abas Fixa",

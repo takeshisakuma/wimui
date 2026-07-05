@@ -90,7 +90,7 @@ export const Overview: StoryObj = {
         {/* Streaming Visual Check */}
         <ComparisonGrid title={t("audit:ai_streaming_visual_check")}>
           <ComponentGroup
-            label={`${t("audit:label_streaming_text")} — active`}
+            label={`${t("audit:label_streaming_text")} — ${t("audit:sfx_active")}`}
             maxWidth="var(--wim-width-md)"
           >
             <Box p="md" bg="bg-surface" radius="sm" style={{ border: "1px solid var(--wim-color-border)" }}>
@@ -100,7 +100,7 @@ export const Overview: StoryObj = {
               />
             </Box>
           </ComponentGroup>
-          <ComponentGroup label={`${t("audit:label_chat_ui")} — overall structure`} align="stretch">
+          <ComponentGroup label={`${t("audit:label_chat_ui")} — ${t("audit:sfx_overall_structure")}`} align="stretch">
             <Box style={{ height: "450px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <ChatMessageList style={{ flex: 1, padding: "var(--wim-spacing-md)" }}>
                 {sampleMessages.map((msg) => (
@@ -114,7 +114,7 @@ export const Overview: StoryObj = {
                 ))}
                 <ChatMessage isTyping />
               </ChatMessageList>
-              <ChatInput placeholder="Hello!" showAttach />
+              <ChatInput placeholder={t("audit:ai_chat_input_placeholder")} showAttach />
             </Box>
           </ComponentGroup>
         </ComparisonGrid>
@@ -122,7 +122,7 @@ export const Overview: StoryObj = {
         {/* ThoughtProcess Check */}
         <ComparisonGrid title={t("audit:ai_thought_process_check")}>
           <ComponentGroup
-            label={`${t("audit:label_thought_process")} — expanded`}
+            label={`${t("audit:label_thought_process")} — ${t("audit:sfx_expanded")}`}
             maxWidth="var(--wim-width-md)"
           >
             <ThoughtProcess title={t("audit:ai_analysis_progress")} defaultExpanded>
@@ -134,12 +134,12 @@ export const Overview: StoryObj = {
             </ThoughtProcess>
           </ComponentGroup>
           <ComponentGroup
-            label={`${t("audit:label_thought_process")} — collapsed`}
+            label={`${t("audit:label_thought_process")} — ${t("audit:sfx_collapsed")}`}
             maxWidth="var(--wim-width-md)"
           >
             <ThoughtProcess title={t("audit:ai_step_reasoning")} defaultExpanded={false}>
-              <ThoughtStep label={t("action.search")} status="completed">Searching for data...</ThoughtStep>
-              <ThoughtStep label={t("audit:ai_step_process")} status="completed" isLast>Processing data...</ThoughtStep>
+              <ThoughtStep label={t("action.search")} status="completed">{t("audit:ai_step_searching")}</ThoughtStep>
+              <ThoughtStep label={t("audit:ai_step_process")} status="completed" isLast>{t("audit:ai_step_processing")}</ThoughtStep>
             </ThoughtProcess>
           </ComponentGroup>
           <ComponentGroup
@@ -147,24 +147,24 @@ export const Overview: StoryObj = {
             maxWidth="var(--wim-width-md)"
           >
             <ThoughtProcess title={t("audit:ai_failed_reasoning")} defaultExpanded>
-              <ThoughtStep label={t("action.search")} status="completed">Searching for data...</ThoughtStep>
-              <ThoughtStep label={t("audit:ai_step_validate")} status="error" isLast>Connection timeout — could not reach external service.</ThoughtStep>
+              <ThoughtStep label={t("action.search")} status="completed">{t("audit:ai_step_searching")}</ThoughtStep>
+              <ThoughtStep label={t("audit:ai_step_validate")} status="error" isLast>{t("audit:ai_step_conn_timeout")}</ThoughtStep>
             </ThoughtProcess>
           </ComponentGroup>
         </ComparisonGrid>
 
         {/* PromptInput Action Check */}
         <ComparisonGrid title={t("audit:ai_prompt_action_check")}>
-          <ComponentGroup label={`${t("audit:label_prompt_input")} — default`} align="stretch" maxWidth="var(--wim-width-md)">
-            <PromptInput placeholder="What time is the meeting tomorrow?" showAttach fullWidth />
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — ${t("audit:sfx_default")}`} align="stretch" maxWidth="var(--wim-width-md)">
+            <PromptInput placeholder={t("audit:ai_prompt_placeholder_meeting")} showAttach fullWidth />
           </ComponentGroup>
-          <ComponentGroup label={`${t("audit:label_prompt_input")} — loading & disabled`} align="stretch" maxWidth="var(--wim-width-md)">
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — ${t("audit:sfx_loading_disabled")}`} align="stretch" maxWidth="var(--wim-width-md)">
             <Stack gap="md">
-              <PromptInput value="Generating response..." loading disabled fullWidth />
-              <PromptInput placeholder="Disabled state" disabled fullWidth />
+              <PromptInput value={t("audit:ai_prompt_generating")} loading disabled fullWidth />
+              <PromptInput placeholder={t("audit:ai_prompt_placeholder_disabled")} disabled fullWidth />
             </Stack>
           </ComponentGroup>
-          <ComponentGroup label={`${t("audit:label_prompt_input")} — with label and error`} align="stretch" maxWidth="var(--wim-width-md)">
+          <ComponentGroup label={`${t("audit:label_prompt_input")} — ${t("audit:sfx_with_label_error")}`} align="stretch" maxWidth="var(--wim-width-md)">
             <PromptInput
               label={t("audit:ai_system_prompt")}
               error={t("audit:ai_prompt_error")}
@@ -197,9 +197,11 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:ai_source_citation_check")}>
           <ComponentGroup label={t("audit:label_source_citation")} maxWidth="var(--wim-width-md)">
             <Stack gap="md">
+              {/* i18n-ignore-start — 引用元タイトルは実在ドキュメントの固有名詞のため英語のまま */}
               <SourceCitation title="React Documentation" url="https://react.dev/" index={1} description={t("audit:ai_source_react_desc")} />
               <SourceCitation title="Internal Design Guide" description={t("audit:ai_source_no_url_desc")} index={2} />
               <SourceCitation title="TypeScript Handbook" url="https://www.typescriptlang.org/docs/" />
+              {/* i18n-ignore-end */}
             </Stack>
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_source_citation_list")} align="stretch">
@@ -252,8 +254,9 @@ export const Overview: StoryObj = {
         {/* Terminal & CodeDiffViewer Check */}
         <ComparisonGrid title={t("audit:ai_terminal_diff_check")}>
           <ComponentGroup label={t("audit:label_terminal")} align="stretch" maxWidth="var(--wim-width-md)">
-            <Terminal 
-              title="deployment.log" 
+            <Terminal
+              /* i18n-ignore-next-line — title はファイル名のため英語のまま */
+              title="deployment.log"
               lines={TERMINAL_LINES} 
               height={200} 
               onClear={() => {}}

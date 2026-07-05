@@ -175,12 +175,12 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")}>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <Input aria-label={t("audit:mix_input_1")} placeholder="John Doe" style={{ flex: 1 }} />
+              <Input aria-label={t("audit:mix_input_1")} placeholder={t("audit:sample_name_john")} style={{ flex: 1 }} />
               <Button>{t("audit:demo_action")}</Button>
-              <SearchInput aria-label={t("audit:mix_search")} placeholder="Quarterly report" style={{ flex: 1 }} />
+              <SearchInput aria-label={t("audit:mix_search")} placeholder={t("audit:input_placeholder_report")} style={{ flex: 1 }} />
             </Stack>
             <Stack direction="row" gap="md" align="center" w="100%">
-              <Input aria-label={t("audit:mix_input_2")} placeholder="Hello!" style={{ flex: 1 }} />
+              <Input aria-label={t("audit:mix_input_2")} placeholder={t("audit:input_placeholder_hello")} style={{ flex: 1 }} />
               <Button variant="ghost">{t("action.cancel")}</Button>
               <Button>Send</Button>
             </Stack>

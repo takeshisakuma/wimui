@@ -50,11 +50,13 @@ export const ComplexReasoning: Story = {
           </ThoughtStep>
           <ThoughtStep label={t("story.thoughtprocess_retrieval_label")} status="completed">
             {t("story.thoughtprocess_retrieval_content")}
+            {/* i18n-ignore-start — 実在リソースの固有名詞のため英語のまま */}
             <ul>
               <li>State of JS 2023</li>
               <li>React 19 release notes</li>
               <li>Vue 3.4 performance benchmarks</li>
             </ul>
+            {/* i18n-ignore-end */}
           </ThoughtStep>
           <ThoughtStep label={t("story.thoughtprocess_conflict_label")} status="error">
             {t("story.thoughtprocess_conflict_content")}

@@ -36,7 +36,7 @@ export const Overview: StoryObj = {
       <AuditPage title={t("audit:skeleton_family_title")}>
         {/* Skeleton Radius Check */}
         <ComparisonGrid title={t("audit:skeleton_radius_check")}>
-          <ComponentGroup label={`${t("audit:label_skeleton")} — text (radius-sm)`}>
+          <ComponentGroup label={`${t("audit:label_skeleton")} — ${t("audit:sfx_text_radius_sm")}`}>
             <Stack gap="xs" style={{ maxWidth: "400px" }}>
               <Skeleton variant="text" width="100%" />
               <Skeleton variant="text" width="80%" />
@@ -44,7 +44,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label={`${t("audit:label_skeleton")} — rect (radius-sm)`}>
+          <ComponentGroup label={`${t("audit:label_skeleton")} — ${t("audit:sfx_rect_radius_sm")}`}>
             <Stack direction="row" gap="md" wrap>
               <Skeleton variant="rect" width={120} height={80} />
               <Skeleton variant="rect" width={200} height={40} />
@@ -52,7 +52,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label={`${t("audit:label_skeleton")} — circle (radius-full)`}>
+          <ComponentGroup label={`${t("audit:label_skeleton")} — ${t("audit:sfx_circle_radius_full")}`}>
             <Stack direction="row" gap="md" wrap>
               <Skeleton variant="circle" width={32} height={32} />
               <Skeleton variant="circle" width={40} height={40} />
@@ -83,6 +83,7 @@ export const Overview: StoryObj = {
           {skeletonAnimations.map((animation) => (
             <ComponentGroup
               key={animation}
+              /* i18n-ignore-next-line — animation はプロパティ名 */
               label={`${t("audit:label_skeleton")} — animation: ${animation}`}
             >
               <Stack gap="xs" style={{ maxWidth: "400px" }}>
@@ -118,7 +119,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label={`${t("audit:label_spinner")} — label (right / bottom)`}>
+          <ComponentGroup label={`${t("audit:label_spinner")} — ${t("audit:sfx_label_right_bottom")}`}>
             <Stack direction="row" gap="xl" align="start" wrap>
               <Spinner label={t("audit:demo_loading")} labelPosition="right" />
               <Spinner label={t("audit:demo_loading")} labelPosition="bottom" />
@@ -161,6 +162,7 @@ export const Overview: StoryObj = {
 
         {/* LoadingOverlay Variants */}
         <ComparisonGrid title={t("audit:skeleton_overlay_variants")}>
+          {/* i18n-ignore-next-line — backdropVariant はプロパティ名と値の列挙 */}
           <ComponentGroup label={`${t("audit:label_loading_overlay")} — backdropVariant: dark / light`}>
             <Stack direction="row" gap="lg" wrap>
               {(["dark", "light"] as const).map((variant) => (
@@ -187,6 +189,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
+          {/* i18n-ignore-next-line — blur はプロパティ名とトークン値の列挙 */}
           <ComponentGroup label={`${t("audit:label_loading_overlay")} — blur: none / sm / md / lg`}>
             <Stack direction="row" gap="lg" wrap>
               {(["none", "sm", "md", "lg"] as const).map((blur) => (
@@ -215,7 +218,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label={`${t("audit:label_loading_overlay")} — loaderType comparison`}>
+          <ComponentGroup label={`${t("audit:label_loading_overlay")} — ${t("audit:sfx_loader_type_comparison")}`}>
             <Stack direction="row" gap="lg" wrap>
               {(["spinner", "bars", "dots", "pulse"] as const).map((loaderType) => (
                 <Stack key={loaderType} gap="xs" align="center">
@@ -238,7 +241,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
 
-          <ComponentGroup label={`${t("audit:label_loading_overlay")} — with message`}>
+          <ComponentGroup label={`${t("audit:label_loading_overlay")} — ${t("audit:sfx_with_message")}`}>
             <div
               style={{
                 position: "relative",

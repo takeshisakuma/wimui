@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../src/components/form/ColorPicker/ColorPicker";
 
 /**
@@ -87,6 +88,7 @@ const getContrastRatio = (color1: string, color2: string): number => {
 };
 
 export const ContrastChecker: React.FC = () => {
+  const { t } = useTranslation();
   const [bgInput, setBgInput] = useState("var(--wim-color-primary)");
   const [fgInput, setFgInput] = useState("var(--wim-color-text-on-primary)");
   const resolvedBg = useMemo(() => resolveToHex(bgInput), [bgInput]);
@@ -322,7 +324,7 @@ export const ContrastChecker: React.FC = () => {
         </div>
         <div className="wim-contrast-badges">
           <div className="wim-contrast-badge">
-            <span>Normal Text</span>
+            <span>{t("doc.contrast_normal_text")}</span>
             <span
               className={`wim-contrast-badge-status ${passesAA ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}
             >
@@ -330,7 +332,7 @@ export const ContrastChecker: React.FC = () => {
             </span>
           </div>
           <div className="wim-contrast-badge">
-            <span>Large Text</span>
+            <span>{t("doc.contrast_large_text")}</span>
             <span
               className={`wim-contrast-badge-status ${passesAALarge ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}
             >
