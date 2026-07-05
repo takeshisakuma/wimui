@@ -87,7 +87,16 @@ export interface QueryBuilderProps {
   labels?: QueryBuilderLabels;
 }
 
-const generateId = () => Math.random().toString(36).substring(2, 11);
+// VRT 環境（vrt.spec.ts が window.__VRT__ を注入）ではスクリーンショットに
+// 写る Generated JSON を安定させるため決定的な連番 ID を使う
+let vrtIdCounter = 0;
+const generateId = () => {
+  if (typeof window !== "undefined" && (window as { __VRT__?: boolean }).__VRT__) {
+    vrtIdCounter += 1;
+    return `vrt-id-${vrtIdCounter}`;
+  }
+  return Math.random().toString(36).substring(2, 11);
+};
 
 const DEFAULT_OPERATORS: Record<QueryFieldType, { label: string; value: string; key: string }[]> = {
   string: [

@@ -32,9 +32,16 @@ const stories = Object.values(index.entries).filter(
 const filter = process.env.FILTER || "";
 const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
 
-// Rules that require page-level structure (<main>, <h1>) which Storybook
-// iframes intentionally omit — these are not component-level issues.
-const DISABLED_RULES = ["landmark-one-main", "page-has-heading-one", "region"];
+// Rules that require page-level structure (<main>, <h1>, <title>, lang) which
+// Storybook iframes intentionally omit — these are not component-level issues.
+// document-title / html-has-lang are reported since axe-core 4.12.
+const DISABLED_RULES = [
+  "landmark-one-main",
+  "page-has-heading-one",
+  "region",
+  "document-title",
+  "html-has-lang",
+];
 
 async function analyzeWithRetry(page: Page, builder: AxeBuilder, retries = 3): Promise<Awaited<ReturnType<AxeBuilder["analyze"]>>> {
   for (let i = 0; i < retries; i++) {

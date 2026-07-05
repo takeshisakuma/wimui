@@ -3,7 +3,7 @@ import type { Plugin } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import react from "@vitejs/plugin-react";
-import viteImagemin from "vite-plugin-imagemin";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import svgr from "vite-plugin-svgr";
 import dts from "vite-plugin-dts";
 import i18nAutoNamespacePlugin from "./scripts/i18n-namespace-plugin.js";
@@ -41,22 +41,24 @@ export default defineConfig(({ mode }) => {
       react(),
       svgr(),
       i18nAutoNamespacePlugin(),
-      // 開発サーバーの起動高速化のため、imageminはビルド時のみ実行
+      // 開発サーバーの起動高速化のため、画像最適化はビルド時のみ実行
       mode !== "development" &&
-        viteImagemin({
-          gifsicle: { optimizationLevel: 7 },
-          mozjpeg: { quality: 80 },
-          pngquant: { quality: [0.65, 0.8] },
+        ViteImageOptimizer({
+          png: { quality: 80 },
+          jpeg: { quality: 80 },
+          jpg: { quality: 80 },
           webp: { quality: 80 },
-          svgo: {
+          svg: {
+            multipass: true,
             plugins: [
               {
-                name: "removeViewBox",
-                active: false,
-              },
-              {
-                name: "removeEmptyAttrs",
-                active: false,
+                name: "preset-default",
+                params: {
+                  overrides: {
+                    removeViewBox: false,
+                    removeEmptyAttrs: false,
+                  },
+                },
               },
             ],
           },

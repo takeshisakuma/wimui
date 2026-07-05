@@ -2,7 +2,7 @@
 import { createRequire } from "node:module";
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
-import viteImagemin from "vite-plugin-imagemin";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import svgr from "vite-plugin-svgr";
 import path from "path";
 import i18nAutoNamespacePlugin from "../scripts/i18n-namespace-plugin.js";
@@ -74,20 +74,22 @@ const config: StorybookConfig = {
         },
         svgr(),
         config.mode !== "development" &&
-          viteImagemin({
-            gifsicle: { optimizationLevel: 7 },
-            mozjpeg: { quality: 80 },
-            pngquant: { quality: [0.65, 0.8] },
+          ViteImageOptimizer({
+            png: { quality: 80 },
+            jpeg: { quality: 80 },
+            jpg: { quality: 80 },
             webp: { quality: 80 },
-            svgo: {
+            svg: {
+              multipass: true,
               plugins: [
                 {
-                  name: "removeViewBox",
-                  active: false,
-                },
-                {
-                  name: "removeEmptyAttrs",
-                  active: false,
+                  name: "preset-default",
+                  params: {
+                    overrides: {
+                      removeViewBox: false,
+                      removeEmptyAttrs: false,
+                    },
+                  },
                 },
               ],
             },
