@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSizeBasic, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./badge.module.scss";
 
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
@@ -21,7 +21,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   /** インタラクティブな状態を有効にするか */
   interactive?: boolean;
 };

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Spinner } from "../../feedback/Spinner/Spinner";
 import { Loader } from "../../feedback/Loader/Loader";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeExtended } from "../../../types/tokens";
 import styles from "./loadingoverlay.module.scss";
 
 export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -77,7 +77,7 @@ export const LoadingOverlay = ({
     return null;
   }
 
-  const sizeMap: Record<"sm" | "md" | "lg" | "xl", ComponentSize> = {
+  const sizeMap: Record<"sm" | "md" | "lg" | "xl", ComponentSizeExtended> = {
     sm: "sm",
     md: "md",
     lg: "lg",

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./link.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import { ExternalLinkIcon } from "@/icon";
 
 export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
@@ -13,7 +13,7 @@ export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
    */
   asChild?: boolean;
   label?: React.ReactNode;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   priority?: "primary" | "secondary" | "tertiary";
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";

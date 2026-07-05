@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./span.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { WimColor, ComponentSize, WimFontWeight } from "../../../types/tokens";
+import { WimColor, ComponentSize, ComponentSizeText, WimFontWeight } from "../../../types/tokens";
 import { getColorValue, getFontWeightValue } from "../../../utilities/style-utils";
 
 export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color" | "content"> {
@@ -11,7 +11,7 @@ export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "
    * If true, the span will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  size?: ComponentSize;
+  size?: ComponentSizeText;
   color?: WimColor;
   weight?: "normal" | "bold" | "medium";
   fontStyle?: "normal" | "italic";
@@ -42,17 +42,13 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
   ) => {
     const finalContent = asChild ? children : (content ?? children);
 
-    // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
-    const iconSizeMap: Record<ComponentSize, ComponentSize> = {
+    // テキストサイズより大きいアイコンは間延びするため lg に丸める
+    const iconSizeMap: Record<ComponentSizeText, ComponentSize> = {
       xs: "xs",
       sm: "sm",
       md: "md",
       lg: "lg",
       xl: "lg",
-      "2xl": "lg",
-      "3xl": "lg",
-      "4xl": "lg",
-      "5xl": "lg",
     };
     const iconSize = iconSizeMap[size] || "md";
 

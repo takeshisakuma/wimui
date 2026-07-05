@@ -1,14 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 import { mergeRefs } from "../../_internal/mergeRefs";
-import { ComponentSize, IndicatorIntent } from "../../../types/tokens";
+import { ComponentSizeBasic, IndicatorIntent } from "../../../types/tokens";
 import styles from "./progress.module.scss";
 
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   value?: number;
   max?: number;
   intent?: IndicatorIntent;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   label?: string;
   showValue?: boolean;
   indeterminate?: boolean;

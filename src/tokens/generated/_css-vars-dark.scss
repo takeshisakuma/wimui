@@ -127,6 +127,9 @@
   --wim-color-heatmap-level-2: #5a814c;
   --wim-color-heatmap-level-3: #7fc97e;
   --wim-color-heatmap-level-4: #32a65d;
+  --wim-color-terminal-traffic-red: #ff5f57;
+  --wim-color-terminal-traffic-yellow: #febc2e;
+  --wim-color-terminal-traffic-green: #28c840;
   --wim-breakpoint-xs: 480px;
   --wim-breakpoint-sm: 576px;
   --wim-breakpoint-md: 768px;
@@ -173,6 +176,8 @@
   --wim-shadow-field-focus: 0 0 0 2px oklch(from var(--wim-color-primary) l c h / 0.2);
   --wim-shadow-overlay: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12);
   --wim-shadow-modal: 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18);
+  --wim-shadow-raised: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12);
+  --wim-shadow-lifted: 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18);
   --wim-duration-ultra-fast: 0.083s;
   --wim-duration-extra-fast: 0.1s;
   --wim-duration-short: 0.15s;
@@ -396,6 +401,9 @@
     --wim-color-heatmap-level-2: #5a814c;
     --wim-color-heatmap-level-3: #7fc97e;
     --wim-color-heatmap-level-4: #32a65d;
+    --wim-color-terminal-traffic-red: #ff5f57;
+    --wim-color-terminal-traffic-yellow: #febc2e;
+    --wim-color-terminal-traffic-green: #28c840;
     --wim-breakpoint-xs: 480px;
     --wim-breakpoint-sm: 576px;
     --wim-breakpoint-md: 768px;
@@ -442,6 +450,8 @@
     --wim-shadow-field-focus: 0 0 0 2px oklch(from var(--wim-color-primary) l c h / 0.2);
     --wim-shadow-overlay: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12);
     --wim-shadow-modal: 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18);
+    --wim-shadow-raised: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12);
+    --wim-shadow-lifted: 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18);
     --wim-duration-ultra-fast: 0.083s;
     --wim-duration-extra-fast: 0.1s;
     --wim-duration-short: 0.15s;

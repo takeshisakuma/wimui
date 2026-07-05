@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, IndicatorIntent } from "../../../types/tokens";
+import { ComponentSizeBasic, IndicatorIntent } from "../../../types/tokens";
 import styles from "./avatar.module.scss";
 import { UserIcon } from "@/icon";
 
@@ -10,7 +10,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   alt?: string;
   initials?: string;
   icon?: React.ReactNode;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   shape?: "circle" | "rounded";
   intent?: IndicatorIntent;
 };

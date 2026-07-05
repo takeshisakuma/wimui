@@ -113,6 +113,29 @@ console.log('\n--- Auditing Docgen References ---');
   }
 }
 
+console.log('\n--- Auditing Markdown Format Rules ---');
+// RULES.md「mdxの記述形式」: 表は <table>、リストは <ul><li> で記述する。
+// Markdown 記法（`- 項目` / `| a | b |`）はスタイルが当たらないため禁止。
+[...componentFiles, ...guideFiles].forEach(file => {
+  const lines = fs.readFileSync(file, 'utf8').split('\n');
+  let inCodeBlock = false;
+  lines.forEach((line, i) => {
+    if (/^\s*```/.test(line)) {
+      inCodeBlock = !inCodeBlock;
+      return;
+    }
+    if (inCodeBlock) return;
+    if (/^[-*] /.test(line)) {
+      console.log(`[FAIL] ${file}:${i + 1} uses a Markdown list ("${line.trim().slice(0, 40)}..."). Use <ul><li> instead (RULES.md).`);
+      allPass = false;
+    }
+    if (/^\|.*\|\s*$/.test(line)) {
+      console.log(`[FAIL] ${file}:${i + 1} uses a Markdown table. Use <table> instead (RULES.md).`);
+      allPass = false;
+    }
+  });
+});
+
 console.log('\n--- Auditing I18n File Governance ---');
 const localeFiles = globSync('public/locales/en/*.json', { posix: true });
 localeFiles.forEach(file => {

@@ -1,144 +1,387 @@
 {
   "wim": {
     "color": {
-      "destructive": { "value": "{pccs.s1}" },
-      "positive": { "value": "{pccs.s12}" },
-      "caution": { "value": "{pccs.s8}" },
-      "primary": { "value": "{pccs.s16}" },
-      "secondary": { "value": "{pccs.gy7-5}" },
-      "informative": { "value": "{pccs.s18}" },
-      "disabled": { "value": "{pccs.gy8-5}" },
-      "text-on-primary": { "value": "{pccs.w}" },
-      "text-on-destructive": { "value": "{pccs.w}" },
-      "text-on-positive": { "value": "{pccs.w}" },
-      "text-on-caution": { "value": "{pccs.bk}" },
-      "text-on-secondary": { "value": "{pccs.bk}" },
-      "text-on-informative": { "value": "{pccs.w}" },
-      "text-on-disabled": { "value": "{pccs.gy3-5}" },
-      "text-primary": { "value": "{pccs.bk}" },
-      "text-secondary": { "value": "{pccs.gy3-5}" },
-      "text-tertiary": { "value": "{pccs.gy5-5}" },
-      "text-disabled": { "value": "{pccs.gy6-5}" },
-      "text-white": { "value": "{pccs.w}" },
-      "text-error": { "value": "{pccs.s2}" },
-      "text-accent": { "value": "{wim.color.primary}" },
-      "bg-app": { "value": "{pccs.w}" },
-      "bg-component": { "value": "{pccs.w}" },
-      "bg-primary": { "value": "{pccs.s16}" },
-      "bg-secondary": { "value": "{pccs.gy8-5}" },
-      "bg-tertiary": { "value": "{pccs.gy7-5}" },
-      "bg-white": { "value": "{pccs.w}" },
-      "bg-hover": { "value": "oklch(from var(--wim-color-primary) l c h / 0.08)" },
-      "border": { "value": "{pccs.gy7-5}" },
-      "border-secondary": { "value": "{pccs.gy8-5}" },
-      "focus-outline": { "value": "var(--wim-color-primary)" },
-      "scrollbar-thumb": { "value": "{pccs.gy7-5}" },
-      "scrollbar-track": { "value": "{pccs.gy8-5}" },
-      "primary-rgb": { "value": "{wim.color.primary}" },
-      "primary-hover": { "value": "oklch(from var(--wim-color-primary) calc(l * 0.9) c h)" },
-      "primary-active": { "value": "oklch(from var(--wim-color-primary) calc(l * 0.85) c h)" },
-      "primary-light": { "value": "rgba(var(--wim-color-primary-rgb), 0.1)" },
-      "text-placeholder": { "value": "var(--wim-color-text-tertiary)" },
-      "surface": { "value": "var(--wim-color-bg-component)" },
-      "surface-variant": { "value": "var(--wim-color-bg-secondary)" },
-      "surface-hover": { "value": "var(--wim-color-bg-hover)" },
-      "primary-container-alpha": { "value": "oklch(from var(--wim-color-primary) l c h / 0.08)" },
-      "surface-variant-alpha": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.02)" },
-      "overlay-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.5)" },
-      "overlay-bg-light": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.8)" },
-      "overlay-bg-dark": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.7)" },
-      "text-on-overlay": { "value": "{pccs.w}" },
-
-      "carousel-control-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.3)" },
-      "carousel-control-hover-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.5)" },
-      "carousel-indicator-bg": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.5)" },
-      "carousel-indicator-hover-bg": { "value": "oklch(from var(--wim-color-text-white) l c h / 0.8)" },
-
-      "overlay-bg-sidebar": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.4)" },
-      "bg-surface-subtle": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.02)" },
-
-      "ghost-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.03)" },
-      "ghost-border": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.08)" },
-      "ghost-bg-active": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.12)" },
-      "ghost-border-active": { "value": "rgba(0, 0, 0, 0.25)" },
-      "ghost-border-hover": { "value": "oklch(from var(--wim-color-primary) l c h / 0.2)" },
-
-      "glass-bg": { "value": "rgba(255, 255, 255, {wim.glass.bg-opacity})" },
-      "glass-border": { "value": "rgba(0, 0, 0, {wim.glass.border-opacity})" },
-      "glass-blur": { "value": "{wim.blur.md}" },
-      "glass-blur-sm": { "value": "{wim.blur.sm}" },
-      "glass-blur-lg": { "value": "{wim.blur.lg}" },
-      "surface-glass": { "value": "var(--wim-color-glass-bg)" },
-      "surface-inset": { "value": "var(--wim-color-bg-app)" },
-      "shadow-glass": { "value": "var(--wim-shadow-md)" },
-
-      "skeleton-bg": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.1)" },
-      "skeleton-shine": { "value": "rgba(255, 255, 255, 0.4)" },
-
-      "control-default-fg": { "value": "var(--wim-color-primary)" },
-      "control-default-bg": { "value": "var(--wim-color-bg-component)" },
-      "control-default-border": { "value": "var(--wim-color-primary)" },
-
-      "feedback-text-base": { "value": "black" },
-      "feedback-bg-base": { "value": "white" },
-      "feedback-border-strength": { "value": "30%" },
-      "frosted-bg": { "value": "var(--wim-color-overlay-bg-light)" },
-
-      "bg-subtle": { "value": "#fafafa" },
-      "close-hover": { "value": "rgba(0, 0, 0, 0.05)" },
-      "ghost-bg-hover": { "value": "oklch(from var(--wim-color-bg-void) l c h / 0.05)" },
-      "primary-subtle": { "value": "oklch(from var(--wim-color-primary) l c h / 0.04)" },
-      "destructive-subtle": { "value": "oklch(from var(--wim-color-destructive) l c h / 0.1)" },
-
-      "bg-inverted": { "value": "{pccs.gy2-5}" },
-      "border-inverted": { "value": "{pccs.gy3-5}" },
-      "text-on-inverted": { "value": "{pccs.w}" },
-      "text-muted-on-inverted": { "value": "{pccs.gy7-5}" },
-      "surface-inverse": { "value": "var(--wim-color-bg-inverted)" },
-      "surface-inverted": { "value": "{pccs.gy3-5}" },
-      "text-on-dark": { "value": "var(--wim-color-text-white)" },
-
-      "bg-void": { "value": "{pccs.bk}" },
-      "decoration-highlight-color": { "value": "#fff9c4" },
-
-      "overlay-control-track": { "value": "rgba(255, 255, 255, 0.3)" },
-      "overlay-control-hover": { "value": "rgba(255, 255, 255, 0.2)" },
-      "overlay-control-active": { "value": "rgba(255, 255, 255, 0.25)" },
-      "overlay-item-hover": { "value": "rgba(255, 255, 255, 0.15)" },
-      "overlay-menu-bg": { "value": "rgba(28, 28, 28, 0.95)" },
-      "overlay-divider": { "value": "rgba(255, 255, 255, 0.1)" },
-      "overlay-bg-medium": { "value": "rgba(0, 0, 0, 0.35)" },
-
-      "avatar-default": { "value": "{pccs.s18}" },
-      "avatar-s1": { "value": "{pccs.s1}" },
-      "avatar-s3": { "value": "{pccs.s3}" },
-      "avatar-s5": { "value": "{pccs.s5}" },
-      "avatar-s7": { "value": "{pccs.s7}" },
-      "avatar-s10": { "value": "{pccs.s10}" },
-      "avatar-s12": { "value": "{pccs.s12}" },
-      "avatar-s14": { "value": "{pccs.s14}" },
-      "avatar-s16": { "value": "{pccs.s16}" },
-      "avatar-s18": { "value": "{pccs.s18}" },
-      "avatar-s20": { "value": "{pccs.s20}" },
-      "avatar-s22": { "value": "{pccs.s22}" },
-      "avatar-s24": { "value": "{pccs.s24}" },
-
-      "chat-bubble-received": { "value": "{pccs.p7}" },
-      "chat-bubble-sent": { "value": "{pccs.p18}" },
-
-      "chart-1": { "value": "{pccs.v16}" },
-      "chart-2": { "value": "{pccs.v6}" },
-      "chart-3": { "value": "{pccs.v12}" },
-      "chart-4": { "value": "{pccs.v24}" },
-      "chart-5": { "value": "{pccs.v20}" },
-      "chart-6": { "value": "{pccs.v10}" },
-      "chart-7": { "value": "{pccs.v4}" },
-      "chart-8": { "value": "{pccs.v14}" },
-      "heatmap-level-0": { "value": "{pccs.gy8-5}" },
-      "heatmap-level-1": { "value": "{pccs.p12}" },
-      "heatmap-level-2": { "value": "{pccs.lt12}" },
-      "heatmap-level-3": { "value": "{pccs.s12}" },
-      "heatmap-level-4": { "value": "{pccs.dp12}" }
+      "destructive": {
+        "value": "{pccs.s1}"
+      },
+      "positive": {
+        "value": "{pccs.s12}"
+      },
+      "caution": {
+        "value": "{pccs.s8}"
+      },
+      "primary": {
+        "value": "{pccs.s16}"
+      },
+      "secondary": {
+        "value": "{pccs.gy7-5}"
+      },
+      "informative": {
+        "value": "{pccs.s18}"
+      },
+      "disabled": {
+        "value": "{pccs.gy8-5}"
+      },
+      "text-on-primary": {
+        "value": "{pccs.w}"
+      },
+      "text-on-destructive": {
+        "value": "{pccs.w}"
+      },
+      "text-on-positive": {
+        "value": "{pccs.w}"
+      },
+      "text-on-caution": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-secondary": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-informative": {
+        "value": "{pccs.w}"
+      },
+      "text-on-disabled": {
+        "value": "{pccs.gy3-5}"
+      },
+      "text-primary": {
+        "value": "{pccs.bk}"
+      },
+      "text-secondary": {
+        "value": "{pccs.gy3-5}"
+      },
+      "text-tertiary": {
+        "value": "{pccs.gy5-5}"
+      },
+      "text-disabled": {
+        "value": "{pccs.gy6-5}"
+      },
+      "text-white": {
+        "value": "{pccs.w}"
+      },
+      "text-error": {
+        "value": "{pccs.s2}"
+      },
+      "text-accent": {
+        "value": "{wim.color.primary}"
+      },
+      "bg-app": {
+        "value": "{pccs.w}"
+      },
+      "bg-component": {
+        "value": "{pccs.w}"
+      },
+      "bg-primary": {
+        "value": "{pccs.s16}"
+      },
+      "bg-secondary": {
+        "value": "{pccs.gy8-5}"
+      },
+      "bg-tertiary": {
+        "value": "{pccs.gy7-5}"
+      },
+      "bg-white": {
+        "value": "{pccs.w}"
+      },
+      "bg-hover": {
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
+      },
+      "border": {
+        "value": "{pccs.gy7-5}"
+      },
+      "border-secondary": {
+        "value": "{pccs.gy8-5}"
+      },
+      "focus-outline": {
+        "value": "var(--wim-color-primary)"
+      },
+      "scrollbar-thumb": {
+        "value": "{pccs.gy7-5}"
+      },
+      "scrollbar-track": {
+        "value": "{pccs.gy8-5}"
+      },
+      "primary-rgb": {
+        "value": "{wim.color.primary}"
+      },
+      "primary-hover": {
+        "value": "oklch(from var(--wim-color-primary) calc(l * 0.9) c h)"
+      },
+      "primary-active": {
+        "value": "oklch(from var(--wim-color-primary) calc(l * 0.85) c h)"
+      },
+      "primary-light": {
+        "value": "rgba(var(--wim-color-primary-rgb), 0.1)"
+      },
+      "text-placeholder": {
+        "value": "var(--wim-color-text-tertiary)"
+      },
+      "surface": {
+        "value": "var(--wim-color-bg-component)"
+      },
+      "surface-variant": {
+        "value": "var(--wim-color-bg-secondary)"
+      },
+      "surface-hover": {
+        "value": "var(--wim-color-bg-hover)"
+      },
+      "primary-container-alpha": {
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
+      },
+      "surface-variant-alpha": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.02)"
+      },
+      "overlay-bg": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.5)"
+      },
+      "overlay-bg-light": {
+        "value": "oklch(from var(--wim-color-text-white) l c h / 0.8)"
+      },
+      "overlay-bg-dark": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.7)"
+      },
+      "text-on-overlay": {
+        "value": "{pccs.w}"
+      },
+      "carousel-control-bg": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.3)"
+      },
+      "carousel-control-hover-bg": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.5)"
+      },
+      "carousel-indicator-bg": {
+        "value": "oklch(from var(--wim-color-text-white) l c h / 0.5)"
+      },
+      "carousel-indicator-hover-bg": {
+        "value": "oklch(from var(--wim-color-text-white) l c h / 0.8)"
+      },
+      "overlay-bg-sidebar": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.4)"
+      },
+      "bg-surface-subtle": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.02)"
+      },
+      "ghost-bg": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.03)"
+      },
+      "ghost-border": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.08)"
+      },
+      "ghost-bg-active": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.12)"
+      },
+      "ghost-border-active": {
+        "value": "rgba(0, 0, 0, 0.25)"
+      },
+      "ghost-border-hover": {
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.2)"
+      },
+      "glass-bg": {
+        "value": "rgba(255, 255, 255, {wim.glass.bg-opacity})"
+      },
+      "glass-border": {
+        "value": "rgba(0, 0, 0, {wim.glass.border-opacity})"
+      },
+      "glass-blur": {
+        "value": "{wim.blur.md}"
+      },
+      "glass-blur-sm": {
+        "value": "{wim.blur.sm}"
+      },
+      "glass-blur-lg": {
+        "value": "{wim.blur.lg}"
+      },
+      "surface-glass": {
+        "value": "var(--wim-color-glass-bg)"
+      },
+      "surface-inset": {
+        "value": "var(--wim-color-bg-app)"
+      },
+      "shadow-glass": {
+        "value": "var(--wim-shadow-md)"
+      },
+      "skeleton-bg": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.1)"
+      },
+      "skeleton-shine": {
+        "value": "rgba(255, 255, 255, 0.4)"
+      },
+      "control-default-fg": {
+        "value": "var(--wim-color-primary)"
+      },
+      "control-default-bg": {
+        "value": "var(--wim-color-bg-component)"
+      },
+      "control-default-border": {
+        "value": "var(--wim-color-primary)"
+      },
+      "feedback-text-base": {
+        "value": "black"
+      },
+      "feedback-bg-base": {
+        "value": "white"
+      },
+      "feedback-border-strength": {
+        "value": "30%"
+      },
+      "frosted-bg": {
+        "value": "var(--wim-color-overlay-bg-light)"
+      },
+      "bg-subtle": {
+        "value": "#fafafa"
+      },
+      "close-hover": {
+        "value": "rgba(0, 0, 0, 0.05)"
+      },
+      "ghost-bg-hover": {
+        "value": "oklch(from var(--wim-color-bg-void) l c h / 0.05)"
+      },
+      "primary-subtle": {
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.04)"
+      },
+      "destructive-subtle": {
+        "value": "oklch(from var(--wim-color-destructive) l c h / 0.1)"
+      },
+      "bg-inverted": {
+        "value": "{pccs.gy2-5}"
+      },
+      "border-inverted": {
+        "value": "{pccs.gy3-5}"
+      },
+      "text-on-inverted": {
+        "value": "{pccs.w}"
+      },
+      "text-muted-on-inverted": {
+        "value": "{pccs.gy7-5}"
+      },
+      "surface-inverse": {
+        "value": "var(--wim-color-bg-inverted)"
+      },
+      "surface-inverted": {
+        "value": "{pccs.gy3-5}"
+      },
+      "text-on-dark": {
+        "value": "var(--wim-color-text-white)"
+      },
+      "bg-void": {
+        "value": "{pccs.bk}"
+      },
+      "decoration-highlight-color": {
+        "value": "#fff9c4"
+      },
+      "overlay-control-track": {
+        "value": "rgba(255, 255, 255, 0.3)"
+      },
+      "overlay-control-hover": {
+        "value": "rgba(255, 255, 255, 0.2)"
+      },
+      "overlay-control-active": {
+        "value": "rgba(255, 255, 255, 0.25)"
+      },
+      "overlay-item-hover": {
+        "value": "rgba(255, 255, 255, 0.15)"
+      },
+      "overlay-menu-bg": {
+        "value": "rgba(28, 28, 28, 0.95)"
+      },
+      "overlay-divider": {
+        "value": "rgba(255, 255, 255, 0.1)"
+      },
+      "overlay-bg-medium": {
+        "value": "rgba(0, 0, 0, 0.35)"
+      },
+      "avatar-default": {
+        "value": "{pccs.s18}"
+      },
+      "avatar-s1": {
+        "value": "{pccs.s1}"
+      },
+      "avatar-s3": {
+        "value": "{pccs.s3}"
+      },
+      "avatar-s5": {
+        "value": "{pccs.s5}"
+      },
+      "avatar-s7": {
+        "value": "{pccs.s7}"
+      },
+      "avatar-s10": {
+        "value": "{pccs.s10}"
+      },
+      "avatar-s12": {
+        "value": "{pccs.s12}"
+      },
+      "avatar-s14": {
+        "value": "{pccs.s14}"
+      },
+      "avatar-s16": {
+        "value": "{pccs.s16}"
+      },
+      "avatar-s18": {
+        "value": "{pccs.s18}"
+      },
+      "avatar-s20": {
+        "value": "{pccs.s20}"
+      },
+      "avatar-s22": {
+        "value": "{pccs.s22}"
+      },
+      "avatar-s24": {
+        "value": "{pccs.s24}"
+      },
+      "chat-bubble-received": {
+        "value": "{pccs.p7}"
+      },
+      "chat-bubble-sent": {
+        "value": "{pccs.p18}"
+      },
+      "chart-1": {
+        "value": "{pccs.v16}"
+      },
+      "chart-2": {
+        "value": "{pccs.v6}"
+      },
+      "chart-3": {
+        "value": "{pccs.v12}"
+      },
+      "chart-4": {
+        "value": "{pccs.v24}"
+      },
+      "chart-5": {
+        "value": "{pccs.v20}"
+      },
+      "chart-6": {
+        "value": "{pccs.v10}"
+      },
+      "chart-7": {
+        "value": "{pccs.v4}"
+      },
+      "chart-8": {
+        "value": "{pccs.v14}"
+      },
+      "heatmap-level-0": {
+        "value": "{pccs.gy8-5}"
+      },
+      "heatmap-level-1": {
+        "value": "{pccs.p12}"
+      },
+      "heatmap-level-2": {
+        "value": "{pccs.lt12}"
+      },
+      "heatmap-level-3": {
+        "value": "{pccs.s12}"
+      },
+      "heatmap-level-4": {
+        "value": "{pccs.dp12}"
+      },
+      "terminal-traffic-red": {
+        "value": "#ff5f57"
+      },
+      "terminal-traffic-yellow": {
+        "value": "#febc2e"
+      },
+      "terminal-traffic-green": {
+        "value": "#28c840"
+      }
     }
   }
 }

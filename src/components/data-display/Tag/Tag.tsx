@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSizeBasic, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./tag.module.scss";
 import { CloseIcon } from "@/icon";
 
@@ -20,7 +20,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   /** アイコン */
   icon?: React.ReactNode;
   /** 削除時のイベント。提供されると×ボタンが表示されます。 */

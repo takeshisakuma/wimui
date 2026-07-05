@@ -1,12 +1,12 @@
 import React, { useRef, useId } from "react";
 import classNames from "classnames";
 import { Slottable } from "@radix-ui/react-slot";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./switch.module.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   className?: string;
   children?: React.ReactNode;
   /** エラー状態として表示する（aria-invalid が付与される） */

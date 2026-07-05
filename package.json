@@ -164,6 +164,7 @@
     "check:aschild": "node scripts/check-aschild.js",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
+    "audit:hardcoded": "node scripts/check-hardcoded-values.js",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js",
     "changeset": "changeset",

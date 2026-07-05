@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
 import * as LightboxStories from "./Lightbox.stories";
 import { T } from "../../T";
 import { Docgen } from "../../Docgen";
@@ -86,6 +86,14 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.lightbox_best_practice_2" /></li>
 </ul>
 
+## <T k="doc.variations" />
+
+### Gallery
+<Canvas of={LightboxStories.Gallery} />
+
+### With Captions
+<Canvas of={LightboxStories.WithCaptions} />
+
 <Docgen componentName="Lightbox" section="props" />
 
 <Docgen componentName="Lightbox" section="tokens" />
@@ -103,7 +111,3 @@ import { Docgen } from "../../Docgen";
 <T k="doc.lightbox_i18n_desc" />
 
 <Docgen componentName="Lightbox" section="test" />
-
-<Primary />
-
-<Stories title={<T k="doc.stories" />} />

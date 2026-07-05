@@ -7,7 +7,7 @@
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
   }
   
   .messageList {
@@ -163,12 +163,12 @@
   /* typing バブルは高さが radius の2倍のピル形状になり側辺が全て曲線のため、
      三角を縦中央に置き、底辺を 2px バブル内に食い込ませて本体との隙間を防ぐ */
   .message.left.hasAvatar .bubble.typing::before {
-    top: calc(50% - 6px);
+    top: calc(50% - 6px); // Exception: Geometric Harmony — 矢印寸法(6px)に連動する配置オフセット
     border-width: 6px 8px 6px 0; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
 
   .message.right.hasAvatar .bubble.typing::before {
-    top: calc(50% - 6px);
+    top: calc(50% - 6px); // Exception: Geometric Harmony — 矢印寸法(6px)に連動する配置オフセット
     border-width: 6px 0 6px 8px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
   

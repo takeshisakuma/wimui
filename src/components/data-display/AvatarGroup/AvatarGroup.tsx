@@ -2,12 +2,12 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./avatar-group.module.scss";
 import { Avatar } from "../../data-display/Avatar/Avatar";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 
 type AvatarGroupProps = {
   children: React.ReactNode;
   max?: number;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   total?: number;
   className?: string;
 };

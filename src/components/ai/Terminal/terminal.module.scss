@@ -15,7 +15,7 @@
     background: var(--wim-color-bg-app);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-raised);
   }
 
   /* ── Traffic-light title bar ── */
@@ -35,10 +35,10 @@
     height: 12px;
     border-radius: 50%;
 
-    /* macOS traffic-light colors — intentional brand colors, not semantic tokens */
-    &[data-color="red"]    { background: #ff5f57; }
-    &[data-color="yellow"] { background: #febc2e; }
-    &[data-color="green"]  { background: #28c840; }
+    /* macOS traffic-light colors (tokens/color/semantic.json の terminal-traffic-*) */
+    &[data-color="red"]    { background: var(--wim-color-terminal-traffic-red); }
+    &[data-color="yellow"] { background: var(--wim-color-terminal-traffic-yellow); }
+    &[data-color="green"]  { background: var(--wim-color-terminal-traffic-green); }
   }
 
   .titleText {

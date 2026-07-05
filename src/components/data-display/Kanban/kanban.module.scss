@@ -15,7 +15,7 @@
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
-    width: 280px;
+    width: 280px; // Exception: Structural Logic — 列の固定幅
     min-height: 200px;
     background: var(--wim-color-bg-subtle);
     border-radius: var(--wim-radius-container);
@@ -135,7 +135,7 @@
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-raised);
   }
 
   .cardMoveOption {

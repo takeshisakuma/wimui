@@ -63,14 +63,14 @@
     &::after {
       top: 0;
       bottom: 0;
-      left: 4px;
+      left: 4px; // Exception: Geometric Harmony — ハンドル当たり判定(8px)に連動するオフセット・視覚幅
       width: var(--wim-splitter-handle-width, 2px);
     }
 
     &:hover::after,
     &.active::after {
       left: 50%;
-      width: 4px;
+      width: 4px; // Exception: Geometric Harmony — ハンドル当たり判定(8px)に連動するオフセット・視覚幅
       transform: translateX(-50%);
     }
   }
@@ -82,7 +82,7 @@
     cursor: row-resize;
 
     &::after {
-      top: 4px;
+      top: 4px; // Exception: Geometric Harmony — ハンドル当たり判定(8px)に連動するオフセット・視覚幅
       right: 0;
       left: 0;
       height: var(--wim-splitter-handle-width, 2px);
@@ -91,7 +91,7 @@
     &:hover::after,
     &.active::after {
       top: 50%;
-      height: 4px;
+      height: 4px; // Exception: Geometric Harmony — ハンドル当たり判定(8px)に連動するオフセット・視覚幅
       transform: translateY(-50%);
     }
   }

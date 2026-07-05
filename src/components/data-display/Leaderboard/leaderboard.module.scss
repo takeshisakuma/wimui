@@ -41,7 +41,7 @@
     font-size: var(--wim-font-size-sm);
     background-color: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-component);
 
     &.highlight {
       background-color: oklch(from var(--wim-color-primary) l c h / 0.08);

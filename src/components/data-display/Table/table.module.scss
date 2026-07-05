@@ -319,7 +319,7 @@
       background-color: var(--wim-table-scrollbar-thumb-bg);
       background-clip: content-box;
       border: var(--wim-border-width-thin) solid transparent;
-      border-radius: var(--wim-radius-lg);
+      border-radius: var(--wim-radius-full);
 
       &:hover {
         background-color: oklch(from var(--wim-table-scrollbar-thumb-bg) calc(l * 0.9) c h);

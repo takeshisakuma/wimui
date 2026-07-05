@@ -18,9 +18,9 @@
       font-size: var(--wim-font-size-2xs); // Use 2xs for small badge
 
       &.iconOnly {
-        width: var(--wim-badge-dot-sm, var(--wim-radius-lg));
+        width: var(--wim-badge-dot-sm, var(--wim-spacing-md));
         min-width: 0;
-        height: var(--wim-badge-dot-sm, var(--wim-radius-lg));
+        height: var(--wim-badge-dot-sm, var(--wim-spacing-md));
         padding: 0;
       }
     }

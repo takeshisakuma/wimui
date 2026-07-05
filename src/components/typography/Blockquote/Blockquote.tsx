@@ -2,12 +2,12 @@ import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./blockquote.module.scss";
-import { ComponentSize, WimColor } from "../../../types/tokens";
+import { ComponentSizeBasic, WimColor } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 
 export interface BlockquoteProps extends Omit<React.BlockquoteHTMLAttributes<HTMLQuoteElement>, "cite" | "content" | "color"> {
   asChild?: boolean;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   color?: WimColor;
   content?: React.ReactNode;
   cite?: React.ReactNode;

@@ -39,6 +39,7 @@
     }
 
     &.radiusLg {
+      // radius="lg" prop の値スケール指定に対応（役割エイリアス対象外: RULES.md 参照）
       overflow: hidden;
       border-radius: var(--wim-radius-lg);
     }
@@ -49,7 +50,7 @@
     }
 
     &.shadow {
-      box-shadow: var(--wim-shadow-md);
+      box-shadow: var(--wim-shadow-raised);
       transition: box-shadow var(--wim-duration-ultra-slow) var(--wim-easing-standard);
 
       &.loading {

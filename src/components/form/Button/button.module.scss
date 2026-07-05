@@ -137,7 +137,7 @@
 
     &:hover:not(:disabled) {
       background-color: oklch(from var(--solid-bg) calc(l * 0.9) c h);
-      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-lg)), var(--wim-inner-highlight);
+      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-lifted)), var(--wim-inner-highlight);
       transform: translateY(var(--wim-lift-md)) translateZ(0);
       transition:
         box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
@@ -180,7 +180,7 @@
     }
 
     &:hover:not(:disabled) {
-      box-shadow: var(--wim-shadow-md);
+      box-shadow: var(--wim-shadow-raised);
       transform: translateY(var(--wim-lift-sm)) translateZ(0);
       transition:
         box-shadow var(--wim-duration-fast) var(--wim-easing-standard),

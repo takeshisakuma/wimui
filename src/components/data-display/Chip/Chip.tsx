@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { mergeRefs } from "../../_internal/mergeRefs";
-import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSizeBasic, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./chip.module.scss";
 import { CloseIcon } from "@/icon";
 
@@ -34,7 +34,7 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   /** 削除ボタンのアクセシビリティラベル */
   deleteAriaLabel?: string;
   /** 追加のクラス名 */

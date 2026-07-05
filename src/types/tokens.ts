@@ -13,10 +13,29 @@ export type ComponentSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "
 /**
  * Basic size values for components.
  * A deliberate subset of ComponentSize for components that only
- * provide styles for the three core sizes (AgentStatus, Kbd,
- * KeyboardShortcuts, Leaderboard).
+ * provide styles for the three core sizes (Button, Avatar, Chip,
+ * Tag, Link, Switch など大多数のコンポーネント).
  */
 export type ComponentSizeBasic = Extract<ComponentSize, "sm" | "md" | "lg">;
+
+/**
+ * Extended size values for components that additionally provide
+ * an "xl" style (Loader, Spinner).
+ */
+export type ComponentSizeExtended = Extract<ComponentSize, "sm" | "md" | "lg" | "xl">;
+
+/**
+ * Size values for text-scale components that provide styles
+ * from "xs" to "xl" (Text, Span).
+ */
+export type ComponentSizeText = Extract<ComponentSize, "xs" | "sm" | "md" | "lg" | "xl">;
+
+/**
+ * Radius scale values implemented by media components (Image, Video, Audio).
+ * A deliberate subset of WimRadiusKey — only these keys have corresponding
+ * SCSS classes (.radiusSm / .radiusMd / .radiusLg / .radiusFull).
+ */
+export type MediaRadius = "none" | "sm" | "md" | "lg" | "full";
 
 /**
  * Standard width values for form field components.

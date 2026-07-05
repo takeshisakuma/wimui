@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { Icon } from "../Icon/Icon";
-import type { ComponentSize, WimRadiusKey } from "../../../types/tokens";
+import type { ComponentSize, MediaRadius } from "../../../types/tokens";
 import styles from "./image.module.scss";
 import { ImageIcon } from "@/icon";
 
@@ -65,7 +65,7 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
   width?: string | number;
   height?: string | number;
   /** 角丸のサイズ */
-  radius?: WimRadiusKey | "none";
+  radius?: MediaRadius;
   /** シャドウ（影）を表示するか */
   shadow?: boolean;
   /** 枠線を表示するか */

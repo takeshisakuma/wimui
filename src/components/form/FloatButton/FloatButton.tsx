@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./float-button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, ButtonIntent } from "../../../types/tokens";
+import { ComponentSizeBasic, ButtonIntent } from "../../../types/tokens";
 
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -25,7 +25,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   /** Shape of the button */
   shape?: "circle" | "square";
   /** Size of the button */
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   /** Label text for extended FAB */
   label?: React.ReactNode;
   /** Whether to shrink the extended FAB (hide label) */

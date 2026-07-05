@@ -1,9 +1,9 @@
 /* Exception: Geometric Harmony — ハンバーガーアイコンの各バーの寸法・間隔は幾何学的整合性のため px 固定 */
-$hamburger-layer-width: 32px !default;
-$hamburger-layer-height: 2px !default;
-$hamburger-layer-spacing: 6px !default;
+$hamburger-layer-width: 32px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
+$hamburger-layer-height: 2px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
+$hamburger-layer-spacing: 6px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
 $hamburger-layer-color: var(--wim-color-text-primary) !default;
-$hamburger-layer-border-radius: 4px !default;
+$hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
 
 @layer component {
   .root {

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import { PlusIcon } from "../../../icon";
 import styles from "./reaction.module.scss";
 
@@ -23,7 +23,7 @@ export type ReactionProps = React.ComponentPropsWithoutRef<"div"> & {
   /** 追加ボタンクリック時のコールバック */
   onAdd?: () => void;
   /** サイズ */
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   /** 無効化 */
   disabled?: boolean;
 };

@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
-import { WimColor, ComponentSize } from "../../../types/tokens";
+import { WimColor, ComponentSizeExtended } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./spinner.module.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
-  size?: ComponentSize;
+  size?: ComponentSizeExtended;
   color?: "currentColor" | WimColor;
   label?: string;
   labelPosition?: "right" | "bottom";

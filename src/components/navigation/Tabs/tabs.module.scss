@@ -8,6 +8,9 @@
 
 @layer component {
   .root {
+    // 画面上の色として描画されないためテーマの影響を受けない
+    --_mask-opaque: rgb(0 0 0); // Exception: mask 用アルファ色停止
+
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -31,8 +34,8 @@
         border-radius: 0;
         mask-image: linear-gradient(to bottom,
             transparent,
-            var(--wim-tabs-mask-size, var(--wim-spacing-md)) rgb(0 0 0),
-            rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
+            var(--wim-tabs-mask-size, var(--wim-spacing-md)) var(--_mask-opaque),
+            var(--_mask-opaque) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
             transparent);
 
         @include breakpoints.container-down(md) {
@@ -43,8 +46,8 @@
           border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
           mask-image: linear-gradient(to right,
               transparent,
-              var(--wim-tabs-mask-size, var(--wim-spacing-md)) rgb(0 0 0),
-              rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
+              var(--wim-tabs-mask-size, var(--wim-spacing-md)) var(--_mask-opaque),
+              var(--_mask-opaque) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
               transparent);
         }
       }
@@ -104,8 +107,8 @@
       /* スクロール可能であることを示すマスク */
       mask-image: linear-gradient(to right,
           transparent,
-          var(--wim-tabs-mask-size, var(--wim-spacing-md)) rgb(0 0 0),
-          rgb(0 0 0) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
+          var(--wim-tabs-mask-size, var(--wim-spacing-md)) var(--_mask-opaque),
+          var(--_mask-opaque) calc(100% - var(--wim-tabs-mask-size, var(--wim-spacing-md))),
           transparent);
       -ms-overflow-style: none;
 

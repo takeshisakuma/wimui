@@ -30,7 +30,7 @@
   transition: all var(--wim-transition-fast);
 
   &:hover {
-    box-shadow: var(--wim-shadow-md);
+    box-shadow: var(--wim-shadow-raised);
   }
 
   &Header {

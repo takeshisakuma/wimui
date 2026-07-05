@@ -11,10 +11,22 @@ interface DocgenProps {
 
 interface PropInfo {
   required?: boolean;
-  tsType?: { name: string; raw?: string };
+  tsType?: { name: string; raw?: string; elements?: { name: string; raw?: string }[] };
   defaultValue?: { value: string };
   description?: string;
 }
+
+/**
+ * Extract<Union, Subset> 型は選択後のユニオン（第2型引数）を表示する。
+ * `Extract<ComponentSize, "sm" | "md" | "lg">` → `"sm" | "md" | "lg"`
+ */
+const formatTsType = (tsType?: PropInfo['tsType']): string => {
+  if (!tsType) return 'any';
+  if (tsType.name === 'Extract' && tsType.elements?.[1]?.raw) {
+    return tsType.elements[1].raw;
+  }
+  return tsType.raw || tsType.name;
+};
 
 interface ComponentData {
   props?: Record<string, PropInfo>;
@@ -103,7 +115,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
             {Object.entries(props).map(([propName, propInfo]) => (
               <tr key={propName}>
                 <td><code>{propName}{propInfo.required ? '*' : ''}</code></td>
-                <td><code>{propInfo.tsType?.raw || propInfo.tsType?.name || 'any'}</code></td>
+                <td><code>{formatTsType(propInfo.tsType)}</code></td>
                 <td>{propInfo.defaultValue ? <code>{propInfo.defaultValue.value}</code> : '-'}</td>
                 <td>{propInfo.description}</td>
               </tr>

@@ -18,7 +18,7 @@
 # 多言語化（i18n）
 
 - `public/locales/` 配下のJSONファイルは1000行を超えないようにしてください。超える場合は分割してください。
-- en / ja / pt すべてのリソースファイルで漏れなく定義されているか、`npm run i18n:sync` でチェックしてください。
+- en / ja / pt すべてのリソースファイルで漏れなく定義されているか、`npm run i18n:check` でチェックしてください（`npm run i18n:sync` はチェックではなく en → ja/pt への自動翻訳・同期コマンドです）。
 - i18nキーは ネスト構造 で命名してください（例: `a11y.close`, `button.clear`, `fileupload.button`）。JSONファイルはネストオブジェクト形式で管理し、コード側は `.` 区切りのドット記法を使用します。新規キーは同じ prefix グループに追加してください。
 - ファイルの分割: 単一の JSON ファイルが 1000 行を超える前に、カテゴリー単位（`form.json`, `data-display.json` 等）でファイルを分割してください。新しいファイルを追加した場合は `stories/i18nConstants.ts` に自動で反映されます。
 - ドキュメントの自動化（Docgen）: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）、テスト実行方法は、Vite プラグインによって `src/data/docgen_index.json` およびカテゴリ別の `docgen_<category>.json` へ自動的に分割抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、見出し（H2）を含めてこれらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
@@ -52,16 +52,22 @@
   - 無効化には `disabled` prop（HTML ネイティブ属性）のみを使用してください。 `status="disabled"` や `state="disabled"` のような形でインタラクション状態を `status` / `state` に混在させないでください。
   - `intent` prop は視覚・意味的状態のみを表します。 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
     - 例外（Resultコンポーネント）: 意味的な状態（success, error等）は `intent` プロパティ、HTTPステータスコード（404, 500等）は `status` プロパティとして使い分けます。
-  - `size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"` に統一してください。 レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
+  - `size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"`（`ComponentSizeBasic`）に統一してください。 レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。タイポグラフィ・アイコンなど広いスケールが必要な場合のみ、下記の拡張サイズ型（`ComponentSizeExtended` / `ComponentSizeText` / `ComponentSize`）を使用してください。**SCSS にスタイルを実装していないサイズ値を型に含めないでください**（Docgen 経由で Props 表に「指定できるが何も起きない値」が公開されてしまいます）。
   - ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。現在、以下のコンポーネントで実装済みです。
     - Typography: Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote
     - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet
-    - Navigation: Link, CommandPalette
-    - Form: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker
-    - Layout: Box, Flex, Stack, Group
-    - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban
+    - Navigation: Link, CommandPalette, Breadcrumb, Stepper
+    - Form: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, SwitchGroup
+    - Layout: Box, Flex, Stack, Group, Grid
+    - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap
+    - Media: Lightbox
+    - このリストは `scripts/check-aschild.js` の必須リスト（`requiredComponents`）と同期しています。実装を追加・削除した場合は両方を更新してください。現状の実装一覧は `node scripts/check-aschild.js --list` で確認できます。
+    - 注意: チェッカーが検出できるのは「リストにあるのに実装がない」ケースのみです。逆方向（実装したのにリストへ追加し忘れた）は自動検出されないため、新規に `asChild` を実装した際は必ず `--list` の出力と本リストを突き合わせてください。
   - 共通 prop 型は `src/types/tokens.ts` の型を使用してください。 インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
-    - `ComponentSize` — `"sm" | "md" | "lg"`（`size` prop 共通）
+    - `ComponentSizeBasic` — `"sm" | "md" | "lg"`（`size` prop の標準。大多数のコンポーネントはこれを使用）
+    - `ComponentSizeExtended` — `"sm" | "md" | "lg" | "xl"`（Loader・Spinner・LoadingOverlay）
+    - `ComponentSizeText` — `"xs" | "sm" | "md" | "lg" | "xl"`（Text・Span）
+    - `ComponentSize` — `"xs"`〜`"5xl"` の9値フルスケール（Icon など全サイズを実装しているコンポーネント専用）
     - `ButtonVariant` — `"solid" | "outline" | "ghost"`（Button・ButtonGroup・LinkButton）
     - `ButtonIntent` — `"default" | "destructive" | "positive"`（Button の意味的意図）
     - `FieldVariant` — `"outline" | "ghost"`（Input・Textarea・DatePicker など）
@@ -158,6 +164,8 @@
 
 `border-radius` には値ベースのトークン（`--wim-radius-md/lg/xl`）を直接使用しないでください。役割ベースのエイリアストークンを使用してください。`--wim-radius-sm` と `--wim-radius-full` はサブ要素や円形など意味的な代替トークンがないケースに限り引き続き使用できます。
 
+例外: コンポーネントが `radius` prop で値スケールのキー（`"sm" | "md" | "lg" | "full"` 等）をそのまま受け取る設計の場合（Image・Video・Audio の `radius` prop）、prop キーに対応するクラス内では値トークン（`--wim-radius-lg` 等）の参照を許容します。prop の契約（キー名 = 値スケール）を役割エイリアスに読み替えると API と実装が食い違うためです。該当箇所にはその旨のコメントを残してください。
+
 | トークン | 値 | 対象 |
 |---|---|---|
 | `--wim-radius-component` | 4px | Button, Input, Tag, Badge など小〜中要素 |
@@ -184,8 +192,10 @@ R_outer ≈ R_inner + S
 |---|---|---|
 | `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素 |
 | `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer, Notification, Snackbar など重いモーダル |
+| `--wim-shadow-raised` | `shadow-md` | Terminal, Calendar, メディアフレームなど静的に浮き上がって見せる面 |
+| `--wim-shadow-lifted` | `shadow-lg` | Card / Button の hover、ドラッグ中の要素など強く持ち上がった状態 |
 
-`--wim-shadow-xs / sm` はボタンやカードの hover/active など UI インタラクション的なシャドウに限り直接使用できます。
+`--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションのシャドウに限り直接使用できます（強い持ち上がりを表現する場合は `--wim-shadow-lifted` を使用してください）。
 
 - `z-index` の使用ルール： z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
   - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）
@@ -264,10 +274,10 @@ R_outer ≈ R_inner + S
   // 子要素（Button, Input など）側の定義
   .root {
     border-radius:
-      var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
-      var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
-      var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
-      var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
+      var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
+      var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
+      var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))
+      var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-component)));
   }
 
   // 親要素（InputGroup など）側の定義
@@ -281,41 +291,28 @@ R_outer ≈ R_inner + S
 
 ### 方針
 
-コンポーネントの「使われる側」と「使う側」で @layer の有無を分けることで、`!important` なしに自然な上書き関係を実現しています。
+コンポーネントの SCSS は原則としてすべて `@layer component` でラップします（`npm run scaffold` が自動適用します）。そのうえで、CSS カスケードの「非レイヤーのルールは @layer 内のルールより常に優先される」という性質を利用し、**子コンポーネントのスタイルを上書きする必要があるルールに限り**非レイヤーに置くことで、`!important` なしに自然な上書き関係を実現しています。
 
-| コンポーネントの種類 | @layer の扱い |
-|---|---|
-| 他コンポーネントに使われる側（Button・Icon・InputBase など `src/components/_internal/` 含む） | `@layer component` でラップする |
-| 他コンポーネントを使う側（Snackbar・List・Rating など） | 非レイヤーのまま |
+```scss
+// Button のスタイルは @layer component 内
+// Snackbar のアクションボタン上書きルールだけを非レイヤーに置く → !important 不要で勝つ
+@layer component {
+  .wrapper { /* Snackbar 自身のスタイル */ }
+}
 
-### 理由
-
-CSS カスケードでは「非レイヤーのルール」が「@layer 内のルール」よりも常に優先されます。この性質を利用することで、使う側のコンポーネントは `!important` なしに使われる側のスタイルを上書きできます。
-
-// Button は @layer component 内
-// Snackbar は非レイヤー → Snackbar の Button 上書きが !important 不要で機能する
-.wim-snackbar .wim-button {
-  color: #fff; // !important 不要
+/* Unlayered: beats @layer component button rules */
+.actionButton {
+  color: var(--wim-snackbar-action);
 }
 ```
 
-全コンポーネントを同じ `@layer component` に入れると、ソース順・特異性による衝突が再発するため推奨しません。
+### 子コンポーネントを上書きする場合の優先順位
 
-### 新規コンポーネント作成時の判断フロー
+1. **CSS カスタムプロパティ**: 子が公開している変数（`--wim-field-radius-*` 等）を親から設定する。レイヤーの有無に関係なく機能するため最優先で検討する（例: ButtonGroup の角丸リセット）。
+2. **ハイブリッド（推奨）**: ファイルのベースは `@layer component` に置いたまま、上書きが必要なルールだけを非レイヤーのブロックに出す（例: Snackbar の `.actionButton`。非レイヤー部分には `/* Unlayered: ... */` のように理由をコメントする）。
+3. **ファイル全体を非レイヤー**: 上書きルールが大半を占める複合コンポーネント（ButtonGroup・Transfer・TagInput・QueryBuilder・DataGrid など）や、インラインスタイル・ユーティリティと連携するレイアウトプリミティブ（Box・Flex・Center・Divider など）に限り、ファイル全体を非レイヤーのままにできます。
 
-新しいコンポーネントの SCSS を書く際は、以下の問いで判断してください。
-
-```
-Q1. このコンポーネントは他のコンポーネントから内部に組み込まれて使われることがある？
-    （例: Button をラップした複合コンポーネント内で Button のスタイルを上書きしたい）
-    → Yes: 非レイヤーにする
-    → No: 次へ
-
-Q2. このコンポーネント自身が他の多くのコンポーネントから利用される汎用部品？
-    （例: アイコン・入力枠・リストアイテムのベースなど）
-    → Yes: @layer component にする
-    → No: どちらでもよいが、非レイヤーを推奨（将来の上書しやすさを確保）
-```
+全コンポーネントを同じ `@layer component` に入れたまま上書き合戦をすると、ソース順・特異性による衝突が再発するため、上記のいずれかの手段を使ってください。
 
 ### `!important` の使用基準との関係
 
@@ -332,11 +329,11 @@ Q2. このコンポーネント自身が他の多くのコンポーネントか�
 
 ## ファイル・エクスポート
 
-- コンポーネントは `src/components/コンポーネント名/` ディレクトリに配置してください。
+- コンポーネントは `src/components/<カテゴリ>/<コンポーネント名>/` ディレクトリに配置してください（例: `src/components/form/Button/`）。カテゴリは `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` のいずれかです。
 - ディレクトリ名・コンポーネントファイル名はPascalCaseにしてください（例: `Button/Button.tsx`）。
-- SCSSファイルはkebab-caseにしてください（例: `button.scss`）。
-- SCSSファイルは必ずコンポーネントのTSXファイル内でインポートしてください（例: `import "./button.scss"`）。インポートがないとブラウザでスタイルが一切適用されません。テストやlintでは検出できないため注意してください。
-- 新規コンポーネントは `src/index.ts` にexportを追加してください。
+- SCSSファイルはkebab-caseの CSS Modules にしてください（例: `button.module.scss`）。
+- SCSSファイルは必ずコンポーネントのTSXファイル内でインポートしてください（例: `import styles from "./button.module.scss"`）。インポートがないとブラウザでスタイルが一切適用されません。テストやlintでは検出できないため注意してください。
+- 新規コンポーネントは `src/<カテゴリ>.ts`（例: `src/form.ts`）にexportを追加してください。`src/index.ts` は各カテゴリファイルを re-export しているため、直接編集は不要です。
 
 ## テスト
 
@@ -411,13 +408,13 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 
 | チェック項目 | コマンド | 目的 |
 |---|---|---|
-| MDX 全数監査 | `npm run audit-mdx` | 必須 15 セクションが揃っているか確認。 |
-| ポリモーフィック監査 | `node scripts/check-aschild.js` | `asChild` が正しく実装されているか確認。 |
+| MDX 全数監査 | `npm run audit-mdx` | 必須 15 セクションが揃っているか、Markdown 記法のリスト・表（`<ul>`/`<table>` を使うべき箇所）がないか確認。 |
+| ポリモーフィック監査 | `npm run check:aschild` | `asChild` の宣言が正しく配線され、実装済みリスト（本ファイル）と同期しているか確認。 |
 | i18n 整合性 | `npm run i18n:check` | 3言語すべてにキーが存在するか確認。 |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | 基本的な構文エラーがないか確認。 |
-| トークン漏れチェック | (目視または `Docgen`) | ハードコードされた色やサイズがないか。 |
+| トークン漏れチェック | `npm run audit:hardcoded` | ハードコードされた色（即エラー）や未注記の px 直書き（ラチェット方式）がないか。詳細は `docs/TOKENIZATION_EXCEPTIONS.md`。 |
 
-### 1. Storybook 階層ルール (Sidebar Hierarchy)
+## 2. Storybook 階層ルール (Sidebar Hierarchy)
 
 コンポーネント数が増大しても目的のパーツを見つけやすくするため、以下の階層構造に従ってください。
 

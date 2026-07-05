@@ -5,7 +5,7 @@ import classNames from "classnames";
 import styles from "./breadcrumb.module.scss";
 import { Link } from "../../navigation/Link/Link";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronRightIcon } from "@/icon";
 
 type BreadcrumbItem = {
@@ -17,7 +17,7 @@ type BreadcrumbItem = {
 type BreadcrumbProps = {
   items: BreadcrumbItem[];
   separator?: React.ReactNode;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   className?: string;
   ariaLabel?: string;
   asChild?: boolean;

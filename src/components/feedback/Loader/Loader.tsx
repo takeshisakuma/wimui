@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { WimColor, ComponentSize } from "../../../types/tokens";
+import { WimColor, ComponentSizeExtended } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./loader.module.scss";
 
@@ -14,7 +14,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * ローダーのサイズ。
    */
-  size?: ComponentSize;
+  size?: ComponentSizeExtended;
   /**
    * ローダーの色。
    */

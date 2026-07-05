@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
+import type { WimColor, ComponentSizeBasic, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { LoadingIcon } from "@/icon";
@@ -17,7 +17,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   asChild?: boolean;
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   variant?: ButtonVariant;
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
   intent?: ButtonIntent;

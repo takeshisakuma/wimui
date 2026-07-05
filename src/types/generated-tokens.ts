@@ -108,6 +108,9 @@ export type WimColorKey =
   | "surface-inverted"
   | "surface-variant"
   | "surface-variant-alpha"
+  | "terminal-traffic-green"
+  | "terminal-traffic-red"
+  | "terminal-traffic-yellow"
   | "text-accent"
   | "text-disabled"
   | "text-error"
@@ -179,10 +182,12 @@ export type WimShadowKey =
   | "focus-ring"
   | "inset"
   | "lg"
+  | "lifted"
   | "md"
   | "modal"
   | "none"
   | "overlay"
+  | "raised"
   | "sm"
   | "xs";
 

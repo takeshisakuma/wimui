@@ -24,7 +24,7 @@
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
       border-radius: var(--wim-radius-full);
-      box-shadow: var(--wim-shadow-lg);
+      box-shadow: var(--wim-shadow-lifted);
       transition:
         background-color var(--wim-transition-base),
         transform var(--wim-transition-base);

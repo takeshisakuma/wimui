@@ -31,7 +31,7 @@
 
     &.glass {
       background-color: var(--wim-color-surface-glass);
-      backdrop-filter: blur(var(--wim-radius-lg));
+      backdrop-filter: blur(var(--wim-blur-glass));
     }
 
     &.bordered {

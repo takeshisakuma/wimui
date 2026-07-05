@@ -18,10 +18,6 @@ export type CounterTextareaProps = TextareaProps & {
    * @default "bottom"
    */
   counterPosition?: "bottom" | "overlay";
-  /**
-   * Whether to render as a child component.
-   */
-  asChild?: boolean;
 };
 
 /**

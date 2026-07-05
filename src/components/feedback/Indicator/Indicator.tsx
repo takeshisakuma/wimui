@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { WimColor, ComponentSize } from "../../../types/tokens";
+import { WimColor, ComponentSizeBasic } from "../../../types/tokens";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./indicator.module.scss";
@@ -8,7 +8,7 @@ import styles from "./indicator.module.scss";
 type IndicatorProps = React.HTMLAttributes<HTMLSpanElement> & {
   children?: React.ReactNode;
   color?: WimColor;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
   pulse?: boolean;
   inline?: boolean;

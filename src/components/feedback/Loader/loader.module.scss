@@ -84,7 +84,7 @@
         gap: var(--wim-spacing-lg);
 
         .item {
-          width: 12px;
+          width: 12px; // Exception: Geometric Harmony — サイズ間比率を維持するバー/ドット寸法
           height: 48px; /* Exception: Geometric Harmony — bars アニメーションの xl サイズ比率 */
         }
       }
@@ -141,7 +141,7 @@
         gap: var(--wim-spacing-xl);
 
         .item {
-          width: 24px;
+          width: 24px; // Exception: Geometric Harmony — サイズ間比率を維持するバー/ドット寸法
           height: 24px; /* Exception: Geometric Harmony — dots アニメーションの xl ドット直径（lg の 1.5 倍） */
         }
       }
@@ -183,8 +183,8 @@
       }
 
       &.xl {
-        width: 64px;
-        height: 64px;
+        width: 64px; // Exception: Geometric Harmony — サイズ間比率を維持するバー/ドット寸法
+        height: 64px; // Exception: Geometric Harmony — サイズ間比率を維持するバー/ドット寸法
       }
     }
   }
@@ -211,7 +211,7 @@
 
     50% {
       opacity: 1;
-      transform: translateY(-4px);
+      transform: translateY(-4px); // Exception: Interaction Physics — バウンスの変位量
     }
   }
 

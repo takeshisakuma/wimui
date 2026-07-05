@@ -29,6 +29,10 @@ const checks = [
   {
     name: "Storybook Hierarchy Depth",
     command: "node scripts/check_hierarchy.js",
+  },
+  {
+    name: "Hardcoded Values (colors / px ratchet)",
+    command: "node scripts/check-hardcoded-values.js",
   }
 ];
 

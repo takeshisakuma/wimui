@@ -76,7 +76,7 @@ export const Overview: StoryObj = {
         {/* Image Radius Rules */}
         <ComparisonGrid title={t("audit:media_image_radius_check")}>
           <Stack direction="row" gap="lg" wrap>
-            {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+            {(["none", "sm", "md", "lg", "full"] as const).map((r) => (
               <ComponentGroup key={r} label={`radius: ${r}`} width="fit-content">
                 <Image 
                   src={sampleImages[0]} 

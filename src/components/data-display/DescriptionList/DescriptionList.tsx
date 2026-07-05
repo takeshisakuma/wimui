@@ -1,13 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./description-list.module.scss";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 
 type DescriptionListProps = {
   children: React.ReactNode;
   className?: string;
   layout?: "horizontal" | "vertical" | "compact";
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   border?: boolean;
   bordered?: boolean;
 };

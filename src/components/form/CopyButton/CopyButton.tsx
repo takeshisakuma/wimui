@@ -3,11 +3,11 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { isDev } from "@/utilities/dev-utils";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 
 type CopyButtonProps = {
   value: string;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   className?: string;
   "aria-label"?: string;
   copyLabel?: string;

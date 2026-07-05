@@ -4,7 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./toggle-group.module.scss";
 
 export type Option = {
@@ -20,7 +20,7 @@ type ToggleGroupProps = {
   defaultValue?: string | string[];
   onChange?: (value: string | string[]) => void;
   selectionMode?: "single" | "multiple";
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   fullWidth?: boolean;
   className?: string;
   disabled?: boolean;

@@ -1,5 +1,5 @@
 import React from "react";
-import type { WimRadiusKey } from "../../../types/tokens";
+import type { MediaRadius } from "../../../types/tokens";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
@@ -19,7 +19,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   muted?: boolean;
   controls?: boolean;
   poster?: string;
-  radius?: WimRadiusKey | "none";
+  radius?: MediaRadius;
   shadow?: boolean;
   border?: boolean;
   fit?: "contain" | "cover" | "fill" | "none" | "scale-down";

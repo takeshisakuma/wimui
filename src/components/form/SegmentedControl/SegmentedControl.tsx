@@ -4,7 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 import localStyles from "./segmented-control.module.scss";
 
 type Option = {
@@ -17,7 +17,7 @@ type SegmentedControlProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   fullWidth?: boolean;
   className?: string;
   /**

@@ -10,9 +10,6 @@ const meta: Meta<typeof CounterTextarea> = {
   parameters: {
     layout: "padded",
   },
-  argTypes: {
-    asChild: { control: "boolean" },
-  },
 };
 
 export default meta;

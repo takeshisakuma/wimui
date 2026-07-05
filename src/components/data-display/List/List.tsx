@@ -4,17 +4,17 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./list.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSizeBasic } from "../../../types/tokens";
 
 type ListContextType = {
-  size: ComponentSize;
+  size: ComponentSizeBasic;
 };
 
 const ListContext = createContext<ListContextType>({ size: "md" });
 
 export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   asChild?: boolean;
-  size?: ComponentSize;
+  size?: ComponentSizeBasic;
   spacing?: "tight" | "normal" | "loose";
   bordered?: boolean;
   fullWidth?: boolean;
