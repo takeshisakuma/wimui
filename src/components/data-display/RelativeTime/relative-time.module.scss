@@ -1,0 +1,10 @@
+@layer component {
+  .root {
+    display: inline;
+    font: inherit;
+
+    // ライブ更新で数値が変わっても横幅がガタつかないよう等幅数字にする
+    font-variant-numeric: tabular-nums;
+    color: inherit;
+  }
+}

@@ -393,6 +393,12 @@
         "descKey": "doc.leaderboard_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "RelativeTime",
+        "descKey": "doc.relativeTime_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

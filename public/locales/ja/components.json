@@ -100,6 +100,8 @@
     "indicator_usage": "オンライン状態、準備完了。",
     "qrcode_label": "外部連携・スキャン誘導",
     "qrcode_usage": "URL共有、認証。",
+    "relativetime_label": "時刻の新しさの提示",
+    "relativetime_usage": "フィード・チャット・テーブルでの「3分前」表示。",
     "watermark_label": "著作権や情報の保護",
     "watermark_usage": "社外秘、プレビュー画像。"
   },
@@ -179,7 +181,8 @@
     "text_desc": "適切な行間と余白を持ち、長い文章の可読性を確保する。",
     "thoughtProcess_desc": "AIの推論過程やステップごとの処理状態を可視化するコンポーネント。",
     "title_desc": "視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。",
-    "visual_guideline_title": "視覚的ガイドライン"
+    "visual_guideline_title": "視覚的ガイドライン",
+    "relativeTime_desc": "タイムスタンプを「3分前」「昨日」のようなロケール対応の相対表現で表示し、時間経過に合わせて自動更新します。"
   },
   "effects": {
     "common_vars": "共通変数"

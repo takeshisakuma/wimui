@@ -100,6 +100,8 @@
     "indicator_usage": "Status online, estado pronto.",
     "qrcode_label": "Integração externa, orientação de digitalização",
     "qrcode_usage": "Compartilhamento de URL, autenticação.",
+    "relativetime_label": "Atualidade de um momento no tempo",
+    "relativetime_usage": "\"há 3 minutos\" em feeds, chats e tabelas.",
     "watermark_label": "Proteção de direitos autorais ou informações",
     "watermark_usage": "Confidencialidade, imagens de prévia."
   },
@@ -179,7 +181,8 @@
     "text_desc": "Tem entrelinha e espaçamento apropriados para garantir a legibilidade de textos longos.",
     "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo.",
     "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
-    "visual_guideline_title": "Diretrizes Visuais"
+    "visual_guideline_title": "Diretrizes Visuais",
+    "relativeTime_desc": "Exibe um timestamp como uma frase relativa localizada (\"há 3 minutos\", \"ontem\") que se atualiza automaticamente com o passar do tempo."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

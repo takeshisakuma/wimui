@@ -34,3 +34,4 @@ export * from "./components/data-display/CalendarHeatmap/CalendarHeatmap";
 export * from "./components/data-display/JsonDiffViewer/JsonDiffViewer";
 export * from "./components/data-display/Reaction/Reaction";
 export * from "./components/data-display/Leaderboard/Leaderboard";
+export * from "./components/data-display/RelativeTime/RelativeTime";

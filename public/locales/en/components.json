@@ -105,7 +105,8 @@
     "leaderboard_desc": "Display a ranked list of entries with scores and medal highlights for the top three positions.",
     "gallery_desc": "Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.",
     "dashboard_desc": "Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.",
-    "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs."
+    "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",
+    "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes."
   },
   "cat": {
     "ai": "AI"
@@ -174,6 +175,8 @@
     "indicator_usage": "Online status, ready state.",
     "qrcode_label": "External integration, scan guidance",
     "qrcode_usage": "URL sharing, authentication.",
+    "relativetime_label": "Freshness of a point in time",
+    "relativetime_usage": "\"3 minutes ago\" in feeds, chats, tables.",
     "watermark_label": "Copyright or info protection",
     "watermark_usage": "Confidentiality, preview images."
   },
