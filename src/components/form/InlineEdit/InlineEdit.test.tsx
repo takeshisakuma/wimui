@@ -87,4 +87,114 @@ describe("InlineEdit", () => {
     expect(screen.getByText("Update1")).toBeInTheDocument();
   });
 
+  it("calls onEdit and onChange", async () => {
+    const user = userEvent.setup();
+    const handleEdit = vi.fn();
+    const handleChange = vi.fn();
+    render(<InlineEdit defaultValue="Text" onEdit={handleEdit} onChange={handleChange} />);
+
+    await user.click(screen.getByText("Text"));
+    expect(handleEdit).toHaveBeenCalledTimes(1);
+
+    await user.type(screen.getByRole("textbox"), "!");
+    expect(handleChange).toHaveBeenCalledWith("Text!");
+  });
+
+  it("enters edit mode with Enter and Space keys on the preview", async () => {
+    const user = userEvent.setup();
+    render(<InlineEdit defaultValue="Text" />);
+
+    const preview = screen.getByRole("button");
+    preview.focus();
+    await user.keyboard("{Enter}");
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+
+    screen.getByRole("button").focus();
+    await user.keyboard(" ");
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("does not enter edit mode when disabled", async () => {
+    const user = userEvent.setup();
+    const handleEdit = vi.fn();
+    render(<InlineEdit defaultValue="Text" disabled onEdit={handleEdit} />);
+
+    const preview = screen.getByText("Text").closest("[role='button']") as HTMLElement;
+    expect(preview).toHaveAttribute("aria-disabled", "true");
+    expect(preview).toHaveAttribute("tabindex", "-1");
+
+    await user.click(preview);
+    expect(handleEdit).not.toHaveBeenCalled();
+    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+  });
+
+  it("ignores save and cancel while disabled", async () => {
+    const user = userEvent.setup();
+    const handleSave = vi.fn();
+    const handleCancel = vi.fn();
+    const { rerender } = render(
+      <InlineEdit defaultValue="Text" onSave={handleSave} onCancel={handleCancel} />
+    );
+
+    // 編集開始後に disabled へ切り替え、保存・キャンセルが無効になることを確認
+    await user.click(screen.getByText("Text"));
+    rerender(
+      <InlineEdit defaultValue="Text" disabled onSave={handleSave} onCancel={handleCancel} />
+    );
+
+    await user.click(screen.getByLabelText("action.save"));
+    expect(handleSave).not.toHaveBeenCalled();
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+
+    await user.click(screen.getByLabelText("action.cancel"));
+    expect(handleCancel).not.toHaveBeenCalled();
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("shows the placeholder when the value is empty", () => {
+    render(<InlineEdit placeholder="Click to edit" />);
+    expect(screen.getByText("Click to edit")).toBeInTheDocument();
+  });
+
+  it("renders a non-breaking space when value and placeholder are empty", () => {
+    render(<InlineEdit />);
+    expect(screen.getByRole("button").textContent).toContain(" ");
+  });
+
+  it("works in controlled mode without mutating the displayed value", async () => {
+    const user = userEvent.setup();
+    const handleChange = vi.fn();
+    const handleSave = vi.fn();
+    render(<InlineEdit value="Fixed" onChange={handleChange} onSave={handleSave} />);
+
+    await user.click(screen.getByText("Fixed"));
+    const input = screen.getByRole("textbox");
+    await user.type(input, "X");
+
+    // controlled のため表示値は親の value のまま
+    expect(input).toHaveValue("Fixed");
+    expect(handleChange).toHaveBeenCalledWith("FixedX");
+
+    await user.click(screen.getByLabelText("action.save"));
+    expect(handleSave).toHaveBeenCalledWith("Fixed");
+    expect(screen.getByText("Fixed")).toBeInTheDocument();
+  });
+
+  it("renders a label via FieldTemplate", () => {
+    render(<InlineEdit defaultValue="Text" label="Nickname" />);
+    expect(screen.getByText("Nickname")).toBeInTheDocument();
+  });
+
+  it("renders in fullWidth mode in both preview and edit states", async () => {
+    const user = userEvent.setup();
+    render(<InlineEdit defaultValue="Text" fullWidth />);
+    expect(screen.getByRole("button")).toBeInTheDocument();
+
+    await user.click(screen.getByText("Text"));
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
 });

@@ -96,12 +96,75 @@ describe("useTableSort", () => {
 
   it("provides getSortDirection helper", () => {
     const { result } = renderHook(() => useTableSort(data));
-    
+
     act(() => {
       result.current.handleSort("name");
     });
-    
+
     expect(result.current.getSortDirection("name")).toBe("asc");
     expect(result.current.getSortDirection("price")).toBe("none");
+  });
+
+  it("respects initialSort", () => {
+    const { result } = renderHook(() =>
+      useTableSort(data, { initialSort: { key: "price", direction: "asc" } }),
+    );
+
+    expect(result.current.sortConfig).toEqual({ key: "price", direction: "asc" });
+    expect(result.current.sortedData[0].price).toBe(50);
+  });
+
+  it("returns original order after the third click (none)", () => {
+    const { result } = renderHook(() => useTableSort(data));
+
+    act(() => result.current.handleSort("name"));
+    act(() => result.current.handleSort("name"));
+    act(() => result.current.handleSort("name"));
+
+    expect(result.current.sortConfig.direction).toBe("none");
+    expect(result.current.sortedData).toEqual(data);
+  });
+
+  it("sorts numbers decreasingly", () => {
+    const { result } = renderHook(() => useTableSort(data));
+
+    act(() => result.current.handleSort("price"));
+    act(() => result.current.handleSort("price"));
+
+    expect(result.current.sortConfig.direction).toBe("desc");
+    expect(result.current.sortedData[0].price).toBe(100);
+    expect(result.current.sortedData[2].price).toBe(50);
+  });
+
+  it("treats rows as equal when both values are null", () => {
+    const nullRows = [
+      { id: 1, tag: null },
+      { id: 2, tag: null },
+      { id: 3, tag: "a" },
+    ];
+    const { result } = renderHook(() => useTableSort(nullRows));
+
+    act(() => result.current.handleSort("tag"));
+
+    expect(result.current.sortedData[0].tag).toBe("a");
+    expect(result.current.sortedData[1].tag).toBeNull();
+    expect(result.current.sortedData[2].tag).toBeNull();
+  });
+
+  it("falls back to default comparison for non-string non-number values", () => {
+    const dateRows = [
+      { id: 1, created: new Date("2026-03-01") },
+      { id: 2, created: new Date("2026-01-01") },
+      { id: 3, created: new Date("2026-01-01") },
+    ];
+    const { result } = renderHook(() => useTableSort(dateRows));
+
+    act(() => result.current.handleSort("created"));
+    expect(result.current.sortedData[0].id).toBe(2);
+    expect(result.current.sortedData[2].id).toBe(1);
+
+    act(() => result.current.handleSort("created"));
+    expect(result.current.sortConfig.direction).toBe("desc");
+    expect(result.current.sortedData[0].id).toBe(1);
   });
 });
