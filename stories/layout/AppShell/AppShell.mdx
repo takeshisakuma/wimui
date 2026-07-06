@@ -244,6 +244,43 @@ import { Docgen } from "../../Docgen";
 </AppShell>
 ```
 
+## <T k="doc.appshell_mobile_drawer_title" />
+
+<p><T k="doc.appshell_mobile_drawer_desc" /></p>
+
+```tsx
+function AppLayout() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <AppShell
+      header={
+        <Header bordered>
+          <Header.Section align="start">
+            {/* Visible only at or below the md breakpoint */}
+            <HamburgerMenu
+              visibleBelow="md"
+              open={mobileOpen}
+              onClick={() => setMobileOpen((o) => !o)}
+            />
+          </Header.Section>
+        </Header>
+      }
+      sidebar={
+        <Sidebar
+          mobileOpen={mobileOpen}
+          onOverlayClick={() => setMobileOpen(false)}
+        >
+          <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
+        </Sidebar>
+      }
+    >
+      {/* Main content */}
+    </AppShell>
+  );
+}
+```
+
 ## <T k="doc.accessibility" />
 
 <ul>
@@ -282,6 +319,8 @@ import { Docgen } from "../../Docgen";
     </tr>
   </tbody>
 </table>
+
+<p><T k="doc.appshell_resp_fallback_note" /></p>
 
 <Docgen componentName="AppShell" section="props" />
 

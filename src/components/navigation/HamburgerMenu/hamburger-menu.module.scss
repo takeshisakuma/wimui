@@ -1,3 +1,5 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 /* Exception: Geometric Harmony — ハンバーガーアイコンの各バーの寸法・間隔は幾何学的整合性のため px 固定 */
 $hamburger-layer-width: 32px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
 $hamburger-layer-height: 2px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
@@ -121,6 +123,47 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony �
 
       .inner::after {
         top: 10px;
+      }
+    }
+
+    // Responsive visibility — down() は Sidebar のモバイルドロワー切替と同じ範囲
+    &.visibleBelowXs {
+      display: none;
+
+      @include breakpoints.down(xs) {
+        display: inline-flex;
+      }
+    }
+
+    &.visibleBelowSm {
+      display: none;
+
+      @include breakpoints.down(sm) {
+        display: inline-flex;
+      }
+    }
+
+    &.visibleBelowMd {
+      display: none;
+
+      @include breakpoints.down(md) {
+        display: inline-flex;
+      }
+    }
+
+    &.visibleBelowLg {
+      display: none;
+
+      @include breakpoints.down(lg) {
+        display: inline-flex;
+      }
+    }
+
+    &.visibleBelowXl {
+      display: none;
+
+      @include breakpoints.down(xl) {
+        display: inline-flex;
       }
     }
 

@@ -254,7 +254,7 @@
     "hamburgermenu_choice_self_when": "Quando a funcionalidade de HamburgerMenu com opções padrão é necessária.",
     "hamburgermenu_content_guideline": "Mantenha o conteúdo conciso e relevante ao propósito do componente. Siga convenções de rotulagem consistentes.",
     "hamburgermenu_design_intent": "HamburgerMenu é o padrão padrão da indústria para navegação móvel. Ele economiza espaço valioso na tela ao colocar links de navegação em uma gaveta ou sobreposição colapsável, garantindo que o conteúdo principal permaneça o foco em dispositivos pequenos.",
-    "hamburgermenu_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através da prop aria-label.",
+    "hamburgermenu_i18n_desc": "O aria-label padrão (Abrir menu / Fechar menu) é fornecido por traduções integradas e alterna conforme o estado open. Passe a prop aria-label para substituí-lo.",
     "hamburgermenu_keyboard_desc": "Tab foca o botão hambúrguer. Enter ou Espaço alterna a abertura ou fechamento do menu.",
     "hamburgermenu_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
     "hamburgermenu_scenario_1": "Cabeçalhos Móveis: Consolida links secundários em telas pequenas para manter a UI limpa.",

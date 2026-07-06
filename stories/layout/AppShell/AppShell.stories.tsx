@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { AppShell, Button, Footer, Header, Icon, Input, Sidebar, TabBar } from "wimui";
+import { AppShell, Button, Footer, HamburgerMenu, Header, Icon, Input, Sidebar, TabBar } from "wimui";
 
 
 const meta: Meta<typeof AppShell> = {
@@ -159,27 +159,12 @@ export const WithSidebar: Story = {
               align="start"
               style={{ gap: "10px", alignItems: "center", display: "flex" }}
             >
-              <style>{`
-                                .appshell-mobile-trigger {
-                                    display: none;
-                                    background: none;
-                                    border: 1px solid var(--wim-color-border);
-                                    border-radius: 4px;
-                                    cursor: pointer;
-                                    padding: 4px 8px;
-                                }
-                                @media (max-width: 768px) {
-                                    .appshell-mobile-trigger {
-                                        display: block;
-                                    }
-                                }
-                            `}</style>
-              <button
-                className="appshell-mobile-trigger"
+              <HamburgerMenu
+                size="sm"
+                visibleBelow="md"
+                open={mobileOpen}
                 onClick={() => setMobileOpen((o) => !o)}
-              >
-                {t("story.common_menu", "Menu")}
-              </button>
+              />
               <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                 {t("story.appshell_dashboard")}
               </div>

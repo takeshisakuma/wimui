@@ -132,12 +132,14 @@
 
   .sizeChanger {
     display: flex;
+    flex-shrink: 0;
     gap: var(--wim-spacing-sm);
     align-items: center;
   }
 
   .quickJumper {
     display: flex;
+    flex-shrink: 0;
     gap: var(--wim-spacing-sm);
     align-items: center;
     font-size: var(--wim-font-size-md);

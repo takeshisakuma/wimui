@@ -310,7 +310,7 @@
     "floatbutton_keyboard_desc": "Tab focuses the float button. Enter or Space activates it. When a group is open, Tab moves focus through each button in the group. Escape collapses the group.",
     "floatbutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
     "hamburgermenu_keyboard_desc": "Tab focuses the hamburger button. Enter or Space toggles the menu open or closed.",
-    "hamburgermenu_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+    "hamburgermenu_i18n_desc": "The default aria-label (Open menu / Close menu) is provided through built-in translations and switches with the open state. Pass the aria-label prop to override it.",
     "icon_keyboard_desc": "This component does not require specific keyboard interaction. Decorative icons should have aria-hidden=\"true\". Meaningful icons should have an accessible label.",
     "icon_i18n_desc": "Decorative icons use aria-hidden. For meaningful icons, pass a translated string through the aria-label prop.",
     "iconbutton_keyboard_desc": "Tab focuses the button. Enter or Space activates it. Disabled buttons are not reachable by keyboard.",

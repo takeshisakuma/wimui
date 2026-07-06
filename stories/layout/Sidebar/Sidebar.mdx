@@ -113,6 +113,30 @@ import { Sidebar } from "wimui";
 
 <Canvas of={SidebarStories.CustomWidth} />
 
+## <T k="doc.sidebar_mobile_drawer" />
+
+<p><T k="doc.sidebar_mobile_drawer_desc" /></p>
+
+```tsx
+const [mobileOpen, setMobileOpen] = useState(false);
+
+<>
+  {/* In your Header — visible only at or below the md breakpoint */}
+  <HamburgerMenu
+    visibleBelow="md"
+    open={mobileOpen}
+    onClick={() => setMobileOpen((o) => !o)}
+  />
+
+  <Sidebar
+    mobileOpen={mobileOpen}
+    onOverlayClick={() => setMobileOpen(false)}
+  >
+    <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
+  </Sidebar>
+</>
+```
+
 <Docgen componentName="Sidebar" section="props" />
 
 <Docgen componentName="Sidebar" section="tokens" />
