@@ -114,6 +114,10 @@ export const wimResources: Resource = {
       "signature": {
         "clear": "Clear"
       },
+      "spoiler": {
+        "show_more": "Show more",
+        "show_less": "Show less"
+      },
       "query": {
         "builder": {
           "rule_added": "Rule added",
@@ -418,6 +422,10 @@ export const wimResources: Resource = {
       "signature": {
         "clear": "クリア"
       },
+      "spoiler": {
+        "show_more": "もっと見る",
+        "show_less": "折りたたむ"
+      },
       "sortable_list": {
         "drag_handle_label": "ドラッグして並べ替え"
       },
@@ -674,6 +682,10 @@ export const wimResources: Resource = {
       },
       "signature": {
         "clear": "Limpar"
+      },
+      "spoiler": {
+        "show_more": "Mostrar mais",
+        "show_less": "Mostrar menos"
       },
       "sortable_list": {
         "drag_handle_label": "Arraste para reordenar"

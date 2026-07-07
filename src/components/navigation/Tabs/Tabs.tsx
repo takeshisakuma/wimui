@@ -30,9 +30,22 @@ const useTabs = () => {
 };
 
 export interface TabsProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
+  /**
+   * Value of the tab selected initially, for uncontrolled usage.
+   */
   defaultValue?: string;
+  /**
+   * Controlled value of the selected tab. Use together with onChange.
+   */
   value?: string;
+  /**
+   * Called with the value of the newly selected tab.
+   */
   onChange?: (value: string) => void;
+  /**
+   * Orientation of the tab list, affecting layout and arrow-key navigation.
+   * @default "horizontal"
+   */
   orientation?: "horizontal" | "vertical";
 }
 

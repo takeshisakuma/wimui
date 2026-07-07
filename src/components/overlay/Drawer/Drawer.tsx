@@ -27,12 +27,37 @@ export const useDrawer = () => {
 
 // --- Drawer Root ---
 export interface DrawerProps {
+  /**
+   * Drawer parts (DrawerTrigger, DrawerContent, etc.).
+   */
   children: React.ReactNode;
+  /**
+   * Controlled open state. Use together with onOpenChange.
+   */
   open?: boolean;
+  /**
+   * Called with the next state when the drawer is opened or closed.
+   */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Initial open state for uncontrolled usage.
+   * @default false
+   */
   defaultOpen?: boolean;
+  /**
+   * Edge of the screen the drawer slides in from.
+   * @default "right"
+   */
   side?: "left" | "right" | "top" | "bottom";
+  /**
+   * Whether to animate the drawer when opening.
+   * @default true
+   */
   slideIn?: boolean;
+  /**
+   * Whether to animate the drawer when closing.
+   * @default true
+   */
   slideOut?: boolean;
 }
 

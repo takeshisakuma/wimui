@@ -15,12 +15,36 @@ import { CHART_THEME } from "../../helpers";
 import styles from "./heatmap.module.scss";
 
 export type HeatmapProps = {
+  /**
+   * Cells to display. Each entry maps an x/y category pair to a value.
+   */
   data: { x: string; y: string; value: number }[];
+  /**
+   * Ordered list of X axis category labels.
+   */
   xAxisKey: string[];
+  /**
+   * Ordered list of Y axis category labels.
+   */
   yAxisKey: string[];
+  /**
+   * The height of the chart in pixels.
+   * @default 300
+   */
   height?: number;
+  /**
+   * The width of the chart (e.g., "100%", 500).
+   * @default "100%"
+   */
   width?: string | number;
+  /**
+   * Optional title displayed above the chart.
+   */
   title?: string;
+  /**
+   * Colors used for the lowest and highest values.
+   * @default ["var(--wim-color-bg-secondary)", "var(--wim-color-primary)"]
+   */
   colorRange?: [string, string];
 };
 

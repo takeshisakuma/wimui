@@ -1,0 +1,20 @@
+{
+  "doc": {
+    "notification_prop_className": "Additional class name",
+    "notification_prop_closable": "Whether to show close button",
+    "notification_prop_description": "The description of notification",
+    "notification_prop_icon": "The icon of notification",
+    "notification_prop_id": "The unique identifier of notification",
+    "notification_prop_intent": "The intent of notification",
+    "notification_prop_onClose": "Callback when notification is closed",
+    "notification_prop_title": "The title of notification",
+    "result_prop_children": "The children",
+    "result_prop_className": "Custom class name",
+    "result_prop_description": "The description",
+    "result_prop_extra": "Operating area",
+    "result_prop_icon": "Custom icon",
+    "result_prop_intent": "Semantic intent — determines the icon and color.",
+    "result_prop_status": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500).",
+    "result_prop_title": "The title"
+  }
+}

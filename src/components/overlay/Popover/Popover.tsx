@@ -38,7 +38,13 @@ type PopoverContextValue = {
 const PopoverContext = React.createContext<PopoverContextValue | null>(null);
 
 export type PopoverProps = {
+  /**
+   * Popover parts (PopoverTrigger, PopoverContent, etc.).
+   */
   children: ReactNode;
+  /**
+   * Additional CSS class name for the container.
+   */
   className?: string;
   /**
    * If true, the popover component will manage its own open state.

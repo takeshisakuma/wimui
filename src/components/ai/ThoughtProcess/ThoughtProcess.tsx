@@ -64,6 +64,7 @@ export const ThoughtStep = ({
 };
 
 export interface ThoughtProcessProps {
+  /** Reasoning steps to display (typically ThoughtStep elements) */
   children: React.ReactNode;
   /** Header title */
   title?: string;

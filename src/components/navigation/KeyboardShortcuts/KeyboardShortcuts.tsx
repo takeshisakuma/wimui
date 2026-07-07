@@ -5,25 +5,31 @@ import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./keyboard-shortcuts.module.scss";
 
 export type ShortcutItem = {
-  /** ショートカットの説明ラベル */
+  /** Description label of the shortcut */
   label: string;
-  /** キーの配列（例: ["Ctrl", "K"]） */
+  /** Keys of the shortcut (e.g. ["Ctrl", "K"]) */
   keys: string[];
 };
 
 export type KeyboardShortcutsProps = React.ComponentPropsWithoutRef<"dl"> & {
-  /** ショートカット一覧 */
+  /** List of shortcuts to display */
   shortcuts: ShortcutItem[];
-  /** セクションタイトル */
+  /** Section title */
   title?: string;
-  /** キー間のセパレーター */
+  /**
+   * Separator displayed between keys
+   * @default "+"
+   */
   separator?: string;
-  /** サイズ */
+  /**
+   * Size of the list
+   * @default "md"
+   */
   size?: ComponentSizeBasic;
 };
 
 /**
- * キーボードショートカット一覧を表示するコンポーネント。
+ * Displays a list of keyboard shortcuts.
  */
 export const KeyboardShortcuts = React.forwardRef<
   HTMLDListElement,

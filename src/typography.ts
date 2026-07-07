@@ -7,3 +7,4 @@ export * from "./components/typography/Legend/Legend";
 export * from "./components/typography/Text/Text";
 export * from "./components/typography/Blockquote/Blockquote";
 export * from "./components/typography/Span/Span";
+export * from "./components/typography/Spoiler/Spoiler";

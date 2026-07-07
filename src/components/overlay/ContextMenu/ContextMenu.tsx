@@ -24,9 +24,15 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import styles from "./context-menu.module.scss";
 
 export type ContextMenuProps = {
+  /**
+   * Element that opens the context menu on right-click.
+   */
   children: ReactNode;
   /** Menu items to display in the context menu */
   menu: ReactNode;
+  /**
+   * Additional CSS class name for the container.
+   */
   className?: string;
   /** Disable the context menu */
   disabled?: boolean;

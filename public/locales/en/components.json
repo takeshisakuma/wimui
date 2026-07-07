@@ -29,6 +29,10 @@
     "canvas_label": "Signature canvas",
     "clear": "Clear"
   },
+  "spoiler": {
+    "show_more": "Show more",
+    "show_less": "Show less"
+  },
   "doc": {
     "richTextEditor_desc": "WYSIWYG rich text editor",
     "interactiveArea_desc": "Foundation component for consistent interactive areas with borders and states.",
@@ -107,7 +111,8 @@
     "dashboard_desc": "Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.",
     "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",
     "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes.",
-    "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices."
+    "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.",
+    "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows."
   },
   "cat": {
     "ai": "AI"

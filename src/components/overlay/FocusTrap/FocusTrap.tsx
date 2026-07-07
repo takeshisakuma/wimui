@@ -4,26 +4,27 @@ import styles from "./focus-trap.module.scss";
 
 export type FocusTrapProps = {
   /**
-   * トラップされるコンテンツ。
+   * Content to trap focus within.
    */
   children: React.ReactNode;
   /**
-   * トラップが有効かどうか。
+   * Whether the trap is active.
+   * @default true
    */
   active?: boolean;
   /**
-   * マウント時に最初の要素にフォーカスするかどうか。
+   * Whether to focus the first focusable element on mount.
    */
   initialFocus?: boolean;
   /**
-   * 追加のクラス名。
+   * Additional CSS class name.
    */
   className?: string;
 };
 
 /**
- * フォーカスを特定の領域内に閉じ込めるためのユーティリティコンポーネント。
- * ダイアログやモーダルなどで使用します。
+ * Utility component that keeps focus inside a region.
+ * Used by dialogs, modals, and similar overlays.
  */
 export const FocusTrap = ({
   children,

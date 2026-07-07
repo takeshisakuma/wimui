@@ -30,9 +30,22 @@ const useBottomSheet = () => {
 
 // --- BottomSheet Root ---
 export interface BottomSheetProps {
+  /**
+   * Bottom sheet parts (BottomSheetTrigger, BottomSheetContent, etc.).
+   */
   children: React.ReactNode;
+  /**
+   * Controlled open state. Use together with onOpenChange.
+   */
   open?: boolean;
+  /**
+   * Initial open state for uncontrolled usage.
+   * @default false
+   */
   defaultOpen?: boolean;
+  /**
+   * Called with the next state when the sheet is opened or closed.
+   */
   onOpenChange?: (open: boolean) => void;
 }
 

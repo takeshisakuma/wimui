@@ -1,0 +1,20 @@
+{
+  "doc": {
+    "notification_prop_className": "[MISSING_TRANSLATION: pt] Additional class name",
+    "notification_prop_closable": "[MISSING_TRANSLATION: pt] Whether to show close button",
+    "notification_prop_description": "[MISSING_TRANSLATION: pt] The description of notification",
+    "notification_prop_icon": "[MISSING_TRANSLATION: pt] The icon of notification",
+    "notification_prop_id": "[MISSING_TRANSLATION: pt] The unique identifier of notification",
+    "notification_prop_intent": "[MISSING_TRANSLATION: pt] The intent of notification",
+    "notification_prop_onClose": "[MISSING_TRANSLATION: pt] Callback when notification is closed",
+    "notification_prop_title": "[MISSING_TRANSLATION: pt] The title of notification",
+    "result_prop_children": "[MISSING_TRANSLATION: pt] The children",
+    "result_prop_className": "[MISSING_TRANSLATION: pt] Custom class name",
+    "result_prop_description": "[MISSING_TRANSLATION: pt] The description",
+    "result_prop_extra": "[MISSING_TRANSLATION: pt] Operating area",
+    "result_prop_icon": "[MISSING_TRANSLATION: pt] Custom icon",
+    "result_prop_intent": "[MISSING_TRANSLATION: pt] Semantic intent — determines the icon and color.",
+    "result_prop_status": "[MISSING_TRANSLATION: pt] HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500).",
+    "result_prop_title": "[MISSING_TRANSLATION: pt] The title"
+  }
+}

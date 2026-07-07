@@ -22,6 +22,7 @@
 - i18nキーは ネスト構造 で命名してください（例: `a11y.close`, `button.clear`, `fileupload.button`）。JSONファイルはネストオブジェクト形式で管理し、コード側は `.` 区切りのドット記法を使用します。新規キーは同じ prefix グループに追加してください。
 - ファイルの分割: 単一の JSON ファイルが 1000 行を超える前に、カテゴリー単位（`form.json`, `data-display.json` 等）でファイルを分割してください。新しいファイルを追加した場合は `stories/i18nConstants.ts` に自動で反映されます。
 - ドキュメントの自動化（Docgen）: コンポーネントの Props、使用デザイントークン、Anatomy（構成要素）、テスト実行方法は、Vite プラグインによって `src/data/docgen_index.json` およびカテゴリ別の `docgen_<category>.json` へ自動的に分割抽出されます。MDX では `<Docgen />` コンポーネントを使用することで、見出し（H2）を含めてこれらの情報を自動的に差し込むことができます。詳細は `SKILLS.md` を参照してください。
+- Props 説明文の多言語化: Props 表の Description は `doc.<component>_prop_<propName>` キー（コンポーネント名は `relativeTime_title` 等と同じ lowerCamelCase。例: `doc.spoiler_prop_lines`）を en / ja / pt の3言語に定義してください。`<Docgen section="props" />` はこのキーを優先して表示し、キーが未定義の場合はソースコードの JSDoc にフォールバックします。JSDoc 自体は IDE の型ホバーにも表示されるため英語で記述してください（新規コンポーネントでは JSDoc（英語）+ 3言語のキーの両方を用意する）。既存コンポーネントのキーは段階的に整備します。
 - MDXや TSX/Stories で `<T k="..." />` や `t("...")` を使うキーを新規追加・変更した場合は、必ず en / ja / pt のすべてのロケールファイルに同じキーを追加してください。1言語だけ追加して他を忘れると翻訳キーがそのまま表示されます。
 - **`pt` ロケールはブラジルポルトガル語（PT-BR）に統一してください。** 欧州ポルトガル語（PT-PT）の語彙は使用禁止です。判断に迷う場合は下表を参照してください。
 

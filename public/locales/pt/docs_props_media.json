@@ -1,0 +1,18 @@
+{
+  "doc": {
+    "audio_prop_tracks": "[MISSING_TRANSLATION: pt] Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).",
+    "gallery_prop_aspect": "[MISSING_TRANSLATION: pt] Aspect ratio for each image. Default: \"square\".",
+    "gallery_prop_columns": "[MISSING_TRANSLATION: pt] Number of grid columns. Default: 3.",
+    "gallery_prop_defaultSelected": "[MISSING_TRANSLATION: pt] Uncontrolled initial selected IDs.",
+    "gallery_prop_gap": "[MISSING_TRANSLATION: pt] Gap between items. Default: \"md\".",
+    "gallery_prop_onItemClick": "[MISSING_TRANSLATION: pt] Called when an item is clicked (outside checkbox).",
+    "gallery_prop_onSelectionChange": "[MISSING_TRANSLATION: pt] Called when selection changes.",
+    "gallery_prop_renderActions": "[MISSING_TRANSLATION: pt] Render bulk-action toolbar when items are selected.",
+    "gallery_prop_selectable": "[MISSING_TRANSLATION: pt] Enable multi-select with checkboxes.",
+    "gallery_prop_selected": "[MISSING_TRANSLATION: pt] Controlled selected IDs.",
+    "icon_prop_component": "[MISSING_TRANSLATION: pt] Icon component passed directly. Works without registration and is tree-shakable.",
+    "icon_prop_name": "[MISSING_TRANSLATION: pt] Icon name. Requires `import \"wimui/icons\"` once at the app entry to register icons.",
+    "icon_prop_spin": "[MISSING_TRANSLATION: pt] Apply the loading rotation animation",
+    "video_prop_tracks": "[MISSING_TRANSLATION: pt] Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label)."
+  }
+}

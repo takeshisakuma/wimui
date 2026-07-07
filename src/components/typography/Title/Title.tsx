@@ -26,7 +26,14 @@ export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
    * Text alignment.
    */
   align?: "left" | "center" | "right";
+  /**
+   * Visual decoration applied to the heading text.
+   * @default "none"
+   */
   decoration?: "underline" | "highlight" | "none";
+  /**
+   * The heading content.
+   */
   children: React.ReactNode;
 }
 

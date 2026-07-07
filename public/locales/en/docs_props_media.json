@@ -1,0 +1,18 @@
+{
+  "doc": {
+    "audio_prop_tracks": "Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).",
+    "gallery_prop_aspect": "Aspect ratio for each image. Default: \"square\".",
+    "gallery_prop_columns": "Number of grid columns. Default: 3.",
+    "gallery_prop_defaultSelected": "Uncontrolled initial selected IDs.",
+    "gallery_prop_gap": "Gap between items. Default: \"md\".",
+    "gallery_prop_onItemClick": "Called when an item is clicked (outside checkbox).",
+    "gallery_prop_onSelectionChange": "Called when selection changes.",
+    "gallery_prop_renderActions": "Render bulk-action toolbar when items are selected.",
+    "gallery_prop_selectable": "Enable multi-select with checkboxes.",
+    "gallery_prop_selected": "Controlled selected IDs.",
+    "icon_prop_component": "Icon component passed directly. Works without registration and is tree-shakable.",
+    "icon_prop_name": "Icon name. Requires `import \"wimui/icons\"` once at the app entry to register icons.",
+    "icon_prop_spin": "Apply the loading rotation animation",
+    "video_prop_tracks": "Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label)."
+  }
+}

@@ -152,6 +152,7 @@
     "i18n:sync": "node scripts/sync-i18n.js",
     "i18n:bundle": "node scripts/generate-i18n-resources.js",
     "i18n:check": "node scripts/check-i18n.js",
+    "i18n:props": "node scripts/backfill-prop-keys.js",
     "i18n:quality": "node scripts/check-i18n-quality.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",

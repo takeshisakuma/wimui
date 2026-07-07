@@ -1,4 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from '../.storybook/i18n';
+import { ALL_NAMESPACES } from './i18nConstants';
 import { T } from './T';
 import { Command } from './Command';
 import indexData from '@/data/docgen_index.json';
@@ -39,6 +42,7 @@ interface ComponentData {
 const typedIndexData = indexData as Record<string, string>;
 
 export const Docgen = ({ componentName, section }: DocgenProps) => {
+  const { t } = useTranslation(ALL_NAMESPACES, { i18n });
   const [data, setData] = React.useState<ComponentData | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -86,6 +90,16 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
     return <div className="docgen-error">{error || 'Unknown error'}</div>;
   }
 
+  // Props の Description は `doc.<component>_prop_<prop>` キー（3言語）を優先し、
+  // キーが未整備のコンポーネントはソースの JSDoc（英語）にフォールバックする。
+  // キー名は relativeTime_title 等と同じ lowerCamelCase のコンポーネント名を使う
+  const docBaseName =
+    componentName.charAt(0).toLowerCase() + componentName.slice(1);
+  const propDescription = (propName: string, propInfo: PropInfo): string =>
+    t(`doc.${docBaseName}_prop_${propName}`, {
+      defaultValue: propInfo.description ?? '',
+    });
+
   const renderProps = () => {
     const props = data.props;
     // 固有 props を持たないコンポーネント（HTML 属性のみ継承するサブパーツ等）でも
@@ -117,7 +131,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
                 <td><code>{propName}{propInfo.required ? '*' : ''}</code></td>
                 <td><code>{formatTsType(propInfo.tsType)}</code></td>
                 <td>{propInfo.defaultValue ? <code>{propInfo.defaultValue.value}</code> : '-'}</td>
-                <td>{propInfo.description}</td>
+                <td>{propDescription(propName, propInfo)}</td>
               </tr>
             ))}
           </tbody>

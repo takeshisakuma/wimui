@@ -44,7 +44,13 @@ type TooltipContextValue = {
 const TooltipContext = React.createContext<TooltipContextValue | null>(null);
 
 export type TooltipProps = {
+  /**
+   * Tooltip parts (TooltipTrigger and TooltipContent).
+   */
   children: ReactNode;
+  /**
+   * Additional CSS class name for the container.
+   */
   className?: string;
   /**
    * Delay before showing the tooltip in ms.

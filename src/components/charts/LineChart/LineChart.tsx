@@ -15,13 +15,41 @@ import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
 import styles from "./line-chart.module.scss";
 
 export type LineChartProps = {
+  /**
+   * Data to display in the chart.
+   */
   data: ChartDataPoint[];
+  /**
+   * Keys in the data objects to render as lines (series).
+   */
   keys: string[];
+  /**
+   * The key in the data objects used for the X axis labels.
+   */
   xAxisKey: string;
+  /**
+   * The height of the chart in pixels.
+   * @default 300
+   */
   height?: number;
+  /**
+   * The width of the chart (e.g., "100%", 500).
+   * @default "100%"
+   */
   width?: string | number;
+  /**
+   * Optional title displayed above the chart.
+   */
   title?: string;
+  /**
+   * If true, draws smooth (monotone) curves instead of straight lines.
+   * @default false
+   */
   smooth?: boolean;
+  /**
+   * If true, animates the chart on mount.
+   * @default false
+   */
   animated?: boolean;
 };
 

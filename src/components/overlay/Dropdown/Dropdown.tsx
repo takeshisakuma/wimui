@@ -30,7 +30,13 @@ const DropdownContext = React.createContext<{
 });
 
 export interface DropdownProps extends React.ComponentPropsWithoutRef<"div"> {
+  /**
+   * Dropdown parts (Dropdown.Trigger and Dropdown.Menu).
+   */
   children: ReactNode;
+  /**
+   * If true, the dropdown will be rendered as its child, merging its props onto that child.
+   */
   asChild?: boolean;
 }
 

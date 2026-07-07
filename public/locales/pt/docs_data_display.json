@@ -566,6 +566,17 @@
     "countdown_paused_desc": "paused suspende a atualização sem deslocar o momento alvo; ao retomar, o cronômetro salta para o tempo restante real.",
     "countdown_responsive_desc": "O componente é renderizado como um grupo inline-flex e se adapta ao contêiner. O estado mais largo é a variante units com os quatro segmentos; reserve espaço para ela ou use a variante digital em layouts apertados. Os dígitos usam algarismos tabulares, então a largura permanece estável dentro de uma mesma estrutura de segmentos.",
     "countdown_keyboard_desc": "Countdown é conteúdo estático não interativo e não recebe foco de teclado. Quando envolvido em um link ou botão via asChild, aplica-se o comportamento de teclado padrão do elemento envolvente.",
-    "countdown_i18n_desc": "Os rótulos das unidades são gerados pelo `Intl.NumberFormat` com style \"unit\" e seguem o idioma atual do i18next (en / ja / pt) sem dados de locale empacotados; qualquer locale BCP 47 suportado pelo navegador pode ser forçado por instância via prop locale. A frase para leitores de tela usa a chave de tradução countdown.remaining, incluída em en / ja / pt."
+    "countdown_i18n_desc": "Os rótulos das unidades são gerados pelo `Intl.NumberFormat` com style \"unit\" e seguem o idioma atual do i18next (en / ja / pt) sem dados de locale empacotados; qualquer locale BCP 47 suportado pelo navegador pode ser forçado por instância via prop locale. A frase para leitores de tela usa a chave de tradução countdown.remaining, incluída em en / ja / pt.",
+    "countdown_prop_target": "O momento em que a contagem termina, como objeto Date, string ISO 8601 ou milissegundos de época.",
+    "countdown_prop_baseDate": "Ponto de referência usado como \"agora\". Quando definido, a contagem fica congelada nesse instante (útil para snapshots e testes).",
+    "countdown_prop_variant": "\"digital\" renderiza um relógio compacto separado por dois-pontos (04:12:33); \"units\" renderiza um segmento rotulado por unidade (dias / horas / min / seg).",
+    "countdown_prop_size": "Tamanho dos números e rótulos.",
+    "countdown_prop_locale": "Substituição de locale BCP 47 para os rótulos das unidades (ex.: \"en\", \"ja\", \"pt-BR\"). O padrão é o idioma atual do i18next.",
+    "countdown_prop_unitDisplay": "Comprimento dos rótulos das unidades na variante \"units\".",
+    "countdown_prop_paused": "Pausa a contagem enquanto true. Ela retoma do tempo restante real (o momento alvo não se desloca).",
+    "countdown_prop_onComplete": "Chamado uma única vez quando o tempo restante chega a zero (também na montagem, se o alvo já estiver no passado). Não é chamado quando baseDate está definido.",
+    "countdown_prop_completedContent": "Conteúdo mostrado no lugar dos dígitos zerados quando a contagem termina.",
+    "countdown_prop_fallback": "Conteúdo mostrado quando o target não pode ser interpretado.",
+    "countdown_prop_asChild": "Se true, o componente é renderizado como seu filho, mesclando suas props nesse filho."
   }
 }

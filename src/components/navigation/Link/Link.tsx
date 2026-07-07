@@ -12,11 +12,33 @@ export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
    * Useful for using the link styles with Link components from React Router or Next.js.
    */
   asChild?: boolean;
+  /**
+   * Link text or element. Alternative to children.
+   */
   label?: React.ReactNode;
+  /**
+   * Font size of the link.
+   * @default "md"
+   */
   size?: ComponentSizeBasic;
+  /**
+   * Visual emphasis of the link.
+   * @default "primary"
+   */
   priority?: "primary" | "secondary" | "tertiary";
+  /**
+   * Name of the icon displayed alongside the label.
+   */
   iconName?: React.ComponentProps<typeof Icon>["name"];
+  /**
+   * Position of the icon relative to the label.
+   * @default "left"
+   */
   iconPosition?: "left" | "right";
+  /**
+   * If true, opens the link in a new tab and shows an external-link icon.
+   * @default false
+   */
   external?: boolean;
   /** Custom styles for internal parts */
   styles?: {

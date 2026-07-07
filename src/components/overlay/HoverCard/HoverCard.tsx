@@ -14,7 +14,13 @@ const HoverCardContext = React.createContext<{
 });
 
 export type HoverCardProps = {
+  /**
+   * Hover card parts (HoverCardTrigger and HoverCardContent).
+   */
   children: ReactNode;
+  /**
+   * Additional CSS class name for the container.
+   */
   className?: string;
   /**
    * Delay before showing the hover card in ms.

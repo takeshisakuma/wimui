@@ -1,0 +1,144 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as SpoilerStories from "./Spoiler.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={SpoilerStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "var(--wim-font-size-lg)",
+    lineHeight: "var(--wim-line-height-loose)",
+    color: "var(--wim-color-text-secondary)",
+  }}
+>
+  <T k="doc.spoiler_title" />
+</p>
+
+<p><T k="doc.spoiler_long_desc" /></p>
+
+<Canvas of={SpoilerStories.Default} />
+<Controls of={SpoilerStories.Default} />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.spoiler_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.spoiler_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Spoiler</b></td>
+      <td><T k="doc.spoiler_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Accordion</b></td>
+      <td><T k="doc.spoiler_choice_accordion_when" /></td>
+    </tr>
+    <tr>
+      <td><b>ScrollArea</b></td>
+      <td><T k="doc.spoiler_choice_scrollarea_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Spoiler" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.spoiler_content_guideline_1" /></li>
+  <li><T k="doc.spoiler_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.spoiler_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.spoiler_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.spoiler_scenario_1_title" /></strong></td>
+      <td><T k="doc.spoiler_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.spoiler_scenario_2_title" /></strong></td>
+      <td><T k="doc.spoiler_scenario_2" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.spoiler_scenario_3_title" /></strong></td>
+      <td><T k="doc.spoiler_scenario_3" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.spoiler_best_practice_1" /></li>
+  <li><T k="doc.spoiler_best_practice_2" /></li>
+  <li><T k="doc.spoiler_best_practice_3" /></li>
+</ul>
+
+## <T k="doc.variations" />
+
+### <T k="doc.spoiler_lines_title" />
+
+<p><T k="doc.spoiler_lines_desc" /></p>
+
+<Canvas of={SpoilerStories.CustomLines} />
+
+### <T k="doc.spoiler_default_expanded_title" />
+
+<p><T k="doc.spoiler_default_expanded_desc" /></p>
+
+<Canvas of={SpoilerStories.DefaultExpanded} />
+
+### <T k="doc.spoiler_labels_title" />
+
+<p><T k="doc.spoiler_labels_desc" /></p>
+
+<Canvas of={SpoilerStories.CustomLabels} />
+
+### <T k="doc.spoiler_short_title" />
+
+<p><T k="doc.spoiler_short_desc" /></p>
+
+<Canvas of={SpoilerStories.ShortContent} />
+
+### <T k="doc.spoiler_rich_title" />
+
+<p><T k="doc.spoiler_rich_desc" /></p>
+
+<Canvas of={SpoilerStories.RichContent} />
+
+<Docgen componentName="Spoiler" section="props" />
+
+<Docgen componentName="Spoiler" section="tokens" />
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.spoiler_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.spoiler_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.spoiler_i18n_desc" /></p>
+
+<Docgen componentName="Spoiler" section="test" />

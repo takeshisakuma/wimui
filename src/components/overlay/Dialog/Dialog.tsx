@@ -25,11 +25,31 @@ export const useDialog = () => {
 
 // --- Dialog Root ---
 export interface DialogProps {
+  /**
+   * Dialog parts (Dialog.Trigger, Dialog.Content, etc.).
+   */
   children: React.ReactNode;
+  /**
+   * Controlled open state. Use together with onOpenChange.
+   */
   open?: boolean;
+  /**
+   * Called with the next state when the dialog is opened or closed.
+   */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Initial open state for uncontrolled usage.
+   * @default false
+   */
   defaultOpen?: boolean;
+  /**
+   * Additional CSS class name.
+   */
   className?: string;
+  /**
+   * Whether clicking the overlay closes the dialog.
+   * @default true
+   */
   closeOnOverlayClick?: boolean;
 }
 

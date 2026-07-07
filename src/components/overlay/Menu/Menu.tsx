@@ -34,7 +34,13 @@ const useMenu = () => {
 };
 
 export type MenuProps = {
+  /**
+   * Menu items (MenuItem, MenuItemGroup, SubMenu, MenuDivider).
+   */
   children: ReactNode;
+  /**
+   * Additional CSS class name for the container.
+   */
   className?: string;
   /** Mode of the menu */
   mode?: "vertical" | "horizontal" | "inline";

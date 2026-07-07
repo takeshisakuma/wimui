@@ -1076,6 +1076,12 @@
         "descKey": "doc.highlight_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Spoiler",
+        "descKey": "doc.spoiler_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

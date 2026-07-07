@@ -12,15 +12,40 @@ import {
 
 export type TextProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
   /**
-   * If true, the text будет rendered as its child, merging its props onto that child.
+   * If true, the text will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
+  /**
+   * Font size of the text.
+   * @default "md"
+   */
   size?: ComponentSizeText;
+  /**
+   * Text color. Accepts a design token color name or any CSS color value.
+   */
   color?: WimColor;
+  /**
+   * Font weight.
+   * @default "normal"
+   */
   weight?: "normal" | "bold" | "medium";
+  /**
+   * Line height. Accepts a design token name or any CSS line-height value.
+   */
   lineHeight?: WimLineHeight;
+  /**
+   * Font style.
+   * @default "normal"
+   */
   fontStyle?: "normal" | "italic";
+  /**
+   * Visual decoration applied to the text.
+   * @default "none"
+   */
   decoration?: "line-through" | "underline" | "highlight" | "none";
+  /**
+   * Content of the text. Alternative to children (children take precedence only with asChild).
+   */
   content?: React.ReactNode;
 };
 

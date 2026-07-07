@@ -566,6 +566,17 @@
     "countdown_paused_desc": "paused は目標時刻をずらさずに更新を停止します。解除すると、タイマーは実際の残り時間に即座に追い付きます。",
     "countdown_responsive_desc": "コンポーネントは inline-flex のグループとして描画され、コンテナに適応します。最も幅を取るのは4セグメントすべてが表示された units バリアントなので、その分のスペースを確保するか、狭いレイアウトでは digital バリアントを使ってください。数字は等幅のため、セグメント構成が同じであれば幅は安定します。",
     "countdown_keyboard_desc": "Countdown は非インタラクティブな静的コンテンツであり、キーボードフォーカスを受け取りません。asChild でリンクやボタンにラップした場合は、ラップした要素の標準的なキーボード動作が適用されます。",
-    "countdown_i18n_desc": "単位ラベルは style \"unit\" の `Intl.NumberFormat` が生成し、ロケールデータの同梱なしで現在の i18next 言語（en / ja / pt）に追従します。ブラウザがサポートする任意の BCP 47 ロケールを locale prop でインスタンスごとに強制できます。スクリーンリーダー向けの文言は countdown.remaining 翻訳キーを使用し、en / ja / pt に同梱されています。"
+    "countdown_i18n_desc": "単位ラベルは style \"unit\" の `Intl.NumberFormat` が生成し、ロケールデータの同梱なしで現在の i18next 言語（en / ja / pt）に追従します。ブラウザがサポートする任意の BCP 47 ロケールを locale prop でインスタンスごとに強制できます。スクリーンリーダー向けの文言は countdown.remaining 翻訳キーを使用し、en / ja / pt に同梱されています。",
+    "countdown_prop_target": "カウントダウンの終了時刻。Date オブジェクト、ISO 8601 文字列、エポックミリ秒のいずれかで指定します。",
+    "countdown_prop_baseDate": "「現在」として使う基準時刻。指定するとその瞬間で固定表示になります（スナップショットやテストに便利）。",
+    "countdown_prop_variant": "\"digital\" はコロン区切りのコンパクトな時計表示（04:12:33）、\"units\" は単位ごとのラベル付きセグメント表示（日 / 時間 / 分 / 秒）です。",
+    "countdown_prop_size": "数字とラベルのサイズ。",
+    "countdown_prop_locale": "単位ラベルの BCP 47 ロケール上書き（例: \"en\", \"ja\", \"pt-BR\"）。デフォルトは現在の i18next 言語です。",
+    "countdown_prop_unitDisplay": "\"units\" バリアントにおける単位ラベルの長さ。",
+    "countdown_prop_paused": "true の間カウントダウンを一時停止します。再開時は実際の残り時間に即座に追い付きます（目標時刻はずれません）。",
+    "countdown_prop_onComplete": "残り時間がゼロに達したときに一度だけ呼ばれます（マウント時点で既に過ぎている場合も呼ばれます）。baseDate 指定時は呼ばれません。",
+    "countdown_prop_completedContent": "カウントダウン終了後に、ゼロ表示の代わりに表示するコンテンツ。",
+    "countdown_prop_fallback": "target を解析できない場合に表示するコンテンツ。",
+    "countdown_prop_asChild": "true の場合、コンポーネントは子要素として描画され、props は子要素にマージされます。"
   }
 }

@@ -47,8 +47,17 @@ const useCommandPalette = () => {
 
 // --- CommandPalette Root (Provider) ---
 export interface CommandPaletteProps {
+  /**
+   * Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
+   */
   children: ReactNode;
+  /**
+   * Controlled open state. Use together with onOpenChange.
+   */
   open?: boolean;
+  /**
+   * Called with the next state when the palette is opened or closed.
+   */
   onOpenChange?: (open: boolean) => void;
 }
 

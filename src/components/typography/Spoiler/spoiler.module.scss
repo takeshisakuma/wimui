@@ -1,0 +1,49 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  .content {
+    // 展開時は自然な高さで全文を表示する
+    display: block;
+  }
+
+  // 折りたたみ時のみ行数ベースで切り詰める。行数は prop からカスタムプロパティで注入
+  .collapsed {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--wim-spoiler-lines, 3);
+    line-clamp: var(--wim-spoiler-lines, 3);
+  }
+
+  .inner {
+    display: block;
+  }
+
+  // リンク風のテキストボタン
+  .toggle {
+    display: inline-flex;
+    padding: 0;
+    margin-top: var(--wim-spacing-2xs);
+    font: inherit;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-semibold);
+    color: var(--wim-color-primary);
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: var(--wim-radius-sm);
+    transition: var(--wim-transition-base);
+
+    &:hover {
+      color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
+      text-decoration: var(--wim-decoration-underline);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--wim-shadow-focus);
+    }
+  }
+}
