@@ -106,7 +106,8 @@
     "gallery_desc": "Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.",
     "dashboard_desc": "Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.",
     "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",
-    "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes."
+    "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes.",
+    "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices."
   },
   "cat": {
     "ai": "AI"

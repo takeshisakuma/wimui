@@ -2,7 +2,7 @@
 // src/components が実際に使用する翻訳キーのみを含む（内蔵 i18next インスタンス用）。
 import type { Resource } from "i18next";
 
-export const wimNamespaces = ["common","components","form"];
+export const wimNamespaces = ["common","components","data-display","form"];
 
 export const wimResources: Resource = {
   "en": {
@@ -171,6 +171,11 @@ export const wimResources: Resource = {
         "collapse": "Collapse {{label}}",
         "expand": "Expand {{label}}",
         "search_aria": "Search tree items"
+      }
+    },
+    "data-display": {
+      "countdown": {
+        "remaining": "{{time}} remaining"
       }
     },
     "form": {
@@ -425,6 +430,11 @@ export const wimResources: Resource = {
         "search_aria": "ツリー項目を検索"
       }
     },
+    "data-display": {
+      "countdown": {
+        "remaining": "残り{{time}}"
+      }
+    },
     "form": {
       "agent_status": {
         "done": "完了",
@@ -675,6 +685,11 @@ export const wimResources: Resource = {
         "collapse": "Recolher {{label}}",
         "expand": "Expandir {{label}}",
         "search_aria": "Buscar itens da árvore"
+      }
+    },
+    "data-display": {
+      "countdown": {
+        "remaining": "{{time}} restantes"
       }
     },
     "form": {

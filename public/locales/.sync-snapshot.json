@@ -1363,7 +1363,8 @@
       "gallery_desc": "Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.",
       "dashboard_desc": "Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.",
       "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",
-      "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes."
+      "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes.",
+      "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices."
     },
     "cat": {
       "ai": "AI"
@@ -1883,6 +1884,9 @@
     "calendar": {
       "aria_date": "{{year}}-{{month}}-{{day}}",
       "title": "{{year}} / {{month}}"
+    },
+    "countdown": {
+      "remaining": "{{time}} remaining"
     },
     "table": {
       "header_component": "Component",
@@ -3482,7 +3486,44 @@
       "relativeTime_sentence_desc": "The component renders an inline `<time>` element, so it can be embedded in surrounding text.",
       "relativeTime_responsive_desc": "The component renders a single inline text node and adapts to any container. In cramped layouts, use format=\"short\" or \"narrow\" to reduce width instead of truncating.",
       "relativeTime_keyboard_desc": "RelativeTime is non-interactive static text and receives no keyboard focus. When wrapped in a link or button via asChild, the wrapping element's standard keyboard behavior applies.",
-      "relativeTime_i18n_desc": "Formatting is fully delegated to `Intl.RelativeTimeFormat` and `Intl.DateTimeFormat`, which follow the current i18next language (en / ja / pt) automatically and require no translation keys. Any BCP 47 locale supported by the browser can be forced per instance via the locale prop."
+      "relativeTime_i18n_desc": "Formatting is fully delegated to `Intl.RelativeTimeFormat` and `Intl.DateTimeFormat`, which follow the current i18next language (en / ja / pt) automatically and require no translation keys. Any BCP 47 locale supported by the browser can be forced per instance via the locale prop.",
+      "countdown_title": "Display the remaining time until a target moment as a live ticking timer, either as compact digits or as labeled unit segments.",
+      "countdown_long_desc": "Countdown renders the time left until a target moment and updates once per second, with each re-render aligned to the second boundary so no tick is skipped. The digital variant shows a compact colon-separated clock (04:12:33) that drops leading zero segments, while the units variant shows one labeled segment per unit for sale banners and maintenance notices. Unit labels are localized through the browser-native `Intl.NumberFormat` API, so no locale data needs to be bundled.",
+      "countdown_design_intent": "Deadlines create urgency only when they are visibly moving: a static \"ends July 14\" is easy to ignore, while a ticking timer communicates both scarcity and exactly how much room is left to act. The component owns the whole timer lifecycle (ticking, pausing, completion callback) so consumers only declare the target moment, and tabular figures keep the layout stable while digits change every second.",
+      "countdown_choice_matrix_desc": "Choose based on the direction and nature of the time being communicated:",
+      "countdown_choice_self_when": "When counting down to a known future moment matters: sale and auction deadlines, OTP resend waits, maintenance windows, event starts.",
+      "countdown_choice_relativetime_when": "When describing how long ago (or in how long) a single event happens in prose form (\"3 minutes ago\", \"in 2 hours\"), without per-second urgency.",
+      "countdown_choice_progress_when": "When expressing completion of a bounded task as a fraction (upload, wizard steps) rather than wall-clock time.",
+      "countdown_content_guideline_1": "Always pair the timer with a label that says what happens at zero (\"Sale ends in\", \"Resend available in\"). Bare digits force users to guess the consequence.",
+      "countdown_content_guideline_2": "Provide completedContent that states the outcome (\"Sale ended\", \"You can now resend the code\") instead of leaving a frozen 00:00 on screen.",
+      "countdown_motion_desc": "No animation is applied; the digits swap once per second, with each re-render scheduled on the second boundary to avoid drift and skipped seconds. `font-variant-numeric: tabular-nums` prevents horizontal jitter as digits change. When the days or hours segment reaches zero it is dropped, so let the surrounding layout shrink naturally.",
+      "countdown_a11y_desc": "The component renders a native `<time>` element with role=\"timer\" whose dateTime attribute exposes the target moment as an ISO 8601 timestamp. An aria-label announces the remaining time in long natural units (\"2 days 4 hours remaining\") via the countdown.remaining translation key. Because role=\"timer\" is implicitly aria-live=\"off\", screen readers are not interrupted every second; users query the timer on demand.",
+      "countdown_scenario_1_title": "Sale banner",
+      "countdown_scenario_1": "Use the units variant in lg with the sale end as target and completedContent=\"Sale ended\", so the banner resolves itself the moment the deadline passes.",
+      "countdown_scenario_2_title": "OTP resend",
+      "countdown_scenario_2": "Combine with OtpInput: render a small digital timer inside the resend button label (\"Resend in 00:45\") and re-enable the button from onComplete.",
+      "countdown_scenario_3_title": "Maintenance notice",
+      "countdown_scenario_3": "Count down to the start of a maintenance window in a Banner; onComplete can switch the page into the maintenance state without polling.",
+      "countdown_best_practice_1": "Drive state changes from onComplete (enable a button, swap a banner) instead of running a parallel timer in the consumer; the component already ticks on exact second boundaries.",
+      "countdown_best_practice_2": "When fairness matters (sales, auctions), compute the target from a server-provided timestamp; a client-derived target inherits the user's clock skew.",
+      "countdown_best_practice_3": "Use baseDate for snapshots, screenshots, and tests to make the output deterministic, and paused when the surrounding UI is suspended (e.g. a hidden wizard step).",
+      "countdown_units_title": "Units variant",
+      "countdown_units_desc": "variant=\"units\" renders one labeled segment per unit. The days segment appears only while at least one day remains, and labels follow the unitDisplay prop (long / short / narrow).",
+      "countdown_sizes_title": "Sizes",
+      "countdown_sizes_desc": "size controls the digit and label scale: sm for inline use next to text, md for cards, lg for hero and banner placements.",
+      "countdown_otp_title": "Inline in a sentence (OTP resend)",
+      "countdown_otp_desc": "The digital variant drops leading zero segments (00:45 rather than 00:00:45) and renders inline, so it fits inside button labels and helper text.",
+      "countdown_completed_title": "Completion",
+      "countdown_completed_desc": "When the target passes, completedContent replaces the digits and onComplete fires once. Without completedContent the timer simply stays at zero.",
+      "countdown_locale_title": "Locale override",
+      "countdown_locale_desc": "Unit labels come from Intl.NumberFormat and follow the current i18next language; the locale prop overrides it for a single instance.",
+      "countdown_static_title": "Static snapshot",
+      "countdown_static_desc": "Providing baseDate freezes the reference \"now\" and disables ticking, which makes the output deterministic.",
+      "countdown_paused_title": "Paused",
+      "countdown_paused_desc": "paused suspends ticking without shifting the target moment; when unpaused, the timer snaps to the real remaining time.",
+      "countdown_responsive_desc": "The component renders as an inline-flex group and adapts to its container. The widest state is the units variant with all four segments; reserve space for it or use the digital variant in cramped layouts. Digits use tabular figures, so the width stays stable within a given segment structure.",
+      "countdown_keyboard_desc": "Countdown is non-interactive static content and receives no keyboard focus. When wrapped in a link or button via asChild, the wrapping element's standard keyboard behavior applies.",
+      "countdown_i18n_desc": "Unit labels are generated by `Intl.NumberFormat` with style \"unit\" and follow the current i18next language (en / ja / pt) with no bundled locale data; any BCP 47 locale supported by the browser can be forced per instance via the locale prop. The screen-reader phrase uses the countdown.remaining translation key, which ships in en / ja / pt."
     }
   },
   "docs_data_display_complex": {

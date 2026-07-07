@@ -1,0 +1,78 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    align-items: baseline;
+
+    // 毎秒数字が変わっても横幅がガタつかないよう等幅数字にする
+    font-variant-numeric: tabular-nums;
+    color: inherit;
+  }
+
+  .value {
+    font-weight: var(--wim-font-weight-bold);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-primary);
+  }
+
+  // digital バリアント: 04:12:33 のようなコロン区切り表示
+  .digital {
+    gap: var(--wim-spacing-3xs);
+  }
+
+  .separator {
+    font-weight: var(--wim-font-weight-semibold);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-secondary);
+  }
+
+  // units バリアント: 単位ラベル付きのセグメント表示
+  .units {
+    gap: var(--wim-spacing-sm);
+  }
+
+  .segment {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    align-items: center;
+  }
+
+  .label {
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-secondary);
+  }
+
+  // サイズ
+  .sm {
+    .value,
+    .separator {
+      font-size: var(--wim-font-size-lg);
+    }
+
+    .label {
+      font-size: var(--wim-font-size-2xs);
+    }
+  }
+
+  .md {
+    .value,
+    .separator {
+      font-size: var(--wim-font-size-2xl);
+    }
+
+    .label {
+      font-size: var(--wim-font-size-xs);
+    }
+  }
+
+  .lg {
+    .value,
+    .separator {
+      font-size: var(--wim-font-size-4xl);
+    }
+
+    .label {
+      font-size: var(--wim-font-size-sm);
+    }
+  }
+}

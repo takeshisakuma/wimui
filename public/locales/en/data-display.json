@@ -3,6 +3,9 @@
     "aria_date": "{{year}}-{{month}}-{{day}}",
     "title": "{{year}} / {{month}}"
   },
+  "countdown": {
+    "remaining": "{{time}} remaining"
+  },
   "table": {
     "header_component": "Component",
     "header_overview": "Overview",

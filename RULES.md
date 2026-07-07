@@ -59,7 +59,7 @@
     - Navigation: Link, CommandPalette, Breadcrumb, Stepper
     - Form: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, SwitchGroup
     - Layout: Box, Flex, Stack, Group, Grid
-    - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime
+    - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime, Countdown
     - Media: Lightbox
     - このリストは `scripts/check-aschild.js` の必須リスト（`requiredComponents`）と同期しています。実装を追加・削除した場合は両方を更新してください。現状の実装一覧は `node scripts/check-aschild.js --list` で確認できます。
     - 注意: チェッカーが検出できるのは「リストにあるのに実装がない」ケースのみです。逆方向（実装したのにリストへ追加し忘れた）は自動検出されないため、新規に `asChild` を実装した際は必ず `--list` の出力と本リストを突き合わせてください。

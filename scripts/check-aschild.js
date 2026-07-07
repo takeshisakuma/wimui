@@ -19,7 +19,7 @@ const requiredComponents = [
   // Data Display
   'Badge', 'Chip', 'Tag', 'Card', 'Table', 'List', 'Kanban',
   'Accordion', 'Timeline', 'Carousel', 'SwipeAction', 'SortableList', 'PullToRefresh', 'CalendarHeatmap',
-  'RelativeTime',
+  'RelativeTime', 'Countdown',
   // Media
   'Lightbox',
 ];

@@ -182,7 +182,8 @@
     "thoughtProcess_desc": "Visualiza as etapas de raciocínio da IA e estados de execução em formato de linha do tempo.",
     "title_desc": "Possui peso visual (negrito/tamanho) para indicar a estrutura da página.",
     "visual_guideline_title": "Diretrizes Visuais",
-    "relativeTime_desc": "Exibe um timestamp como uma frase relativa localizada (\"há 3 minutos\", \"ontem\") que se atualiza automaticamente com o passar do tempo."
+    "relativeTime_desc": "Exibe um timestamp como uma frase relativa localizada (\"há 3 minutos\", \"ontem\") que se atualiza automaticamente com o passar do tempo.",
+    "countdown_desc": "Exibe o tempo restante até um momento alvo como um cronômetro atualizado a cada segundo, para prazos de promoções, espera de reenvio de OTP e avisos de manutenção."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

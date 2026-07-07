@@ -1,0 +1,156 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as CountdownStories from "./Countdown.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={CountdownStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "var(--wim-font-size-lg)",
+    lineHeight: "var(--wim-line-height-loose)",
+    color: "var(--wim-color-text-secondary)",
+  }}
+>
+  <T k="doc.countdown_title" />
+</p>
+
+<p><T k="doc.countdown_long_desc" /></p>
+
+<Canvas of={CountdownStories.Default} />
+<Controls of={CountdownStories.Default} />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.countdown_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.countdown_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Countdown</b></td>
+      <td><T k="doc.countdown_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>RelativeTime</b></td>
+      <td><T k="doc.countdown_choice_relativetime_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Progress</b></td>
+      <td><T k="doc.countdown_choice_progress_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Countdown" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.countdown_content_guideline_1" /></li>
+  <li><T k="doc.countdown_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.countdown_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.countdown_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.countdown_scenario_1_title" /></strong></td>
+      <td><T k="doc.countdown_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.countdown_scenario_2_title" /></strong></td>
+      <td><T k="doc.countdown_scenario_2" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.countdown_scenario_3_title" /></strong></td>
+      <td><T k="doc.countdown_scenario_3" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.countdown_best_practice_1" /></li>
+  <li><T k="doc.countdown_best_practice_2" /></li>
+  <li><T k="doc.countdown_best_practice_3" /></li>
+</ul>
+
+## <T k="doc.variations" />
+
+### <T k="doc.countdown_units_title" />
+
+<p><T k="doc.countdown_units_desc" /></p>
+
+<Canvas of={CountdownStories.UnitsVariant} />
+
+### <T k="doc.countdown_sizes_title" />
+
+<p><T k="doc.countdown_sizes_desc" /></p>
+
+<Canvas of={CountdownStories.Sizes} />
+
+### <T k="doc.countdown_otp_title" />
+
+<p><T k="doc.countdown_otp_desc" /></p>
+
+<Canvas of={CountdownStories.OtpResend} />
+
+### <T k="doc.countdown_completed_title" />
+
+<p><T k="doc.countdown_completed_desc" /></p>
+
+<Canvas of={CountdownStories.Completed} />
+
+### <T k="doc.countdown_locale_title" />
+
+<p><T k="doc.countdown_locale_desc" /></p>
+
+<Canvas of={CountdownStories.LocaleOverride} />
+
+### <T k="doc.countdown_static_title" />
+
+<p><T k="doc.countdown_static_desc" /></p>
+
+<Canvas of={CountdownStories.StaticSnapshot} />
+
+### <T k="doc.countdown_paused_title" />
+
+<p><T k="doc.countdown_paused_desc" /></p>
+
+<Canvas of={CountdownStories.Paused} />
+
+<Docgen componentName="Countdown" section="props" />
+
+<Docgen componentName="Countdown" section="tokens" />
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.countdown_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.countdown_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.countdown_i18n_desc" /></p>
+
+<Docgen componentName="Countdown" section="test" />
