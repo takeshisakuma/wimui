@@ -7,42 +7,43 @@ import styles from "./alert.module.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
-   * アラートのタイトル
+   * Title of the alert
    */
   title?: React.ReactNode;
   /**
-   * アラートのタイトルのHTMLタグ
+   * HTML tag used for the alert title
    * @default "h4"
    */
   titleTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   /**
-   * アラートの説明文
+   * Description text of the alert
    */
   description?: React.ReactNode;
   /**
-   * アラートのインテント（意味的状態）
+   * Intent (semantic state) of the alert
+   * @default "info"
    */
   intent?: FeedbackIntent;
   /**
-   * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
+   * Custom icon. When omitted, a default icon matching the intent is displayed.
    */
   icon?: React.ReactNode;
   /**
-   * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
+   * Called when the close button is clicked. Providing it shows the close button.
    */
   onClose?: () => void;
   /**
-   * 追加のクラス名
+   * Additional CSS class name
    */
   className?: string;
   /**
-   * 子要素（説明文として扱われます）
+   * Content of the alert (treated as the description)
    */
   children?: React.ReactNode;
 };
 
 /**
- * ユーザーに重要な情報を伝えるためのアラートコンポーネント。
+ * Alert for communicating important information to the user.
  */
 export const Alert = ({
   title,

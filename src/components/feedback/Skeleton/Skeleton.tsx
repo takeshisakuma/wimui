@@ -4,31 +4,33 @@ import styles from "./skeleton.module.scss";
 
 type SkeletonProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
-   * スケルトンの形状。
-   * - `text`: テキスト行のような形状。
-   * - `rect`: 矩形。
-   * - `circle`: 円形。
+   * Shape of the skeleton.
+   * - `text`: shaped like a line of text.
+   * - `rect`: rectangle.
+   * - `circle`: circle.
+   * @default "text"
    */
   variant?: "text" | "rect" | "circle";
   /**
-   * アニメーションの種類。
-   * - `pulse`: ゆっくりとした明滅。
-   * - `wave`: 左から右への波のような動き。
-   * - `none`: アニメーションなし。
+   * Type of animation.
+   * - `pulse`: slow fade in and out.
+   * - `wave`: wave moving from left to right.
+   * - `none`: no animation.
+   * @default "pulse"
    */
   animation?: "pulse" | "wave" | "none";
   /**
-   * 幅。CSSの単位（px, %, remなど）を含めて指定します。
+   * Width, including a CSS unit (px, %, rem, etc.).
    */
   width?: string | number;
   /**
-   * 高さ。CSSの単位（px, %, remなど）を含めて指定します。
+   * Height, including a CSS unit (px, %, rem, etc.).
    */
   height?: string | number;
 };
 
 /**
- * コンテンツの読み込み中に表示するプレースホルダー。
+ * Placeholder displayed while content is loading.
  */
 export const Skeleton = ({
   variant = "text",

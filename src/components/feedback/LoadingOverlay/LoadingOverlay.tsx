@@ -7,19 +7,23 @@ import styles from "./loadingoverlay.module.scss";
 
 export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
-   * オーバーレイの表示/非表示を制御します。
+   * Whether the overlay is shown.
+   * @default false
    */
   visible?: boolean;
   /**
-   * ローディングインジケーターのタイプ。
+   * Type of the loading indicator.
+   * @default "spinner"
    */
   loaderType?: "spinner" | "bars" | "dots" | "pulse";
   /**
-   * ローディングインジケーターのサイズ。
+   * Size of the loading indicator.
+   * @default "lg"
    */
   loaderSize?: "sm" | "md" | "lg" | "xl";
   /**
-   * ローディングインジケーターの色。
+   * Color of the loading indicator.
+   * @default "primary"
    */
   loaderColor?:
     | "primary"
@@ -30,33 +34,36 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
     | "neutral"
     | "currentColor";
   /**
-   * オーバーレイの背景スタイル。
+   * Background style of the overlay.
+   * @default "dark"
    */
   backdropVariant?: "light" | "dark";
   /**
-   * 背景のぼかし効果の強さ。
+   * Strength of the backdrop blur effect.
+   * @default "sm"
    */
   blur?: "none" | "sm" | "md" | "lg";
   /**
-   * ローディングメッセージ。
+   * Loading message displayed below the indicator.
    */
   message?: string;
   /**
-   * position: fixed を使用するかどうか（画面全体をカバー）。
+   * Whether to use position: fixed (covers the whole screen).
+   * @default false
    */
   fixed?: boolean;
   /**
-   * z-index の値。
+   * z-index of the overlay.
    */
   zIndex?: number;
   /**
-   * カスタムローディングコンテンツ。
+   * Custom loading content, replacing the default indicator.
    */
   children?: React.ReactNode;
 };
 
 /**
- * 画面全体または特定の要素をオーバーレイし、ローディング状態を表示するコンポーネント。
+ * Overlays the whole screen or a specific element to display a loading state.
  */
 export const LoadingOverlay = ({
   visible = false,

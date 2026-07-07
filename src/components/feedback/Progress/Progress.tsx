@@ -5,17 +5,44 @@ import { ComponentSizeBasic, IndicatorIntent } from "../../../types/tokens";
 import styles from "./progress.module.scss";
 
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
+  /**
+   * Current value of the progress bar.
+   * @default 0
+   */
   value?: number;
+  /**
+   * Maximum value of the progress bar.
+   * @default 100
+   */
   max?: number;
+  /**
+   * Intent (semantic color) of the bar.
+   * @default "primary"
+   */
   intent?: IndicatorIntent;
+  /**
+   * Size of the bar.
+   * @default "md"
+   */
   size?: ComponentSizeBasic;
+  /**
+   * Text label displayed above the bar.
+   */
   label?: string;
+  /**
+   * Whether to display the current value as a percentage.
+   * @default false
+   */
   showValue?: boolean;
+  /**
+   * If true, shows an indeterminate animation instead of a value.
+   * @default false
+   */
   indeterminate?: boolean;
 };
 
 /**
- * プログレスバーを表示するためのコンポーネント。
+ * Displays a progress bar.
  */
 export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
   (

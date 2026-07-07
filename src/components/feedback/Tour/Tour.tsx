@@ -12,9 +12,21 @@ type TourStep = {
 };
 
 type TourProps = {
+  /**
+   * Steps of the tour. Each step targets an element via a CSS selector.
+   */
   steps: TourStep[];
+  /**
+   * Whether the tour is shown.
+   */
   open: boolean;
+  /**
+   * Called when the tour is dismissed before completion.
+   */
   onClose: () => void;
+  /**
+   * Called when the last step is completed.
+   */
   onFinish?: () => void;
 };
 

@@ -8,21 +8,24 @@ export type LoaderVariant = "bars" | "dots" | "pulse";
 
 export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
-   * ローダーのアニメーション形式。
+   * Animation style of the loader.
+   * @default "bars"
    */
   variant?: LoaderVariant;
   /**
-   * ローダーのサイズ。
+   * Size of the loader.
+   * @default "md"
    */
   size?: ComponentSizeExtended;
   /**
-   * ローダーの色。
+   * Color of the loader. Accepts a design token color name or "currentColor".
+   * @default "primary"
    */
   color?: "currentColor" | WimColor;
 };
 
 /**
- * データの読み込み中や処理中であることを示すためのコンポーネント。
+ * Indicates that data is loading or being processed.
  */
 export const Loader = ({
   variant = "bars",

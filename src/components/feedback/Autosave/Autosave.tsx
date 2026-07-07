@@ -7,16 +7,16 @@ import styles from "./autosave.module.scss";
 export type AutosaveStatus = "idle" | "saving" | "saved" | "error";
 
 export type AutosaveProps = React.ComponentPropsWithoutRef<"div"> & {
-  /** 保存状態 */
+  /** Save status */
   status: AutosaveStatus;
-  /** 最終保存日時 */
+  /** Time of the last save */
   savedAt?: Date;
-  /** エラーメッセージ（省略時はデフォルトメッセージを使用） */
+  /** Error message (a default message is used when omitted) */
   errorMessage?: string;
 };
 
 /**
- * 自動保存の状態を示すインジケーターコンポーネント。
+ * Indicator that shows the autosave status.
  */
 export const Autosave = React.forwardRef<HTMLDivElement, AutosaveProps>(
   ({ status, savedAt, errorMessage, className, ...props }, ref) => {

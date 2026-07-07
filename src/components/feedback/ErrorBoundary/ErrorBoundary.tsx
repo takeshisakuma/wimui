@@ -15,19 +15,19 @@ export type ErrorBoundaryLabels = {
 };
 
 export interface ErrorBoundaryProps {
-  /** エラーが発生した時に表示されるコンポーネントまたは要素。
-   * 関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。
+  /** Component or element displayed when an error occurs.
+   * When a function is passed, it is called as (error, errorInfo, reset) => ReactNode.
    */
   fallback?:
   | ReactNode
   | ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode);
-  /** エラーが発生した時に呼び出されるコールバック。 */
+  /** Called when an error occurs. */
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
-  /** エラーがリセットされた時に呼び出されるコールバック。 */
+  /** Called when the error is reset. */
   onReset?: () => void;
-  /** 手動翻訳用のラベル。 */
+  /** Labels for manual translation overrides. */
   labels?: ErrorBoundaryLabels;
-  /** 子要素。 */
+  /** Content the boundary protects. */
   children: ReactNode;
 }
 
@@ -45,8 +45,8 @@ const DEFAULT_LABELS: Required<ErrorBoundaryLabels> = {
 };
 
 /**
- * デフォルトのエラーフォールバックUIを表示するための機能コンポーネント。
- * エラー詳細の表示/非表示を切り替えるボタンと再試行ボタンを提供します。
+ * Function component that renders the default error fallback UI.
+ * Provides a retry button and a toggle for showing/hiding error details.
  */
 const DefaultFallback = ({
   error,

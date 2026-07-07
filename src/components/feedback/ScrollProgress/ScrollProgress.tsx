@@ -5,17 +5,18 @@ import styles from "./scrollprogress.module.scss";
 
 export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
-   * 進捗バーの色。
+   * Color of the progress bar.
+   * @default "primary"
    */
   color?: "primary" | "secondary" | "success" | "warning" | "error";
   /**
-   * スクロールを検知するターゲット要素。デフォルトは `window`。
+   * Element whose scroll position is tracked. Defaults to `window`.
    */
   target?: React.RefObject<HTMLElement | null>;
 };
 
 /**
- * 読み込みの進捗やスクロール位置を視覚的に表示するためのコンポーネント。
+ * Visualizes reading progress or scroll position as a bar.
  */
 export const ScrollProgress = ({
   color = "primary",

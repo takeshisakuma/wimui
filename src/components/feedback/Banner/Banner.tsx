@@ -7,42 +7,44 @@ import styles from "./banner.module.scss";
 
 type BannerProps = {
   /**
-   * バナーのタイトル
+   * Title of the banner
    */
   title?: React.ReactNode;
   /**
-   * バナーの説明文
+   * Description text of the banner
    */
   description?: React.ReactNode;
   /**
-   * バナーのインテント（意味的状態）
+   * Intent (semantic state) of the banner
+   * @default "info"
    */
   intent?: FeedbackIntent;
   /**
-   * アイコンを表示するかどうか、またはカスタムアイコン
+   * Whether to show the icon, or a custom icon element
+   * @default true
    */
   icon?: boolean | React.ReactNode;
   /**
-   * アクションボタン要素（例：Buttonコンポーネント）
+   * Action element (e.g. a Button component)
    */
   extra?: React.ReactNode;
   /**
-   * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
+   * Called when the close button is clicked. Providing it shows the close button.
    */
   onClose?: () => void;
   /**
-   * 追加のクラス名
+   * Additional CSS class name
    */
   className?: string;
   /**
-   * 子要素
+   * Content of the banner
    */
   children?: React.ReactNode;
 };
 
 /**
- * 重要なメッセージやアクションをユーザーに提示するためのバナーコンポーネント。
- * 通常、ページの上部に表示されます。
+ * Banner for presenting an important message or action to the user.
+ * Usually displayed at the top of the page.
  */
 export const Banner = ({
   title,

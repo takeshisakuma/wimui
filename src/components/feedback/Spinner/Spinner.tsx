@@ -5,14 +5,29 @@ import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./spinner.module.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
+  /**
+   * Size of the spinner.
+   * @default "md"
+   */
   size?: ComponentSizeExtended;
+  /**
+   * Color of the spinner. Accepts a design token color name or "currentColor".
+   * @default "primary"
+   */
   color?: "currentColor" | WimColor;
+  /**
+   * Text label displayed next to the spinner.
+   */
   label?: string;
+  /**
+   * Position of the label relative to the spinner.
+   * @default "right"
+   */
   labelPosition?: "right" | "bottom";
 };
 
 /**
- * 読み込み中であることを示すための回転するインジケーター。
+ * Rotating indicator that shows something is loading.
  */
 export const Spinner = ({
   size = "md",

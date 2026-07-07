@@ -21,30 +21,45 @@ export type SnackbarPosition =
   | "bottom-right";
 
 export interface SnackbarProps {
-  /** スナックバーに表示するメッセージ */
+  /** Message displayed in the snackbar */
   message: string;
-  /** 表示状態 */
+  /**
+   * Whether the snackbar is shown
+   * @default false
+   */
   open?: boolean;
-  /** インテント（意味的状態） */
+  /**
+   * Intent (semantic state)
+   * @default "info"
+   */
   intent?: FeedbackIntent;
-  /** 表示位置 */
+  /**
+   * Position on the screen
+   * @default "bottom-center"
+   */
   position?: SnackbarPosition;
-  /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */
+  /**
+   * Time in milliseconds before the snackbar closes automatically. Set 0 to disable auto-close.
+   * @default 5000
+   */
   autoHideDuration?: number;
-  /** 閉じるボタンを表示するかどうか */
+  /**
+   * Whether to show a close button
+   * @default false
+   */
   showCloseButton?: boolean;
-  /** アクションボタンのラベル */
+  /** Label of the action button */
   actionLabel?: string;
-  /** アクションボタンがクリックされた時のコールバック */
+  /** Called when the action button is clicked */
   onAction?: () => void;
-  /** スナックバーが閉じられる時のコールバック */
+  /** Called when the snackbar is closed */
   onClose?: () => void;
-  /** カスタムクラス名 */
+  /** Additional CSS class name */
   className?: string;
 }
 
 /**
- * ユーザーに短いメッセージを通知するためのスナックバーコンポーネント。
+ * Snackbar for notifying the user with a short message.
  */
 export const Snackbar = ({
   message,
