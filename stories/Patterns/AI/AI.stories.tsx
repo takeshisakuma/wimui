@@ -19,7 +19,7 @@ import {
   Avatar,
   Badge,
 } from "../../../src";
-import { CopyIcon, DownloadIcon, ExternalLinkIcon, ColumnsIcon, MonitorIcon, ChevronLeftIcon, ChevronRightIcon } from "@/icon";
+import { CopyIcon, DownloadIcon, ExternalLinkIcon, DocumentIcon, MonitorIcon, ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 const meta: Meta = {
   title: "Patterns/AI",
@@ -115,7 +115,7 @@ export default function WelcomeCard() {
                   style={{ background: "var(--wim-color-bg-surface)", borderColor: "var(--wim-color-primary)" }}
                 >
                   <Flex align="center" gap="sm">
-                    <Icon component={ColumnsIcon} size="sm" color="primary" />
+                    <Icon component={DocumentIcon} size="sm" color="primary" />
                     <Box style={{ flex: 1 }}>
                       <Text size="xs" weight="bold">WelcomeCard.tsx</Text>
                       <Text size="xs" color="text-secondary">{t("docs_stories_recipes:artifacts.react_component")}</Text>
@@ -181,7 +181,7 @@ export default function WelcomeCard() {
                   </Button>
                 )}
                 <div style={{ display: "flex", alignItems: "center", gap: "var(--wim-spacing-md)", minWidth: 0, overflow: "hidden", flex: 1 }}>
-                  <Icon component={ColumnsIcon} size="sm" color="primary" style={{ flexShrink: 0 }} />
+                  <Icon component={DocumentIcon} size="sm" color="primary" style={{ flexShrink: 0 }} />
                   <Title tag="h4" size="sm" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, flex: 1 }}>WelcomeCard.tsx</Title>
                   {!isMobile && <Badge content="v2" size="sm" variant="subtle" style={{ flexShrink: 0 }} />}
                 </div>
