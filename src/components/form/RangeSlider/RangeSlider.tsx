@@ -5,76 +5,46 @@ import { FieldTemplate } from "../FieldTemplate";
 import styles from "./range-slider.module.scss";
 
 type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {
-  /**
-   * 現在の値 [min, max]
-   */
+  /** Current value [min, max] (controlled) */
   value?: [number, number];
-  /**
-   * デフォルトの値 [min, max]（非制御時）
-   */
+  /** Default value [min, max] (uncontrolled) */
   defaultValue?: [number, number];
-  /**
-   * 最小値
-   */
+  /** Minimum value */
   min?: number;
-  /**
-   * 最大値
-   */
+  /** Maximum value */
   max?: number;
-  /**
-   * ステップ値
-   */
+  /** Step value */
   step?: number;
-  /**
-   * 同じ値を許容するかどうか（交差はしない）
-   */
+  /** Whether both handles may hold the same value (they never cross) */
   allowCross?: boolean;
-  /**
-   * 無効化フラグ
-   */
+  /** Whether the slider is disabled */
   disabled?: boolean;
-  /**
-   * 値変更時のコールバック
-   */
+  /** Callback when the value changes */
   onChange?: (value: [number, number]) => void;
-  /**
-   * ドラッグ終了時のコールバック
-   */
+  /** Callback when dragging ends */
   onAfterChange?: (value: [number, number]) => void;
-  /**
-   * 追加のクラス名
-   */
+  /** Additional class names */
   className?: string;
-  /**
-   * 名前の属性
-   */
+  /** Name attribute */
   name?: string;
-  /**
-   * アクセシビリティ用のラベル
-   */
+  /** Accessible label */
   label?: string;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * カスタムID
-   */
+  /** Custom ID */
   id?: string;
+  /** Accessible label when no visible label is provided */
   "aria-label"?: string;
+  /** ID of the element that labels the slider */
   "aria-labelledby"?: string;
 };
 
 /**
- * 範囲（開始と終了）を選択するためのスライダーコンポーネント。
+ * Slider component for selecting a range (start and end).
  */
 export const RangeSlider = ({
   value,

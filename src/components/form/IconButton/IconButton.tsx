@@ -6,12 +6,14 @@ type IconButtonProps = Omit<
   React.ComponentProps<typeof Button>,
   "label" | "iconPosition"
 > & {
+  /** Icon name to display */
   iconName: React.ComponentProps<typeof Icon>["name"];
+  /** Accessible label for the icon-only button */
   "aria-label": string;
 };
 
 /**
- * アイコンのみのボタンコンポーネント。
+ * Icon-only button component.
  */
 export const IconButton = ({ iconName, ...props }: IconButtonProps) => {
   return (

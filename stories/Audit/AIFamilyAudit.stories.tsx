@@ -18,6 +18,9 @@ import {
   ChatMessageList,
   ChatMessage,
   ChatInput,
+  ModelSelector,
+  ThreadList,
+  UsageMeter,
   Stack,
   Box,
 } from "../../src";
@@ -82,6 +85,21 @@ export const Overview: StoryObj = {
     const sampleMessages = [
       { id: "1", role: "user" as const, content: t("audit:ai_chat_user_msg") },
       { id: "2", role: "assistant" as const, content: t("audit:ai_chat_assistant_msg") },
+    ];
+
+    // Model names are brand identifiers, kept verbatim.
+    // i18n-ignore-start
+    const sampleModels = [
+      { id: "gpt-4o", name: "GPT-4o", description: "OpenAI", contextLength: 128000, pricing: { input: 2.5, output: 10 }, badge: "New" },
+      { id: "claude-sonnet", name: "Claude Sonnet", description: "Anthropic", contextLength: 200000, pricing: { input: 3, output: 15 } },
+      { id: "llama-3", name: "Llama 3 70B", description: "Meta", contextLength: 8000, pricing: { input: 0.6, output: 0.6 } },
+    ];
+    // i18n-ignore-end
+
+    const sampleThreads = [
+      { id: "1", title: t("audit:tl_thread_1"), preview: t("audit:tl_thread_1_sub"), timestamp: "2m" },
+      { id: "2", title: t("audit:tl_thread_2"), preview: t("audit:tl_thread_2_sub"), timestamp: "1h", unread: true },
+      { id: "3", title: t("audit:tl_thread_3"), preview: t("audit:tl_thread_3_sub"), timestamp: "1d" },
     ];
 
     return (
@@ -299,6 +317,36 @@ export const Overview: StoryObj = {
                   content={t("audit:ai_streaming_capped")}
                 />
               </Box>
+            </Stack>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Model / Thread / Usage Check */}
+        <ComparisonGrid title={t("audit:ai_model_thread_usage_check")}>
+          <ComponentGroup label={t("audit:label_model_selector")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Stack gap="md">
+              <ModelSelector models={sampleModels} defaultValue="gpt-4o" fullWidth />
+              <ModelSelector models={sampleModels} defaultValue="claude-sonnet" showPricing={false} showContext={false} fullWidth />
+              <ModelSelector models={sampleModels} defaultValue="gpt-4o" disabled fullWidth />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_thread_list")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Box style={{ border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)" }}>
+              <ThreadList
+                threads={sampleThreads}
+                activeId="1"
+                onSelect={() => {}}
+                onNewThread={() => {}}
+                onDelete={() => {}}
+              />
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_usage_meter")} align="stretch" maxWidth="var(--wim-width-md)">
+            <Stack gap="lg">
+              <UsageMeter used={2000} max={8000} labels={{ label: t("audit:um_context") }} />
+              <UsageMeter used={6400} max={8000} labels={{ label: t("audit:um_context") }} />
+              <UsageMeter used={7600} max={8000} labels={{ label: t("audit:um_context") }} />
+              <UsageMeter used={4200} labels={{ label: t("audit:um_context") }} />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>

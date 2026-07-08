@@ -11,14 +11,18 @@ type MentionOption = {
 };
 
 export interface MentionsProps extends Omit<React.ComponentPropsWithoutRef<typeof Textarea>, "onSelect"> {
+  /** Mention candidates to suggest */
   options: MentionOption[];
+  /** Character that triggers the suggestion list */
   trigger?: string;
+  /** Callback when a suggestion is selected */
   onSelect?: (option: MentionOption) => void;
+  /** Whether to render as a child element. */
   asChild?: boolean;
 }
 
 /**
- * テキスト入力中に特定の文字（@など）をトリガーにして候補を表示し、選択できるようにするコンポーネント。
+ * Component that shows selectable suggestions while typing, triggered by a specific character (e.g. @).
  */
 export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
   (

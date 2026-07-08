@@ -6,10 +6,13 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./switch.module.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+  /** Size of the switch */
   size?: ComponentSizeBasic;
+  /** Additional class names */
   className?: string;
+  /** Label content rendered next to the switch */
   children?: React.ReactNode;
-  /** エラー状態として表示する（aria-invalid が付与される） */
+  /** Whether to display as an error state (aria-invalid is applied) */
   error?: boolean;
 };
 

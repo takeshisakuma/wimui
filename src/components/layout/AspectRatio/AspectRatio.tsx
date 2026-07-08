@@ -3,18 +3,14 @@ import classNames from "classnames";
 import styles from "./aspect-ratio.module.scss";
 
 export type AspectRatioProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * アスペクト比 (例: 16 / 9, 1, 4 / 3)
-   */
+  /** Aspect ratio (e.g. 16 / 9, 1, 4 / 3) */
   ratio?: number;
-  /**
-   * 子要素
-   */
+  /** Child content */
   children: React.ReactNode;
 };
 
 /**
- * `AspectRatio` は、指定したアスペクト比を維持しながらコンテンツを表示するためのコンテナです。
+ * `AspectRatio` is a container that displays content while maintaining a given aspect ratio.
  */
 export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
   ({ ratio = 1, children, className, style, ...props }, ref) => {

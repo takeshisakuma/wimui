@@ -3,25 +3,25 @@ import classNames from "classnames";
 import styles from "./virtual-list.module.scss";
 
 export interface VirtualListProps<T> {
-  /** 表示するアイテムの配列 */
+  /** Array of items to display */
   items: T[];
-  /** 1行あたりの高さ (px) */
+  /** Height of each row (px) */
   itemHeight: number;
-  /** リスト全体の高さ (px) */
+  /** Total height of the list (px) */
   height: number | string;
-  /** 各アイテムのレンダリング関数 */
+  /** Render function for each item */
   renderItem: (item: T, index: number) => React.ReactNode;
-  /** 表示範囲外に追加でレンダリングするアイテム数 */
+  /** Number of extra items to render outside the visible range */
   overscan?: number;
-  /** 追加のクラス名 */
+  /** Additional class names */
   className?: string;
-  /** アイテムをラップする要素の役割 (アクセシビリティ用) */
+  /** Role of the element wrapping each item (for accessibility) */
   itemRole?: string;
-  /** リスト全体の役割 (アクセシビリティ用) */
+  /** Role of the whole list (for accessibility) */
   role?: string;
-  /** アクセシビリティ用のラベル */
+  /** Accessible label */
   "aria-label"?: string;
-  /** アクセシビリティ用のラベル参照 */
+  /** ID of the element that labels the list */
   "aria-labelledby"?: string;
 }
 

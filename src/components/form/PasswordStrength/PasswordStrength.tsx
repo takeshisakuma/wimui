@@ -6,22 +6,16 @@ import styles from "./password-strength.module.scss";
 export type PasswordStrengthLevel = 0 | 1 | 2 | 3 | 4;
 
 export interface PasswordStrengthProps extends React.ComponentPropsWithoutRef<"div"> {
-  /**
-   * パスワード文字列
-   */
+  /** Password string to evaluate */
   password?: string;
   /**
-   * 強さの判定基準（省略した場合はデフォルトの判定が使用されます）
-   * 0: とても弱い, 1: 弱い, 2: 普通, 3: 強い, 4: とても強い
+   * Strength score (the default calculation is used when omitted)
+   * 0: very weak, 1: weak, 2: fair, 3: strong, 4: very strong
    */
   score?: PasswordStrengthLevel;
-  /**
-   * ラベルを表示するかどうか
-   */
+  /** Whether to show the strength label */
   showLabel?: boolean;
-  /**
-   * カスタムの強さ判定関数
-   */
+  /** Custom strength calculation function */
   calculateLevel?: (password: string) => PasswordStrengthLevel;
 }
 
@@ -36,7 +30,7 @@ const defaultCalculateLevel = (password: string): PasswordStrengthLevel => {
 };
 
 /**
- * パスワードの強度を視覚的に表示するコンポーネント。
+ * Component that visually indicates password strength.
  */
 export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengthProps>(
   ({ password = "", score, showLabel = true, calculateLevel = defaultCalculateLevel, className, ...props }, ref) => {

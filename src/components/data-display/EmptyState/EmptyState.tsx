@@ -4,30 +4,20 @@ import classNames from "classnames";
 import styles from "./empty-state.module.scss";
 
 type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * 表示するタイトル。
-   */
+  /** Title to display. */
   title: React.ReactNode;
-  /**
-   * 表示する説明文。
-   */
+  /** Description text to display. */
   description?: React.ReactNode;
-  /**
-   * 表示するアイコン。
-   */
+  /** Icon to display. */
   icon?: React.ReactNode;
-  /**
-   * アクションとして表示する要素（ボタンなど）。
-   */
+  /** Element shown as an action (e.g. a button). */
   extra?: React.ReactNode;
-  /**
-   * デザインバリエーション。
-   */
+  /** Design variant. */
   variant?: "default" | "simple";
 };
 
 /**
- * データが空の場合や、検索結果がない場合などに表示するプレースホルダーコンポーネント。
+ * Placeholder component shown when there is no data or no search results.
  */
 export const EmptyState = ({
   title,

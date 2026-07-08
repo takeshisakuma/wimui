@@ -31,35 +31,35 @@ export const PHONE_COUNTRIES: Country[] = [
 // ─── PhoneInput ────────────────────────────────────────────────────────────────
 
 export type PhoneInputProps = {
-  /** 電話番号の値（国番号を除く番号部分）。 */
+  /** Phone number value (the number part, excluding the country dial code). */
   value?: string;
-  /** 電話番号が変更されたときに呼び出されるコールバック。 */
+  /** Callback when the phone number changes. */
   onChange?: (value: string) => void;
-  /** 選択中の国コード（例: "JP", "US"）。 */
+  /** Selected country code (e.g. "JP", "US"). */
   countryCode?: string;
-  /** 国コードが変更されたときに呼び出されるコールバック。 */
+  /** Callback when the country code changes. */
   onCountryChange?: (countryCode: string) => void;
-  /** 電話番号入力欄のプレースホルダー。 */
+  /** Placeholder for the phone number input. */
   placeholder?: string;
-  /** 無効状態。 */
+  /** Whether the field is disabled. */
   disabled?: boolean;
-  /** エラーメッセージ。 */
+  /** Error message. */
   error?: string;
-  /** 必須フラグ。 */
+  /** Whether to show the required indicator. */
   required?: boolean;
-  /** フィールドラベル。 */
+  /** Field label. */
   label?: string;
-  /** レイアウト方向。 */
+  /** Layout direction of label and field. */
   layout?: "vertical" | "horizontal";
-  /** 追加CSSクラス。 */
+  /** Additional class names. */
   className?: string;
   /** Whether to take full width of parent. */
   fullWidth?: boolean;
 };
 
 /**
- * 国番号セレクターと電話番号入力を組み合わせたコンポーネント。
- * カスタムドロップダウンを採用し、洗練されたデザインを実現しています。
+ * Component combining a country dial-code selector with a phone number input.
+ * Uses a custom dropdown for a polished design.
  */
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   (

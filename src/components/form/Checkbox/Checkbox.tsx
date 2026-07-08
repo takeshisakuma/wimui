@@ -5,10 +5,13 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./checkbox.module.scss";
 
 export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** Whether to render as a child element. */
   asChild?: boolean;
+  /** Label content rendered next to the checkbox */
   children?: React.ReactNode;
+  /** Whether to show the indeterminate (mixed) state */
   indeterminate?: boolean;
-  /** エラー状態として表示する（aria-invalid が付与される） */
+  /** Whether to display as an error state (aria-invalid is applied) */
   error?: boolean;
 }
 

@@ -8,6 +8,7 @@ import {
   Image,
   Carousel,
   AspectRatio,
+  ImageCompare,
   Stack,
   Text,
   Box,
@@ -155,6 +156,37 @@ export const Overview: StoryObj = {
               </Box>
             </ComponentGroup>
           </Stack>
+        </ComparisonGrid>
+
+        {/* Image Compare Check */}
+        <ComparisonGrid title={t("audit:media_image_compare_check")}>
+          <ComponentGroup label={t("audit:label_image_compare")} width="fit-content">
+            <Box style={{ width: "400px" }}>
+              <ImageCompare
+                before={sampleImages[0]}
+                after={sampleImages[1]}
+                beforeAlt={t("audit:ic_before_alt")}
+                afterAlt={t("audit:ic_after_alt")}
+                beforeLabel={t("audit:ic_before")}
+                afterLabel={t("audit:ic_after")}
+                height={260}
+                radius="md"
+              />
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_image_compare")} — ${t("audit:sfx_vertical")}`} width="fit-content">
+            <Box style={{ width: "400px" }}>
+              <ImageCompare
+                before={sampleImages[0]}
+                after={sampleImages[2]}
+                beforeAlt={t("audit:ic_before_alt")}
+                afterAlt={t("audit:ic_after_alt")}
+                orientation="vertical"
+                height={260}
+                radius="md"
+              />
+            </Box>
+          </ComponentGroup>
         </ComparisonGrid>
       </AuditPage>
     );

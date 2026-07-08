@@ -10,3 +10,4 @@ export * from "./components/charts/PieChart/PieChart";
 export * from "./components/charts/RadarChart/RadarChart";
 export * from "./components/charts/ScatterChart/ScatterChart";
 export * from "./components/charts/Treemap/Treemap";
+export * from "./components/charts/Sparkline/Sparkline";

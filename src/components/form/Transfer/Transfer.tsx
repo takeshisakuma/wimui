@@ -25,21 +25,33 @@ export type TransferItem = {
 };
 
 export type TransferProps = {
+  /** All items shown across the two lists */
   dataSource: TransferItem[];
+  /** Keys of the items in the target (right) list */
   targetKeys?: string[];
+  /** Callback when items are moved between the lists */
   onChange?: (
     targetKeys: string[],
     direction: "toLeft" | "toRight",
     moveKeys: string[],
   ) => void;
+  /** Titles of the source and target lists */
   titles?: [React.ReactNode, React.ReactNode];
+  /** Additional class names */
   className?: string;
+  /** Inline styles */
   style?: React.CSSProperties;
+  /** Whether the component is disabled */
   disabled?: boolean;
+  /** Field label */
   label?: React.ReactNode;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Labels for internationalization */
   labels?: TransferLabels;
 };
 

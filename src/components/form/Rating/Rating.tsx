@@ -12,66 +12,38 @@ export type RatingLabels = {
 };
 
 type RatingProps = {
-  /**
-   * 現在の値
-   */
+  /** Current value (controlled) */
   value?: number;
-  /**
-   * デフォルトの値（非制御時）
-   */
+  /** Default value (uncontrolled) */
   defaultValue?: number;
-  /**
-   * 星の総数
-   */
+  /** Total number of stars */
   count?: number;
-  /**
-   * ハーフスターを許可するかどうか
-   */
+  /** Whether to allow half stars */
   allowHalf?: boolean;
-  /**
-   * 無効化フラグ
-   */
+  /** Whether the rating is disabled */
   disabled?: boolean;
-  /**
-   * 読み取り専用フラグ（表示専用。disabledと異なりグレーアウトしない）
-   */
+  /** Read-only flag (display only; unlike disabled it is not grayed out) */
   readOnly?: boolean;
-  /**
-   * サイズ
-   */
+  /** Size of the stars */
   size?: ComponentSizeBasic;
-  /**
-   * 値変更時のコールバック
-   */
+  /** Callback when the value changes */
   onChange?: (value: number) => void;
-  /**
-   * 追加のクラス名
-   */
+  /** Additional class names */
   className?: string;
-  /**
-   * アクセシビリティ用のラベル
-   */
+  /** Accessible label */
   label?: React.ReactNode;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * Labels for internationalization
-   */
+  /** Labels for internationalization */
   labels?: RatingLabels;
 };
 
 /**
- * ユーザーが評価を入力するためのレーティングコンポーネント。
+ * Rating component for users to give a score.
  */
 export const Rating = ({
   value,

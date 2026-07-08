@@ -426,6 +426,29 @@
   "guide": {
     "media_title": "メディアコンポーネントの使い分けガイド"
   },
+  "imagecompare_doc": {
+    "a11y_spec_1": "ハンドルは role=\"slider\" を使用し、aria-valuenow / aria-valuemin / aria-valuemax / aria-orientation を公開します。",
+    "a11y_spec_2": "矢印キーで仕切りを移動し、Home/End で一方の画像を完全表示に切り替えます。",
+    "a11y_spec_3": "各画像に意味のある alt テキストを付け、視覚なしでも比較が理解できるようにします。",
+    "best_practice_1": "読み込み時に両方の画像が見えるよう、仕切りは中央付近から始めます。",
+    "best_practice_2": "歪みを避けるため、コンポーネントを画像のアスペクト比に合わせて制約します。",
+    "best_practice_3": "両方の画像をプリロードし、ドラッグ時に未読み込みの片側が現れないようにします。",
+    "choice_cropper_when": "1 枚の画像を切り抜き・回転・トリミングしたいとき。",
+    "choice_matrix_desc": "2 枚の画像の差を見せるには ImageCompare を、1 枚の画像を編集するには ImageCropper を使います。",
+    "choice_self_when": "before 画像と after 画像の差を見せたいとき。",
+    "content_guideline_1": "寸法と位置を完全に揃えた 2 枚の画像を使います。ズレはそのまま差として見えてしまいます。",
+    "content_guideline_2": "比較の方向が自明でない場合は before / after のラベルを付けます。",
+    "design_intent": "2 枚の画像を横並びで比較すると微妙な差が見えにくくなります。1 つの仕切りの下で重ねることで両者が同じ位置に保たれ、変化を直接読み取れます。",
+    "i18n_desc": "ドラッグハンドルのラベルは labels prop で上書きできます。before/after のバッジは任意のノードを受け付けるため、その文言はアプリ側から渡します。",
+    "keyboard_arrows": "仕切りを移動（Shift で大きく移動）",
+    "keyboard_ends": "一方の画像を完全表示",
+    "motion_spec_1": "ドラッグ中、仕切りはイージングなしでポインタに直接追従し、見せ分けが物理的に感じられます。",
+    "motion_spec_2": "キーボード操作では仕切りが離散的なステップで移動します（2%、Shift 併用で 10%）。",
+    "responsive_desc": "既定ではコンテナの幅いっぱいに広がります。画像に合わせるには明示的な width と height を指定するか、アスペクト比のボックスで囲みます。",
+    "scenario_1": "写真エディタで、オリジナルとレタッチ版を 1 つのスライダーの下に表示する。",
+    "scenario_2": "AI 画像ツールで、元画像と生成結果を比較する。",
+    "subtitle": "ImageCompare は 2 枚の画像を重ね、ドラッグ可能な仕切りで見せ分けます。編集・修復・AI 生成結果を元画像と比較するための before/after スライダーです。"
+  },
   "media": {
     "alt_text": "代替テキスト (Alt)",
     "alt_text_desc": "画像やビデオには必ず代替テキストを設定してください。視覚障害を持つユーザーだけでなく、SEO\nにも寄与します。",

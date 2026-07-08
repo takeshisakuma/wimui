@@ -4,13 +4,16 @@ import { Text } from "../../typography/Text/Text";
 import styles from "./field-error.module.scss";
 
 type FieldErrorProps = {
+  /** Error message text */
   content: string;
+  /** Additional class names */
   className?: string;
+  /** ID of the error message element */
   id?: string;
 };
 
 /**
- * 入力フィールドの下に表示するバリデーションエラーメッセージ用のコンポーネント。
+ * Component for the validation error message shown below an input field.
  */
 export const FieldError = ({
   content,

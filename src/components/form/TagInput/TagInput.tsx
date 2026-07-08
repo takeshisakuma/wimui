@@ -7,71 +7,41 @@ import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./tag-input.module.scss";
 
 export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
-  /**
-   * タグのリスト
-   */
+  /** List of tags (controlled) */
   value?: string[];
-  /**
-   * 初期状態のタグのリスト
-   */
+  /** Initial list of tags (uncontrolled) */
   defaultValue?: string[];
-  /**
-   * タグが変更された時のコールバック
-   */
+  /** Callback when the tags change */
   onChange?: (tags: string[]) => void;
-  /**
-   * 入力欄のプレースホルダー
-   */
+  /** Placeholder for the input */
   placeholder?: string;
-  /**
-   * 無効化状態
-   */
+  /** Whether the input is disabled */
   disabled?: boolean;
-  /**
-   * 意図（エラー表示など）
-   */
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
-  /**
-   * バリアント
-   */
+  /** Visual style variant of the field */
   variant?: FieldVariant;
-  /**
-   * 幅を100%にするかどうか
-   */
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
-  /**
-   * 固定幅
-   */
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
-  /**
-   * ラベル
-   */
+  /** Field label */
   label?: React.ReactNode;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須フラグ
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * タグの削除を許可するかどうか
-   */
+  /** Whether tags can be deleted */
   allowDelete?: boolean;
-  /**
-   * 入力可能な最大タグ数
-   */
+  /** Maximum number of tags that can be entered */
   maxTags?: number;
 }
 
 /**
- * 自由入力のタグを管理するための入力コンポーネント。
- * エンターキーまたはカンマでタグを確定します。
+ * Input component for managing free-form tags.
+ * Tags are committed with the Enter key or a comma.
  */
 export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
   (

@@ -11,7 +11,9 @@ import {
   SwitchGroup,
   SegmentedControl,
   ToggleGroup,
+  ThemeToggle,
   Slider,
+  Stack,
 } from "../../src";
 
 const meta: Meta = {
@@ -190,6 +192,24 @@ export const Overview: StoryObj = {
             <Radio disabled defaultChecked>{t("audit:label_disabled")}</Radio>
             <Switch disabled defaultChecked>{t("audit:label_disabled")}</Switch>
             <Slider disabled defaultValue={30} style={{ width: "200px" }} aria-label={t("audit:label_disabled")} />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Theme Toggle Check */}
+        <ComparisonGrid title={t("audit:selection_theme_toggle_check")}>
+          <ComponentGroup label={`${t("audit:label_theme_toggle")} — ${t("audit:sfx_icon")}`} align="start">
+            <Stack direction="row" gap="lg" align="center">
+              <ThemeToggle size="sm" applyToDocument={false} storageKey={null} />
+              <ThemeToggle size="md" applyToDocument={false} storageKey={null} />
+              <ThemeToggle size="lg" applyToDocument={false} storageKey={null} />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_theme_toggle")} — ${t("audit:sfx_segmented")}`} align="start">
+            <Stack direction="row" gap="lg" align="center">
+              <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="sm" applyToDocument={false} storageKey={null} />
+              <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="md" applyToDocument={false} storageKey={null} />
+              <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="lg" applyToDocument={false} storageKey={null} />
+            </Stack>
           </ComponentGroup>
         </ComparisonGrid>
       </AuditPage>

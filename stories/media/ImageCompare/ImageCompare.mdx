@@ -1,0 +1,109 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as ImageCompareStories from "./ImageCompare.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={ImageCompareStories} />
+
+<Title />
+
+<p><T k="imagecompare_doc.subtitle" /></p>
+
+<Canvas of={ImageCompareStories.WithLabels} />
+
+## <T k="doc.design_intent_title" />
+
+<p><T k="imagecompare_doc.design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+
+<p><T k="imagecompare_doc.choice_matrix_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ImageCompare</td>
+      <td><T k="imagecompare_doc.choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td>ImageCropper</td>
+      <td><T k="imagecompare_doc.choice_cropper_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="ImageCompare" section="anatomy" />
+
+## <T k="doc.content_guidelines_title" />
+
+<ul>
+  <li><T k="imagecompare_doc.content_guideline_1" /></li>
+  <li><T k="imagecompare_doc.content_guideline_2" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+
+<ul>
+  <li><T k="imagecompare_doc.motion_spec_1" /></li>
+  <li><T k="imagecompare_doc.motion_spec_2" /></li>
+</ul>
+
+## <T k="doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="imagecompare_doc.a11y_spec_1" /></li>
+  <li><T k="imagecompare_doc.a11y_spec_2" /></li>
+  <li><T k="imagecompare_doc.a11y_spec_3" /></li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li><T k="imagecompare_doc.scenario_1" /></li>
+  <li><T k="imagecompare_doc.scenario_2" /></li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li><T k="imagecompare_doc.best_practice_1" /></li>
+  <li><T k="imagecompare_doc.best_practice_2" /></li>
+  <li><T k="imagecompare_doc.best_practice_3" /></li>
+</ul>
+
+## <T k="doc.variations" />
+
+<Canvas of={ImageCompareStories.Vertical} />
+<Canvas of={ImageCompareStories.Controlled} />
+
+<Docgen componentName="ImageCompare" section="props" />
+
+<Docgen componentName="ImageCompare" section="tokens" />
+
+## <T k="doc.responsive_title" />
+
+<p><T k="imagecompare_doc.responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="doc.key" /></th><th><T k="doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>← / → · ↑ / ↓</td><td><T k="imagecompare_doc.keyboard_arrows" /></td></tr>
+    <tr><td>Home / End</td><td><T k="imagecompare_doc.keyboard_ends" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="doc.i18n_title" />
+
+<p><T k="imagecompare_doc.i18n_desc" /></p>
+
+<Docgen componentName="ImageCompare" section="test" />

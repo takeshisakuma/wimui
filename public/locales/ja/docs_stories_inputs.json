@@ -223,6 +223,8 @@
     "textarea_placeholder_thanks": "いつも施設を利用させていただき、ありがとうございます。",
     "textarea_placeholder_urgent": "施設の利用についての質問です。可能であれば、明日の15時までにご回答をお願いいたします。急ぎではありません。",
     "textarea_value_none": "特になし",
+    "themetoggle_preview_body": "このパネルは切り替えに応じてテーマが変わり、ライブラリの他の部分と同じデザイントークンを使用します。",
+    "themetoggle_preview_title": "プレビュー",
     "timepicker_ghost": "ゴースト時間選択",
     "timepicker_outline": "アウトライン時間選択",
     "timepicker_select": "時間を選択",

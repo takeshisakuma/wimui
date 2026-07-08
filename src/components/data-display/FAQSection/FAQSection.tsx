@@ -6,48 +6,34 @@ import { Text } from "../../typography/Text/Text";
 import styles from "./faq-section.module.scss";
 
 export interface FAQItem {
-  /**
-   * 質問。
-   */
+  /** Question. */
   question: React.ReactNode;
-  /**
-   * 回答。
-   */
+  /** Answer. */
   answer: React.ReactNode;
 }
 
 export interface FAQSectionProps {
-  /**
-   * FAQの各項目。
-   */
+  /** FAQ items. */
   items: FAQItem[];
-  /**
-   * セクションのメインタイトル。
-   */
+  /** Main title of the section. */
   title?: React.ReactNode;
-  /**
-   * タイトルの下に表示される補足説明。
-   */
+  /** Supplementary description shown below the title. */
   description?: React.ReactNode;
   /**
-   * レイアウト。
-   * - top: タイトルと説明をアコーディオンの上に配置。
-   * - left: タイトルと説明を左側、アコーディオンを右側に配置 (デスクトップ以上)。
+   * Layout.
+   * - top: title and description above the accordion.
+   * - left: title and description on the left, accordion on the right (desktop and up).
    */
   layout?: "top" | "left";
-  /**
-   * 内部のAccordionコンポーネントに渡すProps。
-   */
+  /** Props passed to the inner Accordion component. */
   accordionProps?: Omit<AccordionProps, "children">;
-  /**
-   * 追加のクラス名。
-   */
+  /** Additional class names. */
   className?: string;
 }
 
 /**
- * よくある質問 (FAQ)を表示するためのセクションコンポーネント。
- * 既存のAccordionコンポーネントを活用して構築されています。
+ * Section component for displaying frequently asked questions (FAQ).
+ * Built on top of the existing Accordion component.
  */
 export const FAQSection = ({
   items,

@@ -6,39 +6,26 @@ import { FieldError } from "../../form/FieldError/FieldError";
 import localStyles from "./field-template.module.scss";
 
 export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Whether to render as a child element. */
   asChild?: boolean;
-  /**
-   * フィールドのラベルテキスト
-   */
+  /** Label text of the field */
   label?: React.ReactNode;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * フィールドのメインコンテンツ
-   */
+  /** Main content of the field */
   children: React.ReactNode;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
   /**
-   * レイアウト方向
+   * Layout direction of label and field
    * @default "vertical"
    */
   layout?: "vertical" | "horizontal";
-  /**
-   * アクセシビリティ用のラベルID
-   */
+  /** ID of the label element for accessibility */
   labelId?: string;
-  /**
-   * ラベルの対象となる要素のID
-   */
+  /** ID of the element the label points to */
   htmlFor?: string;
-  /**
-   * エラー表示用のID
-   */
+  /** ID of the error message element */
   errorId?: string;
   /**
    * Custom styles for internal parts
@@ -53,7 +40,7 @@ export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 /**
- * フォーム系コンポーネントの共通レイアウト（ラベル、エラー表示、配置）を管理する内部コンポーネント。
+ * Internal component managing the common layout of form components (label, error display, placement).
  */
 export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps>(
   ({ asChild = false, label, error, children, required, layout = "vertical", labelId, htmlFor, errorId, className, styles: stylesProp, ...props }, ref) => {

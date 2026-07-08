@@ -289,6 +289,12 @@
         "descKey": "doc.copyButton_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "ThemeToggle",
+        "descKey": "doc.themetoggle_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -720,6 +726,12 @@
       {
         "name": "Gallery",
         "descKey": "doc.gallery_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "ImageCompare",
+        "descKey": "imagecompare_doc.subtitle",
         "pc": true,
         "mobile": true
       }
@@ -1289,6 +1301,12 @@
         "descKey": "doc.scheduleView_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Sparkline",
+        "descKey": "doc.sparkline_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -1372,6 +1390,24 @@
       {
         "name": "ArtifactsOverlay",
         "descKey": "doc.artifactsoverlay_intro",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "ModelSelector",
+        "descKey": "doc.modelselector_intro",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "ThreadList",
+        "descKey": "doc.threadlist_intro",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "UsageMeter",
+        "descKey": "doc.usagemeter_intro",
         "pc": true,
         "mobile": true
       }

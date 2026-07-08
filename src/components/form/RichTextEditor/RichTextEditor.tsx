@@ -137,25 +137,45 @@ export type RichTextEditorLabels = {
 };
 
 export type RichTextEditorProps = {
+  /** HTML content (controlled) */
   value?: string;
+  /** Initial HTML content (uncontrolled) */
   defaultValue?: string;
+  /** Callback when the content changes */
   onChange?: (value: string) => void;
+  /** Placeholder shown when the editor is empty */
   placeholder?: string;
+  /** Whether the editor is disabled */
   disabled?: boolean;
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
+  /** Visual style variant of the field */
   variant?: FieldVariant;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
+  /** Minimum height of the editing area */
   minHeight?: number | string;
+  /** Field label */
   label?: React.ReactNode;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Additional class names */
   className?: string;
+  /** Unique ID for the component */
   id?: string;
+  /** Toolbar items to display, in order */
   toolbar?: RichTextEditorToolbarItem[];
+  /** Labels for internationalization */
   labels?: RichTextEditorLabels;
+  /** Accessible label when no visible label is provided */
   "aria-label"?: string;
+  /** ID of the element that labels the editor */
   "aria-labelledby"?: string;
 };
 
@@ -189,7 +209,7 @@ ToolbarButton.displayName = "ToolbarButton";
 // ---- Main component ----
 
 /**
- * リッチテキスト入力を受け付けるWYSIWYGエディタコンポーネント。
+ * WYSIWYG editor component for rich text input.
  */
 export const RichTextEditor = ({
   value,

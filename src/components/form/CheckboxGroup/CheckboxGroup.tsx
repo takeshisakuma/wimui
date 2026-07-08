@@ -12,16 +12,27 @@ type Option = {
 };
 
 export interface CheckboxGroupProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+  /** List of checkbox options */
   options: Option[];
+  /** Selected values (controlled) */
   value?: string[];
+  /** Initially selected values (uncontrolled) */
   defaultValue?: string[];
+  /** Callback when the selected values change */
   onChange?: (value: string[]) => void;
+  /** Layout direction of the checkboxes */
   direction?: "vertical" | "horizontal";
+  /** Name attribute shared by the checkbox inputs */
   name?: string;
+  /** Whether to render as a child element. */
   asChild?: boolean;
+  /** Group label */
   label?: string;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Whether the whole group is disabled */
   disabled?: boolean;
 }
 

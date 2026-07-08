@@ -223,6 +223,8 @@
     "textarea_placeholder_thanks": "Thank you for always using our facility.",
     "textarea_placeholder_urgent": "I have a question about using the facility. If possible, please reply by 3:00 PM tomorrow. It's not urgent.",
     "textarea_value_none": "None in particular",
+    "themetoggle_preview_body": "This panel re-themes as you switch, using the same design tokens as the rest of the library.",
+    "themetoggle_preview_title": "Preview",
     "timepicker_ghost": "Ghost TimePicker",
     "timepicker_outline": "Outline TimePicker",
     "timepicker_select": "Select Time",

@@ -4,9 +4,13 @@ import classNames from "classnames";
 import styles from "./timeline.module.scss";
 
 export interface TimelineProps {
+  /** Timeline items */
   children: React.ReactNode;
+  /** Alignment of the items relative to the line */
   align?: "left" | "right" | "alternate";
+  /** Additional class names */
   className?: string;
+  /** Whether to render as a child element. */
   asChild?: boolean;
 }
 
@@ -43,9 +47,13 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(({
 Timeline.displayName = "Timeline";
 
 export interface TimelineItemProps {
+  /** Content of the timeline item */
   children: React.ReactNode;
+  /** Additional class names */
   className?: string;
+  /** Alignment relative to the line (usually inherited from Timeline) */
   align?: "left" | "right" | "alternate";
+  /** Whether to render as a child element. */
   asChild?: boolean;
 }
 

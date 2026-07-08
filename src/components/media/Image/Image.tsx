@@ -60,53 +60,57 @@ export interface ImageDuotoneOptions {
 }
 
 export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
+  /** Source URL of the image */
   src: string;
+  /** Alternative text for the image */
   alt: string;
+  /** Width of the image */
   width?: string | number;
+  /** Height of the image */
   height?: string | number;
-  /** 角丸のサイズ */
+  /** Corner radius size */
   radius?: MediaRadius;
-  /** シャドウ（影）を表示するか */
+  /** Whether to show a shadow */
   shadow?: boolean;
-  /** 枠線を表示するか */
+  /** Whether to show a border */
   border?: boolean;
-  /** 画像のフィット感 */
+  /** How the image fits its box */
   fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
-  /** 遅延読み込み設定 */
+  /** Lazy-loading behavior */
   loading?: "eager" | "lazy";
-  /** 画像の下に表示する説明文 */
+  /** Caption shown below the image */
   caption?: string;
-  /** 画像自体に適用するフィルタ */
+  /** Filter applied to the image itself */
   filter?: ImageFilterOptions;
-  /** ホバー時に適用するフィルタ（指定がない場合はfilterが維持されます） */
+  /** Filter applied on hover (when omitted, `filter` is kept) */
   hoverFilter?: ImageFilterOptions;
-  /** 背景に適用するフィルタ（透過画像などで効果的） */
+  /** Filter applied to the background (effective with transparent images) */
   backdropFilter?: ImageFilterOptions;
-  /** ホバー時に背景に適用するフィルタ */
+  /** Filter applied to the background on hover */
   hoverBackdropFilter?: ImageFilterOptions;
-  /** フィルタ切り替え時のアニメーション速度 */
+  /** Animation speed when switching filters */
   transition?: "none" | "fast" | "normal" | "slow";
-  /** フィルムグレイン（ノイズ）の強度 */
+  /** Intensity of the film-grain (noise) effect */
   noise?: ImageFilterIntensity;
-  /** デュオトーン設定 */
+  /** Duotone settings */
   duotone?: ImageDuotoneOptions;
-  /** オーバーレイ設定 */
+  /** Overlay settings */
   overlay?: ImageOverlayOptions;
-  /** ホバー時の拡大倍率 (例: 1.1) または true (デフォルト1.05) */
+  /** Zoom factor on hover (e.g. 1.1) or true (defaults to 1.05) */
   zoom?: boolean | number;
-  /** マウスに追従するチルト（傾き）エフェクト */
+  /** Tilt effect that follows the mouse */
   tilt?: boolean;
-  /** 読み込み完了時にフェードインさせるか */
+  /** Whether to fade in when loading completes */
   fadeIn?: boolean;
-  /** 画像自体のブレンドモード */
+  /** Blend mode of the image itself */
   blendMode?: React.CSSProperties["mixBlendMode"];
-  /** ブレンド用の背景色 */
+  /** Background color used for blending */
   bgColor?: string;
-  /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+  /** Demo only: milliseconds to intentionally delay load completion */
   demoDelay?: number;
-  /** LCP候補など、読み込み優先度を上げるかどうか（fetchpriority="high"） */
+  /** Whether to raise loading priority (e.g. an LCP candidate; sets fetchpriority="high") */
   priority?: boolean;
-  /** 読み込み失敗時に表示するカスタム要素 */
+  /** Custom element shown when loading fails */
   fallback?: React.ReactNode;
 };
 

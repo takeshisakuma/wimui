@@ -1,0 +1,149 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    touch-action: none;
+    user-select: none;
+    isolation: isolate;
+  }
+
+  .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    object-fit: cover;
+  }
+
+  .beforeLayer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    .image {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .label {
+    position: absolute;
+    top: var(--wim-spacing-sm);
+    padding: var(--wim-spacing-3xs) var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-xs);
+    line-height: normal;
+    color: var(--wim-color-text-on-overlay);
+    white-space: nowrap;
+    background: var(--wim-color-overlay-bg-dark);
+    border-radius: var(--wim-radius-sm);
+  }
+
+  .beforeLabel {
+    left: var(--wim-spacing-sm);
+  }
+
+  .afterLabel {
+    right: var(--wim-spacing-sm);
+  }
+
+  .divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+  }
+
+  .line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: var(--wim-border-width-thick);
+    background: var(--wim-color-text-white);
+    transform: translateX(-50%);
+  }
+
+  .handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-spacing-2xl);
+    height: var(--wim-spacing-2xl);
+    padding: 0;
+    color: var(--wim-color-text-primary);
+    cursor: ew-resize;
+    background: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-full);
+    box-shadow: var(--wim-shadow-raised);
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
+    }
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    margin: 0 calc(-1 * var(--wim-spacing-3xs));
+    color: var(--wim-color-text-secondary);
+  }
+
+  // Vertical orientation
+  .vertical {
+    .divider {
+      inset: 0 0 auto;
+      width: auto;
+      height: 0;
+    }
+
+    .line {
+      inset: 50% 0 auto;
+      width: auto;
+      height: var(--wim-border-width-thick);
+      transform: translateY(-50%);
+    }
+
+    .handle {
+      cursor: ns-resize;
+    }
+
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  // Radius
+  .radius-none {
+    border-radius: 0;
+  }
+
+  .radius-sm {
+    border-radius: var(--wim-radius-sm);
+  }
+
+  .radius-md {
+    border-radius: var(--wim-radius-md);
+  }
+
+  .radius-lg {
+    border-radius: var(--wim-radius-lg);
+  }
+
+  .radius-full {
+    border-radius: var(--wim-radius-full);
+  }
+}

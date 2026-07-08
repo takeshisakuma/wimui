@@ -3,14 +3,13 @@ import classNames from "classnames";
 import styles from "./visuallyHidden.module.scss";
 
 export type VisuallyHiddenProps = React.ComponentPropsWithoutRef<"span"> & {
-  /**
-   * 表示されないが、スクリーンリーダーには読み上げられるコンテンツ。
-   */
+  /** Content that is visually hidden but still read out by screen readers. */
   children: React.ReactNode;
 };
 
 /**
- * 視覚的には非表示にしつつ、スクリーンリーダーなどのアシスティブテクノロジーにはコンテンツを維持するためのアクセシビリティ用コンポーネント。
+ * Accessibility component that hides content visually while keeping it available
+ * to assistive technologies such as screen readers.
  */
 export const VisuallyHidden = ({
   children,

@@ -7,58 +7,34 @@ import { FieldTemplate } from "../FieldTemplate";
 import styles from "./dropzone.module.scss";
 
 type DropzoneProps = {
-  /**
-   * コンポーネントのラベル。
-   */
+  /** Field label. */
   label?: React.ReactNode;
-  /**
-   * ドラッグ＆ドロップエリアに表示する説明テキスト。
-   */
+  /** Description text shown in the drag-and-drop area. */
   description?: React.ReactNode;
-  /**
-   * 受け付けるファイル形式（例: ".jpg,.png"）。
-   */
+  /** Accepted file types (e.g. ".jpg,.png"). */
   accept?: string;
-  /**
-   * 複数のファイル選択を許可するかどうか。
-   */
+  /** Whether multiple files can be selected. */
   multiple?: boolean;
-  /**
-   * 無効状態にするかどうか。
-   */
+  /** Whether the component is disabled. */
   disabled?: boolean;
-  /**
-   * ファイルが選択された時に呼ばれるコールバック。
-   */
+  /** Callback when files are selected. */
   onChange?: (files: FileList | null) => void;
-  /**
-   * 追加のクラス名。
-   */
+  /** Additional class names. */
   className?: string;
-  /**
-   * アイコンの名前。
-   */
+  /** Icon name shown in the drop area. */
   iconName?: React.ComponentProps<typeof Icon>["name"];
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * サイズ
-   */
+  /** Size of the drop area */
   size?: InteractiveAreaProps["size"];
 };
 
 /**
- * ユーザーがファイルをドラッグ＆ドロップまたはクリックでアップロードするためのコンポーネント。
+ * Component for uploading files by drag and drop or by clicking.
  */
 export const Dropzone = ({
   label,

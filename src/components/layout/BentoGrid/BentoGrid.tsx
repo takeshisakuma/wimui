@@ -3,6 +3,7 @@ import classNames from "classnames";
 import styles from "./bento-grid.module.scss";
 
 type BentoGridProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** Grid items (typically BentoGrid.Item elements) */
   children?: React.ReactNode;
 };
 

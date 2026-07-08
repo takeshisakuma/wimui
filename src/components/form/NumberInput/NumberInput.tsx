@@ -6,22 +6,22 @@ import inputStyles from "../../form/Input/input.module.scss";
 
 export interface NumberInputProps extends React.ComponentPropsWithoutRef<typeof Input> {
   /**
-   * 'number': ネイティブの type="number" を使用（数量の増減など）
-   * 'text': type="text" + inputmode を使用（クレカ番号、IDなど、ゼロを保持したい場合）
+   * 'number': uses the native type="number" (e.g. quantity steppers)
+   * 'text': uses type="text" + inputmode (e.g. card numbers or IDs where leading zeros must be kept)
    */
   mode?: "number" | "text";
-  /** スピンボタンを非表示にするか */
+  /** Whether to hide the spin buttons */
   hideSpinButton?: boolean;
-  /** 小数点を許可するか (mode="number" の場合のみ有効) */
+  /** Whether to allow decimal points (effective only when mode="number") */
   allowDecimal?: boolean;
-  /** 負の数を許可するか (mode="number" の場合のみ有効) */
+  /** Whether to allow negative numbers (effective only when mode="number") */
   allowNegative?: boolean;
   /** Whether to render as a child element. */
   asChild?: boolean;
 }
 
 /**
- * 数値入力に特化したコンポーネント。
+ * Component specialized for numeric input.
  */
 export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   (

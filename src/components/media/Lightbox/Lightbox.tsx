@@ -42,10 +42,15 @@ export const useLightbox = () => {
 // --- Lightbox Root ---
 
 export interface LightboxProps {
+  /** Lightbox parts (Lightbox.Trigger, Lightbox.Content, etc.) */
   children: React.ReactNode;
+  /** Controlled open state */
   open?: boolean;
+  /** Callback when the open state changes */
   onOpenChange?: (open: boolean) => void;
+  /** Initial open state for uncontrolled usage */
   defaultOpen?: boolean;
+  /** Index of the item shown first */
   defaultIndex?: number;
 }
 

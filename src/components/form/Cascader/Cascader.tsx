@@ -23,17 +23,29 @@ export type CascaderOption = {
 };
 
 export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
+  /** Hierarchical options to select from */
   options: CascaderOption[];
+  /** Selected value path (controlled) */
   value?: string[];
+  /** Callback when the selection changes */
   onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
+  /** Placeholder shown when nothing is selected */
   placeholder?: React.ReactNode;
+  /** Field label */
   label?: React.ReactNode;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Additional class names */
   className?: string;
+  /** Whether the field is disabled */
   disabled?: boolean;
+  /** Initially selected value path (uncontrolled) */
   defaultValue?: string[];
+  /** Unique ID for the component */
   id?: string;
   /** Expand trigger mode */
   expandTrigger?: "click" | "hover";
@@ -43,12 +55,14 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
   allowClear?: boolean;
   /** Accessible label for the trigger when no visible label is provided */
   "aria-label"?: string;
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
 };
 
 /**
- * 階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネント。
+ * Component for selecting a single option by walking through hierarchical data.
  */
 export const Cascader = ({
   options = [],

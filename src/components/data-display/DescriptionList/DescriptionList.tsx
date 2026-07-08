@@ -4,11 +4,17 @@ import styles from "./description-list.module.scss";
 import { ComponentSizeBasic } from "../../../types/tokens";
 
 type DescriptionListProps = {
+  /** DescriptionListItem elements */
   children: React.ReactNode;
+  /** Additional class names */
   className?: string;
+  /** Layout of terms and descriptions */
   layout?: "horizontal" | "vertical" | "compact";
+  /** Size of the text */
   size?: ComponentSizeBasic;
+  /** Whether to show borders (alias of bordered) */
   border?: boolean;
+  /** Whether to show borders */
   bordered?: boolean;
 };
 
@@ -39,7 +45,9 @@ export const DescriptionList = ({
 };
 
 type DescriptionListItemProps = {
+  /** A DescriptionListTerm and its DescriptionListDetails */
   children: React.ReactNode;
+  /** Additional class names */
   className?: string;
 };
 

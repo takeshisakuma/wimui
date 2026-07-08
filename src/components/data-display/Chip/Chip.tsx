@@ -13,36 +13,36 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
    * If true, the chip will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  /** 表示するコンテンツ */
+  /** Content to display */
   children?: React.ReactNode;
-  /** 表示するコンテンツ (childrenの代替) */
+  /** Content to display (alternative to children) */
   content?: React.ReactNode;
-  /** クリック時のイベント。提供されるとボタンとして動作します。 */
+  /** Click event. When provided, the chip behaves as a button. */
   onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => void;
-  /** 削除時のイベント。提供されると×ボタンが表示されます。 */
+  /** Delete event. When provided, a × button is shown. */
   onDelete?: (e: React.SyntheticEvent) => void;
-  /** アバター（画像や頭文字など） */
+  /** Avatar (e.g. an image or initials) */
   avatar?: React.ReactNode;
-  /** アイコン */
+  /** Icon */
   icon?: React.ReactNode;
-  /** 選択状態 */
+  /** Whether the chip is selected */
   selected?: boolean;
-  /** 無効状態 */
+  /** Whether the chip is disabled */
   disabled?: boolean;
-  /** インテント（意味的状態） */
+  /** Intent (semantic state) */
   intent?: IndicatorIntent;
-  /** バリアント */
+  /** Visual style variant */
   variant?: IndicatorVariant;
-  /** サイズ */
+  /** Size */
   size?: ComponentSizeBasic;
-  /** 削除ボタンのアクセシビリティラベル */
+  /** Accessible label for the delete button */
   deleteAriaLabel?: string;
-  /** 追加のクラス名 */
+  /** Additional class names */
   className?: string;
 };
 
 /**
- * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
+ * Interactive token used for selection, filtering, or input.
  */
 export const Chip = React.forwardRef<HTMLElement, ChipProps>(
   (

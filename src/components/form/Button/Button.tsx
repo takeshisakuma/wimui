@@ -15,16 +15,21 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
    * Useful for using the button styles with Link components (e.g. from React Router or Next.js).
    */
   asChild?: boolean;
-  /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
+  /** Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort. */
   backgroundColor?: WimColor;
+  /** Size of the button */
   size?: ComponentSizeBasic;
+  /** Visual style variant of the button */
   variant?: ButtonVariant;
-  /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
+  /** Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute. */
   intent?: ButtonIntent;
   /** Icon name or custom icon element */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
+  /** Position of the icon relative to the label */
   iconPosition?: "left" | "right";
+  /** Whether to show a loading indicator and disable interaction */
   loading?: boolean;
+  /** Horizontal alignment of the button content */
   justify?: "start" | "center" | "end" | "between";
   /** Whether to animate the width change when label changes */
   animateWidth?: boolean;
@@ -40,7 +45,10 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
 
 export const Button = React.forwardRef<
   HTMLButtonElement,
-  ButtonProps & { className?: string }
+  ButtonProps & {
+    /** Additional class names */
+    className?: string;
+  }
 >(
   (
     {

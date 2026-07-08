@@ -3,27 +3,27 @@ import classNames from "classnames";
 import styles from "./infinite-scroll.module.scss";
 
 export interface InfiniteScrollProps {
-  /** 表示するコンテンツ。 */
+  /** Content to display. */
   children: React.ReactNode;
-  /** さらに読み込むデータがあるかどうか。 */
+  /** Whether there is more data to load. */
   hasMore?: boolean;
-  /** ローディング中かどうか。 */
+  /** Whether data is currently loading. */
   loading?: boolean;
-  /** 次のデータを読み込むためのコールバック。 */
+  /** Callback to load the next batch of data. */
   onLoadMore: () => void;
-  /** ローディング中に表示する要素。 */
+  /** Element shown while loading. */
   loader?: React.ReactNode;
-  /** スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。 */
+  /** Scroll threshold (px). onLoadMore is called when the scroll position gets this close to the bottom. */
   threshold?: number;
-  /** 追加のクラス名。 */
+  /** Additional class names. */
   className?: string;
-  /** スクロールイベントを監視するターゲット（デフォルトは window）。 */
+  /** Target whose scroll events are observed (defaults to window). */
   container?: React.RefObject<HTMLElement | null>;
 }
 
 /**
- * ユーザーがページの最下部に到達したときに自動的にコンテンツを読み込む
- * インフィニットスクロールコンポーネント。
+ * Infinite-scroll component that automatically loads content when the user
+ * reaches the bottom of the page.
  */
 export const InfiniteScroll = ({
   children,

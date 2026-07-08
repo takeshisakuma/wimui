@@ -19,12 +19,19 @@ export const isToday = (date: Date): boolean => {
 };
 
 export interface UseCalendarProps {
+  /** Default selected date (uncontrolled) */
   defaultValue?: Date;
+  /** Selected date (controlled) */
   value?: Date;
+  /** Earliest selectable date */
   minDate?: Date;
+  /** Latest selectable date */
   maxDate?: Date;
+  /** Dates that cannot be selected */
   disabledDates?: Date[];
+  /** Function returning whether a given date is disabled */
   isDateDisabled?: (date: Date) => boolean;
+  /** First day of the week (0 = Sunday, 1 = Monday) */
   weekStartsOn?: 0 | 1;
 }
 

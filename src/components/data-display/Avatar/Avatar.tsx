@@ -6,17 +6,24 @@ import styles from "./avatar.module.scss";
 import { UserIcon } from "@/icon";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** Image source URL */
   src?: string;
+  /** Alternative text for the image */
   alt?: string;
+  /** Initials shown as a fallback when no image is available */
   initials?: string;
+  /** Icon shown as a fallback when no image or initials are available */
   icon?: React.ReactNode;
+  /** Size of the avatar */
   size?: ComponentSizeBasic;
+  /** Shape of the avatar */
   shape?: "circle" | "rounded";
+  /** Intent (semantic color) applied to the avatar */
   intent?: IndicatorIntent;
 };
 
 /**
- * ユーザーのアイコンやイニシャルを表示するためのアバターコンポーネント。
+ * Avatar component for displaying a user's picture or initials.
  */
 export const Avatar = ({
   src,

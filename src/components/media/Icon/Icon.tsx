@@ -13,9 +13,11 @@ type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
   name?: IconName;
   /** Icon component passed directly. Works without registration and is tree-shakable. */
   component?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  /** Size of the icon */
   size?: ComponentSize;
   /** Apply the loading rotation animation */
   spin?: boolean;
+  /** Semantic color of the icon */
   color?:
     | "destructive"
     | "positive"

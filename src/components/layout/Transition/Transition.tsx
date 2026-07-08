@@ -17,17 +17,29 @@ export type TransitionPreset =
   | "slide-bottom";
 
 export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Whether the content is shown (drives the enter/leave transitions) */
   show: boolean;
+  /** Content to transition */
   children: React.ReactNode;
+  /** Preset transition (fade, scale, slide-*) */
   preset?: TransitionPreset;
+  /** Class applied during the enter transition */
   enter?: string;
+  /** Class applied at the start of the enter transition */
   enterFrom?: string;
+  /** Class applied at the end of the enter transition */
   enterTo?: string;
+  /** Class applied during the leave transition */
   leave?: string;
+  /** Class applied at the start of the leave transition */
   leaveFrom?: string;
+  /** Class applied at the end of the leave transition */
   leaveTo?: string;
+  /** Whether to unmount the content when hidden */
   unmount?: boolean;
+  /** Whether to run the enter transition on initial mount */
   appear?: boolean;
+  /** Additional class names */
   className?: string;
 }
 

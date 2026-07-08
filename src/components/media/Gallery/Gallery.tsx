@@ -46,6 +46,7 @@ const useGalleryContext = () => {
 
 export interface GalleryProps
   extends Omit<React.ComponentPropsWithoutRef<"div">, "onSelect"> {
+  /** Images to display in the gallery */
   items: GalleryItem[];
   /** Number of grid columns. Default: 3. */
   columns?: number;

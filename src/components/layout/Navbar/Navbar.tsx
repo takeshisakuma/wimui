@@ -12,13 +12,21 @@ type NavbarContextType = {
 const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
 
 export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
+  /** Whether the navbar is fixed to the viewport */
   fixed?: boolean;
+  /** Whether the navbar sticks to the top while scrolling */
   sticky?: boolean;
+  /** Whether the navbar background is transparent */
   transparent?: boolean;
+  /** Whether to apply the frosted-glass effect */
   glass?: boolean;
+  /** Whether to show a bottom border */
   bordered?: boolean;
+  /** Initial open state of the mobile menu (uncontrolled) */
   defaultMenuOpen?: boolean;
+  /** Open state of the mobile menu (controlled) */
   isMenuOpen?: boolean;
+  /** Callback when the mobile menu open state changes */
   onMenuOpenChange?: (isOpen: boolean) => void;
 }
 

@@ -17,31 +17,51 @@ export type AudioTrack = {
 };
 
 type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
+  /** Source: a URL, list of URLs, or track object(s) */
   src?: string | string[] | AudioTrack | AudioTrack[];
+  /** Whether to start playing automatically */
   autoPlay?: boolean;
+  /** Whether to loop playback */
   loop?: boolean;
+  /** Whether to start muted */
   muted?: boolean;
+  /** Whether to show playback controls */
   controls?: boolean;
+  /** Preload behavior */
   preload?: "auto" | "metadata" | "none";
+  /** Corner radius size */
   radius?: MediaRadius;
+  /** Whether to show a shadow */
   shadow?: boolean;
+  /** Whether to show a border */
   border?: boolean;
+  /** Caption shown below the player */
   caption?: React.ReactNode;
+  /** Whether to use the custom control bar instead of native controls */
   customControls?: boolean;
+  /** Whether to show the audio visualizer */
   visualizer?: boolean;
+  /** Whether to show track metadata (title, artist, cover art) */
   showMetadata?: boolean;
+  /** Whether to fade in when playback starts (or the duration in seconds) */
   fadeIn?: boolean | number;
+  /** Whether to fade out when playback ends (or the duration in seconds) */
   fadeOut?: boolean | number;
+  /** Whether to crossfade between tracks (or the duration in seconds) */
   crossfade?: boolean | number;
+  /** Whether to show the playback-rate control */
   playbackRate?: boolean;
+  /** Whether to enable keyboard hotkeys */
   hotkeys?: boolean;
+  /** Whether to show equalizer presets */
   presets?: boolean;
+  /** Whether to show the sleep timer */
   sleepTimer?: boolean;
-  /** 読み込み設定。"lazy" の場合に Intersection Observer が有効化されます */
+  /** Loading behavior. With "lazy", an Intersection Observer is enabled. */
   loading?: "eager" | "lazy";
-  /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+  /** Demo only: milliseconds to intentionally delay load completion */
   demoDelay?: number;
-  /** 手動翻訳用のラベル */
+  /** Labels for manual translation */
   labels?: AudioLabels;
   /** Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label). */
   tracks?: React.ComponentPropsWithoutRef<"track">[];

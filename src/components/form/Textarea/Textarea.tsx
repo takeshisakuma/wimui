@@ -5,19 +5,28 @@ import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./textarea.module.scss";
 
 export type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
+  /** Visual style variant of the field */
   variant?: FieldVariant;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Sizing behavior: "fixed" keeps the height, "content" grows with the text */
   fieldSizing?: "fixed" | "content";
+  /** Field label */
   label?: string;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
 };
 
 /**
- * 複数行のテキスト入力を受け付けるコンポーネント。
+ * Component for accepting multi-line text input.
  */
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (

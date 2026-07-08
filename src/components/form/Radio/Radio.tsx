@@ -5,9 +5,11 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./radio.module.scss";
 
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** Whether to render as a child element. */
   asChild?: boolean;
+  /** Label content rendered next to the radio */
   children?: React.ReactNode;
-  /** エラー状態として表示する（aria-invalid は radio ロールで非サポートのため RadioGroup 側に付与される） */
+  /** Whether to display as an error state (aria-invalid is not supported on the radio role, so it is applied on the RadioGroup side) */
   error?: boolean;
 }
 

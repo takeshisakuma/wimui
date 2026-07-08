@@ -11,34 +11,55 @@ import styles from "./video.module.scss";
 export type { VideoLabels };
 
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
+  /** Source URL of the video */
   src?: string;
+  /** Width of the video */
   width?: string | number;
+  /** Height of the video */
   height?: string | number;
+  /** Whether to start playing automatically */
   autoPlay?: boolean;
+  /** Whether to loop playback */
   loop?: boolean;
+  /** Whether to start muted */
   muted?: boolean;
+  /** Whether to show playback controls */
   controls?: boolean;
+  /** Poster image shown before playback */
   poster?: string;
+  /** Corner radius size */
   radius?: MediaRadius;
+  /** Whether to show a shadow */
   shadow?: boolean;
+  /** Whether to show a border */
   border?: boolean;
+  /** How the video fits its box */
   fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+  /** Preload behavior */
   preload?: "auto" | "metadata" | "none";
+  /** Caption shown below the video */
   caption?: React.ReactNode;
+  /** Whether to use the custom control bar instead of native controls */
   customControls?: boolean;
+  /** Whether to enable advanced controls (quality, playback rate, etc.) */
   advancedControls?: boolean;
+  /** Unique ID used to persist and resume playback position */
   videoId?: string;
+  /** Whether to resume playback from the last saved position */
   resumePlayback?: boolean;
+  /** Playlist of videos to play in sequence */
   playlist?: { src: string; title?: string; poster?: string }[];
+  /** Whether to automatically play the next playlist item */
   autoPlayNext?: boolean;
+  /** Selectable quality sources */
   qualities?: { label: string; src: string }[];
-  /** 読み込み設定。"lazy" の場合に Intersection Observer が有効化されます */
+  /** Loading behavior. With "lazy", an Intersection Observer is enabled. */
   loading?: "eager" | "lazy";
-  /** 読み込み完了時にフェードインさせるか */
+  /** Whether to fade in when loading completes */
   fadeIn?: boolean;
-  /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+  /** Demo only: milliseconds to intentionally delay load completion */
   demoDelay?: number;
-  /** 手動翻訳用のラベル */
+  /** Labels for manual translation */
   labels?: VideoLabels;
   /** Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label). */
   tracks?: React.ComponentPropsWithoutRef<"track">[];

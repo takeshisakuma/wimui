@@ -1,0 +1,179 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    width: 100%;
+    padding: var(--wim-spacing-xs);
+    container-type: inline-size;
+    font-family: var(--wim-font-family-default);
+  }
+
+  .newButton {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    width: 100%;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font-family: inherit;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    background: transparent;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      background: var(--wim-color-bg-secondary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
+    }
+  }
+
+  .empty {
+    padding: var(--wim-spacing-lg) var(--wim-spacing-md);
+    margin: 0;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-tertiary);
+    text-align: center;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .item {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+
+    &:hover .deleteButton,
+    &:focus-within .deleteButton {
+      opacity: 1;
+    }
+  }
+
+  .thread {
+    display: flex;
+    flex: 1;
+    gap: var(--wim-spacing-sm);
+    min-width: 0;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-component);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      background: var(--wim-color-bg-secondary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--wim-shadow-focus-ring);
+    }
+
+    &.active {
+      background: var(--wim-color-primary-light);
+    }
+  }
+
+  .icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: flex-start;
+    padding-top: var(--wim-spacing-3xs);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+  }
+
+  .titleRow {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .unread {
+    flex-shrink: 0;
+    width: var(--wim-spacing-xs);
+    height: var(--wim-spacing-xs);
+    background: var(--wim-color-primary);
+    border-radius: var(--wim-radius-full);
+  }
+
+  .title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+  }
+
+  .timestamp {
+    flex-shrink: 0;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .preview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-secondary);
+    white-space: nowrap;
+  }
+
+  .deleteButton {
+    position: absolute;
+    top: 50%;
+    right: var(--wim-spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-3xs);
+    color: var(--wim-color-text-tertiary);
+    cursor: pointer;
+    background: var(--wim-color-bg-component);
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity var(--wim-duration-fast) var(--wim-easing-standard),
+      color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--wim-shadow-focus-ring);
+      opacity: 1;
+    }
+  }
+}

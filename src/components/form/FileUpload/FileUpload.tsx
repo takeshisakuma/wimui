@@ -8,24 +8,38 @@ import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./file-upload.module.scss";
 
 type FileUploadProps = {
+  /** Field label */
   label?: React.ReactNode;
+  /** Label of the file selection button */
   buttonLabel?: React.ReactNode;
+  /** Text shown when no file is selected */
   noFileLabel?: React.ReactNode;
+  /** Accepted file types (e.g. ".jpg,.png") */
   accept?: string;
+  /** Whether multiple files can be selected */
   multiple?: boolean;
+  /** Whether the component is disabled */
   disabled?: boolean;
+  /** Callback when files are selected */
   onChange?: (files: FileList | null) => void;
+  /** Additional class names */
   className?: string;
+  /** Icon name shown on the button */
   iconName?: React.ComponentProps<typeof Icon>["name"];
+  /** Position of the icon relative to the button label */
   iconPosition?: "left" | "right";
+  /** Size of the button */
   size?: ComponentSizeBasic;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
 };
 
 /**
- * ユーザーがファイルを選択・アップロードするためのコンポーネント。
+ * Component for selecting and uploading files.
  */
 export const FileUpload = ({
   label,

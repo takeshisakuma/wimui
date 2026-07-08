@@ -4,10 +4,15 @@ import styles from "./button-group.module.scss";
 import type { ButtonVariant } from "../../../types/tokens";
 
 type ButtonGroupProps = {
+  /** Buttons to group */
   children: React.ReactNode;
+  /** Gap between buttons (ignored when joined) */
   gap?: string;
+  /** Additional class names */
   className?: string;
+  /** Whether to join the buttons into a single connected unit */
   joined?: boolean;
+  /** Variant applied to all child buttons */
   variant?: ButtonVariant;
 };
 

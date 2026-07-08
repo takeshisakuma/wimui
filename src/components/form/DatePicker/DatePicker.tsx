@@ -19,8 +19,11 @@ export interface DatePickerProps extends Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > {
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
+  /** Visual style variant of the field */
   variant?: FieldVariant;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
   /** Selected date value */
   value?: Date;
@@ -40,19 +43,24 @@ export interface DatePickerProps extends Omit<
   maxDate?: Date;
   /** Disabled dates */
   disabledDates?: Date[];
+  /** Field label */
   label?: string;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /** 手動翻訳用のラベル */
+  /** Labels for manual translation */
   labels?: DatePickerLabels;
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
   /** Whether to render as a child element. */
   asChild?: boolean;
 }
 
 /**
- * ユーザーが日付を選択するためのコンポーネント。
+ * Component for selecting a date.
  */
 export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (

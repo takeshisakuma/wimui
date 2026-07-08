@@ -12,16 +12,16 @@ export type LeaderboardEntry = {
 };
 
 export type LeaderboardProps = React.ComponentPropsWithoutRef<"ol"> & {
-  /** ランキングエントリー一覧 */
+  /** List of ranking entries */
   entries: LeaderboardEntry[];
-  /** スコア単位ラベル */
+  /** Label for the score unit */
   unit?: string;
-  /** サイズ */
+  /** Size */
   size?: ComponentSizeBasic;
 };
 
 /**
- * スコア付きランキングを表示するコンポーネント。上位3件にはメダル色を付与する。
+ * Component that displays a scored ranking. The top 3 entries get medal colors.
  */
 export const Leaderboard = React.forwardRef<HTMLOListElement, LeaderboardProps>(
   ({ entries, unit, size = "md", className, ...props }, ref) => {

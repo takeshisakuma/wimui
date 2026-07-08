@@ -14,22 +14,22 @@ export type ReactionItem = {
 };
 
 export type ReactionProps = React.ComponentPropsWithoutRef<"div"> & {
-  /** リアクション一覧 */
+  /** List of reactions */
   reactions: ReactionItem[];
-  /** リアクション追加/取り消し時のコールバック */
+  /** Callback when a reaction is added or removed */
   onReact?: (emoji: string, active: boolean) => void;
-  /** 追加ボタンを表示するか */
+  /** Whether to show the add button */
   showAddButton?: boolean;
-  /** 追加ボタンクリック時のコールバック */
+  /** Callback when the add button is clicked */
   onAdd?: () => void;
-  /** サイズ */
+  /** Size */
   size?: ComponentSizeBasic;
-  /** 無効化 */
+  /** Whether the component is disabled */
   disabled?: boolean;
 };
 
 /**
- * 絵文字リアクションを表示・操作するコンポーネント。
+ * Component for displaying and interacting with emoji reactions.
  */
 export const Reaction = React.forwardRef<HTMLDivElement, ReactionProps>(
   (

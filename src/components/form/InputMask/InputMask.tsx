@@ -5,16 +5,18 @@ import classNames from "classnames";
 import styles from "./input-mask.module.scss";
 
 type InputMaskProps = React.ComponentProps<typeof Input> & {
+  /** Mask pattern ('9': digit, 'a': letter, '*': alphanumeric; other characters are shown as-is) */
   mask: string;
+  /** Placeholder character for unfilled mask positions */
   maskChar?: string;
 };
 
 /**
- * 特定の形式に沿った入力を強制するためのマスク付き入力コンポーネント。
- * '9': 数字 (0-9)
- * 'a': 英字 (a-z, A-Z)
- * '*': 英数字
- * その他: そのまま表示
+ * Masked input component that enforces a specific input format.
+ * '9': digit (0-9)
+ * 'a': letter (a-z, A-Z)
+ * '*': alphanumeric
+ * Other characters are shown as-is.
  */
 export const InputMask = ({
   mask,

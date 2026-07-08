@@ -3,13 +3,16 @@ import classNames from "classnames";
 import styles from "./input-group.module.scss";
 
 type InputGroupProps = {
+  /** Inputs, buttons, and add-ons to combine into one unit */
   children: React.ReactNode;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Additional class names */
   className?: string;
 };
 
 /**
- * 複数の入力要素やボタン、テキストを組み合わせて一つのユニットとして表示するコンポーネント。
+ * Component that combines multiple inputs, buttons, and text into a single unit.
  */
 export const InputGroup = ({
   children,

@@ -53,3 +53,4 @@ export * from "./components/form/TagInput/TagInput";
 export * from "./components/form/CreditCardInput/CreditCardInput";
 export * from "./components/form/CounterTextarea/CounterTextarea";
 
+export * from "./components/form/ThemeToggle/ThemeToggle";

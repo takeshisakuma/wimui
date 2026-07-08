@@ -1,0 +1,10 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+    vertical-align: middle;
+  }
+}

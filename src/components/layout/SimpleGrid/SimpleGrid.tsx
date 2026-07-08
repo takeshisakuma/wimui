@@ -6,9 +6,13 @@ import { generateResponsiveVars, ResponsiveProp } from "../../layout/Grid/grid-u
 import { getSpacingValue } from "../../../utilities/style-utils";
 
 type SimpleGridProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** Number of columns (or a responsive object per breakpoint) */
   cols?: ResponsiveProp<number>;
+  /** Spacing between cells */
   spacing?: number | string;
+  /** Vertical spacing between rows (defaults to `spacing`) */
   verticalSpacing?: number | string;
+  /** Minimum width of each child; columns wrap automatically to fit */
   minChildWidth?: number | string;
 };
 

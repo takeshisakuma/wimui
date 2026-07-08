@@ -256,6 +256,8 @@ export interface SplitterHandleProps extends React.ComponentPropsWithoutRef<"div
   index?: number;
   /** @internal Injected active state from parent Splitter. */
   active?: boolean;
+  /** Accessible label for the resize handle */
+  ariaLabel?: string;
 }
 
 const SplitterHandle = ({
@@ -264,7 +266,7 @@ const SplitterHandle = ({
   className,
   ariaLabel,
   ...props
-}: SplitterHandleProps & { ariaLabel?: string }) => {
+}: SplitterHandleProps) => {
   const { t } = useWimTranslation("common");
   const resolvedAriaLabel = ariaLabel ?? t("a11y.resize_panel");
   const { onResizeStart, orientation } = useSplitter();

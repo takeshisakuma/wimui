@@ -25,12 +25,19 @@ export type SelectboxOptionGroup = {
 };
 
 export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+  /** List of options (flat or grouped) */
   options: SelectboxOption[] | SelectboxOptionGroup[];
+  /** Selected value (controlled) */
   value?: string;
+  /** Callback when the selected value changes */
   onChange?: (value: string) => void;
+  /** Placeholder shown when nothing is selected */
   placeholder?: React.ReactNode;
+  /** Field label */
   label?: string;
+  /** Whether the field is disabled */
   disabled?: boolean;
+  /** Initially selected value (uncontrolled) */
   defaultValue?: string;
   /** Enable search/filtering functionality */
   searchable?: boolean;
@@ -46,11 +53,17 @@ export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div
   fullWidth?: boolean;
   /** Unique ID for the component */
   id?: string;
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Label shown when no options match the search */
   noOptionsFoundLabel?: string;
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
   /** Whether to render as a child element. */
   asChild?: boolean;
@@ -72,7 +85,7 @@ export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div
 }
 
 /**
- * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。
+ * Pull-down menu for selecting a single option from a predefined list.
  */
 export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
   (

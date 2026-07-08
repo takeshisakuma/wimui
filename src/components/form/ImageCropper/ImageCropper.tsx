@@ -16,47 +16,29 @@ import {
 import styles from "./image-cropper.module.scss";
 
 export interface ImageCropperProps extends React.ComponentPropsWithoutRef<"div"> {
-  /**
-   * クロップ対象の画像URLまたはDataURL
-   */
+  /** URL or data URL of the image to crop */
   src?: string;
-  /**
-   * アスペクト比（幅/高さ）。1の場合、正方形になります。
-   */
+  /** Aspect ratio (width / height); 1 produces a square */
   aspectRatio?: number;
-  /**
-   * 円形で表示するかどうか（プロフィール画像用）
-   */
+  /** Whether to display a circular crop area (for profile images) */
   circular?: boolean;
-  /**
-   * クロップ結果が確定した時のコールバック
-   */
+  /** Callback when the crop result is finalized */
   onCrop?: (dataUrl: string) => void;
-  /**
-   * 回転ボタンを表示するかどうか
-   */
+  /** Whether to show the rotation button */
   showRotation?: boolean;
-  /**
-   * ズームスライダーを表示するかどうか
-   */
+  /** Whether to show the zoom slider */
   showZoom?: boolean;
-  /**
-   * クロップ適用ボタンを表示するかどうか
-   */
+  /** Whether to show the apply button */
   showApplyButton?: boolean;
-  /**
-   * クロップ適用時のラベル
-   */
+  /** Label of the apply button */
   applyLabel?: string;
-  /**
-   * クロップ適用時のコールバック（確認ダイアログでOKを押した後）
-   */
+  /** Callback when the crop is applied (after confirming in the dialog) */
   onApply?: (dataUrl: string) => void;
 }
 
 /**
- * 画像のトリミング・回転を行うためのコンポーネント。
- * ユーザーのプロフィール画像設定などに適しています。
+ * Component for cropping and rotating an image.
+ * Suitable for setting user profile images.
  */
 export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
   (

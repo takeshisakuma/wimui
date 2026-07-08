@@ -3,18 +3,14 @@ import classNames from "classnames";
 import styles from "./divider.module.scss";
 
 export type DividerProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * 分割線の方向
-   */
+  /** Orientation of the divider */
   orientation?: "horizontal" | "vertical";
-  /**
-   * 線の太さ (px)
-   */
+  /** Thickness of the line (px) */
   thickness?: number;
 };
 
 /**
- * `Divider` はコンテンツを視覚的に区切るためのコンポーネントです。
+ * `Divider` is a component for visually separating content.
  */
 export const Divider = ({
   orientation = "horizontal",

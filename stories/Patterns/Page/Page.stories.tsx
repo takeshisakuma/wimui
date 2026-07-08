@@ -18,6 +18,7 @@ import {
   InputGroup,
   Rating,
   Skeleton,
+  Sparkline,
   Stack,
   Stats,
   Text,
@@ -225,18 +226,24 @@ export const DashboardHeader: StoryObj = {
                   value: "$45,231.89",
                   trend: "+12.5%",
                   intent: "success" as const,
+                  spark: [28, 30, 29, 33, 32, 36, 38, 40, 42, 45],
+                  sparkColor: "var(--wim-color-positive)",
                 },
                 {
                   label: t("dashboard.stats_users"),
                   value: "2,405",
                   trend: "-2.4%",
                   intent: "error" as const,
+                  spark: [26, 25, 27, 24, 25, 23, 24, 22, 23, 24],
+                  sparkColor: "var(--wim-color-destructive)",
                 },
                 {
                   label: t("dashboard.stats_active"),
                   value: "1,203",
                   trend: "+5.1%",
                   intent: "success" as const,
+                  spark: [10, 11, 10, 12, 11, 12, 11, 13, 12, 12],
+                  sparkColor: "var(--wim-color-positive)",
                 },
               ].map((stat, i) => (
                 <Stats
@@ -280,6 +287,14 @@ export const DashboardHeader: StoryObj = {
                       </span>
                     </Stats.Value>
                   </Stack>
+                  <Sparkline
+                    data={stat.spark}
+                    type="area"
+                    color={stat.sparkColor}
+                    width="100%"
+                    height={36}
+                    showLastDot
+                  />
                   <Stats.Description
                     style={{ fontSize: "var(--wim-font-size-sm)" }}
                   >

@@ -2,15 +2,20 @@ import React from "react";
 import styles from "./color-picker.module.scss";
 
 
-/**
- * ユーザーが色を選択するためのコンポーネント。
- */
 import { Input, InputProps } from "../../form/Input/Input";
+import { FieldIntent, FieldVariant } from "../../../types/tokens";
 
-export type ColorPickerProps = Omit<InputProps, "type">;
+export type ColorPickerProps = Omit<InputProps, "type"> & {
+  /** Semantic intent of the field (e.g. error state) */
+  intent?: FieldIntent;
+  /** Visual style variant of the field */
+  variant?: FieldVariant;
+  /** Whether to take full width of parent */
+  fullWidth?: boolean;
+};
 
 /**
- * ユーザーが色を選択するためのコンポーネント。
+ * Component for selecting a color.
  */
 export const ColorPicker = ({
   intent = "default",

@@ -3,10 +3,14 @@ import classNames from "classnames";
 import styles from "./scroll-area.module.scss";
 
 type ScrollAreaProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** Content to display (alternative to children) */
   text?: React.ReactNode;
+  /** Content to display */
   children?: React.ReactNode;
+  /** Axis along which scrolling is allowed */
   scrollAxis?: "x" | "y" | "both";
-  maxHeight?: string; //px以外にも対応するため文字列にしている
+  /** Maximum height before scrolling (a CSS value, so units other than px are supported) */
+  maxHeight?: string;
 };
 
 export const ScrollArea = ({

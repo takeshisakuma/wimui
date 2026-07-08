@@ -5,6 +5,8 @@ import { ResponsiveProp } from "../../layout/Grid/grid-utils";
 import styles from "./stack.module.scss";
 
 export type StackProps = Omit<BoxProps, "as"> & {
+  /** Whether to render as a child element. */
+  asChild?: boolean;
   /** Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg'). */
   gap?: number | string;
   /** Stack direction */

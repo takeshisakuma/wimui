@@ -11,20 +11,26 @@ export type CalendarRange = {
 };
 
 export type CalendarProps = UseCalendarProps & {
+  /** Additional class names */
   className?: string;
+  /** Whether the calendar is disabled */
   disabled?: boolean;
-  // Single mode
+  /** Selected date (controlled, single mode) */
   value?: Date;
+  /** Callback when a date is selected (single mode) */
   onChange?: (date: Date) => void;
-  // Range mode
+  /** Whether to enable range selection mode */
   rangeMode?: boolean;
+  /** Selected range (controlled, range mode) */
   range?: CalendarRange;
+  /** Default selected range (uncontrolled, range mode) */
   defaultRange?: CalendarRange;
+  /** Callback when the range changes (range mode) */
   onRangeChange?: (range: CalendarRange) => void;
 };
 
 /**
- * ユーザーが特定の日付または範囲を選択できるカレンダーコンポーネント。
+ * Calendar component that lets users select a single date or a range.
  */
 export const Calendar = ({
   className,

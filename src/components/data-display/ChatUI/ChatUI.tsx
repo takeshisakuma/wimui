@@ -7,7 +7,9 @@ import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./chat-ui.module.scss";
 
 export interface ChatContainerProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** Chat content (message list, input, etc.) */
   children: React.ReactNode;
+  /** Additional class names */
   className?: string;
 }
 
@@ -24,7 +26,9 @@ export const ChatContainer = ({
 };
 
 export interface ChatMessageListProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** Chat messages */
   children: React.ReactNode;
+  /** Additional class names */
   className?: string;
 }
 
@@ -41,15 +45,25 @@ export const ChatMessageList = forwardRef<HTMLDivElement, ChatMessageListProps>(
 ChatMessageList.displayName = "ChatMessageList";
 
 export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** Message content */
   children?: React.ReactNode;
+  /** Side the message is aligned to (typically left for others, right for self) */
   position?: "left" | "right";
+  /** Visual style variant of the message bubble */
   variant?: "default" | "primary" | "secondary";
+  /** Whether to show the avatar */
   showAvatar?: boolean;
+  /** Avatar element */
   avatar?: React.ReactNode;
+  /** Timestamp text shown below the message */
   timestamp?: string;
+  /** Sender name shown above the message */
   senderName?: string;
+  /** Whether to show the typing indicator instead of content */
   isTyping?: boolean;
+  /** Action elements shown below the message */
   actions?: React.ReactNode;
+  /** Additional class names */
   className?: string;
 }
 
@@ -133,13 +147,21 @@ export const ChatInputArea = ({
 };
 
 export interface ChatInputProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "onSend"> {
+  /** Callback when a message is sent */
   onSend?: (message: string) => void;
+  /** Callback when the attach button is clicked */
   onAttach?: () => void;
+  /** Label of the send button (shown instead of the icon when provided) */
   sendButtonLabel?: string;
+  /** Icon component for the send button */
   sendButtonIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  /** Whether to show the send button */
   showSendButton?: boolean;
+  /** Whether to show the attach button */
   showAttach?: boolean;
+  /** Maximum number of rows the input grows to before scrolling */
   maxRows?: number;
+  /** Additional class names */
   className?: string;
 }
 
@@ -235,11 +257,17 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
 ChatInput.displayName = "ChatInput";
 
 export interface ChatAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** Image source URL */
   src?: string;
+  /** Alternative text for the image */
   alt?: string;
+  /** Fallback text (e.g. initials) shown when no image is available */
   fallback?: string;
+  /** Size of the avatar */
   size?: ComponentSizeBasic;
+  /** Background color token used for the fallback */
   color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
+  /** Additional class names */
   className?: string;
 }
 

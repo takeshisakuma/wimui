@@ -8,3 +8,6 @@ export * from "./components/ai/CodeDiffViewer/CodeDiffViewer";
 export * from "./components/ai/Terminal/Terminal";
 export * from "./components/ai/AgentStatus/AgentStatus";
 export * from "./components/ai/VoiceVisualizer/VoiceVisualizer";
+export * from "./components/ai/ModelSelector/ModelSelector";
+export * from "./components/ai/ThreadList/ThreadList";
+export * from "./components/ai/UsageMeter/UsageMeter";

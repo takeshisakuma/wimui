@@ -11,29 +11,29 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
    * If true, the tag will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  /** 表示するコンテンツ */
+  /** Content to display */
   children?: React.ReactNode;
-  /** 表示するコンテンツ (childrenの代替) */
+  /** Content to display (alternative to children) */
   content?: React.ReactNode;
-  /** インテント（意味的状態） */
+  /** Intent (semantic state) */
   intent?: IndicatorIntent;
-  /** バリアント */
+  /** Visual style variant */
   variant?: IndicatorVariant;
-  /** サイズ */
+  /** Size */
   size?: ComponentSizeBasic;
-  /** アイコン */
+  /** Icon */
   icon?: React.ReactNode;
-  /** 削除時のイベント。提供されると×ボタンが表示されます。 */
+  /** Delete event. When provided, a × button is shown. */
   onDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  /** 無効状態 */
+  /** Whether the tag is disabled */
   disabled?: boolean;
-  /** インタラクティブな状態を有効にするか */
+  /** Whether to enable the interactive state */
   interactive?: boolean;
 };
 
 /**
- * カテゴリ分けや属性のラベルとして使用されるコンポーネント。
- * onClose を提供することで削除可能なタグとして機能します。
+ * Component used as a label for categorization or attributes.
+ * Providing onDelete makes it a removable tag.
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
   ({ children, content, icon, onDelete, disabled, interactive = false, ...props }, ref) => {

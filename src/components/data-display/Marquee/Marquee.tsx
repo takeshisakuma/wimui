@@ -3,30 +3,20 @@ import classNames from "classnames";
 import styles from "./marquee.module.scss";
 
 export type MarqueeProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * アニメーションの速度（秒）。デフォルトは `20`。
-   */
+  /** Animation speed (in seconds). Defaults to `20`. */
   duration?: number;
-  /**
-   * アニメーションを逆方向にするかどうか。
-   */
+  /** Whether to run the animation in reverse. */
   reverse?: boolean;
-  /**
-   * ホバー時にアニメーションを一時停止するかどうか。
-   */
+  /** Whether to pause the animation on hover. */
   pauseOnHover?: boolean;
-  /**
-   * 垂直方向に流すかどうか。
-   */
+  /** Whether to scroll vertically. */
   vertical?: boolean;
-  /**
-   * コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。
-   */
+  /** Number of times the content is repeated. May need adjusting for a seamless loop. Defaults to `2`. */
   repeat?: number;
 };
 
 /**
- * テキストや画像を水平・垂直方向にスクロールさせるためのアニメーションコンポーネント。
+ * Animation component that scrolls text or images horizontally or vertically.
  */
 export const Marquee = ({
   duration = 20,

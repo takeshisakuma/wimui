@@ -1,0 +1,82 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    width: 100%;
+    container-type: inline-size;
+    font-family: var(--wim-font-family-default);
+
+    // Default (ok) accent
+    --usage-meter-accent: var(--wim-color-primary);
+
+    &.warn {
+      --usage-meter-accent: var(--wim-color-caution);
+    }
+
+    &.danger {
+      --usage-meter-accent: var(--wim-color-destructive);
+    }
+  }
+
+  .header {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .label {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .readout {
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--usage-meter-accent);
+  }
+
+  .track {
+    width: 100%;
+    height: var(--wim-spacing-xs);
+    overflow: hidden;
+    background: var(--wim-color-bg-secondary);
+    border-radius: var(--wim-radius-full);
+  }
+
+  .bar {
+    width: var(--wim-usage-meter-fill, 0%);
+    height: 100%;
+    background: var(--usage-meter-accent);
+    border-radius: var(--wim-radius-full);
+    transition: width var(--wim-duration-base) var(--wim-easing-standard),
+      background-color var(--wim-duration-base) var(--wim-easing-standard);
+  }
+
+  // Sizes
+  .sm {
+    .label,
+    .readout {
+      font-size: var(--wim-font-size-xs);
+    }
+
+    .track {
+      height: var(--wim-spacing-3xs);
+    }
+  }
+
+  .lg {
+    .label,
+    .readout {
+      font-size: var(--wim-font-size-md);
+    }
+
+    .track {
+      height: var(--wim-spacing-sm);
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    display: inline-flex;
+  }
+
+  .iconButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-spacing-2xl);
+    height: var(--wim-spacing-2xl);
+    padding: 0;
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    background: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard),
+      color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-bg-secondary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
+    }
+  }
+
+  .segmented {
+    display: inline-flex;
+    gap: var(--wim-spacing-3xs);
+    padding: var(--wim-spacing-3xs);
+    background: var(--wim-color-bg-secondary);
+    border-radius: var(--wim-radius-component);
+  }
+
+  .segment {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-spacing-xl);
+    height: var(--wim-spacing-xl);
+    padding: 0;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard),
+      color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--wim-shadow-focus-ring);
+    }
+
+    &.active {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-bg-component);
+      box-shadow: var(--wim-shadow-xs);
+    }
+  }
+
+  // Sizes — icon button
+  .iconButton.sm {
+    width: var(--wim-spacing-xl);
+    height: var(--wim-spacing-xl);
+  }
+
+  .iconButton.lg {
+    width: var(--wim-spacing-3xl);
+    height: var(--wim-spacing-3xl);
+  }
+
+  // Sizes — segmented
+  .segmented.sm .segment {
+    width: var(--wim-spacing-lg);
+    height: var(--wim-spacing-lg);
+  }
+
+  .segmented.lg .segment {
+    width: var(--wim-spacing-2xl);
+    height: var(--wim-spacing-2xl);
+  }
+}

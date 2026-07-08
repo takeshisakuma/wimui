@@ -9,21 +9,32 @@ export type OtpInputLabels = {
 };
 
 export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "value" | "defaultValue"> {
+  /** Number of digits */
   length?: number;
+  /** Current value (controlled) */
   value?: string;
+  /** Callback when the value changes */
   onChange?: (value: string) => void;
+  /** Whether the input is disabled */
   disabled?: boolean;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Field label */
   label?: React.ReactNode;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Labels for internationalization */
   labels?: OtpInputLabels;
+  /** Whether to render as a child element. */
   asChild?: boolean;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
 }
 
 /**
- * OTP（ワンタイムパスワード）入力用コンポーネント。
+ * Component for entering an OTP (one-time password).
  */
 export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
   (

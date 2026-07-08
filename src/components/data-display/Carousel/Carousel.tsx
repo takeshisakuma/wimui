@@ -28,49 +28,27 @@ export type CarouselLabels = {
 };
 
 export type CarouselProps = {
-  /**
-   * カルーセル内のコンテンツ
-   */
+  /** Content of the carousel */
   children?: React.ReactNode;
-  /**
-   * 自動再生するかどうか
-   */
+  /** Whether to auto-play */
   autoPlay?: boolean;
-  /**
-   * 自動再生の間隔（ミリ秒）
-   */
+  /** Auto-play interval (in milliseconds) */
   interval?: number;
-  /**
-   * インジケーターを表示するかどうか
-   */
+  /** Whether to show the indicators */
   showIndicators?: boolean;
-  /**
-   * 前後ボタンを表示するかどうか
-   */
+  /** Whether to show the previous/next buttons */
   showControls?: boolean;
-  /**
-   * 無限ループするかどうか（シームレスな切り替え）
-   */
+  /** Whether to loop infinitely (seamless transitions) */
   loop?: boolean;
-  /**
-   * 一度に表示するスライド数。数値またはブレークポイントごとのオブジェクトを指定可能。
-   */
+  /** Number of slides to show at once. A number or an object per breakpoint. */
   slidesToShow?: number | Breakpoints;
-  /**
-   * アスペクト比（例: '16/9', '4/3', '1/1'）を指定します。
-   */
+  /** Aspect ratio (e.g. '16/9', '4/3', '1/1'). */
   aspectRatio?: string;
-  /**
-   * 画像のフィット方法を指定します。aspectRatioが指定されている場合に有効です。（デフォルト: 'cover'）
-   */
+  /** How the image fits. Effective when aspectRatio is set. (default: 'cover') */
   objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
-  /**
-   * 手動翻訳用のラベル。
-   */
+  /** Labels for manual translation. */
   labels?: CarouselLabels;
-  /**
-   * 追加のクラス名
-   */
+  /** Additional class names */
   className?: string;
   /**
    * Whether to use the Radix Slot pattern

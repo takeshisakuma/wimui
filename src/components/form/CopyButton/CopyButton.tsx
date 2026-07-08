@@ -6,11 +6,17 @@ import { isDev } from "@/utilities/dev-utils";
 import { ComponentSizeBasic } from "../../../types/tokens";
 
 type CopyButtonProps = {
+  /** Text copied to the clipboard */
   value: string;
+  /** Size of the button */
   size?: ComponentSizeBasic;
+  /** Additional class names */
   className?: string;
+  /** Accessible label for the button */
   "aria-label"?: string;
+  /** Tooltip label before copying */
   copyLabel?: string;
+  /** Tooltip label after copying */
   copiedLabel?: string;
 };
 

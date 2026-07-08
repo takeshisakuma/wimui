@@ -16,22 +16,37 @@ export type InputBaseIcon = {
 };
 
 export type InputBaseProps = {
+  /** Inner form control element(s) wrapped by the shell */
   children: React.ReactNode;
+  /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent | WimIntent;
+  /** Visual style variant of the field */
   variant?: "outline" | "ghost";
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Fixed width of the field (width token, CSS value, or number in px) */
   width?: FieldWidth | string | number;
+  /** Additional class names */
   className?: string;
+  /** Whether the field is disabled */
   disabled?: boolean;
+  /** Icon name to display on the left side */
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
+  /** Color of the left icon */
   leftIconColor?: React.ComponentProps<typeof Icon>["color"];
+  /** Callback when the left icon is clicked (renders the icon as a button) */
   onLeftIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Aria label for the left icon button */
   leftIconAriaLabel?: string;
+  /** Icons to display on the right side */
   rightIcons?: InputBaseIcon[];
   /** Whether to show a clear button when value is present */
   allowClear?: boolean;
+  /** Whether the field currently has a value (controls clear button visibility) */
   hasValue?: boolean;
+  /** Callback when the clear button is clicked */
   onClear?: () => void;
+  /** Aria label for the clear button */
   clearAriaLabel?: string;
   /** Custom styles for internal parts */
   styles?: {

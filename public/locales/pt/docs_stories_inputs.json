@@ -223,6 +223,8 @@
     "textarea_placeholder_thanks": "Obrigado por sempre utilizar nossa instalação.",
     "textarea_placeholder_urgent": "Tenho uma pergunta sobre o uso da instalação. Se possível, responda até as 15h de amanhã. Não é urgente.",
     "textarea_value_none": "Nada em particular",
+    "themetoggle_preview_body": "Este painel muda de tema conforme você alterna, usando os mesmos design tokens do resto da biblioteca.",
+    "themetoggle_preview_title": "Prévia",
     "timepicker_ghost": "Seletor de Hora Fantasma",
     "timepicker_outline": "Seletor de Hora de Contorno",
     "timepicker_select": "Selecionar Hora",

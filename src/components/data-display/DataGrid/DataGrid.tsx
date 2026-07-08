@@ -27,45 +27,57 @@ type SelectionConfig<T> = {
 };
 
 export type DataGridProps<T> = {
+  /** Column definitions */
   columns: DataGridColumn<T>[];
+  /** Row data */
   data: T[];
+  /** Row key: a field name or a function that derives the key from a record */
   rowKey?: string | ((record: T) => string);
+  /** Whether the grid is in a loading state */
   loading?: boolean;
+  /** Whether to show striped (zebra) rows */
   striped?: boolean;
+  /** Whether to show borders between cells */
   bordered?: boolean;
+  /** Whether rows highlight on hover */
   hoverable?: boolean;
+  /** Whether the header sticks to the top while scrolling */
   stickyHeader?: boolean;
+  /** Height of the grid (enables vertical scrolling) */
   height?: string | number;
+  /** Maximum height of the grid (enables vertical scrolling) */
   maxHeight?: string | number;
   /** Message or element to display when data is empty */
   emptyMessage?: React.ReactNode;
   /** Enable mobile card layout */
   mobileCard?: boolean;
-  // Selection — either boolean shorthand or full config object
+  /** Row selection: a boolean shorthand or a full configuration object */
   selection?: boolean | SelectionConfig<T>;
   /** Selected row keys (used with boolean `selection`) */
   selectedRowKeys?: string[];
   /** Selection change callback (used with boolean `selection`) */
   onSelectionChange?: (keys: string[], records: T[]) => void;
-  // Sorting
+  /** Current sort configuration */
   sortConfig?: {
     key: string;
     direction: "asc" | "desc" | "none";
   };
+  /** Callback when the sort configuration changes */
   onSortChange?: (key: string, direction: "asc" | "desc" | "none") => void;
-  // Pagination
+  /** Pagination configuration, or false to disable pagination */
   pagination?: {
     current: number;
     pageSize: number;
     total: number;
     onChange: (page: number, pageSize: number) => void;
   } | false;
-  // Dynamic Loading
+  /** Infinite-scroll configuration for dynamic loading */
   infiniteScroll?: {
     hasMore: boolean;
     onLoadMore: () => void;
     threshold?: number;
   };
+  /** Additional class names */
   className?: string;
   /** Accessibility label for the grid */
   ariaLabel?: string;

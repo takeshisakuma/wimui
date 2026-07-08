@@ -16,6 +16,8 @@ export * from "./media";
 export * from "./charts";
 export * from "./ai";
 export * from "./hooks/useAutoResize";
+export * from "./hooks/useMediaQuery";
+export * from "./hooks/useBreakpoint";
 // 個別アイコンの named import 用（tree-shaking 可能・登録副作用なし）。
 // 文字列ベースの icon/name API を使う場合は `import "wimui/icons"` が別途必要。
 export * from "./icon";

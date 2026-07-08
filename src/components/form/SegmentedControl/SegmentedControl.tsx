@@ -14,31 +14,27 @@ type Option = {
 };
 
 type SegmentedControlProps = {
+  /** List of segment options */
   options: Option[];
+  /** Selected value */
   value: string;
+  /** Callback when the selected value changes */
   onChange: (value: string) => void;
+  /** Size of the control */
   size?: ComponentSizeBasic;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Additional class names */
   className?: string;
-  /**
-   * アクセシビリティ用のラベル
-   */
+  /** Accessible label */
   label?: string;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * 無効状態にするかどうか
-   */
+  /** Whether the control is disabled */
   disabled?: boolean;
   /**
    * Unique ID for the component

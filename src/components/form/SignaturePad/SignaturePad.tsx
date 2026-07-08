@@ -24,16 +24,20 @@ export type SignaturePadProps = {
   className?: string;
   /** Inline styles */
   style?: React.CSSProperties;
+  /** Field label */
   label?: React.ReactNode;
+  /** Error message */
   error?: string;
+  /** Whether to show the required indicator */
   required?: boolean;
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Aria label for the canvas */
   canvasAriaLabel?: string;
 };
 
 /**
- * マウスやタッチ操作で手書きの署名を入力するためのコンポーネント。
+ * Component for entering a handwritten signature with mouse or touch.
  */
 export const SignaturePad = ({
   width = 400,

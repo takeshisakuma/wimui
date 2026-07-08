@@ -10,24 +10,24 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
    * If true, the badge will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  /** 表示するコンテンツ */
+  /** Content to display */
   children?: React.ReactNode;
-  /** 表示するコンテンツ (childrenの代替) */
+  /** Content to display (alternative to children) */
   content?: React.ReactNode;
-  /** アイコン */
+  /** Icon */
   icon?: React.ReactNode;
-  /** インテント（意味的状態） */
+  /** Intent (semantic state) */
   intent?: IndicatorIntent;
-  /** バリアント */
+  /** Visual style variant */
   variant?: IndicatorVariant;
-  /** サイズ */
+  /** Size */
   size?: ComponentSizeBasic;
-  /** インタラクティブな状態を有効にするか */
+  /** Whether to enable the interactive state */
   interactive?: boolean;
 };
 
 /**
- * 状態やカウントなどを表示するためのバッジコンポーネント。
+ * Badge component for displaying status, counts, and similar indicators.
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ({ children, content, icon, className, role, "aria-label": ariaLabel, interactive = false, ...props }, ref) => {

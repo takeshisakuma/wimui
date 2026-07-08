@@ -3,14 +3,18 @@ import classNames from "classnames";
 import styles from "./fieldset.module.scss";
 
 type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset"> & {
+  /** Form elements to group */
   children: React.ReactNode;
+  /** Whether all contained form elements are disabled */
   disabled?: boolean;
+  /** Visual variant of the fieldset */
   variant?: "default" | "full-width";
+  /** Additional class names */
   className?: string;
 };
 
 /**
- * 関連するフォーム要素をグループ化するコンポーネント。
+ * Component for grouping related form elements.
  */
 export const Fieldset = ({
   children,

@@ -15,42 +15,37 @@ export type Option = {
 };
 
 type ToggleGroupProps = {
+  /** List of toggle options */
   options: Option[];
+  /** Selected value(s) (controlled) */
   value?: string | string[];
+  /** Initially selected value(s) (uncontrolled) */
   defaultValue?: string | string[];
+  /** Callback when the selection changes */
   onChange?: (value: string | string[]) => void;
+  /** Whether one or multiple options can be selected */
   selectionMode?: "single" | "multiple";
+  /** Size of the toggle buttons */
   size?: ComponentSizeBasic;
+  /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /** Additional class names */
   className?: string;
+  /** Whether the group is disabled */
   disabled?: boolean;
-  /**
-   * グループのラベル
-   */
+  /** Group label */
   label?: string;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * Unique ID for the component
-   */
+  /** Unique ID for the component */
   id?: string;
-  /**
-   * アクセシビリティ用のラベル
-   */
+  /** Accessible label when no visible label is provided */
   "aria-label"?: string;
-  /**
-   * アクセシビリティ用のラベルID
-   */
+  /** ID of the element that labels the group */
   "aria-labelledby"?: string;
 };
 

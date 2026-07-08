@@ -3,10 +3,13 @@ import classNames from "classnames";
 import { Card } from "../../data-display/Card/Card";
 import styles from "./stats.module.scss";
 
-export type StatsProps = React.ComponentPropsWithoutRef<typeof Card>;
+export type StatsProps = React.ComponentPropsWithoutRef<typeof Card> & {
+  /** Visual style variant of the card */
+  variant?: React.ComponentProps<typeof Card>["variant"];
+};
 
 /**
- * `Stats` は統計情報やメトリクスを表示するためのコンポーネントです。
+ * `Stats` is a component for displaying statistics and metrics.
  */
 export const Stats = ({
   variant = "elevated",
@@ -59,6 +62,7 @@ export const StatsDescription = ({
 );
 
 export type StatsTrendProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** Trend direction, which controls the icon and color */
   direction?: "up" | "down" | "neutral";
 };
 

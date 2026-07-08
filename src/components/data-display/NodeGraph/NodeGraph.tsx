@@ -50,6 +50,7 @@ export interface NodeGraphProps {
   backgroundVariant?: BackgroundVariant;
   /** Fit view options on mount */
   fitView?: boolean;
+  /** Options for the initial fit-view behavior */
   fitViewOptions?: FitViewOptions;
   /** Default options applied to new edges */
   defaultEdgeOptions?: DefaultEdgeOptions;

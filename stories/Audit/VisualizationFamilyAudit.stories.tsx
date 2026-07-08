@@ -14,6 +14,7 @@ import {
   FunnelChart,
   Heatmap,
   CalendarHeatmap,
+  Sparkline,
   Box,
   Stack,
 } from "../../src";
@@ -184,6 +185,24 @@ export const Overview: StoryObj = {
             <Box p="md" bg="bg-surface" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
               <CalendarHeatmap data={calendarData} year={2024} />
             </Box>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Sparkline Check */}
+        <ComparisonGrid title={t("audit:viz_sparkline_check")}>
+          <ComponentGroup label={`${t("audit:label_sparkline")} — ${t("audit:sfx_types")}`}>
+            <Stack gap="lg">
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="line" width={140} height={32} />
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="area" width={140} height={32} />
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="bar" width={140} height={32} />
+            </Stack>
+          </ComponentGroup>
+          <ComponentGroup label={`${t("audit:label_sparkline")} — ${t("audit:sfx_trends")}`}>
+            <Stack gap="lg">
+              <Sparkline data={[4, 6, 5, 8, 9, 11, 12, 14]} color="var(--wim-color-positive)" showLastDot width={140} height={32} />
+              <Sparkline data={[14, 13, 15, 11, 10, 8, 9, 6]} color="var(--wim-color-destructive)" showLastDot width={140} height={32} />
+              <Sparkline data={[8, 3, 9, 2, 7, 4, 10, 5]} color="var(--wim-color-informative)" width={140} height={32} />
+            </Stack>
           </ComponentGroup>
         </ComparisonGrid>
 

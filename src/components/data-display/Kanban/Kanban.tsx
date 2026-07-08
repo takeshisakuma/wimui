@@ -17,30 +17,20 @@ export interface KanbanColumnData {
 }
 
 export interface KanbanProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onMove"> {
-  /**
-   * カンバンのカラムデータ（Prop-driven用）。
-   */
+  /** Kanban column data (for prop-driven usage). */
   columns?: KanbanColumnData[];
-  /**
-   * カードの移動が発生した時のコールバック。
-   */
+  /** Callback when a card is moved. */
   onMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
-  /**
-   * カードの移動が発生した時のコールバック (Legacy/Alternative name)。
-   */
+  /** Callback when a card is moved (legacy / alternative name). */
   onCardMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
-  /**
-   * タッチデバイス向けのUIを強制的に表示するか。
-   */
+  /** Whether to force the touch-device UI. */
   forceMobileUI?: boolean;
-  /**
-   * Whether to render as a child element.
-   */
+  /** Whether to render as a child element. */
   asChild?: boolean;
 }
 
 /**
- * プロジェクト管理などに適したカンバンボードコンポーネント。
+ * Kanban board component suited for project management and similar use cases.
  */
 export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
   (

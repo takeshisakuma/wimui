@@ -426,6 +426,29 @@
   "guide": {
     "media_title": "Guia de Seleção de Componentes de Mídia"
   },
+  "imagecompare_doc": {
+    "a11y_spec_1": "O controle usa role=\"slider\" com aria-valuenow, aria-valuemin, aria-valuemax e aria-orientation.",
+    "a11y_spec_2": "As teclas de seta movem o divisor, e Home/End saltam para exibir totalmente uma imagem ou a outra.",
+    "a11y_spec_3": "Dê a cada imagem um texto alternativo significativo para que a comparação seja compreensível sem visão.",
+    "best_practice_1": "Inicie o divisor perto do centro para que ambas as imagens fiquem visíveis ao carregar.",
+    "best_practice_2": "Restrinja o componente à proporção das imagens para evitar distorção.",
+    "best_practice_3": "Pré-carregue ambas as imagens para que o arraste nunca revele uma metade não carregada.",
+    "choice_cropper_when": "Recortar, girar ou enquadrar uma única imagem.",
+    "choice_matrix_desc": "Use o ImageCompare para revelar a diferença entre duas imagens e o ImageCropper para editar uma única.",
+    "choice_self_when": "Mostrar a diferença entre uma imagem antes e uma depois.",
+    "content_guideline_1": "Use duas imagens de dimensões e alinhamento idênticos; qualquer deslocamento é lido como uma diferença.",
+    "content_guideline_2": "Adicione rótulos de antes e depois quando a direção da comparação não for óbvia.",
+    "design_intent": "Comparar duas imagens lado a lado esconde diferenças sutis. Sobrepô-las sob um único divisor mantém ambas na mesma posição, para que o olho leia a mudança diretamente.",
+    "i18n_desc": "O rótulo do controle de arraste pode ser sobrescrito pela prop labels; os selos de antes e depois aceitam qualquer nó, então seu texto vem do seu app.",
+    "keyboard_arrows": "Move o divisor (segure Shift para passos maiores)",
+    "keyboard_ends": "Revela uma imagem por completo",
+    "motion_spec_1": "O divisor segue o ponteiro diretamente durante o arraste, sem suavização, para que a revelação pareça física.",
+    "motion_spec_2": "Ajustes pelo teclado movem o divisor em passos discretos (2%, ou 10% com Shift).",
+    "responsive_desc": "O componente preenche a largura do seu contêiner por padrão; defina uma largura e altura explícitas, ou envolva-o em uma caixa de proporção, para combinar com suas imagens.",
+    "scenario_1": "Um editor de fotos mostra o original ao lado de uma versão retocada sob um único controle.",
+    "scenario_2": "Uma ferramenta de imagem por IA compara a imagem de origem com o resultado gerado.",
+    "subtitle": "O ImageCompare sobrepõe duas imagens e as revela com um divisor arrastável — um controle antes/depois para comparar edições, restaurações ou resultados gerados por IA com sua origem."
+  },
   "media": {
     "alt_text": "Texto Alternativo (Alt)",
     "alt_text_desc": "Sempre defina o texto alternativo para imagens/vídeos. Ajuda na acessibilidade e no SEO.",

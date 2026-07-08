@@ -5,15 +5,20 @@ import { Avatar } from "../../data-display/Avatar/Avatar";
 import { ComponentSizeBasic } from "../../../types/tokens";
 
 type AvatarGroupProps = {
+  /** Avatar elements to group */
   children: React.ReactNode;
+  /** Maximum number of avatars to show before collapsing into a count */
   max?: number;
+  /** Size applied to the avatars */
   size?: ComponentSizeBasic;
+  /** Total number of avatars (used to compute the overflow count) */
   total?: number;
+  /** Additional class names */
   className?: string;
 };
 
 /**
- * 複数のアバターを束ねて表示するためのコンポーネント。
+ * Component for displaying multiple avatars bundled together.
  */
 export const AvatarGroup = ({
   children,

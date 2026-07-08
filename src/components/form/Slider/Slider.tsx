@@ -6,72 +6,42 @@ import { FieldTemplate } from "../FieldTemplate";
 import styles from "./slider.module.scss";
 
 export interface SliderProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
-  /**
-   * 現在の値
-   */
+  /** Current value (controlled) */
   value?: number;
-  /**
-   * デフォルトの値（非制御時）
-   */
+  /** Default value (uncontrolled) */
   defaultValue?: number;
-  /**
-   * 最小値
-   */
+  /** Minimum value */
   min?: number;
-  /**
-   * 最大値
-   */
+  /** Maximum value */
   max?: number;
-  /**
-   * ステップ値
-   */
+  /** Step value */
   step?: number;
-  /**
-   * 無効化フラグ
-   */
+  /** Whether the slider is disabled */
   disabled?: boolean;
-  /**
-   * 値変更時のコールバック
-   */
+  /** Callback when the value changes */
   onChange?: (value: number) => void;
-  /**
-   * ドラッグ終了時のコールバック
-   */
+  /** Callback when dragging ends */
   onAfterChange?: (value: number) => void;
-  /**
-   * 名前の属性
-   */
+  /** Name attribute */
   name?: string;
-  /**
-   * アクセシビリティ用のラベル
-   */
+  /** Accessible label */
   label?: React.ReactNode;
-  /**
-   * エラーメッセージ
-   */
+  /** Error message */
   error?: string;
-  /**
-   * 必須表示にするかどうか
-   */
+  /** Whether to show the required indicator */
   required?: boolean;
-  /**
-   * レイアウト方向
-   */
+  /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /**
-   * カスタムID
-   */
+  /** Custom ID */
   id?: string;
   /** Whether to render as a child element. */
   asChild?: boolean;
-  /**
-   * 内部パーツのカスタムスタイル
-   */
+  /** Custom styles for internal parts */
   styles?: React.ComponentPropsWithoutRef<typeof FieldTemplate>["styles"];
 }
 
 /**
- * ユーザーが値の範囲から1つの値を選択するためのスライダーコンポーネント。
+ * Slider component for selecting a single value from a range.
  */
 export const Slider = forwardRef<HTMLDivElement, SliderProps>(
   (

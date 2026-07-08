@@ -9,21 +9,13 @@ export type CardProps = {
    * If true, the card will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  /**
-   * カードのバリアント
-   */
+  /** Visual style variant of the card */
   variant?: "elevated" | "outline" | "flat" | "glass";
-  /**
-   * ホバー時のアニメーションやクリック時の効果を有効にするか
-   */
+  /** Whether to enable hover animation and click effects */
   interactive?: boolean;
-  /**
-   * パディングのサイズ
-   */
+  /** Padding size */
   padding?: ComponentSize | "none";
-  /**
-   * 角丸のサイズ
-   */
+  /** Corner radius size */
   radius?: ComponentSize | "none";
 } & React.ComponentPropsWithoutRef<"div">;
 
