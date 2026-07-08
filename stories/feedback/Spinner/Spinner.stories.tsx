@@ -35,10 +35,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    label: "Loading...",
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Spinner {...args} label={t("story.spinner_label_loading")} />;
   },
-  render: (args) => <Spinner {...args} />,
 };
 
 export const Colors: Story = {

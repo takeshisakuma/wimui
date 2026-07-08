@@ -33,10 +33,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     value: 50,
-    label: "Processing...",
     showValue: true,
   },
-  render: (args) => <Progress {...args} />,
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Progress {...args} label={t("story.progress_label_processing")} />;
+  },
 };
 
 export const Colors: Story = {
@@ -85,7 +87,9 @@ export const Sizes: Story = {
 export const Indeterminate: Story = {
   args: {
     indeterminate: true,
-    label: "Uploading...",
   },
-  render: (args) => <Progress {...args} />,
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Progress {...args} label={t("story.progress_label_uploading")} />;
+  },
 };

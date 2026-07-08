@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { CopyButton } from "wimui";
 
 const meta: Meta<typeof CopyButton> = {
@@ -17,13 +19,15 @@ export default meta;
 type Story = StoryObj<typeof CopyButton>;
 
 export const Default: Story = {
-  args: {
-    value: "Hello, wimui!",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <CopyButton {...args} value={t("story.copybutton_value")} />;
   },
 };
 
 export const Small: Story = {
   args: {
+    // Copyable value naming the variant, kept verbatim. i18n-ignore-next-line
     value: "Small CopyButton",
     size: "sm",
   },
@@ -31,6 +35,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
+    // Copyable value naming the variant, kept verbatim. i18n-ignore-next-line
     value: "Large CopyButton",
     size: "lg",
   },

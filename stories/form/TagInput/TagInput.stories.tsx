@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { TagInput } from "@/components/form/TagInput/TagInput";
 
 const meta: Meta<typeof TagInput> = {
@@ -14,35 +16,46 @@ export default meta;
 type Story = StoryObj<typeof TagInput>;
 
 export const Default: Story = {
-  args: {
-    placeholder: "Type and press Enter...",
-    defaultValue: ["React", "TypeScript", "SCSS"],
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    // Tag values are sample data / brand names, shared across locales.
+    return (
+      <TagInput
+        {...args}
+        placeholder={t("story.taginput_placeholder_default")}
+        defaultValue={["React", "TypeScript", "SCSS"]}
+      />
+    );
   },
 };
 
 export const Controlled: Story = {
   render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [tags, setTags] = React.useState(["WIM UI", "Premium", "Modern"]);
     return (
       <div style={{ width: "400px" }}>
         <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
-          Current tags: {tags.join(", ")}
+          {t("story.taginput_current_tags")} {tags.join(", ")}
         </p>
-        <TagInput 
-          value={tags} 
-          onChange={setTags} 
-          placeholder="frontend" 
-        />
+        {/* placeholder "frontend" is a generic example tag, kept verbatim. i18n-ignore-next-line */}
+        <TagInput value={tags} onChange={setTags} placeholder="frontend" />
       </div>
     );
-  }
+  },
 };
 
 export const MaxTags: Story = {
-  args: {
-    maxTags: 5,
-    placeholder: "Max 5 tags allowed...",
-    defaultValue: ["One", "Two", "Three"],
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <TagInput
+        {...args}
+        maxTags={5}
+        placeholder={t("story.taginput_placeholder_max")}
+        defaultValue={["One", "Two", "Three"]}
+      />
+    );
   },
 };
 

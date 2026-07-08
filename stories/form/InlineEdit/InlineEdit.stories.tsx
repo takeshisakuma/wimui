@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { InlineEdit } from "@/components/form/InlineEdit/InlineEdit";
 
 const meta: Meta<typeof InlineEdit> = {
@@ -20,29 +22,36 @@ export default meta;
 type Story = StoryObj<typeof InlineEdit>;
 
 export const Default: Story = {
-  args: {
-    defaultValue: "Hello, WIM UI!",
-    placeholder: "Click to edit...",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <InlineEdit
+        {...args}
+        defaultValue={t("story.inlineedit_default_value")}
+        placeholder={t("story.inlineedit_placeholder_edit")}
+      />
+    );
   },
 };
 
 export const Empty: Story = {
-  args: {
-    placeholder: "Click to enter text...",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <InlineEdit {...args} placeholder={t("story.inlineedit_placeholder_enter")} />;
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    defaultValue: "Cannot edit this text",
-    disabled: true,
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <InlineEdit {...args} defaultValue={t("story.inlineedit_disabled_value")} disabled />;
   },
 };
 
 export const FullWidth: Story = {
-  args: {
-    defaultValue: "This takes up the full width",
-    fullWidth: true,
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <InlineEdit {...args} defaultValue={t("story.inlineedit_fullwidth_value")} fullWidth />;
   },
   parameters: {
     layout: "padded",
@@ -51,7 +60,8 @@ export const FullWidth: Story = {
 
 export const Controlled: Story = {
   render: (args) => {
-    const [value, setValue] = useState("Controlled Value");
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const [value, setValue] = useState(t("story.inlineedit_controlled_value"));
     return (
       <InlineEdit
         {...args}

@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Highlight } from "wimui";
 
 const meta: Meta<typeof Highlight> = {
@@ -13,59 +15,84 @@ export default meta;
 type Story = StoryObj<typeof Highlight>;
 
 export const Default: Story = {
-  args: {
-    children: "You can highlight specific words in this sentence.",
-    highlight: "highlight",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Highlight {...args} highlight={t("story.highlight_default_term")}>
+        {t("story.highlight_default_text")}
+      </Highlight>
+    );
   },
 };
 
 export const MultipleHighlights: Story = {
-  args: {
-    children: "React, Vue, and Angular are popular frontend frameworks.",
-    highlight: ["React", "Vue", "Angular"],
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    // Framework names are brand identifiers, shared across locales.
+    return (
+      <Highlight {...args} highlight={["React", "Vue", "Angular"]}>
+        {t("story.highlight_multi_text")}
+      </Highlight>
+    );
   },
 };
 
 export const CaseInsensitive: Story = {
-  args: {
-    children: "SEARCH RESULTS FOR SEARCH TERM",
-    highlight: "search",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Highlight {...args} highlight={t("story.highlight_case_term")}>
+        {t("story.highlight_case_text")}
+      </Highlight>
+    );
   },
 };
 
 export const CustomStyle: Story = {
-  args: {
-    children: "Custom highlight styles can be applied.",
-    highlight: "Custom",
-    highlightStyles: {
-      backgroundColor: "var(--wim-color-primary)",
-      color: "var(--wim-color-text-on-primary)",
-      borderRadius: "4px",
-      padding: "0 4px",
-    },
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Highlight
+        {...args}
+        highlight={t("story.highlight_custom_term")}
+        highlightStyles={{
+          backgroundColor: "var(--wim-color-primary)",
+          color: "var(--wim-color-text-on-primary)",
+          borderRadius: "4px",
+          padding: "0 4px",
+        }}
+      >
+        {t("story.highlight_custom_text")}
+      </Highlight>
+    );
   },
 };
 
 export const CustomComponent: Story = {
-  args: {
-    children: "This is a paragraph with a highlight.",
-    highlight: "paragraph",
-    as: "p",
-    style: { fontSize: "20px", color: "var(--wim-color-text-secondary)" },
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Highlight
+        {...args}
+        highlight={t("story.highlight_para_term")}
+        as="p"
+        style={{ fontSize: "20px", color: "var(--wim-color-text-secondary)" }}
+      >
+        {t("story.highlight_para_text")}
+      </Highlight>
+    );
   },
 };
 
 export const AsChild: Story = {
-  args: {
-    highlight: "link",
-    asChild: true,
-    children: "Click this link to learn more about highlights.",
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Highlight {...args} highlight={t("story.highlight_link_term")} asChild>
+        <a href="/" style={{ color: "var(--wim-color-primary)", textDecoration: "underline" }}>
+          {t("story.highlight_link_text")}
+        </a>
+      </Highlight>
+    );
   },
-  render: (args) => (
-    <Highlight {...args} asChild>
-      <a href="/" style={{ color: "var(--wim-color-primary)", textDecoration: "underline" }}>
-        {args.children}
-      </a>
-    </Highlight>
-  ),
 };
