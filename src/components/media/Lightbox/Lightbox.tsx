@@ -16,7 +16,7 @@ export interface LightboxItem {
   title?: string;
 }
 
-export interface LightboxContextType {
+interface LightboxContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
   currentIndex: number;

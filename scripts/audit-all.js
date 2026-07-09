@@ -37,6 +37,10 @@ const checks = [
   {
     name: "Hardcoded UI Text in Stories (i18n)",
     command: "node scripts/check-stories-hardcoded.js --all",
+  },
+  {
+    name: "Public API Surface (npm freeze guard)",
+    command: "node scripts/check-public-api.js",
   }
 ];
 

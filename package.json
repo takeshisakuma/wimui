@@ -1,6 +1,6 @@
 {
   "name": "wimui",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
@@ -163,6 +163,8 @@
     "check:casing": "node scripts/check-git-casing.cjs",
     "check:links": "node scripts/check-mdx-links.js",
     "check:aschild": "node scripts/check-aschild.js",
+    "check:api": "node scripts/check-public-api.js",
+    "check:api:update": "node scripts/check-public-api.js --update",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",

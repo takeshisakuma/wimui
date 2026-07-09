@@ -414,6 +414,7 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 | i18n 整合性 | `npm run i18n:check` | 3言語すべてにキーが存在するか確認。 |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | 基本的な構文エラーがないか確認。 |
 | トークン漏れチェック | `npm run audit:hardcoded` | ハードコードされた色（即エラー）や未注記の px 直書き（ラチェット方式）がないか。詳細は `docs/TOKENIZATION_EXCEPTIONS.md`。 |
+| 公開 API 表面 | `npm run check:api` | `export *` 経由で公開 API（`api-snapshot.json`）に意図しない export が増減していないか。npm 公開後の破壊的変更を防ぐガード。意図的な変更時は `npm run check:api:update` でスナップショットを更新してコミットする。 |
 
 ## 2. Storybook 階層ルール (Sidebar Hierarchy)
 

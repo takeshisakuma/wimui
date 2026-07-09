@@ -20,7 +20,8 @@ export * from "./components/form/MultiSelect/MultiSelect";
 export * from "./components/form/NumberInput/NumberInput";
 export * from "./components/form/OtpInput/OtpInput";
 export * from "./components/form/PasswordInput/PasswordInput";
-export * from "./components/form/PhoneInput/PhoneInput";
+// PHONE_COUNTRIES is an internal data constant (used by tests); keep it out of the public API.
+export { PhoneInput, type PhoneInputProps } from "./components/form/PhoneInput/PhoneInput";
 export * from "./components/form/Radio/Radio";
 export * from "./components/form/RadioGroup/RadioGroup";
 export * from "./components/form/RichTextEditor/RichTextEditor";
