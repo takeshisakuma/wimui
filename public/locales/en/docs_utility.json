@@ -16,7 +16,7 @@
     "code_choice_self_when": "For displaying technical values, function names, or snippets that require mono-font formatting.",
     "code_content_guideline": "Ensure snippets are syntactically correct and use appropriate indentation for block displays.",
     "code_desc": "Code snippets",
-    "code_design_intent": "Code is designed to provide clear, readable formatting for programming instructions and technical values. By using semantic HTML <code> or <pre> tags and specialized font tokens, it ensures technical content is visually distinguished from regular prose.",
+    "code_design_intent": "Code is designed to provide clear, readable formatting for programming instructions and technical values. By using semantic HTML `<code>` or `<pre>` tags and specialized font tokens, it ensures technical content is visually distinguished from regular prose.",
     "code_long_desc": "Used to display inline code or code blocks",
     "code_motion_desc": "Uses minimal transitions for state changes, such as when switching horizontal scroll positions.",
     "code_note_desc": "> Code blocks in the Code component (when the block property is true) have horizontal scrolling enabled.<br />> This is because forcibly wrapping long lines of code breaks indentation and structure, reducing readability.",

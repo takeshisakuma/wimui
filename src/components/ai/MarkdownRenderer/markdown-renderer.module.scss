@@ -30,6 +30,7 @@
 .list {
   padding-left: var(--wim-spacing-xl);
   margin-bottom: var(--wim-spacing-md);
+  list-style: revert;
 }
 
 .listItem {

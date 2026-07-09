@@ -499,7 +499,11 @@
     "watermark_var_multi": "複数行テキスト",
     "watermark_var_multi_desc": "`content` プロップに配列を渡すことで、複数行のテキストを表示できます。",
     "watermark_var_text": "テキスト",
-    "watermark_var_text_desc": "`content` プロップに文字列を指定して表示します。"
+    "watermark_var_text_desc": "`content` プロップに文字列を指定して表示します。",
+    "progress_feat_1": "0から100までの数値による進捗表示",
+    "progress_feat_2": "ラベルとパーセンテージの表示オプション",
+    "progress_feat_3": "複数のカラーバリエーションとサイズ",
+    "progress_feat_4": "不確定状態（読み込み中）のアニメーションサポート"
   },
   "guide": {
     "progress_bad_blocking": "長時間の処理中に全操作をブロックしてしまうデザインは避けるべきです。キャンセルや一時停止の選択肢を提供し、ユーザーにコントロール感を与えることが重要です。",

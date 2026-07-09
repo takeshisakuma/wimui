@@ -499,7 +499,11 @@
     "watermark_var_multi": "Multi-line Text",
     "watermark_var_multi_desc": "Displays multiple lines of text by passing an array to the `content` prop.",
     "watermark_var_text": "Text",
-    "watermark_var_text_desc": "Displays a string specified in the `content` prop."
+    "watermark_var_text_desc": "Displays a string specified in the `content` prop.",
+    "progress_feat_1": "Progress display by numerical value from 0 to 100",
+    "progress_feat_2": "Label and percentage display options",
+    "progress_feat_3": "Multiple color variations and sizes",
+    "progress_feat_4": "Animation support for indeterminate state (loading)"
   },
   "guide": {
     "progress_bad_blocking": "Avoid designs that completely block all operations during long processes. Provide cancel/pause options to give users a sense of control.",
