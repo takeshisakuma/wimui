@@ -29,6 +29,24 @@ import { Docgen } from "../../Docgen";
 </Description>
 
 
+<Primary />
+
+<h2><T k="doc.variants" /></h2>
+
+<h3><T k="doc.sizes" /></h3>
+<p><T k="doc.qrcode_var_size_desc" /></p>
+<Canvas of={QRCodeStories.Large} />
+
+<h3><T k="doc.qrcode_var_color" /></h3>
+<p>
+  <T k="doc.qrcode_var_color_desc" />
+</p>
+<Canvas of={QRCodeStories.CustomColors} />
+
+<h3><T k="doc.qrcode_var_logo" /></h3>
+<p><T k="doc.qrcode_var_logo_desc" /></p>
+<Canvas of={QRCodeStories.WithImage} />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.qrcode_design_intent" /></p>
 
@@ -92,23 +110,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.qrcode_best_practice_2" /></li>
 </ul>
 
-<Primary />
-
-<h2><T k="doc.variants" /></h2>
-
-<h3><T k="doc.sizes" /></h3>
-<p><T k="doc.qrcode_var_size_desc" /></p>
-<Canvas of={QRCodeStories.Large} />
-
-<h3><T k="doc.qrcode_var_color" /></h3>
-<p>
-  <T k="doc.qrcode_var_color_desc" />
-</p>
-<Canvas of={QRCodeStories.CustomColors} />
-
-<h3><T k="doc.qrcode_var_logo" /></h3>
-<p><T k="doc.qrcode_var_logo_desc" /></p>
-<Canvas of={QRCodeStories.WithImage} />
 
 <Docgen componentName="QRCode" section="props" />
 

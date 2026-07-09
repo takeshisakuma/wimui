@@ -29,6 +29,34 @@ import { Docgen } from "../../Docgen";
 </Description>
 
 
+<Primary />
+
+<h2><T k="doc.variants" /></h2>
+
+<h3><T k="doc.descriptionlist_layout" /></h3>
+<p>
+  <T k="doc.descriptionlist_layout_desc" />
+</p>
+
+<h4><T k="doc.vertical" /></h4>
+<Canvas of={DescriptionListStories.Vertical} />
+
+<h4><T k="doc.compact" /></h4>
+<Canvas of={DescriptionListStories.Compact} />
+
+<h3><T k="doc.descriptionlist_with_border" /></h3>
+<p>
+  <T k="doc.descriptionlist_with_border_desc" />
+</p>
+<Canvas of={DescriptionListStories.WithBorder} />
+
+<h3><T k="doc.descriptionlist_sizes" /></h3>
+<p>
+  <T k="doc.descriptionlist_sizes_desc" />
+</p>
+<Canvas of={DescriptionListStories.Small} />
+<Canvas of={DescriptionListStories.Large} />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.descriptionlist_design_intent" /></p>
 
@@ -92,33 +120,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.descriptionlist_best_practice_2" /></li>
 </ul>
 
-<Primary />
-
-<h2><T k="doc.variants" /></h2>
-
-<h3><T k="doc.descriptionlist_layout" /></h3>
-<p>
-  <T k="doc.descriptionlist_layout_desc" />
-</p>
-
-<h4><T k="doc.vertical" /></h4>
-<Canvas of={DescriptionListStories.Vertical} />
-
-<h4><T k="doc.compact" /></h4>
-<Canvas of={DescriptionListStories.Compact} />
-
-<h3><T k="doc.descriptionlist_with_border" /></h3>
-<p>
-  <T k="doc.descriptionlist_with_border_desc" />
-</p>
-<Canvas of={DescriptionListStories.WithBorder} />
-
-<h3><T k="doc.descriptionlist_sizes" /></h3>
-<p>
-  <T k="doc.descriptionlist_sizes_desc" />
-</p>
-<Canvas of={DescriptionListStories.Small} />
-<Canvas of={DescriptionListStories.Large} />
 
 <Docgen componentName="DescriptionList" section="props" />
 

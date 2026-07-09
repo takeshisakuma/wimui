@@ -28,6 +28,26 @@ import { Docgen } from "../../Docgen";
 
 <h3><T k="doc.list_unordered" /></h3>
 
+<Canvas of={ListStories.Unordered} />
+
+<h3><T k="doc.list_ordered" /></h3>
+<Canvas of={ListStories.Ordered} />
+
+<h3><T k="doc.size" /></h3>
+<p><T k="doc.list_sizes_desc" /></p>
+<Canvas of={ListStories.Small} />
+<Canvas of={ListStories.Large} />
+
+<h3><T k="doc.list_spacing" /></h3>
+<p><T k="doc.list_spacing_desc" /></p>
+<Canvas of={ListStories.LooseSpacing} />
+
+<h3><T k="doc.list_with_icons" /></h3>
+<p>
+  <T k="doc.list_with_icons_desc" />
+</p>
+<Canvas of={ListStories.WithIcons} />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.list_design_intent" /></p>
 
@@ -91,25 +111,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.list_best_practice_2" /></li>
 </ul>
 
-<Canvas of={ListStories.Unordered} />
-
-<h3><T k="doc.list_ordered" /></h3>
-<Canvas of={ListStories.Ordered} />
-
-<h3><T k="doc.size" /></h3>
-<p><T k="doc.list_sizes_desc" /></p>
-<Canvas of={ListStories.Small} />
-<Canvas of={ListStories.Large} />
-
-<h3><T k="doc.list_spacing" /></h3>
-<p><T k="doc.list_spacing_desc" /></p>
-<Canvas of={ListStories.LooseSpacing} />
-
-<h3><T k="doc.list_with_icons" /></h3>
-<p>
-  <T k="doc.list_with_icons_desc" />
-</p>
-<Canvas of={ListStories.WithIcons} />
 
 <Docgen componentName="List" section="tokens" />
 

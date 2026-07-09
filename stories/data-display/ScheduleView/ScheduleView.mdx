@@ -9,8 +9,16 @@ import { Docgen } from "../../Docgen";
 
 <T k="docs_data_heavy:doc.scheduleview_desc" />
 
-<Canvas of={ScheduleViewStories.Default} />
 <Controls of={ScheduleViewStories.Default} />
+
+## <T k="common:doc.example" />
+
+<Canvas of={ScheduleViewStories.Default} />
+
+<Canvas of={ScheduleViewStories.DayView} />
+
+<Canvas of={ScheduleViewStories.MonthView} />
+
 
 ## <T k="common:doc.design_intent_title" />
 
@@ -83,9 +91,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="docs_data_heavy:doc.scheduleview_best_slots" /></li>
   <li><T k="docs_data_heavy:doc.scheduleview_best_dialog" /></li>
 </ul>
-
-<Canvas of={ScheduleViewStories.DayView} />
-<Canvas of={ScheduleViewStories.MonthView} />
 
 <Docgen componentName="ScheduleView" section="props" />
 

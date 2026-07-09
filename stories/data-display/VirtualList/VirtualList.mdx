@@ -24,6 +24,20 @@ import { Docgen } from "../../Docgen";
 </p>
 
 
+<Canvas of={VirtualListStories.Default} />
+
+<h3><T k="doc.virtuallist_large_dataset" /></h3>
+<p><T k="doc.virtuallist_large_dataset_desc" /></p>
+<Canvas of={VirtualListStories.LargeDataset} />
+
+<h3><T k="doc.virtuallist_custom_height" /></h3>
+<p><T k="doc.virtuallist_custom_height_desc" /></p>
+<Canvas of={VirtualListStories.WithCustomItemHeight} />
+
+<h3><T k="doc.virtuallist_overscan" /></h3>
+<p><T k="doc.virtuallist_overscan_desc" /></p>
+<Canvas of={VirtualListStories.WithOverscan} />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.virtuallist_design_intent" /></p>
 
@@ -98,19 +112,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.virtuallist_best_practice_4" /></li>
 </ul>
 
-<Canvas of={VirtualListStories.Default} />
-
-<h3><T k="doc.virtuallist_large_dataset" /></h3>
-<p><T k="doc.virtuallist_large_dataset_desc" /></p>
-<Canvas of={VirtualListStories.LargeDataset} />
-
-<h3><T k="doc.virtuallist_custom_height" /></h3>
-<p><T k="doc.virtuallist_custom_height_desc" /></p>
-<Canvas of={VirtualListStories.WithCustomItemHeight} />
-
-<h3><T k="doc.virtuallist_overscan" /></h3>
-<p><T k="doc.virtuallist_overscan_desc" /></p>
-<Canvas of={VirtualListStories.WithOverscan} />
 
 <Docgen componentName="VirtualList" section="props" />
 

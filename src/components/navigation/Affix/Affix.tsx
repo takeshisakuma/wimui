@@ -3,9 +3,9 @@ import classNames from "classnames";
 import styles from "./affix.module.scss";
 
 export interface AffixProps {
-  /** Office distance from the top of the window (in pixels) */
+  /** Offset distance from the top of the window (in pixels) */
   offsetTop?: number;
-  /** Office distance from the bottom of the window (in pixels) */
+  /** Offset distance from the bottom of the window (in pixels) */
   offsetBottom?: number;
   /** Callback when the affix state changes */
   onChange?: (lastAffixed: boolean) => void;

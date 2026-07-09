@@ -9,8 +9,20 @@ import { Docgen } from "../../Docgen";
 
 <T k="docs_form_advanced:doc.promptinput_desc" />
 
-<Canvas of={PromptInputStories.Default} />
 <Controls of={PromptInputStories.Default} />
+
+## <T k="common:doc.example" />
+
+<Canvas of={PromptInputStories.Default} />
+
+<Canvas of={PromptInputStories.WithAttachment} />
+
+<Canvas of={PromptInputStories.WithCharCount} />
+
+<Canvas of={PromptInputStories.Disabled} />
+
+<Canvas of={PromptInputStories.Loading} />
+
 
 ## <T k="common:doc.design_intent_title" />
 
@@ -84,11 +96,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="docs_form_advanced:doc.promptinput_best_controlled" /></li>
   <li><T k="docs_form_advanced:doc.promptinput_best_attach" /></li>
 </ul>
-
-<Canvas of={PromptInputStories.WithAttachment} />
-<Canvas of={PromptInputStories.WithCharCount} />
-<Canvas of={PromptInputStories.Disabled} />
-<Canvas of={PromptInputStories.Loading} />
 
 <Docgen componentName="PromptInput" section="props" />
 

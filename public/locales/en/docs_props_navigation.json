@@ -2,8 +2,8 @@
   "doc": {
     "affix_prop_children": "Children to be rendered inside the affix",
     "affix_prop_className": "Additional class names",
-    "affix_prop_offsetBottom": "Office distance from the bottom of the window (in pixels)",
-    "affix_prop_offsetTop": "Office distance from the top of the window (in pixels)",
+    "affix_prop_offsetBottom": "Offset distance from the bottom of the window (in pixels)",
+    "affix_prop_offsetTop": "Offset distance from the top of the window (in pixels)",
     "affix_prop_onChange": "Callback when the affix state changes",
     "affix_prop_style": "Style attribute",
     "affix_prop_target": "Target container that will be scrolled",

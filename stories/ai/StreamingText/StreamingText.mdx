@@ -9,8 +9,16 @@ import { Docgen } from "../../Docgen";
 
 <T k="docs_form_advanced:doc.streamingtext_desc" />
 
-<Canvas of={StreamingTextStories.Default} />
 <Controls of={StreamingTextStories.Default} />
+
+## <T k="common:doc.example" />
+
+<Canvas of={StreamingTextStories.Default} />
+
+<Canvas of={StreamingTextStories.Streaming} />
+
+<Canvas of={StreamingTextStories.WithCursor} />
+
 
 ## <T k="common:doc.design_intent_title" />
 
@@ -83,9 +91,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="docs_form_advanced:doc.streamingtext_best_scroll" /></li>
   <li><T k="docs_form_advanced:doc.streamingtext_best_renderer" /></li>
 </ul>
-
-<Canvas of={StreamingTextStories.Streaming} />
-<Canvas of={StreamingTextStories.WithCursor} />
 
 <Docgen componentName="StreamingText" section="props" />
 

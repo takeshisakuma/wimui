@@ -340,6 +340,7 @@
     "inputgroup_motion_desc": "Transitions are minimal and purposeful, respecting the user's reduced-motion preferences.",
     "inputgroup_scenario_1": "Currency Entry: Combining a text input with a fixed '$' prefix to clarify the expected value format.",
     "inputgroup_scenario_2": "Search with Action: Attaching a 'Search' button directly to a search input for a unified look and feel.",
+    "interactivearea_small_and_large": "Small and Large",
     "marquee_desc": "Scrolling text animation",
     "marquee_design_intent": "Marquee provides an eye-catching, looping animation for content. It is ideal for news tickers, logo scrolls, or highlighting sponsors in a way that encourages passive scanning by the user.",
     "marquee_feat_custom_desc": "Control duration, reverse direction, vertical orientation, and pausing on hover.",
