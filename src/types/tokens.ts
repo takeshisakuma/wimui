@@ -48,11 +48,9 @@ export type FieldWidth = "xs" | "sm" | "md" | "lg" | "xl";
 export type ButtonVariant = "solid" | "outline" | "ghost";
 
 /**
- * Semantic intent values available on Button.
- * A deliberate subset of WimIntent — buttons express danger/success/neutral,
- * not the full palette of feedback intents.
+ * Semantic intent values available on Button. Generated from tokens/intents.json.
  */
-export type ButtonIntent = "default" | "danger" | "success";
+export type ButtonIntent = GeneratedButtonIntent;
 
 /**
  * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
@@ -65,17 +63,9 @@ export type FieldVariant = "outline" | "ghost";
 export type IndicatorVariant = "solid" | "outline" | "subtle";
 
 /**
- * Unified semantic intent values for components.
+ * Unified semantic intent values for components. Generated from tokens/intents.json.
  */
-export type WimIntent =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "info"
-  | "neutral"
-  | "default";
+export type WimIntent = GeneratedWimIntent;
 
 
 import type {
@@ -89,6 +79,17 @@ import type {
   WimFontWeightKey as GeneratedFontWeightKey,
   WimLineHeightKey as GeneratedLineHeightKey
 } from './generated-tokens';
+
+// Intent types are generated from tokens/intents.json (the single source of
+// truth for the semantic intent vocabulary). Do not hand-edit the unions below;
+// change tokens/intents.json and run `npm run intents:build`.
+import type {
+  WimIntent as GeneratedWimIntent,
+  ButtonIntent as GeneratedButtonIntent,
+  IndicatorIntent as GeneratedIndicatorIntent,
+  FeedbackIntent as GeneratedFeedbackIntent,
+  FieldIntent as GeneratedFieldIntent
+} from './generated-intents';
 
 /**
  * Color tokens keys available as CSS variables.
@@ -191,25 +192,21 @@ export type WimOpacity = LiteralWithAutocomplete<WimOpacityKey | WimOpacityToken
 
 /**
  * Intent values for indicator-style components (Badge, Chip, Tag, Progress).
+ * Generated from tokens/intents.json.
  */
-export type IndicatorIntent =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "info"
-  | "neutral";
+export type IndicatorIntent = GeneratedIndicatorIntent;
 
 /**
  * Intent values for feedback-style components (Alert, Banner, Toast, Notification).
+ * Generated from tokens/intents.json.
  */
-export type FeedbackIntent = "info" | "success" | "warning" | "danger";
+export type FeedbackIntent = GeneratedFeedbackIntent;
 
 /**
  * Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).
+ * Generated from tokens/intents.json.
  */
-export type FieldIntent = "default" | "danger";
+export type FieldIntent = GeneratedFieldIntent;
 
 /**
  * Z-index stacking layer keys.

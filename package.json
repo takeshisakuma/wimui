@@ -238,7 +238,9 @@
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",
     "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
     "scaffold": "node scripts/scaffold-component.js",
-    "tokens:build": "node style-dictionary.config.js",
+    "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js",
+    "intents:build": "node scripts/generate-intents.js",
+    "check:intents": "node scripts/generate-intents.js --check",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish",
@@ -417,6 +419,10 @@
     "src/icon/*.svg": [
       "npm run generate:icons",
       "node scripts/stage-generated.js src/icon/index.ts --"
+    ],
+    "tokens/intents.json": [
+      "node scripts/generate-intents.js",
+      "node scripts/stage-generated.js src/types/generated-intents.ts --"
     ]
   },
   "dependencies": {
