@@ -11,10 +11,25 @@ import { Docgen } from "../../Docgen";
 
 ## <T k="doc.usage_examples" />
 
-<Canvas of={TransferStories.Default} />
-
 ### <T k="doc.basic_usage" />
 
+<Canvas of={TransferStories.Default} />
+
+### <T k="doc.transfer_controlled_title" />
+
+<p><T k="doc.transfer_controlled_desc" /></p>
+
+<Canvas of={TransferStories.Controlled} />
+
+### <T k="doc.transfer_custom_title" />
+
+<p><T k="doc.transfer_custom_desc" /></p>
+
+<Canvas of={TransferStories.CustomTitles} />
+
+### <T k="doc.disabled" />
+
+<Canvas of={TransferStories.Disabled} />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.transfer_design_intent" /></p>
@@ -78,22 +93,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.transfer_best_practice_1" /></li>
   <li><T k="doc.transfer_best_practice_2" /></li>
 </ul>
-
-### <T k="doc.transfer_controlled_title" />
-
-<p><T k="doc.transfer_controlled_desc" /></p>
-
-<Canvas of={TransferStories.Controlled} />
-
-### <T k="doc.transfer_custom_title" />
-
-<p><T k="doc.transfer_custom_desc" /></p>
-
-<Canvas of={TransferStories.CustomTitles} />
-
-### <T k="doc.disabled" />
-
-<Canvas of={TransferStories.Disabled} />
 
 <Docgen componentName="Transfer" section="tokens" />
 

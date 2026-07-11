@@ -1,4 +1,4 @@
-import { Canvas, Meta, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Title, Stories } from "@storybook/addon-docs/blocks";
 import * as DataGridStories from "./DataGrid.stories";
 import { T } from "../../T";
 import { Docgen } from "../../Docgen";
@@ -29,6 +29,30 @@ import { Docgen } from "../../Docgen";
 <p><T k="doc.datagrid_basic_usage_desc" /></p>
 
 <Canvas of={DataGridStories.Default} />
+
+### <T k="doc.datagrid_row_selection" />
+
+<p><T k="doc.datagrid_row_selection_desc" /></p>
+
+<Canvas of={DataGridStories.WithSelection} />
+
+### <T k="doc.datagrid_sorting" />
+
+<p><T k="doc.datagrid_sorting_desc" /></p>
+
+<Canvas of={DataGridStories.WithSorting} />
+
+### <T k="doc.datagrid_pagination" />
+
+<p><T k="doc.datagrid_pagination_desc" /></p>
+
+<Canvas of={DataGridStories.WithPagination} />
+
+### <T k="doc.datagrid_action_column" />
+
+<p><T k="doc.datagrid_action_column_desc" /></p>
+
+<Canvas of={DataGridStories.WithActions} />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.datagrid_design_intent" /></p>
@@ -96,32 +120,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.datagrid_best_practice_1" /></li>
   <li><T k="doc.datagrid_best_practice_2" /></li>
 </ul>
-
-<Primary />
-
-### <T k="doc.datagrid_row_selection" />
-
-<p><T k="doc.datagrid_row_selection_desc" /></p>
-
-<Canvas of={DataGridStories.WithSelection} />
-
-### <T k="doc.datagrid_sorting" />
-
-<p><T k="doc.datagrid_sorting_desc" /></p>
-
-<Canvas of={DataGridStories.WithSorting} />
-
-### <T k="doc.datagrid_pagination" />
-
-<p><T k="doc.datagrid_pagination_desc" /></p>
-
-<Canvas of={DataGridStories.WithPagination} />
-
-### <T k="doc.datagrid_action_column" />
-
-<p><T k="doc.datagrid_action_column_desc" /></p>
-
-<Canvas of={DataGridStories.WithActions} />
 
 ## <T k="doc.datagrid_state_display" />
 

@@ -257,6 +257,7 @@
     "expected_behavior": "Comportamento Esperado",
     "feedbackCloseButton_desc": "Botão de fechar compartilhado para Alert, Modal, etc.",
     "feedbackIcon_desc": "Ícones de status compartilhados para Alert, Modal, etc.",
+    "flat": "Plano",
     "ft_email_error": "Formato de e-mail inválido.",
     "ft_email_label": "Endereço de e-mail",
     "ft_no_label": "José Silva",
