@@ -236,12 +236,15 @@
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
+    "audit:lib": "node scripts/audit-all.js --lib",
+    "audit:docs": "node scripts/audit-all.js --docs",
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",
     "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js",
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",
+    "check:intents:scss": "node scripts/check-intents-scss.js",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish",
@@ -423,7 +426,7 @@
     ],
     "tokens/intents.json": [
       "node scripts/generate-intents.js",
-      "node scripts/stage-generated.js src/types/generated-intents.ts --"
+      "node scripts/stage-generated.js src/types/generated-intents.ts src/tokens/generated/_intents.scss --"
     ]
   },
   "dependencies": {
