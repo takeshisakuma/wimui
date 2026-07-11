@@ -1,13 +1,13 @@
 {
-  "$comment": "Single source of truth for the semantic intent vocabulary. Edit here only. `canonical` lists every valid intent and the color token it maps to (null = the component's own default styling, no dedicated color token). `sets` declares the intent subset each component family exposes; every member MUST appear in `canonical`. Run `npm run intents:build` (also part of `npm run tokens:build`) to regenerate src/types/generated-intents.ts. `npm run check:intents` fails if the committed output is stale.",
+  "$comment": "Single source of truth for the semantic intent vocabulary. Edit here only. `canonical` lists every valid intent and the color token it maps to (null = the component's own default styling, no dedicated color token). `surface` (optional) declares how indicator-style components paint the intent: `true` derives base=`--wim-color-<color>` and on=`--wim-color-text-on-<color>`; an object names the base/on color tokens explicitly (for intents whose surface differs from their color token, e.g. neutral). Intents without `surface` produce no generated indicator classes (they fall back to the component's own default styling). `sets` declares the intent subset each component family exposes; every member MUST appear in `canonical`. Run `npm run intents:build` (also part of `npm run tokens:build`) to regenerate src/types/generated-intents.ts and src/tokens/generated/_intents.scss. `npm run check:intents` fails if either committed output is stale.",
   "canonical": {
-    "primary": { "color": "primary" },
-    "secondary": { "color": "secondary" },
-    "success": { "color": "success" },
-    "warning": { "color": "warning" },
-    "danger": { "color": "danger" },
-    "info": { "color": "info" },
-    "neutral": { "color": null },
+    "primary": { "color": "primary", "surface": true },
+    "secondary": { "color": "secondary", "surface": true },
+    "success": { "color": "success", "surface": true },
+    "warning": { "color": "warning", "surface": true },
+    "danger": { "color": "danger", "surface": true },
+    "info": { "color": "info", "surface": true },
+    "neutral": { "color": null, "surface": { "base": "disabled", "on": "text-primary" } },
     "default": { "color": null }
   },
   "sets": {
