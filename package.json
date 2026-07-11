@@ -233,6 +233,7 @@
     "check:hooks": "node scripts/check-root-hooks.js",
     "check:tokens": "node scripts/check-tokens.js",
     "check:tokens:update": "node scripts/check-tokens.js --update",
+    "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",

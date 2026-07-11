@@ -1,0 +1,12 @@
+{
+  "$comment": "Pre-existing broken --wim-color-* references found when scss-token-refs integrity checking was introduced. These resolve to no token (the CSS property silently does nothing). Fixing each is a design call (the intended token was never defined), so they are baselined here as a ratchet: the guard fails on any NEW orphan but tolerates these known ones. Remove an entry once its reference is fixed; do not add new entries.",
+  "knownOrphans": {
+    "src/components/feedback/Autosave/autosave.module.scss": ["error"],
+    "src/components/_internal/FieldCharacterCount/field-character-count.module.scss": ["text-warning"],
+    "src/components/data-display/Markdown/markdown.module.scss": ["bg-subtle-alpha"],
+    "src/components/layout/Dashboard/dashboard.module.scss": ["primary-muted"],
+    "src/components/media/Gallery/gallery.module.scss": ["primary-muted"],
+    "src/components/navigation/KeyboardShortcuts/keyboard-shortcuts.module.scss": ["border-subtle"],
+    "src/components/data-display/SortableList/sortable-list.module.scss": ["focus-ring"]
+  }
+}

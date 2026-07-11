@@ -53,6 +53,10 @@ const checks = [
   {
     name: "Intent vocabulary (generated-intents.ts up to date)",
     command: "node scripts/generate-intents.js --check",
+  },
+  {
+    name: "SCSS color-token reference integrity",
+    command: "node scripts/check-scss-token-refs.js",
   }
 ];
 
