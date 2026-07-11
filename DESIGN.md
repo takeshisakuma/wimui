@@ -213,7 +213,6 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-font-size-sm` | 0.889rem | 小さめの本文、ラベル |
 | `--wim-font-size-md` | 1rem (16px) | 本文テキスト |
 | `--wim-font-size-lg` | 1.125rem | やや強調されたテキスト |
-| `--wim-font-size-display` | 1.5rem | 特殊ディスプレイ見出し |
 | `--wim-font-size-xl` | 1.266rem | サブ見出し |
 | `--wim-font-size-2xl` | 1.602rem | セクション見出し |
 | `--wim-font-size-3xl` | 2.027rem | ページ見出し |
@@ -288,10 +287,8 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-spacing-hairline` | 0.0625rem (1px) | 極細境界線、ヘアライン |
-| `--wim-spacing-fine` | 0.125rem (2px) | 微細な間隔 |
-| `--wim-spacing-quarter` | 0.25rem (4px) | 4px 基準の最小単位 |
-| `--wim-spacing-3xs` | = `fine` (2px) | 最小マイクロ間隔 |
-| `--wim-spacing-2xs` | = `quarter` (4px) | アイコン間隔 |
+| `--wim-spacing-3xs` | 0.125rem (2px) | 最小マイクロ間隔 |
+| `--wim-spacing-2xs` | 0.25rem (4px) | アイコン間隔 |
 | `--wim-spacing-xs` | 0.3rem (4.8px) | インライン要素間 |
 | `--wim-spacing-sm` | 0.4rem (6.4px) | タイトなパディング |
 | `--wim-spacing-md` | 0.5rem (8px) | 標準パディング |
@@ -367,7 +364,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-duration-instant` | 83ms | マイクロインタラクション |
+| `--wim-duration-ultra-fast` | 83ms | マイクロインタラクション |
 | `--wim-duration-fast` | 167ms | ボタンフィードバック |
 | `--wim-duration-base` | 250ms | 標準アニメーション |
 | `--wim-duration-slow` | 333ms | モーダル開閉 |

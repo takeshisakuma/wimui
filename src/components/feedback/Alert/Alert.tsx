@@ -67,7 +67,7 @@ export const Alert = ({
 
   return (
     <div
-      className={classNames(styles.root, styles[intent], className)}
+      className={classNames("wim-alert", styles.root, styles[intent], className)}
       role="alert"
       {...props}
     >

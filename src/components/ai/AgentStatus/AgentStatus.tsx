@@ -48,7 +48,7 @@ export const AgentStatus = React.forwardRef<HTMLDivElement, AgentStatusProps>(
         role="status"
         aria-live="polite"
         aria-label={label}
-        className={classNames(styles.root, styles[status], styles[size], className)}
+        className={classNames("wim-agent-status", styles.root, styles[status], styles[size], className)}
         {...props}
       >
         <span className={styles.indicator} aria-hidden="true">

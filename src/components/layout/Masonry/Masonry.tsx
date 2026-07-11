@@ -32,7 +32,7 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-masonry", styles.root, className)}
         style={masonryStyle}
         {...props}
       >

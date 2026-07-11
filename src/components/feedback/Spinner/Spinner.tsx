@@ -57,7 +57,7 @@ export const Spinner = ({
       {...props}
     >
       <svg
-        className={classNames(
+        className={classNames("wim-spinner", 
           styles.root,
           styles[size],
           useClassNameForColor && styles[color as string],

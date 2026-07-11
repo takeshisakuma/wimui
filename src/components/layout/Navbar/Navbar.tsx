@@ -60,7 +60,7 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
       <NavbarContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
         <nav
           ref={ref}
-          className={classNames(
+          className={classNames("wim-navbar", 
             styles.root,
             fixed && styles.fixed,
             sticky && styles.sticky,

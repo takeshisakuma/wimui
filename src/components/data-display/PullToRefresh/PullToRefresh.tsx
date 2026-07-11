@@ -147,7 +147,7 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
 
     return (
       <div
-        className={classNames(localStyles.container, className)}
+        className={classNames("wim-pull-to-refresh", localStyles.container, className)}
         role="none"
         onTouchStart={handleStart}
         onMouseDown={handleStart}

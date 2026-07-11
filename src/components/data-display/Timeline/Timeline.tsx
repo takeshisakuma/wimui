@@ -25,7 +25,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(({
   return (
     <Component
       ref={ref}
-      className={classNames(
+      className={classNames("wim-timeline", 
         styles.root,
         styles[align],
         className,

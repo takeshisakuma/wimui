@@ -163,7 +163,7 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
     return (
       <div
         ref={mergedRef}
-        className={classNames(
+        className={classNames("wim-image-compare", 
           styles.root,
           isVertical && styles.vertical,
           styles[`radius-${radius}`],

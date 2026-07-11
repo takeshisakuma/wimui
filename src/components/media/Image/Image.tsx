@@ -360,7 +360,7 @@ export const Image = ({
   return (
     <figure
       ref={containerRef}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-image", styles.root, className)}
       data-testid="image-root"
       style={{
         maxWidth: width || "100%",

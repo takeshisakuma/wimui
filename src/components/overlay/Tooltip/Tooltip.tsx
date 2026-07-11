@@ -156,7 +156,7 @@ export const Tooltip = ({
         variant,
       }}
     >
-      <div className={classNames(styles.root, className)}>
+      <div className={classNames("wim-tooltip", styles.root, className)}>
         {children}
       </div>
     </TooltipContext.Provider>

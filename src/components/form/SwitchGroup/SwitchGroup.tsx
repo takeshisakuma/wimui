@@ -99,7 +99,7 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
         <Component
           {...props}
           ref={ref}
-          className={classNames(
+          className={classNames("wim-switch-group", 
             styles.root,
             direction === "horizontal" && styles.horizontal,
           )}

@@ -8,7 +8,7 @@
     padding: 0;
     cursor: pointer;
     border: none;
-    box-shadow: var(--wim-shadow-raised);
+    box-shadow: var(--wim-shadow-md);
     transition:
       background-color var(--wim-transition-fast),
       box-shadow var(--wim-transition-fast),
@@ -141,7 +141,7 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
-        box-shadow: var(--wim-shadow-lifted);
+        box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }
@@ -152,7 +152,7 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-destructive) calc(l * 0.9) c h);
-        box-shadow: var(--wim-shadow-lifted);
+        box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }
@@ -163,7 +163,7 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-positive) calc(l * 0.9) c h);
-        box-shadow: var(--wim-shadow-lifted);
+        box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }
@@ -176,7 +176,7 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
-        box-shadow: var(--wim-shadow-lifted);
+        box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }

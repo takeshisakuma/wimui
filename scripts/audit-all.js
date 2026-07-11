@@ -41,6 +41,14 @@ const checks = [
   {
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
+  },
+  {
+    name: "Root override hooks (wim-<name> stability)",
+    command: "node scripts/check-root-hooks.js",
+  },
+  {
+    name: "Design token surface (theming freeze guard)",
+    command: "node scripts/check-tokens.js",
   }
 ];
 

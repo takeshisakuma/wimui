@@ -17,7 +17,7 @@ export const Legend = React.forwardRef<HTMLLegendElement, LegendProps>(
 
     return (
       <Component
-        className={classNames(styles.root, className)}
+        className={classNames("wim-legend", styles.root, className)}
         ref={ref}
         {...props}
       >

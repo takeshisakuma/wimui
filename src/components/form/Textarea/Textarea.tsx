@@ -76,7 +76,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           id={id}
           ref={ref}
-          className={classNames(
+          className={classNames("wim-textarea", 
             styles.root,
             styles[currentIntent],
             isDisabled && styles.disabled,

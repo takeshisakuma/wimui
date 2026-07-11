@@ -25,7 +25,7 @@ export const Fieldset = ({
 }: FieldsetProps) => {
   return (
     <fieldset
-      className={classNames(
+      className={classNames("wim-fieldset", 
         styles.root,
         variant === "full-width" && styles.fullWidth,
         className,

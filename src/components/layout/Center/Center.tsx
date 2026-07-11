@@ -17,7 +17,7 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
       <Box
         ref={ref}
         display={inline ? "inline-flex" : "flex"}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-center", styles.root, className)}
         style={{ alignItems: "center", justifyContent: "center", ...style }}
         {...props}
       >

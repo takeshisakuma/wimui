@@ -32,7 +32,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     return (
       <label
         htmlFor={id}
-        className={classNames(
+        className={classNames("wim-switch", 
           styles.root,
           disabled && styles.disabled,
           className,

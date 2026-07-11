@@ -79,7 +79,7 @@ const VirtualListInner = <T,>(
   return (
     <div
       ref={containerRef}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-virtual-list", styles.root, className)}
       style={{ height }}
       role={role}
       tabIndex={0}

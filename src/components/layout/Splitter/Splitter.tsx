@@ -197,7 +197,7 @@ const Splitter = ({
     >
       <div
         ref={containerRef}
-        className={classNames(
+        className={classNames("wim-splitter", 
           styles.root,
           styles[orientation],
           resizingIndex !== null && styles.resizing,

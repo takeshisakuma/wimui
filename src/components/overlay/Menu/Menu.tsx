@@ -156,7 +156,7 @@ const MenuInner = ({
     >
       <ul
         ref={containerRef}
-        className={classNames(styles.root, styles[mode], className)}
+        className={classNames("wim-menu", styles.root, styles[mode], className)}
         role="menu"
         onKeyDown={handleKeyDown}
       >

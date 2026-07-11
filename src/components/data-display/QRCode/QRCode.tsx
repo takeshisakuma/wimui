@@ -41,7 +41,7 @@ export const QRCode = ({
   const Component = renderAs === "svg" ? QRCodeSVG : QRCodeCanvas;
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames("wim-qr-code", styles.root, className)}>
       <Component
         value={value}
         size={size}

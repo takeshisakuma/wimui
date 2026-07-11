@@ -73,7 +73,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     return (
       <Component
         ref={mergeRefs(ref)}
-        className={classNames(
+        className={classNames("wim-chip", 
           styles.root,
           styles[intent],
           styles[variant],

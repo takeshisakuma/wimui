@@ -109,7 +109,7 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-schedule-view", styles.root, className)}
         role="region"
         aria-label={ariaLabel}
         {...props}

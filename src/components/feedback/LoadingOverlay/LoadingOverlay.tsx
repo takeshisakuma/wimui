@@ -112,7 +112,7 @@ export const LoadingOverlay = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-loading-overlay", 
         styles.root,
         fixed && styles.fixed,
         className,

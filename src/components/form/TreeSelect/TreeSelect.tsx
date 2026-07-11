@@ -266,7 +266,7 @@ export const TreeSelect = ({
       className={classNames(styles.container, className)}
     >
       <div
-        className={classNames(styles.root, fullWidth && styles.fullWidth)}
+        className={classNames("wim-tree-select", styles.root, fullWidth && styles.fullWidth)}
         ref={containerRef}
         {...wrapperProps}
       >

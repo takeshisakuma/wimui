@@ -31,7 +31,7 @@ export const ScrollArea = ({
 
   return (
     <div
-      className={classNames(styles.root, className)}
+      className={classNames("wim-scroll-area", styles.root, className)}
       style={combinedStyle}
       tabIndex={0}
       {...props}

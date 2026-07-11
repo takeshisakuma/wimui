@@ -25,7 +25,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <Component
-        className={classNames(styles.root, disabled && styles.disabled, className)}
+        className={classNames("wim-radio", styles.root, disabled && styles.disabled, className)}
       >
         <input
           type="radio"

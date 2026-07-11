@@ -130,7 +130,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(function Accord
     >
       <Component
         ref={combinedRef}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-accordion", styles.root, className)}
         {...props}
       >
         {children}

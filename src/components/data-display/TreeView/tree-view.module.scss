@@ -12,7 +12,7 @@
     background: var(--wim-color-surface-glass);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-container);
-    box-shadow: var(--wim-shadow-raised);
+    box-shadow: var(--wim-shadow-md);
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
     &.data-driven > .item {

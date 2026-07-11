@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import classNames from "classnames";
 import { CodeDiffViewer, type DiffView, type CodeDiffViewerProps } from "../../ai/CodeDiffViewer/CodeDiffViewer";
 
 export interface JsonDiffViewerProps
@@ -41,6 +42,7 @@ export const JsonDiffViewer = React.forwardRef<HTMLDivElement, JsonDiffViewerPro
         after={afterStr}
         language="json"
         {...props}
+        className={classNames("wim-json-diff-viewer", props.className)}
       />
     );
   }

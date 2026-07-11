@@ -33,7 +33,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <Component
-        className={classNames(styles.root, disabled && styles.disabled, className)}
+        className={classNames("wim-checkbox", styles.root, disabled && styles.disabled, className)}
       >
         <input
           type="checkbox"

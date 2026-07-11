@@ -358,7 +358,7 @@ export const Cascader = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={className}
+      className={classNames("wim-cascader", className)}
     >
       <div
         className={styles.root}

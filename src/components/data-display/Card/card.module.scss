@@ -14,7 +14,7 @@
       box-shadow: var(--wim-shadow-sm);
   
       &.interactive:hover {
-        box-shadow: var(--wim-shadow-lifted);
+        box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }

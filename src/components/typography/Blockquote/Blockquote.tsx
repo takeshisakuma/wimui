@@ -48,7 +48,7 @@ export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
 
     return (
       <Component
-        className={classNames(
+        className={classNames("wim-blockquote", 
           styles.root, 
           styles[size], 
           useClassNameForColor && styles[color as keyof typeof styles], 

@@ -101,7 +101,7 @@ const HoverCardInner = ({
 
   return (
     <HoverCardContext.Provider value={{ isOpen, open, close }}>
-      <div className={classNames(styles.root, className)}>{children}</div>
+      <div className={classNames("wim-hover-card", styles.root, className)}>{children}</div>
     </HoverCardContext.Provider>
   );
 };

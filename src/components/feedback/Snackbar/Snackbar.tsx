@@ -150,7 +150,7 @@ export const Snackbar = ({
         )}
       >
         <div
-          className={classNames(
+          className={classNames("wim-snackbar", 
             styles.root,
             intent && styles[intent],
             isVisible && styles.visible,

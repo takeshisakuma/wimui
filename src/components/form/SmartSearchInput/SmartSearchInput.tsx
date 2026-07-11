@@ -125,7 +125,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
         htmlFor={id}
         labelId={labelId}
         errorId={errorId}
-        className={classNames(className, fullWidth && styles.fullWidth)}
+        className={classNames("wim-smart-search-input", className, fullWidth && styles.fullWidth)}
       >
         <div className={styles.container}>
           <InputBase

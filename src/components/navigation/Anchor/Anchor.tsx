@@ -226,7 +226,7 @@ export const Anchor = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-anchor", 
         styles.root,
         styles[direction],
         className,

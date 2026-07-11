@@ -102,7 +102,7 @@
     .toolbar {
       display: flex;
       flex-flow: row wrap;
-      gap: var(--wim-spacing-fine);
+      gap: var(--wim-spacing-3xs);
       align-items: center;
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);

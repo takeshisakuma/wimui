@@ -207,7 +207,7 @@ export const BottomSheetContent = ({
       open={open}
       onOpenChange={onOpenChange}
       overlayClassName={styles.overlay}
-      contentClassName={classNames(styles.content, className)}
+      contentClassName={classNames("wim-bottom-sheet", styles.content, className)}
       transitionProps={slideTransition}
     >
       <div className={styles.handle} />

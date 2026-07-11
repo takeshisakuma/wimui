@@ -204,7 +204,7 @@ export const Countdown = React.forwardRef<HTMLTimeElement, CountdownProps>(
       return (
         <Root
           ref={ref}
-          className={classNames(localStyles.root, className)}
+          className={classNames("wim-countdown", localStyles.root, className)}
           {...props}
         >
           <Slottable>{children}</Slottable>
@@ -231,6 +231,7 @@ export const Countdown = React.forwardRef<HTMLTimeElement, CountdownProps>(
           showCompleted ? undefined : t("countdown.remaining", { time: ariaTime })
         }
         className={classNames(
+          "wim-countdown",
           localStyles.root,
           localStyles[variant],
           localStyles[size],

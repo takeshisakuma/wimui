@@ -109,7 +109,7 @@ export const Spoiler = React.forwardRef<HTMLDivElement, SpoilerProps>(
     return (
       <div
         ref={ref}
-        className={classNames(localStyles.root, className)}
+        className={classNames("wim-spoiler", localStyles.root, className)}
         style={{ ...style, "--wim-spoiler-lines": lines } as React.CSSProperties}
         {...props}
       >

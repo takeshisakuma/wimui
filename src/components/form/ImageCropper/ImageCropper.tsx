@@ -133,7 +133,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
 
     if (!src) {
       return (
-        <div ref={ref} className={classNames(styles.root, styles.empty, className)} {...props}>
+        <div ref={ref} className={classNames("wim-image-cropper", styles.root, styles.empty, className)} {...props}>
           <div className={styles.emptyContent}>
             {t("image_cropper.no_image")}
           </div>
@@ -142,7 +142,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     }
 
     return (
-      <div ref={ref} className={classNames(styles.root, className)} {...props}>
+      <div ref={ref} className={classNames("wim-image-cropper", styles.root, className)} {...props}>
         <div 
           ref={containerRef}
           className={styles.viewer} 

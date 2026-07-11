@@ -44,6 +44,7 @@ export const ArtifactsOverlay: React.FC<ArtifactsOverlayProps> = ({
     <Drawer open={open} onOpenChange={onOpenChange} side="right">
       <Drawer.Content
         className={classNames(
+          "wim-artifacts-overlay",
           styles.content,
           isFullscreen && styles.fullscreen,
           className

@@ -89,7 +89,7 @@ export const InputMask = ({
   return (
     <Input
       {...props}
-      className={classNames(styles.root, props.className)}
+      className={classNames("wim-input-mask", styles.root, props.className)}
       value={currentValue}
       onChange={handleInputChange}
       placeholder={props.placeholder || mask.replace(/[9a*]/g, maskChar)}

@@ -34,7 +34,7 @@ export const List = React.forwardRef<HTMLElement, ListProps>(
     return (
       <ListContext.Provider value={{ size }}>
         <Component
-          className={classNames(
+          className={classNames("wim-list", 
             styles.root,
             styles[size],
             styles[`spacing-${spacing}`],

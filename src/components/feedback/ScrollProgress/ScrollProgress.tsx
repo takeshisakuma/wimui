@@ -58,7 +58,7 @@ export const ScrollProgress = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-scroll-progress", 
         styles.root,
         color && styles[color],
         className,

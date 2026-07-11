@@ -128,7 +128,7 @@ export const Grid = React.forwardRef(
       <div className={styles.container}>
         <Component
           ref={ref}
-          className={classNames(styles.root, className)}
+          className={classNames("wim-grid", styles.root, className)}
           style={gridStyle}
           {...props}
         >

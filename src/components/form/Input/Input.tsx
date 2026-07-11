@@ -221,7 +221,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <Component
             id={id}
             ref={mergedRef}
-            className={classNames(
+            className={classNames("wim-input", 
               styles.root,
               styles[currentIntent],
               isDisabled && styles.disabled,

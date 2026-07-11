@@ -487,7 +487,7 @@ export const QueryBuilder = ({
       id={id}
       role="region"
       aria-label={regionAriaLabel}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-query-builder", styles.root, className)}
     >
       <div
         ref={statusRef}

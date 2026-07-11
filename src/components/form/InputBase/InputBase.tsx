@@ -128,7 +128,7 @@ export const InputBase = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-input-base", 
         localStyles.root,
         intent && localStyles[intent],
         isDisabled && localStyles.disabled,

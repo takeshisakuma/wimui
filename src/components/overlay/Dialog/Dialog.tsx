@@ -187,7 +187,7 @@ export const DialogContent = ({
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
     >
-      <Component className={classNames(styles.content, className)}>
+      <Component className={classNames("wim-dialog", styles.content, className)}>
         <Slottable>{children}</Slottable>
       </Component>
     </OverlayBase>

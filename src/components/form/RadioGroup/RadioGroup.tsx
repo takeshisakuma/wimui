@@ -94,7 +94,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         <Component
           {...props}
           ref={ref}
-          className={classNames(
+          className={classNames("wim-radio-group", 
             styles.root,
             direction === "horizontal" && styles.horizontal,
           )}

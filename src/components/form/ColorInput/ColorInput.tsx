@@ -80,7 +80,7 @@ export const ColorInput = ({
   return (
     <Input
       type="color"
-      className={classNames(styles.root, dark && styles.dark, className)}
+      className={classNames("wim-color-input", styles.root, dark && styles.dark, className)}
       value={currentColor}
       onChange={handleChange}
       style={style}

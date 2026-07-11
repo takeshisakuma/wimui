@@ -93,7 +93,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-text", 
           styles.root,
           styles[size],
           weight === "bold" && styles.bold,

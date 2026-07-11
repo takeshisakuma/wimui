@@ -209,7 +209,7 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
     return (
       <div
         ref={rootRef}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-code-diff-viewer", styles.root, className)}
         {...props}
       >
         <div className={styles.header}>

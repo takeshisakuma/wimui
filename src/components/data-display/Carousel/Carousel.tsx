@@ -234,7 +234,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   return (
     <Component
       ref={ref}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-carousel", styles.root, className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}

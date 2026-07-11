@@ -102,7 +102,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         width="100%"
         height={height}
         preserveAspectRatio="none"
-        className={classNames(
+        className={classNames("wim-voice-visualizer", 
           styles.root,
           styles[mode],
           styles[sentiment],

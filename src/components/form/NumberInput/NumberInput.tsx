@@ -69,7 +69,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         inputMode={inputMode}
         pattern={pattern}
         onKeyDown={handleKeyDown}
-        className={className}
+        className={classNames("wim-number-input", className)}
         inputClassName={classNames(hideSpinButton && inputStyles.hideSpin)}
       >
         {asChild ? <Slottable>{children}</Slottable> : null}

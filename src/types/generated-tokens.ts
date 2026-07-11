@@ -182,12 +182,10 @@ export type WimShadowKey =
   | "focus-ring"
   | "inset"
   | "lg"
-  | "lifted"
   | "md"
   | "modal"
   | "none"
   | "overlay"
-  | "raised"
   | "sm"
   | "xs";
 
@@ -198,9 +196,7 @@ export type WimDurationKey =
   | "extra-fast"
   | "extra-slow"
   | "fast"
-  | "short"
   | "slow"
-  | "slower"
   | "slowest"
   | "ultra-fast"
   | "ultra-slow";
@@ -243,11 +239,9 @@ export type WimSpacingKey =
   | "3xs"
   | "4xl"
   | "5xl"
-  | "fine"
   | "hairline"
   | "lg"
   | "md"
-  | "quarter"
   | "sm"
   | "xl"
   | "xs";
@@ -287,7 +281,6 @@ export type WimFontSizeKey =
   | "5xl"
   | "6xl"
   | "7xl"
-  | "display"
   | "lg"
   | "md"
   | "sm"

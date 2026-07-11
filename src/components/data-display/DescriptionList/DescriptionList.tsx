@@ -30,7 +30,7 @@ export const DescriptionList = ({
   const isBordered = border || bordered;
   return (
     <dl
-      className={classNames(
+      className={classNames("wim-description-list", 
         styles.root,
         styles[layout],
         styles[size],

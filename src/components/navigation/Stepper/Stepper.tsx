@@ -119,7 +119,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
     <div className={styles.container}>
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-stepper", 
           styles.root,
           styles[direction],
           labelPlacement === "vertical" && styles.labelVertical,

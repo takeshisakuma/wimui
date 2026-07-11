@@ -100,7 +100,7 @@ export const BackTop = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-back-top", 
         styles.root,
         !visible && styles.hidden,
         className,

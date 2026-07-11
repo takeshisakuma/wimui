@@ -77,7 +77,7 @@ export const SourceCitation = ({
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className={classNames(styles.root, styles.link, className)}
+        className={classNames("wim-source-citation", styles.root, styles.link, className)}
         aria-label={ariaLabel}
       >
         {content}
@@ -86,7 +86,7 @@ export const SourceCitation = ({
   }
 
   return (
-    <div className={classNames(styles.root, className)} aria-label={ariaLabel}>
+    <div className={classNames("wim-source-citation", styles.root, className)} aria-label={ariaLabel}>
       {content}
     </div>
   );

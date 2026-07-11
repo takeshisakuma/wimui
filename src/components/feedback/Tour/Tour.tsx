@@ -167,6 +167,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       )}
       <div
         className={classNames(
+          "wim-tour",
           styles.bubble,
           step.placement && styles[step.placement],
         )}

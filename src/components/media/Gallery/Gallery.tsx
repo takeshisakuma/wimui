@@ -272,7 +272,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
       >
         <div
           ref={mergedRef}
-          className={classNames(styles.root, className)}
+          className={classNames("wim-gallery", styles.root, className)}
           {...props}
         >
           {selectable && hasSelection && (

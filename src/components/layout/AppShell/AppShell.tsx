@@ -83,7 +83,7 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
     return (
       <div
         ref={ref}
-        className={classNames(
+        className={classNames("wim-app-shell", 
           styles.root,
           !!sidebar && styles.withSidebar,
           !!navbar && styles.withNavbar,

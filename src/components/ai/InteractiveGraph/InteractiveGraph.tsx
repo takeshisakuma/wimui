@@ -56,7 +56,7 @@ const InteractiveGraphContent: React.FC<InteractiveGraphProps> = ({
 
   return (
     <div
-      className={classNames(styles.root, className)}
+      className={classNames("wim-interactive-graph", styles.root, className)}
       style={containerStyle}
     >
       <ReactFlow

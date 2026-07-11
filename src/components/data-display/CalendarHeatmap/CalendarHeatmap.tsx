@@ -113,7 +113,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
     ];
 
     return (
-      <Component className={classNames(styles.root, className)} ref={ref} {...props}>
+      <Component className={classNames("wim-calendar-heatmap", styles.root, className)} ref={ref} {...props}>
         <Slottable>{children}</Slottable>
         <div className={styles.internalWrapper}>
           <div className={styles.grid} role="grid" aria-readonly="true">

@@ -88,7 +88,7 @@ export const Result = ({
       actions={extra}
       variant="none"
       bgVariant="transparent"
-      className={classNames(
+      className={classNames("wim-result", 
         styles.root,
         intent && styles[intent],
         status && styles[status],

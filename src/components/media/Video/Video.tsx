@@ -148,7 +148,7 @@ export const Video = ({
 
   return (
     <figure
-      className={classNames(styles.root, className)}
+      className={classNames("wim-video", styles.root, className)}
       style={{ width: "100%" }}
       role="region"
       aria-label={videoAriaLabel}

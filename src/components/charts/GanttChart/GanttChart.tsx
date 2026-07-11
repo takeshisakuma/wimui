@@ -223,7 +223,7 @@ export const GanttChart = ({
 
   return (
     <div
-      className={classNames(styles.root, className)}
+      className={classNames("wim-gantt-chart", styles.root, className)}
       role="grid"
       aria-label={mergedLabels.ariaChart}
     >

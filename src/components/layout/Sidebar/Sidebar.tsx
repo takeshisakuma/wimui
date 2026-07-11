@@ -51,7 +51,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         <aside
           ref={ref}
           style={style}
-          className={classNames(
+          className={classNames("wim-sidebar", 
             styles.root,
             fixed && styles.fixed,
             collapsed && styles.collapsed,

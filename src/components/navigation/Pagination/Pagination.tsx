@@ -172,7 +172,7 @@ export const Pagination = ({
   if (simple) {
     return (
       <nav
-        className={classNames(
+        className={classNames("wim-pagination", 
           styles.root,
           styles.simple,
           className,

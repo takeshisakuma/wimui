@@ -132,7 +132,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
         style={fullWidth ? { width: "100%", minWidth: 0, ...style } : style}
       >
         <div
-          className={classNames(
+          className={classNames("wim-prompt-input", 
             styles.root,
             {
               [styles.disabled]: disabled,

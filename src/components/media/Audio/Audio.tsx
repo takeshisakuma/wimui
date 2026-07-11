@@ -159,7 +159,7 @@ export const Audio = ({
 
   return (
     <figure
-      className={classNames(styles.root, className)}
+      className={classNames("wim-audio", styles.root, className)}
       style={style}
       data-testid="audio-root"
     >

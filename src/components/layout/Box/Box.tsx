@@ -154,7 +154,7 @@ export const Box = React.forwardRef(
     return (
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-box", 
           styles.root,
           typeof w === "object" && w !== null && styles.responsiveW,
           typeof h === "object" && h !== null && styles.responsiveH,

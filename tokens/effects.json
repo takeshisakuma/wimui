@@ -131,12 +131,6 @@
       },
       "modal": {
         "value": "{wim.shadow.lg}"
-      },
-      "raised": {
-        "value": "{wim.shadow.md}"
-      },
-      "lifted": {
-        "value": "{wim.shadow.lg}"
       }
     },
     "duration": {
@@ -145,9 +139,6 @@
       },
       "extra-fast": {
         "value": "0.1s"
-      },
-      "short": {
-        "value": "0.15s"
       },
       "fast": {
         "value": "0.167s"
@@ -163,9 +154,6 @@
       },
       "ultra-slow": {
         "value": "0.667s"
-      },
-      "slower": {
-        "value": "0.8s"
       },
       "slowest": {
         "value": "1s"

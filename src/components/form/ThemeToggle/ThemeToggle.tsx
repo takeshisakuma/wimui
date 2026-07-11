@@ -160,7 +160,7 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
     }
 
     return (
-      <div ref={ref} className={classNames(styles.root, className)} {...props}>
+      <div ref={ref} className={classNames("wim-theme-toggle", styles.root, className)} {...props}>
         <button
           type="button"
           className={classNames(styles.iconButton, styles[size])}

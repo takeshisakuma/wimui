@@ -153,7 +153,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         <Component
           {...props}
           role="none"
-          className={classNames(styles.root, className)}
+          className={classNames("wim-dropdown", styles.root, className)}
           ref={combinedRef}
           onKeyDown={handleKeyDown}
         >

@@ -84,7 +84,7 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-title", 
           styles.root,
           styles[sizeClass as keyof typeof styles],
           useClassNameForColor && styles[color as keyof typeof styles],

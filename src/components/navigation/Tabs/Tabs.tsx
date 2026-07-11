@@ -99,7 +99,7 @@ const Tabs = ({
     >
       <div className={styles.container}>
         <div
-          className={classNames(
+          className={classNames("wim-tabs", 
             styles.root,
             styles[orientation],
             className,

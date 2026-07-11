@@ -217,7 +217,7 @@ export const Rating = ({
       className={className}
     >
       <div
-        className={classNames(
+        className={classNames("wim-rating", 
           styles.root,
           styles[size],
           disabled && styles.disabled,

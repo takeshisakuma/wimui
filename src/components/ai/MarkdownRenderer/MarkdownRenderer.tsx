@@ -27,7 +27,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   className,
 }) => {
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames("wim-markdown-renderer", styles.root, className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{

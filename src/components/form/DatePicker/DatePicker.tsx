@@ -233,7 +233,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       >
         <RootComponent
           ref={combinedRef}
-          className={classNames(
+          className={classNames("wim-date-picker", 
             styles.root,
             fullWidth && styles.fullWidth,
           )}

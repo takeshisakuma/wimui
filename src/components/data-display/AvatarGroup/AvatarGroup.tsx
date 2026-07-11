@@ -33,7 +33,7 @@ export const AvatarGroup = ({
   const excessCount = totalAvatars - itemsToShow.length;
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames("wim-avatar-group", styles.root, className)}>
       {itemsToShow.map((child, index) => {
         if (React.isValidElement(child)) {
           const childType = child.type as React.ComponentType | string;

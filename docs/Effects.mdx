@@ -113,10 +113,9 @@ import {
   <T k="guide.effects_motion_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-  <MotionSwatch name={<T k="guide.effects_motion_instant" />} duration="var(--wim-duration-instant)" easing="var(--wim-easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_instant" />} duration="var(--wim-duration-ultra-fast)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_extra_fast" />} duration="var(--wim-duration-extra-fast)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_fast" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-standard)" />
-  <MotionSwatch name={<T k="guide.effects_motion_short" />} duration="var(--wim-duration-short)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_standard" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_slow" />} duration="var(--wim-duration-slow)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_extra_slow" />} duration="var(--wim-duration-extra-slow)" easing="var(--wim-easing-standard)" />
@@ -125,7 +124,6 @@ import {
   <MotionSwatch name={<T k="guide.effects_motion_exit" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-exit)" />
   <MotionSwatch name={<T k="guide.effects_motion_spring" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-spring)" />
   <MotionSwatch name={<T k="guide.effects_motion_smooth" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-smooth)" />
-  <MotionSwatch name={<T k="guide.effects_motion_slower" />} duration="var(--wim-duration-slower)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_slowest" />} duration="var(--wim-duration-slowest)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_circle" />} duration="var(--wim-duration-circle)" easing="var(--wim-easing-standard)" />
   <MotionSwatch name={<T k="guide.effects_motion_breathe" />} duration="var(--wim-duration-breathe)" easing="var(--wim-easing-gentle)" />
@@ -133,7 +131,7 @@ import {
   <MotionSwatch name={<T k="guide.effects_motion_sharp" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-sharp)" />
   <MotionSwatch name={<T k="guide.effects_motion_gentle" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-gentle)" />
 
-  <InteractiveSwatch name="Scale Active (Tactile)" tokenName="--wim-scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--wim-duration-instant) var(--wim-easing-standard)", transform: "scale(var(--wim-scale-active))" }} hoverStyle={{ backgroundColor: "var(--wim-color-bg-hover)" }} />
+  <InteractiveSwatch name="Scale Active (Tactile)" tokenName="--wim-scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--wim-duration-ultra-fast) var(--wim-easing-standard)", transform: "scale(var(--wim-scale-active))" }} hoverStyle={{ backgroundColor: "var(--wim-color-bg-hover)" }} />
 
   <InteractiveSwatch name="Lift Small" tokenName="--wim-lift-sm" tokenValue="-1px" hoverStyle={{ transition: "all var(--wim-duration-fast) var(--wim-easing-standard)", transform: "translateY(var(--wim-lift-sm))", boxShadow: "var(--wim-shadow-sm)" }} />
 

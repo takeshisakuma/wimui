@@ -21,7 +21,7 @@ export const InputGroup = ({
 }: InputGroupProps) => {
   return (
     <div
-      className={classNames(
+      className={classNames("wim-input-group", 
         styles.root,
         fullWidth && styles.fullWidth,
         className,

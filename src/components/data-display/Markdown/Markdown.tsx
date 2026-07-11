@@ -21,7 +21,7 @@ export interface MarkdownProps {
 export const Markdown = ({ content, children, gfm = true, className }: MarkdownProps) => {
   const markdownContent = content ?? children ?? "";
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames("wim-markdown", styles.root, className)}>
       <ReactMarkdown
         remarkPlugins={gfm ? [remarkGfm] : []}
       >

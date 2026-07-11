@@ -74,7 +74,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     return (
       <div
         ref={ref}
-        className={classNames(
+        className={classNames("wim-speed-dial", 
           localStyles.root,
           localStyles[direction],
           open && localStyles.open,

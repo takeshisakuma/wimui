@@ -190,7 +190,7 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
 
     return (
       <Component
-        className={styles.container}
+        className={`wim-mentions ${styles.container}`}
         ref={combinedRef}
         {...wrapperSpread}
       >

@@ -126,7 +126,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       >
         <div
           ref={containerRef}
-          className={classNames(
+          className={classNames("wim-phone-input", 
             styles.root,
             fullWidth && styles.fullWidth,
             disabled && styles.disabled,

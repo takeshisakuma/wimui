@@ -357,7 +357,7 @@ export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
     return (
       <div 
         ref={ref} 
-        className={classNames(localStyles.root, className)} 
+        className={classNames("wim-json-viewer", localStyles.root, className)} 
         aria-labelledby={showToolbar ? titleId : undefined}
         {...props}
       >

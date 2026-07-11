@@ -152,7 +152,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
         <Component
           {...props}
           ref={ref}
-          className={classNames(
+          className={classNames("wim-kanban", 
             styles.root,
             forceMobileUI && styles.touch,
             className,

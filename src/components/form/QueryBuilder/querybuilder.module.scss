@@ -100,7 +100,7 @@
   .segmentedControl {
     align-items: stretch;
     height: var(--wim-height-md);
-    padding: var(--wim-spacing-fine);
+    padding: var(--wim-spacing-3xs);
 
     .segmentedControlItem {
       height: calc(var(--wim-height-md) - 4px);

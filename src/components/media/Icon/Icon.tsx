@@ -46,7 +46,7 @@ export const Icon = ({
 
   return (
     <IconComponent
-      className={classNames(
+      className={classNames("wim-icon", 
         styles.root,
         size && styles[`size-${size}`],
         color && styles[color],

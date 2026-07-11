@@ -165,7 +165,7 @@ export const RelativeTime = React.forwardRef<HTMLTimeElement, RelativeTimeProps>
       return (
         <Root
           ref={ref}
-          className={classNames(localStyles.root, className)}
+          className={classNames("wim-relative-time", localStyles.root, className)}
           title={title}
           {...props}
         >
@@ -181,7 +181,7 @@ export const RelativeTime = React.forwardRef<HTMLTimeElement, RelativeTimeProps>
     return (
       <Root
         ref={ref}
-        className={classNames(localStyles.root, className)}
+        className={classNames("wim-relative-time", localStyles.root, className)}
         dateTime={targetDate.toISOString()}
         title={title ?? absoluteFormatter.format(targetDate)}
         {...props}

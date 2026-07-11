@@ -71,7 +71,7 @@ export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-code-block", styles.root, className)}
         {...props}
       >
         {(headerLabel || showCopy) && (

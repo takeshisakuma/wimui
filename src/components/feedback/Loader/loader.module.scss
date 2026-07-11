@@ -45,7 +45,7 @@
         animation: wim-loader-bars var(--wim-loader-duration, var(--wim-duration-circle)) ease-in-out infinite;
 
         &:nth-child(2) {
-          animation-delay: var(--wim-duration-short);
+          animation-delay: var(--wim-duration-fast);
         }
 
         &:nth-child(3) {

@@ -114,7 +114,7 @@ export const Watermark = (props: WatermarkProps) => {
   }, [content, image, props.width, props.height, rotate, opacity, gap, offset, width, height]);
 
   return (
-    <div className={classNames(styles.wrapper, className)}>
+    <div className={classNames("wim-watermark", styles.wrapper, className)}>
       {children}
       <div
         className={styles.root}

@@ -69,7 +69,7 @@ export const Indicator = React.forwardRef<HTMLSpanElement, IndicatorProps>(
     return (
       <span
         ref={mergeRefs(ref)}
-        className={classNames(styles.root, inline && styles.inlineRoot, className)}
+        className={classNames("wim-indicator", styles.root, inline && styles.inlineRoot, className)}
         style={style}
         {...props}
       >

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Input } from "../../form/Input/Input";
 
 type PasswordInputProps = React.ComponentProps<typeof Input>;
@@ -15,5 +16,5 @@ export const PasswordInput = (
     "type" | "rightIcon" | "onRightIconClick" | "showPasswordToggle" | "placeholder"
   >,
 ) => {
-  return <Input {...props} type="password" showPasswordToggle={true} />;
+  return <Input {...props} type="password" showPasswordToggle={true} className={classNames("wim-password-input", props.className)} />;
 };

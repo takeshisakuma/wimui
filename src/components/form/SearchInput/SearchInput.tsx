@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Input } from "../../form/Input/Input";
 
 /**
@@ -6,5 +7,5 @@ import { Input } from "../../form/Input/Input";
  * 検索アイコンを標準装備し、入力がある場合はクリアボタンを表示します。
  */
 export const SearchInput = (props: React.ComponentProps<typeof Input>) => {
-  return <Input leftIcon="SearchIcon" allowClear {...props} />;
+  return <Input leftIcon="SearchIcon" allowClear {...props} className={classNames("wim-search-input", props.className)} />;
 };

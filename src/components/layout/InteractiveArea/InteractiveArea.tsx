@@ -86,7 +86,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
     return (
       <div
         ref={ref}
-        className={classNames(
+        className={classNames("wim-interactive-area", 
           localStyles.root,
           localStyles[variant],
           localStyles[bgVariant],

@@ -34,7 +34,7 @@ export const EmptyState = ({
       description={description}
       icon={icon}
       actions={extra}
-      className={classNames(
+      className={classNames("wim-empty-state", 
         styles.root,
         styles[variant],
         className,

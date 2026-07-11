@@ -226,7 +226,7 @@ export const LightboxContent = ({
       onOpenChange={setOpen}
       closeOnOverlayClick={closeOnOverlayClick}
       overlayClassName={styles.overlay}
-      className={classNames(styles.contentRoot, className)}
+      className={classNames("wim-lightbox", styles.contentRoot, className)}
       transitionProps={{
         preset: "fade", // Override default "scale" to avoid conflict
         enter: styles.contentEnter,

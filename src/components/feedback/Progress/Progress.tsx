@@ -64,7 +64,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     return (
       <div
         ref={mergeRefs(ref)}
-        className={classNames(
+        className={classNames("wim-progress", 
           styles.root,
           styles[size],
           styles[intent],

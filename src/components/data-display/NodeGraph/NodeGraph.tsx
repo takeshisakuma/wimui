@@ -97,7 +97,7 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
   ) => (
     <div
       ref={ref}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-node-graph", styles.root, className)}
       role="region"
       aria-label={ariaLabel}
       {...props}

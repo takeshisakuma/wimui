@@ -87,7 +87,7 @@
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-full);
-    box-shadow: var(--wim-shadow-raised);
+    box-shadow: var(--wim-shadow-md);
 
     &:focus-visible {
       outline: none;

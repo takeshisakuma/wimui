@@ -61,7 +61,7 @@ export const ScatterChart = ({
   animated = false,
 }: ScatterChartProps) => {
   return (
-    <div className={styles.root} style={{ width }}>
+    <div className={`wim-scatter-chart ${styles.root}`} style={{ width }}>
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}

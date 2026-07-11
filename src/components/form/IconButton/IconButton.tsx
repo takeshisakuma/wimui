@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
 
@@ -15,10 +16,11 @@ type IconButtonProps = Omit<
 /**
  * Icon-only button component.
  */
-export const IconButton = ({ iconName, ...props }: IconButtonProps) => {
+export const IconButton = ({ iconName, className, ...props }: IconButtonProps) => {
   return (
     <Button
       {...props}
+      className={classNames("wim-icon-button", className)}
       icon={iconName}
     />
   );

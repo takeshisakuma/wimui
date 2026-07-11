@@ -31,7 +31,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <Box
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-container", styles.root, className)}
         mx="auto"
         w="100%"
         style={{ maxWidth, ...style }}

@@ -17,7 +17,7 @@ const FooterRoot = React.forwardRef<HTMLElement, FooterProps>(
     return (
       <footer
         ref={ref}
-        className={classNames(
+        className={classNames("wim-footer", 
           styles.root,
           bordered && styles.bordered,
           background && styles[`bg-${background}`],

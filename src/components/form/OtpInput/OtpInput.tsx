@@ -167,7 +167,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
         className={classNames(className, fullWidth && styles.fullWidth)}
       >
         <Component
-          className={classNames(styles.root, fullWidth && styles.fullWidth)}
+          className={classNames("wim-otp-input", styles.root, fullWidth && styles.fullWidth)}
           ref={ref}
           {...props}
         >

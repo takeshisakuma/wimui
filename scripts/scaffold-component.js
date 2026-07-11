@@ -26,7 +26,12 @@ if (fs.existsSync(componentDir)) {
 fs.mkdirSync(componentDir, { recursive: true });
 fs.mkdirSync(storiesDir, { recursive: true });
 
-const kebabName = componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+// 頭字語ラン対応の kebab（QRCode->qr-code, AIResponseFeedback->ai-response-feedback）。
+// scripts/check-root-hooks.js の toKebab と一致させること。
+const kebabName = componentName
+  .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+  .replace(/([a-z\d])([A-Z])/g, '$1-$2')
+  .toLowerCase();
 
 function lowerFirst(s) {
   return s.charAt(0).toLowerCase() + s.slice(1);
@@ -59,7 +64,7 @@ export const ${componentName} = React.forwardRef<HTMLDivElement, ${componentName
     return (
       <Root
         ref={ref}
-        className={classNames(localStyles.root, className)}
+        className={classNames("wim-${kebabName}", localStyles.root, className)}
         {...props}
       >
         {children}

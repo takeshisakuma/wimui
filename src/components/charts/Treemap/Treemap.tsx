@@ -99,7 +99,7 @@ export const Treemap = ({
   }
 
   return (
-    <div className={`${styles.root} wim-treemap__root`} style={{ width }}>
+    <div className={`wim-treemap ${styles.root} wim-treemap__root`} style={{ width }}>
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}

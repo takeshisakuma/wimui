@@ -79,7 +79,7 @@ export const Heatmap = ({
   };
 
   return (
-    <div className={styles.root} style={{ width }}>
+    <div className={`wim-heatmap ${styles.root}`} style={{ width }}>
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}

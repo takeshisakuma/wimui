@@ -84,7 +84,7 @@ export const UsageMeter = React.forwardRef<HTMLDivElement, UsageMeterProps>(
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, styles[size], styles[level], className)}
+        className={classNames("wim-usage-meter", styles.root, styles[size], styles[level], className)}
         role="meter"
         aria-valuenow={used}
         aria-valuemin={0}

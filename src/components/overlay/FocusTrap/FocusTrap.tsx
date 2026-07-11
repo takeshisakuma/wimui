@@ -103,7 +103,7 @@ export const FocusTrap = ({
   }, [active, initialFocus]);
 
   return (
-    <div ref={rootRef} className={classNames(styles.root, className)}>
+    <div ref={rootRef} className={classNames("wim-focus-trap", styles.root, className)}>
       {children}
     </div>
   );

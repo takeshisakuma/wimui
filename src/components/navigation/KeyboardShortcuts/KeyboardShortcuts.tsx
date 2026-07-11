@@ -47,7 +47,7 @@ export const KeyboardShortcuts = React.forwardRef<
     ref,
   ) => {
     return (
-      <div className={classNames(styles.root, styles[size], className)}>
+      <div className={classNames("wim-keyboard-shortcuts", styles.root, styles[size], className)}>
         {title && <p className={styles.title}>{title}</p>}
         <dl ref={ref} className={styles.list} {...props}>
           {shortcuts.map((shortcut, index) => (

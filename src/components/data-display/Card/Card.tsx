@@ -44,7 +44,7 @@ const CardInner = (
   return (
     <Component
       ref={ref}
-      className={classNames(
+      className={classNames("wim-card", 
         styles.root,
         styles[variant],
         styles[`padding-${padding}`],

@@ -118,7 +118,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
       <FieldTemplate label={label} className={className}>
       <div
         ref={ref}
-        className={classNames(
+        className={classNames("wim-inline-edit", 
           localStyles.root,
           fullWidth && localStyles.fullWidth,
           disabled && localStyles.disabled,

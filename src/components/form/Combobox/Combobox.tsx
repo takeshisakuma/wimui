@@ -160,7 +160,7 @@ export const Combobox = ({
         className={className}
       >
         <div
-          className={classNames(styles.root, fullWidth && styles.fullWidth)}
+          className={classNames("wim-combobox", styles.root, fullWidth && styles.fullWidth)}
           ref={containerRef}
           onMouseMove={() => setIsKeyboardNavigating(false)}
           data-keyboard-nav={isKeyboardNavigating}

@@ -57,7 +57,7 @@ export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengt
     const config = getLevelConfig(currentScore);
 
     return (
-      <div ref={ref} className={classNames(styles.root, className)} {...props}>
+      <div ref={ref} className={classNames("wim-password-strength", styles.root, className)} {...props}>
         <div className={styles.meter}>
           {[1, 2, 3, 4].map((step) => (
             <div

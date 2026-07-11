@@ -69,7 +69,7 @@ export const InfiniteScroll = ({
   }, [handleObserver, container, threshold]);
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames("wim-infinite-scroll", styles.root, className)}>
       {children}
       {loading && <div role="status" className={styles.loading}>{loader}</div>}
       {hasMore && (

@@ -19,7 +19,7 @@ export const ChatContainer = ({
   ...props
 }: ChatContainerProps): React.ReactElement => {
   return (
-    <div className={classNames(styles.container, className)} {...props}>
+    <div className={classNames("wim-chat-ui", styles.container, className)} {...props}>
       {children}
     </div>
   );

@@ -17,7 +17,7 @@ export const VisuallyHidden = ({
   ...props
 }: VisuallyHiddenProps) => {
   return (
-    <span className={classNames(styles.root, className)} {...props}>
+    <span className={classNames("wim-visually-hidden", styles.root, className)} {...props}>
       {children}
     </span>
   );

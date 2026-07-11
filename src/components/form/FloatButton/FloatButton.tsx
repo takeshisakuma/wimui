@@ -133,7 +133,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
       <Component
         ref={ref}
         type={asChild ? undefined : "button"}
-        className={classNames(
+        className={classNames("wim-float-button", 
           styles.root,
           !variant && styles[intent],
           variant === "default" && styles.variant_default,

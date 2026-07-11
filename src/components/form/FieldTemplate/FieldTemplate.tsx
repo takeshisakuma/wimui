@@ -48,7 +48,7 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
 
     return (
       <Component
-        className={classNames(localStyles.root, localStyles[layout], className, stylesProp?.root)}
+        className={classNames("wim-field-template", localStyles.root, localStyles[layout], className, stylesProp?.root)}
         ref={ref}
         {...props}
       >

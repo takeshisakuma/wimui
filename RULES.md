@@ -127,9 +127,8 @@
 - クラス名は JS から参照しやすい標準的なケバブケースまたはキャメルケースを使用します（`wim-` プレフィックスは不要です）。
 - ルート要素には `.root`、内部パーツには `.icon`, `.label` などの名称を使用してください。
 - Anatomy: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules の場合、`.root` や共通のサイズ・色修飾子（`.sm`, `.primary` 等）を除いたユニークなクラス名が自動的に抽出されます。
-- 外部からの上書きが必要な場合は、CSS Variables（デザイントークン）を使用するか、ルート要素にのみ `:global(.wim-component-name)` を付与して安定したオーバーライドポイントを提供してください。
+- **すべての公開コンポーネントはルート要素に安定したグローバルフック `wim-<kebab名>` を付与します**（例: `Button`→`wim-button`, `DateRangePicker`→`wim-date-range-picker`）。CSS Modules のクラス名はハッシュ化され不安定なため、これが利用者向けの**唯一の安定した class 上書きポイント**であり公開契約です。スタイルのカスタマイズは原則 CSS Variables（`--wim-*` トークン）で行い、要素単位の上書きが必要な場合のみこのフックを使います。`classNames("wim-<kebab名>", styles.root, className)` のようにルート要素へ付与してください（scaffold が自動生成、`npm run check:hooks` で検証）。DOM ルートを持たない振る舞い専用（`Portal` / `Transition`）は例外です。
 - 共通ベースコンポーネント（`IndicatorBase` 等）を使用する場合は、`prefixClass` の代わりに `styles` prop を渡してください。
-- 既存のグローバルクラス形式（`wim-` プレフィックス付き）は段階的に履行しますが、新規開発は CSS Modules を優先します。
 
 ## デザイントークン（CSS カスタムプロパティ）
 
@@ -156,7 +155,9 @@
 | `lift` | translate-Y 値 | `--wim-lift-sm` |
 | `scale` | scale 値 | `--wim-scale-active` |
 | `decoration` | テキスト装飾 | `--wim-decoration-underline` |
-| `gradient` | グラデーション | `--wim-gradient-glass` |
+| `blur` | ぼかし（backdrop 等） | `--wim-blur-md`, `--wim-blur-glass` |
+| `glass` | グラスモーフィズム | `--wim-glass-bg-opacity`, `--wim-glass-border-opacity` |
+| `breakpoint` | ブレークポイント | `--wim-breakpoint-md` |
 | `z` | Z-index 階層 | `--wim-z-overlay` |
 
 - コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は `--wim-` プレフィックス不要です。
@@ -187,16 +188,14 @@ R_outer ≈ R_inner + S
 
 ### シャドウ（Shadow）の設計指針
 
-`box-shadow` には値ベースのトークン（`--wim-shadow-md/lg`）を直接使用しないでください。役割ベースのエイリアストークンを使用してください。
+浮遊・モーダル面には役割ベースのエイリアストークンを使用してください。静的な浮き上がり（カード、パネル、Terminal 等）や軽いインタラクションのシャドウには値ベース（`--wim-shadow-xs/sm/md/lg`）を直接使用してかまいません。
 
 | トークン | 値 | 対象 |
 |---|---|---|
 | `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素 |
 | `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer, Notification, Snackbar など重いモーダル |
-| `--wim-shadow-raised` | `shadow-md` | Terminal, Calendar, メディアフレームなど静的に浮き上がって見せる面 |
-| `--wim-shadow-lifted` | `shadow-lg` | Card / Button の hover、ドラッグ中の要素など強く持ち上がった状態 |
 
-`--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションのシャドウに限り直接使用できます（強い持ち上がりを表現する場合は `--wim-shadow-lifted` を使用してください）。
+`--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションに、`--wim-shadow-md / lg` はカードや Terminal など静的に浮き上がって見せる面に使用します。
 
 - `z-index` の使用ルール： z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
   - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）

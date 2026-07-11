@@ -138,7 +138,7 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     return (
       <Component
         ref={containerRef}
-        className={classNames(localStyles.container, className)}
+        className={classNames("wim-swipe-action", localStyles.container, className)}
         onMouseLeave={handleEnd}
         {...props}
       >

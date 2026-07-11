@@ -66,7 +66,7 @@ const DefaultFallback = ({
       p="lg"
       radius="md"
       bg="var(--wim-color-destructive-subtle)"
-      className={styles.fallback}
+      className={`wim-error-boundary ${styles.fallback}`}
     >
       <Stack gap="md">
         <Alert

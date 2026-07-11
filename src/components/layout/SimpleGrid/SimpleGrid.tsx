@@ -51,7 +51,7 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
       <div className={styles.container}>
         <div
           ref={ref}
-          className={classNames(styles.root, className)}
+          className={classNames("wim-simple-grid", styles.root, className)}
           style={gridStyle}
           {...props}
         >

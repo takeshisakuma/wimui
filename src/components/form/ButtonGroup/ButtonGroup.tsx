@@ -38,7 +38,7 @@ export const ButtonGroup = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-button-group", 
         styles.root,
         joined && styles.joined,
         className,

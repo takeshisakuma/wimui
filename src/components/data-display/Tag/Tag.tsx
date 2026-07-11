@@ -43,7 +43,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
         styles={styles}
         icon={icon}
         content={content}
-        className={classNames(props.className, { [styles.disabled]: disabled })}
+        className={classNames("wim-tag", props.className, { [styles.disabled]: disabled })}
         interactive={interactive}
         {...props}
       >

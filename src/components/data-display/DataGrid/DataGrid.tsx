@@ -203,7 +203,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   const colCount = columns.length + (selection ? 1 : 0);
 
   return (
-    <div className={classNames(styles.root, loading && styles.loading, className)}>
+    <div className={classNames("wim-data-grid", styles.root, loading && styles.loading, className)}>
       <div
         className={styles.container}
         style={{ height, maxHeight }}

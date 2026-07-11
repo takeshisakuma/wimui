@@ -499,7 +499,7 @@ export const RichTextEditor = ({
       className={className}
     >
       <div
-        className={classNames(
+        className={classNames("wim-rich-text-editor", 
           styles.root,
           styles[currentIntent],
           isDisabled && styles.disabled,

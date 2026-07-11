@@ -21,7 +21,7 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
-    animation: fadeIn var(--wim-duration-short) ease-in-out;
+    animation: fadeIn var(--wim-duration-fast) ease-in-out;
   }
   
   .item {

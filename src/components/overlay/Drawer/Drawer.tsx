@@ -206,6 +206,7 @@ export const DrawerContent = ({
       onOpenChange={onOpenChange}
       overlayClassName={classNames(styles.overlay, !showOverlay && styles.hideOverlay)}
       contentClassName={classNames(
+        "wim-drawer",
         styles.content,
         styles[side],
         !slideIn && styles.noSlideIn,

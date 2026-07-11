@@ -118,7 +118,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
         <div
           ref={useMergedRef(containerRef, ref)}
           id={id}
-          className={classNames(
+          className={classNames("wim-segmented-control", 
             localStyles.root,
             localStyles[size],
             fullWidth && localStyles.fullWidth,

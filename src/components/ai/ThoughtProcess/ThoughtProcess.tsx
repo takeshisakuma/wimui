@@ -98,7 +98,7 @@ export const ThoughtProcess = ({
   const bodyId = useId();
 
   return (
-    <div className={classNames(styles.root, isThinking && styles.thinking, className)}>
+    <div className={classNames("wim-thought-process", styles.root, isThinking && styles.thinking, className)}>
       {isCollapsible ? (
         <button
           type="button"

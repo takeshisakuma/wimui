@@ -26,7 +26,7 @@ export const Kbd = React.forwardRef<HTMLElement, KbdProps>(
 
     return (
       <Component
-        className={classNames(styles.root, styles[size], className)}
+        className={classNames("wim-kbd", styles.root, styles[size], className)}
         ref={ref}
         {...props}
       >

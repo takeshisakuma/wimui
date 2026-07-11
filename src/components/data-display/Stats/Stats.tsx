@@ -20,7 +20,7 @@ export const Stats = ({
   return (
     <Card
       variant={variant}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-stats", styles.root, className)}
       padding="none"
       {...props}
     >

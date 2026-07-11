@@ -81,7 +81,7 @@ export const Popconfirm = ({
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent
-        className={styles.content}
+        className={`wim-popconfirm ${styles.content}`}
         aria-labelledby={titleId}
         aria-describedby={description ? descriptionId : undefined}
       >

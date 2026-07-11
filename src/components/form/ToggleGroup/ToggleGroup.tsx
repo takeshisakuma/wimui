@@ -198,7 +198,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
       <div
         ref={useMergedRef(containerRef, ref)}
         id={id}
-        className={classNames(
+        className={classNames("wim-toggle-group", 
           styles.root,
           styles[size],
           styles[selectionMode],

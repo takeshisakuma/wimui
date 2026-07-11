@@ -63,7 +63,7 @@ export const AIResponseFeedback = React.forwardRef<HTMLDivElement, AIResponseFee
         ref={ref}
         role="group"
         aria-label={t("ai_feedback.group_label")}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-ai-response-feedback", styles.root, className)}
         {...props}
       >
         <button

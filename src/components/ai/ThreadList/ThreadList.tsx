@@ -71,7 +71,7 @@ export const ThreadList = React.forwardRef<HTMLElement, ThreadListProps>(
     return (
       <nav
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-thread-list", styles.root, className)}
         aria-label={listAriaLabel}
         {...props}
       >

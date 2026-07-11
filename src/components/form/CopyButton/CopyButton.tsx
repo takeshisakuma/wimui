@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
@@ -60,7 +61,7 @@ export const CopyButton = ({
           icon={copied ? "CheckIcon" : "CopyIcon"}
           intent={copied ? "positive" : "default"}
           onClick={handleCopy}
-          className={className}
+          className={classNames("wim-copy-button", className)}
           aria-label={ariaLabel || labelText}
 
         />

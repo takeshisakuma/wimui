@@ -271,7 +271,7 @@ export const RangeSlider = ({
       <div
         role="presentation"
         data-testid="range-slider-root"
-        className={classNames(
+        className={classNames("wim-range-slider", 
           styles.root,
           disabled && styles.disabled,
           error && styles.error,

@@ -175,7 +175,7 @@ export const Button = React.forwardRef<
               }
             : {}),
         }}
-        className={classNames(
+        className={classNames("wim-button", 
           localStyles.root,
           localStyles[size],
           localStyles[variant],

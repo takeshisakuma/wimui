@@ -67,7 +67,7 @@ export const CounterTextarea = React.forwardRef<HTMLTextAreaElement, CounterText
         labelId={labelId}
         htmlFor={id}
         errorId={errorId}
-        className={className}
+        className={classNames("wim-counter-textarea", className)}
       >
         <div
           className={classNames(

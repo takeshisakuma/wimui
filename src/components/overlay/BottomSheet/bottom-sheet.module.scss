@@ -10,7 +10,7 @@
     justify-content: center;
     background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(var(--wim-radius-sm));
-    animation: overlayShow var(--wim-duration-short) var(--wim-easing-snap);
+    animation: overlayShow var(--wim-duration-fast) var(--wim-easing-snap);
   }
   
   .content {

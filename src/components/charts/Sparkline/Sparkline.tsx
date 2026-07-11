@@ -125,7 +125,7 @@ export const Sparkline = ({
 
   return (
     <div
-      className={classNames(styles.root, className)}
+      className={classNames("wim-sparkline", styles.root, className)}
       style={{ width, height }}
       role={ariaLabel ? "img" : undefined}
       aria-label={ariaLabel}

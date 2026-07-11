@@ -28,7 +28,7 @@ export const Divider = ({
     <div
       role="separator"
       aria-orientation={orientation}
-      className={classNames(
+      className={classNames("wim-divider", 
         styles.root,
         styles[orientation],
         className,

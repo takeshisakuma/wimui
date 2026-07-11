@@ -154,7 +154,7 @@ export const Calendar = ({
     // but jsx-a11y does not recognise it as interactive and incorrectly flags keyboard handlers.
     /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
     <div
-      className={classNames(
+      className={classNames("wim-calendar", 
         styles.root,
         disabled && styles.disabled,
         className,

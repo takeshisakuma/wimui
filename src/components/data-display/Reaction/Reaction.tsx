@@ -52,7 +52,7 @@ export const Reaction = React.forwardRef<HTMLDivElement, ReactionProps>(
         ref={ref}
         role="group"
         aria-label={t("reaction.aria_label")}
-        className={classNames(styles.root, styles[size], className)}
+        className={classNames("wim-reaction", styles.root, styles[size], className)}
         {...props}
       >
         {reactions.map((item) => (

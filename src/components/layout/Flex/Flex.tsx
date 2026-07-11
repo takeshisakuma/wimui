@@ -101,7 +101,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-flex", styles.root, className)}
 
         style={flexStyle}
         {...props}

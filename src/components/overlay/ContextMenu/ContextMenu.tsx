@@ -139,7 +139,7 @@ const ContextMenuInner = ({
   return (
     <div
       ref={containerRef}
-      className={classNames(styles.container, disabled && styles.disabled, className)}
+      className={classNames("wim-context-menu", styles.container, disabled && styles.disabled, className)}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}

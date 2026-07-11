@@ -42,7 +42,7 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
       // transform uses extra-fast; background-color uses short for a smooth hover fade
       transition:
         transform var(--wim-duration-extra-fast) var(--wim-easing-sharp),
-        background-color var(--wim-duration-short) linear;
+        background-color var(--wim-duration-fast) linear;
 
       &,
       &::before,
@@ -63,17 +63,17 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
       &::before {
         top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
         transition:
-          top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
+          top var(--wim-duration-extra-fast) var(--wim-duration-fast) var(--wim-easing-exit),
           opacity var(--wim-duration-extra-fast) var(--wim-easing-exit),
-          background-color var(--wim-duration-short) linear;
+          background-color var(--wim-duration-fast) linear;
       }
 
       &::after {
         top: ($hamburger-layer-spacing + $hamburger-layer-height);
         transition:
-          top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
+          top var(--wim-duration-extra-fast) var(--wim-duration-fast) var(--wim-easing-exit),
           transform var(--wim-duration-extra-fast) var(--wim-easing-sharp),
-          background-color var(--wim-duration-short) linear;
+          background-color var(--wim-duration-fast) linear;
       }
     }
 
@@ -175,7 +175,7 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
 
       .inner {
         transform: rotate(-45deg);
-        transition-delay: var(--wim-duration-short);
+        transition-delay: var(--wim-duration-fast);
         transition-timing-function: var(--wim-easing-standard);
 
         &::before {
@@ -183,8 +183,8 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
           opacity: 0; // show/hide â€” permitted use of opacity per RULES.md
           transition:
             top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
-            opacity var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-entrance),
-            background-color var(--wim-duration-short) linear;
+            opacity var(--wim-duration-extra-fast) var(--wim-duration-fast) var(--wim-easing-entrance),
+            background-color var(--wim-duration-fast) linear;
         }
 
         &::after {
@@ -192,8 +192,8 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
           transform: rotate(-90deg);
           transition:
             top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
-            transform var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-standard),
-            background-color var(--wim-duration-short) linear;
+            transform var(--wim-duration-extra-fast) var(--wim-duration-fast) var(--wim-easing-standard),
+            background-color var(--wim-duration-fast) linear;
         }
       }
     }

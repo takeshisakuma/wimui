@@ -85,7 +85,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
     <Component
       ref={ref}
       aria-label={resolvedAriaLabel}
-      className={classNames(
+      className={classNames("wim-breadcrumb", 
         styles.root,
         styles[size],
         className,

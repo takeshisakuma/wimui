@@ -135,7 +135,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
         labelId={labelId}
         htmlFor={id}
         errorId={errorId}
-        className={className}
+        className={classNames("wim-tag-input", className)}
       >
         <InputBase
           intent={currentIntent}

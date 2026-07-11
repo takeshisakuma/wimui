@@ -64,7 +64,7 @@ export const Avatar = ({
       role={isFallback && hasFallbackLabel ? "img" : undefined}
       aria-label={isFallback && hasFallbackLabel ? fallbackAriaLabel : undefined}
       {...props}
-      className={classNames(
+      className={classNames("wim-avatar", 
         styles.root,
         styles[size],
         styles[shape],

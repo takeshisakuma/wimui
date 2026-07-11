@@ -92,7 +92,7 @@ export const FileUpload = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames(
+      className={classNames("wim-file-upload", 
         styles.root,
         styles[size],
         className,

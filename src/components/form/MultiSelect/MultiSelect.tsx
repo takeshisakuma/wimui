@@ -255,7 +255,7 @@ export const MultiSelect = ({
       className={className}
     >
       <div
-        className={classNames(styles.root, fullWidth && styles.fullWidth)}
+        className={classNames("wim-multi-select", styles.root, fullWidth && styles.fullWidth)}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}

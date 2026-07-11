@@ -109,7 +109,7 @@ export const Popover = ({
         variant,
       }}
     >
-      <div className={classNames(styles.root, className)}>{children}</div>
+      <div className={classNames("wim-popover", styles.root, className)}>{children}</div>
     </PopoverContext.Provider>
   );
 };

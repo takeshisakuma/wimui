@@ -116,7 +116,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         asChild={asChild}
         ref={ref}
         display="flex"
-        className={classNames(styles.root, className)}
+        className={classNames("wim-stack", styles.root, className)}
         style={{
           flexDirection:
             "var(--wim-stack-dir)" as React.CSSProperties["flexDirection"],

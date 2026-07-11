@@ -32,7 +32,7 @@ const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
     return (
       <header
         ref={ref}
-        className={classNames(
+        className={classNames("wim-header", 
           styles.root,
           fixed && styles.fixed,
           sticky && styles.sticky,

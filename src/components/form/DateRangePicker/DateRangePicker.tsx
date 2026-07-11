@@ -47,7 +47,7 @@ export const DateRangePicker = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames(styles.container, className)}
+      className={classNames("wim-date-range-picker", styles.container, className)}
     >
       <div
         className={styles.root}

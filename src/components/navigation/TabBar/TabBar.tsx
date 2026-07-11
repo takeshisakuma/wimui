@@ -26,7 +26,7 @@ const TabBarInner = React.forwardRef<HTMLElement, TabBarProps>(
     return (
       <nav
         ref={ref}
-        className={classNames(
+        className={classNames("wim-tab-bar", 
           styles.root,
           fixed && styles.fixed,
           bordered && styles.bordered,

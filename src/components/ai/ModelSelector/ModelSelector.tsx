@@ -245,7 +245,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
     return (
       <div
         ref={mergedRef}
-        className={classNames(
+        className={classNames("wim-model-selector", 
           styles.root,
           styles[size],
           fullWidth && styles.fullWidth,

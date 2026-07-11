@@ -74,7 +74,7 @@ const SortableListRoot = React.forwardRef<HTMLUListElement, SortableListProps>(
       >
         <Root
           ref={ref}
-          className={classNames(styles.root, className)}
+          className={classNames("wim-sortable-list", styles.root, className)}
           {...props}
         >
           <Slottable>{children}</Slottable>

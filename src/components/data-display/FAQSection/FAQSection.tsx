@@ -47,7 +47,7 @@ export const FAQSection = ({
 
   return (
     <section
-      className={classNames(
+      className={classNames("wim-faq-section", 
         styles.root,
         styles[`layout-${layout}`],
         className

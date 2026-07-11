@@ -42,7 +42,7 @@ export const Marquee = ({
 
   return (
     <div
-      className={classNames(styles.root, className)}
+      className={classNames("wim-marquee", styles.root, className)}
       style={
         {
           "--duration": `${duration}s`,

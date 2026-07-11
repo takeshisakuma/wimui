@@ -28,7 +28,7 @@ export const Leaderboard = React.forwardRef<HTMLOListElement, LeaderboardProps>(
     return (
       <ol
         ref={ref}
-        className={classNames(styles.root, styles[size], className)}
+        className={classNames("wim-leaderboard", styles.root, styles[size], className)}
         {...props}
       >
         {entries.map((entry, index) => {

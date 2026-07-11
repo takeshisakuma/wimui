@@ -79,7 +79,7 @@ export const Notification = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-notification", 
         styles.root,
         intent && styles[intent],
         className,

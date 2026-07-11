@@ -14,7 +14,7 @@ export const BentoGrid = ({
 }: BentoGridProps) => {
   return (
     <div className={styles.container}>
-      <div className={classNames(styles.root, className)} {...props}>
+      <div className={classNames("wim-bento-grid", styles.root, className)} {...props}>
         {children}
       </div>
     </div>

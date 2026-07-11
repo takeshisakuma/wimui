@@ -141,7 +141,7 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       <div
         ref={ref}
         data-theme="dark"
-        className={classNames(styles.root, className)}
+        className={classNames("wim-terminal", styles.root, className)}
         style={{ ...(height != null ? { height } : {}), ...style }}
         {...props}
       >

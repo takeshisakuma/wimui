@@ -60,7 +60,7 @@ export const Banner = ({
 
   return (
     <div
-      className={classNames(styles.root, styles[intent], className)}
+      className={classNames("wim-banner", styles.root, styles[intent], className)}
       role="status"
       {...props}
     >

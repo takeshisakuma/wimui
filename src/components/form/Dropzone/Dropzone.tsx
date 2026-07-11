@@ -104,7 +104,7 @@ export const Dropzone = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames(styles.container, className)}
+      className={classNames("wim-dropzone", styles.container, className)}
     >
       <InteractiveArea
         className={styles.dropzone}

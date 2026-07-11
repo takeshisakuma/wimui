@@ -110,7 +110,7 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-span", 
           styles.root,
           styles[size],
           useClassNameForColor && styles[color as keyof typeof styles],

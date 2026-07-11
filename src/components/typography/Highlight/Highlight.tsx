@@ -69,7 +69,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
       const slotChild = parts ? React.cloneElement(child, {}, parts) : child;
 
       return (
-        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
+        <Component className={classNames("wim-highlight", styles.root, className)} ref={ref} {...props}>
           <Slottable>{slotChild}</Slottable>
         </Component>
       );
@@ -77,7 +77,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
 
     if (typeof children !== "string") {
       return (
-        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
+        <Component className={classNames("wim-highlight", styles.root, className)} ref={ref} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -86,7 +86,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
     const parts = buildParts(children);
 
     return (
-      <Component className={classNames(styles.root, className)} ref={ref} {...props}>
+      <Component className={classNames("wim-highlight", styles.root, className)} ref={ref} {...props}>
         <Slottable>
           {parts ?? children}
         </Slottable>

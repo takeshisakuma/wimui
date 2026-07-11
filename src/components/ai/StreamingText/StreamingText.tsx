@@ -29,7 +29,7 @@ export const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, isStreaming && styles.streaming, className)}
+        className={classNames("wim-streaming-text", styles.root, isStreaming && styles.streaming, className)}
         aria-live={isStreaming ? "polite" : undefined}
         aria-atomic={isStreaming ? "false" : undefined}
         {...props}

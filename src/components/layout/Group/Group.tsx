@@ -60,7 +60,7 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
         justify={justify}
         gap={gap}
         wrap={wrap}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-group", styles.root, className)}
         {...props}
       >
         {items}

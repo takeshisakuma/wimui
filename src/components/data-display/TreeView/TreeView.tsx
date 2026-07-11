@@ -652,7 +652,7 @@ const TreeView = ({
       <div
         ref={containerRef}
         data-testid="tree-view-root"
-        className={classNames(localStyles.root, !!nodes && localStyles.dataDriven, className, stylesProp?.root)}
+        className={classNames("wim-tree-view", localStyles.root, !!nodes && localStyles.dataDriven, className, stylesProp?.root)}
         role="tree"
         aria-label={labels.treeAriaLabel}
         aria-labelledby={!labels.treeAriaLabel ? labelId : undefined}

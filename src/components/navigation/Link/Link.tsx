@@ -73,7 +73,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(
+        className={classNames("wim-link", 
           localStyles.root,
           localStyles[size],
           localStyles[priority],

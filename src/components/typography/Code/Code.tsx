@@ -35,7 +35,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
 
     return (
       <Component
-        className={classNames(
+        className={classNames("wim-code", 
           styles.root,
           block ? styles.block : styles.inline,
           language && `language-${language}`,

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import styles from "./color-picker.module.scss";
 
 
@@ -31,7 +32,7 @@ export const ColorPicker = ({
       intent={intent}
       variant={variant}
       fullWidth={fullWidth}
-      className={className}
+      className={classNames("wim-color-picker", className)}
       inputClassName={styles.input}
       disabled={disabled}
       {...props}

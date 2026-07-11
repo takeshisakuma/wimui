@@ -49,7 +49,7 @@ export const Skeleton = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-skeleton", 
         styles.root,
         styles[variant],
         animation !== "none" && styles[animation],

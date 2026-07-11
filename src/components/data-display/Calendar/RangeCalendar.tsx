@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Calendar } from "./Calendar";
 
 export type RangeCalendarValue = [Date | null, Date | null];
@@ -77,7 +78,7 @@ export const RangeCalendar = ({
   return (
     <Calendar
       {...props}
-      className={className}
+      className={classNames("wim-range-calendar", className)}
       disabled={disabled}
       rangeMode
       range={range}

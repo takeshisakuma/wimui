@@ -109,7 +109,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       <DashboardContext.Provider value={contextValue}>
         <div
           ref={ref}
-          className={classNames(styles.root, className)}
+          className={classNames("wim-dashboard", styles.root, className)}
           aria-label={label ?? t("dashboard_widget.label")}
           {...props}
         >

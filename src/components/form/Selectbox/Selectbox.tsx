@@ -308,7 +308,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
         className={className}
       >
         <RootComponent
-          className={classNames(
+          className={classNames("wim-selectbox", 
             localStyles.root,
             fullWidth && localStyles.fullWidth,
             stylesProp?.root,

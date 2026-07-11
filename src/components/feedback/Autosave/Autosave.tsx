@@ -48,7 +48,7 @@ export const Autosave = React.forwardRef<HTMLDivElement, AutosaveProps>(
         role="status"
         aria-live="polite"
         aria-label={t("autosave.aria_label")}
-        className={classNames(styles.root, styles[status], className)}
+        className={classNames("wim-autosave", styles.root, styles[status], className)}
         {...props}
       >
         <span className={styles.icon} aria-hidden="true">

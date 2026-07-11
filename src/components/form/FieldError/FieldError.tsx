@@ -23,7 +23,7 @@ export const FieldError = ({
   return (
     <div
       id={id}
-      className={classNames(styles.root, className)}
+      className={classNames("wim-field-error", styles.root, className)}
       role="alert"
       aria-live="polite"
     >

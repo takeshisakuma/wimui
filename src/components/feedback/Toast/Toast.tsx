@@ -96,7 +96,7 @@ export const Toast = ({
       leave={styles.leave}
       leaveFrom={styles.leaveFrom}
       leaveTo={styles.leaveTo}
-      className={classNames(styles.root, styles[intent], className)}
+      className={classNames("wim-toast", styles.root, styles[intent], className)}
       role="status"
       aria-live="polite"
     >

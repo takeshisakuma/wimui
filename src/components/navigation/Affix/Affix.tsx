@@ -144,7 +144,7 @@ export const Affix = ({
     >
       <div
         ref={fixedRef}
-        className={classNames(styles.root, state.isAffixed && styles.affixed)}
+        className={classNames("wim-affix", styles.root, state.isAffixed && styles.affixed)}
         style={state.affixStyle}
       >
         {children}

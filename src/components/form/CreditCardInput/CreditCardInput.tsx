@@ -113,7 +113,7 @@ export const CreditCardInput = React.forwardRef<HTMLInputElement, CreditCardInpu
         onChange={handleInputChange}
         maxLength={getMaxLength(brand)}
         rightIcon="CreditCardIcon"
-        className={localStyles.root}
+        className={`wim-credit-card-input ${localStyles.root}`}
       >
         {children}
       </Component>

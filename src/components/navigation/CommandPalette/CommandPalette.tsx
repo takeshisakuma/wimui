@@ -256,7 +256,7 @@ export const CommandPaletteContent = ({
                 <div
                   role="dialog"
                   aria-modal="true"
-                  className={classNames(styles.content, className)}
+                  className={classNames("wim-command-palette", styles.content, className)}
                   onClick={(e) => e.stopPropagation()}
                   onMouseMove={handleMouseMove}
                   data-keyboard-nav={isKeyboardNavigating}

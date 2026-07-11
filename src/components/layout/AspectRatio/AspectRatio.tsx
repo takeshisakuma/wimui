@@ -17,7 +17,7 @@ export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     return (
       <div
         ref={ref}
-        className={classNames(styles.root, className)}
+        className={classNames("wim-aspect-ratio", styles.root, className)}
         style={{ "--wim-aspect-ratio": ratio, ...style } as React.CSSProperties}
         {...props}
       >

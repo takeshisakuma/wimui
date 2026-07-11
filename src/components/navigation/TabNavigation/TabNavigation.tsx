@@ -73,7 +73,7 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
     return (
       <nav
         ref={setRefs}
-        className={classNames(
+        className={classNames("wim-tab-navigation", 
           styles.root,
           styles[variant],
           styles[align],

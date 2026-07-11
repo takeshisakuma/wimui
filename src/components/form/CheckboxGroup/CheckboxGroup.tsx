@@ -99,7 +99,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         <Component
           {...props}
           ref={ref}
-          className={classNames(
+          className={classNames("wim-checkbox-group", 
             styles.root,
             direction === "horizontal" && styles.horizontal,
           )}

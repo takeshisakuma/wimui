@@ -65,6 +65,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
       <a
         ref={ref}
         className={classNames(
+          "wim-link-button",
           buttonStyles.root,
           buttonStyles[size],
           buttonStyles[variant],

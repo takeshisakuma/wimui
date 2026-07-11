@@ -209,7 +209,7 @@ export const SignaturePad = ({
       className={className}
     >
       <div
-        className={classNames(
+        className={classNames("wim-signature-pad", 
           styles.root,
           disabled && styles.disabled,
           error && styles.error,

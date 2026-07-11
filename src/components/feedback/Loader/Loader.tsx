@@ -40,7 +40,7 @@ export const Loader = ({
 
   return (
     <div
-      className={classNames(
+      className={classNames("wim-loader", 
         styles.root,
         styles[variant],
         styles[size],

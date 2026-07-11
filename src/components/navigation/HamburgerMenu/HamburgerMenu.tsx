@@ -44,7 +44,7 @@ export const HamburgerMenu = React.forwardRef<
       <button
         ref={ref}
         type="button"
-        className={classNames(
+        className={classNames("wim-hamburger-menu", 
           styles.root,
           styles[size],
           open && styles.open,

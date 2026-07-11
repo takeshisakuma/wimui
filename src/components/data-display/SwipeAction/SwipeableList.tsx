@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
+import classNames from "classnames";
 
 interface SwipeableListContextValue {
   openedId: string | null;
@@ -42,7 +43,7 @@ export const SwipeableList: React.FC<SwipeableListProps> = ({
 
   return (
     <SwipeableListContext.Provider value={{ openedId, reportOpen, reportClose }}>
-      <div className={className}>{children}</div>
+      <div className={classNames("wim-swipeable-list", className)}>{children}</div>
     </SwipeableListContext.Provider>
   );
 };

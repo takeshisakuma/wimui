@@ -17,7 +17,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
 
     return (
       <Component
-        className={classNames(styles.root, className)}
+        className={classNames("wim-label", styles.root, className)}
         htmlFor={htmlFor}
         ref={ref}
         {...props}
