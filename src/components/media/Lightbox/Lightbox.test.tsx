@@ -83,11 +83,11 @@ describe("Lightbox", () => {
 
   it("navigates with next/prev buttons and wraps around", () => {
     renderGallery({ defaultOpen: true });
-    fireEvent.click(screen.getByLabelText("lightbox.next"));
+    fireEvent.click(screen.getByLabelText("Next"));
     expect(screen.getByAltText("image-b")).toBeInTheDocument();
     // prev ×2 で先頭からループして末尾へ
-    fireEvent.click(screen.getByLabelText("lightbox.previous"));
-    fireEvent.click(screen.getByLabelText("lightbox.previous"));
+    fireEvent.click(screen.getByLabelText("Previous"));
+    fireEvent.click(screen.getByLabelText("Previous"));
     expect(screen.getByAltText("image-c")).toBeInTheDocument();
   });
 
@@ -108,11 +108,11 @@ describe("Lightbox", () => {
     const wrapper = () =>
       document.querySelector(`.${styles.mediaWrapper}`) as HTMLElement;
     expect(wrapper().style.transform).toBe("scale(1)");
-    fireEvent.click(screen.getByLabelText("lightbox.zoom_in"));
+    fireEvent.click(screen.getByLabelText("Zoom in"));
     expect(wrapper().style.transform).toBe("scale(2)");
-    expect(screen.getByLabelText("lightbox.zoom_out")).toBeInTheDocument();
+    expect(screen.getByLabelText("Zoom out")).toBeInTheDocument();
     // ナビゲーションでズームがリセットされる
-    fireEvent.click(screen.getByLabelText("lightbox.next"));
+    fireEvent.click(screen.getByLabelText("Next"));
     expect(wrapper().style.transform).toBe("scale(1)");
     expect(container).toBeInTheDocument();
   });
@@ -120,7 +120,7 @@ describe("Lightbox", () => {
   it("closes via the close button", async () => {
     const onOpenChange = vi.fn();
     renderGallery({ defaultOpen: true, onOpenChange });
-    fireEvent.click(screen.getByLabelText("lightbox.close"));
+    fireEvent.click(screen.getByLabelText("Close"));
     expect(onOpenChange).toHaveBeenCalledWith(false);
     await waitFor(() => {
       expect(screen.queryByAltText("image-a")).not.toBeInTheDocument();
@@ -130,7 +130,7 @@ describe("Lightbox", () => {
   it("respects controlled open state", () => {
     const onOpenChange = vi.fn();
     renderGallery({ open: true, onOpenChange });
-    fireEvent.click(screen.getByLabelText("lightbox.close"));
+    fireEvent.click(screen.getByLabelText("Close"));
     expect(onOpenChange).toHaveBeenCalledWith(false);
     // controlled なので親が open を変えるまで開いたまま
     expect(screen.getByAltText("image-a")).toBeInTheDocument();
@@ -138,11 +138,11 @@ describe("Lightbox", () => {
 
   it("shows counter, title and caption", () => {
     renderGallery({ defaultOpen: true });
-    expect(screen.getByText("lightbox.counter")).toBeInTheDocument();
+    expect(screen.getByText(/\d+ \/ \d+/)).toBeInTheDocument();
     expect(screen.getByText("Title A")).toBeInTheDocument();
     expect(screen.getByText("Caption A")).toBeInTheDocument();
     // caption のない画像へ移動すると footer が消える
-    fireEvent.click(screen.getByLabelText("lightbox.next"));
+    fireEvent.click(screen.getByLabelText("Next"));
     expect(screen.queryByText("Title A")).not.toBeInTheDocument();
   });
 
@@ -152,13 +152,13 @@ describe("Lightbox", () => {
       { showCounter: false, showNavigation: false, showCloseButton: false },
     );
     expect(screen.queryByText("lightbox.counter")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("lightbox.next")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("lightbox.close")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Next")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Close")).not.toBeInTheDocument();
   });
 
   it("hides navigation and counter for a single item", () => {
     renderGallery({ defaultOpen: true }, {}, [ITEMS[0]]);
-    expect(screen.queryByLabelText("lightbox.next")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Next")).not.toBeInTheDocument();
     expect(screen.queryByText("lightbox.counter")).not.toBeInTheDocument();
   });
 

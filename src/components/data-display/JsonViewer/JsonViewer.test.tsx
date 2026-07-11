@@ -23,7 +23,7 @@ beforeEach(() => {
 describe("JsonViewer", () => {
   it("renders correctly", () => {
     render(<JsonViewer data={{ key: "value" }} />);
-    expect(screen.getByText("jsonViewer.title")).toBeInTheDocument();
+    expect(screen.getByText("JSON Viewer")).toBeInTheDocument();
     expect(screen.getByText("key:")).toBeInTheDocument();
     expect(screen.getByText(/"value"/)).toBeInTheDocument();
   });
@@ -72,15 +72,15 @@ describe("JsonViewer", () => {
   it("copies JSON to clipboard", () => {
     const data = { a: 1 };
     render(<JsonViewer data={data} />);
-    fireEvent.click(screen.getByLabelText("jsonViewer.copy"));
+    fireEvent.click(screen.getByLabelText("Copy JSON"));
     expect(writeText).toHaveBeenCalledWith(JSON.stringify(data, null, 2));
   });
 
   it("hides toolbar and copy button when disabled", () => {
     const { rerender } = render(<JsonViewer data={{}} showToolbar={false} />);
-    expect(screen.queryByText("jsonViewer.title")).not.toBeInTheDocument();
+    expect(screen.queryByText("JSON Viewer")).not.toBeInTheDocument();
     rerender(<JsonViewer data={{}} showCopy={false} />);
-    expect(screen.queryByLabelText("jsonViewer.copy")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Copy JSON")).not.toBeInTheDocument();
   });
 
   it("resets internal state when the data prop changes", () => {
@@ -94,7 +94,7 @@ describe("JsonViewer", () => {
   describe("editable mode", () => {
     it("shows edit title", () => {
       render(<JsonViewer data={{}} editable />);
-      expect(screen.getByText("jsonViewer.edit")).toBeInTheDocument();
+      expect(screen.getByText("Edit JSON")).toBeInTheDocument();
     });
 
     it("edits a string value via input and Enter", () => {
@@ -173,7 +173,7 @@ describe("JsonViewer", () => {
     it("adds a key to an object", () => {
       const onChange = vi.fn();
       render(<JsonViewer data={{ a: 1 }} editable onChange={onChange} />);
-      fireEvent.click(screen.getAllByTitle("jsonViewer.addItem")[0]);
+      fireEvent.click(screen.getAllByTitle("Add item")[0]);
       expect(onChange).toHaveBeenCalledWith({ a: 1, new_key: "" });
       expect(screen.getByText("new_key:")).toBeInTheDocument();
     });
@@ -181,14 +181,14 @@ describe("JsonViewer", () => {
     it("appends an item to an array", () => {
       const onChange = vi.fn();
       render(<JsonViewer data={[1]} editable onChange={onChange} />);
-      fireEvent.click(screen.getAllByTitle("jsonViewer.addItem")[0]);
+      fireEvent.click(screen.getAllByTitle("Add item")[0]);
       expect(onChange).toHaveBeenCalledWith([1, ""]);
     });
 
     it("deletes a key from an object", () => {
       const onChange = vi.fn();
       render(<JsonViewer data={{ a: 1, b: 2 }} editable onChange={onChange} />);
-      fireEvent.click(screen.getAllByTitle("jsonViewer.deleteItem")[0]);
+      fireEvent.click(screen.getAllByTitle("Delete item")[0]);
       expect(onChange).toHaveBeenCalledWith({ b: 2 });
       expect(screen.queryByText("a:")).not.toBeInTheDocument();
     });
@@ -196,7 +196,7 @@ describe("JsonViewer", () => {
     it("deletes an item from an array", () => {
       const onChange = vi.fn();
       render(<JsonViewer data={[1, 2]} editable onChange={onChange} />);
-      fireEvent.click(screen.getAllByTitle("jsonViewer.deleteItem")[0]);
+      fireEvent.click(screen.getAllByTitle("Delete item")[0]);
       expect(onChange).toHaveBeenCalledWith([2]);
     });
 
@@ -204,7 +204,7 @@ describe("JsonViewer", () => {
       const onChange = vi.fn();
       render(<JsonViewer data={{ o: { x: 1 } }} editable expandDepth={2} onChange={onChange} />);
       // ネストの delete ボタンは後ろ側（x の行）
-      const buttons = screen.getAllByTitle("jsonViewer.deleteItem");
+      const buttons = screen.getAllByTitle("Delete item");
       fireEvent.click(buttons[buttons.length - 1]);
       expect(onChange).toHaveBeenCalledWith({ o: {} });
     });

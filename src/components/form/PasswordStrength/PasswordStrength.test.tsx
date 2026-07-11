@@ -12,15 +12,15 @@ vi.mock("react-i18next", async () => ({
 describe("PasswordStrength", () => {
   it("renders with a score and label", () => {
     render(<PasswordStrength score={0} />);
-    expect(screen.getByText("password_strength.very_weak")).toBeInTheDocument();
+    expect(screen.getByText("Very weak")).toBeInTheDocument();
   });
 
   it.each([
-    ["abc", "password_strength.very_weak"],
-    ["abcdefgh", "password_strength.weak"],
-    ["Abcdefgh", "password_strength.fair"],
-    ["Abcdefg1", "password_strength.strong"],
-    ["Abcdefg1!", "password_strength.very_strong"],
+    ["abc", "Very weak"],
+    ["abcdefgh", "Weak"],
+    ["Abcdefgh", "Fair"],
+    ["Abcdefg1", "Strong"],
+    ["Abcdefg1!", "Very strong"],
   ])("calculates level from password %s", (password, expected) => {
     render(<PasswordStrength password={password} />);
     expect(screen.getByText(expected)).toBeInTheDocument();
@@ -37,10 +37,10 @@ describe("PasswordStrength", () => {
   });
 
   it.each([
-    [1, "password_strength.weak"],
-    [2, "password_strength.fair"],
-    [3, "password_strength.strong"],
-    [4, "password_strength.very_strong"],
+    [1, "Weak"],
+    [2, "Fair"],
+    [3, "Strong"],
+    [4, "Very strong"],
   ] as const)("renders label for explicit score %i", (score, expected) => {
     render(<PasswordStrength score={score} />);
     expect(screen.getByText(expected)).toBeInTheDocument();
@@ -48,15 +48,15 @@ describe("PasswordStrength", () => {
 
   it("prefers explicit score over calculated level", () => {
     render(<PasswordStrength password="Abcdefg1!" score={1} />);
-    expect(screen.getByText("password_strength.weak")).toBeInTheDocument();
-    expect(screen.queryByText("password_strength.very_strong")).not.toBeInTheDocument();
+    expect(screen.getByText("Weak")).toBeInTheDocument();
+    expect(screen.queryByText("Very strong")).not.toBeInTheDocument();
   });
 
   it("uses a custom calculateLevel function", () => {
     const calculateLevel = vi.fn().mockReturnValue(4);
     render(<PasswordStrength password="abc" calculateLevel={calculateLevel} />);
     expect(calculateLevel).toHaveBeenCalledWith("abc");
-    expect(screen.getByText("password_strength.very_strong")).toBeInTheDocument();
+    expect(screen.getByText("Very strong")).toBeInTheDocument();
   });
 
   it("renders an empty label for an out-of-range score", () => {

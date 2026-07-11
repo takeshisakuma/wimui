@@ -32,7 +32,7 @@ describe("JsonDiffViewer", () => {
   it("fires onApply callback", () => {
     const onApply = vi.fn();
     render(<JsonDiffViewer before={before} after={after} onApply={onApply} />);
-    screen.getByText("code_diff_viewer.apply").click();
+    screen.getByText("Apply").click();
     expect(onApply).toHaveBeenCalledOnce();
   });
 

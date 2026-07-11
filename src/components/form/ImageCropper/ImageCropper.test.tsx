@@ -12,6 +12,6 @@ vi.mock("react-i18next", async () => ({
 describe("ImageCropper", () => {
   it("renders with default props", () => {
     render(<ImageCropper />);
-    expect(screen.getByText("image_cropper.no_image")).toBeInTheDocument();
+    expect(screen.getByText("No image selected")).toBeInTheDocument();
   });
 });

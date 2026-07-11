@@ -17,7 +17,7 @@ describe("AgentStatus", () => {
 
   it("renders the localized label by default", () => {
     render(<AgentStatus status="thinking" />);
-    expect(screen.getByText("agent_status.thinking")).toBeInTheDocument();
+    expect(screen.getByText("Thinking…")).toBeInTheDocument();
   });
 
   it("renders a custom message when provided", () => {
@@ -27,7 +27,7 @@ describe("AgentStatus", () => {
 
   it("hides label when showLabel is false", () => {
     render(<AgentStatus status="done" showLabel={false} />);
-    expect(screen.queryByText("agent_status.done")).not.toBeInTheDocument();
+    expect(screen.queryByText("Done")).not.toBeInTheDocument();
   });
 
   it("has role=status for live region", () => {

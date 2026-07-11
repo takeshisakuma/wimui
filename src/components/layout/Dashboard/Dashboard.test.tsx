@@ -41,19 +41,19 @@ describe("Dashboard", () => {
 
   it("shows edit toggle button by default", () => {
     render(<Dashboard widgets={sampleWidgets} />);
-    expect(screen.getByRole("button", { name: "dashboard_widget.enter_edit" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
   });
 
   it("hides edit toggle when showEditToggle is false", () => {
     render(<Dashboard widgets={sampleWidgets} showEditToggle={false} />);
-    expect(screen.queryByRole("button", { name: "dashboard_widget.enter_edit" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Edit" })).not.toBeInTheDocument();
   });
 
   it("enters edit mode when edit button is clicked", () => {
     render(<Dashboard widgets={sampleWidgets} onRemove={vi.fn()} />);
-    const editBtn = screen.getByRole("button", { name: "dashboard_widget.enter_edit" });
+    const editBtn = screen.getByRole("button", { name: "Edit" });
     fireEvent.click(editBtn);
-    const removeBtns = screen.getAllByRole("button", { name: /dashboard_widget\.remove_widget/i });
+    const removeBtns = screen.getAllByRole("button", { name: /^Remove /i });
     expect(removeBtns).toHaveLength(3);
   });
 
@@ -66,7 +66,7 @@ describe("Dashboard", () => {
         onRemove={onRemove}
       />,
     );
-    const removeBtns = screen.getAllByRole("button", { name: /dashboard_widget\.remove_widget/i });
+    const removeBtns = screen.getAllByRole("button", { name: /^Remove /i });
     fireEvent.click(removeBtns[0]);
     expect(onRemove).toHaveBeenCalledWith("w1");
   });
@@ -79,13 +79,13 @@ describe("Dashboard", () => {
         onAdd={vi.fn()}
       />,
     );
-    expect(screen.getByRole("button", { name: "dashboard_widget.add_widget" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add widget" })).toBeInTheDocument();
   });
 
   it("calls onAdd when add button is clicked", () => {
     const onAdd = vi.fn();
     render(<Dashboard widgets={sampleWidgets} editable onAdd={onAdd} />);
-    fireEvent.click(screen.getByRole("button", { name: "dashboard_widget.add_widget" }));
+    fireEvent.click(screen.getByRole("button", { name: "Add widget" }));
     expect(onAdd).toHaveBeenCalledTimes(1);
   });
 
@@ -111,7 +111,7 @@ describe("Dashboard", () => {
         onEditChange={onEditChange}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: "dashboard_widget.enter_edit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
     expect(onEditChange).toHaveBeenCalledTimes(1);
     expect(onEditChange).toHaveBeenCalledWith(true);
   });

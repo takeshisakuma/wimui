@@ -36,7 +36,7 @@ describe("InlineEdit", () => {
     await user.clear(input);
     await user.type(input, "Updated");
     
-    await user.click(screen.getByLabelText("action.save"));
+    await user.click(screen.getByLabelText("Save"));
     expect(handleSave).toHaveBeenCalledWith("Updated");
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(screen.getByText("Updated")).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("InlineEdit", () => {
     await user.clear(input);
     await user.type(input, "Updated");
     
-    await user.click(screen.getByLabelText("action.cancel"));
+    await user.click(screen.getByLabelText("Cancel"));
     expect(handleCancel).toHaveBeenCalled();
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(screen.getByText("Initial")).toBeInTheDocument();
@@ -145,11 +145,11 @@ describe("InlineEdit", () => {
       <InlineEdit defaultValue="Text" disabled onSave={handleSave} onCancel={handleCancel} />
     );
 
-    await user.click(screen.getByLabelText("action.save"));
+    await user.click(screen.getByLabelText("Save"));
     expect(handleSave).not.toHaveBeenCalled();
     expect(screen.getByRole("textbox")).toBeInTheDocument();
 
-    await user.click(screen.getByLabelText("action.cancel"));
+    await user.click(screen.getByLabelText("Cancel"));
     expect(handleCancel).not.toHaveBeenCalled();
     expect(screen.getByRole("textbox")).toBeInTheDocument();
   });
@@ -178,7 +178,7 @@ describe("InlineEdit", () => {
     expect(input).toHaveValue("Fixed");
     expect(handleChange).toHaveBeenCalledWith("FixedX");
 
-    await user.click(screen.getByLabelText("action.save"));
+    await user.click(screen.getByLabelText("Save"));
     expect(handleSave).toHaveBeenCalledWith("Fixed");
     expect(screen.getByText("Fixed")).toBeInTheDocument();
   });

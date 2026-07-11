@@ -14,13 +14,13 @@ describe("HamburgerMenu", () => {
   it("renders correctly", () => {
     render(<HamburgerMenu />);
     expect(
-      screen.getByRole("button", { name: "a11y.open_menu" }),
+      screen.getByRole("button", { name: "Open menu" }),
     ).toBeInTheDocument();
   });
 
   it("toggles state class", () => {
     render(<HamburgerMenu open />);
-    const button = screen.getByRole("button", { name: "a11y.close_menu" });
+    const button = screen.getByRole("button", { name: "Close menu" });
     expect(button).toHaveClass(styles.open);
   });
 

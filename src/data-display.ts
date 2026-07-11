@@ -6,7 +6,6 @@ export * from "./components/data-display/Calendar/Calendar";
 export * from "./components/data-display/Calendar/RangeCalendar";
 export * from "./components/data-display/Card/Card";
 export * from "./components/data-display/Carousel/Carousel";
-export * from "./components/data-display/ChatUI/ChatUI";
 export * from "./components/data-display/Chip/Chip";
 export * from "./components/data-display/DataGrid/DataGrid";
 export * from "./components/data-display/DescriptionList/DescriptionList";

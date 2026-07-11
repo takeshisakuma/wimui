@@ -27,8 +27,11 @@ const update = process.argv.includes("--update");
 
 /**
  * Derive source entry points from package.json "exports".
- * Each subpath whose `types` points at ./dist/src/<name>.d.ts maps back to the
+ * Each subpath whose `types` points at ./dist/<name>.d.ts maps back to the
  * source file src/<name>.ts, so new subpaths are picked up automatically.
+ * Per-component wildcard subpaths (the "./form/[star]" style, whose types glob
+ * points under ./dist/components/) derive a non-existent star source path and
+ * are skipped — the category barrels they belong to already cover their symbols.
  */
 function resolveEntryPoints() {
   const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
@@ -36,7 +39,7 @@ function resolveEntryPoints() {
   for (const [subpath, value] of Object.entries(pkg.exports ?? {})) {
     const types = typeof value === "object" && value ? value.types : undefined;
     if (typeof types !== "string") continue; // e.g. "./styles.css", "./locales/*"
-    const m = types.match(/^\.\/dist\/src\/(.+)\.d\.ts$/);
+    const m = types.match(/^\.\/dist\/(.+)\.d\.ts$/);
     if (!m) continue;
     const srcFile = path.join(root, "src", `${m[1]}.ts`);
     if (fs.existsSync(srcFile)) entries[subpath] = srcFile;

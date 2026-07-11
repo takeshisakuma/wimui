@@ -49,7 +49,7 @@ describe("Reaction", () => {
     render(
       <Reaction reactions={mockReactions} showAddButton onAdd={onAdd} />,
     );
-    const addButton = screen.getByLabelText("reaction.add_reaction");
+    const addButton = screen.getByLabelText("Add reaction");
     expect(addButton).toBeInTheDocument();
   });
 

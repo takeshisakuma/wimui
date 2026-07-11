@@ -23,7 +23,7 @@ describe("PromptInput", () => {
   it("calls onSubmit when the send button is clicked", () => {
     const onSubmit = vi.fn();
     render(<PromptInput defaultValue="Hello" onSubmit={onSubmit} />);
-    fireEvent.click(screen.getByLabelText("prompt_input.send_label"));
+    fireEvent.click(screen.getByLabelText("Send"));
     expect(onSubmit).toHaveBeenCalledWith("Hello");
   });
 
@@ -43,7 +43,7 @@ describe("PromptInput", () => {
 
   it("disables send button when input is empty", () => {
     render(<PromptInput defaultValue="" />);
-    expect(screen.getByLabelText("prompt_input.send_label")).toBeDisabled();
+    expect(screen.getByLabelText("Send")).toBeDisabled();
   });
 
   it("shows char count when maxLength is set", () => {
@@ -58,7 +58,7 @@ describe("PromptInput", () => {
 
   it("shows attachment button when showAttach is true", () => {
     render(<PromptInput showAttach />);
-    expect(screen.getByLabelText("prompt_input.attach_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Attach file")).toBeInTheDocument();
   });
 
   it("disables all interactions when disabled", () => {

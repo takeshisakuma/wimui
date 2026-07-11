@@ -20,23 +20,23 @@ describe("Autosave", () => {
 
   it("renders saving state", () => {
     render(<Autosave status="saving" />);
-    expect(screen.getByText("autosave.saving")).toBeInTheDocument();
+    expect(screen.getByText("Saving...")).toBeInTheDocument();
   });
 
   it("renders saved state", () => {
     render(<Autosave status="saved" />);
-    expect(screen.getByText("autosave.saved")).toBeInTheDocument();
+    expect(screen.getByText("Saved")).toBeInTheDocument();
   });
 
   it("renders saved state with time", () => {
     const date = new Date("2024-01-01T12:30:00");
     render(<Autosave status="saved" savedAt={date} />);
-    expect(screen.getByText(/autosave.saved_at/)).toBeInTheDocument();
+    expect(screen.getByText(/Saved at/)).toBeInTheDocument();
   });
 
   it("renders error state with default message", () => {
     render(<Autosave status="error" />);
-    expect(screen.getByText("autosave.error")).toBeInTheDocument();
+    expect(screen.getByText("Failed to save")).toBeInTheDocument();
   });
 
   it("renders error state with custom message", () => {

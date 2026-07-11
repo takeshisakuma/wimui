@@ -12,38 +12,38 @@ vi.mock("react-i18next", async () => ({
 describe("AIResponseFeedback", () => {
   it("renders positive and negative buttons", () => {
     render(<AIResponseFeedback />);
-    expect(screen.getByLabelText("ai_feedback.positive_label")).toBeInTheDocument();
-    expect(screen.getByLabelText("ai_feedback.negative_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Helpful")).toBeInTheDocument();
+    expect(screen.getByLabelText("Not helpful")).toBeInTheDocument();
   });
 
   it("calls onFeedback with 'positive' when positive button clicked", () => {
     const onFeedback = vi.fn();
     render(<AIResponseFeedback onFeedback={onFeedback} />);
-    fireEvent.click(screen.getByLabelText("ai_feedback.positive_label"));
+    fireEvent.click(screen.getByLabelText("Helpful"));
     expect(onFeedback).toHaveBeenCalledWith("positive");
   });
 
   it("calls onFeedback with null when same button clicked again (toggle off)", () => {
     const onFeedback = vi.fn();
     render(<AIResponseFeedback defaultFeedback="positive" onFeedback={onFeedback} />);
-    fireEvent.click(screen.getByLabelText("ai_feedback.positive_label"));
+    fireEvent.click(screen.getByLabelText("Helpful"));
     expect(onFeedback).toHaveBeenCalledWith(null);
   });
 
   it("does not render regenerate button by default", () => {
     render(<AIResponseFeedback />);
-    expect(screen.queryByLabelText("ai_feedback.regenerate_label")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Regenerate response")).not.toBeInTheDocument();
   });
 
   it("renders regenerate button when showRegenerate is true", () => {
     render(<AIResponseFeedback showRegenerate />);
-    expect(screen.getByLabelText("ai_feedback.regenerate_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Regenerate response")).toBeInTheDocument();
   });
 
   it("calls onRegenerate when regenerate button clicked", () => {
     const onRegenerate = vi.fn();
     render(<AIResponseFeedback showRegenerate onRegenerate={onRegenerate} />);
-    fireEvent.click(screen.getByLabelText("ai_feedback.regenerate_label"));
+    fireEvent.click(screen.getByLabelText("Regenerate response"));
     expect(onRegenerate).toHaveBeenCalled();
   });
 

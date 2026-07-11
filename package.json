@@ -6,7 +6,7 @@
   "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -19,116 +19,181 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./layout": {
-      "types": "./dist/src/layout.d.ts",
+      "types": "./dist/layout.d.ts",
       "import": "./dist/layout.js",
       "require": "./dist/layout.cjs"
     },
     "./form": {
-      "types": "./dist/src/form.d.ts",
+      "types": "./dist/form.d.ts",
       "import": "./dist/form.js",
       "require": "./dist/form.cjs"
     },
     "./feedback": {
-      "types": "./dist/src/feedback.d.ts",
+      "types": "./dist/feedback.d.ts",
       "import": "./dist/feedback.js",
       "require": "./dist/feedback.cjs"
     },
     "./navigation": {
-      "types": "./dist/src/navigation.d.ts",
+      "types": "./dist/navigation.d.ts",
       "import": "./dist/navigation.js",
       "require": "./dist/navigation.cjs"
     },
     "./data-display": {
-      "types": "./dist/src/data-display.d.ts",
+      "types": "./dist/data-display.d.ts",
       "import": "./dist/data-display.js",
       "require": "./dist/data-display.cjs"
     },
     "./overlay": {
-      "types": "./dist/src/overlay.d.ts",
+      "types": "./dist/overlay.d.ts",
       "import": "./dist/overlay.js",
       "require": "./dist/overlay.cjs"
     },
     "./typography": {
-      "types": "./dist/src/typography.d.ts",
+      "types": "./dist/typography.d.ts",
       "import": "./dist/typography.js",
       "require": "./dist/typography.cjs"
     },
     "./media": {
-      "types": "./dist/src/media.d.ts",
+      "types": "./dist/media.d.ts",
       "import": "./dist/media.js",
       "require": "./dist/media.cjs"
     },
     "./charts": {
-      "types": "./dist/src/charts.d.ts",
+      "types": "./dist/charts.d.ts",
       "import": "./dist/charts.js",
       "require": "./dist/charts.cjs"
     },
     "./ai": {
-      "types": "./dist/src/ai.d.ts",
+      "types": "./dist/ai.d.ts",
       "import": "./dist/ai.js",
       "require": "./dist/ai.cjs"
     },
+    "./layout/*": {
+      "types": "./dist/components/layout/*/*.d.ts",
+      "import": "./dist/components/layout/*/*.js",
+      "require": "./dist/components/layout/*/*.cjs"
+    },
+    "./form/*": {
+      "types": "./dist/components/form/*/*.d.ts",
+      "import": "./dist/components/form/*/*.js",
+      "require": "./dist/components/form/*/*.cjs"
+    },
+    "./feedback/*": {
+      "types": "./dist/components/feedback/*/*.d.ts",
+      "import": "./dist/components/feedback/*/*.js",
+      "require": "./dist/components/feedback/*/*.cjs"
+    },
+    "./navigation/*": {
+      "types": "./dist/components/navigation/*/*.d.ts",
+      "import": "./dist/components/navigation/*/*.js",
+      "require": "./dist/components/navigation/*/*.cjs"
+    },
+    "./data-display/*": {
+      "types": "./dist/components/data-display/*/*.d.ts",
+      "import": "./dist/components/data-display/*/*.js",
+      "require": "./dist/components/data-display/*/*.cjs"
+    },
+    "./overlay/*": {
+      "types": "./dist/components/overlay/*/*.d.ts",
+      "import": "./dist/components/overlay/*/*.js",
+      "require": "./dist/components/overlay/*/*.cjs"
+    },
+    "./typography/*": {
+      "types": "./dist/components/typography/*/*.d.ts",
+      "import": "./dist/components/typography/*/*.js",
+      "require": "./dist/components/typography/*/*.cjs"
+    },
+    "./media/*": {
+      "types": "./dist/components/media/*/*.d.ts",
+      "import": "./dist/components/media/*/*.js",
+      "require": "./dist/components/media/*/*.cjs"
+    },
+    "./charts/*": {
+      "types": "./dist/components/charts/*/*.d.ts",
+      "import": "./dist/components/charts/*/*.js",
+      "require": "./dist/components/charts/*/*.cjs"
+    },
+    "./ai/*": {
+      "types": "./dist/components/ai/*/*.d.ts",
+      "import": "./dist/components/ai/*/*.js",
+      "require": "./dist/components/ai/*/*.cjs"
+    },
     "./tokens": {
-      "types": "./dist/src/tokens.d.ts",
+      "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.js",
       "require": "./dist/tokens.cjs"
     },
     "./icons": {
-      "types": "./dist/src/icons.d.ts",
+      "types": "./dist/icons.d.ts",
       "import": "./dist/icons.js",
       "require": "./dist/icons.cjs"
     },
-    "./styles.css": "./dist/wimui.css",
+    "./styles.css": "./dist/styles.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./reset.css": "./dist/reset.css",
     "./locales/*": "./dist/locales/*"
   },
   "size-limit": [
     {
       "name": "ESM library total (gzip)",
-      "path": [
-        "dist/src/**/*.js",
-        "dist/_virtual/**/*.js",
-        "dist/node_modules/**/*.js"
-      ],
+      "path": ["dist/**/*.js", "!dist/wimui.umd.js"],
       "gzip": true,
-      "limit": "330 kB"
+      "limit": "380 kB"
     },
     {
       "name": "Bundled third-party code (gzip)",
       "path": "dist/node_modules/**/*.js",
       "gzip": true,
-      "limit": "31 kB"
+      "limit": "5 kB"
     },
     {
       "name": "form components (gzip)",
-      "path": "dist/src/components/form/**/*.js",
+      "path": "dist/components/form/**/*.js",
       "gzip": true,
-      "limit": "77 kB"
+      "limit": "88 kB"
     },
     {
       "name": "charts components (gzip)",
-      "path": "dist/src/components/charts/**/*.js",
+      "path": "dist/components/charts/**/*.js",
       "gzip": true,
-      "limit": "12.5 kB"
+      "limit": "15 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "140 kB"
+      "limit": "145 kB"
+    },
+    {
+      "name": "styles.css — components (gzip)",
+      "path": "dist/styles.css",
+      "gzip": true,
+      "limit": "70 kB"
+    },
+    {
+      "name": "tokens.css — :root tokens (gzip)",
+      "path": "dist/tokens.css",
+      "gzip": true,
+      "limit": "6 kB"
+    },
+    {
+      "name": "reset.css — reset/base (gzip)",
+      "path": "dist/reset.css",
+      "gzip": true,
+      "limit": "4 kB"
     }
   ],
   "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "dev": "npm run generate:icons && npm run i18n:bundle && vite",
-    "build": "npm run generate:icons && npm run i18n:bundle && vite build && vite build --mode umd && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
+    "build": "npm run generate:icons && npm run i18n:bundle && vite build && vite build --mode umd && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
     "generate:icons": "node scripts/generate-icons.js",
     "size": "size-limit",
     "test": "vitest run",
@@ -274,12 +339,10 @@
     "@fullcalendar/timegrid": ">=6.0.0",
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
-    "i18next": ">=23.0.0",
     "music-metadata": ">=11.0.0",
     "qrcode.react": ">=4.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "react-i18next": ">=14.0.0",
     "react-markdown": ">=10.0.0",
     "recharts": ">=3.0.0",
     "remark-gfm": ">=4.0.0"

@@ -25,17 +25,27 @@ npm install /path/to/wimui-1.0.0.tgz
 
 ## クイックスタート
 
-アプリのエントリポイントでスタイルを一度だけ読み込みます。
+アプリのエントリポイントでスタイルを一度だけ読み込みます。CSS はトークン・リセット・
+コンポーネントの 3 つに分割されており、目的に応じて組み合わせられます。
 
 ```tsx
-import "wimui/styles.css"; // リセット・デザイントークン・全コンポーネントのスタイル
+import "wimui/tokens.css"; // 必須: デザイントークン（:root の --wim-* 変数）
+import "wimui/styles.css"; // 必須: 全コンポーネントのスタイル
+import "wimui/reset.css";  // 任意: 意見の強いリセット/base 要素スタイル
 
 import { Button } from "wimui";
 
 export const App = () => <Button>保存</Button>;
 ```
 
-これだけで動作します。i18next の初期化やテーマ設定は不要です。
+- `tokens.css` と `styles.css` は必須です（コンポーネントは `var(--wim-*)` を参照するため）。
+- `reset.css` は任意です。`button` / `a` / `ul` / `table` などをリセットする意見の強い
+  グローバルスタイルを含むため、アプリ側の既存スタイルと衝突する場合は省略できます。
+
+i18next の初期化やテーマ設定は不要です。
+
+> `<script>` タグで読み込む UMD 版（`dist/wimui.umd.js` + `dist/wimui.umd.css`）は、
+> 上記 3 つを 1 ファイルに同梱しています。
 
 ## アイコン
 
@@ -64,28 +74,20 @@ import "wimui/icons"; // 全アイコン（約 30KB minify / 5KB gzip）を登�
 
 ## 多言語化（i18n）
 
-セットアップなしで英語表示で動作します（コンポーネントが使用する翻訳キーのみを内蔵）。表示言語を切り替えるには:
+セットアップなしで英語表示で動作します（コンポーネントが使用する翻訳キーのみを en / ja / pt で内蔵）。**i18next / react-i18next などの依存は不要**です。表示言語を切り替えるには:
 
 ```tsx
-import { wimuiI18n } from "wimui";
+import { setWimLocale, getWimLocale } from "wimui";
 
-wimuiI18n.changeLanguage("ja"); // "en" | "ja" | "pt"
+setWimLocale("ja"); // "en" | "ja" | "pt"
+getWimLocale();     // 現在のロケール（例: "ja"）
 ```
 
-アプリ自体が i18next を使用している場合（`I18nextProvider` または `initReactI18next` で初期化済み）、wimui のコンポーネントは自動的にそのインスタンスを優先します。その場合は wimui の翻訳リソースをアプリ側のインスタンスに登録してください。
+アプリ自体が i18next などで言語を管理している場合は、言語切替時に `setWimLocale` を呼んで同期してください。wimui は特定の i18n ライブラリに依存しないため、任意の仕組みと組み合わせられます。
 
 ```ts
-import common from "wimui/locales/ja/common.json";
-import components from "wimui/locales/ja/components.json";
-import form from "wimui/locales/ja/form.json";
-
-i18n.init({
-  // ...アプリの設定...
-  fallbackNS: ["common", "components", "form"],
-});
-i18n.addResourceBundle("ja", "common", common, true);
-i18n.addResourceBundle("ja", "components", components, true);
-i18n.addResourceBundle("ja", "form", form, true);
+// 例: アプリの i18next と同期する
+i18n.on("languageChanged", (lng) => setWimLocale(lng));
 ```
 
 ## ダークモード

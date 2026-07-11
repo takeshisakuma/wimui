@@ -21,8 +21,15 @@ export type {
   EventChangeArg,
   EventApi,
 };
-import allLocales from "@fullcalendar/core/locales-all";
+// 本ライブラリの対応言語（en / ja / pt-BR）のロケールのみ登録する。en は FullCalendar
+// のビルトイン既定のため import 不要。全ロケール（@fullcalendar/core/locales-all は
+// ~100 言語で gzip 約 28KB）は同梱しない。
+import jaLocale from "@fullcalendar/core/locales/ja";
+import ptLocale from "@fullcalendar/core/locales/pt";
+import ptBrLocale from "@fullcalendar/core/locales/pt-br";
 import styles from "./schedule-view.module.scss";
+
+const locales = [jaLocale, ptLocale, ptBrLocale];
 
 export type ScheduleViewEvent = EventInput;
 
@@ -123,7 +130,7 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
           slotMaxTime={slotMaxTime}
           slotDuration={slotDuration}
           locale={locale}
-          locales={allLocales}
+          locales={locales}
           eventClick={onEventClick}
           eventDrop={onEventDrop}
           eventChange={onEventChange}

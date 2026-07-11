@@ -46,13 +46,13 @@ describe("PullToRefresh", () => {
     const { onRefresh, container } = renderPtr({ threshold: 60 });
     touchStart(container, 0);
     touchMove(200); // 200 * 0.4 = 80 > 60
-    expect(screen.getByText("pullToRefresh.release")).toBeInTheDocument();
+    expect(screen.getByText("Release to refresh")).toBeInTheDocument();
     touchEnd();
-    expect(screen.getByText("pullToRefresh.loading")).toBeInTheDocument();
+    expect(screen.getByText("Refreshing...")).toBeInTheDocument();
     expect(onRefresh).toHaveBeenCalledTimes(1);
     // onRefresh 解決 + 50ms 後に idle へ戻る
     await waitFor(() => {
-      expect(screen.getByText("pullToRefresh.pull")).toBeInTheDocument();
+      expect(screen.getByText("Pull to refresh")).toBeInTheDocument();
     });
   });
 
@@ -60,7 +60,7 @@ describe("PullToRefresh", () => {
     const { onRefresh, container } = renderPtr({ threshold: 60 });
     touchStart(container, 0);
     touchMove(100); // 100 * 0.4 = 40 < 60
-    expect(screen.getByText("pullToRefresh.pull")).toBeInTheDocument();
+    expect(screen.getByText("Pull to refresh")).toBeInTheDocument();
     touchEnd();
     expect(onRefresh).not.toHaveBeenCalled();
   });
@@ -92,7 +92,7 @@ describe("PullToRefresh", () => {
 
   it("shows the loading state when controlled refreshing is true", () => {
     const { onRefresh, container } = renderPtr({ refreshing: true, threshold: 60 });
-    expect(screen.getByText("pullToRefresh.loading")).toBeInTheDocument();
+    expect(screen.getByText("Refreshing...")).toBeInTheDocument();
     const indicator = container.firstChild as HTMLElement;
     expect(indicator.style.height).toBe("60px");
     // refreshing 中はプル開始しない
@@ -106,7 +106,7 @@ describe("PullToRefresh", () => {
     const { onRefresh, container } = renderPtr({ threshold: 60 });
     fireEvent.mouseDown(container, { clientY: 0 });
     fireEvent.mouseMove(window, { clientY: 200 });
-    expect(screen.getByText("pullToRefresh.release")).toBeInTheDocument();
+    expect(screen.getByText("Release to refresh")).toBeInTheDocument();
     fireEvent.mouseUp(window);
     await waitFor(() => {
       expect(onRefresh).toHaveBeenCalledTimes(1);

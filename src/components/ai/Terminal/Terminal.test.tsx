@@ -36,18 +36,18 @@ describe("Terminal", () => {
 
   it("shows copy button by default", () => {
     render(<Terminal lines={lines} />);
-    expect(screen.getByLabelText("terminal.copy_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Copy output")).toBeInTheDocument();
   });
 
   it("hides copy button when showCopy is false", () => {
     render(<Terminal lines={lines} showCopy={false} />);
-    expect(screen.queryByLabelText("terminal.copy_label")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Copy output")).not.toBeInTheDocument();
   });
 
   it("shows clear button when onClear is provided", () => {
     const onClear = vi.fn();
     render(<Terminal lines={lines} onClear={onClear} />);
-    const btn = screen.getByLabelText("terminal.clear_label");
+    const btn = screen.getByLabelText("Clear");
     expect(btn).toBeInTheDocument();
     fireEvent.click(btn);
     expect(onClear).toHaveBeenCalledOnce();

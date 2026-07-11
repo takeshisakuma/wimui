@@ -83,65 +83,17 @@ if (isJsdom) {
   window.cancelAnimationFrame = (id) => clearTimeout(id);
 }
 
-// Mock react-i18next
-vi.mock("react-i18next", () => {
-  const React = require("react");
-  const fs = require("node:fs");
-  const path = require("node:path");
-  const loadJSON = (filePath: string) => {
-    try {
-      const fullPath = path.join(process.cwd(), filePath);
-      const content = fs.readFileSync(fullPath, "utf8");
-      return JSON.parse(content);
-    } catch (e) {
-      return {};
-    }
-  };
-  // Recursively flatten nested JSON into dot-notation keys
-  const flatten = (obj: Record<string, unknown>, prefix = ""): Record<string, string> => {
-    return Object.entries(obj).reduce((acc, [k, v]) => {
-      const key = prefix ? `${prefix}.${k}` : k;
-      if (v !== null && typeof v === "object" && !Array.isArray(v)) {
-        Object.assign(acc, flatten(v as Record<string, unknown>, key));
-      } else {
-        acc[key] = String(v);
-      }
-      return acc;
-    }, {} as Record<string, string>);
-  };
-  const commonData = loadJSON("public/locales/en/common.json");
-  const componentsData = loadJSON("public/locales/en/components.json");
-  const formData = loadJSON("public/locales/en/form.json");
-  const translations = {
-    ...flatten(commonData),
-    ...flatten(componentsData),
-    ...flatten(formData),
-  };
-
+// wimui コンポーネントは内蔵 i18n フック（useWimTranslation, i18next 非依存）を使う。
+// テストでは本物の解決ロジック（wimTranslate）へ委譲し、本番と同一の文言を検証する。
+vi.mock("@/i18n/useWimTranslation", async () => {
+  const actual = await vi.importActual<typeof import("./src/i18n/instance")>(
+    "./src/i18n/instance",
+  );
   return {
-    useTranslation: () => {
-      return {
-        t: (key: string, options?: Record<string, string>) => {
-          let translation = translations[key] || key;
-          if (options && typeof translation === "string") {
-            Object.keys(options).forEach((k) => {
-              translation = translation.replace(`{{${k}}}`, options[k]);
-            });
-          }
-          return translation;
-        },
-        i18n: {
-          changeLanguage: () => new Promise(() => {}),
-        },
-      };
-    },
-    initReactI18next: {
-      type: "3rdParty",
-      init: () => {},
-    },
-    // useWimTranslation（内蔵 i18next フォールバック）が参照する API。
-    // テストでは上記モックの t が常に使われるよう、外部インスタンスなしを返す
-    I18nContext: React.createContext(null),
-    getI18n: () => undefined,
+    useWimTranslation: (ns?: string | readonly string[]) => ({
+      t: (key: string, options?: Record<string, unknown>) =>
+        actual.wimTranslate(ns, key, options),
+      i18n: { language: "en", changeLanguage: () => {} },
+    }),
   };
 });

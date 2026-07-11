@@ -2,13 +2,15 @@ import type { Preview } from "@storybook/react";
 import { addons } from "storybook/internal/preview-api";
 
 import i18n from "./i18n";
+// wimui コンポーネントは react-i18next に依存せず内蔵ストア（setWimLocale）で言語を切り替える。
+// Storybook のツールバー言語切替を内蔵ストアへ橋渡しし、docs 上でも言語追従させる。
+import { setWimLocale } from "../src/i18n/instance";
 // 文字列ベースの icon/name API を Storybook 全体で有効化（全アイコン登録）
 import "../src/icons";
-import "../src/layers.scss";
-import "../src/reset.scss";
-import "../src/base.scss";
-import "../src/utilities.scss";
-import "../src/lang.scss";
+// 配布と同じ分割エントリを読み込む（tokens = :root トークン, reset = リセット/base）。
+// base.scss 単体はトークンを出力しないため、必ず tokens.entry を併せて読み込むこと。
+import "../src/styles/tokens.entry.scss";
+import "../src/styles/reset.entry.scss";
 import "./docs-common.scss";
 import "./docs-dark-mode.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
@@ -44,11 +46,15 @@ darkMQ?.addEventListener("change", (e) => {
 // ─────────────────────────────────────────────────
 const GLOBALS_UPDATED = "globalsUpdated";
 
-/** html と body の lang 属性を同時更新 */
+/** html と body の lang 属性を同時更新し、wimui 内蔵ストアの言語も同期する */
 const applyLang = (lang: string): void => {
   document.documentElement.lang = lang;
   document.body.lang = lang;
+  setWimLocale(lang);
 };
+
+// 初期言語を内蔵ストアへ反映（languageChanged は変更時のみ発火するため）
+setWimLocale(i18n.language ?? "en");
 
 // ① i18n の言語変更イベントを購読（モジュールレベル = 常に有効）
 //    T.tsx や他のコードが i18n.changeLanguage() を呼んだ際にも確実に反映される

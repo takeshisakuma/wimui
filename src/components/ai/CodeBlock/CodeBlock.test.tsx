@@ -30,12 +30,12 @@ describe("CodeBlock", () => {
 
   it("shows copy button by default", () => {
     render(<CodeBlock code={sampleCode} />);
-    expect(screen.getByLabelText("code_block.copy_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Copy code")).toBeInTheDocument();
   });
 
   it("hides copy button when showCopy is false", () => {
     render(<CodeBlock code={sampleCode} showCopy={false} />);
-    expect(screen.queryByLabelText("code_block.copy_label")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Copy code")).not.toBeInTheDocument();
   });
 
   it("renders line numbers when showLineNumbers is true", () => {
@@ -48,12 +48,12 @@ describe("CodeBlock", () => {
   it("renders expand/collapse button when maxLines is exceeded", () => {
     const longCode = Array.from({ length: 20 }, (_, i) => `line ${i + 1}`).join("\n");
     render(<CodeBlock code={longCode} maxLines={5} />);
-    expect(screen.getByLabelText("code_block.expand_label")).toBeInTheDocument();
+    expect(screen.getByLabelText("Expand")).toBeInTheDocument();
   });
 
   it("does not render expand button when lines are within maxLines", () => {
     render(<CodeBlock code="short\ncode" maxLines={10} />);
-    expect(screen.queryByLabelText("code_block.expand_label")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Expand")).not.toBeInTheDocument();
   });
 
   it("calls clipboard API on copy click", async () => {
@@ -63,7 +63,7 @@ describe("CodeBlock", () => {
       writable: true,
     });
     render(<CodeBlock code={sampleCode} />);
-    fireEvent.click(screen.getByLabelText("code_block.copy_label"));
+    fireEvent.click(screen.getByLabelText("Copy code"));
     await waitFor(() => expect(writeText).toHaveBeenCalledWith(sampleCode));
   });
 });

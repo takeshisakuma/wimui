@@ -11,3 +11,4 @@ export * from "./components/ai/VoiceVisualizer/VoiceVisualizer";
 export * from "./components/ai/ModelSelector/ModelSelector";
 export * from "./components/ai/ThreadList/ThreadList";
 export * from "./components/ai/UsageMeter/UsageMeter";
+export * from "./components/ai/ChatUI/ChatUI";

@@ -15,7 +15,7 @@ import {
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ChatContainer> = {
-  title: "Components/Data Display/ChatUI",
+  title: "Components/AI/ChatUI",
   component: ChatContainer,
   parameters: {
     layout: "fullscreen",

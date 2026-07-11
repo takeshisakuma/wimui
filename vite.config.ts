@@ -36,6 +36,12 @@ function useClientBanner(): Plugin {
 export default defineConfig(({ mode }) => {
   const isUMD = mode === "umd";
 
+  // 抽出 CSS（cssCodeSplit=false のため 1 ファイル）を styles.css に固定する。
+  // es/cjs 出力で同一の関数参照を共有しないと rolldown が
+  // 「assetFileNames isn't equal for every output」と警告するため定数化する。
+  const cssStylesAssetName = (asset: { names?: string[] }) =>
+    asset.names?.some((n) => n.endsWith(".css")) ? "styles[extname]" : "[name][extname]";
+
   return {
     plugins: [
       react(),
@@ -70,10 +76,11 @@ export default defineConfig(({ mode }) => {
         dts({
           include: ["src/**/*.ts", "src/**/*.tsx"],
           exclude: ["**/*.stories.*", "**/*.test.*"],
-          // d.ts は dist/src/ 配下に出力される（dist には node_modules / _virtual も
-          // 含まれるため共通ルートがプロジェクトルートになる）。entryRoot 指定は
-          // この環境（unplugin-dts + rolldown-vite）では効かないため、package.json の
-          // types 側を ./dist/src/*.d.ts に合わせている
+          // d.ts は JS と同じレイアウトで dist/ 直下に出力される:
+          //   エントリ型   → dist/index.d.ts, dist/form.d.ts, ...
+          //   個別型       → dist/components/<category>/<Name>/<Name>.d.ts（JS と co-located）
+          // package.json の types / exports.*.types はこのパスに合わせている
+          // （per-component サブパスの types も dist/components/... を参照）。
           insertTypesEntry: true,
         }),
     ].filter(Boolean),
@@ -121,8 +128,6 @@ export default defineConfig(({ mode }) => {
           "react",
           "react-dom",
           "react/jsx-runtime",
-          "i18next",
-          "react-i18next",
           "music-metadata",
           "classnames",
           "@floating-ui/react",
@@ -141,12 +146,15 @@ export default defineConfig(({ mode }) => {
         ],
         output: isUMD
           ? {
+              // UMD の CSS は wimui.umd.css として出力（非 UMD の styles.css と衝突させない）。
+              assetFileNames: (asset) =>
+                asset.names?.some((n) => n.endsWith(".css"))
+                  ? "wimui.umd.css"
+                  : "[name][extname]",
               globals: {
                 react: "React",
                 "react-dom": "ReactDOM",
                 "react/jsx-runtime": "jsxRuntime",
-                i18next: "i18next",
-                "react-i18next": "reactI18next",
                 recharts: "Recharts",
                 "react-markdown": "ReactMarkdown",
                 "remark-gfm": "remarkGfm",
@@ -169,12 +177,16 @@ export default defineConfig(({ mode }) => {
                 preserveModules: true,
                 preserveModulesRoot: "src",
                 entryFileNames: "[name].js",
+                // 抽出 CSS はコンポーネント専用として styles.css に固定する（トークン/
+                // リセットは index.ts から除外済みのため、この CSS はコンポーネントのみ）。
+                assetFileNames: cssStylesAssetName,
               },
               {
                 format: "cjs",
                 preserveModules: true,
                 preserveModulesRoot: "src",
                 entryFileNames: "[name].cjs",
+                assetFileNames: cssStylesAssetName,
               },
             ],
       },
