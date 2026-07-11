@@ -179,7 +179,7 @@ export const WithClickHandler: Story = {
         label: t("story.ganttchart_task_development"),
         startDate: new Date(2026, 2, 8),
         endDate: new Date(2026, 2, 20),
-        color: "var(--wim-color-positive)",
+        color: "var(--wim-color-success)",
         progress: 45,
       },
       {
@@ -187,7 +187,7 @@ export const WithClickHandler: Story = {
         label: t("story.ganttchart_task_testing"),
         startDate: new Date(2026, 2, 18),
         endDate: new Date(2026, 2, 28),
-        color: "var(--wim-color-caution)",
+        color: "var(--wim-color-warning)",
       },
     ];
 

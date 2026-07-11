@@ -22,24 +22,24 @@ export const getColorValue = (val?: WimColor): string | undefined => {
     "primary-light",
     "primary-container-alpha",
     "secondary",
-    "informative",
-    "destructive",
-    "positive",
-    "caution",
+    "info",
+    "danger",
+    "success",
+    "warning",
     "disabled",
     "text-primary",
     "text-secondary",
     "text-tertiary",
     "text-disabled",
     "text-white",
-    "text-error",
+    "text-danger",
     "text-placeholder",
     "text-on-primary",
     "text-on-secondary",
-    "text-on-destructive",
-    "text-on-positive",
-    "text-on-caution",
-    "text-on-informative",
+    "text-on-danger",
+    "text-on-success",
+    "text-on-warning",
+    "text-on-info",
     "text-on-disabled",
     "text-on-overlay",
     "surface",
@@ -181,7 +181,7 @@ export const getFontSizeValue = (val?: WimFontSize): string | undefined => {
 export const getFontWeightValue = (val?: WimFontWeight): string | undefined => {
   if (val === undefined || val === null) return undefined;
 
-  const tokens = ["normal", "medium", "bold"];
+  const tokens = ["normal", "medium", "semibold", "bold"];
 
   if (tokens.includes(val as string)) {
     return `var(--wim-font-weight-${val})`;
@@ -199,9 +199,11 @@ export const getLineHeightValue = (val?: WimLineHeight): string | undefined => {
   const tokens = [
     "loose-jp",
     "normal-jp",
+    "snug-jp",
     "tight-jp",
     "loose",
     "normal",
+    "snug",
     "tight",
   ];
 

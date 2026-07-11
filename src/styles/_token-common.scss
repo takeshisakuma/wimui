@@ -10,24 +10,24 @@ $token-colors: (
     "on": var(--wim-color-text-on-secondary),
   ),
   "success": (
-    "base": var(--wim-color-positive),
-    "on": var(--wim-color-text-on-positive),
+    "base": var(--wim-color-success),
+    "on": var(--wim-color-text-on-success),
   ),
   "warning": (
-    "base": var(--wim-color-caution),
-    "on": var(--wim-color-text-on-caution),
+    "base": var(--wim-color-warning),
+    "on": var(--wim-color-text-on-warning),
   ),
   "error": (
-    "base": var(--wim-color-destructive),
-    "on": var(--wim-color-text-on-destructive),
+    "base": var(--wim-color-danger),
+    "on": var(--wim-color-text-on-danger),
   ),
   "neutral": (
     "base": var(--wim-color-disabled),
     "on": var(--wim-color-text-primary),
   ),
   "info": (
-    "base": var(--wim-color-informative),
-    "on": var(--wim-color-text-on-informative),
+    "base": var(--wim-color-info),
+    "on": var(--wim-color-text-on-info),
   ),
 );
 

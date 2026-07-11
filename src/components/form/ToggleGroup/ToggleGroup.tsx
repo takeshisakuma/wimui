@@ -204,7 +204,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
           styles[selectionMode],
           fullWidth && styles.fullWidth,
           isReady && styles.ready,
-          error && styles.error,
+          error && styles.danger,
         )}
         role={containerRole}
         aria-label={ariaLabel}

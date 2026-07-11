@@ -31,8 +31,8 @@ describe("ScrollProgress", () => {
   });
 
   it("renders with error color", () => {
-    render(<ScrollProgress color="error" />);
-    expect(screen.getByRole("progressbar")).toHaveClass(styles.error);
+    render(<ScrollProgress color="danger" />);
+    expect(screen.getByRole("progressbar")).toHaveClass(styles.danger);
   });
 
   it("applies custom className", () => {

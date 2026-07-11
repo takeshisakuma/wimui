@@ -123,7 +123,7 @@ describe("Slider", () => {
   it("applies error state to the slider visuals", () => {
     const { container } = render(<Slider error="Field error" aria-label="With error" />);
     const sliderRoot = container.querySelector('[role="presentation"]');
-    expect(sliderRoot).toHaveClass(styles.error);
+    expect(sliderRoot).toHaveClass(styles.danger);
     expect(screen.getByRole("slider")).toHaveAttribute("aria-invalid", "true");
   });
 });

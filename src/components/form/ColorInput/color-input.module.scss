@@ -84,11 +84,11 @@
     &[class*="error"] {
       .inputIcon,
       .inputIcons {
-        color: var(--color-input-icon, var(--wim-color-text-error));
+        color: var(--color-input-icon, var(--wim-color-text-danger));
 
         svg {
           color: inherit;
-          stroke: var(--color-input-icon, var(--wim-color-text-error));
+          stroke: var(--color-input-icon, var(--wim-color-text-danger));
         }
       }
     }

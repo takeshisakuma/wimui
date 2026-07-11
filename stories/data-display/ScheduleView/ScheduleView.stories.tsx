@@ -186,7 +186,7 @@ const ScheduleTemplate = (args: React.ComponentProps<typeof ScheduleView>) => {
             <Dialog.Close asChild>
               <Button variant="ghost">{t("common:action.cancel")}</Button>
             </Dialog.Close>
-            <Button onClick={handleConfirmDelete} variant="solid" intent="destructive">
+            <Button onClick={handleConfirmDelete} variant="solid" intent="danger">
               {t("common:action.delete")}
             </Button>
           </Dialog.Footer>

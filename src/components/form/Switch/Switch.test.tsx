@@ -31,6 +31,6 @@ describe("Switch", () => {
     render(<Switch error />);
     const input = screen.getByRole("switch");
     expect(input).toHaveAttribute("aria-invalid", "true");
-    expect(input).toHaveClass(styles.error);
+    expect(input).toHaveClass(styles.danger);
   });
 });

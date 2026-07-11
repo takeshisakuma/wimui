@@ -123,7 +123,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
             localStyles[size],
             fullWidth && localStyles.fullWidth,
             isReady && localStyles.ready,
-            error && localStyles.error,
+            error && localStyles.danger,
             stylesProp?.root,
           )}
           role="radiogroup"

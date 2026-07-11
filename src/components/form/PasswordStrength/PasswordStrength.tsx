@@ -40,9 +40,9 @@ export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengt
     const getLevelConfig = (lvl: number) => {
       switch (lvl) {
         case 0:
-          return { intent: "error", label: t("password_strength.very_weak") };
+          return { intent: "danger", label: t("password_strength.very_weak") };
         case 1:
-          return { intent: "error", label: t("password_strength.weak") };
+          return { intent: "danger", label: t("password_strength.weak") };
         case 2:
           return { intent: "warning", label: t("password_strength.fair") };
         case 3:
@@ -50,7 +50,7 @@ export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengt
         case 4:
           return { intent: "success", label: t("password_strength.very_strong") };
         default:
-          return { intent: "error", label: "" };
+          return { intent: "danger", label: "" };
       }
     };
 

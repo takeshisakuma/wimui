@@ -1,2 +1,4 @@
 #!/bin/sh
-npx lint-staged --no-stash && node scripts/tsc-check.js
+# --concurrent 1: タスクを逐次実行し、大量ファイルのコミット時に
+# eslint(--max-old-space-size=4096) が並列多重起動して OOM(SIGKILL) するのを防ぐ。
+npx lint-staged --concurrent 1 --no-stash && node scripts/tsc-check.js

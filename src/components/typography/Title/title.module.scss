@@ -54,8 +54,8 @@
 
     /* Colors */
 
-    &.error {
-      color: var(--wim-color-text-error);
+    &.danger {
+      color: var(--wim-color-text-danger);
     }
 
     &.primary {
@@ -63,15 +63,15 @@
     }
 
     &.success {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
 
     &.warning {
-      color: var(--wim-color-caution);
+      color: var(--wim-color-warning);
     }
 
     &.info {
-      color: var(--wim-color-informative);
+      color: var(--wim-color-info);
     }
 
     /* Decoration */

@@ -262,7 +262,7 @@ export const RichTextEditor = ({
   const labelId = label ? `${id}-label` : undefined;
 
   const isDisabled = disabled;
-  const currentIntent = error ? "error" : intent;
+  const currentIntent = error ? "danger" : intent;
 
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
@@ -539,7 +539,7 @@ export const RichTextEditor = ({
           aria-multiline
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
-          aria-invalid={currentIntent === "error"}
+          aria-invalid={currentIntent === "danger"}
           aria-describedby={errorId}
           aria-required={required}
           aria-disabled={isDisabled}

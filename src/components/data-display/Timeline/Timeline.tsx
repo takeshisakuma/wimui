@@ -122,7 +122,7 @@ TimelineConnector.displayName = "TimelineConnector";
 
 export interface TimelinePointProps {
   children?: React.ReactNode;
-  variant?: "primary" | "secondary" | "error" | "success";
+  variant?: "primary" | "secondary" | "danger" | "success";
   className?: string;
   asChild?: boolean;
 }

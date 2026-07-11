@@ -44,10 +44,10 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | 意味 | トークン | ライトモード | ダークモード |
 |------|----------|-------------|-------------|
 | Primary | `--wim-color-primary` | `s16` (#205b85) | `v16` (#055d87) |
-| Destructive | `--wim-color-destructive` | `s1` (#b01040) | `v2` (#ee0026) |
-| Positive | `--wim-color-positive` | `s12` (#28853f) | `v12` (#33a23d) |
-| Caution | `--wim-color-caution` | `s8` (#ccb914) | `v7` (#ffcc00) |
-| Informative | `--wim-color-informative` | `s18` (#243b8b) | `v17` (#093f86) |
+| Danger | `--wim-color-danger` | `s1` (#b01040) | `v2` (#ee0026) |
+| Success | `--wim-color-success` | `s12` (#28853f) | `v12` (#33a23d) |
+| Warning | `--wim-color-warning` | `s8` (#ccb914) | `v7` (#ffcc00) |
+| Info | `--wim-color-info` | `s18` (#243b8b) | `v17` (#093f86) |
 
 ダークモードでは彩度を上げたトーン（Vivid / Bright）に切り替えることで、暗い背景上でもコントラストを確保しています。
 
@@ -59,7 +59,7 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | 補助テキスト | `--wim-color-text-secondary` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
 | 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | `gy7-5` (#b6b6b6) |
 | 無効テキスト | `--wim-color-text-disabled` | `gy7-5` (#b6b6b6) | `gy6-5` (#8a8a8a) |
-| エラーテキスト | `--wim-color-text-error` | `s2` (#ca1028) | #ff8c8c |
+| エラーテキスト | `--wim-color-text-danger` | `s2` (#ca1028) | #ff8c8c |
 | プレースホルダー | `--wim-color-text-placeholder` | = text-tertiary | = text-tertiary |
 
 #### サーフェスカラー
@@ -157,9 +157,9 @@ Feedback コンポーネント（Alert, Banner, Toast 等）のバリアント�
 
 ```scss
 // Info バリアント
-color: color-mix(in srgb, var(--wim-color-informative) 65%, var(--wim-color-feedback-text-base));
-background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
-border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
+color: color-mix(in srgb, var(--wim-color-info) 65%, var(--wim-color-feedback-text-base));
+background: color-mix(in srgb, var(--wim-color-info) 10%, var(--wim-color-feedback-bg-base));
+border-color: color-mix(in srgb, var(--wim-color-info) var(--wim-color-feedback-border-strength), transparent);
 ```
 
 ---

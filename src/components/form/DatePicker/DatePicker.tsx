@@ -114,7 +114,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     const actualPlaceholder = placeholder ?? labels?.placeholder;
     const isDisabled = disabled;
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     // Close calendar when clicking outside
     useEffect(() => {
@@ -275,7 +275,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 aria-haspopup="dialog"
                 aria-expanded={isOpen}
                 aria-controls={isOpen ? dropdownId : undefined}
-                aria-invalid={currentIntent === "error"}
+                aria-invalid={currentIntent === "danger"}
                 aria-describedby={errorId}
                 aria-labelledby={labelId}
                 aria-required={required}

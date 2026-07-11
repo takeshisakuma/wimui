@@ -203,7 +203,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       >
         <Component
           role="presentation"
-          className={classNames("wim-slider", styles.root, disabled && styles.disabled, error && styles.error)}
+          className={classNames("wim-slider", styles.root, disabled && styles.disabled, error && styles.danger)}
           onMouseDown={handleMouseDown}
           onTouchStart={handleMouseDown}
           ref={ref}

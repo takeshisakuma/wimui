@@ -133,7 +133,7 @@ export const SingleAction: Story = {
                   background: "none",
                   cursor: "pointer",
                   borderRadius: "0.375rem",
-                  color: "var(--wim-color-destructive)",
+                  color: "var(--wim-color-danger)",
                 }}
               >
                 <span>{t("story.bottomsheet_delete")}</span>

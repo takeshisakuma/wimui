@@ -77,8 +77,8 @@
       }
 
       &.error .iconContainer {
-        color: var(--wim-color-destructive);
-        border-color: var(--wim-color-destructive);
+        color: var(--wim-color-danger);
+        border-color: var(--wim-color-danger);
       }
 
       &.wait .title {

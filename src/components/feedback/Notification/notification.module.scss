@@ -63,19 +63,19 @@
 
   // Variants
   .success {
-    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-positive);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-success);
   }
 
   .info {
-    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-informative);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-info);
   }
 
   .warning {
-    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-caution);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-warning);
   }
 
-  .error {
-    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-destructive);
+  .danger {
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-danger);
   }
 
   .container {

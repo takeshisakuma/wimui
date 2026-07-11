@@ -31,14 +31,14 @@ const meta: Meta<typeof Grid> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type BoxIntent = "primary" | "positive" | "caution" | "destructive" | "secondary" | "informative";
+type BoxIntent = "primary" | "success" | "warning" | "danger" | "secondary" | "info";
 const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
   primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-primary) 60%, black)" },
-  positive:    { bg: "color-mix(in srgb, var(--wim-color-positive) 12%, var(--wim-color-bg-component))",    text: "color-mix(in srgb, var(--wim-color-positive) 60%, black)" },
-  caution:     { bg: "color-mix(in srgb, var(--wim-color-caution) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-caution) 60%, black)" },
-  destructive: { bg: "color-mix(in srgb, var(--wim-color-destructive) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-destructive) 60%, black)" },
+  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-bg-component))",    text: "color-mix(in srgb, var(--wim-color-success) 60%, black)" },
+  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-warning) 60%, black)" },
+  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-danger) 60%, black)" },
   secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-bg-component))",   text: "color-mix(in srgb, var(--wim-color-secondary) 60%, black)" },
-  informative: { bg: "color-mix(in srgb, var(--wim-color-informative) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-informative) 60%, black)" },
+  info: { bg: "color-mix(in srgb, var(--wim-color-info) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-info) 60%, black)" },
 };
 
 const Box = ({
@@ -70,11 +70,11 @@ export const Basic: Story = {
     return (
       <Grid {...args}>
         <Box>{t("story.grid_item", "1")}</Box>
-        <Box intent="positive">{t("story.grid_item", "2")}</Box>
-        <Box intent="caution">{t("story.grid_item", "3")}</Box>
-        <Box intent="destructive">{t("story.grid_item", "4")}</Box>
+        <Box intent="success">{t("story.grid_item", "2")}</Box>
+        <Box intent="warning">{t("story.grid_item", "3")}</Box>
+        <Box intent="danger">{t("story.grid_item", "4")}</Box>
         <Box intent="secondary">{t("story.grid_item", "5")}</Box>
-        <Box intent="informative">{t("story.grid_item", "6")}</Box>
+        <Box intent="info">{t("story.grid_item", "6")}</Box>
       </Grid>
     );
   },
@@ -89,8 +89,8 @@ export const CustomColumns: Story = {
     return (
       <Grid {...args}>
         <Box>1fr</Box>
-        <Box intent="positive">2fr</Box>
-        <Box intent="caution">1fr</Box>
+        <Box intent="success">2fr</Box>
+        <Box intent="warning">1fr</Box>
       </Grid>
     );
   },
@@ -103,7 +103,7 @@ export const CustomColumns: Story = {
 export const Responsive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const intents: BoxIntent[] = ["primary", "positive", "caution", "destructive", "secondary", "informative", "secondary", "positive"];
+    const intents: BoxIntent[] = ["primary", "success", "warning", "danger", "secondary", "info", "secondary", "success"];
     return (
       <Grid {...args}>
         {intents.map((intent, i) => (

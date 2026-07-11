@@ -19,7 +19,7 @@ describe("FeedbackIcon", () => {
   });
 
   it("renders a default icon for each non-success status", () => {
-    for (const intent of ["info", "warning", "error", "default"] as const) {
+    for (const intent of ["info", "warning", "danger", "default"] as const) {
       const { container } = render(<FeedbackIcon intent={ intent } />);
       expect(container.firstChild).not.toBeNull();
     }

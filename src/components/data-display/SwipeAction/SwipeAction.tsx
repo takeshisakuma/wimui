@@ -14,7 +14,7 @@ export interface SwipeActionItem {
   /** Callback when action is clicked */
   onClick: () => void;
   /** Semantic intent for background color */
-  intent?: "primary" | "error" | "warning" | "success" | "neutral";
+  intent?: "primary" | "danger" | "warning" | "success" | "neutral";
   /** Custom background color */
   color?: string;
 }

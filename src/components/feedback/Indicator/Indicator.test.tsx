@@ -5,13 +5,13 @@ import styles from "./indicator.module.scss";
 
 describe("Indicator", () => {
   it("renders children and indicator", () => {
-    render(<Indicator color="error">Content</Indicator>);
+    render(<Indicator color="danger">Content</Indicator>);
     expect(screen.getByText("Content")).toBeInTheDocument();
     
     // The dot is a span with specific class.
     const dot = document.querySelector(`.${styles.dot}`);
     expect(dot).toBeInTheDocument();
-    expect(dot).toHaveClass(styles.error);
+    expect(dot).toHaveClass(styles.danger);
   });
 
   it("renders inline indicator", () => {

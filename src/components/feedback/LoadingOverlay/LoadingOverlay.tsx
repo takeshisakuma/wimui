@@ -30,7 +30,7 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
     | "secondary"
     | "success"
     | "warning"
-    | "error"
+    | "danger"
     | "neutral"
     | "currentColor";
   /**

@@ -74,7 +74,7 @@ export const Overview: StoryObj = {
             <Input 
               label={t("audit:label_email_address")} 
               defaultValue="invalid-email"
-              intent="error"
+              intent="danger"
               error={t("audit:error_email_invalid")}
               fullWidth
             />

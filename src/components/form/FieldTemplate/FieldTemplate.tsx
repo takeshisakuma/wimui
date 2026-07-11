@@ -60,7 +60,7 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
 
         <div className={classNames(localStyles.content, stylesProp?.content)}>
           <Slottable>{children}</Slottable>
-          {error && <FieldError id={errorId} content={error} className={classNames(localStyles.error, stylesProp?.error)} />}
+          {error && <FieldError id={errorId} content={error} className={classNames(localStyles.danger, stylesProp?.error)} />}
         </div>
       </Component>
     );

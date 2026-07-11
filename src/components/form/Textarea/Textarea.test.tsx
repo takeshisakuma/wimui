@@ -30,7 +30,7 @@ describe("Textarea", () => {
   it("handles error state and aria-describedby", () => {
     render(<Textarea error="This is required" />);
     const textarea = screen.getByRole("textbox");
-    expect(textarea).toHaveClass(styles.error);
+    expect(textarea).toHaveClass(styles.danger);
     expect(textarea).toHaveAttribute("aria-invalid", "true");
     
     // The error message is rendered within a div with role="alert"

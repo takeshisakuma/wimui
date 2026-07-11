@@ -65,12 +65,12 @@ const DefaultFallback = ({
     <Box
       p="lg"
       radius="md"
-      bg="var(--wim-color-destructive-subtle)"
+      bg="var(--wim-color-danger-subtle)"
       className={`wim-error-boundary ${styles.fallback}`}
     >
       <Stack gap="md">
         <Alert
-          intent="error"
+          intent="danger"
           title={labels.title}
           description={error.message}
         />

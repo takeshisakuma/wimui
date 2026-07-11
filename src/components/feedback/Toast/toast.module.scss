@@ -128,38 +128,38 @@
 
   // Variants — use feedback mixing tokens for automatic light/dark switching
   .info {
-    color: oklch(from var(--wim-color-informative) calc(l * 0.7) c h);
-    border-color: oklch(from var(--wim-color-informative) l c h / 0.2);
+    color: oklch(from var(--wim-color-info) calc(l * 0.7) c h);
+    border-color: oklch(from var(--wim-color-info) l c h / 0.2);
 
     .icon {
-      color: var(--wim-color-informative);
+      color: var(--wim-color-info);
     }
   }
 
   .success {
-    color: oklch(from var(--wim-color-positive) calc(l * 0.7) c h);
-    border-color: oklch(from var(--wim-color-positive) l c h / 0.2);
+    color: oklch(from var(--wim-color-success) calc(l * 0.7) c h);
+    border-color: oklch(from var(--wim-color-success) l c h / 0.2);
 
     .icon {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
   }
 
   .warning {
-    color: oklch(from var(--wim-color-caution) calc(l * 0.5) c h);
-    border-color: oklch(from var(--wim-color-caution) l c h / 0.3);
+    color: oklch(from var(--wim-color-warning) calc(l * 0.5) c h);
+    border-color: oklch(from var(--wim-color-warning) l c h / 0.3);
 
     .icon {
-      color: oklch(from var(--wim-color-caution) calc(l * 0.8) c h);
+      color: oklch(from var(--wim-color-warning) calc(l * 0.8) c h);
     }
   }
 
-  .error {
-    color: oklch(from var(--wim-color-destructive) calc(l * 0.7) c h);
-    border-color: oklch(from var(--wim-color-destructive) l c h / 0.2);
+  .danger {
+    color: oklch(from var(--wim-color-danger) calc(l * 0.7) c h);
+    border-color: oklch(from var(--wim-color-danger) l c h / 0.2);
 
     .icon {
-      color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
     }
   }
 

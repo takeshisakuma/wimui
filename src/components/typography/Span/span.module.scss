@@ -31,28 +31,24 @@
       font-size: var(--wim-font-size-xs);
     }
 
-    &.error {
-      color: var(--wim-color-text-error);
-    }
-
     &.primary {
       color: var(--wim-color-text-accent);
     }
 
-    &.destructive {
-      color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-danger);
     }
 
     &.success {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
 
     &.warning {
-      color: var(--wim-color-caution);
+      color: var(--wim-color-warning);
     }
 
     &.info {
-      color: var(--wim-color-informative);
+      color: var(--wim-color-info);
     }
 
     &.bold {

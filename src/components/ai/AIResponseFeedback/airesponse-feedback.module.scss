@@ -46,26 +46,26 @@
   }
 
   .positive {
-    color: var(--wim-color-positive);
-    background: oklch(from var(--wim-color-positive) l c h / 0.08);
-    border-color: var(--wim-color-positive);
+    color: var(--wim-color-success);
+    background: oklch(from var(--wim-color-success) l c h / 0.08);
+    border-color: var(--wim-color-success);
 
     &:hover:not(:disabled) {
-      color: var(--wim-color-positive);
-      background: oklch(from var(--wim-color-positive) l c h / 0.14);
-      border-color: var(--wim-color-positive);
+      color: var(--wim-color-success);
+      background: oklch(from var(--wim-color-success) l c h / 0.14);
+      border-color: var(--wim-color-success);
     }
   }
 
   .negativeActive {
-    color: var(--wim-color-destructive);
-    background: oklch(from var(--wim-color-destructive) l c h / 0.08);
-    border-color: var(--wim-color-destructive);
+    color: var(--wim-color-danger);
+    background: oklch(from var(--wim-color-danger) l c h / 0.08);
+    border-color: var(--wim-color-danger);
 
     &:hover:not(:disabled) {
-      color: var(--wim-color-destructive);
-      background: oklch(from var(--wim-color-destructive) l c h / 0.14);
-      border-color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
+      background: oklch(from var(--wim-color-danger) l c h / 0.14);
+      border-color: var(--wim-color-danger);
     }
   }
 

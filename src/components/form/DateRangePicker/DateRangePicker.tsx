@@ -60,7 +60,7 @@ export const DateRangePicker = ({
             {...startProps}
             label={undefined}
             error={undefined}
-            intent={error ? "error" : startProps?.intent}
+            intent={error ? "danger" : startProps?.intent}
             fullWidth
           />
         </div>
@@ -70,7 +70,7 @@ export const DateRangePicker = ({
             {...endProps}
             label={undefined}
             error={undefined}
-            intent={error ? "error" : endProps?.intent}
+            intent={error ? "danger" : endProps?.intent}
             fullWidth
           />
         </div>

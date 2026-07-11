@@ -2,7 +2,7 @@ import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { WimIntent, FieldIntent, FieldWidth } from "../../../types/tokens";
+import { WimIntent, FieldIntent, FieldWidth, FieldVariant } from "../../../types/tokens";
 import localStyles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
@@ -21,7 +21,7 @@ export type InputBaseProps = {
   /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent | WimIntent;
   /** Visual style variant of the field */
-  variant?: "outline" | "ghost";
+  variant?: FieldVariant;
   /** Whether to take full width of parent */
   fullWidth?: boolean;
   /** Fixed width of the field (width token, CSS value, or number in px) */
@@ -104,9 +104,9 @@ export const InputBase = ({
   ) => {
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
-    if (intent === "error") return "destructive";
-    if (intent === "warning") return "caution";
-    if (intent === "success") return "positive";
+    if (intent === "danger") return "danger";
+    if (intent === "warning") return "warning";
+    if (intent === "success") return "success";
     return "secondary";
   };
 

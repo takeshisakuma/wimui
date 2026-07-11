@@ -71,10 +71,10 @@ export const Notification = ({
   };
 
   const typeToColorMap: Record<string, string> = {
-    success: "positive",
-    error: "destructive",
-    warning: "caution",
-    info: "informative",
+    success: "success",
+    danger: "danger",
+    warning: "warning",
+    info: "info",
   };
 
   return (
@@ -93,7 +93,7 @@ export const Notification = ({
               intent={ intent }
               icon={icon}
               size="md"
-              color={intent ? typeToColorMap[intent] as "destructive" | "positive" | "caution" | "informative" : undefined}
+              color={intent ? typeToColorMap[intent] as "danger" | "success" | "warning" | "info" : undefined}
             />
           </div>
         )}

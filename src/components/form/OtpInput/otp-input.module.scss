@@ -52,7 +52,7 @@
       box-shadow: var(--wim-shadow-focus-ring);
     }
   
-    &.error {
+    &.danger {
       @include field.error-border;
 
       &:focus {

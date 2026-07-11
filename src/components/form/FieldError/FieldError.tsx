@@ -27,7 +27,7 @@ export const FieldError = ({
       role="alert"
       aria-live="polite"
     >
-      <Text content={content} color="error" size="sm" />
+      <Text content={content} color="danger" size="sm" />
     </div>
   );
 };

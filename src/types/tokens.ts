@@ -49,10 +49,10 @@ export type ButtonVariant = "solid" | "outline" | "ghost";
 
 /**
  * Semantic intent values available on Button.
- * A deliberate subset of WimIntent — buttons express danger/positive/neutral,
+ * A deliberate subset of WimIntent — buttons express danger/success/neutral,
  * not the full palette of feedback intents.
  */
-export type ButtonIntent = "default" | "destructive" | "positive";
+export type ButtonIntent = "default" | "danger" | "success";
 
 /**
  * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
@@ -72,12 +72,10 @@ export type WimIntent =
   | "secondary"
   | "success"
   | "warning"
-  | "error"
+  | "danger"
   | "info"
   | "neutral"
-  | "default"
-  | "destructive"
-  | "positive";
+  | "default";
 
 
 import type {
@@ -86,7 +84,10 @@ import type {
   WimRadiusKey as GeneratedRadiusKey,
   WimShadowKey as GeneratedShadowKey,
   WimZIndexKey as GeneratedZIndexKey,
-  WimOpacityKey as GeneratedOpacityKey
+  WimOpacityKey as GeneratedOpacityKey,
+  WimFontSizeKey as GeneratedFontSizeKey,
+  WimFontWeightKey as GeneratedFontWeightKey,
+  WimLineHeightKey as GeneratedLineHeightKey
 } from './generated-tokens';
 
 /**
@@ -140,21 +141,10 @@ export type WimShadowToken = `var(--wim-shadow-${WimShadowKey})`;
 export type WimShadow = LiteralWithAutocomplete<WimShadowKey | WimShadowToken>;
 
 /**
- * Font size tokens keys.
+ * Font size tokens keys.（生成物 generated-tokens.ts を単一情報源とする。手書き再定義は
+ * トークン追加時にドリフトするため禁止。）
  */
-export type WimFontSizeKey =
-  | "2xs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "6xl"
-  | "7xl";
+export type WimFontSizeKey = GeneratedFontSizeKey;
 
 /**
  * Font size tokens available as CSS variable strings.
@@ -164,9 +154,9 @@ export type WimFontSizeToken = `var(--wim-font-size-${WimFontSizeKey})`;
 export type WimFontSize = LiteralWithAutocomplete<WimFontSizeKey | WimFontSizeToken>;
 
 /**
- * Font weight tokens keys.
+ * Font weight tokens keys.（generated-tokens.ts が単一情報源）
  */
-export type WimFontWeightKey = "normal" | "medium" | "bold";
+export type WimFontWeightKey = GeneratedFontWeightKey;
 
 /**
  * Font weight tokens available as CSS variable strings.
@@ -176,15 +166,9 @@ export type WimFontWeightToken = `var(--wim-font-weight-${WimFontWeightKey})`;
 export type WimFontWeight = LiteralWithAutocomplete<WimFontWeightKey | WimFontWeightToken>;
 
 /**
- * Line height tokens keys.
+ * Line height tokens keys.（generated-tokens.ts が単一情報源）
  */
-export type WimLineHeightKey =
-  | "loose-jp"
-  | "normal-jp"
-  | "tight-jp"
-  | "loose"
-  | "normal"
-  | "tight";
+export type WimLineHeightKey = GeneratedLineHeightKey;
 
 /**
  * Line height tokens available as CSS variable strings.
@@ -213,19 +197,19 @@ export type IndicatorIntent =
   | "secondary"
   | "success"
   | "warning"
-  | "error"
+  | "danger"
   | "info"
   | "neutral";
 
 /**
  * Intent values for feedback-style components (Alert, Banner, Toast, Notification).
  */
-export type FeedbackIntent = "info" | "success" | "warning" | "error";
+export type FeedbackIntent = "info" | "success" | "warning" | "danger";
 
 /**
  * Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).
  */
-export type FieldIntent = "default" | "error";
+export type FieldIntent = "default" | "danger";
 
 /**
  * Z-index stacking layer keys.

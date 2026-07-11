@@ -37,7 +37,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <input
           type="checkbox"
-          className={classNames(styles.input, error && styles.error)}
+          className={classNames(styles.input, error && styles.danger)}
           disabled={disabled}
           aria-invalid={error || undefined}
           ref={mergedRef}

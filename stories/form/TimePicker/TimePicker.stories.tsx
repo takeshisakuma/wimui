@@ -67,7 +67,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_error")}>
-        <TimePicker {...args} intent="error" />
+        <TimePicker {...args} intent="danger" />
       </Label>
     );
   },

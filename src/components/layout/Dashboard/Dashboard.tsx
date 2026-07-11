@@ -217,7 +217,7 @@ export const DashboardWidgetCard = ({
           <Button
             size="sm"
             variant="ghost"
-            intent="destructive"
+            intent="danger"
             className={styles.removeButton}
             onClick={() => onRemove(id)}
             aria-label={t("dashboard_widget.remove_widget", { title })}

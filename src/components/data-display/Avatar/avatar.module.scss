@@ -56,39 +56,29 @@
     background-color: var(--wim-color-secondary);
   }
 
-  .error {
-    color: var(--wim-color-text-on-destructive);
-    background-color: var(--wim-color-destructive);
+  .danger {
+    color: var(--wim-color-text-on-danger);
+    background-color: var(--wim-color-danger);
   }
 
   .success {
-    color: var(--wim-color-text-on-positive);
-    background-color: var(--wim-color-positive);
+    color: var(--wim-color-text-on-success);
+    background-color: var(--wim-color-success);
   }
 
   .neutral {
-    color: var(--wim-color-text-on-informative);
-    background-color: var(--wim-color-informative);
+    color: var(--wim-color-text-on-info);
+    background-color: var(--wim-color-info);
   }
 
   .info {
-    color: var(--wim-color-text-on-informative);
-    background-color: var(--wim-color-informative);
+    color: var(--wim-color-text-on-info);
+    background-color: var(--wim-color-info);
   }
 
   .warning {
-    color: var(--wim-color-text-on-caution);
-    background-color: var(--wim-color-caution);
-  }
-
-  .destructive {
-    color: var(--wim-color-text-on-destructive);
-    background-color: var(--wim-color-destructive);
-  }
-
-  .positive {
-    color: var(--wim-color-text-on-positive);
-    background-color: var(--wim-color-positive);
+    color: var(--wim-color-text-on-warning);
+    background-color: var(--wim-color-warning);
   }
 
   .default {

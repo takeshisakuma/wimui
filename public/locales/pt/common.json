@@ -416,7 +416,8 @@
     "transfer_i18n_desc": "Suporte total para localização de rótulos, espaços reservados e mensagens de status.",
     "transition": "Transição",
     "usage": "Uso",
-    "usage_scenario": "Cenário de Uso"
+    "usage_scenario": "Cenário de Uso",
+    "danger": "Perigo"
   },
   "error": {
     "boundary_hide_details": "Ocultar detalhes",

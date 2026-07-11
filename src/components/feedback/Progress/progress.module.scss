@@ -58,15 +58,15 @@
   }
 
   .success .bar {
-    background-color: var(--wim-color-positive);
+    background-color: var(--wim-color-success);
   }
 
   .warning .bar {
-    background-color: var(--wim-color-caution);
+    background-color: var(--wim-color-warning);
   }
 
-  .error .bar {
-    background-color: var(--wim-color-destructive);
+  .danger .bar {
+    background-color: var(--wim-color-danger);
   }
 
   .neutral .bar {
@@ -74,7 +74,7 @@
   }
 
   .info .bar {
-    background-color: var(--wim-color-informative);
+    background-color: var(--wim-color-info);
   }
 
   // Indeterminate animation

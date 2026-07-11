@@ -20,7 +20,7 @@
       }
     }
 
-    &.error:not(.disabled) {
+    &.danger:not(.disabled) {
       .canvasContainer {
         @include field.error-border;
         @include field.error-ring(var(--wim-border-width-thin));

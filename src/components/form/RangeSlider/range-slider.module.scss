@@ -17,20 +17,20 @@
       }
     }
 
-    &.error:not(.disabled) {
+    &.danger:not(.disabled) {
       .track {
-        background-color: var(--wim-color-destructive);
+        background-color: var(--wim-color-danger);
       }
 
       .thumb {
-        border-color: var(--wim-color-destructive);
+        border-color: var(--wim-color-danger);
 
         &:hover {
-          box-shadow: 0 0 0 4px oklch(from var(--wim-color-destructive) l c h / 0.1);
+          box-shadow: 0 0 0 4px oklch(from var(--wim-color-danger) l c h / 0.1);
         }
 
         &:focus-visible {
-          box-shadow: inset 0 0 0 2px var(--wim-color-destructive);
+          box-shadow: inset 0 0 0 2px var(--wim-color-danger);
         }
       }
     }

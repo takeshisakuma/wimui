@@ -39,8 +39,8 @@ describe("LinkButton", () => {
   });
 
   it("applies intent class", () => {
-    render(<LinkButton href="#" intent="destructive">Destructive</LinkButton>);
-    expect(screen.getByRole("link")).toHaveClass(buttonStyles.destructive);
+    render(<LinkButton href="#" intent="danger">Destructive</LinkButton>);
+    expect(screen.getByRole("link")).toHaveClass(buttonStyles.danger);
   });
 
   it("applies icon-only class when iconName is set and no children", () => {

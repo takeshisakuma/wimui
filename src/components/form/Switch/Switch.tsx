@@ -48,7 +48,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           className={classNames(
             styles.input,
             size !== "md" && styles[size],
-            error && styles.error,
+            error && styles.danger,
           )}
           disabled={disabled}
           aria-invalid={error || undefined}

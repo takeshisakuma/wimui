@@ -13,11 +13,11 @@
     --usage-meter-accent: var(--wim-color-primary);
 
     &.warn {
-      --usage-meter-accent: var(--wim-color-caution);
+      --usage-meter-accent: var(--wim-color-warning);
     }
 
     &.danger {
-      --usage-meter-accent: var(--wim-color-destructive);
+      --usage-meter-accent: var(--wim-color-danger);
     }
   }
 

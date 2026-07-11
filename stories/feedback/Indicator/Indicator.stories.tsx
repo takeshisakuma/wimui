@@ -47,7 +47,7 @@ export const Colors: Story = {
       <Indicator {...args} color="warning">
         <Avatar initials="W" />
       </Indicator>
-      <Indicator {...args} color="error">
+      <Indicator {...args} color="danger">
         <Avatar initials="E" />
       </Indicator>
       <Indicator {...args} color="neutral">
@@ -91,7 +91,7 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "20px" }}>
-      <Indicator {...args} color="error">
+      <Indicator {...args} color="danger">
         <div
           style={{ padding: "8px", background: "var(--wim-color-surface-variant)", borderRadius: "8px" }}
         >

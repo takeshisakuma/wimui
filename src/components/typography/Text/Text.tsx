@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./text.module.scss";
-import { WimColor, WimLineHeight, WimFontSize, WimFontWeight, ComponentSizeText } from "../../../types/tokens";
+import { WimColor, WimLineHeight, WimFontSize, WimFontWeight, WimFontWeightKey, ComponentSizeText } from "../../../types/tokens";
 import {
   getColorValue,
   getFontSizeValue,
@@ -28,7 +28,7 @@ export type TextProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
    * Font weight.
    * @default "normal"
    */
-  weight?: "normal" | "bold" | "medium";
+  weight?: WimFontWeightKey;
   /**
    * Line height. Accepts a design token name or any CSS line-height value.
    */
@@ -80,7 +80,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
 
     // For backward compatibility with CSS classes for certain colors
     const mappedColors = [
-      "error",
+      "danger",
       "primary",
       "success",
       "warning",

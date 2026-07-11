@@ -104,12 +104,12 @@
       background-color: var(--wim-color-secondary);
     }
 
-    &.error {
-      background-color: var(--wim-color-destructive);
+    &.danger {
+      background-color: var(--wim-color-danger);
     }
 
     &.success {
-      background-color: var(--wim-color-positive);
+      background-color: var(--wim-color-success);
     }
 
     &.icon {
@@ -133,14 +133,14 @@
         border-color: var(--wim-color-secondary);
       }
 
-      &.error {
-        color: var(--wim-color-destructive);
-        border-color: var(--wim-color-destructive);
+      &.danger {
+        color: var(--wim-color-danger);
+        border-color: var(--wim-color-danger);
       }
 
       &.success {
-        color: var(--wim-color-positive);
-        border-color: var(--wim-color-positive);
+        color: var(--wim-color-success);
+        border-color: var(--wim-color-success);
       }
     }
   }

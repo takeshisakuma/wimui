@@ -274,7 +274,7 @@ export const RangeSlider = ({
         className={classNames("wim-range-slider", 
           styles.root,
           disabled && styles.disabled,
-          error && styles.error,
+          error && styles.danger,
         )}
         onMouseDown={handleTrackMouseDown}
         onTouchStart={handleTrackMouseDown}

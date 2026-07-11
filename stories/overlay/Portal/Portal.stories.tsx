@@ -263,28 +263,28 @@ export const NotificationCenter: Story = {
             <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
               <SenderComponent
                 displayName={t("story.portal_sensor_a")}
-                color="var(--wim-color-positive-subtle)"
+                color="var(--wim-color-success-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_sensor_b")}
-                color="var(--wim-color-informative-subtle)"
+                color="var(--wim-color-info-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_camera")}
-                color="var(--wim-color-caution-subtle)"
+                color="var(--wim-color-warning-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_alarm")}
-                color="var(--wim-color-destructive-subtle)"
+                color="var(--wim-color-danger-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
@@ -310,7 +310,7 @@ export const NotificationCenter: Story = {
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
                   {t("story.portal_monitor_title")}
                 </span>
-                <Badge intent="error" size="sm">{t("story.portal_monitor_live")}</Badge>
+                <Badge intent="danger" size="sm">{t("story.portal_monitor_live")}</Badge>
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
@@ -336,9 +336,9 @@ export const NotificationCenter: Story = {
                       marginBottom: "4px",
                       color:
                         log.type === "success"
-                           ? "var(--wim-color-positive)"
+                           ? "var(--wim-color-success)"
                           : log.type === "warning"
-                             ? "var(--wim-color-caution)"
+                             ? "var(--wim-color-warning)"
                             : "var(--wim-color-text-tertiary)",
                     }}
                   >

@@ -65,7 +65,7 @@ export const ErrorStatus: Story = {
     return (
       <Result
         {...args}
-        intent="error"
+        intent="danger"
         title={t("story.result_error_title")}
         description={t("story.result_error_desc")}
         extra={[

@@ -124,7 +124,7 @@ describe("SignaturePad", () => {
   it("applies error state visuals and links the message via aria", () => {
     render(<SignaturePad error="Required" />);
     const canvas = screen.getByRole("img");
-    expect(canvas.closest(`.${styles.root}`)).toHaveClass(styles.error);
+    expect(canvas.closest(`.${styles.root}`)).toHaveClass(styles.danger);
     const message = screen.getByRole("alert");
     expect(message).toHaveTextContent("Required");
     expect(canvas).toHaveAttribute("aria-describedby", message.id);

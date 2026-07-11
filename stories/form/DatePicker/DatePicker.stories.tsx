@@ -67,7 +67,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_error")}>
-        <DatePicker {...args} intent="error" placeholder="2026-07-04" />
+        <DatePicker {...args} intent="danger" placeholder="2026-07-04" />
       </Label>
     );
   },

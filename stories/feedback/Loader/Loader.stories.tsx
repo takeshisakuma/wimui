@@ -89,7 +89,7 @@ export const Colors: Story = {
       <Loader {...args} color="secondary" />
       <Loader {...args} color="success" />
       <Loader {...args} color="warning" />
-      <Loader {...args} color="error" />
+      <Loader {...args} color="danger" />
       <Loader {...args} color="neutral" />
     </div>
   ),

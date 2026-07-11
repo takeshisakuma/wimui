@@ -22,10 +22,10 @@ describe("Span", () => {
 
   it("applies size and color classes", () => {
     const { container } = render(
-      <Span content="Test" size="lg" color="error" />,
+      <Span content="Test" size="lg" color="danger" />,
     );
     expect(container.firstChild).toHaveClass(styles.lg);
-    expect(container.firstChild).toHaveClass(styles.error);
+    expect(container.firstChild).toHaveClass(styles.danger);
   });
 
   it("renders with icon", () => {

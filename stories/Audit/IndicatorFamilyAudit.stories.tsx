@@ -30,7 +30,7 @@ export const Overview: StoryObj = {
       "secondary",
       "success",
       "warning",
-      "error",
+      "danger",
       "info",
       "neutral",
     ] as const;
@@ -79,7 +79,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_badge_variations")} direction="row" wrap>
             <Badge content="99+" />
-            <Badge variant="solid" intent="error" /> {/* Dot badge */}
+            <Badge variant="solid" intent="danger" /> {/* Dot badge */}
           </ComponentGroup>
         </ComparisonGrid>
       </AuditPage>

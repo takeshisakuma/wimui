@@ -30,7 +30,7 @@ describe("Checkbox", () => {
     render(<Checkbox error>With error</Checkbox>);
     const checkbox = screen.getByLabelText("With error");
     expect(checkbox).toHaveAttribute("aria-invalid", "true");
-    expect(checkbox).toHaveClass(styles.error);
+    expect(checkbox).toHaveClass(styles.danger);
   });
 
   it("does not set aria-invalid without error", () => {

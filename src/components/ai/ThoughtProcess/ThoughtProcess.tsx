@@ -42,7 +42,7 @@ export const ThoughtStep = ({
     ) : null;
 
   const pointVariant =
-    status === "completed" ? "success" : status === "error" ? "error" : "secondary";
+    status === "completed" ? "success" : status === "error" ? "danger" : "secondary";
 
   return (
     <TimelineItem

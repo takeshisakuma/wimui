@@ -58,13 +58,13 @@ export const Overview: StoryObj = {
             <Box
               p="lg"
               radius="md"
-              bg="var(--wim-color-destructive-subtle)"
-              style={{ border: "1px solid var(--wim-color-destructive-border)" }}
+              bg="var(--wim-color-danger-subtle)"
+              style={{ border: "1px solid var(--wim-color-danger-border)" }}
             >
               <Stack gap="md">
-                <Text weight="bold" color="destructive">{t("audit:state_error_boundary_mock")}</Text>
+                <Text weight="bold" color="danger">{t("audit:state_error_boundary_mock")}</Text>
                 <Result
-                  intent="error"
+                  intent="danger"
                   title={t("audit:state_something_wrong")}
                   description={t("audit:state_error_boundary_desc")}
                   extra={

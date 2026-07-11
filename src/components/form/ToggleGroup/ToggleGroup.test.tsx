@@ -518,7 +518,7 @@ describe("ToggleGroup", () => {
       render(<ToggleGroup options={options} defaultValue="opt1" error="Required" />);
     });
     const group = screen.getByRole("radiogroup");
-    expect(group).toHaveClass(styles.error);
+    expect(group).toHaveClass(styles.danger);
     expect(group).toHaveAttribute("aria-invalid", "true");
     const message = screen.getByRole("alert");
     expect(group).toHaveAttribute("aria-describedby", message.id);

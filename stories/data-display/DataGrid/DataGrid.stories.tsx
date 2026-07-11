@@ -267,7 +267,7 @@ export const WithActions: Story = {
             <Button
               size="sm"
               variant="ghost"
-              intent="destructive"
+              intent="danger"
               aria-label={t("story.datagrid_action_delete", { name: row.name })}
               onClick={() =>
                 alert(t("story.datagrid_action_delete", { name: row.name }))
@@ -500,7 +500,7 @@ export const WithRightFixedColumn: Story = {
             <Button
               size="sm"
               variant="ghost"
-              intent="destructive"
+              intent="danger"
               aria-label={t("story.datagrid_action_delete", { name: row.name })}
               onClick={() =>
                 alert(t("story.datagrid_action_delete", { name: row.name }))

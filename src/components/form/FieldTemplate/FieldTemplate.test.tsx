@@ -26,7 +26,7 @@ describe("FieldTemplate", () => {
 
   it("does not render error when omitted", () => {
     const { container } = render(<FieldTemplate><input /></FieldTemplate>);
-    expect(container.querySelector(`.${styles.error}`)).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.danger}`)).not.toBeInTheDocument();
   });
 
   it("applies vertical layout class by default", () => {

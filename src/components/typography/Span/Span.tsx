@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./span.module.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { WimColor, ComponentSize, ComponentSizeText, WimFontWeight } from "../../../types/tokens";
+import { WimColor, ComponentSize, ComponentSizeText, WimFontWeight, WimFontWeightKey } from "../../../types/tokens";
 import { getColorValue, getFontWeightValue } from "../../../utilities/style-utils";
 
 export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color" | "content"> {
@@ -24,7 +24,7 @@ export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "
    * Font weight.
    * @default "normal"
    */
-  weight?: "normal" | "bold" | "medium";
+  weight?: WimFontWeightKey;
   /**
    * Font style.
    * @default "normal"
@@ -96,9 +96,9 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
     );
 
     const mappedColors = [
-      "error",
+      "danger",
       "primary",
-      "destructive",
+      "danger",
       "success",
       "warning",
       "info",

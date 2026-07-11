@@ -86,7 +86,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    intent: "danger",
   },
 };
 

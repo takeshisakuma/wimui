@@ -85,16 +85,16 @@
     }
 
     // Error state
-    &.error:not(:disabled) {
+    &.danger:not(:disabled) {
       @include field.error-ring;
 
       &:checked {
-        background-color: var(--wim-color-destructive);
+        background-color: var(--wim-color-danger);
         box-shadow: none;
       }
 
       &:focus-visible {
-        outline-color: var(--wim-color-text-error);
+        outline-color: var(--wim-color-text-danger);
         box-shadow: var(--wim-shadow-error-ring);
       }
     }

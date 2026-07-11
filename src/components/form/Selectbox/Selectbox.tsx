@@ -126,7 +126,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
     const listId = `${id}-list`;
     const triggerId = `${id}-trigger`;
 
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     const {
       isOpen,
@@ -358,7 +358,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
                 }
                 aria-describedby={errorId || ariaDescribedBy}
                 aria-required={required ? "true" : undefined}
-                aria-invalid={currentIntent === "error" ? "true" : "false"}
+                aria-invalid={currentIntent === "danger" ? "true" : "false"}
                 aria-activedescendant={isOpen ? activeDescendant : undefined}
                 ref={triggerRef}
               >

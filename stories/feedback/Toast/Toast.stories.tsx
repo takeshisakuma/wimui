@@ -96,7 +96,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    intent: "danger",
   },
 };
 
@@ -124,7 +124,7 @@ const ToastTrigger = () => {
           show({
             title: t("story.notification_error_title"),
             description: t("story.notification_error_desc"),
-            intent: "error",
+            intent: "danger",
           })
         }
 

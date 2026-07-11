@@ -108,10 +108,10 @@
   }
 
   .copied {
-    color: var(--wim-color-positive);
+    color: var(--wim-color-success);
 
     &:hover {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
   }
 
@@ -152,10 +152,10 @@
     }
 
     &.applied {
-      color: var(--wim-color-text-on-positive);
+      color: var(--wim-color-text-on-success);
       cursor: default;
-      background: var(--wim-color-positive);
-      border-color: var(--wim-color-positive);
+      background: var(--wim-color-success);
+      border-color: var(--wim-color-success);
     }
 
     &:disabled {
@@ -198,11 +198,11 @@
     display: table-row;
 
     &.added {
-      background: color-mix(in oklch, var(--wim-color-positive) 10%, transparent);
+      background: color-mix(in oklch, var(--wim-color-success) 10%, transparent);
     }
 
     &.removed {
-      background: color-mix(in oklch, var(--wim-color-destructive) 10%, transparent);
+      background: color-mix(in oklch, var(--wim-color-danger) 10%, transparent);
     }
 
     &:hover {
@@ -233,11 +233,11 @@
     align-items: baseline;
 
     &.added {
-      background: color-mix(in oklch, var(--wim-color-positive) 10%, transparent);
+      background: color-mix(in oklch, var(--wim-color-success) 10%, transparent);
     }
 
     &.removed {
-      background: color-mix(in oklch, var(--wim-color-destructive) 10%, transparent);
+      background: color-mix(in oklch, var(--wim-color-danger) 10%, transparent);
     }
 
     &.empty {

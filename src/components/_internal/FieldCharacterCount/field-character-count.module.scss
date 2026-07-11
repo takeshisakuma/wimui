@@ -8,9 +8,9 @@
     pointer-events: none;
     user-select: none;
 
-    &.error {
+    &.danger {
       font-weight: var(--wim-font-weight-bold);
-      color: var(--wim-color-text-error);
+      color: var(--wim-color-text-danger);
     }
 
     &.warning {

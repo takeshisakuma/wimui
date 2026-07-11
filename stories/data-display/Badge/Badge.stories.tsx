@@ -42,7 +42,7 @@ export const Destructive: Story = {
     return <Badge {...args} content={t("story.badge_error")} />;
   },
   args: {
-    intent: "error",
+    intent: "danger",
   },
 };
 
@@ -83,7 +83,7 @@ export const Required: Story = {
     return <Badge {...args} content={t("required")} />;
   },
   args: {
-    intent: "error",
+    intent: "danger",
     size: "sm",
   },
 };

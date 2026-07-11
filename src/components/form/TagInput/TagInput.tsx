@@ -123,7 +123,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const errorId = error ? `${id}-error` : undefined;
     const labelId = label ? `${id}-label` : undefined;
 
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     return (
       <FieldTemplate
@@ -182,7 +182,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 disabled={disabled}
                 placeholder={tags.length === 0 ? resolvedPlaceholder : ""}
                 className={styles.input}
-                aria-invalid={currentIntent === "error"}
+                aria-invalid={currentIntent === "danger"}
                 aria-describedby={errorId}
                 aria-labelledby={label ? labelId : undefined}
                 aria-required={required}
