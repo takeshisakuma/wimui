@@ -16,7 +16,7 @@
       width: 100%;
     }
 
-    &.error {
+    &.danger {
       @include field.error-ring;
     }
 
@@ -94,8 +94,8 @@
 
     .ready & {
       transition: 
-        transform var(--wim-transition-smooth),
-        width var(--wim-transition-smooth),
+        transform var(--wim-transition-fast),
+        width var(--wim-transition-fast),
         opacity var(--wim-transition-fast);
     }
   }

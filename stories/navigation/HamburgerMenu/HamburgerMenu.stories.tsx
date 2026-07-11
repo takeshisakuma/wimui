@@ -72,7 +72,7 @@ export const Large: Story = {
 
 export const Colored: Story = {
   args: {
-    color: "var(--wim-color-destructive)",
+    color: "var(--wim-color-danger)",
   },
   render: renderWithState,
 };

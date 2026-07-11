@@ -147,8 +147,8 @@
 
       &.ready .slider {
           transition:
-            transform var(--wim-transition-smooth),
-            width var(--wim-transition-smooth),
+            transform var(--wim-transition-fast),
+            width var(--wim-transition-fast),
             background-color var(--wim-duration-fast) var(--wim-easing-standard);
       }
 

@@ -130,7 +130,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             styles.root,
             fullWidth && styles.fullWidth,
             disabled && styles.disabled,
-            error && styles.error,
+            error && styles.danger,
           )}
           data-testid="phone-input-root"
           {...props}

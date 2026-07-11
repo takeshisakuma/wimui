@@ -139,8 +139,8 @@ export const Snackbar = ({
 
     if (!isRendered && !open) return null;
 
-    const role = intent === "error" || intent === "warning" ? "alert" : "status";
-    const ariaLive = intent === "error" || intent === "warning" ? "assertive" : "polite";
+    const role = intent === "danger" || intent === "warning" ? "alert" : "status";
+    const ariaLive = intent === "danger" || intent === "warning" ? "assertive" : "polite";
 
     return (
       <div

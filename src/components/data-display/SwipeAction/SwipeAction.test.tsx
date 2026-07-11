@@ -25,7 +25,7 @@ const deleteAction = (onClick = vi.fn()): SwipeActionItem => ({
   icon: "TrashIcon",
   label: "Delete",
   onClick,
-  intent: "error",
+  intent: "danger",
 });
 
 describe("SwipeAction", () => {
@@ -57,7 +57,7 @@ describe("SwipeAction", () => {
     const editButton = screen.getByText("Edit").closest("button")!;
     expect(editButton.style.backgroundColor).toBe("rebeccapurple");
     const deleteButton = screen.getByText("Delete").closest("button")!;
-    expect(deleteButton.className).toContain(styles.error);
+    expect(deleteButton.className).toContain(styles.danger);
     expect(container.querySelector(`.${styles.left}`)).toHaveStyle({ width: "80px" });
     expect(container.querySelector(`.${styles.right}`)).toHaveStyle({ width: "160px" });
   });

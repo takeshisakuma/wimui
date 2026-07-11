@@ -182,7 +182,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     const generatedId = useId();
     const id = customId || `wim-input-${generatedId}`;
@@ -232,7 +232,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             value={currentValue}
             onChange={handleInputChange}
             type={inputType}
-            aria-invalid={currentIntent === "error"}
+            aria-invalid={currentIntent === "danger"}
             aria-describedby={errorId}
             aria-labelledby={label ? labelId : undefined}
             aria-required={required}

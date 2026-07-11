@@ -35,7 +35,7 @@ export const Loader = ({
   style,
   ...props
 }: LoaderProps) => {
-  const mappedColors = ["primary", "secondary", "success", "warning", "error", "neutral"];
+  const mappedColors = ["primary", "secondary", "success", "warning", "danger", "neutral"];
   const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
   return (

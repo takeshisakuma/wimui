@@ -176,11 +176,11 @@
 
   .error {
     .label {
-      color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
     }
 
     .text {
-      color: var(--wim-color-text-error, var(--wim-color-destructive));
+      color: var(--wim-color-text-danger, var(--wim-color-danger));
     }
   }
 

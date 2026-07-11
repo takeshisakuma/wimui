@@ -23,10 +23,10 @@
     }
 
     /* Sentiment Colors */
-    &.positive { color: var(--wim-color-positive); }
-    &.caution { color: var(--wim-color-caution); }
-    &.negative { color: var(--wim-color-text-error, var(--wim-color-destructive)); }
-    &.informative { color: var(--wim-color-informative); }
+    &.positive { color: var(--wim-color-success); }
+    &.caution { color: var(--wim-color-warning); }
+    &.negative { color: var(--wim-color-text-danger, var(--wim-color-danger)); }
+    &.informative { color: var(--wim-color-info); }
   }
 
   /* ── Bar fill color ── */

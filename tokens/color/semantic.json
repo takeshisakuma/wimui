@@ -1,13 +1,13 @@
 {
   "wim": {
     "color": {
-      "destructive": {
+      "danger": {
         "value": "{pccs.s1}"
       },
-      "positive": {
+      "success": {
         "value": "{pccs.s12}"
       },
-      "caution": {
+      "warning": {
         "value": "{pccs.s8}"
       },
       "primary": {
@@ -16,7 +16,7 @@
       "secondary": {
         "value": "{pccs.gy7-5}"
       },
-      "informative": {
+      "info": {
         "value": "{pccs.s18}"
       },
       "disabled": {
@@ -25,19 +25,19 @@
       "text-on-primary": {
         "value": "{pccs.w}"
       },
-      "text-on-destructive": {
+      "text-on-danger": {
         "value": "{pccs.w}"
       },
-      "text-on-positive": {
+      "text-on-success": {
         "value": "{pccs.w}"
       },
-      "text-on-caution": {
+      "text-on-warning": {
         "value": "{pccs.bk}"
       },
       "text-on-secondary": {
         "value": "{pccs.bk}"
       },
-      "text-on-informative": {
+      "text-on-info": {
         "value": "{pccs.w}"
       },
       "text-on-disabled": {
@@ -58,7 +58,7 @@
       "text-white": {
         "value": "{pccs.w}"
       },
-      "text-error": {
+      "text-danger": {
         "value": "{pccs.s2}"
       },
       "text-accent": {
@@ -238,8 +238,8 @@
       "primary-subtle": {
         "value": "oklch(from var(--wim-color-primary) l c h / 0.04)"
       },
-      "destructive-subtle": {
-        "value": "oklch(from var(--wim-color-destructive) l c h / 0.1)"
+      "danger-subtle": {
+        "value": "oklch(from var(--wim-color-danger) l c h / 0.1)"
       },
       "bg-inverted": {
         "value": "{pccs.gy2-5}"

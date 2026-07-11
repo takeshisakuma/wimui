@@ -76,11 +76,11 @@
     white-space: nowrap;
   
     &.sunday {
-      color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
     }
   
     &.saturday {
-      color: var(--wim-color-informative);
+      color: var(--wim-color-info);
     }
   }
   
@@ -106,11 +106,11 @@
     }
   
     &.sunday {
-      color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
     }
   
     &.saturday {
-      color: var(--wim-color-informative);
+      color: var(--wim-color-info);
     }
   
     &.otherMonth {

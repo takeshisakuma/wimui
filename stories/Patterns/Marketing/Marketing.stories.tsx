@@ -234,13 +234,13 @@ export const PricingTable: StoryObj = {
               />
             </div>
             <List className="pricing-list" spacing="normal">
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.starter_feat_1")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.starter_feat_2")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.starter_feat_3")}
               </ListItem>
               <ListItem
@@ -314,16 +314,16 @@ export const PricingTable: StoryObj = {
               />
             </div>
             <List className="pricing-list" spacing="normal">
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.pro_feat_1")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.pro_feat_2")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.pro_feat_3")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.pro_feat_4")}
               </ListItem>
             </List>
@@ -389,13 +389,13 @@ export const PricingTable: StoryObj = {
               />
             </div>
             <List className="pricing-list" spacing="normal">
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.ent_feat_1")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.ent_feat_2")}
               </ListItem>
-              <ListItem iconName="CheckIcon" iconColor="positive">
+              <ListItem iconName="CheckIcon" iconColor="success">
                 {t("pricing.ent_feat_3")}
               </ListItem>
             </List>
@@ -688,7 +688,7 @@ export const ComparisonTable: StoryObj = {
       },
     ];
     const Check = () => (
-      <Icon name="CheckIcon" size="sm" color="positive" aria-label={t("docs_stories_recipes:feature_comparison.included")} />
+      <Icon name="CheckIcon" size="sm" color="success" aria-label={t("docs_stories_recipes:feature_comparison.included")} />
     );
     const Dash = () => (
       <span
@@ -900,7 +900,7 @@ export const FeatureComparison: StoryObj = {
     ];
 
     const Check = () => (
-      <Icon component={CheckIcon} color="positive" size="sm" />
+      <Icon component={CheckIcon} color="success" size="sm" />
     );
     const Cross = () => (
       <Icon component={CloseIcon} color="disabled" size="sm" />

@@ -61,7 +61,7 @@ export const CustomStates: Story = {
           />
           <ColorInput
             {...args}
-            intent="error"
+            intent="danger"
             defaultValue="#ef4444"
             leftIcon="AlertCircleIcon"
             aria-label={t("story.colorinput_states")}

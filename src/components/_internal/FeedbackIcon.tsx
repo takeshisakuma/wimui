@@ -28,7 +28,7 @@ export interface FeedbackIconProps {
   /**
    * Explicit color for the icon.
    */
-  color?: "destructive" | "positive" | "caution" | "informative";
+  color?: "danger" | "success" | "warning" | "info";
 }
 
 /**

@@ -50,7 +50,7 @@ export const Default: Story = {
           ]}
           rightActions={[
             { icon: "EditIcon", label: t("action.edit"), intent: "primary", onClick: () => handleAction("Edit") },
-            { icon: "TrashIcon", label: t("action.delete"), intent: "error", onClick: () => handleAction("Delete") },
+            { icon: "TrashIcon", label: t("action.delete"), intent: "danger", onClick: () => handleAction("Delete") },
           ]}
         >
           <ListItem title={t("story.swipeaction_swipe_me")} subtitle={t("story.swipeaction_subtitle")} />
@@ -106,7 +106,7 @@ export const MultipleActions: Story = {
             { icon: "EmailIcon", label: "Archive", intent: "neutral", onClick: () => handleAction("Archive") },
           ]}
           rightActions={[
-            { icon: "TrashIcon", label: t("action.delete"), intent: "error", onClick: () => handleAction("Delete") },
+            { icon: "TrashIcon", label: t("action.delete"), intent: "danger", onClick: () => handleAction("Delete") },
           ]}
         >
           <ListItem title={t("story.swipeaction_multiple")} subtitle={t("story.swipe_subtitle_both")} />
@@ -189,7 +189,7 @@ export const ExclusiveList: Story = {
                     icon: "TrashIcon",
                     label: "Cancel",
                     onClick: () => handleAction(i, "Cancelled"),
-                    intent: "error",
+                    intent: "danger",
                   },
                 ]}
               >
@@ -214,7 +214,7 @@ export const ExclusiveList: Story = {
                 </Button>
                 <Button 
                   variant="solid"
-                  intent={selectedItem?.action === "Cancelled" ? "destructive" : "default"}
+                  intent={selectedItem?.action === "Cancelled" ? "danger" : "default"}
                   onClick={confirmAction}
                 >
                   {t("action.confirm")}

@@ -68,10 +68,10 @@ const treemapData = [
 
 const funnelData = [
   { value: 100, name: "Visit", fill: "var(--wim-color-primary)" },
-  { value: 80, name: "Inquiry", fill: "var(--wim-color-informative)" },
-  { value: 50, name: "Order", fill: "var(--wim-color-positive)" },
-  { value: 40, name: "Payment", fill: "var(--wim-color-caution)" },
-  { value: 26, name: "Success", fill: "var(--wim-color-destructive)" },
+  { value: 80, name: "Inquiry", fill: "var(--wim-color-info)" },
+  { value: 50, name: "Order", fill: "var(--wim-color-success)" },
+  { value: 40, name: "Payment", fill: "var(--wim-color-warning)" },
+  { value: 26, name: "Success", fill: "var(--wim-color-danger)" },
 ];
 
 const heatmapData = [
@@ -199,9 +199,9 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_sparkline")} — ${t("audit:sfx_trends")}`}>
             <Stack gap="lg">
-              <Sparkline data={[4, 6, 5, 8, 9, 11, 12, 14]} color="var(--wim-color-positive)" showLastDot width={140} height={32} />
-              <Sparkline data={[14, 13, 15, 11, 10, 8, 9, 6]} color="var(--wim-color-destructive)" showLastDot width={140} height={32} />
-              <Sparkline data={[8, 3, 9, 2, 7, 4, 10, 5]} color="var(--wim-color-informative)" width={140} height={32} />
+              <Sparkline data={[4, 6, 5, 8, 9, 11, 12, 14]} color="var(--wim-color-success)" showLastDot width={140} height={32} />
+              <Sparkline data={[14, 13, 15, 11, 10, 8, 9, 6]} color="var(--wim-color-danger)" showLastDot width={140} height={32} />
+              <Sparkline data={[8, 3, 9, 2, 7, 4, 10, 5]} color="var(--wim-color-info)" width={140} height={32} />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>

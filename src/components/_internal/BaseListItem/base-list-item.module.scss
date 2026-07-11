@@ -44,10 +44,10 @@
     }
 
     &.danger {
-        color: var(--wim-color-text-error);
+        color: var(--wim-color-text-danger);
 
         &:hover:not(.disabled) {
-            background-color: var(--wim-color-destructive-subtle);
+            background-color: var(--wim-color-danger-subtle);
         }
     }
 }

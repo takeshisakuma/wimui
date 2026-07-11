@@ -112,17 +112,17 @@
       background-color: var(--solid-bg);
     }
 
-    &.destructive {
-      --solid-bg: var(--wim-color-destructive);
+    &.danger {
+      --solid-bg: var(--wim-color-danger);
 
-      color: var(--wim-color-text-on-destructive);
+      color: var(--wim-color-text-on-danger);
       background-color: var(--solid-bg);
     }
 
-    &.positive {
-      --solid-bg: var(--wim-color-positive);
+    &.success {
+      --solid-bg: var(--wim-color-success);
 
-      color: var(--wim-color-text-on-positive);
+      color: var(--wim-color-text-on-success);
       background-color: var(--solid-bg);
     }
 
@@ -161,16 +161,16 @@
       border-color: var(--wim-color-control-default-border);
     }
 
-    &.destructive {
-      color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-danger);
       background-color: var(--wim-color-bg-component);
-      border-color: var(--wim-color-destructive);
+      border-color: var(--wim-color-danger);
     }
 
-    &.positive {
-      color: var(--wim-color-positive);
+    &.success {
+      color: var(--wim-color-success);
       background-color: var(--wim-color-bg-component);
-      border-color: var(--wim-color-positive);
+      border-color: var(--wim-color-success);
     }
 
     &:disabled {
@@ -204,12 +204,12 @@
       color: var(--wim-color-control-default-fg);
     }
 
-    &.destructive {
-      color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-danger);
     }
 
-    &.positive {
-      color: var(--wim-color-positive);
+    &.success {
+      color: var(--wim-color-success);
     }
 
     &:disabled {

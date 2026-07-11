@@ -8,7 +8,7 @@ export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
    * Color of the progress bar.
    * @default "primary"
    */
-  color?: "primary" | "secondary" | "success" | "warning" | "error";
+  color?: "primary" | "secondary" | "success" | "warning" | "danger";
   /**
    * Element whose scroll position is tracked. Defaults to `window`.
    */

@@ -50,14 +50,14 @@
     }
 
     &.primary { --bg: var(--wim-color-primary); }
-    &.error { --bg: var(--wim-color-destructive); }
+    &.danger { --bg: var(--wim-color-danger); }
 
     &.warning {
-      --bg: var(--wim-color-caution);
+      --bg: var(--wim-color-warning);
 
       color: var(--wim-color-text-primary);
     }
-    &.success { --bg: var(--wim-color-positive); }
+    &.success { --bg: var(--wim-color-success); }
     &.neutral { --bg: var(--wim-color-secondary); }
   }
 

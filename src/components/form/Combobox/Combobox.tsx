@@ -170,7 +170,7 @@ export const Combobox = ({
             allowClear={allowClear}
             hasValue={!!inputValue}
             onClear={() => setInputValue("")}
-            intent={error ? "error" : "default"}
+            intent={error ? "danger" : "default"}
             leftIcon={showSearchIcon ? "SearchIcon" : undefined}
             fullWidth={fullWidth}
             rightIcons={[

@@ -22,19 +22,19 @@
 
     &.success {
       .bar {
-        background-color: var(--wim-color-positive);
+        background-color: var(--wim-color-success);
       }
     }
 
     &.warning {
       .bar {
-        background-color: var(--wim-color-caution);
+        background-color: var(--wim-color-warning);
       }
     }
 
-    &.error {
+    &.danger {
       .bar {
-        background-color: var(--wim-color-destructive);
+        background-color: var(--wim-color-danger);
       }
     }
   }

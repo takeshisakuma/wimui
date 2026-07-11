@@ -803,6 +803,7 @@
       "choice_matrix_title": "Choice Matrix",
       "component": "Component",
       "content_guidelines_title": "Content Guidelines",
+      "danger": "Danger",
       "description": "Description",
       "design_intent_title": "Design Intent",
       "fieldTemplate_a11y_desc": "Connects the label to the input via id, and the error message via aria-describedby.",

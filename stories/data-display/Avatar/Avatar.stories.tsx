@@ -91,7 +91,7 @@ export const Colors: Story = {
       <Avatar {...args} initials="P" intent="primary" />
       <Avatar {...args} initials="S" intent="secondary" />
       <Avatar {...args} initials="N" intent="neutral" />
-      <Avatar {...args} initials="E" intent="error" />
+      <Avatar {...args} initials="E" intent="danger" />
       <Avatar {...args} initials="SU" intent="success" />
     </div>
   ),

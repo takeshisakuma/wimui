@@ -27,7 +27,7 @@ describe("RangeSlider", () => {
 
   it("applies error state to the slider visuals", () => {
     render(<RangeSlider error="Field error" defaultValue={[20, 80]} />);
-    expect(screen.getByTestId("range-slider-root")).toHaveClass(styles.error);
+    expect(screen.getByTestId("range-slider-root")).toHaveClass(styles.danger);
     screen.getAllByRole("slider").forEach((thumb) => {
       expect(thumb).toHaveAttribute("aria-invalid", "true");
     });

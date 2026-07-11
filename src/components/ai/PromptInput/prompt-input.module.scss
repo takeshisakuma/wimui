@@ -26,14 +26,14 @@
     border-color: var(--wim-color-primary);
     box-shadow: var(--wim-shadow-focus-ring);
 
-    &.error {
+    &.danger {
       @include field.error-border;
 
       box-shadow: var(--wim-shadow-error-ring);
     }
   }
 
-  &.error {
+  &.danger {
     @include field.error-border;
   }
 

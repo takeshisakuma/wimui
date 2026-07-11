@@ -77,11 +77,11 @@ export const Spacing: Story = {
           {t("story.box_margin")}
         </Box>
         <Box
-          bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
           p={15}
-          color="color-mix(in srgb, var(--wim-color-positive) 80%, black)"
+          color="color-mix(in srgb, var(--wim-color-success) 80%, black)"
           radius={4}
-          style={{ border: "1px solid var(--wim-color-positive)" }}
+          style={{ border: "1px solid var(--wim-color-success)" }}
         >
           {t("story.box_2")}
         </Box>
@@ -96,11 +96,11 @@ export const PaddingProps: Story = {
     return <Box {...args}>{t("story.box_padding")}</Box>;
   },
   args: {
-    bg: "color-mix(in srgb, var(--wim-color-destructive) 12%, white)",
-    color: "color-mix(in srgb, var(--wim-color-destructive) 80%, black)",
+    bg: "color-mix(in srgb, var(--wim-color-danger) 12%, white)",
+    color: "color-mix(in srgb, var(--wim-color-danger) 80%, black)",
     px: 40, // Left and right padding
     py: 10, // Top and bottom padding
     radius: 8,
-    style: { border: "1px solid var(--wim-color-destructive)", display: "inline-block" },
+    style: { border: "1px solid var(--wim-color-danger)", display: "inline-block" },
   },
 };

@@ -43,7 +43,7 @@ export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
     const finalContent = asChild ? children : (content ?? children);
     
     // For backwards compatibility with standard intent colors
-    const mappedColors = ["primary", "success", "warning", "error", "info"];
+    const mappedColors = ["primary", "success", "warning", "danger", "info"];
     const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
     return (

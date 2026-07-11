@@ -48,7 +48,7 @@ export const Colors: Story = {
       <Spinner {...args} color="secondary" />
       <Spinner {...args} color="success" />
       <Spinner {...args} color="warning" />
-      <Spinner {...args} color="error" />
+      <Spinner {...args} color="danger" />
       <Spinner {...args} color="neutral" />
     </div>
   ),

@@ -73,7 +73,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.colorpicker_error")}>
-        <ColorPicker {...args} intent="error" />
+        <ColorPicker {...args} intent="danger" />
       </Label>
     );
   },

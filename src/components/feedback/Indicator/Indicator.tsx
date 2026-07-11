@@ -63,7 +63,7 @@ export const Indicator = React.forwardRef<HTMLSpanElement, IndicatorProps>(
     },
     ref,
   ) => {
-    const mappedColors = ["primary", "success", "error", "warning", "neutral"];
+    const mappedColors = ["primary", "success", "danger", "warning", "neutral"];
     const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
     return (

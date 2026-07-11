@@ -182,7 +182,7 @@ export const WithActions: Story = {
                     aria-label={t("story.dropdown_delete")}
                     size="sm"
                     variant="ghost"
-                    intent="destructive"
+                    intent="danger"
                   />
                 </div>
               </Table.Cell>

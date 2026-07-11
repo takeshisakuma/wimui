@@ -15,8 +15,8 @@ describe("Result", () => {
   });
 
   it("renders status class for error", () => {
-    const { container } = render(<Result intent="error" />);
-    expect(container.firstChild).toHaveClass(/error/);
+    const { container } = render(<Result intent="danger" />);
+    expect(container.firstChild).toHaveClass(/danger/);
   });
 
   it("renders status class for warning", () => {

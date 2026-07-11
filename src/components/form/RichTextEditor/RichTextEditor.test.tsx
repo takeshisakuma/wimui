@@ -212,7 +212,7 @@ describe("RichTextEditor", () => {
 
   it("applies error intent class on error", () => {
     const { container } = render(<RichTextEditor error="Required" />);
-    expect(container.querySelector(`.${styles.error}`)).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.danger}`)).toBeInTheDocument();
   });
 
   it("applies aria-required when required", () => {

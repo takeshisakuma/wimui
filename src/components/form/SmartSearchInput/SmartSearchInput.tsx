@@ -114,7 +114,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
       textareaRef.current?.focus();
     };
 
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     return (
       <FieldTemplate

@@ -27,7 +27,7 @@ export const Default: Story = {
         title={t("story.popconfirm_delete_title")}
         okText={t("story.popconfirm_yes")}
         cancelText={t("story.popconfirm_no")}
-        okType="destructive"
+        okType="danger"
       >
         <Button variant="solid">{t("story.popconfirm_delete_btn")}</Button>
       </Popconfirm>

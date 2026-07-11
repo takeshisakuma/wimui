@@ -81,7 +81,7 @@ export const Deletable: Story = {
               <DialogClose asChild>
                 <Button variant="outline">{t("docs_stories_display:story.dialog_cancel")}</Button>
               </DialogClose>
-              <Button variant="solid" intent="destructive" onClick={() => setOpen(false)}>
+              <Button variant="solid" intent="danger" onClick={() => setOpen(false)}>
                 {t("docs_stories_display:story.dialog_confirm")}
               </Button>
             </DialogFooter>

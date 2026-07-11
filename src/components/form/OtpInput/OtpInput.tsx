@@ -192,7 +192,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                   data-testid="otp-input"
                   className={classNames(
                     styles.input,
-                    error && styles.error,
+                    error && styles.danger,
                     disabled && styles.disabled,
                   )}
                   type="text"

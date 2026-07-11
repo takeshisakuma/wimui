@@ -49,7 +49,7 @@ export const Overview: StoryObj = {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     const variants = ["outline", "ghost"] as const;
-    const intents = ["default", "error"] as const;
+    const intents = ["default", "danger"] as const;
 
     return (
       <AuditPage title={t("audit:input_family_title")}>
@@ -82,14 +82,14 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })} align="stretch" maxWidth="var(--wim-width-md)">
-              <InputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:sample_name_placeholder")} />
-              <PasswordInputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} />
-              <SmartSearchInput label={t("audit:label_intent", { intent })} intent={intent as "default" | "error"} placeholder={t("audit:sample_smart_search_ai")} />
-              <PromptInput label={t("audit:label_intent", { intent })} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_prompt_ai")} />
-              <Combobox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_combobox_placeholder")} />
-              <TagInput label={t("audit:label_intent", { intent })} defaultValue={[t("audit:sample_tag_a")]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_tag_input_placeholder")} />
-              <Selectbox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_select_placeholder")} />
-              <MultiSelect label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "error" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_multi_select_placeholder")} />
+              <InputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "danger"} placeholder={t("audit:sample_name_placeholder")} />
+              <PasswordInputAny label={t("audit:label_intent", { intent })} intent={intent as "default" | "danger"} />
+              <SmartSearchInput label={t("audit:label_intent", { intent })} intent={intent as "default" | "danger"} placeholder={t("audit:sample_smart_search_ai")} />
+              <PromptInput label={t("audit:label_intent", { intent })} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_prompt_ai")} />
+              <Combobox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_combobox_placeholder")} />
+              <TagInput label={t("audit:label_intent", { intent })} defaultValue={[t("audit:sample_tag_a")]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_tag_input_placeholder")} />
+              <Selectbox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_select_placeholder")} />
+              <MultiSelect label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_multi_select_placeholder")} />
             </ComponentGroup>
           ))}
         </ComparisonGrid>

@@ -23,6 +23,6 @@ describe("TimePicker", () => {
   it("applies error state class", () => {
     const { container } = render(<TimePicker error="Required" />);
     const input = container.querySelector("input");
-    expect(input).toHaveClass(inputStyles.error);
+    expect(input).toHaveClass(inputStyles.danger);
   });
 });

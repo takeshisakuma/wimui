@@ -138,7 +138,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
               [styles.disabled]: disabled,
               [styles.loading]: loading,
               [styles.fullWidth]: fullWidth,
-              [styles.error]: !!error,
+              [styles.danger]: !!error,
             },
           )}
           {...props}

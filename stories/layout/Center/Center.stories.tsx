@@ -45,7 +45,7 @@ export const Inline: Story = {
     return (
       <div style={{ border: "1px solid var(--wim-color-border)", padding: "10px" }}>
         Text before
-        <Center inline bg="var(--wim-color-destructive-subtle)" px={10} mx={5} radius={4}>
+        <Center inline bg="var(--wim-color-danger-subtle)" px={10} mx={5} radius={4}>
           {t("story.center_inline")}
         </Center>
         {t("story.center_text_after")}

@@ -19,10 +19,10 @@ type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
   spin?: boolean;
   /** Semantic color of the icon */
   color?:
-    | "destructive"
-    | "positive"
-    | "caution"
-    | "informative"
+    | "danger"
+    | "success"
+    | "warning"
+    | "info"
     | "primary"
     | "secondary"
     | "tertiary"

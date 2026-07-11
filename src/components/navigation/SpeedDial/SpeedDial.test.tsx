@@ -120,7 +120,7 @@ describe("SpeedDial", () => {
       <SpeedDial
         actions={[
           { icon: "EditIcon", label: "Edit" },
-          { icon: "CheckIcon", label: "Approve", intent: "positive" },
+          { icon: "CheckIcon", label: "Approve", intent: "success" },
         ]}
         direction="down"
       />

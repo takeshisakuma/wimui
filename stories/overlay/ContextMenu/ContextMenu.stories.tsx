@@ -141,8 +141,8 @@ export const WithIcons: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "var(--wim-color-informative-subtle)",
-            border: "2px dashed var(--wim-color-informative)",
+            backgroundColor: "var(--wim-color-info-subtle)",
+            border: "2px dashed var(--wim-color-info)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -182,8 +182,8 @@ export const WithGroups: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "var(--wim-color-caution-subtle)",
-            border: "2px dashed var(--wim-color-caution)",
+            backgroundColor: "var(--wim-color-warning-subtle)",
+            border: "2px dashed var(--wim-color-warning)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -217,8 +217,8 @@ export const WithDisabledItems: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "var(--wim-color-positive-subtle)",
-            border: "2px dashed var(--wim-color-positive)",
+            backgroundColor: "var(--wim-color-success-subtle)",
+            border: "2px dashed var(--wim-color-success)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",

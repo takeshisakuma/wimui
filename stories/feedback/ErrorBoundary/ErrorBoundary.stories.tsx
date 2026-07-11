@@ -64,7 +64,7 @@ export const CustomFallback: Story = {
             onReset={() => setShouldThrow(false)}
             fallback={(error, _info, reset) => (
               <Alert
-                intent="error"
+                intent="danger"
                 title={t("story.errorboundary_oops")}
                 description={error.message}
               >

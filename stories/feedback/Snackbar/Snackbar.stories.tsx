@@ -113,7 +113,7 @@ export const ErrorStatus: Story = {
   },
   args: {
     open: true,
-    intent: "error",
+    intent: "danger",
   },
 };
 

@@ -9,10 +9,10 @@ export type ChartDataPoint = Record<string, string | number | null>;
 // ダークモード対応とブランドカラー統一のためにトークンを適用します。
 export const CHART_COLORS = [
   "var(--wim-color-primary)",
-  "var(--wim-color-informative)",
-  "var(--wim-color-positive)",
-  "var(--wim-color-caution)",
-  "var(--wim-color-destructive)",
+  "var(--wim-color-info)",
+  "var(--wim-color-success)",
+  "var(--wim-color-warning)",
+  "var(--wim-color-danger)",
   "var(--wim-color-secondary)",
   "var(--wim-color-text-tertiary)",
   "var(--wim-color-disabled)",
@@ -20,10 +20,10 @@ export const CHART_COLORS = [
 
 export const CHART_TEXT_COLORS = [
   "var(--wim-color-text-on-primary)",
-  "var(--wim-color-text-on-informative)",
-  "var(--wim-color-text-on-positive)",
-  "var(--wim-color-text-on-caution)",
-  "var(--wim-color-text-on-destructive)",
+  "var(--wim-color-text-on-info)",
+  "var(--wim-color-text-on-success)",
+  "var(--wim-color-text-on-warning)",
+  "var(--wim-color-text-on-danger)",
   "var(--wim-color-text-on-secondary)",
   "var(--wim-color-text-primary)",
   "var(--wim-color-text-primary)",

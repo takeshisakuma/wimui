@@ -103,7 +103,7 @@ export const ErrorStatus: Story = {
       <RichTextEditor
         {...args}
         label={t("story.rte_label_content")}
-        intent="error"
+        intent="danger"
         error={t("story.rte_error_required")}
         placeholder={t("story.rte_placeholder_default")}
       />

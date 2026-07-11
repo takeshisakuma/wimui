@@ -146,23 +146,23 @@
       }
     }
 
-    &.destructive {
-      color: var(--wim-color-text-on-destructive);
-      background-color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-text-on-danger);
+      background-color: var(--wim-color-danger);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-destructive) calc(l * 0.9) c h);
+        background-color: oklch(from var(--wim-color-danger) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
     }
 
-    &.positive {
-      color: var(--wim-color-text-on-positive);
-      background-color: var(--wim-color-positive);
+    &.success {
+      color: var(--wim-color-text-on-success);
+      background-color: var(--wim-color-success);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-positive) calc(l * 0.9) c h);
+        background-color: oklch(from var(--wim-color-success) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
@@ -252,7 +252,7 @@
       line-height: 1;
       color: var(--wim-color-text-on-primary);
       text-align: center;
-      background-color: var(--wim-color-destructive);
+      background-color: var(--wim-color-danger);
       border-radius: var(--wim-radius-full);
       box-shadow: 0 0 0 2px var(--wim-color-bg-component);
 
@@ -262,7 +262,7 @@
         right: 0;
         width: 8px;
         height: 8px;
-        background-color: var(--wim-color-destructive);
+        background-color: var(--wim-color-danger);
         border-radius: var(--wim-radius-full);
         box-shadow: 0 0 0 2px var(--wim-color-bg-component);
       }

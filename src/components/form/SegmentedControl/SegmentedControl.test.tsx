@@ -169,7 +169,7 @@ describe("SegmentedControl", () => {
       render(<SegmentedControl options={options} value="1" onChange={() => {}} error="Required" />);
     });
     const group = screen.getByRole("radiogroup");
-    expect(group).toHaveClass(styles.error);
+    expect(group).toHaveClass(styles.danger);
     expect(group).toHaveAttribute("aria-invalid", "true");
     expect(group).toHaveAttribute("aria-describedby");
     expect(screen.getByRole("alert")).toHaveTextContent("Required");

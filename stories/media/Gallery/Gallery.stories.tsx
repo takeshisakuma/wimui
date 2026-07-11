@@ -75,7 +75,7 @@ export const Selectable: Story = {
           <Button
             size="sm"
             variant="outline"
-            intent="destructive"
+            intent="danger"
             onClick={clearSelection}
           >
             {t("story.gallery_delete_btn")} ({selectedIds.length})

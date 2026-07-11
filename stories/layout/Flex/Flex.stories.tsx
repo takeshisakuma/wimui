@@ -42,12 +42,12 @@ const meta: Meta<typeof Flex> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type BoxIntent = "primary" | "positive" | "caution" | "destructive" | "secondary";
+type BoxIntent = "primary" | "success" | "warning" | "danger" | "secondary";
 const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
   primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-primary) 60%, black)" },
-  positive:    { bg: "color-mix(in srgb, var(--wim-color-positive) 12%, var(--wim-color-bg-component))",    text: "color-mix(in srgb, var(--wim-color-positive) 60%, black)" },
-  caution:     { bg: "color-mix(in srgb, var(--wim-color-caution) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-caution) 60%, black)" },
-  destructive: { bg: "color-mix(in srgb, var(--wim-color-destructive) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-destructive) 60%, black)" },
+  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-bg-component))",    text: "color-mix(in srgb, var(--wim-color-success) 60%, black)" },
+  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-bg-component))",     text: "color-mix(in srgb, var(--wim-color-warning) 60%, black)" },
+  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-bg-component))", text: "color-mix(in srgb, var(--wim-color-danger) 60%, black)" },
   secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-bg-component))",   text: "color-mix(in srgb, var(--wim-color-secondary) 60%, black)" },
 };
 
@@ -81,8 +81,8 @@ export const Basic: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box intent="positive">{t("story.flex_item_2", "2")}</Box>
-        <Box intent="caution">{t("story.flex_item_3", "3")}</Box>
+        <Box intent="success">{t("story.flex_item_2", "2")}</Box>
+        <Box intent="warning">{t("story.flex_item_3", "3")}</Box>
       </Flex>
     );
   },
@@ -98,8 +98,8 @@ export const Column: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "Item 1")}</Box>
-        <Box intent="positive">{t("story.flex_item_2", "Item 2")}</Box>
-        <Box intent="destructive">{t("story.flex_item_3", "Item 3")}</Box>
+        <Box intent="success">{t("story.flex_item_2", "Item 2")}</Box>
+        <Box intent="danger">{t("story.flex_item_3", "Item 3")}</Box>
       </Flex>
     );
   },
@@ -133,9 +133,9 @@ export const Wrapped: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box intent="positive">{t("story.flex_item_2", "2")}</Box>
-        <Box intent="caution">{t("story.flex_item_3", "3")}</Box>
-        <Box intent="destructive">{t("story.flex_item_4", "4")}</Box>
+        <Box intent="success">{t("story.flex_item_2", "2")}</Box>
+        <Box intent="warning">{t("story.flex_item_3", "3")}</Box>
+        <Box intent="danger">{t("story.flex_item_4", "4")}</Box>
         <Box intent="secondary">{t("story.flex_item_5", "5")}</Box>
       </Flex>
     );

@@ -41,7 +41,7 @@ describe("FieldLabelContent", () => {
     const badge = container.querySelector(`.${styles.badge}`);
     expect(badge).toBeInTheDocument();
     // required badge uses error color, optional uses neutral
-    expect(badge).toHaveClass(badgeStyles.error);
+    expect(badge).toHaveClass(badgeStyles.danger);
   });
 
   it("applies custom className to the wrapper", () => {

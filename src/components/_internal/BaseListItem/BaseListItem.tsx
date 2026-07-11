@@ -30,7 +30,7 @@ export type BaseListItemProps = {
      */
     disabled?: boolean;
     /**
-     * If true, the item will be styled to indicate a dangerous or destructive action.
+     * If true, the item will be styled to indicate a dangerous or danger action.
      */
     danger?: boolean;
     /**

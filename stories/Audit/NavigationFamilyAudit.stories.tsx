@@ -51,7 +51,7 @@ export const Overview: StoryObj = {
               <Progress value={100} intent="success" label={t("audit:label_progress_success")} showValue />
               <Progress value={60} intent="primary" label={t("audit:label_progress_primary")} showValue />
               <Progress value={30} intent="warning" label={t("audit:label_progress_warning")} showValue />
-              <Progress value={70} intent="error" label={t("audit:label_progress_error")} showValue />
+              <Progress value={70} intent="danger" label={t("audit:label_progress_error")} showValue />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>

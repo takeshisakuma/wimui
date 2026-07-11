@@ -212,7 +212,7 @@ export const SignaturePad = ({
         className={classNames("wim-signature-pad", 
           styles.root,
           disabled && styles.disabled,
-          error && styles.error,
+          error && styles.danger,
         )}
         style={style}
       >

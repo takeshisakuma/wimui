@@ -49,15 +49,15 @@
     }
 
     &.success {
-      background-color: var(--wim-color-positive);
+      background-color: var(--wim-color-success);
     }
 
-    &.error {
-      background-color: var(--wim-color-destructive);
+    &.danger {
+      background-color: var(--wim-color-danger);
     }
 
     &.warning {
-      background-color: var(--wim-color-caution);
+      background-color: var(--wim-color-warning);
     }
 
     &.neutral {

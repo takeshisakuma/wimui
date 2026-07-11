@@ -3,26 +3,26 @@
  */
 
 :root {
-  --wim-color-destructive: #b01040;
-  --wim-color-positive: #28853f;
-  --wim-color-caution: #ccb914;
+  --wim-color-danger: #b01040;
+  --wim-color-success: #28853f;
+  --wim-color-warning: #ccb914;
   --wim-color-primary: #205b85;
   --wim-color-secondary: #b6b6b6;
-  --wim-color-informative: #243b8b;
+  --wim-color-info: #243b8b;
   --wim-color-disabled: #e5e5e5;
   --wim-color-text-on-primary: #fff;
-  --wim-color-text-on-destructive: #fff;
-  --wim-color-text-on-positive: #fff;
-  --wim-color-text-on-caution: #000;
+  --wim-color-text-on-danger: #fff;
+  --wim-color-text-on-success: #fff;
+  --wim-color-text-on-warning: #000;
   --wim-color-text-on-secondary: #000;
-  --wim-color-text-on-informative: #fff;
+  --wim-color-text-on-info: #fff;
   --wim-color-text-on-disabled: #393939;
   --wim-color-text-primary: #000;
   --wim-color-text-secondary: #393939;
   --wim-color-text-tertiary: #646464;
   --wim-color-text-disabled: #8a8a8a;
   --wim-color-text-white: #fff;
-  --wim-color-text-error: #ca1028;
+  --wim-color-text-danger: #ca1028;
   --wim-color-text-accent: #205b85;
   --wim-color-bg-app: #fff;
   --wim-color-bg-component: #fff;
@@ -82,7 +82,7 @@
   --wim-color-close-hover: rgba(0, 0, 0, 0.05);
   --wim-color-ghost-bg-hover: oklch(from var(--wim-color-bg-void) l c h / 0.05);
   --wim-color-primary-subtle: oklch(from var(--wim-color-primary) l c h / 0.04);
-  --wim-color-destructive-subtle: oklch(from var(--wim-color-destructive) l c h / 0.1);
+  --wim-color-danger-subtle: oklch(from var(--wim-color-danger) l c h / 0.1);
   --wim-color-bg-inverted: #262626;
   --wim-color-border-inverted: #393939;
   --wim-color-text-on-inverted: #fff;
@@ -172,7 +172,7 @@
   --wim-shadow-inset: inset 0 2px 4px oklch(0 0 0 / 0.1);
   --wim-shadow-focus: 0 0 0 2px #fff, 0 0 0 4px oklch(from var(--wim-color-primary) l c h / 0.5);
   --wim-shadow-focus-ring: 0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.15);
-  --wim-shadow-error-ring: 0 0 0 3px oklch(from var(--wim-color-destructive) l c h / 0.15);
+  --wim-shadow-error-ring: 0 0 0 3px oklch(from var(--wim-color-danger) l c h / 0.15);
   --wim-shadow-field-focus: 0 0 0 2px oklch(from var(--wim-color-primary) l c h / 0.2);
   --wim-shadow-overlay: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12);
   --wim-shadow-modal: 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18);
@@ -194,14 +194,12 @@
   --wim-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
   --wim-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --wim-easing-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --wim-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --wim-easing-snap: cubic-bezier(0.16, 1, 0.3, 1);
   --wim-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
   --wim-easing-gentle: cubic-bezier(0.37, 0, 0.63, 1);
   --wim-transition-fast: 0.167s cubic-bezier(0.4, 0, 0.2, 1);
   --wim-transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --wim-transition-slow: 0.333s cubic-bezier(0.4, 0, 0.2, 1);
-  --wim-transition-smooth: 0.167s cubic-bezier(0.4, 0, 0.2, 1);
   --wim-transition-spring: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   --wim-lift-sm: -1px;
   --wim-lift-md: -1.5px;

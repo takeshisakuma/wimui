@@ -115,7 +115,7 @@ export const WithIcons: Story = {
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="error">
+            <TimelinePoint variant="danger">
               <Icon name="CloseIcon" size="sm" />
             </TimelinePoint>
           </TimelineSeparator>

@@ -21,8 +21,8 @@ describe("Alert", () => {
   });
 
   it("applies status class", () => {
-    const { container } = render(<Alert intent="error" title="Error" />);
-    expect(container.firstChild).toHaveClass(/error/);
+    const { container } = render(<Alert intent="danger" title="Error" />);
+    expect(container.firstChild).toHaveClass(/danger/);
   });
 
   it("renders close button when onClose provided", () => {

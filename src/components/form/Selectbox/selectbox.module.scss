@@ -96,7 +96,7 @@
     transition: all var(--wim-transition-base);
 
     &:hover {
-      color: var(--wim-color-destructive);
+      color: var(--wim-color-danger);
       background-color: var(--wim-color-ghost-bg-hover);
     }
   }

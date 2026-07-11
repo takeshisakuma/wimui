@@ -34,12 +34,12 @@ export default meta;
 type Story = StoryObj<typeof Carousel>;
 
 const slideColors = [
-  { bg: "var(--wim-color-destructive)", text: "var(--wim-color-text-on-destructive)" },
+  { bg: "var(--wim-color-danger)", text: "var(--wim-color-text-on-danger)" },
   { bg: "var(--wim-color-primary)",     text: "var(--wim-color-text-on-primary)" },
-  { bg: "var(--wim-color-positive)",    text: "var(--wim-color-text-on-positive)" },
-  { bg: "var(--wim-color-caution)",     text: "var(--wim-color-text-on-caution)" },
+  { bg: "var(--wim-color-success)",    text: "var(--wim-color-text-on-success)" },
+  { bg: "var(--wim-color-warning)",     text: "var(--wim-color-text-on-warning)" },
   { bg: "var(--wim-color-secondary)",   text: "var(--wim-color-text-on-secondary)" },
-  { bg: "var(--wim-color-informative)", text: "var(--wim-color-text-on-informative)" },
+  { bg: "var(--wim-color-info)", text: "var(--wim-color-text-on-info)" },
 ];
 
 const ImagePlaceholder = ({

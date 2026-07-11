@@ -48,7 +48,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const isDisabled = disabled;
-    const currentIntent = error ? "error" : intent;
+    const currentIntent = error ? "danger" : intent;
 
     const generatedId = React.useId();
     const id = customId || `wim-textarea-${generatedId}`;
@@ -93,7 +93,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             ...props.style,
           }}
           disabled={isDisabled}
-          aria-invalid={currentIntent === "error"}
+          aria-invalid={currentIntent === "danger"}
           aria-describedby={errorId}
           aria-labelledby={label ? labelId : undefined}
           aria-required={required}

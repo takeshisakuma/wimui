@@ -29,7 +29,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       >
         <input
           type="radio"
-          className={classNames(styles.input, error && styles.error)}
+          className={classNames(styles.input, error && styles.danger)}
           disabled={disabled}
           ref={mergedRef}
           {...props}

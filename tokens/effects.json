@@ -121,7 +121,7 @@
         "value": "0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.15)"
       },
       "error-ring": {
-        "value": "0 0 0 3px oklch(from var(--wim-color-destructive) l c h / 0.15)"
+        "value": "0 0 0 3px oklch(from var(--wim-color-danger) l c h / 0.15)"
       },
       "field-focus": {
         "value": "0 0 0 2px oklch(from var(--wim-color-primary) l c h / 0.2)"
@@ -190,9 +190,6 @@
       "out-back": {
         "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
       },
-      "smooth": {
-        "value": "cubic-bezier(0.4, 0, 0.2, 1)"
-      },
       "snap": {
         "value": "cubic-bezier(0.16, 1, 0.3, 1)"
       },
@@ -212,9 +209,6 @@
       },
       "slow": {
         "value": "{wim.duration.slow} {wim.easing.standard}"
-      },
-      "smooth": {
-        "value": "{wim.duration.fast} {wim.easing.smooth}"
       },
       "spring": {
         "value": "{wim.duration.base} {wim.easing.spring}"

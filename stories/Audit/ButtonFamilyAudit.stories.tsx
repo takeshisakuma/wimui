@@ -29,7 +29,7 @@ export const Overview: StoryObj = {
 
     const sizes = ["sm", "md", "lg"] as const;
     const variants = ["solid", "outline", "ghost"] as const;
-    const intents = ["default", "destructive", "positive"] as const;
+    const intents = ["default", "danger", "success"] as const;
 
     return (
       <AuditPage title={t("audit:button_family_title")}>
@@ -52,11 +52,11 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:intent_comparison")}>
           {intents.map((intent) => (
             <ComponentGroup key={intent} label={t("audit:label_intent", { intent })} direction="row" align="center" wrap>
-              <Button size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"}>
+              <Button size="md" variant="solid" intent={intent as "default" | "danger" | "success"}>
                 {t("audit:label_button")}
               </Button>
-              <IconButton size="md" variant="solid" intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
-              <FloatButton intent={intent as "default" | "destructive" | "positive"} iconName="CircleIcon" position="static" />
+              <IconButton size="md" variant="solid" intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
+              <FloatButton intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" position="static" />
             </ComponentGroup>
           ))}
         </ComparisonGrid>

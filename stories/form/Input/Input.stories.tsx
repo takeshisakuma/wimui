@@ -43,10 +43,10 @@ const meta: Meta<typeof Input> = {
         "primary",
         "secondary",
         "tertiary",
-        "destructive",
-        "positive",
-        "caution",
-        "informative",
+        "danger",
+        "success",
+        "warning",
+        "info",
         "disabled",
       ],
     },
@@ -56,10 +56,10 @@ const meta: Meta<typeof Input> = {
         "primary",
         "secondary",
         "tertiary",
-        "destructive",
-        "positive",
-        "caution",
-        "informative",
+        "danger",
+        "success",
+        "warning",
+        "info",
         "disabled",
       ],
     },
@@ -179,7 +179,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    intent: "danger",
   },
 };
 

@@ -14,10 +14,10 @@ export default {
     color: {
       control: "select",
       options: [
-        "destructive",
-        "positive",
-        "caution",
-        "informative",
+        "danger",
+        "success",
+        "warning",
+        "info",
         "primary",
         "secondary",
         "tertiary",
@@ -30,7 +30,7 @@ export default {
     onClick: fn(),
     name: "CircleIcon",
     size: "md",
-    color: "destructive",
+    color: "danger",
   },
 };
 
@@ -47,7 +47,7 @@ export const MediumCircleIcon = {
   args: {
     name: "CircleIcon",
     size: "lg",
-    color: "destructive",
+    color: "danger",
   },
 };
 export const MediumLoadingIcon = {
@@ -82,13 +82,13 @@ export const MediumThumbUpIcon = {
   args: {
     name: "ThumbUpIcon",
     size: "md",
-    color: "positive",
+    color: "success",
   },
 };
 export const MediumThumbDownIcon = {
   args: {
     name: "ThumbDownIcon",
     size: "md",
-    color: "destructive",
+    color: "danger",
   },
 };

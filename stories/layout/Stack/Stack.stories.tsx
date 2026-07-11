@@ -40,19 +40,19 @@ export const Default: Story = {
         </Box>
         <Box
           key="2"
-          bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
           p={20}
           radius={8}
-          style={{ border: "1px solid var(--wim-color-positive)" }}
+          style={{ border: "1px solid var(--wim-color-success)" }}
         >
           {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
-          bg="color-mix(in srgb, var(--wim-color-caution) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-warning) 12%, white)"
           p={20}
           radius={8}
-          style={{ border: "1px solid var(--wim-color-caution)" }}
+          style={{ border: "1px solid var(--wim-color-warning)" }}
         >
           {t("story.stack_item_3", "Item 3")}
         </Box>
@@ -81,19 +81,19 @@ export const Row: Story = {
         </Box>
         <Box
           key="2"
-          bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
           p={20}
           radius={8}
-          style={{ border: "1px solid var(--wim-color-positive)" }}
+          style={{ border: "1px solid var(--wim-color-success)" }}
         >
           {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
-          bg="color-mix(in srgb, var(--wim-color-caution) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-warning) 12%, white)"
           p={20}
           radius={8}
-          style={{ border: "1px solid var(--wim-color-caution)" }}
+          style={{ border: "1px solid var(--wim-color-warning)" }}
         >
           {t("story.stack_item_3", "Item 3")}
         </Box>
@@ -126,13 +126,13 @@ export const SpacingTokens: Story = {
           </Box>
         </Stack>
         <Stack direction="row" gap="lg">
-          <Box bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-positive) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
         </Stack>

@@ -23,6 +23,6 @@ describe("Radio", () => {
 
   it("applies error state", () => {
     render(<Radio error>With error</Radio>);
-    expect(screen.getByLabelText("With error")).toHaveClass(styles.error);
+    expect(screen.getByLabelText("With error")).toHaveClass(styles.danger);
   });
 });

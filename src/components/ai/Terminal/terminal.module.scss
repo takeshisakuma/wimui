@@ -87,10 +87,10 @@
   }
 
   .copied {
-    color: var(--wim-color-positive);
+    color: var(--wim-color-success);
 
     &:hover {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
   }
 
@@ -115,7 +115,7 @@
 
   .prompt {
     flex-shrink: 0;
-    color: var(--wim-color-positive);
+    color: var(--wim-color-success);
     user-select: none;
   }
 
@@ -131,8 +131,8 @@
   .output .content { color: var(--wim-color-text-primary); }
 
   .error {
-    .prompt  { color: var(--wim-color-text-error); }
-    .content { color: var(--wim-color-text-error); }
+    .prompt  { color: var(--wim-color-text-danger); }
+    .content { color: var(--wim-color-text-danger); }
   }
 
   .info .content { color: var(--wim-color-text-accent); }

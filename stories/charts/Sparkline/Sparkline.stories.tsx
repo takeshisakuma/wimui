@@ -47,9 +47,9 @@ export const WithLastDot: Story = {
 export const Trends: Story = {
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <Sparkline {...args} data={TREND} color="var(--wim-color-positive)" showLastDot />
-      <Sparkline {...args} data={DECLINE} color="var(--wim-color-destructive)" showLastDot />
-      <Sparkline {...args} data={VOLATILE} color="var(--wim-color-informative)" />
+      <Sparkline {...args} data={TREND} color="var(--wim-color-success)" showLastDot />
+      <Sparkline {...args} data={DECLINE} color="var(--wim-color-danger)" showLastDot />
+      <Sparkline {...args} data={VOLATILE} color="var(--wim-color-info)" />
     </div>
   ),
 };
@@ -58,7 +58,7 @@ export const Inline: Story = {
   render: (args) => (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "14px" }}>
       1,248
-      <Sparkline {...args} data={TREND} width={80} height={20} color="var(--wim-color-positive)" />
+      <Sparkline {...args} data={TREND} width={80} height={20} color="var(--wim-color-success)" />
       +12%
     </span>
   ),

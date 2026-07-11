@@ -81,7 +81,7 @@ describe("PhoneInput", () => {
   it("applies error class when error is set", () => {
     render(<PhoneInput error="Error" />);
     const root = screen.getByTestId("phone-input-root");
-    expect(root).toHaveClass(styles.error);
+    expect(root).toHaveClass(styles.danger);
   });
 
   it("applies disabled class when disabled", () => {

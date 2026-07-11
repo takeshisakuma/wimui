@@ -19,7 +19,7 @@
     min-height: var(--wim-height-md);
     padding: 0;
     margin-left: auto;
-    color: var(--wim-color-destructive);
+    color: var(--wim-color-danger);
     transition: var(--wim-transition-fast);
 
     svg {
@@ -28,8 +28,8 @@
     }
 
     &:hover {
-      color: var(--wim-color-destructive);
-      background-color: oklch(from var(--wim-color-destructive) l c h / 0.1);
+      color: var(--wim-color-danger);
+      background-color: oklch(from var(--wim-color-danger) l c h / 0.1);
     }
   }
 
@@ -64,10 +64,10 @@
 }
 
 .excluded {
-  border-color: color-mix(in oklch, var(--wim-color-destructive) 20%, var(--wim-color-border-secondary));
+  border-color: color-mix(in oklch, var(--wim-color-danger) 20%, var(--wim-color-border-secondary));
 
   > .ruleList {
-    background-color: color-mix(in oklch, var(--wim-color-destructive) 6%, var(--wim-color-bg-component));
+    background-color: color-mix(in oklch, var(--wim-color-danger) 6%, var(--wim-color-bg-component));
   }
 }
 

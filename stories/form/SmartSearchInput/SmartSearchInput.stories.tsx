@@ -88,7 +88,7 @@ export const Variants: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", maxWidth: "800px", margin: "0 auto" }}>
         <SmartSearchInput variant="outline" placeholder={t("story.smartsearchinput_placeholder")} fullWidth />
         <SmartSearchInput variant="ghost" placeholder={t("story.smartsearchinput_placeholder")} fullWidth />
-        <SmartSearchInput intent="error" error={t("story.smartsearch_error_invalid")} defaultValue="error example" fullWidth />
+        <SmartSearchInput intent="danger" error={t("story.smartsearch_error_invalid")} defaultValue="error example" fullWidth />
       </div>
     );
   },

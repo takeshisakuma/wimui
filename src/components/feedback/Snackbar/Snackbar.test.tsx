@@ -42,8 +42,8 @@ describe("Snackbar", () => {
   });
 
   it("renders with error intent and role=alert", () => {
-    render(<Snackbar message="Error" open={true} intent="error" />);
-    const el = document.querySelector(`.${styles.error}`);
+    render(<Snackbar message="Error" open={true} intent="danger" />);
+    const el = document.querySelector(`.${styles.danger}`);
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("role", "alert");
     expect(el).toHaveAttribute("aria-live", "assertive");

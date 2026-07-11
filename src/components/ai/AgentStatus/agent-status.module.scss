@@ -80,15 +80,15 @@
   }
 
   .waiting {
-    color: var(--wim-color-caution);
+    color: var(--wim-color-warning);
   }
 
   .done {
-    color: var(--wim-color-positive);
+    color: var(--wim-color-success);
   }
 
   .error {
-    color: var(--wim-color-destructive);
+    color: var(--wim-color-danger);
   }
 
   /* ── Animations ── */

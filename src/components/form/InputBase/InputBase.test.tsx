@@ -19,8 +19,8 @@ describe("InputBase", () => {
   });
 
   it("applies error intent class", () => {
-    const { container } = render(<InputBase intent="error"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass(styles.error);
+    const { container } = render(<InputBase intent="danger"><input /></InputBase>);
+    expect(container.firstChild).toHaveClass(styles.danger);
   });
 
   it("applies outline variant class by default", () => {

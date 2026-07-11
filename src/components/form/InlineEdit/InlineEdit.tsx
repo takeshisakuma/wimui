@@ -140,7 +140,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             <div className={localStyles.editActions}>
               <IconButton
                 iconName="CheckIcon"
-                intent="positive"
+                intent="success"
                 variant="outline"
                 aria-label={t("action.save")}
                 onClick={handleSave}

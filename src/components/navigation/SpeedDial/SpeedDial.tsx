@@ -9,7 +9,7 @@ export interface SpeedDialAction {
   label: string;
   onClick?: () => void;
   className?: string;
-  intent?: "default" | "destructive" | "positive";
+  intent?: "default" | "danger" | "success";
 }
 
 export type SpeedDialProps = React.ComponentPropsWithoutRef<"div"> & {

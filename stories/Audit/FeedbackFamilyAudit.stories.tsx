@@ -41,7 +41,7 @@ export const Overview: StoryObj = {
               <Alert intent="info" title={t("audit:sample_alert_info_title")} description={t("audit:sample_alert_info_desc")} />
               <Alert intent="success" title={t("audit:sample_alert_success_title")} description={t("audit:sample_alert_success_desc")} />
               <Alert intent="warning" title={t("audit:sample_alert_warning_title")} description={t("audit:sample_alert_warning_desc")} />
-              <Alert intent="error" title={t("audit:sample_alert_error_title")} description={t("audit:sample_alert_error_desc")} />
+              <Alert intent="danger" title={t("audit:sample_alert_error_title")} description={t("audit:sample_alert_error_desc")} />
             </Stack>
           </ComponentGroup>
 
@@ -49,7 +49,7 @@ export const Overview: StoryObj = {
             <Stack gap="md">
               <Banner intent="info" description={t("audit:sample_banner_info")} />
               <Banner intent="warning" description={t("audit:sample_banner_warning")} />
-              <Banner intent="error" description={t("audit:sample_banner_error")} />
+              <Banner intent="danger" description={t("audit:sample_banner_error")} />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
@@ -79,7 +79,7 @@ export const Overview: StoryObj = {
             <Stack gap="md">
               <Progress value={30} label={t("audit:sample_progress_uploading")} showValue />
               <Progress value={60} intent="success" label={t("audit:sample_progress_success")} showValue />
-              <Progress value={90} intent="error" label={t("audit:sample_progress_error")} showValue />
+              <Progress value={90} intent="danger" label={t("audit:sample_progress_error")} showValue />
               <Progress indeterminate label={t("audit:sample_progress_processing")} />
             </Stack>
           </ComponentGroup>
@@ -114,7 +114,7 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_toast_batch")} align="stretch">
             <Stack gap="sm">
                <Toast title={t("audit:sample_toast_profile_title")} description={t("audit:sample_toast_profile_desc")} intent="success" />
-               <Toast title={t("audit:sample_toast_network_title")} description={t("audit:sample_toast_network_desc")} intent="error" />
+               <Toast title={t("audit:sample_toast_network_title")} description={t("audit:sample_toast_network_desc")} intent="danger" />
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>
@@ -158,7 +158,7 @@ export const Overview: StoryObj = {
             <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-bg-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
               <Stack gap="sm">
                  <Toast title={t("audit:sample_progress_success")} description={t("audit:sample_toast_profile_desc")} intent="success" />
-                 <Toast title={t("audit:sample_progress_error")} description={t("audit:sample_toast_network_desc")} intent="error" />
+                 <Toast title={t("audit:sample_progress_error")} description={t("audit:sample_toast_network_desc")} intent="danger" />
               </Stack>
               <Box style={{ position: "absolute", bottom: "10px", right: "10px" }}>
                  <Toast title={t("audit:sample_toast_floating_title")} description={t("audit:sample_toast_floating_desc")} intent="info" />

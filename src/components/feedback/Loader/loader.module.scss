@@ -14,15 +14,15 @@
     }
 
     &.success {
-      color: var(--wim-color-positive);
+      color: var(--wim-color-success);
     }
 
     &.warning {
-      color: var(--wim-color-caution);
+      color: var(--wim-color-warning);
     }
 
-    &.error {
-      color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-danger);
     }
 
     &.neutral {

@@ -34,7 +34,7 @@ export const FieldCharacterCount: React.FC<FieldCharacterCountProps> = ({
       className={classNames(
         styles.root,
         {
-          [styles.error]: isError || (maxLength !== undefined && count > maxLength),
+          [styles.danger]: isError || (maxLength !== undefined && count > maxLength),
           [styles.warning]: maxLength !== undefined && count >= maxLength * 0.9 && count <= maxLength,
         },
         className

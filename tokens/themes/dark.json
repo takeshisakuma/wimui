@@ -24,12 +24,12 @@
       "overlay-bg-dark": { "value": "rgba(0, 0, 0, 0.8)" },
       "disabled": { "value": "{pccs.gy4-5}" },
       "text-on-disabled": { "value": "{pccs.gy7-5}" },
-      "text-error": { "value": "#ff8c8c" },
+      "text-danger": { "value": "#ff8c8c" },
       "text-accent": { "value": "{pccs.lt16}" },
-      "destructive": { "value": "{pccs.lt2}" },
-      "positive": { "value": "{pccs.v12}" },
-      "caution": { "value": "{pccs.v7}" },
-      "informative": { "value": "{pccs.v17}" },
+      "danger": { "value": "{pccs.lt2}" },
+      "success": { "value": "{pccs.v12}" },
+      "warning": { "value": "{pccs.v7}" },
+      "info": { "value": "{pccs.v17}" },
       "primary": { "value": "{pccs.v16}" },
       "primary-rgb": { "value": "{wim.color.primary}" },
 
@@ -78,7 +78,7 @@
       "avatar-s22": { "value": "{pccs.b22}" },
       "avatar-s24": { "value": "{pccs.b24}" },
 
-      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-warning) 15%, var(--wim-color-bg-secondary))" },
       "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
 
       "chart-1": { "value": "{pccs.b16}" },

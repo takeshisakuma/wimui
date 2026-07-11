@@ -410,7 +410,8 @@
     "transfer_i18n_desc": "ラベル、プレースホルダー、ステータスメッセージのローカライズを完全にサポートします。",
     "transition": "トランジション",
     "usage": "使用法",
-    "usage_scenario": "利用シナリオ"
+    "usage_scenario": "利用シナリオ",
+    "danger": "危険"
   },
   "error": {
     "boundary_hide_details": "詳細を非表示",

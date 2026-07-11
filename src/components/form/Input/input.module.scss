@@ -46,7 +46,7 @@
       }
     }
 
-    &.error {
+    &.danger {
       @include field.error-border;
 
       &:focus {

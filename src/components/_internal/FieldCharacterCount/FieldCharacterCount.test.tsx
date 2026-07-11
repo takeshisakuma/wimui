@@ -45,17 +45,17 @@ describe("FieldCharacterCount", () => {
 
   it("applies error class when count exceeds maxLength", () => {
     const { container } = render(<FieldCharacterCount count={110} maxLength={100} />);
-    expect(container.firstChild).toHaveClass(styles.error);
+    expect(container.firstChild).toHaveClass(styles.danger);
   });
 
   it("applies error class when isError prop is true", () => {
     const { container } = render(<FieldCharacterCount count={5} isError />);
-    expect(container.firstChild).toHaveClass(styles.error);
+    expect(container.firstChild).toHaveClass(styles.danger);
   });
 
   it("does not apply error class when count is within maxLength", () => {
     const { container } = render(<FieldCharacterCount count={50} maxLength={100} />);
-    expect(container.firstChild).not.toHaveClass(styles.error);
+    expect(container.firstChild).not.toHaveClass(styles.danger);
   });
 
   // ── Warning state ─────────────────────────────────────────────────────────
@@ -73,7 +73,7 @@ describe("FieldCharacterCount", () => {
   it("does not apply warning class when count exceeds maxLength (error takes over)", () => {
     const { container } = render(<FieldCharacterCount count={101} maxLength={100} />);
     expect(container.firstChild).not.toHaveClass(styles.warning);
-    expect(container.firstChild).toHaveClass(styles.error);
+    expect(container.firstChild).toHaveClass(styles.danger);
   });
 
   // ── Accessibility ─────────────────────────────────────────────────────────

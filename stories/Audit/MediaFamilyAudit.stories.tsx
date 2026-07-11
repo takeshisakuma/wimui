@@ -47,7 +47,7 @@ export const Overview: StoryObj = {
               <Avatar initials="JD" />
               <Avatar src="invalid-url" alt={t("audit:media_alt_broken")} />
               <Avatar initials="AI" intent="primary" />
-              <Avatar initials="ER" intent="error" />
+              <Avatar initials="ER" intent="danger" />
             </Stack>
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_image")} — ${t("audit:sfx_loading_fallback_behavior")}`}>

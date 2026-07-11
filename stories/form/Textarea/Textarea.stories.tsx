@@ -78,7 +78,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    intent: "danger",
   },
 };
 
@@ -166,7 +166,7 @@ export const FormPattern: Story = {
             <Textarea
               id="motivation"
               {...args}
-              intent="error"
+              intent="danger"
               defaultValue={t("story.textarea_value_none")}
               rows={3}
               fullWidth

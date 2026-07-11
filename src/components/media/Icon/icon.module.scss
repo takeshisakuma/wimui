@@ -79,16 +79,16 @@
       font-size: var(--wim-font-size-5xl);
     }
 
-    &.destructive {
-      color: var(--wim-color-destructive);
+    &.danger {
+      color: var(--wim-color-danger);
     }
 
-    &.positive {
-      color: var(--wim-color-positive);
+    &.success {
+      color: var(--wim-color-success);
     }
 
-    &.caution {
-      color: var(--wim-color-caution);
+    &.warning {
+      color: var(--wim-color-warning);
     }
 
     &.primary {
@@ -107,8 +107,8 @@
       color: var(--wim-color-text-on-disabled);
     }
 
-    &.informative {
-      color: var(--wim-color-informative);
+    &.info {
+      color: var(--wim-color-info);
     }
 
     &.loading {
