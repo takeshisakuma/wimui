@@ -1,0 +1,4 @@
+{
+  "$comment": "Baselined pre-existing broken --wim-color-* references (ratchet). The guard fails on any NEW orphan but tolerates keys listed here. Keep this empty: prefer fixing a broken reference (use an existing token or add one to tokens/) or writing a fallback var(--wim-color-x, <fallback>). Only add an entry as a deliberate, temporary exception.",
+  "knownOrphans": {}
+}

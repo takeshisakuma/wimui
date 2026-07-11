@@ -61,7 +61,7 @@
   }
 
   &.editMode {
-    border-color: var(--wim-color-primary-muted);
+    border-color: var(--wim-color-primary-subtle);
     border-style: dashed;
   }
 }
@@ -147,6 +147,6 @@
   &:hover {
     color: var(--wim-color-text-accent);
     background: var(--wim-color-primary-subtle);
-    border-color: var(--wim-color-primary-muted);
+    border-color: var(--wim-color-primary-subtle);
   }
 }

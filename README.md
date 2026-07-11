@@ -15,13 +15,13 @@ git clone https://github.com/takeshisakuma/wimui.git
 cd wimui
 npm install
 npm run build
-npm pack    # wimui-1.0.0.tgz が生成される
+npm pack    # wimui-0.1.0.tgz が生成される
 
 # 利用するアプリ側
-npm install /path/to/wimui-1.0.0.tgz
+npm install /path/to/wimui-0.1.0.tgz
 ```
 
-`i18next` / `react-i18next` は必須の peerDependencies ですが、npm 7 以降では自動的にインストールされます。アプリ側でのセットアップは不要です（後述の「多言語化」を参照）。
+`i18next` / `react-i18next` などの i18n ライブラリは不要です。翻訳リソースを内蔵し、特定の i18n ライブラリに依存しません（後述の「多言語化」を参照）。
 
 ## クイックスタート
 

@@ -1,0 +1,35 @@
+{
+  "$comment": "Single source of truth for the semantic intent vocabulary. Edit here only. `canonical` lists every valid intent and the color token it maps to (null = the component's own default styling, no dedicated color token). `sets` declares the intent subset each component family exposes; every member MUST appear in `canonical`. Run `npm run intents:build` (also part of `npm run tokens:build`) to regenerate src/types/generated-intents.ts. `npm run check:intents` fails if the committed output is stale.",
+  "canonical": {
+    "primary": { "color": "primary" },
+    "secondary": { "color": "secondary" },
+    "success": { "color": "success" },
+    "warning": { "color": "warning" },
+    "danger": { "color": "danger" },
+    "info": { "color": "info" },
+    "neutral": { "color": null },
+    "default": { "color": null }
+  },
+  "sets": {
+    "WimIntent": {
+      "description": "Unified semantic intent values for components.",
+      "values": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "default"]
+    },
+    "ButtonIntent": {
+      "description": "Semantic intent values available on Button. A deliberate subset of WimIntent — buttons express danger/success/neutral, not the full palette of feedback intents.",
+      "values": ["default", "danger", "success"]
+    },
+    "IndicatorIntent": {
+      "description": "Intent values for indicator-style components (Badge, Chip, Tag, Progress).",
+      "values": ["primary", "secondary", "success", "warning", "danger", "info", "neutral"]
+    },
+    "FeedbackIntent": {
+      "description": "Intent values for feedback-style components (Alert, Banner, Toast, Notification).",
+      "values": ["info", "success", "warning", "danger"]
+    },
+    "FieldIntent": {
+      "description": "Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).",
+      "values": ["default", "danger"]
+    }
+  }
+}

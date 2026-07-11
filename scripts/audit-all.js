@@ -49,6 +49,14 @@ const checks = [
   {
     name: "Design token surface (theming freeze guard)",
     command: "node scripts/check-tokens.js",
+  },
+  {
+    name: "Intent vocabulary (generated-intents.ts up to date)",
+    command: "node scripts/generate-intents.js --check",
+  },
+  {
+    name: "SCSS color-token reference integrity",
+    command: "node scripts/check-scss-token-refs.js",
   }
 ];
 
