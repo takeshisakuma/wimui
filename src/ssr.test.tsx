@@ -15,6 +15,7 @@ import { renderToString } from "react-dom/server";
 import { createElement, type ComponentType, type ReactElement } from "react";
 import { isValidElementType } from "react-is";
 import * as WimUI from "./index";
+import * as WimCharts from "./charts";
 import "./tokens";
 
 // React の SSR 警告（useLayoutEffect does nothing on the server 等）でログが
@@ -22,7 +23,7 @@ import "./tokens";
 vi.spyOn(console, "error").mockImplementation(() => {});
 vi.spyOn(console, "warn").mockImplementation(() => {});
 
-const W = WimUI;
+const W = { ...WimUI, ...WimCharts };
 
 // 必須 props / 親 Context がないと TypeError 等で早期に落ち、レンダーパス全体を
 // 検証できないコンポーネントの最小フィクスチャ。

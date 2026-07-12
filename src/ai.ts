@@ -1,14 +1,6 @@
-export * from "./components/ai/PromptInput/PromptInput";
-export * from "./components/ai/StreamingText/StreamingText";
-export * from "./components/ai/ThoughtProcess/ThoughtProcess";
-export * from "./components/ai/AIResponseFeedback/AIResponseFeedback";
-export * from "./components/ai/SourceCitation/SourceCitation";
-export * from "./components/ai/CodeBlock/CodeBlock";
-export * from "./components/ai/CodeDiffViewer/CodeDiffViewer";
-export * from "./components/ai/Terminal/Terminal";
-export * from "./components/ai/AgentStatus/AgentStatus";
-export * from "./components/ai/VoiceVisualizer/VoiceVisualizer";
-export * from "./components/ai/ModelSelector/ModelSelector";
-export * from "./components/ai/ThreadList/ThreadList";
-export * from "./components/ai/UsageMeter/UsageMeter";
-export * from "./components/ai/ChatUI/ChatUI";
+// Full `wimui/ai` category barrel (subpath entry). Re-exports the peer-free
+// core plus the components that eagerly import an optional peer — importing
+// this barrel (or the components below) requires their peer to be installed.
+export * from "./ai-core";
+export * from "./components/ai/StreamingText/StreamingText"; // react-markdown, remark-gfm
+export * from "./components/ai/CodeDiffViewer/CodeDiffViewer"; // diff

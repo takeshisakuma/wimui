@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { PieChart } from "wimui";
+import { PieChart } from "wimui/charts";
 
 const meta: Meta<typeof PieChart> = {
   title: "Components/Visualization/PieChart",

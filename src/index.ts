@@ -4,17 +4,21 @@
 //   import "wimui/tokens.css";  // 必須: :root{--wim-*}
 //   import "wimui/styles.css";  // 必須: コンポーネント CSS
 //   import "wimui/reset.css";   // 任意: 意見の強いリセット/base
+// Root barrel must import cleanly in non-bundler/Node contexts, so it excludes
+// components that eagerly import an optional peer: the whole `charts` category
+// (recharts) and the peer-heavy members of ai/data-display. Those remain
+// available via their category subpath (`wimui/charts`, `wimui/data-display`,
+// `wimui/ai`) or per-component subpath — see src/{ai,data-display}.ts.
 export * from "./tokens";
 export * from "./layout";
 export * from "./form";
 export * from "./feedback";
 export * from "./navigation";
-export * from "./data-display";
+export * from "./data-display-core";
 export * from "./overlay";
 export * from "./typography";
 export * from "./media";
-export * from "./charts";
-export * from "./ai";
+export * from "./ai-core";
 export * from "./hooks/useAutoResize";
 export * from "./hooks/useMediaQuery";
 export * from "./hooks/useBreakpoint";

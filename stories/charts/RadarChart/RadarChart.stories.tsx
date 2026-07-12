@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { RadarChart } from "wimui";
+import { RadarChart } from "wimui/charts";
 
 const meta: Meta<typeof RadarChart> = {
   title: "Components/Visualization/RadarChart",

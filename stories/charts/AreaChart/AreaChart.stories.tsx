@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { AreaChart } from "wimui";
+import { AreaChart } from "wimui/charts";
 
 const meta: Meta<typeof AreaChart> = {
   title: "Components/Visualization/AreaChart",

@@ -9,9 +9,9 @@ import {
   ChatMessage, 
   ChatMessageList, 
   PromptInput,
-  StreamingText,
   Icon
 } from "../../../src/index";
+import { StreamingText } from "../../../src/ai";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof ChatContainer> = {
