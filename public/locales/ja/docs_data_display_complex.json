@@ -233,6 +233,7 @@
     "stats_trend_props": "StatsTrend プロパティ",
     "stats_usage_desc": "ラベル、値、および補足情報を組み合わせて使用します。",
     "stats_value_props": "StatsValue プロパティ",
+    "stats_variations_desc": "`variant` プロパティでさまざまなスタイルを選択できます。",
     "streamingText_desc": "AI生成レスポンスのストリーミングMarkdownレンダラー",
     "switchgroup_a11y_fieldset": "スクリーンリーダーに明確なグループコンテキストを提供するため、`fieldset` と `legend` で囲みます。",
     "switchgroup_content_order": "効率を向上させるため、最も頻繁に使用されるスイッチを一番上に配置します。",

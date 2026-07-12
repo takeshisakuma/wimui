@@ -1,19 +1,24 @@
 #!/usr/bin/env node
 /**
- * Generate src/types/generated-intents.ts from tokens/intents.json.
+ * Generate src/types/generated-intents.ts and src/tokens/generated/_intents.scss
+ * from tokens/intents.json.
  *
  * intents.json is the single source of truth for the semantic intent
- * vocabulary. This script derives the TypeScript union types from it so the
- * five *Intent types never drift apart or from the color tokens.
+ * vocabulary. This script derives both the TypeScript union types AND the SCSS
+ * `$token-colors` map from it, so the *Intent types, the indicator-style SCSS
+ * class names, and the color tokens can never drift apart. (Historically the
+ * SCSS map keyed danger as "error", silently unstyling `intent="danger"` on
+ * Badge/Chip/Tag — exactly the drift this generator eliminates.)
  *
  * Validations (fail the build):
  *   1. Every value in every `set` exists in `canonical`.
  *   2. Every canonical intent with a non-null `color` maps to a real
  *      `--wim-color-<color>` token (checked against generated-tokens.ts).
+ *   3. Every `surface` base/on color token exists as a `--wim-color-<key>`.
  *
  * Usage:
- *   node scripts/generate-intents.js            # write generated-intents.ts
- *   node scripts/generate-intents.js --check    # fail if committed file is stale
+ *   node scripts/generate-intents.js            # write both generated files
+ *   node scripts/generate-intents.js --check    # fail if either committed file is stale
  */
 import fs from "fs";
 import path from "path";
@@ -24,6 +29,7 @@ const root = path.resolve(__dirname, "..");
 const SOURCE = path.join(root, "tokens", "intents.json");
 const TOKENS_TYPES = path.join(root, "src", "types", "generated-tokens.ts");
 const OUTPUT = path.join(root, "src", "types", "generated-intents.ts");
+const OUTPUT_SCSS = path.join(root, "src", "tokens", "generated", "_intents.scss");
 
 const checkMode = process.argv.includes("--check");
 
@@ -39,7 +45,25 @@ function readColorKeys() {
   return new Set([...m[1].matchAll(/"([^"]+)"/g)].map((x) => x[1]));
 }
 
-function build() {
+/**
+ * Resolve a canonical intent's indicator `surface` into the base/on color
+ * token keys, or null when the intent renders no dedicated surface.
+ *   surface === true        → base = color, on = `text-on-<color>`
+ *   surface === { base, on } → explicit token keys (e.g. neutral)
+ */
+function resolveSurface(def) {
+  const surface = def && def.surface;
+  if (!surface) return null;
+  if (surface === true) {
+    if (!def.color) {
+      throw new Error(`surface: true requires a non-null color`);
+    }
+    return { base: def.color, on: `text-on-${def.color}` };
+  }
+  return { base: surface.base, on: surface.on };
+}
+
+function loadAndValidate() {
   const source = JSON.parse(fs.readFileSync(SOURCE, "utf8"));
   const canonical = source.canonical ?? {};
   const sets = source.sets ?? {};
@@ -65,12 +89,36 @@ function build() {
     }
   }
 
+  // Validation 3: every surface base/on color token must exist.
+  for (const [name, def] of Object.entries(canonical)) {
+    let surface;
+    try {
+      surface = resolveSurface(def);
+    } catch (e) {
+      errors.push(`canonical intent "${name}": ${e.message}.`);
+      continue;
+    }
+    if (!surface) continue;
+    for (const role of ["base", "on"]) {
+      const key = surface[role];
+      if (!colorKeys.has(key)) {
+        errors.push(
+          `canonical intent "${name}" surface.${role} "${key}" but --wim-color-${key} does not exist.`
+        );
+      }
+    }
+  }
+
   if (errors.length) {
     console.error("✗ tokens/intents.json is invalid:");
     for (const e of errors) console.error(`  - ${e}`);
     process.exit(1);
   }
 
+  return { canonical, sets };
+}
+
+function buildTs({ canonical, sets }) {
   const canonicalList = Object.keys(canonical);
   let out = `/**\n * Do not edit directly, this file was auto-generated from tokens/intents.json.\n * Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n */\n\n`;
 
@@ -86,18 +134,47 @@ function build() {
   return out;
 }
 
-const generated = build();
+function buildScss({ canonical }) {
+  let out = `// Do not edit directly, this file was auto-generated from tokens/intents.json.\n// Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n//\n// $token-colors maps each indicator-painting intent to its base surface color\n// and the readable "on" color used for solid fills. Keys match the semantic\n// intent vocabulary exactly, so \`styles?.[intent]\` (IndicatorBase) always hits.\n\n`;
+  out += `$token-colors: (\n`;
+  for (const [name, def] of Object.entries(canonical)) {
+    const surface = resolveSurface(def);
+    if (!surface) continue;
+    out += `  "${name}": (\n`;
+    out += `    "base": var(--wim-color-${surface.base}),\n`;
+    out += `    "on": var(--wim-color-${surface.on}),\n`;
+    out += `  ),\n`;
+  }
+  out += `);\n`;
+  return out;
+}
+
+const data = loadAndValidate();
+const generatedTs = buildTs(data);
+const generatedScss = buildScss(data);
+
+const outputs = [
+  { file: OUTPUT, content: generatedTs },
+  { file: OUTPUT_SCSS, content: generatedScss },
+];
 
 if (checkMode) {
-  const current = fs.existsSync(OUTPUT) ? fs.readFileSync(OUTPUT, "utf8") : "";
-  if (current !== generated) {
-    console.error(
-      `✗ ${path.relative(root, OUTPUT)} is out of date with tokens/intents.json.\n  Run \`npm run intents:build\` and commit the result.`
-    );
-    process.exit(1);
+  let stale = false;
+  for (const { file, content } of outputs) {
+    const current = fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+    if (current !== content) {
+      console.error(
+        `✗ ${path.relative(root, file)} is out of date with tokens/intents.json.\n  Run \`npm run intents:build\` and commit the result.`
+      );
+      stale = true;
+    }
   }
-  console.log("✓ generated-intents.ts matches tokens/intents.json.");
+  if (stale) process.exit(1);
+  console.log("✓ generated intent files match tokens/intents.json.");
 } else {
-  fs.writeFileSync(OUTPUT, generated, "utf8");
-  console.log(`✓ Wrote ${path.relative(root, OUTPUT)} from tokens/intents.json.`);
+  for (const { file, content } of outputs) {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, content, "utf8");
+    console.log(`✓ Wrote ${path.relative(root, file)} from tokens/intents.json.`);
+  }
 }

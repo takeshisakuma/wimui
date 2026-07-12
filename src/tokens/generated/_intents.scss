@@ -1,0 +1,37 @@
+// Do not edit directly, this file was auto-generated from tokens/intents.json.
+// Run `npm run intents:build` (also part of `npm run tokens:build`).
+//
+// $token-colors maps each indicator-painting intent to its base surface color
+// and the readable "on" color used for solid fills. Keys match the semantic
+// intent vocabulary exactly, so `styles?.[intent]` (IndicatorBase) always hits.
+
+$token-colors: (
+  "primary": (
+    "base": var(--wim-color-primary),
+    "on": var(--wim-color-text-on-primary),
+  ),
+  "secondary": (
+    "base": var(--wim-color-secondary),
+    "on": var(--wim-color-text-on-secondary),
+  ),
+  "success": (
+    "base": var(--wim-color-success),
+    "on": var(--wim-color-text-on-success),
+  ),
+  "warning": (
+    "base": var(--wim-color-warning),
+    "on": var(--wim-color-text-on-warning),
+  ),
+  "danger": (
+    "base": var(--wim-color-danger),
+    "on": var(--wim-color-text-on-danger),
+  ),
+  "info": (
+    "base": var(--wim-color-info),
+    "on": var(--wim-color-text-on-info),
+  ),
+  "neutral": (
+    "base": var(--wim-color-disabled),
+    "on": var(--wim-color-text-primary),
+  ),
+);

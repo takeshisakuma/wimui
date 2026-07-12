@@ -1,35 +1,9 @@
 @use "sass:map";
 
-$token-colors: (
-  "primary": (
-    "base": var(--wim-color-primary),
-    "on": var(--wim-color-text-on-primary),
-  ),
-  "secondary": (
-    "base": var(--wim-color-secondary),
-    "on": var(--wim-color-text-on-secondary),
-  ),
-  "success": (
-    "base": var(--wim-color-success),
-    "on": var(--wim-color-text-on-success),
-  ),
-  "warning": (
-    "base": var(--wim-color-warning),
-    "on": var(--wim-color-text-on-warning),
-  ),
-  "error": (
-    "base": var(--wim-color-danger),
-    "on": var(--wim-color-text-on-danger),
-  ),
-  "neutral": (
-    "base": var(--wim-color-disabled),
-    "on": var(--wim-color-text-primary),
-  ),
-  "info": (
-    "base": var(--wim-color-info),
-    "on": var(--wim-color-text-on-info),
-  ),
-);
+// $token-colors is generated from tokens/intents.json (the intent vocabulary
+// SSOT) by scripts/generate-intents.js. Keys match the semantic intent names
+// exactly — do not hand-maintain a parallel list here.
+@use "../tokens/generated/intents" as *;
 
 @mixin token-base {
   display: inline-flex;

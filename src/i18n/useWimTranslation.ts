@@ -6,11 +6,12 @@ import {
   wimTranslate,
   type WimTranslateOptions,
 } from "./instance";
+import type { WimI18nKey } from "./generated/keys";
 
 type Namespace = string | readonly string[];
 
 export interface WimTFunction {
-  (key: string, options?: WimTranslateOptions): string;
+  (key: WimI18nKey, options?: WimTranslateOptions): string;
 }
 
 // コンポーネント内部用の翻訳フック。i18next / react-i18next には依存しない。

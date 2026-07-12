@@ -1,7 +1,12 @@
 /**
- * Component-level i18n translation key checker.
- * Scans src/components for t("key") usage, detects the namespace from
- * useTranslation("namespace") calls, then reports missing keys per component file.
+ * Translation-key existence checker for the UNTYPED i18n surfaces:
+ * stories (.tsx/.mdx), docs (.mdx) and src/data JSON.
+ *
+ * Component source (src/components) is deliberately NOT scanned here: t() is
+ * typed against the generated `WimI18nKey` union (src/i18n/generated/keys.ts),
+ * so a missing/typo'd component key is a tsc error — structurally, not by this
+ * grep. Cross-language parity (en == ja == pt) is enforced by check-i18n.js, so
+ * a key that type-checks against the en-derived union also exists in ja/pt.
  *
  * Usage: node scripts/check-i18n-components.js
  */
@@ -11,7 +16,6 @@ import path from "path";
 import { globSync } from "glob";
 
 const localesDir = "./public/locales";
-const srcDir = "./src/components";
 const docsDir = "./docs";
 const storiesDir = "./stories";
 
@@ -45,12 +49,15 @@ for (const lang of langs) {
   }
 }
 
-// Get files from command line arguments if provided (for lint-staged)
-const filesFromArgs = process.argv.slice(2).filter(f => f.endsWith('.tsx') || f.endsWith('.mdx'));
-const files = filesFromArgs.length > 0 
-  ? filesFromArgs 
-  : [...globSync(`${srcDir}/**/*.tsx`, { posix: true }).filter(f => !f.includes(".test.") && !f.includes(".stories.")),
-     ...globSync(`${docsDir}/**/*.mdx`, { posix: true }),
+// Get files from command line arguments if provided (for lint-staged).
+// Component source is skipped — its keys are type-checked via WimI18nKey — so
+// when lint-staged passes only component files there is nothing to scan (an
+// empty arg list must stay empty, not fall back to a full repo scan).
+const isComponentSrc = (f) => f.replace(/\\/g, "/").includes("src/components/");
+const argFiles = process.argv.slice(2).filter((f) => f.endsWith(".tsx") || f.endsWith(".mdx"));
+const files = argFiles.length > 0
+  ? argFiles.filter((f) => !isComponentSrc(f))
+  : [...globSync(`${docsDir}/**/*.mdx`, { posix: true }),
      ...globSync(`${storiesDir}/**/*.tsx`, { posix: true }),
      ...globSync(`${storiesDir}/**/*.mdx`, { posix: true })];
 
@@ -176,12 +183,12 @@ for (const file of files.sort()) {
 }
 
 if (report.length === 0) {
-  console.log("✓ All translation keys used in components exist in all locales.");
+  console.log("✓ All translation keys used in stories/docs/data exist in all locales.");
   process.exit(0);
 }
 
 console.error(
-  `✗ Found ${totalGaps} missing key usage(s) across ${report.length} component file(s):\n`
+  `✗ Found ${totalGaps} missing key usage(s) across ${report.length} file(s):\n`
 );
 
 for (const { file, ns, missingByLang } of report) {

@@ -257,6 +257,7 @@
     "expected_behavior": "期待される動作",
     "feedbackCloseButton_desc": "Alert、Modalなどで共通利用される閉じるボタン",
     "feedbackIcon_desc": "Alert、Modalなどで共通利用される状態アイコン",
+    "flat": "フラット",
     "ft_email_error": "無効なメールアドレス形式です。",
     "ft_email_label": "メールアドレス",
     "ft_no_label": "山田 太郎",

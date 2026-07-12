@@ -11,10 +11,37 @@ import { Docgen } from "../../Docgen";
 
 ## <T k="doc.usage_examples" />
 
-<Canvas of={TreeSelectStories.Default} />
-
 ### <T k="doc.basic_usage" />
 
+<Canvas of={TreeSelectStories.Default} />
+
+### <T k="doc.treeview_checkbox_mode" />
+
+<p><T k="doc.treeselect_multi_desc" /></p>
+
+#### cascade
+
+<p><T k="doc.treeselect_cascade_desc" /></p>
+
+<Canvas of={TreeSelectStories.CascadeMultiple} />
+
+#### <T k="doc.exclusive_mode" />
+
+<p><T k="doc.treeselect_exclusive_desc" /></p>
+
+<Canvas of={TreeSelectStories.ExclusiveMultiple} />
+
+### <T k="doc.search" />
+
+<Canvas of={TreeSelectStories.Searchable} />
+
+### <T k="doc.treeview_api_default_expanded" />
+
+<Canvas of={TreeSelectStories.DefaultExpanded} />
+
+### <T k="doc.disabled" />
+
+<Canvas of={TreeSelectStories.Disabled} />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.treeselect_design_intent" /></p>
@@ -78,34 +105,6 @@ import { Docgen } from "../../Docgen";
   <li><T k="doc.treeselect_best_practice_1" /></li>
   <li><T k="doc.treeselect_best_practice_2" /></li>
 </ul>
-
-### <T k="doc.treeview_checkbox_mode" />
-
-<p><T k="doc.treeselect_multi_desc" /></p>
-
-#### cascade
-
-<p><T k="doc.treeselect_cascade_desc" /></p>
-
-<Canvas of={TreeSelectStories.CascadeMultiple} />
-
-#### <T k="doc.exclusive_mode" />
-
-<p><T k="doc.treeselect_exclusive_desc" /></p>
-
-<Canvas of={TreeSelectStories.ExclusiveMultiple} />
-
-### <T k="doc.search" />
-
-<Canvas of={TreeSelectStories.Searchable} />
-
-### <T k="doc.treeview_api_default_expanded" />
-
-<Canvas of={TreeSelectStories.DefaultExpanded} />
-
-### <T k="doc.disabled" />
-
-<Canvas of={TreeSelectStories.Disabled} />
 
 <Docgen componentName="TreeSelect" section="tokens" />
 

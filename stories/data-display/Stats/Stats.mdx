@@ -22,12 +22,29 @@ import { Docgen } from "../../Docgen";
 
 ## <T k="doc.usage_examples" />
 
-<Canvas of={StatsStories.Default} />
-
 ### <T k="doc.basic_usage" />
 
 <p><T k="doc.stats_usage_desc" /></p>
 
+<Canvas of={StatsStories.Default} />
+
+### <T k="doc.stats_trend" />
+
+<p><T k="doc.stats_trend_desc" /></p>
+
+<Canvas of={StatsStories.WithTrend} />
+
+### <T k="doc.variations" />
+
+<p><T k="doc.stats_variations_desc" /></p>
+
+#### <T k="doc.outline" />
+
+<Canvas of={StatsStories.Outline} />
+
+#### <T k="doc.flat" />
+
+<Canvas of={StatsStories.Flat} />
 
 ## <T k="doc.design_intent_title" />
 <Docgen componentName="Stats" section="anatomy" />
@@ -105,24 +122,6 @@ import { Docgen } from "../../Docgen";
     </tr>
   </tbody>
 </table>
-
-### <T k="doc.stats_trend" />
-
-<p><T k="doc.stats_trend_desc" /></p>
-
-<Canvas of={StatsStories.WithTrend} />
-
-### <T k="doc.variations" />
-
-Various styles can be selected using the `variant` property.
-
-#### Outline
-
-<Canvas of={StatsStories.Outline} />
-
-#### Flat
-
-<Canvas of={StatsStories.Flat} />
 
 ## <T k="doc.stats_comp" />
 

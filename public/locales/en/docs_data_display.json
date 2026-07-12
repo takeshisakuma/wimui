@@ -252,6 +252,7 @@
     "expected_behavior": "Expected Behavior",
     "feedbackCloseButton_desc": "Shared close button for Alert, Modal, etc.",
     "feedbackIcon_desc": "Shared status icons for Alert, Modal, etc.",
+    "flat": "Flat",
     "ft_email_error": "Invalid email address format.",
     "ft_email_label": "Email Address",
     "ft_no_label": "John Doe",

@@ -233,6 +233,7 @@
     "stats_trend_props": "Propriedades de StatsTrend",
     "stats_usage_desc": "Combine rótulos, valores e informações suplementares.",
     "stats_value_props": "Propriedades de StatsValue",
+    "stats_variations_desc": "Vários estilos podem ser selecionados usando a propriedade `variant`.",
     "streamingText_desc": "Renderizador de Markdown em streaming para respostas geradas por IA",
     "switchgroup_a11y_fieldset": "Envolva-o em um `fieldset` com uma `legend` para fornecer um contexto de grupo claro para leitores de tela.",
     "switchgroup_content_order": "Coloque o switch usado com mais frequência no topo para melhorar a eficiência.",
