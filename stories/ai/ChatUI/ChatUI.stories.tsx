@@ -14,6 +14,47 @@ import {
 import { StreamingText } from "../../../src/ai";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+/** Static English under VRT so the first paint does not wait on 76-namespace HTTP i18n. */
+const VRT_CHAT: Record<string, string> = {
+  "story.chat_msg_1": "Hello! How can I help you today?",
+  "story.chat_msg_2": "I need help with my account.",
+  "story.chat_msg_3": "Sure - what seems to be the problem?",
+  "story.chat_msg_4": "I cannot reset my password.",
+  "story.chat_msg_5": "Default message style",
+  "story.chat_msg_6": "Primary message style",
+  "story.chat_msg_7": "Secondary message style",
+  "story.chat_msg_12": "Custom avatar with an icon",
+  "story.chat_msg_14": "Messages without avatars",
+  "story.chat_msg_15": "Still readable and compact",
+  "story.chat_support": "Support",
+  "story.chat_you": "You",
+  "story.chat_ai_assistant": "Assistant",
+  "story.chat_ai_greeting": "Hi - ask me anything about the product.",
+  "story.chat_placeholder_ai": "Message the assistant...",
+  "story.chatui_action_good": "Good response",
+  "story.chatui_action_bad": "Bad response",
+  "chat.placeholder": "Type a message...",
+  "chat.placeholder_interactive": "Type a message...",
+  "action.copy": "Copy",
+};
+
+function useChatT() {
+  const { t } = useTranslation(ALL_NAMESPACES);
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  if (typeof window !== "undefined" && window.__VRT__) {
+    return ((key: string, opts?: Record<string, string>) => {
+      if (key === "story.chat_ai_response") {
+        return `Thanks for asking about "${opts?.message ?? ""}". Here is a concise answer.`;
+      }
+      if (key === "chat.attachment_prefix") {
+        return `Attached: ${opts?.fileName ?? "file"}`;
+      }
+      return VRT_CHAT[key] ?? key;
+    }) as typeof t;
+  }
+  return t;
+}
+
 const meta: Meta<typeof ChatContainer> = {
   title: "Components/AI/ChatUI",
   component: ChatContainer,
@@ -37,7 +78,7 @@ interface Message {
 
 export const Basic: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     return (
       <div style={{ height: "400px" }}>
         <ChatContainer>
@@ -54,7 +95,7 @@ export const Basic: Story = {
 
 export const WithAvatarImages: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     return (
       <div style={{ height: "400px" }}>
         <ChatContainer>
@@ -85,7 +126,7 @@ export const WithAvatarImages: Story = {
 
 export const WithVariants: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     return (
       <div style={{ height: "400px" }}>
         <ChatContainer>
@@ -103,7 +144,7 @@ export const WithVariants: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     const [messages, setMessages] = useState<Message[]>([
       { id: "1", text: t("story.chat_msg_1"), position: "left", sender: t("story.chat_support"), timestamp: "10:00 AM" },
     ]);
@@ -176,7 +217,7 @@ export const Interactive: Story = {
 
 export const WithIcons: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     return (
       <div style={{ height: "400px" }}>
         <ChatContainer>
@@ -198,7 +239,7 @@ export const WithIcons: Story = {
 
 export const NoAvatars: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     return (
       <div style={{ height: "400px" }}>
         <ChatContainer>
@@ -227,7 +268,7 @@ export const AvatarSizes: Story = {
 
 export const AiAssistantIntegration: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const t = useChatT();
     const [messages, setMessages] = useState<Message[]>([
       { id: "1", text: t("story.chat_ai_greeting"), position: "left", sender: t("story.chat_ai_assistant"), timestamp: "12:00 PM" },
     ]);
@@ -248,6 +289,12 @@ export const AiAssistantIntegration: Story = {
       }]);
       
       setIsLoading(true);
+
+      // @ts-expect-error: __VRT__ is a custom global flag for testing
+      if (typeof window !== "undefined" && window.__VRT__) {
+        setIsLoading(false);
+        return;
+      }
       
       // Simulate AI response with streaming
       setTimeout(() => {

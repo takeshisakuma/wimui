@@ -22,6 +22,10 @@ type Story = StoryObj<typeof UsageMeter>;
 
 const useLabels = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  if (typeof window !== "undefined" && window.__VRT__) {
+    return { label: "Tokens", unit: "tokens" };
+  }
   return { label: t("story.usagemeter_label"), unit: t("story.usagemeter_unit") };
 };
 

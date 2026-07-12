@@ -17,6 +17,15 @@ type Story = StoryObj<typeof ThreadList>;
 
 const useThreads = (): Thread[] => {
   const { t } = useTranslation(ALL_NAMESPACES);
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  if (typeof window !== "undefined" && window.__VRT__) {
+    return [
+      { id: "1", title: "Product roadmap Q3", preview: "Can you outline the milestones?", timestamp: "2m" },
+      { id: "2", title: "API error handling", preview: "Retry with exponential backoff…", timestamp: "1h", unread: true },
+      { id: "3", title: "Onboarding copy", preview: "Tone should stay friendly.", timestamp: "3h" },
+      { id: "4", title: "Usage quotas", preview: "Soft limit vs hard limit.", timestamp: "1d" },
+    ];
+  }
   return [
     { id: "1", title: t("story.threadlist_t1_title"), preview: t("story.threadlist_t1_preview"), timestamp: "2m" },
     { id: "2", title: t("story.threadlist_t2_title"), preview: t("story.threadlist_t2_preview"), timestamp: "1h", unread: true },

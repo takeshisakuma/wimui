@@ -57,9 +57,9 @@
   - ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。現在、以下のコンポーネントで実装済みです。
     - Typography: Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote
     - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet
-    - Navigation: Link, CommandPalette, Breadcrumb, Stepper
+    - Navigation: Link, CommandPalette, Breadcrumb, Stepper, Menubar
     - Form: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, SwitchGroup
-    - Layout: Box, Flex, Stack, Group, Grid
+    - Layout: Box, Flex, Stack, Group, Grid, Toolbar
     - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime, Countdown
     - Media: Lightbox
     - このリストは `scripts/check-aschild.js` の必須リスト（`requiredComponents`）と同期しています。実装を追加・削除した場合は両方を更新してください。現状の実装一覧は `node scripts/check-aschild.js --list` で確認できます。

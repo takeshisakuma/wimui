@@ -9,13 +9,13 @@ const requiredComponents = [
   // Overlay
   'Tooltip', 'Popover', 'Dropdown', 'HoverCard', 'Drawer', 'Dialog', 'BottomSheet',
   // Navigation
-  'Link', 'CommandPalette', 'Breadcrumb', 'Stepper',
+  'Link', 'CommandPalette', 'Breadcrumb', 'Stepper', 'Menubar',
   // Form
   'Button', 'Input', 'Selectbox', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
   'Slider', 'NumberInput', 'Mentions', 'OtpInput', 'FloatButton', 'FieldTemplate', 'DatePicker',
   'CreditCardInput', 'SwitchGroup',
   // Layout
-  'Box', 'Flex', 'Stack', 'Group', 'Grid',
+  'Box', 'Flex', 'Stack', 'Group', 'Grid', 'Toolbar',
   // Data Display
   'Badge', 'Chip', 'Tag', 'Card', 'Table', 'List', 'Kanban',
   'Accordion', 'Timeline', 'Carousel', 'SwipeAction', 'SortableList', 'PullToRefresh', 'CalendarHeatmap',

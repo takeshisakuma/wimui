@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Bump this when parsing logic changes to force a full cache invalidation
-const CACHE_VERSION = 5;
+const CACHE_VERSION = 6;
 
 // FindAll: JSX を返す通常のコンポーネントを検出
 // FindAnnotated: createPortal 返しなど JSX と認識されない定義を JSDoc の @component 注釈で検出
@@ -320,16 +320,18 @@ export async function generateDocgenData() {
   const indexData = {};
 
   for (const componentRelPath of components) {
-    const componentName = path.basename(componentRelPath, '.tsx');
-    const pathParts = componentRelPath.split(path.sep);
+    // glob / path.relative が OS 依存の区切りを返すことがあるため POSIX に揃える
+    const normalizedRel = componentRelPath.replace(/\\/g, '/');
+    const componentName = path.basename(normalizedRel, '.tsx');
+    const pathParts = normalizedRel.split('/');
     const category = pathParts[2];
 
     if (!categorizedData[category]) categorizedData[category] = {};
 
-    const cached = cache[componentRelPath];
+    const cached = cache[normalizedRel];
 
     // Fast path: hash files first to decide whether parsing is needed
-    const componentPath = path.resolve(rootDir, componentRelPath);
+    const componentPath = path.resolve(rootDir, normalizedRel);
     const componentDir = path.dirname(componentPath);
     const effectiveScss = resolveScssPath(componentDir, componentName);
 
@@ -374,7 +376,7 @@ export async function generateDocgenData() {
       parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
     }
 
-    cache[componentRelPath] = { contentHash, parsedComponents };
+    cache[normalizedRel] = { contentHash, parsedComponents };
     cacheUpdated = true;
 
     for (const entry of parsedComponents) {
@@ -497,9 +499,11 @@ async function handleHotFile(file) {
     cache[componentRelPath] = { contentHash, parsedComponents };
     saveCache(cacheFile, cache);
 
-    // Reload the full category from cache and rewrite only that file
+    // Reload the full category from cache and rewrite only that file.
+    // Normalize Windows backslashes so cache keys always match the category regex.
     const allForCategory = {};
-    for (const [relPath, entry] of Object.entries(cache)) {
+    for (const [rawPath, entry] of Object.entries(cache)) {
+      const relPath = rawPath.replace(/\\/g, '/');
       const m = relPath.match(/^src\/components\/([^/]+)\//);
       if (m && m[1] === category) {
         for (const comp of entry.parsedComponents) {

@@ -1400,7 +1400,9 @@
       "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",
       "relativeTime_desc": "Display a timestamp as a localized relative phrase (\"3 minutes ago\", \"yesterday\") that updates automatically as time passes.",
       "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.",
-      "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows."
+      "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows.",
+      "toolbar_desc": "Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.",
+      "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus."
     },
     "cat": {
       "ai": "AI"
@@ -8481,7 +8483,24 @@
       "treeview_api_key_header": "Key",
       "treeview_checkbox_mode": "Checkbox Selection Mode",
       "treeview_checkbox_mode_desc": "When the `checkable` property is enabled, a checkbox is displayed for each item, allowing for multiple item selections.",
-      "with_groups": "Groups"
+      "with_groups": "Groups",
+      "toolbar_a11y_desc": "Root uses role=\"toolbar\" with aria-orientation. Provide aria-label or aria-labelledby. Groups use role=\"group\". Separators are decorative (aria-hidden).",
+      "toolbar_best_practice_1": "Always set an accessible name on the toolbar (aria-label).",
+      "toolbar_best_practice_2": "Prefer ghost IconButton at size sm inside the toolbar for density.",
+      "toolbar_best_practice_3": "Separate unrelated action clusters with Toolbar.Separator.",
+      "toolbar_choice_alt_when": "When you only need joined or gapped buttons that share a variant (no toolbar semantics).",
+      "toolbar_choice_matrix_desc": "Choose based on whether you need an action strip, a joined button cluster, or an application menu.",
+      "toolbar_choice_menubar_when": "When you need File / Edit / View style menus with floating submenus.",
+      "toolbar_choice_self_when": "When composing IconButton / ToggleGroup / Button into a formatting or bulk-action strip.",
+      "toolbar_design_intent": "Editors and inspectors need a compact, predictable place for related actions. Toolbar provides the ARIA toolbar pattern and visual density without inventing a new button API.",
+      "toolbar_i18n_desc": "Toolbar itself has no built-in copy. Localize aria-label and child control labels in the consuming app.",
+      "toolbar_keyboard_desc": "Arrow keys move focus between focusable children along the orientation axis. Home and End jump to the first and last control.",
+      "toolbar_long_desc": "Toolbar groups IconButton, ToggleGroup, and Button controls into a single accessible action strip with density sizing and arrow-key focus movement.",
+      "toolbar_scenario_1": "Style and alignment controls above a document editor.",
+      "toolbar_scenario_1_title": "Rich text formatting",
+      "toolbar_scenario_2": "Delete / download / share actions that appear when gallery items are selected.",
+      "toolbar_scenario_2_title": "Bulk selection actions",
+      "toolbar_title": "Action strip for clustered controls"
     },
     "table": {
       "header_conditions": "Conditions / Scenarios",
@@ -9736,7 +9755,24 @@
       "tour_design_intent": "Tour provides guided walkthroughs for new users or complex features. It uses sequential popups to point out UI elements, helping users learn the interface interactively and reducing onboarding friction.",
       "tour_keyboard_desc": "Tab moves focus through the Previous, Next, and Close buttons within each tour step. Enter or Space activates the focused button. Escape closes the tour.",
       "tour_scenario_1": "Feature Spotlight: Introducing a newly added analytic tool to existing users upon login.",
-      "tour_scenario_2": "Platform Orientation: A mandatory first-time walkthrough for complex SaaS dashboards."
+      "tour_scenario_2": "Platform Orientation: A mandatory first-time walkthrough for complex SaaS dashboards.",
+      "menubar_title": "Desktop application menu bar",
+      "menubar_long_desc": "Menubar implements the WAI-ARIA menubar pattern: a horizontal strip of top-level menus that open floating panels for File, Edit, View, and similar application commands.",
+      "menubar_design_intent": "Desktop and productivity apps need a familiar File / Edit / View strip. Menubar coordinates one-open-at-a-time menus with hover switching, without using modal OverlayBase.",
+      "menubar_choice_matrix_desc": "Choose based on whether you need an application menu strip, a single dropdown, or an inline navigation list.",
+      "menubar_choice_self_when": "When building a desktop-style application command strip with floating submenus.",
+      "menubar_choice_alt_when": "When a single trigger opens one menu (settings, overflow actions).",
+      "menubar_choice_menu_when": "When you need an inline or vertical menu list, not floating menubar panels.",
+      "menubar_a11y_desc": "Root uses role=\"menubar\". Triggers are role=\"menuitem\" with aria-haspopup and aria-expanded. Panels use role=\"menu\". Items use role=\"menuitem\".",
+      "menubar_scenario_1_title": "Document editor chrome",
+      "menubar_scenario_1": "File / Edit / View menus above a canvas or document.",
+      "menubar_scenario_2_title": "Desktop shell",
+      "menubar_scenario_2": "Application-level commands that should not live in a page-level Tabs strip.",
+      "menubar_best_practice_1": "Keep top-level labels short (File, Edit, View) and put destructive actions behind clear item labels.",
+      "menubar_best_practice_2": "Open only one menu at a time; hover-switch while a menu is open.",
+      "menubar_best_practice_3": "Do not nest Menubar inside Dialog FocusTrap without testing Escape handling.",
+      "menubar_keyboard_desc": "Left/Right (and Home/End) move between top-level triggers. ArrowDown, Enter, or Space opens a menu. ArrowUp/Down move within the open menu. Escape closes and returns focus to the trigger.",
+      "menubar_i18n_desc": "Menubar has no built-in copy. Localize trigger and item labels in the consuming app; provide an aria-label on the root."
     }
   },
   "docs_overlay": {

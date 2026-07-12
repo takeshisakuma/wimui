@@ -12,3 +12,4 @@ export * from "./components/navigation/TabNavigation/TabNavigation";
 export * from "./components/navigation/Tabs/Tabs";
 export * from "./components/navigation/SpeedDial/SpeedDial";
 export * from "./components/navigation/KeyboardShortcuts/KeyboardShortcuts";
+export * from "./components/navigation/Menubar/Menubar";

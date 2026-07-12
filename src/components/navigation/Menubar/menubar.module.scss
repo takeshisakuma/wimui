@@ -1,0 +1,83 @@
+@layer component {
+  .root {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    padding: var(--wim-spacing-2xs);
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+  }
+
+  .menu {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .trigger {
+    display: inline-flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
+    margin: 0;
+    font: inherit;
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+    appearance: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      outline: none;
+      background-color: var(--wim-color-bg-hover);
+    }
+
+    &:disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  .triggerOpen {
+    background-color: var(--wim-color-bg-hover);
+  }
+
+  .content {
+    position: absolute;
+    top: calc(100% + var(--wim-spacing-2xs));
+    z-index: var(--wim-z-overlay);
+    display: flex;
+    flex-direction: column;
+    min-width: var(--wim-menu-min-width);
+    padding: var(--wim-spacing-xs) 0;
+    margin: 0;
+    background-color: var(--wim-color-bg-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-overlay);
+    box-shadow: var(--wim-shadow-overlay);
+  }
+
+  .alignStart {
+    left: 0;
+  }
+
+  .alignEnd {
+    right: 0;
+  }
+
+  .item {
+    text-decoration: none;
+  }
+
+  .separator {
+    height: var(--wim-border-width-thin);
+    margin: var(--wim-spacing-2xs) 0;
+    background-color: var(--wim-color-border);
+  }
+}

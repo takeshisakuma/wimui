@@ -642,6 +642,12 @@
         "descKey": "doc.dashboard_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Toolbar",
+        "descKey": "doc.toolbar_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -781,6 +787,12 @@
       {
         "name": "KeyboardShortcuts",
         "descKey": "doc.keyboardShortcuts_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "Menubar",
+        "descKey": "doc.menubar_desc",
         "pc": true,
         "mobile": true
       }

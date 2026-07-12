@@ -10,8 +10,13 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 const PHOTO = "/demo/lightbox_1.png";
 
 const useGrayscale = (src: string): string | null => {
-  const [url, setUrl] = useState<string | null>(null);
+  // VRT: skip async canvas desaturation — first paint would show the color
+  // photo, then swap to grayscale after Image.onload (CI flake).
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  const isVrt = typeof window !== "undefined" && Boolean(window.__VRT__);
+  const [url, setUrl] = useState<string | null>(isVrt ? src : null);
   useEffect(() => {
+    if (isVrt) return;
     let cancelled = false;
     const img = new window.Image();
     img.onload = () => {
@@ -33,7 +38,7 @@ const useGrayscale = (src: string): string | null => {
     return () => {
       cancelled = true;
     };
-  }, [src]);
+  }, [src, isVrt]);
   return url;
 };
 
@@ -56,6 +61,17 @@ type Story = StoryObj<typeof ImageCompare>;
 const useDemo = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const before = useGrayscale(PHOTO) ?? PHOTO;
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  const isVrt = typeof window !== "undefined" && window.__VRT__;
+  if (isVrt) {
+    return {
+      before,
+      beforeAlt: "Original photo",
+      afterAlt: "Edited photo",
+      beforeLabel: "Before",
+      afterLabel: "After",
+    };
+  }
   return {
     before,
     beforeAlt: t("story.imagecompare_before_alt"),

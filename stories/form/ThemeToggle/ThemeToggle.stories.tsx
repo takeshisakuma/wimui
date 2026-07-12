@@ -51,6 +51,12 @@ export const LivePreview: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [mode, setMode] = useState<ThemeMode>("light");
+    // @ts-expect-error: __VRT__ is a custom global flag for testing
+    const isVrt = typeof window !== "undefined" && window.__VRT__;
+    const title = isVrt ? "Appearance" : t("story.themetoggle_preview_title");
+    const body = isVrt
+      ? "Switch themes without affecting Storybook's toolbar theme."
+      : t("story.themetoggle_preview_body");
     return (
       <div
         data-theme={mode === "system" ? undefined : mode}
@@ -66,9 +72,7 @@ export const LivePreview: Story = {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <strong style={{ color: "var(--wim-color-text-primary)" }}>
-            {t("story.themetoggle_preview_title")}
-          </strong>
+          <strong style={{ color: "var(--wim-color-text-primary)" }}>{title}</strong>
           <ThemeToggle
             {...args}
             variant="segmented"
@@ -78,7 +82,7 @@ export const LivePreview: Story = {
           />
         </div>
         <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>
-          {t("story.themetoggle_preview_body")}
+          {body}
         </p>
       </div>
     );

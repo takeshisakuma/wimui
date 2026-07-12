@@ -29,17 +29,46 @@ const meta: Meta<typeof Spoiler> = {
 export default meta;
 type Story = StoryObj<typeof Spoiler>;
 
+/** Prefer static English under VRT so HTTP i18n cannot flash untranslated keys. */
+const useSpoilerCopy = () => {
+  const { t } = useTranslation(ALL_NAMESPACES);
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  if (typeof window !== "undefined" && window.__VRT__) {
+    return {
+      review:
+        "The build quality feels premium and the battery lasts through a full workday. Setup was painless, and the keyboard is comfortable for long writing sessions. A few software quirks remain, but nothing that blocks daily use.",
+      short: "Short enough to stay fully visible.",
+      showLabel: "Show more",
+      hideLabel: "Show less",
+      prosLabel: "Pros",
+      pros: "Solid materials, long battery, quiet keyboard.",
+      consLabel: "Cons",
+      cons: "Occasional software quirks; trackpad could be larger.",
+    };
+  }
+  return {
+    review: t("story.spoiler_review"),
+    short: t("story.spoiler_short"),
+    showLabel: t("story.spoiler_show_label"),
+    hideLabel: t("story.spoiler_hide_label"),
+    prosLabel: t("story.spoiler_rich_pros_label"),
+    pros: t("story.spoiler_rich_pros"),
+    consLabel: t("story.spoiler_rich_cons_label"),
+    cons: t("story.spoiler_rich_cons"),
+  };
+};
+
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return <Spoiler {...args}>{t("story.spoiler_review")}</Spoiler>;
+    const copy = useSpoilerCopy();
+    return <Spoiler {...args}>{copy.review}</Spoiler>;
   },
 };
 
 export const CustomLines: Story = {
   render: (args) => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return <Spoiler {...args}>{t("story.spoiler_review")}</Spoiler>;
+    const copy = useSpoilerCopy();
+    return <Spoiler {...args}>{copy.review}</Spoiler>;
   },
   args: {
     lines: 5,
@@ -48,8 +77,8 @@ export const CustomLines: Story = {
 
 export const DefaultExpanded: Story = {
   render: (args) => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return <Spoiler {...args}>{t("story.spoiler_review")}</Spoiler>;
+    const copy = useSpoilerCopy();
+    return <Spoiler {...args}>{copy.review}</Spoiler>;
   },
   args: {
     defaultExpanded: true,
@@ -58,14 +87,10 @@ export const DefaultExpanded: Story = {
 
 export const CustomLabels: Story = {
   render: (args) => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const copy = useSpoilerCopy();
     return (
-      <Spoiler
-        {...args}
-        showLabel={t("story.spoiler_show_label")}
-        hideLabel={t("story.spoiler_hide_label")}
-      >
-        {t("story.spoiler_review")}
+      <Spoiler {...args} showLabel={copy.showLabel} hideLabel={copy.hideLabel}>
+        {copy.review}
       </Spoiler>
     );
   },
@@ -73,23 +98,21 @@ export const CustomLabels: Story = {
 
 export const ShortContent: Story = {
   render: (args) => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return <Spoiler {...args}>{t("story.spoiler_short")}</Spoiler>;
+    const copy = useSpoilerCopy();
+    return <Spoiler {...args}>{copy.short}</Spoiler>;
   },
 };
 
 export const RichContent: Story = {
   render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
+    const copy = useSpoilerCopy();
     return (
       <Spoiler lines={4}>
         <p style={{ margin: "0 0 0.5em" }}>
-          <strong>{t("story.spoiler_rich_pros_label")}</strong>{" "}
-          {t("story.spoiler_rich_pros")}
+          <strong>{copy.prosLabel}</strong> {copy.pros}
         </p>
         <p style={{ margin: 0 }}>
-          <strong>{t("story.spoiler_rich_cons_label")}</strong>{" "}
-          {t("story.spoiler_rich_cons")}
+          <strong>{copy.consLabel}</strong> {copy.cons}
         </p>
       </Spoiler>
     );

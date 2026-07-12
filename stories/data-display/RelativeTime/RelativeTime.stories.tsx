@@ -1,8 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RelativeTime } from "@/components/data-display/RelativeTime/RelativeTime";
 
-const minutesAgo = (m: number) => new Date(Date.now() - m * 60_000);
-const minutesLater = (m: number) => new Date(Date.now() + m * 60_000);
+/** Frozen VRT / Storybook clock baseline (see vrt/vrt.spec.ts setFixedTime). */
+const VRT_NOW = new Date("2024-01-01T00:00:00Z");
+
+const isVrt = () =>
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  typeof window !== "undefined" && Boolean(window.__VRT__);
+
+const minutesAgo = (m: number) => {
+  const base = isVrt() ? VRT_NOW.getTime() : Date.now();
+  return new Date(base - m * 60_000);
+};
+const minutesLater = (m: number) => {
+  const base = isVrt() ? VRT_NOW.getTime() : Date.now();
+  return new Date(base + m * 60_000);
+};
+
+/** Under VRT, freeze live refresh so phrasing cannot change between paints. */
+const vrtFreeze = (): { baseDate?: Date; live?: boolean } =>
+  isVrt() ? { baseDate: VRT_NOW, live: false } : {};
 
 const meta: Meta<typeof RelativeTime> = {
   title: "Components/Data Indicators/RelativeTime",
@@ -36,6 +53,7 @@ type Story = StoryObj<typeof RelativeTime>;
 export const Default: Story = {
   args: {
     date: minutesAgo(3),
+    ...vrtFreeze(),
   },
 };
 
@@ -43,25 +61,25 @@ export const Units: Story = {
   render: () => (
     <ul style={{ margin: 0, paddingLeft: "var(--wim-spacing-lg)" }}>
       <li>
-        <RelativeTime date={minutesAgo(0.5)} />
+        <RelativeTime date={minutesAgo(0.5)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(3)} />
+        <RelativeTime date={minutesAgo(3)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(60 * 5)} />
+        <RelativeTime date={minutesAgo(60 * 5)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(60 * 24 * 3)} />
+        <RelativeTime date={minutesAgo(60 * 24 * 3)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(60 * 24 * 14)} />
+        <RelativeTime date={minutesAgo(60 * 24 * 14)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(60 * 24 * 90)} />
+        <RelativeTime date={minutesAgo(60 * 24 * 90)} {...vrtFreeze()} />
       </li>
       <li>
-        <RelativeTime date={minutesAgo(60 * 24 * 730)} />
+        <RelativeTime date={minutesAgo(60 * 24 * 730)} {...vrtFreeze()} />
       </li>
     </ul>
   ),
@@ -70,6 +88,7 @@ export const Units: Story = {
 export const FutureDate: Story = {
   args: {
     date: minutesLater(60 * 2),
+    ...vrtFreeze(),
   },
 };
 
@@ -78,6 +97,7 @@ export const NumericAlways: Story = {
   args: {
     date: minutesAgo(60 * 24),
     numeric: "always",
+    ...vrtFreeze(),
   },
 };
 
@@ -86,6 +106,7 @@ export const ShortFormat: Story = {
     date: minutesAgo(3),
     format: "short",
     numeric: "always",
+    ...vrtFreeze(),
   },
 };
 
@@ -98,9 +119,9 @@ export const LocaleOverride: Story = {
         gap: "var(--wim-spacing-sm)",
       }}
     >
-      <RelativeTime date={minutesAgo(3)} locale="en" />
-      <RelativeTime date={minutesAgo(3)} locale="ja" />
-      <RelativeTime date={minutesAgo(3)} locale="pt-BR" />
+      <RelativeTime date={minutesAgo(3)} locale="en" {...vrtFreeze()} />
+      <RelativeTime date={minutesAgo(3)} locale="ja" {...vrtFreeze()} />
+      <RelativeTime date={minutesAgo(3)} locale="pt-BR" {...vrtFreeze()} />
     </div>
   ),
 };
@@ -116,7 +137,7 @@ export const StaticSnapshot: Story = {
 export const InSentence: Story = {
   render: () => (
     <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>
-      Last updated <RelativeTime date={minutesAgo(12)} />
+      Last updated <RelativeTime date={minutesAgo(12)} {...vrtFreeze()} />
     </p>
   ),
 };

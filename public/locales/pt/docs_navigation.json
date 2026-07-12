@@ -466,6 +466,23 @@
     "tour_design_intent": "O Tour fornece walkthroughs guiados para novos usuários ou recursos complexos. Ele usa popups sequenciais para ajudar os usuários a aprender a interface interativamente e reduzindo a fricção.",
     "tour_keyboard_desc": "Tab move o foco pelos botões Anterior, Próximo e Fechar dentro de cada etapa do tour. Enter ou Espaço ativa o botão focado. Escape fecha o tour.",
     "tour_scenario_1": "Destaque de Recurso: Apresentando uma ferramenta analítica recém-adicionada a usuários existentes ao fazer login.",
-    "tour_scenario_2": "Orientação da Plataforma: Um guia obrigatório de primeira viagem para dashboards SaaS complexos."
+    "tour_scenario_2": "Orientação da Plataforma: Um guia obrigatório de primeira viagem para dashboards SaaS complexos.",
+    "menubar_title": "Barra de menus de aplicativo para desktop",
+    "menubar_long_desc": "Menubar implementa o padrão WAI-ARIA menubar: uma faixa horizontal de menus de nível superior que abrem painéis flutuantes para File, Edit, View e comandos semelhantes do aplicativo.",
+    "menubar_design_intent": "Apps de produtividade precisam de uma faixa familiar File / Edit / View. Menubar coordena menus com apenas um aberto por vez e troca por hover, sem usar OverlayBase modal.",
+    "menubar_choice_matrix_desc": "Escolha conforme precisar de uma faixa de menu de aplicativo, um único dropdown ou uma lista de navegação inline.",
+    "menubar_choice_self_when": "Ao construir uma faixa de comandos estilo desktop com submenus flutuantes.",
+    "menubar_choice_alt_when": "Quando um único gatilho abre um menu (configurações, ações de overflow).",
+    "menubar_choice_menu_when": "Quando precisar de uma lista de menu inline ou vertical, não de painéis flutuantes de menubar.",
+    "menubar_a11y_desc": "A raiz usa role=\"menubar\". Triggers são role=\"menuitem\" com aria-haspopup e aria-expanded. Painéis usam role=\"menu\". Items usam role=\"menuitem\".",
+    "menubar_scenario_1_title": "Chrome do editor de documentos",
+    "menubar_scenario_1": "Menus File / Edit / View acima de um canvas ou documento.",
+    "menubar_scenario_2_title": "Shell desktop",
+    "menubar_scenario_2": "Comandos de nível de aplicativo que não devem ficar em uma faixa de Tabs da página.",
+    "menubar_best_practice_1": "Mantenha rótulos de nível superior curtos (File, Edit, View) e coloque ações destrutivas atrás de rótulos claros nos itens.",
+    "menubar_best_practice_2": "Abra apenas um menu por vez; troque por hover enquanto um menu estiver aberto.",
+    "menubar_best_practice_3": "Não aninhe Menubar dentro do FocusTrap de um Dialog sem testar o comportamento de Escape.",
+    "menubar_keyboard_desc": "Esquerda/Direita (e Home/End) movem entre triggers de nível superior. ArrowDown, Enter ou Space abrem um menu. ArrowUp/Down movem dentro do menu aberto. Escape fecha e devolve o foco ao trigger.",
+    "menubar_i18n_desc": "Menubar não tem textos embutidos. Localize rótulos de trigger e item no app consumidor; forneça um aria-label na raiz."
   }
 }

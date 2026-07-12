@@ -22,3 +22,4 @@ export * from "./components/layout/Transition/Transition";
 export * from "./components/layout/VisuallyHidden/VisuallyHidden";
 export * from "./components/layout/Watermark/Watermark";
 export * from "./components/layout/Dashboard/Dashboard";
+export * from "./components/layout/Toolbar/Toolbar";

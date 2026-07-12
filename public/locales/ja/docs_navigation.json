@@ -466,6 +466,23 @@
     "tour_design_intent": "Tourは、新規ユーザーや複雑な機能に対してガイド付きのウォークスルーを提供します。UI要素を順次ハイライトしてポップアップで説明することで、対話的な学習を促し、オンボーディングの摩擦を軽減します。",
     "tour_keyboard_desc": "Tab キーで各ツアーステップ内の「前へ」「次へ」「閉じる」ボタン間をフォーカス移動します。Enter または Space キーでフォーカス中のボタンを有効化します。Escape キーでツアーを閉じます。",
     "tour_scenario_1": "機能紹介: ログインした既存ユーザーに、新しく追加された分析ツールを紹介します。",
-    "tour_scenario_2": "プラットフォーム案内: 複雑なSaaSダッシュボードで、初回利用者向けの必須ガイドを提供します。"
+    "tour_scenario_2": "プラットフォーム案内: 複雑なSaaSダッシュボードで、初回利用者向けの必須ガイドを提供します。",
+    "menubar_title": "デスクトップ向けアプリケーションメニューバー",
+    "menubar_long_desc": "Menubar は WAI-ARIA menubar パターンを実装し、File / Edit / View などのトップレベルメニューからフローティングパネルを開きます。",
+    "menubar_design_intent": "生産性アプリではおなじみのメニュー帯が必要です。Menubar は OverlayBase なしで、同時に1つだけ開くメニューとホバー切替を提供します。",
+    "menubar_choice_matrix_desc": "アプリメニュー帯・単一ドロップダウン・インラインメニューリストのどれが必要かで選びます。",
+    "menubar_choice_self_when": "フローティングサブメニュー付きのデスクトップ型コマンド帯を作るとき。",
+    "menubar_choice_alt_when": "トリガー1つでメニュー1つを開くだけでよいとき（設定、オーバーフロー）。",
+    "menubar_choice_menu_when": "フローティング menubar ではなく、インラインまたは縦メニューリストが必要なとき。",
+    "menubar_a11y_desc": "ルートは role=\"menubar\"。Trigger は role=\"menuitem\" で aria-haspopup / aria-expanded。パネルは role=\"menu\"。Item は role=\"menuitem\"。",
+    "menubar_scenario_1_title": "ドキュメントエディタのクロム",
+    "menubar_scenario_1": "キャンバスや文書の上の File / Edit / View。",
+    "menubar_scenario_2_title": "デスクトップシェル",
+    "menubar_scenario_2": "ページの Tabs には載せたくないアプリ全体のコマンド。",
+    "menubar_best_practice_1": "トップレベルラベルは短く（File, Edit, View）。破壊的操作は明確な項目名にする。",
+    "menubar_best_practice_2": "同時に開くメニューは1つ。開いている間はホバーで切替。",
+    "menubar_best_practice_3": "Dialog の FocusTrap 内に入れる場合は Escape の挙動を確認する。",
+    "menubar_keyboard_desc": "左右矢印（と Home/End）でトップレベル間を移動。ArrowDown / Enter / Space で開く。メニュー内は上下。Escape で閉じて Trigger に戻る。",
+    "menubar_i18n_desc": "Menubar 本体に固定文言はありません。Trigger / Item のラベルとルートの aria-label をアプリ側でローカライズしてください。"
   }
 }

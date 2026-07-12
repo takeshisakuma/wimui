@@ -466,6 +466,23 @@
     "tour_design_intent": "Tour provides guided walkthroughs for new users or complex features. It uses sequential popups to point out UI elements, helping users learn the interface interactively and reducing onboarding friction.",
     "tour_keyboard_desc": "Tab moves focus through the Previous, Next, and Close buttons within each tour step. Enter or Space activates the focused button. Escape closes the tour.",
     "tour_scenario_1": "Feature Spotlight: Introducing a newly added analytic tool to existing users upon login.",
-    "tour_scenario_2": "Platform Orientation: A mandatory first-time walkthrough for complex SaaS dashboards."
+    "tour_scenario_2": "Platform Orientation: A mandatory first-time walkthrough for complex SaaS dashboards.",
+    "menubar_title": "Desktop application menu bar",
+    "menubar_long_desc": "Menubar implements the WAI-ARIA menubar pattern: a horizontal strip of top-level menus that open floating panels for File, Edit, View, and similar application commands.",
+    "menubar_design_intent": "Desktop and productivity apps need a familiar File / Edit / View strip. Menubar coordinates one-open-at-a-time menus with hover switching, without using modal OverlayBase.",
+    "menubar_choice_matrix_desc": "Choose based on whether you need an application menu strip, a single dropdown, or an inline navigation list.",
+    "menubar_choice_self_when": "When building a desktop-style application command strip with floating submenus.",
+    "menubar_choice_alt_when": "When a single trigger opens one menu (settings, overflow actions).",
+    "menubar_choice_menu_when": "When you need an inline or vertical menu list, not floating menubar panels.",
+    "menubar_a11y_desc": "Root uses role=\"menubar\". Triggers are role=\"menuitem\" with aria-haspopup and aria-expanded. Panels use role=\"menu\". Items use role=\"menuitem\".",
+    "menubar_scenario_1_title": "Document editor chrome",
+    "menubar_scenario_1": "File / Edit / View menus above a canvas or document.",
+    "menubar_scenario_2_title": "Desktop shell",
+    "menubar_scenario_2": "Application-level commands that should not live in a page-level Tabs strip.",
+    "menubar_best_practice_1": "Keep top-level labels short (File, Edit, View) and put destructive actions behind clear item labels.",
+    "menubar_best_practice_2": "Open only one menu at a time; hover-switch while a menu is open.",
+    "menubar_best_practice_3": "Do not nest Menubar inside Dialog FocusTrap without testing Escape handling.",
+    "menubar_keyboard_desc": "Left/Right (and Home/End) move between top-level triggers. ArrowDown, Enter, or Space opens a menu. ArrowUp/Down move within the open menu. Escape closes and returns focus to the trigger.",
+    "menubar_i18n_desc": "Menubar has no built-in copy. Localize trigger and item labels in the consuming app; provide an aria-label on the root."
   }
 }

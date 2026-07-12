@@ -68,6 +68,13 @@ export const Sparkline = ({
   const chartData = data.map((value, index) => ({ index, value }));
   const domain: [number | "auto", number | "auto"] = [min ?? "auto", max ?? "auto"];
   const lastIndex = data.length - 1;
+  // VRT: skip ResponsiveContainer — its ResizeObserver first paint is often an
+  // empty SVG on CI. Fixed pixel size matches the outer wrapper dimensions.
+  const isVrt =
+    typeof window !== "undefined" &&
+    Boolean((window as Window & { __VRT__?: boolean }).__VRT__);
+  const chartWidth = typeof width === "number" ? width : 100;
+  const chartHeight = height ?? 24;
 
   const renderLastDot = (props: { cx?: number; cy?: number; index?: number }) => {
     const { cx, cy, index } = props;
@@ -77,10 +84,16 @@ export const Sparkline = ({
     return <circle key={index} cx={cx} cy={cy} r={strokeWidth + 1} fill={color} />;
   };
 
+  const sizeProps = isVrt ? { width: chartWidth, height: chartHeight } : {};
+
   const renderChart = () => {
     if (type === "bar") {
       return (
-        <RechartsBarChart data={chartData} margin={{ top: 2, right: 2, bottom: 2, left: 2 }}>
+        <RechartsBarChart
+          {...sizeProps}
+          data={chartData}
+          margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
+        >
           <YAxis hide domain={domain} />
           <Bar dataKey="value" fill={color} radius={[2, 2, 0, 0]} isAnimationActive={false} />
         </RechartsBarChart>
@@ -88,7 +101,11 @@ export const Sparkline = ({
     }
     if (type === "area") {
       return (
-        <RechartsAreaChart data={chartData} margin={{ top: 2, right: 2, bottom: 2, left: 2 }}>
+        <RechartsAreaChart
+          {...sizeProps}
+          data={chartData}
+          margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
+        >
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor={color} stopOpacity={0.35} />
@@ -109,7 +126,11 @@ export const Sparkline = ({
       );
     }
     return (
-      <RechartsLineChart data={chartData} margin={{ top: 2, right: 2, bottom: 2, left: 2 }}>
+      <RechartsLineChart
+        {...sizeProps}
+        data={chartData}
+        margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
+      >
         <YAxis hide domain={domain} />
         <Line
           type="monotone"
@@ -131,9 +152,13 @@ export const Sparkline = ({
       aria-label={ariaLabel}
       aria-hidden={ariaLabel ? undefined : true}
     >
-      <ResponsiveContainer width="100%" height="100%">
-        {renderChart()}
-      </ResponsiveContainer>
+      {isVrt ? (
+        renderChart()
+      ) : (
+        <ResponsiveContainer width="100%" height="100%">
+          {renderChart()}
+        </ResponsiveContainer>
+      )}
     </div>
   );
 };

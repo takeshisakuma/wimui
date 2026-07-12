@@ -47,9 +47,9 @@
     .item {
       @include indicator.indicator-item-base;
 
-      display: grid;
+      display: inline-flex;
       gap: var(--wim-spacing-xs);
-      place-items: center;
+      align-items: center;
       justify-content: center;
       font-family: inherit;
       font-weight: var(--wim-font-weight-medium);
