@@ -532,4 +532,18 @@ describe("ToggleGroup", () => {
     });
     expect(ref.current).toBe(screen.getByRole("radiogroup"));
   });
+
+  it("supports asChild prop", async () => {
+    await act(async () => {
+      render(
+        <ToggleGroup asChild options={options} defaultValue="opt1">
+          <div data-testid="toggle-slot" />
+        </ToggleGroup>,
+      );
+    });
+    const element = screen.getByTestId("toggle-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveAttribute("role", "radiogroup");
+    expect(element).toHaveClass(styles.root);
+  });
 });

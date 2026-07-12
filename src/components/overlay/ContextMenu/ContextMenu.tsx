@@ -5,6 +5,7 @@ import React, {
   useContext,
 } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import {
   useFloating,
   autoUpdate,
@@ -21,6 +22,7 @@ import {
 } from "@floating-ui/react";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./context-menu.module.scss";
 
 export type ContextMenuProps = {
@@ -36,6 +38,10 @@ export type ContextMenuProps = {
   className?: string;
   /** Disable the context menu */
   disabled?: boolean;
+  /**
+   * If true, merge trigger props onto the child element.
+   */
+  asChild?: boolean;
 };
 
 // Context to share state between components
@@ -49,12 +55,15 @@ const ContextMenuInner = ({
   menu,
   className,
   disabled = false,
+  asChild = false,
 }: ContextMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
 
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const setContainerRef = useMergedRef(containerRef);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
@@ -133,12 +142,11 @@ const ContextMenuInner = ({
     setIsOpen(false);
   };
 
-  // Merge refs for the container
-  const containerRef = useRef<HTMLDivElement>(null);
+  const Comp = asChild ? Slot : "div";
 
   return (
-    <div
-      ref={containerRef}
+    <Comp
+      ref={setContainerRef}
       className={classNames("wim-context-menu", styles.container, disabled && styles.disabled, className)}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
@@ -147,7 +155,7 @@ const ContextMenuInner = ({
       aria-haspopup="menu"
       data-testid="context-menu-trigger"
     >
-      {children}
+      <Slottable>{children}</Slottable>
       <FloatingPortal>
         <Transition
           show={isOpen}
@@ -178,7 +186,7 @@ const ContextMenuInner = ({
           </FloatingFocusManager>
         </Transition>
       </FloatingPortal>
-    </div>
+    </Comp>
   );
 };
 
@@ -189,6 +197,10 @@ export type ContextMenuItemProps = {
   className?: string;
   icon?: ReactNode;
   danger?: boolean;
+  /**
+   * If true, merge item props onto the child (keep a wrapping `<li role="none">` for valid menu markup).
+   */
+  asChild?: boolean;
 };
 
 
@@ -199,6 +211,7 @@ export const ContextMenuItem = ({
   className,
   icon,
   danger = false,
+  asChild = false,
 }: ContextMenuItemProps) => {
   const { ref, index } = useListItem();
   const context = useContext(ContextMenuContext);
@@ -222,20 +235,32 @@ export const ContextMenuItem = ({
     },
   }) : {};
 
+  const sharedProps = {
+    ref,
+    className: classNames(
+      styles.item,
+      className,
+    ),
+    disabled,
+    danger,
+    icon,
+    role: "menuitem" as const,
+    tabIndex: context?.activeIndex === index ? 0 : -1,
+    ...itemProps,
+  };
+
+  if (asChild) {
+    return (
+      <li role="none">
+        <BaseListItem asChild {...sharedProps}>
+          {children}
+        </BaseListItem>
+      </li>
+    );
+  }
+
   return (
-    <BaseListItem
-      ref={ref}
-      className={classNames(
-        styles.item,
-        className,
-      )}
-      disabled={disabled}
-      danger={danger}
-      icon={icon}
-      role="menuitem"
-      tabIndex={context?.activeIndex === index ? 0 : -1}
-      {...itemProps}
-    >
+    <BaseListItem {...sharedProps}>
       {children}
     </BaseListItem>
   );

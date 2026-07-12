@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useId, useMemo } from "react";
+import React, { useState, useRef, useEffect, useId, useMemo, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Transition } from "../../layout/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
 import { InputBase } from "../InputBase";
@@ -7,6 +8,7 @@ import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import styles from "./tree-select.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 
 /** treeData の label をそのまま使ってツリーを再構築する */
 function resolveLabels(
@@ -66,6 +68,12 @@ export type TreeSelectProps = {
   checkStrategy?: "cascade" | "exclusive";
   /** Unique ID for the component */
   id?: string;
+  /**
+   * If true, merge root props onto the child element.
+   */
+  asChild?: boolean;
+  /** Optional children used when asChild is true */
+  children?: React.ReactNode;
   /** Accessible label for the trigger when no visible label is provided */
   "aria-label"?: string;
   /** ID of the element that labels the field */
@@ -81,7 +89,7 @@ export type TreeSelectProps = {
 /**
  * Component for selecting one or more options from a tree structure.
  */
-export const TreeSelect = ({
+export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
   treeData = [],
   value,
   onChange,
@@ -100,8 +108,10 @@ export const TreeSelect = ({
   id: customId,
   width,
   fullWidth = false,
+  asChild = false,
+  children,
   ...props
-}: TreeSelectProps) => {
+}, ref) => {
   const generatedId = useId();
   const id = customId || `wim-tree-select-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -254,6 +264,8 @@ export const TreeSelect = ({
   } = props;
 
   const placeholderStr = typeof placeholder === "string" ? placeholder : "Select";
+  const RootComponent = asChild ? Slot : "div";
+  const setContainerRef = useMergedRef(containerRef, ref);
 
   return (
     <FieldTemplate
@@ -265,11 +277,12 @@ export const TreeSelect = ({
       errorId={errorId}
       className={classNames(styles.container, className)}
     >
-      <div
+      <RootComponent
         className={classNames("wim-tree-select", styles.root, fullWidth && styles.fullWidth)}
-        ref={containerRef}
+        ref={setContainerRef}
         {...wrapperProps}
       >
+        <Slottable>{children}</Slottable>
         <InputBase
           disabled={disabled}
           allowClear={allowClear}
@@ -344,9 +357,9 @@ export const TreeSelect = ({
             </FocusTrap>
           </div>
         </Transition>
-      </div>
+      </RootComponent>
     </FieldTemplate>
   );
-};
+});
 
 TreeSelect.displayName = "TreeSelect";

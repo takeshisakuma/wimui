@@ -214,4 +214,27 @@ describe("Tabs", () => {
       fireEvent.keyDown(list, { key: "ArrowRight" }); // In vertical, this doesn't navigate
     });
   });
+
+  it("supports asChild on Trigger", async () => {
+    await act(async () => {
+      render(
+        <Tabs defaultValue="tab1">
+          <Tabs.List>
+            <Tabs.Trigger asChild value="tab1">
+              <a href="#tab1" data-testid="tab-link">
+                Tab 1
+              </a>
+            </Tabs.Trigger>
+            <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="tab1">Content 1</Tabs.Content>
+        </Tabs>,
+      );
+    });
+
+    const link = screen.getByTestId("tab-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("role", "tab");
+    expect(link).toHaveAttribute("aria-selected", "true");
+  });
 });

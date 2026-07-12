@@ -55,10 +55,10 @@
 
       &::before {
         position: absolute;
-        top: -4px;
+        top: calc(-1 * var(--wim-spacing-2xs));
         right: 0;
         left: 0;
-        height: 2px;
+        height: var(--wim-border-width-thick);
         content: "";
         background: var(--wim-color-primary);
         border-radius: var(--wim-radius-full);

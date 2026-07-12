@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { CalendarHeatmap, Label } from "wimui";
 
 const meta: Meta<typeof CalendarHeatmap> = {
-  title: "Components/Data-display/CalendarHeatmap",
+  title: "Components/Visualization/CalendarHeatmap",
   component: CalendarHeatmap,
   parameters: {
     layout: "centered",

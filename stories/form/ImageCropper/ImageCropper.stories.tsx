@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ImageCropper } from "@/components/form/ImageCropper/ImageCropper";
 
 const meta: Meta<typeof ImageCropper> = {
-  title: "Components/Form/ImageCropper",
+  title: "Components/Advanced Inputs/ImageCropper",
   component: ImageCropper,
   parameters: {
     layout: "centered",

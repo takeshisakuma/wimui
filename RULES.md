@@ -56,9 +56,9 @@
   - `size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"`（`ComponentSizeBasic`）に統一してください。 レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。タイポグラフィ・アイコンなど広いスケールが必要な場合のみ、下記の拡張サイズ型（`ComponentSizeExtended` / `ComponentSizeText` / `ComponentSize`）を使用してください。**SCSS にスタイルを実装していないサイズ値を型に含めないでください**（Docgen 経由で Props 表に「指定できるが何も起きない値」が公開されてしまいます）。
   - ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。現在、以下のコンポーネントで実装済みです。
     - Typography: Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote
-    - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet
-    - Navigation: Link, CommandPalette, Breadcrumb, Stepper, Menubar
-    - Form: Button, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, SwitchGroup
+    - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet, Menu, ContextMenu
+    - Navigation: Link, CommandPalette, Breadcrumb, Stepper, Menubar, Tabs, TabNavigation, TabBar, Pagination, HamburgerMenu
+    - Form: Button, IconButton, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, Switch, SwitchGroup, LinkButton, Textarea, SegmentedControl, ToggleGroup, TreeSelect
     - Layout: Box, Flex, Stack, Group, Grid, Toolbar
     - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime, Countdown
     - Media: Lightbox
@@ -442,6 +442,7 @@ Best Practices と Props の間、または Props の後に必要なセクショ
   - `Utilities`: その他便利要素 (Divider, InfiniteScroll, Marquee等)
   - `Visualization`: グラフ・チャート (Charts, GanttChart, NodeGraph, ScheduleView等)
   - `AI`: AI向けUI (PromptInput, StreamingText等)
+  - `Internal`: 内部共用パーツ (IndicatorBase, OverlayBase, StatusContent, FieldCharacterCount等)。アプリからの直接利用は非推奨
 
 - 注意点:
   - `stories/*.stories.tsx` の `title` プロパティでこれを定義します。

@@ -402,4 +402,40 @@ describe("ContextMenuGroup", () => {
     fireEvent.contextMenu(screen.getByTestId("trigger"));
     expect(screen.getByTestId("context-menu-group")).toHaveClass("my-group");
   });
+
+  it("supports asChild on the trigger", () => {
+    render(
+      <ContextMenu asChild menu={<ContextMenuItem>Menu Item 1</ContextMenuItem>}>
+        <div data-testid="trigger-slot">Right click me</div>
+      </ContextMenu>,
+    );
+    const trigger = screen.getByTestId("trigger-slot");
+    expect(trigger).toHaveAttribute("role", "button");
+    expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+    fireEvent.contextMenu(trigger);
+    expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
+  });
+
+  it("supports asChild on ContextMenuItem", () => {
+    const handleClick = vi.fn();
+    render(
+      <ContextMenu
+        menu={
+          <ContextMenuItem asChild onClick={handleClick}>
+            <a href="/settings" data-testid="menu-link">
+              Settings
+            </a>
+          </ContextMenuItem>
+        }
+      >
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    const link = screen.getByTestId("menu-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("role", "menuitem");
+    fireEvent.click(link);
+    expect(handleClick).toHaveBeenCalled();
+  });
 });

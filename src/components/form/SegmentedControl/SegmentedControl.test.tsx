@@ -182,4 +182,18 @@ describe("SegmentedControl", () => {
     });
     expect(ref.current).toBe(screen.getByRole("radiogroup"));
   });
+
+  it("supports asChild prop", async () => {
+    await act(async () => {
+      render(
+        <SegmentedControl asChild options={options} value="1" onChange={() => {}}>
+          <div data-testid="segmented-slot" />
+        </SegmentedControl>,
+      );
+    });
+    const element = screen.getByTestId("segmented-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveAttribute("role", "radiogroup");
+    expect(element).toHaveClass(styles.root);
+  });
 });

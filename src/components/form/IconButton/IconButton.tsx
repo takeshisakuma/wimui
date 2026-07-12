@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
 
-type IconButtonProps = Omit<
+export type IconButtonProps = Omit<
   React.ComponentProps<typeof Button>,
   "label" | "iconPosition"
 > & {
@@ -15,13 +15,20 @@ type IconButtonProps = Omit<
 
 /**
  * Icon-only button component.
+ * Supports `asChild` via Button (Slot pattern) for polymorphic rendering.
  */
-export const IconButton = ({ iconName, className, ...props }: IconButtonProps) => {
-  return (
-    <Button
-      {...props}
-      className={classNames("wim-icon-button", className)}
-      icon={iconName}
-    />
-  );
-};
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ iconName, className, asChild = false, ...props }, ref) => {
+    return (
+      <Button
+        ref={ref}
+        asChild={asChild}
+        {...props}
+        className={classNames("wim-icon-button", className)}
+        icon={iconName}
+      />
+    );
+  },
+);
+
+IconButton.displayName = "IconButton";

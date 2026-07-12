@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -43,6 +44,12 @@ type ToggleGroupProps = {
   layout?: "vertical" | "horizontal";
   /** Unique ID for the component */
   id?: string;
+  /**
+   * If true, merge group props onto the child element.
+   */
+  asChild?: boolean;
+  /** Optional children used when asChild is true */
+  children?: React.ReactNode;
   /** Accessible label when no visible label is provided */
   "aria-label"?: string;
   /** ID of the element that labels the group */
@@ -69,6 +76,8 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
   required,
   layout = "vertical",
   id: customId,
+  asChild = false,
+  children,
 }, ref) => {
   const generatedId = React.useId();
   const id = customId || `wim-toggle-group-${generatedId}`;
@@ -183,6 +192,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
   // single: radiogroup / multiple: toolbar
   const containerRole = selectionMode === "single" ? "radiogroup" : "toolbar";
   const firstItemId = `${id}-item-0`;
+  const Component = asChild ? Slot : "div";
 
   return (
     <FieldTemplate
@@ -195,7 +205,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
       errorId={errorId}
       className={className}
     >
-      <div
+      <Component
         ref={useMergedRef(containerRef, ref)}
         id={id}
         className={classNames("wim-toggle-group", 
@@ -259,7 +269,8 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
           )}
         </button>
       )})}
-      </div>
+      <Slottable>{children}</Slottable>
+      </Component>
     </FieldTemplate>
   );
 });

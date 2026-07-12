@@ -202,4 +202,24 @@ describe("TabNavigation", () => {
       expect(onClickAbout).not.toHaveBeenCalled();
     });
   });
+
+  it("supports asChild on Item", async () => {
+    await act(async () => {
+      render(
+        <TabNavigation>
+          <TabNavigation.Item asChild active href="/ignored">
+            <a href="/home" data-testid="tab-link">
+              Home
+            </a>
+          </TabNavigation.Item>
+          <TabNavigation.Item href="/about">About</TabNavigation.Item>
+        </TabNavigation>,
+      );
+    });
+    const link = screen.getByTestId("tab-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("role", "tab");
+    expect(link).toHaveAttribute("aria-selected", "true");
+    expect(link).toHaveClass(styles.active);
+  });
 });

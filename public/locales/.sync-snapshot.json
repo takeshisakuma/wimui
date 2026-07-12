@@ -2086,7 +2086,7 @@
       "buttongroup_override": "Priority Override",
       "buttongroup_override_desc": "By specifying the priority property, you can unify the priority of all buttons in the group.\nEspecially when using joined mode, mixed priorities can break the design.",
       "buttongroup_scenario_pagination": "Pagination: Unifying Prev, Next, and page numbers into one set.",
-      "buttongroup_scenario_toggle": "View Toggle: Instantly switching between display formats like List and Grid.",
+      "buttongroup_scenario_toggle": "Related action cluster: Joining List / Grid triggers as adjacent buttons. For a persistent exclusive selection, prefer ToggleGroup or SegmentedControl.",
       "buttongroup_scenario_toolbar": "Editor Toolbar: Grouping decoration buttons like Bold, Italic, Underline.",
       "buttongroup_sizes": "Sizes",
       "buttongroup_sizes_desc": "Examples of placing Large, Medium, and Small buttons.",

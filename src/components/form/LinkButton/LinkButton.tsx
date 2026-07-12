@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { ButtonProps } from "../../form/Button/Button";
 import buttonStyles from "../../form/Button/button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -28,6 +29,7 @@ export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     {
+      asChild = false,
       children,
       icon,
       iconPosition = "left",
@@ -60,9 +62,10 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
       : null;
 
     const bgStyle = backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {};
+    const Root = asChild ? Slot : "a";
 
     return (
-      <a
+      <Root
         ref={ref}
         className={classNames(
           "wim-link-button",
@@ -78,12 +81,18 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
         aria-label={ariaLabelProp}
         {...props}
       >
-        <span className={buttonStyles.content}>
-          {iconContent && iconPosition === "left" && iconContent}
-          {children}
-          {iconContent && iconPosition === "right" && iconContent}
-        </span>
-      </a>
+        {asChild && iconContent && iconPosition === "left" ? iconContent : null}
+        {asChild ? (
+          <Slottable>{children}</Slottable>
+        ) : (
+          <span className={buttonStyles.content}>
+            {iconContent && iconPosition === "left" && iconContent}
+            {children}
+            {iconContent && iconPosition === "right" && iconContent}
+          </span>
+        )}
+        {asChild && iconContent && iconPosition === "right" ? iconContent : null}
+      </Root>
     );
   },
 );

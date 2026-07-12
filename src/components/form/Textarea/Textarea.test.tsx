@@ -46,4 +46,18 @@ describe("Textarea", () => {
     rerender(<Textarea variant="ghost" />);
     expect(screen.getByRole("textbox")).toHaveClass(styles.ghost);
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <Textarea asChild>
+        <div role="textbox" data-testid="textarea-slot">
+          Custom
+        </div>
+      </Textarea>,
+    );
+    const element = screen.getByTestId("textarea-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass(styles.root);
+    expect(screen.getByText("Custom")).toBeInTheDocument();
+  });
 });

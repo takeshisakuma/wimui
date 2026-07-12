@@ -1,5 +1,6 @@
 import React, { useId, useRef, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -37,6 +38,12 @@ type SegmentedControlProps = {
   /** Whether the control is disabled */
   disabled?: boolean;
   /**
+   * If true, merge radiogroup props onto the child element.
+   */
+  asChild?: boolean;
+  /** Optional children used when asChild is true */
+  children?: React.ReactNode;
+  /**
    * Unique ID for the component
    */
   id?: string;
@@ -63,6 +70,8 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   required,
   layout = "vertical",
   disabled = false,
+  asChild = false,
+  children,
   id: customId,
   styles: stylesProp,
 }, ref) => {
@@ -103,6 +112,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   };
 
     const firstItemId = `${id}-item-0`;
+    const Component = asChild ? Slot : "div";
 
     return (
       <FieldTemplate
@@ -115,7 +125,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
         errorId={errorId}
         className={className}
       >
-        <div
+        <Component
           ref={useMergedRef(containerRef, ref)}
           id={id}
           className={classNames("wim-segmented-control", 
@@ -152,36 +162,37 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
                   itemRefs.current[index] = el;
                 }}
                 type="button"
-              className={classNames(
-                localStyles.item,
-                isSelected && localStyles.active,
-                !option.label &&
-                  option.iconName &&
-                  localStyles.iconOnly,
-                stylesProp?.item,
-              )}
-              onClick={() => onChange(option.value)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              onFocus={() => {}}
-              onBlur={() => {}}
-              role="radio"
-              aria-checked={isSelected}
-              tabIndex={isTabbable ? 0 : -1}
-              aria-label={option.label || option.value}
-              disabled={disabled}
-            >
-              {option.iconName && <Icon name={option.iconName} size={size} className={localStyles.icon} />}
-              {option.label && (
-                <span className={classNames(localStyles.label, stylesProp?.label)}>
-                  {option.label}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </FieldTemplate>
-  );
+                className={classNames(
+                  localStyles.item,
+                  isSelected && localStyles.active,
+                  !option.label &&
+                    option.iconName &&
+                    localStyles.iconOnly,
+                  stylesProp?.item,
+                )}
+                onClick={() => onChange(option.value)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                onFocus={() => {}}
+                onBlur={() => {}}
+                role="radio"
+                aria-checked={isSelected}
+                tabIndex={isTabbable ? 0 : -1}
+                aria-label={option.label || option.value}
+                disabled={disabled}
+              >
+                {option.iconName && <Icon name={option.iconName} size={size} className={localStyles.icon} />}
+                {option.label && (
+                  <span className={classNames(localStyles.label, stylesProp?.label)}>
+                    {option.label}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+          <Slottable>{children}</Slottable>
+        </Component>
+      </FieldTemplate>
+    );
 });
 
 SegmentedControl.displayName = "SegmentedControl";

@@ -128,7 +128,7 @@
   .cardMoveMenu {
     position: absolute;
     right: 0;
-    bottom: calc(100% + 4px);
+    bottom: calc(100% + var(--wim-spacing-2xs));
     left: 0;
     z-index: 10;
     overflow: hidden;

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { ComponentSizeBasic } from "../../../types/tokens";
@@ -105,6 +106,10 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
 TabNavigation.displayName = "TabNavigation";
 
 export interface TabNavigationItemProps extends React.ComponentPropsWithoutRef<"a"> {
+  /**
+   * If true, the item will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Active state */
   active?: boolean;
   /** Disabled state */
@@ -118,7 +123,17 @@ export const TabNavigationItem = React.forwardRef<
   TabNavigationItemProps
 >(
   (
-    { className, children, active, disabled, icon, href, onClick, ...props },
+    {
+      asChild = false,
+      className,
+      children,
+      active,
+      disabled,
+      icon,
+      href,
+      onClick,
+      ...props
+    },
     ref,
   ) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -132,10 +147,12 @@ export const TabNavigationItem = React.forwardRef<
       }
     };
 
+    const Component = asChild ? Slot : "a";
+
     return (
-      <a
+      <Component
         ref={ref}
-        href={href}
+        href={asChild ? undefined : href}
         onClick={handleClick}
         className={classNames(
           styles.item,
@@ -151,8 +168,8 @@ export const TabNavigationItem = React.forwardRef<
         {...props}
       >
         {icon && <span className={styles.icon}>{icon}</span>}
-        {children}
-      </a>
+        <Slottable>{children}</Slottable>
+      </Component>
     );
   },
 );

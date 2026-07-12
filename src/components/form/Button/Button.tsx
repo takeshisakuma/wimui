@@ -192,11 +192,17 @@ export const Button = React.forwardRef<
         aria-busy={loading || undefined}
         {...(asChild ? props : { ...props })}
       >
-        <span className={localStyles.content}>
-          {iconContent && iconPosition === "left" && iconContent}
+        {asChild && iconContent && iconPosition === "left" ? iconContent : null}
+        {asChild ? (
           <Slottable>{children}</Slottable>
-          {iconContent && iconPosition === "right" && iconContent}
-        </span>
+        ) : (
+          <span className={localStyles.content}>
+            {iconContent && iconPosition === "left" && iconContent}
+            {children}
+            {iconContent && iconPosition === "right" && iconContent}
+          </span>
+        )}
+        {asChild && iconContent && iconPosition === "right" ? iconContent : null}
       </Root>
     );
   },

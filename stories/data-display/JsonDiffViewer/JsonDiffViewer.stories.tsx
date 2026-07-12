@@ -26,7 +26,7 @@ const after = {
 };
 
 const meta: Meta<typeof JsonDiffViewer> = {
-  title: "Components/Data Display/JsonDiffViewer",
+  title: "Components/Data Indicators/JsonDiffViewer",
   component: JsonDiffViewer,
   parameters: {
     layout: "padded",

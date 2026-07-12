@@ -7,7 +7,7 @@ import { PasswordInput } from "@/components/form/PasswordInput/PasswordInput";
 import { FieldTemplate } from "@/components/form/FieldTemplate/FieldTemplate";
 
 const meta: Meta<typeof PasswordStrength> = {
-  title: "Components/Form/PasswordStrength",
+  title: "Components/Basic Inputs/PasswordStrength",
   component: PasswordStrength,
   parameters: {
     layout: "centered",

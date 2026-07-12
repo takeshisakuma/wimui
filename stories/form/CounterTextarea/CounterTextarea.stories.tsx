@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { CounterTextarea, Label } from "wimui";
 
 const meta: Meta<typeof CounterTextarea> = {
-  title: "Components/Form/CounterTextarea",
+  title: "Components/Basic Inputs/CounterTextarea",
   component: CounterTextarea,
   parameters: {
     layout: "padded",

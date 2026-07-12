@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./hamburger-menu.module.scss";
@@ -7,6 +8,10 @@ import styles from "./hamburger-menu.module.scss";
 export type HamburgerMenuVisibleBelow = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"button"> {
+  /**
+   * If true, merge button props onto the child element.
+   */
+  asChild?: boolean;
   /** Whether the menu is open */
   open?: boolean;
   /** Callback function when the menu is toggled */
@@ -27,6 +32,7 @@ export const HamburgerMenu = React.forwardRef<
 >(
   (
     {
+      asChild = false,
       open = false,
       onClick,
       size = "md",
@@ -34,16 +40,18 @@ export const HamburgerMenu = React.forwardRef<
       visibleBelow,
       className,
       style,
+      children,
       "aria-label": ariaLabel,
       ...props
     },
     ref,
   ) => {
     const { t } = useWimTranslation("common");
+    const Comp = asChild ? Slot : "button";
     return (
-      <button
+      <Comp
         ref={ref}
-        type="button"
+        type={asChild ? undefined : "button"}
         className={classNames("wim-hamburger-menu", 
           styles.root,
           styles[size],
@@ -68,7 +76,8 @@ export const HamburgerMenu = React.forwardRef<
         <div className={styles.box}>
           <div className={styles.inner} />
         </div>
-      </button>
+        {asChild ? <Slottable>{children}</Slottable> : null}
+      </Comp>
     );
   },
 );

@@ -3,7 +3,7 @@ import { FAQSection } from "wimui";
 import { T } from "../../T";
 
 const meta: Meta<typeof FAQSection> = {
-  title: "Components/Layout/FAQSection",
+  title: "Components/Data Containers/FAQSection",
   component: FAQSection,
   parameters: {
     layout: "padded",

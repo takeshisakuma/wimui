@@ -7,13 +7,14 @@ const requiredComponents = [
   // Typography
   'Title', 'Text', 'Span', 'Legend', 'Label', 'Highlight', 'Kbd', 'Code', 'Blockquote',
   // Overlay
-  'Tooltip', 'Popover', 'Dropdown', 'HoverCard', 'Drawer', 'Dialog', 'BottomSheet',
+  'Tooltip', 'Popover', 'Dropdown', 'HoverCard', 'Drawer', 'Dialog', 'BottomSheet', 'Menu', 'ContextMenu',
   // Navigation
-  'Link', 'CommandPalette', 'Breadcrumb', 'Stepper', 'Menubar',
+  'Link', 'CommandPalette', 'Breadcrumb', 'Stepper', 'Menubar', 'Tabs',
+  'TabNavigation', 'TabBar', 'Pagination', 'HamburgerMenu',
   // Form
-  'Button', 'Input', 'Selectbox', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
+  'Button', 'IconButton', 'Input', 'Selectbox', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
   'Slider', 'NumberInput', 'Mentions', 'OtpInput', 'FloatButton', 'FieldTemplate', 'DatePicker',
-  'CreditCardInput', 'SwitchGroup',
+  'CreditCardInput', 'Switch', 'SwitchGroup', 'LinkButton', 'Textarea', 'SegmentedControl', 'ToggleGroup', 'TreeSelect',
   // Layout
   'Box', 'Flex', 'Stack', 'Group', 'Grid', 'Toolbar',
   // Data Display

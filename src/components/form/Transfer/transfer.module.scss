@@ -254,7 +254,7 @@
 
 @media (forced-colors: active) {
   .list {
-    border: 2px solid ButtonBorder;
+    border: var(--wim-border-width-thick) solid ButtonBorder;
   }
 
   .header {

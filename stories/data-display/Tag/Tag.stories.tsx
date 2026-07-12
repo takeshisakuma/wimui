@@ -6,7 +6,7 @@ import { Icon, Tag, Dialog, DialogContent, DialogHeader, DialogTitle, DialogDesc
 
 
 /**
- * Data Display/Tag Component
+ * Data Indicators/Tag Component
  */
 const meta: Meta<typeof Tag> = {
   title: "Components/Data Indicators/Tag",

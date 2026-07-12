@@ -48,7 +48,7 @@
     height: 12px;
     cursor: pointer;
     background-color: var(--wim-color-ghost-bg);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
     transition: transform var(--wim-duration-fast) var(--wim-easing-standard),
                 background-color var(--wim-duration-fast) var(--wim-easing-standard);
 

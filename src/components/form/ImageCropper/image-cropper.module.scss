@@ -93,7 +93,7 @@
     height: 300px;
     color: var(--wim-color-text-secondary);
     background-color: var(--wim-color-bg-surface-subtle);
-    border: 2px dashed var(--wim-color-border);
+    border: var(--wim-border-width-thick) dashed var(--wim-color-border);
   }
 
   .emptyContent {

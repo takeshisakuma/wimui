@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { GanttChart, GanttTask } from "wimui/charts";
 
 const meta: Meta<typeof GanttChart> = {
-  title: "Components/Data Structures/GanttChart",
+  title: "Components/Visualization/GanttChart",
   component: GanttChart,
 };
 

@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
@@ -42,6 +43,10 @@ export type MenuProps = {
    * Additional CSS class name for the container.
    */
   className?: string;
+  /**
+   * If true, the menu root will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Mode of the menu */
   mode?: "vertical" | "horizontal" | "inline";
   /** Default selected keys */
@@ -53,6 +58,7 @@ export type MenuProps = {
 const MenuInner = ({
   children,
   className,
+  asChild = false,
   mode = "vertical",
   defaultOpenKeys = [],
 }: MenuProps) => {
@@ -142,6 +148,8 @@ const MenuInner = ({
     }
   };
 
+  const Root = asChild ? Slot : "ul";
+
   return (
     <MenuContext.Provider
       value={{
@@ -154,14 +162,14 @@ const MenuInner = ({
         registerItem,
       }}
     >
-      <ul
+      <Root
         ref={containerRef}
         className={classNames("wim-menu", styles.root, styles[mode], className)}
         role="menu"
         onKeyDown={handleKeyDown}
       >
-        {children}
-      </ul>
+        <Slottable>{children}</Slottable>
+      </Root>
     </MenuContext.Provider>
   );
 };
@@ -175,6 +183,10 @@ export type MenuItemProps = {
   icon?: ReactNode;
   /** Unique key for this item */
   itemKey?: string;
+  /**
+   * If true, merge item props onto the child (keep a wrapping `<li role="none">` for valid menu markup).
+   */
+  asChild?: boolean;
 } & React.ComponentPropsWithoutRef<"div">;
 
 export const MenuItem = ({
@@ -184,6 +196,7 @@ export const MenuItem = ({
   danger = false,
   className,
   icon,
+  asChild = false,
   ...props
 }: MenuItemProps) => {
   const { focusedIndex, setFocusedIndex, registerItem } = useMenu();
@@ -196,25 +209,36 @@ export const MenuItem = ({
     if (onClick) onClick();
   };
 
+  const itemProps = {
+    className: classNames(styles.item, className),
+    onClick: handleClick,
+    onFocus: () => setFocusedIndex(index),
+    disabled,
+    danger,
+    icon,
+    role: "menuitem" as const,
+    tabIndex: isFocused ? 0 : -1,
+    onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => {
+      if (!disabled && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        handleClick(e);
+      }
+    },
+    ...props,
+  };
+
+  if (asChild) {
+    return (
+      <li role="none">
+        <BaseListItem asChild {...itemProps}>
+          {children}
+        </BaseListItem>
+      </li>
+    );
+  }
+
   return (
-    <BaseListItem
-      asChild
-      className={classNames(styles.item, className)}
-      onClick={handleClick}
-      onFocus={() => setFocusedIndex(index)}
-      disabled={disabled}
-      danger={danger}
-      icon={icon}
-      role="menuitem"
-      tabIndex={isFocused ? 0 : -1}
-      onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
-        if (!disabled && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          handleClick(e);
-        }
-      }}
-      {...props}
-    >
+    <BaseListItem asChild {...itemProps}>
       <li>{children}</li>
     </BaseListItem>
   );

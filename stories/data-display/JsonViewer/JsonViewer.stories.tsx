@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { JsonViewer } from "@/components/data-display/JsonViewer/JsonViewer";
 
 const meta: Meta<typeof JsonViewer> = {
-  title: "Components/Data-display/JsonViewer",
+  title: "Components/Data Structures/JsonViewer",
   component: JsonViewer,
 };
 

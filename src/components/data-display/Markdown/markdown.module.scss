@@ -74,7 +74,7 @@
       margin: 0 0 var(--wim-spacing-md) 0;
       font-style: italic;
       color: var(--wim-color-text-secondary);
-      border-left: 4px solid var(--wim-color-border);
+      border-left: var(--wim-spacing-2xs) solid var(--wim-color-border);
     }
   
     table {

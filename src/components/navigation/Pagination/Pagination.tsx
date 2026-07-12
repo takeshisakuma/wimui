@@ -1,12 +1,51 @@
 import React, { useMemo, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { Selectbox } from "../../form/Selectbox/Selectbox";
 import { Input } from "../../form/Input/Input";
 import { Button } from "../../form/Button/Button";
 import styles from "./pagination.module.scss";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
+
+export type PaginationPageProps = React.ComponentPropsWithoutRef<"button"> & {
+  /**
+   * If true, merge page button props onto the child.
+   */
+  asChild?: boolean;
+  /** Page number this control represents */
+  page?: number;
+  /** Whether this page is the current page */
+  isActive?: boolean;
+};
+
+/**
+ * Page number control used by Pagination. Supports asChild for URL-based links.
+ */
+export const PaginationPage = React.forwardRef<HTMLButtonElement, PaginationPageProps>(
+  ({ asChild = false, className, children, page: _page, isActive, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        ref={ref}
+        type={asChild ? undefined : "button"}
+        className={classNames(styles.button, className)}
+        aria-current={isActive ? "page" : undefined}
+        {...props}
+      >
+        {asChild ? <Slottable>{children}</Slottable> : children}
+      </Comp>
+    );
+  },
+);
+
+PaginationPage.displayName = "PaginationPage";
+
+export type PaginationPageRenderProps = React.ComponentPropsWithoutRef<"button"> & {
+  page: number;
+  isActive: boolean;
+};
 
 export interface PaginationProps {
   /** Total number of items */
@@ -23,6 +62,17 @@ export interface PaginationProps {
   siblingCount?: number;
   /** Additional class names */
   className?: string;
+  /**
+   * If true, merge nav props onto the child element.
+   */
+  asChild?: boolean;
+  /** Optional child used when asChild is true */
+  children?: React.ReactNode;
+  /**
+   * Custom renderer for page number controls. Defaults to PaginationPage.
+   * Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChild).
+   */
+  renderPage?: (page: number, props: PaginationPageRenderProps) => React.ReactNode;
   /** Whether to show a simplified version */
   simple?: boolean;
   /** Whether to hide the pagination if there is only one page */
@@ -60,6 +110,9 @@ export const Pagination = ({
   onPageSizeChange,
   siblingCount = 1,
   className,
+  asChild = false,
+  children,
+  renderPage,
   hideOnSinglePage = false,
   simple = false,
   showSizeChanger = false,
@@ -168,10 +221,28 @@ export const Pagination = ({
   const startItem = (current - 1) * currentPageSize + 1;
   const endItem = Math.min(current * currentPageSize, total);
 
+  const Nav = asChild ? Slot : "nav";
+
+  const renderPageNumber = (page: number) => {
+    const isActive = page === current;
+    const pageProps: PaginationPageRenderProps = {
+      page,
+      isActive,
+      onClick: () => handlePageChange(page),
+      "aria-label": pageAriaLabel(page),
+    };
+
+    if (renderPage) {
+      return renderPage(page, pageProps);
+    }
+
+    return <PaginationPage {...pageProps}>{page}</PaginationPage>;
+  };
+
   // Simple mode rendering
   if (simple) {
     return (
-      <nav
+      <Nav
         className={classNames("wim-pagination", 
           styles.root,
           styles.simple,
@@ -179,6 +250,7 @@ export const Pagination = ({
         )}
         aria-label={navAriaLabel}
       >
+        <Slottable>{children}</Slottable>
         <ul className={styles.root}>
           <li
             className={classNames(
@@ -216,7 +288,7 @@ export const Pagination = ({
             </button>
           </li>
         </ul>
-      </nav>
+      </Nav>
     );
   }
 
@@ -228,7 +300,8 @@ export const Pagination = ({
             {showTotal(total, [startItem, endItem])}
           </div>
         )}
-        <nav className={styles.root} aria-label={navAriaLabel}>
+        <Nav className={styles.root} aria-label={navAriaLabel}>
+          <Slottable>{children}</Slottable>
           <ul className={styles.root}>
             {/* Previous Button */}
             <li
@@ -277,14 +350,7 @@ export const Pagination = ({
                     pageNumber === current && styles.active,
                   )}
                 >
-                  <button
-                    className={styles.button}
-                    onClick={() => handlePageChange(pageNumber as number)}
-                    aria-label={pageAriaLabel(pageNumber as number)}
-                    aria-current={pageNumber === current ? "page" : undefined}
-                  >
-                    {pageNumber}
-                  </button>
+                  {renderPageNumber(pageNumber as number)}
                 </li>
               );
             })}
@@ -306,7 +372,7 @@ export const Pagination = ({
               </button>
             </li>
           </ul>
-        </nav>
+        </Nav>
 
         {/* Page Size Changer */}
         {showSizeChanger && (

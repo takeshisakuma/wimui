@@ -1,11 +1,15 @@
 import React, { useRef, useId } from "react";
 import classNames from "classnames";
-import { Slottable } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./switch.module.scss";
 
-type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+export type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+  /**
+   * If true, the component will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Size of the switch */
   size?: ComponentSizeBasic;
   /** Additional class names */
@@ -21,7 +25,16 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
  */
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { children, size = "md", error = false, className, disabled, id: customId, ...props },
+    {
+      asChild = false,
+      children,
+      size = "md",
+      error = false,
+      className,
+      disabled,
+      id: customId,
+      ...props
+    },
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement>(null);
@@ -29,10 +42,13 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     const generatedId = useId();
     const id = customId || generatedId;
 
+    const Component = asChild ? Slot : "label";
+
     return (
-      <label
-        htmlFor={id}
-        className={classNames("wim-switch", 
+      <Component
+        htmlFor={asChild ? undefined : id}
+        className={classNames(
+          "wim-switch",
           styles.root,
           disabled && styles.disabled,
           className,
@@ -56,7 +72,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           {...props}
         />
         <Slottable>{children}</Slottable>
-      </label>
+      </Component>
     );
   },
 );

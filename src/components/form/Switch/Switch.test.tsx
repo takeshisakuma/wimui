@@ -33,4 +33,17 @@ describe("Switch", () => {
     expect(input).toHaveAttribute("aria-invalid", "true");
     expect(input).toHaveClass(styles.danger);
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <Switch asChild>
+        <li data-testid="switch-slot">Custom Switch</li>
+      </Switch>,
+    );
+    const element = screen.getByTestId("switch-slot");
+    expect(element.tagName).toBe("LI");
+    expect(element).toHaveClass(styles.root);
+    expect(screen.getByText("Custom Switch")).toBeInTheDocument();
+    expect(screen.getByRole("switch")).toBeInTheDocument();
+  });
 });

@@ -82,7 +82,7 @@
 
     &:focus-visible {
       outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
-      outline-offset: 2px;
+      outline-offset: var(--wim-focus-outline-offset);
     }
   }
 

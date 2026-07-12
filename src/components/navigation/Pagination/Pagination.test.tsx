@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { Pagination } from "./Pagination";
+import { Pagination, PaginationPage } from "./Pagination";
 
 describe("Pagination", () => {
   it("renders page numbers correctly", () => {
@@ -124,5 +124,30 @@ describe("Pagination", () => {
       />,
     );
     expect(screen.getByText("1-10 of 100")).toBeInTheDocument();
+  });
+
+  it("supports asChild on the root nav", () => {
+    render(
+      <Pagination asChild total={50} current={1} simple>
+        <nav data-testid="pagination-nav" />
+      </Pagination>,
+    );
+    const nav = screen.getByTestId("pagination-nav");
+    expect(nav.tagName).toBe("NAV");
+    expect(nav).toHaveAttribute("aria-label");
+    expect(screen.getByText("1 / 5")).toBeInTheDocument();
+  });
+
+  it("supports asChild on PaginationPage", () => {
+    render(
+      <PaginationPage asChild page={2} isActive>
+        <a href="/page/2" data-testid="page-link">
+          2
+        </a>
+      </PaginationPage>,
+    );
+    const link = screen.getByTestId("page-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("aria-current", "page");
   });
 });

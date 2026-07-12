@@ -53,4 +53,18 @@ describe("HamburgerMenu", () => {
     render(<HamburgerMenu />);
     expect(screen.getByRole("button")).not.toHaveClass(styles.visibleBelowMd);
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <HamburgerMenu asChild>
+        <button type="button" data-testid="hamburger-slot">
+          Menu
+        </button>
+      </HamburgerMenu>,
+    );
+    const element = screen.getByTestId("hamburger-slot");
+    expect(element.tagName).toBe("BUTTON");
+    expect(element).toHaveClass(styles.root);
+    expect(element).toHaveAttribute("aria-expanded", "false");
+  });
 });

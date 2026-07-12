@@ -6,7 +6,7 @@ import { Avatar, Chip, Icon, Dialog, DialogContent, DialogHeader, DialogTitle, D
 
 
 /**
- * Data Display/Chip Component
+ * Selection Controls/Chip Component
  */
 const meta: Meta<typeof Chip> = {
   title: "Components/Selection Controls/Chip",

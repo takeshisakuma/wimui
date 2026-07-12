@@ -12,7 +12,7 @@
   --_bg: transparent;
 
   &.dashed {
-    border: 2px dashed var(--wim-color-border);
+    border: var(--wim-border-width-thick) dashed var(--wim-color-border);
   }
 
   &.solid {

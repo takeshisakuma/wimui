@@ -222,7 +222,7 @@
     height: 100%;
     pointer-events: none;
     background-color: var(--wim-color-primary);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-sm);
 
     &::after {
       position: absolute;
@@ -397,7 +397,7 @@
     animation: skipFadeIn var(--wim-duration-extra-slow) var(--wim-easing-entrance) forwards;
   
     svg {
-      margin: 0 -4px; // アイコン同士を寄せる
+      margin: 0 calc(-1 * var(--wim-spacing-2xs)); // アイコン同士を寄せる
     }
   }
   

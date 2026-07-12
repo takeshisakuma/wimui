@@ -26,4 +26,20 @@ describe("TabBar", () => {
     expect(screen.getByTestId("icon")).toBeInTheDocument();
     expect(screen.getByText("Settings")).toBeInTheDocument();
   });
+
+  it("supports asChild on Item", () => {
+    render(
+      <TabBar>
+        <TabBar.Item asChild active label="Home">
+          <a href="/home" data-testid="tab-link">
+            Home
+          </a>
+        </TabBar.Item>
+      </TabBar>,
+    );
+    const link = screen.getByTestId("tab-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("aria-pressed", "true");
+    expect(link).toHaveClass(styles.active);
+  });
 });

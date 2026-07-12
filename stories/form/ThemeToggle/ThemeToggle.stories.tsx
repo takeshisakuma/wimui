@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 
 const meta: Meta<typeof ThemeToggle> = {
-  title: "Components/Form/ThemeToggle",
+  title: "Components/Buttons/ThemeToggle",
   component: ThemeToggle,
   parameters: {
     layout: "centered",

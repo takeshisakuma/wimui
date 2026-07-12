@@ -1,10 +1,15 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./textarea.module.scss";
 
 export type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
+  /**
+   * If true, the textarea element will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Semantic intent of the field (e.g. error state) */
   intent?: FieldIntent;
   /** Visual style variant of the field */
@@ -31,6 +36,8 @@ export type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
+      asChild = false,
+      children,
       intent = "default",
       variant = "outline",
       fullWidth = false,
@@ -59,9 +66,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
     const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
 
-    const widthClassName = effectiveSemanticWidth 
+    const widthClassName = effectiveSemanticWidth
       ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
       : undefined;
+
+    const Component = asChild ? Slot : "textarea";
 
     return (
       <FieldTemplate
@@ -73,10 +82,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         errorId={errorId}
         className={className}
       >
-        <textarea
+        <Component
           id={id}
           ref={ref}
-          className={classNames("wim-textarea", 
+          className={classNames(
+            "wim-textarea",
             styles.root,
             styles[currentIntent],
             isDisabled && styles.disabled,
@@ -87,9 +97,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             fieldSizing === "content" && styles.fieldSizingContent,
           )}
           style={{
-            ...(effectiveHasCustomWidth ? {
-              "--wim-input-width": typeof width === "number" ? `${width}px` : width,
-            } as React.CSSProperties : {}),
+            ...(effectiveHasCustomWidth
+              ? ({
+                  "--wim-input-width": typeof width === "number" ? `${width}px` : width,
+                } as React.CSSProperties)
+              : {}),
             ...props.style,
           }}
           disabled={isDisabled}
@@ -100,7 +112,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
           placeholder={props.placeholder}
           aria-label={props["aria-label"]}
-        />
+        >
+          {asChild ? <Slottable>{children}</Slottable> : children}
+        </Component>
       </FieldTemplate>
     );
   },

@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { TagInput } from "@/components/form/TagInput/TagInput";
 
 const meta: Meta<typeof TagInput> = {
-  title: "Components/Form/TagInput",
+  title: "Components/Advanced Inputs/TagInput",
   component: TagInput,
   parameters: {
     layout: "centered",

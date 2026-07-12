@@ -163,4 +163,36 @@ describe("Menu", () => {
     fireEvent.keyDown(sub, { key: "Enter" });
     expect(screen.getByText("3")).toBeInTheDocument();
   });
+
+  it("supports asChild on Menu root", () => {
+    render(
+      <Menu asChild>
+        <nav data-testid="menu-nav">
+          <MenuItem>Item</MenuItem>
+        </nav>
+      </Menu>,
+    );
+    const nav = screen.getByTestId("menu-nav");
+    expect(nav.tagName).toBe("NAV");
+    expect(nav).toHaveAttribute("role", "menu");
+    expect(screen.getByText("Item")).toBeInTheDocument();
+  });
+
+  it("supports asChild on MenuItem", () => {
+    const handleClick = vi.fn();
+    render(
+      <Menu>
+        <MenuItem asChild onClick={handleClick}>
+          <a href="/settings" data-testid="menu-link">
+            Settings
+          </a>
+        </MenuItem>
+      </Menu>,
+    );
+    const link = screen.getByTestId("menu-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("role", "menuitem");
+    fireEvent.click(link);
+    expect(handleClick).toHaveBeenCalled();
+  });
 });

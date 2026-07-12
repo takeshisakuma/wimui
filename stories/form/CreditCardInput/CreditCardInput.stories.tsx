@@ -5,7 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Label, CreditCardInput } from "wimui";
 
 const meta: Meta<typeof CreditCardInput> = {
-  title: "Components/Form/CreditCardInput",
+  title: "Components/Basic Inputs/CreditCardInput",
   component: CreditCardInput,
   parameters: {
     layout: "centered",

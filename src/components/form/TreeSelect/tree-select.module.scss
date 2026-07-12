@@ -56,7 +56,7 @@
     &:focus-visible:not(.disabled) {
       @media (forced-colors: active) {
         outline: var(--wim-border-width-thick) solid Highlight;
-        outline-offset: 2px;
+        outline-offset: var(--wim-focus-outline-offset);
       }
     }
 
@@ -122,7 +122,7 @@
     box-shadow: var(--wim-shadow-overlay);
 
     @media (forced-colors: active) {
-      border: 2px solid ButtonBorder;
+      border: var(--wim-border-width-thick) solid ButtonBorder;
       box-shadow: none;
     }
 

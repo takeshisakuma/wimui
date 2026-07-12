@@ -84,4 +84,19 @@ describe("LinkButton", () => {
     render(<LinkButton href="#" aria-label="Go to home" />);
     expect(screen.getByRole("link")).toHaveAttribute("aria-label", "Go to home");
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <LinkButton asChild href="/ignored">
+        <a href="/custom" data-testid="link-slot">
+          Custom Link
+        </a>
+      </LinkButton>,
+    );
+    const element = screen.getByTestId("link-slot");
+    expect(element.tagName).toBe("A");
+    expect(element).toHaveAttribute("href", "/custom");
+    expect(element).toHaveClass(buttonStyles.root);
+    expect(screen.getByText("Custom Link")).toBeInTheDocument();
+  });
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./tab-bar.module.scss";
 
 export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -44,6 +45,10 @@ const TabBarInner = React.forwardRef<HTMLElement, TabBarProps>(
 TabBarInner.displayName = "TabBar";
 
 export interface TabBarItemProps extends React.ComponentPropsWithoutRef<"button"> {
+  /**
+   * If true, the item will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Active state */
   active?: boolean;
   /** Icon element */
@@ -55,11 +60,25 @@ export interface TabBarItemProps extends React.ComponentPropsWithoutRef<"button"
 }
 
 export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
-  ({ className, active, icon, label, badge, children, ...props }, ref) => {
+  (
+    {
+      asChild = false,
+      className,
+      active,
+      icon,
+      label,
+      badge,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "button";
+
     return (
-      <button
+      <Component
         ref={ref}
-        type="button"
+        type={asChild ? undefined : "button"}
         className={classNames(
           styles.item,
           active && styles.active,
@@ -71,8 +90,8 @@ export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
         {badge && <span className={styles.badge}>{badge}</span>}
         {icon && <span className={styles.icon}>{icon}</span>}
         {label && <span className={styles.label}>{label}</span>}
-        {children}
-      </button>
+        <Slottable>{children}</Slottable>
+      </Component>
     );
   },
 );

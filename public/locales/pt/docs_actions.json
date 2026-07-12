@@ -153,7 +153,7 @@
     "buttongroup_override": "Priorização Forçada (Priority Override)",
     "buttongroup_override_desc": "Ao especificar a propriedade `priority`, você pode unificar a prioridade de todos os botões no grupo. Em modo unido, misturar prioridades pode quebrar a unidade visual.",
     "buttongroup_scenario_pagination": "Paginação: Unificando Anterior, Próximo e números de página em um único conjunto.",
-    "buttongroup_scenario_toggle": "Alternância de Visualização: Alternando instantaneamente entre formatos de exibição como Lista e Grade.",
+    "buttongroup_scenario_toggle": "Agrupamento de ações relacionadas: Unindo acionadores Lista / Grade como botões adjacentes. Para seleção exclusiva persistente, prefira ToggleGroup ou SegmentedControl.",
     "buttongroup_scenario_toolbar": "Barra de Ferramentas do Editor: Agrupamento de botões de decoração como Negrito, Itálico, Sublinhado.",
     "buttongroup_sizes": "Tamanhos",
     "buttongroup_sizes_desc": "Exemplos de como colocar botões Grandes Centrados Pequenos.",

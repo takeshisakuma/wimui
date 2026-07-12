@@ -132,4 +132,16 @@ describe("TreeSelect", () => {
     // When disabled, clear button should not appear
     expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <TreeSelect asChild treeData={treeData}>
+        <div data-testid="tree-select-slot" />
+      </TreeSelect>,
+    );
+    const element = screen.getByTestId("tree-select-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass(styles.root);
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+  });
 });

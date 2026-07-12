@@ -154,7 +154,7 @@
     "buttongroup_override": "優先度の強制 (Priority Override)",
     "buttongroup_override_desc": "priority プロパティを指定することで、グループ内のすべてのボタンの priority を統一できます。\n特に joined モードを使用する場合、異なる優先度のボタンが混在するとデザインが崩れる可能性があるため、このプロパティを使用して統一することを推奨します。",
     "buttongroup_scenario_pagination": "ページネーション: 前へ、次へ、およびページ番号を一つのセットにする。",
-    "buttongroup_scenario_toggle": "表示切り替え: リスト表示とグリッド表示など、表示形式を瞬時に切り替える。",
+    "buttongroup_scenario_toggle": "関連アクションのまとまり: リスト／グリッド切り替えを隣接ボタンとしてまとめる。排他的な選択状態を保持したい場合は ToggleGroup または SegmentedControl を使う。",
     "buttongroup_scenario_toolbar": "エディタのツールバー: 太字、斜体、下線などの装飾ボタンをまとめる。",
     "buttongroup_sizes": "サイズ展開",
     "buttongroup_sizes_desc": "Large, Medium, Smallのボタンをそれぞれ配置した場合の例です。",

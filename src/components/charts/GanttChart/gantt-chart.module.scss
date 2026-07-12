@@ -107,7 +107,7 @@
 
     &::-webkit-scrollbar-thumb {
       background: var(--wim-color-scrollbar-thumb);
-      border-radius: 4px;
+      border-radius: var(--wim-radius-md);
     }
 
     &::-webkit-scrollbar-track {

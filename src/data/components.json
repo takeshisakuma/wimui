@@ -492,12 +492,6 @@
         "mobile": true
       },
       {
-        "name": "GanttChart",
-        "descKey": "doc.ganttchart_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
         "name": "JsonViewer",
         "descKey": "doc.json_viewer_desc",
         "pc": true,
@@ -1305,6 +1299,12 @@
       {
         "name": "ScheduleView",
         "descKey": "doc.scheduleView_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "GanttChart",
+        "descKey": "doc.ganttchart_desc",
         "pc": true,
         "mobile": true
       },

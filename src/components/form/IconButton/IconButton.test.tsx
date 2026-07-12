@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { IconButton } from "./IconButton";
@@ -29,5 +30,25 @@ describe("IconButton", () => {
       <IconButton iconName="SearchIcon" aria-label="Add" disabled />,
     );
     expect(screen.getByLabelText("Add")).toBeDisabled();
+  });
+
+  it("supports asChild prop", () => {
+    render(
+      <IconButton asChild iconName="SearchIcon" aria-label="Search">
+        <a href="/search" data-testid="icon-link">
+          Search
+        </a>
+      </IconButton>,
+    );
+    const link = screen.getByTestId("icon-link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "/search");
+    expect(link).toHaveAttribute("aria-label", "Search");
+  });
+
+  it("forwards ref to the underlying button", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+    render(<IconButton ref={ref} iconName="SearchIcon" aria-label="Search" />);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
   });
 });
