@@ -1,6 +1,6 @@
 {
   "doc": {
-    "FieldError_desc": "Mensagens de validação",
+    "fieldError_desc": "Mensagens de validação",
     "advanced_input_cascader_purpose": "Seleção hierárquica",
     "advanced_input_cascader_usage": "Endereços (Província > Cidade), Categorias.",
     "advanced_input_comparison": "Comparação de Componentes",

@@ -3,7 +3,7 @@
     "polymorphism_title": "Polimorfismo (asChild)",
     "polymorphism_desc": "Todos os componentes desta categoria suportam a prop `asChild`. Quando ativada, o componente não renderizará seu elemento HTML padrão, mas delegará suas props e estilos para seu elemento filho imediato. Isso é baseado no padrão Slot do Radix UI.",
     "polymorphism_note": "Certifique-se de que o elemento filho seja um único elemento React válido. Props como `className`, `style` e manipuladores de eventos do pai serão mesclados com os do filho.",
-    "SourceCode_desc": "Exibição de código-fonte com destaque",
+    "sourceCode_desc": "Exibição de código-fonte com destaque",
     "code_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
     "code_anatomy_content": "A representação visual da string de código, formatada com fonte mono e cores de sintaxe.",
     "code_anatomy_content_label": "Exibição de Sintaxe",

@@ -62,7 +62,7 @@
     "dialog_best_practice_1": "Use a Dialog only for critical interactions that require the user's full attention. For non-critical information, prefer Popover or Toast.",
     "dialog_best_practice_2": "Always provide a clearly labeled close action (an X button or a 'Cancel' button) so users can dismiss the Dialog without completing the action.",
     "fielderror_basic_usage_desc": "Standard implementation used to display validation error messages below input fields.",
-    "FieldError_desc": "Validation messages",
+    "fieldError_desc": "Validation messages",
     "fielderror_feat_1": "Visual Consistency",
     "fielderror_feat_2": "Screen Reader Support",
     "fielderror_feat_3": "Dynamic Validation Messages",

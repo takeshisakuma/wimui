@@ -75,8 +75,8 @@
     "test_vrt_tool": "Screenshot Playwright"
   },
   "doc": {
-    "Canvas_desc": "Canvas de pré-visualização de componentes",
-    "Controls_desc": "Controles interativos de propriedades",
+    "canvas_desc": "Canvas de pré-visualização de componentes",
+    "controls_desc": "Controles interativos de propriedades",
     "accessibility": "Acessibilidade",
     "advanced_features": "Recursos Avançados",
     "alignment": "Alinhamento",

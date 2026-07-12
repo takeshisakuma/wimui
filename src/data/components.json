@@ -524,7 +524,7 @@
       },
       {
         "name": "FieldError",
-        "descKey": "doc.FieldError_desc",
+        "descKey": "doc.fieldError_desc",
         "pc": true,
         "mobile": true
       },
@@ -1104,7 +1104,7 @@
       },
       {
         "name": "ScrollArea",
-        "descKey": "doc.ScrollArea_desc",
+        "descKey": "doc.scrollArea_desc",
         "pc": true,
         "mobile": true
       },
@@ -1307,7 +1307,7 @@
   {
     "id": "ai",
     "nameKey": "cat.ai",
-    "guideUrl": null,
+    "guideUrl": "./?path=/docs/components-ai-overview--docs",
     "components": [
       {
         "name": "PromptInput",
@@ -1420,43 +1420,43 @@
     "components": [
       {
         "name": "T",
-        "descKey": "doc.T_desc",
+        "descKey": "doc.t_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "SourceCode",
-        "descKey": "doc.SourceCode_desc",
+        "descKey": "doc.sourceCode_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "RefTable",
-        "descKey": "doc.RefTable_desc",
+        "descKey": "doc.refTable_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "Meta",
-        "descKey": "doc.Meta_desc",
+        "descKey": "doc.meta_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "Canvas",
-        "descKey": "doc.Canvas_desc",
+        "descKey": "doc.canvas_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "Controls",
-        "descKey": "doc.Controls_desc",
+        "descKey": "doc.controls_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "PlatformIcons",
-        "descKey": "doc.PlatformIcons_desc",
+        "descKey": "doc.platformIcons_desc",
         "pc": true,
         "mobile": true
       },

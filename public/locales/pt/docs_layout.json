@@ -64,7 +64,7 @@
     "variation_two_col": "Duas colunas"
   },
   "doc": {
-    "ScrollArea_desc": "Um componente de barra de rolagem personalizado que fornece temas consistentes de alto desempenho em todos os navegadores, mantendo uma sensação nativa.",
+    "scrollArea_desc": "Um componente de barra de rolagem personalizado que fornece temas consistentes de alto desempenho em todos os navegadores, mantendo uma sensação nativa.",
     "avatarGroup_desc": "Avatares empilhados",
     "avatargroup_a11y_spec": "Agrupe todo o componente com role=\"group\" e atribua um aria-label contendo informações de contagem total, como \"15 participantes do projeto\".",
     "avatargroup_anatomy_excess": "Um emblema numérico que indica o número total de usuários que não estão visíveis porque excedem o limite de exibição.",

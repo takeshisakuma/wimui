@@ -1,10 +1,10 @@
 {
   "doc": {
-    "Meta_desc": "ページのメタ情報設定",
-    "PlatformIcons_desc": "対応プラットフォームアイコンの表示",
-    "RefTable_desc": "プロパティ・引数の参照テーブル",
+    "meta_desc": "ページのメタ情報設定",
+    "platformIcons_desc": "対応プラットフォームアイコンの表示",
+    "refTable_desc": "プロパティ・引数の参照テーブル",
     "StatusIcon_desc": "進捗ステータスアイコンの表示",
-    "T_desc": "多言語対応テキストの表示",
+    "t_desc": "多言語対応テキストの表示",
     "app_layout_guide_link": "ガイド: レイアウトパターンについては、<a href=\"./?path=/docs/guides-app-layout--docs\" target=\"_top\">Guides / App Layout</a> を参照してください。",
     "avatar_a11y_spec": "画像がある場合は alt 属性にユーザー名を、装飾目的の場合は aria-hidden=\"true\" を適切に設定して、情報の重複や混乱を防ぎます。",
     "avatar_anatomy_badge": "ログイン状態（オンライン/オフライン）や、未読通知があることを示すためのインジケーター（任意）。",

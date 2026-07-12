@@ -31,3 +31,6 @@ jobs:
 
       - name: StyleLint
         run: npm run stylelint
+
+      - name: Library structural audit
+        run: npm run audit:lib

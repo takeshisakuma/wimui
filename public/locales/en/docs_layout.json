@@ -365,7 +365,7 @@
     "portal_when_to_use_desc": "Guidelines on when to leverage portals for complex layout requirements.",
     "scrollarea_basic_desc": "Standard implementation used to wrap content with custom, cross-browser consistent scrollbars.",
     "scrollarea_both_desc": "Cases where simultaneous vertical and horizontal scrolling is required include:",
-    "ScrollArea_desc": "A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.",
+    "scrollArea_desc": "A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.",
     "scrollarea_keyboard_desc": "Arrow keys scroll the content area when it is focused. Page Up and Page Down scroll by larger increments. Home and End move to the beginning and end of the scrollable content.",
     "scrollarea_long_desc": "Details and usage for the Scroll Area component.",
     "scrollarea_note_desc": "`ScrollArea` can control the scrolling direction with the `scrollAxis` property as `x` (horizontal), `y` (vertical), or `both` (both directions).\nWhen horizontal space is needed, such as for wide tables or images, enable horizontal scrolling by specifying `scrollAxis=\"x\"` or `\"both\"`.\nThe default is `y` (vertical only).",

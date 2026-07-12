@@ -1,10 +1,10 @@
 {
   "doc": {
-    "Meta_desc": "Configuração de metadados da página",
-    "PlatformIcons_desc": "Exibição de ícones de plataformas suportadas",
-    "RefTable_desc": "Tabela de referência de propriedades e argumentos",
+    "meta_desc": "Configuração de metadados da página",
+    "platformIcons_desc": "Exibição de ícones de plataformas suportadas",
+    "refTable_desc": "Tabela de referência de propriedades e argumentos",
     "StatusIcon_desc": "Exibição de ícones de status de desenvolvimento",
-    "T_desc": "Exibição de texto multilíngue",
+    "t_desc": "Exibição de texto multilíngue",
     "app_layout_guide_link": "Guia: Consulte <a href=\"./?path=/docs/guides-app-layout--docs\" target=\"_top\">Guides / App Layout</a> para padrões de layout.",
     "avatar_a11y_spec": "Evite a duplicação ou confusão de informações definindo adequadamente o atributo alt com o nome de usuário se houver uma imagem, ou aria-hidden=\"true\" para fins decorativos.",
     "avatar_anatomy_badge": "Um indicador para mostrar o status de login (online/offline) ou que há notificações não lidas (opcional).",

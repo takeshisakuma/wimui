@@ -75,8 +75,8 @@
     "test_vrt_tool": "Playwright screenshot"
   },
   "doc": {
-    "Canvas_desc": "コンポーネントのプレビューCanvas",
-    "Controls_desc": "インタラクティブなプロパティ操作",
+    "canvas_desc": "コンポーネントのプレビューCanvas",
+    "controls_desc": "インタラクティブなプロパティ操作",
     "accessibility": "アクセシビリティ",
     "advanced_features": "高度な機能",
     "alignment": "配置/整列",

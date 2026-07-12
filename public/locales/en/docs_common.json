@@ -29,8 +29,8 @@
     "treeselect": "TreeSelect"
   },
   "doc": {
-    "Canvas_desc": "Component preview canvas",
-    "Controls_desc": "Interactive property controls",
+    "canvas_desc": "Component preview canvas",
+    "controls_desc": "Interactive property controls",
     "accessibility": "Accessibility",
     "advanced_features": "Advanced Features",
     "alignment": "Placement & Alignment",

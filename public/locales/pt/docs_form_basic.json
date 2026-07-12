@@ -1,6 +1,6 @@
 {
   "doc": {
-    "FieldError_desc": "Mensagens de validação",
+    "fieldError_desc": "Mensagens de validação",
     "checkboxGroup_desc": "Caixas de seleção com estado compartilhado",
     "checkbox_a11y_keyboard": "Alterne o estado de marcação utilizando a tecla Espaço.",
     "checkbox_a11y_label": "Ligue explicitamente o texto do rótulo à entrada para que possa ser anunciado pelos leitores de tela.",

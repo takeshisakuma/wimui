@@ -1,6 +1,6 @@
 {
   "doc": {
-    "FieldError_desc": "バリデーションメッセージ",
+    "fieldError_desc": "バリデーションメッセージ",
     "checkboxGroup_desc": "状態共有チェックボックス",
     "checkbox_a11y_keyboard": "Spaceキーで選択状態を切り替えます。",
     "checkbox_a11y_label": "ラベルテキストとインプットを明示的に紐付け、スクリーンリーダーが読み上げ可能にします。",
