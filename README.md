@@ -111,6 +111,8 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 
 カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens`
 
+> **optional peer に依存するコンポーネントはルート `wimui` から export されません。** ルートバレルが optional peer 未インストールの環境（SSR・非バンドラ Node・テスト）でも読み込めるよう、`charts/*` および Markdown / StreamingText / NodeGraph / ScheduleView / QRCode / CodeDiffViewer / JsonDiffViewer はルートから除外されています。これらはカテゴリ subpath（`wimui/charts`・`wimui/data-display`・`wimui/ai`）か個別 subpath から import してください（下表の peer も併せて必要）。
+
 ## オプショナルな peerDependencies
 
 以下のコンポーネントを使う場合のみ、対応するパッケージを追加インストールしてください。使わない場合は不要です。
@@ -122,7 +124,7 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 | NodeGraph, InteractiveGraph | `@xyflow/react` |
 | Markdown, MarkdownRenderer, StreamingText | `react-markdown` `remark-gfm` |
 | QRCode | `qrcode.react` |
-| CodeDiffViewer | `diff` |
+| CodeDiffViewer, JsonDiffViewer | `diff` |
 | Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
 
 ## Next.js App Router（RSC）対応

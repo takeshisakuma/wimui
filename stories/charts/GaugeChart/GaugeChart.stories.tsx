@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { GaugeChart } from "wimui";
+import { GaugeChart } from "wimui/charts";
 
 const meta: Meta<typeof GaugeChart> = {
   title: "Components/Visualization/GaugeChart",

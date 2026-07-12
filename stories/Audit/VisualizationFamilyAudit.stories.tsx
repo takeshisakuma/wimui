@@ -3,21 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
-  AreaChart,
-  BarChart,
-  LineChart,
-  PieChart,
-  RadarChart,
-  ScatterChart,
-  Treemap,
-  GaugeChart,
-  FunnelChart,
-  Heatmap,
   CalendarHeatmap,
-  Sparkline,
   Box,
   Stack,
 } from "../../src";
+import { AreaChart, BarChart, LineChart, PieChart, RadarChart, ScatterChart, Treemap, GaugeChart, FunnelChart, Heatmap, Sparkline } from "../../src/charts";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {

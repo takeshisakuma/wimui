@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { GanttChart, GanttTask } from "wimui";
+import { GanttChart, GanttTask } from "wimui/charts";
 
 const meta: Meta<typeof GanttChart> = {
   title: "Components/Data Structures/GanttChart",

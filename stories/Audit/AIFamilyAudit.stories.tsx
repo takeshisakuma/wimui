@@ -4,14 +4,12 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   PromptInput,
-  StreamingText,
   ThoughtProcess,
   ThoughtStep,
   AIResponseFeedback,
   SourceCitation,
   SourceCitationList,
   CodeBlock,
-  CodeDiffViewer,
   Terminal,
   AgentStatus,
   VoiceVisualizer,
@@ -24,6 +22,7 @@ import {
   Stack,
   Box,
 } from "../../src";
+import { StreamingText, CodeDiffViewer } from "../../src/ai";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {

@@ -1,37 +1,9 @@
-export * from "./components/data-display/Accordion/Accordion";
-export * from "./components/data-display/Avatar/Avatar";
-export * from "./components/data-display/AvatarGroup/AvatarGroup";
-export * from "./components/data-display/Badge/Badge";
-export * from "./components/data-display/Calendar/Calendar";
-export * from "./components/data-display/Calendar/RangeCalendar";
-export * from "./components/data-display/Card/Card";
-export * from "./components/data-display/Carousel/Carousel";
-export * from "./components/data-display/Chip/Chip";
-export * from "./components/data-display/DataGrid/DataGrid";
-export * from "./components/data-display/DescriptionList/DescriptionList";
-export * from "./components/data-display/EmptyState/EmptyState";
-export * from "./components/data-display/Kanban/Kanban";
-export * from "./components/data-display/List/List";
-export * from "./components/data-display/Markdown/Markdown";
-export * from "./components/data-display/Marquee/Marquee";
-export * from "./components/data-display/Stats/Stats";
-export * from "./components/data-display/Table/Table";
-export * from "./components/data-display/Tag/Tag";
-export * from "./components/data-display/Timeline/Timeline";
-export * from "./components/data-display/TreeView/TreeView";
-export * from "./components/data-display/VirtualList/VirtualList";
-export * from "./components/data-display/FAQSection/FAQSection";
-export * from "./components/data-display/QRCode/QRCode";
-export * from "./components/data-display/InfiniteScroll/InfiniteScroll";
-export * from "./components/data-display/SortableList/SortableList";
-export * from "./components/data-display/NodeGraph/NodeGraph";
-export * from "./components/data-display/ScheduleView/ScheduleView";
-export * from "./components/data-display/SwipeAction/SwipeAction";
-export * from "./components/data-display/PullToRefresh/PullToRefresh";
-export * from "./components/data-display/JsonViewer/JsonViewer";
-export * from "./components/data-display/CalendarHeatmap/CalendarHeatmap";
-export * from "./components/data-display/JsonDiffViewer/JsonDiffViewer";
-export * from "./components/data-display/Reaction/Reaction";
-export * from "./components/data-display/Leaderboard/Leaderboard";
-export * from "./components/data-display/RelativeTime/RelativeTime";
-export * from "./components/data-display/Countdown/Countdown";
+// Full `wimui/data-display` category barrel (subpath entry). Re-exports the
+// peer-free core plus the components that eagerly import an optional peer —
+// importing this barrel (or the components below) requires their peer.
+export * from "./data-display-core";
+export * from "./components/data-display/Markdown/Markdown"; // react-markdown, remark-gfm
+export * from "./components/data-display/QRCode/QRCode"; // qrcode.react
+export * from "./components/data-display/NodeGraph/NodeGraph"; // @xyflow/react
+export * from "./components/data-display/ScheduleView/ScheduleView"; // @fullcalendar
+export * from "./components/data-display/JsonDiffViewer/JsonDiffViewer"; // diff (via CodeDiffViewer)

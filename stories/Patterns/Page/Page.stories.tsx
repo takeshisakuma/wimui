@@ -18,12 +18,12 @@ import {
   InputGroup,
   Rating,
   Skeleton,
-  Sparkline,
   Stack,
   Stats,
   Text,
   Title,
 } from "wimui";
+import { Sparkline } from "wimui/charts";
 
 const meta: Meta = {
   title: "Patterns/Page",

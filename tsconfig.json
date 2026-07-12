@@ -15,7 +15,8 @@
     "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
     "paths": {
       "@/*": ["./src/*"],
-      "wimui": ["./src/index.ts"]
+      "wimui": ["./src/index.ts"],
+      "wimui/*": ["./src/*"]
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
     "types": ["vitest/globals", "@testing-library/jest-dom", "vite/client"]

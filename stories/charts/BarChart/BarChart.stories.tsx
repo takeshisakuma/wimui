@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { BarChart } from "wimui";
+import { BarChart } from "wimui/charts";
 
 const meta: Meta<typeof BarChart> = {
   title: "Components/Visualization/BarChart",

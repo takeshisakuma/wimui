@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
-  GanttChart,
   CalendarHeatmap,
   KanbanBoard,
   Timeline,
@@ -16,6 +15,7 @@ import {
   Text,
   Box,
 } from "../../src";
+import { GanttChart } from "../../src/charts";
 
 const meta: Meta = {
   title: "Audit/ViewportFamily",
