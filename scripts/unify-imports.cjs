@@ -1,6 +1,14 @@
 /**
  * stories/*.stories.tsx の @/components/... インポートを
- * from "wimui" 形式に統一するスクリプト（複数行インポート対応）。
+ * from "wimui" / "wimui/<subpath>" 形式に統一するスクリプト（複数行インポート対応）。
+ *
+ * Peer-heavy コンポーネントはカテゴリ subpath へ振り分ける:
+ *   charts/*                                              → wimui/charts
+ *   Markdown, QRCode, NodeGraph, ScheduleView,
+ *     JsonDiffViewer                                      → wimui/data-display
+ *   StreamingText, CodeDiffViewer, MarkdownRenderer,
+ *     InteractiveGraph                                    → wimui/ai
+ *   その他の公開コンポーネント                             → wimui
  *
  * 対象外（変換しない）:
  *   - @/components/_internal/...  (公開APIではない)
@@ -16,7 +24,45 @@ const path = require("path");
 const { globSync } = require("glob");
 
 // @/components/(公開カテゴリ)/... のみが対象（_internal は除外）
-const TARGET_PATH_RE = /^@\/components\/(?!_internal)/;
+const TARGET_PATH_RE = /^@\/components\/(?!_internal)([^/]+)\/([^/]+)/;
+
+/** @type {ReadonlySet<string>} */
+const DATA_DISPLAY_PEER = new Set([
+  "Markdown",
+  "QRCode",
+  "NodeGraph",
+  "ScheduleView",
+  "JsonDiffViewer",
+]);
+
+/** @type {ReadonlySet<string>} */
+const AI_PEER = new Set([
+  "StreamingText",
+  "CodeDiffViewer",
+  "MarkdownRenderer",
+  "InteractiveGraph",
+]);
+
+/**
+ * Map a @/components/... from-path to the package import path.
+ * @param {string} from
+ * @returns {string | null} package path, or null if not a target
+ */
+function resolvePackagePath(from) {
+  const m = from.match(TARGET_PATH_RE);
+  if (!m) return null;
+  const category = m[1];
+  const component = m[2];
+
+  if (category === "charts") return "wimui/charts";
+  if (category === "data-display" && DATA_DISPLAY_PEER.has(component)) {
+    return "wimui/data-display";
+  }
+  if (category === "ai" && AI_PEER.has(component)) {
+    return "wimui/ai";
+  }
+  return "wimui";
+}
 
 /**
  * 1ファイル処理。
@@ -29,8 +75,13 @@ function processFile(filePath) {
   // import [type] { A, B,\n  C } from "...";
   const IMPORT_RE = /^import\s+(type\s+)?\{([^}]+)\}\s+from\s+"([^"]+)";?/gm;
 
-  const wimui_names = [];       // value imports
-  const wimui_type_names = [];  // type imports
+  /** @type {Map<string, { values: string[], types: string[] }>} */
+  const byPath = new Map();
+
+  function bucket(pkg) {
+    if (!byPath.has(pkg)) byPath.set(pkg, { values: [], types: [] });
+    return byPath.get(pkg);
+  }
 
   // マッチした範囲を記録して後で削除
   const toRemove = []; // { start, end }
@@ -42,23 +93,25 @@ function processFile(filePath) {
     const names = m[2];
     const from = m[3];
 
-    if (!TARGET_PATH_RE.test(from)) continue;
+    const pkg = resolvePackagePath(from);
+    if (!pkg) continue;
 
     const extracted = names
       .split(",")
       .map((s) => s.trim().replace(/\n/g, "").replace(/\s+/g, " "))
       .filter(Boolean);
 
+    const b = bucket(pkg);
     if (isType) {
-      wimui_type_names.push(...extracted);
+      b.types.push(...extracted);
     } else {
-      wimui_names.push(...extracted);
+      b.values.push(...extracted);
     }
 
     toRemove.push({ start: m.index, end: m.index + m[0].length });
   }
 
-  if (wimui_names.length === 0 && wimui_type_names.length === 0) {
+  if (byPath.size === 0) {
     return false;
   }
 
@@ -75,60 +128,64 @@ function processFile(filePath) {
     src = src.slice(0, s) + src.slice(e);
   }
 
-  // 新しい import 行を生成
-  const newLines = [];
-  if (wimui_names.length > 0) {
-    const sorted = [...new Set(wimui_names)].sort();
-    newLines.push(`import { ${sorted.join(", ")} } from "wimui";`);
-  }
-  if (wimui_type_names.length > 0) {
-    const sorted = [...new Set(wimui_type_names)].sort();
-    newLines.push(`import type { ${sorted.join(", ")} } from "wimui";`);
-  }
+  // Prefer stable order: wimui, then category subpaths alphabetically
+  const pkgOrder = (p) => {
+    if (p === "wimui") return "0:" + p;
+    return "1:" + p;
+  };
+  const packages = [...byPath.keys()].sort((a, b) =>
+    pkgOrder(a).localeCompare(pkgOrder(b)),
+  );
 
-  // 既存の "wimui" import がある場合はそれと合体させる
-  const EXISTING_RE = /^import\s+\{([^}]+)\}\s+from\s+"wimui";?/m;
-  const EXISTING_TYPE_RE = /^import\s+type\s+\{([^}]+)\}\s+from\s+"wimui";?/m;
-
-  function mergeInto(content, re, newNames) {
-    if (newNames.length === 0) return content;
-    const em = content.match(re);
-    if (em) {
-      const existing = em[1]
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean);
-      const merged = [...new Set([...existing, ...newNames])].sort();
-      const isType = re.source.includes("type");
-      const prefix = isType ? "import type " : "import ";
-      return content.replace(em[0], `${prefix}{ ${merged.join(", ")} } from "wimui";`);
-    }
-    return content;
-  }
-
-  // まず既存 wimui import にマージを試みる
   let result = src;
-  if (wimui_names.length > 0) {
-    const before = result;
-    result = mergeInto(result, EXISTING_RE, wimui_names);
-    if (result === before) {
-      // 既存がなければ最後の import 行の後に挿入
-      result = insertAfterLastImport(result, newLines.filter((l) => !l.includes("import type")));
+  for (const pkg of packages) {
+    const { values, types } = byPath.get(pkg);
+    const valueNames = [...new Set(values)].sort();
+    const typeNames = [...new Set(types)].sort();
+
+    if (valueNames.length > 0) {
+      result = mergeOrInsert(result, pkg, valueNames, false);
     }
-  }
-  if (wimui_type_names.length > 0) {
-    const before = result;
-    result = mergeInto(result, EXISTING_TYPE_RE, wimui_type_names);
-    if (result === before) {
-      result = insertAfterLastImport(result, newLines.filter((l) => l.includes("import type")));
+    if (typeNames.length > 0) {
+      result = mergeOrInsert(result, pkg, typeNames, true);
     }
   }
 
-  if (result !== src || result !== fs.readFileSync(filePath, "utf8")) {
+  if (result !== fs.readFileSync(filePath, "utf8")) {
     fs.writeFileSync(filePath, result, "utf8");
     return true;
   }
   return false;
+}
+
+/**
+ * Merge into an existing import from the same package path, or insert a new line.
+ * @param {string} content
+ * @param {string} pkg
+ * @param {string[]} newNames
+ * @param {boolean} isType
+ */
+function mergeOrInsert(content, pkg, newNames, isType) {
+  const escaped = pkg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = isType
+    ? new RegExp(`^import\\s+type\\s+\\{([^}]+)\\}\\s+from\\s+"${escaped}";?`, "m")
+    : new RegExp(`^import\\s+\\{([^}]+)\\}\\s+from\\s+"${escaped}";?`, "m");
+
+  const em = content.match(re);
+  if (em) {
+    const existing = em[1]
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const merged = [...new Set([...existing, ...newNames])].sort();
+    const prefix = isType ? "import type " : "import ";
+    return content.replace(em[0], `${prefix}{ ${merged.join(", ")} } from "${pkg}";`);
+  }
+
+  const line = isType
+    ? `import type { ${newNames.join(", ")} } from "${pkg}";`
+    : `import { ${newNames.join(", ")} } from "${pkg}";`;
+  return insertAfterLastImport(content, [line]);
 }
 
 function insertAfterLastImport(content, lines) {

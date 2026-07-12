@@ -4,6 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 プロジェクトの基本ルールは `RULES.md` を参照してください。
 構築に必要な実践知識は `SKILLS.md` を参照してください。
+未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
 
 ---
 

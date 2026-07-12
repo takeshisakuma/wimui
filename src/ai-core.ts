@@ -1,7 +1,7 @@
 // AI components that have no optional peer dependency — safe to include in the
 // root `wimui` barrel (which must import cleanly in non-bundler/Node contexts).
 // The full `wimui/ai` barrel (src/ai.ts) re-exports this plus the peer-heavy
-// components (StreamingText → react-markdown, CodeDiffViewer → diff), which are
+// components (StreamingText / MarkdownRenderer → react-markdown, CodeDiffViewer → diff, InteractiveGraph → @xyflow/react), which are
 // therefore only reachable via `wimui/ai` or their per-component subpath.
 export * from "./components/ai/PromptInput/PromptInput";
 export * from "./components/ai/ThoughtProcess/ThoughtProcess";

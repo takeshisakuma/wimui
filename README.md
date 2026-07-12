@@ -28,6 +28,8 @@ npm install /path/to/wimui-0.1.0.tgz
 アプリのエントリポイントでスタイルを一度だけ読み込みます。CSS はトークン・リセット・
 コンポーネントの 3 つに分割されており、目的に応じて組み合わせられます。
 
+**Core（追加依存なし）** — ほとんどのコンポーネントはルートから import できます。
+
 ```tsx
 import "wimui/tokens.css"; // 必須: デザイントークン（:root の --wim-* 変数）
 import "wimui/styles.css"; // 必須: 全コンポーネントのスタイル
@@ -43,6 +45,19 @@ export const App = () => <Button>保存</Button>;
   グローバルスタイルを含むため、アプリ側の既存スタイルと衝突する場合は省略できます。
 
 i18next の初期化やテーマ設定は不要です。
+
+**Charts / peer 依存コンポーネント** — optional peer を使うコンポーネントはルート `wimui` から export されません。カテゴリ subpath から import し、下表の peer をインストールしてください。
+
+```tsx
+import { BarChart } from "wimui/charts";
+import { Markdown } from "wimui/data-display";
+import { StreamingText } from "wimui/ai";
+```
+
+```bash
+# 例: チャートを使う場合
+npm install recharts
+```
 
 > `<script>` タグで読み込む UMD 版（`dist/wimui.umd.js` + `dist/wimui.umd.css`）は、
 > 上記 3 つを 1 ファイルに同梱しています。
@@ -111,7 +126,7 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 
 カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens`
 
-> **optional peer に依存するコンポーネントはルート `wimui` から export されません。** ルートバレルが optional peer 未インストールの環境（SSR・非バンドラ Node・テスト）でも読み込めるよう、`charts/*` および Markdown / StreamingText / NodeGraph / ScheduleView / QRCode / CodeDiffViewer / JsonDiffViewer はルートから除外されています。これらはカテゴリ subpath（`wimui/charts`・`wimui/data-display`・`wimui/ai`）か個別 subpath から import してください（下表の peer も併せて必要）。
+> **optional peer 依存コンポーネントはルート `wimui` から export されません。** クイックスタートの subpath 例と下表を参照してください。
 
 ## オプショナルな peerDependencies
 

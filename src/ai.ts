@@ -4,3 +4,5 @@
 export * from "./ai-core";
 export * from "./components/ai/StreamingText/StreamingText"; // react-markdown, remark-gfm
 export * from "./components/ai/CodeDiffViewer/CodeDiffViewer"; // diff
+export * from "./components/ai/MarkdownRenderer/MarkdownRenderer"; // react-markdown, remark-gfm
+export * from "./components/ai/InteractiveGraph/InteractiveGraph"; // @xyflow/react

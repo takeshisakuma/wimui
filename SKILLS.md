@@ -62,7 +62,8 @@ public/
 
 1.  スキャフォールディングの実行: `npm run scaffold -- <ComponentName> <category>` を実行します。
     -   例: `npm run scaffold -- MyButton form`
-    -   これにより `src/components/form/MyButton/` 配下の TSX/SCSS/Test と `stories/MyButton/` 配下の Stories/MDX が自動生成され、`src/form.ts` にエクスポートが追加されます。
+    -   これにより `src/components/form/MyButton/` 配下の TSX/SCSS/Test と `stories/MyButton/` 配下の Stories/MDX が自動生成され、`src/form.ts`（カテゴリバレル）にエクスポートが追加されます。ルート `src/index.ts` はカテゴリバレル / `*-core` を re-export するため、通常は `src/index.ts` を直接編集しません。
+    -   **peer 依存あり**（eager に optional peer を import するコンポーネント）の場合は、`*-core.ts` やルートではなくフルカテゴリバレル（`src/charts.ts` / `src/data-display.ts` / `src/ai.ts`）へ追加し、利用側は `wimui/charts` 等の subpath から import します。
 2.  ロジックの実装: 生成された `ComponentName.tsx` と `*.module.scss` に機能を実装します。
 3.  テストの修正・実行: `npm run test` で生成されたテストが通過することを確認します。
 4.  MDX の執筆: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
@@ -407,4 +408,4 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 | 翻訳キーが一部のロケールだけに存在する | `npm run i18n:sync` → `npm run i18n:check` で確認 |
 | `ALL_NAMESPACES` に追加されていない | ファイル名が `.json` か、`public/locales/en/` に配置されているか確認 |
 | `--wim-color-*` 以外の色変数を stories/ で使う | `--wim-color-*` プレフィックス付きトークンに統一 |
-| `src/index.ts` へのエクスポート漏れ | 新規コンポーネントは必ず追加 |
+| カテゴリバレルへのエクスポート漏れ | 通常は `src/<category>.ts` に追加（scaffold が実施）。ルート `src/index.ts` はカテゴリ / `*-core` を re-export するだけ。peer 依存コンポーネントは `*-core.ts`・ルートではなくフルバレル（`src/charts.ts` 等）へ追加し、利用側は `wimui/charts` / `wimui/data-display` / `wimui/ai` から import |
