@@ -1,0 +1,85 @@
+import { Meta, Canvas, Title } from "@storybook/addon-docs/blocks";
+import { T } from "../../T";
+import * as IndicatorBaseStories from "./IndicatorBase.stories";
+import { Docgen } from "../../Docgen";
+
+<Meta of={IndicatorBaseStories} />
+
+<Title />
+
+<p><T k="doc.indicatorBase_long_desc" /></p>
+
+---
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.indicatorBase_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.indicatorBase_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>IndicatorBase</b></td>
+      <td><T k="doc.indicatorBase_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Badge / Chip / Tag</b></td>
+      <td><T k="doc.indicatorBase_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="IndicatorBase" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.indicatorBase_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc.scenario_settings_title" />:</strong> <T k="doc.indicatorBase_scenario_1" />
+  </li>
+  <li>
+    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.indicatorBase_scenario_2" />
+  </li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.indicatorBase_best_practice_1" /></li>
+  <li><T k="doc.indicatorBase_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="IndicatorBase" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.indicatorBase_keyboard_desc" /></p>
+
+<Docgen componentName="IndicatorBase" section="i18n" />
+
+<Docgen componentName="IndicatorBase" section="test" />
+
+---
+
+<Docgen componentName="IndicatorBase" section="props" />
+
+---
+
+## <T k="doc.stories" />
+
+### <T k="doc.story_default" />
+<Canvas of={IndicatorBaseStories.Default} />
+
+### <T k="doc.intents" />
+<Canvas of={IndicatorBaseStories.Intents} />
+
+### <T k="doc.variants" />
+<Canvas of={IndicatorBaseStories.Variants} />
+
+---

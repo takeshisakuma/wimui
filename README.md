@@ -1,9 +1,9 @@
 # wimui
 
-React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt-BR）・WAI-ARIA 準拠のアクセシビリティを備えています。
+React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
-- 動作要件: React >= 18 / react-dom >= 18
+- 動作要件: Node.js >= 18 / React >= 18 / react-dom >= 18
 
 ## インストール
 
@@ -135,17 +135,35 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 
 ## npm 公開について
 
-`npm run release`（changesets）によるリリースフローは整備済みですが、`private: true` のため現在は公開されません。公開する場合は `package.json` から `"private": true` を削除してください（パッケージ名 `wimui` は npm で未取得であることを確認済み・2026年6月時点）。
+`private: true` のため現在は公開されません。公開する場合は `package.json` から `"private": true` を削除してください（パッケージ名 `wimui` は npm で未取得であることを確認済み・2026年6月時点）。
+
+リリースは [changesets](https://github.com/changesets/changesets) 経由です。
+
+```bash
+npm run changeset   # 変更内容・semver を記録（.changeset/ にファイル生成）
+npm run version     # changeset を取り込み、package.json のバージョンを更新
+npm run release     # build 後に npm publish
+```
 
 ---
 
 ## 開発
 
-### Storybook 起動
+### 開発サーバー
 
 ```
-npm run storybook
+npm run dev         # Vite 開発サーバー（アイコン生成・i18n bundle を含む）
+npm run storybook   # Storybook（ドキュメント・コンポーネント確認）
 ```
+
+### コンポーネント雛形
+
+```
+npm run scaffold -- <Name> <category> [categoryId]
+# 例: npm run scaffold -- MyInput form basic-inputs
+```
+
+`src/components/<category>/<Name>/` と `stories/<category>/<Name>/` のボイラープレートを生成します。続けて `src/<category>.ts` への export 追加、翻訳キー、MDX 記述が必要です（詳細は `CLAUDE.md` / `SKILLS.md`）。
 
 ### パッケージバージョン確認
 
@@ -165,8 +183,8 @@ npm run stylelint:fix   # src・storiesフォルダ内のCSS/SCSSを自動修正
 ### JavaScript / TypeScript
 
 ```
-npm run lint            # src・storiesフォルダ内のJS/TSの品質確認（.mdxを除く、警告ゼロが必須）
-npm run lint:fix        # src・storiesフォルダ内のJS/TSを自動修正
+npm run lint            # src・stories 内の JS/TS/MDX の品質確認（警告ゼロが必須）
+npm run lint:fix        # src・stories 内の JS/TS/MDX を自動修正
 ```
 
 ### 単体テスト
@@ -178,7 +196,7 @@ npm run test            # コンポーネント単体テスト (*.test.tsx) を�
 ### テストカバレッジ
 
 ```
-npm run test:coverage   # coverage/ にブラウザで確認可能なHTMLレポートを生成
+npm run test:coverage   # カバレッジ測定（行・分岐・関数・文いずれも 80% 未満で失敗）＋ coverage/ に HTML レポート
 ```
 
 ### 未テストコンポーネント
@@ -190,13 +208,17 @@ npm run test:report     # カバレッジ測定と未テストチェックを同
 
 ### VRT (Visual Regression Testing)
 
+事前に Storybook の静的ビルドが必要です（`storybook-static/` は gitignore）。
+
 ```
-npm run test:vrt                                        # スナップショットと比較
+npm run build-storybook                                 # 初回・ストーリー変更後に必須
+npm run test:vrt                                        # vrt/ 配下の Playwright テスト一式（VRT・a11y・e2e）
 npm run test:vrt:update                                 # スナップショットを更新
 npm run test:vrt:report                                 # 差分をスライダー形式で確認
 $env:FILTER='Calendar'; npm run test:vrt:update         # Calendarのスナップショットのみ更新
 ```
 
+> CI の Visual Regression Test ワークフローは `vrt/vrt.spec.ts` のみを実行します。ローカルの `npm run test:vrt` は a11y / e2e も含みます。
 > Playwright のバージョンを更新した後は `npx playwright install` でブラウザを再取得してください。
 
 #### 環境変数
@@ -226,6 +248,8 @@ UIを意図的に変更した場合の手順：
 > 上記の Run workflow → `Update baseline snapshots: true` を一度実行してlinux用ベースラインを生成してください。
 
 ### a11y
+
+VRT と同様に、事前に `npm run build-storybook` が必要です。
 
 ```
 npx playwright test vrt/a11y.spec.ts                                        # 全ストーリーのa11yチェック
@@ -268,18 +292,17 @@ npm run format   # プロジェクト全体をPrettierで整形
 大量のコンポーネント追加や大規模なリファクタリングの前後で実行することを推奨します。
 
 ```bash
-npm run audit:all               # 全監査を一括実行
+npm run audit:all               # 全監査を一括実行（docs + lib）
+npm run audit:lib               # ライブラリ構造ガードのみ
+npm run audit:docs              # Storybook/MDX・i18n 系のみ
 npm run audit-mdx               # ドキュメントの必須セクション漏れをチェック
 npm run i18n:check              # 3言語の整合性をチェック
-node scripts/check-aschild.js   # asChild（Slotパターン）の適用漏れをチェック
+npm run check:aschild           # asChild（Slotパターン）の適用漏れをチェック
 ```
 
-監査内容：
-- MDX 構成: 必須カテゴリの有無、プレースホルダーの残存チェック
-- Polymorphic: `asChild` (Radix Slot) の実装漏れチェック
-- i18n: 言語間の整合性および、JSON ファイルが 1000 行を超えていないかのチェック
-- Hardcoded Docs: MDX 内にハードコードされたテキストがないかチェック
-- Hierarchy: ストーリーの階層が深すぎないかチェック
+監査内容（`audit:all`）:
+- **docs**: MDX 必須セクション / i18n 整合・行数 / MDX・Stories のハードコード文言 / ストーリー階層
+- **lib**: asChild / ハードコード値（色・px） / 公開 API サーフェス / root hooks / トークン・intent 整合 / SCSS トークン参照
 
 ## 国際化 (i18n)
 
@@ -303,7 +326,7 @@ npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳
 ## ユーティリティ・整合性
 
 ```bash
-npm run check:consistency   # src・components.json・stories・mdxの構造的矛盾を確認
+npm run check:consistency   # src・src/data/components.json・stories・mdx の構造的矛盾を確認
 npm run check:hierarchy     # コンポーネントリスト(MDX)の掲載漏れを確認
 npm run check:aschild       # コンポーネントが Slot パターンを正しく実装しているか確認
 npm run check:stories       # 翻訳キーの漏れ（生キー表示）を確認
@@ -315,6 +338,8 @@ npm run i18n:missing        # enにあって他言語に未翻訳のキーを確
 ```
 npm run deploy   # GitHub Pagesへデプロイ
 ```
+
+`main` ブランチへの push でも `.github/workflows/deploy.yml` 経由で Storybook が GitHub Pages に自動デプロイされます。手動の `npm run deploy` はローカルからの緊急デプロイや検証用です。
 
 ## Git
 
@@ -335,7 +360,7 @@ git commit -m "commit message" --no-verify
 ## ドキュメントの自動抽出 (Docgen)
 
 WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
-Vite の開発サーバー起動時やファイル保存時に `src/data/docgen.json` が自動更新されるため、手動でスクリプトを実行する必要はありません。
+Vite の開発サーバー起動時やファイル保存時に `src/data/docgen_*.json` が自動更新されるため、手動でスクリプトを実行する必要はありません（生成物は gitignore され、Storybook の Vite プラグインが出力します）。
 MDX の記述方法の詳細は `SKILLS.md` を参照してください。
 
 ## デザイントークン
@@ -344,17 +369,17 @@ WIM UI は、Style Dictionary を使用してデザイントークンを一元�
 
 ### 基本構成
 
-- ソース: `tokens//*.json`
+- ソース: `tokens/color/*.json`・`tokens/*.json`・`tokens/themes/dark.json`・`tokens/intents.json`
 - 生成物（自動生成）:
-    - `src/tokens/generated/` (SCSS変数, CSSカスタムプロパティ)
-    - `src/types/generated-tokens.ts` (TypeScript 型定義)
+    - `src/tokens/generated/`（SCSS 変数・CSS カスタムプロパティ・`_intents.scss`）
+    - `src/types/generated-tokens.ts` / `src/types/generated-intents.ts`
 
 ### ビルドコマンド
 
 トークン（JSON）を編集した後は、必ず以下のコマンドを実行してコードに反映させてください。
 
 ```bash
-npm run tokens:build   # JSONからSCSS/TypeScript定義を自動生成
+npm run tokens:build   # Style Dictionary + intent 生成（SCSS / TypeScript）
 ```
 
 このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。

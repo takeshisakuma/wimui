@@ -204,6 +204,7 @@
     "prestorybook": "npx kill-port 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
+    "deploy": "npm run build-storybook && gh-pages -d storybook-static",
     "format": "prettier --write .",
     "lint": "eslint src stories --max-warnings=0",
     "lint:fix": "eslint src stories --fix --max-warnings=0",

@@ -1,0 +1,79 @@
+import { Meta, Canvas, Title } from "@storybook/addon-docs/blocks";
+import { T } from "../../T";
+import * as OverlayBaseStories from "./OverlayBase.stories";
+import { Docgen } from "../../Docgen";
+
+<Meta of={OverlayBaseStories} />
+
+<Title />
+
+<p><T k="doc.overlayBase_long_desc" /></p>
+
+---
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.overlayBase_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.overlayBase_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>OverlayBase</b></td>
+      <td><T k="doc.overlayBase_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Dialog / Drawer / BottomSheet</b></td>
+      <td><T k="doc.overlayBase_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="OverlayBase" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.overlayBase_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc.scenario_settings_title" />:</strong> <T k="doc.overlayBase_scenario_1" />
+  </li>
+  <li>
+    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.overlayBase_scenario_2" />
+  </li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.overlayBase_best_practice_1" /></li>
+  <li><T k="doc.overlayBase_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="OverlayBase" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.overlayBase_keyboard_desc" /></p>
+
+<Docgen componentName="OverlayBase" section="i18n" />
+
+<Docgen componentName="OverlayBase" section="test" />
+
+---
+
+<Docgen componentName="OverlayBase" section="props" />
+
+---
+
+## <T k="doc.stories" />
+
+### <T k="doc.story_default" />
+<Canvas of={OverlayBaseStories.Default} />
+
+---

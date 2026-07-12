@@ -1,0 +1,61 @@
+@use "../../../src/styles/token-common" as *;
+
+@layer component {
+  .root {
+    @include token-base;
+
+    gap: var(--wim-spacing-2xs);
+    font-weight: var(--wim-font-weight-medium);
+    line-height: 1;
+    border-radius: var(--wim-radius-full);
+
+    &.sm {
+      min-width: 1.25em;
+      height: 1.25em;
+      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-2xs);
+    }
+
+    &.md {
+      min-width: 1.5em;
+      height: 1.5em;
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-xs);
+    }
+
+    &.lg {
+      min-width: 1.75em;
+      height: 1.75em;
+      padding: var(--wim-spacing-xs) var(--wim-spacing-lg);
+      font-size: var(--wim-font-size-sm);
+    }
+
+    @include module-token-variants;
+
+    &.interactive {
+      cursor: pointer;
+      transition: background-color var(--wim-transition-fast), transform var(--wim-transition-fast);
+
+      &:hover {
+        background-color: oklch(from var(--bg) calc(l * 1.1) c h);
+        transform: translateY(var(--wim-lift-sm));
+      }
+
+      &:active {
+        background-color: oklch(from var(--bg) calc(l * 0.9) c h);
+        transform: scale(var(--wim-scale-active));
+      }
+    }
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+}

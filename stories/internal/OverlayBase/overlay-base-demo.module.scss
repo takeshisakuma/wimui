@@ -1,0 +1,27 @@
+@layer component {
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wim-color-overlay-bg);
+    backdrop-filter: blur(var(--wim-blur-xs));
+  }
+
+  .content {
+    position: relative;
+    min-width: 280px;
+    max-width: 420px;
+    padding: var(--wim-spacing-2xl);
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-bg-component);
+    border-radius: var(--wim-radius-container);
+    box-shadow: var(--wim-shadow-modal);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    justify-content: flex-end;
+    margin-top: var(--wim-spacing-lg);
+  }
+}
