@@ -216,7 +216,6 @@
     "fieldTemplate_keyboard_desc": "Garante que rótulos e mensagens de erro estejam devidamente associados aos elementos de entrada.",
     "fieldTemplate_long_desc": "Um componente de invólucro que adiciona rótulos, mensagens de erro e indicadores obrigatórios a qualquer campo de entrada.",
     "fieldTemplate_motion_desc": "As mensagens de erro surgem gradualmente para chamar a atenção.",
-    "fieldTemplate_responsive_desc": "Suporta layouts verticais e horizontais com base no breakpoint/largura do contêiner.",
     "fieldTemplate_scenario_1": "Formulários de registro padrão.",
     "fieldTemplate_scenario_2": "Páginas de configurações com layouts verticais ou horizontais.",
     "fieldTemplate_usage_desc": "Envolve qualquer componente de formulário para fornecer um rótulo padronizado e um layout de tratamento de erros.",

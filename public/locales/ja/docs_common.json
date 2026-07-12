@@ -169,7 +169,6 @@
     "recommendation": "推奨",
     "related_docs": "関連ドキュメント",
     "required": "必須",
-    "responsive_desc": "メディアクエリやコンテナクエリを使用して、ビューポートやコンテナのサイズに応じてレイアウトとコンポーネントが適応します。",
     "role": "ロール",
     "scenario": "シナリオ",
     "scenario_404_title": "404 Not Found",

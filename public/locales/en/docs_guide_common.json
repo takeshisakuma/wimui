@@ -126,7 +126,6 @@
     "tokens_desc": "The component uses predefined design tokens for colors, spacing, and typography to ensure visual consistency.",
     "token": "Token",
     "responsive_title": "Responsive Design",
-    "responsive_desc": "The component is designed to be responsive and adapts to various screen sizes and containers.",
     "keyboard_nav_title": "Keyboard Navigation",
     "i18n_title": "Internationalization (i18n)",
     "test_title": "Testing",
