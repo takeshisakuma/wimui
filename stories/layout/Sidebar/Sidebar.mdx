@@ -33,7 +33,6 @@ import { Sidebar } from "wimui";
 
 <T k="doc.sidebar_usage_desc" />
 
-
 <Canvas of={SidebarStories.Default} />
 
 ## <T k="doc.design_intent_title" />
@@ -61,14 +60,6 @@ import { Sidebar } from "wimui";
 </table>
 
 <Docgen componentName="Sidebar" section="anatomy" />
-
-## <T k="doc.content_guidelines_title" />
-<ul>
-  <li><T k="doc.sidebar_content_guideline" /></li>
-</ul>
-
-## <T k="doc.motion_spec_title" />
-<p><T k="doc.sidebar_motion_desc" /></p>
 
 ## <T k="doc.a11y_spec_title" />
 <p><T k="doc.sidebar_a11y_desc" /></p>
@@ -141,13 +132,9 @@ const [mobileOpen, setMobileOpen] = useState(false);
 
 <Docgen componentName="Sidebar" section="tokens" />
 
-## <T k="doc.responsive_title" />
-<p><T k="doc.responsive_desc" /></p>
-
 ## <T k="doc.keyboard_nav_title" />
 <p><T k="doc.sidebar_keyboard_desc" /></p>
 
-## <T k="doc.i18n_title" />
-<p><T k="doc.sidebar_i18n_desc" /></p>
+<Docgen componentName="Sidebar" section="i18n" />
 
 <Docgen componentName="Sidebar" section="test" />
