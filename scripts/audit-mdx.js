@@ -2,18 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import { globSync } from 'glob';
 
+// Required sections split by purpose:
+//  - editorial (component-specific, hand-written): design_intent, choice_matrix,
+//    real_world_scenarios, best_practices
+//  - Docgen-generated: anatomy, props, tokens, test, i18n
+//  - a11y-relevant (kept required for interactive components): a11y_spec, keyboard_nav
+// Boilerplate/low-value sections (responsive, motion_spec, content_guidelines)
+// are now OPTIONAL — they were near-identical filler across components.
 const requiredKeys = [
   'doc.design_intent_title',
   'doc.choice_matrix_title',
   'doc.anatomy_title',
-  'doc.content_guidelines_title',
-  'doc.motion_spec_title',
   'doc.a11y_spec_title',
   'doc.real_world_scenarios_title',
   'doc.best_practices_title',
   'doc.props_title',
   'doc.tokens_title',
-  'doc.responsive_title',
   'doc.keyboard_nav_title',
   'doc.i18n_title',
   'doc.test_title'
@@ -57,7 +61,8 @@ componentFiles.forEach(file => {
     if (k === 'doc.tokens_title' && (content.includes('section="tokens"') || content.includes('componentName='))) return false;
     if (k === 'doc.test_title' && (content.includes('section="test"') || content.includes('componentName='))) return false;
     if (k === 'doc.props_title' && (content.includes('section="props"') || content.includes('componentName='))) return false;
-    
+    if (k === 'doc.i18n_title' && content.includes('section="i18n"')) return false;
+
     return true;
   });
   

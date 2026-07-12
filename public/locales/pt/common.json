@@ -220,6 +220,8 @@
     "fieldTemplate_scenario_1": "Formulários de registro padrão.",
     "fieldTemplate_scenario_2": "Páginas de configurações com layouts verticais ou horizontais.",
     "fieldTemplate_usage_desc": "Envolve qualquer componente de formulário para fornecer um rótulo padronizado e um layout de tratamento de erros.",
+    "i18n_docgen_intro": "Todo o texto visível ao usuário é passado via props. Forneça as strings traduzidas da sua camada de i18n através de:",
+    "i18n_docgen_none": "Este componente não renderiza texto próprio — localize o conteúdo que você passa a ele.",
     "i18n_title": "Internacionalização (i18n)",
     "iconButton_desc": "Um botão quadrado contendo apenas um ícone sem um rótulo de texto.",
     "inputBase_a11y_desc": "Garante que os ícones interativos tenham funções e rótulos corretos.",

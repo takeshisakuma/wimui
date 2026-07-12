@@ -849,6 +849,8 @@
       "label_responsive_desc": "The label remains readable across all breakpoints; font size is fixed to maintain visual hierarchy.",
       "label_keyboard_desc": "Labels are not interactive by themselves and do not receive focus.",
       "label_i18n_desc": "Labels are provided by the consumer; the component has no hardcoded strings.",
+      "i18n_docgen_intro": "All user-facing text is passed in via props. Provide translated strings from your i18n layer through:",
+      "i18n_docgen_none": "This component renders no text of its own — localize any content you pass into it.",
       "i18n_title": "Internationalization (i18n)",
       "inputBase_a11y_desc": "Ensures interactive icons have correct roles and labels.",
       "inputBase_anatomy_content_desc": "Space for the actual input value or selected value.",

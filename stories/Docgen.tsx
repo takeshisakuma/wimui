@@ -9,7 +9,7 @@ import './docgen.scss';
 
 interface DocgenProps {
   componentName: string;
-  section?: 'tokens' | 'anatomy' | 'props' | 'test';
+  section?: 'tokens' | 'anatomy' | 'props' | 'test' | 'i18n';
 }
 
 interface PropInfo {
@@ -198,10 +198,55 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
     );
   };
 
+  // Auto-derived i18n note: lists the component's own text-bearing props
+  // (string / ReactNode) so consumers know where to pass translated strings.
+  // Replaces the ~173 hand-written per-component i18n_desc keys with one shared
+  // intro key plus the auto-listed props.
+  const renderI18n = () => {
+    const props = data.props ?? {};
+    // ReactNode/string props are text-bearing, but some node slots carry
+    // non-translatable content (icons, avatars, media, adornments). Exclude
+    // those by name so the generated note lists only props you localize.
+    const nonTextSlots = new Set([
+      'className', 'style', 'id', 'key',
+      'icon', 'leftIcon', 'rightIcon', 'startIcon', 'endIcon',
+      'avatar', 'thumbnail', 'media', 'image', 'logo',
+      'prefix', 'suffix', 'startContent', 'endContent',
+      'addonBefore', 'addonAfter', 'leftSection', 'rightSection', 'trigger',
+    ]);
+    const textProps = Object.entries(props)
+      .filter(([name, info]) => {
+        if (nonTextSlots.has(name)) return false;
+        const t = formatTsType(info.tsType);
+        if (t.includes('=>')) return false; // skip event handlers / functions
+        return /ReactNode|ReactElement|\bstring\b/.test(t);
+      })
+      .map(([name]) => name);
+    return (
+      <section id="i18n">
+        <h2><T k="doc.i18n_title" /></h2>
+        {textProps.length > 0 ? (
+          <p>
+            <T k="doc.i18n_docgen_intro" />{' '}
+            {textProps.map((p, i) => (
+              <React.Fragment key={p}>
+                {i > 0 ? ', ' : ''}<code>{p}</code>
+              </React.Fragment>
+            ))}
+            .
+          </p>
+        ) : (
+          <p><T k="doc.i18n_docgen_none" /></p>
+        )}
+      </section>
+    );
+  };
+
   if (section === 'tokens') return renderTokens();
   if (section === 'anatomy') return renderAnatomy();
   if (section === 'props') return renderProps();
   if (section === 'test') return renderTest();
+  if (section === 'i18n') return renderI18n();
 
   return (
     <div className="docgen-container">
