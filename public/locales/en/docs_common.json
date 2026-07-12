@@ -123,7 +123,6 @@
     "recommendation": "Recommendation",
     "related_docs": "Related Documents",
     "required": "Required",
-    "responsive_desc": "Layouts and components respond to viewport and container sizes using media and container queries.",
     "role": "Role",
     "scenario": "Scenario",
     "scenario_fail_title": "Processing Failure",
