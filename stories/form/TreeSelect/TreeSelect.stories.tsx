@@ -152,6 +152,7 @@ export const Disabled: Story = {
         {...args}
         treeData={treeData}
         disabled
+        value="colors"
         placeholder={t("story.treeselect_placeholder")}
       />
     );

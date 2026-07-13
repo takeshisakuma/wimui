@@ -10,6 +10,8 @@ import {
   Switch,
   Table,
   Text,
+  Textarea,
+  ToggleGroup,
 } from "wimui";
 
 const meta: Meta = {
@@ -23,6 +25,7 @@ export default meta;
 
 function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
   const [range, setRange] = useState("week");
+  const [align, setAlign] = useState("left");
 
   return (
     <div data-density={density} style={{ padding: "var(--wim-spacing-xl)" }}>
@@ -35,6 +38,7 @@ function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
           <Button size="lg">Large</Button>
         </Group>
         <Input label="Email" placeholder="you@example.com" fullWidth />
+        <Textarea label="Notes" placeholder="Optional notes" fullWidth rows={2} />
         <Group gap="lg" align="center">
           <Checkbox defaultChecked>Notify me</Checkbox>
           <Switch defaultChecked>Compact rows</Switch>
@@ -47,6 +51,15 @@ function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
           ]}
           value={range}
           onChange={setRange}
+        />
+        <ToggleGroup
+          options={[
+            { label: "Left", value: "left" },
+            { label: "Center", value: "center" },
+            { label: "Right", value: "right" },
+          ]}
+          value={align}
+          onChange={(value) => setAlign(typeof value === "string" ? value : value[0] ?? "left")}
         />
         <Table>
           <Table.Header>

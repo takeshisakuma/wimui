@@ -62,6 +62,22 @@ export const MultipleAddons: Story = {
   },
 };
 
+export const Disabled: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <InputGroup {...args}>
+        <InputGroupText>@</InputGroupText>
+        <Input
+          placeholder={t("story.inputgroup_placeholder_username")}
+          defaultValue="johndoe"
+          disabled
+        />
+      </InputGroup>
+    );
+  },
+};
+
 export const FullWidth: Story = {
   args: {
     fullWidth: true,

@@ -102,8 +102,8 @@ export const InputBase = ({
   const getIconColor = (
     customColor?: React.ComponentProps<typeof Icon>["color"],
   ) => {
-    if (customColor) return customColor;
     if (isDisabled) return "disabled";
+    if (customColor) return customColor;
     if (intent === "danger") return "danger";
     if (intent === "warning") return "warning";
     if (intent === "success") return "success";

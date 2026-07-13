@@ -29,6 +29,16 @@
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
+
+      .chevron,
+      .countryCode,
+      .number {
+        color: inherit;
+      }
+
+      .number::placeholder {
+        color: inherit;
+      }
     }
 
     &.danger {
@@ -109,7 +119,7 @@
     gap: var(--wim-spacing-md);
     align-items: center;
     justify-content: space-between;
-    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
     font-size: var(--wim-font-size-sm);
     cursor: pointer;
     transition: background-color var(--wim-transition-fast);

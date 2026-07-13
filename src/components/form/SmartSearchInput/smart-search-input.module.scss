@@ -32,8 +32,12 @@
     }
 
     &:disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
+
+      &::placeholder {
+        color: var(--wim-color-text-on-disabled);
+      }
     }
   }
 

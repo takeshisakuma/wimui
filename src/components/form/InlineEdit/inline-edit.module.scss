@@ -11,8 +11,18 @@
     }
 
     &.disabled {
+      color: var(--wim-color-text-on-disabled);
       pointer-events: none;
-      opacity: var(--wim-opacity-disabled);
+
+      .text,
+      .text.placeholder {
+        color: inherit;
+      }
+
+      .editIconWrapper {
+        color: inherit;
+        opacity: 1;
+      }
     }
   }
 
@@ -39,8 +49,8 @@
     display: inline-flex;
     align-items: center;
     width: 100%;
-    min-height: var(--wim-height-md, 40px);
-    padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+    min-height: var(--wim-height-md);
+    padding: var(--wim-field-padding-y-tight) var(--wim-field-padding-x);
     cursor: text;
     border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-component);

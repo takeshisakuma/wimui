@@ -32,6 +32,20 @@
   --wim-control-padding-x-md: var(--wim-spacing-2xl);
   --wim-control-padding-x-lg: var(--wim-spacing-3xl);
 
+  /* Field chrome (Input shell, Textarea, TagInput, select triggers) */
+  --wim-field-padding-y: var(--wim-spacing-md);
+  --wim-field-padding-x: var(--wim-spacing-md);
+  --wim-field-padding-y-tight: var(--wim-spacing-sm);
+
+  /* SegmentedControl / ToggleGroup / TabNavigation item horizontal padding */
+  --wim-control-item-padding-x-sm: var(--wim-spacing-sm);
+  --wim-control-item-padding-x-md: var(--wim-spacing-md);
+  --wim-control-item-padding-x-lg: var(--wim-spacing-lg);
+
+  /* Menu / Select / Combobox list rows */
+  --wim-list-item-padding-y: var(--wim-spacing-sm);
+  --wim-list-item-padding-x: var(--wim-spacing-md);
+
   /* Dense data surfaces (Table cells, list rows that opt in) */
   --wim-table-cell-padding-y: var(--wim-spacing-md);
   --wim-table-cell-padding-x: var(--wim-spacing-lg);
@@ -106,6 +120,14 @@
   --wim-control-padding-x-sm: var(--wim-spacing-md);
   --wim-control-padding-x-md: var(--wim-spacing-xl);
   --wim-control-padding-x-lg: var(--wim-spacing-2xl);
+  --wim-field-padding-y: var(--wim-spacing-xs);
+  --wim-field-padding-x: var(--wim-spacing-sm);
+  --wim-field-padding-y-tight: var(--wim-spacing-2xs);
+  --wim-control-item-padding-x-sm: var(--wim-spacing-2xs);
+  --wim-control-item-padding-x-md: var(--wim-spacing-xs);
+  --wim-control-item-padding-x-lg: var(--wim-spacing-sm);
+  --wim-list-item-padding-y: var(--wim-spacing-2xs);
+  --wim-list-item-padding-x: var(--wim-spacing-sm);
   --wim-table-cell-padding-y: var(--wim-spacing-xs);
   --wim-table-cell-padding-x: var(--wim-spacing-md);
   --wim-segmented-control-item-size-sm: 1.625rem; /* 26px */

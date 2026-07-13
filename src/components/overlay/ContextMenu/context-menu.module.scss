@@ -44,7 +44,7 @@
   }
 
   .groupTitle {
-    padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
+    padding: var(--wim-list-item-padding-y) calc(var(--wim-list-item-padding-x) + var(--wim-spacing-xs));
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);

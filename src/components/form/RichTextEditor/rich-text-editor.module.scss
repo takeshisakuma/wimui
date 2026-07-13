@@ -69,13 +69,32 @@
     }
 
     &.disabled {
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
-  
+
       .toolbar {
+        color: inherit;
         pointer-events: none;
-        opacity: var(--wim-opacity-ghost);
+        border-bottom-color: var(--wim-color-disabled);
+      }
+
+      .toolbarBtn,
+      .toolbarBtn:disabled {
+        color: inherit;
+      }
+
+      .toolbarSep {
+        background-color: var(--wim-color-disabled);
+      }
+
+      .content {
+        color: inherit;
+
+        &:empty::before {
+          color: inherit;
+        }
       }
     }
   

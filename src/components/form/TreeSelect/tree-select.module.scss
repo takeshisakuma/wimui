@@ -38,7 +38,7 @@
     justify-content: space-between;
     width: 100%;
     min-height: var(--wim-height-md);
-    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    padding: var(--wim-field-padding-y) var(--wim-control-item-padding-x-lg);
     cursor: pointer;
     background: transparent;
     border: none;
@@ -68,6 +68,15 @@
       color: var(--wim-color-text-on-disabled);
       pointer-events: none;
       cursor: not-allowed;
+
+      .value,
+      .value.placeholder {
+        color: inherit;
+      }
+
+      .icon {
+        color: inherit;
+      }
     }
   }
 

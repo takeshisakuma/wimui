@@ -74,5 +74,6 @@ export const Disabled: Story = {
   ...Default,
   args: {
     disabled: true,
+    defaultValue: "apple",
   },
 };

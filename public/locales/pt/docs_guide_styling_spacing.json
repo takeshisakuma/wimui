@@ -14,7 +14,7 @@
     "density_stable_desc": "Estes permanecem estáveis para o layout da página e elementos de identidade não colapsarem:",
     "density_storybook_hint": "No Storybook, use o controle Density da barra de ferramentas, ou abra Token → Density para a demo lado a lado.",
     "density_title": "Densidade (Density)",
-    "density_tokens_desc": "Estas propriedades CSS mudam sob `[data-density=\"compact\"]`. Componentes que já as referenciam (Button, Input, Table, Switch, …) atualizam automaticamente.",
+    "density_tokens_desc": "Estas propriedades CSS mudam sob `[data-density=\"compact\"]`. Campos, botões, listas e tabelas que as referenciam (Input, Textarea, Button, SegmentedControl, Menu, Table, …) atualizam automaticamente.",
     "density_tokens_title": "Tokens que seguem a densidade",
     "density_usage_desc": "Chame `setWimDensity` ou defina o atributo você mesmo. Escopos aninhados podem sobrescrever a densidade do pai.",
     "density_usage_title": "Uso",

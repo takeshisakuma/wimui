@@ -367,8 +367,9 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 ### UI 密度（`data-density`）
 コントロール高さ・余白を `comfortable` / `compact` で切り替える。実装は `src/styles/_ui-patterns.scss` と `src/density.ts`。
 - `setWimDensity("compact")` または `<html data-density="compact">`
-- 追従: `--wim-height-*` / `--wim-control-padding-*` / `--wim-table-cell-padding-*` / switch・checkbox など
+- 追従: `--wim-height-*` / `--wim-control-padding-*` / `--wim-field-padding-*` / `--wim-control-item-padding-*` / `--wim-list-item-padding-*` / `--wim-table-cell-padding-*` / switch・checkbox など
 - 非追従: `--wim-spacing-*`（レイアウト）、`--wim-avatar-size-*`
+- 新規コントロール余白は生の `--wim-spacing-*` ではなく上記密度エイリアスを使う
 - Storybook ツールバーの Density、Token → Density
 
 ### Form 連携（`wimui/rhf`）

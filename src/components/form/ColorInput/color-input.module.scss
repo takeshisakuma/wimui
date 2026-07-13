@@ -16,6 +16,13 @@
           --color-input-icon: var(--wim-color-text-white);
         }
       }
+
+      &[class*="disabled"] {
+        .inputIcon,
+        .inputIcons {
+          --color-input-icon: var(--wim-color-text-on-disabled);
+        }
+      }
     }
   }
 
@@ -81,6 +88,18 @@
       }
     }
 
+    &[class*="disabled"] {
+      .inputIcon,
+      .inputIcons {
+        color: var(--wim-color-text-on-disabled);
+
+        svg {
+          color: inherit;
+          stroke: var(--wim-color-text-on-disabled);
+        }
+      }
+    }
+
     &[class*="error"] {
       .inputIcon,
       .inputIcons {
@@ -89,6 +108,18 @@
         svg {
           color: inherit;
           stroke: var(--color-input-icon, var(--wim-color-text-danger));
+        }
+      }
+    }
+
+    &[class*="disabled"][class*="error"] {
+      .inputIcon,
+      .inputIcons {
+        color: var(--wim-color-text-on-disabled);
+
+        svg {
+          color: inherit;
+          stroke: var(--wim-color-text-on-disabled);
         }
       }
     }

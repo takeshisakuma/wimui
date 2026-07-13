@@ -5,7 +5,7 @@
     gap: var(--wim-spacing-sm);
     align-items: center;
     width: calc(100% - (var(--wim-spacing-xs) * 2));
-    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
     margin: 0 var(--wim-spacing-xs);
     font-family: var(--wim-font-family-default);
     font-size: var(--wim-font-size-sm);

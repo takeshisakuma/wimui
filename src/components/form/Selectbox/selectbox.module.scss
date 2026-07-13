@@ -50,10 +50,17 @@
     }
 
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-ghost-bg-hover);
-      border-color: var(--wim-color-disabled);
+
+      .value,
+      .value.placeholder {
+        color: inherit;
+      }
+
+      .icon {
+        color: inherit;
+      }
     }
   }
 
@@ -114,13 +121,13 @@
   }
 
   .search {
-    padding: var(--wim-spacing-sm);
+    padding: var(--wim-field-padding-y-tight);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
   }
 
   .searchInput {
     width: 100%;
-    padding: var(--wim-spacing-sm);
+    padding: var(--wim-field-padding-y-tight);
     font-size: var(--wim-font-size-small-scale, 0.9rem);
     outline: none;
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
@@ -145,8 +152,8 @@
   }
 
   .groupLabel {
-    padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
-    padding-top: var(--wim-spacing-md);
+    padding: var(--wim-list-item-padding-y) calc(var(--wim-list-item-padding-x) + var(--wim-spacing-xs));
+    padding-top: var(--wim-field-padding-y);
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--wim-font-size-xs);
@@ -231,10 +238,14 @@
       }
 
       &:disabled {
-        color: var(--wim-color-text-disabled);
+        color: var(--wim-color-text-on-disabled);
         cursor: not-allowed;
-        background-color: var(--wim-color-ghost-bg-hover);
+        background-color: var(--wim-color-disabled);
         border-color: var(--wim-color-disabled);
+
+        &::placeholder {
+          color: var(--wim-color-text-on-disabled);
+        }
       }
     }
 
@@ -243,6 +254,11 @@
       right: var(--wim-spacing-md);
       color: var(--wim-color-text-secondary);
       pointer-events: none;
+    }
+
+    .select:disabled ~ .icon,
+    .nativeWrapper:has(.select:disabled) .icon {
+      color: var(--wim-color-text-on-disabled);
     }
   }
 }

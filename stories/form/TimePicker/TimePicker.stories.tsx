@@ -79,7 +79,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_disabled")}>
-        <TimePicker {...args} disabled />
+        <TimePicker {...args} disabled defaultValue="14:30" />
       </Label>
     );
   },

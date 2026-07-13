@@ -2,8 +2,8 @@
 
 @layer component {
   .root {
-    --wim-input-offset-left: var(--wim-spacing-md);
-    --wim-input-offset-right: var(--wim-spacing-md);
+    --wim-input-offset-left: var(--wim-field-padding-x);
+    --wim-input-offset-right: var(--wim-field-padding-x);
 
     position: relative;
 
@@ -47,8 +47,13 @@
 
       input,
       textarea {
+        color: var(--wim-color-text-on-disabled);
         pointer-events: none;
         cursor: not-allowed;
+
+        &::placeholder {
+          color: var(--wim-color-text-on-disabled);
+        }
       }
     }
 
@@ -135,7 +140,7 @@
     }
 
     &.left {
-      left: var(--wim-spacing-md);
+      left: var(--wim-field-padding-x);
     }
   }
 

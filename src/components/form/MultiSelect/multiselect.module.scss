@@ -19,7 +19,7 @@
     justify-content: space-between;
     width: 100%;
     min-height: var(--wim-height-md);
-    padding: var(--wim-spacing-md) var(--wim-input-offset-right) var(--wim-spacing-md) var(--wim-spacing-sm);
+    padding: var(--wim-field-padding-y) var(--wim-input-offset-right) var(--wim-field-padding-y) var(--wim-control-item-padding-x-sm);
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-snug-jp);
     color: var(--wim-color-text-primary);
@@ -47,10 +47,21 @@
     }
 
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-ghost-bg-hover);
-      border-color: var(--wim-color-disabled);
+
+      .value,
+      .value.placeholder {
+        color: inherit;
+      }
+
+      .icon {
+        color: inherit;
+      }
+
+      :global(.wim-chip) {
+        color: var(--wim-color-text-on-disabled);
+      }
     }
   }
 

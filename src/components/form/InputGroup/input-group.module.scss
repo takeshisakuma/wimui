@@ -57,13 +57,23 @@
     [role="button"] {
       flex: 0 0 auto;
     }
+
+    // Match addon text to disabled field foreground when a child control is disabled
+    &:has(:disabled),
+    &:has([aria-disabled="true"]),
+    &:has(:global(.wim-input-base)[class*="disabled"]) {
+      .text {
+        color: var(--wim-color-text-on-disabled);
+        border-color: var(--wim-color-disabled);
+      }
+    }
   }
 
   .text {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+    padding: var(--wim-field-padding-y-tight) var(--wim-control-item-padding-x-lg);
     font-size: var(--wim-font-size-md);
     font-weight: var(--wim-font-weight-normal);
     line-height: normal;
@@ -72,6 +82,9 @@
     white-space: nowrap;
     background-color: var(--wim-color-disabled);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-component);
+    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))
+                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-component)));
   }
 }

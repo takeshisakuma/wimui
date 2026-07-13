@@ -7850,7 +7850,7 @@
       "density_usage_desc": "Call `setWimDensity` or set the attribute yourself. Nested scopes can override a parent density.",
       "density_attr_desc": "Equivalent HTML attribute:",
       "density_tokens_title": "Tokens that follow density",
-      "density_tokens_desc": "These CSS custom properties change under `[data-density=\"compact\"]`. Components that already reference them (Button, Input, Table, Switch, …) update automatically.",
+      "density_tokens_desc": "These CSS custom properties change under `[data-density=\"compact\"]`. Field, button, list, and table chrome that reference them (Input, Textarea, Button, SegmentedControl, Menu, Table, …) update automatically.",
       "density_stable_desc": "These stay stable so page layout and identity chrome do not collapse:",
       "density_storybook_hint": "In Storybook, use the Density toolbar control, or open Token → Density for a side-by-side demo."
     },

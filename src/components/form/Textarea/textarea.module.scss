@@ -11,7 +11,7 @@
 
     /* Allow vertical resizing by default */
     min-height: calc(var(--wim-height-md) * 2); // Roughly 80px (42 * 2 = 84px)
-    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    padding: var(--wim-field-padding-y-tight) var(--wim-field-padding-x);
     font-size: var(--wim-font-size-md);
 
     /* Reasonable default height */
@@ -71,6 +71,10 @@
       resize: none;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
+
+      &::placeholder {
+        color: var(--wim-color-text-on-disabled);
+      }
     }
 
     &.fullWidth {

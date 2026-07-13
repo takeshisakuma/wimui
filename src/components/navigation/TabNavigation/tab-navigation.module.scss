@@ -47,19 +47,19 @@
 
     /* Sizes */
     &.sm {
-      --wim-tab-nav-padding: 0 var(--wim-spacing-md);
+      --wim-tab-nav-padding: 0 var(--wim-control-item-padding-x-md);
       --wim-tab-nav-font-size: var(--wim-font-size-sm);
       --wim-tab-nav-height: var(--wim-height-sm);
     }
 
     &.md {
-      --wim-tab-nav-padding: 0 var(--wim-spacing-lg);
+      --wim-tab-nav-padding: 0 var(--wim-control-item-padding-x-lg);
       --wim-tab-nav-font-size: var(--wim-font-size-md);
       --wim-tab-nav-height: var(--wim-height-md);
     }
 
     &.lg {
-      --wim-tab-nav-padding: 0 var(--wim-spacing-xl);
+      --wim-tab-nav-padding: 0 var(--wim-control-padding-x-sm);
       --wim-tab-nav-font-size: var(--wim-font-size-lg);
       --wim-tab-nav-height: var(--wim-height-lg);
     }

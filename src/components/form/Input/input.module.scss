@@ -60,6 +60,10 @@
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);
       border-color: var(--wim-color-disabled);
+
+      &::placeholder {
+        color: var(--wim-color-text-on-disabled);
+      }
     }
 
     /* type="number" adjustments */

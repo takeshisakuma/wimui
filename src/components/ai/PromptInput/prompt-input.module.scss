@@ -38,9 +38,21 @@
   }
 
   &.disabled {
+    color: var(--wim-color-text-on-disabled);
     cursor: not-allowed;
-    background: var(--wim-color-ghost-bg);
-    opacity: var(--wim-opacity-disabled);
+    background: var(--wim-color-disabled);
+    border-color: var(--wim-color-disabled);
+
+    .textarea,
+    .textarea::placeholder,
+    .actionButton,
+    .actionButton:disabled {
+      color: inherit;
+    }
+
+    .actionButton:disabled {
+      opacity: 1;
+    }
   }
 
   &.loading {

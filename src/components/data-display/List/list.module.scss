@@ -71,7 +71,7 @@
     padding-left: 0;
 
     .item {
-      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
       padding-left: 2rem;
       text-indent: -1rem;
       list-style-position: inside;

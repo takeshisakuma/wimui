@@ -153,10 +153,30 @@ export const HoverExpand: Story = {
 export const Disabled: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const options: CascaderOption[] = [
+      {
+        label: t("story.cascader_tokyo"),
+        value: "tokyo",
+        children: [
+          {
+            label: t("story.cascader_shibuya"),
+            value: "shibuya",
+            children: [
+              {
+                label: t("story.cascader_dogenzaka"),
+                value: "dogenzaka",
+              },
+            ],
+          },
+        ],
+      },
+    ];
     return (
       <Cascader
         {...args}
+        options={options}
         disabled
+        defaultValue={["tokyo", "shibuya"]}
         placeholder={t("story.cascader_placeholder")}
         aria-label={t("story.cascader_placeholder")}
       />

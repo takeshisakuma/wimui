@@ -14,7 +14,7 @@
     "density_stable_desc": "ページレイアウトやアイデンティティ要素が潰れないよう、次は密度の影響を受けません:",
     "density_storybook_hint": "Storybook ではツールバーの Density、または Token → Density の並列デモで確認できます。",
     "density_title": "密度 (Density)",
-    "density_tokens_desc": "これらの CSS カスタムプロパティは `[data-density=\"compact\"]` で変わります。参照済みのコンポーネント（Button、Input、Table、Switch など）は自動で追従します。",
+    "density_tokens_desc": "これらの CSS カスタムプロパティは `[data-density=\"compact\"]` で変わります。フィールド・ボタン・リスト・テーブルの余白がこれらを参照するコンポーネント（Input、Textarea、Button、SegmentedControl、Menu、Table など）は自動で追従します。",
     "density_tokens_title": "密度に追従するトークン",
     "density_usage_desc": "`setWimDensity` を呼ぶか、属性を直接設定します。ネストしたスコープで親の密度を上書きできます。",
     "density_usage_title": "使い方",

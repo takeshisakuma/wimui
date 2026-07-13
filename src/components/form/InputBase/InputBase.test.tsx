@@ -4,7 +4,9 @@ import { InputBase } from "./InputBase";
 import styles from "./input-base.module.scss";
 
 vi.mock("../../media/Icon/Icon", () => ({
-  Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
+  Icon: ({ name, color }: { name: string; color?: string }) => (
+    <span data-testid="icon" data-color={color}>{name}</span>
+  ),
 }));
 
 describe("InputBase", () => {
@@ -150,6 +152,15 @@ describe("InputBase", () => {
   it("propagates disabled prop to child elements", () => {
     render(<InputBase disabled><input data-testid="inner" /></InputBase>);
     expect(screen.getByTestId("inner")).toBeDisabled();
+  });
+
+  it("uses disabled icon color even when a custom icon color is provided", () => {
+    render(
+      <InputBase disabled leftIcon="ClockIcon" leftIconColor="primary">
+        <input />
+      </InputBase>,
+    );
+    expect(screen.getByTestId("icon")).toHaveAttribute("data-color", "disabled");
   });
 
   it("applies semantic width class", () => {

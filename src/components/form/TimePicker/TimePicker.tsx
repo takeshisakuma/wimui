@@ -70,7 +70,7 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
       defaultValue={defaultValue}
       onChange={handleChange}
       rightIcon={rightIcon}
-      rightIconColor={showClearButton ? undefined : "primary"}
+      rightIconColor={disabled || showClearButton ? undefined : "primary"}
       onRightIconClick={showClearButton ? undefined : handleClockClick}
       {...props}
     />
