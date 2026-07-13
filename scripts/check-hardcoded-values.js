@@ -12,7 +12,7 @@ import fs from 'fs';
 import { globSync } from 'glob';
 
 // 2026-07 時点の未注記 px 直書き数。増やさないこと・減らしたら更新すること。
-const PX_BASELINE = 245;
+const PX_BASELINE = 0;
 
 const files = globSync('src/components/**/*.scss', { posix: true });
 

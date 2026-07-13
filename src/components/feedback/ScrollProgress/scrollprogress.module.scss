@@ -5,7 +5,7 @@
     left: 0;
     z-index: var(--wim-z-overlay);
     width: 100%;
-    height: 4px;
+    height: var(--wim-spacing-2xs);
     background-color: transparent;
 
     .bar {

@@ -102,7 +102,7 @@
     }
   
     hr {
-      height: 1px;
+      height: var(--wim-border-width-thin);
       margin: var(--wim-spacing-xl) 0;
       background-color: var(--wim-color-border);
       border: none;

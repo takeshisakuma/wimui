@@ -11,10 +11,10 @@
 
     &::after {
       position: absolute;
-      bottom: -6px;
+      bottom: -6px; /* Exception: Geometric Harmony — decorative underline offset */
       left: 0;
       width: 100%;
-      height: 2px;
+      height: var(--wim-border-width-thick);
       content: "";
       background-color: currentcolor;
       transform: scaleX(0);

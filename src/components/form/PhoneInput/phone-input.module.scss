@@ -140,7 +140,7 @@
   .divider {
     display: block;
     flex-shrink: 0;
-    width: 1px;
+    width: var(--wim-border-width-thin);
     height: 1.5rem;
     background: var(--wim-color-border-secondary);
   }

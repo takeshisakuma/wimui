@@ -3,7 +3,7 @@
 
 @layer component {
   .root {
-    @include indicator.indicator-container-segmented($padding: 2px);
+    @include indicator.indicator-container-segmented($padding: var(--wim-focus-outline-offset));
 
     display: inline-grid;
     grid-auto-columns: 1fr;
@@ -88,7 +88,7 @@
   }
 
   .slider {
-    @include indicator.indicator-slider-contained($offset: 2px);
+    @include indicator.indicator-slider-contained($offset: var(--wim-focus-outline-offset));
 
     opacity: 0;
 

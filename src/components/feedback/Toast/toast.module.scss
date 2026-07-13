@@ -47,7 +47,7 @@
     gap: var(--wim-spacing-md);
     align-items: flex-start;
     justify-content: space-between;
-    min-width: 280px;
+    min-width: 280px; /* Exception: Structural Logic — toast content readability floor */
     max-width: calc(100vw - var(--wim-spacing-lg) * 2);
     padding: var(--wim-spacing-md) var(--wim-spacing-xl) var(--wim-spacing-md) var(--wim-spacing-lg);
     pointer-events: auto;
@@ -121,8 +121,8 @@
     }
 
     svg {
-      width: 14px;
-      height: 14px;
+      width: 14px; /* Exception: Geometric Harmony — compact action icon square */
+      height: 14px; /* Exception: Geometric Harmony — compact action icon square */
     }
   }
 

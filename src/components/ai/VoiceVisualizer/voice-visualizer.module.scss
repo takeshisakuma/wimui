@@ -17,7 +17,7 @@
       }
 
       .wave {
-        stroke-width: 1px;
+        stroke-width: var(--wim-border-width-thin);
         animation: voice-muted-breath 3s ease-in-out infinite;
       }
     }

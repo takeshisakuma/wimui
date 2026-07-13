@@ -72,7 +72,7 @@
   }
 
   .message {
-    max-width: 300px;
+    max-width: 300px; /* Exception: Structural Logic — loading message measure ceiling */
     font-size: var(--wim-font-size-md, 14px);
     font-weight: var(--wim-font-weight-medium, 500);
     color: var(--wim-color-text-on-overlay);

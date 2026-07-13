@@ -12,7 +12,7 @@
   .inner {
     display: inline-flex;
     width: fit-content;
-    min-width: 300px;
+    min-width: 300px; /* Exception: Structural Logic — ネイティブ風プレイヤーの最小可読幅 */
     max-width: 100%;
     min-height: calc(var(--wim-height-lg) + var(--wim-spacing-sm)); // Matches standard native player height to avoid jumps
     overflow: hidden; // Clip content to radius
@@ -173,7 +173,7 @@
     height: var(--wim-height-lg);
     object-fit: cover;
     border-radius: var(--wim-radius-sm);
-    box-shadow: 0 2px 8px oklch(from var(--wim-color-bg-void) l c h / 0.3);
+    box-shadow: 0 2px 8px oklch(from var(--wim-color-bg-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — カバー画像のソフトシャドウ */
   }
 
   .info {
@@ -198,8 +198,8 @@
 
   .badge {
     position: absolute;
-    top: -2px;
-    right: -2px;
+    top: calc(-1 * var(--wim-focus-outline-offset));
+    right: calc(-1 * var(--wim-focus-outline-offset));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -316,7 +316,7 @@
     // Expand click area
     &::after {
       position: absolute;
-      inset: -10px 0;
+      inset: -10px 0; /* Exception: Structural Logic — 細いプログレスの拡大ヒット領域 */
       content: "";
     }
   }
@@ -352,7 +352,7 @@
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px oklch(from var(--wim-color-bg-void) l c h / 0.3);
+      box-shadow: 0 0 4px oklch(from var(--wim-color-bg-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
       transform: translateY(-50%);
     }
   }
@@ -375,7 +375,7 @@
       opacity var(--wim-transition-base);
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
     }
 
     &::-webkit-slider-thumb {

@@ -15,11 +15,11 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 2px;
+        height: var(--wim-border-width-thick);
 
         .inkBall {
           top: 0;
-          height: 2px;
+          height: var(--wim-border-width-thick);
           transition:
             left var(--wim-transition-base),
             width var(--wim-transition-base),
@@ -32,7 +32,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 2px;
+      width: var(--wim-border-width-thick);
       height: 100%;
       overflow: hidden;
       background-color: var(--wim-color-scrollbar-track); // Use a light gray from track
@@ -41,7 +41,7 @@
         position: absolute;
         left: 0;
         z-index: 1;
-        width: 2px;
+        width: var(--wim-border-width-thick);
         background-color: var(--wim-color-primary);
         opacity: 0;
         transition:

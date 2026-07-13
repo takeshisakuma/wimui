@@ -28,20 +28,20 @@
 
   // Sizes
   .sm {
-    width: var(--wim-avatar-size-sm, var(--wim-spacing-5xl));
-    height: var(--wim-avatar-size-sm, var(--wim-spacing-5xl));
+    width: var(--wim-avatar-size-sm);
+    height: var(--wim-avatar-size-sm);
     font-size: var(--wim-font-size-xs);
   }
 
   .md {
-    width: var(--wim-avatar-size-md, var(--wim-height-md));
-    height: var(--wim-avatar-size-md, var(--wim-height-md));
+    width: var(--wim-avatar-size-md);
+    height: var(--wim-avatar-size-md);
     font-size: var(--wim-font-size-sm);
   }
 
   .lg {
-    width: var(--wim-avatar-size-lg, var(--wim-height-lg));
-    height: var(--wim-avatar-size-lg, var(--wim-height-lg));
+    width: var(--wim-avatar-size-lg);
+    height: var(--wim-avatar-size-lg);
     font-size: var(--wim-font-size-lg);
   }
 

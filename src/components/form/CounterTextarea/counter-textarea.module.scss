@@ -31,7 +31,7 @@
     bottom: var(--wim-spacing-sm);
     z-index: 1;
     // stylelint-disable-next-line declaration-property-value-disallowed-list -- 横 6px に一致する spacing トークンなし (sm は 6.4px で VRT 差分が出るため据え置き)
-    padding: var(--wim-spacing-3xs) 6px;
+    padding: var(--wim-spacing-3xs) 6px; /* Exception: Geometric Harmony — counter badge compact horizontal inset */
     margin-top: 0;
     background: var(--wim-color-surface-glass);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);

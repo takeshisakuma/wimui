@@ -50,6 +50,10 @@ npm run test -- src/components/form/Button/Button.test.tsx
 
 カテゴリ対応ファイル: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai`
 
+Form 連携（optional）: `src/rhf.ts` → `wimui/rhf`（react-hook-form / zod）。ルート・`wimui/form` には載せない。
+
+UI 密度: `data-density="comfortable|compact"` / `setWimDensity`。制御トークンは `src/styles/_ui-patterns.scss`。
+
 ### トークンシステム
 
 `tokens/*.json` → `npm run tokens:build` → `src/tokens/generated/_tokens.scss` の CSS カスタムプロパティ (`--wim-*`) として出力。コンポーネント SCSS はこれらのみ参照する（色・間隔・サイズのハードコード禁止）。

@@ -3,7 +3,7 @@
 
 @layer component {
   .root {
-    @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-component), $padding: 2px);
+    @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-component), $padding: var(--wim-focus-outline-offset));
 
     box-sizing: border-box;
     display: inline-flex;
@@ -27,7 +27,7 @@
     }
   
     .slider {
-      @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--wim-color-primary));
+      @include indicator.indicator-slider-contained($offset: var(--wim-focus-outline-offset), $bg: var(--wim-color-primary));
   
       z-index: 1;
       opacity: 0;

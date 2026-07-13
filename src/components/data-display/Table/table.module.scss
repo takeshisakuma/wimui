@@ -74,7 +74,7 @@
     &.stickyHeader {
       thead th {
         position: sticky;
-        top: -1px;
+        top: -1px; /* Exception: Browser Rendering Fixes — sticky ヘッダのサブピクセル隙間埋め */
         z-index: var(--wim-z-overlay);
         background-color: var(--wim-color-bg-component);
 
@@ -134,7 +134,7 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-              padding: var(--wim-spacing-md);
+              padding: var(--wim-table-cell-padding-y);
               text-align: right;
               border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   
@@ -182,7 +182,7 @@
   }
 
   .head {
-    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
     font-weight: var(--wim-font-weight-semibold);
     text-align: left;
     white-space: nowrap;
@@ -198,9 +198,9 @@
     }
   
     &.selection {
-      width: 60px;
-      min-width: 60px;
-      max-width: 60px;
+      width: 60px; /* Exception: Structural Logic — 選択列の固定幅（チェックボックス中央寄せ） */
+      min-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
+      max-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
       padding-right: 0;
       padding-left: 0;
       text-align: center;
@@ -228,13 +228,13 @@
   }
 
   .cell {
-    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
     vertical-align: middle;
   
     &.selection {
-      width: 60px;
-      min-width: 60px;
-      max-width: 60px;
+      width: 60px; /* Exception: Structural Logic — 選択列の固定幅（チェックボックス中央寄せ） */
+      min-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
+      max-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
       padding-right: 0;
       padding-left: 0;
       text-align: center;

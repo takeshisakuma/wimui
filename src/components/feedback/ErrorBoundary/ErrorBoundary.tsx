@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode, useState } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { isDev } from "../../../utilities/dev-utils";
 import { Alert } from "../../feedback/Alert/Alert";
 import { Button } from "../../form/Button/Button";
@@ -37,13 +38,6 @@ interface State {
   errorInfo: ErrorInfo | null;
 }
 
-const DEFAULT_LABELS: Required<ErrorBoundaryLabels> = {
-  title: "Something went wrong",
-  retry: "Retry",
-  showDetails: "Show details",
-  hideDetails: "Hide details",
-};
-
 /**
  * Function component that renders the default error fallback UI.
  * Provides a retry button and a toggle for showing/hiding error details.
@@ -57,9 +51,17 @@ const DefaultFallback = ({
   error: Error;
   errorInfo: ErrorInfo | null;
   reset: () => void;
-  labels: Required<ErrorBoundaryLabels>;
+  labels?: ErrorBoundaryLabels;
 }) => {
+  const { t } = useWimTranslation("common");
   const [showDetails, setShowDetails] = useState(false);
+
+  const resolved: Required<ErrorBoundaryLabels> = {
+    title: labels?.title ?? t("error.boundary_title"),
+    retry: labels?.retry ?? t("error.boundary_retry"),
+    showDetails: labels?.showDetails ?? t("error.boundary_show_details"),
+    hideDetails: labels?.hideDetails ?? t("error.boundary_hide_details"),
+  };
 
   return (
     <Box
@@ -71,18 +73,18 @@ const DefaultFallback = ({
       <Stack gap="md">
         <Alert
           intent="danger"
-          title={labels.title}
+          title={resolved.title}
           description={error.message}
         />
         <Stack direction="row" gap="sm" wrap>
           <Button
             onClick={reset}
             variant="solid"
-          >{labels.retry}</Button>
+          >{resolved.retry}</Button>
           <Button
             onClick={() => setShowDetails(!showDetails)}
             variant="outline"
-          >{showDetails ? labels.hideDetails : labels.showDetails}</Button>
+          >{showDetails ? resolved.hideDetails : resolved.showDetails}</Button>
         </Stack>
         {showDetails && (
           <Box
@@ -151,7 +153,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
           error={error}
           errorInfo={errorInfo}
           reset={this.reset}
-          labels={{ ...DEFAULT_LABELS, ...labels }}
+          labels={labels}
         />
       );
     }

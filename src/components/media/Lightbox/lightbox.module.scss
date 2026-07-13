@@ -75,7 +75,7 @@
   .counter {
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium);
-    text-shadow: 0 1px 2px oklch(from var(--wim-color-bg-void) l c h / 0.5);
+    text-shadow: 0 1px 2px oklch(from var(--wim-color-bg-void) l c h / 0.5); /* Exception: Browser Rendering Fixes — 暗いグラデ上の可読性を保つソフトシャドウ */
   }
 
   .controls {
@@ -87,8 +87,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 40px; /* Exception: Structural Logic — ヘッダー操作の最小タッチターゲット */
+    height: 40px; /* Exception: Structural Logic — ヘッダー操作の最小タッチターゲット */
     color: inherit;
     cursor: pointer;
     background: var(--wim-color-surface-glass);
@@ -99,7 +99,7 @@
 
     &:hover {
       background: oklch(from var(--wim-color-text-white) l c h / 0.2);
-      transform: translateY(-1px);
+      transform: translateY(-1px); /* Exception: Interaction Physics — ホバー時のわずかな浮き上がり */
     }
 
     &:active {
@@ -107,8 +107,8 @@
     }
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 20px; /* Exception: Geometric Harmony — 40px ボタンに対するアイコン比率 */
+      height: 20px; /* Exception: Geometric Harmony — 40px ボタンに対するアイコン比率 */
     }
   }
 
@@ -151,8 +151,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
+    width: 56px; /* Exception: Structural Logic — 画像ナビの大型タッチターゲット */
+    height: 56px; /* Exception: Structural Logic — 画像ナビの大型タッチターゲット */
     color: inherit;
     cursor: pointer;
     background: var(--wim-color-surface-glass);
@@ -176,8 +176,8 @@
     }
 
     svg {
-      width: 24px;
-      height: 24px;
+      width: 24px; /* Exception: Geometric Harmony — 56px ナビボタンに対するアイコン比率 */
+      height: 24px; /* Exception: Geometric Harmony — 56px ナビボタンに対するアイコン比率 */
     }
   }
 
@@ -219,7 +219,7 @@
 
 .contentEnterFrom {
   opacity: 0 !important;
-  transform: scale(0.85) translateY(60px) !important;
+  transform: scale(0.85) translateY(60px) !important; /* Exception: Interaction Physics — 入場アニメの初期オフセット */
 }
 
 .contentEnterTo {
@@ -230,8 +230,8 @@
 // Responsive
 @include down(md) {
   .navButton {
-    width: 44px;
-    height: 44px;
+    width: 44px; /* Exception: Structural Logic — 狭幅時の WCAG タッチターゲット下限付近 */
+    height: 44px; /* Exception: Structural Logic — 狭幅時の WCAG タッチターゲット下限付近 */
     
     &.prev {
       left: var(--wim-spacing-md);

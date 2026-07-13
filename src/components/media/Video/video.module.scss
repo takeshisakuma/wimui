@@ -233,7 +233,7 @@
       content: "";
       background-color: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px var(--wim-color-overlay-bg);
+      box-shadow: 0 0 4px var(--wim-color-overlay-bg); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
       transform: translateY(-50%);
     }
   }
@@ -266,23 +266,23 @@
       opacity var(--wim-transition-base);
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
     }
 
     &::-webkit-slider-thumb {
-      width: 12px;
-      height: 12px;
+      width: 12px; /* Exception: Geometric Harmony — 音量トラック高さに対するサム直径 */
+      height: 12px; /* Exception: Geometric Harmony — 音量トラック高さに対するサム直径 */
       appearance: none;
       cursor: pointer;
       background: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 2px var(--wim-color-overlay-bg);
+      box-shadow: 0 0 2px var(--wim-color-overlay-bg); /* Exception: Browser Rendering Fixes — サム縁の視認性 */
     }
   
     // Show on focus/active too if needed
     &:focus,
     &:active {
-      width: 60px;
+      width: 60px; /* Exception: Structural Logic — 展開時の音量スライダー幅 */
       opacity: 1;
     }
   
@@ -305,12 +305,12 @@
   .advancedMenu {
     position: absolute;
     right: var(--wim-spacing-md);
-    bottom: 60px;
+    bottom: 60px; /* Exception: Structural Logic — コントロールバー上にメニューを重ねないオフセット */
     z-index: 20;
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-xs);
-    min-width: 160px;
+    min-width: 160px; /* Exception: Structural Logic — 設定メニューの最小可読幅 */
     padding: var(--wim-spacing-sm);
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-on-overlay);
@@ -339,11 +339,11 @@
       display: flex;
       flex-direction: column;
       gap: var(--wim-spacing-xs); // アイテム間の余白を追加
-      max-height: 250px; // 少し高さを広げる
+      max-height: 250px; /* Exception: Structural Logic — 設定メニュー項目リストの最大高さ */
       overflow-y: auto;
   
       &::-webkit-scrollbar {
-        width: 4px;
+        width: var(--wim-spacing-2xs);
       }
   
       &::-webkit-scrollbar-thumb {

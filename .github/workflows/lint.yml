@@ -32,5 +32,8 @@ jobs:
       - name: StyleLint
         run: npm run stylelint
 
+      - name: Peer import paths
+        run: npm run check:imports
+
       - name: Library structural audit
         run: npm run audit:lib

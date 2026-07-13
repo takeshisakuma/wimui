@@ -48,8 +48,8 @@
   .viewBtn {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
+    width: 28px; /* Exception: Structural Logic — ビュー切替ボタンの固定タッチ領域 */
+    height: 28px; /* Exception: Structural Logic — ビュー切替ボタンの固定タッチ領域 */
     padding: 0;
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
@@ -84,8 +84,8 @@
   .iconButton {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
+    width: 28px; /* Exception: Structural Logic — ヘッダー操作ボタンの固定タッチ領域 */
+    height: 28px; /* Exception: Structural Logic — ヘッダー操作ボタンの固定タッチ領域 */
     padding: 0;
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
@@ -224,7 +224,7 @@
 
   .splitDivider {
     flex-shrink: 0;
-    width: 1px;
+    width: var(--wim-border-width-thin);
     background: var(--wim-color-border);
   }
 

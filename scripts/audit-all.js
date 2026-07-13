@@ -48,6 +48,11 @@ const checks = [
     name: "Hardcoded UI Text in Stories (i18n)",
     command: "node scripts/check-stories-hardcoded.js --all",
   },
+  {
+    category: "docs",
+    name: "Peer import paths (root barrel must not pull optional peers)",
+    command: "node scripts/check-imports.js",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",

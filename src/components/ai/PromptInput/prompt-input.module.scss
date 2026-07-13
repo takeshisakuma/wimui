@@ -52,7 +52,7 @@
   display: flex;
   gap: var(--wim-spacing-xs);
   align-items: center;
-  min-height: calc(var(--wim-height-md) - 2px); // Ensure consistent height
+  min-height: calc(var(--wim-height-md) - var(--wim-border-width-thick)); // Ensure consistent height
   padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
 
   &.noAttach {
@@ -127,7 +127,7 @@
   justify-content: flex-end;
   padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
 
-  @container (max-width: 480px) {
+  @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
     padding: 0 var(--wim-spacing-sm) var(--wim-spacing-xs);
   }
 }

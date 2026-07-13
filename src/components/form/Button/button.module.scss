@@ -66,9 +66,9 @@
 
   /* Sizes */
   .lg {
-    --wim-button-v-padding-base: var(--wim-spacing-lg);
+    --wim-button-v-padding-base: var(--wim-control-padding-y-lg);
     --wim-button-v-padding: var(--wim-button-v-padding-base);
-    --wim-button-h-padding: var(--wim-spacing-3xl);
+    --wim-button-h-padding: var(--wim-control-padding-x-lg);
     --wim-button-height: var(--wim-height-lg);
 
     max-width: 100%;
@@ -77,9 +77,9 @@
   }
 
   .md {
-    --wim-button-v-padding-base: var(--wim-spacing-lg);
+    --wim-button-v-padding-base: var(--wim-control-padding-y-md);
     --wim-button-v-padding: var(--wim-button-v-padding-base);
-    --wim-button-h-padding: var(--wim-spacing-2xl);
+    --wim-button-h-padding: var(--wim-control-padding-x-md);
     --wim-button-height: var(--wim-height-md);
 
     max-width: 100%;
@@ -88,9 +88,9 @@
   }
 
   .sm {
-    --wim-button-v-padding-base: var(--wim-spacing-sm);
+    --wim-button-v-padding-base: var(--wim-control-padding-y-sm);
     --wim-button-v-padding: var(--wim-button-v-padding-base);
-    --wim-button-h-padding: var(--wim-spacing-xl);
+    --wim-button-h-padding: var(--wim-control-padding-x-sm);
     --wim-button-height: var(--wim-height-sm);
 
     max-width: 100%;

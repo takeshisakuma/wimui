@@ -4,12 +4,13 @@ import i18n from '../.storybook/i18n';
 import { ALL_NAMESPACES } from './i18nConstants';
 import { T } from './T';
 import { Command } from './Command';
+import { formatImportSnippet, resolveImportInfo } from './peerImports';
 import indexData from '@/data/docgen_index.json';
 import './docgen.scss';
 
 interface DocgenProps {
   componentName: string;
-  section?: 'tokens' | 'anatomy' | 'props' | 'test' | 'i18n';
+  section?: 'tokens' | 'anatomy' | 'props' | 'test' | 'i18n' | 'import';
 }
 
 interface PropInfo {
@@ -29,6 +30,12 @@ const formatTsType = (tsType?: PropInfo['tsType']): string => {
     return tsType.elements[1].raw;
   }
   return tsType.raw || tsType.name;
+};
+
+/** Table.Header → tableHeader（ドット除去後に lowerFirst。i18next の . ネスト衝突を避ける） */
+const toDocBaseName = (name: string): string => {
+  const compact = name.replace(/\./g, '');
+  return compact.charAt(0).toLowerCase() + compact.slice(1);
 };
 
 interface ComponentData {
@@ -56,11 +63,27 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
     setData(null);
   }
 
+  // Import path only needs the category (+ peer map) — skip docgen JSON load
+  const renderImport = () => {
+    if (!category) return null;
+    const info = resolveImportInfo(componentName, category);
+    const snippet = formatImportSnippet(componentName, info);
+    return (
+      <section id="import">
+        <h2><T k="doc.import" /></h2>
+        <Command>{snippet}</Command>
+      </section>
+    );
+  };
+
   React.useEffect(() => {
-    if (!category) return;
+    if (!category || section === 'import') return;
+
+    let cancelled = false;
     // Dynamic import the specific category data
     import(`@/data/docgen_${category}.json`)
       .then((module) => {
+        if (cancelled) return;
         const categoryData = module.default as Record<string, ComponentData>;
         if (categoryData[componentName]) {
           setData(categoryData[componentName]);
@@ -70,16 +93,25 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
         }
       })
       .catch((err) => {
+        if (cancelled) return;
         console.error(err);
         setError(`Failed to load documentation for ${category}`);
       })
       .finally(() => {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       });
-  }, [componentName, category]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [componentName, category, section]);
 
   if (!category) {
     return <div className="docgen-error">No category found for {componentName}</div>;
+  }
+
+  if (section === 'import') {
+    return renderImport();
   }
 
   if (loading) {
@@ -92,9 +124,9 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
 
   // Props の Description は `doc.<component>_prop_<prop>` キー（3言語）を優先し、
   // キーが未整備のコンポーネントはソースの JSDoc（英語）にフォールバックする。
-  // キー名は relativeTime_title 等と同じ lowerCamelCase のコンポーネント名を使う
-  const docBaseName =
-    componentName.charAt(0).toLowerCase() + componentName.slice(1);
+  // キー名は relativeTime_title 等と同じ lowerCamelCase。複合はドット除去
+  // （Table.Header → tableHeader）で i18next のネスト衝突を避ける。
+  const docBaseName = toDocBaseName(componentName);
   const propDescription = (propName: string, propInfo: PropInfo): string =>
     t(`doc.${docBaseName}_prop_${propName}`, {
       defaultValue: propInfo.description ?? '',

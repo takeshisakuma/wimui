@@ -59,7 +59,7 @@
 
 .table {
   width: 100%;
-  min-width: 400px; // Ensure table doesn't look too squashed, but wrapper will scroll
+  min-width: 400px; /* Exception: Structural Logic — table readability floor inside scroll wrapper */
   border-collapse: collapse;
 }
 

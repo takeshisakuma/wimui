@@ -37,8 +37,12 @@ const args = process.argv.slice(2);
 const WRITE = args.includes('--write');
 const TRANSLATE = args.includes('--translate');
 
-// Docgen.tsx の docBaseName と同じ変換（relativeTime_title 等の既存規約に一致）
-const lowerFirst = (name) => name.charAt(0).toLowerCase() + name.slice(1);
+// Docgen.tsx の toDocBaseName と同じ変換（relativeTime_title 等の既存規約に一致）
+// Table.Header → tableHeader（ドット除去後に lowerFirst。i18next の . ネスト衝突を避ける）
+const toDocBaseName = (name) => {
+  const compact = name.replace(/\./g, '');
+  return compact.charAt(0).toLowerCase() + compact.slice(1);
+};
 
 const hasJapanese = (text) => /[぀-ヿ㐀-鿿]/.test(text);
 
@@ -89,9 +93,9 @@ const collectPropEntries = () => {
     const category = file.replace(/^docgen_/, '').replace(/\.json$/, '');
     const data = readJson(path.join(DATA_DIR, file));
     for (const [componentName, component] of Object.entries(data)) {
-      // Table.Header 等のサブコンポーネントは MDX から <Docgen> で参照されず、
-      // 名前のドットが i18next のキー区切りと衝突するため対象外
-      if (!/^[A-Za-z0-9]+$/.test(componentName)) continue;
+      // Leaf および Table.Header 等の複合サブコンポーネントを対象にする。
+      // ドットは toDocBaseName で除去し、i18next のキー区切り衝突を避ける。
+      if (!/^[A-Za-z0-9.]+$/.test(componentName)) continue;
       if (!component.props) continue;
       for (const [propName, propInfo] of Object.entries(component.props)) {
         const description = (propInfo.description ?? '').trim();
@@ -100,7 +104,7 @@ const collectPropEntries = () => {
           category,
           componentName,
           propName,
-          key: `${lowerFirst(componentName)}_prop_${propName}`,
+          key: `${toDocBaseName(componentName)}_prop_${propName}`,
           description,
           sourceLang: hasJapanese(description) ? 'ja' : 'en',
         });

@@ -44,8 +44,8 @@
 
 .input {
   flex: 1;
-  min-width: 80px;
-  height: 22px;
+  min-width: 80px; /* Exception: Structural Logic — editable tag input floor */
+  height: 22px; /* Exception: Geometric Harmony — input height aligned to tag chips */
   padding: 0;
   margin-left: var(--wim-spacing-xs);
   font-family: inherit;

@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
   height: 100%;
   padding: 0 var(--wim-spacing-xl);
   margin: 0 auto;

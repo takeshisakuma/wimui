@@ -25,28 +25,28 @@
       bottom: 100%;
       flex-direction: column-reverse;
       padding-bottom: var(--wim-spacing-md);
-      transform: translateY(10px);
+      transform: translateY(10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
 
     .down & {
       top: 100%;
       flex-direction: column;
       padding-top: var(--wim-spacing-md);
-      transform: translateY(-10px);
+      transform: translateY(-10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
 
     .left & {
       right: 100%;
       flex-direction: row-reverse;
       padding-right: var(--wim-spacing-md);
-      transform: translateX(10px);
+      transform: translateX(10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
 
     .right & {
       left: 100%;
       flex-direction: row;
       padding-left: var(--wim-spacing-md);
-      transform: translateX(-10px);
+      transform: translateX(-10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
   }
 

@@ -30,3 +30,5 @@ export * from "./icon";
 //   getWimLocale();      // 現在のロケール
 // アプリの i18next と同期したい場合は言語切替時に setWimLocale(lng) を呼ぶ。
 export { setWimLocale, getWimLocale } from "./i18n/instance";
+// UI 密度（comfortable / compact）。data-density を document に付与する。
+export { setWimDensity, getWimDensity, type WimDensity } from "./density";

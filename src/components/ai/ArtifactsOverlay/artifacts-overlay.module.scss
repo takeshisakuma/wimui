@@ -1,5 +1,5 @@
 .content {
-  width: min(600px, 90vw);
+  width: min(600px, 90vw); /* Exception: Structural Logic — artifact panel readability ceiling */
   max-width: none;
   background-color: var(--wim-color-bg-app);
   box-shadow: var(--wim-shadow-modal);
@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
+  width: 32px; /* Exception: Structural Logic — overlay action touch target */
   height: var(--wim-height-sm);
   color: var(--wim-color-text-secondary);
   cursor: pointer;

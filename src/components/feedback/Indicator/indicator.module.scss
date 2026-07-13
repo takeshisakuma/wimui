@@ -29,18 +29,18 @@
     border-radius: var(--wim-radius-full);
 
     &.sm {
-      --indicator-size: 8px;
-      --indicator-border-width: 1.5px;
+      --indicator-size: 8px; /* Exception: Geometric Harmony — sm インジケータ直径 */
+      --indicator-border-width: 1.5px; /* Exception: Geometric Harmony — sm 直径に対する縁幅 */
     }
 
     &.md {
-      --indicator-size: 10px;
+      --indicator-size: 10px; /* Exception: Geometric Harmony — md インジケータ直径 */
       --indicator-border-width: var(--wim-border-width-thick);
     }
 
     &.lg {
-      --indicator-size: 12px;
-      --indicator-border-width: 2.5px;
+      --indicator-size: 12px; /* Exception: Geometric Harmony — lg インジケータ直径 */
+      --indicator-border-width: 2.5px; /* Exception: Geometric Harmony — lg 直径に対する縁幅 */
     }
 
     // Colors

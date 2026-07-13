@@ -36,8 +36,8 @@
   .iconButton {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
+    width: 28px; /* Exception: Structural Logic — compact code action target */
+    height: 28px; /* Exception: Structural Logic — compact code action target */
     padding: 0;
     color: var(--wim-color-text-tertiary);
     cursor: pointer;

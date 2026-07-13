@@ -329,10 +329,10 @@
         "value": "{pccs.s24}"
       },
       "chat-bubble-received": {
-        "value": "{pccs.p7}"
+        "value": "color-mix(in oklch, {pccs.p7} 40%, white)"
       },
       "chat-bubble-sent": {
-        "value": "{pccs.p18}"
+        "value": "color-mix(in oklch, {pccs.p18} 40%, white)"
       },
       "chart-1": {
         "value": "{pccs.v16}"

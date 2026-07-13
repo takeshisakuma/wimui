@@ -51,7 +51,7 @@
       background: color-mix(in oklch, var(--wim-color-primary) 5%, var(--wim-color-surface));
       border-color: var(--wim-color-primary);
       box-shadow: var(--wim-shadow-sm);
-      transform: translateY(2px);
+      transform: translateY(2px); /* Exception: Interaction Physics — drag press displacement */
 
       &::before {
         position: absolute;

@@ -36,7 +36,7 @@
     left: 0;
     z-index: var(--wim-z-overlay);
     width: 100%;
-    max-height: 280px;
+    max-height: 280px; /* Exception: Structural Logic — options viewport ceiling */
     padding: var(--wim-spacing-xs) 0;
     margin-top: var(--wim-spacing-xs);
     overflow-y: auto;

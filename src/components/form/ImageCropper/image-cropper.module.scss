@@ -13,7 +13,7 @@
   .viewer {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 300px; /* Exception: Structural Logic — クロップビューアの固定高さ */
     overflow: hidden;
     cursor: grab;
     background-color: var(--wim-color-bg-void);
@@ -50,10 +50,10 @@
   }
 
   .cropArea {
-    width: 200px;
+    width: 200px; /* Exception: Structural Logic — デフォルト切り抜き枠サイズ */
     pointer-events: none;
     border: var(--wim-border-width-thick) solid var(--wim-color-text-white);
-    box-shadow: 0 0 0 1000px oklch(from var(--wim-color-bg-void) l c h / 0.5); // Large shadow to create the mask effect
+    box-shadow: 0 0 0 1000px oklch(from var(--wim-color-bg-void) l c h / 0.5); /* Exception: Structural Logic — 外側マスク用の巨大 box-shadow */
 
     &.circular {
       border-radius: var(--wim-radius-full);
@@ -90,7 +90,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 300px;
+    height: 300px; /* Exception: Structural Logic — 空状態プレースホルダの固定高さ */
     color: var(--wim-color-text-secondary);
     background-color: var(--wim-color-bg-surface-subtle);
     border: var(--wim-border-width-thick) dashed var(--wim-color-border);

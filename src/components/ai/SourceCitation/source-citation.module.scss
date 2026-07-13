@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-2xs);
-    max-width: 220px;
+    max-width: 220px; /* Exception: Structural Logic — 引用カードの最大幅（一覧の折り返し） */
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     overflow: hidden;
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -59,9 +59,9 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    margin-top: 1px;
+    width: 18px; /* Exception: Geometric Harmony — 引用番号バッジの正方形 */
+    height: 18px; /* Exception: Geometric Harmony — 引用番号バッジの正方形 */
+    margin-top: 1px; /* Exception: Browser Rendering Fixes — タイトル行との視覚中央揃え */
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-on-primary);

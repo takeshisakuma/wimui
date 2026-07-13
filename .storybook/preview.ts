@@ -5,6 +5,7 @@ import i18n from "./i18n";
 // wimui コンポーネントは react-i18next に依存せず内蔵ストア（setWimLocale）で言語を切り替える。
 // Storybook のツールバー言語切替を内蔵ストアへ橋渡しし、docs 上でも言語追従させる。
 import { setWimLocale } from "../src/i18n/instance";
+import { setWimDensity, type WimDensity } from "../src/density";
 // 文字列ベースの icon/name API を Storybook 全体で有効化（全アイコン登録）
 import "../src/icons";
 // 配布と同じ分割エントリを読み込む（tokens = :root トークン, reset = リセット/base）。
@@ -53,8 +54,16 @@ const applyLang = (lang: string): void => {
   setWimLocale(lang);
 };
 
+const isWimDensity = (v: unknown): v is WimDensity =>
+  v === "comfortable" || v === "compact";
+
+const applyDensity = (density: unknown): void => {
+  if (isWimDensity(density)) setWimDensity(density);
+};
+
 // 初期言語を内蔵ストアへ反映（languageChanged は変更時のみ発火するため）
 setWimLocale(i18n.language ?? "en");
+setWimDensity("comfortable");
 
 // ① i18n の言語変更イベントを購読（モジュールレベル = 常に有効）
 //    T.tsx や他のコードが i18n.changeLanguage() を呼んだ際にも確実に反映される
@@ -82,10 +91,11 @@ const initChannel = () => {
           }
           const theme = globals?.theme as string | undefined;
           if (theme) applyTheme(theme);
+          applyDensity(globals?.density);
         },
       );
     }
-  } catch (err) {
+  } catch {
     // チャンネルが初期化前の場合は無視
   }
 };
@@ -110,7 +120,10 @@ const syncFromUrl = () => {
 
     const themeMatch = globals?.match(/theme:([^;]+)/);
     if (themeMatch) applyTheme(themeMatch[1]);
-  } catch (err) {
+
+    const densityMatch = globals?.match(/density:([^;]+)/);
+    if (densityMatch) applyDensity(densityMatch[1]);
+  } catch {
     // クロスオリジンや初期化中のエラーは無視
   }
 };
@@ -120,6 +133,20 @@ syncFromUrl();
 // ─────────────────────────────────────────────────
 
 const preview: Preview = {
+  globalTypes: {
+    density: {
+      description: "UI density (control heights / paddings)",
+      toolbar: {
+        title: "Density",
+        icon: "collapse",
+        items: [
+          { value: "comfortable", title: "Comfortable", right: "Default" },
+          { value: "compact", title: "Compact", right: "Dense" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   decorators: [
     withThemeByDataAttribute({
       themes: {
@@ -129,9 +156,14 @@ const preview: Preview = {
       defaultTheme: prefersDark ? "dark" : "light",
       attributeName: "data-theme",
     }),
+    (Story, context) => {
+      applyDensity(context.globals.density ?? "comfortable");
+      return Story();
+    },
   ],
   initialGlobals: {
     locale: "en",
+    density: "comfortable",
     locales: {
       en: { title: "English", right: "🇺🇸" },
       ja: { title: "日本語", right: "🇯🇵" },
@@ -162,6 +194,7 @@ const preview: Preview = {
             "Colors",
             "Typography Tokens",
             "Spacings & Radius",
+            "Density",
             "Effects",
             "Breakpoints",
             "PCCS",

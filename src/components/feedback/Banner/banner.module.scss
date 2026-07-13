@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; // Optional: limit max width for content
+    max-width: 1200px; /* Exception: Structural Logic — banner content measure ceiling */
   }
 
   .content {

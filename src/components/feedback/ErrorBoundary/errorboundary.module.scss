@@ -4,7 +4,7 @@
   }
 
   .details {
-    max-height: 300px;
+    max-height: 300px; /* Exception: Structural Logic — error details viewport ceiling */
     overflow-y: auto;
     font-family: var(--font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);

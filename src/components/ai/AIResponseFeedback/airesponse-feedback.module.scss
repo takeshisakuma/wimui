@@ -11,7 +11,7 @@
 
     display: grid;
     place-items: center;
-    width: 32px;
+    width: 32px; /* Exception: Structural Logic — feedback button touch target */
     height: var(--wim-height-sm);
     padding: 0;
     color: var(--wim-color-text-tertiary);
@@ -70,8 +70,8 @@
   }
 
   .divider {
-    width: 1px;
-    height: 20px;
+    width: var(--wim-border-width-thin);
+    height: 20px; /* Exception: Structural Logic — divider height aligned to controls */
     margin: 0 var(--wim-spacing-2xs);
     background: var(--wim-color-border);
   }

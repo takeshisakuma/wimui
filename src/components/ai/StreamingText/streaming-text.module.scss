@@ -62,7 +62,7 @@
     padding: var(--wim-spacing-xs) var(--wim-spacing-md);
     margin: 0 0 var(--wim-spacing-sm);
     color: var(--wim-color-text-secondary);
-    border-left: 3px solid var(--wim-color-primary);
+    border-left: 3px solid var(--wim-color-primary); /* Exception: Geometric Harmony — streaming cursor visual weight */
   }
 
   table {
@@ -101,12 +101,12 @@
 
 .cursor {
   display: inline-block;
-  width: 2px;
+  width: var(--wim-border-width-thick);
   height: 1.1em;
   margin-left: var(--wim-spacing-3xs);
   vertical-align: text-bottom;
   background: var(--wim-color-text-primary);
-  border-radius: 1px;
+  border-radius: 1px; /* Exception: Browser Rendering Fixes — thin cursor edge smoothing */
   animation: blink 1s step-end infinite;
 }
 

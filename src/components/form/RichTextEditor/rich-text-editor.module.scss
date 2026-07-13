@@ -16,7 +16,7 @@
   
     &:focus-within {
       border-color: var(--wim-color-primary);
-      box-shadow: inset 0 0 0 1px var(--wim-color-primary);
+      box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-primary);
     }
   
     &.outline {
@@ -55,7 +55,7 @@
 
       &:focus-within {
         border-color: var(--wim-color-warning);
-        box-shadow: inset 0 0 0 1px var(--wim-color-warning);
+        box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-warning);
       }
     }
 
@@ -64,7 +64,7 @@
 
       &:focus-within {
         border-color: var(--wim-color-success);
-        box-shadow: inset 0 0 0 1px var(--wim-color-success);
+        box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-success);
       }
     }
 
@@ -86,11 +86,11 @@
     }
 
     // Semantic widths
-    &.widthXs { --wim-input-width: 140px; } // RTE needs more min width than input
-    &.widthSm { --wim-input-width: 240px; }
-    &.widthMd { --wim-input-width: 480px; }
-    &.widthLg { --wim-input-width: 640px; }
-    &.widthXl { --wim-input-width: 800px; }
+    &.widthXs { --wim-input-width: 140px; } /* Exception: Structural Logic — RTE の編集可能領域を保つ最小幅 */
+    &.widthSm { --wim-input-width: 240px; } /* Exception: Structural Logic — RTE 固有の段階的な編集領域幅 */
+    &.widthMd { --wim-input-width: 480px; } /* Exception: Structural Logic — RTE 固有の段階的な編集領域幅 */
+    &.widthLg { --wim-input-width: 640px; } /* Exception: Structural Logic — RTE 固有の段階的な編集領域幅 */
+    &.widthXl { --wim-input-width: 800px; } /* Exception: Structural Logic — RTE 固有の段階的な編集領域幅 */
 
     &.hasCustomWidth {
       width: 100%;
@@ -111,8 +111,8 @@
     .toolbarSep {
       display: inline-block;
       flex-shrink: 0;
-      width: 1px;
-      height: 20px;
+      width: var(--wim-border-width-thin);
+      height: 20px; /* Exception: Structural Logic — ツールバーアイコンに揃える区切り線高 */
       margin: 0 var(--wim-spacing-xs);
       background-color: var(--wim-color-secondary);
     }
@@ -139,8 +139,8 @@
       transition: var(--wim-transition-base);
   
       svg {
-        width: 16px;
-        height: 16px;
+        width: 16px; /* Exception: Geometric Harmony — ツールバーボタン内の正方形アイコン寸法 */
+        height: 16px; /* Exception: Geometric Harmony — ツールバーボタン内の正方形アイコン寸法 */
         pointer-events: none;
       }
   
@@ -161,7 +161,7 @@
   
       &:focus-visible {
         outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
-        outline-offset: 1px;
+        outline-offset: 1px; /* Exception: Browser Rendering Fixes — フォーカスリングとボタン縁の描画分離 */
       }
     }
   

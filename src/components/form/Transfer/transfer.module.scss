@@ -15,7 +15,7 @@
     max-width: 100%;
     font-family: var(--wim-font-family-default);
 
-    @container (max-width: 768px) {
+    @container (max-width: 768px) { /* Exception: Structural Logic — md ブレークポイント相当のコンテナ切替 */
       flex-direction: column;
       gap: var(--wim-spacing-2xl);
       align-items: stretch;
@@ -39,7 +39,7 @@
     width: var(--wim-width-md);
     min-width: 0;
     max-width: 100%;
-    height: 320px;
+    height: 320px; /* Exception: Structural Logic — 転送リストの固定ビューポート高さ */
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -52,9 +52,9 @@
       box-shadow: var(--wim-shadow-md);
     }
 
-    @container (max-width: 768px) {
+    @container (max-width: 768px) { /* Exception: Structural Logic — md ブレークポイント相当のコンテナ切替 */
       width: 100%;
-      height: 300px;
+      height: 300px; /* Exception: Structural Logic — 縦積み時のリスト高さ */
       box-shadow: var(--wim-shadow-md);
     }
   }
@@ -88,7 +88,7 @@
       background: var(--wim-color-bg-secondary);
     }
 
-    @container (max-width: 768px) {
+    @container (max-width: 768px) { /* Exception: Structural Logic — md ブレークポイント相当のコンテナ切替 */
       padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     }
   }
@@ -207,7 +207,7 @@
 
   .active {
     background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
-    box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+    box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
 
     @media (forced-colors: active) {
       color: HighlightText;
@@ -222,7 +222,7 @@
     flex-direction: column;
     gap: var(--wim-spacing-xl);
 
-    @container (max-width: 768px) {
+    @container (max-width: 768px) { /* Exception: Structural Logic — md ブレークポイント相当のコンテナ切替 */
       flex-direction: row;
       gap: var(--wim-spacing-3xl);
       justify-content: center;
@@ -259,7 +259,7 @@
 
   .header {
     background: ButtonFace;
-    border-bottom: 2px solid ButtonBorder;
+    border-bottom: var(--wim-border-width-thick) solid ButtonBorder;
   }
 }
 

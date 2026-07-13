@@ -33,6 +33,11 @@
       "import": "./dist/form.js",
       "require": "./dist/form.cjs"
     },
+    "./rhf": {
+      "types": "./dist/rhf.d.ts",
+      "import": "./dist/rhf.js",
+      "require": "./dist/rhf.cjs"
+    },
     "./feedback": {
       "types": "./dist/feedback.d.ts",
       "import": "./dist/feedback.js",
@@ -141,7 +146,10 @@
   "size-limit": [
     {
       "name": "ESM library total (gzip)",
-      "path": ["dist/**/*.js", "!dist/wimui.umd.js"],
+      "path": [
+        "dist/**/*.js",
+        "!dist/wimui.umd.js"
+      ],
       "gzip": true,
       "limit": "380 kB"
     },
@@ -235,6 +243,7 @@
     "check:tokens": "node scripts/check-tokens.js",
     "check:tokens:update": "node scripts/check-tokens.js --update",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
+    "check:imports": "node scripts/check-imports.js",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",
     "audit:lib": "node scripts/audit-all.js --lib",
@@ -249,7 +258,22 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish",
+    "prepublishOnly": "npm run build",
     "prepare": "husky"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "components",
+    "typescript",
+    "accessibility",
+    "a11y",
+    "i18n",
+    "storybook"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -271,6 +295,7 @@
     "@fullcalendar/react": "6.1.21",
     "@fullcalendar/timegrid": "6.1.21",
     "@google/genai": "2.10.0",
+    "@hookform/resolvers": "5.4.0",
     "@playwright/test": "^1.59.0",
     "@size-limit/file": "^12.0.1",
     "@storybook/addon-a11y": "^10.3.6",
@@ -318,6 +343,7 @@
     "prettier": "^3.8.1",
     "prop-types": "^15.8.1",
     "qrcode.react": "^4.2.0",
+    "react-hook-form": "7.81.0",
     "react-i18next": "17.0.8",
     "react-markdown": "^10.1.0",
     "recharts": "^3.8.1",
@@ -339,7 +365,8 @@
     "vite-plugin-dts": "5.0.3",
     "vite-plugin-image-optimizer": "2.0.3",
     "vite-plugin-svgr": "5.2.0",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.2",
+    "zod": "4.4.3"
   },
   "peerDependencies": {
     "@fullcalendar/core": ">=6.0.0",
@@ -347,18 +374,24 @@
     "@fullcalendar/interaction": ">=6.0.0",
     "@fullcalendar/react": ">=6.0.0",
     "@fullcalendar/timegrid": ">=6.0.0",
+    "@hookform/resolvers": ">=3.0.0",
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
     "music-metadata": ">=11.0.0",
     "qrcode.react": ">=4.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
+    "react-hook-form": ">=7.0.0",
     "react-markdown": ">=10.0.0",
     "recharts": ">=3.0.0",
-    "remark-gfm": ">=4.0.0"
+    "remark-gfm": ">=4.0.0",
+    "zod": ">=3.0.0"
   },
   "peerDependenciesMeta": {
     "@xyflow/react": {
+      "optional": true
+    },
+    "@hookform/resolvers": {
       "optional": true
     },
     "diff": {
@@ -370,6 +403,9 @@
     "qrcode.react": {
       "optional": true
     },
+    "react-hook-form": {
+      "optional": true
+    },
     "react-markdown": {
       "optional": true
     },
@@ -377,6 +413,9 @@
       "optional": true
     },
     "remark-gfm": {
+      "optional": true
+    },
+    "zod": {
       "optional": true
     },
     "@fullcalendar/core": {

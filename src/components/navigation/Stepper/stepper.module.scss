@@ -30,7 +30,7 @@
       }
 
       &.labelVertical {
-        @container (min-width: 481px) {
+        @container (min-width: 481px) { /* Exception: Structural Logic — layout switch just above xs */
           flex-direction: column;
           align-items: center;
           padding-right: 0;
@@ -147,7 +147,7 @@
       }
 
       &.labelVertical {
-        @container (min-width: 481px) {
+        @container (min-width: 481px) { /* Exception: Structural Logic — layout switch just above xs */
           .line {
             width: 100%;
 
@@ -165,7 +165,7 @@
       }
     }
 
-    @container (max-width: 480px) {
+    @container (max-width: 480px) { /* Exception: Structural Logic — compact layout at xs and below */
       &.horizontal {
         flex-direction: column;
 
@@ -299,9 +299,9 @@
     }
 
     .item.labelVertical .content {
-      @container (min-width: 481px) {
+      @container (min-width: 481px) { /* Exception: Structural Logic — layout switch just above xs */
         width: 100%;
-        min-width: 100px;
+        min-width: 100px; /* Exception: Structural Logic — vertical label min width */
         margin-top: var(--wim-spacing-xs);
         margin-left: 0;
       }

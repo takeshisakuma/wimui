@@ -1,9 +1,9 @@
 .root {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+  height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
   padding: 0;
-  margin: -1px;
+  margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
   overflow: hidden;
   white-space: nowrap;
   border: 0;

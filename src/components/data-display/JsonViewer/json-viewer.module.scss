@@ -27,7 +27,7 @@
   }
 
   .tree {
-    max-height: 500px;
+    max-height: 500px; /* Exception: Structural Logic — ツリービューの最大表示高さ */
     padding: var(--wim-spacing-sm);
     overflow: auto;
   }
@@ -89,7 +89,7 @@
   }
 
   .input {
-    min-width: 60px;
+    min-width: 60px; /* Exception: Structural Logic — インライン編集入力の最小幅 */
     padding: 0 var(--wim-spacing-2xs);
     font-family: inherit;
     font-size: inherit;
@@ -111,12 +111,12 @@
 
   .children {
     // stylelint-disable-next-line declaration-property-value-disallowed-list -- 6px に一致する spacing トークンなし (sm は 6.4px で VRT 差分が出るため据え置き)
-    margin-left: 6px;
-    border-left: 1px dashed var(--wim-color-border-secondary);
+    margin-left: 6px; /* Exception: Structural Logic — ネストインデント（6px。sm=6.4px は VRT 差分のため据え置き） */
+    border-left: var(--wim-border-width-thin) dashed var(--wim-color-border-secondary);
   }
 
   .footer {
-    margin-left: -2px;
+    margin-left: calc(-1 * var(--wim-focus-outline-offset));
   }
 
   .key {

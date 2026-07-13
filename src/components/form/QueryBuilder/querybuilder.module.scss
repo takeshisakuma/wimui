@@ -103,14 +103,14 @@
     padding: var(--wim-spacing-3xs);
 
     .segmentedControlItem {
-      height: calc(var(--wim-height-md) - 4px);
+      height: calc(var(--wim-height-md) - var(--wim-spacing-2xs));
       padding-top: 0;
       padding-bottom: 0;
     }
 
     .segmentedControlSlider {
-      top: 2px;
-      bottom: 2px;
+      top: var(--wim-focus-outline-offset);
+      bottom: var(--wim-focus-outline-offset);
     }
   }
 
@@ -123,7 +123,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--wim-spacing-sm);
-  min-height: 20px;
+  min-height: 20px; /* Exception: Structural Logic — 空のルールリストでもドロップ領域が見える最小高さ */
   padding: var(--wim-spacing-md);
   background-color: var(--wim-color-primary-container-alpha);
 }
@@ -180,13 +180,13 @@
 
   > * {
     display: flex;
-    flex: 1 1 240px;
+    flex: 1 1 240px; /* Exception: Structural Logic — フィールド列の折り返し基準幅 */
     align-items: stretch;
     min-width: 0;
     height: var(--wim-height-md);
 
     &.operator {
-      flex: 1 1 180px;
+      flex: 1 1 180px; /* Exception: Structural Logic — 演算子列の折り返し基準幅 */
     }
 
     .selectbox {
@@ -207,7 +207,7 @@
 
   .value {
     display: flex;
-    flex: 1 1 240px;
+    flex: 1 1 240px; /* Exception: Structural Logic — 値列の折り返し基準幅 */
     align-items: stretch;
     min-width: 0;
 
@@ -226,9 +226,9 @@
     }
 
     .field {
-      flex: 0 0 calc(100% - 54px);
+      flex: 0 0 calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅(--wim-height-md)を除いた残り */
       order: 1;
-      width: calc(100% - 54px);
+      width: calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅を除いた残り */
     }
 
     .removeRule {
@@ -253,10 +253,10 @@
 // Visually-hidden utility for screen reader live regions (WAI-ARIA pattern)
 .srOnly {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+  height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
   padding: 0;
-  margin: -1px;
+  margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
   overflow: hidden;
   white-space: nowrap;
   border: 0;
@@ -266,7 +266,7 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-4px); /* Exception: Interaction Physics — ルール追加時の入場オフセット */
   }
 
   to {

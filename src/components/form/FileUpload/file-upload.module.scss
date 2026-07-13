@@ -30,7 +30,7 @@
 
   .fileNames {
     display: inline-block;
-    max-width: 300px;
+    max-width: 300px; /* Exception: Structural Logic — upload preview width ceiling */
     padding: var(--wim-spacing-md) 0;
     overflow: hidden;
     text-overflow: ellipsis;

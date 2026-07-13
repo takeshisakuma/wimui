@@ -78,8 +78,8 @@
       "avatar-s22": { "value": "{pccs.b22}" },
       "avatar-s24": { "value": "{pccs.b24}" },
 
-      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-warning) 15%, var(--wim-color-bg-secondary))" },
-      "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-bg-secondary))" },
 
       "chart-1": { "value": "{pccs.b16}" },
       "chart-2": { "value": "{pccs.b6}" },

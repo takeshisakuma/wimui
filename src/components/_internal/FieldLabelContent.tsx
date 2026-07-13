@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Badge } from "../data-display/Badge/Badge";
 import styles from "./field-label-content.module.scss";
 
@@ -16,7 +17,7 @@ export type FieldLabelContentProps = {
   required?: boolean;
   /**
    * Custom text or element for the required badge.
-   * @default "required"
+   * Defaults to the localized `form.required` string.
    */
   requiredLabel?: React.ReactNode;
   /**
@@ -26,7 +27,7 @@ export type FieldLabelContentProps = {
   showOptional?: boolean;
   /**
    * Custom text or element for the optional badge.
-   * @default "optional"
+   * Defaults to the localized `form.optional` string.
    */
   optionalLabel?: React.ReactNode;
   /**
@@ -36,9 +37,9 @@ export type FieldLabelContentProps = {
 };
 
 /**
- * FieldLabelContent is an internal component that standardizes the presentation 
+ * FieldLabelContent is an internal component that standardizes the presentation
  * of form field labels, including required/optional badges.
- * 
+ *
  * Composition Contract:
  * - Displays the primary label text.
  * - Conditionally appends a `Badge` to indicate field requirement status.
@@ -47,11 +48,15 @@ export type FieldLabelContentProps = {
 export const FieldLabelContent = ({
   label,
   required = false,
-  requiredLabel = "required",
+  requiredLabel,
   showOptional = false,
-  optionalLabel = "optional",
+  optionalLabel,
   className,
 }: FieldLabelContentProps) => {
+  const { t } = useWimTranslation("form");
+  const resolvedRequired = requiredLabel ?? t("form.required");
+  const resolvedOptional = optionalLabel ?? t("form.optional");
+
   return (
     <div className={className}>
       <span className={styles.text}>{label}</span>
@@ -62,7 +67,7 @@ export const FieldLabelContent = ({
           className={styles.badge}
           aria-hidden="true"
         >
-          {requiredLabel}
+          {resolvedRequired}
         </Badge>
       ) : (
         showOptional && (
@@ -72,7 +77,7 @@ export const FieldLabelContent = ({
             className={styles.badge}
             aria-hidden="true"
           >
-            {optionalLabel}
+            {resolvedOptional}
           </Badge>
         )
       )}

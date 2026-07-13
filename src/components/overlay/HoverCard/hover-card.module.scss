@@ -85,10 +85,10 @@
       right: 0;
       left: auto;
 
-      --base-transform: translateY(8px);
+      --base-transform: translateY(8px); /* Exception: Interaction Physics — entry motion offset */
 
       &.top {
-        --base-transform: translateY(-8px);
+        --base-transform: translateY(-8px); /* Exception: Interaction Physics — entry motion offset */
       }
 
       transform: var(--base-transform);

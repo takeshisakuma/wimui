@@ -37,7 +37,7 @@
 
     &:focus {
       border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.1);
+      box-shadow: 0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.1); /* Exception: Browser Rendering Fixes — keyboard focus halo */
     }
 
     &::placeholder {
@@ -48,7 +48,7 @@
   @keyframes enter {
     from {
       opacity: 0;
-      transform: translateX(-8px);
+      transform: translateX(-8px); /* Exception: Interaction Physics — drag feedback offset */
     }
   
     to {

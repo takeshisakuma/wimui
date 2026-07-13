@@ -80,49 +80,49 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony �
     // Size variants
     &.sm {
       .box {
-        width: 24px;
-        height: 18px;
+        width: 24px; /* Exception: Geometric Harmony — sm バー幅に対応するアイコン外形 */
+        height: 18px; /* Exception: Geometric Harmony — 24:18 のアイコン外形比率 */
       }
 
       .inner,
       .inner::before,
       .inner::after {
-        width: 24px;
-        height: 2px;
+        width: 24px; /* Exception: Geometric Harmony — sm アイコンのバー幅 */
+        height: 2px; /* Exception: Geometric Harmony — バー間比率を保つ線幅 */
       }
 
       .inner::before {
-        top: -6px;
+        top: -6px; /* Exception: Geometric Harmony — バー間隔に連動する配置 */
       }
 
       .inner::after {
-        top: 6px;
+        top: 6px; /* Exception: Geometric Harmony — バー間隔に連動する配置 */
       }
     }
 
     &.lg {
       .box {
-        width: 40px;
-        height: 30px;
+        width: 40px; /* Exception: Geometric Harmony — lg バー幅に対応するアイコン外形 */
+        height: 30px; /* Exception: Geometric Harmony — 40:30 のアイコン外形比率 */
       }
 
       .inner,
       .inner::before,
       .inner::after {
-        width: 40px;
-        height: 3px;
+        width: 40px; /* Exception: Geometric Harmony — lg アイコンのバー幅 */
+        height: 3px; /* Exception: Geometric Harmony — バー間比率を保つ線幅 */
       }
 
       .inner::before {
-        top: -10px;
+        top: -10px; /* Exception: Geometric Harmony — バー間隔に連動する配置 */
       }
 
       .inner {
-        margin-top: -1.5px;
+        margin-top: -1.5px; /* Exception: Browser Rendering Fixes — 奇数線幅を中央に合わせる補正 */
       }
 
       .inner::after {
-        top: 10px;
+        top: 10px; /* Exception: Geometric Harmony — バー間隔に連動する配置 */
       }
     }
 

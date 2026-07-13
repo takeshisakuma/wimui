@@ -27,7 +27,7 @@
         width: var(--wim-dl-term-width, 30%);
         padding-right: var(--wim-spacing-2xl);
   
-        @container (max-width: 600px) {
+        @container (max-width: 600px) { /* Exception: Structural Logic — fixed stacked-layout switch */
           width: 100%;
           padding-right: 0;
         }
@@ -54,7 +54,7 @@
         width: var(--wim-dl-compact-term-width, 20%);
         padding-right: var(--wim-spacing-2xl);
   
-        @container (max-width: 600px) {
+        @container (max-width: 600px) { /* Exception: Structural Logic — fixed stacked-layout switch */
           width: 100%;
           padding-right: 0;
         }
@@ -79,7 +79,7 @@
     display: flex;
     padding: var(--wim-spacing-2xl);
 
-    @container (max-width: 600px) {
+    @container (max-width: 600px) { /* Exception: Structural Logic — fixed stacked-layout switch */
       flex-direction: column;
       gap: var(--wim-spacing-sm);
     }

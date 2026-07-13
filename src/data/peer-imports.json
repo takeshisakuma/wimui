@@ -1,0 +1,44 @@
+{
+  "Markdown": {
+    "packagePath": "wimui/data-display",
+    "peers": ["react-markdown", "remark-gfm"]
+  },
+  "QRCode": {
+    "packagePath": "wimui/data-display",
+    "peers": ["qrcode.react"]
+  },
+  "NodeGraph": {
+    "packagePath": "wimui/data-display",
+    "peers": ["@xyflow/react"]
+  },
+  "ScheduleView": {
+    "packagePath": "wimui/data-display",
+    "peers": [
+      "@fullcalendar/core",
+      "@fullcalendar/react",
+      "@fullcalendar/daygrid",
+      "@fullcalendar/timegrid",
+      "@fullcalendar/interaction"
+    ]
+  },
+  "JsonDiffViewer": {
+    "packagePath": "wimui/data-display",
+    "peers": ["diff"]
+  },
+  "StreamingText": {
+    "packagePath": "wimui/ai",
+    "peers": ["react-markdown", "remark-gfm"]
+  },
+  "CodeDiffViewer": {
+    "packagePath": "wimui/ai",
+    "peers": ["diff"]
+  },
+  "MarkdownRenderer": {
+    "packagePath": "wimui/ai",
+    "peers": ["react-markdown", "remark-gfm"]
+  },
+  "InteractiveGraph": {
+    "packagePath": "wimui/ai",
+    "peers": ["@xyflow/react"]
+  }
+}

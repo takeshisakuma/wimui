@@ -22,26 +22,10 @@
 const fs = require("fs");
 const path = require("path");
 const { globSync } = require("glob");
+const { resolveImportInfo } = require("./peer-imports.cjs");
 
 // @/components/(公開カテゴリ)/... のみが対象（_internal は除外）
 const TARGET_PATH_RE = /^@\/components\/(?!_internal)([^/]+)\/([^/]+)/;
-
-/** @type {ReadonlySet<string>} */
-const DATA_DISPLAY_PEER = new Set([
-  "Markdown",
-  "QRCode",
-  "NodeGraph",
-  "ScheduleView",
-  "JsonDiffViewer",
-]);
-
-/** @type {ReadonlySet<string>} */
-const AI_PEER = new Set([
-  "StreamingText",
-  "CodeDiffViewer",
-  "MarkdownRenderer",
-  "InteractiveGraph",
-]);
 
 /**
  * Map a @/components/... from-path to the package import path.
@@ -53,15 +37,7 @@ function resolvePackagePath(from) {
   if (!m) return null;
   const category = m[1];
   const component = m[2];
-
-  if (category === "charts") return "wimui/charts";
-  if (category === "data-display" && DATA_DISPLAY_PEER.has(component)) {
-    return "wimui/data-display";
-  }
-  if (category === "ai" && AI_PEER.has(component)) {
-    return "wimui/ai";
-  }
-  return "wimui";
+  return resolveImportInfo(component, category).packagePath;
 }
 
 /**

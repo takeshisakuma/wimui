@@ -1,48 +1,70 @@
 /**
- * Shared UI patterns for components like Stepper, Timeline, etc.
+ * Shared UI patterns and control-size tokens.
+ *
+ * Density: set `data-density="compact"` on an ancestor (typically `<html>`)
+ * to tighten control heights / paddings. Default and `comfortable` keep
+ * the values below. Avatars keep fixed sizes so identity chrome does not shrink.
  */
 
-:root {
+:root,
+[data-density="comfortable"] {
   --wim-indicator-dot-size: var(--wim-spacing-xl);
   --wim-indicator-dot-large-size: var(--wim-spacing-3xl);
   --wim-indicator-line-thickness: var(--wim-border-width-thick);
   --wim-indicator-line-color: var(--wim-color-border-secondary);
   --wim-indicator-active-color: var(--wim-color-primary);
 
-  /* Standard Component Heights (Standardized for Button, Input, etc.) */
-  --wim-height-xs: 1.5rem;       // 24px
-  --wim-height-sm: 2rem;       // 32px
-  --wim-height-md: 2.625rem;   // 42px
-  --wim-height-lg: 3rem;       // 48px
+  /* Standard Component Heights (Button, Input, SegmentedControl, …) */
+  --wim-height-xs: 1.5rem; /* 24px */
+  --wim-height-sm: 2rem; /* 32px */
+  --wim-height-md: 2.625rem; /* 42px */
+  --wim-height-lg: 3rem; /* 48px */
 
   /* Form Control Sizes */
-  --wim-checkbox-size: 1.125rem; // 18px
-  --wim-radio-size: 1.125rem;    // 18px
+  --wim-checkbox-size: 1.125rem; /* 18px */
+  --wim-radio-size: 1.125rem; /* 18px */
+
+  /* Control padding aliases (Button / similar). Prefer these over raw spacing in controls. */
+  --wim-control-padding-y-sm: var(--wim-spacing-sm);
+  --wim-control-padding-y-md: var(--wim-spacing-lg);
+  --wim-control-padding-y-lg: var(--wim-spacing-lg);
+  --wim-control-padding-x-sm: var(--wim-spacing-xl);
+  --wim-control-padding-x-md: var(--wim-spacing-2xl);
+  --wim-control-padding-x-lg: var(--wim-spacing-3xl);
+
+  /* Dense data surfaces (Table cells, list rows that opt in) */
+  --wim-table-cell-padding-y: var(--wim-spacing-md);
+  --wim-table-cell-padding-x: var(--wim-spacing-lg);
+
+  /* Avatar sizes — density-stable (do not fall back to control heights) */
+  --wim-avatar-size-sm: var(--wim-spacing-5xl); /* 2.2rem */
+  --wim-avatar-size-md: 2.625rem;
+  --wim-avatar-size-lg: 3rem;
 
   /* Standard Field Widths */
-  --wim-width-xs: 7.5rem;   // 120px
-  --wim-width-sm: 11.25rem; // 180px
-  --wim-width-md: 20rem;    // 320px
-  --wim-width-lg: 30rem;    // 480px
-  --wim-width-xl: 40rem;    // 640px
+  --wim-width-xs: 7.5rem; /* 120px */
+  --wim-width-sm: 11.25rem; /* 180px */
+  --wim-width-md: 20rem; /* 320px */
+  --wim-width-lg: 30rem; /* 480px */
+  --wim-width-xl: 40rem; /* 640px */
 
   /* SegmentedControl & TabNavigation Item Widths (for icon-only) */
-  --wim-segmented-control-item-size-sm: 1.875rem; // 30px
-  --wim-segmented-control-item-size-md: 2.25rem;  // 36px
-  --wim-segmented-control-item-size-lg: 2.75rem;  // 44px
-  --wim-switch-width-sm: 2.25rem;  // 36px
-  --wim-switch-width-md: 2.75rem;  // 44px
-  --wim-switch-width-lg: 3.25rem;  // 52px
-  --wim-switch-height-sm: 1.1rem;  // ~18px
-  --wim-switch-height-md: 1.5rem;  // 24px
-  --wim-switch-height-lg: 1.875rem; // 30px
+  --wim-segmented-control-item-size-sm: 1.875rem; /* 30px */
+  --wim-segmented-control-item-size-md: 2.25rem; /* 36px */
+  --wim-segmented-control-item-size-lg: 2.75rem; /* 44px */
+  --wim-switch-width-sm: 2.25rem; /* 36px */
+  --wim-switch-width-md: 2.75rem; /* 44px */
+  --wim-switch-width-lg: 3.25rem; /* 52px */
+  --wim-switch-height-sm: 1.1rem; /* ~18px */
+  --wim-switch-height-md: 1.5rem; /* 24px */
+  --wim-switch-height-lg: 1.875rem; /* 30px */
 
   /* Navigation & Overlay */
-  --wim-menu-min-width: 12.5rem; // 200px
-  --wim-overlay-max-width-sm: 18.75rem; // 300px
-  --wim-overlay-max-width-md: 28rem; // 448px
-  --wim-overlay-max-width-lg: 31.25rem; // 500px
-  --wim-layout-max-width: 75rem; // 1200px
+  --wim-menu-min-width: 12.5rem; /* 200px */
+  --wim-overlay-max-width-sm: 18.75rem; /* 300px */
+  --wim-overlay-max-width-md: 28rem; /* 448px */
+  --wim-overlay-max-width-lg: 31.25rem; /* 500px */
+  --wim-layout-max-width: 75rem; /* 1200px */
   --wim-tab-nav-height: var(--wim-height-md);
 
   /* Inner elements font sizes */
@@ -51,20 +73,51 @@
   --wim-font-size-small-scale: 0.9em;
 
   /* Specific Component Borders */
-  --wim-blockquote-border-width: var(--wim-radius-md); // 4px
+  --wim-blockquote-border-width: var(--wim-radius-md); /* 4px */
 
-  /* Decoration */
+  /* Decorations */
   --wim-text-underline-offset: 0.3em;
 
   /* Internal / Status Content */
-  --wim-status-icon-size-sm: 2rem; // 32px
-  --wim-status-icon-size: 5rem; // 80px
-  --wim-status-desc-max-width: 37.5rem; // 600px
-  --wim-status-body-max-width: 50rem; // 800px
+  --wim-status-icon-size-sm: 2rem; /* 32px */
+  --wim-status-icon-size: 5rem; /* 80px */
+  --wim-status-desc-max-width: 37.5rem; /* 600px */
+  --wim-status-body-max-width: 50rem; /* 800px */
 
   /* Typography / Spacing */
   --wim-letter-spacing-wide: 0.05em;
   --wim-letter-spacing-extra-wide: 0.1em;
+}
+
+/**
+ * Compact density — dashboards / data-heavy UIs.
+ * Overrides only control metrics; layout spacing tokens stay unchanged.
+ */
+[data-density="compact"] {
+  --wim-height-xs: 1.25rem; /* 20px */
+  --wim-height-sm: 1.75rem; /* 28px */
+  --wim-height-md: 2.25rem; /* 36px */
+  --wim-height-lg: 2.5rem; /* 40px */
+  --wim-checkbox-size: 1rem; /* 16px */
+  --wim-radio-size: 1rem;
+  --wim-control-padding-y-sm: var(--wim-spacing-2xs);
+  --wim-control-padding-y-md: var(--wim-spacing-sm);
+  --wim-control-padding-y-lg: var(--wim-spacing-md);
+  --wim-control-padding-x-sm: var(--wim-spacing-md);
+  --wim-control-padding-x-md: var(--wim-spacing-xl);
+  --wim-control-padding-x-lg: var(--wim-spacing-2xl);
+  --wim-table-cell-padding-y: var(--wim-spacing-xs);
+  --wim-table-cell-padding-x: var(--wim-spacing-md);
+  --wim-segmented-control-item-size-sm: 1.625rem; /* 26px */
+  --wim-segmented-control-item-size-md: 2rem; /* 32px */
+  --wim-segmented-control-item-size-lg: 2.375rem; /* 38px */
+  --wim-switch-width-sm: 2rem;
+  --wim-switch-width-md: 2.375rem;
+  --wim-switch-width-lg: 2.75rem;
+  --wim-switch-height-sm: 1rem;
+  --wim-switch-height-md: 1.25rem;
+  --wim-switch-height-lg: 1.5rem;
+  --wim-tab-nav-height: var(--wim-height-md);
 }
 
 .wim-ui-connector {

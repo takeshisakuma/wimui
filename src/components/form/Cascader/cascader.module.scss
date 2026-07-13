@@ -104,8 +104,8 @@
   }
 
   .menu {
-    min-width: 180px;
-    max-height: 240px;
+    min-width: 180px; /* Exception: Structural Logic — カスケード列の最小可読幅 */
+    max-height: 240px; /* Exception: Structural Logic — カスケード列の最大高さ */
     padding: var(--wim-spacing-xs) 0;
     overflow-y: auto;
     border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -113,7 +113,7 @@
     @include bp.down(sm) {
       width: 100%;
       min-width: unset;
-      max-height: 200px;
+      max-height: 200px; /* Exception: Structural Logic — 狭幅時のカスケード列最大高さ */
       border-right: none;
       border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 

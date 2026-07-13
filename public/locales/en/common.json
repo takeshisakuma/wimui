@@ -399,6 +399,10 @@
     "json_viewer_i18n_desc": "Toolbar labels and counts are localized."
   },
   "error": {
+    "boundary_hide_details": "Hide details",
+    "boundary_retry": "Retry",
+    "boundary_show_details": "Show details",
+    "boundary_title": "Something went wrong",
     "invalid": "Invalid input",
     "required": "Required field"
   },

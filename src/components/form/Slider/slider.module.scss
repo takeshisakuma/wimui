@@ -30,7 +30,7 @@
         }
 
         &:focus-visible {
-          box-shadow: inset 0 0 0 2px var(--wim-color-danger);
+          box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-danger);
         }
       }
     }
@@ -74,13 +74,13 @@
 
     &:focus-visible {
       z-index: 2;
-      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+      box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-primary);
     }
 
     &:active {
       z-index: 2;
       cursor: grabbing;
-      box-shadow: 0 0 0 6px var(--wim-color-ghost-border-hover);
+      box-shadow: 0 0 0 6px var(--wim-color-ghost-border-hover); /* Exception: Interaction Physics — ドラッグ中のハロー半径 */
     }
   }
 }

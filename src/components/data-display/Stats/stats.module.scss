@@ -1,6 +1,6 @@
 @layer component {
   .root {
-    min-width: 160px;
+    min-width: 160px; /* Exception: Structural Logic — statistic card readability floor */
   }
 
   .inner {

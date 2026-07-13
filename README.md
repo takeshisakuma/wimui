@@ -105,6 +105,8 @@ getWimLocale();     // 現在のロケール（例: "ja"）
 i18n.on("languageChanged", (lng) => setWimLocale(lng));
 ```
 
+**書字方向**: 公式サポートは LTR（en / ja / pt）のみです。RTL（アラビア語・ヘブライ語など）および論理プロパティへの全面移行は **対応予定なし** です（詳細は `IMPROVEMENTS.md`「対象外」）。
+
 ## ダークモード
 
 `<html>` の `data-theme` 属性で制御します。未指定の場合は OS の `prefers-color-scheme` に追従します。
@@ -115,6 +117,23 @@ i18n.on("languageChanged", (lng) => setWimLocale(lng));
 <html>                    <!-- OS 設定に追従 -->
 ```
 
+## UI 密度（Density）
+
+コントロールの高さ・余白をグローバルに切り替えます。レイアウト用の `--wim-spacing-*` は変えず、`--wim-height-*` や `--wim-control-padding-*`、テーブルセル余白などが追従します。
+
+```ts
+import { setWimDensity } from "wimui";
+
+setWimDensity("compact");     // ダッシュボード向け
+setWimDensity("comfortable"); // デフォルト
+```
+
+```html
+<html data-density="compact">
+```
+
+Storybook ではツールバーの **Density**、または Token → Density で確認できます。
+
 ## バンドルサイズと import 方法
 
 ルートからの named import で未使用コンポーネントはバンドルに含まれません（`sideEffects` 設定済み）。カテゴリ別のサブパスも利用できます。
@@ -124,7 +143,7 @@ import { Button } from "wimui";        // tree-shaking が効く
 import { Button } from "wimui/form";   // カテゴリ別サブパス
 ```
 
-カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens`
+カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens` / `rhf`
 
 > **optional peer 依存コンポーネントはルート `wimui` から export されません。** クイックスタートの subpath 例と下表を参照してください。
 
@@ -141,6 +160,67 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 | QRCode | `qrcode.react` |
 | CodeDiffViewer, JsonDiffViewer | `diff` |
 | Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
+| `wimui/rhf`（FormField / zodResolver） | `react-hook-form` `@hookform/resolvers` `zod` |
+
+## Form 連携（react-hook-form / zod）
+
+コアの form コンポーネントはフレームワーク非依存のままです。RHF とつなぐ場合は optional エントリ `wimui/rhf` を使います。
+
+```bash
+npm i react-hook-form @hookform/resolvers zod
+```
+
+```tsx
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Input, Selectbox, Checkbox } from "wimui";
+import { FormField, valueFieldProps, checkedFieldProps, zodResolver } from "wimui/rhf";
+
+const schema = z.object({
+  email: z.string().email(),
+  role: z.string().min(1),
+  accept: z.boolean().refine(Boolean),
+});
+
+function Example() {
+  const { control, handleSubmit } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: { email: "", role: "", accept: false },
+  });
+
+  return (
+    <form onSubmit={handleSubmit(console.log)}>
+      <FormField
+        control={control}
+        name="email"
+        render={({ field, error }) => <Input {...field} label="Email" error={error} />}
+      />
+      <FormField
+        control={control}
+        name="role"
+        render={({ field, error }) => (
+          <Selectbox {...valueFieldProps(field)} label="Role" error={error} options={[]} />
+        )}
+      />
+      <FormField
+        control={control}
+        name="accept"
+        render={({ field, invalid }) => (
+          <Checkbox {...checkedFieldProps(field)} error={invalid}>
+            Accept
+          </Checkbox>
+        )}
+      />
+    </form>
+  );
+}
+```
+
+- ネイティブ寄りの入力（`Input` / `Textarea` 等）: `{...field}` をそのまま渡す
+- 値コールバック型（`Selectbox` / `RadioGroup` 等）: `valueFieldProps(field)`
+- `checked` 型（`Checkbox` / `Switch`）: `checkedFieldProps(field)` + `error={invalid}`
+
+Storybook: **Patterns → Form → React Hook Form**
 
 ## Next.js App Router（RSC）対応
 
@@ -156,9 +236,16 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 
 ```bash
 npm run changeset   # 変更内容・semver を記録（.changeset/ にファイル生成）
-npm run version     # changeset を取り込み、package.json のバージョンを更新
-npm run release     # build 後に npm publish
+npm run version     # changeset を取り込み、package.json のバージョンと CHANGELOG.md を更新
+npm run release     # build 後に npm publish（手動 publish 時も prepublishOnly で build が走る）
 ```
+
+公開前チェックリスト:
+1. `private: true` を削除する
+2. `npm run changeset` で初回リリース用の changeset を追加する
+3. `npm run build && npm pack --dry-run` で tarball 内容を確認する
+4. GitHub Secrets に `NPM_TOKEN` を設定する（CI の `release.yml` 用）
+5. README の「npm 未公開」表記を更新する
 
 ---
 

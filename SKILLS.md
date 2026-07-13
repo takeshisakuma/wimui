@@ -307,12 +307,17 @@ import { Docgen } from "../../Docgen";
 <Docgen componentName="Button" section="anatomy" />
 <Docgen componentName="Button" section="props" />
 <Docgen componentName="Button" section="test" />
+<Docgen componentName="Button" section="i18n" />
+<Docgen componentName="Button" section="import" />
 ```
+
+- `section="import"` は正しいパッケージパス（peer 依存時は `wimui/charts` 等）と `npm install` コメントを自動表示します。マップは `src/data/peer-imports.json`（charts カテゴリは一律 `recharts`）。
 
 ### 自動抽出の仕組み
 - Props: `react-docgen` を使用して TypeScript の型定義から抽出します。
 - Tokens: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
 - Anatomy: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules では、`.root` や共通修飾子を除いたクラス名が自動抽出されます。
+- Import: コンポーネント名とカテゴリから canonical import パスを解決します（optional peer は subpath + requires コメント）。
 - Test: コンポーネントに対応するテストファイルの実行コマンド（`npm run test -- path/to/Test.tsx`）を自動生成します。
 - 更新タイミング: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen_*.json` が自動更新されます。大規模なプロジェクトでもパフォーマンスを維持するため、データはコンポーネントのカテゴリ（form, layout等）ごとに分割して生成されます。
 
@@ -354,10 +359,24 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 ### 重量級依存の扱い（optional peerDependencies）
 特定のコンポーネントでしか使わない重量級ライブラリは、利用者のインストールサイズを抑えるため `dependencies` に入れず、optional な `peerDependencies` として宣言しています（`peerDependenciesMeta` で `"optional": true`）。
 
-- 対象: `recharts`（charts）、`react-markdown` / `remark-gfm`（Markdown）、`diff`（CodeDiffViewer）、`qrcode.react`（QRCode）、`@xyflow/react`（NodeGraph / InteractiveGraph）、`@fullcalendar/*`（ScheduleView）
+- 対象: `recharts`（charts）、`react-markdown` / `remark-gfm`（Markdown）、`diff`（CodeDiffViewer）、`qrcode.react`（QRCode）、`@xyflow/react`（NodeGraph / InteractiveGraph）、`@fullcalendar/*`（ScheduleView）、`react-hook-form` / `@hookform/resolvers` / `zod`（`wimui/rhf`）
 - 該当コンポーネントを使う利用者は、対応するライブラリを自分でインストールする必要があります。
 - 新しい重量級ライブラリを追加する場合は、(1) `peerDependencies` + `peerDependenciesMeta`（optional）に追加、(2) リポジトリ内の開発用に `devDependencies` にも追加、(3) `vite.config.ts` の `rollupOptions.external` と UMD の `globals` に追加、の3点をセットで行ってください。
 - 例外: `music-metadata`（Audio のタグ読み取り）は動的 `import()` で遅延読み込みしているため、利用側ビルドでの未解決エラーを避けるべく通常の `dependencies` に置いています。
+
+### UI 密度（`data-density`）
+コントロール高さ・余白を `comfortable` / `compact` で切り替える。実装は `src/styles/_ui-patterns.scss` と `src/density.ts`。
+- `setWimDensity("compact")` または `<html data-density="compact">`
+- 追従: `--wim-height-*` / `--wim-control-padding-*` / `--wim-table-cell-padding-*` / switch・checkbox など
+- 非追従: `--wim-spacing-*`（レイアウト）、`--wim-avatar-size-*`
+- Storybook ツールバーの Density、Token → Density
+
+### Form 連携（`wimui/rhf`）
+コア form コンポーネントを書き換えず、薄いアダプタを `src/rhf.ts`（公開エントリ `wimui/rhf`）に置きます。
+- `FormField` — RHF `Controller` + WIM 向け `error` / `invalid`
+- `valueFieldProps` / `checkedFieldProps` — 値コールバック型・checked 型へのマッピング
+- `zodResolver` — `@hookform/resolvers/zod` の再エクスポート
+- ルート `wimui` / `wimui/form` からは export しない（peer 未導入でもコアが壊れないようにする）
 
 ---
 

@@ -118,6 +118,7 @@ export default defineConfig(({ mode }) => {
               media: path.resolve(__dirname, "src/media.ts"),
               charts: path.resolve(__dirname, "src/charts.ts"),
               ai: path.resolve(__dirname, "src/ai.ts"),
+              rhf: path.resolve(__dirname, "src/rhf.ts"),
               tokens: path.resolve(__dirname, "src/tokens.ts"),
               icons: path.resolve(__dirname, "src/icons.ts"),
             },
@@ -143,6 +144,10 @@ export default defineConfig(({ mode }) => {
           "@fullcalendar/interaction",
           "@fullcalendar/react",
           "@fullcalendar/timegrid",
+          "react-hook-form",
+          "@hookform/resolvers",
+          "@hookform/resolvers/zod",
+          "zod",
         ],
         output: isUMD
           ? {

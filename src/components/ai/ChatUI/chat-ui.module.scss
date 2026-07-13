@@ -185,7 +185,7 @@
     background-color: var(--wim-color-bg-component);
     border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
-    @container (max-width: 480px) {
+    @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
       padding: var(--wim-spacing-md);
     }
   }

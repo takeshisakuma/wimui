@@ -14,7 +14,7 @@
     z-index: var(--wim-z-overlay-panel);
     pointer-events: none;
     border-radius: var(--wim-radius-md, 4px);
-    box-shadow: 0 0 0 9999px var(--wim-color-overlay-bg);
+    box-shadow: 0 0 0 9999px var(--wim-color-overlay-bg); /* Exception: Structural Logic — viewport-covering spotlight mask */
     transition: var(--wim-transition-base);
   }
 

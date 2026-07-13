@@ -31,8 +31,8 @@
 
   .dot {
     flex-shrink: 0;
-    width: 12px;
-    height: 12px;
+    width: 12px; /* Exception: Geometric Harmony — terminal traffic-light circle */
+    height: 12px; /* Exception: Geometric Harmony — terminal traffic-light circle */
     border-radius: 50%;
 
     /* macOS traffic-light colors (tokens/color/semantic.json の terminal-traffic-*) */
@@ -63,7 +63,7 @@
   .titleBtn {
     display: grid;
     place-items: center;
-    width: 24px;
+    width: 24px; /* Exception: Structural Logic — terminal action touch target */
     height: var(--wim-height-xs);
     padding: 0;
     color: var(--wim-color-text-disabled);

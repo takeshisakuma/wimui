@@ -34,7 +34,7 @@
 
     .labelWrapper {
       display: inline-block;
-      max-width: 200px;
+      max-width: 200px; /* Exception: Structural Logic — 展開ラベルの最大幅（レイアウト破壊防止） */
       padding: var(--wim-spacing-xs) 0;
       overflow: hidden;
       vertical-align: middle;
@@ -245,8 +245,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 16px;
-      height: 16px;
+      min-width: 16px; /* Exception: Geometric Harmony — 数値バッジの最小正方形 */
+      height: 16px; /* Exception: Geometric Harmony — 数値バッジの最小正方形 */
       padding: 0 var(--wim-spacing-2xs);
       font-size: var(--wim-font-size-3xs);
       line-height: 1;
@@ -254,17 +254,17 @@
       text-align: center;
       background-color: var(--wim-color-danger);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 0 2px var(--wim-color-bg-component);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component);
 
       &.dot {
         position: absolute;
         top: 0;
         right: 0;
-        width: 8px;
-        height: 8px;
+        width: 8px; /* Exception: Geometric Harmony — ドットバッジ直径 */
+        height: 8px; /* Exception: Geometric Harmony — ドットバッジ直径 */
         background-color: var(--wim-color-danger);
         border-radius: var(--wim-radius-full);
-        box-shadow: 0 0 0 2px var(--wim-color-bg-component);
+        box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component);
       }
     }
 

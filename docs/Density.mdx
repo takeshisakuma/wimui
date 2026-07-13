@@ -1,0 +1,75 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { Command } from "../stories/Command";
+
+<Meta title="Token/Density" />
+
+<h1><T k="guide.density_title" /></h1>
+<p><T k="guide.density_desc" /></p>
+
+<hr />
+
+<h2><T k="guide.density_modes_title" /></h2>
+<p><T k="guide.density_modes_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="guide.density_mode" /></th>
+      <th><T k="guide.density_when" /></th>
+      <th><T k="guide.density_effect" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>comfortable</code> (<T k="guide.density_default" />)</td>
+      <td><T k="guide.density_comfortable_when" /></td>
+      <td><T k="guide.density_comfortable_effect" /></td>
+    </tr>
+    <tr>
+      <td><code>compact</code></td>
+      <td><T k="guide.density_compact_when" /></td>
+      <td><T k="guide.density_compact_effect" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2><T k="guide.density_usage_title" /></h2>
+<p><T k="guide.density_usage_desc" /></p>
+
+<Command>{`import { setWimDensity } from "wimui";
+
+setWimDensity("compact");
+// or on a subtree:
+setWimDensity("compact", document.getElementById("app-shell"));`}</Command>
+
+<p><T k="guide.density_attr_desc" /></p>
+
+<Command>{`<html data-density="compact">`}</Command>
+
+<hr />
+
+<h2><T k="guide.density_tokens_title" /></h2>
+<p><T k="guide.density_tokens_desc" /></p>
+
+<ul>
+  <li><code>--wim-height-xs|sm|md|lg</code></li>
+  <li><code>--wim-control-padding-x|y-sm|md|lg</code></li>
+  <li><code>--wim-table-cell-padding-x|y</code></li>
+  <li><code>--wim-checkbox-size</code> / <code>--wim-radio-size</code></li>
+  <li><code>{"--wim-switch-*-sm|md|lg"}</code></li>
+  <li><code>{"--wim-segmented-control-item-size-*"}</code></li>
+</ul>
+
+<p><T k="guide.density_stable_desc" /></p>
+
+<ul>
+  <li><code>{"--wim-spacing-*"}</code></li>
+  <li><code>{"--wim-avatar-size-*"}</code></li>
+</ul>
+
+<hr />
+
+<p><T k="guide.density_storybook_hint" /></p>

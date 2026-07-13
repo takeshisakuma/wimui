@@ -57,6 +57,12 @@ export const wimResources: WimResources = {
       "copy": {
         "to_clipboard": "Copy to clipboard"
       },
+      "error": {
+        "boundary_hide_details": "Hide details",
+        "boundary_retry": "Retry",
+        "boundary_show_details": "Show details",
+        "boundary_title": "Something went wrong"
+      },
       "fri": "Fri",
       "mon": "Mon",
       "pagination": {
@@ -213,6 +219,10 @@ export const wimResources: WimResources = {
         "button": "Choose file",
         "no_file": "No file selected"
       },
+      "form": {
+        "optional": "Optional",
+        "required": "Required"
+      },
       "select": {
         "no_options": "No options found"
       },
@@ -324,6 +334,12 @@ export const wimResources: WimResources = {
       "copied": "コピーしました",
       "copy": {
         "to_clipboard": "クリップボードにコピー"
+      },
+      "error": {
+        "boundary_hide_details": "詳細を非表示",
+        "boundary_retry": "再試行",
+        "boundary_show_details": "詳細を表示",
+        "boundary_title": "エラーが発生しました"
       },
       "fri": "金",
       "jsonViewer": {
@@ -488,6 +504,10 @@ export const wimResources: WimResources = {
         "button": "ファイルを選択",
         "no_file": "選択されていません"
       },
+      "form": {
+        "optional": "任意",
+        "required": "必須"
+      },
       "image_cropper": {
         "apply": "クロップを適用",
         "cancel": "キャンセル",
@@ -585,6 +605,12 @@ export const wimResources: WimResources = {
       "copied": "Copiado",
       "copy": {
         "to_clipboard": "Copiar para a área de transferência"
+      },
+      "error": {
+        "boundary_hide_details": "Ocultar detalhes",
+        "boundary_retry": "Tentar novamente",
+        "boundary_show_details": "Ver detalhes",
+        "boundary_title": "Ocorreu um erro"
       },
       "fri": "Sex",
       "jsonViewer": {
@@ -748,6 +774,10 @@ export const wimResources: WimResources = {
       "fileupload": {
         "button": "Selecionar arquivo",
         "no_file": "Nenhum arquivo selecionado"
+      },
+      "form": {
+        "optional": "Opcional",
+        "required": "Obrigatório"
       },
       "image_cropper": {
         "apply": "Aplicar recorte",

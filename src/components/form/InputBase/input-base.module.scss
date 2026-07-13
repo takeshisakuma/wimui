@@ -42,7 +42,7 @@
       border-color: var(--wim-color-disabled);
 
       .icon, .iconItem {
-        color: var(--wim-color-text-disabled);
+        color: var(--wim-color-text-on-disabled);
       }
 
       input,
@@ -76,12 +76,12 @@
 
       &.warning {
         border-color: var(--wim-color-warning);
-        box-shadow: 0 0 0 3px oklch(from var(--wim-color-warning) l c h / 0.15);
+        box-shadow: 0 0 0 3px oklch(from var(--wim-color-warning) l c h / 0.15); /* Exception: Browser Rendering Fixes — validation focus halo */
       }
 
       &.success {
         border-color: var(--wim-color-success);
-        box-shadow: 0 0 0 3px oklch(from var(--wim-color-success) l c h / 0.15);
+        box-shadow: 0 0 0 3px oklch(from var(--wim-color-success) l c h / 0.15); /* Exception: Browser Rendering Fixes — validation focus halo */
       }
     }
 
