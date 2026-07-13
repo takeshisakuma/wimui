@@ -98,4 +98,18 @@ describe("BackTop", () => {
     fireEvent.click(backTop);
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <BackTop asChild visibilityHeight={-1}>
+        <button type="button" data-testid="backtop-slot">
+          Top
+        </button>
+      </BackTop>,
+    );
+    const element = screen.getByTestId("backtop-slot");
+    expect(element.tagName).toBe("BUTTON");
+    expect(element).toHaveClass(styles.root);
+    expect(element).toHaveAttribute("role", "button");
+  });
 });

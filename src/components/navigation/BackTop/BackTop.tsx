@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./backtop.module.scss";
@@ -20,101 +21,119 @@ export interface BackTopProps {
   style?: React.CSSProperties;
   /** Accessible label for the button */
   "aria-label"?: string;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
 }
 
-export const BackTop = ({
-  target = () => window,
-  visibilityHeight = 400,
-  onClick,
-  children,
-  className,
-  style,
-  "aria-label": ariaLabel,
-}: BackTopProps) => {
-  const { t } = useWimTranslation("common");
-  const [visible, setVisible] = useState(false);
-
-  const getScrollTop = useCallback(
-    (targetElement: HTMLElement | Window | Document) => {
-      if (targetElement === window || targetElement instanceof Window) {
-        return window.pageYOffset || document.documentElement.scrollTop;
-      }
-      if (targetElement instanceof Document) {
-        return document.documentElement.scrollTop;
-      }
-      return (targetElement as HTMLElement).scrollTop;
+export const BackTop = React.forwardRef<HTMLDivElement, BackTopProps>(
+  (
+    {
+      target = () => window,
+      visibilityHeight = 400,
+      onClick,
+      children,
+      className,
+      style,
+      "aria-label": ariaLabel,
+      asChild = false,
     },
-    [],
-  );
+    ref,
+  ) => {
+    const { t } = useWimTranslation("common");
+    const [visible, setVisible] = useState(false);
 
-  const handleScroll = useCallback(() => {
-    const targetElement = target();
-    if (!targetElement) return;
+    const getScrollTop = useCallback(
+      (targetElement: HTMLElement | Window | Document) => {
+        if (targetElement === window || targetElement instanceof Window) {
+          return window.pageYOffset || document.documentElement.scrollTop;
+        }
+        if (targetElement instanceof Document) {
+          return document.documentElement.scrollTop;
+        }
+        return (targetElement as HTMLElement).scrollTop;
+      },
+      [],
+    );
 
-    const scrollTop = getScrollTop(targetElement);
-    setVisible(scrollTop > visibilityHeight);
-  }, [target, visibilityHeight, getScrollTop]);
+    const handleScroll = useCallback(() => {
+      const targetElement = target();
+      if (!targetElement) return;
 
-  useEffect(() => {
-    const targetElement = target();
-    if (!targetElement) return;
+      const scrollTop = getScrollTop(targetElement);
+      setVisible(scrollTop > visibilityHeight);
+    }, [target, visibilityHeight, getScrollTop]);
 
-     
-    requestAnimationFrame(handleScroll); // Initial check
+    useEffect(() => {
+      const targetElement = target();
+      if (!targetElement) return;
 
-    targetElement.addEventListener("scroll", handleScroll);
-    return () => {
-      targetElement.removeEventListener("scroll", handleScroll);
+       
+      requestAnimationFrame(handleScroll); // Initial check
+
+      targetElement.addEventListener("scroll", handleScroll);
+      return () => {
+        targetElement.removeEventListener("scroll", handleScroll);
+      };
+    }, [target, handleScroll]);
+
+    const scrollToTop = (e: React.MouseEvent<HTMLDivElement>) => {
+      const targetElement = target();
+      if (!targetElement) return;
+
+      if (targetElement === window || targetElement instanceof Window) {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else if (targetElement instanceof Document) {
+        document.documentElement.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        (targetElement as HTMLElement).scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      onClick?.(e);
     };
-  }, [target, handleScroll]);
 
-  const scrollToTop = (e: React.MouseEvent<HTMLDivElement>) => {
-    const targetElement = target();
-    if (!targetElement) return;
+    const defaultElement = (
+      <div className={styles.content}>
+        <Icon component={ChevronUpIcon} className={styles.icon} />
+      </div>
+    );
 
-    if (targetElement === window || targetElement instanceof Window) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else if (targetElement instanceof Document) {
-      document.documentElement.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else {
-      (targetElement as HTMLElement).scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
+    const Component = asChild ? Slot : "div";
 
-    onClick?.(e);
-  };
+    return (
+      <Component
+        ref={ref}
+        className={classNames(
+          "wim-back-top",
+          styles.root,
+          !visible && styles.hidden,
+          className,
+        )}
+        style={style}
+        onClick={scrollToTop}
+        role="button"
+        tabIndex={0}
+        aria-label={ariaLabel ?? t("a11y.back_to_top")}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.currentTarget.click();
+          }
+        }}
+      >
+        <Slottable>{children || defaultElement}</Slottable>
+      </Component>
+    );
+  },
+);
 
-  const defaultElement = (
-    <div className={styles.content}>
-      <Icon component={ChevronUpIcon} className={styles.icon} />
-    </div>
-  );
-
-  return (
-    <div
-      className={classNames("wim-back-top", 
-        styles.root,
-        !visible && styles.hidden,
-        className,
-      )}
-      style={style}
-      onClick={scrollToTop}
-      role="button"
-      tabIndex={0}
-      aria-label={ariaLabel ?? t("a11y.back_to_top")}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
-    >
-      {children || defaultElement}
-    </div>
-  );
-};
+BackTop.displayName = "BackTop";
 
 export default BackTop;

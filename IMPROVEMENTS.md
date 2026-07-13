@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-13（密度適用拡大）  
+最終更新: 2026-07-13（asChild 残り / Form レシピ）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -9,11 +9,7 @@
 
 大きな戦略タスクは一通り済。残りは任意の品質・DX 改善。
 
-1. **asChild の残り（低優先）**  
-   ButtonGroup / ThemeToggle / RangeSlider / Rating / CopyButton / BackTop など。必須リスト外。必要になったコンポーネントだけ足す。
-2. **Form 連携の拡張（任意）**  
-   `wimui/rhf` は薄い層で済。需要があれば DatePicker 等向けの短いレシピを Patterns に足す程度で十分（ラッパー量産はしない）。
-3. **運用維持**  
+1. **運用維持**  
    `PX_BASELINE = 0` / `i18n:check` / `check:api` / `check:imports`。触った SCSS に未注記 px を増やさない。
 
 **npm 公開**は人が決める項目（`private` 解除・changeset・`NPM_TOKEN`）。エージェントは勝手に進めない。
@@ -27,12 +23,13 @@
 | グローバル密度トークン（基盤） | **済**（`data-density` / `setWimDensity`） |
 | 密度の適用拡大（field / list / item） | **済**（Input・Textarea・Segmented・Toggle・Menu・Select 系など） |
 | Form 連携（RHF / zod） | **済**（`wimui/rhf`） |
+| Form レシピ（DatePicker / Rating / Switch） | **済**（Patterns/ReactHookForm） |
 | エクスポート DX / Docgen Import | **済** |
 | Props 説明 i18n（leaf + 複合） | **済**（Missing 0） |
 | `PX_BASELINE` | **済**（0。維持のみ） |
 | VRT ベースライン | **更新済**（2026-07-13 push） |
 | npm 公開の破壊なし準備 | **済**。公開判断は未 |
-| asChild 残り | **意図的低優先** |
+| asChild 残り | **済**（ButtonGroup / ThemeToggle / RangeSlider / Rating / CopyButton / BackTop） |
 | RTL / 論理プロパティ | **対応予定なし** |
 
 ### RTL（対応予定なし）
@@ -59,6 +56,8 @@ npm run check:aschild     # asChild 必須リスト
 ## 完了ログ（直近）
 
 ### 2026-07-13
+- asChild 残り（低優先）: ButtonGroup / ThemeToggle / RangeSlider / Rating / CopyButton / BackTop
+- Form レシピ: Patterns に DatePicker / Rating / Switch（`WithPickers`）
 - 密度適用拡大: `--wim-field-padding-*` / `--wim-control-item-padding-*` / `--wim-list-item-padding-*`
 - Form 連携（`wimui/rhf`）、密度トークン基盤、RTL 対応予定なし
 - Docgen Import / Props i18n 複合 / `PX_BASELINE` → 0

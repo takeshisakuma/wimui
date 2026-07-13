@@ -1,5 +1,6 @@
 import React, { useState, useId, useRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
@@ -11,7 +12,7 @@ export type RatingLabels = {
   readonly?: (value: number, max: number) => string;
 };
 
-type RatingProps = {
+type RatingProps = Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> & {
   /** Current value (controlled) */
   value?: number;
   /** Default value (uncontrolled) */
@@ -40,6 +41,8 @@ type RatingProps = {
   layout?: "vertical" | "horizontal";
   /** Labels for internationalization */
   labels?: RatingLabels;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
 };
 
 /**
@@ -60,6 +63,8 @@ export const Rating = ({
   required,
   layout = "vertical",
   labels = {},
+  asChild = false,
+  children,
   ...props
 }: RatingProps) => {
   const {
@@ -205,6 +210,7 @@ export const Rating = ({
   };
 
   const stars = Array.from({ length: count }, (_, i) => renderStar(i));
+  const Component = asChild ? Slot : "div";
 
   return (
     <FieldTemplate
@@ -216,8 +222,9 @@ export const Rating = ({
       errorId={errorId}
       className={className}
     >
-      <div
-        className={classNames("wim-rating", 
+      <Component
+        className={classNames(
+          "wim-rating",
           styles.root,
           styles[size],
           disabled && styles.disabled,
@@ -237,7 +244,8 @@ export const Rating = ({
         {...props}
       >
         {stars}
-      </div>
+        <Slottable>{children}</Slottable>
+      </Component>
     </FieldTemplate>
   );
 };

@@ -1,5 +1,6 @@
 {
   "doc": {
+    "buttonGroup_prop_asChild": "Se deve renderizar como o elemento filho.",
     "buttonGroup_prop_children": "Botões a agrupar",
     "buttonGroup_prop_className": "Nomes de classe adicionais",
     "buttonGroup_prop_gap": "Espaçamento entre os botões (ignorado quando joined)",
@@ -115,6 +116,7 @@
     "combobox_prop_required": "Se deve exibir o indicador de obrigatório",
     "combobox_prop_showSearchIcon": "Se deve exibir o ícone de busca",
     "copyButton_prop_aria-label": "Rótulo acessível para o botão",
+    "copyButton_prop_asChild": "Se deve renderizar como o elemento filho.",
     "copyButton_prop_className": "Nomes de classe adicionais",
     "copyButton_prop_copiedLabel": "Rótulo da dica após copiar",
     "copyButton_prop_copyLabel": "Rótulo da dica antes de copiar",
@@ -438,6 +440,7 @@
     "rangeSlider_prop_allowCross": "Se ambos os controles podem ter o mesmo valor (nunca se cruzam)",
     "rangeSlider_prop_aria-label": "Rótulo acessível quando nenhum rótulo visível é fornecido",
     "rangeSlider_prop_aria-labelledby": "ID do elemento que rotula o slider",
+    "rangeSlider_prop_asChild": "Se deve renderizar como o elemento filho.",
     "rangeSlider_prop_className": "Nomes de classe adicionais",
     "rangeSlider_prop_defaultValue": "Valor padrão [min, max] (não controlado)",
     "rangeSlider_prop_disabled": "Se o slider está desabilitado",
@@ -454,6 +457,7 @@
     "rangeSlider_prop_step": "Valor do incremento",
     "rangeSlider_prop_value": "Valor atual [min, max] (controlado)",
     "rating_prop_allowHalf": "Se deve permitir meias estrelas",
+    "rating_prop_asChild": "Se deve renderizar como o elemento filho.",
     "rating_prop_className": "Nomes de classe adicionais",
     "rating_prop_count": "Número total de estrelas",
     "rating_prop_defaultValue": "Valor padrão (não controlado)",
@@ -635,6 +639,7 @@
     "textarea_prop_variant": "Variante de estilo visual do campo",
     "textarea_prop_width": "Largura fixa do campo (token de width, valor CSS ou número em px)",
     "themeToggle_prop_applyToDocument": "Se deve aplicar o modo selecionado à raiz do documento como `data-theme`",
+    "themeToggle_prop_asChild": "Se deve renderizar como o elemento filho.",
     "themeToggle_prop_className": "Nomes de classe adicionais",
     "themeToggle_prop_defaultValue": "Modo selecionado inicialmente (não controlado)",
     "themeToggle_prop_labels": "Rótulos para internacionalização",

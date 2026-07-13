@@ -139,4 +139,16 @@ describe("RangeSlider", () => {
     expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
     expect(container.querySelector('[role="presentation"]')).toHaveClass(styles.root);
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <RangeSlider asChild defaultValue={[20, 80]}>
+        <div data-testid="range-slot" />
+      </RangeSlider>,
+    );
+    const element = screen.getByTestId("range-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass(styles.root);
+    expect(element).toHaveAttribute("role", "presentation");
+  });
 });

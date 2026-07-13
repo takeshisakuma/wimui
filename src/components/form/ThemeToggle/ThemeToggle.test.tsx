@@ -68,4 +68,16 @@ describe("ThemeToggle", () => {
     rerender(<ThemeToggle value="dark" />);
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <ThemeToggle asChild>
+        <div data-testid="theme-slot" />
+      </ThemeToggle>,
+    );
+    const element = screen.getByTestId("theme-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass("wim-theme-toggle");
+    expect(element.querySelector("button")).toBeInTheDocument();
+  });
 });

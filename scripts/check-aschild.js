@@ -10,11 +10,12 @@ const requiredComponents = [
   'Tooltip', 'Popover', 'Dropdown', 'HoverCard', 'Drawer', 'Dialog', 'BottomSheet', 'Menu', 'ContextMenu',
   // Navigation
   'Link', 'CommandPalette', 'Breadcrumb', 'Stepper', 'Menubar', 'Tabs',
-  'TabNavigation', 'TabBar', 'Pagination', 'HamburgerMenu',
+  'TabNavigation', 'TabBar', 'Pagination', 'HamburgerMenu', 'BackTop',
   // Form
   'Button', 'IconButton', 'Input', 'Selectbox', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
   'Slider', 'NumberInput', 'Mentions', 'OtpInput', 'FloatButton', 'FieldTemplate', 'DatePicker',
   'CreditCardInput', 'Switch', 'SwitchGroup', 'LinkButton', 'Textarea', 'SegmentedControl', 'ToggleGroup', 'TreeSelect',
+  'ButtonGroup', 'ThemeToggle', 'RangeSlider', 'Rating', 'CopyButton',
   // Layout
   'Box', 'Flex', 'Stack', 'Group', 'Grid', 'Toolbar',
   // Data Display

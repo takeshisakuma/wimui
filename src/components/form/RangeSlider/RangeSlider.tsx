@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./range-slider.module.scss";
@@ -41,6 +42,8 @@ type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | 
   "aria-label"?: string;
   /** ID of the element that labels the slider */
   "aria-labelledby"?: string;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
 };
 
 /**
@@ -65,6 +68,8 @@ export const RangeSlider = ({
   id: customId,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  asChild = false,
+  children,
   ...props
 }: RangeSliderProps) => {
   const isControlled = value !== undefined;
@@ -257,6 +262,7 @@ export const RangeSlider = ({
 
   const leftPerc = getPercentage(currentValue[0]);
   const rightPerc = getPercentage(currentValue[1]);
+  const Component = asChild ? Slot : "div";
 
   return (
     <FieldTemplate
@@ -268,10 +274,11 @@ export const RangeSlider = ({
       errorId={errorId}
       className={className}
     >
-      <div
+      <Component
         role="presentation"
         data-testid="range-slider-root"
-        className={classNames("wim-range-slider", 
+        className={classNames(
+          "wim-range-slider",
           styles.root,
           disabled && styles.disabled,
           error && styles.danger,
@@ -338,7 +345,8 @@ export const RangeSlider = ({
           name={name ? `${name}-max` : ""}
           value={currentValue[1]}
         />
-      </div>
+        <Slottable>{children}</Slottable>
+      </Component>
     </FieldTemplate>
   );
 };

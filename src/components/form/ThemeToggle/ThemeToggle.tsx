@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { SunIcon, MoonIcon, MonitorIcon } from "@/icon";
 import { ComponentSizeBasic } from "../../../types/tokens";
@@ -48,6 +49,8 @@ export interface ThemeToggleProps
   labels?: ThemeToggleLabels;
   /** Additional class names */
   className?: string;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
 }
 
 const DEFAULT_STORAGE_KEY = "wim-theme";
@@ -85,6 +88,8 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
       applyToDocument = true,
       labels,
       className,
+      asChild = false,
+      children,
       ...props
     },
     ref,
@@ -130,9 +135,11 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
       selectMode(next);
     };
 
+    const Component = asChild ? Slot : "div";
+
     if (variant === "segmented") {
       return (
-        <div
+        <Component
           ref={ref}
           role="group"
           aria-label={toggle}
@@ -155,12 +162,17 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
               </button>
             );
           })}
-        </div>
+          <Slottable>{children}</Slottable>
+        </Component>
       );
     }
 
     return (
-      <div ref={ref} className={classNames("wim-theme-toggle", styles.root, className)} {...props}>
+      <Component
+        ref={ref}
+        className={classNames("wim-theme-toggle", styles.root, className)}
+        {...props}
+      >
         <button
           type="button"
           className={classNames(styles.iconButton, styles[size])}
@@ -170,7 +182,8 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
         >
           <Icon component={ICONS[current]} size="sm" />
         </button>
-      </div>
+        <Slottable>{children}</Slottable>
+      </Component>
     );
   },
 );

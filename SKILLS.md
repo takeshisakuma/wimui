@@ -378,6 +378,7 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 - `valueFieldProps` / `checkedFieldProps` — 値コールバック型・checked 型へのマッピング
 - `zodResolver` — `@hookform/resolvers/zod` の再エクスポート
 - ルート `wimui` / `wimui/form` からは export しない（peer 未導入でもコアが壊れないようにする）
+- 例: `stories/Patterns/Form/ReactHookForm.stories.tsx`（基本＋ DatePicker / Rating / Switch レシピ）
 
 ---
 

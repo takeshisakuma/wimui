@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot } from "@radix-ui/react-slot";
 import styles from "./button-group.module.scss";
 import type { ButtonVariant } from "../../../types/tokens";
 
@@ -14,6 +15,8 @@ type ButtonGroupProps = {
   joined?: boolean;
   /** Variant applied to all child buttons */
   variant?: ButtonVariant;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
 };
 
 export const ButtonGroup = ({
@@ -22,23 +25,28 @@ export const ButtonGroup = ({
   className,
   joined = false,
   variant,
+  asChild = false,
 }: ButtonGroupProps) => {
   const style = joined ? {} : { gap };
 
-  const childrenWithProps = variant
-    ? React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<{ variant?: ButtonVariant }>, {
-            variant,
-          });
-        }
-        return child;
-      })
-    : children;
+  const childrenWithProps =
+    !asChild && variant
+      ? React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child as React.ReactElement<{ variant?: ButtonVariant }>, {
+              variant,
+            });
+          }
+          return child;
+        })
+      : children;
+
+  const Component = asChild ? Slot : "div";
 
   return (
-    <div
-      className={classNames("wim-button-group", 
+    <Component
+      className={classNames(
+        "wim-button-group",
         styles.root,
         joined && styles.joined,
         className,
@@ -46,6 +54,6 @@ export const ButtonGroup = ({
       style={style}
     >
       {childrenWithProps}
-    </div>
+    </Component>
   );
 };

@@ -66,4 +66,17 @@ describe("CopyButton", () => {
       screen.getByRole("button", { name: "Copy to clipboard" }),
     ).toBeInTheDocument();
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <CopyButton asChild value="test value">
+        <button type="button" data-testid="copy-slot">
+          Copy
+        </button>
+      </CopyButton>,
+    );
+    const element = screen.getByTestId("copy-slot");
+    expect(element.tagName).toBe("BUTTON");
+    expect(element).toHaveClass("wim-copy-button");
+  });
 });

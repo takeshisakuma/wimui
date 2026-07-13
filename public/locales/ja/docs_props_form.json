@@ -1,5 +1,6 @@
 {
   "doc": {
+    "buttonGroup_prop_asChild": "子要素としてレンダリングするかどうか。",
     "buttonGroup_prop_children": "グループ化するボタン",
     "buttonGroup_prop_className": "追加のクラス名",
     "buttonGroup_prop_gap": "ボタン間の間隔（joined の場合は無視される）",
@@ -115,6 +116,7 @@
     "combobox_prop_required": "必須表示にするかどうか",
     "combobox_prop_showSearchIcon": "検索アイコンを表示するかどうか",
     "copyButton_prop_aria-label": "ボタンのアクセシビリティ用ラベル",
+    "copyButton_prop_asChild": "子要素としてレンダリングするかどうか。",
     "copyButton_prop_className": "追加のクラス名",
     "copyButton_prop_copiedLabel": "コピー後のツールチップラベル",
     "copyButton_prop_copyLabel": "コピー前のツールチップラベル",
@@ -438,6 +440,7 @@
     "rangeSlider_prop_allowCross": "同じ値を許容するかどうか（交差はしない）",
     "rangeSlider_prop_aria-label": "表示ラベルがない場合のアクセシビリティ用ラベル",
     "rangeSlider_prop_aria-labelledby": "スライダーのラベルとなる要素の ID",
+    "rangeSlider_prop_asChild": "子要素としてレンダリングするかどうか。",
     "rangeSlider_prop_className": "追加のクラス名",
     "rangeSlider_prop_defaultValue": "デフォルトの値 [min, max]（非制御時）",
     "rangeSlider_prop_disabled": "無効化フラグ",
@@ -454,6 +457,7 @@
     "rangeSlider_prop_step": "ステップ値",
     "rangeSlider_prop_value": "現在の値 [min, max]",
     "rating_prop_allowHalf": "ハーフスターを許可するかどうか",
+    "rating_prop_asChild": "子要素としてレンダリングするかどうか。",
     "rating_prop_className": "追加のクラス名",
     "rating_prop_count": "星の総数",
     "rating_prop_defaultValue": "デフォルトの値（非制御時）",
@@ -635,6 +639,7 @@
     "textarea_prop_variant": "フィールドの視覚スタイルのバリアント",
     "textarea_prop_width": "フィールドの固定幅（width トークン、CSS 値、または px 単位の数値）",
     "themeToggle_prop_applyToDocument": "選択されたモードを `data-theme` としてドキュメントのルートに適用するかどうか",
+    "themeToggle_prop_asChild": "子要素としてレンダリングするかどうか。",
     "themeToggle_prop_className": "追加のクラス名",
     "themeToggle_prop_defaultValue": "初期状態で選択されるモード（非制御時）",
     "themeToggle_prop_labels": "国際化用のラベル",

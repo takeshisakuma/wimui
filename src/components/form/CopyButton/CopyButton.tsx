@@ -19,6 +19,10 @@ type CopyButtonProps = {
   copyLabel?: string;
   /** Tooltip label after copying */
   copiedLabel?: string;
+  /** Whether to render as a child element. */
+  asChild?: boolean;
+  /** Trigger content when `asChild` is true */
+  children?: React.ReactNode;
 };
 
 export const CopyButton = ({
@@ -28,6 +32,8 @@ export const CopyButton = ({
   "aria-label": ariaLabel,
   copyLabel,
   copiedLabel,
+  asChild = false,
+  children,
 }: CopyButtonProps) => {
   const { t } = useWimTranslation("common");
   const [copied, setCopied] = useState(false);
@@ -56,15 +62,17 @@ export const CopyButton = ({
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
+          asChild={asChild}
           variant="ghost"
           size={size}
-          icon={copied ? "CheckIcon" : "CopyIcon"}
+          icon={asChild ? undefined : copied ? "CheckIcon" : "CopyIcon"}
           intent={copied ? "success" : "default"}
           onClick={handleCopy}
           className={classNames("wim-copy-button", className)}
           aria-label={ariaLabel || labelText}
-
-        />
+        >
+          {asChild ? children : undefined}
+        </Button>
       </TooltipTrigger>
       <TooltipContent>{labelText}</TooltipContent>
     </Tooltip>

@@ -326,4 +326,16 @@ describe("Rating", () => {
     expect(screen.getByRole("radiogroup")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByRole("alert")).toHaveTextContent("Required");
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <Rating asChild count={5}>
+        <div data-testid="rating-slot" />
+      </Rating>,
+    );
+    const element = screen.getByTestId("rating-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass(styles.root);
+    expect(element).toHaveAttribute("role", "radiogroup");
+  });
 });

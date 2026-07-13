@@ -14,6 +14,7 @@
     "anchor_prop_offset": "クリックしてスクロールする際の上端からのオフセット（ピクセル）",
     "anchor_prop_style": "スタイル属性",
     "backTop_prop_aria-label": "ボタンのアクセシブルなラベル",
+    "backTop_prop_asChild": "子要素としてレンダリングするかどうか。",
     "backTop_prop_children": "ボタン内にレンダリングされる子要素",
     "backTop_prop_className": "追加のクラス名",
     "backTop_prop_onClick": "クリックされた時に呼び出されるコールバック",

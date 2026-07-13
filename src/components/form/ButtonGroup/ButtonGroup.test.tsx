@@ -63,4 +63,17 @@ describe("ButtonGroup", () => {
     );
     expect(container.firstChild).toHaveClass("my-group");
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <ButtonGroup asChild>
+        <section data-testid="group-slot">
+          <button>Btn</button>
+        </section>
+      </ButtonGroup>,
+    );
+    const element = screen.getByTestId("group-slot");
+    expect(element.tagName).toBe("SECTION");
+    expect(element).toHaveClass(styles.root);
+  });
 });
