@@ -6,7 +6,7 @@
     width: 100%;
     container-type: inline-size;
     overflow-x: auto;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
   
     &.sticky {
       overflow: auto;
@@ -60,7 +60,7 @@
   
     &.hoverable {
       tbody tr:hover {
-        --wim-table-row-bg-hover: color-mix(in oklch, var(--wim-color-primary) 8%, var(--wim-table-row-bg, var(--wim-color-bg-component)));
+        --wim-table-row-bg-hover: color-mix(in oklch, var(--wim-color-primary) 8%, var(--wim-table-row-bg, var(--wim-color-surface)));
 
         background-color: var(--wim-table-row-bg-hover);
         
@@ -76,9 +76,9 @@
         position: sticky;
         top: -1px; /* Exception: Browser Rendering Fixes — sticky ヘッダのサブピクセル隙間埋め */
         z-index: var(--wim-z-overlay);
-        background-color: var(--wim-color-bg-component);
+        background-color: var(--wim-color-surface);
 
-        --wim-table-row-bg: var(--wim-color-bg-component);
+        --wim-table-row-bg: var(--wim-color-surface);
 
         box-shadow: inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border),
                     inset 0 var(--wim-border-width-thin) 0 0 var(--wim-color-border),
@@ -164,18 +164,18 @@
   }
 
   .body {
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
   }
 
 
   .row {
-    --wim-table-row-bg: var(--wim-color-bg-component);
+    --wim-table-row-bg: var(--wim-color-surface);
 
     background-color: var(--wim-table-row-bg);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &.selected {
-      --wim-table-row-bg: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
+      --wim-table-row-bg: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
 
       background-color: var(--wim-table-row-bg);
     }
@@ -193,7 +193,7 @@
       user-select: none;
   
       &:hover {
-        background-color: var(--wim-color-bg-hover);
+        background-color: var(--wim-color-surface-hover);
       }
     }
   
@@ -209,21 +209,21 @@
     &.stickyLeft {
       position: sticky;
       z-index: var(--wim-z-sticky, 20);
-      background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
+      background-color: var(--wim-table-row-bg, var(--wim-color-surface));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
-                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component)),
-                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component));
+                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
+                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
     }
   
     &.stickyRight {
       position: sticky;
       z-index: var(--wim-z-sticky, 20);
-      background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
+      background-color: var(--wim-table-row-bg, var(--wim-color-surface));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
-                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component)),
-                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component));
+                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
+                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
     }
   }
 
@@ -243,21 +243,21 @@
     &.stickyLeft {
       position: sticky;
       z-index: var(--wim-z-sticky, 10);
-      background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
+      background-color: var(--wim-table-row-bg, var(--wim-color-surface));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
-                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component)),
-                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component));
+                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
+                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
     }
   
     &.stickyRight {
       position: sticky;
       z-index: var(--wim-z-sticky, 10);
-      background-color: var(--wim-table-row-bg, var(--wim-color-bg-component));
+      background-color: var(--wim-table-row-bg, var(--wim-color-surface));
       box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
-                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component)),
-                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-bg-component));
+                  2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
+                  -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
     }
   }
 

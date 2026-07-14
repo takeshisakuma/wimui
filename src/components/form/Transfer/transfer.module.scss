@@ -41,7 +41,7 @@
     max-width: 100%;
     height: 320px; /* Exception: Structural Logic — 転送リストの固定ビューポート高さ */
     overflow: hidden;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-xs);
@@ -85,7 +85,7 @@
 
     .root.disabled & {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-bg-secondary);
+      background: var(--wim-color-surface-variant);
     }
 
     @container (max-width: 768px) { /* Exception: Structural Logic — md ブレークポイント相当のコンテナ切替 */
@@ -161,7 +161,7 @@
     justify-content: center;
     width: var(--wim-checkbox-size, 16px);
     height: var(--wim-checkbox-size, 16px);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-sm);
     transition:

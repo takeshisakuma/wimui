@@ -43,7 +43,7 @@ export type HeatmapProps = {
   title?: string;
   /**
    * Colors used for the lowest and highest values.
-   * @default ["var(--wim-color-bg-secondary)", "var(--wim-color-primary)"]
+   * @default ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"]
    */
   colorRange?: [string, string];
 };
@@ -55,7 +55,7 @@ export const Heatmap = ({
   height = 300,
   width = "100%",
   title,
-  colorRange = ["var(--wim-color-bg-secondary)", "var(--wim-color-primary)"],
+  colorRange = ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"],
 }: HeatmapProps) => {
   // Convert x/y labels to numeric indexes for ScatterChart
   const formattedData = data.map((d) => ({

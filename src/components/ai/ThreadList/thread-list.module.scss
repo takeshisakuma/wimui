@@ -28,7 +28,7 @@
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
-      background: var(--wim-color-bg-secondary);
+      background: var(--wim-color-surface-variant);
     }
 
     &:focus-visible {
@@ -80,7 +80,7 @@
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
-      background: var(--wim-color-bg-secondary);
+      background: var(--wim-color-surface-variant);
     }
 
     &:focus-visible {
@@ -158,7 +158,7 @@
     padding: var(--wim-spacing-3xs);
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: none;
     border-radius: var(--wim-radius-sm);
     opacity: 0;

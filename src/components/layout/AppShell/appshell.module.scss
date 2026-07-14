@@ -38,7 +38,7 @@
   .main {
     flex: 1;
     overflow: hidden auto;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
 
     &.padded {
       padding: var(--wim-spacing-2xl);

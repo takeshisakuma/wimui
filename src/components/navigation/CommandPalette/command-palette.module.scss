@@ -21,7 +21,7 @@
     width: 100%;
     max-width: var(--wim-status-desc-max-width);
     overflow: hidden;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-modal);
@@ -173,7 +173,7 @@
     font-family: inherit;
     font-size: var(--wim-font-size-3xs);
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-secondary);
+    background-color: var(--wim-color-surface-variant);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-sm);
   }
@@ -187,7 +187,7 @@
     color: var(--wim-color-text-secondary);
     white-space: nowrap;
     cursor: pointer;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: all var(--wim-transition-fast);

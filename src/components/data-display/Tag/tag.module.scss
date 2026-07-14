@@ -30,7 +30,7 @@
     &.disabled {
       color: var(--wim-color-text-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
       opacity: 1;
       filter: none;
@@ -77,7 +77,7 @@
     transition: all var(--wim-transition-fast);
 
     &:hover {
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
       opacity: 1;
     }
   }

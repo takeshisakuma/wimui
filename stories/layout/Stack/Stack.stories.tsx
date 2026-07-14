@@ -111,7 +111,7 @@ export const SpacingTokens: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack gap="xl">
-        <Box bg="var(--wim-color-bg-secondary)" p={10}>
+        <Box bg="var(--wim-color-surface-variant)" p={10}>
           {t("story.stack_gap", "Gap: ")}xl
         </Box>
         <Stack direction="row" gap="xs">

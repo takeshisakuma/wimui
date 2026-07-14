@@ -39,7 +39,7 @@
     align-items: center;
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
     font-size: var(--wim-font-size-sm);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
 
@@ -75,7 +75,7 @@
     font-weight: var(--wim-font-weight-bold);
     font-variant-numeric: tabular-nums;
     color: var(--wim-color-text-secondary);
-    background-color: var(--wim-color-bg-secondary);
+    background-color: var(--wim-color-surface-variant);
     border-radius: var(--wim-radius-full);
   }
 

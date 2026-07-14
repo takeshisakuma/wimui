@@ -79,23 +79,24 @@ Avatar の default は意図的に disabled フィル＋`text-on-disabled` を�
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
 | アプリ背景 | `--wim-color-bg-app` | `w` (#fff) | `gy2-5` (#262626) |
-| コンポーネント背景 | `--wim-color-bg-component` | `w` (#fff) | `gy3-5` (#393939) |
-| セカンダリ背景 | `--wim-color-bg-secondary` | `gy8-5` (#e5e5e5) | `gy4-5` (#4f4f4f) |
-| ホバー背景 | `--wim-color-bg-hover` | primary 8% | primary 12% |
+| コンポーネント背景 | `--wim-color-surface` | `w` (#fff) | `gy3-5` (#393939) |
+| セカンダリ背景 | `--wim-color-surface-variant` | `gy8-5` (#e5e5e5) | `gy4-5` (#4f4f4f) |
+| ホバー背景 | `--wim-color-surface-hover` | primary 8% | primary 12% |
 | ボーダー | `--wim-color-border` | `gy7-5` (#b6b6b6) | `gy5-5` (#646464) |
 
-#### エイリアス
+#### サーフェス語彙（正規名）
 
-よく使うトークンにはエイリアスが設定されています。
+コンポーネント面は `surface*` を使う（旧 `bg-component` / `bg-secondary` / `bg-hover` は廃止）。
 
-| エイリアス | 参照先 |
-|-----------|--------|
-| `--wim-color-surface` | `--wim-color-bg-component` |
-| `--wim-color-surface-variant` | `--wim-color-bg-secondary` |
-| `--wim-color-surface-hover` | `--wim-color-bg-hover` |
-| `--wim-color-surface-glass` | `--wim-color-glass-bg` |
-| `--wim-color-surface-inset` | `--wim-color-bg-app` |
-| `--wim-color-surface-inverse` | `--wim-color-bg-inverted`（反転面はこちらを使う） |
+| 用途 | トークン |
+|------|----------|
+| コンポーネント面 | `--wim-color-surface` |
+| セカンダリ面 | `--wim-color-surface-variant` |
+| ホバー面 | `--wim-color-surface-hover` |
+| 反転面 | `--wim-color-surface-inverse`（値は `--wim-color-bg-inverted`） |
+| ガラス面 | `--wim-color-glass-bg` |
+| インセット面 | `--wim-color-surface-inset`（ライトでは `bg-app` 参照） |
+| 反転面上の文字 | `--wim-color-text-on-inverted` |
 
 **近いが別物（改名しない・新規では区別して使う）**
 
@@ -103,8 +104,6 @@ Avatar の default は意図的に disabled フィル＋`text-on-disabled` を�
 |----------|------|
 | `--wim-color-bg-subtle` | ソリッドなごく薄い面（`#fafafa` / ダーク `#262626`） |
 | `--wim-color-bg-surface-subtle` | void ベースの半透明アルファ面 |
-| `--wim-color-surface-inverted` | `gy3-5` の固定値。新規コードでは `surface-inverse` を優先 |
-| `--wim-color-text-on-dark` / `--wim-color-text-on-inverted` | いずれも暗色面向け前景。既存用途を崩さず、新規は面に合わせて選ぶ |
 
 ### 不透明度の扱い（RGB トークン）
 

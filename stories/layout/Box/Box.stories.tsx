@@ -26,7 +26,7 @@ export const Default: Story = {
     return <Box {...args}>{t("story.box_default")}</Box>;
   },
   args: {
-    bg: "var(--wim-color-bg-secondary)",
+    bg: "var(--wim-color-surface-variant)",
     p: 20,
     radius: 8,
   },
@@ -65,7 +65,7 @@ export const Spacing: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Box bg="var(--wim-color-bg-secondary)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
+      <Box bg="var(--wim-color-surface-variant)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
         <Box
           bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)"
           p={15}

@@ -45,7 +45,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           border-radius: 12px;
           overflow: hidden;
           border: 1px solid var(--wim-color-border, #e5e5e5);
-          background: var(--wim-color-bg-component, #fff);
+          background: var(--wim-color-surface, #fff);
           display: flex;
           flex-direction: column;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);

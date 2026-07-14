@@ -1,4 +1,4 @@
-﻿@use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../tokens/breakpoints" as breakpoints;
 
 .overlay {
   position: fixed;
@@ -13,7 +13,7 @@
   flex-direction: column;
   width: var(--wim-sidebar-width);
   height: 100%;
-  background-color: var(--wim-color-bg-component);
+  background-color: var(--wim-color-surface);
   transition: all var(--wim-transition-base);
 
   &.fixed {
@@ -82,7 +82,7 @@
   transition: background-color var(--wim-transition-fast);
 
   &:hover {
-    background-color: var(--wim-color-bg-hover);
+    background-color: var(--wim-color-surface-hover);
   }
 
   &.active {

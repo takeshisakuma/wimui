@@ -6,7 +6,7 @@
     gap: var(--wim-spacing-2xs);
     align-items: center;
     padding: var(--wim-spacing-2xs);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }
@@ -35,7 +35,7 @@
     &:hover:not(:disabled),
     &:focus-visible {
       outline: none;
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &:disabled {
@@ -45,7 +45,7 @@
   }
 
   .triggerOpen {
-    background-color: var(--wim-color-bg-hover);
+    background-color: var(--wim-color-surface-hover);
   }
 
   .content {
@@ -57,7 +57,7 @@
     min-width: var(--wim-menu-min-width);
     padding: var(--wim-spacing-xs) 0;
     margin: 0;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);

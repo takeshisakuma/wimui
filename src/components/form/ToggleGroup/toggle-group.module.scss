@@ -3,7 +3,7 @@
 
 @layer component {
   .root {
-    @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-component), $padding: var(--wim-focus-outline-offset));
+    @include indicator.indicator-container-segmented($bg: var(--wim-color-surface), $padding: var(--wim-focus-outline-offset));
 
     box-sizing: border-box;
     display: inline-flex;
@@ -60,7 +60,7 @@
   
       &:hover:not(:disabled, .active) {
         color: var(--wim-color-text-accent);
-        background-color: var(--wim-color-bg-hover);
+        background-color: var(--wim-color-surface-hover);
       }
   
       &:disabled {

@@ -67,23 +67,14 @@
       "bg-app": {
         "value": "{pccs.w}"
       },
-      "bg-component": {
-        "value": "{pccs.w}"
-      },
       "bg-primary": {
         "value": "{pccs.s16}"
-      },
-      "bg-secondary": {
-        "value": "{pccs.gy8-5}"
       },
       "bg-tertiary": {
         "value": "{pccs.gy7-5}"
       },
       "bg-white": {
         "value": "{pccs.w}"
-      },
-      "bg-hover": {
-        "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
       },
       "border": {
         "value": "{pccs.gy7-5}"
@@ -116,13 +107,13 @@
         "value": "var(--wim-color-text-tertiary)"
       },
       "surface": {
-        "value": "var(--wim-color-bg-component)"
+        "value": "{pccs.w}"
       },
       "surface-variant": {
-        "value": "var(--wim-color-bg-secondary)"
+        "value": "{pccs.gy8-5}"
       },
       "surface-hover": {
-        "value": "var(--wim-color-bg-hover)"
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
       },
       "primary-container-alpha": {
         "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
@@ -190,9 +181,6 @@
       "glass-blur-lg": {
         "value": "{wim.blur.lg}"
       },
-      "surface-glass": {
-        "value": "var(--wim-color-glass-bg)"
-      },
       "surface-inset": {
         "value": "var(--wim-color-bg-app)"
       },
@@ -209,7 +197,7 @@
         "value": "var(--wim-color-primary)"
       },
       "control-default-bg": {
-        "value": "var(--wim-color-bg-component)"
+        "value": "var(--wim-color-surface)"
       },
       "control-default-border": {
         "value": "var(--wim-color-primary)"
@@ -255,12 +243,6 @@
       },
       "surface-inverse": {
         "value": "var(--wim-color-bg-inverted)"
-      },
-      "surface-inverted": {
-        "value": "{pccs.gy3-5}"
-      },
-      "text-on-dark": {
-        "value": "var(--wim-color-text-white)"
       },
       "bg-void": {
         "value": "{pccs.bk}"

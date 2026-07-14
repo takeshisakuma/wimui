@@ -16,7 +16,7 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-tight);
-    color: var(--text-tooltip, var(--wim-color-text-on-dark));
+    color: var(--text-tooltip, var(--wim-color-text-on-inverted));
     white-space: nowrap;
     pointer-events: none;
     background-color: var(--bg-tooltip, var(--wim-color-bg-inverted));
@@ -28,7 +28,7 @@
   
     &.glass {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-surface-glass);
+      background: var(--wim-color-glass-bg);
       border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
       backdrop-filter: blur(var(--wim-color-glass-blur));

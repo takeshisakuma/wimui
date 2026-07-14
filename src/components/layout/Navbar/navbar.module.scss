@@ -9,7 +9,7 @@
     width: 100%;
     height: var(--wim-height-xl);
     padding: 0 var(--wim-spacing-xl);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     transition: all var(--wim-transition-base);
 
     &.fixed {
@@ -30,7 +30,7 @@
     }
 
     &.glass {
-      background-color: var(--wim-color-surface-glass);
+      background-color: var(--wim-color-glass-bg);
       backdrop-filter: blur(var(--wim-blur-glass));
     }
 
@@ -111,7 +111,7 @@
     transition: all var(--wim-transition-base);
 
     &:hover {
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &.active {

@@ -36,7 +36,7 @@
     font-size: var(--wim-font-size-xl); /* Exception: Structural Logic — OTP セル内の視認性確保のため md より大きいサイズを使用 */
     color: var(--wim-color-text-primary);
     text-align: center;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);

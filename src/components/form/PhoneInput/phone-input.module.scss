@@ -10,7 +10,7 @@
     width: 100%;
     max-width: var(--wim-width-md);
     min-height: var(--wim-height-md);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
@@ -100,7 +100,7 @@
     z-index: var(--wim-z-overlay);
     min-width: 16rem;
     max-height: 20rem;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-overlay);
@@ -125,7 +125,7 @@
     transition: background-color var(--wim-transition-fast);
 
     &:hover {
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &.selected {

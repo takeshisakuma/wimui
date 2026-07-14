@@ -171,11 +171,11 @@
     // Legacy or specific variant for outlined
     &.variant_default {
       color: var(--wim-color-text-primary);
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
+        background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm));
       }
@@ -183,7 +183,7 @@
 
     &.glass {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-surface-glass);
+      background: var(--wim-color-glass-bg);
       border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
       backdrop-filter: blur(var(--wim-glass-blur, 8px));
@@ -254,7 +254,7 @@
       text-align: center;
       background-color: var(--wim-color-danger);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-surface);
 
       &.dot {
         position: absolute;
@@ -264,7 +264,7 @@
         height: 8px; /* Exception: Geometric Harmony — ドットバッジ直径 */
         background-color: var(--wim-color-danger);
         border-radius: var(--wim-radius-full);
-        box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component);
+        box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-surface);
       }
     }
 

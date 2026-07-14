@@ -34,14 +34,14 @@
     color: var(--wim-color-text-secondary);
     cursor: pointer;
     user-select: none;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-full);
     transition: var(--wim-transition-base);
 
     &:hover:not(:disabled) {
       color: var(--wim-color-text-accent);
-      background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
+      background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
       border-color: var(--wim-color-primary);
     }
 

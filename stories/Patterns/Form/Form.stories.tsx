@@ -649,7 +649,7 @@ export const UserProfileForm: StoryObj = {
             .wim-profile-content {
               flex: 1 1 350px;
               min-width: 0;
-              background-color: var(--wim-color-bg-component);
+              background-color: var(--wim-color-surface);
             }
             @container (max-width: 599px) {
               .wim-profile-sidebar {

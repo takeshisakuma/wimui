@@ -29,11 +29,11 @@
     }
 
     &:hover:not(.disabled, .danger) {
-        background-color: var(--wim-color-bg-hover);
+        background-color: var(--wim-color-surface-hover);
     }
 
     &.active {
-        background-color: var(--wim-color-bg-hover);
+        background-color: var(--wim-color-surface-hover);
     }
 
     &.disabled {

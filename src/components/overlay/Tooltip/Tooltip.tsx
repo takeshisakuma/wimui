@@ -266,7 +266,7 @@ export const TooltipContent = React.forwardRef<
         <FloatingArrow
           ref={arrowRef}
           context={floatingContext}
-          fill={context.variant === "glass" ? "var(--wim-color-surface-glass)" : "var(--wim-color-bg-inverted)"}
+          fill={context.variant === "glass" ? "var(--wim-color-glass-bg)" : "var(--wim-color-bg-inverted)"}
           strokeWidth={context.variant === "glass" ? 1 : 0}
           stroke={context.variant === "glass" ? "var(--wim-color-glass-border)" : "transparent"}
           className={styles.arrow}

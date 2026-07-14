@@ -14,7 +14,7 @@
     appearance: none;
     outline: var(--wim-field-outline, none);
     background: none;
-    background-color: var(--wim-field-bg, var(--wim-color-bg-component));
+    background-color: var(--wim-field-bg, var(--wim-color-surface));
     border: none;
     border: var(--wim-field-border, var(--wim-border-width-thin) solid var(--wim-color-secondary));
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))

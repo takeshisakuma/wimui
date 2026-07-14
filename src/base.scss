@@ -174,7 +174,7 @@
   code {
     padding: 2px 4px;
     color: var(--wim-color-text-primary) !important;
-    background-color: var(--wim-color-bg-secondary);
+    background-color: var(--wim-color-surface-variant);
     border-radius: var(--wim-radius-component);
   }
  
@@ -192,7 +192,7 @@
     td {
       padding: 12px;
       color: var(--wim-color-text-primary) !important;
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border: 1px solid var(--wim-color-border);
 
       strong {
@@ -202,7 +202,7 @@
 
     th {
       font-weight: 600;
-      background-color: var(--wim-color-bg-secondary);
+      background-color: var(--wim-color-surface-variant);
     }
   }
 

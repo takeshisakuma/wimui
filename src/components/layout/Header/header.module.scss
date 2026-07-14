@@ -22,17 +22,17 @@
   }
 
   &.glass {
-    background: var(--wim-color-surface-glass);
+    background: var(--wim-color-glass-bg);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     backdrop-filter: blur(var(--wim-color-glass-blur));
   }
 
   &.bg-primary {
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
   }
 
   &.bg-secondary {
-    background-color: var(--wim-color-bg-secondary);
+    background-color: var(--wim-color-surface-variant);
   }
 
   &.bg-transparent {

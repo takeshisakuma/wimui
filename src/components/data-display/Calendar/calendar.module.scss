@@ -5,7 +5,7 @@
     padding: var(--wim-spacing-md);
     font-family: var(--wim-font-family-default);
     user-select: none;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
@@ -47,7 +47,7 @@
   
     &:hover:not(:disabled) {
       color: var(--wim-color-text-primary);
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
   
     &:disabled {
@@ -102,7 +102,7 @@
       color var(--wim-duration-base) var(--wim-easing-standard);
   
     &:hover:not(:disabled, .selected) {
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
   
     &.sunday {

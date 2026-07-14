@@ -53,7 +53,7 @@ export const Basic: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "var(--wim-color-bg-secondary)",
+            backgroundColor: "var(--wim-color-surface-variant)",
             border: "2px dashed var(--wim-color-border)",
             borderRadius: "8px",
             textAlign: "center",
@@ -87,7 +87,7 @@ export const Disabled: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "var(--wim-color-bg-secondary)",
+            backgroundColor: "var(--wim-color-surface-variant)",
             border: "2px dashed var(--wim-color-border)",
             borderRadius: "8px",
             textAlign: "center",

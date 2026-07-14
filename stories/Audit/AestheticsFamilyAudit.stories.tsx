@@ -123,7 +123,7 @@ export const Overview: StoryObj = {
                   .motion-track {
                     height: 8px;
                     width: 100%;
-                    background: var(--wim-color-bg-secondary);
+                    background: var(--wim-color-surface-variant);
                     border-radius: 4px;
                     position: relative;
                     overflow: hidden;
@@ -149,13 +149,13 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:aesthetics_oklch_shadows_title")}>
           <ComponentGroup label={t("audit:aesthetics_standard_shadows_label")} direction="row" wrap gap="xl">
             {/* i18n-ignore-start — Shadow はトークン名の表示のため英語のまま */}
-            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-sm)" }}>
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-surface)", boxShadow: "var(--wim-shadow-sm)" }}>
               <Text size="xs">Shadow SM</Text>
             </Box>
-            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-md)" }}>
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-surface)", boxShadow: "var(--wim-shadow-md)" }}>
               <Text size="xs">Shadow MD</Text>
             </Box>
-            <Box p="lg" radius="md" style={{ background: "var(--wim-color-bg-component)", boxShadow: "var(--wim-shadow-lg)" }}>
+            <Box p="lg" radius="md" style={{ background: "var(--wim-color-surface)", boxShadow: "var(--wim-shadow-lg)" }}>
               <Text size="xs">Shadow LG</Text>
             </Box>
             {/* i18n-ignore-end */}

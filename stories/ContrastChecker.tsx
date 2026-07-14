@@ -118,7 +118,7 @@ export const ContrastChecker: React.FC = () => {
                     padding: 32px;
                     border: 1px solid var(--wim-color-border, rgba(0,0,0,0.1));
                     border-radius: 24px;
-                    background: var(--wim-color-bg-component, #fff);
+                    background: var(--wim-color-surface, #fff);
                     margin: 32px 0;
                     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
                 }

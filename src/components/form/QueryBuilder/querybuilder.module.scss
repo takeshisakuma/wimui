@@ -53,7 +53,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--wim-color-bg-secondary);
+  background-color: var(--wim-color-surface-variant);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
   transition: var(--wim-transition-fast);
@@ -67,14 +67,14 @@
   border-color: color-mix(in oklch, var(--wim-color-danger) 20%, var(--wim-color-border-secondary));
 
   > .ruleList {
-    background-color: color-mix(in oklch, var(--wim-color-danger) 6%, var(--wim-color-bg-component));
+    background-color: color-mix(in oklch, var(--wim-color-danger) 6%, var(--wim-color-surface));
   }
 }
 
 .nested {
   margin-top: var(--wim-spacing-sm);
   margin-bottom: var(--wim-spacing-sm);
-  background-color: var(--wim-color-bg-secondary);
+  background-color: var(--wim-color-surface-variant);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
 }
 
@@ -84,7 +84,7 @@
   gap: var(--wim-spacing-md);
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  background-color: var(--wim-color-bg-component);
+  background-color: var(--wim-color-surface);
   border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
 }
@@ -134,13 +134,13 @@
   gap: var(--wim-spacing-sm);
   align-items: flex-start;
   padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-bg-component);
+  background-color: var(--wim-color-surface);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
   animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
   &:hover {
-    background-color: var(--wim-color-bg-hover);
+    background-color: var(--wim-color-surface-hover);
     border-color: var(--wim-color-primary);
   }
 
@@ -157,7 +157,7 @@
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   margin-top: auto;
-  background-color: var(--wim-color-bg-component);
+  background-color: var(--wim-color-surface);
   border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: 0 0 var(--wim-radius-container) var(--wim-radius-container);
 

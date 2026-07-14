@@ -205,7 +205,7 @@ R_outer ≈ R_inner + S
   - `--wim-z-overlay-step: 1002` — Tour ステップバブル
   - `--wim-z-toast: 9999` — Toast・Snackbar・Notification（常に最前面）
 - トークンは `src/tokens/` 以下の SCSS ファイルで定義し、`:root` に CSS カスタムプロパティとして公開してください。
-- 既存のエイリアス（`--wim-color-surface: var(--wim-color-bg-component)` など）は維持しますが、自己参照になる循環エイリアスは作成しないでください。
+- サーフェスは `surface` / `surface-variant` / `surface-hover` を正規名とする（`bg-component` / `bg-secondary` / `bg-hover` は使わない）。自己参照になる循環エイリアスは作成しないでください。
 - デザイントークンの追加・変更は `tokens/` ディレクトリの JSON ファイルを編集し、`npm run tokens:build` を実行してください。これにより SCSS 変数と TypeScript 型定義が自動更新されます。手動での SCSS 編集や `src/types/tokens.ts` の型追加は原則不要です。
   - カラー: `tokens/color/base.json` (生色), `tokens/color/semantic.json` (意味的定義)
   - サイズ・間隔: `tokens/spacing.json`

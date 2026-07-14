@@ -42,7 +42,7 @@
     "gaugeChart_prop_title": "チャートの上に表示する任意のタイトル。",
     "gaugeChart_prop_value": "ゲージが表示する現在値。min と max の範囲に丸められます。",
     "gaugeChart_prop_width": "チャートの幅（例: \"100%\", 500）。\n@default \"100%\"",
-    "heatmap_prop_colorRange": "最小値と最大値に使用する色。\n@default [\"var(--wim-color-bg-secondary)\", \"var(--wim-color-primary)\"]",
+    "heatmap_prop_colorRange": "最小値と最大値に使用する色。\n@default [\"var(--wim-color-surface-variant)\", \"var(--wim-color-primary)\"]",
     "heatmap_prop_data": "表示するセル。各エントリが x/y カテゴリの組と値を対応付けます。",
     "heatmap_prop_height": "チャートの高さ（ピクセル）。\n@default 300",
     "heatmap_prop_title": "チャートの上に表示する任意のタイトル。",

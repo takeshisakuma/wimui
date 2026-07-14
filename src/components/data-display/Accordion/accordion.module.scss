@@ -36,19 +36,19 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
-    background-color: var(--wim-color-bg-hover);
+    background-color: var(--wim-color-surface-hover);
     border: none;
     transition: var(--wim-transition-fast);
 
     .item.open > & {
       font-weight: var(--wim-font-weight-semibold);
       color: var(--wim-color-text-accent);
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &:hover:not(:disabled) {
       color: var(--wim-color-text-accent);
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &:focus-visible {

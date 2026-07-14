@@ -91,7 +91,7 @@
     height: 40px; /* Exception: Structural Logic — ヘッダー操作の最小タッチターゲット */
     color: inherit;
     cursor: pointer;
-    background: var(--wim-color-surface-glass);
+    background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(var(--wim-blur-glass));
@@ -155,7 +155,7 @@
     height: 56px; /* Exception: Structural Logic — 画像ナビの大型タッチターゲット */
     color: inherit;
     cursor: pointer;
-    background: var(--wim-color-surface-glass);
+    background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(var(--wim-blur-glass));

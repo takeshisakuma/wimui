@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     // Component-specific layout values
     --timeline-padding: var(--wim-spacing-2xl);
@@ -115,7 +115,7 @@
     &.icon {
       width: var(--timeline-icon-size);
       height: var(--timeline-icon-size);
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thick) solid var(--wim-color-border);
 
       svg {

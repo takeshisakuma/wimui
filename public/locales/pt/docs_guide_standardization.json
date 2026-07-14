@@ -114,7 +114,7 @@
     "list_item_std_rule_1_title": "Sem Padding/Hover Personalizado",
     "list_item_std_rule_2_desc": "Use src/components/_internal/BaseListItem ao renderizar itens selecionáveis.",
     "list_item_std_rule_2_title": "Uso do BaseListItem",
-    "list_item_std_rule_3_desc": "Garanta que --wim-color-bg-hover seja aplicado para estados de hover (tratado automaticamente pelo BaseListItem).",
+    "list_item_std_rule_3_desc": "Garanta que --wim-color-surface-hover seja aplicado para estados de hover (tratado automaticamente pelo BaseListItem).",
     "list_item_std_rule_3_title": "Token de Cor de Hover",
     "list_item_std_rules_list": "As seguintes regras se aplicam ao renderizar itens de lista selecionáveis. Não implemente padding, estilos de hover ou áreas de clique personalizados — use BaseListItem para garantir consistência.",
     "list_item_std_rules_title": "Regras de Implementação",

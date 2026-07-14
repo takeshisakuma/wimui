@@ -8,7 +8,7 @@
   :global(.react-flow__node) {
     font-family: var(--wim-font-family-base);
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-sm);
@@ -24,7 +24,7 @@
   }
 
   :global(.react-flow__controls-button) {
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
     fill: var(--wim-color-text-primary);
 
@@ -35,7 +35,7 @@
 }
 
 .minimap {
-  background-color: var(--wim-color-bg-component);
+  background-color: var(--wim-color-surface);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }

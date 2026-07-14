@@ -31,7 +31,7 @@
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);
     cursor: pointer;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
@@ -113,7 +113,7 @@
     margin: 0;
     overflow-y: auto;
     list-style: none;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
@@ -129,7 +129,7 @@
   }
 
   .active {
-    background: var(--wim-color-bg-secondary);
+    background: var(--wim-color-surface-variant);
   }
 
   .optionDisabled {
@@ -186,7 +186,7 @@
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
     white-space: nowrap;
-    background: var(--wim-color-bg-secondary);
+    background: var(--wim-color-surface-variant);
     border-radius: var(--wim-radius-sm);
   }
 

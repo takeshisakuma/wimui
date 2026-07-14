@@ -163,13 +163,13 @@
 
     &.danger {
       color: var(--wim-color-danger);
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border-color: var(--wim-color-danger);
     }
 
     &.success {
       color: var(--wim-color-success);
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border-color: var(--wim-color-success);
     }
 
@@ -219,7 +219,7 @@
     }
 
     &:hover:not(:disabled) {
-      background-color: var(--wim-color-bg-hover);
+      background-color: var(--wim-color-surface-hover);
       border-color: var(--wim-color-ghost-border-hover);
       box-shadow: var(--wim-shadow-sm);
       transform: translateY(var(--wim-lift-sm)) translateZ(0);

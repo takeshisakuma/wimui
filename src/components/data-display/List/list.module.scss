@@ -23,7 +23,7 @@
 
   &.bordered {
     overflow: hidden;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
 
@@ -43,11 +43,11 @@
       transition: all var(--wim-transition-fast);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.95) c h);
+        background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
       }
 
       &:active {
-        background-color: oklch(from var(--wim-color-bg-component) calc(l * 0.92) c h);
+        background-color: oklch(from var(--wim-color-surface) calc(l * 0.92) c h);
         transform: scale(var(--wim-scale-active));
       }
     }
@@ -96,7 +96,7 @@
   }
 
   &.selected {
-    background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-bg-component));
+    background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
   }
 
   &.withIcon {

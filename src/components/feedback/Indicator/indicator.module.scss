@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -25,7 +25,7 @@
     width: var(--indicator-size, 10px);
     height: var(--indicator-size, 10px);
     background-color: var(--wim-color-secondary);
-    border: var(--indicator-border-width, 2px) solid var(--wim-color-bg-component);
+    border: var(--indicator-border-width, 2px) solid var(--wim-color-surface);
     border-radius: var(--wim-radius-full);
 
     &.sm {

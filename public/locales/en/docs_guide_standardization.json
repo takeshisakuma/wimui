@@ -90,7 +90,7 @@
     "list_item_std_rule_2_title": "BaseListItem Usage",
     "list_item_std_rule_2_desc": "Use src/components/_internal/BaseListItem when rendering selectable items.",
     "list_item_std_rule_3_title": "Hover Color Token",
-    "list_item_std_rule_3_desc": "Ensure --wim-color-bg-hover is applied for hover states (automatically handled by BaseListItem).",
+    "list_item_std_rule_3_desc": "Ensure --wim-color-surface-hover is applied for hover states (automatically handled by BaseListItem).",
     "list_item_std_rules_list": "The following rules apply when rendering selectable list items. Do not implement custom padding, hover styles, or click areas — use BaseListItem to ensure consistency.",
     "list_item_std_affected_components": "Affected Components",
     "list_item_std_note_title": "Note",

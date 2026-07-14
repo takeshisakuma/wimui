@@ -114,7 +114,7 @@
     "list_item_std_rule_1_title": "カスタムスタイルの禁止",
     "list_item_std_rule_2_desc": "項目を表示する際は src/components/_internal/BaseListItem を使用してください。",
     "list_item_std_rule_2_title": "BaseListItemの利用",
-    "list_item_std_rule_3_desc": "ホバー色には必ず --wim-color-bg-hover トークンが適用されるようにしてください（BaseListItem を使えば自動で適用されます）。",
+    "list_item_std_rule_3_desc": "ホバー色には必ず --wim-color-surface-hover トークンが適用されるようにしてください（BaseListItem を使えば自動で適用されます）。",
     "list_item_std_rule_3_title": "ホバートークンの適用",
     "list_item_std_rules_list": "選択可能なリストアイテムを描画する際は、以下のルールに従ってください。独自の padding・ホバースタイル・クリック判定範囲は実装せず、BaseListItem を使用して一貫性を保ってください。",
     "list_item_std_rules_title": "実装ルール",

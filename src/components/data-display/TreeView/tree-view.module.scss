@@ -9,7 +9,7 @@
     padding: var(--wim-spacing-xs) 0;
     overflow: hidden;
     outline: none;
-    background: var(--wim-color-surface-glass);
+    background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-container);
     box-shadow: var(--wim-shadow-md);
@@ -136,7 +136,7 @@
     }
 
     &:hover:not(:disabled) {
-      background: var(--wim-color-bg-hover);
+      background: var(--wim-color-surface-hover);
     }
 
     &.expanded {

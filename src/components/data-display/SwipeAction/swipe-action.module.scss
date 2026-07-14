@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .container {
     position: relative;
     width: 100%;
@@ -25,7 +25,7 @@
   }
 
   .action {
-    --bg: var(--wim-color-bg-secondary);
+    --bg: var(--wim-color-surface-variant);
 
     display: flex;
     flex: 1;

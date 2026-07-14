@@ -1,4 +1,4 @@
-﻿@use "../../../styles/field-mixins" as field;
+@use "../../../styles/field-mixins" as field;
 
 @layer component {
   .root {
@@ -29,7 +29,7 @@
     margin: 0 var(--wim-spacing-sm) 0 0;
     appearance: none;
     cursor: pointer;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thick) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-sm);
     transition:

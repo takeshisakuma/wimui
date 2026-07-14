@@ -39,7 +39,7 @@
 
     &.dragging {
       cursor: grabbing;
-      background: var(--wim-color-surface-glass);
+      background: var(--wim-color-glass-bg);
       border-color: var(--wim-color-primary);
       border-style: dashed;
       opacity: var(--wim-opacity-ghost);

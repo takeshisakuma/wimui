@@ -143,7 +143,7 @@ export const CustomContainer: Story = {
 
           <Box
             ref={setContainer}
-            bg="var(--wim-color-bg-secondary)"
+            bg="var(--wim-color-surface-variant)"
             style={{
               border: "2px dashed", borderColor: "var(--wim-color-primary)",
               minHeight: "150px",
@@ -435,7 +435,7 @@ export const SidePanelDetail: Story = {
 
                 <Card
                   variant="flat"
-                  style={{ background: "var(--wim-color-bg-secondary)", marginBottom: "20px" }}
+                  style={{ background: "var(--wim-color-surface-variant)", marginBottom: "20px" }}
                 >
                   <p
                     style={{
@@ -508,7 +508,7 @@ export const SidePanelDetail: Story = {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                background: "var(--wim-color-bg-secondary)",
+                background: "var(--wim-color-surface-variant)",
                 height: "100%",
                 flexShrink: 0,
                 overflowX: "hidden"
@@ -534,7 +534,7 @@ export const SidePanelDetail: Story = {
             <Box style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
               <Box
                 p="md"
-                bg="var(--wim-color-bg-secondary)"
+                bg="var(--wim-color-surface-variant)"
                 style={{
                   borderBottom: "1px solid var(--wim-color-border)",
                   display: "flex",

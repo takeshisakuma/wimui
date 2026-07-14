@@ -95,7 +95,7 @@ export const GaugeChart = ({
               isAnimationActive={animated}
             >
               <Cell fill={fill} />
-              <Cell fill="var(--wim-color-bg-secondary)" />
+              <Cell fill="var(--wim-color-surface-variant)" />
             </Pie>
           </PieChart>
         </ResponsiveContainer>

@@ -1,4 +1,4 @@
-﻿@use "../../../styles/token-common" as *;
+@use "../../../styles/token-common" as *;
 
 @layer component {
   .root {
@@ -68,7 +68,7 @@
   
     &.solid.selected {
       box-shadow:
-        0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component),
+        0 0 0 var(--wim-border-width-thick) var(--wim-color-surface),
         0 0 0 var(--wim-border-width-thick) currentcolor;
     }
   
@@ -76,7 +76,7 @@
     &.disabled {
       color: var(--wim-color-text-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-bg-component);
+      background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
       opacity: 1;
       filter: none;

@@ -35,7 +35,7 @@
     overflow: hidden;
     touch-action: none; // Prevent scrolling while signing
     cursor: crosshair;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }

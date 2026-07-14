@@ -2,15 +2,15 @@
   "wim": {
     "color": {
       "bg-app": { "value": "{pccs.gy2-5}" },
-      "bg-component": { "value": "{pccs.gy3-5}" },
+      "surface": { "value": "{pccs.gy3-5}" },
       "text-primary": { "value": "{pccs.w}" },
       "text-secondary": { "value": "{pccs.gy8-5}" },
       "text-tertiary": { "value": "{pccs.gy7-5}" },
       "text-disabled": { "value": "{pccs.gy6-5}" },
       "bg-primary": { "value": "{pccs.gy3-5}" },
-      "bg-secondary": { "value": "{pccs.gy4-5}" },
+      "surface-variant": { "value": "{pccs.gy4-5}" },
       "bg-tertiary": { "value": "{pccs.gy4-5}" },
-      "bg-hover": { "value": "oklch(from var(--wim-color-primary) l c h / 0.12)" },
+      "surface-hover": { "value": "oklch(from var(--wim-color-primary) l c h / 0.12)" },
       "border": { "value": "{pccs.gy5-5}" },
       "border-secondary": { "value": "{pccs.gy4-5}" },
       "scrollbar-thumb": { "value": "{pccs.gy5-5}" },
@@ -44,7 +44,6 @@
       "glass-blur": { "value": "{wim.blur.md}" },
       "glass-blur-sm": { "value": "{wim.blur.sm}" },
       "glass-blur-lg": { "value": "{wim.blur.lg}" },
-      "surface-glass": { "value": "var(--wim-color-glass-bg)" },
       "surface-inset": { "value": "rgba(0, 0, 0, 0.3)" },
       "shadow-glass": { "value": "0 10px 20px -5px rgba(0, 0, 0, 0.6)" },
 
@@ -52,13 +51,13 @@
       "skeleton-shine": { "value": "rgba(255, 255, 255, 0.06)" },
 
       "control-default-fg": { "value": "var(--wim-color-text-primary)" },
-      "control-default-bg": { "value": "var(--wim-color-bg-secondary)" },
+      "control-default-bg": { "value": "var(--wim-color-surface-variant)" },
       "control-default-border": { "value": "var(--wim-color-border)" },
 
       "feedback-text-base": { "value": "white" },
       "feedback-bg-base": { "value": "black" },
       "feedback-border-strength": { "value": "40%" },
-      "frosted-bg": { "value": "oklch(from var(--wim-color-bg-component) l c h / 0.6)" },
+      "frosted-bg": { "value": "oklch(from var(--wim-color-surface) l c h / 0.6)" },
 
       "bg-subtle": { "value": "#262626" },
       "close-hover": { "value": "rgba(255, 255, 255, 0.1)" },
@@ -78,8 +77,8 @@
       "avatar-s22": { "value": "{pccs.b22}" },
       "avatar-s24": { "value": "{pccs.b24}" },
 
-      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-bg-secondary))" },
-      "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-received": { "value": "color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-surface-variant))" },
+      "chat-bubble-sent": { "value": "color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-surface-variant))" },
 
       "chart-1": { "value": "{pccs.b16}" },
       "chart-2": { "value": "{pccs.b6}" },

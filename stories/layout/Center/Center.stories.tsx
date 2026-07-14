@@ -35,7 +35,7 @@ export const Default: Story = {
   },
   args: {
     h: 200,
-    bg: "var(--wim-color-bg-secondary)",
+    bg: "var(--wim-color-surface-variant)",
   },
 };
 

@@ -5,7 +5,7 @@
     flex-direction: column;
     overflow: visible;
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     transition: var(--wim-transition-base);
   
     /* Variants */
@@ -29,7 +29,7 @@
     }
   
     &.flat {
-      background-color: var(--wim-color-bg-secondary);
+      background-color: var(--wim-color-surface-variant);
       border: var(--wim-border-width-thin) solid transparent;
   
       &.interactive:hover {
@@ -39,7 +39,7 @@
     }
 
     &.glass {
-      background: var(--wim-color-surface-glass);
+      background: var(--wim-color-glass-bg);
       border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
       backdrop-filter: blur(var(--wim-color-glass-blur));

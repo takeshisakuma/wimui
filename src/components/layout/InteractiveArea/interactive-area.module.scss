@@ -24,7 +24,7 @@
   }
 
   &.default {
-    --_bg: var(--wim-color-bg-component);
+    --_bg: var(--wim-color-surface);
   }
 
   &.transparent {
@@ -32,7 +32,7 @@
   }
 
   &.muted {
-    --_bg: var(--wim-color-bg-secondary);
+    --_bg: var(--wim-color-surface-variant);
   }
 
   &.sm {
@@ -62,7 +62,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: oklch(from var(--_bg, var(--wim-color-bg-component)) calc(l * 0.95) c h);
+      background-color: oklch(from var(--_bg, var(--wim-color-surface)) calc(l * 0.95) c h);
       border-color: var(--wim-color-primary);
       transform: translateY(var(--wim-lift-sm));
     }

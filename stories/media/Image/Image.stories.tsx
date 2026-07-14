@@ -174,7 +174,7 @@ export const Glassmorphism: Story = {
             backdropFilter={{ blur: "md" }}
             hoverBackdropFilter={{ blur: "none" }}
             style={{
-              backgroundColor: "var(--wim-color-surface-glass)",
+              backgroundColor: "var(--wim-color-glass-bg)",
               padding: "20px",
               color: "var(--wim-color-text-primary)",
             }}
@@ -392,7 +392,7 @@ export const BlendingEffects: Story = {
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_image", { defaultValue: "Image Blending with Background" })}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <div style={{ padding: "20px", background: "var(--wim-color-bg-secondary)" }}>
+            <div style={{ padding: "20px", background: "var(--wim-color-surface-variant)" }}>
               <Image
                 {...args}
                 alt={t("story.image_alt_multiply_bg", { defaultValue: "Multiply image" })}

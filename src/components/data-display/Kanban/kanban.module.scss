@@ -22,7 +22,7 @@
     transition: background var(--wim-duration-fast) var(--wim-easing-standard), box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
 
     &.dragOver {
-      background: var(--wim-color-bg-hover);
+      background: var(--wim-color-surface-hover);
       box-shadow: inset 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
     }
   }
@@ -51,7 +51,7 @@
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
-    background: var(--wim-color-bg-secondary);
+    background: var(--wim-color-surface-variant);
     border-radius: var(--wim-radius-full);
   }
 
@@ -67,7 +67,7 @@
     position: relative;
     box-sizing: border-box;
     cursor: grab;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: opacity var(--wim-duration-fast) var(--wim-easing-standard), box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
@@ -121,7 +121,7 @@
     border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
 
     &:active {
-      background: var(--wim-color-bg-hover);
+      background: var(--wim-color-surface-hover);
     }
   }
 
@@ -132,7 +132,7 @@
     left: 0;
     z-index: 10;
     overflow: hidden;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
@@ -156,7 +156,7 @@
     }
 
     &:active {
-      background: var(--wim-color-bg-hover);
+      background: var(--wim-color-surface-hover);
     }
   }
 }

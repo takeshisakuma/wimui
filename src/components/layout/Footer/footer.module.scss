@@ -7,20 +7,20 @@
 
   &.bg-primary {
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
   }
 
   &.bg-secondary {
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-secondary);
+    background-color: var(--wim-color-surface-variant);
   }
 
   &.bg-dark {
-    color: var(--wim-color-text-on-dark);
+    color: var(--wim-color-text-on-inverted);
     background-color: var(--wim-color-surface-inverse);
 
     .sectionTitle {
-      color: var(--wim-color-text-on-dark);
+      color: var(--wim-color-text-on-inverted);
     }
 
     .bottom {
@@ -29,7 +29,7 @@
     }
 
     .sectionContent {
-      color: var(--wim-color-text-on-dark);
+      color: var(--wim-color-text-on-inverted);
     }
   }
 

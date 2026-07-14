@@ -594,7 +594,7 @@ export const CTASection: StoryObj = {
                 variant="solid"
                 size="lg"
                 style={{
-                  background: "var(--wim-color-bg-component)",
+                  background: "var(--wim-color-surface)",
                   color: "var(--wim-color-primary)",
                   border: "none",
                 }}

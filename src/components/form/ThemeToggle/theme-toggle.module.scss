@@ -14,7 +14,7 @@
     padding: 0;
     color: var(--wim-color-text-primary);
     cursor: pointer;
-    background: var(--wim-color-bg-component);
+    background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard),
@@ -23,7 +23,7 @@
 
     &:hover {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-bg-secondary);
+      background: var(--wim-color-surface-variant);
     }
 
     &:focus-visible {
@@ -37,7 +37,7 @@
     display: inline-flex;
     gap: var(--wim-spacing-3xs);
     padding: var(--wim-spacing-3xs);
-    background: var(--wim-color-bg-secondary);
+    background: var(--wim-color-surface-variant);
     border-radius: var(--wim-radius-component);
   }
 
@@ -67,7 +67,7 @@
 
     &.active {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-bg-component);
+      background: var(--wim-color-surface);
       box-shadow: var(--wim-shadow-xs);
     }
   }

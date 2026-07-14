@@ -66,7 +66,7 @@ export const LivePreview: Story = {
           gap: "16px",
           width: "320px",
           padding: "24px",
-          background: "var(--wim-color-bg-component)",
+          background: "var(--wim-color-surface)",
           border: "1px solid var(--wim-color-border)",
           borderRadius: "12px",
         }}

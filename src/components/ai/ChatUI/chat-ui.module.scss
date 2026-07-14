@@ -5,7 +5,7 @@
     height: 100%;
     container-type: inline-size;
     overflow: hidden;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }
@@ -26,7 +26,7 @@
     align-items: flex-start;
     max-width: 80%;
   
-    --wim-chat-bubble-bg: var(--wim-color-bg-secondary);
+    --wim-chat-bubble-bg: var(--wim-color-surface-variant);
     --wim-chat-bubble-color: var(--wim-color-text-primary);
   
     &.left {
@@ -52,7 +52,7 @@
     }
 
     &.secondary {
-      --wim-chat-bubble-bg: var(--wim-color-bg-secondary);
+      --wim-chat-bubble-bg: var(--wim-color-surface-variant);
     }
   }
   
@@ -182,7 +182,7 @@
     gap: var(--wim-spacing-sm);
     align-items: flex-end;
     padding: var(--wim-spacing-sm);
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
@@ -281,11 +281,11 @@
 
     &:hover {
       color: var(--wim-color-text-secondary);
-      background-color: var(--wim-color-bg-secondary);
+      background-color: var(--wim-color-surface-variant);
     }
 
     &:active {
-      background-color: oklch(from var(--wim-color-bg-secondary) calc(l * 0.9) c h);
+      background-color: oklch(from var(--wim-color-surface-variant) calc(l * 0.9) c h);
     }
   }
   

@@ -18,7 +18,7 @@
     line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
     resize: vertical;
-    background-color: var(--wim-color-bg-component);
+    background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
