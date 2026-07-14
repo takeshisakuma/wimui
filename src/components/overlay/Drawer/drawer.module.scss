@@ -4,7 +4,7 @@
     inset: 0;
     z-index: var(--wim-z-overlay);
     display: flex;
-    background-color: var(--wim-color-overlay-bg);
+    background-color: var(--wim-color-overlay);
     backdrop-filter: blur(var(--wim-blur-xs));
   }
 

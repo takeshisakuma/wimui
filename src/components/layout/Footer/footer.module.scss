@@ -16,20 +16,20 @@
   }
 
   &.bg-dark {
-    color: var(--wim-color-text-on-inverted);
+    color: var(--wim-color-text-on-inverse);
     background-color: var(--wim-color-surface-inverse);
 
     .sectionTitle {
-      color: var(--wim-color-text-on-inverted);
+      color: var(--wim-color-text-on-inverse);
     }
 
     .bottom {
-      color: var(--wim-color-text-muted-on-inverted);
-      border-top-color: var(--wim-color-border-inverted);
+      color: var(--wim-color-text-muted-on-inverse);
+      border-top-color: var(--wim-color-border-inverse);
     }
 
     .sectionContent {
-      color: var(--wim-color-text-on-inverted);
+      color: var(--wim-color-text-on-inverse);
     }
   }
 

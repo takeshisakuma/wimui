@@ -59,7 +59,7 @@ export const Horizontal: Story = {
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={70}>
-            <PanelContent color="var(--wim-color-bg-surface-subtle)" textColor="var(--wim-color-text-primary)">{t("story.splitter_right", "Right Panel")}</PanelContent>
+            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_right", "Right Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -86,7 +86,7 @@ export const Vertical: Story = {
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="var(--wim-color-bg-surface-subtle)" textColor="var(--wim-color-text-primary)">{t("story.splitter_bottom", "Bottom Panel")}</PanelContent>
+            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_bottom", "Bottom Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -112,7 +112,7 @@ export const MultiplePanels: Story = {
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="var(--wim-color-bg-surface-subtle)" textColor="var(--wim-color-text-primary)">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
+            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={20}>
@@ -144,11 +144,11 @@ export const Nested: Story = {
           <Splitter.Panel defaultSize={75}>
             <Splitter orientation="vertical">
               <Splitter.Panel defaultSize={70}>
-                <PanelContent color="var(--wim-color-bg-app)" textColor="var(--wim-color-text-primary)">{t("story.splitter_main", "Main Content")}</PanelContent>
+                <PanelContent color="var(--wim-color-surface-app)" textColor="var(--wim-color-text-primary)">{t("story.splitter_main", "Main Content")}</PanelContent>
               </Splitter.Panel>
               <Splitter.Handle />
               <Splitter.Panel defaultSize={30}>
-                <PanelContent color="var(--wim-color-bg-surface-subtle)" textColor="var(--wim-color-text-primary)">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
+                <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
               </Splitter.Panel>
             </Splitter>
           </Splitter.Panel>
@@ -176,7 +176,7 @@ export const Constraints: Story = {
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel>
-            <PanelContent color="var(--wim-color-bg-surface-subtle)" textColor="var(--wim-color-text-primary)">{t("story.splitter_flexible", "Flexible Panel")}</PanelContent>
+            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_flexible", "Flexible Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>

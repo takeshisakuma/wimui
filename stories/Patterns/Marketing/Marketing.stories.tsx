@@ -43,7 +43,7 @@ export const HeroSection: StoryObj = {
           display: "flex",
           alignItems: "center",
           background:
-            "linear-gradient(135deg, var(--wim-color-primary-light) 0%, var(--wim-color-surface) 100%)",
+            "linear-gradient(135deg, var(--wim-color-primary-muted) 0%, var(--wim-color-surface) 100%)",
           padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)",
         }}
       >
@@ -737,7 +737,7 @@ export const ComparisonTable: StoryObj = {
                     padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "left",
                     fontWeight: 600,
-                    background: "var(--wim-color-bg-subtle)",
+                    background: "var(--wim-color-surface-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -748,7 +748,7 @@ export const ComparisonTable: StoryObj = {
                     padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 600,
-                    background: "var(--wim-color-bg-subtle)",
+                    background: "var(--wim-color-surface-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -759,7 +759,7 @@ export const ComparisonTable: StoryObj = {
                     padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 700,
-                    background: "var(--wim-color-primary-light)",
+                    background: "var(--wim-color-primary-muted)",
                     fontSize: "var(--wim-font-size-sm)",
                     color: "var(--wim-color-primary)",
                   }}
@@ -771,7 +771,7 @@ export const ComparisonTable: StoryObj = {
                     padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 600,
-                    background: "var(--wim-color-bg-subtle)",
+                    background: "var(--wim-color-surface-subtle)",
                     fontSize: "var(--wim-font-size-sm)",
                   }}
                 >
@@ -805,7 +805,7 @@ export const ComparisonTable: StoryObj = {
                     style={{
                       padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                       textAlign: "center",
-                      background: "var(--wim-color-primary-light)",
+                      background: "var(--wim-color-primary-muted)",
                     }}
                   >
                     {f.pro ? <Check /> : <Dash />}
@@ -964,7 +964,7 @@ export const FeatureComparison: StoryObj = {
               }}
             >
               <thead>
-                <tr style={{ background: "var(--wim-color-bg-subtle)" }}>
+                <tr style={{ background: "var(--wim-color-surface-subtle)" }}>
                   <th
                     style={{
                       textAlign: "left",

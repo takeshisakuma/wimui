@@ -42,7 +42,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_image_cropper")}>
-            <Box style={{ height: "400px", position: "relative", background: "var(--wim-color-bg-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden" }}>
+            <Box style={{ height: "400px", position: "relative", background: "var(--wim-color-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden" }}>
                <ImageCropper
                 src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format&fit=crop"
                 aspectRatio={16 / 9}

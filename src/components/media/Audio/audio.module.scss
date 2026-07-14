@@ -81,7 +81,7 @@
       background: linear-gradient(
         90deg,
         var(--wim-color-surface-variant) 25%,
-        var(--wim-color-bg-primary) 50%,
+        var(--wim-color-primary-fill) 50%,
         var(--wim-color-surface-variant) 75%
       );
       background-size: 200% 100%;
@@ -117,8 +117,8 @@
   }
 
   .custom {
-    --wim-audio-bg-start: var(--wim-color-bg-inverted);
-    --wim-audio-bg-end: var(--wim-color-bg-inverted); // Using same for now or a variation if exists
+    --wim-audio-bg-start: var(--wim-color-surface-inverse);
+    --wim-audio-bg-end: var(--wim-color-surface-inverse); // Using same for now or a variation if exists
 
     position: relative;
     z-index: 1;
@@ -126,7 +126,7 @@
     flex-direction: column;
     gap: var(--wim-spacing-lg); // Adjusted for 3 rows
     padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl); // More generous padding
-    color: var(--wim-color-text-white);
+    color: var(--wim-color-white);
     background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
     mask-image: none;
 
@@ -160,7 +160,7 @@
     gap: var(--wim-spacing-sm);
     align-items: center;
     padding: 0 var(--wim-spacing-xl) var(--wim-spacing-sm);
-    border-bottom: var(--wim-border-width-thin) solid oklch(from var(--wim-color-text-white) l c h / 0.1);
+    border-bottom: var(--wim-border-width-thin) solid oklch(from var(--wim-color-white) l c h / 0.1);
 
     .radiusFull & {
       padding-right: 2rem;
@@ -173,7 +173,7 @@
     height: var(--wim-height-lg);
     object-fit: cover;
     border-radius: var(--wim-radius-sm);
-    box-shadow: 0 2px 8px oklch(from var(--wim-color-bg-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — カバー画像のソフトシャドウ */
+    box-shadow: 0 2px 8px oklch(from var(--wim-color-surface-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — カバー画像のソフトシャドウ */
   }
 
   .info {
@@ -187,13 +187,13 @@
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
     line-height: var(--wim-line-height-tight);
-    color: var(--wim-color-text-white);
+    color: var(--wim-color-white);
   }
 
   .artist {
     font-size: var(--wim-font-size-xs);
     line-height: var(--wim-line-height-tight);
-    color: oklch(from var(--wim-color-text-white) l c h / 0.6);
+    color: oklch(from var(--wim-color-white) l c h / 0.6);
   }
 
   .badge {
@@ -244,7 +244,7 @@
     width: var(--wim-height-sm);
     height: var(--wim-height-sm);
     padding: var(--wim-spacing-xs);
-    color: var(--wim-color-text-white);
+    color: var(--wim-color-white);
     cursor: pointer;
     background: none;
     border: none;
@@ -255,13 +255,13 @@
 
     &:hover {
       color: var(--wim-color-text-accent); // Accent color
-      background-color: oklch(from var(--wim-color-text-white) l c h / 0.1);
+      background-color: oklch(from var(--wim-color-white) l c h / 0.1);
     }
 
     // Active state for toggles
     &.active {
       color: var(--wim-color-text-accent);
-      background-color: var(--wim-color-primary-light);
+      background-color: var(--wim-color-primary-muted);
     }
 
     // Text button (e.g. speed)
@@ -298,7 +298,7 @@
     align-items: center;
     font-size: var(--wim-font-size-xs);
     font-variant-numeric: tabular-nums;
-    color: oklch(from var(--wim-color-text-white) l c h / 0.7);
+    color: oklch(from var(--wim-color-white) l c h / 0.7);
 
     .radiusFull & {
       padding: 0 var(--wim-spacing-3xl);
@@ -310,7 +310,7 @@
     flex: 1;
     height: 4px; /* Exception: Structural Logic — プログレスバーの視認可能な最小高さ */
     cursor: pointer;
-    background: oklch(from var(--wim-color-text-white) l c h / 0.2);
+    background: oklch(from var(--wim-color-white) l c h / 0.2);
     border-radius: var(--wim-radius-sm);
 
     // Expand click area
@@ -350,9 +350,9 @@
       width: var(--wim-spacing-md);
       height: var(--wim-spacing-md);
       content: "";
-      background-color: var(--wim-color-text-white);
+      background-color: var(--wim-color-white);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px oklch(from var(--wim-color-bg-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
+      box-shadow: 0 0 4px oklch(from var(--wim-color-surface-void) l c h / 0.3); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
       transform: translateY(-50%);
     }
   }
@@ -368,7 +368,7 @@
     appearance: none;
     cursor: pointer;
     outline: none;
-    background: oklch(from var(--wim-color-text-white) l c h / 0.2);
+    background: oklch(from var(--wim-color-white) l c h / 0.2);
     border-radius: var(--wim-radius-sm);
     transition:
       width var(--wim-transition-base),
@@ -383,7 +383,7 @@
       height: var(--wim-spacing-xl);
       appearance: none;
       cursor: pointer;
-      background: var(--wim-color-text-white);
+      background: var(--wim-color-white);
       border-radius: var(--wim-radius-full);
     }
 
@@ -391,7 +391,7 @@
       width: var(--wim-spacing-xl);
       height: var(--wim-spacing-xl);
       cursor: pointer;
-      background: var(--wim-color-text-white);
+      background: var(--wim-color-white);
       border: none;
       border-radius: var(--wim-radius-full);
     }

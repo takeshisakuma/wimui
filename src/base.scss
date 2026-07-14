@@ -29,7 +29,7 @@
 
     color: var(--wim-color-text-primary);
     overflow-wrap: break-word;
-    background-color: var(--wim-color-bg-app);
+    background-color: var(--wim-color-surface-app);
     text-rendering: optimizelegibility;
     -webkit-tap-highlight-color: transparent;
   }
@@ -125,7 +125,7 @@
 .wim-docs-container {
   padding: 24px;
   color: var(--wim-color-text-primary);
-  background-color: var(--wim-color-bg-app);
+  background-color: var(--wim-color-surface-app);
   border-radius: var(--wim-radius-container);
   transition:
     background-color var(--wim-duration-base) var(--wim-easing-standard),

@@ -5,7 +5,7 @@
     overflow: hidden;
     font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
-    background: var(--wim-color-bg-subtle);
+    background: var(--wim-color-surface-subtle);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
   }
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
-    background: var(--wim-color-bg-subtle);
+    background: var(--wim-color-surface-subtle);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 

@@ -14,7 +14,7 @@
     display: block;
     width: 100%;
     line-height: 0;
-    background-color: var(--wim-color-bg-void); // アスペクト比変更時の余白（レターボックス）を黒にする
+    background-color: var(--wim-color-surface-void); // アスペクト比変更時の余白（レターボックス）を黒にする
   
     &.radiusSm {
       overflow: hidden;
@@ -73,7 +73,7 @@
       background: linear-gradient(
         90deg,
         var(--wim-color-surface-variant) 25%,
-        var(--wim-color-bg-subtle) 50%,
+        var(--wim-color-surface-subtle) 50%,
         var(--wim-color-surface-variant) 75%
       );
       background-size: 200% 100%;
@@ -124,7 +124,7 @@
     flex-direction: column;
     gap: var(--wim-spacing-sm);
     padding: var(--wim-spacing-md);
-    background: linear-gradient(to top, var(--wim-color-overlay-bg-dark) 0%, transparent 100%);
+    background: linear-gradient(to top, var(--wim-color-overlay-strong) 0%, transparent 100%);
     opacity: 0;
     transition: opacity var(--wim-transition-base);
   }
@@ -233,7 +233,7 @@
       content: "";
       background-color: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px var(--wim-color-overlay-bg); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
+      box-shadow: 0 0 4px var(--wim-color-overlay); /* Exception: Browser Rendering Fixes — プログレスつまみのソフトハロー */
       transform: translateY(-50%);
     }
   }
@@ -276,7 +276,7 @@
       cursor: pointer;
       background: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 2px var(--wim-color-overlay-bg); /* Exception: Browser Rendering Fixes — サム縁の視認性 */
+      box-shadow: 0 0 2px var(--wim-color-overlay); /* Exception: Browser Rendering Fixes — サム縁の視認性 */
     }
   
     // Show on focus/active too if needed
@@ -391,7 +391,7 @@
     font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-on-overlay);
     pointer-events: none;
-    background: var(--wim-color-overlay-bg);
+    background: var(--wim-color-overlay);
     border-radius: var(--wim-radius-full);
     transform: translate(-50%, -50%);
     animation: skipFadeIn var(--wim-duration-extra-slow) var(--wim-easing-entrance) forwards;

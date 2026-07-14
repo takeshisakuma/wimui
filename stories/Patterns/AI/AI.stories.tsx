@@ -83,7 +83,7 @@ export default function WelcomeCard() {
             borderRight: isMobile ? "none" : "1px solid var(--wim-color-border)",
             flexDirection: "column",
             flexShrink: 0,
-            background: "var(--wim-color-bg-surface-subtle)",
+            background: "var(--wim-color-surface-subtle-alpha)",
           }}
         >
           <Box p="md" style={{ borderBottom: "1px solid var(--wim-color-border)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

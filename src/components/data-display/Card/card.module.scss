@@ -45,7 +45,7 @@
       backdrop-filter: blur(var(--wim-color-glass-blur));
 
       &.interactive:hover {
-        background: oklch(from var(--wim-color-text-white) l c h / 0.15);
+        background: oklch(from var(--wim-color-white) l c h / 0.15);
         transform: translateY(var(--wim-lift-sm));
       }
     }

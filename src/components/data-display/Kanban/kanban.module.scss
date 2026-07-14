@@ -17,7 +17,7 @@
     flex-direction: column;
     width: 280px; // Exception: Structural Logic — 列の固定幅
     min-height: 200px; /* Exception: Structural Logic — empty column drop-zone floor */
-    background: var(--wim-color-bg-subtle);
+    background: var(--wim-color-surface-subtle);
     border-radius: var(--wim-radius-container);
     transition: background var(--wim-duration-fast) var(--wim-easing-standard), box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
 

@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-14（トークン別名刈り込み A）  
+最終更新: 2026-07-14（トークン role 語彙の大規模リネーム B）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -68,7 +68,7 @@
 | # | 改善 | 理由 |
 |---|---|---|
 | — | コア／拡張の物理分割（モノレポ化） | コスト大。見せ方の整理で代替 |
-| — | トークン名の大規模リネーム（総入れ替え） | 別名刈り込み（A）は済。palette→role 総リネームはしない |
+| — | トークン名の大規模リネーム（総入れ替え） | **済（B）** — role 語彙を `surface*` / `overlay*` / `inverse` 系へ再編。component 色の公開降格は未 |
 | 10 関連 | RTL／論理プロパティ一括移行 | **対応予定なし**（方針どおり） |
 
 ---
@@ -84,7 +84,8 @@
 | Form 値型ゆれ（null / undefined） | **済**（DatePicker `value?: Date \| null`。クリアは `null`、省略は非制御） |
 | `error` string vs boolean | **意図的**（FieldTemplate 系は `string`、Checkbox / Switch / Radio は `boolean` + `invalid`。`wimui/rhf` の `error` / `invalid` で分岐） |
 | トークン名・セマンティクス棚卸し | **済**（誤用修正＋契約文書化） |
-| トークン別名刈り込み（A） | **済**（`surface*` 正規化。`surface-inverted` / `text-on-dark` / `bg-component|secondary|hover` / `surface-glass` 廃止） |
+| トークン別名刈り込み（A） | **済**（`464ebb67`。`surface*` 正規化） |
+| トークン role 大規模リネーム（B） | **済**（`surface-app|subtle|void|inverse`、`overlay*`、`primary-muted|soft|fill`、`white`、`*-inverse`） |
 | CSS / テーマ契約 | **済**（必須 `styles.css` = トークン+コンポーネント。`reset.css` 任意。`WimProvider` 推奨） |
 | peer サポート行列 | **済**（React **19** / zod **4** のみ。README + `package.json` peers） |
 | 公開 API サーフェス凍結 | **済**（`check:api` v2。deep path **廃止**・バレルのみ） |
@@ -113,10 +114,11 @@
 - **`text-disabled`**: 通常サーフェス上の無効・非活性テキスト
 - **`disabled`**: 塗りのみ。文字色に使わない
 - Avatar default の disabled パレット流用は**意図的**（ニュートラル用の新規トークンは増やさない）
-- `bg-subtle` ≠ `bg-surface-subtle`
-- サーフェス正規名: `surface` / `surface-variant` / `surface-hover`（旧 `bg-component` / `bg-secondary` / `bg-hover` は廃止）
-- 反転面: `surface-inverse` / `text-on-inverted`（旧 `surface-inverted` / `text-on-dark` は廃止）
-- ガラス: `glass-bg`（旧 `surface-glass` は廃止）
+- サーフェス: `surface-app` / `surface` / `surface-variant` / `surface-hover` / `surface-subtle` / `surface-subtle-alpha` / `surface-void` / `surface-inverse`
+- 反転: `text-on-inverse` / `text-muted-on-inverse` / `border-inverse`
+- Overlay: `overlay` / `overlay-soft` / `overlay-strong` / `overlay-medium` / `overlay-sidebar`
+- Intent 状態: `primary-muted` / `primary-soft` / `primary-subtle` / `primary-fill`
+- 絶対白: `white`（旧 `text-white` / `bg-white`）
 - 詳細: `DESIGN.md` / `SKILLS.md` / Colors ガイド i18n
 
 ### CSS / テーマ契約（公開契約）
@@ -172,7 +174,8 @@ npm run check:aschild     # asChild 必須リスト
 ## 完了ログ（直近）
 
 ### 2026-07-14
-- トークン別名刈り込み（A）: `surface*` を正規化。`bg-component|secondary|hover` / `surface-inverted` / `text-on-dark` / `surface-glass` を廃止
+- トークン role 大規模リネーム（B）: `surface-app|subtle|void|inverse`、`overlay*`、`primary-muted|soft|fill`、`white`、`*-inverse`
+- トークン別名刈り込み（A）: `surface*` を正規化。`bg-component|secondary|hover` / `surface-inverted` / `text-on-dark` / `surface-glass` を廃止（checkpoint `464ebb67`）
 - CSS 統合: 必須は `wimui/styles.css`（トークン+コンポーネント）。`tokens.css` 廃止。`reset.css` は任意のまま
 - Selectbox → Select 改名（`Select` / `SelectOption` / `SelectProps` / `useSelect`。alias なし）
 - peer 行列を一点集中: React `^19.0.0` / zod `^4.0.0` のみ（18・zod3 は非対応）

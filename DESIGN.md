@@ -78,7 +78,7 @@ Avatar の default は意図的に disabled フィル＋`text-on-disabled` を�
 
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
-| アプリ背景 | `--wim-color-bg-app` | `w` (#fff) | `gy2-5` (#262626) |
+| アプリ背景 | `--wim-color-surface-app` | `w` (#fff) | `gy2-5` (#262626) |
 | コンポーネント背景 | `--wim-color-surface` | `w` (#fff) | `gy3-5` (#393939) |
 | セカンダリ背景 | `--wim-color-surface-variant` | `gy8-5` (#e5e5e5) | `gy4-5` (#4f4f4f) |
 | ホバー背景 | `--wim-color-surface-hover` | primary 8% | primary 12% |
@@ -86,24 +86,26 @@ Avatar の default は意図的に disabled フィル＋`text-on-disabled` を�
 
 #### サーフェス語彙（正規名）
 
-コンポーネント面は `surface*` を使う（旧 `bg-component` / `bg-secondary` / `bg-hover` は廃止）。
+公開サーフェスは `surface*` に統一（旧 `bg-app` / `bg-subtle` / `bg-void` / `bg-inverted` 等は廃止）。
 
 | 用途 | トークン |
 |------|----------|
+| アプリ面 | `--wim-color-surface-app` |
 | コンポーネント面 | `--wim-color-surface` |
 | セカンダリ面 | `--wim-color-surface-variant` |
+| 三次面 | `--wim-color-surface-tertiary` |
 | ホバー面 | `--wim-color-surface-hover` |
-| 反転面 | `--wim-color-surface-inverse`（値は `--wim-color-bg-inverted`） |
+| 薄いソリッド面 | `--wim-color-surface-subtle` |
+| 薄い半透明面 | `--wim-color-surface-subtle-alpha` |
+| 反転面 | `--wim-color-surface-inverse` |
+| ヴォイド（黒アンカー） | `--wim-color-surface-void` |
+| インセット面 | `--wim-color-surface-inset` |
 | ガラス面 | `--wim-color-glass-bg` |
-| インセット面 | `--wim-color-surface-inset`（ライトでは `bg-app` 参照） |
-| 反転面上の文字 | `--wim-color-text-on-inverted` |
+| 絶対白 | `--wim-color-white` |
+| 反転面上の文字 | `--wim-color-text-on-inverse` / `--wim-color-text-muted-on-inverse` |
 
-**近いが別物（改名しない・新規では区別して使う）**
-
-| トークン | 意味 |
-|----------|------|
-| `--wim-color-bg-subtle` | ソリッドなごく薄い面（`#fafafa` / ダーク `#262626`） |
-| `--wim-color-bg-surface-subtle` | void ベースの半透明アルファ面 |
+Intent 状態: `primary-hover` / `primary-active` / `primary-muted` / `primary-soft` / `primary-subtle` / `primary-fill`（ダークで面寄りに変わる塗り）。  
+Overlay: `overlay` / `overlay-soft` / `overlay-strong` / `overlay-medium` / `overlay-sidebar`。
 
 ### 不透明度の扱い（RGB トークン）
 
@@ -159,9 +161,9 @@ background: rgba(32, 91, 133, 0.12);
 
 | トークン | ライト | ダーク |
 |----------|--------|--------|
-| `--wim-color-overlay-bg` | rgba(0,0,0, 0.5) | rgba(0,0,0, 0.7) |
-| `--wim-color-overlay-bg-light` | rgba(255,255,255, 0.8) | rgba(255,255,255, 0.2) |
-| `--wim-color-frosted-bg` | overlay-bg-light | bg-component 60% |
+| `--wim-color-overlay` | rgba(0,0,0, 0.5) | rgba(0,0,0, 0.7) |
+| `--wim-color-overlay-soft` | rgba(255,255,255, 0.8) | rgba(255,255,255, 0.2) |
+| `--wim-color-frosted-bg` | overlay-soft | surface 60% |
 
 #### Feedback
 

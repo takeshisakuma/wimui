@@ -57,7 +57,7 @@
       &::after {
         width: var(--wim-checkbox-check-width, 5px);
         height: var(--wim-checkbox-check-height, 9px);
-        border: solid var(--wim-color-text-white);
+        border: solid var(--wim-color-white);
         border-width: 0 var(--wim-border-width-thick) var(--wim-border-width-thick) 0;
         opacity: 1;
         transform: translate(-50%, -60%) rotate(45deg) scale(1);
@@ -72,7 +72,7 @@
       &::after {
         width: var(--wim-checkbox-indeterminate-width, var(--wim-spacing-xs));
         height: var(--wim-border-width-thick);
-        background-color: var(--wim-color-text-white);
+        background-color: var(--wim-color-white);
         border-radius: var(--wim-radius-sm, var(--wim-border-width-thin));
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);

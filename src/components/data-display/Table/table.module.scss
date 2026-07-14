@@ -43,7 +43,7 @@
   
     &.striped {
       tbody tr:nth-of-type(odd) {
-        --wim-table-row-bg: var(--wim-color-bg-subtle);
+        --wim-table-row-bg: var(--wim-color-surface-subtle);
 
         background-color: var(--wim-table-row-bg);
       }
@@ -158,9 +158,9 @@
 
   /* Internal elements */
   .header {
-    background-color: var(--wim-color-bg-subtle);
+    background-color: var(--wim-color-surface-subtle);
 
-    --wim-table-row-bg: var(--wim-color-bg-subtle);
+    --wim-table-row-bg: var(--wim-color-surface-subtle);
   }
 
   .body {

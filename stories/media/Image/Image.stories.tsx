@@ -402,7 +402,7 @@ export const BlendingEffects: Story = {
                 caption={t("story.image_caption_yellow_multiply", { defaultValue: "Image Multiply with Yellow BG" })}
               />
             </div>
-            <div style={{ padding: "20px", background: "var(--wim-color-bg-inverted)", color: "var(--wim-color-text-on-inverted)" }}>
+            <div style={{ padding: "20px", background: "var(--wim-color-surface-inverse)", color: "var(--wim-color-text-on-inverse)" }}>
               <Image
                 {...args}
                 alt={t("story.image_alt_screen", { defaultValue: "Image Screen (Whitening effect)" })}

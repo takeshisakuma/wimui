@@ -9311,7 +9311,7 @@
       "a11y_spec_4": "The toolbar has `role=\"toolbar\"` + `aria-label`.",
       "best_practice_1": "Provide bulk action buttons via `renderActions`; they only appear in the toolbar when items are selected.",
       "best_practice_2": "Shift+click range selection matches file manager UX. Consider adding a brief usage hint near the toolbar.",
-      "best_practice_3": "`background-color: var(--wim-color-bg-subtle)` serves as a placeholder during image loading. Combine with Skeleton if needed.",
+      "best_practice_3": "`background-color: var(--wim-color-surface-subtle)` serves as a placeholder during image loading. Combine with Skeleton if needed.",
       "choice_gallery_selection": "Yes (Shift+click range select)",
       "choice_gallery_usage": "Image selection and management",
       "choice_gallery_when": "When you need select, delete, share, or other operations",

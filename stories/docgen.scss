@@ -29,7 +29,7 @@
     th {
       font-weight: 600;
       color: var(--wim-color-text-secondary);
-      background-color: var(--wim-color-bg-subtle, #f9f9f9);
+      background-color: var(--wim-color-surface-subtle, #f9f9f9);
     }
 
     code {
@@ -56,7 +56,7 @@
         padding: 0.3rem 0.6rem;
         font-size: 0.8rem;
         color: var(--wim-color-text-primary);
-        background-color: var(--wim-color-bg-subtle);
+        background-color: var(--wim-color-surface-subtle);
         border: 1px solid var(--wim-color-border-subtle);
         border-radius: 100px;
         transition: all 0.2s ease;

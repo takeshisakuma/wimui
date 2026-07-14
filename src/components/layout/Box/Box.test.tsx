@@ -10,11 +10,11 @@ describe("Box", () => {
   });
 
   it("applies styles from props", () => {
-    const { container } = render(<Box p={10} bg="red" color="text-white" />);
+    const { container } = render(<Box p={10} bg="red" color="white" />);
     const box = container.firstChild as HTMLElement;
     expect(box.style.paddingTop).toBe("10px");
     expect(box.style.backgroundColor).toBe("red");
-    expect(box.style.color).toBe("var(--wim-color-text-white)");
+    expect(box.style.color).toBe("var(--wim-color-white)");
   });
 
   it("renders as a different element", () => {

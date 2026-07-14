@@ -23,8 +23,8 @@ describe("getColorValue", () => {
   it("returns CSS var for known color token", () => {
     expect(getColorValue("primary")).toBe("var(--wim-color-primary)");
     expect(getColorValue("text-primary")).toBe("var(--wim-color-text-primary)");
-    expect(getColorValue("bg-app")).toBe("var(--wim-color-bg-app)");
-    expect(getColorValue("overlay-bg-dark")).toBe("var(--wim-color-overlay-bg-dark)");
+    expect(getColorValue("surface-app")).toBe("var(--wim-color-surface-app)");
+    expect(getColorValue("overlay-strong")).toBe("var(--wim-color-overlay-strong)");
   });
 
   it("returns CSS var for scrollbar tokens", () => {

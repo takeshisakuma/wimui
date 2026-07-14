@@ -12,7 +12,7 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    background: var(--wim-color-bg-app);
+    background: var(--wim-color-surface-app);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-md);
@@ -25,7 +25,7 @@
     gap: var(--wim-spacing-2xs);
     align-items: center;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-    background: var(--wim-color-bg-subtle);
+    background: var(--wim-color-surface-subtle);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 

@@ -46,12 +46,12 @@
 
   .root {
     /* Component-scoped tokens: Snackbar is always a dark surface */
-    --wim-snackbar-bg: oklch(from var(--wim-color-bg-inverted) calc(l * 0.9) c h);
-    --wim-snackbar-border: oklch(from var(--wim-color-text-white) l c h / 0.1);
-    --wim-snackbar-close-idle: oklch(from var(--wim-color-text-white) l c h / 0.7);
-    --wim-snackbar-close-hover: oklch(from var(--wim-color-text-white) l c h / 0.1);
-    --wim-snackbar-action: var(--wim-color-text-white);
-    --wim-snackbar-action-hover: oklch(from var(--wim-color-text-white) l c h / 0.15);
+    --wim-snackbar-bg: oklch(from var(--wim-color-surface-inverse) calc(l * 0.9) c h);
+    --wim-snackbar-border: oklch(from var(--wim-color-white) l c h / 0.1);
+    --wim-snackbar-close-idle: oklch(from var(--wim-color-white) l c h / 0.7);
+    --wim-snackbar-close-hover: oklch(from var(--wim-color-white) l c h / 0.1);
+    --wim-snackbar-action: var(--wim-color-white);
+    --wim-snackbar-action-hover: oklch(from var(--wim-color-white) l c h / 0.15);
 
     position: relative;
     display: flex;
@@ -66,7 +66,7 @@
       padding-right: var(--wim-spacing-4xl);
     }
 
-    color: var(--wim-color-text-white);
+    color: var(--wim-color-white);
     pointer-events: auto;
     background: var(--wim-snackbar-bg);
     border: var(--wim-border-width-thin) solid var(--wim-snackbar-border);
@@ -135,7 +135,7 @@
     transition: var(--wim-transition-fast);
 
     &:hover {
-      color: var(--wim-color-text-white);
+      color: var(--wim-color-white);
       background: var(--wim-snackbar-close-hover);
     }
 
@@ -147,25 +147,25 @@
   // Variants: override surface color; action becomes white on colored backgrounds
   .success {
     --wim-snackbar-bg: oklch(from var(--wim-color-success) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-text-white);
+    --wim-snackbar-action: var(--wim-color-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .danger {
     --wim-snackbar-bg: oklch(from var(--wim-color-danger) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-text-white);
+    --wim-snackbar-action: var(--wim-color-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .warning {
     --wim-snackbar-bg: oklch(from var(--wim-color-warning) calc(l * 0.5) c h);
-    --wim-snackbar-action: var(--wim-color-text-white);
+    --wim-snackbar-action: var(--wim-color-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 
   .info {
     --wim-snackbar-bg: oklch(from var(--wim-color-info) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-text-white);
+    --wim-snackbar-action: var(--wim-color-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
 }

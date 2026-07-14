@@ -52,7 +52,7 @@
       padding: 0.2em 0.4em;
       font-family: var(--wim-font-family-mono);
       font-size: 0.9em;
-      background-color: var(--wim-color-bg-subtle);
+      background-color: var(--wim-color-surface-subtle);
       border-radius: var(--wim-radius-sm);
     }
   
@@ -60,7 +60,7 @@
       padding: var(--wim-spacing-md);
       margin-bottom: var(--wim-spacing-md);
       overflow: auto;
-      background-color: var(--wim-color-bg-subtle);
+      background-color: var(--wim-color-surface-subtle);
       border-radius: var(--wim-radius-component);
   
       code {
@@ -90,7 +90,7 @@
   
       th {
         font-weight: var(--wim-font-weight-semibold);
-        background-color: var(--wim-color-bg-subtle);
+        background-color: var(--wim-color-surface-subtle);
       }
     }
   

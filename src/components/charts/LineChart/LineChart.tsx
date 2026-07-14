@@ -96,7 +96,7 @@ export const LineChart = ({
                 dataKey={key}
                 stroke={CHART_COLORS[index % CHART_COLORS.length]}
                 strokeWidth={2}
-                dot={{ r: 4, strokeWidth: 2, fill: "var(--wim-color-bg-primary)" }}
+                dot={{ r: 4, strokeWidth: 2, fill: "var(--wim-color-primary-fill)" }}
                 activeDot={{ r: 6 }}
                 isAnimationActive={animated}
               />

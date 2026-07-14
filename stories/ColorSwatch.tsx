@@ -82,7 +82,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           font-family: "Cascadia Code", "Fira Code", monospace;
           font-size: 12px;
           color: var(--wim-color-text-secondary, #666);
-          background: var(--wim-color-bg-app, #f5f5f5);
+          background: var(--wim-color-surface-app, #f5f5f5);
           padding: 2px 6px;
           border-radius: 4px;
           width: fit-content;

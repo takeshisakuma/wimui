@@ -1,7 +1,7 @@
 .content {
   width: min(600px, 90vw); /* Exception: Structural Logic — artifact panel readability ceiling */
   max-width: none;
-  background-color: var(--wim-color-bg-app);
+  background-color: var(--wim-color-surface-app);
   box-shadow: var(--wim-shadow-modal);
   transition: width var(--wim-duration-slow) var(--wim-easing-standard);
 
@@ -64,5 +64,5 @@
   flex: 1;
   padding: var(--wim-spacing-lg);
   overflow-y: auto;
-  background-color: var(--wim-color-bg-app);
+  background-color: var(--wim-color-surface-app);
 }

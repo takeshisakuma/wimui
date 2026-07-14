@@ -32,17 +32,17 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-color: var(--wim-color-overlay-bg);
+    background-color: var(--wim-color-overlay);
     backdrop-filter: blur(var(--wim-blur-2xs));
     transition: opacity var(--wim-transition-duration-normal, 200ms)
       var(--wim-easing-exit, ease-out);
 
     &.light {
-      background-color: var(--wim-color-overlay-bg-light);
+      background-color: var(--wim-color-overlay-soft);
     }
 
     &.dark {
-      background-color: var(--wim-color-overlay-bg-dark);
+      background-color: var(--wim-color-overlay-strong);
     }
 
     &.blur-sm {

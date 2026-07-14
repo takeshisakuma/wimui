@@ -48,7 +48,7 @@
     transition: var(--wim-transition-base);
 
     &:hover {
-      border-color: var(--wim-color-primary-light, var(--wim-color-border));
+      border-color: var(--wim-color-primary-muted, var(--wim-color-border));
       box-shadow: var(--wim-shadow-md);
     }
 
@@ -175,7 +175,7 @@
       width: var(--wim-checkbox-check-width, 4px);
       height: var(--wim-checkbox-check-height, 8px);
       content: "";
-      border: solid var(--wim-color-text-white);
+      border: solid var(--wim-color-white);
       border-width: 0 var(--wim-border-width-thick) var(--wim-border-width-thick) 0;
       opacity: 0;
       transform: translate(-50%, -60%) rotate(45deg) scale(0.5);

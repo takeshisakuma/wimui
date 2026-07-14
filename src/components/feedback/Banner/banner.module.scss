@@ -8,7 +8,7 @@
     container-type: inline-size;
     
     // Glassmorphism effect base
-    background: var(--wim-color-overlay-bg-light);
+    background: var(--wim-color-overlay-soft);
     border-bottom: var(--wim-border-width-thin) solid transparent;
     backdrop-filter: blur(var(--wim-blur-glass));
     transition: var(--wim-transition-fast);

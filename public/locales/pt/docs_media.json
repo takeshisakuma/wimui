@@ -369,7 +369,7 @@
     "a11y_spec_4": "A barra de ferramentas possui `role=\"toolbar\"` + `aria-label`.",
     "best_practice_1": "Forneça botões de ação em massa via `renderActions`; eles aparecem apenas na barra quando itens estão selecionados.",
     "best_practice_2": "A seleção por intervalo com Shift+clique corresponde à UX de gerenciadores de arquivos. Considere adicionar uma dica de uso próxima à barra de ferramentas.",
-    "best_practice_3": "`background-color: var(--wim-color-bg-subtle)` serve como placeholder durante o carregamento de imagens. Combine com Skeleton se necessário.",
+    "best_practice_3": "`background-color: var(--wim-color-surface-subtle)` serve como placeholder durante o carregamento de imagens. Combine com Skeleton se necessário.",
     "choice_gallery_selection": "Sim (seleção por intervalo com Shift+clique)",
     "choice_gallery_usage": "Seleção e gerenciamento de imagens",
     "choice_gallery_when": "Quando operações como selecionar, excluir ou compartilhar são necessárias",

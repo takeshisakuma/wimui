@@ -41,7 +41,7 @@
     line-height: normal;
     color: var(--wim-color-text-on-overlay);
     white-space: nowrap;
-    background: var(--wim-color-overlay-bg-dark);
+    background: var(--wim-color-overlay-strong);
     border-radius: var(--wim-radius-sm);
   }
 
@@ -71,7 +71,7 @@
     bottom: 0;
     left: 50%;
     width: var(--wim-border-width-thick);
-    background: var(--wim-color-text-white);
+    background: var(--wim-color-white);
     transform: translateX(-50%);
   }
 

@@ -299,7 +299,7 @@ export const NotificationCenter: Story = {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                background: "var(--wim-color-bg-app)",
+                background: "var(--wim-color-surface-app)",
                 color: "var(--wim-color-text-primary)",
               }}
             >

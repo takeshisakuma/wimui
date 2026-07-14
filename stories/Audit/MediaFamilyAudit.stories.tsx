@@ -123,7 +123,7 @@ export const Overview: StoryObj = {
                 </Box>
               </Stack>
               
-              <Box p="lg" bg="bg-app" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
+              <Box p="lg" bg="surface-app" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
                  <Text size="xs" color="text-secondary" style={{ marginBottom: "var(--wim-spacing-md)" }}>{t("audit:media_dark_surface")}</Text>
                  <AvatarGroup size="md">
                     <Avatar src={sampleImages[0]} />

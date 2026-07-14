@@ -125,7 +125,7 @@
   gap: var(--wim-spacing-sm);
   min-height: 20px; /* Exception: Structural Logic — 空のルールリストでもドロップ領域が見える最小高さ */
   padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-primary-container-alpha);
+  background-color: var(--wim-color-primary-soft);
 }
 
 .rule {

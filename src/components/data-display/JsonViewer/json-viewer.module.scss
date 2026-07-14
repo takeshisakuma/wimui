@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-    background: var(--wim-color-bg-surface-subtle);
+    background: var(--wim-color-surface-subtle-alpha);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
@@ -79,7 +79,7 @@
 
     &:hover {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-bg-surface-subtle);
+      background: var(--wim-color-surface-subtle-alpha);
     }
 
     &.delete:hover {

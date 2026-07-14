@@ -155,7 +155,7 @@ export const Overview: StoryObj = {
         {/* Overlay Feedback Behavior */}
         <ComparisonGrid title={t("audit:feedback_overlay_behavior")}>
           <ComponentGroup label={t("audit:label_toast")} align="stretch">
-            <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-bg-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
+            <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-surface-subtle-alpha)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
               <Stack gap="sm">
                  <Toast title={t("audit:sample_progress_success")} description={t("audit:sample_toast_profile_desc")} intent="success" />
                  <Toast title={t("audit:sample_progress_error")} description={t("audit:sample_toast_network_desc")} intent="danger" />
@@ -167,7 +167,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_snackbar")} align="stretch">
-             <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-bg-surface-subtle)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
+             <Box style={{ position: "relative", height: "200px", background: "var(--wim-color-surface-subtle-alpha)", borderRadius: "var(--wim-radius-md)", overflow: "hidden", padding: "1rem" }}>
                 <Stack gap="sm" align="center" justify="center" h="100%">
                    <Snackbar message={t("audit:sample_snackbar_simple")} open intent="info" position="bottom-center" />
                    <Snackbar message={t("audit:sample_snackbar_action")} open intent="warning" actionLabel={t("audit:sample_action_undo")} position="bottom-center" />

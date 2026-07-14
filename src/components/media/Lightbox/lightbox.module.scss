@@ -18,7 +18,7 @@
       inset: 0;
       pointer-events: none;
       content: "";
-      background-color: oklch(from var(--wim-color-bg-void) l c h / 0);
+      background-color: oklch(from var(--wim-color-surface-void) l c h / 0);
       border-radius: inherit;
       transition: background-color var(--wim-transition-base);
     }
@@ -27,7 +27,7 @@
       transform: scale(var(--wim-scale-hover));
 
       &::after {
-        background-color: oklch(from var(--wim-color-bg-void) l c h / 0.15);
+        background-color: oklch(from var(--wim-color-surface-void) l c h / 0.15);
       }
     }
 
@@ -38,7 +38,7 @@
 
   .overlay {
     z-index: var(--wim-z-overlay);
-    background-color: oklch(from var(--wim-color-bg-void) l c h / 0.85);
+    background-color: oklch(from var(--wim-color-surface-void) l c h / 0.85);
     backdrop-filter: blur(var(--wim-blur-overlay));
   }
 
@@ -59,7 +59,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    color: var(--wim-color-text-white);
+    color: var(--wim-color-white);
     pointer-events: auto;
   }
 
@@ -69,13 +69,13 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
-    background: linear-gradient(to bottom, oklch(from var(--wim-color-bg-void) l c h / 0.5), transparent);
+    background: linear-gradient(to bottom, oklch(from var(--wim-color-surface-void) l c h / 0.5), transparent);
   }
 
   .counter {
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium);
-    text-shadow: 0 1px 2px oklch(from var(--wim-color-bg-void) l c h / 0.5); /* Exception: Browser Rendering Fixes — 暗いグラデ上の可読性を保つソフトシャドウ */
+    text-shadow: 0 1px 2px oklch(from var(--wim-color-surface-void) l c h / 0.5); /* Exception: Browser Rendering Fixes — 暗いグラデ上の可読性を保つソフトシャドウ */
   }
 
   .controls {
@@ -98,7 +98,7 @@
     transition: var(--wim-transition-base);
 
     &:hover {
-      background: oklch(from var(--wim-color-text-white) l c h / 0.2);
+      background: oklch(from var(--wim-color-white) l c h / 0.2);
       transform: translateY(-1px); /* Exception: Interaction Physics — ホバー時のわずかな浮き上がり */
     }
 
@@ -163,7 +163,7 @@
     transition: var(--wim-transition-base);
 
     &:hover {
-      background: oklch(from var(--wim-color-text-white) l c h / 0.2);
+      background: oklch(from var(--wim-color-white) l c h / 0.2);
       transform: translateY(-50%) scale(1.05);
     }
 
@@ -184,7 +184,7 @@
   .footer {
     padding: var(--wim-spacing-lg) var(--wim-spacing-xl);
     text-align: center;
-    background: linear-gradient(to top, oklch(from var(--wim-color-bg-void) l c h / 0.7), transparent);
+    background: linear-gradient(to top, oklch(from var(--wim-color-surface-void) l c h / 0.7), transparent);
   }
 
   .title {

@@ -81,7 +81,7 @@
     font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-secondary);
     user-select: none;
-    background-color: var(--wim-color-bg-subtle);
+    background-color: var(--wim-color-surface-subtle);
     border-right: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &[data-gantt-header-cell="label"] {
@@ -168,7 +168,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-color: var(--wim-color-overlay-bg-medium);
+    background-color: var(--wim-color-overlay-medium);
     border-right: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-component) 0 0 var(--wim-radius-component);
   }

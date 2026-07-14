@@ -98,20 +98,20 @@ export const Overview: StoryObj = {
         <ComparisonGrid title={t("audit:layout_spacing_system")}>
           <ComponentGroup label={t("audit:label_container")} align="stretch">
             <Stack gap="sm">
-              <Container size="xs" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
+              <Container size="xs" style={{ background: "var(--wim-color-surface-subtle-alpha)", border: "1px solid var(--wim-color-border)" }}>
                 <Placeholder label={t("audit:layout_container_xs")} />
               </Container>
-              <Container size="sm" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
+              <Container size="sm" style={{ background: "var(--wim-color-surface-subtle-alpha)", border: "1px solid var(--wim-color-border)" }}>
                 <Placeholder label={t("audit:layout_container_sm")} />
               </Container>
-              <Container size="md" style={{ background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
+              <Container size="md" style={{ background: "var(--wim-color-surface-subtle-alpha)", border: "1px solid var(--wim-color-border)" }}>
                 <Placeholder label={t("audit:layout_container_md")} />
               </Container>
             </Stack>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_center")} align="stretch">
-            <Center style={{ height: "150px", background: "var(--wim-color-bg-surface-subtle)", border: "1px solid var(--wim-color-border)" }}>
+            <Center style={{ height: "150px", background: "var(--wim-color-surface-subtle-alpha)", border: "1px solid var(--wim-color-border)" }}>
               <Placeholder label={t("audit:layout_centered_content")} />
             </Center>
           </ComponentGroup>
@@ -126,7 +126,7 @@ export const Overview: StoryObj = {
                   padding
                 >
                   <AppShell.Header>
-                    <Box h="40px" bg="var(--wim-color-bg-surface-subtle)" style={{ display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid var(--wim-color-border)" }}>
+                    <Box h="40px" bg="var(--wim-color-surface-subtle-alpha)" style={{ display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid var(--wim-color-border)" }}>
                       <Text size="xs" weight="bold">{t("audit:layout_header_label")}</Text>
                     </Box>
                   </AppShell.Header>

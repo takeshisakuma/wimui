@@ -22,7 +22,7 @@ const meta: Meta<typeof TreeView> = {
           padding: "20px",
           boxSizing: "border-box",
           width: "100%",
-          background: "linear-gradient(135deg, var(--wim-color-surface-variant) 0%, var(--wim-color-bg-tertiary) 100%)",
+          background: "linear-gradient(135deg, var(--wim-color-surface-variant) 0%, var(--wim-color-surface-tertiary) 100%)",
         }}
       >
         <div style={{ width: "100%", maxWidth: "400px" }}>

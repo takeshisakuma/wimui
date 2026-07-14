@@ -189,7 +189,7 @@
       backdrop-filter: blur(var(--wim-glass-blur, 8px));
 
       &:hover {
-        background: oklch(from var(--wim-color-text-white) l c h / 0.15);
+        background: oklch(from var(--wim-color-white) l c h / 0.15);
         transform: translateY(var(--wim-lift-sm));
       }
     }
@@ -276,7 +276,7 @@
       color: var(--wim-color-text-on-overlay);
       white-space: nowrap;
       pointer-events: none;
-      background-color: var(--wim-color-overlay-bg-dark);
+      background-color: var(--wim-color-overlay-strong);
       border-radius: var(--wim-radius-component);
       opacity: 0;
       transition: opacity var(--wim-transition-fast);

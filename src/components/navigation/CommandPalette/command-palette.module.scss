@@ -7,7 +7,7 @@
     align-items: flex-start;
     justify-content: center;
     padding-top: 20vh;
-    background-color: var(--wim-color-overlay-bg);
+    background-color: var(--wim-color-overlay);
     backdrop-filter: blur(var(--wim-blur-xs));
 
     @media (width <= 640px) {
@@ -60,7 +60,7 @@
     }
   
     &:focus-within {
-      background-color: var(--bg-hover, var(--wim-color-bg-surface-subtle));
+      background-color: var(--bg-hover, var(--wim-color-surface-subtle-alpha));
       border-bottom-color: var(--wim-color-primary);
       transition: var(--wim-transition-fast);
   

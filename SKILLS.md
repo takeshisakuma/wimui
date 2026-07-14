@@ -113,7 +113,7 @@ padding: var(--wim-spacing-md);
 | `--wim-color-text-on-disabled` | その塗り（disabled フィル）の上の文字・アイコン |
 | `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト |
 
-`bg-subtle` と `bg-surface-subtle` は別物。サーフェスは `surface*`、反転面は `surface-inverse` / `text-on-inverted`。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
+`surface-subtle` と `surface-subtle-alpha` は別物。サーフェスは `surface*`、反転面は `surface-inverse` / `text-on-inverse`。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
 
 ---
 

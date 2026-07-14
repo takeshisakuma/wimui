@@ -62,7 +62,7 @@ export const ComparisonGrid = ({
       {title}
     </Text>
     <Box
-      bg="bg-surface-subtle"
+      bg="surface-subtle-alpha"
       radius="md"
       style={{
         display: "grid",

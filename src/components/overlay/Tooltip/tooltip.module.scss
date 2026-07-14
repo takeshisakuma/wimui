@@ -16,10 +16,10 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-tight);
-    color: var(--text-tooltip, var(--wim-color-text-on-inverted));
+    color: var(--text-tooltip, var(--wim-color-text-on-inverse));
     white-space: nowrap;
     pointer-events: none;
-    background-color: var(--bg-tooltip, var(--wim-color-bg-inverted));
+    background-color: var(--bg-tooltip, var(--wim-color-surface-inverse));
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-sm);
     opacity: 0;
@@ -46,6 +46,6 @@
   }
   
   .arrow {
-    fill: var(--bg-tooltip, var(--wim-color-bg-inverted));
+    fill: var(--bg-tooltip, var(--wim-color-surface-inverse));
   }
 }

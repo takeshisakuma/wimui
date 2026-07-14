@@ -451,7 +451,7 @@ export const WelcomeScreen: StoryObj = {
                       width: "36px",
                       height: "36px",
                       borderRadius: "var(--wim-radius-lg)",
-                      background: "var(--wim-color-primary-light)",
+                      background: "var(--wim-color-primary-muted)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",

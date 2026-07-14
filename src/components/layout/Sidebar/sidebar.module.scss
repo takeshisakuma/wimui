@@ -4,7 +4,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--wim-z-mask);
-  background-color: var(--wim-color-overlay-bg-sidebar);
+  background-color: var(--wim-color-overlay-sidebar);
   backdrop-filter: blur(var(--wim-radius-sm));
 }
 
@@ -88,7 +88,7 @@
   &.active {
     font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-accent);
-    background-color: var(--wim-color-primary-light);
+    background-color: var(--wim-color-primary-muted);
   }
 
   &.disabled {

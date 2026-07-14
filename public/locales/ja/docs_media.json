@@ -369,7 +369,7 @@
     "a11y_spec_4": "ツールバーには `role=\"toolbar\"` + `aria-label` を付与します。",
     "best_practice_1": "`renderActions` で一括操作ボタンを提供し、選択中のみツールバーに表示する設計を維持してください。",
     "best_practice_2": "Shift+クリックによる範囲選択は、ファイルマネージャーと同じ UX を期待するユーザー向けです。操作説明をツールバー近傍に添えることを検討してください。",
-    "best_practice_3": "画像読み込み中は `background-color: var(--wim-color-bg-subtle)` がプレースホルダーになります。必要に応じて Skeleton を組み合わせてください。",
+    "best_practice_3": "画像読み込み中は `background-color: var(--wim-color-surface-subtle)` がプレースホルダーになります。必要に応じて Skeleton を組み合わせてください。",
     "choice_gallery_selection": "あり（Shift+クリック対応）",
     "choice_gallery_usage": "画像の選択・管理",
     "choice_gallery_when": "選択・削除・共有などの操作が必要なとき",
