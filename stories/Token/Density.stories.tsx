@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Checkbox,
@@ -13,6 +14,7 @@ import {
   Textarea,
   ToggleGroup,
 } from "wimui";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 const meta: Meta = {
   title: "Token/Density",
@@ -24,39 +26,52 @@ const meta: Meta = {
 export default meta;
 
 function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [range, setRange] = useState("week");
   const [align, setAlign] = useState("left");
 
   return (
     <div data-density={density} style={{ padding: "var(--wim-spacing-xl)" }}>
-      {/* i18n-ignore-start */}
       <Stack gap="lg">
-        <Text content={`${density} density`} size="sm" color="text-secondary" />
+        <Text
+          content={t(`story.density_${density}`)}
+          size="sm"
+          color="text-secondary"
+        />
         <Group gap="md" align="center">
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
+          <Button size="sm">{t("common.small")}</Button>
+          <Button size="md">{t("common.medium")}</Button>
+          <Button size="lg">{t("common.large")}</Button>
         </Group>
-        <Input label="Email" placeholder="you@example.com" fullWidth />
-        <Textarea label="Notes" placeholder="Optional notes" fullWidth rows={2} />
+        <Input
+          label={t("story.density_email")}
+          placeholder={t("story.density_email_ph")}
+          fullWidth
+        />
+        <Textarea
+          label={t("story.density_notes")}
+          placeholder={t("story.density_notes_ph")}
+          fullWidth
+          rows={2}
+        />
         <Group gap="lg" align="center">
-          <Checkbox defaultChecked>Notify me</Checkbox>
-          <Switch defaultChecked>Compact rows</Switch>
+          <Checkbox defaultChecked>{t("story.density_notify")}</Checkbox>
+          <Switch defaultChecked>{t("story.density_compact_rows")}</Switch>
         </Group>
         <SegmentedControl
           options={[
-            { label: "Day", value: "day" },
-            { label: "Week", value: "week" },
-            { label: "Month", value: "month" },
+            { label: t("story.density_day"), value: "day" },
+            { label: t("story.density_week"), value: "week" },
+            { label: t("story.density_month"), value: "month" },
           ]}
           value={range}
           onChange={setRange}
         />
         <ToggleGroup
           options={[
-            { label: "Left", value: "left" },
-            { label: "Center", value: "center" },
-            { label: "Right", value: "right" },
+            { label: t("story.toggle_left"), value: "left" },
+            { label: t("story.toggle_center"), value: "center" },
+            { label: t("story.toggle_right"), value: "right" },
           ]}
           value={align}
           onChange={(value) => setAlign(typeof value === "string" ? value : value[0] ?? "left")}
@@ -64,23 +79,22 @@ function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
         <Table>
           <Table.Header>
             <Table.Row>
-              <Table.Head>Name</Table.Head>
-              <Table.Head>Role</Table.Head>
+              <Table.Head>{t("story.density_name")}</Table.Head>
+              <Table.Head>{t("story.density_role")}</Table.Head>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             <Table.Row>
               <Table.Cell>Ada</Table.Cell>
-              <Table.Cell>Admin</Table.Cell>
+              <Table.Cell>{t("story.tree_admin")}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Grace</Table.Cell>
-              <Table.Cell>Editor</Table.Cell>
+              <Table.Cell>{t("story.density_editor")}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
       </Stack>
-      {/* i18n-ignore-end */}
     </div>
   );
 }

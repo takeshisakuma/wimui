@@ -113,6 +113,17 @@
     "tabs_sys_desc": "リアルタイムの監査証跡と開発者向けデバッグ情報です。",
     "tabs_sys_logs": "システムログ",
     "tabs_user_desc": "個人情報や公開プロフィールの詳細を確認・更新します。",
-    "tabs_user_profile": "ユーザープロフィール"
+    "tabs_user_profile": "ユーザープロフィール",
+    "menubar_application": "アプリケーション",
+    "menubar_docs": "ドキュメント",
+    "menubar_file": "ファイル",
+    "menubar_fullscreen": "全画面",
+    "menubar_help": "ヘルプ",
+    "menubar_new": "新規",
+    "menubar_open": "開く…",
+    "menubar_paste": "貼り付け",
+    "menubar_save_as": "名前を付けて保存…",
+    "menubar_zoom_in": "拡大",
+    "menubar_zoom_out": "縮小"
   }
 }

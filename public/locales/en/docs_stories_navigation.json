@@ -113,6 +113,17 @@
     "tabs_sys_desc": "Real-time audit trail and developer debug information.",
     "tabs_sys_logs": "System Logs",
     "tabs_user_desc": "View and update your personal information and public profile details.",
-    "tabs_user_profile": "User Profile"
+    "tabs_user_profile": "User Profile",
+    "menubar_application": "Application",
+    "menubar_docs": "Docs",
+    "menubar_file": "File",
+    "menubar_fullscreen": "Fullscreen",
+    "menubar_help": "Help",
+    "menubar_new": "New",
+    "menubar_open": "Open…",
+    "menubar_paste": "Paste",
+    "menubar_save_as": "Save as…",
+    "menubar_zoom_in": "Zoom in",
+    "menubar_zoom_out": "Zoom out"
   }
 }

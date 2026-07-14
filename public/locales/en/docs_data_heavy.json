@@ -280,6 +280,20 @@
     "scheduleview_best_dialog": "Implement onDateSelect to integrate with a dialog for entering appointment details.",
     "scheduleview_keyboard_controls": "Move focus between controls (prev/next/today)",
     "scheduleview_keyboard_exec": "Execute focused control",
-    "scheduleview_keyboard_builtin": "FullCalendar's built-in navigation"
+    "scheduleview_keyboard_builtin": "FullCalendar's built-in navigation",
+    "scheduleview_a11y_grid": "Uses a grid-like structure with appropriate ARIA roles so screen readers can navigate more easily.",
+    "scheduleview_best_performance": "For many resources or very long timelines, consider virtualization.",
+    "scheduleview_best_time": "Ensure event start/end times are valid and fall within the visible range.",
+    "scheduleview_choice_calendar": "Personal scheduling",
+    "scheduleview_choice_gantt": "Project task management",
+    "scheduleview_choice_timeline": "Simple vertical event history",
+    "scheduleview_content_event": "Keep event labels concise; put details in a tooltip.",
+    "scheduleview_content_resource": "Resource names should be unique and easy to identify.",
+    "scheduleview_keyboard_desc": "Support arrow-key focus movement across time slots and resources.",
+    "scheduleview_motion_scroll": "Keep horizontal scroll in sync between the timeline header and content area.",
+    "scheduleview_scenario_resource": "Resource allocation",
+    "scheduleview_scenario_resource_desc": "Manage room bookings or staff shifts on a 24-hour timeline.",
+    "scheduleview_scenario_tv": "TV schedule",
+    "scheduleview_scenario_tv_desc": "Visualize broadcast schedules across multiple channels and time slots."
   }
 }

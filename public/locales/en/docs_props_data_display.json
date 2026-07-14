@@ -379,6 +379,16 @@
     "virtualList_prop_items": "Array of items to display",
     "virtualList_prop_overscan": "Number of extra items to render outside the visible range",
     "virtualList_prop_renderItem": "Render function for each item",
-    "virtualList_prop_role": "Role of the whole list (for accessibility)"
+    "virtualList_prop_role": "Role of the whole list (for accessibility)",
+    "rangeCalendar_prop_className": "Additional class name.",
+    "rangeCalendar_prop_defaultValue": "Initial value.",
+    "rangeCalendar_prop_disabled": "Disabled state.",
+    "rangeCalendar_prop_disabledDates": "Array of disabled dates.",
+    "rangeCalendar_prop_isDateDisabled": "Function that disables specific dates.",
+    "rangeCalendar_prop_maxDate": "Latest selectable date.",
+    "rangeCalendar_prop_minDate": "Earliest selectable date.",
+    "rangeCalendar_prop_onChange": "Callback when the range changes.",
+    "rangeCalendar_prop_value": "Currently selected range [start, end].",
+    "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0."
   }
 }

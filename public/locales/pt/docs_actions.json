@@ -1,5 +1,6 @@
 {
   "doc": {
+    "action": "Ação",
     "buttonGroup_desc": "Agrupamento de botões",
     "button_a11y_keyboard": "Executado usando as teclas Espaço ou Enter.",
     "button_a11y_role": "Usa o elemento <button> padrão com role=\"button\" atribuído automaticamente.",
@@ -63,6 +64,7 @@
     "button_icons_with_text": "Botão com Ícone e Texto",
     "button_icons_with_text_desc": "Botão que combina texto e um ícone.",
     "button_impact": "Impactos na experiência do usuário",
+    "button_is_concise": "Mantenha os rótulos concisos; prefira uma única linha por padrão.",
     "button_ja_notes": "<b>Notas sobre o Idioma:</b><br />Expressões excessivamente educadas podem reduzir a visibilidade. Mantenha os rótulos concisos e diretos para incentivar a ação.",
     "button_keyboard_desc": "Tab foca o botão. Espaço ou Enter o ativa. Botões desabilitados não são acessíveis pelo teclado.",
     "button_label": "Rótulo",
@@ -293,7 +295,6 @@
     "linkbutton_long_desc": "Um componente de botão que funciona como um link.",
     "linkbutton_scenario_1": "Seções de CTA: Promovendo uma jornada 'Começar' que leva a uma página de inscrição.",
     "linkbutton_scenario_2": "Compartilhamento Social: Fornecendo botões 'Ver no GitHub' ou 'Seguir no Twitter' em um rodapé.",
-    "linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link.",
-    "action": "Ação"
+    "linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link."
   }
 }

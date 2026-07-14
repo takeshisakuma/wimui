@@ -22,7 +22,10 @@
     top: calc(100% + var(--wim-spacing-xs));
     left: 0;
     z-index: var(--wim-z-overlay);
-    min-width: 100%;
+
+    /* Size to Calendar — unlike Select, do not stretch to the trigger width. */
+    width: max-content;
+    max-width: calc(100vw - var(--wim-spacing-2xl));
     padding: var(--wim-spacing-sm);
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);

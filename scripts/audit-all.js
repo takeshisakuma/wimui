@@ -50,6 +50,16 @@ const checks = [
   },
   {
     category: "docs",
+    name: "i18n-ignore ratchet (stories escape hatch)",
+    command: "node scripts/check-i18n-ignore.js",
+  },
+  {
+    category: "docs",
+    name: "Story/docs translation key references",
+    command: "node scripts/check_stories_keys.js",
+  },
+  {
+    category: "docs",
     name: "Peer import paths (root barrel must not pull optional peers)",
     command: "node scripts/check-imports.js",
   },
@@ -78,6 +88,11 @@ const checks = [
     category: "lib",
     name: "Design token surface (theming freeze guard)",
     command: "node scripts/check-tokens.js",
+  },
+  {
+    category: "lib",
+    name: "Token TS types vs SCSS :root",
+    command: "node scripts/check-token-types.js",
   },
   {
     category: "lib",

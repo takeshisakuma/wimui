@@ -137,7 +137,11 @@
     "variant": "Variant",
     "vertical": "Vertical",
     "warning": "Warning",
-    "yes": "Yes"
+    "yes": "Yes",
+    "reload": "Reload",
+    "heatmap_less": "Less",
+    "heatmap_more": "More",
+    "heatmap_title": "Activity map"
   },
   "copied": "Copied",
   "copy": {
@@ -396,7 +400,18 @@
     "json_viewer_best_practice_2": "Provide a copy-to-clipboard shortcut.",
     "json_viewer_responsive_desc": "Responsive container with horizontal scrolling for deep nesting.",
     "json_viewer_keyboard_desc": "Full keyboard support for tree navigation and copying.",
-    "json_viewer_i18n_desc": "Toolbar labels and counts are localized."
+    "json_viewer_i18n_desc": "Toolbar labels and counts are localized.",
+    "fieldTemplate_long_desc": "A wrapper that adds a label, error message, and required indicator to any input field.",
+    "fieldTemplate_usage_desc": "Wrap any form control to provide a standardized label and error layout.",
+    "inputBase_long_desc": "Internal primitive that underlies all text-based input components.",
+    "inputBase_usage_desc": "Used mainly to build other components. Owns the input-container styling such as border, background, and icon placement.",
+    "baseListItem_long_desc": "Internal list-row primitive for building selectable list behaviors.",
+    "baseListItem_usage_desc": "Use as a primitive when composing list item interactions.",
+    "std_column_component": "Component",
+    "std_column_no": "No",
+    "std_column_yes": "Yes",
+    "std_header_loading_state": "Loading state",
+    "std_header_unified_sizing": "Unified sizing"
   },
   "error": {
     "boundary_hide_details": "Hide details",

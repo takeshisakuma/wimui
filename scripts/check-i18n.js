@@ -11,6 +11,23 @@ import path from "path";
 
 const localesDir = "./public/locales";
 
+/** Flatten nested locale JSON to dotted keys (e.g. doc.token_density). */
+function flattenKeys(obj, prefix = "", out = []) {
+  if (obj == null || typeof obj !== "object" || Array.isArray(obj)) {
+    if (prefix) out.push(prefix);
+    return out;
+  }
+  for (const [key, value] of Object.entries(obj)) {
+    const next = prefix ? `${prefix}.${key}` : key;
+    if (value != null && typeof value === "object" && !Array.isArray(value)) {
+      flattenKeys(value, next, out);
+    } else {
+      out.push(next);
+    }
+  }
+  return out;
+}
+
 // Derive available languages from the locales directory
 const langs = fs
   .readdirSync(localesDir)
@@ -48,18 +65,18 @@ for (const ns of namespaces) {
         if (lineCount > MAX_LINES) totalLineErrors++;
       }
 
-      loaded[lang] = Object.keys(JSON.parse(content));
+      loaded[lang] = new Set(flattenKeys(JSON.parse(content)));
     }
   }
 
   const loadedLangs = Object.keys(loaded);
   if (loadedLangs.length < 2) continue;
 
-  // Collect the union of all keys across all locales
-  const allKeys = new Set(loadedLangs.flatMap((lang) => loaded[lang]));
+  // Collect the union of all nested keys across all locales
+  const allKeys = new Set(loadedLangs.flatMap((lang) => [...loaded[lang]]));
 
   for (const lang of loadedLangs) {
-    const missing = [...allKeys].filter((k) => !loaded[lang].includes(k));
+    const missing = [...allKeys].filter((k) => !loaded[lang].has(k)).sort();
     if (missing.length > 0) {
       report.push({ ns, lang, missing });
       totalGaps += missing.length;

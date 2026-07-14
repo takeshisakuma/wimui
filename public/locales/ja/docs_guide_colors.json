@@ -35,7 +35,7 @@
     "colors_interaction_title": "インタラクション & オーバーレイ",
     "colors_interaction_desc": "インタラクティブな状態やオーバーレイ要素の色です。",
     "colors_component_specific_title": "コンポーネント固有",
-    "colors_component_specific_desc": "アバター、チャットバブル、その他のUI要素に使用する定義済みの色です。",
+    "colors_component_specific_desc": "コンポーネント非公開色（`--wim-comp-*`）。`styles.css` には載りますが公開テーマ契約外です。ブランド差し替えは role（`primary` / `surface*` 等）を使ってください。",
     "pccs_page_title": "PCCS（実用色彩座標系）"
   },
   "pccs": {

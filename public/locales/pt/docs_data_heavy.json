@@ -150,6 +150,7 @@
     "scheduleview_best_height": "Forneça uma altura explícita para o contêiner (ex: 600px); height=\"100%\" depende da altura do elemento pai.",
     "scheduleview_best_performance": "Para muitos recursos ou linhas do tempo longas, considere o uso de virtualização.",
     "scheduleview_best_slots": "Limite o horário comercial com slotMinTime/slotMaxTime para reduzir a rolagem.",
+    "scheduleview_best_time": "Garanta que os horários de início/fim dos eventos sejam válidos e estejam dentro do intervalo visível.",
     "scheduleview_choice_calendar": "Agenda pessoal individual",
     "scheduleview_choice_datepicker": "Apenas seleção de data",
     "scheduleview_choice_gantt": "Gestão de tarefas de projeto",

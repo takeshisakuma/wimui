@@ -294,6 +294,7 @@
     "link_keyboard_desc": "Tab focuses the link. Enter activates it. The link follows standard browser anchor navigation behavior.",
     "linkbutton_keyboard_desc": "Tab focuses the link button. Enter activates it. It behaves as a standard anchor element for keyboard users.",
     "dropdown_keyboard_desc": "Tab focuses the dropdown trigger. Enter or Space opens the dropdown. Arrow keys navigate options. Enter selects the focused option. Escape closes the dropdown.",
-    "action": "Action"
+    "action": "Action",
+    "button_is_concise": "Keep labels concise; prefer a single line by default."
   }
 }

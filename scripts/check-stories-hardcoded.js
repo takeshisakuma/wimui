@@ -8,15 +8,23 @@
  *  2. テキスト系 prop の生文字列: label="Edit" / placeholder="What time..." など
  *  3. JSX の生テキスト子要素: >Searching for data...<
  *
- * 使い方: node scripts/check-stories-hardcoded.js [--all]
- *   デフォルトは stories/Audit のみ。--all で stories 全体（audit:all はこちらを使用）。
+ * 使い方:
+ *   node scripts/check-stories-hardcoded.js [--all] [file...]
+ *   デフォルトは stories/Audit のみ。--all で stories 全体。
+ *   ファイルパスを渡した場合はそのファイルのみ（lint-staged 用）。
  */
 import fs from 'fs';
 import { globSync } from 'glob';
 
-const scanAll = process.argv.includes('--all');
+const argv = process.argv.slice(2);
+const scanAll = argv.includes('--all');
+const explicitFiles = argv.filter((a) => a !== '--all' && a.endsWith('.tsx') && !a.endsWith('.test.tsx'));
 const pattern = scanAll ? 'stories/**/*.tsx' : 'stories/Audit/*.tsx';
-const files = globSync(pattern, { posix: true }).filter((f) => !f.endsWith('.test.tsx'));
+const files = (
+  explicitFiles.length > 0
+    ? explicitFiles
+    : globSync(pattern, { posix: true })
+).filter((f) => !f.endsWith('.test.tsx') && fs.existsSync(f));
 
 // 誤検出を避ける除外: URL / CSS 値 / トークン / メールアドレス例 / コード片
 const IGNORE_VALUE = /^(https?:|var\(|#|\d|[A-Z_]+$|[a-z-]+$)|@[a-z]+\.|@example|@wim/;
@@ -63,7 +71,11 @@ for (const file of files) {
   });
 }
 
-console.log(`--- Hardcoded UI text in ${pattern} ---`);
+const scope =
+  explicitFiles.length > 0
+    ? `${explicitFiles.length} staged file(s)`
+    : pattern;
+console.log(`--- Hardcoded UI text in ${scope} ---`);
 for (const r of results) console.log(`${r.file}:${r.line} [${r.kind}] ${r.text}`);
 console.log(`\ntotal: ${results.length}`);
 process.exit(results.length > 0 ? 1 : 0);

@@ -174,6 +174,7 @@
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",
     "i18n:check:mdx": "node scripts/check-mdx-hardcoded.js",
+    "i18n:check:ignore": "node scripts/check-i18n-ignore.js",
     "check:consistency": "node scripts/check_consistency.js",
     "check:hierarchy": "node scripts/check_hierarchy.js",
     "check:stories": "node scripts/check_stories_keys.js",
@@ -185,6 +186,7 @@
     "check:hooks": "node scripts/check-root-hooks.js",
     "check:tokens": "node scripts/check-tokens.js",
     "check:tokens:update": "node scripts/check-tokens.js --update",
+    "check:token-types": "node scripts/check-token-types.js",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "check:imports": "node scripts/check-imports.js",
     "audit-mdx": "node scripts/audit-mdx.js",
@@ -193,6 +195,7 @@
     "audit:docs": "node scripts/audit-all.js --docs",
     "audit:hardcoded": "node scripts/check-hardcoded-values.js",
     "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
+    "audit:i18n-ignore": "node scripts/check-i18n-ignore.js",
     "scaffold": "node scripts/scaffold-component.js",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js",
     "intents:build": "node scripts/generate-intents.js",
@@ -384,6 +387,10 @@
       "node scripts/check-git-casing.cjs",
       "node scripts/generate-i18n-resources.js",
       "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --"
+    ],
+    "stories/**/*.{ts,tsx}": [
+      "node scripts/check-stories-hardcoded.js",
+      "node scripts/check-i18n-ignore.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache"

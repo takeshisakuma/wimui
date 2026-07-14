@@ -70,13 +70,16 @@ export const RightArrow = () => (
     </tbody>
   </table>
   <p><T k="config.scope_note" /></p>
-  <Command>{`// Core — start here (no optional peers)
+  <Command>{`// ✅ Core — start here (no optional peers)
 import { Button } from "wimui";
 
-// Optional — only when needed
-import { BarChart } from "wimui/charts";
+// ✅ Optional — subpath + install that peer only
+import { BarChart } from "wimui/charts"; // peer: recharts
 import { StreamingText } from "wimui/ai";
-import { FormField } from "wimui/rhf";`}</Command>
+import { FormField } from "wimui/rhf";
+
+// ❌ Not on the root barrel
+// import { BarChart } from "wimui";`}</Command>
 
   <h3><T k="config.features_title" /></h3>
   <table>
@@ -132,6 +135,22 @@ import "wimui/reset.css";  // optional`}</Command>
   <Command>{`<html data-theme="dark">
 <html data-theme="light">
 <html> <!-- OS preference (system) -->`}</Command>
+
+  <h3><T k="config.brand_title" /></h3>
+  <p><T k="config.brand_desc" /></p>
+  <Command>{`/* After import "wimui/styles.css" — override role tokens only */
+:root {
+  --wim-color-primary: #0b6e4f;
+  --wim-color-primary-rgb: 11, 110, 79; /* comma-separated for rgba(var(--wim-color-primary-rgb), a) */
+  --wim-color-text-on-primary: #ffffff;
+}
+
+[data-theme="dark"] {
+  --wim-color-primary: #3dd68c;
+  --wim-color-primary-rgb: 61, 214, 140;
+  --wim-color-text-on-primary: #06281a;
+}`}</Command>
+  <p><T k="config.brand_note" /></p>
 
   <h3><T k="config.density_title" /></h3>
   <p><T k="config.density_desc" /></p>

@@ -104,6 +104,18 @@
     "stack_gap": "Gap: ",
     "stack_item_1": "Item 1",
     "stack_item_2": "Item 2",
-    "stack_item_3": "Item 3"
+    "stack_item_3": "Item 3",
+    "toolbar_clear": "Limpar",
+    "toolbar_columns": "Colunas",
+    "toolbar_copy": "Copiar",
+    "toolbar_focus": "Foco",
+    "toolbar_formatting": "Formatação",
+    "toolbar_list": "Lista",
+    "toolbar_open": "Abrir",
+    "toolbar_sidebar_actions": "Ações da barra lateral",
+    "toolbar_size": "Tamanho {{size}}",
+    "toolbar_text_style": "Estilo de texto",
+    "toolbar_view": "Visualização",
+    "toolbar_view_mode": "Modo de visualização"
   }
 }

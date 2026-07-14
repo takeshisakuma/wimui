@@ -17,7 +17,18 @@ npm パッケージは **`wimui` 一つ**です（パッケージを分割した
 | Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph 等（下表） |
 | Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4（+ resolvers） |
 
-optional peer 依存コンポーネントはルート `wimui` から export されません。サブパスから import し、使うものだけの peer を入れてください。
+**なぜサブパスに分かれているか:** optional のコンポーネントは重い peer（recharts 等）を引き込みます。ルート `wimui` からそれらを export しないことで、Core だけのアプリが peer を入れなくても型解決・バンドル解析で巻き込まれにくくなります。使う機能のサブパスだけを import し、その peer だけを入れてください。
+
+```tsx
+// ✅
+import { Button } from "wimui";
+import { BarChart } from "wimui/charts";
+
+// ❌ ルートに無い（型エラー / 解決できない）
+// import { BarChart } from "wimui";
+```
+
+`wimui/data-display` には peer 不要な部品と必要な部品が混在します。下表のコンポーネントだけ peer が要ります（Markdown 等）。Table / Badge などは Core 寄りの利用で足ります。
 
 ## サポート行列（peer）
 
@@ -70,7 +81,30 @@ export const App = () => <Button>保存</Button>;
 - `reset.css` は任意です。`button` / `a` / `ul` / `table` などをリセットする意見の強い
   グローバルスタイルを含むため、アプリ側の既存スタイルと衝突する場合は省略できます。
 
-i18next の初期化やテーマ設定は不要です。
+i18next の初期化は不要です。テーマ・密度・ロケールをまとめて扱うなら `WimProvider` を推奨します（後述）。
+
+### よく使う公開型・API
+
+```tsx
+import {
+  WimProvider,
+  useWim,
+  setWimTheme,
+  setWimDensity,
+  setWimLocale,
+  type WimDensity,
+  type WimColor,
+  type WimColorKey,
+} from "wimui";
+// トークン型だけ欲しい場合は `wimui/tokens` からも可
+```
+
+| API / 型 | 用途 |
+|---|---|
+| `WimProvider` / `useWim` | `theme` / `density` / `locale` を React から設定 |
+| `setWimTheme` / `setWimDensity` / `setWimLocale` | 属性・ロケールの命令型 API |
+| `WimDensity` | `"comfortable" \| "compact"` |
+| `WimColor` / `WimColorKey` | 色 prop・トークンキー（公開 role。`--wim-comp-*` は含まない） |
 
 **Optional が必要なときだけ** — `wimui/charts` / `wimui/ai` / `wimui/data-display`（peer 依存分）/ `wimui/rhf` から import し、下表の peer を入れます。
 
@@ -156,6 +190,32 @@ import { WimProvider } from "wimui";
 
 `ThemeToggle` と `WimProvider` の両方で同じ document テーマを動かす場合は、状態を親に持ち上げてトグル側は `applyToDocument={false}` にしてください。
 
+## ブランド色（primary）の差し替え
+
+公開 role トークンを CSS で上書きします。`wimui/styles.css` の**あと**に読み込んでください。触るのは role 層だけです（`--wim-comp-*` や palette 生色は触らない）。
+
+多くの派生（`primary-hover` / `primary-active` / `primary-muted` / `primary-soft` 等）は `primary` / `primary-rgb` から計算されるため、**まずはこの2つ + コントラスト用の `text-on-primary`** で足ります。
+
+```css
+/* app.css — import "wimui/styles.css" の後 */
+:root {
+  --wim-color-primary: #0b6e4f;
+  --wim-color-primary-rgb: 11, 110, 79; /* rgba(var(--wim-color-primary-rgb), a) 用。カンマ区切り */
+  --wim-color-text-on-primary: #ffffff;
+}
+
+/* ダークで別色にしたいときだけ */
+[data-theme="dark"] {
+  --wim-color-primary: #3dd68c;
+  --wim-color-primary-rgb: 61, 214, 140;
+  --wim-color-text-on-primary: #06281a;
+}
+```
+
+- `primary-rgb` は `rgb(...)` で包まない（`11, 110, 79` の形）。
+- ダークの塗り面などで `primary-fill` を独自にしている場合は、必要ならそれも上書きする。
+- トークン一覧は Storybook **Token → Colors** / `DESIGN.md` を参照。
+
 ## UI 密度（Density）
 
 コントロールの高さ・余白をグローバルに切り替えます。レイアウト用の `--wim-spacing-*` は変えず、`--wim-height-*` や `--wim-control-padding-*`、テーブルセル余白などが追従します。属性名は `data-density`（公開契約）。`WimProvider` の `density` か `setWimDensity` で設定します。
@@ -203,18 +263,21 @@ import { Button } from "wimui/form"; // カテゴリ別サブパス
 
 ## オプショナルな peerDependencies
 
-以下のコンポーネントを使う場合のみ、対応するパッケージを追加インストールしてください。使わない場合は不要です。
+以下のコンポーネントを使う場合のみ、対応するサブパスから import し、peer を追加してください。使わない場合は不要です。
 
-| コンポーネント | 必要なパッケージ |
-|---|---|
-| `charts/*`（AreaChart, BarChart 等） | `recharts` |
-| ScheduleView | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
-| NodeGraph, InteractiveGraph | `@xyflow/react` |
-| Markdown, MarkdownRenderer, StreamingText | `react-markdown` `remark-gfm` |
-| QRCode | `qrcode.react` |
-| CodeDiffViewer, JsonDiffViewer | `diff` |
-| Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
-| `wimui/rhf`（FormField / zodResolver） | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4`（上表） |
+| コンポーネント | import | 必要なパッケージ |
+|---|---|---|
+| AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
+| ScheduleView | `wimui/data-display` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| NodeGraph | `wimui/data-display` | `@xyflow/react` |
+| Markdown / QRCode / JsonDiffViewer | `wimui/data-display` | `react-markdown`+`remark-gfm` / `qrcode.react` / `diff` |
+| InteractiveGraph | `wimui/ai` | `@xyflow/react` |
+| MarkdownRenderer / StreamingText | `wimui/ai` | `react-markdown` `remark-gfm` |
+| CodeDiffViewer | `wimui/ai` | `diff` |
+| Audio（`showMetadata` 時のみ） | `wimui` または `wimui/media` | `music-metadata` |
+| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
+
+正本マップ: `src/data/peer-imports.json`（CI の `check:imports` もこれを参照）。Audio の metadata peer は optional 動的 import のためルートにも居ます。
 
 ## Form 値・エラー契約
 

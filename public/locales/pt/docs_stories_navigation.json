@@ -113,6 +113,17 @@
     "tabs_sys_desc": "Trilha de auditoria em tempo real e informações de depuração do desenvolvedor.",
     "tabs_sys_logs": "Logs do Sistema",
     "tabs_user_desc": "Visualize e atualize suas informações pessoais e detalhes do perfil público.",
-    "tabs_user_profile": "Perfil do Usuário"
+    "tabs_user_profile": "Perfil do Usuário",
+    "menubar_application": "Aplicação",
+    "menubar_docs": "Docs",
+    "menubar_file": "Arquivo",
+    "menubar_fullscreen": "Tela cheia",
+    "menubar_help": "Ajuda",
+    "menubar_new": "Novo",
+    "menubar_open": "Abrir…",
+    "menubar_paste": "Colar",
+    "menubar_save_as": "Salvar como…",
+    "menubar_zoom_in": "Ampliar",
+    "menubar_zoom_out": "Reduzir"
   }
 }

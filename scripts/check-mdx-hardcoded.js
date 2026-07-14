@@ -131,9 +131,7 @@ mdxFiles.forEach(file => {
 
 if (hasErrors) {
   console.error('\nTips: Use the <T k="key" ns="ns" /> component for documentation text.');
-  // Temporarily output errors but do not fail to allow commit
-  // process.exit(1);
-  process.exit(0); 
+  process.exit(1);
 } else {
   console.log('✓ No hardcoded text found in MDX files.');
   process.exit(0);

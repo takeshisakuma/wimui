@@ -245,7 +245,8 @@
     "std_real_world_scenarios_desc": "Standard design patterns across the entire product suite.",
     "std_best_practices_desc": "Use semantic tokens instead of hardcoded values.",
     "std_keyboard_nav_not_applicable": "Not applicable to this reference guide.",
-    "std_i18n_fully_supported": "Fully supported via translation keys."
+    "std_i18n_fully_supported": "Fully supported via translation keys.",
+    "std_doc_form_labels_desc": "Guidelines for form label placement and association."
   },
   "doc": {
     "std_column_auto_integrated": "Automatic / Integrated",

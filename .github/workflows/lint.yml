@@ -37,3 +37,6 @@ jobs:
 
       - name: Library structural audit
         run: npm run audit:lib
+
+      - name: Documentation / Storybook audit
+        run: npm run audit:docs

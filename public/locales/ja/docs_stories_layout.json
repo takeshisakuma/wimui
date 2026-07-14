@@ -104,6 +104,18 @@
     "stack_gap": "ギャップ: ",
     "stack_item_1": "アイテム 1",
     "stack_item_2": "アイテム 2",
-    "stack_item_3": "アイテム 3"
+    "stack_item_3": "アイテム 3",
+    "toolbar_clear": "クリア",
+    "toolbar_columns": "カラム",
+    "toolbar_copy": "コピー",
+    "toolbar_focus": "フォーカス",
+    "toolbar_formatting": "書式",
+    "toolbar_list": "リスト",
+    "toolbar_open": "開く",
+    "toolbar_sidebar_actions": "サイドバー操作",
+    "toolbar_size": "サイズ {{size}}",
+    "toolbar_text_style": "テキストスタイル",
+    "toolbar_view": "表示",
+    "toolbar_view_mode": "表示モード"
   }
 }

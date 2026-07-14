@@ -104,6 +104,18 @@
     "stack_gap": "Gap: ",
     "stack_item_1": "Item 1",
     "stack_item_2": "Item 2",
-    "stack_item_3": "Item 3"
+    "stack_item_3": "Item 3",
+    "toolbar_clear": "Clear",
+    "toolbar_columns": "Columns",
+    "toolbar_copy": "Copy",
+    "toolbar_focus": "Focus",
+    "toolbar_formatting": "Formatting",
+    "toolbar_list": "List",
+    "toolbar_open": "Open",
+    "toolbar_sidebar_actions": "Sidebar actions",
+    "toolbar_size": "Size {{size}}",
+    "toolbar_text_style": "Text style",
+    "toolbar_view": "View",
+    "toolbar_view_mode": "View mode"
   }
 }

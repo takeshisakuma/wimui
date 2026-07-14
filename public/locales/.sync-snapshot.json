@@ -751,7 +751,11 @@
       "variant": "Variant",
       "vertical": "Vertical",
       "warning": "Warning",
-      "yes": "Yes"
+      "yes": "Yes",
+      "reload": "Reload",
+      "heatmap_less": "Less",
+      "heatmap_more": "More",
+      "heatmap_title": "Activity map"
     },
     "copied": "Copied",
     "copy": {
@@ -1010,7 +1014,18 @@
       "json_viewer_best_practice_2": "Provide a copy-to-clipboard shortcut.",
       "json_viewer_responsive_desc": "Responsive container with horizontal scrolling for deep nesting.",
       "json_viewer_keyboard_desc": "Full keyboard support for tree navigation and copying.",
-      "json_viewer_i18n_desc": "Toolbar labels and counts are localized."
+      "json_viewer_i18n_desc": "Toolbar labels and counts are localized.",
+      "fieldTemplate_long_desc": "A wrapper that adds a label, error message, and required indicator to any input field.",
+      "fieldTemplate_usage_desc": "Wrap any form control to provide a standardized label and error layout.",
+      "inputBase_long_desc": "Internal primitive that underlies all text-based input components.",
+      "inputBase_usage_desc": "Used mainly to build other components. Owns the input-container styling such as border, background, and icon placement.",
+      "baseListItem_long_desc": "Internal list-row primitive for building selectable list behaviors.",
+      "baseListItem_usage_desc": "Use as a primitive when composing list item interactions.",
+      "std_column_component": "Component",
+      "std_column_no": "No",
+      "std_column_yes": "Yes",
+      "std_header_loading_state": "Loading state",
+      "std_header_unified_sizing": "Unified sizing"
     },
     "error": {
       "boundary_hide_details": "Hide details",
@@ -2232,7 +2247,8 @@
       "link_keyboard_desc": "Tab focuses the link. Enter activates it. The link follows standard browser anchor navigation behavior.",
       "linkbutton_keyboard_desc": "Tab focuses the link button. Enter activates it. It behaves as a standard anchor element for keyboard users.",
       "dropdown_keyboard_desc": "Tab focuses the dropdown trigger. Enter or Space opens the dropdown. Arrow keys navigate options. Enter selects the focused option. Escape closes the dropdown.",
-      "action": "Action"
+      "action": "Action",
+      "button_is_concise": "Keep labels concise; prefer a single line by default."
     }
   },
   "docs_ai": {
@@ -2939,6 +2955,8 @@
       "token_breakpoints_desc": "Screen size thresholds for responsive design across mobile, tablet, and desktop.",
       "token_colors": "Colors",
       "token_colors_desc": "Semantic and palette color tokens for text, backgrounds, and interactive states.",
+      "token_density": "Density",
+      "token_density_desc": "`data-density` / `setWimDensity` — comfortable / compact",
       "token_effects": "Effects",
       "token_effects_desc": "Elevation shadows, blurs, and glassmorphism styles for overlays and cards.",
       "token_interaction": "Interaction",
@@ -2948,6 +2966,8 @@
       "token_pccs": "PCCS",
       "token_spacings": "Spacings",
       "token_spacings_desc": "Consistent padding, margin, and gap values based on an 8px grid system.",
+      "token_theme": "Theme",
+      "token_theme_desc": "`data-theme` on `<html>` — light / dark / OS follow",
       "token_type": "Token Type",
       "token_typography": "Typography",
       "token_typography_desc": "Standardized font families, sizes, weights, and line heights for all textual content.",
@@ -2975,11 +2995,13 @@
       "with_children": "Children",
       "with_icons": "With Icons",
       "with_label": "Label",
-      "with_submenu": "Submenu"
+      "with_submenu": "Submenu",
+      "scenario_404_title": "404 Not Found",
+      "scenario_payment_title": "Payment complete"
     },
     "config": {
       "scope_title": "Scope (Core / optional)",
-      "scope_desc": "There is one npm package (`wimui`). Think in scopes: start with Core; pull optional subpaths only when you need them. This is not a multi-package monorepo.",
+      "scope_desc": "There is one npm package (`wimui`). Think in scopes: start with Core; pull optional subpaths only when you need them. This is not a multi-package monorepo. Optional components stay off the root barrel so apps that never use charts/AI/RHF do not pull those peers into resolve or mental load.",
       "scope_header_scope": "Scope",
       "scope_header_import": "Import from",
       "scope_header_peers": "Extra peers",
@@ -2998,7 +3020,7 @@
       "scope_rhf_name": "Optional — RHF",
       "scope_rhf_import": "`wimui/rhf`",
       "scope_rhf_peers": "`react-hook-form` + `zod` 4 (+ resolvers)",
-      "scope_note": "Optional peer components are not exported from the root `wimui` barrel. Import the subpath and install only the peers you use.",
+      "scope_note": "Do not `import { BarChart } from \"wimui\"` — use `wimui/charts` (and install `recharts`). Same for `wimui/ai`, peer parts of `wimui/data-display`, and `wimui/rhf`. Canonical map: `src/data/peer-imports.json`.",
       "css_title": "Stylesheets (required contract)",
       "css_desc": "Import CSS once at the app entry. `styles.css` (tokens + components) is required; reset is optional.",
       "css_tokens_role": "Design tokens (`:root` `--wim-*`, including dark + density maps) — now shipped inside `styles.css`",
@@ -3009,6 +3031,9 @@
       "css_umd_note": "UMD builds (`wimui.umd.js` + `wimui.umd.css`) bundle styles (tokens + components) and reset in one file.",
       "theme_title": "Theme (`data-theme`)",
       "theme_desc": "Prefer `WimProvider` (`theme` / `density` / `locale`). It writes `data-theme` on `<html>`. Use `system` (default) to follow OS `prefers-color-scheme`. Do not rename the attribute.",
+      "brand_title": "Brand color (primary)",
+      "brand_desc": "Override public role tokens after `wimui/styles.css`. Start with `primary`, `primary-rgb`, and `text-on-primary`. Derived tokens (`primary-hover`, `primary-muted`, …) usually follow automatically. Do not override `--wim-comp-*` or palette raw colors.",
+      "brand_note": "`primary-rgb` must be comma-separated channels (not `rgb(...)`). Optional: override `primary-fill` for dark fill surfaces. Full list: Token → Colors / `DESIGN.md`.",
       "density_title": "Density (`data-density`)",
       "density_desc": "Set via `WimProvider` `density`, `setWimDensity`, or the attribute on `<html>` (or any ancestor). Values: `comfortable` (default) | `compact`. See Token → Density.",
       "features_a11y": "Accessibility",
@@ -4197,7 +4222,21 @@
       "scheduleview_best_dialog": "Implement onDateSelect to integrate with a dialog for entering appointment details.",
       "scheduleview_keyboard_controls": "Move focus between controls (prev/next/today)",
       "scheduleview_keyboard_exec": "Execute focused control",
-      "scheduleview_keyboard_builtin": "FullCalendar's built-in navigation"
+      "scheduleview_keyboard_builtin": "FullCalendar's built-in navigation",
+      "scheduleview_a11y_grid": "Uses a grid-like structure with appropriate ARIA roles so screen readers can navigate more easily.",
+      "scheduleview_best_performance": "For many resources or very long timelines, consider virtualization.",
+      "scheduleview_best_time": "Ensure event start/end times are valid and fall within the visible range.",
+      "scheduleview_choice_calendar": "Personal scheduling",
+      "scheduleview_choice_gantt": "Project task management",
+      "scheduleview_choice_timeline": "Simple vertical event history",
+      "scheduleview_content_event": "Keep event labels concise; put details in a tooltip.",
+      "scheduleview_content_resource": "Resource names should be unique and easy to identify.",
+      "scheduleview_keyboard_desc": "Support arrow-key focus movement across time slots and resources.",
+      "scheduleview_motion_scroll": "Keep horizontal scroll in sync between the timeline header and content area.",
+      "scheduleview_scenario_resource": "Resource allocation",
+      "scheduleview_scenario_resource_desc": "Manage room bookings or staff shifts on a 24-hour timeline.",
+      "scheduleview_scenario_tv": "TV schedule",
+      "scheduleview_scenario_tv_desc": "Visualize broadcast schedules across multiple channels and time slots."
     }
   },
   "docs_feedback": {
@@ -5104,7 +5143,9 @@
       "fileupload_keyboard_desc": "Tab focuses the upload area. Enter or Space opens the file picker. Keyboard activation is supported as an alternative to drag-and-drop.",
       "rating_keyboard_desc": "Tab focuses the rating component. Arrow Left decreases the rating; Arrow Right increases it. Home sets the minimum; End sets the maximum. Enter or Space confirms the selection.",
       "richtexteditor_keyboard_desc": "Tab focuses the editor area. Standard keyboard shortcuts apply for editing (Ctrl+B bold, Ctrl+I italic, etc.). Tab moves focus to the toolbar when inside the editor. Arrow keys navigate toolbar buttons.",
-      "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space."
+      "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space.",
+      "imageCropper_desc": "Front-end image crop and rotate tool",
+      "tagInput_desc": "Field for entering free-form text as tags"
     }
   },
   "docs_form_basic": {
@@ -6114,7 +6155,7 @@
       "colors_interaction_title": "Interaction & Overlays",
       "colors_interaction_desc": "Colors for interactive states and overlay elements.",
       "colors_component_specific_title": "Component Specific",
-      "colors_component_specific_desc": "Predefined colors for avatars, chat bubbles, and other UI elements.",
+      "colors_component_specific_desc": "Private component colors (`--wim-comp-*`). Shipped in `styles.css` but not part of the public theme API — do not override for branding; use role tokens (`primary`, `surface*`, …) instead.",
       "pccs_page_title": "PCCS (Practical Color Co-ordinate System)"
     },
     "pccs": {
@@ -7766,7 +7807,8 @@
       "std_real_world_scenarios_desc": "Standard design patterns across the entire product suite.",
       "std_best_practices_desc": "Use semantic tokens instead of hardcoded values.",
       "std_keyboard_nav_not_applicable": "Not applicable to this reference guide.",
-      "std_i18n_fully_supported": "Fully supported via translation keys."
+      "std_i18n_fully_supported": "Fully supported via translation keys.",
+      "std_doc_form_labels_desc": "Guidelines for form label placement and association."
     },
     "doc": {
       "std_column_auto_integrated": "Automatic / Integrated",
@@ -10585,6 +10627,20 @@
       "common_search": "Search",
       "daterangepicker_end": "End Date",
       "daterangepicker_start": "Start Date",
+      "density_comfortable": "Comfortable density",
+      "density_compact": "Compact density",
+      "density_compact_rows": "Compact rows",
+      "density_day": "Day",
+      "density_editor": "Editor",
+      "density_email": "Email",
+      "density_email_ph": "you@example.com",
+      "density_month": "Month",
+      "density_name": "Name",
+      "density_notes": "Notes",
+      "density_notes_ph": "Optional notes",
+      "density_notify": "Notify me",
+      "density_role": "Role",
+      "density_week": "Week",
       "desc_list_desc_val": "Standard persona for WIM UI component library documentation.",
       "desc_list_description": "Description",
       "desc_list_designer": "UI/UX Designer",
@@ -10665,7 +10721,14 @@
       "loading_overlay_wait": "Please wait...",
       "loading_overlay_with_msg_desc": "Loading overlay with a custom message.",
       "mobile_data": "Mobile Data",
+      "overlaybase_desc": "Backdrop, focus trap, Escape dismissal, and enter/exit transitions are handled here.",
+      "overlaybase_open": "Open Overlay",
+      "overlaybase_title": "Overlay Content",
       "option_disabled": "(Disabled)",
+      "statuscontent_back": "Go back",
+      "statuscontent_continue": "Continue",
+      "statuscontent_desc": "Your changes were saved. You can continue or return to the previous step.",
+      "statuscontent_title": "Action completed",
       "picker_disabled": "Disabled State",
       "picker_error": "Error State",
       "picker_fullwidth": "Full Width",
@@ -11511,7 +11574,19 @@
       "stack_gap": "Gap: ",
       "stack_item_1": "Item 1",
       "stack_item_2": "Item 2",
-      "stack_item_3": "Item 3"
+      "stack_item_3": "Item 3",
+      "toolbar_clear": "Clear",
+      "toolbar_columns": "Columns",
+      "toolbar_copy": "Copy",
+      "toolbar_focus": "Focus",
+      "toolbar_formatting": "Formatting",
+      "toolbar_list": "List",
+      "toolbar_open": "Open",
+      "toolbar_sidebar_actions": "Sidebar actions",
+      "toolbar_size": "Size {{size}}",
+      "toolbar_text_style": "Text style",
+      "toolbar_view": "View",
+      "toolbar_view_mode": "View mode"
     }
   },
   "docs_stories_media": {
@@ -11729,7 +11804,18 @@
       "tabs_sys_desc": "Real-time audit trail and developer debug information.",
       "tabs_sys_logs": "System Logs",
       "tabs_user_desc": "View and update your personal information and public profile details.",
-      "tabs_user_profile": "User Profile"
+      "tabs_user_profile": "User Profile",
+      "menubar_application": "Application",
+      "menubar_docs": "Docs",
+      "menubar_file": "File",
+      "menubar_fullscreen": "Fullscreen",
+      "menubar_help": "Help",
+      "menubar_new": "New",
+      "menubar_open": "Open…",
+      "menubar_paste": "Paste",
+      "menubar_save_as": "Save as…",
+      "menubar_zoom_in": "Zoom in",
+      "menubar_zoom_out": "Zoom out"
     }
   },
   "docs_stories_overlay": {
@@ -13455,7 +13541,17 @@
       "virtualList_prop_items": "Array of items to display",
       "virtualList_prop_overscan": "Number of extra items to render outside the visible range",
       "virtualList_prop_renderItem": "Render function for each item",
-      "virtualList_prop_role": "Role of the whole list (for accessibility)"
+      "virtualList_prop_role": "Role of the whole list (for accessibility)",
+      "rangeCalendar_prop_className": "Additional class name.",
+      "rangeCalendar_prop_defaultValue": "Initial value.",
+      "rangeCalendar_prop_disabled": "Disabled state.",
+      "rangeCalendar_prop_disabledDates": "Array of disabled dates.",
+      "rangeCalendar_prop_isDateDisabled": "Function that disables specific dates.",
+      "rangeCalendar_prop_maxDate": "Latest selectable date.",
+      "rangeCalendar_prop_minDate": "Earliest selectable date.",
+      "rangeCalendar_prop_onChange": "Callback when the range changes.",
+      "rangeCalendar_prop_value": "Currently selected range [start, end].",
+      "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0."
     }
   },
   "docs_props_feedback": {

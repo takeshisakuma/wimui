@@ -35,7 +35,7 @@
     "colors_interaction_title": "Interaction & Overlays",
     "colors_interaction_desc": "Colors for interactive states and overlay elements.",
     "colors_component_specific_title": "Component Specific",
-    "colors_component_specific_desc": "Predefined colors for avatars, chat bubbles, and other UI elements.",
+    "colors_component_specific_desc": "Private component colors (`--wim-comp-*`). Shipped in `styles.css` but not part of the public theme API — do not override for branding; use role tokens (`primary`, `surface*`, …) instead.",
     "pccs_page_title": "PCCS (Practical Color Co-ordinate System)"
   },
   "pccs": {

@@ -35,7 +35,7 @@
     "colors_interaction_title": "Interação e Sobreposições",
     "colors_interaction_desc": "Cores para estados interativos e elementos de sobreposição.",
     "colors_component_specific_title": "Específico do Componente",
-    "colors_component_specific_desc": "Cores predefinidas para avatares, balões de chat e outros elementos de UI.",
+    "colors_component_specific_desc": "Cores privadas de componente (`--wim-comp-*`). Vêm em `styles.css`, mas não fazem parte da API pública de tema — para marca, sobrescreva tokens de role (`primary`, `surface*`, …).",
     "pccs_page_title": "PCCS (Sistema Prático de Coordenadas de Cores)"
   },
   "pccs": {
