@@ -33,9 +33,6 @@ export type StackProps = Omit<BoxProps, "as"> & {
   wrap?: boolean | React.CSSProperties["flexWrap"];
 };
 
-/** @deprecated Use `typeof Stack` directly. Kept for backward compatibility. */
-export type StackComponent = typeof Stack;
-
 const mapAlign = (val?: string) => {
   if (val === "start") return "flex-start";
   if (val === "end") return "flex-end";

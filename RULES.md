@@ -17,6 +17,24 @@
 
 # 多言語化（i18n）
 
+## 境界（ランタイム vs ドキュメント）
+
+`public/locales/` は置き場が共通だが、**利用者アプリに同梱される文字列**と **Storybook / ガイド専用の文言**は別物として扱う。
+
+| 層 | 対象 | 置き場の目安 | 同梱 | 言語 |
+|---|---|---|---|---|
+| **ランタイム** | コンポーネント UI（aria-label、空状態、ボタン文言など） | `docs_` / `audit` **以外**の namespace（`form.json`, `components.json` 等）。`src/components` から `t(...)` / `useWimTranslation` で参照 | `npm run i18n:bundle` → `src/i18n/generated/` に**使用キーのみ**抽出して npm パッケージへ | **en / ja / pt 必須** |
+| **ドキュメント** | Storybook MDX・ガイド長文・Props 説明・ストーリー文言 | `docs_*.json`（および `audit`）。`<T k="..." />` 等 | **ライブラリ利用側には同梱しない**（Storybook / 開発ドキュメント用） | キー集合は en / ja / pt で揃える（`i18n:check`）。**長文ガイドは en を正本**として書き、`npm run i18n:sync` で ja / pt へ展開 |
+
+方針:
+
+- ランタイムキーは短く・UI 向けに保つ。ガイドの長文や設計論をコンポーネント用 namespaceへ入れない。
+- 新規の長いガイド（`docs_guide_*` 等）は **まず `public/locales/en/` に書く**。ja / pt は sync 後に必要なら人手で整える。en だけ先行コミットして他言語を空けたままにしない（`i18n:check` が落ちる）。
+- ソースの JSDoc（IDE ホバー）は英語。Storybook Props 表の多言語は `doc.*_prop_*` キー側で行う（下記）。
+- ライブラリ利用者は i18next 不要。表示言語は `setWimLocale` / `WimProvider` の `locale`。
+
+## 共通ルール
+
 - `public/locales/` 配下のJSONファイルは1000行を超えないようにしてください。超える場合は分割してください。
 - en / ja / pt すべてのリソースファイルで漏れなく定義されているか、`npm run i18n:check` でチェックしてください（`npm run i18n:sync` はチェックではなく en → ja/pt への自動翻訳・同期コマンドです）。
 - i18nキーは ネスト構造 で命名してください（例: `a11y.close`, `button.clear`, `fileupload.button`）。JSONファイルはネストオブジェクト形式で管理し、コード側は `.` 区切りのドット記法を使用します。新規キーは同じ prefix グループに追加してください。
@@ -48,6 +66,7 @@
 
 - 可能な限り既存コンポーネント（`src/components/_internal/` の内部コンポーネントを含む）を活用し、独自実装しないようにしてください。
   - 内部コンポーネントを設計・修正する際は、JSDoc に 「Composition Contract（合成契約）」 を明記してください。これにより、上位コンポーネントとの責任分界点（Portalの管理、スクロールロックの要否、イベントの伝搬制御など）を明確にし、暗黙的な挙動によるバグを防ぎます。
+- **複合 UI はレシピ優先。** 既存 primitives の組み合わせで足りる画面パターンは、薄いラッパコンポーネントを新規公開せず `stories/Patterns/` にレシピ（Stories）として書く。公開コンポーネント化するのは、再利用 API・アクセシビリティ・状態機械が primitives 合成だけでは保てないときに限る。例: Form + RHF は `wimui/rhf`（薄いアダプタ）+ Patterns → Form → React Hook Form。詳細は `SKILLS.md`「複合 UI / レシピ優先」。
 - `any` の使用は禁止です。Props は `interface` または `type` で明示的に型定義してください。
 - HTML要素を拡張するコンポーネントでは `React.ComponentPropsWithoutRef<"element">` を使って HTML属性を継承してください。不要な属性は `Omit` で除外してください。
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。以下のルールに従ってください。
@@ -132,6 +151,25 @@
 - 共通ベースコンポーネント（`IndicatorBase` 等）を使用する場合は、`prefixClass` の代わりに `styles` prop を渡してください。
 
 ## デザイントークン（CSS カスタムプロパティ）
+
+### 新規トークン追加ルール（近傍別名を増やさない）
+
+トークンを足す前に、**既存で足りるか**を必ず確認する。公開契約（`--wim-color-*` 等）に載った名前は後から消しにくい。
+
+| 層 | 置き場 | 公開 | いつ使う |
+|---|---|---|---|
+| **palette** | `tokens/color/base.json` | 間接参照用 | 生色。アプリが直接テーマ上書きする前提にしない |
+| **role** | `tokens/color/semantic.json` + dark | **公開**（`WimColor` / snapshot） | 意味のある色（`surface*` / `text-*` / `primary*` / `overlay*` 等）。アプリのテーマ上書き対象 |
+| **component** | `src/styles/_component-colors.scss`（`--wim-comp-*`） | **非公開** | 1〜少数コンポーネント専用（avatar / carousel 等）。テーマ契約に載せない |
+
+追加前チェック:
+
+1. 既存 role（特に `surface*` / `text-*` / intent）で表現できないか
+2. 近い別名になっていないか（例: `bg-component` ≈ `surface` を再追加しない）
+3. 複数コンポーネント・アプリテーマで本当に必要か → 必要なら role。1 コンポーネントだけなら `--wim-comp-*`
+4. 足りないときだけ `tokens/` を編集 → `npm run tokens:build` → 公開面が変わるなら `check:tokens:update` / 必要なら `check:api` 周りも確認
+
+手順の詳細は `SKILLS.md`「既存トークンが不足している場合のフロー」。
 
 - グローバルデザイントークンはすべて `--wim-[カテゴリ]-[意味]-[修飾]` の構造で命名してください。
   - カテゴリは下表の既存カテゴリから選択してください。新しいカテゴリを追加する場合は下表に追記してください。
@@ -399,22 +437,28 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 
 ---
 
-# 大量コンポーネント追加時の特別ルール
+# 品質ゲート・チェックリスト
 
-短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合は、以下の 「プレフライト・チェックリスト」 を必ずパスするようにしてください。
+PR 作成時は `.github/pull_request_template.md` の Quality gates に沿ってチェックする。  
+`npm run scaffold` 完了時にも同じゲート一覧がコンソールに出る。
 
-## 1. プレフライト・チェックリスト
+## 1. 必須ゲート（新規コンポーネント / 公開面変更）
 
-新規コンポーネントをコミットする前に、以下のコマンドですべてチェックしてください。
+コミット・PR 前に、変更に該当するものをパスすること。
 
 | チェック項目 | コマンド | 目的 |
 |---|---|---|
-| MDX 全数監査 | `npm run audit-mdx` | 必須 15 セクションが揃っているか、Markdown 記法のリスト・表（`<ul>`/`<table>` を使うべき箇所）がないか確認。 |
-| ポリモーフィック監査 | `npm run check:aschild` | `asChild` の宣言が正しく配線され、実装済みリスト（本ファイル）と同期しているか確認。 |
-| i18n 整合性 | `npm run i18n:check` | 3言語すべてにキーが存在するか確認。 |
-| 型・スタイル | `npm run lint` / `npm run stylelint` | 基本的な構文エラーがないか確認。 |
-| トークン漏れチェック | `npm run audit:hardcoded` | ハードコードされた色（即エラー）や未注記の px 直書き（ラチェット方式）がないか。詳細は `docs/TOKENIZATION_EXCEPTIONS.md`。 |
-| 公開 API 表面 | `npm run check:api` | (1) `package.json` `exports` マップ（バレル + CSS + locales。コンポーネント deep path は置かない）(2) バレルの named export（`api-snapshot.json` v2）。意図しないパス追加・export 漏れを防ぐ。意図的変更時は `npm run check:api:update` で更新してコミット。 |
+| 公開 API 表面 | `npm run check:api` | `exports` + バレルシンボル（`api-snapshot.json` v2）。意図的変更時のみ `check:api:update` |
+| ポリモーフィック監査 | `npm run check:aschild` | `asChild` 実装と本ファイルの必須リスト同期 |
+| トークン漏れ（PX） | `npm run audit:hardcoded` | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
+| i18n 整合性 | `npm run i18n:check` | en / ja / pt のキー一致 |
+| peer import 境界 | `npm run check:imports` | charts / ai / peer 依存をルート `wimui` から引いていないか |
+| 型・スタイル | `npm run lint` / `npm run stylelint` | 構文・スタイル |
+| MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネントの必須セクション |
+
+まとめて: `npm run audit:lib`（範囲が広いとき）。
+
+短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合も、上表をすべてパスすること。
 
 ## 2. Storybook 階層ルール (Sidebar Hierarchy)
 

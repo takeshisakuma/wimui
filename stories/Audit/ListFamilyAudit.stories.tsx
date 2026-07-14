@@ -129,7 +129,7 @@ export const Overview: StoryObj = {
                 itemHeight={40}
                 height={200}
                 renderItem={(item) => (
-                  <Box px="md" style={{ display: "flex", alignItems: "center", height: "100%", borderBottom: "1px solid var(--wim-color-border-subtle)" }}>
+                  <Box px="md" style={{ display: "flex", alignItems: "center", height: "100%", borderBottom: "1px solid var(--wim-color-border-secondary)" }}>
                     <Text size="sm">{item.content}</Text>
                   </Box>
                 )}

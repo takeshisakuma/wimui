@@ -3,7 +3,21 @@
 React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
-- 動作要件: Node.js >= 18 / **React 19**（`react` / `react-dom`）
+- 動作要件: Node.js >= 18 / **React 19**（`react` / `react-dom`）/ 書字方向は **LTR のみ**（en / ja / pt）
+
+## スコープ（Core / optional）
+
+npm パッケージは **`wimui` 一つ**です（パッケージを分割したモノレポではありません）。利用範囲だけを次のように分けて考えます。**まず Core**、必要になったときだけ optional サブパスを使います。
+
+| スコープ | import | 追加 peer |
+|---|---|---|
+| **Core** | `wimui` / `wimui/form` / `wimui/layout` など | 不要（React 19 のみ） |
+| Optional — Charts | `wimui/charts` | `recharts` |
+| Optional — AI | `wimui/ai` | コンポーネントに応じた peer（例: StreamingText の markdown 系） |
+| Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph 等（下表） |
+| Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4（+ resolvers） |
+
+optional peer 依存コンポーネントはルート `wimui` から export されません。サブパスから import し、使うものだけの peer を入れてください。
 
 ## サポート行列（peer）
 
@@ -16,7 +30,7 @@ React コンポーネントライブラリ。200+ のコンポーネントを収
 | `@hookform/resolvers` | **5.1+** | `^5.1.0` | `wimui/rhf` 利用時 |
 | `react-hook-form` | **7.43+** | `^7.43.0` | `wimui/rhf` 利用時のみ |
 
-コア UI（ルート `wimui`）に zod / RHF は不要です。charts 等の optional peer は下表を参照。
+Core（ルート `wimui`）に zod / RHF は不要です。charts 等の optional peer は下表を参照。
 
 ## インストール
 
@@ -41,7 +55,7 @@ npm install /path/to/wimui-0.1.0.tgz
 アプリのエントリポイントでスタイルを一度だけ読み込みます。必須 CSS は
 `styles.css` の 1 本（トークン + コンポーネント）です。`reset.css` は任意です。
 
-**Core（追加依存なし）** — ほとんどのコンポーネントはルートから import できます。
+**Core から始める** — 追加 peer なし。ほとんどの UI はルートから import できます。
 
 ```tsx
 import "wimui/styles.css"; // 必須: :root の --wim-* + 全コンポーネントのスタイル
@@ -58,12 +72,13 @@ export const App = () => <Button>保存</Button>;
 
 i18next の初期化やテーマ設定は不要です。
 
-**Charts / peer 依存コンポーネント** — optional peer を使うコンポーネントはルート `wimui` から export されません。カテゴリ subpath から import し、下表の peer をインストールしてください。
+**Optional が必要なときだけ** — `wimui/charts` / `wimui/ai` / `wimui/data-display`（peer 依存分）/ `wimui/rhf` から import し、下表の peer を入れます。
 
 ```tsx
 import { BarChart } from "wimui/charts";
 import { Markdown } from "wimui/data-display";
 import { StreamingText } from "wimui/ai";
+import { FormField } from "wimui/rhf";
 ```
 
 ```bash
@@ -201,9 +216,22 @@ import { Button } from "wimui/form"; // カテゴリ別サブパス
 | Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
 | `wimui/rhf`（FormField / zodResolver） | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4`（上表） |
 
+## Form 値・エラー契約
+
+コア form コンポーネントの公開契約です（RHF 利用時も同じ）。
+
+| 項目 | 契約 |
+|---|---|
+| クリア可能スカラー（ClearedValue） | 制御時の空は **`null`**。`undefined` は「非制御 / prop 未指定」のみ |
+| 例: `DatePicker` | `value?: Date \| null` / `onChange?: (date: Date \| null) => void` |
+| `error`（メッセージ付き） | `Input` / `Select` / `DatePicker` / `Textarea` など → `error?: string` |
+| `error`（葉トグル） | `Checkbox` / `Switch` / `Radio` → `error?: boolean`（見た目用） |
+
+文字列フィールドの UI 空は多くの場合 `""` です。DatePicker のようなクリア可能スカラーを `""` や `undefined` で「クリア済み」としないでください。
+
 ## Form 連携（react-hook-form / zod）
 
-コアの form コンポーネントはフレームワーク非依存のままです。RHF とつなぐ場合は optional エントリ `wimui/rhf` を使います。
+コアの form コンポーネントはフレームワーク非依存のままです。RHF とつなぐ場合は optional エントリ `wimui/rhf` を使います。上表の ClearedValue / `error` 分岐に合わせ、`FormField` は `error`（string）と `invalid`（boolean）の両方を渡します。
 
 ```bash
 npm i react-hook-form@^7.43 @hookform/resolvers@^5.1 zod@^4
@@ -212,19 +240,20 @@ npm i react-hook-form@^7.43 @hookform/resolvers@^5.1 zod@^4
 ```tsx
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Input, Select, Checkbox } from "wimui";
+import { Input, Select, Checkbox, DatePicker } from "wimui";
 import { FormField, valueFieldProps, checkedFieldProps, zodResolver } from "wimui/rhf";
 
 const schema = z.object({
   email: z.string().email(),
   role: z.string().min(1),
   accept: z.boolean().refine(Boolean),
+  due: z.date().nullable(),
 });
 
 function Example() {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(schema),
-    defaultValues: { email: "", role: "", accept: false },
+    defaultValues: { email: "", role: "", accept: false, due: null },
   });
 
   return (
@@ -243,6 +272,13 @@ function Example() {
       />
       <FormField
         control={control}
+        name="due"
+        render={({ field, error }) => (
+          <DatePicker {...valueFieldProps(field)} label="Due" error={error} />
+        )}
+      />
+      <FormField
+        control={control}
         name="accept"
         render={({ field, invalid }) => (
           <Checkbox {...checkedFieldProps(field)} error={invalid}>
@@ -256,8 +292,8 @@ function Example() {
 ```
 
 - ネイティブ寄りの入力（`Input` / `Textarea` 等）: `{...field}` をそのまま渡す
-- 値コールバック型（`Select` / `RadioGroup` 等）: `valueFieldProps(field)`
-- `checked` 型（`Checkbox` / `Switch`）: `checkedFieldProps(field)` + `error={invalid}`
+- 値コールバック型（`Select` / `DatePicker` / `RadioGroup` 等）: `valueFieldProps(field)`（クリアは `null`）
+- `checked` 型（`Checkbox` / `Switch`）: `checkedFieldProps(field)` + `error={invalid}`（`error?: boolean`）
 
 Storybook: **Patterns → Form → React Hook Form**
 

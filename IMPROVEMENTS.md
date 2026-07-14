@@ -1,18 +1,17 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-14（トークン role 語彙の大規模リネーム B）  
+最終更新: 2026-07-14（トークン追加ルール / レシピ優先の明文化）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
 
 ## 次にやるとよい順（publish 以外）
 
-1. **今から取り入れられる改善**（下表「破壊なし〜小」）  
-   Core の見せ方 / Form・LTR・トークン追加ルールの文書固定 / 品質ゲートの新規必須化。
-2. **運用維持**  
-   `PX_BASELINE = 0` / `i18n:check` / `check:api` / `check:imports`。触った SCSS に未注記 px を増やさない。
+1. **運用維持**  
+   `PX_BASELINE = 0` / `i18n:check` / `check:api` / `check:imports`。触った SCSS に未注記 px を増やさない。品質ゲートは PR テンプレに従う。
 
-**npm 公開**は人が決める項目（`private` 解除・changeset・`NPM_TOKEN`）。エージェントは勝手に進めない。
+**npm 公開**は人が決める項目（`private` 解除・changeset・`NPM_TOKEN`）。エージェントは勝手に進めない。  
+破壊なし〜小の文書タスクは一通り済。
 
 ---
 
@@ -20,18 +19,18 @@
 
 累積コストが高かった／これから高くなりやすい点。**今すぐ壊すリストではない**。取り入れ可否は次節。
 
-1. **スコープを先に切る** — Core + 任意パッケージ（charts / ai / peers）を先に凍結
+1. **スコープを先に切る** — Core + optional（charts / ai / rhf）を文書・サブパスで切る。物理モノレポ化はしない → **済（見せ方）**
 2. **公開 API はバレルだけ** — deep path はフォルダ名を永久契約にする → **済（廃止）**
-3. **Form の値・エラー契約を最初に書く** — ClearedValue（`null` / `""` / `[]`）と `error` 分岐
-4. **トークンは意味の層を薄く** — palette → role → component。近傍別名を増やさない
+3. **Form の値・エラー契約を最初に書く** — ClearedValue（`null`）と `error` 分岐 → **済（SKILLS / README）**
+4. **トークンは意味の層を薄く** — palette → role → component。近傍別名を増やさない → **済（RULES）**
 5. **CSS エントリを1本に寄せる選択** — 必須1ファイル + reset opt-in → **済**
-6. **テーマ／密度は Provider を正面に** — 属性は実装詳細
-7. **i18n 境界** — ランタイム文字列だけ内蔵、ドキュメント文言は分離
-8. **複合 UI はレシピ優先** — primitives 少数 + Patterns
+6. **テーマ／密度は Provider を正面に** — 属性は実装詳細 → **済**
+7. **i18n 境界** — ランタイム文字列だけ内蔵、ドキュメント文言は分離 → **済（RULES）**
+8. **複合 UI はレシピ優先** — primitives 少数 + Patterns → **済（RULES / SKILLS）**
 9. **peer 行列を最初に一点集中** — 例: React 19 + zod 4 のみ → **済**
-10. **RTL をやらないなら最初から明記** — LTR-only を製品方針に
+10. **RTL をやらないなら最初から明記** — LTR-only を製品方針に → **済**
 11. **命名を業界標準に寄せる** — Selectbox → Select 等（学習コスト） → **済**
-12. **品質ゲートを1コンポーネント目から** — Docgen / check:api / PX / asChild
+12. **品質ゲートを1コンポーネント目から** — Docgen / check:api / PX / asChild → **済（PR テンプレ）**
 
 **今の WIM で残すべき強み**: トークン駆動・CSS 分割契約・peer 分離（`wimui/rhf` / charts）・API スナップショット・密度トークン。
 
@@ -43,15 +42,15 @@
 
 | # | 改善 | やり方 | 状態 |
 |---|---|---|---|
-| 1 | スコープの「見せ方」を切る | README / Getting Started で Core 推奨セットと optional（charts / ai / rhf）を先に見せる | **未** |
-| 3 | Form 契約を1枚に固定 | SKILLS / README に ClearedValue / error 分岐の短い規約 | **一部済**（追記で完了可） |
-| 4 | トークン近傍別名を増やさない | 新規トークンは「既存で足りるか」を必須チェック | **運用中**（明文化を強化可） |
-| 7 | i18n の境界を明確化 | ランタイムキーは 3言語、新規ガイド長文は en 優先など RULES に方針 | **未** |
-| 8 | 複合はレシピ優先 | 薄いラッパ新規を増やさず Patterns に寄せる | **運用中**（明文化可） |
-| 10 | LTR-only を正面に | README 動作要件に1行 | **一部済**（IMPROVEMENTS 記載済。README 先頭へ） |
-| 12 | 品質ゲートを新規必須に | scaffold / PR チェックリストに check:api・PX・asChild | **仕組み済**（チェックリスト化は未） |
+| 1 | スコープの「見せ方」を切る | README / Getting Started で Core 推奨と optional（charts / ai / rhf）を先に見せる（モノレポ化はしない前提の DX） | **済** |
+| 3 | Form 契約を1枚に固定 | SKILLS / README に ClearedValue / error 分岐の短い規約 | **済** |
+| 4 | トークン近傍別名を増やさない | 新規トークンは「既存で足りるか」を必須チェック | **済**（RULES / SKILLS） |
+| 7 | i18n の境界を明確化 | ランタイムキーは 3言語、新規ガイド長文は en 優先など RULES に方針 | **済** |
+| 8 | 複合はレシピ優先 | 薄いラッパ新規を増やさず Patterns に寄せる | **済**（RULES / SKILLS） |
+| 10 | LTR-only を正面に | README 動作要件に1行 | **済** |
+| 12 | 品質ゲートを新規必須に | scaffold / PR チェックリストに check:api・PX・asChild | **済**（`.github/pull_request_template.md` + scaffold 案内 + RULES） |
 
-**現実的なセット**: Core の見せ方、Form／LTR／トークン追加ルールの文書固定、品質ゲートのチェックリスト化。任意で `WimProvider` 追加（下表）。
+**破壊なし〜小**: 上表は一通り済。残りは運用維持と npm 公開判断。
 
 ### 慎重（破壊 or コスト大）
 
@@ -63,11 +62,11 @@
 | 9 | peer を React19+zod4 のみに絞る | `^19` / `zod ^4`。18・zod3 は非対応 | **済** |
 | 11 | Selectbox → Select 等の改名 | breaking。alias なしで一本化 | **済** |
 
-### 今はやらない
+### 今はやらない / 対応予定なし
 
 | # | 改善 | 理由 |
 |---|---|---|
-| — | コア／拡張の物理分割（モノレポ化） | コスト大。見せ方の整理で代替 |
+| — | コア／拡張の物理分割（モノレポ化） | **対応予定なし** — ビルド・CI・changeset・ドキュメント運用コスト増。1 パッケージ + サブパス（`wimui/charts` 等）+ optional peer で代替 |
 | — | トークン名の大規模リネーム（総入れ替え） | **済（B）** — role 語彙を `surface*` / `overlay*` / `inverse` 系へ再編。component 色の公開降格も済 |
 | 10 関連 | RTL／論理プロパティ一括移行 | **対応予定なし**（方針どおり） |
 
@@ -92,7 +91,7 @@
 | 公開 API サーフェス凍結 | **済**（`check:api` v2。deep path **廃止**・バレルのみ） |
 | WimProvider 正面化 | **済**（`WimProvider` / `useWim` / `setWimTheme`。属性は実装詳細として維持） |
 | Selectbox → Select | **済**（`Select` / `SelectOption` / `useSelect`。deprecated alias なし） |
-| 緑地視点の取り入れ候補 | **記載済**（上表。破壊なし項目から着手可） |
+| 緑地視点の取り入れ候補 | **破壊なし項目は済**（残りは運用維持 + npm 公開判断。モノレポ/RTL は対応予定なし） |
 | エクスポート DX / Docgen Import | **済** |
 | Props 説明 i18n（leaf + 複合） | **済**（Missing 0） |
 | `PX_BASELINE` | **済**（0。維持のみ） |
@@ -100,10 +99,16 @@
 | npm 公開の破壊なし準備 | **済**。公開判断は未 |
 | asChild 残り | **済** |
 | RTL / 論理プロパティ | **対応予定なし** |
+| コア／拡張の物理分割（モノレポ化） | **対応予定なし**（1 パッケージ + サブパス + optional peer） |
 
 ### RTL（対応予定なし）
 - 公式言語 en / ja / pt は LTR。部分適用はしない
 - **やらないこと（エージェント）**: RTL 実装・論理プロパティ一括移行・`dir="rtl"` の勝手な着手
+
+### モノレポ／パッケージ物理分割（対応予定なし）
+- リポジトリは 1 つ・npm パッケージも `wimui` 1 つのまま
+- Core / optional の切り分けはドキュメントとサブパス（`wimui/charts` / `wimui/ai` / `wimui/rhf`）で行う
+- **やらないこと（エージェント）**: `packages/*` 分割・複数 npm 名への切り出し・workspace 化の勝手な着手
 
 ### Form 値型の約束（公開契約）
 - **クリア可能スカラー**: 制御時の空は `null`。`undefined` は「非制御 / prop 未指定」のみ。
@@ -175,6 +180,12 @@ npm run check:aschild     # asChild 必須リスト
 ## 完了ログ（直近）
 
 ### 2026-07-14
+- 旧トークン参照掃除: Storybook/docs の `--wim-color-bg-surface` 等 → 現行 `surface*` / `border-secondary`。locales の tokens_desc も更新。`StackComponent` 型エイリアス削除
+- トークン追加ルール（palette / role / `--wim-comp-*`、近傍別名禁止）と複合 UI レシピ優先を RULES / SKILLS に明文化
+- 品質ゲートを PR テンプレ（`.github/pull_request_template.md`）と scaffold 案内・RULES にチェックリスト化（check:api / asChild / PX / i18n / imports）
+- Form 値・エラー契約を SKILLS / README に固定（ClearedValue=`null`、`error` string vs boolean）
+- i18n 境界を RULES に明記: ランタイム（内蔵・使用キーのみ・3言語必須）vs ドキュメント（`docs_*`・Storybook のみ・長文は en 正本→sync）
+- Core / optional の見せ方整理: README 先頭にスコープ表、Getting Started（`Configure.mdx`）に同内容。モノレポ化は対応予定なしのまま
 - コンポーネント色の公開降格: avatar / heatmap / carousel / chat-bubble / terminal / control-default / close-hover / decoration-highlight / overlay-control* を `--wim-comp-*`（`src/styles/_component-colors.scss`）へ。未使用 `chart-*` / `feedback-*-base` 削除
 - トークン role 大規模リネーム（B）: `surface-app|subtle|void|inverse`、`overlay*`、`primary-muted|soft|fill`、`white`、`*-inverse`
 - トークン別名刈り込み（A）: `surface*` を正規化。`bg-component|secondary|hover` / `surface-inverted` / `text-on-dark` / `surface-glass` を廃止（checkpoint `464ebb67`）

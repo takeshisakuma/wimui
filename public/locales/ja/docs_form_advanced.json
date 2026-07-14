@@ -142,7 +142,7 @@
     "imageCropper_scenario_1_title": "プロフィール写真の更新",
     "imageCropper_test_desc": "VRT（画像比較テスト）により、オーバーレイの配置と回転状態を検証します。",
     "imageCropper_title": "フロントエンド画像切り抜き・回転ツール",
-    "imageCropper_tokens_desc": "切り抜きマスクに --wim-color-bg-overlay、選択フレームに --wim-color-border-active を使用します。",
+    "imageCropper_tokens_desc": "切り抜きマスクは `--wim-color-surface-void`（oklch alpha）、枠は `--wim-color-white`。コントロールは glass / `--wim-color-border-secondary`。",
     "mentions_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
     "mentions_anatomy_content": "トリガー文字（例：'@'）が入力されたときに表示される提案メニュー。",
     "mentions_anatomy_content_label": "提案リスト",

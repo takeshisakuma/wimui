@@ -68,7 +68,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_flex")} align="stretch">
-            <Flex justify="between" align="center" style={{ background: "var(--wim-color-bg-surface)", padding: "0.5rem" }}>
+            <Flex justify="between" align="center" style={{ background: "var(--wim-color-surface)", padding: "0.5rem" }}>
               <Placeholder label={t("audit:layout_flex_start")} />
               <Placeholder label={t("audit:layout_flex_center")} />
               <Placeholder label={t("audit:layout_flex_end")} />
@@ -131,7 +131,7 @@ export const Overview: StoryObj = {
                     </Box>
                   </AppShell.Header>
                   <AppShell.Body>
-                    <AppShell.Sidebar style={{ width: "120px", borderRight: "1px solid var(--wim-color-border)", background: "var(--wim-color-bg-surface)" }}>
+                    <AppShell.Sidebar style={{ width: "120px", borderRight: "1px solid var(--wim-color-border)", background: "var(--wim-color-surface)" }}>
                       <Stack gap="xs" p="xs">
                         <Placeholder height="30px" label={t("audit:layout_nav_item", { n: 1 })} />
                         <Placeholder height="30px" label={t("audit:layout_nav_item", { n: 2 })} />

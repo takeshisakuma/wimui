@@ -142,7 +142,7 @@
     "imageCropper_scenario_1_title": "Atualização de Foto de Perfil",
     "imageCropper_test_desc": "O VRT verifica o posicionamento da sobreposição e os estados de rotação.",
     "imageCropper_title": "Ferramenta de recorte e rotação de imagem no front-end",
-    "imageCropper_tokens_desc": "Utiliza --wim-color-bg-overlay para a máscara de recorte e --wim-color-border-active para a moldura de seleção.",
+    "imageCropper_tokens_desc": "A máscara usa `--wim-color-surface-void` (oklch alpha); a moldura usa `--wim-color-white`. Controles usam glass / `--wim-color-border-secondary`.",
     "mentions_a11y_desc": "Segue as diretrizes WAI-ARIA com funções, rótulos e suporte de navegação por teclado adequados.",
     "mentions_anatomy_content": "O menu de sugestões que aparece quando o carácter gatilho (ex: '@') é introduzido.",
     "mentions_anatomy_content_label": "Lista de Sugestões",

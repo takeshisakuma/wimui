@@ -148,7 +148,7 @@
     "numeric_std_table_input_status": "Status em Entrada Inválida",
     "numeric_std_test_desc": "Verificado nos principais navegadores (Chrome, Safari, Firefox) para garantir comportamento consistente de análise e validação de valores.",
     "numeric_std_title": "Padronização de Entrada Numérica",
-    "numeric_std_tokens_desc": "Usa tokens semânticos como --wim-color-border-default para garantir uma aparência consistente em todas as entradas de navegador.",
+    "numeric_std_tokens_desc": "Usa tokens semânticos como --wim-color-border para garantir uma aparência consistente em todas as entradas de navegador.",
     "numeric_std_usage_desc": "Consulte o padrão ao implementar ou escolher componentes para entrada de dados numéricos.",
     "numeric_std_usage_do_1": "Use os atributos step e pattern para guiar a entrada do usuário.",
     "numeric_std_usage_dont_1": "Não dependa dos botões de incremento nativos do navegador para controle preciso.",

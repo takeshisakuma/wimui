@@ -72,7 +72,7 @@ export default function WelcomeCard() {
         display: "flex", 
         flexDirection: isMobile ? "column" : "row",
         overflow: "hidden", 
-        background: "var(--wim-color-bg-surface)" 
+        background: "var(--wim-color-surface)" 
       }}>
         {/* Left Pane: Chat */}
         <Box
@@ -112,7 +112,7 @@ export default function WelcomeCard() {
                   variant="outline" 
                   padding="sm" 
                   interactive 
-                  style={{ background: "var(--wim-color-bg-surface)", borderColor: "var(--wim-color-primary)" }}
+                  style={{ background: "var(--wim-color-surface)", borderColor: "var(--wim-color-primary)" }}
                 >
                   <Flex align="center" gap="sm">
                     <Icon component={DocumentIcon} size="sm" color="primary" />
@@ -157,7 +157,7 @@ export default function WelcomeCard() {
               flexDirection: "column",
               gap: "var(--wim-spacing-xs)",
               borderBottom: "1px solid var(--wim-color-border)",
-              background: "var(--wim-color-bg-surface)",
+              background: "var(--wim-color-surface)",
               flexShrink: 0
             }}
           >
@@ -208,7 +208,7 @@ export default function WelcomeCard() {
               alignItems: "center", 
               justifyContent: "center",
               padding: "0 var(--wim-spacing-lg)",
-              borderTop: "1px solid var(--wim-color-border-subtle)",
+              borderTop: "1px solid var(--wim-color-border-secondary)",
             }}>
               <Tabs 
                 value={activeTab} 
@@ -232,7 +232,7 @@ export default function WelcomeCard() {
             flex: 1, 
             overflow: "auto", 
             padding: "var(--wim-spacing-4xl)", 
-            background: "var(--wim-color-bg-surface-variant)",
+            background: "var(--wim-color-surface-variant)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
@@ -241,7 +241,7 @@ export default function WelcomeCard() {
               <Box style={{ 
                 width: "100%",
                 maxWidth: "600px", 
-                background: "var(--wim-color-bg-surface)", 
+                background: "var(--wim-color-surface)", 
                 borderRadius: "var(--wim-radius-lg)",
                 boxShadow: "var(--wim-shadow-lg)",
                 overflow: "hidden"
@@ -276,7 +276,7 @@ export default function WelcomeCard() {
                   code={SAMPLE_REACT_CODE} 
                   language="tsx" 
                   showLineNumbers 
-                  style={{ background: "var(--wim-color-bg-surface)", border: "1px solid var(--wim-color-border)" }} 
+                  style={{ background: "var(--wim-color-surface)", border: "1px solid var(--wim-color-border)" }} 
                 />
               </Box>
             )}
@@ -291,7 +291,7 @@ export default function WelcomeCard() {
               alignItems: "center", 
               justifyContent: "space-between",
               borderTop: "1px solid var(--wim-color-border)",
-              background: "var(--wim-color-bg-surface)"
+              background: "var(--wim-color-surface)"
             }}
           >
             <Text size="xs" color="text-secondary">{t("docs_stories_recipes:artifacts.status_updated")}</Text>

@@ -211,7 +211,7 @@
     "numeric_std_recommend_desc": "For most use cases involving IDs or formatted numbers, use type=\"text\" with appropriate semantic hints.",
     "numeric_std_usage_warning_title": "Warning: Scientific Notation",
     "numeric_std_exp_notation_desc": "Be aware that large numbers may still be converted to scientific notation in some contexts.",
-    "numeric_std_tokens_desc": "Uses semantic tokens like --wim-color-border-default to ensure a consistent appearance across all browser inputs.",
+    "numeric_std_tokens_desc": "Uses semantic tokens like --wim-color-border to ensure a consistent appearance across all browser inputs.",
     "numeric_std_responsive_desc": "Ensures that specialized numeric input fields scale appropriately on mobile devices while maintaining touch-friendly hit areas.",
     "numeric_std_keyboard_desc": "Supports standard keyboard navigation including Up/Down arrows for incrementing, ensuring compatibility with assistive technologies.",
     "numeric_std_i18n_desc": "Handles local separators (dots vs. commas) and ensures that help text is properly localized for all supported regions.",

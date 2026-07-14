@@ -74,7 +74,7 @@ export const Overview: StoryObj = {
                   border: "2px dashed var(--wim-color-border)",
                   borderRadius: "var(--wim-radius-md)",
                   cursor: "context-menu",
-                  background: "var(--wim-color-bg-surface)",
+                  background: "var(--wim-color-surface)",
                   width: "100%",
                 }}
               >

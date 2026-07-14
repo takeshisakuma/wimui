@@ -31,6 +31,53 @@ export const RightArrow = () => (
     <h2>WIM UI</h2>
   </div>
 
+  <h3><T k="config.scope_title" /></h3>
+  <p><T k="config.scope_desc" /></p>
+  <table>
+    <thead>
+      <tr>
+        <th><T k="config.scope_header_scope" /></th>
+        <th><T k="config.scope_header_import" /></th>
+        <th><T k="config.scope_header_peers" /></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><T k="config.scope_core_name" /></td>
+        <td><T k="config.scope_core_import" /></td>
+        <td><T k="config.scope_core_peers" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.scope_charts_name" /></td>
+        <td><T k="config.scope_charts_import" /></td>
+        <td><T k="config.scope_charts_peers" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.scope_ai_name" /></td>
+        <td><T k="config.scope_ai_import" /></td>
+        <td><T k="config.scope_ai_peers" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.scope_data_name" /></td>
+        <td><T k="config.scope_data_import" /></td>
+        <td><T k="config.scope_data_peers" /></td>
+      </tr>
+      <tr>
+        <td><T k="config.scope_rhf_name" /></td>
+        <td><T k="config.scope_rhf_import" /></td>
+        <td><T k="config.scope_rhf_peers" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><T k="config.scope_note" /></p>
+  <Command>{`// Core — start here (no optional peers)
+import { Button } from "wimui";
+
+// Optional — only when needed
+import { BarChart } from "wimui/charts";
+import { StreamingText } from "wimui/ai";
+import { FormField } from "wimui/rhf";`}</Command>
+
   <h3><T k="config.features_title" /></h3>
   <table>
     <tbody>
@@ -179,7 +226,7 @@ setWimDensity("compact");
     align-items: center;
     gap: 24px;
     margin-bottom: 48px;
-    border-bottom: 1px solid var(--wim-color-border-subtle);
+    border-bottom: 1px solid var(--wim-color-border-secondary);
     padding-bottom: 24px;
   }
 
@@ -214,7 +261,7 @@ setWimDensity("compact");
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 32px;
-    background: var(--wim-color-bg-surface);
+    background: var(--wim-color-surface);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -223,7 +270,7 @@ setWimDensity("compact");
   th, td {
     text-align: left;
     padding: 12px 16px;
-    border-bottom: 1px solid var(--wim-color-border-subtle);
+    border-bottom: 1px solid var(--wim-color-border-secondary);
   }
 
   th {

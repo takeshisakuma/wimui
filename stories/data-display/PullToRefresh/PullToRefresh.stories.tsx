@@ -39,7 +39,7 @@ const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) =
   return (
     <div style={{ height: "400px", border: "1px solid var(--wim-color-border)", overflow: "auto" }}>
       <PullToRefresh {...args} onRefresh={handleRefresh}>
-        <div style={{ padding: "16px", background: "var(--wim-color-bg-surface)", minHeight: "100%" }}>
+        <div style={{ padding: "16px", background: "var(--wim-color-surface)", minHeight: "100%" }}>
           <List>
             {items.map((item) => (
               <ListItem key={item.id}>

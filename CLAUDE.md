@@ -71,4 +71,4 @@ Vite プラグインが `.tsx` と `.module.scss` を解析し、Props / Tokens 
 4. `src/data/components.json` にエントリ追加
 5. `public/locales/en/` に翻訳キー追加 → `npm run i18n:sync`
 6. MDX の各セクションを記述
-7. `npm run audit-mdx` / `npm run i18n:check` / `npm run lint` でチェック
+7. 品質ゲート: `check:api` / `check:aschild` / `audit:hardcoded` / `i18n:check` / `check:imports` / `audit-mdx` / `lint`（PR テンプレと `RULES.md`「品質ゲート・チェックリスト」）

@@ -148,7 +148,7 @@
     "numeric_std_table_input_status": "無効な入力時のステータス",
     "numeric_std_test_desc": "主要ブラウザ（Chrome、Safari、Firefox）で検証済みで、一貫した値の解析と検証の動作を確認しています。",
     "numeric_std_title": "数値入力の標準化",
-    "numeric_std_tokens_desc": "すべてのブラウザ入力で一貫した外観を確保するために、--wim-color-border-default などのセマンティックトークンを使用します。",
+    "numeric_std_tokens_desc": "すべてのブラウザ入力で一貫した外観を確保するために、--wim-color-border などのセマンティックトークンを使用します。",
     "numeric_std_usage_desc": "数値データ入力のためのコンポーネントを実装または選択する際は、この標準を参照してください。",
     "numeric_std_usage_do_1": "step 属性と pattern 属性を使用してユーザーの入力を誘導してください。",
     "numeric_std_usage_dont_1": "精密な操作にブラウザネイティブのスピンボタンを頼らないでください。",

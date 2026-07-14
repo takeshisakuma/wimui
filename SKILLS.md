@@ -69,10 +69,15 @@ public/
 4.  MDX の執筆: `ComponentName.mdx` の各セクション（Design Intent 等）を埋めます。
 5.  コンポーネントリストの更新: `src/data/components.json` に新規コンポーネントを追記します。
 6.  翻訳キーの追加: `public/locales/en/` に翻訳キーを追加し、`npm run i18n:sync` を実行します。
-7.  品質監査の実行: 
-    - `npm run audit-mdx`: MDX セクションの欠落チェック
-    - `node scripts/check-aschild.js`: `asChild` 実装漏れのチェック
-    - `npm run i18n:check`: 翻訳ファイルの整合性チェック
+7.  品質ゲート（PR 前・scaffold 完了後の案内と同じ）:
+    - `npm run check:api` — 公開 API スナップショット
+    - `npm run check:aschild` — `asChild` 必須リスト
+    - `npm run audit:hardcoded` — 色ハードコード / 未注記 px（`PX_BASELINE = 0`）
+    - `npm run i18n:check` — 3言語キー整合
+    - `npm run check:imports` — peer コンポーネントの import 境界
+    - `npm run audit-mdx` — MDX 必須セクション
+    - `npm run lint` / `npm run stylelint`
+    - チェックリスト本体: `.github/pull_request_template.md` と `RULES.md`「品質ゲート・チェックリスト」
 
 ---
 
@@ -119,14 +124,32 @@ padding: var(--wim-spacing-md);
 
 ## 既存トークンが不足している場合のフロー
 
-1. `tokens/` 配下の適切な JSON ファイルにトークンを追記します。
-   - 生色（Palette） → `color/base.json`
-   - セマンティックカラー → `color/semantic.json`
-   - Spacing / Radius → `spacing.json`
-   - Shadow / Opacity / Z-Index / Motion → `effects.json`
-2. `npm run tokens:build` を実行します。
-3. `src/tokens/generated/` および `src/types/generated-tokens.ts` が自動更新されたことを確認します。
-4. コンポーネントで `var(--wim-[カテゴリ]-[意味])` を使用します。
+**先に既存で足りるか確認**（`RULES.md`「新規トークン追加ルール」）。近傍別名の追加は禁止に近い。
+
+1. 既存 role / spacing / radius を `token-snapshot.json`・Colors ガイド・`DESIGN.md` で探す。
+2. 足りない場合だけ層を選ぶ:
+   - 生色 → `tokens/color/base.json`（palette）
+   - 意味色（公開） → `tokens/color/semantic.json` + 必要なら `tokens/themes/dark.json`（role）
+   - 1 コンポーネント専用色 → `src/styles/_component-colors.scss` の `--wim-comp-*`（公開 semantic に載せない）
+   - Spacing / Radius → `tokens/spacing.json`
+   - Shadow / Opacity / Z-Index / Motion → `tokens/effects.json`
+3. `npm run tokens:build`（JSON を触った場合）。
+4. 公開トークン面が変わったら `npm run check:tokens:update` をコミットに含める。
+5. コンポーネントでは `var(--wim-color-*)` または `var(--wim-comp-*)` を参照する。
+
+---
+
+## 複合 UI / レシピ優先
+
+画面パターンや「よくある組み合わせ」は、まず **Patterns レシピ**（`stories/Patterns/`）に書く。
+
+| やる | やらない |
+|---|---|
+| 既存 Button / Input / Field / Dialog 等を Stories で合成して示す | 同じ合成を薄い公開ラッパコンポーネントとして量産する |
+| 本当に必要な共通配線だけ薄いエントリにする（例: `wimui/rhf`） | Form 全体を包む巨大ラッパをライブラリ本体に増やす |
+| レシピが増えたら Patterns 配下にカテゴリを足す | primitives 不足を理由に、説明用だけのコンポーネントを `src/components` に増やす |
+
+判断: 利用者が **props API として依存する状態・a11y・焦点管理**が必要なら公開コンポーネント。単なる配置・配線の見本ならレシピ。
 
 ---
 
@@ -412,15 +435,27 @@ React 18 / zod 3 は非対応。詳細は README。
 - 新規コントロール余白は生の `--wim-spacing-*` ではなく上記密度エイリアスを使う
 - Storybook ツールバーの Density、Token → Density
 
+### Form 値・エラー契約（公開）
+
+コア form の値／エラーの約束。RHF 利用時も同じ。詳細の作業メモは `IMPROVEMENTS.md` と同内容。
+
+| 項目 | 契約 |
+|---|---|
+| クリア可能スカラー（ClearedValue） | 制御時の空は **`null`**。`undefined` は「非制御 / prop 未指定」のみ |
+| 例: DatePicker | `value?: Date \| null` / `onChange?: (date: Date \| null) => void` |
+| `error`（メッセージ付き） | `Input` / `Select` / `DatePicker` / `Textarea` 等 → `error?: string` |
+| `error`（葉トグル） | `Checkbox` / `Switch` / `Radio` → `error?: boolean`（見た目用）。RHF では `invalid` を渡す |
+| 空文字・空配列 | 文字列フィールドの UI 空はコンポーネント慣例に従う（多くは `""`）。クリア可能スカラーを `""` で表さない |
+
+新規のクリア可能コントロールを足すときも、制御時クリア = `null` に揃える（`undefined` をクリア値に使わない）。
+
 ### Form 連携（`wimui/rhf`）
 コア form コンポーネントを書き換えず、薄いアダプタを `src/rhf.ts`（公開エントリ `wimui/rhf`）に置きます。
-- `FormField` — RHF `Controller` + WIM 向け `error` / `invalid`
-- `valueFieldProps` / `checkedFieldProps` — 値コールバック型・checked 型へのマッピング
+- `FormField` — RHF `Controller` + WIM 向け `error`（string）/ `invalid`（boolean）
+- `valueFieldProps` / `checkedFieldProps` — 値コールバック型・checked 型へのマッピング（ClearedValue の `null` とそのまま噛み合う）
 - `zodResolver` — `@hookform/resolvers/zod` の再エクスポート
 - ルート `wimui` / `wimui/form` からは export しない（peer 未導入でもコアが壊れないようにする）
 - 例: `stories/Patterns/Form/ReactHookForm.stories.tsx`（基本＋ DatePicker / Rating / Switch レシピ）
-- クリア可能スカラー（DatePicker 等）: 制御時の空は `null`（`undefined` は非制御）。`valueFieldProps` とそのまま噛み合う
-- `error?: string`（メッセージ付きフィールド）と `error?: boolean`（Checkbox / Switch / Radio）は意図的。後者は `invalid` を渡す
 
 ---
 

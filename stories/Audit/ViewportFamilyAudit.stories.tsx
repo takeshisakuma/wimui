@@ -158,7 +158,7 @@ export const Overview: StoryObj = {
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_timeline")} noStack>
-             <Box style={{ height: "350px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "auto", padding: "var(--wim-spacing-lg)", background: "var(--wim-color-bg-surface)" }}>
+             <Box style={{ height: "350px", border: "1px solid var(--wim-color-border)", borderRadius: "var(--wim-radius-md)", overflow: "auto", padding: "var(--wim-spacing-lg)", background: "var(--wim-color-surface)" }}>
                 <Timeline align="left">
                   <TimelineItem>
                     <TimelineSeparator>

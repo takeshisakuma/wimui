@@ -294,6 +294,16 @@ locales.forEach(lang => {
 
 console.log(`✓ ${componentName} scaffolded successfully in src/components/${category}/${componentName}`);
 console.log(`Next steps:`);
-console.log(`1. Implement the component logic and styles.`);
-console.log(`2. Update the translation values in public/locales/ and run 'npm run i18n:sync' if needed.`);
-console.log(`3. Complete the MDX documentation.`);
+console.log(`1. Implement the component logic and styles (tokens only; no bare px/colors without Exception).`);
+console.log(`2. Add/update public/locales/en keys → npm run i18n:sync → npm run i18n:check`);
+console.log(`3. Complete MDX (required sections) → npm run audit-mdx`);
+console.log(`4. If asChild is required for this component: implement it, update RULES.md list, npm run check:aschild`);
+console.log(`5. Quality gates before PR:`);
+console.log(`   npm run check:api`);
+console.log(`   npm run check:aschild`);
+console.log(`   npm run audit:hardcoded`);
+console.log(`   npm run i18n:check`);
+console.log(`   npm run check:imports`);
+console.log(`   npm run lint && npm run stylelint`);
+console.log(`   (or npm run audit:lib)`);
+console.log(`See .github/pull_request_template.md and RULES.md「品質ゲート・チェックリスト」。`);
