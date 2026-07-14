@@ -1,0 +1,127 @@
+// Component-private color tokens (NOT part of the public token contract).
+// Shipped in styles.css for ChatUI / Carousel / Video / etc., but excluded from
+// token-snapshot.json / WimColor / getColorValue. Do not use in app theme overrides.
+:root {
+  --wim-comp-avatar-default: #243b8b;
+  --wim-comp-avatar-s1: #b01040;
+  --wim-comp-avatar-s3: #c21;
+  --wim-comp-avatar-s5: #d45f10;
+  --wim-comp-avatar-s7: #d19711;
+  --wim-comp-avatar-s10: #8ca114;
+  --wim-comp-avatar-s12: #28853f;
+  --wim-comp-avatar-s14: #297364;
+  --wim-comp-avatar-s16: #205b85;
+  --wim-comp-avatar-s18: #243b8b;
+  --wim-comp-avatar-s20: #3d1c84;
+  --wim-comp-avatar-s22: #5f2883;
+  --wim-comp-avatar-s24: #9a0f50;
+  --wim-comp-heatmap-level-0: #e5e5e5;
+  --wim-comp-heatmap-level-1: #cceac4;
+  --wim-comp-heatmap-level-2: #7fc97e;
+  --wim-comp-heatmap-level-3: #28853f;
+  --wim-comp-heatmap-level-4: #306f42;
+  --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-chat-bubble-received: color-mix(in oklch, #fcf1af 40%, white);
+  --wim-comp-chat-bubble-sent: color-mix(in oklch, #b3cee3 40%, white);
+  --wim-comp-terminal-traffic-red: #ff5f57;
+  --wim-comp-terminal-traffic-yellow: #febc2e;
+  --wim-comp-terminal-traffic-green: #28c840;
+  --wim-comp-control-default-fg: var(--wim-color-primary);
+  --wim-comp-control-default-bg: var(--wim-color-surface);
+  --wim-comp-control-default-border: var(--wim-color-primary);
+  --wim-comp-close-hover: rgb(0 0 0 / 0.05);
+  --wim-comp-decoration-highlight-color: #fff9c4;
+  --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
+  --wim-comp-overlay-control-hover: rgb(255 255 255 / 0.2);
+  --wim-comp-overlay-control-active: rgb(255 255 255 / 0.25);
+  --wim-comp-overlay-item-hover: rgb(255 255 255 / 0.15);
+  --wim-comp-overlay-menu-bg: rgb(28 28 28 / 0.95);
+  --wim-comp-overlay-divider: rgb(255 255 255 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --wim-comp-avatar-default: #396bb0;
+  --wim-comp-avatar-s1: #ed3b6b;
+  --wim-comp-avatar-s3: #fc3633;
+  --wim-comp-avatar-s5: #ff6e2b;
+  --wim-comp-avatar-s7: #ffcb1f;
+  --wim-comp-avatar-s10: #99d02c;
+  --wim-comp-avatar-s12: #32a65d;
+  --wim-comp-avatar-s14: #1aa28e;
+  --wim-comp-avatar-s16: #1c86ae;
+  --wim-comp-avatar-s18: #396bb0;
+  --wim-comp-avatar-s20: #6a64ae;
+  --wim-comp-avatar-s22: #a459ab;
+  --wim-comp-avatar-s24: #df4c93;
+  --wim-comp-heatmap-level-0: #4f4f4f;
+  --wim-comp-heatmap-level-1: #355935;
+  --wim-comp-heatmap-level-2: #5a814c;
+  --wim-comp-heatmap-level-3: #7fc97e;
+  --wim-comp-heatmap-level-4: #32a65d;
+  --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-chat-bubble-received: color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-surface-variant));
+  --wim-comp-chat-bubble-sent: color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-surface-variant));
+  --wim-comp-terminal-traffic-red: #ff5f57;
+  --wim-comp-terminal-traffic-yellow: #febc2e;
+  --wim-comp-terminal-traffic-green: #28c840;
+  --wim-comp-control-default-fg: var(--wim-color-text-primary);
+  --wim-comp-control-default-bg: var(--wim-color-surface-variant);
+  --wim-comp-control-default-border: var(--wim-color-border);
+  --wim-comp-close-hover: rgb(255 255 255 / 0.1);
+  --wim-comp-decoration-highlight-color: #5c4400;
+  --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
+  --wim-comp-overlay-control-hover: rgb(255 255 255 / 0.2);
+  --wim-comp-overlay-control-active: rgb(255 255 255 / 0.25);
+  --wim-comp-overlay-item-hover: rgb(255 255 255 / 0.15);
+  --wim-comp-overlay-menu-bg: rgb(28 28 28 / 0.95);
+  --wim-comp-overlay-divider: rgb(255 255 255 / 0.1);
+  }
+}
+
+[data-theme="dark"] {
+  --wim-comp-avatar-default: #396bb0;
+  --wim-comp-avatar-s1: #ed3b6b;
+  --wim-comp-avatar-s3: #fc3633;
+  --wim-comp-avatar-s5: #ff6e2b;
+  --wim-comp-avatar-s7: #ffcb1f;
+  --wim-comp-avatar-s10: #99d02c;
+  --wim-comp-avatar-s12: #32a65d;
+  --wim-comp-avatar-s14: #1aa28e;
+  --wim-comp-avatar-s16: #1c86ae;
+  --wim-comp-avatar-s18: #396bb0;
+  --wim-comp-avatar-s20: #6a64ae;
+  --wim-comp-avatar-s22: #a459ab;
+  --wim-comp-avatar-s24: #df4c93;
+  --wim-comp-heatmap-level-0: #4f4f4f;
+  --wim-comp-heatmap-level-1: #355935;
+  --wim-comp-heatmap-level-2: #5a814c;
+  --wim-comp-heatmap-level-3: #7fc97e;
+  --wim-comp-heatmap-level-4: #32a65d;
+  --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-chat-bubble-received: color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-surface-variant));
+  --wim-comp-chat-bubble-sent: color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-surface-variant));
+  --wim-comp-terminal-traffic-red: #ff5f57;
+  --wim-comp-terminal-traffic-yellow: #febc2e;
+  --wim-comp-terminal-traffic-green: #28c840;
+  --wim-comp-control-default-fg: var(--wim-color-text-primary);
+  --wim-comp-control-default-bg: var(--wim-color-surface-variant);
+  --wim-comp-control-default-border: var(--wim-color-border);
+  --wim-comp-close-hover: rgb(255 255 255 / 0.1);
+  --wim-comp-decoration-highlight-color: #5c4400;
+  --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
+  --wim-comp-overlay-control-hover: rgb(255 255 255 / 0.2);
+  --wim-comp-overlay-control-active: rgb(255 255 255 / 0.25);
+  --wim-comp-overlay-item-hover: rgb(255 255 255 / 0.15);
+  --wim-comp-overlay-menu-bg: rgb(28 28 28 / 0.95);
+  --wim-comp-overlay-divider: rgb(255 255 255 / 0.1);
+}

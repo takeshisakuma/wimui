@@ -160,7 +160,7 @@
       color var(--wim-transition-fast);
 
     &:hover {
-      background-color: var(--wim-color-overlay-control-hover);
+      background-color: var(--wim-comp-overlay-control-hover);
     }
 
     &.btnPlay {
@@ -169,7 +169,7 @@
       height: var(--wim-height-md);
 
       &:hover {
-        background-color: var(--wim-color-overlay-control-active);
+        background-color: var(--wim-comp-overlay-control-active);
       }
     }
   }
@@ -197,7 +197,7 @@
     align-items: center;
     height: 4px; /* Exception: Structural Logic — プログレスバーの視認可能な最小高さ */
     cursor: pointer;
-    background: var(--wim-color-overlay-control-track);
+    background: var(--wim-comp-overlay-control-track);
     border-radius: 2px; /* Exception: Browser Rendering Fixes — 4px 高さのバーに対するサブピクセル補正 */
   }
 
@@ -258,7 +258,7 @@
     pointer-events: none;
     cursor: pointer;
     outline: none;
-    background: var(--wim-color-overlay-control-track);
+    background: var(--wim-comp-overlay-control-track);
     border-radius: var(--wim-radius-sm);
     opacity: 0;
     transition:
@@ -314,7 +314,7 @@
     padding: var(--wim-spacing-sm);
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-on-overlay);
-    background: var(--wim-color-overlay-menu-bg);
+    background: var(--wim-comp-overlay-menu-bg);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-overlay);
     backdrop-filter: blur(var(--wim-blur-glass));
@@ -326,7 +326,7 @@
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       margin-bottom: var(--wim-spacing-xs);
       font-weight: var(--wim-font-weight-semibold);
-      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-overlay-divider);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-comp-overlay-divider);
   
       button {
         width: auto;
@@ -347,7 +347,7 @@
       }
   
       &::-webkit-scrollbar-thumb {
-        background: var(--wim-color-overlay-control-track);
+        background: var(--wim-comp-overlay-control-track);
         border-radius: 2px; /* Exception: Browser Rendering Fixes — スクロールバーサムのサブピクセル補正 */
       }
     }
@@ -367,13 +367,13 @@
       transition: background var(--wim-transition-fast);
 
       &:hover {
-        background: var(--wim-color-overlay-item-hover);
+        background: var(--wim-comp-overlay-item-hover);
       }
 
       &.active,
       &[data-active="true"] {
         font-weight: var(--wim-font-weight-medium);
-        background: var(--wim-color-overlay-control-active);
+        background: var(--wim-comp-overlay-control-active);
       }
     }
   }

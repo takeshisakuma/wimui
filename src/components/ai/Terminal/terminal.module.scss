@@ -36,9 +36,9 @@
     border-radius: 50%;
 
     /* macOS traffic-light colors (tokens/color/semantic.json の terminal-traffic-*) */
-    &[data-color="red"]    { background: var(--wim-color-terminal-traffic-red); }
-    &[data-color="yellow"] { background: var(--wim-color-terminal-traffic-yellow); }
-    &[data-color="green"]  { background: var(--wim-color-terminal-traffic-green); }
+    &[data-color="red"]    { background: var(--wim-comp-terminal-traffic-red); }
+    &[data-color="yellow"] { background: var(--wim-comp-terminal-traffic-yellow); }
+    &[data-color="green"]  { background: var(--wim-comp-terminal-traffic-green); }
   }
 
   .titleText {

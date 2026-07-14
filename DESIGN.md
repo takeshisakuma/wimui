@@ -165,24 +165,9 @@ background: rgba(32, 91, 133, 0.12);
 | `--wim-color-overlay-soft` | rgba(255,255,255, 0.8) | rgba(255,255,255, 0.2) |
 | `--wim-color-frosted-bg` | overlay-soft | surface 60% |
 
-#### Feedback
+#### Feedback / コンポーネント固有色
 
-Feedback コンポーネント（Alert, Banner, Toast 等）のバリアント色生成基盤。`color-mix()` で各インテント色と混合して使用。
-
-| トークン | ライト | ダーク |
-|----------|--------|--------|
-| `--wim-color-feedback-text-base` | black | white |
-| `--wim-color-feedback-bg-base` | white | black |
-| `--wim-color-feedback-border-strength` | 30% | 40% |
-
-使い方の例:
-
-```scss
-// Info バリアント
-color: color-mix(in srgb, var(--wim-color-info) 65%, var(--wim-color-feedback-text-base));
-background: color-mix(in srgb, var(--wim-color-info) 10%, var(--wim-color-feedback-bg-base));
-border-color: color-mix(in srgb, var(--wim-color-info) var(--wim-color-feedback-border-strength), transparent);
-```
+Alert / Banner / Toast 等のバリアント色は、公開 role トークン（`info` / `success` / `danger` 等）と `color-mix()` で組み立てる。avatar / heatmap / carousel / chat-bubble / terminal / overlay-control などコンポーネント固有色は公開契約外（`--wim-comp-*`、テーマ上書き対象外）。
 
 ---
 

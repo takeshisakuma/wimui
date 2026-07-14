@@ -59,14 +59,14 @@
     height: var(--wim-height-md);
     color: var(--wim-color-text-on-primary);
     cursor: pointer;
-    background-color: var(--wim-color-carousel-control-bg);
+    background-color: var(--wim-comp-carousel-control-bg);
     border: none;
     border-radius: 50%;
     transform: translateY(-50%);
     transition: background-color var(--wim-transition-fast);
   
     &:hover:not(:disabled) {
-      background-color: var(--wim-color-carousel-control-hover-bg);
+      background-color: var(--wim-comp-carousel-control-hover-bg);
     }
   
     &:disabled {
@@ -99,7 +99,7 @@
     height: var(--wim-spacing-xs);
     padding: 0;
     cursor: pointer;
-    background-color: var(--wim-color-carousel-indicator-bg);
+    background-color: var(--wim-comp-carousel-indicator-bg);
     border: none;
     border-radius: 50%;
     transition:
@@ -113,7 +113,7 @@
     }
   
     &:hover:not(.active) {
-      background-color: var(--wim-color-carousel-indicator-hover-bg);
+      background-color: var(--wim-comp-carousel-indicator-hover-bg);
     }
   }
 }

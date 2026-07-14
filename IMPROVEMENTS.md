@@ -68,7 +68,7 @@
 | # | 改善 | 理由 |
 |---|---|---|
 | — | コア／拡張の物理分割（モノレポ化） | コスト大。見せ方の整理で代替 |
-| — | トークン名の大規模リネーム（総入れ替え） | **済（B）** — role 語彙を `surface*` / `overlay*` / `inverse` 系へ再編。component 色の公開降格は未 |
+| — | トークン名の大規模リネーム（総入れ替え） | **済（B）** — role 語彙を `surface*` / `overlay*` / `inverse` 系へ再編。component 色の公開降格も済 |
 | 10 関連 | RTL／論理プロパティ一括移行 | **対応予定なし**（方針どおり） |
 
 ---
@@ -86,6 +86,7 @@
 | トークン名・セマンティクス棚卸し | **済**（誤用修正＋契約文書化） |
 | トークン別名刈り込み（A） | **済**（`464ebb67`。`surface*` 正規化） |
 | トークン role 大規模リネーム（B） | **済**（`surface-app|subtle|void|inverse`、`overlay*`、`primary-muted|soft|fill`、`white`、`*-inverse`） |
+| コンポーネント色の公開降格 | **済**（avatar / heatmap / carousel / chat / terminal / control-default / close-hover / decoration-highlight / overlay-* → `--wim-comp-*`。未使用 `chart-*` / `feedback-*-base` 削除。`skeleton-*` は公開維持） |
 | CSS / テーマ契約 | **済**（必須 `styles.css` = トークン+コンポーネント。`reset.css` 任意。`WimProvider` 推奨） |
 | peer サポート行列 | **済**（React **19** / zod **4** のみ。README + `package.json` peers） |
 | 公開 API サーフェス凍結 | **済**（`check:api` v2。deep path **廃止**・バレルのみ） |
@@ -174,6 +175,7 @@ npm run check:aschild     # asChild 必須リスト
 ## 完了ログ（直近）
 
 ### 2026-07-14
+- コンポーネント色の公開降格: avatar / heatmap / carousel / chat-bubble / terminal / control-default / close-hover / decoration-highlight / overlay-control* を `--wim-comp-*`（`src/styles/_component-colors.scss`）へ。未使用 `chart-*` / `feedback-*-base` 削除
 - トークン role 大規模リネーム（B）: `surface-app|subtle|void|inverse`、`overlay*`、`primary-muted|soft|fill`、`white`、`*-inverse`
 - トークン別名刈り込み（A）: `surface*` を正規化。`bg-component|secondary|hover` / `surface-inverted` / `text-on-dark` / `surface-glass` を廃止（checkpoint `464ebb67`）
 - CSS 統合: 必須は `wimui/styles.css`（トークン+コンポーネント）。`tokens.css` 廃止。`reset.css` は任意のまま

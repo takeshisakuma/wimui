@@ -156,9 +156,9 @@
     --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
     &.default {
-      color: var(--wim-color-control-default-fg);
-      background-color: var(--wim-color-control-default-bg);
-      border-color: var(--wim-color-control-default-border);
+      color: var(--wim-comp-control-default-fg);
+      background-color: var(--wim-comp-control-default-bg);
+      border-color: var(--wim-comp-control-default-border);
     }
 
     &.danger {
@@ -201,7 +201,7 @@
     border-color: var(--wim-color-ghost-border);
 
     &.default {
-      color: var(--wim-color-control-default-fg);
+      color: var(--wim-comp-control-default-fg);
     }
 
     &.danger {

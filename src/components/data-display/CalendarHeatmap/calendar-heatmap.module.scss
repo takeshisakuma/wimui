@@ -58,11 +58,11 @@
       transform: scale(1.2);
     }
 
-    &.level0 { background-color: var(--wim-color-heatmap-level-0); }
-    &.level1 { background-color: var(--wim-color-heatmap-level-1); }
-    &.level2 { background-color: var(--wim-color-heatmap-level-2); }
-    &.level3 { background-color: var(--wim-color-heatmap-level-3); }
-    &.level4 { background-color: var(--wim-color-heatmap-level-4); }
+    &.level0 { background-color: var(--wim-comp-heatmap-level-0); }
+    &.level1 { background-color: var(--wim-comp-heatmap-level-1); }
+    &.level2 { background-color: var(--wim-comp-heatmap-level-2); }
+    &.level3 { background-color: var(--wim-comp-heatmap-level-3); }
+    &.level4 { background-color: var(--wim-comp-heatmap-level-4); }
   }
 
   .labels {

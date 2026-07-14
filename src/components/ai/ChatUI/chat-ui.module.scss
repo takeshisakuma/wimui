@@ -32,14 +32,14 @@
     &.left {
       align-self: flex-start;
 
-      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-received);
       --wim-chat-bubble-color: var(--wim-color-text-primary);
     }
 
     &.right {
       align-self: flex-end;
 
-      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-sent);
+      --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-sent);
       --wim-chat-bubble-color: var(--wim-color-text-primary);
 
       .contentWrapper {
@@ -48,7 +48,7 @@
     }
 
     &.primary {
-      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-sent);
+      --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-sent);
     }
 
     &.secondary {
@@ -296,7 +296,7 @@
     overflow: hidden;
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-white);
-    background-color: var(--wim-color-avatar-default);
+    background-color: var(--wim-comp-avatar-default);
     border-radius: var(--wim-radius-full);
   
     &.sm {
@@ -318,18 +318,18 @@
     }
   
     /* Strong Tone Colors */
-    &.s1 { background-color: var(--wim-color-avatar-s1); }
-    &.s3 { background-color: var(--wim-color-avatar-s3); }
-    &.s5 { background-color: var(--wim-color-avatar-s5); }
-    &.s7 { background-color: var(--wim-color-avatar-s7); }
-    &.s10 { background-color: var(--wim-color-avatar-s10); }
-    &.s12 { background-color: var(--wim-color-avatar-s12); }
-    &.s14 { background-color: var(--wim-color-avatar-s14); }
-    &.s16 { background-color: var(--wim-color-avatar-s16); }
-    &.s18 { background-color: var(--wim-color-avatar-s18); }
-    &.s20 { background-color: var(--wim-color-avatar-s20); }
-    &.s22 { background-color: var(--wim-color-avatar-s22); }
-    &.s24 { background-color: var(--wim-color-avatar-s24); }
+    &.s1 { background-color: var(--wim-comp-avatar-s1); }
+    &.s3 { background-color: var(--wim-comp-avatar-s3); }
+    &.s5 { background-color: var(--wim-comp-avatar-s5); }
+    &.s7 { background-color: var(--wim-comp-avatar-s7); }
+    &.s10 { background-color: var(--wim-comp-avatar-s10); }
+    &.s12 { background-color: var(--wim-comp-avatar-s12); }
+    &.s14 { background-color: var(--wim-comp-avatar-s14); }
+    &.s16 { background-color: var(--wim-comp-avatar-s16); }
+    &.s18 { background-color: var(--wim-comp-avatar-s18); }
+    &.s20 { background-color: var(--wim-comp-avatar-s20); }
+    &.s22 { background-color: var(--wim-comp-avatar-s22); }
+    &.s24 { background-color: var(--wim-comp-avatar-s24); }
   }
   
   .image {

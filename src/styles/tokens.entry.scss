@@ -8,9 +8,11 @@
 //   - effects          … glass/shadow トークン + ダークオーバーライド
 //   - typography       … css-vars(dedup)
 //   - ui-patterns      … レイアウト/サイズ系トークン (--wim-height-* 等)
+//   - component-colors … 非公開コンポーネント色 (--wim-comp-*)
 // ─────────────────────────────────────────────────────────────────────────
 @use "../tokens/semantic-colors";
 @use "../tokens/spacings";
 @use "../tokens/effects";
 @use "../tokens/typography";
 @use "ui-patterns";
+@use "component-colors";

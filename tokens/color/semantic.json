@@ -103,18 +103,6 @@
       "text-on-overlay": {
         "value": "{pccs.w}"
       },
-      "carousel-control-bg": {
-        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.3)"
-      },
-      "carousel-control-hover-bg": {
-        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.5)"
-      },
-      "carousel-indicator-bg": {
-        "value": "oklch(from var(--wim-color-white) l c h / 0.5)"
-      },
-      "carousel-indicator-hover-bg": {
-        "value": "oklch(from var(--wim-color-white) l c h / 0.8)"
-      },
       "ghost-bg": {
         "value": "oklch(from var(--wim-color-surface-void) l c h / 0.03)"
       },
@@ -157,29 +145,8 @@
       "skeleton-shine": {
         "value": "rgba(255, 255, 255, 0.4)"
       },
-      "control-default-fg": {
-        "value": "var(--wim-color-primary)"
-      },
-      "control-default-bg": {
-        "value": "var(--wim-color-surface)"
-      },
-      "control-default-border": {
-        "value": "var(--wim-color-primary)"
-      },
-      "feedback-text-base": {
-        "value": "black"
-      },
-      "feedback-bg-base": {
-        "value": "white"
-      },
-      "feedback-border-strength": {
-        "value": "30%"
-      },
       "frosted-bg": {
         "value": "var(--wim-color-overlay-soft)"
-      },
-      "close-hover": {
-        "value": "rgba(0, 0, 0, 0.05)"
       },
       "ghost-bg-hover": {
         "value": "oklch(from var(--wim-color-surface-void) l c h / 0.05)"
@@ -192,120 +159,6 @@
       },
       "surface-inverse": {
         "value": "{pccs.gy2-5}"
-      },
-      "decoration-highlight-color": {
-        "value": "#fff9c4"
-      },
-      "overlay-control-track": {
-        "value": "rgba(255, 255, 255, 0.3)"
-      },
-      "overlay-control-hover": {
-        "value": "rgba(255, 255, 255, 0.2)"
-      },
-      "overlay-control-active": {
-        "value": "rgba(255, 255, 255, 0.25)"
-      },
-      "overlay-item-hover": {
-        "value": "rgba(255, 255, 255, 0.15)"
-      },
-      "overlay-menu-bg": {
-        "value": "rgba(28, 28, 28, 0.95)"
-      },
-      "overlay-divider": {
-        "value": "rgba(255, 255, 255, 0.1)"
-      },
-      "avatar-default": {
-        "value": "{pccs.s18}"
-      },
-      "avatar-s1": {
-        "value": "{pccs.s1}"
-      },
-      "avatar-s3": {
-        "value": "{pccs.s3}"
-      },
-      "avatar-s5": {
-        "value": "{pccs.s5}"
-      },
-      "avatar-s7": {
-        "value": "{pccs.s7}"
-      },
-      "avatar-s10": {
-        "value": "{pccs.s10}"
-      },
-      "avatar-s12": {
-        "value": "{pccs.s12}"
-      },
-      "avatar-s14": {
-        "value": "{pccs.s14}"
-      },
-      "avatar-s16": {
-        "value": "{pccs.s16}"
-      },
-      "avatar-s18": {
-        "value": "{pccs.s18}"
-      },
-      "avatar-s20": {
-        "value": "{pccs.s20}"
-      },
-      "avatar-s22": {
-        "value": "{pccs.s22}"
-      },
-      "avatar-s24": {
-        "value": "{pccs.s24}"
-      },
-      "chat-bubble-received": {
-        "value": "color-mix(in oklch, {pccs.p7} 40%, white)"
-      },
-      "chat-bubble-sent": {
-        "value": "color-mix(in oklch, {pccs.p18} 40%, white)"
-      },
-      "chart-1": {
-        "value": "{pccs.v16}"
-      },
-      "chart-2": {
-        "value": "{pccs.v6}"
-      },
-      "chart-3": {
-        "value": "{pccs.v12}"
-      },
-      "chart-4": {
-        "value": "{pccs.v24}"
-      },
-      "chart-5": {
-        "value": "{pccs.v20}"
-      },
-      "chart-6": {
-        "value": "{pccs.v10}"
-      },
-      "chart-7": {
-        "value": "{pccs.v4}"
-      },
-      "chart-8": {
-        "value": "{pccs.v14}"
-      },
-      "heatmap-level-0": {
-        "value": "{pccs.gy8-5}"
-      },
-      "heatmap-level-1": {
-        "value": "{pccs.p12}"
-      },
-      "heatmap-level-2": {
-        "value": "{pccs.lt12}"
-      },
-      "heatmap-level-3": {
-        "value": "{pccs.s12}"
-      },
-      "heatmap-level-4": {
-        "value": "{pccs.dp12}"
-      },
-      "terminal-traffic-red": {
-        "value": "#ff5f57"
-      },
-      "terminal-traffic-yellow": {
-        "value": "#febc2e"
-      },
-      "terminal-traffic-green": {
-        "value": "#28c840"
       },
       "surface-app": {
         "value": "{pccs.w}"

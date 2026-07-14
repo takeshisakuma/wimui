@@ -173,16 +173,16 @@
 /* Unlayered: beats @layer component button rules and :root CSS variable definitions */
 .actionButton {
   color: var(--wim-snackbar-action);
-  background-color: var(--wim-color-overlay-control-track);
+  background-color: var(--wim-comp-overlay-control-track);
   border-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--wim-color-overlay-control-hover);
+    background-color: var(--wim-comp-overlay-control-hover);
     border-color: transparent;
   }
 
   &:active:not(:disabled) {
-    background-color: var(--wim-color-overlay-control-active);
+    background-color: var(--wim-comp-overlay-control-active);
     border-color: transparent;
   }
 }
