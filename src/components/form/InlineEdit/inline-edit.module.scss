@@ -11,7 +11,7 @@
     }
 
     &.disabled {
-      color: var(--wim-color-text-on-disabled);
+      color: var(--wim-color-text-disabled);
       pointer-events: none;
 
       .text,

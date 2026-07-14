@@ -25,11 +25,11 @@ export interface DatePickerProps extends Omit<
   variant?: FieldVariant;
   /** Whether to take full width of parent */
   fullWidth?: boolean;
-  /** Selected date value */
-  value?: Date;
+  /** Selected date value (`null` = cleared; omit/`undefined` = uncontrolled) */
+  value?: Date | null;
   /** Default date value (uncontrolled) */
-  defaultValue?: Date;
-  /** Callback when date changes */
+  defaultValue?: Date | null;
+  /** Callback when date changes (`null` when cleared) */
   onChange?: (date: Date | null) => void;
   /** Date format for display (default: 'YYYY-MM-DD') */
   format?: string;
@@ -267,7 +267,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                   styles.input,
                   fullWidth && inputStyles.fullWidth,
                 )}
-                value={formatDate(currentValue || null)}
+                value={formatDate(currentValue)}
                 placeholder={actualPlaceholder}
                 disabled={isDisabled}
                 onClick={handleInputClick}
@@ -291,7 +291,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               <FocusTrap active={isOpen} initialFocus={false}>
                 <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
                   <Calendar
-                    value={currentValue || undefined}
+                    value={currentValue ?? undefined}
                     onChange={handleDateChange}
                   />
                 </div>

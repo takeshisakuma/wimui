@@ -15,7 +15,7 @@ import {
   ColorInput,
   Combobox,
   TagInput,
-  Selectbox,
+  Select,
   MultiSelect,
   TreeSelect,
   Cascader,
@@ -88,7 +88,7 @@ export const Overview: StoryObj = {
               <PromptInput label={t("audit:label_intent", { intent })} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_prompt_ai")} />
               <Combobox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_combobox_placeholder")} />
               <TagInput label={t("audit:label_intent", { intent })} defaultValue={[t("audit:sample_tag_a")]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_tag_input_placeholder")} />
-              <Selectbox label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_select_placeholder")} />
+              <Select label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_select_placeholder")} />
               <MultiSelect label={t("audit:label_intent", { intent })} options={[{ label: t("audit:label_option_1"), value: "1" }]} error={intent === "danger" ? t("audit:label_error_message") : undefined} placeholder={t("audit:sample_multi_select_placeholder")} />
             </ComponentGroup>
           ))}
@@ -124,8 +124,8 @@ export const Overview: StoryObj = {
               ]} 
               placeholder={t("audit:sample_combobox_placeholder")} 
             />
-            <Selectbox 
-              label={t("audit:label_selectbox")} 
+            <Select
+              label={t("audit:label_select")}
               options={[
                 { label: t("audit:label_priority_high"), value: "high" },
                 { label: t("audit:label_priority_low"), value: "low" },
@@ -209,7 +209,7 @@ export const Overview: StoryObj = {
               <SmartSearchInput label={t("audit:label_fluid_smart_search")} fullWidth placeholder={t("audit:sample_smart_search_ai")} />
               <Combobox label={t("audit:label_fluid_combobox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_combobox_placeholder")} />
               <TagInput label={t("audit:label_fluid_tag_input")} fullWidth defaultValue={[t("audit:label_mix")]} />
-              <Selectbox label={t("audit:label_fluid_selectbox")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_select_placeholder")} />
+              <Select label={t("audit:label_fluid_select")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_select_placeholder")} />
               <MultiSelect label={t("audit:label_fluid_multi_select")} fullWidth options={[{ label: t("audit:label_option_1"), value: "f1" }]} placeholder={t("audit:sample_multi_select_placeholder")} />
               <TreeSelect label={t("audit:label_fluid_tree_select")} fullWidth treeData={[{ label: t("audit:label_option_1"), value: "fn1" }]} placeholder={t("audit:sample_tree_select_placeholder")} />
               <Cascader label={t("audit:label_fluid_cascader")} fullWidth options={[{ label: t("audit:label_option_1"), value: "fc1" }]} placeholder={t("audit:sample_cascader_placeholder")} />

@@ -298,7 +298,7 @@
     "dropdown_choice_dropdown_when": "アクションのリスト（「コピー」「削除」など）を表示する場合。",
     "dropdown_choice_matrix_desc": "コンテキストと必要な情報の複雑さに応じて選択してください。",
     "dropdown_choice_popover_when": "補足的な情報や、より複雑なコンテンツ（フォームなど）を表示する場合。",
-    "dropdown_choice_selectbox_when": "フォーム内で設定値（「都道府県」など）を選択する場合。",
+    "dropdown_choice_select_when": "フォーム内で設定値（「都道府県」など）を選択する場合。",
     "dropdown_comparison": "他の UI との比較",
     "dropdown_components": "コンポーネント構成",
     "dropdown_con_cost": "操作コスト",

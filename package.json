@@ -78,56 +78,6 @@
       "import": "./dist/ai.js",
       "require": "./dist/ai.cjs"
     },
-    "./layout/*": {
-      "types": "./dist/components/layout/*/*.d.ts",
-      "import": "./dist/components/layout/*/*.js",
-      "require": "./dist/components/layout/*/*.cjs"
-    },
-    "./form/*": {
-      "types": "./dist/components/form/*/*.d.ts",
-      "import": "./dist/components/form/*/*.js",
-      "require": "./dist/components/form/*/*.cjs"
-    },
-    "./feedback/*": {
-      "types": "./dist/components/feedback/*/*.d.ts",
-      "import": "./dist/components/feedback/*/*.js",
-      "require": "./dist/components/feedback/*/*.cjs"
-    },
-    "./navigation/*": {
-      "types": "./dist/components/navigation/*/*.d.ts",
-      "import": "./dist/components/navigation/*/*.js",
-      "require": "./dist/components/navigation/*/*.cjs"
-    },
-    "./data-display/*": {
-      "types": "./dist/components/data-display/*/*.d.ts",
-      "import": "./dist/components/data-display/*/*.js",
-      "require": "./dist/components/data-display/*/*.cjs"
-    },
-    "./overlay/*": {
-      "types": "./dist/components/overlay/*/*.d.ts",
-      "import": "./dist/components/overlay/*/*.js",
-      "require": "./dist/components/overlay/*/*.cjs"
-    },
-    "./typography/*": {
-      "types": "./dist/components/typography/*/*.d.ts",
-      "import": "./dist/components/typography/*/*.js",
-      "require": "./dist/components/typography/*/*.cjs"
-    },
-    "./media/*": {
-      "types": "./dist/components/media/*/*.d.ts",
-      "import": "./dist/components/media/*/*.js",
-      "require": "./dist/components/media/*/*.cjs"
-    },
-    "./charts/*": {
-      "types": "./dist/components/charts/*/*.d.ts",
-      "import": "./dist/components/charts/*/*.js",
-      "require": "./dist/components/charts/*/*.cjs"
-    },
-    "./ai/*": {
-      "types": "./dist/components/ai/*/*.d.ts",
-      "import": "./dist/components/ai/*/*.js",
-      "require": "./dist/components/ai/*/*.cjs"
-    },
     "./tokens": {
       "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.js",
@@ -139,7 +89,6 @@
       "require": "./dist/icons.cjs"
     },
     "./styles.css": "./dist/styles.css",
-    "./tokens.css": "./dist/tokens.css",
     "./reset.css": "./dist/reset.css",
     "./locales/*": "./dist/locales/*"
   },
@@ -178,16 +127,10 @@
       "limit": "145 kB"
     },
     {
-      "name": "styles.css — components (gzip)",
+      "name": "styles.css — tokens + components (gzip)",
       "path": "dist/styles.css",
       "gzip": true,
-      "limit": "70 kB"
-    },
-    {
-      "name": "tokens.css — :root tokens (gzip)",
-      "path": "dist/tokens.css",
-      "gzip": true,
-      "limit": "6 kB"
+      "limit": "78 kB"
     },
     {
       "name": "reset.css — reset/base (gzip)",
@@ -374,18 +317,18 @@
     "@fullcalendar/interaction": ">=6.0.0",
     "@fullcalendar/react": ">=6.0.0",
     "@fullcalendar/timegrid": ">=6.0.0",
-    "@hookform/resolvers": ">=3.0.0",
+    "@hookform/resolvers": "^5.1.0",
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
     "music-metadata": ">=11.0.0",
     "qrcode.react": ">=4.0.0",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
-    "react-hook-form": ">=7.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.43.0",
     "react-markdown": ">=10.0.0",
     "recharts": ">=3.0.0",
     "remark-gfm": ">=4.0.0",
-    "zod": ">=3.0.0"
+    "zod": "^4.0.0"
   },
   "peerDependenciesMeta": {
     "@xyflow/react": {

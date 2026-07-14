@@ -7,11 +7,11 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { FieldTemplate } from "../FieldTemplate";
 import { InputBase } from "../InputBase";
-import localStyles from "./selectbox.module.scss";
-import { useSelectbox } from "./useSelectbox";
+import localStyles from "./select.module.scss";
+import { useSelect } from "./useSelect";
 import { type FieldIntent, type FieldWidth } from "../../../types/tokens";
 
-export type SelectboxOption = {
+export type SelectOption = {
   label?: React.ReactNode;
   value?: string;
   disabled?: boolean;
@@ -19,14 +19,14 @@ export type SelectboxOption = {
   type?: "option" | "separator";
 };
 
-export type SelectboxOptionGroup = {
+export type SelectOptionGroup = {
   label: React.ReactNode;
-  options: SelectboxOption[];
+  options: SelectOption[];
 };
 
-export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
   /** List of options (flat or grouped) */
-  options: SelectboxOption[] | SelectboxOptionGroup[];
+  options: SelectOption[] | SelectOptionGroup[];
   /** Selected value (controlled) */
   value?: string;
   /** Callback when the selected value changes */
@@ -44,7 +44,7 @@ export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div
   /** Placeholder text for search input */
   searchPlaceholder?: string;
   /** Custom filter function */
-  filterOption?: (option: SelectboxOption, searchValue: string) => boolean;
+  filterOption?: (option: SelectOption, searchValue: string) => boolean;
   /** Whether options are grouped */
   grouped?: boolean;
   /** Whether to show a clear button when a value is selected */
@@ -87,7 +87,7 @@ export interface SelectboxProps extends Omit<React.ComponentPropsWithoutRef<"div
 /**
  * Pull-down menu for selecting a single option from a predefined list.
  */
-export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
       options = [],
@@ -120,7 +120,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
   ) => {
     const { t } = useWimTranslation("form");
     const generatedId = useId();
-    const id = customId || `wim-selectbox-${generatedId}`;
+    const id = customId || `wim-select-${generatedId}`;
     const labelId = label ? `${id}-label` : undefined;
     const errorId = error ? `${id}-error` : undefined;
     const listId = `${id}-list`;
@@ -148,7 +148,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
       handleSelect,
       handleClear,
       handleKeyDown,
-    } = useSelectbox({
+    } = useSelect({
       options,
       value,
       onChange,
@@ -165,7 +165,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
     const renderOptions = () => {
       let flatIndex = 0;
       if (grouped && options.length > 0 && "options" in options[0]) {
-        const groups = options as SelectboxOptionGroup[];
+        const groups = options as SelectOptionGroup[];
 
         return groups.map((group, groupIndex) => {
           const groupOptionsFiltered = group.options.filter(
@@ -203,7 +203,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
 
                 const isFocused = index === focusedIndex;
                 const isSelected = currentValue === option.value;
-                const optionId = `wim-selectbox-option-${id}-${option.value}`;
+                const optionId = `wim-select-option-${id}-${option.value}`;
 
                 return (
                   <BaseListItem
@@ -251,7 +251,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
 
         const isFocused = itemIndex === focusedIndex;
         const isSelected = currentValue === option.value;
-        const optionId = `wim-selectbox-option-${id}-${option.value}`;
+        const optionId = `wim-select-option-${id}-${option.value}`;
 
         return (
           <BaseListItem
@@ -284,7 +284,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
 
     const activeDescendant =
       focusedOption && focusedOption.type !== "separator"
-        ? `wim-selectbox-option-${id}-${focusedOption.value}`
+        ? `wim-select-option-${id}-${focusedOption.value}`
         : undefined;
 
     const {
@@ -308,7 +308,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
         className={className}
       >
         <RootComponent
-          className={classNames("wim-selectbox", 
+          className={classNames("wim-select",
             localStyles.root,
             fullWidth && localStyles.fullWidth,
             stylesProp?.root,
@@ -426,6 +426,6 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
   },
 );
 
-Selectbox.displayName = "Selectbox";
+Select.displayName = "Select";
 
-export default Selectbox;
+export default Select;

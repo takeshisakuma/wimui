@@ -58,9 +58,21 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | 主要テキスト | `--wim-color-text-primary` | `bk` (#000) | `w` (#fff) |
 | 補助テキスト | `--wim-color-text-secondary` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
 | 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | `gy7-5` (#b6b6b6) |
-| 無効テキスト | `--wim-color-text-disabled` | `gy7-5` (#b6b6b6) | `gy6-5` (#8a8a8a) |
+| 無効テキスト（通常面） | `--wim-color-text-disabled` | `gy6-5` (#8a8a8a) | `gy6-5` (#8a8a8a) |
+| 無効フィル上の文字 | `--wim-color-text-on-disabled` | `gy3-5` (#393939) | `gy7-5` (#b6b6b6) |
 | エラーテキスト | `--wim-color-text-danger` | `s2` (#ca1028) | #ff8c8c |
 | プレースホルダー | `--wim-color-text-placeholder` | = text-tertiary | = text-tertiary |
+
+**disabled テキストの使い分け（公開契約）**
+
+| トークン | いつ使うか |
+|----------|------------|
+| `--wim-color-text-on-disabled` | 背景が `--wim-color-disabled` のとき（solid Button / Input 系の disabled フィル上）。`text-on-*` ファミリー |
+| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト（outline/ghost Button、Chip/Tag、Tabs、Pagination、Icon `color="disabled"` など） |
+
+`--wim-color-disabled` 自体は**塗り**用。テキスト色に使わない。
+
+Avatar の default は意図的に disabled フィル＋`text-on-disabled` を流用（中立クローム）。新規の「ニュートラル」トークンは増やさない。
 
 #### サーフェスカラー
 
@@ -83,7 +95,16 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | `--wim-color-surface-hover` | `--wim-color-bg-hover` |
 | `--wim-color-surface-glass` | `--wim-color-glass-bg` |
 | `--wim-color-surface-inset` | `--wim-color-bg-app` |
-| `--wim-color-surface-inverse` | `--wim-color-bg-inverted` |
+| `--wim-color-surface-inverse` | `--wim-color-bg-inverted`（反転面はこちらを使う） |
+
+**近いが別物（改名しない・新規では区別して使う）**
+
+| トークン | 意味 |
+|----------|------|
+| `--wim-color-bg-subtle` | ソリッドなごく薄い面（`#fafafa` / ダーク `#262626`） |
+| `--wim-color-bg-surface-subtle` | void ベースの半透明アルファ面 |
+| `--wim-color-surface-inverted` | `gy3-5` の固定値。新規コードでは `surface-inverse` を優先 |
+| `--wim-color-text-on-dark` / `--wim-color-text-on-inverted` | いずれも暗色面向け前景。既存用途を崩さず、新規は面に合わせて選ぶ |
 
 ### 不透明度の扱い（RGB トークン）
 
@@ -166,13 +187,30 @@ border-color: color-mix(in srgb, var(--wim-color-info) var(--wim-color-feedback-
 
 ## テーマシステム
 
+### 公開契約（名前を変えない）
+
+| 項目 | 契約 |
+|------|------|
+| React 正面 API | `WimProvider`（`theme` / `density` / `locale`）。`useWim` で参照 |
+| 命令型 API | `setWimTheme` / `setWimDensity` / `setWimLocale` |
+| CSS エントリ | `wimui/styles.css`（必須・トークン+コンポーネント）・`wimui/reset.css`（任意） |
+| テーマ属性 | `data-theme`（別名不可）。正規の載せる先は `<html>` / `document.documentElement` |
+| 密度属性 | `data-density`（`comfortable` \| `compact`） |
+| UMD | `wimui.umd.css` は上記 3 CSS を同梱 |
+
+属性契約は変えない。React アプリでは Provider を推奨。
+
 ### 切り替えメカニズム
 
 | 方式 | 適用条件 |
 |------|----------|
 | `:root` | ライトモードのデフォルト値 |
-| `[data-theme="dark"]` | 明示的にダークモードを指定した場合 |
+| `[data-theme="dark"]` | 明示的にダークモードを指定した場合（`<html>` または子孫のダーク島） |
 | `@media (prefers-color-scheme: dark)` + `:root:not([data-theme="light"])` | OS設定に連動する自動ダークモード |
+
+`data-theme` 未指定 → OS 追従。`ThemeToggle`（`applyToDocument`）は `light`/`dark` で属性を書き、`system` で外す。
+
+詳細ドキュメント: Storybook **Token → Theme** / **Token → Density**、Getting Started → Installation。
 
 ### テーマ切替トランジション
 
@@ -476,7 +514,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 ### Form（フォーム）-- 47 コンポーネント
 
-Button, ButtonGroup, Cascader, Checkbox, CheckboxGroup, ColorInput, ColorPicker, Combobox, CopyButton, DatePicker, DateRangePicker, Dropzone, FieldError, FieldTemplate, Fieldset, FileUpload, FloatButton, IconButton, Input, InputBase, InputGroup, InputMask, LinkButton, Mentions, MultiSelect, NumberInput, OtpInput, PasswordInput, PhoneInput, QueryBuilder, Radio, RadioGroup, RangeSlider, Rating, RichTextEditor, SearchInput, SegmentedControl, Selectbox, SignaturePad, Slider, Switch, SwitchGroup, Textarea, TimePicker, ToggleGroup, Transfer, TreeSelect
+Button, ButtonGroup, Cascader, Checkbox, CheckboxGroup, ColorInput, ColorPicker, Combobox, CopyButton, DatePicker, DateRangePicker, Dropzone, FieldError, FieldTemplate, Fieldset, FileUpload, FloatButton, IconButton, Input, InputBase, InputGroup, InputMask, LinkButton, Mentions, MultiSelect, NumberInput, OtpInput, PasswordInput, PhoneInput, QueryBuilder, Radio, RadioGroup, RangeSlider, Rating, RichTextEditor, SearchInput, SegmentedControl, Select, SignaturePad, Slider, Switch, SwitchGroup, Textarea, TimePicker, ToggleGroup, Transfer, TreeSelect
 
 ### Data Display（データ表示）-- 25 コンポーネント
 

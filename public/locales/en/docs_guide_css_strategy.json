@@ -40,6 +40,11 @@
     "method_classname_title": "ClassName Override",
     "method_classname_usage": "Styles can be injected externally through each component's `className` prop.",
     "method_global_title": "Global Styling",
-    "method_global_usage": "Target `:global` classes for global adjustments at the application level."
+    "method_global_usage": "Target `:global` classes for global adjustments at the application level.",
+    "public_css_title": "Public CSS entries",
+    "public_css_desc": "Published package paths. Changing these breaks consumers.",
+    "public_css_styles": "`wimui/styles.css` (required) — `:root` `--wim-*` (dark + density from `_ui-patterns.scss`) plus component CSS. Does not include reset.",
+    "public_css_reset": "`wimui/reset.css` (optional) — opinionated reset/base; omit if it conflicts with the host app.",
+    "public_css_attrs": "Document attributes (stable names): `data-theme` and `data-density` on `<html>` by default. See Token → Theme and Token → Density."
   }
 }

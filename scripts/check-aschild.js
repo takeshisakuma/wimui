@@ -12,7 +12,7 @@ const requiredComponents = [
   'Link', 'CommandPalette', 'Breadcrumb', 'Stepper', 'Menubar', 'Tabs',
   'TabNavigation', 'TabBar', 'Pagination', 'HamburgerMenu', 'BackTop',
   // Form
-  'Button', 'IconButton', 'Input', 'Selectbox', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
+  'Button', 'IconButton', 'Input', 'Select', 'Checkbox', 'CheckboxGroup', 'Radio', 'RadioGroup',
   'Slider', 'NumberInput', 'Mentions', 'OtpInput', 'FloatButton', 'FieldTemplate', 'DatePicker',
   'CreditCardInput', 'Switch', 'SwitchGroup', 'LinkButton', 'Textarea', 'SegmentedControl', 'ToggleGroup', 'TreeSelect',
   'ButtonGroup', 'ThemeToggle', 'RangeSlider', 'Rating', 'CopyButton',

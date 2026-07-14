@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Input,
-  Selectbox,
+  Select,
   Combobox,
   MultiSelect,
   Checkbox,
@@ -46,9 +46,9 @@ export const Overview: StoryObj = {
               fullWidth
             />
           </ComponentGroup>
-          <ComponentGroup label={t("audit:label_selectbox")} maxWidth="var(--wim-width-md)" align="stretch">
-            <Selectbox 
-              label={t("audit:label_country")} 
+          <ComponentGroup label={t("audit:label_select")} maxWidth="var(--wim-width-md)" align="stretch">
+            <Select
+              label={t("audit:label_country")}
               options={[{ label: t("audit:option_us"), value: "us" }, { label: t("audit:option_japan"), value: "jp" }]} 
               placeholder={t("audit:placeholder_country")}
               fullWidth
@@ -111,7 +111,7 @@ export const Overview: StoryObj = {
             <Stack gap="md">
               <Input label={t("audit:label_first_name")} fullWidth />
               <Input label={t("audit:label_last_name")} fullWidth />
-              <Selectbox label={t("audit:label_role")} fullWidth options={[]} />
+              <Select label={t("audit:label_role")} fullWidth options={[]} />
             </Stack>
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_promo_code")} align="stretch" maxWidth="var(--wim-width-md)">

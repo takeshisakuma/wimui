@@ -4,10 +4,11 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { SunIcon, MoonIcon, MonitorIcon } from "@/icon";
 import { ComponentSizeBasic } from "../../../types/tokens";
+import { setWimTheme, type WimTheme } from "../../../theme";
 import styles from "./theme-toggle.module.scss";
 
 /** Theme mode. "system" follows the OS via `prefers-color-scheme`. */
-export type ThemeMode = "light" | "dark" | "system";
+export type ThemeMode = WimTheme;
 
 /** Labels for internationalization. */
 export type ThemeToggleLabels = {
@@ -58,18 +59,13 @@ const DEFAULT_STORAGE_KEY = "wim-theme";
 const isThemeMode = (v: unknown): v is ThemeMode =>
   v === "light" || v === "dark" || v === "system";
 
-/** Apply the mode to the document root: `data-theme` for explicit modes, removed for "system". */
-const applyTheme = (mode: ThemeMode) => {
-  if (typeof document === "undefined") return;
-  const root = document.documentElement;
-  if (mode === "system") root.removeAttribute("data-theme");
-  else root.setAttribute("data-theme", mode);
-};
-
 /**
  * ThemeToggle switches the app between light, dark, and system themes. It writes
  * `data-theme` to the document root (the attribute the design tokens key off)
  * and persists the choice to localStorage.
+ *
+ * Prefer wrapping the app in `WimProvider` for theme/density/locale. When both
+ * drive the same document theme, lift state and set `applyToDocument={false}` here.
  *
  * Composition Contract:
  * - Managed by: App consumption
@@ -115,7 +111,7 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
     // Apply the active mode to the document (and react to system changes when in "system").
     useEffect(() => {
       if (!applyToDocument) return;
-      applyTheme(current);
+      setWimTheme(current);
     }, [current, applyToDocument]);
 
     const selectMode = useCallback(

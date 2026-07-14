@@ -150,7 +150,7 @@
   "doc.modelselector_a11y_2": "矢印キーでアクティブな項目を移動し、aria-activedescendant がそれをスクリーンリーダーに伝えます。",
   "doc.modelselector_a11y_3": "無効なモデルには aria-disabled が付与され、ポインタでもキーボードでも選択できません。",
   "doc.modelselector_choice_combobox": "検索可能で項目数の多いリスト",
-  "doc.modelselector_choice_selectbox": "メタ情報のないシンプルな単一選択のドロップダウン",
+  "doc.modelselector_choice_select": "メタ情報のないシンプルな単一選択のドロップダウン",
   "doc.modelselector_choice_self": "コストとコンテキストのメタ情報を見せながらモデルを切り替えたい",
   "doc.modelselector_content_guidelines_1": "モデル名は短く判別しやすくし、プロバイダ名は説明行に回します。",
   "doc.modelselector_content_guidelines_2": "コンテキスト長はコンパクトに（例: 128K）、価格は 100 万トークンあたりで表記し、数値を一目で比較できるようにします。",

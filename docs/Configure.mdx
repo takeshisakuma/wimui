@@ -51,6 +51,48 @@ export const RightArrow = () => (
     </tbody>
   </table>
 
+  <h3><T k="config.css_title" /></h3>
+  <p><T k="config.css_desc" /></p>
+  <Command>{`import "wimui/styles.css"; // required
+import "wimui/reset.css";  // optional`}</Command>
+  <table>
+    <thead>
+      <tr>
+        <th>Entry</th>
+        <th><T k="config.quality_header_purpose" /></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>wimui/styles.css</code> (<T k="config.css_required" />)</td>
+        <td><T k="config.css_styles_role" /></td>
+      </tr>
+      <tr>
+        <td><code>wimui/reset.css</code> (<T k="config.css_optional" />)</td>
+        <td><T k="config.css_reset_role" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><T k="config.css_umd_note" /></p>
+
+  <h3><T k="config.theme_title" /></h3>
+  <p><T k="config.theme_desc" /></p>
+  <Command>{`import { WimProvider } from "wimui";
+
+<WimProvider theme="dark" density="compact" locale="ja">
+  <App />
+</WimProvider>`}</Command>
+  <Command>{`<html data-theme="dark">
+<html data-theme="light">
+<html> <!-- OS preference (system) -->`}</Command>
+
+  <h3><T k="config.density_title" /></h3>
+  <p><T k="config.density_desc" /></p>
+  <Command>{`// via WimProvider (recommended) or:
+import { setWimDensity } from "wimui";
+setWimDensity("compact");
+// <html data-density="compact">`}</Command>
+
   <h3><T k="config.quality_title" /></h3>
   <table>
     <thead>

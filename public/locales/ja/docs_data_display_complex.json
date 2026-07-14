@@ -145,7 +145,7 @@
     "patterns_motion_desc": "トランジションは最小限かつ目的のあるもので、ユーザーのモーション軽減設定を尊重します。",
     "patterns_pricing_desc": "SaaSなどで一般的な料金比較表のパターンです。`Grid`, `Card`, `Badge`, `Heading`, `Paragraph`, `Button`, `Stack` を使用した、情報の優先順位が明確なレイアウトです。",
     "patterns_pricing_title": "料金プラン (Pricing Table)",
-    "patterns_profile_desc": "`Input`, `Textarea`, `Selectbox`, `RadioGroup`, `Switch` など、多数 of フォームコンポーネントを組み合わせた設定画面のパターンです。サイドバーナビゲーションとメインコンテンツエリアの 2 カラムレイアウトを採用しています。",
+    "patterns_profile_desc": "`Input`, `Textarea`, `Select`, `RadioGroup`, `Switch` など、多数 of フォームコンポーネントを組み合わせた設定画面のパターンです。サイドバーナビゲーションとメインコンテンツエリアの 2 カラムレイアウトを採用しています。",
     "patterns_profile_title": "ユーザープロファイル設定 (User Profile Settings)",
     "patterns_scenario_1": "ダッシュボードレイアウト: 定型化されたカードとグリッドのパターンを使用して、メイン画面を迅速に構築します。",
     "patterns_scenario_2": "マーケティングページ: 最小限のカスタムCSSで、訴求力の高いヒーローセクションや料金表を実装します。",

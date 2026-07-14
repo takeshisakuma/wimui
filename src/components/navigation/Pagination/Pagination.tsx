@@ -3,7 +3,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
-import { Selectbox } from "../../form/Selectbox/Selectbox";
+import { Select } from "../../form/Select/Select";
 import { Input } from "../../form/Input/Input";
 import { Button } from "../../form/Button/Button";
 import styles from "./pagination.module.scss";
@@ -377,7 +377,7 @@ export const Pagination = ({
         {/* Page Size Changer */}
         {showSizeChanger && (
           <div className={styles.sizeChanger}>
-            <Selectbox
+            <Select
               value={String(currentPageSize)}
               onChange={(val) => handlePageSizeChange(Number(val))}
               options={pageSizeOptions.map((size) => ({

@@ -374,7 +374,7 @@
     "segmented_usage": "ビュー切替（グリッド/リスト）、期間切替（週/月）",
     "segmented_usecase": "表示形式の切り替え（例：週間/月間）、ソート順の変更（例：昇順/降順）",
     "segmented_vs_others": "SegmentedControl の使い分け",
-    "selectbox_usage": "都道府県、カテゴリー選択、ステータス変更",
+    "select_usage": "都道府県、カテゴリー選択、ステータス変更",
     "single": "単一",
     "single_or_multi": "単一 または 複数",
     "single_or_multiple": "単一 / 複数",

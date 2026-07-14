@@ -40,6 +40,11 @@
     "method_classname_title": "Substituição de ClassName",
     "method_classname_usage": "Estilos podem ser injetados externamente através da prop `className` de cada componente.",
     "method_global_title": "Estilização Global",
-    "method_global_usage": "Alveje classes `:global` para ajustes globais no nível da aplicação."
+    "method_global_usage": "Alveje classes `:global` para ajustes globais no nível da aplicação.",
+    "public_css_title": "Entradas CSS públicas",
+    "public_css_desc": "Caminhos publicados no pacote. Alterá-los quebra os consumidores.",
+    "public_css_styles": "`wimui/styles.css` (obrigatório) — `:root` `--wim-*` (dark + density de `_ui-patterns.scss`) mais CSS de componentes. Sem reset.",
+    "public_css_reset": "`wimui/reset.css` (opcional) — reset/base opinativo; omita se conflitar com a app.",
+    "public_css_attrs": "Atributos do documento (nomes estáveis): `data-theme` e `data-density` em `<html>` por padrão. Ver Token → Theme / Density."
   }
 }

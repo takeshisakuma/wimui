@@ -3,7 +3,20 @@
 React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
-- 動作要件: Node.js >= 18 / React >= 18 / react-dom >= 18
+- 動作要件: Node.js >= 18 / **React 19**（`react` / `react-dom`）
+
+## サポート行列（peer）
+
+公開 peer の版レンジです。これより広い版はサポート対象外です。
+
+| パッケージ | サポート | peer レンジ | 備考 |
+|---|---|---|---|
+| `react` / `react-dom` | **19** | `^19.0.0` | 開発・テスト・公開型は React 19。React 18 は非対応 |
+| `zod`（`wimui/rhf` 利用時） | **4** | `^4.0.0` | 開発・テストは zod 4。zod 3 は非対応 |
+| `@hookform/resolvers` | **5.1+** | `^5.1.0` | `wimui/rhf` 利用時 |
+| `react-hook-form` | **7.43+** | `^7.43.0` | `wimui/rhf` 利用時のみ |
+
+コア UI（ルート `wimui`）に zod / RHF は不要です。charts 等の optional peer は下表を参照。
 
 ## インストール
 
@@ -25,14 +38,13 @@ npm install /path/to/wimui-0.1.0.tgz
 
 ## クイックスタート
 
-アプリのエントリポイントでスタイルを一度だけ読み込みます。CSS はトークン・リセット・
-コンポーネントの 3 つに分割されており、目的に応じて組み合わせられます。
+アプリのエントリポイントでスタイルを一度だけ読み込みます。必須 CSS は
+`styles.css` の 1 本（トークン + コンポーネント）です。`reset.css` は任意です。
 
 **Core（追加依存なし）** — ほとんどのコンポーネントはルートから import できます。
 
 ```tsx
-import "wimui/tokens.css"; // 必須: デザイントークン（:root の --wim-* 変数）
-import "wimui/styles.css"; // 必須: 全コンポーネントのスタイル
+import "wimui/styles.css"; // 必須: :root の --wim-* + 全コンポーネントのスタイル
 import "wimui/reset.css";  // 任意: 意見の強いリセット/base 要素スタイル
 
 import { Button } from "wimui";
@@ -40,7 +52,7 @@ import { Button } from "wimui";
 export const App = () => <Button>保存</Button>;
 ```
 
-- `tokens.css` と `styles.css` は必須です（コンポーネントは `var(--wim-*)` を参照するため）。
+- `styles.css` は必須です（デザイントークンとコンポーネント CSS を同梱）。
 - `reset.css` は任意です。`button` / `a` / `ul` / `table` などをリセットする意見の強い
   グローバルスタイルを含むため、アプリ側の既存スタイルと衝突する場合は省略できます。
 
@@ -60,7 +72,7 @@ npm install recharts
 ```
 
 > `<script>` タグで読み込む UMD 版（`dist/wimui.umd.js` + `dist/wimui.umd.css`）は、
-> 上記 3 つを 1 ファイルに同梱しています。
+> 必須の styles（トークン + コンポーネント）と reset を 1 ファイルに同梱しています。
 
 ## アイコン
 
@@ -109,7 +121,17 @@ i18n.on("languageChanged", (lng) => setWimLocale(lng));
 
 ## ダークモード
 
-`<html>` の `data-theme` 属性で制御します。未指定の場合は OS の `prefers-color-scheme` に追従します。
+推奨は `WimProvider` です。内部では `<html>` の `data-theme` を書き込みます（属性名・載せる先は公開契約のまま）。未指定（`system`）の場合は OS の `prefers-color-scheme` に追従します。
+
+```tsx
+import { WimProvider } from "wimui";
+
+<WimProvider theme="dark" density="compact" locale="ja">
+  <App />
+</WimProvider>
+```
+
+属性を直接書くこともできます（`ThemeToggle` / `setWimTheme` も同じ契約）。
 
 ```html
 <html data-theme="dark">  <!-- ダーク固定 -->
@@ -117,33 +139,50 @@ i18n.on("languageChanged", (lng) => setWimLocale(lng));
 <html>                    <!-- OS 設定に追従 -->
 ```
 
+`ThemeToggle` と `WimProvider` の両方で同じ document テーマを動かす場合は、状態を親に持ち上げてトグル側は `applyToDocument={false}` にしてください。
+
 ## UI 密度（Density）
 
-コントロールの高さ・余白をグローバルに切り替えます。レイアウト用の `--wim-spacing-*` は変えず、`--wim-height-*` や `--wim-control-padding-*`、テーブルセル余白などが追従します。
+コントロールの高さ・余白をグローバルに切り替えます。レイアウト用の `--wim-spacing-*` は変えず、`--wim-height-*` や `--wim-control-padding-*`、テーブルセル余白などが追従します。属性名は `data-density`（公開契約）。`WimProvider` の `density` か `setWimDensity` で設定します。
 
 ```ts
-import { setWimDensity } from "wimui";
+import { setWimDensity, getWimDensity } from "wimui";
 
-setWimDensity("compact");     // ダッシュボード向け
+setWimDensity("compact");     // ダッシュボード向け（documentElement）
 setWimDensity("comfortable"); // デフォルト
+getWimDensity();              // "comfortable" | "compact"
 ```
 
 ```html
 <html data-density="compact">
 ```
 
-Storybook ではツールバーの **Density**、または Token → Density で確認できます。
+Storybook ではツールバーの **Density**、または Token → Density / Theme で確認できます。
 
 ## バンドルサイズと import 方法
 
 ルートからの named import で未使用コンポーネントはバンドルに含まれません（`sideEffects` 設定済み）。カテゴリ別のサブパスも利用できます。
 
 ```tsx
-import { Button } from "wimui";        // tree-shaking が効く
-import { Button } from "wimui/form";   // カテゴリ別サブパス
+import { Button } from "wimui";      // tree-shaking が効く（推奨）
+import { Button } from "wimui/form"; // カテゴリ別サブパス
 ```
 
 カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens` / `rhf`
+
+**deep path は非公開です。** `wimui/form/Button` のようなコンポーネント単位パスは `exports` に含まれません（フォルダ名を利用者契約にしないため）。
+
+### 公開 API サーフェス（凍結）
+
+`package.json` の `exports` とバレルの named export は公開契約です。`npm run check:api` が両方を `api-snapshot.json` に対して検証します。
+
+| 層 | 例 | 注意 |
+|---|---|---|
+| ルート / カテゴリバレル | `wimui`, `wimui/form`, `wimui/rhf` | 公開。シンボル増減はスナップショット更新が必要 |
+| CSS / locales | `wimui/styles.css`, `wimui/locales/*` | テーマ・i18n 契約どおり |
+| 非公開 | `wimui/form/Button`、`_internal` 等 | `exports` に無いため import 不可 |
+
+意図的な API 変更時のみ `npm run check:api:update` でスナップショットを更新してコミットしてください。
 
 > **optional peer 依存コンポーネントはルート `wimui` から export されません。** クイックスタートの subpath 例と下表を参照してください。
 
@@ -160,20 +199,20 @@ import { Button } from "wimui/form";   // カテゴリ別サブパス
 | QRCode | `qrcode.react` |
 | CodeDiffViewer, JsonDiffViewer | `diff` |
 | Audio（`showMetadata` を有効にする場合のみ） | `music-metadata` |
-| `wimui/rhf`（FormField / zodResolver） | `react-hook-form` `@hookform/resolvers` `zod` |
+| `wimui/rhf`（FormField / zodResolver） | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4`（上表） |
 
 ## Form 連携（react-hook-form / zod）
 
 コアの form コンポーネントはフレームワーク非依存のままです。RHF とつなぐ場合は optional エントリ `wimui/rhf` を使います。
 
 ```bash
-npm i react-hook-form @hookform/resolvers zod
+npm i react-hook-form@^7.43 @hookform/resolvers@^5.1 zod@^4
 ```
 
 ```tsx
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Input, Selectbox, Checkbox } from "wimui";
+import { Input, Select, Checkbox } from "wimui";
 import { FormField, valueFieldProps, checkedFieldProps, zodResolver } from "wimui/rhf";
 
 const schema = z.object({
@@ -199,7 +238,7 @@ function Example() {
         control={control}
         name="role"
         render={({ field, error }) => (
-          <Selectbox {...valueFieldProps(field)} label="Role" error={error} options={[]} />
+          <Select {...valueFieldProps(field)} label="Role" error={error} options={[]} />
         )}
       />
       <FormField
@@ -217,7 +256,7 @@ function Example() {
 ```
 
 - ネイティブ寄りの入力（`Input` / `Textarea` 等）: `{...field}` をそのまま渡す
-- 値コールバック型（`Selectbox` / `RadioGroup` 等）: `valueFieldProps(field)`
+- 値コールバック型（`Select` / `RadioGroup` 等）: `valueFieldProps(field)`
 - `checked` 型（`Checkbox` / `Switch`）: `checkedFieldProps(field)` + `error={invalid}`
 
 Storybook: **Patterns → Form → React Hook Form**

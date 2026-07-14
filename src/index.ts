@@ -1,14 +1,11 @@
-// グローバル CSS（トークン / リセット）はバレルから import しない。
-// バンドル成果物では styles.css をコンポーネント専用に保ち、トークンとリセットは
-// それぞれ wimui/tokens.css・wimui/reset.css として opt-in で読み込ませる。
-//   import "wimui/tokens.css";  // 必須: :root{--wim-*}
-//   import "wimui/styles.css";  // 必須: コンポーネント CSS
+// グローバル CSS はバレルから import しない（ビルド後に別エントリとして配布）。
+//   import "wimui/styles.css";  // 必須: :root{--wim-*} + コンポーネント CSS
 //   import "wimui/reset.css";   // 任意: 意見の強いリセット/base
 // Root barrel must import cleanly in non-bundler/Node contexts, so it excludes
 // components that eagerly import an optional peer: the whole `charts` category
 // (recharts) and the peer-heavy members of ai/data-display. Those remain
 // available via their category subpath (`wimui/charts`, `wimui/data-display`,
-// `wimui/ai`) or per-component subpath — see src/{ai,data-display}.ts.
+// `wimui/ai`) — see src/{ai,data-display}.ts. Per-component deep paths are not public.
 export * from "./tokens";
 export * from "./layout";
 export * from "./form";
@@ -32,3 +29,7 @@ export * from "./icon";
 export { setWimLocale, getWimLocale } from "./i18n/instance";
 // UI 密度（comfortable / compact）。data-density を document に付与する。
 export { setWimDensity, getWimDensity, type WimDensity } from "./density";
+// テーマ（light / dark / system）。data-theme を document に付与する。
+export { setWimTheme, getWimTheme, type WimTheme } from "./theme";
+// 正面の React セットアップ（theme / density / locale）。属性契約はそのまま。
+export { WimProvider, useWim, type WimProviderProps, type WimContextValue } from "./WimProvider";

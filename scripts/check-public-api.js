@@ -1,14 +1,16 @@
 /**
  * Public API surface guardrail.
  *
- * Enumerates every symbol exported from each published entry point (derived from
- * package.json "exports") using the TypeScript type checker, then compares the
- * result against the committed snapshot in `api-snapshot.json`.
+ * Freezes two layers of the publish contract:
+ * 1. `package.json` "exports" map (entry barrels, CSS, locales — no per-component deep paths)
+ * 2. Named symbols re-exported from each barrel entry (via TypeScript checker)
  *
- * Why: the category barrels use `export *`, so a new `export` in any component
- * file silently becomes public API. Once wimui is published to npm, removing a
- * leaked export is a breaking change. This check fails CI when the public surface
- * changes without the snapshot being updated on purpose.
+ * Component deep paths (`wimui/form/Button`) are intentionally not exported so
+ * folder renames under `src/components/` stay non-breaking for consumers.
+ *
+ * Why symbols: category barrels use `export *`, so a new `export` in any component
+ * file silently becomes public API. After npm publish, removing a leaked export is
+ * a breaking change.
  *
  * Usage:
  *   node scripts/check-public-api.js            # verify against snapshot (CI)
@@ -25,20 +27,48 @@ const root = path.resolve(__dirname, "..");
 const snapshotPath = path.join(root, "api-snapshot.json");
 const update = process.argv.includes("--update");
 
+const SNAPSHOT_VERSION = 2;
+
+/**
+ * Normalize package.json "exports" into sorted contract lines.
+ * String targets and conditional objects are both covered.
+ */
+function collectPackageExports() {
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+  const lines = [];
+  for (const [subpath, value] of Object.entries(pkg.exports ?? {})) {
+    if (typeof value === "string") {
+      lines.push(`${subpath} => ${value}`);
+      continue;
+    }
+    if (!value || typeof value !== "object") {
+      lines.push(`${subpath} => ${JSON.stringify(value)}`);
+      continue;
+    }
+    const parts = ["types", "import", "require", "default"]
+      .filter((k) => typeof value[k] === "string")
+      .map((k) => `${k}:${value[k]}`);
+    const extra = Object.keys(value)
+      .filter((k) => !["types", "import", "require", "default"].includes(k))
+      .sort();
+    for (const k of extra) parts.push(`${k}:${JSON.stringify(value[k])}`);
+    lines.push(`${subpath} => ${parts.join("; ")}`);
+  }
+  return lines.sort((a, b) => a.localeCompare(b));
+}
+
 /**
  * Derive source entry points from package.json "exports".
  * Each subpath whose `types` points at ./dist/<name>.d.ts maps back to the
- * source file src/<name>.ts, so new subpaths are picked up automatically.
- * Per-component wildcard subpaths (the "./form/[star]" style, whose types glob
- * points under ./dist/components/) derive a non-existent star source path and
- * are skipped — the category barrels they belong to already cover their symbols.
+ * source file src/<name>.ts. CSS/locale string targets and any leftover wildcards
+ * without a matching src/<name>.ts are skipped here (covered by collectPackageExports).
  */
 function resolveEntryPoints() {
   const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
   const entries = {};
   for (const [subpath, value] of Object.entries(pkg.exports ?? {})) {
     const types = typeof value === "object" && value ? value.types : undefined;
-    if (typeof types !== "string") continue; // e.g. "./styles.css", "./locales/*"
+    if (typeof types !== "string") continue;
     const m = types.match(/^\.\/dist\/(.+)\.d\.ts$/);
     if (!m) continue;
     const srcFile = path.join(root, "src", `${m[1]}.ts`);
@@ -89,7 +119,7 @@ function classify(symbol, checker) {
   return "unknown";
 }
 
-function collectSurface() {
+function collectEntryExports() {
   const entries = resolveEntryPoints();
   const options = loadCompilerOptions();
   const program = ts.createProgram(Object.values(entries), options);
@@ -101,7 +131,6 @@ function collectSurface() {
     if (!sf) throw new Error(`Could not load source file for ${subpath}: ${file}`);
     const moduleSymbol = checker.getSymbolAtLocation(sf);
     if (!moduleSymbol) {
-      // A file with no exports has no module symbol; record empty.
       surface[subpath] = [];
       continue;
     }
@@ -113,26 +142,58 @@ function collectSurface() {
   return surface;
 }
 
-function diff(prev, next) {
+function collectSnapshot() {
+  return {
+    version: SNAPSHOT_VERSION,
+    packageExports: collectPackageExports(),
+    entryExports: collectEntryExports(),
+  };
+}
+
+function normalizePrevious(raw) {
+  // v1: top-level keys were entry subpaths with symbol arrays
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    throw new Error("api-snapshot.json has an unexpected shape.");
+  }
+  if (raw.version === SNAPSHOT_VERSION && Array.isArray(raw.packageExports) && raw.entryExports) {
+    return raw;
+  }
+  if (raw.version == null && Object.values(raw).every((v) => Array.isArray(v))) {
+    return { version: 1, packageExports: null, entryExports: raw };
+  }
+  throw new Error(
+    "api-snapshot.json is not a recognized format. Run: node scripts/check-public-api.js --update",
+  );
+}
+
+function diffLists(label, before, after) {
+  const b = new Set(before ?? []);
+  const a = new Set(after ?? []);
+  const added = [...a].filter((x) => !b.has(x)).sort();
+  const removed = [...b].filter((x) => !a.has(x)).sort();
+  if (!added.length && !removed.length) return null;
+  return { label, added, removed };
+}
+
+function diffEntryMaps(prev, next) {
   const changes = [];
-  const subpaths = new Set([...Object.keys(prev), ...Object.keys(next)]);
+  const subpaths = new Set([...Object.keys(prev ?? {}), ...Object.keys(next ?? {})]);
   for (const sp of [...subpaths].sort()) {
-    const before = new Set(prev[sp] ?? []);
-    const after = new Set(next[sp] ?? []);
-    const added = [...after].filter((x) => !before.has(x));
-    const removed = [...before].filter((x) => !after.has(x));
-    if (added.length || removed.length) changes.push({ sp, added, removed });
+    const d = diffLists(sp, prev?.[sp], next?.[sp]);
+    if (d) changes.push(d);
   }
   return changes;
 }
 
-const surface = collectSurface();
-const serialized = JSON.stringify(surface, null, 2) + "\n";
+const snapshot = collectSnapshot();
+const serialized = JSON.stringify(snapshot, null, 2) + "\n";
 
 if (update) {
   fs.writeFileSync(snapshotPath, serialized);
-  const total = Object.values(surface).reduce((n, a) => n + a.length, 0);
-  console.log(`Updated api-snapshot.json (${Object.keys(surface).length} entry points, ${total} exports).`);
+  const total = Object.values(snapshot.entryExports).reduce((n, a) => n + a.length, 0);
+  console.log(
+    `Updated api-snapshot.json (v${SNAPSHOT_VERSION}: ${snapshot.packageExports.length} export paths, ${Object.keys(snapshot.entryExports).length} entries, ${total} symbols).`,
+  );
   process.exit(0);
 }
 
@@ -141,23 +202,39 @@ if (!fs.existsSync(snapshotPath)) {
   process.exit(1);
 }
 
-const previous = JSON.parse(fs.readFileSync(snapshotPath, "utf8"));
-const changes = diff(previous, surface);
+const previous = normalizePrevious(JSON.parse(fs.readFileSync(snapshotPath, "utf8")));
+const failures = [];
 
-if (changes.length === 0) {
-  console.log("Public API surface matches api-snapshot.json.");
+if (previous.version !== SNAPSHOT_VERSION || previous.packageExports == null) {
+  failures.push({
+    label: "snapshot format",
+    added: [`v${SNAPSHOT_VERSION} (includes package.json exports map)`],
+    removed: [`v${previous.version ?? 1} (entry symbols only)`],
+  });
+} else {
+  const exportDiff = diffLists("package.json exports", previous.packageExports, snapshot.packageExports);
+  if (exportDiff) failures.push(exportDiff);
+}
+
+failures.push(...diffEntryMaps(previous.entryExports, snapshot.entryExports));
+
+if (failures.length === 0) {
+  console.log(
+    `Public API surface matches api-snapshot.json (v${SNAPSHOT_VERSION}: exports map + entry symbols).`,
+  );
   process.exit(0);
 }
 
 console.error("Public API surface changed. Review the diff below.\n");
-for (const { sp, added, removed } of changes) {
-  console.error(`  ${sp}`);
+for (const { label, added, removed } of failures) {
+  console.error(`  ${label}`);
   for (const a of added) console.error(`    + ${a}`);
   for (const r of removed) console.error(`    - ${r}`);
 }
 console.error(
   "\nIf these changes are intentional (and semver-appropriate), run:\n" +
-    "  node scripts/check-public-api.js --update\n" +
-    "and commit the updated api-snapshot.json.",
+    "  npm run check:api:update\n" +
+    "and commit the updated api-snapshot.json.\n" +
+    "Note: do not re-add per-component deep paths (e.g. ./form/*); barrels only.",
 );
 process.exit(1);

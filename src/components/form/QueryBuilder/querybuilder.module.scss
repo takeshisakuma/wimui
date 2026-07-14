@@ -189,13 +189,13 @@
       flex: 1 1 180px; /* Exception: Structural Logic — 演算子列の折り返し基準幅 */
     }
 
-    .selectbox {
+    .select {
       width: 100%;
       min-width: 0;
     }
 
     .inputBase,
-    .selectboxTrigger {
+    .selectTrigger {
       width: 100%;
       height: var(--wim-height-md);
       padding-top: 0;

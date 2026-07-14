@@ -298,7 +298,7 @@
     "dropdown_choice_dropdown_when": "Quando você deseja exibir uma lista de ações (ex: 'Copiar', 'Excluir').",
     "dropdown_choice_matrix_desc": "Escolha com base no contexto e na complexidade das informações necessárias.",
     "dropdown_choice_popover_when": "Quando você deseja exibir informações suplementares ou conteúdo mais complexo (ex: um formulário).",
-    "dropdown_choice_selectbox_when": "Ao selecionar configurações ou valores (ex: 'Estado') dentro de um formulário.",
+    "dropdown_choice_select_when": "Ao selecionar configurações ou valores (ex: 'Estado') dentro de um formulário.",
     "dropdown_comparison": "Comparison",
     "dropdown_components": "Component Hierarchy",
     "dropdown_con_cost": "Con Cost",

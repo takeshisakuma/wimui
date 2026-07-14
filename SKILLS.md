@@ -8,7 +8,7 @@
 
 | 役割 | ツール |
 |---|---|
-| UIフレームワーク | React 18 + TypeScript |
+| UIフレームワーク | React 19 + TypeScript |
 | スタイル | SCSS (Sass) |
 | ビルド | Vite |
 | ドキュメント | Storybook 10 (MDX) |
@@ -92,6 +92,28 @@ padding: var(--wim-spacing-md);
 - ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。
 - 色以外の CSS 値（`padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `z-index`, `motion` 等）もすべてトークンを使用してください。
 - `stories/` 配下の TSX では `--wim-color-*` プレフィックス付きトークンを推奨します。
+
+### 公開 CSS / テーマ契約（改名禁止）
+
+| パス / 属性 | 役割 |
+|---|---|
+| `wimui/styles.css` | **必須** — `:root` `--wim-*`（ダーク・密度含む）+ コンポーネント CSS |
+| `wimui/reset.css` | **任意** — 意見の強いリセット/base |
+| `WimProvider` | **推奨** — `theme` / `density` / `locale` を React から設定（内部で属性を書く） |
+| `data-theme` | CSS 契約。`<html>` に載せる。値 `light` \| `dark`。省略で OS 追従 |
+| `data-density` | CSS 契約。`<html>`（または祖先）。`comfortable` \| `compact` |
+
+`setWimTheme` / `setWimDensity` / `setWimLocale` は属性・ロケールの命令型 API。コンポーネント SCSS に `[data-theme="dark"]` を書かない。詳細は `DESIGN.md` / Token → Theme・Density。
+
+### disabled / 近い名前のトークン
+
+| トークン | 用途 |
+|---|---|
+| `--wim-color-disabled` | 無効時の**塗り**のみ。文字色に使わない |
+| `--wim-color-text-on-disabled` | その塗り（disabled フィル）の上の文字・アイコン |
+| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト |
+
+`bg-subtle` と `bg-surface-subtle`、`surface-inverse` と `surface-inverted` は別物。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
 
 ---
 
@@ -364,6 +386,24 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 - 新しい重量級ライブラリを追加する場合は、(1) `peerDependencies` + `peerDependenciesMeta`（optional）に追加、(2) リポジトリ内の開発用に `devDependencies` にも追加、(3) `vite.config.ts` の `rollupOptions.external` と UMD の `globals` に追加、の3点をセットで行ってください。
 - 例外: `music-metadata`（Audio のタグ読み取り）は動的 `import()` で遅延読み込みしているため、利用側ビルドでの未解決エラーを避けるべく通常の `dependencies` に置いています。
 
+### peer サポート行列（一点集中）
+
+| peer | サポート | レンジ |
+|---|---|---|
+| `react` / `react-dom` | 19 のみ | `^19.0.0` |
+| `zod`（rhf） | 4 のみ | `^4.0.0` |
+| `@hookform/resolvers` | 5.1+ | `^5.1.0` |
+| `react-hook-form` | 7.43+ | `^7.43.0` |
+
+React 18 / zod 3 は非対応。詳細は README。
+
+### 公開 API（凍結・deep path なし）
+
+- 公開 import: `wimui` または `wimui/<category>`（バレル）、`wimui/rhf` / `wimui/tokens` / `wimui/icons`
+- **deep path は廃止**（`wimui/form/Button` 等は `exports` に無い。フォルダ移動を破壊的変更にしない）
+- `_internal` や hooks 単体も `exports` に無い（非公開）
+- `npm run check:api` が `exports` マップ + バレルシンボルを `api-snapshot.json` で検証。変更時は `check:api:update`
+
 ### UI 密度（`data-density`）
 コントロール高さ・余白を `comfortable` / `compact` で切り替える。実装は `src/styles/_ui-patterns.scss` と `src/density.ts`。
 - `setWimDensity("compact")` または `<html data-density="compact">`
@@ -379,6 +419,8 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 - `zodResolver` — `@hookform/resolvers/zod` の再エクスポート
 - ルート `wimui` / `wimui/form` からは export しない（peer 未導入でもコアが壊れないようにする）
 - 例: `stories/Patterns/Form/ReactHookForm.stories.tsx`（基本＋ DatePicker / Rating / Switch レシピ）
+- クリア可能スカラー（DatePicker 等）: 制御時の空は `null`（`undefined` は非制御）。`valueFieldProps` とそのまま噛み合う
+- `error?: string`（メッセージ付きフィールド）と `error?: boolean`（Checkbox / Switch / Radio）は意図的。後者は `invalid` を渡す
 
 ---
 

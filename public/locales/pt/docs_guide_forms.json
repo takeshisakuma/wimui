@@ -374,7 +374,7 @@
     "segmented_usage": "Alternar visualização (Grade/Lista), alternar período (Semana/Mês).",
     "segmented_usecase": "Alternar formato de visualização (por exemplo, Semana/Mês), alterar ordem de classificação (por exemplo, Asc/Desc).",
     "segmented_vs_others": "Diferenciação do SegmentedControl",
-    "selectbox_usage": "Prefeituras, seleção de categoria, alterações de status.",
+    "select_usage": "Prefeituras, seleção de categoria, alterações de status.",
     "single": "Único",
     "single_or_multi": "Único ou Múltiplo",
     "single_or_multiple": "Único / Múltiplo",

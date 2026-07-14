@@ -1,7 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────
-// Public token layer — `import "wimui/tokens.css"`
+// Token layer — compiled into `wimui/styles.css`（必須 CSS の先頭に前置）
 // `:root{--wim-*}` デザイントークン（ライト + ダーク）のみを出力する。
-// 全コンポーネント CSS が `var(--wim-*)` を参照するため、この読み込みは必須。
 // リセット/base 要素スタイルは含まない（それらは reset.css / reset.entry.scss）。
 // 出力元:
 //   - semantic-colors … generated css-vars(×4) + theme-transition / --on/--off

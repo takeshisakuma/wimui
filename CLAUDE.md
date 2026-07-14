@@ -52,7 +52,8 @@ npm run test -- src/components/form/Button/Button.test.tsx
 
 Form 連携（optional）: `src/rhf.ts` → `wimui/rhf`（react-hook-form / zod）。ルート・`wimui/form` には載せない。
 
-UI 密度: `data-density="comfortable|compact"` / `setWimDensity`。制御トークンは `src/styles/_ui-patterns.scss`。
+UI 密度: `data-density="comfortable|compact"` / `setWimDensity` / `WimProvider`。制御トークンは `src/styles/_ui-patterns.scss`。
+テーマ: `WimProvider`（推奨）または `data-theme` on `<html>`（省略で OS 追従）。公開 CSS: `styles.css` 必須（トークン+コンポーネント）、`reset.css` 任意。
 
 ### トークンシステム
 

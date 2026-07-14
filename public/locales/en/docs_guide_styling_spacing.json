@@ -46,7 +46,22 @@
     "density_tokens_title": "Tokens that follow density",
     "density_tokens_desc": "These CSS custom properties change under `[data-density=\"compact\"]`. Field, button, list, and table chrome that reference them (Input, Textarea, Button, SegmentedControl, Menu, Table, …) update automatically.",
     "density_stable_desc": "These stay stable so page layout and identity chrome do not collapse:",
-    "density_storybook_hint": "In Storybook, use the Density toolbar control, or open Token → Density for a side-by-side demo."
+    "density_storybook_hint": "In Storybook, use the Density toolbar control, or open Token → Density for a side-by-side demo.",
+    "theme_title": "Theme",
+    "theme_desc": "Dark/light switching is a public CSS contract. Attribute name, values, and the `<html>` default target must stay stable for consumers.",
+    "theme_attr_title": "Attribute contract",
+    "theme_attr_desc": "Canonical CSS contract is still data-theme on <html> (document.documentElement). Prefer WimProvider or setWimTheme / ThemeToggle to write it — do not invent alternate attribute names.",
+    "theme_value": "Value",
+    "theme_effect": "Effect",
+    "theme_dark_effect": "Force dark token map (`[data-theme=\"dark\"]`).",
+    "theme_light_effect": "Force light map even when the OS prefers dark (`:root:not([data-theme=\"light\"])` excludes it).",
+    "theme_omit": "(attribute omitted)",
+    "theme_omit_effect": "Follow `prefers-color-scheme: dark` on `:root`.",
+    "theme_nested_desc": "A descendant with `data-theme=\"dark\"` can scope a dark island (custom properties inherit). Prefer `<html>` for the app-wide theme.",
+    "theme_toggle_title": "WimProvider & ThemeToggle",
+    "theme_toggle_desc": "WimProvider is the recommended React entry for \theme / density / locale. ThemeToggle can still write data-theme when \u0007pplyToDocument is true. If both control the same document theme, lift state and set \u0007pplyToDocument={false} on the toggle.",
+    "theme_impl_title": "For library authors",
+    "theme_impl_desc": "Component SCSS must not hardcode `[data-theme=\"dark\"]` or `prefers-color-scheme`. Use semantic `--wim-color-*` tokens only."
   },
   "perf": {
     "tips_title": "Performance Tips",

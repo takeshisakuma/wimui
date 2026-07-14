@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import type { SelectboxOption, SelectboxOptionGroup, SelectboxProps } from "./Selectbox";
+import type { SelectOption, SelectOptionGroup, SelectProps } from "./Select";
 
-type UseSelectboxParams = Pick<
-  SelectboxProps,
+type UseSelectParams = Pick<
+  SelectProps,
   | "options"
   | "value"
   | "onChange"
@@ -13,7 +13,7 @@ type UseSelectboxParams = Pick<
   | "filterOption"
 >;
 
-export function useSelectbox({
+export function useSelect({
   options,
   value,
   onChange,
@@ -22,7 +22,7 @@ export function useSelectbox({
   grouped,
   disabled,
   filterOption,
-}: UseSelectboxParams) {
+}: UseSelectParams) {
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState(defaultValue || "");
   const [searchValue, setSearchValue] = useState("");
@@ -39,14 +39,14 @@ export function useSelectbox({
 
   const flatOptions = useMemo(() => {
     if (grouped && options.length > 0 && "options" in options[0]) {
-      return (options as SelectboxOptionGroup[]).flatMap((group) => group.options);
+      return (options as SelectOptionGroup[]).flatMap((group) => group.options);
     }
-    return options as SelectboxOption[];
+    return options as SelectOption[];
   }, [options, grouped]);
 
   const filteredOptions = useMemo(() => {
     if (!searchValue) return flatOptions;
-    const defaultFilter = (option: SelectboxOption, search: string) => {
+    const defaultFilter = (option: SelectOption, search: string) => {
       if (option.type === "separator") return false;
       const label = typeof option.label === "string" ? option.label : "";
       const value = typeof option.value === "string" ? option.value : "";
@@ -102,7 +102,7 @@ export function useSelectbox({
     }
   };
 
-  const handleSelect = (option: SelectboxOption) => {
+  const handleSelect = (option: SelectOption) => {
     if (option.type === "separator" || option.disabled) return;
     if (!isControlled && option.value !== undefined) {
       setInternalValue(option.value);

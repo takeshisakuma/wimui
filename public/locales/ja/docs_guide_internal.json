@@ -3,7 +3,7 @@
     "category_desc": "これらは複数のコンポーネントで内部的に使用される基盤となる要素です。アプリケーションコードから直接使用することは想定されていませんが、WIM UI へのコントリビュートや拡張を行う際に理解しておくと役立ちます。",
     "category_note": "これらのコンポーネントは内部実装の詳細です。基本的には、これらをラップした上位の公開コンポーネントを使用してください。",
     "category_title": "内部コンポーネント (Internal Components)",
-    "comp_base_list_role": "Menu, Selectbox, TreeView 等で使用されるリスト形式の項目のレイアウトとインタラクション状態を標準化します。",
+    "comp_base_list_role": "Menu, Select, TreeView 等で使用されるリスト形式の項目のレイアウトとインタラクション状態を標準化します。",
     "comp_base_list_title": "BaseListItem",
     "comp_field_template_role": "すべてのフォーム関連コンポーネントにおけるラベルの配置、必須マーク、エラーメッセージの表示を標準化します。",
     "comp_field_template_title": "FieldTemplate",

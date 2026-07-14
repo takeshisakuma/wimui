@@ -30,7 +30,7 @@ export * from "./components/form/Rating/Rating";
 export * from "./components/form/SearchInput/SearchInput";
 export * from "./components/form/SmartSearchInput/SmartSearchInput";
 export * from "./components/form/SegmentedControl/SegmentedControl";
-export * from "./components/form/Selectbox/Selectbox";
+export * from "./components/form/Select/Select";
 export * from "./components/form/SignaturePad/SignaturePad";
 export * from "./components/form/Slider/Slider";
 export * from "./components/form/Switch/Switch";

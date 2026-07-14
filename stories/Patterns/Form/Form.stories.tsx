@@ -21,7 +21,7 @@ import {
   PasswordStrength,
   Progress,
   RadioGroup,
-  Selectbox,
+  Select,
   Sidebar,
   Stack,
   Stepper,
@@ -735,7 +735,7 @@ export const UserProfileForm: StoryObj = {
                         gap: "var(--wim-spacing-xl)",
                       }}
                     >
-                      <Selectbox
+                      <Select
                         label={t("profile.lang_label")}
                         options={[
                           { label: t("profile.lang_en"), value: "en" },
@@ -744,7 +744,7 @@ export const UserProfileForm: StoryObj = {
                         ]}
                         defaultValue="en"
                       />
-                      <Selectbox
+                      <Select
                         label={t("profile.tz_label")}
                         options={[
                           { label: "UTC", value: "utc" },

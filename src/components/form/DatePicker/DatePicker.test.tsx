@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { useState } from "react";
 import { DatePicker } from "./DatePicker";
 import styles from "./date-picker.module.scss";
 
@@ -40,6 +41,18 @@ describe("DatePicker", () => {
     fireEvent.click(clearBtn);
 
     expect(handleChange).toHaveBeenCalledWith(null);
+  });
+
+  it("keeps controlled mode when value is null after clear", () => {
+    const Controlled = () => {
+      const [value, setValue] = useState<Date | null>(new Date(2023, 0, 15));
+      return <DatePicker value={value} onChange={setValue} clearable placeholder="Pick" />;
+    };
+    render(<Controlled />);
+
+    expect(screen.getByDisplayValue("2023-01-15")).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Clear/i));
+    expect(screen.getByPlaceholderText("Pick")).toHaveValue("");
   });
 
   it("clears in uncontrolled mode", () => {

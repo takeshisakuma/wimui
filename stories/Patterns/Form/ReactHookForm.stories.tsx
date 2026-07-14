@@ -11,7 +11,7 @@ import {
   PasswordInput,
   RadioGroup,
   Rating,
-  Selectbox,
+  Select,
   Stack,
   Switch,
   Textarea,
@@ -37,7 +37,7 @@ const schema = z.object({
 
 const pickersSchema = z.object({
   eventDate: z
-    .union([z.instanceof(Date), z.undefined()])
+    .union([z.instanceof(Date), z.null()])
     .refine((value): value is Date => value instanceof Date, {
       message: "Pick a date",
     }),
@@ -112,7 +112,7 @@ export const WithZod: StoryObj = {
               control={control}
               name="role"
               render={({ field, error }) => (
-                <Selectbox
+                <Select
                   {...valueFieldProps(field)}
                   label="Role"
                   error={error}
@@ -220,7 +220,7 @@ export const WithPickers: StoryObj = {
     } = useForm<PickersFormValues, unknown, PickersSubmitValues>({
       resolver: zodResolver(pickersSchema),
       defaultValues: {
-        eventDate: undefined,
+        eventDate: null,
         notify: false,
         score: 0,
       },
@@ -246,11 +246,7 @@ export const WithPickers: StoryObj = {
               name="eventDate"
               render={({ field, error }) => (
                 <DatePicker
-                  name={field.name}
-                  value={field.value}
-                  onChange={(date) => field.onChange(date ?? undefined)}
-                  onBlur={field.onBlur}
-                  ref={field.ref}
+                  {...valueFieldProps(field)}
                   label="Event date"
                   error={error}
                   fullWidth

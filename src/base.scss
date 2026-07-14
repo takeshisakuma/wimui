@@ -1,6 +1,6 @@
-// デザイントークン（:root{--wim-*}）は tokens.entry.scss（wimui/tokens.css）が
-// 出力する。base.scss は要素の base スタイルのみを担当し、値は var(--wim-*) 経由で
-// 参照する（Sass レベルのトークン名前空間は未使用のため @use しない）。
+// デザイントークン（:root{--wim-*}）は tokens.entry.scss → styles.css が出力する。
+// base.scss は要素の base スタイルのみを担当し、値は var(--wim-*) 経由で参照する
+// （Sass レベルのトークン名前空間は未使用のため @use しない）。
 // この分離により reset.css へトークンが二重出力されるのを防ぐ。
 
 @layer base {

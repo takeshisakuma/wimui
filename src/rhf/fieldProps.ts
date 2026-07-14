@@ -2,7 +2,7 @@ import type { ChangeEvent } from "react";
 import type { ControllerRenderProps, FieldPath, FieldValues } from "react-hook-form";
 
 /**
- * Props for WIM value-based controls (`Selectbox`, `RadioGroup`, `CheckboxGroup`,
+ * Props for WIM value-based controls (`Select`, `RadioGroup`, `CheckboxGroup`,
  * `Slider`, …) where `onChange` receives the value directly (not a DOM event).
  *
  * `ref` stays as RHF's `RefCallBack` so it assigns cleanly to Input / Div / etc. refs.

@@ -150,7 +150,7 @@
   "doc.modelselector_a11y_2": "Arrow keys move the active option and aria-activedescendant tracks it for screen readers.",
   "doc.modelselector_a11y_3": "Disabled models carry aria-disabled and cannot be selected by pointer or keyboard.",
   "doc.modelselector_choice_combobox": "A long, searchable list of options",
-  "doc.modelselector_choice_selectbox": "A plain single-choice dropdown without metadata",
+  "doc.modelselector_choice_select": "A plain single-choice dropdown without metadata",
   "doc.modelselector_choice_self": "Switching models with visible cost and context metadata",
   "doc.modelselector_content_guidelines_1": "Keep model names short and recognizable; move the provider into the description line.",
   "doc.modelselector_content_guidelines_2": "Format context length compactly (e.g. 128K) and price per 1M tokens so numbers stay scannable.",

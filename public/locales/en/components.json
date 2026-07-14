@@ -36,7 +36,7 @@
   "doc": {
     "richTextEditor_desc": "WYSIWYG rich text editor",
     "interactiveArea_desc": "Foundation component for consistent interactive areas with borders and states.",
-    "base_list_desc": "Standardizes the layout and interaction states for list-like items used in Menus, Selectboxes, and TreeViews.",
+    "base_list_desc": "Standardizes the layout and interaction states for list-like items used in Menus, Selectes, and TreeViews.",
     "field_template_desc": "Standardizes label placement, required markings, and error message display for all form-related components.",
     "indicator_base_desc": "Standardizes the visual style and animation for status dots and badges.",
     "input_base_desc": "Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.",
@@ -316,7 +316,7 @@
     "same_tier_title": "Dependency Between Same Tiers",
     "transparent_props_desc": "Wrapping components should spread internal component props as much as possible to ensure flexibility.",
     "transparent_props_title": "Transparent Props",
-    "unidirectional_desc": "Lower tiers must not depend on upper tiers (e.g., Button (Tier 2) is prohibited from importing Selectbox (Tier 4)).",
+    "unidirectional_desc": "Lower tiers must not depend on upper tiers (e.g., Button (Tier 2) is prohibited from importing Select (Tier 4)).",
     "unidirectional_title": "Unidirectional Dependency"
   },
   "screen": {

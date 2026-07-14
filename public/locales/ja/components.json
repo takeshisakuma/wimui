@@ -108,7 +108,7 @@
   "doc": {
     "aiResponseFeedback_desc": "AI回答に対するサムズアップ/ダウンのフィードバックボタンと再生成ボタン。",
     "autosave_desc": "自動保存状態のインラインステータスインジケーター",
-    "base_list_desc": "Menu, Selectbox, TreeView などで使用されるリスト形式のアイテムのレイアウトとインタラクション状態を標準化します。",
+    "base_list_desc": "Menu, Select, TreeView などで使用されるリスト形式のアイテムのレイアウトとインタラクション状態を標準化します。",
     "blockquote_desc": "外部からの引用や強調したい文章を視覚的に分離する。",
     "codeBlock_desc": "コピーボタン・行番号・折りたたみ機能付きのシンタックスハイライトコードブロック。",
     "codeDiffViewer_desc": "コードの変更を Side-by-Side または Unified 形式の差分として表示し、行単位のハイライトと「適用」「却下」操作を提供します。",
@@ -382,7 +382,7 @@
     "same_tier_title": "同一 Tier 間の依存",
     "transparent_props_desc": "ラップするコンポーネントは、可能な限り内部コンポーネントの Props を透過（Spread）させ、柔軟性を確保します。",
     "transparent_props_title": "透過的な Props",
-    "unidirectional_desc": "下位の Tier は上位の Tier に依存してはなりません（例：Button (Tier 2) が Selectbox (Tier 4) をインポートするのは禁止）。",
+    "unidirectional_desc": "下位の Tier は上位の Tier に依存してはなりません（例：Button (Tier 2) が Select (Tier 4) をインポートするのは禁止）。",
     "unidirectional_title": "単方向の依存"
   },
   "screen": {

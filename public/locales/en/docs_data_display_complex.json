@@ -166,7 +166,7 @@
     "patterns_motion_desc": "Transitions are minimal and purposeful, respecting the user's reduced-motion preferences.",
     "patterns_pricing_desc": "A common pricing comparison table pattern for SaaS, etc. It uses `Grid`, `Card`, `Badge`, `Heading`, `Paragraph`, `Button`, and `Stack` for a layout with clear information priority.",
     "patterns_pricing_title": "Pricing Table",
-    "patterns_profile_desc": "A settings screen pattern combining many form components like `Input`, `Textarea`, `Selectbox`, `RadioGroup`, and `Switch`. It features a two-column layout with a sidebar navigation and a main content area.",
+    "patterns_profile_desc": "A settings screen pattern combining many form components like `Input`, `Textarea`, `Select`, `RadioGroup`, and `Switch`. It features a two-column layout with a sidebar navigation and a main content area.",
     "patterns_profile_title": "User Profile Settings",
     "patterns_scenario_1": "Dashboard Layouts: Rapidly assembling a main view using pre-composed card and grid patterns.",
     "patterns_scenario_2": "Marketing Pages: Implementing high-impact hero sections and pricing tables with minimal custom CSS.",

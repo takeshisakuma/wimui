@@ -3,7 +3,7 @@
  *
  * `--wim-*` CSS カスタムプロパティは利用者がテーマ設定に使う公開 API そのもの。
  * npm 公開後にトークンを rename / 削除すると、その値を設定していた全利用者が壊れる。
- * このスクリプトは公開トークン（tokens.css に出力される `--wim-*` の宣言）を列挙し、
+ * このスクリプトは公開トークン（styles.css 先頭に同梱される `--wim-*` の宣言）を列挙し、
  * `token-snapshot.json` と比較する。意図しない drift を CI で検知する。
  *
  * Usage:
@@ -18,7 +18,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const snapshotPath = path.join(root, "token-snapshot.json");
 const update = process.argv.includes("--update");
 
-// 公開トークン（wimui/tokens.css）を構成する宣言元ファイル。
+// 公開トークン（wimui/styles.css に同梱）を構成する宣言元ファイル。
 // tokens.entry.scss が @use するものに対応（generated css-vars 群 + 手書き :root）。
 const SOURCES = [
   "src/tokens/generated/_css-vars.scss",

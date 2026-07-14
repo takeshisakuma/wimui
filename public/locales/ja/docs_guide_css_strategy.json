@@ -40,6 +40,11 @@
     "method_classname_title": "ClassName",
     "method_classname_usage": "各コンポーネントの `className` prop を通じて、外部からスタイルを注入できます。",
     "method_global_title": "スタイル注入",
-    "method_global_usage": "`:global` クラスをターゲットにすることで、アプリケーションレベルでのグローバルな調整が可能です。"
+    "method_global_usage": "`:global` クラスをターゲットにすることで、アプリケーションレベルでのグローバルな調整が可能です。",
+    "public_css_title": "公開 CSS エントリ",
+    "public_css_desc": "パッケージとして公開するパスです。変更すると利用者が壊れます。",
+    "public_css_styles": "`wimui/styles.css`（必須）— `:root` の `--wim-*`（ダーク・密度／`_ui-patterns.scss`）とコンポーネント CSS。reset は含まない。",
+    "public_css_reset": "`wimui/reset.css`（任意）— 意見の強いリセット/base。ホストアプリと衝突するなら省略。",
+    "public_css_attrs": "ドキュメント属性（名前固定）: 既定は `<html>` 上の `data-theme` と `data-density`。Token → Theme / Density を参照。"
   }
 }

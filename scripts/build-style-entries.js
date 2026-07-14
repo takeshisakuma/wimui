@@ -1,16 +1,14 @@
-// 分割 CSS 成果物（tokens.css / reset.css）を生成する。
+// 公開 CSS 成果物を組み立てる。
 //
 // メインの Vite ライブラリビルドは cssCodeSplit=false のため、抽出される CSS は
-// styles.css（コンポーネント専用）の 1 ファイルのみ。デザイントークンと
-// リセット/base はバレルから除外してあるので、ここで対応する SCSS エントリを
-// 直接コンパイルして配布する:
-//   src/styles/tokens.entry.scss → dist/tokens.css （必須: :root{--wim-*}）
-//   src/styles/reset.entry.scss  → dist/reset.css  （任意: リセット/base）
+// styles.css（コンポーネント専用）の 1 ファイルのみ。ここにデザイントークンを
+// 前置し、必須 CSS を 1 本にまとめる。リセット/base は任意のまま分離する:
+//   tokens.entry.scss + vite styles.css → dist/styles.css（必須）
+//   src/styles/reset.entry.scss         → dist/reset.css （任意）
 //
 // 消費側:
-//   import "wimui/tokens.css";   // 必須
-//   import "wimui/styles.css";   // 必須（コンポーネント）
-//   import "wimui/reset.css";    // 任意
+//   import "wimui/styles.css";  // 必須（:root{--wim-*} + コンポーネント）
+//   import "wimui/reset.css";   // 任意
 //
 // 実装メモ: SCSS の一部（base.scss）には過去の文字化けで U+FFFD が混入している。
 // これは正当な UTF-8 だが Dart 実装の sass.compile(path) はファイルリーダーで拒否する。
@@ -68,10 +66,21 @@ function makeNodeStringImporter(entryDir) {
   };
 }
 
-const entries = [
-  { src: "src/styles/tokens.entry.scss", out: "tokens.css" },
-  { src: "src/styles/reset.entry.scss", out: "reset.css" },
-];
+function compileEntry(srcRel) {
+  const srcPath = path.join(root, srcRel);
+  const { css } = sass.compileString(fs.readFileSync(srcPath, "utf8"), {
+    importers: [makeNodeStringImporter(path.dirname(srcPath))],
+    style: "compressed",
+  });
+  return css;
+}
+
+function writeCss(outName, css) {
+  const outPath = path.join(distDir, outName);
+  fs.writeFileSync(outPath, css, "utf8");
+  const kb = (Buffer.byteLength(css, "utf8") / 1024).toFixed(1);
+  console.log(`[build-style-entries] wrote dist/${outName} (${kb} kB)`);
+}
 
 if (!fs.existsSync(distDir)) {
   console.error(
@@ -80,16 +89,26 @@ if (!fs.existsSync(distDir)) {
   process.exit(1);
 }
 
-for (const { src, out } of entries) {
-  const srcPath = path.join(root, src);
-  const { css } = sass.compileString(fs.readFileSync(srcPath, "utf8"), {
-    importers: [makeNodeStringImporter(path.dirname(srcPath))],
-    style: "compressed",
-  });
-  const outPath = path.join(distDir, out);
-  fs.writeFileSync(outPath, css, "utf8");
-  const kb = (Buffer.byteLength(css, "utf8") / 1024).toFixed(1);
-  console.log(`[build-style-entries] wrote dist/${out} (${kb} kB)`);
+const stylesPath = path.join(distDir, "styles.css");
+if (!fs.existsSync(stylesPath)) {
+  console.error(
+    "[build-style-entries] dist/styles.css がありません。vite build の CSS 抽出を確認してください。",
+  );
+  process.exit(1);
+}
+
+const tokensCss = compileEntry("src/styles/tokens.entry.scss");
+const componentCss = fs.readFileSync(stylesPath, "utf8");
+writeCss("styles.css", `${tokensCss}\n${componentCss}`);
+
+const resetCss = compileEntry("src/styles/reset.entry.scss");
+writeCss("reset.css", resetCss);
+
+// 旧分割成果物が残っていれば削除（exports から廃止済み）
+const legacyTokens = path.join(distDir, "tokens.css");
+if (fs.existsSync(legacyTokens)) {
+  fs.unlinkSync(legacyTokens);
+  console.log("[build-style-entries] removed dist/tokens.css (merged into styles.css)");
 }
 
 console.log("[build-style-entries] done");

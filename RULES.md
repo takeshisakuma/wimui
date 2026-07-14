@@ -59,7 +59,7 @@
     - Typography: Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote
     - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet, Menu, ContextMenu
     - Navigation: Link, CommandPalette, Breadcrumb, Stepper, Menubar, Tabs, TabNavigation, TabBar, Pagination, HamburgerMenu, BackTop
-    - Form: Button, IconButton, Input, Selectbox, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, Switch, SwitchGroup, LinkButton, Textarea, SegmentedControl, ToggleGroup, TreeSelect, ButtonGroup, ThemeToggle, RangeSlider, Rating, CopyButton
+    - Form: Button, IconButton, Input, Select, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, Switch, SwitchGroup, LinkButton, Textarea, SegmentedControl, ToggleGroup, TreeSelect, ButtonGroup, ThemeToggle, RangeSlider, Rating, CopyButton
     - Layout: Box, Flex, Stack, Group, Grid, Toolbar
     - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime, Countdown
     - Media: Lightbox
@@ -77,7 +77,7 @@
     - `IndicatorIntent` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
     - `FeedbackIntent` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
     - `FieldIntent` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
-    - `FieldWidth` — `"xs" | "sm" | "md" | "lg" | "xl"`（Input・Selectbox・DatePicker などの幅指定）
+    - `FieldWidth` — `"xs" | "sm" | "md" | "lg" | "xl"`（Input・Select・DatePicker などの幅指定）
     - `WimIntent` — 上記すべてを含む全意図値のユニオン（汎用）
   - 新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。
 - 最新のセマンティックHTMLを使用してください。
@@ -414,7 +414,7 @@ Best Practices と Props の間、または Props の後に必要なセクショ
 | i18n 整合性 | `npm run i18n:check` | 3言語すべてにキーが存在するか確認。 |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | 基本的な構文エラーがないか確認。 |
 | トークン漏れチェック | `npm run audit:hardcoded` | ハードコードされた色（即エラー）や未注記の px 直書き（ラチェット方式）がないか。詳細は `docs/TOKENIZATION_EXCEPTIONS.md`。 |
-| 公開 API 表面 | `npm run check:api` | `export *` 経由で公開 API（`api-snapshot.json`）に意図しない export が増減していないか。npm 公開後の破壊的変更を防ぐガード。意図的な変更時は `npm run check:api:update` でスナップショットを更新してコミットする。 |
+| 公開 API 表面 | `npm run check:api` | (1) `package.json` `exports` マップ（バレル + CSS + locales。コンポーネント deep path は置かない）(2) バレルの named export（`api-snapshot.json` v2）。意図しないパス追加・export 漏れを防ぐ。意図的変更時は `npm run check:api:update` で更新してコミット。 |
 
 ## 2. Storybook 階層ルール (Sidebar Hierarchy)
 

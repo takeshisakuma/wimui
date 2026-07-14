@@ -1,14 +1,14 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
-import { Selectbox } from "./Selectbox";
+import { Select } from "./Select";
 import React from "react";
-import styles from "./selectbox.module.scss";
+import styles from "./select.module.scss";
 
 // Mock scrollIntoView
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
  
-describe("Selectbox", () => {
+describe("Select", () => {
   const options = [
     { label: "Apple", value: "1" },
     { label: "Banana", value: "2" },
@@ -16,13 +16,13 @@ describe("Selectbox", () => {
   ];
 
   it("renders with placeholder", () => {
-    render(<Selectbox options={options} placeholder="Select item" />);
+    render(<Select options={options} placeholder="Select item" />);
     expect(screen.getByText("Select item")).toBeInTheDocument();
   });
 
   it("opens dropdown and selects an option", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
 
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
@@ -42,13 +42,13 @@ describe("Selectbox", () => {
   });
 
   it("shows label when provided", () => {
-    render(<Selectbox options={options} label="My Label" />);
+    render(<Select options={options} label="My Label" />);
     expect(screen.getByText("My Label")).toBeInTheDocument();
   });
 
   it("does not select disabled options", () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
 
     fireEvent.click(screen.getByRole("combobox"));
     const disabledOption = screen.getByText("Orange");
@@ -57,9 +57,9 @@ describe("Selectbox", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it("handles searchable selectbox", async () => {
+  it("handles searchable select", async () => {
     const user = userEvent.setup();
-    render(<Selectbox options={options} searchable searchPlaceholder="Search..." />);
+    render(<Select options={options} searchable searchPlaceholder="Search..." />);
     
     await user.click(screen.getByRole("combobox"));
     const searchInput = screen.getByPlaceholderText("Search...");
@@ -80,7 +80,7 @@ describe("Selectbox", () => {
       { label: "Group A", options: [{ label: "A1", value: "a1" }] },
       { label: "Group B", options: [{ label: "B1", value: "b1" }] },
     ];
-    render(<Selectbox options={groupedOptions} grouped />);
+    render(<Select options={groupedOptions} grouped />);
     
     fireEvent.click(screen.getByRole("combobox"));
     await waitFor(() => expect(screen.queryByText(/Group A/i)).not.toBeNull());
@@ -89,7 +89,7 @@ describe("Selectbox", () => {
 
   it("handles keyboard navigation: ArrowDown, ArrowUp, Enter", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
     const trigger = screen.getByRole("combobox");
     
     trigger.focus();
@@ -108,7 +108,7 @@ describe("Selectbox", () => {
   it("handles allowClear", () => {
     const onChange = vi.fn();
     render(
-      <Selectbox
+      <Select
         options={options}
         defaultValue="1"
         allowClear
@@ -123,7 +123,7 @@ describe("Selectbox", () => {
   });
 
   it("highlights option on mouse enter", async () => {
-    render(<Selectbox options={options} />);
+    render(<Select options={options} />);
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
 
@@ -140,7 +140,7 @@ describe("Selectbox", () => {
       { type: "separator" as const },
       { label: "Banana", value: "2" },
     ];
-    render(<Selectbox options={optionsWithSeparator} />);
+    render(<Select options={optionsWithSeparator} />);
     fireEvent.click(screen.getByRole("combobox"));
 
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
@@ -150,7 +150,7 @@ describe("Selectbox", () => {
 
   it("highlights option on mouse enter in non-grouped path", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
     fireEvent.click(screen.getByRole("combobox"));
 
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
@@ -163,7 +163,7 @@ describe("Selectbox", () => {
   });
 
   it("closes dropdown on Escape key", async () => {
-    render(<Selectbox options={options} />);
+    render(<Select options={options} />);
     fireEvent.click(screen.getByRole("combobox"));
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
 
@@ -172,14 +172,14 @@ describe("Selectbox", () => {
   });
 
   it("opens dropdown on Space key", async () => {
-    render(<Selectbox options={options} />);
+    render(<Select options={options} />);
     fireEvent.keyDown(screen.getByRole("combobox"), { key: " " });
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
   });
 
   it("navigates up with ArrowUp key", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
     const trigger = screen.getByRole("combobox");
 
     fireEvent.keyDown(trigger, { key: "ArrowDown" }); // open
@@ -195,7 +195,7 @@ describe("Selectbox", () => {
 
   it("navigates to first item with Home key", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
     const trigger = screen.getByRole("combobox");
 
     fireEvent.keyDown(trigger, { key: "Enter" }); // open
@@ -211,7 +211,7 @@ describe("Selectbox", () => {
 
   it("navigates to last enabled item with End key", async () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} onChange={onChange} />);
+    render(<Select options={options} onChange={onChange} />);
     const trigger = screen.getByRole("combobox");
 
     fireEvent.keyDown(trigger, { key: "Enter" }); // open
@@ -227,7 +227,7 @@ describe("Selectbox", () => {
   it("closes on outside click", async () => {
     render(
       <div>
-        <Selectbox options={options} />
+        <Select options={options} />
         <button>Outside</button>
       </div>,
     );
@@ -239,26 +239,26 @@ describe("Selectbox", () => {
   });
 
   it("does not open when disabled", () => {
-    render(<Selectbox options={options} disabled />);
+    render(<Select options={options} disabled />);
     fireEvent.click(screen.getByRole("combobox"));
     expect(screen.queryByRole("listbox")).toBeNull();
   });
 
   it("does not clear when disabled", () => {
     const onChange = vi.fn();
-    render(<Selectbox options={options} defaultValue="1" allowClear disabled onChange={onChange} />);
+    render(<Select options={options} defaultValue="1" allowClear disabled onChange={onChange} />);
     // clear button is not shown when disabled
     expect(screen.queryByLabelText(/clear input/i)).not.toBeInTheDocument();
   });
 
   it("controlled mode: displays value from prop", () => {
-    render(<Selectbox options={options} value="2" />);
+    render(<Select options={options} value="2" />);
     expect(screen.getByRole("combobox")).toHaveTextContent("Banana");
   });
 
   it("controlled mode: calls onChange but does not change displayed value without prop update", async () => {
     const onChange = vi.fn();
-    const { rerender } = render(<Selectbox options={options} value="1" onChange={onChange} />);
+    const { rerender } = render(<Select options={options} value="1" onChange={onChange} />);
 
     fireEvent.click(screen.getByRole("combobox"));
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
@@ -266,7 +266,7 @@ describe("Selectbox", () => {
 
     expect(onChange).toHaveBeenCalledWith("2");
     // controlled value unchanged → still shows Apple
-    rerender(<Selectbox options={options} value="1" onChange={onChange} />);
+    rerender(<Select options={options} value="1" onChange={onChange} />);
     expect(screen.getByRole("combobox")).toHaveTextContent("Apple");
   });
 
@@ -276,7 +276,7 @@ describe("Selectbox", () => {
       (opt.value as string).startsWith(search),
     );
     render(
-      <Selectbox options={options} searchable filterOption={filterOption} searchPlaceholder="Search..." />,
+      <Select options={options} searchable filterOption={filterOption} searchPlaceholder="Search..." />,
     );
 
     await user.click(screen.getByRole("combobox"));
@@ -290,7 +290,7 @@ describe("Selectbox", () => {
   it("shows no-options label when search returns empty", async () => {
     const user = userEvent.setup();
     render(
-      <Selectbox
+      <Select
         options={options}
         searchable
         searchPlaceholder="Search..."
@@ -305,12 +305,12 @@ describe("Selectbox", () => {
   });
 
   it("renders error state", () => {
-    render(<Selectbox options={options} error="Required field" />);
+    render(<Select options={options} error="Required field" />);
     expect(screen.getByText("Required field")).toBeInTheDocument();
   });
 
   it("shows selected label in trigger after selection in uncontrolled mode", async () => {
-    render(<Selectbox options={options} />);
+    render(<Select options={options} />);
     fireEvent.click(screen.getByRole("combobox"));
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
     fireEvent.click(screen.getByRole("option", { name: "Apple" }));
@@ -325,7 +325,7 @@ describe("Selectbox", () => {
       { label: "Fruits", options: [{ label: "Apple", value: "apple" }, { label: "Banana", value: "banana" }] },
       { label: "Vegs", options: [{ label: "Carrot", value: "carrot" }] },
     ];
-    render(<Selectbox options={groupedOptions} grouped searchable searchPlaceholder="Search..." />);
+    render(<Select options={groupedOptions} grouped searchable searchPlaceholder="Search..." />);
 
     await user.click(screen.getByRole("combobox"));
     await user.type(screen.getByPlaceholderText("Search..."), "Carrot");

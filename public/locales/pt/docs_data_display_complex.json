@@ -145,7 +145,7 @@
     "patterns_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
     "patterns_pricing_desc": "Um padrão comum de tabela de comparação de preços para SaaS, etc. Usa `Grid`, `Card`, `Badge`, `Heading`, `Paragraph`, `Button` e `Stack` para um layout com prioridade clara de informações.",
     "patterns_pricing_title": "Tabela de Preços",
-    "patterns_profile_desc": "Um padrão de tela de configurações combinando muitos componentes de formulário como `Input`, `Textarea`, `Selectbox`, `RadioGroup` e `Switch`. Possui um layout de duas colunas com navegação lateral e uma área de conteúdo principal.",
+    "patterns_profile_desc": "Um padrão de tela de configurações combinando muitos componentes de formulário como `Input`, `Textarea`, `Select`, `RadioGroup` e `Switch`. Possui um layout de duas colunas com navegação lateral e uma área de conteúdo principal.",
     "patterns_profile_title": "Configurações de Perfil de Usuário",
     "patterns_scenario_1": "Layouts de Dashboard: Montagem rápida de uma visualização principal usando padrões de cartões e grades pré-compostos.",
     "patterns_scenario_2": "Páginas de Marketing: Implementação de seções hero de alto impacto e tabelas de preços com CSS personalizado mínimo.",

@@ -358,7 +358,7 @@ describe("QueryBuilder", () => {
 
   // ─── Field type: boolean ──────────────────────────────────────────────────────
 
-  it("renders true/false selectbox for boolean field", async () => {
+  it("renders true/false select for boolean field", async () => {
     const rule = { id: "r1", field: "isActive", operator: "=", value: false };
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 

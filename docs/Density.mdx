@@ -39,7 +39,9 @@ import { Command } from "../stories/Command";
 <h2><T k="guide.density_usage_title" /></h2>
 <p><T k="guide.density_usage_desc" /></p>
 
-<Command>{`import { setWimDensity } from "wimui";
+<Command>{`import { WimProvider, setWimDensity } from "wimui";
+
+<WimProvider density="compact">{/* app */}</WimProvider>
 
 setWimDensity("compact");
 // or on a subtree:

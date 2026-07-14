@@ -993,8 +993,8 @@
         "mobile": true
       },
       {
-        "name": "Selectbox",
-        "descKey": "doc.selectbox_desc",
+        "name": "Select",
+        "descKey": "doc.select_desc",
         "pc": true,
         "mobile": true
       },

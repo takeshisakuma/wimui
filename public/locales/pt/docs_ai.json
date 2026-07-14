@@ -150,7 +150,7 @@
   "doc.modelselector_a11y_2": "As teclas de seta movem a opção ativa e o aria-activedescendant a rastreia para os leitores de tela.",
   "doc.modelselector_a11y_3": "Modelos desabilitados recebem aria-disabled e não podem ser selecionados por ponteiro ou teclado.",
   "doc.modelselector_choice_combobox": "Uma lista longa e pesquisável de opções",
-  "doc.modelselector_choice_selectbox": "Um menu suspenso simples de escolha única, sem metadados",
+  "doc.modelselector_choice_select": "Um menu suspenso simples de escolha única, sem metadados",
   "doc.modelselector_choice_self": "Alternar modelos com metadados visíveis de custo e contexto",
   "doc.modelselector_content_guidelines_1": "Mantenha os nomes dos modelos curtos e reconhecíveis; mova o provedor para a linha de descrição.",
   "doc.modelselector_content_guidelines_2": "Formate o comprimento de contexto de forma compacta (ex.: 128K) e o preço por 1M de tokens para que os números continuem fáceis de ler.",

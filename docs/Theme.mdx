@@ -1,0 +1,52 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { Command } from "../stories/Command";
+
+<Meta title="Token/Theme" />
+
+<h1><T k="guide.theme_title" /></h1>
+<p><T k="guide.theme_desc" /></p>
+
+<hr />
+
+<h2><T k="guide.theme_attr_title" /></h2>
+<p><T k="guide.theme_attr_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="guide.theme_value" /></th>
+      <th><T k="guide.theme_effect" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>data-theme="dark"</code></td>
+      <td><T k="guide.theme_dark_effect" /></td>
+    </tr>
+    <tr>
+      <td><code>data-theme="light"</code></td>
+      <td><T k="guide.theme_light_effect" /></td>
+    </tr>
+    <tr>
+      <td><T k="guide.theme_omit" /></td>
+      <td><T k="guide.theme_omit_effect" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Command>{`<html data-theme="dark">
+<html data-theme="light">
+<html> <!-- follow prefers-color-scheme -->`}</Command>
+
+<p><T k="guide.theme_nested_desc" /></p>
+
+<hr />
+
+<h2><T k="guide.theme_toggle_title" /></h2>
+<p><T k="guide.theme_toggle_desc" /></p>
+
+<hr />
+
+<h2><T k="guide.theme_impl_title" /></h2>
+<p><T k="guide.theme_impl_desc" /></p>

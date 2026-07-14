@@ -107,7 +107,7 @@ export const WithIcon: Story = {
         {...args}
         icon={<Icon name="CircleIcon" size="sm" />}
       >
-        {t("docs_stories_inputs:story.selectbox_opt4")}
+        {t("docs_stories_inputs:story.select_opt4")}
       </Chip>
     );
   },

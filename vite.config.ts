@@ -79,8 +79,7 @@ export default defineConfig(({ mode }) => {
           // d.ts は JS と同じレイアウトで dist/ 直下に出力される:
           //   エントリ型   → dist/index.d.ts, dist/form.d.ts, ...
           //   個別型       → dist/components/<category>/<Name>/<Name>.d.ts（JS と co-located）
-          // package.json の types / exports.*.types はこのパスに合わせている
-          // （per-component サブパスの types も dist/components/... を参照）。
+          // 公開 import はバレル（wimui / wimui/form 等）のみ。per-component deep path は exports に載せない。
           insertTypesEntry: true,
         }),
     ].filter(Boolean),
@@ -182,8 +181,7 @@ export default defineConfig(({ mode }) => {
                 preserveModules: true,
                 preserveModulesRoot: "src",
                 entryFileNames: "[name].js",
-                // 抽出 CSS はコンポーネント専用として styles.css に固定する（トークン/
-                // リセットは index.ts から除外済みのため、この CSS はコンポーネントのみ）。
+                // 抽出 CSS は styles.css に固定。トークンは build-style-entries が前置する。
                 assetFileNames: cssStylesAssetName,
               },
               {

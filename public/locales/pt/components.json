@@ -108,7 +108,7 @@
   "doc": {
     "aiResponseFeedback_desc": "Controles de feedback positivo/negativo e botão de regeneração para respostas de IA.",
     "autosave_desc": "Indicador de status inline para o estado de salvamento automático",
-    "base_list_desc": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectboxes e TreeViews.",
+    "base_list_desc": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectes e TreeViews.",
     "blockquote_desc": "Separa visualmente citações externas ou textos a serem enfatizados.",
     "codeBlock_desc": "Bloco de código com destaque de sintaxe, botão de cópia, numeração de linhas e colapso de conteúdo longo.",
     "codeDiffViewer_desc": "Exibe alterações de código como um diff lado a lado ou unificado, com destaque por linha e ações de Aplicar/Rejeitar.",
@@ -382,7 +382,7 @@
     "same_tier_title": "Dependência entre Mesmas Camadas",
     "transparent_props_desc": "Componentes que envolvem outros devem propagar (spread) as props do componente interno o máximo possível para garantir flexibilidade.",
     "transparent_props_title": "Props Transparentes",
-    "unidirectional_desc": "Camadas inferiores não devem depender de camadas superiores (ex: o Button (Tier 2) é proibido de importar o Selectbox (Tier 4)).",
+    "unidirectional_desc": "Camadas inferiores não devem depender de camadas superiores (ex: o Button (Tier 2) é proibido de importar o Select (Tier 4)).",
     "unidirectional_title": "Dependência Unidirecional"
   },
   "screen": {

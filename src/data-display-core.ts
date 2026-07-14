@@ -2,8 +2,7 @@
 // `wimui` barrel. The full `wimui/data-display` barrel (src/data-display.ts)
 // re-exports this plus the peer-heavy components (Markdown → react-markdown,
 // QRCode → qrcode.react, NodeGraph → @xyflow/react, ScheduleView →
-// @fullcalendar), which are only reachable via `wimui/data-display` or their
-// per-component subpath.
+// @fullcalendar), which are only reachable via `wimui/data-display` (not the root barrel).
 export * from "./components/data-display/Accordion/Accordion";
 export * from "./components/data-display/Avatar/Avatar";
 export * from "./components/data-display/AvatarGroup/AvatarGroup";

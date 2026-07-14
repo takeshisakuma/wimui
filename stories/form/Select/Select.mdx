@@ -5,11 +5,11 @@ import {
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
-import * as SelectboxStories from "./Selectbox.stories";
+import * as SelectStories from "./Select.stories";
 import { T } from "../../T";
 import { Docgen } from "../../Docgen";
 
-<Meta of={SelectboxStories} />
+<Meta of={SelectStories} />
 
 <Title />
 <p
@@ -20,14 +20,14 @@ import { Docgen } from "../../Docgen";
     color: "var(--wim-color-text-secondary)",
   }}
 >
-  <T k="doc.selectbox_title" />
+  <T k="doc.select_title" />
 </p>
 
 ## <T k="doc.design_intent_title" />
-<p><T k="doc.selectbox_design_intent" /></p>
+<p><T k="doc.select_design_intent" /></p>
 
 ## <T k="doc.choice_matrix_title" />
-<p><T k="doc.selectbox_choice_matrix_desc" /></p>
+<p><T k="doc.select_choice_matrix_desc" /></p>
 <table>
   <thead>
     <tr>
@@ -38,10 +38,10 @@ import { Docgen } from "../../Docgen";
   <tbody>
     <tr>
       <td>
-        <b>Selectbox</b>
+        <b>Select</b>
       </td>
       <td>
-        <T k="doc.selectbox_choice_select_when" />
+        <T k="doc.select_choice_select_when" />
       </td>
     </tr>
     <tr>
@@ -49,7 +49,7 @@ import { Docgen } from "../../Docgen";
         <b>Radio</b>
       </td>
       <td>
-        <T k="doc.selectbox_choice_radio_when" />
+        <T k="doc.select_choice_radio_when" />
       </td>
     </tr>
     <tr>
@@ -57,13 +57,13 @@ import { Docgen } from "../../Docgen";
         <b>Combobox</b>
       </td>
       <td>
-        <T k="doc.selectbox_choice_combobox_when" />
+        <T k="doc.select_choice_combobox_when" />
       </td>
     </tr>
   </tbody>
 </table>
 
-<Docgen componentName="Selectbox" section="anatomy" />
+<Docgen componentName="Select" section="anatomy" />
 
 ## <T k="doc.best_practices_title" />
 <table>
@@ -75,41 +75,41 @@ import { Docgen } from "../../Docgen";
   </thead>
   <tbody>
     <tr>
-      <td><strong><T k="doc.selectbox_adv_search" /></strong></td>
-      <td><T k="doc.selectbox_best_practice_1" /></td>
+      <td><strong><T k="doc.select_adv_search" /></strong></td>
+      <td><T k="doc.select_best_practice_1" /></td>
     </tr>
     <tr>
-      <td><strong><T k="doc.selectbox_adv_group" /></strong></td>
-      <td><T k="doc.selectbox_best_practice_2" /></td>
+      <td><strong><T k="doc.select_adv_group" /></strong></td>
+      <td><T k="doc.select_best_practice_2" /></td>
     </tr>
   </tbody>
 </table>
 
 ## <T k="doc.a11y_spec_title" />
 <p>
-  <T k="doc.selectbox_a11y_desc" />
+  <T k="doc.select_a11y_desc" />
 </p>
 <ul>
   <li>
-    <T k="doc.selectbox_a11y_1" />
+    <T k="doc.select_a11y_1" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_2" />
+    <T k="doc.select_a11y_2" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_3" />
+    <T k="doc.select_a11y_3" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_4" />
+    <T k="doc.select_a11y_4" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_5" />
+    <T k="doc.select_a11y_5" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_listbox" />
+    <T k="doc.select_a11y_listbox" />
   </li>
   <li>
-    <T k="doc.selectbox_a11y_scroll" />
+    <T k="doc.select_a11y_scroll" />
   </li>
 </ul>
 
@@ -124,56 +124,56 @@ import { Docgen } from "../../Docgen";
   <tbody>
     <tr>
       <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
-      <td><T k="doc.selectbox_scenario_country" /></td>
+      <td><T k="doc.select_scenario_country" /></td>
     </tr>
     <tr>
       <td><strong><T k="doc.scenario_admin_title" /></strong></td>
-      <td><T k="doc.selectbox_scenario_form" /></td>
+      <td><T k="doc.select_scenario_form" /></td>
     </tr>
   </tbody>
 </table>
 
 <Primary />
 
-<Docgen componentName="Selectbox" section="props" />
+<Docgen componentName="Select" section="props" />
 
 ## <T k="doc.variations" />
 
 ### <T k="doc.default" />
-<Canvas of={SelectboxStories.Default} />
+<Canvas of={SelectStories.Default} />
 
 ### <T k="doc.with_label" />
-<Canvas of={SelectboxStories.WithLabel} />
+<Canvas of={SelectStories.WithLabel} />
 
-### <T k="doc.selectbox_preselected" />
-<Canvas of={SelectboxStories.Preselected} />
+### <T k="doc.select_preselected" />
+<Canvas of={SelectStories.Preselected} />
 
 ### <T k="doc.disabled" />
-<Canvas of={SelectboxStories.Disabled} />
+<Canvas of={SelectStories.Disabled} />
 
-### <T k="doc.selectbox_var_sep" />
+### <T k="doc.select_var_sep" />
 <p>
-  <T k="doc.selectbox_var_sep_desc" />
+  <T k="doc.select_var_sep_desc" />
 </p>
-<Canvas of={SelectboxStories.WithSeparator} />
+<Canvas of={SelectStories.WithSeparator} />
 
-## <T k="doc.selectbox_adv" />
+## <T k="doc.select_adv" />
 
-### <T k="doc.selectbox_adv_search" />
+### <T k="doc.select_adv_search" />
 <p>
-  <T k="doc.selectbox_adv_search_desc" />
+  <T k="doc.select_adv_search_desc" />
 </p>
-<Canvas of={SelectboxStories.Searchable} />
+<Canvas of={SelectStories.Searchable} />
 
-### <T k="doc.selectbox_adv_group" />
+### <T k="doc.select_adv_group" />
 <p>
-  <T k="doc.selectbox_adv_group_desc" />
+  <T k="doc.select_adv_group_desc" />
 </p>
-<Canvas of={SelectboxStories.Grouped} />
+<Canvas of={SelectStories.Grouped} />
 
-### <T k="doc.selectbox_adv_key" />
+### <T k="doc.select_adv_key" />
 <p>
-  <T k="doc.selectbox_adv_key_desc" />
+  <T k="doc.select_adv_key_desc" />
 </p>
 <table>
   <thead>
@@ -188,7 +188,7 @@ import { Docgen } from "../../Docgen";
         <code><T k="table.key_enter" /></code> / <code><T k="table.key_space" /></code>
       </td>
       <td>
-        <T k="doc.selectbox_op_open_select" />
+        <T k="doc.select_op_open_select" />
       </td>
     </tr>
     <tr>
@@ -196,7 +196,7 @@ import { Docgen } from "../../Docgen";
         <code><T k="table.key_escape" /></code>
       </td>
       <td>
-        <T k="doc.selectbox_op_close" />
+        <T k="doc.select_op_close" />
       </td>
     </tr>
     <tr>
@@ -204,7 +204,7 @@ import { Docgen } from "../../Docgen";
         <code>ArrowDown</code>
       </td>
       <td>
-        <T k="doc.selectbox_op_next" />
+        <T k="doc.select_op_next" />
       </td>
     </tr>
     <tr>
@@ -212,7 +212,7 @@ import { Docgen } from "../../Docgen";
         <code>ArrowUp</code>
       </td>
       <td>
-        <T k="doc.selectbox_op_prev" />
+        <T k="doc.select_op_prev" />
       </td>
     </tr>
     <tr>
@@ -220,7 +220,7 @@ import { Docgen } from "../../Docgen";
         <code>Home</code>
       </td>
       <td>
-        <T k="doc.selectbox_op_first" />
+        <T k="doc.select_op_first" />
       </td>
     </tr>
     <tr>
@@ -228,26 +228,26 @@ import { Docgen } from "../../Docgen";
         <code>End</code>
       </td>
       <td>
-        <T k="doc.selectbox_op_last" />
+        <T k="doc.select_op_last" />
       </td>
     </tr>
   </tbody>
 </table>
 <p>
-  <T k="doc.selectbox_adv_key_skip" />
+  <T k="doc.select_adv_key_skip" />
 </p>
 
-### <T k="doc.selectbox_adv_comb" />
+### <T k="doc.select_adv_comb" />
 <p>
-  <T k="doc.selectbox_adv_comb_desc" />
+  <T k="doc.select_adv_comb_desc" />
 </p>
-<Canvas of={SelectboxStories.AdvancedSearch} />
+<Canvas of={SelectStories.AdvancedSearch} />
 
-<Docgen componentName="Selectbox" section="tokens" />
+<Docgen componentName="Select" section="tokens" />
 
 ## <T k="doc.keyboard_nav_title" />
-<p><T k="doc.selectbox_keyboard_desc" /></p>
+<p><T k="doc.select_keyboard_desc" /></p>
 
-<Docgen componentName="Selectbox" section="i18n" />
+<Docgen componentName="Select" section="i18n" />
 
-<Docgen componentName="Selectbox" section="test" />
+<Docgen componentName="Select" section="test" />

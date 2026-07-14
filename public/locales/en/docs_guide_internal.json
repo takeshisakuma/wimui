@@ -3,7 +3,7 @@
     "category_desc": "These are fundamental building block components used internally across various other components. They are not intended for direct use in application code, but understanding them helps when contributing to or extending WIM UI.",
     "category_note": "These components are internal implementation details. Prefer using the higher-level public components that encapsulate them.",
     "category_title": "Internal Components",
-    "comp_base_list_role": "Standardizes layout and interaction states for list-like items used in Menus, Selectboxes, and TreeViews.",
+    "comp_base_list_role": "Standardizes layout and interaction states for list-like items used in Menus, Selectes, and TreeViews.",
     "comp_base_list_title": "BaseListItem",
     "comp_field_template_role": "Standardizes label placement, mandatory marks, and error message display for all form-related components.",
     "comp_field_template_title": "FieldTemplate",

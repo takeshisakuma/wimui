@@ -3,7 +3,7 @@
     "category_desc": "Estes são componentes de bloco de construção fundamentais usados internamente em vários outros componentes. Eles não se destinam ao uso direto no código do aplicativo, mas compreendê-los ajuda a contribuir ou estender a WIM UI.",
     "category_note": "Estes componentes são detalhes de implementação interna. Prefira usar os componentes públicos de nível superior que os encapsulam.",
     "category_title": "Componentes Internos (Internal Components)",
-    "comp_base_list_role": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectboxes e TreeViews.",
+    "comp_base_list_role": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectes e TreeViews.",
     "comp_base_list_title": "BaseListItem",
     "comp_field_template_role": "Padroniza a colocação de rótulos, marcações obrigatórias e exibição de mensagens de erro para todos os componentes relacionados a formulários.",
     "comp_field_template_title": "FieldTemplate",

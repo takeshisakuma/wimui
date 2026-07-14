@@ -60,7 +60,7 @@ export type InputBaseProps = {
 };
 
 /**
- * フォーム入力コンポーネント（Input, SearchInput, Selectbox等）の外殻となる共用語コンポーネント。
+ * フォーム入力コンポーネント（Input, SearchInput, Select等）の外殻となる共用語コンポーネント。
  * prefix/suffix（アイコン）や clearable（クリアボタン）の配置とレイアウトを統一します。
  */
 export const InputBase = ({

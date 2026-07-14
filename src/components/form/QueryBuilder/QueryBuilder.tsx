@@ -3,7 +3,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { IconButton } from "../IconButton/IconButton";
 import { Button } from "../../form/Button/Button";
-import { Selectbox } from "../../form/Selectbox/Selectbox";
+import { Select } from "../../form/Select/Select";
 import { Input } from "../../form/Input/Input";
 import { NumberInput } from "../../form/NumberInput/NumberInput";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
@@ -392,7 +392,7 @@ export const QueryBuilder = ({
     return (
       <div key={rule.id} className={styles.rule} role="group" aria-label={ruleAriaLabel}>
         <div className={styles.ruleFields}>
-          <Selectbox
+          <Select
             className={styles.field}
             options={fields.map((f) => ({ label: f.label, value: f.name }))}
             value={rule.field}
@@ -400,14 +400,14 @@ export const QueryBuilder = ({
             aria-label={fieldAriaLabel}
             fullWidth
             styles={{
-              root: styles.selectbox,
-              trigger: styles.selectboxTrigger,
+              root: styles.select,
+              trigger: styles.selectTrigger,
               inputBase: {
                 root: styles.inputBase,
               }
             }}
           />
-          <Selectbox
+          <Select
             className={styles.operator}
             options={operators.map((op) => ({ label: op.label, value: op.value }))}
             value={rule.operator}
@@ -415,8 +415,8 @@ export const QueryBuilder = ({
             aria-label={operatorAriaLabel}
             fullWidth
             styles={{
-              root: styles.selectbox,
-              trigger: styles.selectboxTrigger,
+              root: styles.select,
+              trigger: styles.selectTrigger,
               inputBase: {
                 root: styles.inputBase,
               }
@@ -439,7 +439,7 @@ export const QueryBuilder = ({
                   aria-label={valueAriaLabel}
                 />
               ) : type === "boolean" ? (
-                <Selectbox
+                <Select
                   options={[
                     { label: trueLabel, value: "true" },
                     { label: falseLabel, value: "false" },
@@ -449,8 +449,8 @@ export const QueryBuilder = ({
                   aria-label={valueAriaLabel}
                   fullWidth
                   styles={{
-                    root: styles.selectbox,
-                    trigger: styles.selectboxTrigger,
+                    root: styles.select,
+                    trigger: styles.selectTrigger,
                     inputBase: {
                       root: styles.inputBase,
                     }

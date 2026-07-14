@@ -298,7 +298,7 @@
     "dropdown_choice_dropdown_when": "When you want to display a list of actions (e.g., 'Copy', 'Delete').",
     "dropdown_choice_matrix_desc": "Choose based on the context and the complexity of the information required.",
     "dropdown_choice_popover_when": "When you want to display supplementary information or more complex content (e.g., a form).",
-    "dropdown_choice_selectbox_when": "When selecting settings or values (e.g., 'State') within a form.",
+    "dropdown_choice_select_when": "When selecting settings or values (e.g., 'State') within a form.",
     "dropdown_comparison": "Comparison with other UI",
     "dropdown_components": "Component Hierarchy",
     "dropdown_con_cost": "Operational Cost",

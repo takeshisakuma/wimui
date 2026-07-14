@@ -139,7 +139,7 @@ const ControlledTemplate = () => {
 
       <CommandPalette open={open} onOpenChange={setOpen}>
         <CommandPaletteContent>
-          <CommandPaletteInput placeholder={t("story.selectbox_placeholder")} />
+          <CommandPaletteInput placeholder={t("story.select_placeholder")} />
           <CommandPaletteList>
             <CommandPaletteGroup heading={t("story.command_quick_links")}>
               <CommandPaletteItem
