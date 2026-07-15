@@ -15,8 +15,21 @@
     "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
     "paths": {
       "@/*": ["./src/*"],
+      // 公開 exports（バレル）のみ列挙。deep path は廃止済みのため wildcard 禁止
       "wimui": ["./src/index.ts"],
-      "wimui/*": ["./src/*"]
+      "wimui/layout": ["./src/layout.ts"],
+      "wimui/form": ["./src/form.ts"],
+      "wimui/rhf": ["./src/rhf.ts"],
+      "wimui/feedback": ["./src/feedback.ts"],
+      "wimui/navigation": ["./src/navigation.ts"],
+      "wimui/data-display": ["./src/data-display.ts"],
+      "wimui/overlay": ["./src/overlay.ts"],
+      "wimui/typography": ["./src/typography.ts"],
+      "wimui/media": ["./src/media.ts"],
+      "wimui/charts": ["./src/charts.ts"],
+      "wimui/ai": ["./src/ai.ts"],
+      "wimui/tokens": ["./src/tokens.ts"],
+      "wimui/icons": ["./src/icons.ts"]
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
     "types": ["vitest/globals", "@testing-library/jest-dom", "vite/client"]

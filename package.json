@@ -13,7 +13,6 @@
   "sideEffects": [
     "**/*.css",
     "**/*.scss",
-    "./src/icons.ts",
     "./dist/icons.js",
     "./dist/icons.cjs"
   ],
@@ -140,7 +139,7 @@
     }
   ],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "npm run generate:icons && npm run i18n:bundle && vite",

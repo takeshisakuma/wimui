@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ドキュメント（Storybook）
+    url: https://takeshisakuma.github.io/wimui/
+    about: コンポーネント一覧・使い方・デザイントークンはまずこちらを参照してください
+  - name: 脆弱性の報告 / Security
+    url: https://github.com/takeshisakuma/wimui/security/advisories/new
+    about: セキュリティ問題は公開 Issue にせず、こちらから非公開で報告してください

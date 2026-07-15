@@ -1,0 +1,30 @@
+name: 機能要望 / Feature request
+description: 新しいコンポーネントや API の提案
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 解決したい課題
+      description: どんな UI / ユースケースで困っているか
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 提案内容
+      description: 想定する API・見た目・振る舞い。既存コンポーネントの組み合わせ（レシピ）で足りないかも検討してください
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 検討した代替案
+      description: 既存コンポーネント + Patterns で代替できないか、他ライブラリの類似 API など
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: スコープ確認
+      options:
+        - label: モノレポ分割・RTL 対応・React 18 / zod 3 サポートは「対応予定なし」であることを確認した
+          required: true

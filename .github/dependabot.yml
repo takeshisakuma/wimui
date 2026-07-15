@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # minor / patch は1本の PR にまとめる（CI 緑ならそのままマージ可）
+      minor-and-patch:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # peer 宣言が ^4 対応するまで保留（storybook-react-i18next が ^3 まで）
+      - dependency-name: "i18next-http-backend"
+        update-types: ["version-update:semver-major"]
+      # peer 宣言が ^10 対応するまで保留（eslint-plugin-jsx-a11y / eslint-plugin-react が ^9 まで）
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

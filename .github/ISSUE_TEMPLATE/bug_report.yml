@@ -1,0 +1,60 @@
+name: バグ報告 / Bug report
+description: コンポーネントの不具合を報告する
+labels: ["bug"]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: 対象コンポーネント
+      description: 例:Button、DatePicker、wimui/charts の BarChart など
+      placeholder: Button
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 再現手順
+      description: 最小の再現コードまたは手順。Storybook の該当ストーリー URL でも可
+      placeholder: |
+        1. `<DatePicker value={null} onChange={...} />` を描画する
+        2. 日付を選択してからクリアする
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する動作
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の動作
+      description: エラーメッセージ・スクリーンショットがあれば添付
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: wimui のバージョン
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: theme
+    attributes:
+      label: テーマ / 密度（再現条件に関係する場合）
+      multiple: true
+      options:
+        - light
+        - dark
+        - comfortable
+        - compact
+        - 関係なし / 不明
+  - type: input
+    id: environment
+    attributes:
+      label: 環境
+      description: ブラウザ / OS / React のバージョン
+      placeholder: Chrome 138 / Windows 11 / React 19.1

@@ -3,7 +3,7 @@
 React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
-- 動作要件: Node.js >= 18 / **React 19**（`react` / `react-dom`）/ 書字方向は **LTR のみ**（en / ja / pt）
+- 動作要件: Node.js >= 22 / **React 19**（`react` / `react-dom`）/ 書字方向は **LTR のみ**（en / ja / pt）
 
 ## スコープ（Core / optional）
 
