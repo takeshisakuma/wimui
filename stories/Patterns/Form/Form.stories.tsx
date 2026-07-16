@@ -45,7 +45,7 @@ export const LoginForm: StoryObj = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Center
-        style={{ height: "100vh", backgroundColor: "var(--wim-color-surface)" }}
+        style={{ height: "100vh", backgroundColor: "var(--wim-color-surface-app)" }}
       >
         <Card
           style={{
@@ -138,8 +138,8 @@ export const SignupForm: StoryObj = {
       <Center
         style={{
           minHeight: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Card
@@ -257,8 +257,8 @@ export const MultiStepForm: StoryObj = {
       <Center
         style={{
           minHeight: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Card
@@ -400,15 +400,15 @@ export const WelcomeScreen: StoryObj = {
       <Center
         style={{
           minHeight: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Card
           style={{
             width: "100%",
             maxWidth: "600px",
-            padding: "48px",
+            padding: "var(--wim-spacing-5xl)",
             border: "1px solid var(--wim-color-border-secondary)",
           }}
         >
@@ -507,8 +507,8 @@ export const ProgressChecklist: StoryObj = {
       <Center
         style={{
           minHeight: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Card
@@ -604,18 +604,16 @@ export const UserProfileForm: StoryObj = {
     return (
       <Center
         style={{
-          backgroundColor: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface-app)",
           padding: "var(--wim-spacing-xl)",
         }}
       >
         <Card
+          padding="none"
           style={{
             maxWidth: "1000px",
             width: "100%",
-            padding: "0",
             overflow: "hidden",
-            border: "1px solid",
-            borderColor: "var(--wim-color-border-secondary)",
           }}
         >
           <div
@@ -674,7 +672,7 @@ export const UserProfileForm: StoryObj = {
               </div>
             </div>
 
-            <div className="wim-profile-content" style={{ padding: "32px", overflowX: "hidden" }}>
+            <div className="wim-profile-content" style={{ padding: "var(--wim-spacing-4xl)", overflowX: "hidden" }}>
               <form onSubmit={(e) => e.preventDefault()}>
                 <Stack gap="xl">
                   <Stack gap="2xl">

@@ -12141,12 +12141,14 @@
       "title": "Choose the right plan for you"
     },
     "hero": {
-      "badge": "v2.0 is now available",
-      "title": "Build beautiful interfaces faster than ever.",
-      "desc": "WIM UI provides a comprehensive set of premium components and tools to help you create stunning user experiences in record time.",
-      "btn_started": "Get Started For Free",
-      "btn_docs": "View Documentation",
-      "dev_count": "Join 10,000+ developers"
+      "eyebrow": "React 19 · TypeScript · 205 components · en / ja / pt",
+      "title": "The component library that does the boring parts.",
+      "desc": "Design tokens, dark mode, density switching, WCAG AA checks and three languages are wired into every component — so your team can spend the time on the product instead.",
+      "btn_components": "Browse all 205 components",
+      "btn_tokens": "Read the token reference",
+      "meta": "v0.1.0 · MIT license",
+      "card_label": "Weekly active users",
+      "card_caption": "Built with Stats, Badge and Sparkline — no custom CSS."
     },
     "error": {
       "title": "Something's missing.",
@@ -12180,19 +12182,19 @@
       "item_3_title": "Enterprise Security",
       "item_3_desc": "SOC2 compliant with role-based access control.",
       "item_4_title": "Team Collaboration",
-      "item_4_desc": "Design and develop together in real-time."
+      "item_4_desc": "Design and develop together in real-time.",
+      "item_3_badge_1": "SOC2",
+      "item_3_badge_2": "RBAC",
+      "item_3_badge_3": "SSO"
     },
     "cta": {
-      "title": "Start building today",
-      "desc": "Join thousands of developers who ship better products with WIM UI.",
-      "btn_primary": "Get Started Free",
-      "btn_secondary": "View Components",
-      "stat_1_value": "10K+",
-      "stat_1_label": "Developers",
-      "stat_2_value": "200+",
-      "stat_2_label": "Components",
-      "stat_3_value": "99.9%",
-      "stat_3_label": "Uptime"
+      "title": "Build your next screen with WIM UI",
+      "desc": "MIT licensed, tree-shakeable, and themeable down to the last token. Install it and compose your first page this afternoon.",
+      "btn_primary": "Install wimui",
+      "btn_secondary": "Browse the docs",
+      "stat_1_label": "Components",
+      "stat_2_label": "Languages",
+      "stat_3_label": "WCAG contrast"
     },
     "compare": {
       "title": "Compare plans",
@@ -12361,7 +12363,9 @@
     "page": {
       "notifications": "Notifications",
       "remove_item": "Remove item",
-      "toggle_menu": "Toggle Menu"
+      "toggle_menu": "Toggle Menu",
+      "qty_decrease": "Decrease quantity",
+      "qty_increase": "Increase quantity"
     }
   },
   "docs_stories_utility": {

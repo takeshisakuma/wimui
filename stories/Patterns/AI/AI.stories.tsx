@@ -246,10 +246,19 @@ export default function WelcomeCard() {
                 boxShadow: "var(--wim-shadow-lg)",
                 overflow: "hidden"
               }}>
-                <Box p="md" style={{ borderBottom: "1px solid var(--wim-color-border)", display: "flex", gap: "8px" }}>
-                  <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ff5f56" }} />
-                  <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ffbd2e" }} />
-                  <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#27c93f" }} />
+                <Box
+                  p="md"
+                  style={{
+                    borderBottom: "1px solid var(--wim-color-border)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--wim-spacing-md)",
+                  }}
+                >
+                  <Icon component={MonitorIcon} size="xs" color="secondary" />
+                  <Text size="xs" color="text-secondary">
+                    preview.wimui.dev
+                  </Text>
                 </Box>
                 <Box p="5xl" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                    <Card 

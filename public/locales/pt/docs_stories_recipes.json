@@ -66,16 +66,13 @@
     "title": "Comparar planos"
   },
   "cta": {
-    "btn_primary": "Comece Gratuitamente",
-    "btn_secondary": "Ver Componentes",
-    "desc": "Junte-se a milhares de desenvolvedores que entregam produtos melhores com o WIM UI.",
-    "stat_1_label": "Desenvolvedores",
-    "stat_1_value": "10K+",
-    "stat_2_label": "Componentes",
-    "stat_2_value": "200+",
-    "stat_3_label": "Disponibilidade",
-    "stat_3_value": "99.9%",
-    "title": "Comece a construir hoje"
+    "title": "Monte sua próxima tela com o WIM UI",
+    "desc": "Licença MIT, tree-shaking e temas ajustáveis até o último token. Instale e monte sua primeira página ainda hoje.",
+    "btn_primary": "Instalar o wimui",
+    "btn_secondary": "Ver a documentação",
+    "stat_1_label": "Componentes",
+    "stat_2_label": "Idiomas",
+    "stat_3_label": "Contraste WCAG"
   },
   "dashboard": {
     "header_admin": "Admin",
@@ -109,7 +106,10 @@
     "item_4_desc": "Projete e desenvolva juntos em tempo real.",
     "item_4_title": "Colaboração em Equipe",
     "subtitle": "Um kit completo para aplicações web modernas",
-    "title": "Tudo que você precisa para entregar mais rápido"
+    "title": "Tudo que você precisa para entregar mais rápido",
+    "item_3_badge_1": "SOC2",
+    "item_3_badge_2": "RBAC",
+    "item_3_badge_3": "SSO"
   },
   "feature_comparison": {
     "badge_popular": "MAIS POPULAR",
@@ -136,12 +136,14 @@
     "title": "Escolha o melhor plano para sua equipe"
   },
   "hero": {
-    "badge": "v2.0 já está disponível",
-    "btn_docs": "Ver Documentação",
-    "btn_started": "Começar Gratuitamente",
-    "desc": "WIM UI fornece um conjunto abrangente de componentes e ferramentas premium para ajudá-lo a criar experiências de usuário impressionantes em tempo recorde.",
-    "dev_count": "Junte-se a mais de 10.000 desenvolvedores",
-    "title": "Construa interfaces bonitas mais rápido do que nunca."
+    "eyebrow": "React 19 · TypeScript · 205 componentes · en / ja / pt",
+    "title": "A biblioteca de componentes que cuida da parte chata.",
+    "desc": "Design tokens, modo escuro, troca de densidade, verificações WCAG AA e três idiomas já vêm integrados em cada componente — para que sua equipe gaste o tempo no produto.",
+    "btn_components": "Explorar os 205 componentes",
+    "btn_tokens": "Ler a referência de tokens",
+    "meta": "v0.1.0 · licença MIT",
+    "card_label": "Usuários ativos semanais",
+    "card_caption": "Feito com Stats, Badge e Sparkline — sem CSS personalizado."
   },
   "login": {
     "email": "E-mail",
@@ -184,6 +186,13 @@
     "step_profile": "Perfil",
     "step_review": "Revisão",
     "title": "Configure seu espaço de trabalho"
+  },
+  "page": {
+    "notifications": "Notificações",
+    "remove_item": "Remover item",
+    "toggle_menu": "Alternar Menu",
+    "qty_decrease": "Diminuir quantidade",
+    "qty_increase": "Aumentar quantidade"
   },
   "pricing": {
     "badge": "PLANOS DE PREÇOS",
@@ -304,10 +313,5 @@
     "step_3_title": "Participe da comunidade",
     "subtitle": "Sua conta está pronta. Veja como começar.",
     "title": "Bem-vindo ao WIM UI!"
-  },
-  "page": {
-    "notifications": "Notificações",
-    "remove_item": "Remover item",
-    "toggle_menu": "Alternar Menu"
   }
 }
