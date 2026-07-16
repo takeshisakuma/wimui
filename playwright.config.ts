@@ -54,9 +54,13 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     // In CI: serve the pre-built static storybook (faster, no watch overhead).
+    // NOTE: `serve -s` は clean-url で `/iframe.html?id=…` を 301 → `/iframe` に
+    // リダイレクトし SPA fallback がマネージャ UI を返す（ストーリーが撮れず
+    // 全テストがマウント待ちタイムアウトになる）。リテラル配信の http-server を
+    // バージョン固定で使うこと。
     // Locally: use the dev storybook for hot reload.
     command: process.env.CI
-      ? "npx serve storybook-static -p 6006 -s --no-clipboard"
+      ? "npx http-server@14 storybook-static -p 6006 -c-1 --silent"
       : "npm run storybook",
     url: "http://localhost:6006",
     reuseExistingServer: !process.env.CI,
