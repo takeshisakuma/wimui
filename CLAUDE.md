@@ -9,6 +9,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## エージェントへの委任ポリシー（常設）
+
+ユーザー確認なしで実行してよいこと:
+
+- **ブランチ + PR 経由のコミット・push**（main への直接 push は禁止）
+- **VRT の workflow_dispatch**（update / compare）。ただし update は「そのブランチへの push がすべて完了してから最後に 1 回」（コミットバックが素の git push のため、途中 push で確実に失敗する）
+- **Dependabot の minor / patch PR のマージ**（`@dependabot rebase` → CI 全緑を確認してから。major は個別判断＝ユーザー確認）
+- **CI の再実行・キャンセル**（スーパーシード済みの古いランの整理を含む）
+- **a11y の赤の「既存負債（IMPROVEMENTS.md T12）」判定**: PR が変更したストーリーだけを a11y スペックと同一設定のローカル axe で検査し、main と違反セットが完全一致した場合のみ「新規違反ゼロ」として扱ってよい。一致しなければ止めて報告
+
+必ずユーザー確認が要ること:
+
+- **機能 PR のマージ**（事前に条件付き承認がある場合を除く）
+- **main への直接 push・force-push・履歴書き換え・リポジトリ設定変更**
+- **npm 公開に関わる操作**（`private` 解除・changeset・publish。IMPROVEMENTS.md 記載のとおりエージェントは進めない）
+- **依存の major 更新のマージ**（互換性根拠を添えて提案まで）
+
+判断に迷う事態・事前条件で判定できない事態は、実行せず報告して止まること。
+
+---
+
 ## よく使うコマンド
 
 ```bash
