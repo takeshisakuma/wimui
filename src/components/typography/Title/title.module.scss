@@ -4,7 +4,29 @@
     margin: 0;
     font-family: inherit;
     font-weight: var(--wim-font-weight-bold);
-    line-height: normal;
+
+    /* 欧文見出しは font metrics（normal ≈ 1.36+）だと間延びするためトークンで詰める。
+       日本語は字形が仮想ボディを満たし詰まって見えるため -jp（広いほう）に出し分け（DESIGN.md 規約3） */
+    line-height: var(--wim-line-height-snug);
+
+    /* 見出しは自動ハイフネーション（lang.scss の hyphens: auto）の対象外 */
+    hyphens: manual;
+
+    :global([lang="ja"]) & {
+      line-height: var(--wim-line-height-snug-jp);
+    }
+
+    /* ディスプレイサイズはさらに詰める */
+    &.xl,
+    &.xl2,
+    &.xl3,
+    &.xl4 {
+      line-height: var(--wim-line-height-tight);
+
+      :global([lang="ja"]) & {
+        line-height: var(--wim-line-height-tight-jp);
+      }
+    }
 
     /* Sizes */
     &.xs {

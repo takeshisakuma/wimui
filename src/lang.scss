@@ -33,6 +33,17 @@ body[lang="ja"] {
     line-break: strict;
     word-break: break-all;
   }
+
+  /* 見出しにも禁則処理を適用する（break-all は付けず単語中間での分断を避ける） */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    -webkit-line-break: strict;
+    line-break: strict;
+  }
 }
 
 /* 英語 */
@@ -40,6 +51,16 @@ body[lang="en"] {
   font-family: var(--wim-font-family-en);
   line-height: var(--wim-line-height-normal);
   hyphens: auto;
+
+  /* 見出しの自動ハイフネーションはタイポグラフィ上不適切なため除外 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    hyphens: manual;
+  }
 }
 
 /* ポルトガル語 */
@@ -47,6 +68,16 @@ body[lang="pt"] {
   font-family: var(--wim-font-family-pt);
   line-height: var(--wim-line-height-normal);
   hyphens: auto;
+
+  /* 見出しの自動ハイフネーションはタイポグラフィ上不適切なため除外 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    hyphens: manual;
+  }
 }
 
 /* サイズ */
