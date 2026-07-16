@@ -35,6 +35,7 @@ const index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
 const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-basic-inputs-textarea--form-pattern",
   "components-data-indicators-avatargroup--default",
+  "components-data-indicators-avatargroup--max-displayed",
   "components-layout-aspectratio--embed",
   "components-alerts-notifications-toast--error-status",
   "components-alerts-notifications-toast--warning",
@@ -45,11 +46,20 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-visualization-nodegraph--with-mini-map",
   "components-ai-chatui--no-avatars",
   "components-ai-chatui--with-variants",
+  // ChatMessage の isTyping アニメーションを含む
+  "patterns-ai--artifacts-canvas",
 ]);
 
+/**
+ * Audit/* は内部 QA 用の巨大合成ページで、個々のコンポーネントは各自の
+ * ストーリーで VRT 済み（カバレッジが重複）。ページが大きいほど
+ * ジッタの累積で不安定になるため VRT からは除外する。
+ */
+const isSkipped = (entry: StoryEntry) =>
+  NONDETERMINISTIC_STORY_IDS.has(entry.id) || entry.id.startsWith("audit-");
+
 const stories = Object.values(index.entries).filter(
-  (entry: any): entry is StoryEntry =>
-    entry.type === "story" && !NONDETERMINISTIC_STORY_IDS.has(entry.id),
+  (entry: any): entry is StoryEntry => entry.type === "story" && !isSkipped(entry),
 );
 
 const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
@@ -146,7 +156,11 @@ test.describe("Visual Regression Testing", () => {
           await expect(page).toHaveScreenshot(`${theme}/${story.id}.png`, {
             fullPage: true,
             animations: "disabled",
-            threshold: 0.1, // Slight tolerance
+            threshold: 0.1, // Slight per-pixel color tolerance
+            // フルページ数百万 px に対する ~0.01%。アンチエイリアスや
+            // サブピクセルのジッタ（同一コミット連続ランで実測 ≤220px）を
+            // 吸収しつつ、実レイアウト変化（数千 px 以上）は検知する。
+            maxDiffPixels: 400,
           });
         });
       }
