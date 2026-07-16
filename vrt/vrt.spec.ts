@@ -40,15 +40,25 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-alerts-notifications-toast--error-status",
   "components-alerts-notifications-toast--warning",
   "components-data-structures-querybuilder--default",
+  "components-data-structures-sortablelist--disabled",
   "components-loading-states-loadingoverlay--blur-effects",
+  "components-media-image--motion-effects",
   "components-navigation-elements-tabnavigation--contained",
   "components-visualization-scheduleview--default",
   "components-visualization-nodegraph--with-mini-map",
-  "components-ai-chatui--no-avatars",
-  "components-ai-chatui--with-variants",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
 ]);
+
+/**
+ * コンポーネント丸ごと非決定的なもの（複数ストーリーが別ランで順繰りに
+ * フレークした実績）。ChatUI=タイピング/ストリーミング表示、
+ * PromptInput=キャレット・添付チップのアニメーション。
+ */
+const NONDETERMINISTIC_STORY_PREFIXES = [
+  "components-ai-chatui--",
+  "components-ai-promptinput--",
+];
 
 /**
  * Audit/* は内部 QA 用の巨大合成ページで、個々のコンポーネントは各自の
@@ -56,7 +66,9 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
  * ジッタの累積で不安定になるため VRT からは除外する。
  */
 const isSkipped = (entry: StoryEntry) =>
-  NONDETERMINISTIC_STORY_IDS.has(entry.id) || entry.id.startsWith("audit-");
+  NONDETERMINISTIC_STORY_IDS.has(entry.id) ||
+  NONDETERMINISTIC_STORY_PREFIXES.some((p) => entry.id.startsWith(p)) ||
+  entry.id.startsWith("audit-");
 
 const stories = Object.values(index.entries).filter(
   (entry: any): entry is StoryEntry => entry.type === "story" && !isSkipped(entry),
