@@ -5,7 +5,7 @@
     align-items: center;
 
     .avatar {
-      border: var(--wim-border-width-thick) solid var(--wim-color-surface-app);
+      border: var(--wim-border-width-thick) solid var(--wim-color-surface);
 
       &:not(:first-child) {
         margin-left: calc(-1 * var(--wim-spacing-md));
