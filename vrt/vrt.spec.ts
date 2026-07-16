@@ -24,8 +24,32 @@ interface StoryEntry {
 }
 
 const index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
+
+/**
+ * JS 駆動アニメーション・埋め込み・キャンバス描画などにより、同一コミット・
+ * 同一環境の連続ランでもピクセルが一致しない非決定的ストーリー。
+ * `animations: "disabled"` は CSS アニメーションしか止められないため除外する
+ * （2026-07-16 の再建時、update 直後の compare で 3 回リトライしても不一致だったもの）。
+ * 追加するときは「同一コミットで update → compare が落ちる」ことを確認してから。
+ */
+const NONDETERMINISTIC_STORY_IDS = new Set([
+  "components-basic-inputs-textarea--form-pattern",
+  "components-data-indicators-avatargroup--default",
+  "components-layout-aspectratio--embed",
+  "components-alerts-notifications-toast--error-status",
+  "components-alerts-notifications-toast--warning",
+  "components-data-structures-querybuilder--default",
+  "components-loading-states-loadingoverlay--blur-effects",
+  "components-navigation-elements-tabnavigation--contained",
+  "components-visualization-scheduleview--default",
+  "components-visualization-nodegraph--with-mini-map",
+  "components-ai-chatui--no-avatars",
+  "components-ai-chatui--with-variants",
+]);
+
 const stories = Object.values(index.entries).filter(
-  (entry: any): entry is StoryEntry => entry.type === "story",
+  (entry: any): entry is StoryEntry =>
+    entry.type === "story" && !NONDETERMINISTIC_STORY_IDS.has(entry.id),
 );
 
 const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
