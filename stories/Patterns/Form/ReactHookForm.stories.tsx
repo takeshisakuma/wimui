@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   Button,
   Card,
@@ -23,32 +25,34 @@ import {
   zodResolver,
 } from "wimui/rhf";
 
-// i18n-ignore-start — integration demo; validation copy is intentional English sample text
-const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Enter a valid email"),
-  role: z.string().min(1, "Pick a role"),
-  plan: z.string().min(1, "Pick a plan"),
-  bio: z.string().max(200, "Keep it under 200 characters").optional(),
-  accept: z.boolean().refine((value) => value === true, {
-    message: "You must accept the terms",
-  }),
-});
+type Translate = (key: string) => string;
 
-const pickersSchema = z.object({
-  eventDate: z
-    .union([z.instanceof(Date), z.null()])
-    .refine((value): value is Date => value instanceof Date, {
-      message: "Pick a date",
+const makeSchema = (t: Translate) =>
+  z.object({
+    name: z.string().min(1, t("rhf.err_name")),
+    email: z.string().email(t("rhf.err_email")),
+    role: z.string().min(1, t("rhf.err_role")),
+    plan: z.string().min(1, t("rhf.err_plan")),
+    bio: z.string().max(200, t("rhf.err_bio")).optional(),
+    accept: z.boolean().refine((value) => value === true, {
+      message: t("rhf.err_accept"),
     }),
-  notify: z.boolean(),
-  score: z.number().min(1, "Rate at least 1 star"),
-});
-// i18n-ignore-end
+  });
 
-type FormValues = z.infer<typeof schema>;
-type PickersFormValues = z.input<typeof pickersSchema>;
-type PickersSubmitValues = z.output<typeof pickersSchema>;
+const makePickersSchema = (t: Translate) =>
+  z.object({
+    eventDate: z
+      .union([z.instanceof(Date), z.null()])
+      .refine((value): value is Date => value instanceof Date, {
+        message: t("rhf.err_date"),
+      }),
+    notify: z.boolean(),
+    score: z.number().min(1, t("rhf.err_score")),
+  });
+
+type FormValues = z.infer<ReturnType<typeof makeSchema>>;
+type PickersFormValues = z.input<ReturnType<typeof makePickersSchema>>;
+type PickersSubmitValues = z.output<ReturnType<typeof makePickersSchema>>;
 
 const meta: Meta = {
   title: "Patterns/Form/React Hook Form",
@@ -62,6 +66,8 @@ export default meta;
 export const WithZod: StoryObj = {
   name: "RHF + zod",
   render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const schema = React.useMemo(() => makeSchema(t), [t]);
     const {
       control,
       handleSubmit,
@@ -93,19 +99,31 @@ export const WithZod: StoryObj = {
           })}
         >
           <Stack gap="lg">
-            {/* i18n-ignore-start */}
             <FormField
               control={control}
               name="name"
               render={({ field, error }) => (
-                <Input {...field} label="Name" error={error} fullWidth required />
+                <Input
+                  {...field}
+                  label={t("rhf.label_name")}
+                  error={error}
+                  fullWidth
+                  required
+                />
               )}
             />
             <FormField
               control={control}
               name="email"
               render={({ field, error }) => (
-                <Input {...field} type="email" label="Email" error={error} fullWidth required />
+                <Input
+                  {...field}
+                  type="email"
+                  label={t("rhf.label_email")}
+                  error={error}
+                  fullWidth
+                  required
+                />
               )}
             />
             <FormField
@@ -114,14 +132,14 @@ export const WithZod: StoryObj = {
               render={({ field, error }) => (
                 <Select
                   {...valueFieldProps(field)}
-                  label="Role"
+                  label={t("rhf.label_role")}
                   error={error}
                   fullWidth
                   required
                   options={[
-                    { label: "Admin", value: "admin" },
-                    { label: "Editor", value: "editor" },
-                    { label: "Viewer", value: "viewer" },
+                    { label: t("rhf.role_admin"), value: "admin" },
+                    { label: t("rhf.role_editor"), value: "editor" },
+                    { label: t("rhf.role_viewer"), value: "viewer" },
                   ]}
                 />
               )}
@@ -132,13 +150,13 @@ export const WithZod: StoryObj = {
               render={({ field, error }) => (
                 <RadioGroup
                   {...valueFieldProps(field)}
-                  label="Plan"
+                  label={t("rhf.label_plan")}
                   error={error}
                   required
                   direction="horizontal"
                   options={[
-                    { label: "Free", value: "free" },
-                    { label: "Pro", value: "pro" },
+                    { label: t("rhf.plan_free"), value: "free" },
+                    { label: t("rhf.plan_pro"), value: "pro" },
                   ]}
                 />
               )}
@@ -147,7 +165,13 @@ export const WithZod: StoryObj = {
               control={control}
               name="bio"
               render={({ field, error }) => (
-                <Textarea {...field} label="Bio" error={error} fullWidth rows={3} />
+                <Textarea
+                  {...field}
+                  label={t("rhf.label_bio")}
+                  error={error}
+                  fullWidth
+                  rows={3}
+                />
               )}
             />
             <FormField
@@ -155,14 +179,18 @@ export const WithZod: StoryObj = {
               name="accept"
               render={({ field, invalid }) => (
                 <Checkbox {...checkedFieldProps(field)} error={invalid}>
-                  Accept terms
+                  {t("rhf.accept_terms")}
                 </Checkbox>
               )}
             />
-            <Button type="submit" variant="solid" disabled={isSubmitting} style={{ width: "100%" }}>
-              Submit
+            <Button
+              type="submit"
+              variant="solid"
+              disabled={isSubmitting}
+              style={{ width: "100%" }}
+            >
+              {t("rhf.submit")}
             </Button>
-            {/* i18n-ignore-end */}
           </Stack>
         </form>
       </Card>
@@ -174,6 +202,7 @@ export const WithZod: StoryObj = {
 export const NativeFields: StoryObj = {
   name: "Native field spread",
   render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const { control, handleSubmit } = useForm({
       defaultValues: { username: "", password: "" },
     });
@@ -181,27 +210,38 @@ export const NativeFields: StoryObj = {
     return (
       <form onSubmit={handleSubmit(() => undefined)} style={{ width: "20rem" }}>
         <Stack gap="md">
-          {/* i18n-ignore-start */}
           <FormField
             control={control}
             name="username"
-            rules={{ required: "Required" }}
+            rules={{ required: t("rhf.err_required") }}
             render={({ field, error }) => (
-              <Input {...field} label="Username" error={error} fullWidth />
+              <Input
+                {...field}
+                label={t("rhf.label_username")}
+                error={error}
+                fullWidth
+              />
             )}
           />
           <FormField
             control={control}
             name="password"
-            rules={{ required: "Required", minLength: { value: 8, message: "Min 8 chars" } }}
+            rules={{
+              required: t("rhf.err_required"),
+              minLength: { value: 8, message: t("rhf.err_min8") },
+            }}
             render={({ field, error }) => (
-              <PasswordInput {...field} label="Password" error={error} fullWidth />
+              <PasswordInput
+                {...field}
+                label={t("rhf.label_password")}
+                error={error}
+                fullWidth
+              />
             )}
           />
           <Button type="submit" variant="solid">
-            Submit
+            {t("rhf.submit")}
           </Button>
-          {/* i18n-ignore-end */}
         </Stack>
       </form>
     );
@@ -212,6 +252,8 @@ export const NativeFields: StoryObj = {
 export const WithPickers: StoryObj = {
   name: "DatePicker / Rating / Switch",
   render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const pickersSchema = React.useMemo(() => makePickersSchema(t), [t]);
     const {
       control,
       handleSubmit,
@@ -240,14 +282,13 @@ export const WithPickers: StoryObj = {
           })}
         >
           <Stack gap="lg">
-            {/* i18n-ignore-start */}
             <FormField
               control={control}
               name="eventDate"
               render={({ field, error }) => (
                 <DatePicker
                   {...valueFieldProps(field)}
-                  label="Event date"
+                  label={t("rhf.label_event_date")}
                   error={error}
                   fullWidth
                   required
@@ -259,7 +300,7 @@ export const WithPickers: StoryObj = {
               name="notify"
               render={({ field, invalid }) => (
                 <Switch {...checkedFieldProps(field)} error={invalid}>
-                  Email me reminders
+                  {t("rhf.notify_reminders")}
                 </Switch>
               )}
             />
@@ -267,13 +308,22 @@ export const WithPickers: StoryObj = {
               control={control}
               name="score"
               render={({ field, error }) => (
-                <Rating {...valueFieldProps(field)} label="Score" error={error} required />
+                <Rating
+                  {...valueFieldProps(field)}
+                  label={t("rhf.label_score")}
+                  error={error}
+                  required
+                />
               )}
             />
-            <Button type="submit" variant="solid" disabled={isSubmitting} style={{ width: "100%" }}>
-              Submit
+            <Button
+              type="submit"
+              variant="solid"
+              disabled={isSubmitting}
+              style={{ width: "100%" }}
+            >
+              {t("rhf.submit")}
             </Button>
-            {/* i18n-ignore-end */}
           </Stack>
         </form>
       </Card>

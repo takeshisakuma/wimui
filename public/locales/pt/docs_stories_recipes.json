@@ -62,8 +62,8 @@
     "feat_4": "SSO & SAML",
     "feat_5": "Gerente dedicado",
     "feat_6": "Projetos ilimitados",
-    "subtitle": "Escolha o plano que atende às necessidades da sua equipe",
-    "title": "Comparar planos"
+    "subtitle": "A biblioteca é idêntica em todos — os planos diferem em padrões, suporte e controles.",
+    "title": "O que cada plano libera"
   },
   "cta": {
     "title": "Monte sua próxima tela com o WIM UI",
@@ -96,20 +96,21 @@
     "title": "Algo está faltando."
   },
   "feature": {
-    "badge": "RECURSOS",
-    "item_1_desc": "Insights em tempo real com gráficos e dashboards interativos.",
-    "item_1_title": "Análise Avançada",
-    "item_2_desc": "Entregue componentes em produção com confiança.",
-    "item_2_title": "Deploy com Um Clique",
-    "item_3_desc": "Compatível com SOC2 e controle de acesso baseado em funções.",
-    "item_3_title": "Segurança Empresarial",
-    "item_4_desc": "Projete e desenvolva juntos em tempo real.",
-    "item_4_title": "Colaboração em Equipe",
-    "subtitle": "Um kit completo para aplicações web modernas",
-    "title": "Tudo que você precisa para entregar mais rápido",
-    "item_3_badge_1": "SOC2",
-    "item_3_badge_2": "RBAC",
-    "item_3_badge_3": "SSO"
+    "badge": "O que vem na caixa",
+    "item_1_desc": "De Sparkline a Gantt, baseados em Recharts e coloridos pelos seus tokens.",
+    "item_1_title": "11 componentes de gráfico",
+    "item_2_desc": "Progress, Skeleton e Toast cobrem a UX de carregamento sem CSS extra.",
+    "item_2_title": "Estados de feedback inclusos",
+    "item_3_desc": "Contraste WCAG AA e padrões WAI-ARIA, verificados pelo axe no CI.",
+    "item_3_title": "Acessível por padrão",
+    "item_4_desc": "Avatar e AvatarGroup cuidam de overflow, tamanhos e anéis por você.",
+    "item_4_title": "Primitivas de pessoas inclusas",
+    "subtitle": "Cada card abaixo é renderizado pelo componente real — sem mockups.",
+    "title": "As peças que você acabaria construindo por conta própria.",
+    "item_3_badge_1": "WCAG AA",
+    "item_3_badge_2": "axe-core",
+    "item_3_badge_3": "ARIA",
+    "item_2_demo_label": "Publicando componentes…"
   },
   "feature_comparison": {
     "badge_popular": "MAIS POPULAR",
@@ -132,8 +133,8 @@
     "feat_updates": "Atualizações semanais",
     "included": "Incluído",
     "not_included": "Não incluído",
-    "subtitle": "Compare os recursos entre nossos planos flexíveis para encontrar a opção ideal.",
-    "title": "Escolha o melhor plano para sua equipe"
+    "subtitle": "Os mesmos componentes em todos os níveis. Suporte, padrões e controles crescem com o plano.",
+    "title": "Planos, recurso por recurso"
   },
   "hero": {
     "eyebrow": "React 19 · TypeScript · 205 componentes · en / ja / pt",
@@ -219,8 +220,8 @@
     "starter_feat_3": "Suporte da comunidade",
     "starter_feat_4": "Padrões avançados",
     "starter_title": "Iniciante",
-    "subtitle": "Preços simples e transparentes que crescem com sua equipe. Sem taxas ocultas.",
-    "title": "Escolha o plano certo para você"
+    "subtitle": "Todos os planos usam a mesma biblioteca com licença MIT. Os pagos adicionam padrões, respostas prioritárias e SLAs.",
+    "title": "Pague pelo suporte, não pelos componentes."
   },
   "product": {
     "btn_add": "Adicionar ao Carrinho",
@@ -290,17 +291,17 @@
     "tz_jst": "JST (Horário Padrão do Japão)"
   },
   "testimonial": {
-    "p1_name": "Sarah Chen",
-    "p1_role": "Engenheira Frontend na Stripe",
-    "p1_text": "O WIM UI reduziu nosso tempo de desenvolvimento de UI pela metade. Os componentes são lindamente projetados e a documentação é excepcional.",
-    "p2_name": "James Okafor",
-    "p2_role": "Desenvolvedor Líder na Shopify",
-    "p2_text": "A acessibilidade integrada em cada componente nos economizou meses de trabalho. Nosso aplicativo é mais inclusivo do que nunca.",
-    "p3_name": "Yuki Tanaka",
-    "p3_role": "CTO na Startup Inc.",
-    "p3_text": "Migramos todo o nosso design system para o WIM UI em duas semanas. O suporte a TypeScript é impecável.",
-    "subtitle": "Veja o que as equipes estão construindo com o WIM UI",
-    "title": "Amado por desenvolvedores em todo o mundo"
+    "p1_name": "Mika Sato",
+    "p1_role": "Design engineer, SaaS B2B de 12 pessoas",
+    "p1_text": "Substituímos 340 linhas de CSS improvisado por Stack, Grid e tokens. O tema escuro veio de graça.",
+    "p2_name": "Daniel Costa",
+    "p2_role": "Líder de frontend, ferramentas internas",
+    "p2_text": "As strings em pt-BR já vinham na caixa. Nossa equipe de São Paulo lançou o console admin sem tocar em arquivo de tradução.",
+    "p3_name": "Hana Ito",
+    "p3_role": "Fundadora solo",
+    "p3_text": "Não tenho designer. A troca de densidade e as cores de intent são o motivo de meu app não parecer um protótipo.",
+    "subtitle": "Três equipes, três stacks diferentes, a mesma biblioteca.",
+    "title": "Como é construir com a biblioteca"
   },
   "welcome": {
     "btn_start": "Começar a Construir",
@@ -313,5 +314,34 @@
     "step_3_title": "Participe da comunidade",
     "subtitle": "Sua conta está pronta. Veja como começar.",
     "title": "Bem-vindo ao WIM UI!"
+  },
+  "rhf": {
+    "label_name": "Nome",
+    "err_name": "Informe o nome",
+    "label_email": "E-mail",
+    "err_email": "Insira um e-mail válido",
+    "label_role": "Função",
+    "err_role": "Escolha uma função",
+    "role_admin": "Administrador",
+    "role_editor": "Editor",
+    "role_viewer": "Leitor",
+    "label_plan": "Plano",
+    "err_plan": "Escolha um plano",
+    "plan_free": "Gratuito",
+    "plan_pro": "Pro",
+    "label_bio": "Bio",
+    "err_bio": "Mantenha em até 200 caracteres",
+    "accept_terms": "Aceito os termos",
+    "err_accept": "É necessário aceitar os termos",
+    "submit": "Enviar",
+    "label_username": "Usuário",
+    "label_password": "Senha",
+    "err_required": "Obrigatório",
+    "err_min8": "Mínimo de 8 caracteres",
+    "label_event_date": "Data do evento",
+    "err_date": "Escolha uma data",
+    "notify_reminders": "Receber lembretes por e-mail",
+    "label_score": "Nota",
+    "err_score": "Avalie com pelo menos 1 estrela"
   }
 }

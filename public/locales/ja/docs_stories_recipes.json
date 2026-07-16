@@ -62,8 +62,8 @@
     "feat_4": "SSO & SAML",
     "feat_5": "専任マネージャー",
     "feat_6": "無制限プロジェクト",
-    "subtitle": "チームのニーズに合ったプランを選んでください",
-    "title": "プランを比較する"
+    "subtitle": "ライブラリ自体は全プラン同一。差が出るのはパターン・サポート・管理機能です。",
+    "title": "プランごとに解放されるもの"
   },
   "cta": {
     "title": "次の画面から、WIM UI で",
@@ -96,20 +96,21 @@
     "title": "ページが見つかりません"
   },
   "feature": {
-    "badge": "機能",
-    "item_1_desc": "インタラクティブなチャートとダッシュボードでリアルタイムインサイトを提供します。",
-    "item_1_title": "高度な分析",
-    "item_2_desc": "コンポーネントを自信を持って本番環境にデプロイできます。",
-    "item_2_title": "ワンクリックデプロイ",
-    "item_3_desc": "SOC2準拠のロールベースアクセス制御。",
-    "item_3_title": "エンタープライズセキュリティ",
-    "item_4_desc": "リアルタイムで一緒にデザインと開発ができます。",
-    "item_4_title": "チームコラボレーション",
-    "subtitle": "モダンなWebアプリケーションのための完全なツールキット",
-    "title": "より速く出荷するために必要なすべて",
-    "item_3_badge_1": "SOC2",
-    "item_3_badge_2": "RBAC",
-    "item_3_badge_3": "SSO"
+    "badge": "同梱物",
+    "item_1_desc": "Sparkline から Gantt まで。Recharts ベースで、色はトークンに従います。",
+    "item_1_title": "チャート 11 種",
+    "item_2_desc": "Progress・Skeleton・Toast がローディング UX をカスタム CSS なしでカバー。",
+    "item_2_title": "フィードバック状態も標準装備",
+    "item_3_desc": "WCAG AA コントラストと WAI-ARIA パターン。CI の axe で検証済み。",
+    "item_3_title": "デフォルトでアクセシブル",
+    "item_4_desc": "Avatar と AvatarGroup が、はみ出し・サイズ・リングを処理します。",
+    "item_4_title": "人を表すプリミティブ",
+    "subtitle": "下の各カードはモックではなく、実際のコンポーネントの描画です。",
+    "title": "自前で作りがちな部品は、ここにある。",
+    "item_3_badge_1": "WCAG AA",
+    "item_3_badge_2": "axe-core",
+    "item_3_badge_3": "ARIA",
+    "item_2_demo_label": "コンポーネントを公開中…"
   },
   "feature_comparison": {
     "badge_popular": "一番人気",
@@ -132,8 +133,8 @@
     "feat_updates": "毎週のアップデート",
     "included": "含まれる",
     "not_included": "含まれない",
-    "subtitle": "柔軟なプランの機能を比較して、最適なものを見つけましょう。",
-    "title": "チームに最適なプランを選択"
+    "subtitle": "コンポーネントは全プラン共通。サポート・パターン・管理機能がプランに応じて広がります。",
+    "title": "プラン別の機能一覧"
   },
   "hero": {
     "eyebrow": "React 19 · TypeScript · 205 コンポーネント · en / ja / pt",
@@ -219,8 +220,8 @@
     "starter_feat_3": "コミュニティサポート",
     "starter_feat_4": "高度なパターン",
     "starter_title": "スターター",
-    "subtitle": "チームの成長に合わせた透明性の高いシンプルな料金体系。隠れた費用はありません。",
-    "title": "最適なプランを選ぶ"
+    "subtitle": "どのプランも同じ MIT ライセンスのライブラリです。有償プランにはパターン集・優先サポート・SLA が加わります。",
+    "title": "支払うのはサポートに。コンポーネントは全プラン同じ。"
   },
   "product": {
     "btn_add": "カートに追加",
@@ -290,17 +291,17 @@
     "tz_jst": "JST（日本標準時）"
   },
   "testimonial": {
-    "p1_name": "Sarah Chen",
-    "p1_role": "Stripe フロントエンドエンジニア",
-    "p1_text": "WIM UIのおかげでUI開発時間が半分になりました。コンポーネントは美しくデザインされており、ドキュメントも優れています。",
-    "p2_name": "James Okafor",
-    "p2_role": "Shopify リードデベロッパー",
-    "p2_text": "すべてのコンポーネントに組み込まれたアクセシビリティのおかげで、何ヶ月もの作業が節約できました。",
-    "p3_name": "田中 優樹",
-    "p3_role": "スタートアップ CTO",
-    "p3_text": "2週間でデザインシステム全体をWIM UIに移行しました。TypeScriptサポートは完璧です。",
-    "subtitle": "WIM UIで何を構築しているか、チームの声をご覧ください",
-    "title": "世界中の開発者から愛されている"
+    "p1_name": "佐藤 美佳",
+    "p1_role": "デザインエンジニア（12人の B2B SaaS）",
+    "p1_text": "場当たり的な CSS 340 行を Stack と Grid とトークンで置き換えました。ダークテーマは何もせずに付いてきた。",
+    "p2_name": "ダニエル・コスタ",
+    "p2_role": "社内ツールのフロントエンドリード",
+    "p2_text": "pt-BR の文言が最初から同梱されていて、サンパウロのチームは翻訳ファイルに触れずに管理画面を出荷できました。",
+    "p3_name": "伊藤 花",
+    "p3_role": "ソロファウンダー",
+    "p3_text": "デザイナーはいません。密度切替とインテントカラーのおかげで、アプリが試作品に見えずに済んでいます。",
+    "subtitle": "スタックの異なる 3 チームが、同じライブラリを使った感想。",
+    "title": "WIM UI で作るということ"
   },
   "welcome": {
     "btn_start": "構築を始める",
@@ -313,5 +314,34 @@
     "step_3_title": "コミュニティに参加する",
     "subtitle": "アカウントの準備ができました。始め方をご確認ください。",
     "title": "WIM UIへようこそ！"
+  },
+  "rhf": {
+    "label_name": "名前",
+    "err_name": "名前は必須です",
+    "label_email": "メールアドレス",
+    "err_email": "有効なメールアドレスを入力してください",
+    "label_role": "役割",
+    "err_role": "役割を選択してください",
+    "role_admin": "管理者",
+    "role_editor": "編集者",
+    "role_viewer": "閲覧者",
+    "label_plan": "プラン",
+    "err_plan": "プランを選択してください",
+    "plan_free": "無料",
+    "plan_pro": "Pro",
+    "label_bio": "自己紹介",
+    "err_bio": "200文字以内で入力してください",
+    "accept_terms": "利用規約に同意する",
+    "err_accept": "利用規約への同意が必要です",
+    "submit": "送信",
+    "label_username": "ユーザー名",
+    "label_password": "パスワード",
+    "err_required": "必須です",
+    "err_min8": "8文字以上で入力してください",
+    "label_event_date": "開催日",
+    "err_date": "日付を選択してください",
+    "notify_reminders": "リマインダーをメールで受け取る",
+    "label_score": "評価",
+    "err_score": "星1つ以上を付けてください"
   }
 }

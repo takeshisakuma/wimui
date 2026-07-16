@@ -12137,8 +12137,8 @@
       "starter_feat_3": "Community support",
       "starter_feat_4": "Advanced patterns",
       "starter_title": "Starter",
-      "subtitle": "Simple, transparent pricing that grows with your team. No hidden fees.",
-      "title": "Choose the right plan for you"
+      "subtitle": "Every plan uses the same MIT-licensed library. Paid tiers add patterns, priority answers and SLAs.",
+      "title": "Pay for the support, not the components."
     },
     "hero": {
       "eyebrow": "React 19 · TypeScript · 205 components · en / ja / pt",
@@ -12159,33 +12159,34 @@
       "btn_support": "Contact Support"
     },
     "testimonial": {
-      "title": "Loved by developers worldwide",
-      "subtitle": "See what teams are building with WIM UI",
-      "p1_name": "Sarah Chen",
-      "p1_role": "Frontend Engineer at Stripe",
-      "p1_text": "WIM UI has cut our UI development time in half. The components are beautifully designed and the documentation is exceptional.",
-      "p2_name": "James Okafor",
-      "p2_role": "Lead Developer at Shopify",
-      "p2_text": "The accessibility built into every component saved us months of work. Our app is more inclusive than ever.",
-      "p3_name": "Yuki Tanaka",
-      "p3_role": "CTO at Startup Inc.",
-      "p3_text": "We migrated our entire design system to WIM UI in two weeks. The TypeScript support is flawless."
+      "title": "What building with it is like",
+      "subtitle": "Three teams, three different stacks, the same library.",
+      "p1_name": "Mika Sato",
+      "p1_role": "Design engineer, 12-person B2B SaaS",
+      "p1_text": "We replaced 340 lines of ad-hoc CSS with Stack, Grid and tokens. The dark theme came along for free.",
+      "p2_name": "Daniel Costa",
+      "p2_role": "Frontend lead, internal tools",
+      "p2_text": "The pt-BR strings were already in the box. Our São Paulo team shipped the admin console without touching a translation file.",
+      "p3_name": "Hana Ito",
+      "p3_role": "Solo founder",
+      "p3_text": "I don't have a designer. Density switching and the intent colors are why my app doesn't look like a prototype."
     },
     "feature": {
-      "badge": "FEATURES",
-      "title": "Everything you need to ship faster",
-      "subtitle": "A complete toolkit for modern web applications",
-      "item_1_title": "Advanced Analytics",
-      "item_1_desc": "Real-time insights with interactive charts and dashboards.",
-      "item_2_title": "One-Click Deploy",
-      "item_2_desc": "Ship components to production with confidence.",
-      "item_3_title": "Enterprise Security",
-      "item_3_desc": "SOC2 compliant with role-based access control.",
-      "item_4_title": "Team Collaboration",
-      "item_4_desc": "Design and develop together in real-time.",
-      "item_3_badge_1": "SOC2",
-      "item_3_badge_2": "RBAC",
-      "item_3_badge_3": "SSO"
+      "badge": "What's in the box",
+      "title": "The parts you'd otherwise build yourself.",
+      "subtitle": "Each card below is rendered by the actual component — no mockups.",
+      "item_1_title": "11 chart components",
+      "item_1_desc": "Sparkline to Gantt, Recharts-based, colored by your tokens.",
+      "item_2_title": "Feedback states built in",
+      "item_2_desc": "Progress, Skeleton and Toast cover loading UX without custom CSS.",
+      "item_3_title": "Accessible by default",
+      "item_3_desc": "WCAG AA contrast and WAI-ARIA patterns, verified by axe in CI.",
+      "item_4_title": "People primitives included",
+      "item_4_desc": "Avatar and AvatarGroup handle overflow, sizes and rings for you.",
+      "item_3_badge_1": "WCAG AA",
+      "item_3_badge_2": "axe-core",
+      "item_3_badge_3": "ARIA",
+      "item_2_demo_label": "Publishing components…"
     },
     "cta": {
       "title": "Build your next screen with WIM UI",
@@ -12197,8 +12198,8 @@
       "stat_3_label": "WCAG contrast"
     },
     "compare": {
-      "title": "Compare plans",
-      "subtitle": "Choose the plan that fits your team's needs",
+      "title": "What each plan unlocks",
+      "subtitle": "The library is identical everywhere — plans differ in patterns, support and controls.",
       "col_feature": "Feature",
       "col_free": "Free",
       "col_pro": "Pro",
@@ -12357,8 +12358,8 @@
       "feat_updates": "Weekly updates",
       "included": "Included",
       "not_included": "Not included",
-      "subtitle": "Compare features across our flexible plans to find the perfect fit.",
-      "title": "Choose the best plan for your team"
+      "subtitle": "Same components on every tier. Support, patterns and controls scale with the plan.",
+      "title": "Plans, feature by feature"
     },
     "page": {
       "notifications": "Notifications",
@@ -12366,6 +12367,35 @@
       "toggle_menu": "Toggle Menu",
       "qty_decrease": "Decrease quantity",
       "qty_increase": "Increase quantity"
+    },
+    "rhf": {
+      "label_name": "Name",
+      "err_name": "Name is required",
+      "label_email": "Email",
+      "err_email": "Enter a valid email",
+      "label_role": "Role",
+      "err_role": "Pick a role",
+      "role_admin": "Admin",
+      "role_editor": "Editor",
+      "role_viewer": "Viewer",
+      "label_plan": "Plan",
+      "err_plan": "Pick a plan",
+      "plan_free": "Free",
+      "plan_pro": "Pro",
+      "label_bio": "Bio",
+      "err_bio": "Keep it under 200 characters",
+      "accept_terms": "Accept terms",
+      "err_accept": "You must accept the terms",
+      "submit": "Submit",
+      "label_username": "Username",
+      "label_password": "Password",
+      "err_required": "Required",
+      "err_min8": "Min 8 characters",
+      "label_event_date": "Event date",
+      "err_date": "Pick a date",
+      "notify_reminders": "Email me reminders",
+      "label_score": "Score",
+      "err_score": "Rate at least 1 star"
     }
   },
   "docs_stories_utility": {
