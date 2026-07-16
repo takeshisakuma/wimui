@@ -114,7 +114,7 @@ jobs:
           ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Download updated snapshots
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: snapshot-updates-*
           merge-multiple: true
