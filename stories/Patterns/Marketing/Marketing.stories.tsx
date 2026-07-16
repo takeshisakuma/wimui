@@ -11,17 +11,20 @@ import {
   Box,
   Button,
   Card,
+  Code,
   Container,
   Grid,
   Group,
   Icon,
   List,
   ListItem,
-  Skeleton,
+  Progress,
   Stack,
+  Stats,
   Text,
   Title,
 } from "wimui";
+import { Sparkline } from "wimui/charts";
 import { CheckIcon, CloseIcon } from "@/icon";
 
 const meta: Meta = {
@@ -42,92 +45,59 @@ export const HeroSection: StoryObj = {
           minHeight: "600px",
           display: "flex",
           alignItems: "center",
-          background:
-            "linear-gradient(135deg, var(--wim-color-primary-muted) 0%, var(--wim-color-surface) 100%)",
+          background: "var(--wim-color-surface-app)",
           padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)",
         }}
       >
         <Container>
-          <Grid cols={{ base: 1, md: "1fr 1fr" }} gap={48} align="center">
-            <Stack gap="3xl">
-              <Stack gap="3xl">
-                <Badge
-                  intent="primary"
-                  content={t("hero.badge")}
-                  style={{ width: "fit-content" }}
+          <Grid cols={{ base: 1, md: "3fr 2fr" }} gap={{ base: 32, lg: 64 }} align="center">
+            <Stack gap="2xl">
+              <Text content={t("hero.eyebrow")} size="sm" color="text-secondary" />
+              <Stack gap="xl">
+                <Title tag="h1" size="3xl" style={{ maxWidth: "22ch" }}>
+                  {t("hero.title")}
+                </Title>
+                <Text
+                  content={t("hero.desc")}
+                  size="lg"
+                  color="text-secondary"
+                  style={{ maxWidth: "52ch" }}
                 />
-                <Stack gap="2xl">
-                  <Title
-                    tag="h1"
-                    size="2xl"
-                    style={{ lineHeight: "1", fontWeight: "800" }}
-                  >
-                    {t("hero.title")}
-                  </Title>
-                  <Text content={t("hero.desc")} size="lg" color="text-secondary" />
-                </Stack>
               </Stack>
 
-              <Group gap="xl" wrap="wrap" justify="evenly">
+              <Stack direction="row" align="center" gap="lg" wrap="wrap">
                 <Button variant="solid" size="md">
-                  {t("hero.btn_started")}
+                  {t("hero.btn_components")}
                 </Button>
-                <Button variant="outline" size="md">
-                  {t("hero.btn_docs")}
+                <Button variant="ghost" size="md">
+                  {t("hero.btn_tokens")}
                 </Button>
-              </Group>
+              </Stack>
 
-              <Stack direction="row" align="center" gap="md">
-                <AvatarGroup size="sm">
-                  {[1, 2, 3, 4].map((i) => (
-                    <Avatar key={i} />
-                  ))}
-                </AvatarGroup>
-                <Text
-                  content={t("hero.dev_count")}
-                  size="sm"
-                  color="text-secondary"
-                />
+              <Stack direction="row" align="center" gap="md" wrap="wrap">
+                <Code code="npm install wimui" />
+                <Text content={t("hero.meta")} size="sm" color="text-tertiary" />
               </Stack>
             </Stack>
 
-            <div style={{ position: "relative" }}>
-              <Card
-                style={{
-                  padding: "0",
-                  borderRadius: "0",
-                  boxShadow: "var(--wim-shadow-md)",
-                  overflow: "hidden",
-                }}
-              >
-                <Stack gap="none">
-                  <div style={{ padding: "var(--wim-spacing-xl)" }}>
-                    <Stack gap="lg">
-                      <Skeleton variant="text" height={20} width="100%" />
-                      <Skeleton variant="text" height={20} width="80%" />
-                      <Grid cols={2} gap={16}>
-                        <Skeleton
-                          variant="rect"
-                          height={100}
-                          style={{ borderRadius: "var(--wim-radius-lg)" }}
-                        />
-                        <Skeleton
-                          variant="rect"
-                          height={100}
-                          style={{ borderRadius: "var(--wim-radius-lg)" }}
-                        />
-                      </Grid>
-                      <Skeleton
-                        variant="rect"
-                        height={80}
-                        width="100%"
-                        style={{ borderRadius: "var(--wim-radius-md)" }}
-                      />
-                    </Stack>
-                  </div>
+            <Stats>
+              <Stack gap="lg">
+                <Stack direction="row" justify="space-between" align="center">
+                  <Stats.Label>{t("hero.card_label")}</Stats.Label>
+                  <Badge intent="success" variant="subtle" content="+8.3%" />
                 </Stack>
-              </Card>
-            </div>
+                <Stats.Value>24,807</Stats.Value>
+                <Sparkline
+                  data={[14, 16, 15, 19, 18, 17, 21, 24, 22, 26, 25, 29]}
+                  type="area"
+                  color="var(--wim-color-success)"
+                  width="100%"
+                  height={48}
+                  showLastDot
+                />
+                <Stats.Description>{t("hero.card_caption")}</Stats.Description>
+              </Stack>
+            </Stats>
           </Grid>
         </Container>
       </div>
@@ -140,7 +110,7 @@ export const PricingTable: StoryObj = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container
-        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}
       >
         <style>{`
           .pricing-list {
@@ -431,17 +401,13 @@ export const Testimonial: StoryObj = {
     ];
     return (
       <Container
-        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}
       >
-        <Stack align="center" gap="2xl" style={{ marginBottom: "56px" }}>
-          <Title tag="h2" size="xl" align="center">
+        <Stack gap="md" style={{ maxWidth: "1100px", margin: "0 auto var(--wim-spacing-4xl)" }}>
+          <Title tag="h2" size="xl">
             {t("testimonial.title")}
           </Title>
-          <Text
-            content={t("testimonial.subtitle")}
-            color="text-secondary"
-            style={{ textAlign: "center" }}
-          />
+          <Text content={t("testimonial.subtitle")} color="text-secondary" />
         </Stack>
         <Grid
           cols={{ base: 1, md: 3 }}
@@ -485,58 +451,98 @@ export const Testimonial: StoryObj = {
 export const FeatureSection: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const SkeletonBox = () => (
-      <div
-        style={{
-          flex: 1,
-          width: "100%",
-          height: "100%",
-          minHeight: "6rem",
-          borderRadius: "var(--wim-radius-lg)",
-          background: "var(--wim-color-surface-variant)",
-        }}
-      />
-    );
+    const demoWrap: React.CSSProperties = {
+      flex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      minHeight: "6rem",
+      padding: "var(--wim-spacing-xl)",
+    };
     const items = [
       {
         title: t("feature.item_1_title"),
         desc: t("feature.item_1_desc"),
-        icon: <Icon name="ExternalLinkIcon" />,
+        icon: <Icon name="ChartIcon" />,
         span: "wim-bento-grid-item--col-span-2",
+        header: (
+          <div style={demoWrap}>
+            <Sparkline
+              data={[9, 12, 11, 15, 13, 17, 16, 21, 19, 23, 26, 24]}
+              type="area"
+              color="var(--wim-color-primary)"
+              width="100%"
+              height={72}
+              showLastDot
+            />
+          </div>
+        ),
       },
       {
         title: t("feature.item_2_title"),
         desc: t("feature.item_2_desc"),
-        icon: <Icon name="CircleIcon" />,
+        icon: <Icon name="UploadIcon" />,
         span: "wim-bento-grid-item--col-span-1",
+        header: (
+          <div style={demoWrap}>
+            <Progress value={72} label={t("feature.item_2_title")} />
+          </div>
+        ),
       },
       {
         title: t("feature.item_3_title"),
         desc: t("feature.item_3_desc"),
-        icon: <Icon name="SquareIcon" />,
+        icon: <Icon name="CheckIcon" />,
         span: "wim-bento-grid-item--col-span-1",
+        header: (
+          <div style={demoWrap}>
+            <Group gap="sm" wrap="wrap" justify="center">
+              <Badge
+                intent="success"
+                variant="subtle"
+                content={t("feature.item_3_badge_1")}
+              />
+              <Badge
+                intent="neutral"
+                variant="subtle"
+                content={t("feature.item_3_badge_2")}
+              />
+              <Badge
+                intent="neutral"
+                variant="subtle"
+                content={t("feature.item_3_badge_3")}
+              />
+            </Group>
+          </div>
+        ),
       },
       {
         title: t("feature.item_4_title"),
         desc: t("feature.item_4_desc"),
-        icon: <Icon name="CheckIcon" />,
+        icon: <Icon name="UserIcon" />,
         span: "wim-bento-grid-item--col-span-2",
+        header: (
+          <div style={demoWrap}>
+            <AvatarGroup size="md" max={4}>
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Avatar key={i} />
+              ))}
+            </AvatarGroup>
+          </div>
+        ),
       },
     ];
     return (
       <Container
-        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}
       >
-        <Stack align="center" gap="2xl" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
-          <Badge intent="primary" content={t("feature.badge")} />
-          <Title tag="h2" size="xl" align="center">
+        <Stack gap="md" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
+          <Text content={t("feature.badge")} size="sm" color="text-secondary" />
+          <Title tag="h2" size="xl">
             {t("feature.title")}
           </Title>
-          <Text
-            content={t("feature.subtitle")}
-            color="text-secondary"
-            style={{ textAlign: "center" }}
-          />
+          <Text content={t("feature.subtitle")} color="text-secondary" />
         </Stack>
         <BentoGrid>
           {items.map((item, i) => (
@@ -544,7 +550,7 @@ export const FeatureSection: StoryObj = {
               key={i}
               title={item.title}
               description={item.desc}
-              header={<SkeletonBox />}
+              header={item.header}
               className={item.span}
               icon={item.icon}
             />
@@ -559,87 +565,46 @@ export const CTASection: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const stats = [
-      { value: t("cta.stat_1_value"), label: t("cta.stat_1_label") },
-      { value: t("cta.stat_2_value"), label: t("cta.stat_2_label") },
-      { value: t("cta.stat_3_value"), label: t("cta.stat_3_label") },
+      { value: "205", label: t("cta.stat_1_label") },
+      { value: "3", label: t("cta.stat_2_label") },
+      { value: "AA", label: t("cta.stat_3_label") },
     ];
     return (
       <div
         style={{
-          background: "var(--wim-color-primary)",
+          background: "var(--wim-color-surface-app)",
           padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)",
-          textAlign: "center",
         }}
       >
         <Container>
-          <Stack align="center" gap="3xl">
-            <Stack align="center" gap="xl">
-              <Title
-                tag="h2"
-                size="2xl"
-                align="center"
-                style={{ color: "var(--wim-color-text-on-primary)" }}
-              >
-                {t("cta.title")}
-              </Title>
-              <Container size="sm">
-                <Text
-                  content={t("cta.desc")}
-                  style={{ color: "oklch(from var(--wim-color-text-on-primary) l c h / 0.85)", textAlign: "center" }}
-                />
-              </Container>
-            </Stack>
-            <Group gap="xl" wrap="wrap" justify="center">
-              <Button
-                variant="solid"
-                size="lg"
-                style={{
-                  background: "var(--wim-color-surface)",
-                  color: "var(--wim-color-primary)",
-                  border: "none",
-                }}
-              >
-                {t("cta.btn_primary")}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                style={{
-                  background: "transparent",
-                  borderColor: "oklch(from var(--wim-color-text-on-primary) l c h / 0.6)",
-                  color: "var(--wim-color-text-on-primary)",
-                }}
-              >
-                {t("cta.btn_secondary")}
-              </Button>
-            </Group>
-            <Grid
-              cols={3}
-              gap={48}
-              style={{ maxWidth: "600px", margin: "var(--wim-spacing-3xl) auto 0" }}
-            >
-              {stats.map((s, i) => (
-                <Stack key={i} align="center" gap="xs">
-                  <span
-                    style={{
-                      fontSize: "var(--wim-font-size-2xl)",
-                      fontWeight: 800,
-                      color: "var(--wim-color-text-on-primary)",
-                      lineHeight: 1,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {s.value}
-                  </span>
-                  <Text
-                    content={s.label}
-                    size="sm"
-                    style={{ color: "oklch(from var(--wim-color-text-on-primary) l c h / 0.7)" }}
-                  />
+          <Card style={{ maxWidth: "1100px", margin: "0 auto" }}>
+            <Grid cols={{ base: 1, md: "3fr 2fr" }} gap={{ base: 32, lg: 64 }} align="center">
+              <Stack gap="2xl">
+                <Stack gap="md">
+                  <Title tag="h2" size="xl">
+                    {t("cta.title")}
+                  </Title>
+                  <Text content={t("cta.desc")} color="text-secondary" />
                 </Stack>
-              ))}
+                <Stack direction="row" align="center" gap="lg" wrap="wrap">
+                  <Button variant="solid" size="md">
+                    {t("cta.btn_primary")}
+                  </Button>
+                  <Button variant="ghost" size="md">
+                    {t("cta.btn_secondary")}
+                  </Button>
+                </Stack>
+              </Stack>
+              <Grid cols={3} gap={{ base: 16, lg: 32 }}>
+                {stats.map((s, i) => (
+                  <Stack key={i} gap="xs">
+                    <Text content={s.value} size="xl" weight="bold" />
+                    <Text content={s.label} size="sm" color="text-secondary" />
+                  </Stack>
+                ))}
+              </Grid>
             </Grid>
-          </Stack>
+          </Card>
         </Container>
       </div>
     );
@@ -700,10 +665,10 @@ export const ComparisonTable: StoryObj = {
     );
     return (
       <Container
-        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}
+        style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}
       >
-        <Stack align="center" gap="2xl" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
-          <Title tag="h2" size="xl" align="center">
+        <Stack gap="md" style={{ maxWidth: "800px", margin: "0 auto var(--wim-spacing-3xl)" }}>
+          <Title tag="h2" size="xl">
             {t("compare.title")}
           </Title>
           <Text content={t("compare.subtitle")} color="secondary" />
@@ -918,7 +883,7 @@ export const FeatureComparison: StoryObj = {
     };
 
     return (
-      <Box style={{ padding: "var(--wim-spacing-3xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface)" }}>
+      <Box style={{ padding: "var(--wim-spacing-3xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}>
         <style>{`
           @media (max-width: 480px) {
             .wim-feature-comparison-table td,
@@ -933,11 +898,7 @@ export const FeatureComparison: StoryObj = {
           }
         `}</style>
         <Container style={{ maxWidth: "1000px" }}>
-          <Stack
-            gap="md"
-            align="center"
-            style={{ textAlign: "center", marginBottom: "var(--wim-spacing-3xl)" }}
-          >
+          <Stack gap="md" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
             <Title tag="h2" size="xl">
               {t("docs_stories_recipes:feature_comparison.title")}
             </Title>

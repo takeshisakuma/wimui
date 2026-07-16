@@ -17,7 +17,6 @@ import {
   Input,
   InputGroup,
   Rating,
-  Skeleton,
   Stack,
   Stats,
   Text,
@@ -41,7 +40,7 @@ export const DashboardHeader: StoryObj = {
       <div
         style={{
           minHeight: "400px",
-          backgroundColor: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface-app)",
         }}
       >
         <style>{`
@@ -63,7 +62,7 @@ export const DashboardHeader: StoryObj = {
         >
           <Header.Section
             align="start"
-            style={{ gap: "16px", flex: 1, overflow: "hidden" }}
+            style={{ gap: "var(--wim-spacing-2xl)", flex: 1, overflow: "hidden" }}
           >
             <button
               aria-label={t("docs_stories_recipes:page.toggle_menu")}
@@ -71,12 +70,11 @@ export const DashboardHeader: StoryObj = {
               style={{
                 background: "none",
                 border: "none",
-                fontSize: "var(--wim-font-size-lg)",
                 cursor: "pointer",
                 padding: "var(--wim-spacing-lg)",
               }}
             >
-              ☰
+              <Icon name="AlignJustifyIcon" size="md" color="secondary" />
             </button>
             <Stack
               direction="row"
@@ -140,7 +138,7 @@ export const DashboardHeader: StoryObj = {
             </Stack>
           </Header.Section>
 
-          <Header.Section align="end" style={{ gap: "16px", flexShrink: 0 }}>
+          <Header.Section align="end" style={{ gap: "var(--wim-spacing-2xl)", flexShrink: 0 }}>
             <div className="header-search">
               <Input
                 placeholder={t("dashboard.header_search_placeholder")}
@@ -195,7 +193,7 @@ export const DashboardHeader: StoryObj = {
                     color: "var(--wim-color-text-primary)",
                   }}
                 >
-                  John Doe
+                  Aoi Tanaka
                 </span>
                 <span
                   style={{
@@ -210,7 +208,7 @@ export const DashboardHeader: StoryObj = {
           </Header.Section>
         </Header>
 
-        <Container style={{ padding: "32px" }}>
+        <Container style={{ padding: "var(--wim-spacing-4xl)" }}>
           <Stack gap="xl">
             <Title tag="h2" size="xl">
               {t("dashboard.overview_title")}
@@ -246,27 +244,14 @@ export const DashboardHeader: StoryObj = {
                   sparkColor: "var(--wim-color-success)",
                 },
               ].map((stat, i) => (
-                <Stats
-                  key={i}
-                  style={{
-                    border: "1px solid",
-                    borderColor: "var(--wim-color-border-secondary)",
-                  }}
-                >
+                <Stats key={i}>
                   <Stack gap="xs">
                     <Stack
                       justify="space-between"
                       align="center"
                       direction="row"
                     >
-                      <Stats.Label
-                        style={{
-                          fontSize: "var(--wim-font-size-md)",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {stat.label}
-                      </Stats.Label>
+                      <Stats.Label>{stat.label}</Stats.Label>
                       <Badge
                         intent={stat.intent}
                         content={stat.trend}
@@ -274,18 +259,7 @@ export const DashboardHeader: StoryObj = {
                         variant="subtle"
                       />
                     </Stack>
-                    <Stats.Value>
-                      <span
-                        style={{
-                          fontSize: "var(--wim-font-size-2xl)",
-                          fontWeight: 800,
-                          whiteSpace: "nowrap",
-                          display: "block",
-                        }}
-                      >
-                        {stat.value}
-                      </span>
-                    </Stats.Value>
+                    <Stats.Value>{stat.value}</Stats.Value>
                   </Stack>
                   <Sparkline
                     data={stat.spark}
@@ -295,9 +269,7 @@ export const DashboardHeader: StoryObj = {
                     height={36}
                     showLastDot
                   />
-                  <Stats.Description
-                    style={{ fontSize: "var(--wim-font-size-sm)" }}
-                  >
+                  <Stats.Description>
                     {t("dashboard.stats_last_month")}
                   </Stats.Description>
                 </Stats>
@@ -317,8 +289,8 @@ export const ErrorPage: StoryObj = {
       <Center
         style={{
           height: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Stack
@@ -329,7 +301,7 @@ export const ErrorPage: StoryObj = {
           <p
             aria-hidden="true"
             style={{
-              fontSize: "var(--wim-spacing-5xl)",
+              fontSize: "var(--wim-font-size-7xl)",
               fontWeight: "900",
               color: "var(--wim-color-text-disabled)",
               lineHeight: "1",
@@ -373,8 +345,8 @@ export const MaintenancePage: StoryObj = {
       <Center
         style={{
           minHeight: "100vh",
-          backgroundColor: "var(--wim-color-surface)",
-          padding: "24px",
+          backgroundColor: "var(--wim-color-surface-app)",
+          padding: "var(--wim-spacing-2xl)",
         }}
       >
         <Stack
@@ -486,8 +458,8 @@ export const ProductCard: StoryObj = {
     return (
       <Container
         style={{
-          padding: "40px 24px",
-          background: "var(--wim-color-surface)",
+          padding: "var(--wim-spacing-5xl) var(--wim-spacing-2xl)",
+          background: "var(--wim-color-surface-app)",
         }}
       >
         <Title
@@ -501,11 +473,8 @@ export const ProductCard: StoryObj = {
           {products.map((p, i) => (
             <Card
               key={i}
-              style={{
-                padding: 0,
-                overflow: "hidden",
-                border: "1px solid var(--wim-color-border-secondary)",
-              }}
+              padding="none"
+              style={{ overflow: "hidden" }}
             >
               <div
                 style={{
@@ -516,11 +485,11 @@ export const ProductCard: StoryObj = {
                   justifyContent: "center",
                 }}
               >
-                <Skeleton
-                  variant="rect"
-                  height={180}
-                  width="100%"
-                  style={{ margin: 0, borderRadius: 0 }}
+                <Icon
+                  name="ImageIcon"
+                  size="lg"
+                  color="tertiary"
+                  aria-hidden="true"
                 />
               </div>
               <Stack gap="sm" style={{ padding: "var(--wim-spacing-lg)" }}>
@@ -591,8 +560,8 @@ export const ShoppingCart: StoryObj = {
     return (
       <Container
         style={{
-          padding: "40px 24px",
-          background: "var(--wim-color-surface)",
+          padding: "var(--wim-spacing-5xl) var(--wim-spacing-2xl)",
+          background: "var(--wim-color-surface-app)",
           maxWidth: "960px",
         }}
       >
@@ -633,33 +602,23 @@ export const ShoppingCart: StoryObj = {
                         <Button
                           size="sm"
                           variant="outline"
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            padding: 0,
-                            minWidth: "unset",
-                          }}
+                          aria-label={t("docs_stories_recipes:page.qty_decrease")}
                         >
-                          −
+                          <Icon name="MinusIcon" size="sm" />
                         </Button>
                         <Text content={String(item.qty)} />
                         <Button
                           size="sm"
                           variant="outline"
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            padding: 0,
-                            minWidth: "unset",
-                          }}
+                          aria-label={t("docs_stories_recipes:page.qty_increase")}
                         >
-                          +
+                          <Icon name="PlusIcon" size="sm" />
                         </Button>
                       </Stack>
                       <Button
                         size="sm"
                         variant="ghost"
-                        style={{ color: "var(--wim-color-error)", padding: "4px 8px" }}
+                        intent="danger"
                         aria-label={t("docs_stories_recipes:page.remove_item")}
                       >
                         <Icon name="CloseIcon" size="sm" />

@@ -15,8 +15,9 @@ export default defineConfig({
   // ローカルはワーカー無制限で並列負荷が高く、Storybook の preparing spinner
   // で固まる / アニメーション位相由来の flake が出やすいためリトライする。
   retries: 2,
-  /* CI: 2 workers. Local: cap parallelism so Vite Storybook can keep up. */
-  workers: process.env.CI ? 2 : 4,
+  /* CI: 4 workers (ubuntu-latest は 4 vCPU、静的配信なので耐える)。
+     Local: cap parallelism so Vite Storybook can keep up. */
+  workers: process.env.CI ? 4 : 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -53,9 +54,13 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     // In CI: serve the pre-built static storybook (faster, no watch overhead).
+    // NOTE: `serve -s` は clean-url で `/iframe.html?id=…` を 301 → `/iframe` に
+    // リダイレクトし SPA fallback がマネージャ UI を返す（ストーリーが撮れず
+    // 全テストがマウント待ちタイムアウトになる）。リテラル配信の http-server を
+    // バージョン固定で使うこと。
     // Locally: use the dev storybook for hot reload.
     command: process.env.CI
-      ? "npx serve storybook-static -p 6006 -s --no-clipboard"
+      ? "npx http-server@14 storybook-static -p 6006 -c-1 --silent"
       : "npm run storybook",
     url: "http://localhost:6006",
     reuseExistingServer: !process.env.CI,

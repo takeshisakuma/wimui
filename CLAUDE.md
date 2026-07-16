@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 プロジェクトの基本ルールは `RULES.md` を参照してください。
 構築に必要な実践知識は `SKILLS.md` を参照してください。
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
+複数コンポーネントを組み合わせて画面・パターン・デモを作るときは、必ず `DESIGN.md` の「コンポジションガイドライン（AI 的な画面を避ける）」に従ってください。
 
 ---
 
@@ -19,7 +20,7 @@ npm run test:vrt          # Playwright VRT
 npm run lint              # ESLint (--max-warnings=0)
 npm run stylelint         # Stylelint (--max-warnings=0)
 npm run tokens:build      # デザイントークン再生成
-npm run i18n:sync         # 翻訳キーを en→ja/pt へ自動翻訳
+npm run i18n:sync         # 翻訳キーを en→ja/pt へ同期（.env の GOOGLE_GENERATIVE_AI_API_KEY があれば自動翻訳、無ければ MISSING_TRANSLATION プレースホルダ挿入→手動翻訳が必要）
 npm run i18n:check        # 3言語間の翻訳キー整合性チェック
 npm run i18n:bundle       # コンポーネント使用キーの内蔵リソース再生成 (src/i18n/generated/)
 npm run audit-mdx         # MDX 必須セクション欠落チェック

@@ -66,16 +66,13 @@
     "title": "プランを比較する"
   },
   "cta": {
-    "btn_primary": "無料で始める",
-    "btn_secondary": "コンポーネントを見る",
-    "desc": "WIM UIでより良いプロダクトを出荷している何千人もの開発者に加わりましょう。",
-    "stat_1_label": "開発者",
-    "stat_1_value": "10K+",
-    "stat_2_label": "コンポーネント",
-    "stat_2_value": "200+",
-    "stat_3_label": "稼働率",
-    "stat_3_value": "99.9%",
-    "title": "今すぐ構築を始める"
+    "title": "次の画面から、WIM UI で",
+    "desc": "MIT ライセンス、ツリーシェイク対応、トークン単位でテーマ調整可能。インストールすれば今日の午後には最初のページが組めます。",
+    "btn_primary": "wimui をインストール",
+    "btn_secondary": "ドキュメントを見る",
+    "stat_1_label": "コンポーネント",
+    "stat_2_label": "対応言語",
+    "stat_3_label": "WCAG コントラスト"
   },
   "dashboard": {
     "header_admin": "管理者",
@@ -109,7 +106,10 @@
     "item_4_desc": "リアルタイムで一緒にデザインと開発ができます。",
     "item_4_title": "チームコラボレーション",
     "subtitle": "モダンなWebアプリケーションのための完全なツールキット",
-    "title": "より速く出荷するために必要なすべて"
+    "title": "より速く出荷するために必要なすべて",
+    "item_3_badge_1": "SOC2",
+    "item_3_badge_2": "RBAC",
+    "item_3_badge_3": "SSO"
   },
   "feature_comparison": {
     "badge_popular": "一番人気",
@@ -136,12 +136,14 @@
     "title": "チームに最適なプランを選択"
   },
   "hero": {
-    "badge": "v2.0 が利用可能になりました",
-    "btn_docs": "ドキュメントを見る",
-    "btn_started": "無料で始める",
-    "desc": "WIM UIは、プレミアムなコンポーネントとツールを包括的に提供し、見事なユーザー体験を記録的な速さで作成するのを支援します。",
-    "dev_count": "10,000人以上の開発者が参加中",
-    "title": "美しいインターフェースを、かつてない速さで表現する。"
+    "eyebrow": "React 19 · TypeScript · 205 コンポーネント · en / ja / pt",
+    "title": "退屈な部分は、コンポーネントに任せる。",
+    "desc": "デザイントークン、ダークモード、密度切替、WCAG AA チェック、3言語対応をすべてのコンポーネントに標準装備。チームの時間はプロダクトそのものに使えます。",
+    "btn_components": "205 コンポーネントを見る",
+    "btn_tokens": "トークンリファレンスを読む",
+    "meta": "v0.1.0 · MIT ライセンス",
+    "card_label": "週間アクティブユーザー",
+    "card_caption": "Stats・Badge・Sparkline で構築 — カスタム CSS なし。"
   },
   "login": {
     "email": "メールアドレス",
@@ -184,6 +186,13 @@
     "step_profile": "プロフィール",
     "step_review": "確認",
     "title": "ワークスペースを設定する"
+  },
+  "page": {
+    "notifications": "通知",
+    "remove_item": "アイテムを削除",
+    "toggle_menu": "メニューを開閉",
+    "qty_decrease": "数量を減らす",
+    "qty_increase": "数量を増やす"
   },
   "pricing": {
     "badge": "料金プラン",
@@ -304,10 +313,5 @@
     "step_3_title": "コミュニティに参加する",
     "subtitle": "アカウントの準備ができました。始め方をご確認ください。",
     "title": "WIM UIへようこそ！"
-  },
-  "page": {
-    "notifications": "通知",
-    "remove_item": "アイテムを削除",
-    "toggle_menu": "メニューを開閉"
   }
 }

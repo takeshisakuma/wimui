@@ -24,8 +24,54 @@ interface StoryEntry {
 }
 
 const index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
+
+/**
+ * JS 駆動アニメーション・埋め込み・キャンバス描画などにより、同一コミット・
+ * 同一環境の連続ランでもピクセルが一致しない非決定的ストーリー。
+ * `animations: "disabled"` は CSS アニメーションしか止められないため除外する
+ * （2026-07-16 の再建時、update 直後の compare で 3 回リトライしても不一致だったもの）。
+ * 追加するときは「同一コミットで update → compare が落ちる」ことを確認してから。
+ */
+const NONDETERMINISTIC_STORY_IDS = new Set([
+  "components-basic-inputs-textarea--form-pattern",
+  "components-data-indicators-avatargroup--default",
+  "components-data-indicators-avatargroup--max-displayed",
+  "components-layout-aspectratio--embed",
+  "components-alerts-notifications-toast--error-status",
+  "components-alerts-notifications-toast--warning",
+  "components-data-structures-querybuilder--default",
+  "components-data-structures-sortablelist--disabled",
+  "components-loading-states-loadingoverlay--blur-effects",
+  "components-media-image--motion-effects",
+  "components-navigation-elements-tabnavigation--contained",
+  "components-visualization-scheduleview--default",
+  "components-visualization-nodegraph--with-mini-map",
+  // ChatMessage の isTyping アニメーションを含む
+  "patterns-ai--artifacts-canvas",
+]);
+
+/**
+ * コンポーネント丸ごと非決定的なもの（複数ストーリーが別ランで順繰りに
+ * フレークした実績）。ChatUI=タイピング/ストリーミング表示、
+ * PromptInput=キャレット・添付チップのアニメーション。
+ */
+const NONDETERMINISTIC_STORY_PREFIXES = [
+  "components-ai-chatui--",
+  "components-ai-promptinput--",
+];
+
+/**
+ * Audit/* は内部 QA 用の巨大合成ページで、個々のコンポーネントは各自の
+ * ストーリーで VRT 済み（カバレッジが重複）。ページが大きいほど
+ * ジッタの累積で不安定になるため VRT からは除外する。
+ */
+const isSkipped = (entry: StoryEntry) =>
+  NONDETERMINISTIC_STORY_IDS.has(entry.id) ||
+  NONDETERMINISTIC_STORY_PREFIXES.some((p) => entry.id.startsWith(p)) ||
+  entry.id.startsWith("audit-");
+
 const stories = Object.values(index.entries).filter(
-  (entry: any): entry is StoryEntry => entry.type === "story",
+  (entry: any): entry is StoryEntry => entry.type === "story" && !isSkipped(entry),
 );
 
 const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
@@ -122,7 +168,11 @@ test.describe("Visual Regression Testing", () => {
           await expect(page).toHaveScreenshot(`${theme}/${story.id}.png`, {
             fullPage: true,
             animations: "disabled",
-            threshold: 0.1, // Slight tolerance
+            threshold: 0.1, // Slight per-pixel color tolerance
+            // フルページ数百万 px に対する ~0.01%。アンチエイリアスや
+            // サブピクセルのジッタ（同一コミット連続ランで実測 ≤220px）を
+            // 吸収しつつ、実レイアウト変化（数千 px 以上）は検知する。
+            maxDiffPixels: 400,
           });
         });
       }
