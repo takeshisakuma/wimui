@@ -21,6 +21,9 @@ updates:
       # peer 宣言が ^10 対応するまで保留（eslint-plugin-jsx-a11y / eslint-plugin-react が ^9 まで）
       - dependency-name: "eslint"
         update-types: ["version-update:semver-major"]
+      # eslint 本体を 9 に固定している間は @eslint/js の major も追随させない（バージョン整合）
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
