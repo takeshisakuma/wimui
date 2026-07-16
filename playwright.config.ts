@@ -15,8 +15,9 @@ export default defineConfig({
   // ローカルはワーカー無制限で並列負荷が高く、Storybook の preparing spinner
   // で固まる / アニメーション位相由来の flake が出やすいためリトライする。
   retries: 2,
-  /* CI: 2 workers. Local: cap parallelism so Vite Storybook can keep up. */
-  workers: process.env.CI ? 2 : 4,
+  /* CI: 4 workers (ubuntu-latest は 4 vCPU、静的配信なので耐える)。
+     Local: cap parallelism so Vite Storybook can keep up. */
+  workers: process.env.CI ? 4 : 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

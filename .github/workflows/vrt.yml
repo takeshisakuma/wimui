@@ -21,12 +21,23 @@ on:
         type: boolean
         default: false
 
+# 同一ブランチの古い compare を自動キャンセル（update dispatch は別グループ）
+concurrency:
+  group: vrt-${{ github.head_ref || github.ref_name }}-${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }}
+  cancel-in-progress: true
+
 jobs:
   vrt:
-    name: VRT (${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }})
+    name: VRT ${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }} (${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
+    # 993 stories × 2 themes を 1 ジョブで回すと 6h 上限に達するためシャーディング必須
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -49,12 +60,67 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      - name: Run VRT (compare)
+        if: ${{ github.event.inputs.update_snapshots != 'true' }}
+        run: npx playwright test vrt/vrt.spec.ts --shard=${{ matrix.shard }}/4
+
       - name: Run VRT (update snapshots)
         if: ${{ github.event.inputs.update_snapshots == 'true' }}
-        run: npx playwright test vrt/vrt.spec.ts --update-snapshots
+        run: npx playwright test vrt/vrt.spec.ts --update-snapshots --shard=${{ matrix.shard }}/4
+
+      - name: Collect updated snapshots
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        run: |
+          mkdir -p /tmp/snapshot-updates
+          git add -A vrt/vrt.spec.ts-snapshots
+          git diff --staged --name-only -- vrt/vrt.spec.ts-snapshots | while read -r f; do
+            mkdir -p "/tmp/snapshot-updates/$(dirname "$f")"
+            cp "$f" "/tmp/snapshot-updates/$f"
+          done
+          echo "changed: $(find /tmp/snapshot-updates -type f | wc -l)"
+
+      - name: Upload updated snapshots
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-updates-${{ matrix.shard }}
+          path: /tmp/snapshot-updates
+          if-no-files-found: ignore
+          retention-days: 3
+
+      - name: Upload diff artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vrt-diffs-${{ matrix.shard }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  commit-snapshots:
+    name: Commit updated snapshots
+    if: ${{ github.event.inputs.update_snapshots == 'true' }}
+    needs: vrt
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Download updated snapshots
+        uses: actions/download-artifact@v4
+        with:
+          pattern: snapshot-updates-*
+          merge-multiple: true
+          path: .
 
       - name: Commit updated snapshots
-        if: ${{ github.event.inputs.update_snapshots == 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -63,19 +129,6 @@ jobs:
             echo "No snapshot changes to commit."
           else
             git commit -m "chore: update VRT baseline snapshots [skip ci]"
+            git pull --rebase origin "${{ github.head_ref || github.ref_name }}"
             git push
           fi
-
-      - name: Run VRT (compare)
-        if: ${{ github.event.inputs.update_snapshots != 'true' }}
-        run: npx playwright test vrt/vrt.spec.ts
-
-      - name: Upload diff artifacts
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: vrt-diffs
-          path: |
-            playwright-report/
-            test-results/
-          retention-days: 14
