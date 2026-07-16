@@ -20,7 +20,7 @@ npm run test:vrt          # Playwright VRT
 npm run lint              # ESLint (--max-warnings=0)
 npm run stylelint         # Stylelint (--max-warnings=0)
 npm run tokens:build      # デザイントークン再生成
-npm run i18n:sync         # 翻訳キーを en→ja/pt へ自動翻訳
+npm run i18n:sync         # 翻訳キーを en→ja/pt へ同期（.env の GOOGLE_GENERATIVE_AI_API_KEY があれば自動翻訳、無ければ MISSING_TRANSLATION プレースホルダ挿入→手動翻訳が必要）
 npm run i18n:check        # 3言語間の翻訳キー整合性チェック
 npm run i18n:bundle       # コンポーネント使用キーの内蔵リソース再生成 (src/i18n/generated/)
 npm run audit-mdx         # MDX 必須セクション欠落チェック

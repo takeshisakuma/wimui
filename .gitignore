@@ -155,7 +155,9 @@ test-results/
 test-results.json
 
 
-.claude/
+# .claude はローカル設定のみ ignore（skills はプロジェクト共有資産として git 管理）
+.claude/*
+!.claude/skills/
 missing_en_*.json
 missing_en_*.txt
 
