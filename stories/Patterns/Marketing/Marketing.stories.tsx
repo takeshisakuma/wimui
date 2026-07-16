@@ -482,11 +482,11 @@ export const FeatureSection: StoryObj = {
       {
         title: t("feature.item_2_title"),
         desc: t("feature.item_2_desc"),
-        icon: <Icon name="UploadIcon" />,
+        icon: <Icon name="LoadingIcon" />,
         span: "wim-bento-grid-item--col-span-1",
         header: (
           <div style={demoWrap}>
-            <Progress value={72} label={t("feature.item_2_title")} />
+            <Progress value={72} label={t("feature.item_2_demo_label")} />
           </div>
         ),
       },
@@ -504,12 +504,12 @@ export const FeatureSection: StoryObj = {
                 content={t("feature.item_3_badge_1")}
               />
               <Badge
-                intent="neutral"
+                intent="info"
                 variant="subtle"
                 content={t("feature.item_3_badge_2")}
               />
               <Badge
-                intent="neutral"
+                intent="primary"
                 variant="subtle"
                 content={t("feature.item_3_badge_3")}
               />
