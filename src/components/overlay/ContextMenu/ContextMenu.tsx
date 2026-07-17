@@ -150,9 +150,10 @@ const ContextMenuInner = ({
       className={classNames("wim-context-menu", styles.container, disabled && styles.disabled, className)}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
+      // role="button" を付けると内包する任意の children（Button 等）で
+      // nested-interactive 違反になるため、フォーカス可能な汎用領域に留める
+      // （aria-haspopup はロール無しでは不許可属性なので付けない）
       tabIndex={disabled ? -1 : 0}
-      role="button"
-      aria-haspopup="menu"
       data-testid="context-menu-trigger"
     >
       <Slottable>{children}</Slottable>

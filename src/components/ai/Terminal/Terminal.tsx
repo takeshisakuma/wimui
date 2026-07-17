@@ -38,7 +38,8 @@ export interface TerminalProps extends React.ComponentPropsWithoutRef<"div"> {
 const ANSI_FG: Record<number, string> = {
   30: "#2d2d2d", 31: "#e06c75", 32: "#98c379", 33: "#e5c07b",
   34: "#61afef", 35: "#c678dd", 36: "#56b6c2", 37: "#abb2bf",
-  90: "#5c6370", 91: "#e06c75", 92: "#98c379", 93: "#e5c07b",
+  // 90 (bright black): one-dark 由来の #5c6370 は端末背景 #262626 上 2.5:1 のため明度を上げる
+  90: "#9aa1ab", 91: "#e06c75", 92: "#98c379", 93: "#e5c07b",
   94: "#61afef", 95: "#c678dd", 96: "#56b6c2", 97: "#ffffff",
 };
 
@@ -145,10 +146,11 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
         style={{ ...(height != null ? { height } : {}), ...style }}
         {...props}
       >
-        <div className={styles.titleBar} aria-hidden="true">
-          <span className={styles.dot} data-color="red" />
-          <span className={styles.dot} data-color="yellow" />
-          <span className={styles.dot} data-color="green" />
+        {/* aria-hidden はバー全体ではなく装飾ドットのみ（バーには CopyButton などフォーカス可能要素が入る） */}
+        <div className={styles.titleBar}>
+          <span className={styles.dot} data-color="red" aria-hidden="true" />
+          <span className={styles.dot} data-color="yellow" aria-hidden="true" />
+          <span className={styles.dot} data-color="green" aria-hidden="true" />
           {title && <span className={styles.titleText}>{title}</span>}
           <div className={styles.titleActions}>
             {showCopy && (

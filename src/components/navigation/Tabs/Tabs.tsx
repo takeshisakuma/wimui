@@ -19,6 +19,9 @@ type TabsContextType = {
   items: string[];
   registerItem: (val: string) => void;
   unregisterItem: (val: string) => void;
+  panels: string[];
+  registerPanel: (val: string) => void;
+  unregisterPanel: (val: string) => void;
 };
 
 const TabsContext = createContext<TabsContextType | null>(null);
@@ -73,6 +76,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       defaultValue,
     );
     const [items, setItems] = useState<string[]>([]);
+    const [panels, setPanels] = useState<string[]>([]);
     const id = useId();
 
     const isControlled = valueProp !== undefined;
@@ -96,6 +100,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       setItems((prev) => prev.filter((i) => i !== val));
     }, []);
 
+    const registerPanel = useCallback((val: string) => {
+      setPanels((prev) => (prev.includes(val) ? prev : [...prev, val]));
+    }, []);
+
+    const unregisterPanel = useCallback((val: string) => {
+      setPanels((prev) => prev.filter((i) => i !== val));
+    }, []);
+
     const Root = asChild ? Slot : "div";
 
     return (
@@ -108,6 +120,9 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
           items,
           registerItem,
           unregisterItem,
+          panels,
+          registerPanel,
+          unregisterPanel,
         }}
       >
         <div className={styles.container}>
@@ -259,6 +274,7 @@ export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>
       id,
       registerItem,
       unregisterItem,
+      panels,
     } = useTabs();
     const isActive = activeValue === value;
 
@@ -275,7 +291,9 @@ export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>
         type={asChild ? undefined : "button"}
         role="tab"
         aria-selected={isActive}
-        aria-controls={`wim-tabs-${id}-panel-${value}`}
+        // TabsContent を使わない構成では参照先が存在せず
+        // aria-valid-attr-value 違反になるため、パネル登録時のみ付与
+        aria-controls={panels.includes(value) ? `wim-tabs-${id}-panel-${value}` : undefined}
         id={`wim-tabs-${id}-tab-${value}`}
         data-value={value}
         disabled={disabled}
@@ -304,8 +322,13 @@ export interface TabsContentProps extends React.ComponentPropsWithoutRef<"div"> 
 
 export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   ({ asChild = false, value, className, children, ...props }, ref) => {
-    const { value: activeValue, id } = useTabs();
+    const { value: activeValue, id, registerPanel, unregisterPanel } = useTabs();
     const isActive = activeValue === value;
+
+    React.useEffect(() => {
+      registerPanel(value);
+      return () => unregisterPanel(value);
+    }, [value, registerPanel, unregisterPanel]);
 
     if (!isActive) return null;
 

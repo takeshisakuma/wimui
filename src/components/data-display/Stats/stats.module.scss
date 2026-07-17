@@ -41,12 +41,12 @@
     border-radius: var(--wim-radius-sm);
 
     &.up {
-      color: oklch(from var(--wim-color-success) calc(l * 0.7) c h);
+      color: var(--wim-color-text-success);
       background-color: oklch(from var(--wim-color-success) l c h / 0.15);
     }
 
     &.down {
-      color: oklch(from var(--wim-color-danger) calc(l * 0.7) c h);
+      color: var(--wim-color-text-danger);
       background-color: oklch(from var(--wim-color-danger) l c h / 0.15);
     }
 

@@ -170,6 +170,8 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
               aria-invalid={!!error}
               aria-describedby={errorId}
               aria-labelledby={label ? labelId : undefined}
+              // placeholder 未指定のストーリー/利用でも名無しにならないよう内蔵ラベル（axe: label）
+              aria-label={label ? undefined : t("prompt_input.aria_label")}
               aria-required={required}
             />
 

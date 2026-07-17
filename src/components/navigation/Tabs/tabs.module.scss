@@ -172,7 +172,7 @@
 
       &.active {
         font-weight: var(--wim-font-weight-bold);
-        color: color-mix(in oklch, var(--wim-color-primary) 80%, var(--wim-color-text-primary));
+        color: var(--wim-color-text-accent);
         background-color: var(--wim-color-surface-hover);
       }
 

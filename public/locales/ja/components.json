@@ -16,6 +16,7 @@
     "rte_ol": "番号付きリスト",
     "rte_remove_format": "書式をクリア",
     "rte_strikethrough": "取り消し線",
+    "rte_editor": "リッチテキストエディター",
     "rte_toolbar": "書式設定ツールバー",
     "rte_ul": "箇条書き",
     "rte_underline": "下線",

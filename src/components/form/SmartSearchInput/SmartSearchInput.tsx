@@ -1,5 +1,6 @@
 import React, { forwardRef, useCallback, useId } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useAutoResize } from "../../../hooks/useAutoResize";
@@ -67,10 +68,12 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
       className,
       id: customId,
       maxLength,
+      "aria-label": ariaLabel,
       ...props
     },
     ref
   ) => {
+    const { t } = useWimTranslation("form");
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = React.useState(defaultValue as string);
     const currentValue = isControlled ? (controlledValue as string) : internalValue;
@@ -150,6 +153,8 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
               rows={1}
               disabled={disabled}
               maxLength={maxLength}
+              // label も placeholder も無い利用で名無しにならないよう内蔵ラベル（axe: label）
+              aria-label={ariaLabel ?? (label ? undefined : t("smart_search.input_label"))}
               {...props}
             />
           </InputBase>

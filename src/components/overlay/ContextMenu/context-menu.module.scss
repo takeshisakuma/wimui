@@ -4,8 +4,12 @@
   
     &.disabled {
       cursor: not-allowed;
-      opacity: var(--wim-opacity-disabled);
-  
+      opacity: 0.8;
+
+      // opacity-disabled (0.6) だと内包テキストが AA を割るため、
+      // 彩度を落としつつ減衰は 0.8 に留める
+      filter: grayscale(0.6);
+
       > * {
         pointer-events: none;
       }

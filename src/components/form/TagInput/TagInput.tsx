@@ -1,5 +1,6 @@
 import React, { useState, useRef, useId } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Tag } from "../../data-display/Tag/Tag";
 import { InputBase } from "../InputBase/InputBase";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
@@ -118,6 +119,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       inputRef.current?.focus();
     };
 
+    const { t } = useWimTranslation("form");
     const generatedId = useId();
     const id = props.id || `wim-tag-input-${generatedId}`;
     const errorId = error ? `${id}-error` : undefined;
@@ -185,6 +187,9 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 aria-invalid={currentIntent === "danger"}
                 aria-describedby={errorId}
                 aria-labelledby={label ? labelId : undefined}
+                // タグ入力中は placeholder が空になるため、label 未指定でも
+                // 内蔵ラベルでアクセシブルネームを保証する（axe: label）
+                aria-label={label ? undefined : t("tag_input.input_label")}
                 aria-required={required}
               />
             </div>

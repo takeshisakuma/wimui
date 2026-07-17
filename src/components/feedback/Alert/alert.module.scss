@@ -86,9 +86,10 @@
     }
   }
 
-  // Variants — use OKLCH for perceptually uniform adjustments
+  // Variants — テキストはテーマ対応の text-* トークンを使う
+  // （oklch(l*0.7) の暗色化はダークテーマで背景より暗くなり AA を割る）
   .info {
-    color: oklch(from var(--wim-color-info) calc(l * 0.7) c h);
+    color: var(--wim-color-text-info);
     background: oklch(from var(--wim-color-info) l c h / 0.1);
     border-color: oklch(from var(--wim-color-info) l c h / 0.2);
 
@@ -98,7 +99,7 @@
   }
 
   .success {
-    color: oklch(from var(--wim-color-success) calc(l * 0.7) c h);
+    color: var(--wim-color-text-success);
     background: oklch(from var(--wim-color-success) l c h / 0.1);
     border-color: oklch(from var(--wim-color-success) l c h / 0.2);
 
@@ -108,7 +109,7 @@
   }
 
   .warning {
-    color: oklch(from var(--wim-color-warning) calc(l * 0.5) c h);
+    color: var(--wim-color-text-warning);
     background: oklch(from var(--wim-color-warning) l c h / 0.1);
     border-color: oklch(from var(--wim-color-warning) l c h / 0.3);
 
@@ -118,7 +119,7 @@
   }
 
   .danger {
-    color: oklch(from var(--wim-color-danger) calc(l * 0.7) c h);
+    color: var(--wim-color-text-danger);
     background: oklch(from var(--wim-color-danger) l c h / 0.1);
     border-color: oklch(from var(--wim-color-danger) l c h / 0.2);
 

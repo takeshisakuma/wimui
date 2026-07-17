@@ -279,7 +279,8 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
           </div>
         </div>
 
-        <div className={styles.body}>
+        {/* unified 表示時の横スクロール領域（axe: scrollable-region-focusable） */}
+        <div className={styles.body} tabIndex={0}>
           {currentView === "unified" ? (
             <div className={styles.unified}>
               {unifiedLines.map((line, i) => (
@@ -288,13 +289,14 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
             </div>
           ) : (
             <div className={styles.split}>
-              <div className={styles.splitPane}>
+              {/* 横スクロール領域はキーボードで到達可能にする（axe: scrollable-region-focusable） */}
+              <div className={styles.splitPane} tabIndex={0}>
                 {splitLines.left.map((line, i) => (
                   <SplitRow key={i} line={line} />
                 ))}
               </div>
               <div className={styles.splitDivider} aria-hidden="true" />
-              <div className={styles.splitPane}>
+              <div className={styles.splitPane} tabIndex={0}>
                 {splitLines.right.map((line, i) => (
                   <SplitRow key={i} line={line} />
                 ))}

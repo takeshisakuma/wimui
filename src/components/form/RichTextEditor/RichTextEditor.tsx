@@ -537,7 +537,9 @@ export const RichTextEditor = ({
           suppressContentEditableWarning
           role="textbox"
           aria-multiline
-          aria-label={ariaLabel}
+          // label / aria-labelledby / aria-label いずれも無い利用で名無しに
+          // ならないよう内蔵ラベル（axe: aria-input-field-name）
+          aria-label={ariaLabel ?? (label || ariaLabelledby ? undefined : t("a11y.rte_editor"))}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
           aria-invalid={currentIntent === "danger"}
           aria-describedby={errorId}
