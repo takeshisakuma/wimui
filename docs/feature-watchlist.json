@@ -1,0 +1,35 @@
+{
+  "$comment": "新しい Web 機能の採用ウォッチリスト（IMPROVEMENTS.md T14）。id は web-features パッケージの feature id。scripts/check-feature-watchlist.mjs が週次 CI（.github/workflows/feature-watchlist.yml）で Baseline 昇格を判定し、target（既定 high = Widely Available）へ到達した項目の Issue を自動起票する。起票後に対応が完了したら項目を削除する。",
+  "watch": [
+    {
+      "id": "temporal",
+      "target": "high",
+      "action": "v2 の breaking として DatePicker / Calendar / Countdown / RelativeTime 等の Date API を Temporal へ移行設計する（ポリフィルは同梱しない）。IMPROVEMENTS.md T14 起票時の合意事項。"
+    },
+    {
+      "id": "anchor-positioning",
+      "target": "high",
+      "action": "Tooltip / Popover / Dropdown 系の JS 位置計算（floating-ui 依存箇所）を CSS Anchor Positioning で削減できないか設計する。"
+    },
+    {
+      "id": "popover",
+      "target": "high",
+      "action": "Popover API で overlay 系の z-index 管理・トップレイヤー・軽量フォーカス制御を置き換えられないか評価する。"
+    },
+    {
+      "id": "field-sizing",
+      "target": "high",
+      "action": "PromptInput / SmartSearchInput / Textarea の useAutoResize（JS 自動リサイズ）を field-sizing: content に置換する。"
+    },
+    {
+      "id": "scrollbar-gutter",
+      "target": "high",
+      "action": "スクロールバー出現によるレイアウトシフト対策（Dialog / Drawer のスクロールロック時の gutter 予約）へ適用を検討する。"
+    },
+    {
+      "id": "customizable-select",
+      "target": "high",
+      "action": "Select / MultiSelect のカスタム UI をネイティブ <select> ベース（appearance: base-select）へ寄せられるか評価する。"
+    }
+  ]
+}

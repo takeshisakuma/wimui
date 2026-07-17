@@ -1,0 +1,72 @@
+name: Feature Watchlist (Baseline)
+
+# docs/feature-watchlist.json の機能が Baseline の目標段階（既定: Widely Available）
+# へ昇格したら Issue を自動起票する（IMPROVEMENTS.md T14）。
+on:
+  schedule:
+    - cron: "0 21 * * 1" # 毎週月曜 21:00 UTC（火曜朝 JST）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Check Baseline promotions
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # 判定は常に最新の Baseline データで行う（lockfile に依存させない）
+      - name: Install latest web-features
+        run: npm install --no-save --no-audit --no-fund web-features@latest
+
+      - name: Check watchlist
+        id: check
+        run: |
+          node scripts/check-feature-watchlist.mjs
+          echo "promoted=$(node scripts/check-feature-watchlist.mjs --json)" >> "$GITHUB_OUTPUT"
+
+      - name: Create issues for promoted features
+        if: steps.check.outputs.promoted != '[]'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROMOTED: ${{ steps.check.outputs.promoted }}
+        run: |
+          echo "$PROMOTED" | node -e '
+            const items = JSON.parse(require("fs").readFileSync(0, "utf8"));
+            const { execFileSync } = require("child_process");
+            const existing = JSON.parse(
+              execFileSync("gh", ["issue", "list", "--state", "all", "--search", "[feature-watchlist]", "--json", "title", "--limit", "100"], { encoding: "utf8" }) || "[]",
+            ).map((i) => i.title);
+            for (const p of items) {
+              const title = `[feature-watchlist] ${p.id} が Baseline ${p.target === "high" ? "Widely" : "Newly"} Available に昇格`;
+              if (existing.includes(title)) {
+                console.log(`skip (issue exists): ${title}`);
+                continue;
+              }
+              const body = [
+                `web-features の判定で **${p.name}** (\`${p.id}\`) が目標段階に到達しました。`,
+                "",
+                `- baseline: \`${p.baseline}\` (low: ${p.baseline_low_date ?? "—"} / high: ${p.baseline_high_date ?? "—"})`,
+                "",
+                "## やること",
+                "",
+                p.action,
+                "",
+                "対応が完了したら `docs/feature-watchlist.json` から該当項目を削除してください。",
+                "",
+                "_この Issue は .github/workflows/feature-watchlist.yml により自動起票されました。_",
+              ].join("\n");
+              execFileSync("gh", ["issue", "create", "--title", title, "--body", body], { stdio: "inherit" });
+            }
+          '

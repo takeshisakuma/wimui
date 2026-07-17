@@ -46,9 +46,9 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
-| T13 | browserslist の明示 | `package.json` に browserslist を追加しサポートポリシーを一本化（`"baseline widely available"` クエリで Baseline に直結）。あわせてガード導入を判断: `eslint-plugin-compat`（JS API）+ `stylelint-no-unsupported-browser-features`（CSS）。既用の relative color syntax 等が引っかかる場合は「Baseline Newly 許容」か個別注記で逃がす | **未着手**（a11y PR とは別 PR で実施） |
-| T14 | 新機能ウォッチリスト自動化 | `docs/feature-watchlist.json` に「待っている機能 → 昇格したらやる書き換え」を列挙し、Baseline データソースの `web-features` npm を週次 GitHub Actions で判定 → Baseline Widely Available へ昇格した項目を Issue 自動起票。**初期 watchlist**: ① Temporal（昇格したら v2 breaking として `DatePicker` 等の Date API 移行を設計。ポリフィル同梱はしない）② CSS anchor positioning（Tooltip/Popover の位置計算削減）③ `beforeinput`/Input Events Level 2（T15 の RTE 再設計の前提確認） | **未着手**（T13 と同じ PR） |
-| T15 | RichTextEditor のレガシー API 置換 | `document.execCommand`（非推奨・挙動がブラウザ依存、15箇所超）を `beforeinput` ベースへ書き換え or エディタ基盤再設計。`window.prompt` によるリンク URL 入力も自前 Dialog へ置換（ブラウザモーダルは UX/a11y 難あり、E2E でもブロッキング要因） | **未着手** |
+| T13 | browserslist の明示 | `package.json` に `"browserslist": ["baseline widely available"]` を追加しサポートポリシーを Baseline に一本化。**ガード導入（eslint-plugin-compat / stylelint-no-unsupported-browser-features）は見送り**: 既用の relative color syntax・oklch・container queries 等の新しめ機能で誤検知が多く、T14 のウォッチリスト運用（採用方向）と役割が重複するため。必要になったら再判断 | **済**（2026-07-18） |
+| T14 | 新機能ウォッチリスト自動化 | `docs/feature-watchlist.json`（待っている機能 → 昇格したらやる書き換え）+ `scripts/check-feature-watchlist.mjs` + 週次 workflow（`feature-watchlist.yml`、月曜。web-features@latest で判定し Baseline 目標段階へ昇格した項目の Issue を自動起票、タイトル一致で重複防止）。**初期 watchlist**: temporal（Date API v2 移行）/ anchor-positioning（Tooltip/Popover 位置計算削減）/ popover / field-sizing（useAutoResize 置換）/ scrollbar-gutter / customizable-select。※`beforeinput` は `input-event`（Baseline high 2022）に含まれ既に利用可のため watchlist 不要 → T15 の前提成立 | **済**（2026-07-18） |
+| T15 | RichTextEditor のレガシー API 置換 | `document.execCommand`（非推奨・挙動がブラウザ依存、15箇所超）を `beforeinput` ベースへ書き換え or エディタ基盤再設計。`window.prompt` によるリンク URL 入力も自前 Dialog へ置換（ブラウザモーダルは UX/a11y 難あり、E2E でもブロッキング要因）。前提の `beforeinput` は Baseline high（2022）で確認済み＝着手可能 | **未着手** |
 | T16 | Mentions の blur ハック正攻法化 | リストクリックを拾うための `setTimeout(200ms)` blur 遅延を `focusout` + `relatedTarget`（または `pointerdown` 先行処理）へ置換。フレーク源の除去 | **未着手** |
 
 ### デザイン（コンポジション）

@@ -24,6 +24,10 @@ updates:
       # eslint 本体を 9 に固定している間は @eslint/js の major も追随させない（バージョン整合）
       - dependency-name: "@eslint/js"
         update-types: ["version-update:semver-major"]
+      # TypeScript 7（ネイティブコンパイラ化の大型 major）はビルドチェーン
+      # （Vite / docgen / 型チェック周辺）が追随するまで保留（PR #14 は CI 全滅を確認済み）
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
