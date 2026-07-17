@@ -57,6 +57,7 @@ export type WimColorKey =
   | "text-accent"
   | "text-danger"
   | "text-disabled"
+  | "text-info"
   | "text-muted-on-inverse"
   | "text-on-danger"
   | "text-on-disabled"
@@ -70,7 +71,9 @@ export type WimColorKey =
   | "text-placeholder"
   | "text-primary"
   | "text-secondary"
+  | "text-success"
   | "text-tertiary"
+  | "text-warning"
   | "warning"
   | "white";
 

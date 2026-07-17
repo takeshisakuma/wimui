@@ -56,7 +56,19 @@
         "value": "{pccs.gy6-5}"
       },
       "text-danger": {
-        "value": "{pccs.s2}"
+        "$comment": "テキスト用 intent 色。塗り用の danger より暗く、通常サーフェス + subtle 塗り (15%) 上で WCAG AA 4.5:1 を満たす",
+        "value": "{pccs.dp2}"
+      },
+      "text-success": {
+        "$comment": "dp12 だと success-subtle over surface-variant 上 4.26:1 のため 1 段暗い dk12 (5.6:1)",
+        "value": "{pccs.dk12}"
+      },
+      "text-warning": {
+        "$comment": "warning (s8 #ccb914) は白背景でも 2.0:1 のためテキストには使えない。dk8 は subtle 塗り上でも 5.5:1",
+        "value": "{pccs.dk8}"
+      },
+      "text-info": {
+        "value": "{wim.color.info}"
       },
       "text-accent": {
         "value": "{wim.color.primary}"

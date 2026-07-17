@@ -46,10 +46,12 @@ function readColorKeys() {
 }
 
 /**
- * Resolve a canonical intent's indicator `surface` into the base/on color
+ * Resolve a canonical intent's indicator `surface` into the base/on/text color
  * token keys, or null when the intent renders no dedicated surface.
- *   surface === true        → base = color, on = `text-on-<color>`
- *   surface === { base, on } → explicit token keys (e.g. neutral)
+ *   surface === true              → base = color, on = `text-on-<color>`, text = `text-<color>`
+ *   surface === { base, on, text } → explicit token keys (e.g. neutral)
+ * `text` is the AA-readable foreground for outline/subtle variants; the base
+ * fill color is not contrast-safe as text.
  */
 function resolveSurface(def) {
   const surface = def && def.surface;
@@ -58,9 +60,9 @@ function resolveSurface(def) {
     if (!def.color) {
       throw new Error(`surface: true requires a non-null color`);
     }
-    return { base: def.color, on: `text-on-${def.color}` };
+    return { base: def.color, on: `text-on-${def.color}`, text: `text-${def.color}` };
   }
-  return { base: surface.base, on: surface.on };
+  return { base: surface.base, on: surface.on, text: surface.text };
 }
 
 function loadAndValidate() {
@@ -99,7 +101,7 @@ function loadAndValidate() {
       continue;
     }
     if (!surface) continue;
-    for (const role of ["base", "on"]) {
+    for (const role of ["base", "on", "text"]) {
       const key = surface[role];
       if (!colorKeys.has(key)) {
         errors.push(
@@ -135,7 +137,7 @@ function buildTs({ canonical, sets }) {
 }
 
 function buildScss({ canonical }) {
-  let out = `// Do not edit directly, this file was auto-generated from tokens/intents.json.\n// Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n//\n// $token-colors maps each indicator-painting intent to its base surface color\n// and the readable "on" color used for solid fills. Keys match the semantic\n// intent vocabulary exactly, so \`styles?.[intent]\` (IndicatorBase) always hits.\n\n`;
+  let out = `// Do not edit directly, this file was auto-generated from tokens/intents.json.\n// Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n//\n// $token-colors maps each indicator-painting intent to its base surface color,\n// the readable "on" color used for solid fills, and the AA-readable "text"\n// color used by outline/subtle variants. Keys match the semantic intent\n// vocabulary exactly, so \`styles?.[intent]\` (IndicatorBase) always hits.\n\n`;
   out += `$token-colors: (\n`;
   for (const [name, def] of Object.entries(canonical)) {
     const surface = resolveSurface(def);
@@ -143,6 +145,7 @@ function buildScss({ canonical }) {
     out += `  "${name}": (\n`;
     out += `    "base": var(--wim-color-${surface.base}),\n`;
     out += `    "on": var(--wim-color-${surface.on}),\n`;
+    out += `    "text": var(--wim-color-${surface.text}),\n`;
     out += `  ),\n`;
   }
   out += `);\n`;

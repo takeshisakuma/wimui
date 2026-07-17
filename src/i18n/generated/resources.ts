@@ -103,6 +103,7 @@ export const wimResources: WimResources = {
     "components": {
       "a11y": {
         "close": "Close",
+        "rte_editor": "Rich text editor",
         "rte_toolbar": "Formatting toolbar",
         "rte_bold": "Bold",
         "rte_italic": "Italic",
@@ -192,7 +193,8 @@ export const wimResources: WimResources = {
     "form": {
       "prompt_input": {
         "send_label": "Send",
-        "attach_label": "Attach file"
+        "attach_label": "Attach file",
+        "aria_label": "Prompt input"
       },
       "ai_feedback": {
         "positive_label": "Helpful",
@@ -225,6 +227,16 @@ export const wimResources: WimResources = {
       },
       "select": {
         "no_options": "No options found"
+      },
+      "tag_input": {
+        "input_label": "Tags"
+      },
+      "smart_search": {
+        "input_label": "Search"
+      },
+      "markdown": {
+        "task_done": "Completed task",
+        "task_todo": "Incomplete task"
       },
       "transfer": {
         "move_to_source": "Move to available",
@@ -384,6 +396,7 @@ export const wimResources: WimResources = {
         "rte_ol": "番号付きリスト",
         "rte_remove_format": "書式をクリア",
         "rte_strikethrough": "取り消し線",
+        "rte_editor": "リッチテキストエディター",
         "rte_toolbar": "書式設定ツールバー",
         "rte_ul": "箇条書き",
         "rte_underline": "下線",
@@ -526,11 +539,22 @@ export const wimResources: WimResources = {
         "weak": "弱い"
       },
       "prompt_input": {
+        "aria_label": "プロンプト入力",
         "attach_label": "ファイルを添付",
         "send_label": "送信"
       },
       "select": {
         "no_options": "該当する選択肢がありません"
+      },
+      "tag_input": {
+        "input_label": "タグ"
+      },
+      "smart_search": {
+        "input_label": "検索"
+      },
+      "markdown": {
+        "task_done": "完了したタスク",
+        "task_todo": "未完了のタスク"
       },
       "source_citation": {
         "source_label": "ソース {{index}}"
@@ -655,6 +679,7 @@ export const wimResources: WimResources = {
         "rte_ol": "Lista numerada",
         "rte_remove_format": "Remover formatação",
         "rte_strikethrough": "Tachado",
+        "rte_editor": "Editor de texto formatado",
         "rte_toolbar": "Barra de formatação",
         "rte_ul": "Lista com marcadores",
         "rte_underline": "Sublinhado",
@@ -797,11 +822,22 @@ export const wimResources: WimResources = {
         "weak": "Fraca"
       },
       "prompt_input": {
+        "aria_label": "Campo de prompt",
         "attach_label": "Anexar arquivo",
         "send_label": "Enviar"
       },
       "select": {
         "no_options": "Nenhuma opção encontrada"
+      },
+      "tag_input": {
+        "input_label": "Tags"
+      },
+      "smart_search": {
+        "input_label": "Pesquisar"
+      },
+      "markdown": {
+        "task_done": "Tarefa concluída",
+        "task_todo": "Tarefa pendente"
       },
       "source_citation": {
         "source_label": "Fonte {{index}}"
