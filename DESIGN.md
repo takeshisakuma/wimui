@@ -44,12 +44,23 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 | 意味 | トークン | ライトモード | ダークモード |
 |------|----------|-------------|-------------|
 | Primary | `--wim-color-primary` | `s16` (#205b85) | `v16` (#055d87) |
-| Danger | `--wim-color-danger` | `s1` (#b01040) | `v2` (#ee0026) |
+| Danger | `--wim-color-danger` | `s1` (#b01040) | `lt2` (#fb7482) |
 | Success | `--wim-color-success` | `s12` (#28853f) | `v12` (#33a23d) |
 | Warning | `--wim-color-warning` | `s8` (#ccb914) | `v7` (#ffcc00) |
 | Info | `--wim-color-info` | `s18` (#243b8b) | `v17` (#093f86) |
 
 ダークモードでは彩度を上げたトーン（Vivid / Bright）に切り替えることで、暗い背景上でもコントラストを確保しています。
+
+**インテント色は塗り専用。** テキストに使うと WCAG AA を満たさない組合せが多い
+（例: warning `#ccb914` は白背景でも 2.0:1）。テキストには次の `text-*` トークンを使う。
+outline/subtle バリアントの文字色も intents SSOT の `text` ロール経由でこれらに解決される。
+
+| 用途 | トークン | ライト | ダーク |
+|------|----------|--------|--------|
+| アクセントテキスト（primary 系） | `--wim-color-text-accent` | = primary | #97cbe0 |
+| 成功テキスト | `--wim-color-text-success` | `dp12` (#306f42) | `lt12` (#7fc97e) |
+| 警告テキスト | `--wim-color-text-warning` | `dk8` (#6a5b18) | `lt7` (#fcd474) |
+| 情報テキスト | `--wim-color-text-info` | = info | `p18` (#b3cee3) |
 
 #### テキストカラー
 
@@ -57,10 +68,10 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 |------|----------|--------|--------|
 | 主要テキスト | `--wim-color-text-primary` | `bk` (#000) | `w` (#fff) |
 | 補助テキスト | `--wim-color-text-secondary` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
-| 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | `gy7-5` (#b6b6b6) |
+| 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | #c4c4c4 |
 | 無効テキスト（通常面） | `--wim-color-text-disabled` | `gy6-5` (#8a8a8a) | `gy6-5` (#8a8a8a) |
-| 無効フィル上の文字 | `--wim-color-text-on-disabled` | `gy3-5` (#393939) | `gy7-5` (#b6b6b6) |
-| エラーテキスト | `--wim-color-text-danger` | `s2` (#ca1028) | #ff8c8c |
+| 無効フィル上の文字 | `--wim-color-text-on-disabled` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
+| エラーテキスト | `--wim-color-text-danger` | `dp2` (#9d002b) | #ff8c8c |
 | プレースホルダー | `--wim-color-text-placeholder` | = text-tertiary | = text-tertiary |
 
 **disabled テキストの使い分け（公開契約）**
