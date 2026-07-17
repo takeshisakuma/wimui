@@ -36,19 +36,19 @@
     }
 
     &.danger {
-      color: var(--wim-color-danger);
+      color: var(--wim-color-text-danger);
     }
 
     &.success {
-      color: var(--wim-color-success);
+      color: var(--wim-color-text-success);
     }
 
     &.warning {
-      color: var(--wim-color-warning);
+      color: var(--wim-color-text-warning);
     }
 
     &.info {
-      color: var(--wim-color-info);
+      color: var(--wim-color-text-info);
     }
 
     &.bold {

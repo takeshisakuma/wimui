@@ -9,15 +9,19 @@
     container-type: inline-size;
     font-family: var(--wim-font-family-default);
 
-    // Default (ok) accent
+    // Default (ok) accent。バーの塗りとテキストで別トークン
+    // （塗り色はテキストとしては AA を満たさないため）
     --usage-meter-accent: var(--wim-color-primary);
+    --usage-meter-text: var(--wim-color-text-accent);
 
     &.warn {
       --usage-meter-accent: var(--wim-color-warning);
+      --usage-meter-text: var(--wim-color-text-warning);
     }
 
     &.danger {
       --usage-meter-accent: var(--wim-color-danger);
+      --usage-meter-text: var(--wim-color-text-danger);
     }
   }
 
@@ -37,7 +41,7 @@
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium);
     font-variant-numeric: tabular-nums;
-    color: var(--usage-meter-accent);
+    color: var(--usage-meter-text);
   }
 
   .track {

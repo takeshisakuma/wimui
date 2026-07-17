@@ -68,6 +68,16 @@
     "no_options": "No options found",
     "option": "Option 1"
   },
+  "tag_input": {
+    "input_label": "Tags"
+  },
+  "smart_search": {
+    "input_label": "Search"
+  },
+  "markdown": {
+    "task_done": "Completed task",
+    "task_todo": "Incomplete task"
+  },
   "transfer": {
     "no_data": "No Data",
     "move_to_source": "Move to available",

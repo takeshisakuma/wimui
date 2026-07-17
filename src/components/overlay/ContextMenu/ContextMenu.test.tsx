@@ -129,7 +129,7 @@ describe("ContextMenu", () => {
       </ContextMenu>,
     );
 
-    const container = screen.getByRole("button");
+    const container = screen.getByTestId("context-menu-trigger");
     fireEvent.keyDown(container, { key: "Enter" });
 
     await waitFor(() => {
@@ -144,7 +144,7 @@ describe("ContextMenu", () => {
       </ContextMenu>,
     );
 
-    const container = screen.getByRole("button");
+    const container = screen.getByTestId("context-menu-trigger");
     fireEvent.keyDown(container, { key: " " });
 
     await waitFor(() => {
@@ -159,7 +159,7 @@ describe("ContextMenu", () => {
       </ContextMenu>,
     );
 
-    fireEvent.keyDown(screen.getByRole("button"), { key: "Enter" });
+    fireEvent.keyDown(screen.getByTestId("context-menu-trigger"), { key: "Enter" });
     expect(screen.queryByText("Menu Item 1")).not.toBeInTheDocument();
   });
 
@@ -214,7 +214,7 @@ describe("ContextMenu", () => {
         <div>Trigger</div>
       </ContextMenu>,
     );
-    expect(screen.getByRole("button")).toHaveAttribute("tabIndex", "-1");
+    expect(screen.getByTestId("context-menu-trigger")).toHaveAttribute("tabIndex", "-1");
   });
 });
 
@@ -410,8 +410,9 @@ describe("ContextMenuGroup", () => {
       </ContextMenu>,
     );
     const trigger = screen.getByTestId("trigger-slot");
-    expect(trigger).toHaveAttribute("role", "button");
-    expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+    // role="button" / aria-haspopup は nested-interactive / aria-allowed-attr
+    // 違反になるため付与しない（フォーカス可能な汎用領域）
+    expect(trigger).toHaveAttribute("tabIndex", "0");
     fireEvent.contextMenu(trigger);
     expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
   });

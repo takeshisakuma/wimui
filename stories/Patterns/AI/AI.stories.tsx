@@ -189,10 +189,10 @@ export default function WelcomeCard() {
 
               {/* Right: Actions */}
               <div style={{ display: "flex", alignItems: "center", gap: "var(--wim-spacing-sm)", flexShrink: 0 }}>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" aria-label={t("docs_stories_recipes:artifacts.btn_copy")}>
                   <Icon component={CopyIcon} size="sm" />
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" aria-label={t("docs_stories_recipes:artifacts.btn_download")}>
                   <Icon component={DownloadIcon} size="sm" />
                 </Button>
                 <Button variant="solid" size="sm" style={{ flexShrink: 0 }}>

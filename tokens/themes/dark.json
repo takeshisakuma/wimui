@@ -14,7 +14,8 @@
         "value": "{pccs.gy8-5}"
       },
       "text-tertiary": {
-        "value": "{pccs.gy7-5}"
+        "$comment": "gy7-5 (#b6b6b6) は surface-variant (#4f4f4f) 上 4.03:1 で AA を割るためカスタム値 (4.74:1)",
+        "value": "#c4c4c4"
       },
       "text-disabled": {
         "value": "{pccs.gy6-5}"
@@ -68,16 +69,38 @@
         "value": "{pccs.gy4-5}"
       },
       "text-on-disabled": {
-        "value": "{pccs.gy7-5}"
+        "$comment": "gy7-5 (#b6b6b6) は disabled 塗り (#4f4f4f) 上 4.03:1。Avatar default が通常テキストに流用するため AA を満たす gy8-5 へ",
+        "value": "{pccs.gy8-5}"
       },
       "text-danger": {
-        "value": "#ff8c8c"
+        "$comment": "#ff8c8c は danger-subtle 塗り (15% over surface-variant) 上 4.15:1 のため 1 段明るく (4.9:1)",
+        "value": "#ffa3a3"
+      },
+      "text-success": {
+        "$comment": "lt12 (#7fc97e) は success-subtle over surface-variant 上 3.7:1 のためカスタム値 (5.2:1)",
+        "value": "#b7e3b6"
+      },
+      "text-warning": {
+        "value": "{pccs.lt7}"
+      },
+      "text-info": {
+        "$comment": "lt18 は surface (#393939) 上 3.8:1 で AA を割るため p トーン",
+        "value": "{pccs.p18}"
       },
       "text-accent": {
-        "value": "{pccs.lt16}"
+        "$comment": "lt16 (#67b1ca) は primary-soft 上 4.46:1 で AA をわずかに割るため 1 段明るいカスタム値",
+        "value": "#97cbe0"
       },
       "danger": {
         "value": "{pccs.lt2}"
+      },
+      "text-on-success": {
+        "$comment": "dark の success (v12 #33a23d) は白文字だと 3.3:1。黒文字で 6.4:1",
+        "value": "{pccs.bk}"
+      },
+      "text-on-danger": {
+        "$comment": "dark の danger (lt2 #fb7482) は白文字だと 2.7:1。黒文字で 7.9:1",
+        "value": "{pccs.bk}"
       },
       "success": {
         "value": "{pccs.v12}"

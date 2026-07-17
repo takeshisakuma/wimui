@@ -19,6 +19,10 @@
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
 
+    // outline/subtle の文字は base（塗り用）ではなく AA 可読の text ロールを使う
+    // （warning #ccb914 等の塗り色はテキストとしてはコントラスト不足）
+    $text: map.get($pairs, "text");
+
     &--#{$name}.#{$prefix}--solid {
       color: $on;
       background-color: $base;
@@ -26,13 +30,13 @@
     }
 
     &--#{$name}.#{$prefix}--outline {
-      color: $base;
+      color: $text;
       background-color: transparent;
       border: 1px solid $base;
     }
 
     &--#{$name}.#{$prefix}--subtle {
-      color: $base;
+      color: $text;
       background-color: oklch(from #{$base} l c h / 0.15);
       border: 1px solid transparent;
     }
@@ -43,6 +47,7 @@
   @each $name, $pairs in $token-colors {
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
+    $text: map.get($pairs, "text");
 
     // :where() で特異度を 0-1-0 に抑え、disabled 等の状態セレクタが !important なしで上書きできるようにする
     &:where(.#{$name}) {
@@ -55,7 +60,7 @@
       }
 
       &:where(.outline) {
-        color: $base;
+        color: $text;
         background-color: transparent;
         border: 1px solid $base;
       }
@@ -63,7 +68,7 @@
       &:where(.subtle) {
         --bg: oklch(from #{$base} l c h / 0.15);
 
-        color: $base;
+        color: $text;
         background-color: oklch(from #{$base} l c h / 0.15);
         border: 1px solid transparent;
       }

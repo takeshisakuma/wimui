@@ -238,6 +238,9 @@ const JsonNode = ({
 
   return (
     <div className={localStyles.node}>
+      {/* 編集アクション（button）を role="button" の内側に置くと
+          nested-interactive 違反になるため、トグルとアクションは兄弟にする */}
+      <div className={localStyles.headerRow}>
       <div
         role="button"
         tabIndex={isEmpty ? -1 : 0}
@@ -266,7 +269,8 @@ const JsonNode = ({
             {isArray ? `${(value as unknown[]).length} items` : `${Object.keys(value as object).length} keys`}
           </span>
         )}
-        {renderActions()}
+      </div>
+      {renderActions()}
       </div>
       {expanded && !isEmpty && (
         <div className={localStyles.children}>

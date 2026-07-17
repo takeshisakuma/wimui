@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { CodeBlock } from "../CodeBlock/CodeBlock";
 import { Title } from "../../typography/Title/Title";
 import { Text } from "../../typography/Text/Text";
@@ -26,6 +27,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   className,
 }) => {
+  const { t } = useWimTranslation("form");
   return (
     <div className={classNames("wim-markdown-renderer", styles.root, className)}>
       <ReactMarkdown
@@ -66,6 +68,18 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           ),
           th: ({ children }) => <th className={styles.th}>{children}</th>,
           td: ({ children }) => <td className={styles.td}>{children}</td>,
+          // GFM タスクリストの checkbox は remark-gfm が名無しで出力するため
+          // 状態を表す aria-label を補う（axe: label）
+          input: ({ type, checked, disabled }) =>
+            type === "checkbox" ? (
+              <input
+                type="checkbox"
+                checked={checked}
+                disabled={disabled}
+                readOnly
+                aria-label={checked ? t("markdown.task_done") : t("markdown.task_todo")}
+              />
+            ) : null,
         }}
       >
         {content}

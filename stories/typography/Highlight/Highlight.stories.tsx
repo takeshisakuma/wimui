@@ -89,7 +89,7 @@ export const AsChild: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Highlight {...args} highlight={t("story.highlight_link_term")} asChild>
-        <a href="/" style={{ color: "var(--wim-color-primary)", textDecoration: "underline" }}>
+        <a href="/" style={{ color: "var(--wim-color-text-accent)", textDecoration: "underline" }}>
           {t("story.highlight_link_text")}
         </a>
       </Highlight>

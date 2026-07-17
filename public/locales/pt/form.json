@@ -108,6 +108,16 @@
     "no_options": "Nenhuma opção encontrada",
     "option": "Opção 1"
   },
+  "tag_input": {
+    "input_label": "Tags"
+  },
+  "smart_search": {
+    "input_label": "Pesquisar"
+  },
+  "markdown": {
+    "task_done": "Tarefa concluída",
+    "task_todo": "Tarefa pendente"
+  },
   "source_citation": {
     "open_source": "Abrir fonte",
     "source_label": "Fonte {{index}}"

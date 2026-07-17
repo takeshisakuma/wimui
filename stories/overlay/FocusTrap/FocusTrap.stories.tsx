@@ -51,7 +51,7 @@ export const Default: Story = {
                 }}
               >
                 <Card.Header>
-                  <strong style={{ color: "var(--wim-color-primary)" }}>
+                  <strong style={{ color: "var(--wim-color-text-accent)" }}>
                     {t("story.focustrap_trapped_title")}
                   </strong>
                 </Card.Header>

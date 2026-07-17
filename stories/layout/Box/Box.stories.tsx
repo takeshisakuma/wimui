@@ -53,8 +53,8 @@ export const AsButton: Story = {
   },
   args: {
     as: "button",
-    bg: "color-mix(in srgb, var(--wim-color-primary) 12%, white)",
-    color: "color-mix(in srgb, var(--wim-color-primary) 80%, black)",
+    bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",
+    color: "var(--wim-color-text-accent)",
     p: "10px 20px",
     radius: 6,
     style: { border: "1px solid var(--wim-color-primary)", cursor: "pointer", fontWeight: 600 },
@@ -67,19 +67,19 @@ export const Spacing: Story = {
     return (
       <Box bg="var(--wim-color-surface-variant)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
         <Box
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
           p={15}
           mb={15}
-          color="color-mix(in srgb, var(--wim-color-primary) 80%, black)"
+          color="var(--wim-color-text-accent)"
           radius={4}
           style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.box_margin")}
         </Box>
         <Box
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
           p={15}
-          color="color-mix(in srgb, var(--wim-color-success) 80%, black)"
+          color="var(--wim-color-text-success)"
           radius={4}
           style={{ border: "1px solid var(--wim-color-success)" }}
         >
@@ -96,8 +96,8 @@ export const PaddingProps: Story = {
     return <Box {...args}>{t("story.box_padding")}</Box>;
   },
   args: {
-    bg: "color-mix(in srgb, var(--wim-color-danger) 12%, white)",
-    color: "color-mix(in srgb, var(--wim-color-danger) 80%, black)",
+    bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))",
+    color: "var(--wim-color-text-danger)",
     px: 40, // Left and right padding
     py: 10, // Top and bottom padding
     radius: 8,

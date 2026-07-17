@@ -78,7 +78,8 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} disabled leftIcon="ClockIcon">
-        <DummyInput defaultValue={t("doc.inputBase_placeholder")} />
+        {/* placeholder が無い disabled デモでも名無しにしない（axe: label） */}
+        <DummyInput defaultValue={t("doc.inputBase_placeholder")} aria-label={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },

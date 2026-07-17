@@ -83,7 +83,7 @@ export const OverflowEscape: Story = {
                                   }
                               `}</style>
                 <Stack gap="xs">
-                  <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-color-primary)" }}>
+                  <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-color-text-accent)" }}>
                     {t("story.portal_power_title")}
                   </h4>
                   <p
@@ -155,7 +155,7 @@ export const CustomContainer: Story = {
           >
             {/* ここに Portal の 中身が表示される */}
             {!container && (
-              <Box style={{ textAlign: "center", color: "var(--wim-color-primary)" }}>
+              <Box style={{ textAlign: "center", color: "var(--wim-color-text-accent)" }}>
                 {t("story.portal_loading")}
               </Box>
             )}

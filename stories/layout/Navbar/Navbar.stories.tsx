@@ -90,7 +90,7 @@ export const GlassEffect: Story = {
             <Navbar.MenuItem>{t("story.navbar_docs")}</Navbar.MenuItem>
           </Navbar.Menu>
         </Navbar>
-        <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "var(--wim-color-text-on-primary)" }}>
+        <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "var(--wim-color-text-primary)" }}>
           <h1>{t("story.navbar_glass_title")}</h1>
           <p>{t("story.navbar_glass_desc")}</p>
         </div>

@@ -22,8 +22,8 @@ type Story = StoryObj<typeof meta>;
 const Box = ({ children }: { children: React.ReactNode }) => (
   <div
     style={{
-      backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, white)",
-      color: "color-mix(in srgb, var(--wim-color-primary) 80%, black)",
+      backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",
+      color: "var(--wim-color-text-accent)",
       padding: "20px",
       borderRadius: "8px",
       textAlign: "center",

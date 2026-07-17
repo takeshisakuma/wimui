@@ -32,6 +32,15 @@
       background-color: var(--wim-color-surface-hover);
     }
   }
+
+  // React Flow の attribution リンクは既定 #999 でキャンバス上 2.7:1（AA 未満）
+  :global(.react-flow__attribution) {
+    background: var(--wim-color-surface);
+
+    a {
+      color: var(--wim-color-text-secondary);
+    }
+  }
 }
 
 .minimap {

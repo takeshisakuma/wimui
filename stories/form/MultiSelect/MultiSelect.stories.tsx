@@ -72,7 +72,7 @@ export const MultipleSelected: Story = {
       { label: t("story.multiselect_grape"), value: "grape" },
       { label: t("story.select_opt4"), value: "disabled", disabled: true },
     ];
-    return <MultiSelect {...args} options={options} defaultValue={["apple", "orange"]} />;
+    return <MultiSelect {...args} options={options} label={t("story.multiselect_favorites")} defaultValue={["apple", "orange"]} />;
   },
 };
 
@@ -86,7 +86,7 @@ export const Disabled: Story = {
       { label: t("story.multiselect_grape"), value: "grape" },
       { label: t("story.select_opt4"), value: "disabled", disabled: true },
     ];
-    return <MultiSelect {...args} options={options} disabled={true} defaultValue={["banana"]} />;
+    return <MultiSelect {...args} options={options} label={t("story.multiselect_favorites")} disabled={true} defaultValue={["banana"]} />;
   },
 };
 

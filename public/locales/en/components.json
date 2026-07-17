@@ -2,6 +2,7 @@
   "a11y": {
     "avatar": "Avatar",
     "close": "Close",
+    "rte_editor": "Rich text editor",
     "rte_toolbar": "Formatting toolbar",
     "rte_bold": "Bold",
     "rte_italic": "Italic",

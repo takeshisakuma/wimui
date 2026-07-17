@@ -49,14 +49,15 @@ const useSampleEvents = (): ScheduleViewEvent[] => {
       title: t("story.schedule_event_standup"),
       start: `${date}T09:00:00`,
       end: `${date}T09:30:00`,
-      color: "#059669",
+      // 白文字イベントの背景は AA 4.5:1 を満たす濃さにする
+      color: "#047857",
     },
     {
       id: "3",
       title: t("story.schedule_event_sprint"),
       start: `${date}T14:00:00`,
       end: `${date}T16:00:00`,
-      color: "#d97706",
+      color: "#92400e",
     },
   ];
 };

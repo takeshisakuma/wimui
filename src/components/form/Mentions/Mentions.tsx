@@ -202,9 +202,10 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
             value={currentValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            // aria-expanded / aria-haspopup は textbox ロールでは不許可属性
+            // （axe: aria-allowed-attr）。textarea ベースの補完は
+            // aria-autocomplete + aria-controls で表現する
             aria-autocomplete="list"
-            aria-expanded={isOpen}
-            aria-haspopup="listbox"
             aria-controls={isOpen ? `${id}-list` : undefined}
             onBlur={() => {
               // 少し遅らせないとリストのクリックイベントが拾えない

@@ -120,7 +120,6 @@ export const LargeSpanWithIconOnRight = {
   args: {
     size: "lg",
     weight: "bold",
-    color: "black",
     fontStyle: "italic",
     iconName: "CircleIcon",
     iconPosition: "right",
@@ -172,7 +171,7 @@ export const AsChild = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Span {...args} asChild>
-        <a href="/" style={{ color: "var(--wim-color-primary)", fontWeight: "bold" }}>
+        <a href="/" style={{ color: "var(--wim-color-text-accent)", fontWeight: "bold" }}>
           {t('story.span_medium')}
         </a>
       </Span>

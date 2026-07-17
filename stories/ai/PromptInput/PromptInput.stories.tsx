@@ -50,7 +50,7 @@ const InteractiveDemo = (args: React.ComponentProps<typeof PromptInput>) => {
         </div>
       )}
       {fileName && (
-        <div style={{ padding: "var(--wim-spacing-sm)", background: "var(--wim-color-primary-subtle)", border: "1px solid var(--wim-color-primary)", borderRadius: "var(--wim-radius-md)", fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-primary)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ padding: "var(--wim-spacing-sm)", background: "var(--wim-color-primary-subtle)", border: "1px solid var(--wim-color-primary)", borderRadius: "var(--wim-radius-md)", fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-accent)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span>{t("story.promptinput_attached")}: <strong>{fileName}</strong></span>
           <button
             type="button"

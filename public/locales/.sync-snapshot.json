@@ -1308,6 +1308,7 @@
     "a11y": {
       "avatar": "Avatar",
       "close": "Close",
+      "rte_editor": "Rich text editor",
       "rte_toolbar": "Formatting toolbar",
       "rte_bold": "Bold",
       "rte_italic": "Italic",
@@ -11663,6 +11664,7 @@
       "image_motion_effects_zoom_caption": "Hover to zoom 1.1x",
       "imagecompare_after": "After",
       "imagecompare_after_alt": "Edited photo",
+      "imagecompare_position_label": "Comparison position",
       "imagecompare_before": "Before",
       "imagecompare_before_alt": "Original photo",
       "lightbox_alt_building": "Modern building",
@@ -12896,6 +12898,16 @@
     "select": {
       "no_options": "No options found",
       "option": "Option 1"
+    },
+    "tag_input": {
+      "input_label": "Tags"
+    },
+    "smart_search": {
+      "input_label": "Search"
+    },
+    "markdown": {
+      "task_done": "Completed task",
+      "task_todo": "Incomplete task"
     },
     "transfer": {
       "no_data": "No Data",

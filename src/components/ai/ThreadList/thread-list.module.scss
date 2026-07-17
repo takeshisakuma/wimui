@@ -137,7 +137,9 @@
   .timestamp {
     flex-shrink: 0;
     font-size: var(--wim-font-size-xs);
-    color: var(--wim-color-text-tertiary);
+
+    // text-tertiary はアクティブ行の primary-soft 背景上で 4.48:1 と AA を割る
+    color: var(--wim-color-text-secondary);
   }
 
   .preview {

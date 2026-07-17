@@ -126,9 +126,10 @@
     }
   }
 
-  // Variants — use feedback mixing tokens for automatic light/dark switching
+  // Variants — テキストはテーマ対応の text-* トークンを使う
+  // （oklch(l*0.7) の暗色化はダークテーマで背景より暗くなり AA を割る）
   .info {
-    color: oklch(from var(--wim-color-info) calc(l * 0.7) c h);
+    color: var(--wim-color-text-info);
     border-color: oklch(from var(--wim-color-info) l c h / 0.2);
 
     .icon {
@@ -137,7 +138,7 @@
   }
 
   .success {
-    color: oklch(from var(--wim-color-success) calc(l * 0.7) c h);
+    color: var(--wim-color-text-success);
     border-color: oklch(from var(--wim-color-success) l c h / 0.2);
 
     .icon {
@@ -146,7 +147,7 @@
   }
 
   .warning {
-    color: oklch(from var(--wim-color-warning) calc(l * 0.5) c h);
+    color: var(--wim-color-text-warning);
     border-color: oklch(from var(--wim-color-warning) l c h / 0.3);
 
     .icon {
@@ -155,7 +156,7 @@
   }
 
   .danger {
-    color: oklch(from var(--wim-color-danger) calc(l * 0.7) c h);
+    color: var(--wim-color-text-danger);
     border-color: oklch(from var(--wim-color-danger) l c h / 0.2);
 
     .icon {

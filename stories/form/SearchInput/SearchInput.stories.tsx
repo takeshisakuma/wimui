@@ -78,7 +78,7 @@ export const SmartSearchWithAI_Example: Story = {
         </Label>
         {suggestions.length > 0 && (
           <div style={{ marginTop: 8, padding: 12, border: "1px solid var(--wim-color-border)", borderRadius: 8, background: "var(--wim-color-surface-variant)" }}>
-            <div style={{ fontSize: 12, fontWeight: "bold", marginBottom: 8, color: "var(--wim-color-primary)" }}>
+            <div style={{ fontSize: 12, fontWeight: "bold", marginBottom: 8, color: "var(--wim-color-text-accent)" }}>
               {t("components:smart.search_suggestions")}
             </div>
             <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14 }}>

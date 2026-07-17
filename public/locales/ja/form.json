@@ -108,6 +108,16 @@
     "no_options": "該当する選択肢がありません",
     "option": "項目1"
   },
+  "tag_input": {
+    "input_label": "タグ"
+  },
+  "smart_search": {
+    "input_label": "検索"
+  },
+  "markdown": {
+    "task_done": "完了したタスク",
+    "task_todo": "未完了のタスク"
+  },
   "source_citation": {
     "open_source": "ソースを開く",
     "source_label": "ソース {{index}}"

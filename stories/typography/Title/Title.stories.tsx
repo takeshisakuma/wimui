@@ -52,7 +52,6 @@ export const H1Title: Story = {
   args: {
     tag: "h1",
     size: "2xl",
-    color: "black",
     align: "left",
   },
 };
@@ -65,7 +64,6 @@ export const H2Title: Story = {
   args: {
     tag: "h2",
     size: "xl",
-    color: "black",
     align: "left",
   },
 };
@@ -78,7 +76,6 @@ export const H3Title: Story = {
   args: {
     tag: "h3",
     size: "lg",
-    color: "black",
     align: "left",
   },
 };
@@ -91,7 +88,6 @@ export const H4Title: Story = {
   args: {
     tag: "h4",
     size: "md",
-    color: "black",
     align: "left",
   },
 };
@@ -104,7 +100,6 @@ export const H5Title: Story = {
   args: {
     tag: "h5",
     size: "sm",
-    color: "black",
     align: "left",
   },
 };
@@ -117,7 +112,6 @@ export const H6Title: Story = {
   args: {
     tag: "h6",
     size: "xs",
-    color: "black",
     align: "left",
   },
 };

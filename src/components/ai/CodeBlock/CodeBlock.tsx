@@ -115,6 +115,8 @@ export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
             styles.body,
             isCollapsible && !expanded && styles.collapsed
           )}
+          // 横スクロール領域はキーボードで到達可能にする（axe: scrollable-region-focusable）
+          tabIndex={0}
           style={
             isCollapsible && !expanded
               ? ({ "--_max-lines": maxLines } as React.CSSProperties)

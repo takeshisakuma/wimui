@@ -74,19 +74,24 @@
     }
 
     &.primary {
-      color: color-mix(in oklch, var(--wim-color-primary) 85%, var(--wim-color-text-primary));
+      // color-mix(primary, text-primary) はダークで 3:1 未満になるため text-accent
+      color: var(--wim-color-text-accent);
     }
 
     &.success {
-      color: var(--wim-color-success);
+      color: var(--wim-color-text-success);
     }
 
     &.warning {
-      color: var(--wim-color-warning);
+      color: var(--wim-color-text-warning);
     }
 
     &.info {
-      color: var(--wim-color-info);
+      color: var(--wim-color-text-info);
+    }
+
+    &.secondary {
+      color: var(--wim-color-text-secondary);
     }
   }
 

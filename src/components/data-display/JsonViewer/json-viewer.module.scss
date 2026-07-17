@@ -38,9 +38,16 @@
     line-height: var(--wim-line-height-loose);
     white-space: nowrap;
 
-    &:hover > .actions {
+    &:hover > .actions,
+    &:hover > .headerRow > .actions {
       opacity: 1;
     }
+  }
+
+  // トグル（role="button"）とアクション（button）を兄弟に保つための行コンテナ
+  .headerRow {
+    display: flex;
+    align-items: center;
   }
 
   .header {
@@ -100,7 +107,7 @@
     border-radius: var(--wim-radius-sm);
 
     &.keyInput {
-      color: var(--wim-color-info);
+      color: var(--wim-color-text-info);
     }
   }
 
@@ -120,14 +127,14 @@
   }
 
   .key {
-    margin-right: var(--wim-spacing-xs); 
-    color: var(--wim-color-info);
+    margin-right: var(--wim-spacing-xs);
+    color: var(--wim-color-text-info);
   }
 
   .value {
-    &.string { color: var(--wim-color-success); }
+    &.string { color: var(--wim-color-text-success); }
     &.number { color: var(--wim-color-text-accent); }
-    &.boolean { color: var(--wim-color-danger); }
+    &.boolean { color: var(--wim-color-text-danger); }
     &.null { color: var(--wim-color-text-tertiary); }
   }
 

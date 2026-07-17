@@ -85,12 +85,17 @@ export const Sparkline = ({
   };
 
   const sizeProps = isVrt ? { width: chartWidth, height: chartHeight } : {};
+  // ラベルはルート要素の role="img" / aria-hidden が担うため、Recharts 側の
+  // アクセシビリティレイヤー（ラッパーの tabindex=0）は常に無効化する。
+  // aria-hidden 内にフォーカス可能要素が残ると axe: aria-hidden-focus 違反になる。
+  const a11yProps = { accessibilityLayer: false, tabIndex: -1 };
 
   const renderChart = () => {
     if (type === "bar") {
       return (
         <RechartsBarChart
           {...sizeProps}
+          {...a11yProps}
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
@@ -103,6 +108,7 @@ export const Sparkline = ({
       return (
         <RechartsAreaChart
           {...sizeProps}
+          {...a11yProps}
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
@@ -128,6 +134,7 @@ export const Sparkline = ({
     return (
       <RechartsLineChart
         {...sizeProps}
+        {...a11yProps}
         data={chartData}
         margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
       >

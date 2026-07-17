@@ -4,6 +4,7 @@ import type { Result } from "axe-core";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { waitForStoryReady } from "./story-ready";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,8 +36,13 @@ const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
 // Rules that require page-level structure (<main>, <h1>, <title>, lang) which
 // Storybook iframes intentionally omit — these are not component-level issues.
 // document-title / html-has-lang are reported since axe-core 4.12.
+// landmark-main-* / landmark-unique: Audit ページ等で AppShell（<main> を含む）を
+// 1 キャンバスに複数並べる Storybook 合成起因であり、実アプリでは起きない構造。
 const DISABLED_RULES = [
   "landmark-one-main",
+  "landmark-no-duplicate-main",
+  "landmark-main-is-top-level",
+  "landmark-unique",
   "page-has-heading-one",
   "region",
   "document-title",
@@ -84,8 +90,20 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
         test(`${story.title} › ${story.name}`, async ({ page }) => {
           const url = `/iframe.html?id=${story.id}&viewMode=story&globals=theme:${theme};locale:en`;
 
-          await page.goto(url, { waitUntil: "load" });
-          await page.waitForTimeout(300);
+          // goto+固定300ms だけではコード分割ストーリーのマウント前に axe が
+          // 走り、空 root（旧サーバ構成ではマネージャ UI）を検査してしまう。
+          // VRT と同じマウント待ちを使う。
+          await page.emulateMedia({ reducedMotion: "reduce" });
+          await page.goto(url, { waitUntil: "domcontentloaded" });
+          await waitForStoryReady(page);
+
+          // フェードイン途中の半透明テキストを axe が拾うと color-contrast が
+          // 非決定的に落ちる（CI 実測: Snackbar の enter transition）。
+          // トランジション/アニメーションを止めて最終状態で計測する。
+          await page.addStyleTag({
+            content:
+              "*, *::before, *::after { transition: none !important; animation: none !important; }",
+          });
 
           const results = await analyzeWithRetry(
             page,

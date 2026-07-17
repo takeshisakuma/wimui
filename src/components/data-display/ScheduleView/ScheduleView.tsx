@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import FullCalendar from "@fullcalendar/react";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -105,10 +106,35 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
     ref
   ) => {
     const calendarRef = useRef<FullCalendar>(null);
+    const rootRef = useRef<HTMLDivElement>(null);
+    const mergedRef = useMergedRef(ref, rootRef);
+
+    // FullCalendar 内部 DOM の axe 違反を補正する:
+    // - ボタン内の .fc-icon は role="img" だが代替テキストが無い（ボタン側に
+    //   aria-label があるため装飾として隠すのが正しい）→ aria-hidden
+    // - 「+N more」リンクは href 無し <a> に aria-expanded が付き
+    //   aria-allowed-attr 違反 → role="button" を付与
+    // ビュー切替やイベント再描画で再生成されるため MutationObserver で追従する。
+    useEffect(() => {
+      const root = rootRef.current;
+      if (!root) return;
+      const patch = () => {
+        root
+          .querySelectorAll('.fc-icon[role="img"]:not([aria-hidden])')
+          .forEach((el) => el.setAttribute("aria-hidden", "true"));
+        root
+          .querySelectorAll("a.fc-more-link:not([role])")
+          .forEach((el) => el.setAttribute("role", "button"));
+      };
+      patch();
+      const observer = new MutationObserver(patch);
+      observer.observe(root, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }, []);
 
     return (
       <div
-        ref={ref}
+        ref={mergedRef}
         className={classNames("wim-schedule-view", styles.root, className)}
         role="region"
         aria-label={ariaLabel}
