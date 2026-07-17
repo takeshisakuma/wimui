@@ -46,6 +46,9 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-media-image--motion-effects",
   "components-navigation-elements-tabnavigation--contained",
   "components-visualization-scheduleview--default",
+  // 行高の px 丸めがラン間で 1px ずれ、3 行目以降が累積シフトする（8,105px 差・
+  // リトライ 3 回とも同一 = ラン内では安定）。--default と同じ症状
+  "components-visualization-scheduleview--month-view",
   "components-visualization-nodegraph--with-mini-map",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
