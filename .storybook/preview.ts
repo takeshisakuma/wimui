@@ -1,5 +1,8 @@
-import type { Preview } from "@storybook/react";
+import * as React from "react";
+import type { Decorator, Preview } from "@storybook/react";
 import { addons } from "storybook/internal/preview-api";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../stories/i18nConstants";
 
 import i18n from "./i18n";
 // wimui コンポーネントは react-i18next に依存せず内蔵ストア（setWimLocale）で言語を切り替える。
@@ -132,6 +135,13 @@ syncFromUrl();
 
 // ─────────────────────────────────────────────────
 
+/** 翻訳ロード完了までストーリーを描画しないゲート（詳細は decorators のコメント） */
+const I18nReadyGate = ({ story }: { story: React.ComponentType }) => {
+  const { ready } = useTranslation(ALL_NAMESPACES);
+  if (!ready) return null;
+  return React.createElement(story);
+};
+
 const preview: Preview = {
   globalTypes: {
     density: {
@@ -148,6 +158,14 @@ const preview: Preview = {
     },
   },
   decorators: [
+    // 翻訳ロード完了前に描画すると、defaultValue / useState に t() を渡す
+    // ストーリーで生キーが初期値に固定される（useSuspense: false のため）。
+    // VRT/a11y はルートが空の間 waitForStoryReady で待つので、ready まで
+    // 何も描画しないことでベースライン汚染（生キーで撮れる）を防ぐ。
+    // 注: デコレーターと Story の hooks は同一コンポーネントに合成されるため、
+    // Story() の呼び分けを直接書くと hooks 数が変わり React #310 になる。
+    // 独立コンポーネント境界（I18nReadyGate）でゲートする。
+    ((Story) => React.createElement(I18nReadyGate, { story: Story })) satisfies Decorator,
     withThemeByDataAttribute({
       themes: {
         light: "light",
