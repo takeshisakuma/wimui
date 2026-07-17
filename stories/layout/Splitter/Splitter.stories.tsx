@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Splitter>;
 const PanelContent = ({
   children,
   color,
-  textColor = "color-mix(in srgb, var(--wim-color-primary) 80%, black)",
+  textColor = "var(--wim-color-text-accent)",
 }: {
   children: React.ReactNode;
   color: string;
@@ -55,7 +55,7 @@ export const Horizontal: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={30}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_left", "Left Panel")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_left", "Left Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={70}>
@@ -82,7 +82,7 @@ export const Vertical: Story = {
       >
         <Splitter orientation="vertical">
           <Splitter.Panel defaultSize={40}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_top", "Top Panel")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_top", "Top Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
@@ -108,7 +108,7 @@ export const MultiplePanels: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
@@ -138,7 +138,7 @@ export const Nested: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={25}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={75}>
@@ -172,7 +172,7 @@ export const Constraints: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel minSize={20} maxSize={50} defaultSize={30}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, white)" textColor="color-mix(in srgb, var(--wim-color-primary) 80%, black)">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
+            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel>

@@ -71,7 +71,7 @@ export const Preselected: Story = {
       { label: t("story.select_opt4"), value: "opt4", disabled: true },
       { label: t("story.select_opt5"), value: "opt5" },
     ];
-    return <Select {...args} options={options} defaultValue="opt2" />;
+    return <Select {...args} options={options} label={t("story.select_label")} defaultValue="opt2" />;
   },
 };
 
@@ -85,7 +85,7 @@ export const Disabled: Story = {
       { label: t("story.select_opt4"), value: "opt4", disabled: true },
       { label: t("story.select_opt5"), value: "opt5" },
     ];
-    return <Select {...args} options={options} disabled={true} defaultValue="opt1" />;
+    return <Select {...args} options={options} label={t("story.select_label")} disabled={true} defaultValue="opt1" />;
   },
 };
 

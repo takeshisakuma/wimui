@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Header } from "wimui";
+import { Header, Button } from "wimui";
 import type { HeaderProps } from "wimui";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
@@ -52,7 +52,7 @@ export const Default: Story = {
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story.header_login")}</button>
+          <Button size="sm">{t("story.header_login")}</Button>
         </Header.Section>
       </Header>
     );
@@ -75,7 +75,7 @@ export const Bordered: Story = {
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story.header_login")}</button>
+          <Button size="sm">{t("story.header_login")}</Button>
         </Header.Section>
       </Header>
     );
@@ -101,7 +101,7 @@ export const Glass: Story = {
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story.header_login")}</button>
+          <Button size="sm">{t("story.header_login")}</Button>
         </Header.Section>
       </Header>
     );
@@ -123,7 +123,7 @@ export const Sticky: Story = {
             <div style={{ fontWeight: "bold" }}>{t("story.header_sticky_title")}</div>
           </Header.Section>
           <Header.Section align="end">
-            <button>{t("story.header_action")}</button>
+            <Button size="sm">{t("story.header_action")}</Button>
           </Header.Section>
         </Header>
         <div style={{ padding: "20px" }}>
@@ -170,7 +170,7 @@ export const Playground: Story = {
             </nav>
           </Header.Section>
           <Header.Section align="end">
-            <button>{t("story.header_login")}</button>
+            <Button size="sm">{t("story.header_login")}</Button>
           </Header.Section>
         </Header>
         <div style={{ padding: "100px 20px 20px" }}>

@@ -726,7 +726,7 @@ export const ComparisonTable: StoryObj = {
                     fontWeight: 700,
                     background: "var(--wim-color-primary-muted)",
                     fontSize: "var(--wim-font-size-sm)",
-                    color: "var(--wim-color-primary)",
+                    color: "var(--wim-color-text-accent)",
                   }}
                 >
                   {t("compare.col_pro")}

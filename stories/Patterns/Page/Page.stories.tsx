@@ -379,7 +379,8 @@ export const MaintenancePage: StoryObj = {
             />
           </Stack>
 
-          <Alert intent="info" title={t("maintenance.eta_label")}>
+          {/* h1 直後の見出しなので h2（axe: heading-order） */}
+          <Alert intent="info" title={t("maintenance.eta_label")} titleTag="h2">
             {t("maintenance.eta")}
           </Alert>
 
@@ -638,7 +639,8 @@ export const ShoppingCart: StoryObj = {
             }}
           >
             <Stack gap="lg">
-              <Title tag="h3" size="md">
+              {/* h1 直後の見出しなので h2（axe: heading-order）。見た目は size で維持 */}
+              <Title tag="h2" size="md">
                 {t("docs_stories_recipes:cart.order_summary")}
               </Title>
               <Divider />

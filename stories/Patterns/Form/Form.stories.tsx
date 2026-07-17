@@ -547,6 +547,7 @@ export const ProgressChecklist: StoryObj = {
               <Progress
                 value={(completedCount / total) * 100}
                 intent={completedCount === total ? "success" : "primary"}
+                aria-label={t("checklist.title")}
               />
             </Stack>
 
@@ -576,8 +577,9 @@ export const ProgressChecklist: StoryObj = {
                     <span
                       style={{
                         textDecoration: checked[i] ? "line-through" : "none",
+                        // text-disabled は surface-variant 上で AA を割るため tertiary
                         color: checked[i]
-                          ? "var(--wim-color-text-disabled)"
+                          ? "var(--wim-color-text-tertiary)"
                           : "inherit",
                       }}
                     >

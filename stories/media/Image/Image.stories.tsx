@@ -241,7 +241,8 @@ export const AdvancedEffects: Story = {
                 }}
                 width={300}
               />
-              <div style={{ position: "absolute", bottom: "20px", left: "20px", color: "var(--wim-color-text-on-primary)", zIndex: 2 }}>
+              {/* 画像上のテキストはスクリム背景で実コントラストを担保する（axe: color-contrast） */}
+              <div style={{ position: "absolute", bottom: "12px", left: "12px", padding: "8px 12px", color: "var(--wim-color-white)", background: "var(--wim-color-overlay-strong)", borderRadius: "var(--wim-radius-sm)", zIndex: 2 }}>
                 <h4 style={{ margin: 0 }}>{t("story.image_advanced_text_over")}</h4>
                 <p style={{ margin: 0, fontSize: "0.8rem" }}>{t("story.image_advanced_overlay_readability")}</p>
               </div>

@@ -104,6 +104,7 @@ export const Vertical: Story = {
 
 export const Controlled: Story = {
   render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
     const demo = useDemo();
     const [pos, setPos] = useState(30);
     return (
@@ -115,6 +116,7 @@ export const Controlled: Story = {
           max={100}
           value={pos}
           onChange={(e) => setPos(Number(e.target.value))}
+          aria-label={t("story.imagecompare_position_label")}
           style={{ width: "480px" }}
         />
       </div>

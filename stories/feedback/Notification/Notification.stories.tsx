@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Notification } from "wimui";
+import { Notification, Button } from "wimui";
 
 
 const meta: Meta<typeof Notification> = {
@@ -100,12 +100,7 @@ export const Trigger: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "24px" }}>
-        <button
-          className="wim-button wim-button--primary"
-          onClick={() => setVisible(true)}
-        >
-          {t("story.notification_show")}
-        </button>
+        <Button onClick={() => setVisible(true)}>{t("story.notification_show")}</Button>
         {visible && (
           <div style={{ marginTop: "24px" }}>
             <Notification

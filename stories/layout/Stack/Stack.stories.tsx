@@ -31,7 +31,7 @@ export const Default: Story = {
       <Stack {...args}>
         <Box
           key="1"
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-primary)" }}
@@ -40,7 +40,7 @@ export const Default: Story = {
         </Box>
         <Box
           key="2"
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-success)" }}
@@ -49,7 +49,7 @@ export const Default: Story = {
         </Box>
         <Box
           key="3"
-          bg="color-mix(in srgb, var(--wim-color-warning) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-warning)" }}
@@ -72,7 +72,7 @@ export const Row: Story = {
       <Stack {...args}>
         <Box
           key="1"
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-primary)" }}
@@ -81,7 +81,7 @@ export const Row: Story = {
         </Box>
         <Box
           key="2"
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-success)" }}
@@ -90,7 +90,7 @@ export const Row: Story = {
         </Box>
         <Box
           key="3"
-          bg="color-mix(in srgb, var(--wim-color-warning) 12%, white)"
+          bg="color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))"
           p={20}
           radius={8}
           style={{ border: "1px solid var(--wim-color-warning)" }}
@@ -115,24 +115,24 @@ export const SpacingTokens: Story = {
           {t("story.stack_gap", "Gap: ")}xl
         </Box>
         <Stack direction="row" gap="xs">
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
         </Stack>
         <Stack direction="row" gap="lg">
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, white)" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
         </Stack>

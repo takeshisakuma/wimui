@@ -68,13 +68,13 @@ export const AlignEnd: Story = {
     children: (
       <>
         <div
-          style={{ height: "40px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, white)" }}
+          style={{ height: "40px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" }}
         />
         <div
-          style={{ height: "80px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-success) 12%, white)" }}
+          style={{ height: "80px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" }}
         />
         <div
-          style={{ height: "60px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-danger) 12%, white)" }}
+          style={{ height: "60px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))" }}
         />
       </>
     ),

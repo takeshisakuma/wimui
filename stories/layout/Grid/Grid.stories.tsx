@@ -33,12 +33,12 @@ type Story = StoryObj<typeof meta>;
 
 type BoxIntent = "primary" | "success" | "warning" | "danger" | "secondary" | "info";
 const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
-  primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",     text: "color-mix(in srgb, var(--wim-color-primary) 60%, black)" },
-  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))",    text: "color-mix(in srgb, var(--wim-color-success) 60%, black)" },
-  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))",     text: "color-mix(in srgb, var(--wim-color-warning) 60%, black)" },
-  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))", text: "color-mix(in srgb, var(--wim-color-danger) 60%, black)" },
-  secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-surface))",   text: "color-mix(in srgb, var(--wim-color-secondary) 60%, black)" },
-  info: { bg: "color-mix(in srgb, var(--wim-color-info) 12%, var(--wim-color-surface))", text: "color-mix(in srgb, var(--wim-color-info) 60%, black)" },
+  primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-accent)" },
+  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))",    text: "var(--wim-color-text-success)" },
+  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-warning)" },
+  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))", text: "var(--wim-color-text-danger)" },
+  secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-surface))",   text: "var(--wim-color-text-secondary)" },
+  info: { bg: "color-mix(in srgb, var(--wim-color-info) 12%, var(--wim-color-surface))", text: "var(--wim-color-text-info)" },
 };
 
 const Box = ({

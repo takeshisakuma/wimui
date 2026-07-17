@@ -13,13 +13,13 @@ const RevenueContent = () => (
 );
 
 const UsersContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-primary)" }}>
+  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-accent)" }}>
     2,841
   </div>
 );
 
 const TasksContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-warning)" }}>
+  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-warning)" }}>
     17
   </div>
 );
