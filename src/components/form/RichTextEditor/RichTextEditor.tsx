@@ -2,7 +2,27 @@ import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
+import { Input } from "../Input/Input";
+import { Button } from "../Button/Button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "../../overlay/Dialog/Dialog";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
+import {
+  createLink,
+  getActiveFormats,
+  getEditorRange,
+  removeAllFormatting,
+  removeLink,
+  setBlock,
+  toggleInline,
+  toggleList,
+} from "./commands";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -134,6 +154,8 @@ export type RichTextEditorLabels = {
   removeFormat?: string;
   toolbar?: string;
   linkPrompt?: string;
+  linkApply?: string;
+  linkCancel?: string;
 };
 
 export type RichTextEditorProps = {
@@ -249,6 +271,8 @@ export const RichTextEditor = ({
     removeFormat = t("a11y.rte_remove_format"),
     toolbar: toolbarAriaLabel = t("a11y.rte_toolbar"),
     linkPrompt = t("a11y.rte_link_prompt"),
+    linkApply = t("a11y.rte_link_apply"),
+    linkCancel = t("a11y.rte_link_cancel"),
   } = labels;
 
   const editorRef = React.useRef<HTMLDivElement>(null);
@@ -273,93 +297,127 @@ export const RichTextEditor = ({
     ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
     : undefined;
 
-  // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
   const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
-  React.useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = initialContentRef.current;
-      lastValueRef.current = initialContentRef.current;
-    }
-  }, []);
-
-  // Sync controlled value → DOM (skip if same to preserve cursor)
-  React.useEffect(() => {
-    if (value !== undefined && editorRef.current) {
-      if (editorRef.current.innerHTML !== value) {
-        editorRef.current.innerHTML = value;
-        lastValueRef.current = value;
-      }
-    }
-  }, [value]);
 
   const updateActiveFormats = React.useCallback(() => {
-    const active = new Set<string>();
-    try {
-      if (document.queryCommandState("bold")) active.add("bold");
-      if (document.queryCommandState("italic")) active.add("italic");
-      if (document.queryCommandState("underline")) active.add("underline");
-      if (document.queryCommandState("strikeThrough")) active.add("strikethrough");
-      if (document.queryCommandState("insertUnorderedList")) active.add("ul");
-      if (document.queryCommandState("insertOrderedList")) active.add("ol");
-      const block = document.queryCommandValue("formatBlock").toLowerCase().replace(/^<|>$/g, "");
-      if (block) active.add(block);
-    } catch {
-      // queryCommandState may throw in some environments
-    }
-    setActiveFormats(active);
+    if (!editorRef.current) return;
+    setActiveFormats(getActiveFormats(editorRef.current));
   }, []);
 
-  const execCommand = React.useCallback(
-    (command: string, value?: string) => {
-      if (isDisabled) return;
-      editorRef.current?.focus();
-      document.execCommand(command, false, value);
-      updateActiveFormats();
-      const html = editorRef.current?.innerHTML ?? "";
+  // ---- Undo/Redo 履歴 ----
+  // execCommand と違い手動 DOM 変更はネイティブ undo スタックに乗らないため、
+  // 履歴を内部で一元管理する。入力はデバウンスで、コマンドは実行前に記録し、
+  // Ctrl+Z / Ctrl+Y と beforeinput の historyUndo / historyRedo を横取りする。
+  // stack と index を別 ref に分け、更新は常に「新しい配列/値の再代入」だけにする
+  // （react-hooks/immutability が ref 由来のエイリアス変更を誤検知するため）
+  const historyStackRef = React.useRef<string[]>([]);
+  const historyIndexRef = React.useRef(-1);
+  const historyTimerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const HISTORY_LIMIT = 100;
+
+  const pushHistory = React.useCallback((html: string) => {
+    const stack = historyStackRef.current;
+    const index = historyIndexRef.current;
+    if (stack[index] === html) return;
+    let next = [...stack.slice(0, index + 1), html];
+    if (next.length > HISTORY_LIMIT) next = next.slice(1);
+    historyStackRef.current = next;
+    historyIndexRef.current = next.length - 1;
+  }, []);
+
+  const flushPendingHistory = React.useCallback(() => {
+    if (historyTimerRef.current !== undefined) {
+      clearTimeout(historyTimerRef.current);
+      historyTimerRef.current = undefined;
+      pushHistory(lastValueRef.current);
+    }
+  }, [pushHistory]);
+
+  const applyHistory = React.useCallback(
+    (direction: -1 | 1) => {
+      flushPendingHistory();
+      const stack = historyStackRef.current;
+      const nextIndex = historyIndexRef.current + direction;
+      if (nextIndex < 0 || nextIndex >= stack.length || !editorRef.current) return;
+      historyIndexRef.current = nextIndex;
+      const html = stack[nextIndex];
+      editorRef.current.innerHTML = html;
       lastValueRef.current = html;
       onChange?.(html);
+      // キャレットは末尾へ（選択座標までは復元しないライトな履歴）
+      const range = document.createRange();
+      range.selectNodeContents(editorRef.current);
+      range.collapse(false);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      updateActiveFormats();
     },
-    [isDisabled, onChange, updateActiveFormats],
+    [flushPendingHistory, onChange, updateActiveFormats],
+  );
+
+  /** ツールバーコマンド共通処理: 実行前スナップショット → 実行 → 通知 */
+  const runCommand = React.useCallback(
+    (command: (editor: HTMLElement) => void) => {
+      if (isDisabled || !editorRef.current) return;
+      const editor = editorRef.current;
+      // focus() は環境によって選択をリセットするため、退避してから復元する
+      const preserved = getEditorRange(editor)?.cloneRange() ?? null;
+      editor.focus();
+      if (preserved) {
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(preserved);
+      }
+      flushPendingHistory();
+      pushHistory(editor.innerHTML);
+      command(editor);
+      updateActiveFormats();
+      const html = editor.innerHTML;
+      lastValueRef.current = html;
+      pushHistory(html);
+      onChange?.(html);
+    },
+    [isDisabled, flushPendingHistory, pushHistory, onChange, updateActiveFormats],
   );
 
   const handleRemoveFormat = React.useCallback(() => {
-    if (isDisabled) return;
-    editorRef.current?.focus();
-    // If nothing is selected, select all content so removeFormat applies
-    const selection = window.getSelection();
-    if (selection && selection.isCollapsed && editorRef.current) {
-      const range = document.createRange();
-      range.selectNodeContents(editorRef.current);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-    // Clear block-level format (h1/h2/h3 → p)
-    try {
-      const block = document.queryCommandValue("formatBlock").toLowerCase().replace(/^<|>$/g, "");
-      if (block && !["p", "div", ""].includes(block)) {
-        document.execCommand("formatBlock", false, "p");
-      }
-    } catch {
-      // ignore — queryCommandValue may throw in some environments
-    }
-    // Clear inline formatting (bold, italic, underline, etc.)
-    document.execCommand("removeFormat", false, undefined);
-    updateActiveFormats();
-    const html = editorRef.current?.innerHTML ?? "";
-    lastValueRef.current = html;
-    onChange?.(html);
-  }, [isDisabled, onChange, updateActiveFormats]);
+    runCommand((editor) => removeAllFormatting(editor));
+  }, [runCommand]);
+
+  // ---- リンクダイアログ（window.prompt はブラウザモーダルで UX/a11y 難のため置換） ----
+  const [linkDialogOpen, setLinkDialogOpen] = React.useState(false);
+  const [linkUrl, setLinkUrl] = React.useState("https://");
+  const savedRangeRef = React.useRef<Range | null>(null);
 
   const handleInsertLink = React.useCallback(() => {
-    if (isDisabled) return;
-    editorRef.current?.focus();
+    if (isDisabled || !editorRef.current) return;
+    editorRef.current.focus();
+    const range = getEditorRange(editorRef.current);
+    savedRangeRef.current = range ? range.cloneRange() : null;
+    const selectedText = range?.toString() ?? "";
+    setLinkUrl(selectedText.startsWith("http") ? selectedText : "https://");
+    setLinkDialogOpen(true);
+  }, [isDisabled]);
+
+  const handleApplyLink = React.useCallback(() => {
+    const url = linkUrl.trim();
+    setLinkDialogOpen(false);
+    if (!url || !editorRef.current) return;
+    // ダイアログ操作で失われた選択を復元してから適用する
+    // （保存済み選択が無ければ末尾キャレットで挿入）
     const selection = window.getSelection();
-    const selectedText = selection?.toString() ?? "";
-    const url = window.prompt(linkPrompt, selectedText.startsWith("http") ? selectedText : "https://");
-    if (url) {
-      execCommand("createLink", url);
+    selection?.removeAllRanges();
+    if (savedRangeRef.current) {
+      selection?.addRange(savedRangeRef.current);
+    } else {
+      const range = document.createRange();
+      range.selectNodeContents(editorRef.current);
+      range.collapse(false);
+      selection?.addRange(range);
     }
-  }, [isDisabled, execCommand, linkPrompt]);
+    runCommand((editor) => createLink(editor, url));
+  }, [linkUrl, runCommand]);
 
   const handleInput = React.useCallback(() => {
     if (isComposingRef.current) return;
@@ -367,9 +425,45 @@ export const RichTextEditor = ({
     if (html !== lastValueRef.current) {
       lastValueRef.current = html;
       onChange?.(html);
+      // タイピングはデバウンスして履歴に積む
+      if (historyTimerRef.current !== undefined) clearTimeout(historyTimerRef.current);
+      historyTimerRef.current = setTimeout(() => {
+        historyTimerRef.current = undefined;
+        pushHistory(lastValueRef.current);
+      }, 400);
     }
     updateActiveFormats();
-  }, [onChange, updateActiveFormats]);
+  }, [onChange, pushHistory, updateActiveFormats]);
+
+  const handleBeforeInput = React.useCallback(
+    (e: React.FormEvent<HTMLDivElement>) => {
+      const inputType = (e.nativeEvent as InputEvent).inputType;
+      if (inputType === "historyUndo") {
+        e.preventDefault();
+        applyHistory(-1);
+      } else if (inputType === "historyRedo") {
+        e.preventDefault();
+        applyHistory(1);
+      }
+    },
+    [applyHistory],
+  );
+
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      const mod = e.ctrlKey || e.metaKey;
+      if (!mod) return;
+      const key = e.key.toLowerCase();
+      if (key === "z") {
+        e.preventDefault();
+        applyHistory(e.shiftKey ? 1 : -1);
+      } else if (key === "y") {
+        e.preventDefault();
+        applyHistory(1);
+      }
+    },
+    [applyHistory],
+  );
 
   const handleKeyUp = React.useCallback(() => {
     updateActiveFormats();
@@ -393,6 +487,28 @@ export const RichTextEditor = ({
     e.preventDefault();
   }, []);
 
+  // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
+  // 注: ref を参照する effect は、その ref を変更するコールバック定義より
+  // 後に置く必要がある（react-hooks/immutability）
+  React.useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.innerHTML = initialContentRef.current;
+      lastValueRef.current = initialContentRef.current;
+      historyStackRef.current = [initialContentRef.current];
+      historyIndexRef.current = 0;
+    }
+  }, []);
+
+  // Sync controlled value → DOM (skip if same to preserve cursor)
+  React.useEffect(() => {
+    if (value !== undefined && editorRef.current) {
+      if (editorRef.current.innerHTML !== value) {
+        editorRef.current.innerHTML = value;
+        lastValueRef.current = value;
+      }
+    }
+  }, [value]);
+
   const renderToolbarItem = React.useCallback((item: RichTextEditorToolbarItem, index: number) => {
     if (item === "separator") {
       return <span key={`sep-${index}`} className={styles.toolbarSep} aria-hidden="true" />;
@@ -406,55 +522,55 @@ export const RichTextEditor = ({
     switch (item) {
       case "bold":
         return (
-          <ToolbarButton key="bold" {...itemProps} title={bold} onClick={() => execCommand("bold")}>
+          <ToolbarButton key="bold" {...itemProps} title={bold} onClick={() => runCommand((ed) => toggleInline(ed, "bold"))}>
             <BoldIcon />
           </ToolbarButton>
         );
       case "italic":
         return (
-          <ToolbarButton key="italic" {...itemProps} title={italic} onClick={() => execCommand("italic")}>
+          <ToolbarButton key="italic" {...itemProps} title={italic} onClick={() => runCommand((ed) => toggleInline(ed, "italic"))}>
             <ItalicIcon />
           </ToolbarButton>
         );
       case "underline":
         return (
-          <ToolbarButton key="underline" {...itemProps} title={underline} onClick={() => execCommand("underline")}>
+          <ToolbarButton key="underline" {...itemProps} title={underline} onClick={() => runCommand((ed) => toggleInline(ed, "underline"))}>
             <UnderlineIcon />
           </ToolbarButton>
         );
       case "strikethrough":
         return (
-          <ToolbarButton key="strikethrough" {...itemProps} title={strikethrough} onClick={() => execCommand("strikeThrough")}>
+          <ToolbarButton key="strikethrough" {...itemProps} title={strikethrough} onClick={() => runCommand((ed) => toggleInline(ed, "strikethrough"))}>
             <StrikethroughIcon />
           </ToolbarButton>
         );
       case "h1":
         return (
-          <ToolbarButton key="h1" {...itemProps} active={activeFormats.has("h1")} title={h1} onClick={() => execCommand("formatBlock", "h1")}>
+          <ToolbarButton key="h1" {...itemProps} active={activeFormats.has("h1")} title={h1} onClick={() => runCommand((ed) => setBlock(ed, "h1"))}>
             <span aria-hidden="true">H1</span>
           </ToolbarButton>
         );
       case "h2":
         return (
-          <ToolbarButton key="h2" {...itemProps} active={activeFormats.has("h2")} title={h2} onClick={() => execCommand("formatBlock", "h2")}>
+          <ToolbarButton key="h2" {...itemProps} active={activeFormats.has("h2")} title={h2} onClick={() => runCommand((ed) => setBlock(ed, "h2"))}>
             <span aria-hidden="true">H2</span>
           </ToolbarButton>
         );
       case "h3":
         return (
-          <ToolbarButton key="h3" {...itemProps} active={activeFormats.has("h3")} title={h3} onClick={() => execCommand("formatBlock", "h3")}>
+          <ToolbarButton key="h3" {...itemProps} active={activeFormats.has("h3")} title={h3} onClick={() => runCommand((ed) => setBlock(ed, "h3"))}>
             <span aria-hidden="true">H3</span>
           </ToolbarButton>
         );
       case "ul":
         return (
-          <ToolbarButton key="ul" {...itemProps} title={ul} onClick={() => execCommand("insertUnorderedList")}>
+          <ToolbarButton key="ul" {...itemProps} title={ul} onClick={() => runCommand((ed) => toggleList(ed, "ul"))}>
             <ListIcon />
           </ToolbarButton>
         );
       case "ol":
         return (
-          <ToolbarButton key="ol" {...itemProps} title={ol} onClick={() => execCommand("insertOrderedList")}>
+          <ToolbarButton key="ol" {...itemProps} title={ol} onClick={() => runCommand((ed) => toggleList(ed, "ol"))}>
             <OrderedListIcon />
           </ToolbarButton>
         );
@@ -466,7 +582,7 @@ export const RichTextEditor = ({
         );
       case "unlink":
         return (
-          <ToolbarButton key="unlink" {...itemProps} title={unlink} onClick={() => execCommand("unlink")}>
+          <ToolbarButton key="unlink" {...itemProps} title={unlink} onClick={() => runCommand((ed) => removeLink(ed))}>
             <UnlinkIcon />
           </ToolbarButton>
         );
@@ -483,7 +599,7 @@ export const RichTextEditor = ({
     activeFormats,
     isDisabled,
     bold, italic, underline, strikethrough, h1, h2, h3, ul, ol, link, unlink, removeFormat,
-    execCommand,
+    runCommand,
     handleInsertLink,
     handleRemoveFormat,
   ]);
@@ -551,11 +667,46 @@ export const RichTextEditor = ({
 
           style={{ minHeight: typeof minHeight === "number" ? `${minHeight}px` : minHeight, outline: "none" }}
           onInput={handleInput}
+          onBeforeInput={handleBeforeInput}
+          onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
           onMouseUp={handleMouseUp}
           onCompositionStart={handleCompositionStart}
           onCompositionEnd={handleCompositionEnd}
         />
+
+        {/* リンク挿入ダイアログ（window.prompt はブラウザモーダルで UX/a11y 難のため不使用） */}
+        <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{link}</DialogTitle>
+            </DialogHeader>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleApplyLink();
+              }}
+            >
+              <Input
+                label={linkPrompt}
+                type="url"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                fullWidth
+              />
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="ghost" type="button">
+                    {linkCancel}
+                  </Button>
+                </DialogClose>
+                <Button variant="solid" type="submit">
+                  {linkApply}
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
     </FieldTemplate>
   );
