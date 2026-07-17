@@ -142,6 +142,9 @@
   "engines": {
     "node": ">=22.0.0"
   },
+  "browserslist": [
+    "baseline widely available"
+  ],
   "scripts": {
     "dev": "npm run generate:icons && npm run i18n:bundle && vite",
     "build": "npm run generate:icons && npm run i18n:bundle && vite build && vite build --mode umd && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
@@ -312,6 +315,7 @@
     "vite-plugin-image-optimizer": "2.0.3",
     "vite-plugin-svgr": "5.2.0",
     "vitest": "4.1.10",
+    "web-features": "3.34.0",
     "zod": "4.4.3"
   },
   "peerDependencies": {

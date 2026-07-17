@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **VRT の workflow_dispatch**（update / compare）。ただし update は「そのブランチへの push がすべて完了してから最後に 1 回」（コミットバックが素の git push のため、途中 push で確実に失敗する）
 - **Dependabot の minor / patch PR のマージ**（`@dependabot rebase` → CI 全緑を確認してから。major は個別判断＝ユーザー確認）
 - **CI の再実行・キャンセル**（スーパーシード済みの古いランの整理を含む）
-- **a11y の赤の「既存負債（IMPROVEMENTS.md T12）」判定**: PR が変更したストーリーだけを a11y スペックと同一設定のローカル axe で検査し、main と違反セットが完全一致した場合のみ「新規違反ゼロ」として扱ってよい。一致しなければ止めて報告
+- **a11y の赤の扱い**: T12 のバックログは解消済み（2026-07-17、全量全緑）のため、a11y の赤は原則「新規違反」。PR の変更起因なら修正して進めてよい。変更と無関係に見える赤（環境差・フレーク疑い）は、同一ストーリーをローカル axe（スペックと同一設定）で再現確認してから判断し、確信が持てなければ止めて報告
 
 必ずユーザー確認が要ること:
 
