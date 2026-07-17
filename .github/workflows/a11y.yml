@@ -7,6 +7,7 @@ on:
       - "stories/**"
       - "public/locales/**"
       - "vrt/a11y.spec.ts"
+      - "vrt/story-ready.ts"
       - "playwright.config.ts"
   push:
     branches: [main]
@@ -15,10 +16,21 @@ on:
       - "stories/**"
       - "public/locales/**"
 
+# 同一ブランチの古いランを自動キャンセル
+concurrency:
+  group: a11y-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   a11y:
-    name: WCAG 2.1 AA (axe-core)
+    name: WCAG 2.1 AA (axe-core) (${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
+    # 単一ジョブだと約35分かかるためシャーディング（VRT と同構成）
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
 
     steps:
       - name: Checkout
@@ -40,12 +52,12 @@ jobs:
         run: npm run build-storybook
 
       - name: Run axe-core accessibility tests
-        run: npx playwright test vrt/a11y.spec.ts
+        run: npx playwright test vrt/a11y.spec.ts --shard=${{ matrix.shard }}/4
 
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: a11y-report
+          name: a11y-report-${{ matrix.shard }}
           path: playwright-report/
           retention-days: 7
