@@ -13,6 +13,8 @@
     "rte_italic": "Itálico",
     "rte_link": "Inserir link",
     "rte_link_prompt": "Digite a URL",
+    "rte_link_apply": "Aplicar",
+    "rte_link_cancel": "Cancelar",
     "rte_ol": "Lista numerada",
     "rte_remove_format": "Remover formatação",
     "rte_strikethrough": "Tachado",

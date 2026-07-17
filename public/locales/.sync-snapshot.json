@@ -1323,6 +1323,8 @@
       "rte_unlink": "Remove link",
       "rte_remove_format": "Remove formatting",
       "rte_link_prompt": "Enter URL",
+      "rte_link_apply": "Apply",
+      "rte_link_cancel": "Cancel",
       "expand": "Expand",
       "collapse": "Collapse",
       "expand_label": "Expand {{label}}",

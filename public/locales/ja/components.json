@@ -13,6 +13,8 @@
     "rte_italic": "斜体",
     "rte_link": "リンクを挿入",
     "rte_link_prompt": "URLを入力してください",
+    "rte_link_apply": "適用",
+    "rte_link_cancel": "キャンセル",
     "rte_ol": "番号付きリスト",
     "rte_remove_format": "書式をクリア",
     "rte_strikethrough": "取り消し線",

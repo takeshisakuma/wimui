@@ -91,20 +91,32 @@ describe("RichTextEditor", () => {
     expect(onChange).toHaveBeenCalledWith("Hello中");
   });
 
-  it("opens window.prompt when link button is clicked", () => {
-    const promptSpy = vi.spyOn(window, "prompt").mockReturnValueOnce(null);
+  it("opens the link dialog when link button is clicked", () => {
     render(<RichTextEditor toolbar={["link"]} />);
-    fireEvent.click(screen.getByRole("button", { name: /link/i }));
-    expect(promptSpy).toHaveBeenCalled();
-    promptSpy.mockRestore();
+    fireEvent.click(screen.getByRole("button", { name: /insert link/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("https://")).toBeInTheDocument();
   });
 
-  it("does not call onChange when link prompt is cancelled", () => {
-    vi.spyOn(window, "prompt").mockReturnValueOnce(null);
+  it("does not call onChange when the link dialog is cancelled", () => {
     const onChange = vi.fn();
     render(<RichTextEditor toolbar={["link"]} onChange={onChange} />);
-    fireEvent.click(screen.getByRole("button", { name: /link/i }));
+    fireEvent.click(screen.getByRole("button", { name: /insert link/i }));
+    fireEvent.click(screen.getByRole("button", { name: /cancel/i }));
     expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("inserts a link via the dialog", () => {
+    const onChange = vi.fn();
+    render(<RichTextEditor toolbar={["link"]} defaultValue="<p></p>" onChange={onChange} />);
+    // ダイアログを開くと Input も textbox になるため、先にエディタを取得しておく
+    const editor = screen.getByRole("textbox");
+    fireEvent.click(screen.getByRole("button", { name: /insert link/i }));
+    const input = screen.getByDisplayValue("https://");
+    fireEvent.change(input, { target: { value: "https://example.com" } });
+    fireEvent.click(screen.getByRole("button", { name: /apply/i }));
+    expect(onChange).toHaveBeenCalled();
+    expect(editor.querySelector('a[href="https://example.com"]')).not.toBeNull();
   });
 
   it("link button is disabled when component is disabled", () => {
@@ -220,12 +232,48 @@ describe("RichTextEditor", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-required", "true");
   });
 
-  it("uses custom link prompt label", () => {
-    const promptSpy = vi.spyOn(window, "prompt").mockReturnValueOnce(null);
+  it("uses custom link prompt label in the dialog", () => {
     render(<RichTextEditor toolbar={["link"]} labels={{ linkPrompt: "URLを入力" }} />);
-    fireEvent.click(screen.getByRole("button", { name: /link/i }));
-    expect(promptSpy).toHaveBeenCalledWith("URLを入力", expect.any(String));
-    promptSpy.mockRestore();
+    fireEvent.click(screen.getByRole("button", { name: /insert link/i }));
+    expect(screen.getByText("URLを入力")).toBeInTheDocument();
+  });
+
+  it("applies bold to the selected text via the toolbar", () => {
+    const onChange = vi.fn();
+    render(<RichTextEditor toolbar={["bold"]} defaultValue="<p>Hello</p>" onChange={onChange} />);
+    const editor = screen.getByRole("textbox");
+    const text = editor.querySelector("p")!.firstChild as Text;
+    const range = document.createRange();
+    range.setStart(text, 0);
+    range.setEnd(text, 5);
+    const selection = window.getSelection()!;
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    fireEvent.click(screen.getByRole("button", { name: /bold/i }));
+    expect(editor.innerHTML).toBe("<p><strong>Hello</strong></p>");
+    expect(onChange).toHaveBeenCalledWith("<p><strong>Hello</strong></p>");
+  });
+
+  it("undoes and redoes a toolbar command with Ctrl+Z / Ctrl+Y", () => {
+    render(<RichTextEditor toolbar={["bold"]} defaultValue="<p>Hello</p>" />);
+    const editor = screen.getByRole("textbox");
+    const text = editor.querySelector("p")!.firstChild as Text;
+    const range = document.createRange();
+    range.setStart(text, 0);
+    range.setEnd(text, 5);
+    const selection = window.getSelection()!;
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    fireEvent.click(screen.getByRole("button", { name: /bold/i }));
+    expect(editor.innerHTML).toBe("<p><strong>Hello</strong></p>");
+
+    fireEvent.keyDown(editor, { key: "z", ctrlKey: true });
+    expect(editor.innerHTML).toBe("<p>Hello</p>");
+
+    fireEvent.keyDown(editor, { key: "y", ctrlKey: true });
+    expect(editor.innerHTML).toBe("<p><strong>Hello</strong></p>");
   });
 
   it("renders all heading toolbar items", () => {

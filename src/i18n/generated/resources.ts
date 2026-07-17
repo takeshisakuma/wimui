@@ -117,7 +117,9 @@ export const wimResources: WimResources = {
         "rte_link": "Insert link",
         "rte_unlink": "Remove link",
         "rte_remove_format": "Remove formatting",
-        "rte_link_prompt": "Enter URL"
+        "rte_link_prompt": "Enter URL",
+        "rte_link_apply": "Apply",
+        "rte_link_cancel": "Cancel"
       },
       "signature": {
         "clear": "Clear"
@@ -393,6 +395,8 @@ export const wimResources: WimResources = {
         "rte_italic": "斜体",
         "rte_link": "リンクを挿入",
         "rte_link_prompt": "URLを入力してください",
+        "rte_link_apply": "適用",
+        "rte_link_cancel": "キャンセル",
         "rte_ol": "番号付きリスト",
         "rte_remove_format": "書式をクリア",
         "rte_strikethrough": "取り消し線",
@@ -676,6 +680,8 @@ export const wimResources: WimResources = {
         "rte_italic": "Itálico",
         "rte_link": "Inserir link",
         "rte_link_prompt": "Digite a URL",
+        "rte_link_apply": "Aplicar",
+        "rte_link_cancel": "Cancelar",
         "rte_ol": "Lista numerada",
         "rte_remove_format": "Remover formatação",
         "rte_strikethrough": "Tachado",

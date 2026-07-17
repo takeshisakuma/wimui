@@ -46,6 +46,11 @@ export type HeatmapProps = {
    * @default ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"]
    */
   colorRange?: [string, string];
+  /**
+   * Whether to animate the cells on mount.
+   * @default false
+   */
+  animated?: boolean;
 };
 
 export const Heatmap = ({
@@ -56,6 +61,7 @@ export const Heatmap = ({
   width = "100%",
   title,
   colorRange = ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"],
+  animated = false,
 }: HeatmapProps) => {
   // Convert x/y labels to numeric indexes for ScatterChart
   const formattedData = data.map((d) => ({
@@ -125,7 +131,9 @@ export const Heatmap = ({
                 return null;
               }}
             />
-            <Scatter data={formattedData} shape="square">
+            {/* 既定でアニメーション無効（他チャートの animated 規約と統一。
+                有効のままだと VRT update がセル描画前の空フレームを掴み得る） */}
+            <Scatter data={formattedData} shape="square" isAnimationActive={animated}>
               {formattedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={getColor(entry.value)} />
               ))}
