@@ -176,7 +176,9 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
           </div>
         </div>
 
-        <div ref={bodyRef} className={styles.body} role="log" aria-live="polite" aria-label={title}>
+        {/* スクロール可能なログはキーボードで到達可能にする（axe: scrollable-region-focusable。
+            オーバーフローの有無はフォントメトリクス依存で CI Linux のみ発生し得る） */}
+        <div ref={bodyRef} className={styles.body} role="log" aria-live="polite" aria-label={title} tabIndex={0}>
           {lines.map((line, i) => (
             <div
               key={line.id ?? i}

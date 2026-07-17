@@ -93,8 +93,17 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
           // goto+固定300ms だけではコード分割ストーリーのマウント前に axe が
           // 走り、空 root（旧サーバ構成ではマネージャ UI）を検査してしまう。
           // VRT と同じマウント待ちを使う。
+          await page.emulateMedia({ reducedMotion: "reduce" });
           await page.goto(url, { waitUntil: "domcontentloaded" });
           await waitForStoryReady(page);
+
+          // フェードイン途中の半透明テキストを axe が拾うと color-contrast が
+          // 非決定的に落ちる（CI 実測: Snackbar の enter transition）。
+          // トランジション/アニメーションを止めて最終状態で計測する。
+          await page.addStyleTag({
+            content:
+              "*, *::before, *::after { transition: none !important; animation: none !important; }",
+          });
 
           const results = await analyzeWithRetry(
             page,
