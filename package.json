@@ -194,6 +194,8 @@
     "check:imports": "node scripts/check-imports.js",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
+    "smoke:pnpm": "npm run build && node scripts/smoke/run.mjs --pm pnpm",
+    "smoke:treeshake": "npm run build && node scripts/smoke/run.mjs --treeshake",
     "smoke:nobuild": "node scripts/smoke/run.mjs",
     "audit-mdx": "node scripts/audit-mdx.js",
     "audit:all": "node scripts/audit-all.js",

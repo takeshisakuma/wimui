@@ -11,11 +11,31 @@ VRT / a11y は **内部の開発品質**ツールで、`src` を alias でビル
 ## 実行
 
 ```bash
-npm run smoke          # build → bare プロファイル（react/react-dom のみ）
-npm run smoke:full     # build → full プロファイル（全 optional peer 導入）
-npm run smoke:nobuild  # 既存 dist で bare（ローカル反復用）
+npm run smoke            # build → bare プロファイル（react/react-dom のみ）
+npm run smoke:full       # build → full プロファイル（全 optional peer 導入）
+npm run smoke:pnpm       # build → bare を pnpm(strict) で install（peer 宣言漏れを露呈）
+npm run smoke:treeshake  # build → bare + tree-shaking 検証（下記）
+npm run smoke:nobuild    # 既存 dist で bare（ローカル反復用）
 SMOKE_KEEP=1 npm run smoke:nobuild   # 失敗調査用に一時ディレクトリを残す
+
+# オプション（run.mjs 直叩き）
+node scripts/smoke/run.mjs --pm pnpm --full   # full を pnpm strict で
+node scripts/smoke/run.mjs --treeshake        # tree-shaking 検証を追加
 ```
+
+## tree-shaking 検証（`--treeshake`）
+
+`import { Button } from "wimui"` だけを **react/react-dom のみ external** で esbuild バンドルし、
+**未使用の optional-peer 依存コード（recharts / react-markdown / fullcalendar 等）が落ちる**ことを検証する。
+tree-shaking が効いていれば未 install の optional peer を解決しにいかないので bundle が成功し、
+出力に optional-peer マーカー（`recharts` / `AreaChart` / `MarkdownRenderer` 等）が含まれない。
+効いていなければ未解決 import で bundle が失敗する＝「Button だけ欲しいのに recharts が入る」事故を検出。
+
+## パッケージマネージャ（`--pm npm|pnpm|yarn`）
+
+既定は npm。**pnpm** は strict な node_modules（phantom deps 禁止）で `peerDependencies` の宣言漏れを
+露呈させるため、install→import が通るかを別マネージャでも検査する（pnpm/yarn はローカル未導入でも
+`npx` 経由で取得して実行）。
 
 ## 仕組み
 
