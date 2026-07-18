@@ -31,7 +31,7 @@ export const Overview: StoryObj = {
     ];
 
     const initialData = [
-      { id: "1", name: "John Doe", age: 30, email: "john@example.com" },
+      { id: "1", name: "Priya Nair", age: 30, email: "priya@example.com" },
       { id: "2", name: "Jane Doe", age: 25, email: "jane@example.com" },
       { id: "3", name: "Bob Smith", age: 40, email: "bob@example.com" },
     ];
@@ -77,7 +77,7 @@ export const Overview: StoryObj = {
                 <Table.Row>
                   <Table.Cell>{t("audit:sample_name_john")}</Table.Cell>
                   <Table.Cell>30</Table.Cell>
-                  <Table.Cell>john@example.com</Table.Cell>
+                  <Table.Cell>priya@example.com</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>{t("audit:sample_name_jane")}</Table.Cell>
@@ -101,7 +101,7 @@ export const Overview: StoryObj = {
                 <Table.Row>
                   <Table.Cell>{t("audit:sample_name_john")}</Table.Cell>
                   <Table.Cell>30</Table.Cell>
-                  <Table.Cell>john@example.com</Table.Cell>
+                  <Table.Cell>priya@example.com</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>{t("audit:sample_name_jane")}</Table.Cell>

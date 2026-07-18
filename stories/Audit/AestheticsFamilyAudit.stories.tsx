@@ -176,13 +176,13 @@ export const Overview: StoryObj = {
               borderRadius: "var(--wim-radius-lg)",
               overflow: "hidden",
               position: "relative",
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+              background: "url(/images/sample-landscape.png) center / cover no-repeat",
             }}>
               <Header glass fixed={false} style={{ position: "absolute", top: 0 }}>
                 <Flex align="center" justify="between" style={{ height: "100%", paddingLeft: "var(--wim-spacing-md)", paddingRight: "var(--wim-spacing-md)", width: "100%" }}>
                    {/* i18n-ignore-next-line — ブランド名 */}
                    <Title tag="h4" size="md" style={{ color: "var(--wim-color-text-on-primary)" }}>WIM UI</Title>
-                   <Avatar size="sm" src="https://i.pravatar.cc/150?u=wim" />
+                   <Avatar size="sm" initials="WU" />
                 </Flex>
               </Header>
               <Box p="xl" pt="80px">
