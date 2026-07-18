@@ -49,6 +49,9 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   // 行高の px 丸めがラン間で 1px ずれ、3 行目以降が累積シフトする（8,105px 差・
   // リトライ 3 回とも同一 = ラン内では安定）。--default と同じ症状
   "components-visualization-scheduleview--month-view",
+  // Day View も FullCalendar の time-grid（now インジケータ+行高 px 丸め）で
+  // ラン間 6,057px 差。--default / --month-view と同症状（T17 の PR で検出）
+  "components-visualization-scheduleview--day-view",
   "components-visualization-nodegraph--with-mini-map",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
