@@ -44,8 +44,26 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Build
         run: npm run build
-      - name: Smoke (bare profile)
-        run: node scripts/smoke/run.mjs
+      - name: Smoke (bare profile) + tree-shaking
+        # --treeshake は bare の全アサート + esbuild による tree-shaking 検証
+        # （Button 単体 import が未使用 optional-peer コードを引き込まないこと）
+        run: node scripts/smoke/run.mjs --treeshake
+
+  pnpm:
+    name: Smoke (pnpm strict)
+    # pnpm の strict node_modules で peerDependencies 宣言漏れを露呈させる
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - name: Build
+        run: npm run build
+      - name: Smoke (bare profile via pnpm)
+        run: node scripts/smoke/run.mjs --pm pnpm
 
   full:
     name: Smoke (full)
