@@ -99,10 +99,40 @@ jobs:
             test-results/
           retention-days: 14
 
+  update-gate:
+    # ベースライン更新フローの品質ゲート。コミットバックは GITHUB_TOKEN push のため
+    # PR head で Lint/Unit を再起動できない（GitHub の再帰防止仕様）。そこで update フロー
+    # 内で lint.yml と同等の軽量ゲートを走らせ、通らなければ commit-snapshots へ進めない。
+    # これがないと、token-snapshot の drift 等を含む変更でもベースラインが更新され、
+    # [skip ci] のチェックレス head として main にすり抜ける（2026-07-18 T10 で実発生）。
+    name: Update gate (lint & audit)
+    if: ${{ github.event.inputs.update_snapshots == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: StyleLint
+        run: npm run stylelint
+      - name: Peer import paths
+        run: npm run check:imports
+      - name: Library structural audit
+        run: npm run audit:lib
+
   commit-snapshots:
     name: Commit updated snapshots
     if: ${{ github.event.inputs.update_snapshots == 'true' }}
-    needs: vrt
+    needs: [vrt, update-gate]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -129,6 +159,9 @@ jobs:
           if git diff --staged --quiet; then
             echo "No snapshot changes to commit."
           else
+            # [skip ci] 付き（このコミットバックは GITHUB_TOKEN push のためどのみち
+            # workflow を再起動しない）。品質ゲートは下の update-gate ジョブが update フロー
+            # 内で検証済みで、それが通らないと commit-snapshots に到達しない（needs 参照）。
             git commit -m "chore: update VRT baseline snapshots [skip ci]"
             git pull --rebase origin "${{ github.head_ref || github.ref_name }}"
             git push
