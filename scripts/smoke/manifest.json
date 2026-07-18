@@ -1,0 +1,34 @@
+{
+  "_comment": "tarball スモークゲートの契約。bareRequired は react/react-dom のみで import 可能でなければならない公開サブパス。peerDependent は optional peer が要るため full プロファイルでのみ必須（bare では報告のみ）。初回実測で data-display/media が bare-safe と判明したら bareRequired へ昇格する。",
+  "bareRequired": [
+    ".",
+    "./tokens",
+    "./icons",
+    "./typography",
+    "./layout",
+    "./form",
+    "./feedback",
+    "./navigation",
+    "./overlay",
+    "./media"
+  ],
+  "typesOnly": ["./tokens"],
+  "peerDependent": [
+    "./data-display",
+    "./charts",
+    "./ai",
+    "./rhf"
+  ],
+  "rootValueExports": [
+    "Button",
+    "Title",
+    "WimProvider",
+    "setWimTheme",
+    "setWimDensity",
+    "useWim",
+    "ThemeToggle"
+  ],
+  "css": ["wimui/styles.css", "wimui/reset.css"],
+  "cssMustContain": "--wim-",
+  "locale": "wimui/locales/en/common.json"
+}

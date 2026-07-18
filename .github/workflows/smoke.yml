@@ -1,0 +1,65 @@
+name: Tarball Smoke
+
+# 公開される tarball を隔離環境に install し、実際に import・render・CSS/locale 解決を検査する。
+# VRT / a11y（内部の開発品質）とは独立した「公開して動くか」の signal。
+# bare = react/react-dom のみ（optional peer 不在での barrel crash 回帰ガード）。
+# full = 全 optional peer 導入（peer 依存サブパスの実動作）。手動 / 週次で実行。
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "public/locales/**"
+      - "tokens/**"
+      - "package.json"
+      - "vite.config.ts"
+      - "scripts/smoke/**"
+      - "scripts/build-style-entries.js"
+      - "scripts/fix-cjs-empty-css.js"
+      - "scripts/prune-dist-assets.js"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+  workflow_dispatch:
+  schedule:
+    # 週次（月曜 06:00 UTC）に full プロファイルも回す
+    - cron: "0 6 * * 1"
+
+concurrency:
+  group: smoke-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  bare:
+    name: Smoke (bare)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - name: Build
+        run: npm run build
+      - name: Smoke (bare profile)
+        run: node scripts/smoke/run.mjs
+
+  full:
+    name: Smoke (full)
+    # full は optional peer を大量 install するため、手動 dispatch と週次スケジュールのみ
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - name: Build
+        run: npm run build
+      - name: Smoke (full profile)
+        run: node scripts/smoke/run.mjs --full
