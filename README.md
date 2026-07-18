@@ -46,19 +46,13 @@ Core (the root `wimui`) needs neither zod nor RHF. For optional peers such as ch
 
 ## Installation
 
-Not yet published to npm (`private: true` in `package.json`). To use it, build a package from this repository.
-
 ```bash
-# In this repository
-git clone https://github.com/takeshisakuma/wimui.git
-cd wimui
-npm install
-npm run build
-npm pack    # produces wimui-0.1.0.tgz
-
-# In your consuming app
-npm install /path/to/wimui-0.1.0.tgz
+npm install wimui
+# peers (React 19):
+npm install react@^19 react-dom@^19
 ```
+
+Optional features need their own peer (see "Optional peerDependencies"): e.g. `npm install recharts` for `wimui/charts`.
 
 You do **not** need `i18next` / `react-i18next` or any other i18n library. Translation resources are bundled and do not depend on a specific i18n library (see "Internationalization" below).
 
@@ -370,24 +364,9 @@ Each built module has a `"use client"` directive prepended automatically. You ca
 
 As an exception, `wimui/tokens` is a types-only module, so it has no `"use client"` and can be referenced from server components too.
 
-## About npm publishing
+## Releasing
 
-Because of `private: true`, it is not published for now. To publish, remove `"private": true` from `package.json` (the package name `wimui` was confirmed available on npm as of June 2026).
-
-Releases go through [changesets](https://github.com/changesets/changesets).
-
-```bash
-npm run changeset   # record change notes and semver (creates files in .changeset/)
-npm run version     # apply changesets, updating package.json version and CHANGELOG.md
-npm run release     # build, then npm publish (prepublishOnly also builds on manual publish)
-```
-
-Pre-publish checklist:
-1. Remove `private: true`
-2. Add the first-release changeset with `npm run changeset`
-3. Verify the tarball contents with `npm run build && npm pack --dry-run`
-4. Set `NPM_TOKEN` in GitHub Secrets (for CI's `release.yml`)
-5. Update the "not yet published" note in the README
+Published to npm via [changesets](https://github.com/changesets/changesets) + GitHub Actions. Add a changeset with `npm run changeset`; merging the auto-generated "Version Packages" PR publishes the release (with provenance). See [`RELEASING.md`](./RELEASING.md) for the full runbook.
 
 ---
 
