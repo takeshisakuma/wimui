@@ -1,0 +1,29 @@
+name: Dependency Audit
+
+# サプライチェーン対策。依存に high 以上の既知脆弱性が入ったら落とす。
+# 依存が変わる PR と、週次（新規公表の脆弱性を拾う）で実行。
+on:
+  pull_request:
+    paths:
+      - "package.json"
+      - "package-lock.json"
+  schedule:
+    # 毎週月曜 07:00 UTC
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: npm audit (high+)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      # high / critical があれば非0終了して落とす。moderate 以下は許容
+      # （false positive が多く運用が回らなくなるため）。必要なら --audit-level を上げる。
+      - name: npm audit
+        run: npm audit --audit-level=high

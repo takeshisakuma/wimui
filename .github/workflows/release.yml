@@ -10,6 +10,10 @@ jobs:
   release:
     name: Changesets Release
     runs-on: ubuntu-latest
+    # publish 用 Secret（NPM_TOKEN）はこの Environment に置く。GitHub 側で
+    # `release` Environment に required reviewer を設定すると、publish 前に
+    # 手動承認が必須になる（悪意ある PR による NPM_TOKEN 流出への耐性）。
+    environment: release
     permissions:
       contents: write
       pull-requests: write
@@ -41,3 +45,8 @@ jobs:
           # setup-node の registry-url が生成する .npmrc は NODE_AUTH_TOKEN を
           # 参照するため、これがないと npm publish が E404 で失敗する
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # npm provenance を有効化（id-token: write と組で機能）。公開物に
+          # 「この GitHub リポジトリの該当 commit / Actions で作られた」ことの
+          # 証明が付き、npm ページに Provenance バッジが出る＝なりすまし publish
+          # ・改ざんを消費者が検証できる。公開リポジトリ + public パッケージが前提。
+          NPM_CONFIG_PROVENANCE: "true"
