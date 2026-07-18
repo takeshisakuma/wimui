@@ -219,6 +219,9 @@
     "scenario_payment_title": "Payment complete"
   },
   "config": {
+    "install_title": "Install",
+    "install_note": "Available on npm. Optional features need their own peer (see the scopes below).",
+    "install_npm_link": "View on npm",
     "scope_title": "Scope (Core / optional)",
     "scope_desc": "There is one npm package (`wimui`). Think in scopes: start with Core; pull optional subpaths only when you need them. This is not a multi-package monorepo. Optional components stay off the root barrel so apps that never use charts/AI/RHF do not pull those peers into resolve or mental load.",
     "scope_header_scope": "Scope",

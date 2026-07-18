@@ -2,6 +2,8 @@
 
 [English](./README.md) · [日本語](./README.ja.md)
 
+[![npm version](https://img.shields.io/npm/v/wimui.svg)](https://www.npmjs.com/package/wimui) [![license](https://img.shields.io/npm/l/wimui.svg)](./LICENSE)
+
 A React component library with 200+ components, design tokens, dark mode, internationalization (en / ja / pt-BR), and WAI-ARIA compliant accessibility.
 
 - Documentation (Storybook): https://takeshisakuma.github.io/wimui/

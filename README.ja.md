@@ -2,6 +2,8 @@
 
 **日本語** · [English](./README.md)
 
+[![npm version](https://img.shields.io/npm/v/wimui.svg)](https://www.npmjs.com/package/wimui) [![license](https://img.shields.io/npm/l/wimui.svg)](./LICENSE)
+
 React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
 
 - ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
