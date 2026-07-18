@@ -46,19 +46,13 @@ Core（ルート `wimui`）に zod / RHF は不要です。charts 等の optiona
 
 ## インストール
 
-現在 npm には未公開です（`package.json` の `private: true`）。利用するにはこのリポジトリからパッケージを生成してください。
-
 ```bash
-# このリポジトリ側
-git clone https://github.com/takeshisakuma/wimui.git
-cd wimui
-npm install
-npm run build
-npm pack    # wimui-0.1.0.tgz が生成される
-
-# 利用するアプリ側
-npm install /path/to/wimui-0.1.0.tgz
+npm install wimui
+# peer（React 19）:
+npm install react@^19 react-dom@^19
 ```
+
+optional 機能は対応する peer が必要（「オプショナルな peerDependencies」参照）。例: `wimui/charts` を使うなら `npm install recharts`。
 
 `i18next` / `react-i18next` などの i18n ライブラリは不要です。翻訳リソースを内蔵し、特定の i18n ライブラリに依存しません（後述の「多言語化」を参照）。
 
@@ -372,24 +366,9 @@ Storybook: **Patterns → Form → React Hook Form**
 
 例外として `wimui/tokens` は型定義のみのモジュールのため `"use client"` を持たず、サーバーコンポーネントからも参照できます。
 
-## npm 公開について
+## リリースについて
 
-`private: true` のため現在は公開されません。公開する場合は `package.json` から `"private": true` を削除してください（パッケージ名 `wimui` は npm で未取得であることを確認済み・2026年6月時点）。
-
-リリースは [changesets](https://github.com/changesets/changesets) 経由です。
-
-```bash
-npm run changeset   # 変更内容・semver を記録（.changeset/ にファイル生成）
-npm run version     # changeset を取り込み、package.json のバージョンと CHANGELOG.md を更新
-npm run release     # build 後に npm publish（手動 publish 時も prepublishOnly で build が走る）
-```
-
-公開前チェックリスト:
-1. `private: true` を削除する
-2. `npm run changeset` で初回リリース用の changeset を追加する
-3. `npm run build && npm pack --dry-run` で tarball 内容を確認する
-4. GitHub Secrets に `NPM_TOKEN` を設定する（CI の `release.yml` 用）
-5. README の「npm 未公開」表記を更新する
+npm への公開は [changesets](https://github.com/changesets/changesets) + GitHub Actions で行います。`npm run changeset` で changeset を追加し、自動生成される「Version Packages」PR をマージすると publish されます（provenance 付き）。詳細は [`RELEASING.md`](./RELEASING.md) を参照。
 
 ---
 
