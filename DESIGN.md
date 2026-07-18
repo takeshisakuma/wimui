@@ -279,6 +279,16 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-line-height-normal-jp` | 1.6 | 日本語 |
 | `--wim-line-height-loose-jp` | 1.8 | 日本語 |
 
+### 字間（letter-spacing）
+
+見出しの主張を強めるためのトラッキング。**欧文は大きいサイズほど字面が空いて間延びするため負トラッキングで締める**。一方、**和文（かな・漢字）は仮想ボディが詰まって見えるため詰めない**（`normal` = 0）。行高と同じく `[lang="ja"]` で出し分ける（規約3）。本文サイズ相当の小見出し（Title `xs`/`sm`）は詰めると可読性が落ちるため `normal`。
+
+| トークン | 値 | 用途 |
+|----------|-----|------|
+| `--wim-letter-spacing-normal` | 0 | 本文・小見出し・和文すべて |
+| `--wim-letter-spacing-tight` | -0.01em | 欧文の中〜大見出し（Title 既定） |
+| `--wim-letter-spacing-tighter` | -0.02em | 欧文のディスプレイ見出し（Title `xl`〜`xl4`） |
+
 ### 言語による行高・フォントファミリーの出し分け規約
 
 「いつ欧文用トークン（`--wim-line-height-normal`）を使い、いつ日本語用（`-jp`）を使うか」は次の優先順位で判断する。**コンポーネント SCSS 内に `i18next` の言語判定ロジックを書かないこと。**

@@ -208,6 +208,9 @@
   --wim-line-height-normal: 1.4;
   --wim-line-height-snug: 1.33;
   --wim-line-height-tight: 1.2;
+  --wim-letter-spacing-normal: 0;
+  --wim-letter-spacing-tight: -0.01em;
+  --wim-letter-spacing-tighter: -0.02em;
   --wim-decoration-line-through: line-through;
   --wim-decoration-underline: underline;
 }
@@ -419,6 +422,9 @@
     --wim-line-height-normal: 1.4;
     --wim-line-height-snug: 1.33;
     --wim-line-height-tight: 1.2;
+    --wim-letter-spacing-normal: 0;
+    --wim-letter-spacing-tight: -0.01em;
+    --wim-letter-spacing-tighter: -0.02em;
     --wim-decoration-line-through: line-through;
     --wim-decoration-underline: underline;
   }
