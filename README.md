@@ -15,8 +15,7 @@ The npm package is **a single `wimui`** (not a split monorepo of packages). You 
 |---|---|---|
 | **Core** | `wimui` / `wimui/form` / `wimui/layout`, etc. | None (React 19 only) |
 | Optional — Charts | `wimui/charts` | `recharts` |
-| Optional — AI | `wimui/ai` | Peers per component (e.g. markdown for StreamingText) |
-| Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph, etc. (see table below) |
+| Optional — Peer components | dedicated subpath per component, e.g. `wimui/ai/markdown-renderer`, `wimui/data-display/qr-code` | that component's peer (see table below) |
 | Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4 (+ resolvers) |
 
 **Why subpaths are separated:** optional components pull in heavy peers (recharts, etc.). By not exporting them from the root `wimui`, a Core-only app is far less likely to drag those peers into type resolution or bundle analysis without installing them. Import only the subpath for the feature you use, and install only that peer.
@@ -30,7 +29,7 @@ import { BarChart } from "wimui/charts";
 // import { BarChart } from "wimui";
 ```
 
-`wimui/data-display` mixes parts that need peers with parts that don't. Only the components in the table below require peers (Markdown, etc.). Table / Badge and similar work with Core-style usage.
+The category barrels **`wimui/data-display` and `wimui/ai` are peer-free** — importing them never pulls an optional peer. Each peer-dependent component lives on its **own subpath** whose name documents its peer (e.g. `wimui/data-display/markdown` → `react-markdown`). This is the one deliberate exception to "no deep paths": these subpaths are curated peer-isolation boundaries, not folder-mirrored component paths. See the table below.
 
 ## Support matrix (peers)
 
@@ -106,12 +105,12 @@ import {
 | `WimDensity` | `"comfortable" \| "compact"` |
 | `WimColor` / `WimColorKey` | Color prop / token keys (public roles; does not include `--wim-comp-*`) |
 
-**Only when you need optional features** — import from `wimui/charts` / `wimui/ai` / `wimui/data-display` (the peer-dependent parts) / `wimui/rhf`, and install the peers in the table below.
+**Only when you need optional features** — import from `wimui/charts` / a peer-component subpath / `wimui/rhf`, and install the peers in the table below.
 
 ```tsx
 import { BarChart } from "wimui/charts";
-import { Markdown } from "wimui/data-display";
-import { StreamingText } from "wimui/ai";
+import { Markdown } from "wimui/data-display/markdown";
+import { StreamingText } from "wimui/ai/streaming-text";
 import { FormField } from "wimui/rhf";
 ```
 
@@ -265,15 +264,20 @@ Only for intentional API changes, update the snapshot with `npm run check:api:up
 
 Only when you use the components below, import from the corresponding subpath and add the peer. If you don't use them, you don't need them.
 
+Each peer-dependent component has its **own subpath** whose name documents its peer, so the category barrels (`wimui/data-display`, `wimui/ai`) stay peer-free.
+
 | Component | import | Required packages |
 |---|---|---|
 | AreaChart, BarChart, etc. | `wimui/charts` | `recharts` |
-| ScheduleView | `wimui/data-display` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
-| NodeGraph | `wimui/data-display` | `@xyflow/react` |
-| Markdown / QRCode / JsonDiffViewer | `wimui/data-display` | `react-markdown`+`remark-gfm` / `qrcode.react` / `diff` |
-| InteractiveGraph | `wimui/ai` | `@xyflow/react` |
-| MarkdownRenderer / StreamingText | `wimui/ai` | `react-markdown` `remark-gfm` |
-| CodeDiffViewer | `wimui/ai` | `diff` |
+| Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
+| QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
+| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` |
+| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
+| StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
+| MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |
+| CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
+| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
 | Audio (only when `showMetadata`) | `wimui` or `wimui/media` | `music-metadata` |
 | FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
 

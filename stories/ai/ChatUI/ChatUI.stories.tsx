@@ -11,7 +11,7 @@ import {
   PromptInput,
   Icon
 } from "../../../src/index";
-import { StreamingText } from "../../../src/ai";
+import { StreamingText } from "../../../src/ai/streaming-text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 /** Static English under VRT so the first paint does not wait on 76-namespace HTTP i18n. */

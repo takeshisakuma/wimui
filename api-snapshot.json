@@ -3,8 +3,17 @@
   "packageExports": [
     ". => types:./dist/index.d.ts; import:./dist/index.js; require:./dist/index.cjs",
     "./ai => types:./dist/ai.d.ts; import:./dist/ai.js; require:./dist/ai.cjs",
+    "./ai/code-diff-viewer => types:./dist/ai/code-diff-viewer.d.ts; import:./dist/ai/code-diff-viewer.js; require:./dist/ai/code-diff-viewer.cjs",
+    "./ai/interactive-graph => types:./dist/ai/interactive-graph.d.ts; import:./dist/ai/interactive-graph.js; require:./dist/ai/interactive-graph.cjs",
+    "./ai/markdown-renderer => types:./dist/ai/markdown-renderer.d.ts; import:./dist/ai/markdown-renderer.js; require:./dist/ai/markdown-renderer.cjs",
+    "./ai/streaming-text => types:./dist/ai/streaming-text.d.ts; import:./dist/ai/streaming-text.js; require:./dist/ai/streaming-text.cjs",
     "./charts => types:./dist/charts.d.ts; import:./dist/charts.js; require:./dist/charts.cjs",
     "./data-display => types:./dist/data-display.d.ts; import:./dist/data-display.js; require:./dist/data-display.cjs",
+    "./data-display/json-diff-viewer => types:./dist/data-display/json-diff-viewer.d.ts; import:./dist/data-display/json-diff-viewer.js; require:./dist/data-display/json-diff-viewer.cjs",
+    "./data-display/markdown => types:./dist/data-display/markdown.d.ts; import:./dist/data-display/markdown.js; require:./dist/data-display/markdown.cjs",
+    "./data-display/node-graph => types:./dist/data-display/node-graph.d.ts; import:./dist/data-display/node-graph.js; require:./dist/data-display/node-graph.cjs",
+    "./data-display/qr-code => types:./dist/data-display/qr-code.d.ts; import:./dist/data-display/qr-code.js; require:./dist/data-display/qr-code.cjs",
+    "./data-display/schedule-view => types:./dist/data-display/schedule-view.d.ts; import:./dist/data-display/schedule-view.js; require:./dist/data-display/schedule-view.cjs",
     "./feedback => types:./dist/feedback.d.ts; import:./dist/feedback.js; require:./dist/feedback.cjs",
     "./form => types:./dist/form.d.ts; import:./dist/form.js; require:./dist/form.cjs",
     "./icons => types:./dist/icons.d.ts; import:./dist/icons.js; require:./dist/icons.cjs",
@@ -1200,25 +1209,17 @@
       "DataGrid (value)",
       "DataGridColumn (type)",
       "DataGridProps (type)",
-      "DateSelectArg (type)",
       "DescriptionList (value)",
       "DescriptionListDetails (value)",
       "DescriptionListItem (value)",
       "DescriptionListTerm (value)",
       "EmptyState (value)",
-      "EventApi (type)",
-      "EventChangeArg (type)",
-      "EventClickArg (type)",
-      "EventDropArg (type)",
-      "EventInput (type)",
       "FAQItem (type)",
       "FAQSection (value)",
       "FAQSectionProps (type)",
       "getNextSortDirection (value)",
       "InfiniteScroll (value)",
       "InfiniteScrollProps (type)",
-      "JsonDiffViewer (value)",
-      "JsonDiffViewerProps (type)",
       "JsonViewer (value)",
       "JsonViewerProps (type)",
       "Kanban (value)",
@@ -1235,17 +1236,10 @@
       "ListItem (value)",
       "ListItemProps (type)",
       "ListProps (type)",
-      "Markdown (value)",
-      "MarkdownProps (type)",
       "Marquee (value)",
       "MarqueeProps (type)",
-      "NodeGraph (value)",
-      "NodeGraphEdge (type)",
-      "NodeGraphNode (type)",
-      "NodeGraphProps (type)",
       "PullToRefresh (value)",
       "PullToRefreshProps (type)",
-      "QRCode (value)",
       "RangeCalendar (value)",
       "RangeCalendarProps (type)",
       "RangeCalendarValue (type)",
@@ -1255,10 +1249,6 @@
       "RelativeTime (value)",
       "RelativeTimeInput (type)",
       "RelativeTimeProps (type)",
-      "ScheduleView (value)",
-      "ScheduleViewEvent (type)",
-      "ScheduleViewProps (type)",
-      "ScheduleViewView (type)",
       "SortableList (value)",
       "SortableListDragHandle (value)",
       "SortableListDragHandleProps (type)",
@@ -1318,6 +1308,35 @@
       "UseTableSortReturn (type)",
       "VirtualList (value)",
       "VirtualListProps (type)"
+    ],
+    "./data-display/markdown": [
+      "Markdown (value)",
+      "MarkdownProps (type)"
+    ],
+    "./data-display/qr-code": [
+      "QRCode (value)"
+    ],
+    "./data-display/node-graph": [
+      "NodeGraph (value)",
+      "NodeGraphEdge (type)",
+      "NodeGraphNode (type)",
+      "NodeGraphProps (type)"
+    ],
+    "./data-display/schedule-view": [
+      "DateSelectArg (type)",
+      "EventApi (type)",
+      "EventChangeArg (type)",
+      "EventClickArg (type)",
+      "EventDropArg (type)",
+      "EventInput (type)",
+      "ScheduleView (value)",
+      "ScheduleViewEvent (type)",
+      "ScheduleViewProps (type)",
+      "ScheduleViewView (type)"
+    ],
+    "./data-display/json-diff-viewer": [
+      "JsonDiffViewer (value)",
+      "JsonDiffViewerProps (type)"
     ],
     "./overlay": [
       "BottomSheet (value)",
@@ -1526,14 +1545,7 @@
       "ChatMessageProps (type)",
       "CodeBlock (value)",
       "CodeBlockProps (type)",
-      "CodeDiffViewer (value)",
-      "CodeDiffViewerProps (type)",
       "ConversationList (value)",
-      "DiffView (type)",
-      "InteractiveGraph (value)",
-      "InteractiveGraphProps (type)",
-      "MarkdownRenderer (value)",
-      "MarkdownRendererProps (type)",
       "ModelOption (type)",
       "ModelPricing (type)",
       "ModelSelector (value)",
@@ -1545,8 +1557,6 @@
       "SourceCitationList (value)",
       "SourceCitationListProps (type)",
       "SourceCitationProps (type)",
-      "StreamingText (value)",
-      "StreamingTextProps (type)",
       "Terminal (value)",
       "TerminalLine (type)",
       "TerminalProps (type)",
@@ -1565,6 +1575,23 @@
       "VoiceVisualizer (value)",
       "VoiceVisualizerMode (type)",
       "VoiceVisualizerProps (type)"
+    ],
+    "./ai/streaming-text": [
+      "StreamingText (value)",
+      "StreamingTextProps (type)"
+    ],
+    "./ai/markdown-renderer": [
+      "MarkdownRenderer (value)",
+      "MarkdownRendererProps (type)"
+    ],
+    "./ai/code-diff-viewer": [
+      "CodeDiffViewer (value)",
+      "CodeDiffViewerProps (type)",
+      "DiffView (type)"
+    ],
+    "./ai/interactive-graph": [
+      "InteractiveGraph (value)",
+      "InteractiveGraphProps (type)"
     ],
     "./tokens": [
       "ButtonIntent (type)",

@@ -53,6 +53,31 @@
       "import": "./dist/data-display.js",
       "require": "./dist/data-display.cjs"
     },
+    "./data-display/markdown": {
+      "types": "./dist/data-display/markdown.d.ts",
+      "import": "./dist/data-display/markdown.js",
+      "require": "./dist/data-display/markdown.cjs"
+    },
+    "./data-display/qr-code": {
+      "types": "./dist/data-display/qr-code.d.ts",
+      "import": "./dist/data-display/qr-code.js",
+      "require": "./dist/data-display/qr-code.cjs"
+    },
+    "./data-display/node-graph": {
+      "types": "./dist/data-display/node-graph.d.ts",
+      "import": "./dist/data-display/node-graph.js",
+      "require": "./dist/data-display/node-graph.cjs"
+    },
+    "./data-display/schedule-view": {
+      "types": "./dist/data-display/schedule-view.d.ts",
+      "import": "./dist/data-display/schedule-view.js",
+      "require": "./dist/data-display/schedule-view.cjs"
+    },
+    "./data-display/json-diff-viewer": {
+      "types": "./dist/data-display/json-diff-viewer.d.ts",
+      "import": "./dist/data-display/json-diff-viewer.js",
+      "require": "./dist/data-display/json-diff-viewer.cjs"
+    },
     "./overlay": {
       "types": "./dist/overlay.d.ts",
       "import": "./dist/overlay.js",
@@ -77,6 +102,26 @@
       "types": "./dist/ai.d.ts",
       "import": "./dist/ai.js",
       "require": "./dist/ai.cjs"
+    },
+    "./ai/streaming-text": {
+      "types": "./dist/ai/streaming-text.d.ts",
+      "import": "./dist/ai/streaming-text.js",
+      "require": "./dist/ai/streaming-text.cjs"
+    },
+    "./ai/markdown-renderer": {
+      "types": "./dist/ai/markdown-renderer.d.ts",
+      "import": "./dist/ai/markdown-renderer.js",
+      "require": "./dist/ai/markdown-renderer.cjs"
+    },
+    "./ai/code-diff-viewer": {
+      "types": "./dist/ai/code-diff-viewer.d.ts",
+      "import": "./dist/ai/code-diff-viewer.js",
+      "require": "./dist/ai/code-diff-viewer.cjs"
+    },
+    "./ai/interactive-graph": {
+      "types": "./dist/ai/interactive-graph.d.ts",
+      "import": "./dist/ai/interactive-graph.js",
+      "require": "./dist/ai/interactive-graph.cjs"
     },
     "./tokens": {
       "types": "./dist/tokens.d.ts",

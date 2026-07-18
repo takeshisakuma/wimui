@@ -22,7 +22,8 @@ import {
   Stack,
   Box,
 } from "../../src";
-import { StreamingText, CodeDiffViewer } from "../../src/ai";
+import { StreamingText } from "../../src/ai/streaming-text";
+import { CodeDiffViewer } from "../../src/ai/code-diff-viewer";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {

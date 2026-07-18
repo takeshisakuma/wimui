@@ -57,15 +57,13 @@ tree-shaking が効いていれば未 install の optional peer を解決しに�
 
 | 分類 | サブパス | 意味 |
 |------|----------|------|
-| `bareRequired` | `.` / `tokens` / `icons` / `typography` / `layout` / `form` / `feedback` / `navigation` / `overlay` / `media` | **react/react-dom のみで import 可能でなければならない**。`.`（ルートバレル）が bare-safe であることが最重要の公開ガード |
+| `bareRequired` | `.` / `tokens` / `icons` / `typography` / `layout` / `form` / `feedback` / `navigation` / `overlay` / `media` / **`data-display`** / **`ai`** | **react/react-dom のみで import 可能でなければならない**。`.`（ルートバレル）が bare-safe であることが最重要の公開ガード |
 | `typesOnly` | `tokens` | 型専用エントリ。runtime export 0 が正しい（読込成功のみ検査） |
-| `peerDependent` | `data-display` / `charts` / `ai` / `rhf` | import 時に optional peer を要する。**full プロファイルでのみ必須**、bare では報告（WARN）のみ |
+| `peerDependent` | `charts` / `rhf` / `data-display/{markdown,qr-code,node-graph,schedule-view,json-diff-viewer}` / `ai/{streaming-text,markdown-renderer,code-diff-viewer,interactive-graph}` | import 時に optional peer を要する。**full プロファイルでのみ必須**、bare では報告（WARN）のみ |
 
-### 既知の実態（初回実測 2026-07-18）
+### 実態（2026-07-18、T17 後）
 
-- **ルートバレル `.` は bare-safe**（406 exports、peer 不要で import 可）。
-- `data-display` / `ai` は peer-free コンポーネント（Accordion / Avatar 等）と
-  peer 依存コンポーネント（Markdown→`react-markdown`、CodeDiffViewer→`diff`）が**混在**するため、
-  カテゴリサブパスを import すると optional peer を要求する。
-  peer-free コンポーネントだけ使いたい場合は**ルートバレル**からの import を推奨。
-  （将来的に peer 依存コンポーネントを遅延化 or 分離するかは別途検討）
+- **ルートバレル `.` は bare-safe**（peer 不要で import 可）。
+- **`data-display` / `ai`（カテゴリバレル）も peer-free**（T17 で peer 依存分を専用サブパスへ分離）。
+- peer 依存コンポーネントは `data-display/markdown` などの**コンポーネント別サブパス**にあり、
+  そのサブパスを import したときだけ対応 peer が要る（サブパス名＝必要 peer が自明）。
