@@ -45,13 +45,6 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-loading-states-loadingoverlay--blur-effects",
   "components-media-image--motion-effects",
   "components-navigation-elements-tabnavigation--contained",
-  "components-visualization-scheduleview--default",
-  // 行高の px 丸めがラン間で 1px ずれ、3 行目以降が累積シフトする（8,105px 差・
-  // リトライ 3 回とも同一 = ラン内では安定）。--default と同じ症状
-  "components-visualization-scheduleview--month-view",
-  // Day View も FullCalendar の time-grid（now インジケータ+行高 px 丸め）で
-  // ラン間 6,057px 差。--default / --month-view と同症状（T17 の PR で検出）
-  "components-visualization-scheduleview--day-view",
   "components-visualization-nodegraph--with-mini-map",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
@@ -60,11 +53,14 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
 /**
  * コンポーネント丸ごと非決定的なもの（複数ストーリーが別ランで順繰りに
  * フレークした実績）。ChatUI=タイピング/ストリーミング表示、
- * PromptInput=キャレット・添付チップのアニメーション。
+ * PromptInput=キャレット・添付チップのアニメーション、
+ * ScheduleView=FullCalendar の現在時刻インジケータ+行高 px 丸め
+ * （default/month/day/interactive が順繰りにフレーク。個別除外を prefix に集約）。
  */
 const NONDETERMINISTIC_STORY_PREFIXES = [
   "components-ai-chatui--",
   "components-ai-promptinput--",
+  "components-visualization-scheduleview--",
 ];
 
 /**
