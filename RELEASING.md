@@ -98,7 +98,22 @@ optional 機能は対応する peer が必要（「オプショナルな peerDep
 - あとは §2 と同じ（「Version Packages」PR が出る → マージで publish）。
 - **1.0 以降は semver 厳守**（破壊的変更＝major）。今は 0.x で柔軟。
 
-## 6. インシデント対応（サプライチェーン）
+## 6. 手動フォールバック（CI が使えない緊急時のみ）
+
+通常は §2 の CI ルートを使う。**GitHub Actions 障害・NPM_TOKEN 不調・緊急ホットフィックス**などで CI から publish できないときだけ、ローカルから同じ publish コマンドを実行する。
+
+```bash
+npm login                 # 対話で 2FA 込みログイン（Google Authenticator の 6 桁）
+npm run changeset         # まだ無ければ作る（変更点・semver を宣言）
+npm run version           # changeset を消化して package.json の version と CHANGELOG.md を更新
+npm run release           # = build + changeset publish（= 実際の npm publish）
+```
+
+- **CI ルートと同じ `npm run release` を叩くだけ**なので、version/CHANGELOG は整合が保たれる（`npm publish` を直接叩くより安全）。
+- **注意: 手動 publish には provenance が付かない**（provenance は CI の OIDC が前提）。緊急時の一時手段と割り切り、落ち着いたら次のリリースは CI ルートへ戻す。
+- 実行後は §4 の確認（`npm view wimui version` 等）を必ず行う。
+
+## 7. インシデント対応（サプライチェーン）
 
 - **依存が汚染**: `npm audit` → `overrides` で安全版に固定 → patch を publish → CHANGELOG/Advisory で告知。
 - **自分の公開物が汚染**（攻撃者が悪性 `wimui` を publish）: ①該当版を `npm unpublish`（72h 以内可、超過は npm サポート）②**全トークンをローテーション**＋2FA 強化 ③クリーンな patch を publish ④**GitHub Security Advisory** を発行（Private Vulnerability Reporting 有効化済み）。
