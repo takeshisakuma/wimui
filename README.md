@@ -1,89 +1,89 @@
 # wimui
 
-React コンポーネントライブラリ。200+ のコンポーネントを収録し、デザイントークン・ダークモード・多言語化（en / ja / pt＝ポルトガル語・ブラジル）・WAI-ARIA 準拠のアクセシビリティを備えています。
+[English](./README.md) · [日本語](./README.ja.md)
 
-- ドキュメント（Storybook）: https://takeshisakuma.github.io/wimui/
-- 動作要件: Node.js >= 22 / **React 19**（`react` / `react-dom`）/ 書字方向は **LTR のみ**（en / ja / pt）
+A React component library with 200+ components, design tokens, dark mode, internationalization (en / ja / pt-BR), and WAI-ARIA compliant accessibility.
 
-## スコープ（Core / optional）
+- Documentation (Storybook): https://takeshisakuma.github.io/wimui/
+- Requirements: Node.js >= 22 / **React 19** (`react` / `react-dom`) / **LTR only** (en / ja / pt)
 
-npm パッケージは **`wimui` 一つ**です（パッケージを分割したモノレポではありません）。利用範囲だけを次のように分けて考えます。**まず Core**、必要になったときだけ optional サブパスを使います。
+## Scope (Core / optional)
 
-| スコープ | import | 追加 peer |
+The npm package is **a single `wimui`** (not a split monorepo of packages). You only split how you *use* it. **Start with Core**, and reach for optional subpaths only when you need them.
+
+| Scope | import | Extra peers |
 |---|---|---|
-| **Core** | `wimui` / `wimui/form` / `wimui/layout` など | 不要（React 19 のみ） |
+| **Core** | `wimui` / `wimui/form` / `wimui/layout`, etc. | None (React 19 only) |
 | Optional — Charts | `wimui/charts` | `recharts` |
-| Optional — AI | `wimui/ai` | コンポーネントに応じた peer（例: StreamingText の markdown 系） |
-| Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph 等（下表） |
-| Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4（+ resolvers） |
+| Optional — AI | `wimui/ai` | Peers per component (e.g. markdown for StreamingText) |
+| Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph, etc. (see table below) |
+| Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4 (+ resolvers) |
 
-**なぜサブパスに分かれているか:** optional のコンポーネントは重い peer（recharts 等）を引き込みます。ルート `wimui` からそれらを export しないことで、Core だけのアプリが peer を入れなくても型解決・バンドル解析で巻き込まれにくくなります。使う機能のサブパスだけを import し、その peer だけを入れてください。
+**Why subpaths are separated:** optional components pull in heavy peers (recharts, etc.). By not exporting them from the root `wimui`, a Core-only app is far less likely to drag those peers into type resolution or bundle analysis without installing them. Import only the subpath for the feature you use, and install only that peer.
 
 ```tsx
 // ✅
 import { Button } from "wimui";
 import { BarChart } from "wimui/charts";
 
-// ❌ ルートに無い（型エラー / 解決できない）
+// ❌ not on the root (type error / unresolved)
 // import { BarChart } from "wimui";
 ```
 
-`wimui/data-display` には peer 不要な部品と必要な部品が混在します。下表のコンポーネントだけ peer が要ります（Markdown 等）。Table / Badge などは Core 寄りの利用で足ります。
+`wimui/data-display` mixes parts that need peers with parts that don't. Only the components in the table below require peers (Markdown, etc.). Table / Badge and similar work with Core-style usage.
 
-## サポート行列（peer）
+## Support matrix (peers)
 
-公開 peer の版レンジです。これより広い版はサポート対象外です。
+Supported version ranges for public peers. Wider ranges are unsupported.
 
-| パッケージ | サポート | peer レンジ | 備考 |
+| Package | Supported | Peer range | Notes |
 |---|---|---|---|
-| `react` / `react-dom` | **19** | `^19.0.0` | 開発・テスト・公開型は React 19。React 18 は非対応 |
-| `zod`（`wimui/rhf` 利用時） | **4** | `^4.0.0` | 開発・テストは zod 4。zod 3 は非対応 |
-| `@hookform/resolvers` | **5.1+** | `^5.1.0` | `wimui/rhf` 利用時 |
-| `react-hook-form` | **7.43+** | `^7.43.0` | `wimui/rhf` 利用時のみ |
+| `react` / `react-dom` | **19** | `^19.0.0` | Development, tests, and published types target React 19. React 18 is unsupported |
+| `zod` (when using `wimui/rhf`) | **4** | `^4.0.0` | Development and tests target zod 4. zod 3 is unsupported |
+| `@hookform/resolvers` | **5.1+** | `^5.1.0` | When using `wimui/rhf` |
+| `react-hook-form` | **7.43+** | `^7.43.0` | Only when using `wimui/rhf` |
 
-Core（ルート `wimui`）に zod / RHF は不要です。charts 等の optional peer は下表を参照。
+Core (the root `wimui`) needs neither zod nor RHF. For optional peers such as charts, see the table below.
 
-## インストール
+## Installation
 
-現在 npm には未公開です（`package.json` の `private: true`）。利用するにはこのリポジトリからパッケージを生成してください。
+Not yet published to npm (`private: true` in `package.json`). To use it, build a package from this repository.
 
 ```bash
-# このリポジトリ側
+# In this repository
 git clone https://github.com/takeshisakuma/wimui.git
 cd wimui
 npm install
 npm run build
-npm pack    # wimui-0.1.0.tgz が生成される
+npm pack    # produces wimui-0.1.0.tgz
 
-# 利用するアプリ側
+# In your consuming app
 npm install /path/to/wimui-0.1.0.tgz
 ```
 
-`i18next` / `react-i18next` などの i18n ライブラリは不要です。翻訳リソースを内蔵し、特定の i18n ライブラリに依存しません（後述の「多言語化」を参照）。
+You do **not** need `i18next` / `react-i18next` or any other i18n library. Translation resources are bundled and do not depend on a specific i18n library (see "Internationalization" below).
 
-## クイックスタート
+## Quick start
 
-アプリのエントリポイントでスタイルを一度だけ読み込みます。必須 CSS は
-`styles.css` の 1 本（トークン + コンポーネント）です。`reset.css` は任意です。
+Load the styles once at your app entry point. The required CSS is a single file, `styles.css` (tokens + components). `reset.css` is optional.
 
-**Core から始める** — 追加 peer なし。ほとんどの UI はルートから import できます。
+**Start from Core** — no extra peers. Most UI can be imported from the root.
 
 ```tsx
-import "wimui/styles.css"; // 必須: :root の --wim-* + 全コンポーネントのスタイル
-import "wimui/reset.css";  // 任意: 意見の強いリセット/base 要素スタイル
+import "wimui/styles.css"; // required: :root --wim-* + all component styles
+import "wimui/reset.css";  // optional: opinionated reset / base element styles
 
 import { Button } from "wimui";
 
-export const App = () => <Button>保存</Button>;
+export const App = () => <Button>Save</Button>;
 ```
 
-- `styles.css` は必須です（デザイントークンとコンポーネント CSS を同梱）。
-- `reset.css` は任意です。`button` / `a` / `ul` / `table` などをリセットする意見の強い
-  グローバルスタイルを含むため、アプリ側の既存スタイルと衝突する場合は省略できます。
+- `styles.css` is required (bundles the design tokens and component CSS).
+- `reset.css` is optional. It contains opinionated global styles that reset `button` / `a` / `ul` / `table`, so you can omit it if it conflicts with your app's existing styles.
 
-i18next の初期化は不要です。テーマ・密度・ロケールをまとめて扱うなら `WimProvider` を推奨します（後述）。
+No `i18next` initialization is required. To manage theme, density, and locale together, `WimProvider` is recommended (see below).
 
-### よく使う公開型・API
+### Commonly used public types / APIs
 
 ```tsx
 import {
@@ -96,17 +96,17 @@ import {
   type WimColor,
   type WimColorKey,
 } from "wimui";
-// トークン型だけ欲しい場合は `wimui/tokens` からも可
+// If you only want token types, you can also import from `wimui/tokens`
 ```
 
-| API / 型 | 用途 |
+| API / type | Purpose |
 |---|---|
-| `WimProvider` / `useWim` | `theme` / `density` / `locale` を React から設定 |
-| `setWimTheme` / `setWimDensity` / `setWimLocale` | 属性・ロケールの命令型 API |
+| `WimProvider` / `useWim` | Set `theme` / `density` / `locale` from React |
+| `setWimTheme` / `setWimDensity` / `setWimLocale` | Imperative APIs for attributes and locale |
 | `WimDensity` | `"comfortable" \| "compact"` |
-| `WimColor` / `WimColorKey` | 色 prop・トークンキー（公開 role。`--wim-comp-*` は含まない） |
+| `WimColor` / `WimColorKey` | Color prop / token keys (public roles; does not include `--wim-comp-*`) |
 
-**Optional が必要なときだけ** — `wimui/charts` / `wimui/ai` / `wimui/data-display`（peer 依存分）/ `wimui/rhf` から import し、下表の peer を入れます。
+**Only when you need optional features** — import from `wimui/charts` / `wimui/ai` / `wimui/data-display` (the peer-dependent parts) / `wimui/rhf`, and install the peers in the table below.
 
 ```tsx
 import { BarChart } from "wimui/charts";
@@ -116,61 +116,61 @@ import { FormField } from "wimui/rhf";
 ```
 
 ```bash
-# 例: チャートを使う場合
+# e.g. when using charts
 npm install recharts
 ```
 
-> `<script>` タグで読み込む UMD 版（`dist/wimui.umd.js` + `dist/wimui.umd.css`）は、
-> 必須の styles（トークン + コンポーネント）と reset を 1 ファイルに同梱しています。
+> The UMD build (`dist/wimui.umd.js` + `dist/wimui.umd.css`) loaded via a `<script>` tag
+> bundles the required styles (tokens + components) and reset into a single file.
 
-## アイコン
+## Icons
 
-アイコンの指定方法は2通りあります。
+There are two ways to specify an icon.
 
-**1. コンポーネントを直接渡す（推奨・tree-shaking が効く）**
+**1. Pass the component directly (recommended; tree-shakeable)**
 
 ```tsx
 import { Button, Icon, CheckIcon } from "wimui";
 
-<Button icon={<Icon component={CheckIcon} />}>保存</Button>
+<Button icon={<Icon component={CheckIcon} />}>Save</Button>
 <Icon component={CheckIcon} size="sm" />
 ```
 
-**2. 文字列で指定する**
+**2. Specify by string**
 
-`icon="CheckIcon"` のような文字列ベースの指定を使う場合は、エントリポイントで一度だけアイコンを登録してください（未登録のまま文字列指定すると開発時に警告が出ます）。
+If you want string-based usage like `icon="CheckIcon"`, register the icons once at your entry point (specifying a string without registering triggers a development-time warning).
 
 ```tsx
-import "wimui/icons"; // 全アイコン（約 30KB minify / 5KB gzip）を登録
+import "wimui/icons"; // registers all icons (~30KB minified / 5KB gzip)
 
-<Button icon="CheckIcon">保存</Button>
+<Button icon="CheckIcon">Save</Button>
 ```
 
-文字列指定を使わなければ `wimui/icons` の読み込みは不要で、アイコンはバンドルに含まれません。
+If you never use string-based specification, you don't need to import `wimui/icons`, and the icons are not included in your bundle.
 
-## 多言語化（i18n）
+## Internationalization (i18n)
 
-セットアップなしで英語表示で動作します（コンポーネントが使用する翻訳キーのみを en / ja / pt で内蔵）。**i18next / react-i18next などの依存は不要**です。表示言語を切り替えるには:
+Works out of the box in English with no setup (only the translation keys used by components are bundled for en / ja / pt). **No dependency on `i18next` / `react-i18next`** is required. To switch the display language:
 
 ```tsx
 import { setWimLocale, getWimLocale } from "wimui";
 
 setWimLocale("ja"); // "en" | "ja" | "pt"
-getWimLocale();     // 現在のロケール（例: "ja"）
+getWimLocale();     // current locale (e.g. "ja")
 ```
 
-アプリ自体が i18next などで言語を管理している場合は、言語切替時に `setWimLocale` を呼んで同期してください。wimui は特定の i18n ライブラリに依存しないため、任意の仕組みと組み合わせられます。
+If your app already manages language with i18next or similar, call `setWimLocale` on language change to keep them in sync. wimui does not depend on a specific i18n library, so it works with any mechanism.
 
 ```ts
-// 例: アプリの i18next と同期する
+// e.g. sync with your app's i18next
 i18n.on("languageChanged", (lng) => setWimLocale(lng));
 ```
 
-**書字方向**: 公式サポートは LTR（en / ja / pt）のみです。RTL（アラビア語・ヘブライ語など）および論理プロパティへの全面移行は **対応予定なし** です（詳細は `IMPROVEMENTS.md`「対象外」）。
+**Writing direction**: officially LTR only (en / ja / pt). RTL (Arabic, Hebrew, etc.) and a full migration to logical properties are **not planned** (see `IMPROVEMENTS.md` "Out of scope").
 
-## ダークモード
+## Dark mode
 
-推奨は `WimProvider` です。内部では `<html>` の `data-theme` を書き込みます（属性名・載せる先は公開契約のまま）。未指定（`system`）の場合は OS の `prefers-color-scheme` に追従します。
+`WimProvider` is recommended. Internally it writes `data-theme` on `<html>` (the attribute name and target remain the public contract). When unspecified (`system`), it follows the OS `prefers-color-scheme`.
 
 ```tsx
 import { WimProvider } from "wimui";
@@ -180,31 +180,31 @@ import { WimProvider } from "wimui";
 </WimProvider>
 ```
 
-属性を直接書くこともできます（`ThemeToggle` / `setWimTheme` も同じ契約）。
+You can also set the attribute directly (`ThemeToggle` / `setWimTheme` share the same contract).
 
 ```html
-<html data-theme="dark">  <!-- ダーク固定 -->
-<html data-theme="light"> <!-- ライト固定 -->
-<html>                    <!-- OS 設定に追従 -->
+<html data-theme="dark">  <!-- force dark -->
+<html data-theme="light"> <!-- force light -->
+<html>                    <!-- follow OS setting -->
 ```
 
-`ThemeToggle` と `WimProvider` の両方で同じ document テーマを動かす場合は、状態を親に持ち上げてトグル側は `applyToDocument={false}` にしてください。
+If you drive the same document theme with both `ThemeToggle` and `WimProvider`, lift the state to a parent and set `applyToDocument={false}` on the toggle side.
 
-## ブランド色（primary）の差し替え
+## Overriding the brand color (primary)
 
-公開 role トークンを CSS で上書きします。`wimui/styles.css` の**あと**に読み込んでください。触るのは role 層だけです（`--wim-comp-*` や palette 生色は触らない）。
+Override the public role tokens via CSS. Load it **after** `wimui/styles.css`. Only touch the role layer (do not touch `--wim-comp-*` or raw palette colors).
 
-多くの派生（`primary-hover` / `primary-active` / `primary-muted` / `primary-soft` 等）は `primary` / `primary-rgb` から計算されるため、**まずはこの2つ + コントラスト用の `text-on-primary`** で足ります。
+Many derivatives (`primary-hover` / `primary-active` / `primary-muted` / `primary-soft`, etc.) are computed from `primary` / `primary-rgb`, so **the two of those plus `text-on-primary` for contrast** are usually enough.
 
 ```css
-/* app.css — import "wimui/styles.css" の後 */
+/* app.css — after import "wimui/styles.css" */
 :root {
   --wim-color-primary: #0b6e4f;
-  --wim-color-primary-rgb: 11, 110, 79; /* rgba(var(--wim-color-primary-rgb), a) 用。カンマ区切り */
+  --wim-color-primary-rgb: 11, 110, 79; /* for rgba(var(--wim-color-primary-rgb), a). comma-separated */
   --wim-color-text-on-primary: #ffffff;
 }
 
-/* ダークで別色にしたいときだけ */
+/* only if you want a different color in dark mode */
 [data-theme="dark"] {
   --wim-color-primary: #3dd68c;
   --wim-color-primary-rgb: 61, 214, 140;
@@ -212,19 +212,19 @@ import { WimProvider } from "wimui";
 }
 ```
 
-- `primary-rgb` は `rgb(...)` で包まない（`11, 110, 79` の形）。
-- ダークの塗り面などで `primary-fill` を独自にしている場合は、必要ならそれも上書きする。
-- トークン一覧は Storybook **Token → Colors** / `DESIGN.md` を参照。
+- Do not wrap `primary-rgb` in `rgb(...)` (use the `11, 110, 79` form).
+- If you customize `primary-fill` (e.g. for dark-mode fills), override it too if needed.
+- For the full token list, see Storybook **Token → Colors** / `DESIGN.md`.
 
-## UI 密度（Density）
+## UI density
 
-コントロールの高さ・余白をグローバルに切り替えます。レイアウト用の `--wim-spacing-*` は変えず、`--wim-height-*` や `--wim-control-padding-*`、テーブルセル余白などが追従します。属性名は `data-density`（公開契約）。`WimProvider` の `density` か `setWimDensity` で設定します。
+Switches control heights and paddings globally. Layout spacing (`--wim-spacing-*`) is unchanged; `--wim-height-*`, `--wim-control-padding-*`, table cell paddings, etc. follow along. The attribute name is `data-density` (public contract). Set it via `WimProvider`'s `density` or `setWimDensity`.
 
 ```ts
 import { setWimDensity, getWimDensity } from "wimui";
 
-setWimDensity("compact");     // ダッシュボード向け（documentElement）
-setWimDensity("comfortable"); // デフォルト
+setWimDensity("compact");     // for dashboards (documentElement)
+setWimDensity("comfortable"); // default
 getWimDensity();              // "comfortable" | "compact"
 ```
 
@@ -232,69 +232,69 @@ getWimDensity();              // "comfortable" | "compact"
 <html data-density="compact">
 ```
 
-Storybook ではツールバーの **Density**、または Token → Density / Theme で確認できます。
+In Storybook, check it via the toolbar **Density**, or Token → Density / Theme.
 
-## バンドルサイズと import 方法
+## Bundle size and import style
 
-ルートからの named import で未使用コンポーネントはバンドルに含まれません（`sideEffects` 設定済み）。カテゴリ別のサブパスも利用できます。
+Named imports from the root exclude unused components from the bundle (`sideEffects` is configured). Per-category subpaths are also available.
 
 ```tsx
-import { Button } from "wimui";      // tree-shaking が効く（推奨）
-import { Button } from "wimui/form"; // カテゴリ別サブパス
+import { Button } from "wimui";      // tree-shakeable (recommended)
+import { Button } from "wimui/form"; // per-category subpath
 ```
 
-カテゴリ: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens` / `rhf`
+Categories: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` / `tokens` / `rhf`
 
-**deep path は非公開です。** `wimui/form/Button` のようなコンポーネント単位パスは `exports` に含まれません（フォルダ名を利用者契約にしないため）。
+**Deep paths are not public.** Per-component paths like `wimui/form/Button` are not in `exports` (so folder names don't become a consumer contract).
 
-### 公開 API サーフェス（凍結）
+### Public API surface (frozen)
 
-`package.json` の `exports` とバレルの named export は公開契約です。`npm run check:api` が両方を `api-snapshot.json` に対して検証します。
+The `exports` map in `package.json` and the barrels' named exports are the public contract. `npm run check:api` verifies both against `api-snapshot.json`.
 
-| 層 | 例 | 注意 |
+| Layer | Example | Note |
 |---|---|---|
-| ルート / カテゴリバレル | `wimui`, `wimui/form`, `wimui/rhf` | 公開。シンボル増減はスナップショット更新が必要 |
-| CSS / locales | `wimui/styles.css`, `wimui/locales/*` | テーマ・i18n 契約どおり |
-| 非公開 | `wimui/form/Button`、`_internal` 等 | `exports` に無いため import 不可 |
+| Root / category barrels | `wimui`, `wimui/form`, `wimui/rhf` | Public. Adding/removing symbols requires updating the snapshot |
+| CSS / locales | `wimui/styles.css`, `wimui/locales/*` | Per the theme / i18n contract |
+| Non-public | `wimui/form/Button`, `_internal`, etc. | Not in `exports`, so not importable |
 
-意図的な API 変更時のみ `npm run check:api:update` でスナップショットを更新してコミットしてください。
+Only for intentional API changes, update the snapshot with `npm run check:api:update` and commit it.
 
-> **optional peer 依存コンポーネントはルート `wimui` から export されません。** クイックスタートの subpath 例と下表を参照してください。
+> **Optional-peer-dependent components are not exported from the root `wimui`.** See the subpath examples in Quick start and the table below.
 
-## オプショナルな peerDependencies
+## Optional peerDependencies
 
-以下のコンポーネントを使う場合のみ、対応するサブパスから import し、peer を追加してください。使わない場合は不要です。
+Only when you use the components below, import from the corresponding subpath and add the peer. If you don't use them, you don't need them.
 
-| コンポーネント | import | 必要なパッケージ |
+| Component | import | Required packages |
 |---|---|---|
-| AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
+| AreaChart, BarChart, etc. | `wimui/charts` | `recharts` |
 | ScheduleView | `wimui/data-display` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
 | NodeGraph | `wimui/data-display` | `@xyflow/react` |
 | Markdown / QRCode / JsonDiffViewer | `wimui/data-display` | `react-markdown`+`remark-gfm` / `qrcode.react` / `diff` |
 | InteractiveGraph | `wimui/ai` | `@xyflow/react` |
 | MarkdownRenderer / StreamingText | `wimui/ai` | `react-markdown` `remark-gfm` |
 | CodeDiffViewer | `wimui/ai` | `diff` |
-| Audio（`showMetadata` 時のみ） | `wimui` または `wimui/media` | `music-metadata` |
+| Audio (only when `showMetadata`) | `wimui` or `wimui/media` | `music-metadata` |
 | FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
 
-正本マップ: `src/data/peer-imports.json`（CI の `check:imports` もこれを参照）。Audio の metadata peer は optional 動的 import のためルートにも居ます。
+Source of truth: `src/data/peer-imports.json` (CI's `check:imports` also reads this). Audio's metadata peer is a dynamic optional import, so it also lives at the root.
 
-## Form 値・エラー契約
+## Form value / error contract
 
-コア form コンポーネントの公開契約です（RHF 利用時も同じ）。
+The public contract for core form components (same when using RHF).
 
-| 項目 | 契約 |
+| Item | Contract |
 |---|---|
-| クリア可能スカラー（ClearedValue） | 制御時の空は **`null`**。`undefined` は「非制御 / prop 未指定」のみ |
-| 例: `DatePicker` | `value?: Date \| null` / `onChange?: (date: Date \| null) => void` |
-| `error`（メッセージ付き） | `Input` / `Select` / `DatePicker` / `Textarea` など → `error?: string` |
-| `error`（葉トグル） | `Checkbox` / `Switch` / `Radio` → `error?: boolean`（見た目用） |
+| Clearable scalar (ClearedValue) | Controlled empty is **`null`**. `undefined` means "uncontrolled / prop unspecified" only |
+| e.g. `DatePicker` | `value?: Date \| null` / `onChange?: (date: Date \| null) => void` |
+| `error` (with message) | `Input` / `Select` / `DatePicker` / `Textarea`, etc. → `error?: string` |
+| `error` (leaf toggles) | `Checkbox` / `Switch` / `Radio` → `error?: boolean` (visual only) |
 
-文字列フィールドの UI 空は多くの場合 `""` です。DatePicker のようなクリア可能スカラーを `""` や `undefined` で「クリア済み」としないでください。
+The UI-empty state of string fields is usually `""`. Do not treat a clearable scalar like DatePicker as "cleared" with `""` or `undefined`.
 
-## Form 連携（react-hook-form / zod）
+## Form integration (react-hook-form / zod)
 
-コアの form コンポーネントはフレームワーク非依存のままです。RHF とつなぐ場合は optional エントリ `wimui/rhf` を使います。上表の ClearedValue / `error` 分岐に合わせ、`FormField` は `error`（string）と `invalid`（boolean）の両方を渡します。
+The core form components stay framework-agnostic. To wire them to RHF, use the optional entry `wimui/rhf`. Matching the ClearedValue / `error` split in the table above, `FormField` passes both `error` (string) and `invalid` (boolean).
 
 ```bash
 npm i react-hook-form@^7.43 @hookform/resolvers@^5.1 zod@^4
@@ -354,283 +354,280 @@ function Example() {
 }
 ```
 
-- ネイティブ寄りの入力（`Input` / `Textarea` 等）: `{...field}` をそのまま渡す
-- 値コールバック型（`Select` / `DatePicker` / `RadioGroup` 等）: `valueFieldProps(field)`（クリアは `null`）
-- `checked` 型（`Checkbox` / `Switch`）: `checkedFieldProps(field)` + `error={invalid}`（`error?: boolean`）
+- Native-ish inputs (`Input` / `Textarea`, etc.): pass `{...field}` directly
+- Value-callback types (`Select` / `DatePicker` / `RadioGroup`, etc.): `valueFieldProps(field)` (clear is `null`)
+- `checked` types (`Checkbox` / `Switch`): `checkedFieldProps(field)` + `error={invalid}` (`error?: boolean`)
 
 Storybook: **Patterns → Form → React Hook Form**
 
-## Next.js App Router（RSC）対応
+## Next.js App Router (RSC) support
 
-ビルド成果物の各モジュール先頭には `"use client"` ディレクティブが自動付与されています。App Router のサーバーコンポーネントから追加のラップなしで直接 import できます（各コンポーネントは client boundary として扱われます）。
+Each built module has a `"use client"` directive prepended automatically. You can import directly from App Router server components with no extra wrapper (each component is treated as a client boundary).
 
-例外として `wimui/tokens` は型定義のみのモジュールのため `"use client"` を持たず、サーバーコンポーネントからも参照できます。
+As an exception, `wimui/tokens` is a types-only module, so it has no `"use client"` and can be referenced from server components too.
 
-## npm 公開について
+## About npm publishing
 
-`private: true` のため現在は公開されません。公開する場合は `package.json` から `"private": true` を削除してください（パッケージ名 `wimui` は npm で未取得であることを確認済み・2026年6月時点）。
+Because of `private: true`, it is not published for now. To publish, remove `"private": true` from `package.json` (the package name `wimui` was confirmed available on npm as of June 2026).
 
-リリースは [changesets](https://github.com/changesets/changesets) 経由です。
+Releases go through [changesets](https://github.com/changesets/changesets).
 
 ```bash
-npm run changeset   # 変更内容・semver を記録（.changeset/ にファイル生成）
-npm run version     # changeset を取り込み、package.json のバージョンと CHANGELOG.md を更新
-npm run release     # build 後に npm publish（手動 publish 時も prepublishOnly で build が走る）
+npm run changeset   # record change notes and semver (creates files in .changeset/)
+npm run version     # apply changesets, updating package.json version and CHANGELOG.md
+npm run release     # build, then npm publish (prepublishOnly also builds on manual publish)
 ```
 
-公開前チェックリスト:
-1. `private: true` を削除する
-2. `npm run changeset` で初回リリース用の changeset を追加する
-3. `npm run build && npm pack --dry-run` で tarball 内容を確認する
-4. GitHub Secrets に `NPM_TOKEN` を設定する（CI の `release.yml` 用）
-5. README の「npm 未公開」表記を更新する
+Pre-publish checklist:
+1. Remove `private: true`
+2. Add the first-release changeset with `npm run changeset`
+3. Verify the tarball contents with `npm run build && npm pack --dry-run`
+4. Set `NPM_TOKEN` in GitHub Secrets (for CI's `release.yml`)
+5. Update the "not yet published" note in the README
 
 ---
 
-## 開発
+## Development
 
-### 開発サーバー
+### Dev servers
 
 ```
-npm run dev         # Vite 開発サーバー（アイコン生成・i18n bundle を含む）
-npm run storybook   # Storybook（ドキュメント・コンポーネント確認）
+npm run dev         # Vite dev server (includes icon generation and i18n bundle)
+npm run storybook   # Storybook (documentation and component review)
 ```
 
-### コンポーネント雛形
+### Component scaffold
 
 ```
 npm run scaffold -- <Name> <category> [categoryId]
-# 例: npm run scaffold -- MyInput form basic-inputs
+# e.g. npm run scaffold -- MyInput form basic-inputs
 ```
 
-`src/components/<category>/<Name>/` と `stories/<category>/<Name>/` のボイラープレートを生成します。続けて `src/<category>.ts` への export 追加、翻訳キー、MDX 記述が必要です（詳細は `CLAUDE.md` / `SKILLS.md`）。
+Generates boilerplate under `src/components/<category>/<Name>/` and `stories/<category>/<Name>/`. You then need to add the export to `src/<category>.ts`, add translation keys, and write the MDX (see `CLAUDE.md` / `SKILLS.md`).
 
-### パッケージバージョン確認
+### Check package versions
 
 ```
 npm outdated
 ```
 
-## 品質チェック
+## Quality checks
 
 ### SCSS
 
 ```
-npm run stylelint       # src・storiesフォルダ内のCSS/SCSSの品質確認
-npm run stylelint:fix   # src・storiesフォルダ内のCSS/SCSSを自動修正
+npm run stylelint       # lint CSS/SCSS under src and stories
+npm run stylelint:fix   # auto-fix CSS/SCSS under src and stories
 ```
 
 ### JavaScript / TypeScript
 
 ```
-npm run lint            # src・stories 内の JS/TS/MDX の品質確認（警告ゼロが必須）
-npm run lint:fix        # src・stories 内の JS/TS/MDX を自動修正
+npm run lint            # lint JS/TS/MDX under src and stories (zero warnings required)
+npm run lint:fix        # auto-fix JS/TS/MDX under src and stories
 ```
 
-### 単体テスト
+### Unit tests
 
 ```
-npm run test            # コンポーネント単体テスト (*.test.tsx) を実行
+npm run test            # run component unit tests (*.test.tsx)
 ```
 
-### テストカバレッジ
+### Test coverage
 
 ```
-npm run test:coverage   # カバレッジ測定（行・分岐・関数・文いずれも 80% 未満で失敗）＋ coverage/ に HTML レポート
+npm run test:coverage   # measure coverage (fails below 80% for lines/branches/functions/statements) + HTML report in coverage/
 ```
 
-### 未テストコンポーネント
+### Untested components
 
 ```
-npm run test:check      # 未テストコンポーネントのリスト (stories/missing_tests.txt) を更新
-npm run test:report     # カバレッジ測定と未テストチェックを同時に実行
+npm run test:check      # update the list of untested components (stories/missing_tests.txt)
+npm run test:report     # run coverage and the untested check together
 ```
 
 ### VRT (Visual Regression Testing)
 
-事前に Storybook の静的ビルドが必要です（`storybook-static/` は gitignore）。
+Requires a static Storybook build first (`storybook-static/` is gitignored).
 
 ```
-npm run build-storybook                                 # 初回・ストーリー変更後に必須
-npm run test:vrt                                        # vrt/ 配下の Playwright テスト一式（VRT・a11y・e2e）
-npm run test:vrt:update                                 # スナップショットを更新
-npm run test:vrt:report                                 # 差分をスライダー形式で確認
-$env:FILTER='Calendar'; npm run test:vrt:update         # Calendarのスナップショットのみ更新
+npm run build-storybook                                 # required initially and after story changes
+npm run test:vrt                                        # the full Playwright suite under vrt/ (VRT, a11y, e2e)
+npm run test:vrt:update                                 # update snapshots
+npm run test:vrt:report                                 # review diffs in a slider view
+$env:FILTER='Calendar'; npm run test:vrt:update         # update Calendar snapshots only
 ```
 
-> CI の Visual Regression Test ワークフローは `vrt/vrt.spec.ts` のみを実行します。ローカルの `npm run test:vrt` は a11y / e2e も含みます。
-> Playwright のバージョンを更新した後は `npx playwright install` でブラウザを再取得してください。
+> The CI Visual Regression Test workflow runs only `vrt/vrt.spec.ts`. Local `npm run test:vrt` also includes a11y / e2e.
+> After updating the Playwright version, re-fetch browsers with `npx playwright install`.
 
-#### 環境変数
+#### Environment variables
 
 ```
-$env:THEME='light'                               # ライトモードのみ実行
-$env:THEME='dark'                                # ダークモードのみ実行
-$env:FILTER='Button'                             # Buttonコンポーネントのみ実行
-$env:THEME='light'; $env:FILTER='Button'         # ButtonのライトモードのみVRT
-$env:THEME='dark'; $env:FILTER='Calendar'        # CalendarのダークモードのみVRT
-$env:THEME=$null; $env:FILTER=$null              # 環境変数をリセット
+$env:THEME='light'                               # run light mode only
+$env:THEME='dark'                                # run dark mode only
+$env:FILTER='Button'                             # run the Button component only
+$env:THEME='light'; $env:FILTER='Button'         # VRT for Button, light mode only
+$env:THEME='dark'; $env:FILTER='Calendar'        # VRT for Calendar, dark mode only
+$env:THEME=$null; $env:FILTER=$null              # reset the environment variables
 ```
 
-#### CI (GitHub Actions) での VRT 運用
+#### Running VRT in CI (GitHub Actions)
 
-VRT は `src/`・`stories/` に変更があるPRで自動実行されます。
+VRT runs automatically on PRs that change `src/` or `stories/`.
 
-UIを意図的に変更した場合の手順：
+Procedure when you intentionally change the UI:
 
-1. UIを変更してPRを作成する
-2. VRTワークフローが自動実行され、既存のlinuxスナップショットと比較する
-3. 差分が検出されるとテストが失敗する
-4. Actions タブ → 該当ワークフロー → `vrt-diffs` アーティファクトをダウンロードして差分画像を確認する
-5. 変更が意図的なものであれば、Actions タブ → Visual Regression Test → Run workflow → `Update baseline snapshots: true` でベースラインを更新する
+1. Change the UI and open a PR
+2. The VRT workflow runs automatically and compares against the existing linux snapshots
+3. If a diff is detected, the test fails
+4. Actions tab → the workflow → download the `vrt-diffs` artifact to review the diff images
+5. If the change is intentional, Actions tab → Visual Regression Test → Run workflow → `Update baseline snapshots: true` to update the baseline
 
-> 初回セットアップ: linuxスナップショットがまだ存在しない状態では比較対象がないため失敗します。  
-> 上記の Run workflow → `Update baseline snapshots: true` を一度実行してlinux用ベースラインを生成してください。
+> First-time setup: with no linux snapshots yet, there is nothing to compare against, so it fails.
+> Run the above Run workflow → `Update baseline snapshots: true` once to generate the linux baseline.
 
 ### a11y
 
-VRT と同様に、事前に `npm run build-storybook` が必要です。
+Like VRT, requires `npm run build-storybook` first.
 
 ```
-npx playwright test vrt/a11y.spec.ts                                        # 全ストーリーのa11yチェック
-$env:FILTER='Button'; npx playwright test vrt/a11y.spec.ts                  # Buttonのみ
-npx playwright test vrt/a11y.spec.ts --grep "DataGrid"                     # DataGridのみ
+npx playwright test vrt/a11y.spec.ts                                        # a11y check for all stories
+$env:FILTER='Button'; npx playwright test vrt/a11y.spec.ts                  # Button only
+npx playwright test vrt/a11y.spec.ts --grep "DataGrid"                     # DataGrid only
 ```
 
-### バンドルサイズ
+### Bundle size
 
 ```
-npm run size   # ESモジュール全チャンク(gzip)とUMDバンドル(gzip)が閾値内かチェック
+npm run size   # check that all ES module chunks (gzip) and the UMD bundle (gzip) are within thresholds
 ```
 
-閾値はCI（`bundle-size.yml`）でも自動確認されます。
+The thresholds are also verified automatically in CI (`bundle-size.yml`).
 
-### Storybook docs エラー検知
+### Storybook docs error detection
 
-MDX ファイルで参照しているストーリー名が実際のエクスポートと一致しない場合、Storybook のビルド時にエラーが出力されます。
-
-```
-npm run build-storybook   # ビルドエラーとしてエラーのあるページを検知
-```
-
-エラーが出た場合は標準エラー出力に `error` が含まれる行として表示されます。
-
-よくある原因：
-
-- MDX の `<Canvas of={Stories.ExportName} />` で `ExportName` がストーリーファイルに存在しない
-- MDX の `<Controls of={Stories.ExportName} />` で同上
-- `<Markdown>` コンポーネントに文字列ではなく JSX を渡している
-
-## コード整形
+If a story name referenced in an MDX file doesn't match the actual export, an error is emitted at Storybook build time.
 
 ```
-npm run format   # プロジェクト全体をPrettierで整形
+npm run build-storybook   # detects pages with errors as build errors
 ```
 
-## メンテナンス・監査 (Maintenance & Audit)
+When an error occurs, it appears on stderr as a line containing `error`.
 
-大量のコンポーネント追加や大規模なリファクタリングの前後で実行することを推奨します。
+Common causes:
+
+- `<Canvas of={Stories.ExportName} />` in MDX where `ExportName` doesn't exist in the story file
+- `<Controls of={Stories.ExportName} />` in MDX, same as above
+- Passing JSX rather than a string to the `<Markdown>` component
+
+## Code formatting
+
+```
+npm run format   # format the whole project with Prettier
+```
+
+## Maintenance & Audit
+
+Recommended to run before and after adding many components or doing large refactors.
 
 ```bash
-npm run audit:all               # 全監査を一括実行（docs + lib）
-npm run audit:lib               # ライブラリ構造ガードのみ
-npm run audit:docs              # Storybook/MDX・i18n 系のみ
-npm run audit-mdx               # ドキュメントの必須セクション漏れをチェック
-npm run i18n:check              # 3言語の整合性をチェック
-npm run check:aschild           # asChild（Slotパターン）の適用漏れをチェック
+npm run audit:all               # run all audits (docs + lib)
+npm run audit:lib               # library structural guards only
+npm run audit:docs              # Storybook/MDX and i18n only
+npm run audit-mdx               # check for missing required documentation sections
+npm run i18n:check              # check consistency across the 3 languages
+npm run check:aschild           # check for missing asChild (Slot pattern) support
 ```
 
-監査内容（`audit:all`）:
-- **docs**: MDX 必須セクション / i18n 整合・行数 / MDX・Stories のハードコード文言 / ストーリー階層
-- **lib**: asChild / ハードコード値（色・px） / 公開 API サーフェス / root hooks / トークン・intent 整合 / SCSS トークン参照
+Audit scope (`audit:all`):
+- **docs**: MDX required sections / i18n consistency and line counts / hardcoded text in MDX and stories / story hierarchy
+- **lib**: asChild / hardcoded values (colors, px) / public API surface / root hooks / token & intent consistency / SCSS token references
 
-## 国際化 (i18n)
+## Internationalization (i18n) scripts
 
 ```bash
-npm run i18n:check              # ロケールファイル間の翻訳キー欠落とファイル行数(1000行)をチェック
-npm run i18n:check:components   # コンポーネントソースで使われているキーが翻訳ファイルに存在するかチェック
-npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳・追記（要: GOOGLE_GENERATIVE_AI_API_KEY）
+npm run i18n:check              # check for missing translation keys across locale files and file line count (1000 lines)
+npm run i18n:check:components   # check that keys used in component sources exist in the translation files
+npm run i18n:sync              # auto-translate/append from en to ja/pt via Google AI (requires GOOGLE_GENERATIVE_AI_API_KEY)
 ```
 
-| スクリプト | 検出できるケース |
+| Script | What it catches |
 |---|---|
-| `i18n:check` | ロケール間の欠落、ファイル肥大化（1000行制限） |
-| `i18n:check:components` | コード上で `t("key")` を使い始めたが登録を忘れているケース |
+| `i18n:check` | Missing keys across locales, file bloat (1000-line limit) |
+| `i18n:check:components` | Cases where you started using `t("key")` in code but forgot to register it |
 
-推奨フロー：
-1. `npm run i18n:check:components` で未登録キーを検出
-2. EN の翻訳ファイルにキーを追加
-3. `npm run i18n:sync` で ja/pt へ自動翻訳
-4. `npm run i18n:check` で最終的な整合性を確認
+Recommended flow:
+1. Detect unregistered keys with `npm run i18n:check:components`
+2. Add the keys to the EN translation file
+3. Auto-translate to ja/pt with `npm run i18n:sync`
+4. Verify final consistency with `npm run i18n:check`
 
-## ユーティリティ・整合性
+## Utilities & consistency
 
 ```bash
-npm run check:consistency   # src・src/data/components.json・stories・mdx の構造的矛盾を確認
-npm run check:hierarchy     # コンポーネントリスト(MDX)の掲載漏れを確認
-npm run check:aschild       # コンポーネントが Slot パターンを正しく実装しているか確認
-npm run check:stories       # 翻訳キーの漏れ（生キー表示）を確認
-npm run i18n:missing        # enにあって他言語に未翻訳のキーを確認
+npm run check:consistency   # check structural mismatches across src, src/data/components.json, stories, mdx
+npm run check:hierarchy     # check for components missing from the component list (MDX)
+npm run check:aschild       # check that components implement the Slot pattern correctly
+npm run check:stories       # check for missing translation keys (raw keys shown)
+npm run i18n:missing        # check for keys present in en but not translated in other languages
 ```
 
-## デプロイ
+## Deployment
 
 ```
-npm run deploy   # GitHub Pagesへデプロイ
+npm run deploy   # deploy to GitHub Pages
 ```
 
-`main` ブランチへの push でも `.github/workflows/deploy.yml` 経由で Storybook が GitHub Pages に自動デプロイされます。手動の `npm run deploy` はローカルからの緊急デプロイや検証用です。
+Storybook is also deployed to GitHub Pages automatically on push to `main` via `.github/workflows/deploy.yml`. Manual `npm run deploy` is for emergency deploys or verification from local.
 
 ## Git
 
-### Huskyのスキップ
+### Skipping Husky
 
-やむを得ずコミット時のHuskyをスキップする場合：
+If you must skip Husky on commit:
 
 ```
 git commit -m "commit message" --no-verify
 ```
 
-## コーディングルール
+## Coding rules
 
-- スタイリング：新規コンポーネントは CSS Modules（`*.module.scss`）を推奨
-- CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `RULES.md` を参照）
+- Styling: new components should use CSS Modules (`*.module.scss`)
+- CSS class names: legacy global classes use the `wim-` prefix (see `RULES.md` for details)
 
+## Automatic documentation extraction (Docgen)
 
-## ドキュメントの自動抽出 (Docgen)
+WIM UI extracts component specs (Props, design tokens, anatomy) automatically and embeds them into MDX.
+`src/data/docgen_*.json` is refreshed automatically when the Vite dev server starts or on file save, so you don't need to run a script manually (the output is gitignored and produced by Storybook's Vite plugin).
+For details on writing MDX, see `SKILLS.md`.
 
-WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
-Vite の開発サーバー起動時やファイル保存時に `src/data/docgen_*.json` が自動更新されるため、手動でスクリプトを実行する必要はありません（生成物は gitignore され、Storybook の Vite プラグインが出力します）。
-MDX の記述方法の詳細は `SKILLS.md` を参照してください。
+## Design tokens
 
-## デザイントークン
+WIM UI manages design tokens as a single source of truth using Style Dictionary.
 
-WIM UI は、Style Dictionary を使用してデザイントークンを一元管理（Single Source of Truth）しています。
+### Structure
 
-### 基本構成
-
-- ソース: `tokens/color/*.json`・`tokens/*.json`・`tokens/themes/dark.json`・`tokens/intents.json`
-- 生成物（自動生成）:
-    - `src/tokens/generated/`（SCSS 変数・CSS カスタムプロパティ・`_intents.scss`）
+- Source: `tokens/color/*.json` / `tokens/*.json` / `tokens/themes/dark.json` / `tokens/intents.json`
+- Generated (auto):
+    - `src/tokens/generated/` (SCSS variables, CSS custom properties, `_intents.scss`)
     - `src/types/generated-tokens.ts` / `src/types/generated-intents.ts`
 
-### ビルドコマンド
+### Build command
 
-トークン（JSON）を編集した後は、必ず以下のコマンドを実行してコードに反映させてください。
+After editing tokens (JSON), always run the following to reflect them in code.
 
 ```bash
-npm run tokens:build   # Style Dictionary + intent 生成（SCSS / TypeScript）
+npm run tokens:build   # Style Dictionary + intent generation (SCSS / TypeScript)
 ```
 
-このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。
+This makes the latest tokens available as type completions during component development.
 
+## Workflow
 
-
-
-
-## ワークフロー
-
+```bash
 git add .
 git commit -m "..."
 git pull --rebase origin main
 git push origin main
+```
