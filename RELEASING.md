@@ -1,50 +1,62 @@
-# リリース手順（npm 公開）
+# リリース手順（npm 公開・CI 自動ルート）
 
-このリポジトリを npm に公開するための runbook。**公開の実行は人間が行う**（`private` 解除・changeset 作成・publish はエージェント対象外）。
+このリポジトリを npm へ公開する runbook。**CI（GitHub Actions + changesets）で自動 publish** する前提。
+`private` 解除・changeset 作成・publish 実行は**人間が行う**（エージェント対象外）。
+
+> なぜ CI ルートか: 初回から **provenance（なりすまし publish 対策）**と **CHANGELOG 自動化**が付き、
+> 以降ずっと同じ流れで運用できる。手動 `npm publish` は捨て学習になるので使わない。
 
 ---
 
-## 0. 前提（このリポジトリ側で済んでいること）
+## 0. 前提（repo 側で済んでいること）
 
-- パッケージメタ完備（`license: MIT` + `LICENSE`、`publishConfig.access: public`、`exports` / `files: ["dist"]` / `sideEffects` / `engines`）
-- `release.yml`（changesets/action）+ `.changeset/config.json`（access public）+ `prepublishOnly` で build
-- **provenance 有効化済み**（`release.yml` の `NPM_CONFIG_PROVENANCE: true` + `id-token: write`）
-- 品質: tarball スモークゲート / tree-shaking / pnpm strict / ブランチ保護 / `npm audit` 0
+- パッケージメタ完備（`license: MIT` + `LICENSE`、`publishConfig.access: public`、`exports` / `files:["dist"]` / `sideEffects` / `engines`）
+- `release.yml`（changesets/action・**provenance 有効**・`environment: release`）+ `.changeset/config.json`
+- 品質: スモークゲート / tree-shaking / pnpm strict / ブランチ保護 / `npm audit` 0
 - 英語 README を正本化（`README.ja.md` は tarball に入らない＝npm では英語のみ表示）
 - npm 名 `wimui` は未取得（最初の publish で取得）
 
-## 1. 事前準備（初回だけ・人間）
+## 1. 初回だけの準備（人間）
 
-1. **npm アカウント**を用意（無料）し、**2FA を有効化**（Account → Two-Factor Auth → "Authorization and writes"）。
-2. **トークン発行**: npmjs.com → Access Tokens → **Granular Access Token**（対象 `wimui`・Read and write・期限付き）を推奨。CI 用なので 2FA をバイパスできる automation 相当。
-3. **GitHub Secret 登録**: リポジトリ → Settings → Environments → **`release`** 環境を作成 → その環境の Secrets に **`NPM_TOKEN`** を登録。
-4. **（推奨）Environment 保護**: `release` 環境に **Required reviewers** を自分に設定 → publish 前に手動承認が要るようになり、NPM_TOKEN 流出耐性が上がる。
+1. **npm アカウント + 2FA**（Google Authenticator 等。"Authorization and writes" で publish も保護）。
+2. **トークン発行**: npmjs.com → Access Tokens → **Granular Access Token**（対象 `wimui`・**Read and write**・期限付き）。
+3. **GitHub 側**: リポジトリ → Settings → Environments → **`release`** 環境を作成 → その環境の **Secrets** に **`NPM_TOKEN`**（= 上のトークン）を登録。
+4. **（推奨）`release` 環境に Required reviewers = 自分**を設定 → publish 前に手動承認が要る（NPM_TOKEN 流出耐性）。
 
-> 手動 publish するだけなら 2〜4 は不要（`npm login` → `npm publish` でその場 2FA）。CI 自動化する場合に必要。
+> `NPM_TOKEN` は必ず **`release` 環境の Secret** に置く（リポジトリ直下の Secret ではなく）。`release.yml` が `environment: release` を参照している。
 
-## 2. 公開手順（順序）
+## 2. 公開の流れ（**PR が 2 回出るのが正常**）
 
 ```bash
-# a. リリース用 changeset を作成（バージョン/変更点を宣言）
-npm run changeset          # 初回は minor か major を選ぶ（0.x なら minor 推奨）
+# a. リリース用 changeset を作成
+npm run changeset      # 初回は minor を選ぶ（0.x）。変更概要を1行書く → .changeset/*.md が生成される
 
-# b. private を外す
-#    package.json の "private": true を削除
+# b. private を外す：package.json の "private": true を削除
 
-# c. README の「未公開」表記を差し替え（下の §3 の文面に）
+# c. README の「未公開」表記を差し替え（下の §3）
 
-# d. a〜c を PR にして main へマージ
-#    → changesets/action が「Version Packages」PR を自動作成する
-
-# e. 「Version Packages」PR をマージ
-#    → release.yml が npm publish を実行（Environment 承認を設定していれば承認する）
+# d. a〜c を 1 つの PR にして main へマージ
 ```
 
-- 手動で出す場合は d/e の代わりに、build 済みで `npm publish --access public`（`npm login` 済み前提）。
+**ここから CI が動く。初見で必ず戸惑うポイント:**
+
+- d をマージすると、`changesets/action` が **もう 1 つ PR を自動で作る**。タイトルは通常 **「Version Packages」**。
+- この 2 回目の PR は、`package.json` の **version を上げ**、`CHANGELOG.md` を**生成/更新**し、`.changeset/*.md` を消化する内容。
+- **この「Version Packages」PR をマージした瞬間に、`release.yml` が `npm publish` を実行**する（`release` 環境に reviewer を付けていれば、Actions の実行前に承認を求められる → 承認する）。
+
+```
+自分の PR（changeset + private削除 + README）をマージ
+        ↓ changesets が自動生成
+「Version Packages」PR（version↑ + CHANGELOG）をマージ  ←★ここで publish される
+        ↓
+npm に wimui が公開（provenance バッジ付き）
+```
+
+> 「なぜ 2 回 PR が出るの？」= **バージョン確定を人間が最終承認する**ための仕組み。1 回目で「出したい変更」を宣言し、2 回目で「実際のバージョン/CHANGELOG」を確認してからマージ＝publish、という 2 段階。
 
 ## 3. 公開時の README 差し替え文面
 
-`README.md` の **Installation** セクションを次に置換:
+`README.md` の **Installation** セクションを置換:
 
 ~~~markdown
 ## Installation
@@ -58,7 +70,7 @@ npm install react@^19 react-dom@^19
 Optional features need their own peer (see "Optional peerDependencies"): e.g. `npm install recharts` for `wimui/charts`.
 ~~~
 
-`README.ja.md` の **インストール** セクションを次に置換:
+`README.ja.md` の **インストール** セクションを置換:
 
 ~~~markdown
 ## インストール
@@ -72,23 +84,22 @@ npm install react@^19 react-dom@^19
 optional 機能は対応する peer が必要（「オプショナルな peerDependencies」参照）。例: `wimui/charts` を使うなら `npm install recharts`。
 ~~~
 
-> 併せて、両 README 冒頭付近の「Not yet published / 現在 npm には未公開です」旨の一文も削除する。
+> 併せて、両 README 冒頭付近の「Not yet published / 現在 npm には未公開です」の一文も削除。
 
 ## 4. 公開後の確認
 
 - `npm view wimui version` で公開バージョンを確認。
-- npm のパッケージページに **Provenance** バッジが出ているか確認（`NPM_CONFIG_PROVENANCE` が効いた証拠）。
-- 別ディレクトリで `npm install wimui react@^19 react-dom@^19` → 代表コンポーネントが import・描画できるか（スモークゲートと同等の手動確認）。
+- npm のパッケージページに **Provenance** バッジが出ているか（`NPM_CONFIG_PROVENANCE` が効いた証拠）。
+- 別ディレクトリで `npm install wimui react@^19 react-dom@^19` → 代表コンポーネントが import・描画できるか。
 
-## 5. インシデント対応（サプライチェーン）
+## 5. 2 回目以降
 
-- **依存が汚染**（例: 依存の悪性版が公表）: `npm audit` → `overrides` で安全版に固定 → patch を publish → CHANGELOG/Advisory で告知。
+- 変更ごとに `npm run changeset`（patch/minor/major を選ぶ）→ 通常の PR に含めてマージ。
+- あとは §2 と同じ（「Version Packages」PR が出る → マージで publish）。
+- **1.0 以降は semver 厳守**（破壊的変更＝major）。今は 0.x で柔軟。
+
+## 6. インシデント対応（サプライチェーン）
+
+- **依存が汚染**: `npm audit` → `overrides` で安全版に固定 → patch を publish → CHANGELOG/Advisory で告知。
 - **自分の公開物が汚染**（攻撃者が悪性 `wimui` を publish）: ①該当版を `npm unpublish`（72h 以内可、超過は npm サポート）②**全トークンをローテーション**＋2FA 強化 ③クリーンな patch を publish ④**GitHub Security Advisory** を発行（Private Vulnerability Reporting 有効化済み）。
 - `Dependabot alerts` / 週次 `Dependency Audit`（`audit.yml`）を監視。
-
-## 6. 継続運用
-
-- 変更ごとに `npm run changeset`（自動 CHANGELOG・semver）。
-- **1.0 以降は semver 厳守**（破壊的変更＝major）。今は 0.x で柔軟。
-- 不良/古い版は `npm deprecate` で警告。
-- peer レンジ（React / zod）の追随は `docs/feature-watchlist.json`（T14）が補助。
