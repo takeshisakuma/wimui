@@ -115,4 +115,31 @@ describe("Mentions", () => {
       { timeout: 500 },
     );
   });
+
+  it("keeps dropdown open when focus moves to a list item (relatedTarget inside container)", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox");
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    const listbox = await screen.findByRole("listbox");
+
+    // Blur whose relatedTarget stays within the container must not close the list.
+    fireEvent.blur(textarea, { relatedTarget: listbox });
+
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+  });
+
+  it("prevents default on option mousedown so the textarea keeps focus", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox");
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    await screen.findByRole("listbox");
+
+    const aliceItem = screen.getByText("Alice").closest("[role='option']")!;
+    const mousedown = fireEvent.mouseDown(aliceItem);
+
+    // preventDefault() returns false from fireEvent when default was prevented.
+    expect(mousedown).toBe(false);
+  });
 });

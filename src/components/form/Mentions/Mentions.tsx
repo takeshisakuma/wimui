@@ -207,9 +207,16 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
             // aria-autocomplete + aria-controls で表現する
             aria-autocomplete="list"
             aria-controls={isOpen ? `${id}-list` : undefined}
-            onBlur={() => {
-              // 少し遅らせないとリストのクリックイベントが拾えない
-              setTimeout(() => setIsOpen(false), 200);
+            onBlur={(e) => {
+              // フォーカスがコンテナ外へ移ったときのみ閉じる。
+              // リスト項目クリック時は項目側 onMouseDown の preventDefault で
+              // フォーカスが textarea から移らないため、この blur 自体が発火しない。
+              // （旧実装は setTimeout(200ms) でクリックイベントを待つハックだった）
+              if (
+                !containerRef.current?.contains(e.relatedTarget as Node | null)
+              ) {
+                setIsOpen(false);
+              }
             }}
           />
           {isOpen && filteredOptions.length > 0 && (
@@ -219,6 +226,9 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
                   key={opt.id}
                   className={styles.item}
                   active={index === selectedIndex}
+                  // クリックでの選択時に textarea のフォーカス（と blur）を発生させない。
+                  // これにより onClick が確実に発火する（旧 setTimeout ハック不要）。
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => insertMention(opt)}
                   onMouseEnter={() => setSelectedIndex(index)}
                   role="option"
