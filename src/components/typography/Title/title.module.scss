@@ -9,26 +9,39 @@
        日本語は字形が仮想ボディを満たし詰まって見えるため -jp（広いほう）に出し分け（DESIGN.md 規約3） */
     line-height: var(--wim-line-height-snug);
 
+    /* 欧文見出しは大きいほど字面が空くため負トラッキングで締める（主張強化 T10）。
+       和文（かな/漢字）は仮想ボディが詰まって見えるため詰めない＝[lang="ja"] で 0 に出し分け（規約3） */
+    letter-spacing: var(--wim-letter-spacing-tight);
+
     /* 見出しは自動ハイフネーション（lang.scss の hyphens: auto）の対象外 */
     hyphens: manual;
 
     :global([lang="ja"]) & {
       line-height: var(--wim-line-height-snug-jp);
+      letter-spacing: var(--wim-letter-spacing-normal);
     }
 
-    /* ディスプレイサイズはさらに詰める */
+    /* テキスト段の最小サイズは詰めない（本文相当で詰めると可読性が落ちる） */
+    &.xs,
+    &.sm {
+      letter-spacing: var(--wim-letter-spacing-normal);
+    }
+
+    /* ディスプレイサイズは行高をさらに詰め、字間も最も締める */
     &.xl,
     &.xl2,
     &.xl3,
     &.xl4 {
       line-height: var(--wim-line-height-tight);
+      letter-spacing: var(--wim-letter-spacing-tighter);
 
       :global([lang="ja"]) & {
         line-height: var(--wim-line-height-tight-jp);
+        letter-spacing: var(--wim-letter-spacing-normal);
       }
     }
 
-    /* Sizes */
+    /* Sizes（Title 実効比は 1.265 定数。段を飛ばして参照するためこのマッピングは変更しない） */
     &.xs {
       font-size: var(--wim-font-size-md); // 1rem
     }

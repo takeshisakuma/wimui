@@ -247,6 +247,11 @@ export type WimLineHeightKey =
   | "tight"
   | "tight-jp";
 
+export type WimLetterSpacingKey = 
+  | "normal"
+  | "tight"
+  | "tighter";
+
 export type WimDecorationKey = 
   | "line-through"
   | "underline";

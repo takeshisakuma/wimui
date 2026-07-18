@@ -38,6 +38,11 @@
       "snug": { "value": "1.33" },
       "tight": { "value": "1.2" }
     },
+    "letter-spacing": {
+      "normal": { "value": "0" },
+      "tight": { "value": "-0.01em" },
+      "tighter": { "value": "-0.02em" }
+    },
     "decoration": {
       "line-through": { "value": "line-through" },
       "underline": { "value": "underline" }
