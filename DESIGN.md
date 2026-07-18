@@ -125,13 +125,13 @@ Overlay: `overlay` / `overlay-soft` / `overlay-strong` / `overlay-medium` / `ove
 上記のセマンティックカラーは HEX で定義されていますが、**不透明度（アルファ）を伴う色を作る場合は HEX をハードコードせず、自動生成される RGB トークンを使用すること。** `tokens:build` は各色について `R, G, B` のカンマ区切り値を持つ `*-rgb` トークン（`src/tokens/generated/_css-vars-rgb.scss`）を生成します。
 
 ```scss
-// ✅ rgba() で不透明度を付与する場合は RGB トークンを使う
+// OK: rgba() で不透明度を付与する場合は RGB トークンを使う
 background: rgba(var(--wim-color-primary-rgb), 0.12);
 
-// ✅ color-mix() で透明・他色と混ぜる場合はセマンティックトークンをそのまま渡す
+// OK: color-mix() で透明・他色と混ぜる場合はセマンティックトークンをそのまま渡す
 background: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
 
-// ❌ HEX をハードコードしない（テーマ切替・トークン変更に追従できない）
+// NG: HEX をハードコードしない（テーマ切替・トークン変更に追従できない）
 background: rgba(32, 91, 133, 0.12);
 ```
 

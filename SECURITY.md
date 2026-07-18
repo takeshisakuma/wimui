@@ -20,7 +20,7 @@ If you discover a security vulnerability, please **do not open a public issue**.
 
 | Version | Supported |
 |---|---|
-| 最新リリース / latest release | ✅ |
-| それ以前 / older versions | ❌ |
+| 最新リリース / latest release | Yes / 対応 |
+| それ以前 / older versions | No / 非対応 |
 
 修正は最新リリースに対してのみ提供します。UI ライブラリの性質上、特に `dangerouslySetInnerHTML` 相当の挙動・URL の取り扱い・Markdown レンダリング（`wimui/data-display` の Markdown / `wimui/ai`）に関する報告を歓迎します。

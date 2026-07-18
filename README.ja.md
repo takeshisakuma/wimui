@@ -21,11 +21,11 @@ npm パッケージは **`wimui` 一つ**です（パッケージを分割した
 **なぜサブパスに分かれているか:** optional のコンポーネントは重い peer（recharts 等）を引き込みます。ルート `wimui` からそれらを export しないことで、Core だけのアプリが peer を入れなくても型解決・バンドル解析で巻き込まれにくくなります。使う機能のサブパスだけを import し、その peer だけを入れてください。
 
 ```tsx
-// ✅
+// OK
 import { Button } from "wimui";
 import { BarChart } from "wimui/charts";
 
-// ❌ ルートに無い（型エラー / 解決できない）
+// ルートには無い（型エラー / 解決できない）
 // import { BarChart } from "wimui";
 ```
 

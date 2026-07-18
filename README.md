@@ -21,11 +21,11 @@ The npm package is **a single `wimui`** (not a split monorepo of packages). You 
 **Why subpaths are separated:** optional components pull in heavy peers (recharts, etc.). By not exporting them from the root `wimui`, a Core-only app is far less likely to drag those peers into type resolution or bundle analysis without installing them. Import only the subpath for the feature you use, and install only that peer.
 
 ```tsx
-// ✅
+// OK
 import { Button } from "wimui";
 import { BarChart } from "wimui/charts";
 
-// ❌ not on the root (type error / unresolved)
+// Not on the root barrel (type error / unresolved)
 // import { BarChart } from "wimui";
 ```
 
