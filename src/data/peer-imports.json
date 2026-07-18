@@ -1,18 +1,18 @@
 {
   "Markdown": {
-    "packagePath": "wimui/data-display",
+    "packagePath": "wimui/data-display/markdown",
     "peers": ["react-markdown", "remark-gfm"]
   },
   "QRCode": {
-    "packagePath": "wimui/data-display",
+    "packagePath": "wimui/data-display/qr-code",
     "peers": ["qrcode.react"]
   },
   "NodeGraph": {
-    "packagePath": "wimui/data-display",
+    "packagePath": "wimui/data-display/node-graph",
     "peers": ["@xyflow/react"]
   },
   "ScheduleView": {
-    "packagePath": "wimui/data-display",
+    "packagePath": "wimui/data-display/schedule-view",
     "peers": [
       "@fullcalendar/core",
       "@fullcalendar/react",
@@ -22,23 +22,23 @@
     ]
   },
   "JsonDiffViewer": {
-    "packagePath": "wimui/data-display",
+    "packagePath": "wimui/data-display/json-diff-viewer",
     "peers": ["diff"]
   },
   "StreamingText": {
-    "packagePath": "wimui/ai",
+    "packagePath": "wimui/ai/streaming-text",
     "peers": ["react-markdown", "remark-gfm"]
   },
   "CodeDiffViewer": {
-    "packagePath": "wimui/ai",
+    "packagePath": "wimui/ai/code-diff-viewer",
     "peers": ["diff"]
   },
   "MarkdownRenderer": {
-    "packagePath": "wimui/ai",
+    "packagePath": "wimui/ai/markdown-renderer",
     "peers": ["react-markdown", "remark-gfm"]
   },
   "InteractiveGraph": {
-    "packagePath": "wimui/ai",
+    "packagePath": "wimui/ai/interactive-graph",
     "peers": ["@xyflow/react"]
   }
 }

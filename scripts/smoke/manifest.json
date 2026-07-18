@@ -10,14 +10,23 @@
     "./feedback",
     "./navigation",
     "./overlay",
-    "./media"
+    "./media",
+    "./data-display",
+    "./ai"
   ],
   "typesOnly": ["./tokens"],
   "peerDependent": [
-    "./data-display",
     "./charts",
-    "./ai",
-    "./rhf"
+    "./rhf",
+    "./data-display/markdown",
+    "./data-display/qr-code",
+    "./data-display/node-graph",
+    "./data-display/schedule-view",
+    "./data-display/json-diff-viewer",
+    "./ai/streaming-text",
+    "./ai/markdown-renderer",
+    "./ai/code-diff-viewer",
+    "./ai/interactive-graph"
   ],
   "rootValueExports": [
     "Button",

@@ -15,8 +15,7 @@ npm パッケージは **`wimui` 一つ**です（パッケージを分割した
 |---|---|---|
 | **Core** | `wimui` / `wimui/form` / `wimui/layout` など | 不要（React 19 のみ） |
 | Optional — Charts | `wimui/charts` | `recharts` |
-| Optional — AI | `wimui/ai` | コンポーネントに応じた peer（例: StreamingText の markdown 系） |
-| Optional — peer data-display | `wimui/data-display` | Markdown / ScheduleView / Graph 等（下表） |
+| Optional — Peer コンポーネント | コンポーネント別の専用サブパス（例: `wimui/ai/markdown-renderer`, `wimui/data-display/qr-code`） | そのコンポーネントの peer（下表） |
 | Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4（+ resolvers） |
 
 **なぜサブパスに分かれているか:** optional のコンポーネントは重い peer（recharts 等）を引き込みます。ルート `wimui` からそれらを export しないことで、Core だけのアプリが peer を入れなくても型解決・バンドル解析で巻き込まれにくくなります。使う機能のサブパスだけを import し、その peer だけを入れてください。
@@ -30,7 +29,7 @@ import { BarChart } from "wimui/charts";
 // import { BarChart } from "wimui";
 ```
 
-`wimui/data-display` には peer 不要な部品と必要な部品が混在します。下表のコンポーネントだけ peer が要ります（Markdown 等）。Table / Badge などは Core 寄りの利用で足ります。
+カテゴリバレル **`wimui/data-display` と `wimui/ai` は peer-free** です（import しても optional peer を引き込まない）。peer 依存コンポーネントは、必要 peer が名前で分かる**コンポーネント別の専用サブパス**に分離しています（例: `wimui/data-display/markdown` → `react-markdown`）。これは「deep path を作らない」方針の**意図的な例外**で、フォルダ名の機械的公開ではなく peer 分離のために curated した境界です。下表参照。
 
 ## サポート行列（peer）
 
@@ -108,12 +107,12 @@ import {
 | `WimDensity` | `"comfortable" \| "compact"` |
 | `WimColor` / `WimColorKey` | 色 prop・トークンキー（公開 role。`--wim-comp-*` は含まない） |
 
-**Optional が必要なときだけ** — `wimui/charts` / `wimui/ai` / `wimui/data-display`（peer 依存分）/ `wimui/rhf` から import し、下表の peer を入れます。
+**Optional が必要なときだけ** — `wimui/charts` / peer コンポーネントの専用サブパス / `wimui/rhf` から import し、下表の peer を入れます。
 
 ```tsx
 import { BarChart } from "wimui/charts";
-import { Markdown } from "wimui/data-display";
-import { StreamingText } from "wimui/ai";
+import { Markdown } from "wimui/data-display/markdown";
+import { StreamingText } from "wimui/ai/streaming-text";
 import { FormField } from "wimui/rhf";
 ```
 
@@ -267,15 +266,20 @@ import { Button } from "wimui/form"; // カテゴリ別サブパス
 
 以下のコンポーネントを使う場合のみ、対応するサブパスから import し、peer を追加してください。使わない場合は不要です。
 
+peer 依存コンポーネントは**コンポーネント別の専用サブパス**を持ち、名前で必要 peer が分かります。カテゴリバレル（`wimui/data-display` / `wimui/ai`）は peer-free です。
+
 | コンポーネント | import | 必要なパッケージ |
 |---|---|---|
 | AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
-| ScheduleView | `wimui/data-display` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
-| NodeGraph | `wimui/data-display` | `@xyflow/react` |
-| Markdown / QRCode / JsonDiffViewer | `wimui/data-display` | `react-markdown`+`remark-gfm` / `qrcode.react` / `diff` |
-| InteractiveGraph | `wimui/ai` | `@xyflow/react` |
-| MarkdownRenderer / StreamingText | `wimui/ai` | `react-markdown` `remark-gfm` |
-| CodeDiffViewer | `wimui/ai` | `diff` |
+| Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
+| QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
+| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` |
+| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
+| StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
+| MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |
+| CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
+| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
 | Audio（`showMetadata` 時のみ） | `wimui` または `wimui/media` | `music-metadata` |
 | FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
 

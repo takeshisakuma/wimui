@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { QRCode } from "wimui/data-display";
+import { QRCode } from "wimui/data-display/qr-code";
 
 const meta: Meta<typeof QRCode> = {
   title: "Components/Data Indicators/QRCode",

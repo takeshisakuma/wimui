@@ -1,8 +1,9 @@
-// Full `wimui/ai` category barrel (subpath entry). Re-exports the peer-free
-// core plus the components that eagerly import an optional peer — importing
-// this barrel (or the components below) requires their peer to be installed.
+// `wimui/ai` category barrel (subpath entry) — PEER-FREE (T17).
+// Only the peer-free core components are re-exported here, so importing this
+// barrel never pulls an optional peer. The peer-dependent components moved to
+// dedicated subpaths whose names document their peer:
+//   StreamingText    → wimui/ai/streaming-text     (react-markdown, remark-gfm)
+//   MarkdownRenderer → wimui/ai/markdown-renderer   (react-markdown, remark-gfm)
+//   CodeDiffViewer   → wimui/ai/code-diff-viewer    (diff)
+//   InteractiveGraph → wimui/ai/interactive-graph   (@xyflow/react)
 export * from "./ai-core";
-export * from "./components/ai/StreamingText/StreamingText"; // react-markdown, remark-gfm
-export * from "./components/ai/CodeDiffViewer/CodeDiffViewer"; // diff
-export * from "./components/ai/MarkdownRenderer/MarkdownRenderer"; // react-markdown, remark-gfm
-export * from "./components/ai/InteractiveGraph/InteractiveGraph"; // @xyflow/react
