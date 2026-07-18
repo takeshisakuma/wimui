@@ -504,7 +504,7 @@
     "stack_feat_flex_desc": "O uso interno do componente `Flex` permite o uso de propriedades Flexbox, como `align` e `justify`.",
     "stack_feat_reset": "Redefinição de Direção",
     "stack_feat_reset_desc": "Especifique `row` ou `column` através da propriedade `direction` (o padrão é `column`).",
-    "stack_feat_space": "Gerenciamento de Espaçamento Poderoso",
+    "stack_feat_space": "Espaçamento consistente com uma prop",
     "stack_feat_space_desc": "Ajuste o espaçamento especificando tokens como `xs`, `sm`, `md` ou valores numéricos na propriedade `gap`.",
     "stack_keyboard_desc": "Este componente é um primitivo de layout sem interação de teclado própria. Aplique navegação por teclado ao conteúdo interativo colocado dentro dele.",
     "stack_long_desc": "O componente `Stack` é usado para organizar elementos vertical ou horizontalmente e gerenciar o espaçamento entre eles.",

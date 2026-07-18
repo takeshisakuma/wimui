@@ -440,7 +440,7 @@
     "stack_feat_flex_desc": "Internal use of the `Flex` component allows for Flexbox properties such as `align` and `justify`.",
     "stack_feat_reset": "Direction Reset",
     "stack_feat_reset_desc": "Specify `row` or `column` via the `direction` property (defaults to `column`).",
-    "stack_feat_space": "Powerful Spacing Management",
+    "stack_feat_space": "Consistent spacing from one prop",
     "stack_feat_space_desc": "Adjust spacing by specifying tokens like `xs`, `sm`, `md` or numerical values in the `gap` property.",
     "stack_keyboard_desc": "This component is a layout primitive with no keyboard interaction of its own. Apply keyboard navigation to interactive content placed inside it.",
     "stack_long_desc": "The `Stack` component is used to arrange elements vertically or horizontally and manage spacing between them.",

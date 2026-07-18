@@ -4,7 +4,7 @@ import { JsonDiffViewer } from "@/components/data-display/JsonDiffViewer/JsonDif
 
 const before = {
   id: "user_123",
-  name: "Alice",
+  name: "Sofia Rossi",
   age: 30,
   role: "member",
   preferences: {
@@ -15,7 +15,7 @@ const before = {
 
 const after = {
   id: "user_123",
-  name: "Alice",
+  name: "Sofia Rossi",
   age: 31,
   role: "admin",
   preferences: {

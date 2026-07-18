@@ -19,10 +19,10 @@ const meta: Meta<typeof TreeView> = {
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100dvh",
-          padding: "20px",
+          padding: "var(--wim-spacing-lg)",
           boxSizing: "border-box",
           width: "100%",
-          background: "linear-gradient(135deg, var(--wim-color-surface-variant) 0%, var(--wim-color-surface-tertiary) 100%)",
+          background: "var(--wim-color-surface-app)",
         }}
       >
         <div style={{ width: "100%", maxWidth: "400px" }}>

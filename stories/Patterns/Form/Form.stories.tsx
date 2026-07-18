@@ -248,7 +248,7 @@ export const MultiStepForm: StoryObj = {
 
     const formData = {
       email: "john@example.com",
-      name: "John Doe",
+      name: "Priya Nair",
       company: "Acme Inc.",
       role: "Developer",
     };

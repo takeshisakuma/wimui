@@ -160,7 +160,7 @@ export const Overview: StoryObj = {
             />
             <InlineEdit 
               label={t("audit:label_inline_edit")} 
-              defaultValue="John Doe" 
+              defaultValue="Priya Nair" 
               placeholder={t("audit:sample_name_placeholder")}
             />
           </ComponentGroup>
