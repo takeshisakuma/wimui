@@ -29,6 +29,9 @@
     "treeselect": "TreeSelect"
   },
   "config": {
+    "install_title": "インストール",
+    "install_note": "npm で公開しています。optional 機能は対応する peer が必要です（下のスコープ表を参照）。",
+    "install_npm_link": "npm で見る",
     "brand_desc": "公開 role トークンを `wimui/styles.css` のあとで上書きします。まずは `primary` / `primary-rgb` / `text-on-primary`。派生（`primary-hover` 等）は通常自動追従します。`--wim-comp-*` や palette 生色は触らないでください。",
     "brand_note": "`primary-rgb` はカンマ区切りのチャンネル（`rgb(...)` で包まない）。必要ならダークの `primary-fill` も上書き。一覧は Token → Colors / `DESIGN.md`。",
     "brand_title": "ブランド色（primary）",

@@ -29,6 +29,9 @@
     "treeselect": "TreeSelect"
   },
   "config": {
+    "install_title": "Instalação",
+    "install_note": "Publicado no npm. Os recursos opcionais precisam do seu próprio peer (veja os escopos abaixo).",
+    "install_npm_link": "Ver no npm",
     "brand_desc": "Sobrescreva tokens de role públicos depois de `wimui/styles.css`. Comece com `primary`, `primary-rgb` e `text-on-primary`. Derivados (`primary-hover`, …) costumam seguir sozinhos. Não altere `--wim-comp-*` nem cores cruas da palette.",
     "brand_note": "`primary-rgb` deve ser canais separados por vírgula (não `rgb(...)`). Opcional: sobrescrever `primary-fill` no dark. Lista completa: Token → Colors / `DESIGN.md`.",
     "brand_title": "Cor da marca (primary)",

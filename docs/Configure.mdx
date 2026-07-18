@@ -31,6 +31,15 @@ export const RightArrow = () => (
     <h2>WIM UI</h2>
   </div>
 
+  <h3><T k="config.install_title" /></h3>
+  <Command>{`npm install wimui
+# peers (React 19):
+npm install react@^19 react-dom@^19`}</Command>
+  <p>
+    <T k="config.install_note" />{" "}
+    <a href="https://www.npmjs.com/package/wimui" target="_blank" rel="noreferrer"><T k="config.install_npm_link" /></a>
+  </p>
+
   <h3><T k="config.scope_title" /></h3>
   <p><T k="config.scope_desc" /></p>
   <table>
@@ -75,7 +84,7 @@ import { Button } from "wimui";
 
 // ✅ Optional — subpath + install that peer only
 import { BarChart } from "wimui/charts"; // peer: recharts
-import { StreamingText } from "wimui/ai";
+import { StreamingText } from "wimui/ai/streaming-text";
 import { FormField } from "wimui/rhf";
 
 // ❌ Not on the root barrel
