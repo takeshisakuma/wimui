@@ -43,6 +43,7 @@ npm run changeset      # 初回は minor を選ぶ（0.x）。変更概要を1�
 - d をマージすると、`changesets/action` が **もう 1 つ PR を自動で作る**。タイトルは通常 **「Version Packages」**。
 - この 2 回目の PR は、`package.json` の **version を上げ**、`CHANGELOG.md` を**生成/更新**し、`.changeset/*.md` を消化する内容。
 - **この「Version Packages」PR をマージした瞬間に、`release.yml` が `npm publish` を実行**する（`release` 環境に reviewer を付けていれば、Actions の実行前に承認を求められる → 承認する）。
+- ⚠️ **「Version Packages」PR には CI チェックが付かない**（changesets bot が `GITHUB_TOKEN` で push するため、GitHub の仕様で workflow が起動しない）。ブランチ保護で `BLOCKED` になるが、**中身は version + CHANGELOG のみでコード変更が無い**ので、管理者は **"Merge without waiting"（admin バイパス）でそのままマージしてよい**（`enforce_admins: false` 前提）。完全自動化したい場合は changesets/action に PAT を渡す（長寿命 Secret が増えるトレードオフ）。
 
 ```
 自分の PR（changeset + private削除 + README）をマージ
