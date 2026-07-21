@@ -7,7 +7,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 // A real bitmap photo (served from public/) is the "after"; the "before" is the
 // same photo desaturated at runtime via a canvas, so both are pixel-aligned and
 // the slider reveals a meaningful grayscale-to-color edit.
-const PHOTO = "/demo/lightbox_1.png";
+const PHOTO = "./demo/lightbox_1.png";
 
 const useGrayscale = (src: string): string | null => {
   // VRT: skip async canvas desaturation — first paint would show the color

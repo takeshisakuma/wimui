@@ -18,19 +18,19 @@ type Story = StoryObj<typeof Lightbox>;
 
 const demoImages = (t: (k: string) => string) => [
   {
-    src: "/demo/lightbox_1.png",
+    src: "./demo/lightbox_1.png",
     alt: t("story.lightbox_alt_mountain"),
     title: t("story.lightbox_title_mountain"),
     caption: t("story.lightbox_caption_mountain"),
   },
   {
-    src: "/demo/lightbox_2.png",
+    src: "./demo/lightbox_2.png",
     alt: t("story.lightbox_alt_building"),
     title: t("story.lightbox_title_architecture"),
     caption: t("story.lightbox_caption_architecture"),
   },
   {
-    src: "/demo/lightbox_3.png",
+    src: "./demo/lightbox_3.png",
     alt: t("story.lightbox_alt_tropical"),
     title: t("story.lightbox_title_flora"),
     caption: t("story.lightbox_caption_flora"),
