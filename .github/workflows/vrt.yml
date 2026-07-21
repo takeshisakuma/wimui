@@ -159,10 +159,14 @@ jobs:
           if git diff --staged --quiet; then
             echo "No snapshot changes to commit."
           else
-            # [skip ci] 付き（このコミットバックは GITHUB_TOKEN push のためどのみち
-            # workflow を再起動しない）。品質ゲートは下の update-gate ジョブが update フロー
-            # 内で検証済みで、それが通らないと commit-snapshots に到達しない（needs 参照）。
-            git commit -m "chore: update VRT baseline snapshots [skip ci]"
+            # [skip ci] は付けない。このコミットバックは GITHUB_TOKEN push のため
+            # どのみち workflow を再起動しない（[skip ci] は冗長）。むしろ [skip ci] を
+            # 付けると、このベースライン commit を含む PR を squash マージした際に
+            # メッセージ連結で main の merge commit へ [skip ci] が leak し、deploy.yml
+            # (GitHub Pages) を含む全ワークフローが黙ってスキップされる（2026-07-21 実発生）。
+            # 品質ゲートは下の update-gate ジョブが update フロー内で検証済みで、
+            # それが通らないと commit-snapshots に到達しない（needs 参照）。
+            git commit -m "chore: update VRT baseline snapshots"
             git pull --rebase origin "${{ github.head_ref || github.ref_name }}"
             git push
           fi
