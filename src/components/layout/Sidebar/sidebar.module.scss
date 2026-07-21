@@ -42,7 +42,10 @@
     }
 
     .item {
+      // Icon-only rail: match vertical padding to horizontal so the hover
+      // highlight reads as a balanced square rather than a thin bar.
       justify-content: center;
+      padding-block: var(--wim-spacing-md);
     }
 
     .itemIcon {
