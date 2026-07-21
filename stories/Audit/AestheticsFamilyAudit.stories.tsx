@@ -176,7 +176,7 @@ export const Overview: StoryObj = {
               borderRadius: "var(--wim-radius-lg)",
               overflow: "hidden",
               position: "relative",
-              background: "url(/images/sample-landscape.png) center / cover no-repeat",
+              background: "url(./images/sample-landscape.png) center / cover no-repeat",
             }}>
               <Header glass fixed={false} style={{ position: "absolute", top: 0 }}>
                 <Flex align="center" justify="between" style={{ height: "100%", paddingLeft: "var(--wim-spacing-md)", paddingRight: "var(--wim-spacing-md)", width: "100%" }}>
