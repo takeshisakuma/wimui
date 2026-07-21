@@ -166,6 +166,7 @@
   "--wim-height-lg",
   "--wim-height-md",
   "--wim-height-sm",
+  "--wim-height-xl",
   "--wim-height-xs",
   "--wim-indicator-active-color",
   "--wim-indicator-dot-large-size",
