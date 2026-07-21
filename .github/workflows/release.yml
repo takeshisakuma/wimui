@@ -3,6 +3,17 @@ name: Release
 on:
   push:
     branches: [main]
+    # changeset を触る push のみ起動する。changesets の実リリース契機は必ず
+    # .changeset/ を触る（changeset 追加 push = Version PR 生成、Version PR
+    # マージ push = changeset 削除 = publish）。この filter が無いと、それ以外の
+    # 全 main push で「changeset ゼロ＝no-op なのに release 環境の承認ゲートで
+    # 待機するラン＋レビュー依頼メール」が発生し、次の本番リリースを concurrency
+    # で詰まらせる原因にもなる。
+    paths:
+      - ".changeset/**"
+  # 万一 filter で必要なリリースが漏れた場合の手動起動口（publish 前の
+  # release 環境承認は引き続き必須なので安全）。
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
