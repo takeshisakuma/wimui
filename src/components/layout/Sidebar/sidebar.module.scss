@@ -30,6 +30,27 @@
     .itemText {
       display: none;
     }
+
+    // Collapsed rail: hide opt-in labels and center the remaining icons.
+    :global(.wim-sidebar__hide-collapsed) {
+      display: none;
+    }
+
+    .header,
+    .footer {
+      justify-content: center;
+    }
+
+    .item {
+      // Icon-only rail: match vertical padding to horizontal so the hover
+      // highlight reads as a balanced square rather than a thin bar.
+      justify-content: center;
+      padding-block: var(--wim-spacing-md);
+    }
+
+    .itemIcon {
+      margin-right: 0;
+    }
   }
 
   &.bordered {
