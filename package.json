@@ -287,7 +287,7 @@
     "@axe-core/playwright": "^4.11.1",
     "@changesets/cli": "2.31.1",
     "@eslint/js": "9.39.5",
-    "@fullcalendar/core": "6.1.21",
+    "@fullcalendar/core": "7.0.1",
     "@fullcalendar/daygrid": "6.1.21",
     "@fullcalendar/interaction": "6.1.21",
     "@fullcalendar/react": "6.1.21",
