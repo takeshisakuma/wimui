@@ -52,6 +52,10 @@ const Box = ({
     style={{
       backgroundColor: intentStyles[intent].bg,
       color: intentStyles[intent].text,
+      // グリッドセルの輪郭。intent の淡色塗り（12% mix）は canvas が surface-app
+      // （#f5f5f5）のとき achromatic な secondary がほぼ同色に沈むため、
+      // 塗りに依存せずセル境界が常に見えるよう境界線で縁取る。
+      border: "1px solid var(--wim-color-border)",
       padding: "20px",
       borderRadius: "8px",
       display: "flex",
