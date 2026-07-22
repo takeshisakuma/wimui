@@ -37,6 +37,12 @@ export default meta;
 type Story = StoryObj<typeof AppShell>;
 
 export const Default: Story = {
+  // Header 内容は max-width 1200px で中央寄せされるため、メインも同じ measure に揃える
+  // （揃えないと広い画面でヘッダーだけ 1200px で止まり、メインが全幅に広がって不自然）。
+  args: {
+    centered: true,
+    maxWidth: 1200,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -71,6 +77,14 @@ export const Default: Story = {
 };
 
 export const ModernApp: Story = {
+  // Header の内部コンテンツは max-width 1200px で中央寄せされる（Header の .container 固定値）。
+  // メインを full-bleed のままにすると、広い画面でヘッダー内容だけが 1200px で止まって
+  // 中央に寄り、商品グリッドは全幅に広がる——という幅の不一致が起きて不自然に見える。
+  // メインにも同じ 1200px を与えて中央寄せし、ヘッダー内容とメイン内容の measure を揃える。
+  args: {
+    centered: true,
+    maxWidth: 1200,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -154,7 +168,10 @@ export const WithSidebar: Story = {
       <AppShell
         {...args}
         header={
-          <Header bordered>
+          // ダッシュボードはサイドバー + full-bleed main の構成。ヘッダーも fluid（全幅）に
+          // して、左内容をサイドバー帯・右内容を main 右端に揃える（1200 中央寄せだと
+          // ヘッダー内容だけサイドバーの上で中央に浮いて不自然になる）。
+          <Header bordered fluid>
             <Header.Section
               align="start"
               style={{ gap: "10px", alignItems: "center", display: "flex" }}
@@ -203,6 +220,16 @@ export const WithSidebar: Story = {
             </Sidebar.Content>
           </Sidebar>
         }
+        footer={
+          // ダッシュボードのシェルを full-bleed で統一するため、Footer も fluid（全幅）に
+          // する。fluid header + サイドバー + fluid footer で、上下バーの内容が
+          // サイドバー帯・main と横幅で揃う（Footer fluid の実使用デモ）。
+          <Footer bordered fluid background="secondary">
+            <Footer.Section>
+              <p style={{ margin: 0 }}>{t("story.appshell_rights")}</p>
+            </Footer.Section>
+          </Footer>
+        }
       >
         <div>
           <h2>{t("story.appshell_dashboard")}</h2>
@@ -214,6 +241,12 @@ export const WithSidebar: Story = {
 };
 
 export const WithFooter: Story = {
+  // Header も Footer も内容を 1200px 中央寄せするため、メインも同じ measure に揃える
+  // （揃えないと上下（ヘッダー・フッター）の両方でメインとの幅がずれて不自然）。
+  args: {
+    centered: true,
+    maxWidth: 1200,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -248,6 +281,12 @@ export const WithFooter: Story = {
 };
 
 export const WithNavbar: Story = {
+  // Header 内容は 1200px 中央寄せのため、メインも同じ measure に揃える
+  // （揃えないと広い画面でヘッダーとメインの幅がずれて不自然）。
+  args: {
+    centered: true,
+    maxWidth: 1200,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -317,7 +356,10 @@ export const Playground: Story = {
     );
   },
   args: {
+    // Header 内容は 1200px 中央寄せ。既定でメインも揃えておく（centered を
+    // オフにすると full-bleed になり、ヘッダーとの幅ずれを確認できる）。
     padding: true,
-    centered: false,
+    centered: true,
+    maxWidth: 1200,
   },
 };

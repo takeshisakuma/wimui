@@ -11,6 +11,8 @@ export interface HeaderProps extends React.ComponentPropsWithoutRef<"header"> {
   bordered?: boolean;
   /** Glassmorphism effect */
   glass?: boolean;
+  /** Expand content to full width (disable the centered max-width container) */
+  fluid?: boolean;
   /** Background color */
   background?: "primary" | "secondary" | "transparent";
 }
@@ -24,6 +26,7 @@ const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
       sticky,
       bordered,
       glass,
+      fluid,
       background = "primary",
       ...props
     },
@@ -32,7 +35,7 @@ const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
     return (
       <header
         ref={ref}
-        className={classNames("wim-header", 
+        className={classNames("wim-header",
           styles.root,
           fixed && styles.fixed,
           sticky && styles.sticky,
@@ -46,7 +49,9 @@ const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
         data-bordered={bordered}
         {...props}
       >
-        <div className={styles.container}>{children}</div>
+        <div className={classNames(styles.container, fluid && styles.fluid)}>
+          {children}
+        </div>
       </header>
     );
   },
