@@ -1,4 +1,9 @@
 #!/bin/sh
 npm run i18n:check
 npx vitest run --config vite.config.ts
-npm run build-storybook
+# build-storybook は pre-push から除去（2026-07-22）。
+# 理由: Windows で dev サーバのファイルロックと競合し EPERM で push をブロックした
+# （重く・ローカル固有の失敗源）。ストーリー/MDX のビルド破綻は CI（vrt.yml /
+# a11y.yml / deploy.yml が storybook build を回す）が完全にカバーするため、
+# push 前のローカル実行に固有の価値はない。i18n:check（軽量・CI は paths 絞り）と
+# 全 vitest（cross-file のテスト破綻を push 前に担保）は維持する。

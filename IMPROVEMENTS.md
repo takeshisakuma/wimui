@@ -1,17 +1,17 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-21（CI-1 に squash `[skip ci]` deploy-skip 面を追補・修正、CI-2 NodeGraph flake / CI-3 pre-push を起票、CI-4 release no-op ラン抑制を実施）  
+最終更新: 2026-07-22（npm 公開済み `wimui@0.2.0` を反映して publish 関連の文言を実態化。CI-2 NodeGraph VRT フレークを prefix 除外で解決。CI-3 pre-push から build-storybook を除去）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
 
-## 次にやるとよい順（publish 以外）
+## 次にやるとよい順
 
 1. **運用維持**  
    `PX_BASELINE = 0` / `i18n:check` / `check:api` / `check:imports`。触った SCSS に未注記 px を増やさない。品質ゲートは PR テンプレに従う。
 2. ~~未着手の改善候補~~ — **T1〜T7 すべて解決済**（2026-07-15。次節参照）
 
-**npm 公開**は人が決める項目（`private` 解除・changeset・`NPM_TOKEN`）。エージェントは勝手に進めない。  
+**npm 公開は完了済み**（`wimui@0.2.0`、2026-07-21。`private` 解除済み）。以降のバージョン運用は changeset ベース（`.changeset/` 追加 → Version PR → マージで publish、CI-4 で no-op 抑制済み）。エージェントは publish 相当の操作を勝手に進めない。  
 破壊なし〜小の文書タスクは一通り済。
 
 ---
@@ -28,7 +28,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T2 | `GEMINI.md` の同期 | 実際は RULES / SKILLS 参照のみの2行で古い契約の記載は無かった。IMPROVEMENTS.md と CLAUDE.md（コマンド・アーキテクチャ）への参照を追加し CLAUDE.md 冒頭と同構成に | **済**（2026-07-15） |
 | T3 | 依存更新の自動化 | `.github/dependabot.yml` 追加（npm + github-actions 週次、minor/patch は1 PR にグループ化、既知の peer ブロック major 2件は ignore に理由コメント付きで明示） | **済**（2026-07-15。ignore は peer 追随時に解除） |
 
-### npm 公開判断とセット
+### npm 公開とセット（公開済み）
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
@@ -56,8 +56,8 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T19 | tree-shaking 実測 + pnpm/yarn install-smoke | ①**tree-shaking 検証**: `wimui` を1コンポーネントだけ import したとき、**未使用の optional-peer 依存コード（recharts / react-markdown / fullcalendar 等）が最終バンドルから確実に落ちる**か実測（`sideEffects` 設定が効いているかの担保。落ちないと「Button だけ欲しいのに recharts が入る」事故）。②**pnpm/yarn install-smoke**: 現行スモークゲートは npm install ベース。pnpm は strict な node_modules（phantom deps 禁止）で **peerDependencies 宣言漏れを露呈させる**ため、pnpm/yarn でも install→import が通るかを検査プロファイルに追加。→ [[SMOKE]] の拡張 | **済**（2026-07-18。`run.mjs` に `--pm <npm\|pnpm\|yarn>` と `--treeshake` を追加。**①tree-shaking**: esbuild で `import { Button } from "wimui"` を react/react-dom のみ external で bundle し、未使用 optional-peer コードが落ちることを検証（残ると未解決 import で bundle 失敗＝検出）。実測 **Button 単体 44.6KB・optional-peer マーカー0**＝tree-shaking 正常。**②pnpm strict**: `npx pnpm@9 add` で install→import を検査。bare/full 両方 PASS（full は 14 サブパス全て strict 解決 OK＝peer 宣言漏れなし）。CI: `smoke.yml` に bare へ `--treeshake` を統合＋`pnpm` ジョブ追加。`npm run smoke:treeshake` / `smoke:pnpm`） |
 | T20 | Storybook 画像の権利衛生 | 公開 npm パッケージには画像は入らない（`files:["dist"]`、dist に画像なし＝**公開物はゼロリスク**）。本項は**公開サイト（gh-pages Storybook）の衛生**。①同梱サンプル画像（`src/media/*`・`public/demo/*`・`public/images/*`）は **AI 生成**。残余リスクは「モデルがまれに商標/ロゴ/実在人物似の要素を出力しうる」点＝**目視確認**と、**生成ツール名+商用可 ToS の記録**で緩和。純 AI 生成物は著作権が発生しない可能性がある（＝自分が独占できないだけで侵害ではない）。②多数ストーリーの **Unsplash/picsum ホットリンク**は Unsplash License 下で低リスクだが、リンク切れ耐性で少数を CC0/自作へ自前ホスト化する余地。公開ブロッカーではない（低優先） | **済**（2026-07-18。同梱7枚を目視＝ロゴ/商標/実在人物/ランドマークの混入なし。写真調5枚は Google Gemini/Imagen 生成（SynthID 入り、商用可否は利用プラン規約に従う）、2枚は自作プレースホルダ。出所・目視結果・Unsplash ホットリンクの扱いを `ASSETS.md` に記録。公開 npm には画像なし＝消費者リスクゼロ。Unsplash 自前ホスト化は低優先の余地として記載） |
 | CI-1 | `[skip ci]` head 問題（品質ゲートのすり抜け） | **VRT update のコミットバックが `[skip ci]` 付きで最終 head になると、その head で品質ゲート（Lint/audit:lib/check:tokens 等）が一度も走らないまま「緑」に見える**。2026-07-18 に T10（PR #27）でまさに顕在化: letter-spacing トークン追加を `token-snapshot.json` に反映し忘れたが、`[skip ci]` ベースラインが最終 head だったため Lint がスキップされ、赤が main に入り次の PR #29 で初めて検出（#29 で修正）。加えて同日、**push イベントの取りこぼし**で PR head に CI が起動しない事象も観測（空コミットで再トリガーして回避）。**重要な技術的事実**: コミットバックは `GITHUB_TOKEN` push のため GitHub の再帰防止仕様で**どのみち workflow を再起動しない**（∴「`[skip ci]` を外せば Lint が再実行される」は誤り。PAT を使わない限り head で自動再検証は不可能） | **済**（2026-07-18。**①実装**: `vrt.yml` に `update-gate` ジョブ（tsc / eslint / stylelint / check:imports / audit:lib）を追加し、`commit-snapshots` を `needs: [vrt, update-gate]` に変更（PR #33）。ベースライン更新フロー内でゲートを検証し、通らなければベースラインをコミットしない＝T10 型 drift を構造的に阻止（GITHUB_TOKEN 非依存）。**②ブランチ保護有効化**（ユーザーが GitHub UI で設定）: main に required checks `Lint & Type Check` / `Vitest`（＝paths フィルタ無しで常に走る2つのみ。paths 付きの Smoke/VRT/a11y は docs PR デッドロック回避のため必須にしない）、承認必須0（ソロ運用で自己承認不可のため）、PR 必須（直 push 禁止）、strict off。これで push 取りこぼし・チェックレス head・赤マージが**必須チェック不在＝マージ不可**でブロックされる。**③運用**: マージ前に `mergeStateStatus` だけでなく head の緑 required checks を確認し、チェックレス head（VRT update 後・push 取りこぼし）は空コミット等で再トリガー。→ [[ci-head-verification-gap]]）<br>**④追補（2026-07-21・別ギャップ発覚）**: 上記 ①〜③ は「PR head の品質ゲート＋マージブロック」を守るが、**`[skip ci]` が squash マージで main の merge commit に連結され `deploy.yml`（GitHub Pages）を含む全ワークフローを黙ってスキップする面は未対策だった**。#50（VRT baseline commit-back を含む PR）を squash したところ、merge commit へ `[skip ci]` が leak し Pages が自動再デプロイされず（手動 `gh workflow run deploy.yml --ref main` で回避）。**対策**: `vrt.yml` の commit-back メッセージから `[skip ci]` を除去（GITHUB_TOKEN push ゆえ元々 workflow 非起動＝副作用ゼロ、leak だけ消える）。→ [[skip-ci-squash-leak]] |
-| CI-2 | NodeGraph (dark) の VRT フレーク | `dark/components-visualization-nodegraph--read-only` が**非決定的に描画**され、無関係な PR で VRT の赤ノイズを出す。2026-07-21 に #50 の VRT compare で顕在化: update 直後に撮った**自分自身のベースラインにすら差分**（1564px / ratio 0.01, dark のみ light は緑）→ 同シャード再実行で緑＝flaky 確定。放置すると毎回「変更と無関係な赤」の判断コストが増える。**対応候補**: ①根治（力学レイアウトの seed 固定 / アニメの決定化 / describe 抑制）②T11 と同じ VRT 除外リスト送り（対症）。要調査のため短時間ではない。 | **未着手**（2026-07-21 起票） |
-| CI-3 | pre-push フックが重い / Windows で脆い | `.husky/pre-push` が `i18n:check` + フル `vitest` + `build-storybook` を回す。2026-07-21 に **build-storybook が Windows の `EPERM`（ローカル dev サーバのファイルロック疑い）**で push をブロック（`--no-verify` で回避）。CI と重複しており、pre-push を軽く（lint / 型 / 変更ファイル vitest のみ）にする余地。ただし「push 前に固める」意図とのトレードオフでバグではなく**ポリシー選択**。 | **未着手**（2026-07-21 起票。優先度低） |
+| CI-2 | NodeGraph (dark) の VRT フレーク | `dark/components-visualization-nodegraph--read-only` が**非決定的に描画**され、無関係な PR で VRT の赤ノイズを出す。2026-07-21 に #50 の VRT compare で顕在化: update 直後に撮った**自分自身のベースラインにすら差分**（1564px / ratio 0.01, dark のみ light は緑）→ 同シャード再実行で緑＝flaky 確定。 | **済**（2026-07-22。**真因を特定**: 力学レイアウトではなく（ノード位置は固定）、React Flow の `fitView` がノードを ResizeObserver で**非同期計測**してからビューポート transform を再計算するため、計測確定タイミング次第で zoom/pan にサブピクセル差が乗り、キャンバス全体の AA ジッタが `maxDiffPixels 400` を超える。**対応②（除外）を採用**＝ScheduleView と同じく **NodeGraph 全体を prefix 除外に集約**（`components-visualization-nodegraph--`）。根拠: `with-mini-map` は既に除外済（minimap が全体を縮小再描画して増幅）、`read-only` は #50 で update→compare 不一致を確認、`default` は `read-only` と非可視フラグ違いのみの同一静的描画で同じ計測ジッタを共有＝除外による可視カバレッジ損失ほぼゼロ。**根治（`defaultViewport` 固定で計測依存 transform を除去）を見送った理由**: 公開コンポーネントを `__VRT__` に結合させるか、ストーリーの demo 内容＋ベースライン変更が必要になり、フレーク1本のコストに見合わない） |
+| CI-3 | pre-push フックが重い / Windows で脆い | `.husky/pre-push` が `i18n:check` + フル `vitest` + `build-storybook` を回す。2026-07-21 に **build-storybook が Windows の `EPERM`（ローカル dev サーバのファイルロック疑い）**で push をブロック（`--no-verify` で回避）。 | **済**（2026-07-22。ユーザー合意で **build-storybook のみ pre-push から除去**。EPERM の直接原因かつ重い部分で、ストーリー/MDX のビルド破綻は CI（vrt.yml / a11y.yml / deploy.yml が storybook build を回す）が完全カバー＝ローカル固有の価値なし。`i18n:check`（軽量・CI は paths 絞り）と全 `vitest`（cross-file テスト破綻を push 前に担保）は維持＝「push 前に固める」意図を保ったまま Windows の脆さと重さを解消。lint/型は既に pre-commit（lint-staged + tsc-check）でゲート済み） |
 | CI-4 | release.yml の no-op ラン抑制 | `release.yml` が **main への push 毎**に走り `release` 環境の承認ゲートで `waiting` になるため、changeset を含まない push でも「no-op なのに承認待ちラン＋レビュー依頼メール」が毎回発生し、次の本番リリースを concurrency で詰まらせる（2026-07-21 に #53 マージで実発生、no-op ランを手動キャンセル）。**対応**: `on.push` に `paths: [".changeset/**"]` を追加。changesets の実リリース契機は必ず `.changeset/` を触る（追加 push=Version PR 生成 / Version PR マージの削除 push=publish）ことを #51/#52/#53 の実 diff で確認済み。安全弁に `workflow_dispatch` も追加（承認ゲートは維持）。 | **済**（2026-07-21） |
 
 ### デザイン（コンポジション）
@@ -153,7 +153,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | Props 説明 i18n（leaf + 複合） | **済**（Missing 0） |
 | `PX_BASELINE` | **済**（0。維持のみ） |
 | VRT ベースライン | **更新済**（2026-07-16 全量 update `12d09460`。※T12 の a11y 修正 push 後に再更新が必要） |
-| npm 公開の破壊なし準備 | **済**。公開判断は未 |
+| npm 公開 | **済**（`wimui@0.2.0` 公開済み、2026-07-21。以降は changeset 運用） |
 | asChild 残り | **済** |
 | RTL / 論理プロパティ | **対応予定なし** |
 | コア／拡張の物理分割（モノレポ化） | **対応予定なし**（1 パッケージ + サブパス + optional peer） |
