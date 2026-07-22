@@ -45,7 +45,6 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-loading-states-loadingoverlay--blur-effects",
   "components-media-image--motion-effects",
   "components-navigation-elements-tabnavigation--contained",
-  "components-visualization-nodegraph--with-mini-map",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
 ]);
@@ -55,12 +54,20 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
  * フレークした実績）。ChatUI=タイピング/ストリーミング表示、
  * PromptInput=キャレット・添付チップのアニメーション、
  * ScheduleView=FullCalendar の現在時刻インジケータ+行高 px 丸め
- * （default/month/day/interactive が順繰りにフレーク。個別除外を prefix に集約）。
+ * （default/month/day/interactive が順繰りにフレーク。個別除外を prefix に集約）、
+ * NodeGraph=React Flow の `fitView` がノードを ResizeObserver で非同期計測してから
+ * ビューポート transform を再計算するため、計測が確定するタイミング次第で
+ * zoom/pan にサブピクセル差が乗り、キャンバス全体の AA ジッタが maxDiffPixels を
+ * 超える（力学レイアウトではなくノード位置は固定。with-mini-map は minimap が
+ * 全体を縮小再描画して増幅、read-only は #50 dark で自ベースラインに 1564px 差分＝
+ * update→compare 不一致を確認。default は read-only と非可視フラグ違いのみの同一静的
+ * 描画で同じ計測ジッタを共有＝個別除外を prefix に集約）。
  */
 const NONDETERMINISTIC_STORY_PREFIXES = [
   "components-ai-chatui--",
   "components-ai-promptinput--",
   "components-visualization-scheduleview--",
+  "components-visualization-nodegraph--",
 ];
 
 /**
