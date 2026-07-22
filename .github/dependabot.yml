@@ -28,6 +28,12 @@ updates:
       # （Vite / docgen / 型チェック周辺）が追随するまで保留（PR #14 は CI 全滅を確認済み）
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # FullCalendar 7 は core / react のみ stable（7.0.1）で、ScheduleView が依存する
+      # plugin（timegrid / daygrid / interaction）は 7.0.0-rc.0 までしか無い（latest は 6.1.21）。
+      # core/react だけ 7 に上げると plugin 6 と型不整合で壊れる（#56/#58 で確認・クローズ）。
+      # plugin ラインが stable 化したら本 ignore を外し、5パッケージ一括で v7 へ移行する。
+      - dependency-name: "@fullcalendar/*"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
