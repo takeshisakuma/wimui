@@ -71,6 +71,14 @@ export const Default: Story = {
 };
 
 export const ModernApp: Story = {
+  // Header の内部コンテンツは max-width 1200px で中央寄せされる（Header の .container 固定値）。
+  // メインを full-bleed のままにすると、広い画面でヘッダー内容だけが 1200px で止まって
+  // 中央に寄り、商品グリッドは全幅に広がる——という幅の不一致が起きて不自然に見える。
+  // メインにも同じ 1200px を与えて中央寄せし、ヘッダー内容とメイン内容の measure を揃える。
+  args: {
+    centered: true,
+    maxWidth: 1200,
+  },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
