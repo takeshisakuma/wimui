@@ -5,19 +5,21 @@ import styles from "./footer.module.scss";
 export interface FooterProps extends React.ComponentPropsWithoutRef<"footer"> {
   /** Border at the top */
   bordered?: boolean;
+  /** Expand content to full width (disable the centered max-width container) */
+  fluid?: boolean;
   /** Background color */
   background?: "primary" | "secondary" | "dark";
 }
 
 const FooterRoot = React.forwardRef<HTMLElement, FooterProps>(
   (
-    { className, children, bordered, background = "primary", ...props },
+    { className, children, bordered, fluid, background = "primary", ...props },
     ref,
   ) => {
     return (
       <footer
         ref={ref}
-        className={classNames("wim-footer", 
+        className={classNames("wim-footer",
           styles.root,
           bordered && styles.bordered,
           background && styles[`bg-${background}`],
@@ -26,7 +28,9 @@ const FooterRoot = React.forwardRef<HTMLElement, FooterProps>(
         data-bordered={bordered}
         {...props}
       >
-        <div className={styles.container}>{children}</div>
+        <div className={classNames(styles.container, fluid && styles.fluid)}>
+          {children}
+        </div>
       </footer>
     );
   },

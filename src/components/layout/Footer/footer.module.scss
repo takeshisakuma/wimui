@@ -45,6 +45,11 @@
   max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
   padding: 0 var(--wim-spacing-xl);
   margin: 0 auto;
+
+  /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
+  &.fluid {
+    max-width: none;
+  }
 }
 
 .section {
