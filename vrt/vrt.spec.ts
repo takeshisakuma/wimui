@@ -44,6 +44,10 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   "components-data-structures-sortablelist--disabled",
   "components-loading-states-loadingoverlay--blur-effects",
   "components-media-image--motion-effects",
+  // demoDelay(2000ms) + fadeIn で、スクショが 2 秒のフェード/ロード周期の
+  // どの時点で撮られるかにより poster/動画の描画状態が変わる（時間依存）。
+  // baseline が update のたびに churn するため除外（image--motion-effects と同類）。
+  "components-media-video--premium-features",
   "components-navigation-elements-tabnavigation--contained",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
