@@ -12,3 +12,40 @@
     document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
   })();
 </script>
+<script>
+  // Stale-chunk auto-recovery on GitHub Pages.
+  // Deploy (deploy.yml) rebuilds Storybook on every push to main and publishes
+  // with force_orphan: true, which rotates every content-hashed chunk filename
+  // and DELETES the previous ones. A tab opened before a deploy then holds a
+  // stale module graph and 404s on a lazy Docs import
+  // ("Failed to fetch dynamically imported module"). Recover by reloading once
+  // to pull the fresh index + new hashes — exactly what a manual reload does.
+  (function () {
+    var KEY = 'wim-chunk-reload-at';
+    function recover() {
+      try {
+        var last = Number(sessionStorage.getItem(KEY) || 0);
+        if (Date.now() - last < 10000) return; // guard against reload loops
+        sessionStorage.setItem(KEY, String(Date.now()));
+      } catch (_) { /* sessionStorage unavailable — reload anyway */ }
+      // Reload the whole Storybook (top), not just the preview iframe, so the
+      // manager re-fetches index.html and the fresh iframe with new hashes.
+      try { (window.top || window).location.reload(); }
+      catch (_) { window.location.reload(); }
+    }
+    // Fired by Vite's module-preload helper when a dynamic import 404s.
+    window.addEventListener('vite:preloadError', function (e) {
+      if (e && e.preventDefault) e.preventDefault(); // suppress the render-error boundary
+      recover();
+    });
+    // Fallback for dynamic-import rejections that don't go through the helper.
+    window.addEventListener('unhandledrejection', function (e) {
+      var reason = e && e.reason;
+      var msg = (reason && (reason.message || reason)) || '';
+      if (typeof msg === 'string' &&
+          /Failed to fetch dynamically imported module|error loading dynamically imported module|Importing a module script failed/i.test(msg)) {
+        recover();
+      }
+    });
+  })();
+</script>

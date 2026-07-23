@@ -6,6 +6,14 @@ on:
       - main
   workflow_dispatch:
 
+# 連続 push（バーストマージ）時は中間デプロイをキャンセルし最新のみ公開する。
+# 毎デプロイで content-hash 付き chunk が総入れ替え＋force_orphan で旧ファイル
+# 削除されるため、デプロイ回数を減らすほど「開いているタブが stale chunk 404 に
+# なる」機会が減る（根本の stale 対策は preview-head.html の自動リロード）。
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
