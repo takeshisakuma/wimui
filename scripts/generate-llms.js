@@ -280,6 +280,105 @@ export function BillingOverview() {
 \`\`\`
 `;
 
+// Additional full-screen patterns — the "templates" people ask for. Kept in
+// llms-full.txt only (llms.txt stays a lean index). Every symbol/prop verified.
+const recipesExtra = `### 3. Auth — sign-in screen
+
+A focused single-protagonist screen: one centered card, a left-aligned form. Not the generic badge→heading→two-buttons hero. Real product context in the copy.
+
+\`\`\`tsx
+import { Center, Card, Stack, Group, Title, Text, Input, PasswordInput, Checkbox, Button, Link } from "${pkg.name}";
+
+export function SignIn() {
+  return (
+    <Center h="100dvh" p="lg">
+      <Card padding="lg" style={{ width: "min(380px, 100%)" }}>
+        <Stack gap="lg">
+          <Stack gap="2xs">
+            <Title tag="h1" size="lg">Sign in to Larkfield</Title>
+            <Text color="secondary">Use your work email — SSO is enabled for Enterprise workspaces.</Text>
+          </Stack>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Stack gap="md">
+              <Input label="Work email" type="email" placeholder="you@company.com" fullWidth />
+              <PasswordInput label="Password" fullWidth />
+              <Group justify="between" align="center">
+                <Checkbox>Keep me signed in</Checkbox>
+                <Link href="#" priority="secondary">Forgot password?</Link>
+              </Group>
+              <Button type="submit" variant="solid" intent="primary" fullWidth>Sign in</Button>
+            </Stack>
+          </form>
+          <Text size="sm" color="tertiary">No account? <Link href="#">Start a 14-day trial</Link></Text>
+        </Stack>
+      </Card>
+    </Center>
+  );
+}
+\`\`\`
+
+### 4. Settings — sectioned form
+
+Dense label-left / control-right rows grouped in one card, separated by \`Divider\`. Density comes from token gaps, not hardcoded spacing. Actions right-aligned at the bottom.
+
+\`\`\`tsx
+import { Stack, Group, Title, Text, Card, Divider, Select, Switch, Button } from "${pkg.name}";
+
+export function NotificationSettings() {
+  return (
+    <Stack gap="lg" style={{ maxWidth: 720 }}>
+      <Stack gap="2xs">
+        <Title tag="h1" size="lg">Notifications</Title>
+        <Text color="secondary">Control what Larkfield emails you about. Changes apply immediately.</Text>
+      </Stack>
+
+      <Card padding="lg">
+        <Stack gap="md">
+          <SettingRow label="Deliverability alerts" hint="Bounce-rate spikes and blocklist hits.">
+            <Switch defaultChecked />
+          </SettingRow>
+          <Divider />
+          <SettingRow label="Weekly summary" hint="Every Monday, 09:00 in your timezone.">
+            <Switch />
+          </SettingRow>
+          <Divider />
+          <SettingRow label="Digest timezone">
+            <Select
+              aria-label="Digest timezone"
+              value="jst"
+              options={[
+                { label: "Asia/Tokyo (JST)", value: "jst" },
+                { label: "Europe/Berlin (CET)", value: "cet" },
+                { label: "UTC", value: "utc" },
+              ]}
+            />
+          </SettingRow>
+        </Stack>
+      </Card>
+
+      <Group justify="end" gap="sm">
+        <Button variant="ghost">Reset</Button>
+        <Button variant="solid" intent="primary">Save changes</Button>
+      </Group>
+    </Stack>
+  );
+}
+
+// Local helper: label-left / control-right row. One protagonist per row = the control.
+function SettingRow({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+  return (
+    <Group justify="between" align="center" gap="md">
+      <Stack gap="3xs">
+        <Text weight="medium">{label}</Text>
+        {hint ? <Text size="sm" color="secondary">{hint}</Text> : null}
+      </Stack>
+      {children}
+    </Group>
+  );
+}
+\`\`\`
+`;
+
 // --- component sections ---------------------------------------------------
 
 const catalogSection = (withProps) => {
@@ -317,6 +416,7 @@ const concise = [
   setup,
   composition,
   recipes,
+  `> More full-screen patterns with verified code (auth sign-in, settings form) are in \`llms-full.txt\`.`,
   catalogSection(false),
   `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.`,
 ].join('\n');
@@ -326,6 +426,7 @@ const full = [
   setup,
   composition,
   recipes,
+  recipesExtra,
   catalogSection(true),
 ].join('\n');
 
