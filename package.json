@@ -249,6 +249,7 @@
     "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
     "audit:i18n-ignore": "node scripts/check-i18n-ignore.js",
     "scaffold": "node scripts/scaffold-component.js",
+    "llms:build": "node scripts/generate-llms.js",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js",
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",
