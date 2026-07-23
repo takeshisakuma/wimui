@@ -134,6 +134,8 @@
     },
     "./styles.css": "./dist/styles.css",
     "./reset.css": "./dist/reset.css",
+    "./llms.txt": "./dist/llms.txt",
+    "./llms-full.txt": "./dist/llms-full.txt",
     "./locales/*": "./dist/locales/*"
   },
   "size-limit": [
@@ -191,7 +193,7 @@
   ],
   "scripts": {
     "dev": "npm run generate:icons && npm run i18n:bundle && vite",
-    "build": "npm run generate:icons && npm run i18n:bundle && vite build && vite build --mode umd && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
+    "build": "npm run generate:icons && npm run i18n:bundle && npm run llms:build && vite build && vite build --mode umd && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
     "generate:icons": "node scripts/generate-icons.js",
     "size": "size-limit",
     "test": "vitest run",
@@ -249,6 +251,7 @@
     "audit:stories-i18n": "node scripts/check-stories-hardcoded.js --all",
     "audit:i18n-ignore": "node scripts/check-i18n-ignore.js",
     "scaffold": "node scripts/scaffold-component.js",
+    "llms:build": "node scripts/generate-llms.js",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js",
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",

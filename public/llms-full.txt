@@ -1,0 +1,2418 @@
+# WIM UI — LLM guide (llms-full.txt)
+
+> Machine-readable map of the wimui React component library for coding agents. Read this before generating any UI with wimui: it defines the required CSS/setup, the correct import paths, the full component list, and the composition rules that keep screens from looking AI-generated.
+
+## What this is
+
+**wimui** v0.2.0 — a React 19 component library: 216 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+
+## Install & required setup
+
+```bash
+npm i wimui
+```
+
+```ts
+// 1. CSS contract — styles.css is REQUIRED (design tokens + component styles).
+import "wimui/styles.css";
+import "wimui/reset.css"; // optional base reset
+
+// 2. Components — import from the root barrel or a category subpath (tree-shakeable).
+import { Button, Card } from "wimui";
+import { Stack, Grid } from "wimui/layout";
+```
+
+- **Theme**: wrap the app in `WimProvider` (recommended) or set `data-theme="light|dark"` on `<html>` (omit to follow OS).
+- **Density**: `data-density="comfortable|compact"`, or `WimProvider` / `setWimDensity()`.
+- **Never hardcode** colors / spacing / sizes in consumer code — use the `--wim-*` CSS custom properties (tokens) that styles.css defines.
+- **Form + RHF** helpers live in `wimui/rhf` (react-hook-form + zod), not the root barrel.
+
+## Import paths
+
+Every component works from the root barrel `"wimui"`. For smaller bundles, import from its category subpath instead:
+
+- `wimui/layout`
+- `wimui/form`
+- `wimui/feedback`
+- `wimui/navigation`
+- `wimui/data-display`
+- `wimui/overlay`
+- `wimui/typography`
+- `wimui/media`
+- `wimui/charts`
+- `wimui/ai`
+
+## Composition rules — build screens that don't look AI-generated
+
+Single components are judged by state/a11y/token compliance. **Composed screens** are judged by hierarchy, rhythm, asymmetry and real-feeling content. Apply these whenever combining components into a screen, page, pattern or demo.
+
+**Before laying out**: pick exactly ONE visual protagonist for the screen. If every element has the same volume, it reads as AI-generated.
+
+**Banned patterns (the "AI signature" — do not emit):**
+- `linear-gradient(135deg, …)` hero backgrounds → use surface-hierarchy tokens (`surface` / `surface-raised`) to separate planes.
+- The stock hero (badge → big heading → subtext → two solid/outline buttons) → asymmetric composition led by one protagonist.
+- "Rule of three" equal feature cards (icon + short heading + one line, ×3) → let the count follow content (2 or 5 is fine); vary card size and copy length.
+- Emoji used as UI icons (☰ ★ ✓) → use `src/icon/` components. (Emoji as functional markers in docs/README is fine; as UI icons it is not.)
+- Skeleton used as anything but loading (fake screenshots) → real-looking content or an actual mini UI.
+- Every section center-aligned → default to left-aligned; at most one centered section per page.
+- Round numbers ("1000+", "99%") + generic copy ("Get started", "seamless/powerful/effortless") → jagged realistic numbers (4,281) and product-specific voice.
+- Sequential/alphabetical dummy names (Alice/Bob/Charlie, User 1/2) → culturally diverse, unordered, real-feeling names.
+- Rainbow color-per-category → color carries state only (success/warning/danger); everything else neutral.
+- Perfectly even grids (2×2, 3×3 all same size) → break the grid (span the protagonist cell, size differences, hero+sidebar asymmetry).
+- Filling every slot / uniform gaps everywhere → leave whitespace; group by proximity (tight within a group, loose between groups).
+
+**Must rules:**
+1. One visual protagonist per screen (jump in size/weight/color creates the entry point).
+2. Contrast density: hero/showcase sparse, data regions (tables/lists) dense. Uniform "medium density" reads as AI.
+3. Never override a component's defaults via inline `style` (`padding:0`, `borderRadius:0`). Add a prop/token instead.
+4. Never hardcode gap/padding/size — use `--wim-spacing-*` tokens.
+5. Keep one radius stance per screen (`radius.component` / `radius.container` / `radius.overlay`); don't mix 0 and lg arbitrarily.
+6. Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.
+7. Give demo content real substance (product-context copy, internally consistent numbers/dates/names — active ≤ total, dates not evenly spaced).
+8. Add intentional "wobble": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).
+
+## Components
+
+### layout — `import { … } from "wimui/layout"`
+
+- **AppShell** — Basic application shell layout
+    - `header: React.ReactNode` — Header component
+    - `sidebar: React.ReactNode` — Sidebar component
+    - `footer: React.ReactNode` — Footer component
+    - `navbar: React.ReactNode` — Navbar component (mobile bottom navigation)
+    - `padding: boolean` = true — Add padding to main content
+    - `centered: boolean` — Center main content horizontally
+    - `maxWidth: number | string` — Maximum width for centered content
+- **AspectRatio** — Fixed ratio container
+    - `ratio: number` = 1 — Aspect ratio (e.g. 16 / 9, 1, 4 / 3)
+    - `children: React.ReactNode` (required) — Child content
+- **BentoGrid** — Modern card grid
+    - `children: React.ReactNode` — Grid items (typically BentoGrid.Item elements)
+- **Box** — Polymorphic box
+    - `as: C` — The component used for the root node. Either a string to use a HTML element or a component.
+    - `asChild: boolean` = false — If true, the box will be rendered as its child, merging its props onto that child.
+    - `p: number | WimSpacing` — Padding
+    - `pt: number | WimSpacing` — Padding top
+    - `pr: number | WimSpacing` — Padding right
+    - `pb: number | WimSpacing` — Padding bottom
+    - `pl: number | WimSpacing` — Padding left
+    - `px: number | WimSpacing` — Padding horizontal
+    - `py: number | WimSpacing` — Padding vertical
+    - `m: number | WimSpacing` — Margin
+    - `mt: number | WimSpacing` — Margin top
+    - `mr: number | WimSpacing` — Margin right
+    - `mb: number | WimSpacing` — Margin bottom
+    - `ml: number | WimSpacing` — Margin left
+    - `mx: number | WimSpacing` — Margin horizontal
+    - `my: number | WimSpacing` — Margin vertical
+    - `bg: T | (string & {})` — Background color
+    - `color: T | (string & {})` — Text color
+    - `w: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Width
+    - `h: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Height
+    - `radius: number | WimRadius` — Border radius
+    - `shadow: T | (string & {})` — Box shadow
+    - `display: React.CSSProperties["display"]` — Display
+    - `position: React.CSSProperties["position"]` — Position
+- **Center** — Radial centering
+    - `inline: boolean` = false — Whether to use inline-flex
+    - `asChild: boolean` = false — If true, the box will be rendered as its child, merging its props onto that child.
+    - `p: number | WimSpacing` — Padding
+    - `pt: number | WimSpacing` — Padding top
+    - `pr: number | WimSpacing` — Padding right
+    - `pb: number | WimSpacing` — Padding bottom
+    - `pl: number | WimSpacing` — Padding left
+    - `px: number | WimSpacing` — Padding horizontal
+    - `py: number | WimSpacing` — Padding vertical
+    - `m: number | WimSpacing` — Margin
+    - `mt: number | WimSpacing` — Margin top
+    - `mr: number | WimSpacing` — Margin right
+    - `mb: number | WimSpacing` — Margin bottom
+    - `ml: number | WimSpacing` — Margin left
+    - `mx: number | WimSpacing` — Margin horizontal
+    - `my: number | WimSpacing` — Margin vertical
+    - `bg: T | (string & {})` — Background color
+    - `color: T | (string & {})` — Text color
+    - `w: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Width
+    - `h: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Height
+    - `radius: number | WimRadius` — Border radius
+    - `shadow: T | (string & {})` — Box shadow
+    - `display: React.CSSProperties["display"]` — Display
+    - `position: React.CSSProperties["position"]` — Position
+- **Container** — Layout wrapper
+    - `size: "xs" | "sm" | "md" | "lg" | "xl" | number | string` = "lg" — Container max-width
+    - `fluid: boolean` = false — Whether the container should be fluid (100% width)
+    - `asChild: boolean` = false — If true, the box will be rendered as its child, merging its props onto that child.
+    - `p: number | WimSpacing` — Padding
+    - `pt: number | WimSpacing` — Padding top
+    - `pr: number | WimSpacing` — Padding right
+    - `pb: number | WimSpacing` — Padding bottom
+    - `pl: number | WimSpacing` — Padding left
+    - `px: number | WimSpacing` — Padding horizontal
+    - `py: number | WimSpacing` — Padding vertical
+    - `m: number | WimSpacing` — Margin
+    - `mt: number | WimSpacing` — Margin top
+    - `mr: number | WimSpacing` — Margin right
+    - `mb: number | WimSpacing` — Margin bottom
+    - `ml: number | WimSpacing` — Margin left
+    - `mx: number | WimSpacing` — Margin horizontal
+    - `my: number | WimSpacing` — Margin vertical
+    - `bg: T | (string & {})` — Background color
+    - `color: T | (string & {})` — Text color
+    - `w: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Width
+    - `h: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Height
+    - `radius: number | WimRadius` — Border radius
+    - `shadow: T | (string & {})` — Box shadow
+    - `display: React.CSSProperties["display"]` — Display
+    - `position: React.CSSProperties["position"]` — Position
+- **Dashboard** — Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.
+    - `widgets: DashboardWidget[]` — Widget definitions to render.
+    - `editable: boolean` — Whether the dashboard is in edit mode (controlled).
+    - `defaultEditable: boolean` = false — Initial edit mode state (uncontrolled). Default: false.
+    - `onEditChange: (editable: boolean) => void` — Called when edit mode changes.
+    - `onRemove: (widgetId: string) => void` — Called when a widget is removed.
+    - `onAdd: () => void` — Called when the "Add Widget" button is clicked.
+    - `columns: number` = 3 — Number of columns. Default: 3.
+    - `gap: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Gap between widgets. Default: "md".
+    - `showEditToggle: boolean` = true — Show the edit toggle button in the header. Default: true.
+    - `label: string` — Dashboard heading label.
+- **Divider** — Content separator
+    - `orientation: "horizontal" | "vertical"` = "horizontal" — Orientation of the divider
+    - `thickness: number` = 1 — Thickness of the line (px)
+- **Flex** — Flexible layout
+    - `asChild: boolean` = false — If true, the flex will be rendered as its child, merging its props onto that child.
+    - `direction: "row" | "row-reverse" | "column" | "column-reverse"` = "row" — Flex direction
+    - `align: "start" | "center" | "end" | "stretch" | "baseline"` — Align-items
+    - `justify: "start" | "center" | "end" | "between" | "around" | "evenly" | "stretch"` — Justify-content
+    - `wrap: "nowrap" | "wrap" | "wrap-reverse"` — Flex-wrap
+    - `gap: number | WimSpacing` — Gap between children
+    - `inline: boolean` = false — Display inline-flex
+- **Footer** — Lower navigation
+    - `bordered: boolean` — Border at the top
+    - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
+    - `background: "primary" | "secondary" | "dark"` = "primary" — Background color
+- **Grid** — Flexbox or CSS Grid system
+    - `asChild: boolean` = false — If true, the grid will be rendered as its child, merging its props onto that child.
+The container-query wrapper div is preserved to maintain responsive column behaviour.
+    - `cols: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Number of columns (or a responsive object per breakpoint)
+    - `rows: number | string` — Number of rows or an explicit grid-template-rows value
+    - `gap: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Gap between cells (or a responsive object per breakpoint)
+    - `columnGap: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Gap between columns (or a responsive object per breakpoint)
+    - `rowGap: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Gap between rows (or a responsive object per breakpoint)
+    - `align: "start" | "center" | "end" | "stretch"` — Alignment of items along the block (vertical) axis
+    - `justify: "start" | "center" | "end" | "between" | "around" | "stretch"` — Justification of items along the inline (horizontal) axis
+    - `flow: "row" | "column" | "dense" | "row dense" | "column dense"` — Grid auto-flow direction
+    - `inline: boolean` = false — Whether to render as an inline grid
+- **Group** — Flexible grouping
+    - `asChild: boolean` — If true, the group will be rendered as its child, merging its props onto that child.
+    - `align: "start" | "center" | "end" | "stretch" | "baseline"` = "center" — Vertical alignment
+    - `justify: "start" | "center" | "end" | "between" | "around" | "evenly"` = "start" — Horizontal alignment
+    - `gap: number | string` = 16 — Gap between elements
+    - `wrap: "nowrap" | "wrap" | "wrap-reverse"` = "wrap" — Whether to wrap children
+    - `grow: boolean` = false — Whether items should grow to fill available space
+- **Header** — Upper navigation
+    - `fixed: boolean` — Fixed position at the top
+    - `sticky: boolean` — Sticky position at the top
+    - `bordered: boolean` — Border at the bottom
+    - `glass: boolean` — Glassmorphism effect
+    - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
+    - `background: "primary" | "secondary" | "transparent"` = "primary" — Background color
+- **InteractiveArea** — Interactive empty/drop zone area
+    - `title: ReactNode` — Area title
+    - `description: ReactNode` — Area description
+    - `icon: ReactNode` — Icon to display
+    - `actions: ReactNode` — Action elements (buttons, etc.)
+    - `variant: "dashed" | "solid" | "none"` = "dashed" — Border variant
+    - `bgVariant: "default" | "transparent" | "muted"` = "default" — Background variant
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size variation
+    - `isDragging: boolean` = false — Whether the area is currently in a dragging state (for dropzone)
+    - `isClickable: boolean` = false — Whether the area is clickable
+    - `disabled: boolean` = false — Whether the area is disabled
+    - `styles: { inner?: string; icon?: string; title?: string; description?: string; content?: string; actions?: string; }` — Custom styles for internal parts
+- **Masonry** — Waterfall grid
+    - `columns: number` = 3 — Number of columns
+    - `spacing: number | string` = 16 — Spacing between items
+- **Navbar** — Primary navigation
+    - `fixed: boolean` — Whether the navbar is fixed to the viewport
+    - `sticky: boolean` — Whether the navbar sticks to the top while scrolling
+    - `transparent: boolean` — Whether the navbar background is transparent
+    - `glass: boolean` — Whether to apply the frosted-glass effect
+    - `bordered: boolean` — Whether to show a bottom border
+    - `defaultMenuOpen: boolean` = false — Initial open state of the mobile menu (uncontrolled)
+    - `isMenuOpen: boolean` — Open state of the mobile menu (controlled)
+    - `onMenuOpenChange: (isOpen: boolean) => void` — Callback when the mobile menu open state changes
+- **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
+    - `text: React.ReactNode` — Content to display (alternative to children)
+    - `children: React.ReactNode` — Content to display
+    - `scrollAxis: "x" | "y" | "both"` = "y" — Axis along which scrolling is allowed
+    - `maxHeight: string` — Maximum height before scrolling (a CSS value, so units other than px are supported)
+- **Sidebar** — A collapsible navigation or informational panel on the side of the screen
+    - `fixed: boolean` — Fixed position
+    - `collapsed: boolean` — Collapsed state
+    - `width: number | string` = 260 — Width when expanded
+    - `bordered: boolean` = true — Border at the right
+    - `responsive: boolean` = true — Enable responsive behavior (mobile drawer)
+    - `mobileOpen: boolean` — Mobile drawer open state
+    - `onOverlayClick: () => void` — Callback when overlay is clicked
+- **SimpleGrid** — Responsive fixed grid
+    - `cols: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` = 1 — Number of columns (or a responsive object per breakpoint)
+    - `spacing: number | string` = 16 — Spacing between cells
+    - `verticalSpacing: number | string` — Vertical spacing between rows (defaults to `spacing`)
+    - `minChildWidth: number | string` — Minimum width of each child; columns wrap automatically to fit
+- **Splitter** — Split and resize panels
+    - `orientation: "horizontal" | "vertical"` = "horizontal" — The orientation of the splitter.
+    - `children: React.ReactNode` (required) — The components to render within the splitter. Usually a combination of `Splitter.Panel` and `Splitter.Handle`.
+- **Stack** — Vertical/Horizontal alignment
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `gap: number | string` = "md" — Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg').
+    - `direction: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` = "column" — Stack direction
+    - `align: "start" | "center" | "end" | "stretch" | "baseline" | ReactCSSProperties["alignItems"]` — Align-items
+    - `justify: "start" | "center" | "end" | "between" | "around" | "evenly" | "stretch" | ReactCSSProperties["justifyContent"]` — Justify-content
+    - `wrap: boolean | React.CSSProperties["flexWrap"]` — Whether children should wrap
+    - `p: number | WimSpacing` — Padding
+    - `pt: number | WimSpacing` — Padding top
+    - `pr: number | WimSpacing` — Padding right
+    - `pb: number | WimSpacing` — Padding bottom
+    - `pl: number | WimSpacing` — Padding left
+    - `px: number | WimSpacing` — Padding horizontal
+    - `py: number | WimSpacing` — Padding vertical
+    - `m: number | WimSpacing` — Margin
+    - `mt: number | WimSpacing` — Margin top
+    - `mr: number | WimSpacing` — Margin right
+    - `mb: number | WimSpacing` — Margin bottom
+    - `ml: number | WimSpacing` — Margin left
+    - `mx: number | WimSpacing` — Margin horizontal
+    - `my: number | WimSpacing` — Margin vertical
+    - `bg: T | (string & {})` — Background color
+    - `color: T | (string & {})` — Text color
+    - `w: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Width
+    - `h: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Height
+    - `radius: number | WimRadius` — Border radius
+    - `shadow: T | (string & {})` — Box shadow
+    - `display: React.CSSProperties["display"]` — Display
+    - `position: React.CSSProperties["position"]` — Position
+- **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
+    - `size: ComponentSizeBasic` = "md" — Visual density for padding and gap. Cascades to `--wim-toolbar-*` CSS variables.
+@default "md"
+    - `orientation: "horizontal" | "vertical"` = "horizontal" — Layout axis of the toolbar.
+@default "horizontal"
+- **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
+    - `show: boolean` (required) — Whether the content is shown (drives the enter/leave transitions)
+    - `children: React.ReactNode` (required) — Content to transition
+    - `preset: "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — Preset transition (fade, scale, slide-*)
+    - `enter: string` = "" — Class applied during the enter transition
+    - `enterFrom: string` = "" — Class applied at the start of the enter transition
+    - `enterTo: string` = "" — Class applied at the end of the enter transition
+    - `leave: string` = "" — Class applied during the leave transition
+    - `leaveFrom: string` = "" — Class applied at the start of the leave transition
+    - `leaveTo: string` = "" — Class applied at the end of the leave transition
+    - `unmount: boolean` = true — Whether to unmount the content when hidden
+    - `appear: boolean` = false — Whether to run the enter transition on initial mount
+    - `className: string` — Additional class names
+- **VisuallyHidden** — Hide content visually while keeping it accessible to screen readers
+    - `children: React.ReactNode` (required) — Content that is visually hidden but still read out by screen readers.
+- **Watermark** — Translucent text or images overlaid on content to indicate ownership or status
+    - `content: string | string[]` — Text content of the watermark (a string or multiple lines)
+    - `image: string` — Image URL used as the watermark instead of text
+    - `width: number` — Width of a single watermark tile (px)
+    - `height: number` — Height of a single watermark tile (px)
+    - `rotate: number` — Rotation angle of the watermark (degrees)
+    - `zIndex: number` — z-index of the watermark layer
+    - `opacity: number` — Opacity of the watermark
+    - `gap: [number, number]` — Gap between watermark tiles [x, y] (px)
+    - `offset: [number, number]` — Offset of the watermark pattern [x, y] (px)
+    - `children: React.ReactNode` — Content overlaid by the watermark
+    - `className: string` — Additional class names
+
+### form — `import { … } from "wimui/form"`
+
+- **Button** — Action triggers
+    - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
+Useful for using the button styles with Link components (e.g. from React Router or Next.js).
+    - `backgroundColor: T | (string & {})` — Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
+    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element
+    - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
+    - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
+    - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
+    - `animateWidth: boolean` = false — Whether to animate the width change when label changes
+    - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
+    - `styles: { root?: string; loader?: string; icon?: string; }` — Custom styles for internal parts
+    - `className: string` — Additional class names
+- **ButtonGroup** — Group of buttons
+    - `children: React.ReactNode` (required) — Buttons to group
+    - `gap: string` = "8px" — Gap between buttons (ignored when joined)
+    - `className: string` — Additional class names
+    - `joined: boolean` = false — Whether to join the buttons into a single connected unit
+    - `variant: "solid" | "outline" | "ghost"` — Variant applied to all child buttons
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **Cascader** — Hierarchical selection
+    - `options: CascaderOption[]` = [] — Hierarchical options to select from
+    - `value: string[]` — Selected value path (controlled)
+    - `onChange: (value: string[], selectedOptions: CascaderOption[]) => void` — Callback when the selection changes
+    - `placeholder: React.ReactNode` — Placeholder shown when nothing is selected
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the field is disabled
+    - `defaultValue: string[]` — Initially selected value path (uncontrolled)
+    - `id: string` — Unique ID for the component
+    - `expandTrigger: "click" | "hover"` = "click" — Expand trigger mode
+    - `separator: string` = " / " — Custom separator for the display value
+    - `allowClear: boolean` = false — Whether to show a clear button when a value is selected
+    - `aria-label: string` — Accessible label for the trigger when no visible label is provided
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+- **Checkbox** — Multiple choice
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `children: React.ReactNode` — Label content rendered next to the checkbox
+    - `indeterminate: boolean` = false — Whether to show the indeterminate (mixed) state
+    - `error: boolean` = false — Whether to display as an error state (aria-invalid is applied)
+- **CheckboxGroup** — Shared state checkboxes
+    - `options: Option[]` (required) — List of checkbox options
+    - `value: string[]` — Selected values (controlled)
+    - `defaultValue: string[]` = [] — Initially selected values (uncontrolled)
+    - `onChange: (value: string[]) => void` — Callback when the selected values change
+    - `direction: "vertical" | "horizontal"` = "vertical" — Layout direction of the checkboxes
+    - `name: string` — Name attribute shared by the checkbox inputs
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `label: string` — Group label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `disabled: boolean` — Whether the whole group is disabled
+- **ColorInput** — Input with color preview
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **ColorPicker** — Color selection picker
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **Combobox** — Select with search
+    - `options: ComboboxOption[]` = [] — List of suggestion options
+    - `onChange: (option: ComboboxOption) => void` — Callback when an option is selected
+    - `placeholder: string` — Placeholder for the input
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `showSearchIcon: boolean` = true — Whether to show the search icon
+    - `allowClear: boolean` = true — Whether to show a clear button when value is present
+    - `defaultValue: string` = "" — Initial input value (uncontrolled)
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the field is disabled
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `id: string` — Unique ID for the component
+    - `labels: { noResults?: React.ReactNode; }` = {} — Labels for internationalization
+- **CopyButton** — Copy to clipboard
+    - `value: string` (required) — Text copied to the clipboard
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `className: string` — Additional class names
+    - `aria-label: string` — Accessible label for the button
+    - `copyLabel: string` — Tooltip label before copying
+    - `copiedLabel: string` — Tooltip label after copying
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `children: React.ReactNode` — Trigger content when `asChild` is true
+- **CounterTextarea** — Textarea with character count display
+    - `asChild: boolean` — If true, the textarea element will be rendered as its child, merging its props onto that child.
+    - `intent: FieldIntent` — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `fieldSizing: "fixed" | "content"` — Sizing behavior: "fixed" keeps the height, "content" grows with the text
+    - `label: string` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `showCount: boolean` = true — Whether to show the character count.
+@default true
+    - `counterPosition: "bottom" | "overlay"` = "bottom" — Position of the counter.
+"bottom" (default) shows it below the textarea.
+"overlay" shows it inside the textarea (bottom-right).
+@default "bottom"
+- **CreditCardInput** — Payment card input with brand detection
+    - `onBrandChange: (brand: CreditCardBrand) => void` — Callback when the card brand is detected.
+    - `asChild: boolean` = false — Whether to render as a child component.
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+- **DatePicker** — Date selection
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `value: Date | null` — Selected date value (`null` = cleared; omit/`undefined` = uncontrolled)
+    - `defaultValue: Date | null` — Default date value (uncontrolled)
+    - `onChange: (date: Date | null) => void` — Callback when date changes (`null` when cleared)
+    - `format: string` = "YYYY-MM-DD" — Date format for display (default: 'YYYY-MM-DD')
+    - `clearable: boolean` = true — Show clear button
+    - `placeholder: string` — Placeholder text
+    - `minDate: Date` — Minimum selectable date
+    - `maxDate: Date` — Maximum selectable date
+    - `disabledDates: Date[]` — Disabled dates
+    - `label: string` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `labels: { placeholder?: string; }` — Labels for manual translation
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **DateRangePicker** — Date range selection
+    - `startProps: React.ComponentProps<typeof DatePicker>` — Props passed to the start-date DatePicker
+    - `endProps: React.ComponentProps<typeof DatePicker>` — Props passed to the end-date DatePicker
+    - `className: string` — Additional class names
+    - `label: string` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+- **Dropzone** — Drag & drop files
+    - `label: React.ReactNode` — Field label.
+    - `description: React.ReactNode` — Description text shown in the drag-and-drop area.
+    - `accept: string` — Accepted file types (e.g. ".jpg,.png").
+    - `multiple: boolean` = false — Whether multiple files can be selected.
+    - `disabled: boolean` = false — Whether the component is disabled.
+    - `onChange: (files: FileList | null) => void` — Callback when files are selected.
+    - `className: string` — Additional class names.
+    - `iconName: React.ComponentProps<typeof Icon>["name"]` = "UploadIcon" — Icon name shown in the drop area.
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `size: InteractiveAreaProps["size"]` = "md" — Size of the drop area
+- **FieldError** — Validation messages
+    - `content: string` (required) — Error message text
+    - `className: string` — Additional class names
+    - `id: string` — ID of the error message element
+- **Fieldset** — Form grouping
+    - `children: React.ReactNode` (required) — Form elements to group
+    - `disabled: boolean` = false — Whether all contained form elements are disabled
+    - `variant: "default" | "full-width"` = "default" — Visual variant of the fieldset
+    - `className: string` — Additional class names
+- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `label: React.ReactNode` — Label text of the field
+    - `error: string` — Error message
+    - `children: React.ReactNode` (required) — Main content of the field
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+@default "vertical"
+    - `labelId: string` — ID of the label element for accessibility
+    - `htmlFor: string` — ID of the element the label points to
+    - `errorId: string` — ID of the error message element
+    - `styles: { root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }` — Custom styles for internal parts
+- **FileUpload** — File selection
+    - `label: React.ReactNode` — Field label
+    - `buttonLabel: React.ReactNode` — Label of the file selection button
+    - `noFileLabel: React.ReactNode` — Text shown when no file is selected
+    - `accept: string` — Accepted file types (e.g. ".jpg,.png")
+    - `multiple: boolean` = false — Whether multiple files can be selected
+    - `disabled: boolean` = false — Whether the component is disabled
+    - `onChange: (files: FileList | null) => void` — Callback when files are selected
+    - `className: string` — Additional class names
+    - `iconName: React.ComponentProps<typeof Icon>["name"]` — Icon name shown on the button
+    - `iconPosition: "left" | "right"` — Position of the icon relative to the button label
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+- **FloatButton** — Floating action buttons
+    - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
+    - `iconName: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon" | "ArrowUpIcon" | string` = "CircleIcon" — Icon name from the library
+    - `variant: "default" | "primary" | "glass"` — Variant of the button
+    - `intent: ButtonIntent` = "default" — Intent of the button (semantic meaning)
+    - `shape: "circle" | "square"` = "circle" — Shape of the button
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `label: React.ReactNode` — Label text for extended FAB
+    - `shrink: boolean` = false — Whether to shrink the extended FAB (hide label)
+    - `position: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "static"` = "bottom-right" — Position of the button
+    - `description: React.ReactNode` — Description for tooltip
+    - `badge: number | boolean` — Badge content (number or dot)
+    - `backTop: boolean` = false — If true, the button will scroll to the top of the page when clicked
+    - `visibilityHeight: number` = 400 — Visibility threshold for backTop (in pixels)
+    - `className: string` — Additional class names
+    - `style: React.CSSProperties` — Style attribute
+    - `aria-label: string` — Aria label for accessibility
+- **IconButton** — Icon-only button
+    - `iconName: React.ComponentProps<typeof Icon>["name"]` (required) — Icon name to display
+    - `aria-label: string` (required) — Accessible label for the icon-only button
+- **ImageCropper** — Front-end image crop and rotate tool
+    - `src: string` — URL or data URL of the image to crop
+    - `aspectRatio: number` = 1 — Aspect ratio (width / height); 1 produces a square
+    - `circular: boolean` = false — Whether to display a circular crop area (for profile images)
+    - `onCrop: (dataUrl: string) => void` — Callback when the crop result is finalized
+    - `showRotation: boolean` = true — Whether to show the rotation button
+    - `showZoom: boolean` = true — Whether to show the zoom slider
+    - `showApplyButton: boolean` = true — Whether to show the apply button
+    - `applyLabel: string` — Label of the apply button
+    - `onApply: (dataUrl: string) => void` — Callback when the crop is applied (after confirming in the dialog)
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place.
+    - `value: string` — Current text (controlled)
+    - `defaultValue: string` — Initial text (uncontrolled)
+    - `onChange: (value: string) => void` — Callback when the text changes while editing
+    - `onSave: (value: string) => void` — Callback when the edit is confirmed
+    - `onCancel: () => void` — Callback when the edit is cancelled
+    - `onEdit: () => void` — Callback when editing starts
+    - `placeholder: string` — Placeholder shown when the text is empty
+    - `disabled: boolean` = false — Whether editing is disabled
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `label: React.ReactNode` — Accessible label for the text and edit button
+- **Input** — Single-line input fields for text, numbers, or emails
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
+    - `children: React.ReactNode` (required) — Inner form control element(s) wrapped by the shell
+    - `intent: FieldIntent | WimIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `className: string` — Additional class names
+    - `disabled: boolean` — Whether the field is disabled
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `leftIconAriaLabel: string` — Aria label for the left icon button
+    - `rightIcons: InputBaseIcon[]` = [] — Icons to display on the right side
+    - `allowClear: boolean` — Whether to show a clear button when value is present
+    - `hasValue: boolean` — Whether the field currently has a value (controls clear button visibility)
+    - `onClear: () => void` — Callback when the clear button is clicked
+    - `clearAriaLabel: string` — Aria label for the clear button
+    - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
+- **InputGroup** — Inputs with icons/labels
+    - `children: React.ReactNode` (required) — Inputs, buttons, and add-ons to combine into one unit
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `className: string` — Additional class names
+- **InputMask** — Formatted inputs
+    - `mask: string` (required) — Mask pattern ('9': digit, 'a': letter, '*': alphanumeric; other characters are shown as-is)
+    - `maskChar: string` = "_" — Placeholder character for unfilled mask positions
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **LinkButton** — Anchor styled as button
+    - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
+    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
+    - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
+- **Mentions** — @ / # suggestions
+    - `options: MentionOption[]` (required) — Mention candidates to suggest
+    - `trigger: string` = "@" — Character that triggers the suggestion list
+    - `onSelect: (option: MentionOption) => void` — Callback when a suggestion is selected
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **MultiSelect** — Multiple selection
+    - `options: MultiSelectOption[]` = [] — List of options
+    - `value: string[]` — Selected values (controlled)
+    - `onChange: (value: string[]) => void` — Callback when the selection changes
+    - `placeholder: string` — Placeholder shown when nothing is selected
+    - `label: string` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the field is disabled
+    - `defaultValue: string[]` = [] — Initially selected values (uncontrolled)
+    - `allowClear: boolean` = false — Whether to show a clear button to remove all selections
+    - `id: string` — Unique ID for the component
+    - `aria-label: string` — Accessible label for the trigger when no visible label is provided
+    - `aria-labelledby: string` — ID of the element that labels the field
+    - `aria-describedby: string` — ID of the element that describes the field
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+- **NumberInput** — Input with step adjustments
+    - `mode: "number" | "text"` = "number" — 'number': uses the native type="number" (e.g. quantity steppers)
+'text': uses type="text" + inputmode (e.g. card numbers or IDs where leading zeros must be kept)
+    - `hideSpinButton: boolean` = true — Whether to hide the spin buttons
+    - `allowDecimal: boolean` = false — Whether to allow decimal points (effective only when mode="number")
+    - `allowNegative: boolean` = false — Whether to allow negative numbers (effective only when mode="number")
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **OtpInput** — One-time password fields
+    - `length: number` = 6 — Number of digits
+    - `value: string` = "" — Current value (controlled)
+    - `onChange: (value: string) => void` — Callback when the value changes
+    - `disabled: boolean` = false — Whether the input is disabled
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `label: React.ReactNode` — Field label
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `labels: { digitAriaLabel?: (index: number) => string; }` = {} — Labels for internationalization
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+- **PasswordInput** — Password with toggle
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **PasswordStrength** — Visual meter to indicate password security level
+    - `password: string` = "" — Password string to evaluate
+    - `score: 0 | 1 | 2 | 3 | 4` — Strength score (the default calculation is used when omitted)
+0: very weak, 1: weak, 2: fair, 3: strong, 4: very strong
+    - `showLabel: boolean` = true — Whether to show the strength label
+    - `calculateLevel: (password: string) => PasswordStrengthLevel` = (password: string): PasswordStrengthLevel => {
+  if (!password) return 0;
+  let score = 0;
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+  return score as PasswordStrengthLevel;
+} — Custom strength calculation function
+- **PhoneInput** — International phone number input
+    - `value: string` = "" — Phone number value (the number part, excluding the country dial code).
+    - `onChange: (value: string) => void` — Callback when the phone number changes.
+    - `countryCode: string` = "US" — Selected country code (e.g. "JP", "US").
+    - `onCountryChange: (countryCode: string) => void` — Callback when the country code changes.
+    - `placeholder: string` = "000-0000-0000" — Placeholder for the phone number input.
+    - `disabled: boolean` = false — Whether the field is disabled.
+    - `error: string` — Error message.
+    - `required: boolean` = false — Whether to show the required indicator.
+    - `label: string` — Field label.
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field.
+    - `className: string` — Additional class names.
+    - `fullWidth: boolean` = false — Whether to take full width of parent.
+- **QueryBuilder** — Visual builder for constructing complex search queries.
+    - `fields: QueryField[]` (required) — Field definitions
+    - `query: QueryGroup` — Current query state (controlled)
+    - `defaultQuery: QueryGroup` — Default query state (uncontrolled)
+    - `onChange: (query: QueryGroup) => void` — Callback when query changes
+    - `maxDepth: number` = 3 — Maximum nesting depth
+    - `className: string` — Additional class name
+    - `id: string` — Unique ID for the component
+    - `labels: QueryBuilderLabels` = {} — Labels for internationalization
+- **Radio** — Single choice
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `children: React.ReactNode` — Label content rendered next to the radio
+    - `error: boolean` = false — Whether to display as an error state (aria-invalid is not supported on the radio role, so it is applied on the RadioGroup side)
+- **RadioGroup** — Shared state radio buttons
+    - `options: Option[]` (required) — List of radio options
+    - `value: string` — Selected value (controlled)
+    - `defaultValue: string` — Initially selected value (uncontrolled)
+    - `onChange: (value: string) => void` — Callback when the selected value changes
+    - `direction: "vertical" | "horizontal"` = "vertical" — Layout direction of the radio buttons
+    - `name: string` — Name attribute shared by the radio inputs
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `label: string` — Group label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `disabled: boolean` — Whether the whole group is disabled
+- **RangeSlider** — Range selection
+    - `value: [number, number]` — Current value [min, max] (controlled)
+    - `defaultValue: [number, number]` = [20, 80] — Default value [min, max] (uncontrolled)
+    - `min: number` = 0 — Minimum value
+    - `max: number` = 100 — Maximum value
+    - `step: number` = 1 — Step value
+    - `allowCross: boolean` = false — Whether both handles may hold the same value (they never cross)
+    - `disabled: boolean` = false — Whether the slider is disabled
+    - `onChange: (value: [number, number]) => void` — Callback when the value changes
+    - `onAfterChange: (value: [number, number]) => void` — Callback when dragging ends
+    - `className: string` — Additional class names
+    - `name: string` — Name attribute
+    - `label: string` — Accessible label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `id: string` — Custom ID
+    - `aria-label: string` — Accessible label when no visible label is provided
+    - `aria-labelledby: string` — ID of the element that labels the slider
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **Rating** — Star rating
+    - `value: number` — Current value (controlled)
+    - `defaultValue: number` = 0 — Default value (uncontrolled)
+    - `count: number` = 5 — Total number of stars
+    - `allowHalf: boolean` = false — Whether to allow half stars
+    - `disabled: boolean` = false — Whether the rating is disabled
+    - `readOnly: boolean` = false — Read-only flag (display only; unlike disabled it is not grayed out)
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the stars
+    - `onChange: (value: number) => void` — Callback when the value changes
+    - `className: string` — Additional class names
+    - `label: React.ReactNode` — Accessible label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `labels: { star?: (count: number) => string; readonly?: (value: number, max: number) => string; }` = {} — Labels for internationalization
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **RichTextEditor** — WYSIWYG rich text editor
+    - `value: string` — HTML content (controlled)
+    - `defaultValue: string` = "" — Initial HTML content (uncontrolled)
+    - `onChange: (value: string) => void` — Callback when the content changes
+    - `placeholder: string` — Placeholder shown when the editor is empty
+    - `disabled: boolean` — Whether the editor is disabled
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `minHeight: number | string` = 200 — Minimum height of the editing area
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `className: string` — Additional class names
+    - `id: string` — Unique ID for the component
+    - `toolbar: RichTextEditorToolbarItem[]` = [
+  "bold",
+  "italic",
+  "underline",
+  "strikethrough",
+  "separator",
+  "h1",
+  "h2",
+  "h3",
+  "separator",
+  "ul",
+  "ol",
+  "separator",
+  "link",
+  "unlink",
+  "separator",
+  "removeFormat",
+] — Toolbar items to display, in order
+    - `labels: { bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }` = {} — Labels for internationalization
+    - `aria-label: string` — Accessible label when no visible label is provided
+    - `aria-labelledby: string` — ID of the element that labels the editor
+- **SearchInput** — Search with clear button
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `allowClear: boolean` = false — Whether to show a clear button when value is present
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options
+    - `options: Option[]` (required) — List of segment options
+    - `value: string` (required) — Selected value
+    - `onChange: (value: string) => void` (required) — Callback when the selected value changes
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the control
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `className: string` — Additional class names
+    - `label: string` — Accessible label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `disabled: boolean` = false — Whether the control is disabled
+    - `asChild: boolean` = false — If true, merge radiogroup props onto the child element.
+    - `children: React.ReactNode` — Optional children used when asChild is true
+    - `id: string` — Unique ID for the component
+    - `styles: { root?: string; item?: string; slider?: string; label?: string; }` — Custom styles for internal parts
+- **Select** — A dropdown menu for selecting one option from a predefined list
+    - `options: SelectOption[] | SelectOptionGroup[]` = [] — List of options (flat or grouped)
+    - `value: string` — Selected value (controlled)
+    - `onChange: (value: string) => void` — Callback when the selected value changes
+    - `placeholder: React.ReactNode` — Placeholder shown when nothing is selected
+    - `label: string` — Field label
+    - `disabled: boolean` = false — Whether the field is disabled
+    - `defaultValue: string` — Initially selected value (uncontrolled)
+    - `searchable: boolean` = false — Enable search/filtering functionality
+    - `searchPlaceholder: string` — Placeholder text for search input
+    - `filterOption: (option: SelectOption, searchValue: string) => boolean` — Custom filter function
+    - `grouped: boolean` = false — Whether options are grouped
+    - `allowClear: boolean` = false — Whether to show a clear button when a value is selected
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `id: string` — Unique ID for the component
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `noOptionsFoundLabel: string` — Label shown when no options match the search
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `styles: { root?: string; trigger?: string; value?: string; dropdown?: string; list?: string; option?: string; search?: string; searchInput?: string; groupLabel?: string; separator?: string; empty?: string; inputBase?: React.ComponentProps<typeof InputBase>["styles"]; }` — Custom styles for internal parts
+- **SignaturePad** — Handwritten signature input
+    - `width: number` = 400 — Width of the canvas
+    - `height: number` = 200 — Height of the canvas
+    - `penColor: string` = "var(--wim-color-text-primary)" — Color of the pen
+    - `penWidth: number` = 2 — Width of the pen stroke
+    - `onChange: (dataUrl: string | null) => void` — Callback when signature changes or is cleared
+    - `clearLabel: React.ReactNode` — Custom label for the clear button
+    - `disabled: boolean` = false — Whether the component is disabled
+    - `className: string` — CSS class name
+    - `style: React.CSSProperties` — Inline styles
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `canvasAriaLabel: string` — Aria label for the canvas
+- **Slider** — An input to capture a numeric value from a specified range by dragging a knob
+    - `value: number` — Current value (controlled)
+    - `defaultValue: number` = 0 — Default value (uncontrolled)
+    - `min: number` = 0 — Minimum value
+    - `max: number` = 100 — Maximum value
+    - `step: number` = 1 — Step value
+    - `disabled: boolean` = false — Whether the slider is disabled
+    - `onChange: (value: number) => void` — Callback when the value changes
+    - `onAfterChange: (value: number) => void` — Callback when dragging ends
+    - `name: string` — Name attribute
+    - `label: React.ReactNode` — Accessible label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `id: string` — Custom ID
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `styles: React.ComponentPropsWithoutRef<typeof FieldTemplate>["styles"]` — Custom styles for internal parts
+- **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `maxRows: number` = 8 — Maximum number of rows the input grows to before scrolling
+    - `allowClear: boolean` = true — Whether to show a clear button when value is present
+    - `onClear: () => void` — Callback when the clear button is clicked
+    - `onSubmit: (value: string) => void` — Callback when the value is submitted with the Enter key
+    - `onChange: (value: string) => void` — Callback when the value changes
+    - `defaultValue: string` = "" — Initial value (uncontrolled)
+    - `maxLength: number` — Maximum number of characters
+- **Switch** — A binary switch for instantly toggling settings between on and off states
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the switch
+    - `className: string` — Additional class names
+    - `children: React.ReactNode` — Label content rendered next to the switch
+    - `error: boolean` = false — Whether to display as an error state (aria-invalid is applied)
+- **SwitchGroup** — Shared state switches
+    - `options: Option[]` (required) — List of switch options
+    - `value: string[]` — Selected values (controlled)
+    - `defaultValue: string[]` = [] — Initially selected values (uncontrolled)
+    - `onChange: (value: string[]) => void` — Callback when the selected values change
+    - `direction: "vertical" | "horizontal"` = "vertical" — Layout direction of the switches
+    - `name: string` — Name attribute shared by the switch inputs
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `label: string` — Group label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `disabled: boolean` — Whether the whole group is disabled
+- **TagInput** — Field for entering free-form text as tags
+    - `value: string[]` — List of tags (controlled)
+    - `defaultValue: string[]` = [] — Initial list of tags (uncontrolled)
+    - `onChange: (tags: string[]) => void` — Callback when the tags change
+    - `placeholder: string` — Placeholder for the input
+    - `disabled: boolean` = false — Whether the input is disabled
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `allowDelete: boolean` = true — Whether tags can be deleted
+    - `maxTags: number` — Maximum number of tags that can be entered
+- **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
+    - `asChild: boolean` = false — If true, the textarea element will be rendered as its child, merging its props onto that child.
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `fieldSizing: "fixed" | "content"` = "fixed" — Sizing behavior: "fixed" keeps the height, "content" grows with the text
+    - `label: string` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+- **ThemeToggle** — Light / dark / system theme switcher
+    - `value: "light" | "dark" | "system"` — Selected mode (controlled)
+    - `defaultValue: "light" | "dark" | "system"` = "system" — Initially selected mode (uncontrolled)
+    - `onChange: (mode: ThemeMode) => void` — Callback when the mode changes
+    - `modes: ThemeMode[]` = ["light", "dark"] — Modes to offer, in cycle order
+    - `variant: "icon" | "segmented"` = "icon" — "icon" cycles modes on a single button; "segmented" shows one button per mode
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the control
+    - `storageKey: string | null` = "wim-theme" — localStorage key used to persist the choice; pass null to disable persistence
+    - `applyToDocument: boolean` = true — Whether to apply the selected mode to the document root as `data-theme`
+    - `labels: { /** Label for the light mode */ light?: string; /** Label for the dark mode */ dark?: string; /** Label for the system (auto) mode */ system?: string; /** Accessible label / group label for the control */ toggle?: string; }` — Labels for internationalization
+    - `className: string` — Additional class names
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **TimePicker** — Time selection
+    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `allowClear: boolean` = true — Whether to show a clear button when value is present
+    - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
+    - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon
+    - `rightIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the right icon
+    - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
+    - `onRightIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the right icon is clicked (renders the icon as a button)
+    - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
+    - `rightIconClassName: string` — Additional class name for the right icon
+    - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `inputClassName: string` — Additional class name for the inner input element
+    - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
+    - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
+    - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **ToggleGroup** — Toggleable buttons
+    - `options: Option[]` (required) — List of toggle options
+    - `value: string | string[]` — Selected value(s) (controlled)
+    - `defaultValue: string | string[]` — Initially selected value(s) (uncontrolled)
+    - `onChange: (value: string | string[]) => void` — Callback when the selection changes
+    - `selectionMode: "single" | "multiple"` = "single" — Whether one or multiple options can be selected
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the toggle buttons
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the group is disabled
+    - `label: string` — Group label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `id: string` — Unique ID for the component
+    - `asChild: boolean` = false — If true, merge group props onto the child element.
+    - `children: React.ReactNode` — Optional children used when asChild is true
+    - `aria-label: string` — Accessible label when no visible label is provided
+    - `aria-labelledby: string` — ID of the element that labels the group
+- **Transfer** — Move items between lists
+    - `dataSource: TransferItem[]` = [] — All items shown across the two lists
+    - `targetKeys: string[]` — Keys of the items in the target (right) list
+    - `onChange: ( targetKeys: string[], direction: "toLeft" | "toRight", moveKeys: string[], ) => void` — Callback when items are moved between the lists
+    - `titles: [React.ReactNode, React.ReactNode]` = ["Source", "Target"] — Titles of the source and target lists
+    - `className: string` — Additional class names
+    - `style: React.CSSProperties` — Inline styles
+    - `disabled: boolean` = false — Whether the component is disabled
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `labels: { noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }` = {} — Labels for internationalization
+- **TreeSelect** — Select from tree structure
+    - `treeData: TreeSelectNode[]` = [] — Tree nodes to select from
+    - `value: string | string[]` — Selected value(s) (controlled)
+    - `onChange: (value: string | string[]) => void` — Callback when the selection changes
+    - `placeholder: React.ReactNode` — Placeholder shown when nothing is selected
+    - `label: React.ReactNode` — Field label
+    - `error: string` — Error message
+    - `required: boolean` — Whether to show the required indicator
+    - `layout: "vertical" | "horizontal"` — Layout direction of label and field
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the field is disabled
+    - `multiple: boolean` = false — Whether multiple nodes can be selected
+    - `searchable: boolean` = false — Whether to show a search input for filtering nodes
+    - `defaultExpandedKeys: string[]` = [] — Keys of the nodes expanded initially
+    - `allowClear: boolean` = false — Whether to show a clear button when a value is selected
+    - `checkStrategy: "cascade" | "exclusive"` = "cascade" — Check selection behavior (effective when multiple).
+- cascade: checking a parent selects all children; partially checked children make the parent indeterminate (default)
+- exclusive: parent and children are mutually exclusive (selecting a parent deselects children and vice versa)
+    - `id: string` — Unique ID for the component
+    - `asChild: boolean` = false — If true, merge root props onto the child element.
+    - `children: React.ReactNode` — Optional children used when asChild is true
+    - `aria-label: string` — Accessible label for the trigger when no visible label is provided
+    - `aria-labelledby: string` — ID of the element that labels the field
+    - `aria-describedby: string` — ID of the element that describes the field
+    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+
+### feedback — `import { … } from "wimui/feedback"`
+
+- **Alert** — Important messages
+    - `title: React.ReactNode` — Title of the alert
+    - `titleTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"` = "h4" — HTML tag used for the alert title
+@default "h4"
+    - `description: React.ReactNode` — Description text of the alert
+    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the alert
+@default "info"
+    - `icon: React.ReactNode` — Custom icon. When omitted, a default icon matching the intent is displayed.
+    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
+    - `className: string` — Additional CSS class name
+    - `children: React.ReactNode` — Content of the alert (treated as the description)
+- **Autosave** — Inline status indicator for automatic save state
+    - `status: "idle" | "saving" | "saved" | "error"` (required) — Save status
+    - `savedAt: Date` — Time of the last save
+    - `errorMessage: string` — Error message (a default message is used when omitted)
+- **Banner** — Top prominent messages
+    - `title: React.ReactNode` — Title of the banner
+    - `description: React.ReactNode` — Description text of the banner
+    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the banner
+@default "info"
+    - `icon: boolean | React.ReactNode` = true — Whether to show the icon, or a custom icon element
+@default true
+    - `extra: React.ReactNode` — Action element (e.g. a Button component)
+    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
+    - `className: string` — Additional CSS class name
+    - `children: React.ReactNode` — Content of the banner
+- **ErrorBoundary** — Runtime error fallback
+    - `fallback: ReactNode | unknown` — Component or element displayed when an error occurs.
+When a function is passed, it is called as (error, errorInfo, reset) => ReactNode.
+    - `onError: (error: Error, errorInfo: ErrorInfo) => void` — Called when an error occurs.
+    - `onReset: () => void` — Called when the error is reset.
+    - `labels: { title?: string; retry?: string; showDetails?: string; hideDetails?: string; }` — Labels for manual translation overrides.
+    - `children: ReactNode` (required) — Content the boundary protects.
+- **Indicator** — Small status dots
+    - `children: React.ReactNode` — Element the indicator dot is attached to. If omitted, only the dot is rendered.
+    - `color: T | (string & {})` = "primary" — Color of the dot. Accepts a design token color name or any CSS color value.
+@default "primary"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the dot.
+@default "md"
+    - `position: "top-right" | "top-left" | "bottom-right" | "bottom-left"` = "top-right" — Corner of the children the dot is placed at.
+@default "top-right"
+    - `pulse: boolean` = false — If true, the dot pulses to draw attention.
+@default false
+    - `inline: boolean` = false — If true, renders the dot inline instead of positioning it on a corner.
+@default false
+    - `className: string` — Additional CSS class name.
+    - `style: React.CSSProperties` — Inline styles for the container.
+- **Loader** — Animated indicators to show that data is loading or processing
+    - `variant: "bars" | "dots" | "pulse"` = "bars" — Animation style of the loader.
+@default "bars"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg" | "xl">` = "md" — Size of the loader.
+@default "md"
+    - `color: "currentColor" | WimColor` = "primary" — Color of the loader. Accepts a design token color name or "currentColor".
+@default "primary"
+- **LoadingOverlay** — Overlay with loading indicator
+    - `visible: boolean` = false — Whether the overlay is shown.
+@default false
+    - `loaderType: "spinner" | "bars" | "dots" | "pulse"` = "spinner" — Type of the loading indicator.
+@default "spinner"
+    - `loaderSize: "sm" | "md" | "lg" | "xl"` = "lg" — Size of the loading indicator.
+@default "lg"
+    - `loaderColor: "primary" | "secondary" | "success" | "warning" | "danger" | "neutral" | "currentColor"` = "primary" — Color of the loading indicator.
+@default "primary"
+    - `backdropVariant: "light" | "dark"` = "dark" — Background style of the overlay.
+@default "dark"
+    - `blur: "none" | "sm" | "md" | "lg"` = "sm" — Strength of the backdrop blur effect.
+@default "sm"
+    - `message: string` — Loading message displayed below the indicator.
+    - `fixed: boolean` = false — Whether to use position: fixed (covers the whole screen).
+@default false
+    - `zIndex: number` — z-index of the overlay.
+    - `children: React.ReactNode` — Custom loading content, replacing the default indicator.
+- **Notification** — Rich notification card
+    - `id: string` — The unique identifier of notification
+    - `title: ReactNode` (required) — The title of notification
+    - `description: ReactNode` — The description of notification
+    - `icon: ReactNode` — The icon of notification
+    - `intent: FeedbackIntent` — The intent of notification
+    - `onClose: (id?: string) => void` — Callback when notification is closed
+    - `closable: boolean` = true — Whether to show close button
+    - `className: string` — Additional class name
+- **Progress** — Progress bar
+    - `value: number` = 0 — Current value of the progress bar.
+@default 0
+    - `max: number` = 100 — Maximum value of the progress bar.
+@default 100
+    - `intent: IndicatorIntent` = "primary" — Intent (semantic color) of the bar.
+@default "primary"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the bar.
+@default "md"
+    - `label: string` — Text label displayed above the bar.
+    - `showValue: boolean` = false — Whether to display the current value as a percentage.
+@default false
+    - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
+@default false
+- **Result** — Task status indicator
+    - `intent: Extract<WimIntent, "success" | "danger" | "info" | "warning">` = "info" — Semantic intent — determines the icon and color.
+    - `status: "404" | "403" | "500"` — HTTP error status — adds a status-specific CSS class and shows a neutral icon.
+Use for error pages (404, 403, 500).
+    - `title: ReactNode` — The title
+    - `description: ReactNode` — The description
+    - `extra: ReactNode` — Operating area
+    - `icon: ReactNode` — Custom icon
+    - `className: string` — Custom class name
+    - `children: ReactNode` — The children
+- **ScrollProgress** — Reading progress indicator
+    - `color: "primary" | "secondary" | "success" | "warning" | "danger"` = "primary" — Color of the progress bar.
+@default "primary"
+    - `target: React.RefObject<HTMLElement | null>` — Element whose scroll position is tracked. Defaults to `window`.
+- **Skeleton** — Placeholder for content loading states.
+    - `variant: "text" | "rect" | "circle"` = "text" — Shape of the skeleton.
+- `text`: shaped like a line of text.
+- `rect`: rectangle.
+- `circle`: circle.
+@default "text"
+    - `animation: "pulse" | "wave" | "none"` = "pulse" — Type of animation.
+- `pulse`: slow fade in and out.
+- `wave`: wave moving from left to right.
+- `none`: no animation.
+@default "pulse"
+    - `width: string | number` — Width, including a CSS unit (px, %, rem, etc.).
+    - `height: string | number` — Height, including a CSS unit (px, %, rem, etc.).
+- **Snackbar** — Bottom notifications
+    - `message: string` (required) — Message displayed in the snackbar
+    - `open: boolean` = false — Whether the snackbar is shown
+@default false
+    - `intent: FeedbackIntent` = "info" — Intent (semantic state)
+@default "info"
+    - `position: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"` = "bottom-center" — Position on the screen
+@default "bottom-center"
+    - `autoHideDuration: number` = 5000 — Time in milliseconds before the snackbar closes automatically. Set 0 to disable auto-close.
+@default 5000
+    - `showCloseButton: boolean` = false — Whether to show a close button
+@default false
+    - `actionLabel: string` — Label of the action button
+    - `onAction: () => void` — Called when the action button is clicked
+    - `onClose: () => void` — Called when the snackbar is closed
+    - `className: string` — Additional CSS class name
+- **Spinner** — A rotating icon indicating background activity or data fetching
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg" | "xl">` = "md" — Size of the spinner.
+@default "md"
+    - `color: "currentColor" | WimColor` = "primary" — Color of the spinner. Accepts a design token color name or "currentColor".
+@default "primary"
+    - `label: string` — Text label displayed next to the spinner.
+    - `labelPosition: "right" | "bottom"` = "right" — Position of the label relative to the spinner.
+@default "right"
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations
+    - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
+    - `title: string` — Title of the toast.
+    - `description: string` — Description text displayed below the title.
+    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the toast.
+@default "info"
+    - `duration: number` = 3000 — Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.
+@default 3000
+    - `open: boolean` = true — Whether the toast is shown.
+@default true
+    - `onClose: (id?: string) => void` — Called with the toast id when the toast is closed.
+    - `className: string` — Additional CSS class name.
+- **Tour** — Sequential guided walkthroughs to onboard users or highlight features
+    - `steps: TourStep[]` (required) — Steps of the tour. Each step targets an element via a CSS selector.
+    - `open: boolean` (required) — Whether the tour is shown.
+    - `onClose: () => void` (required) — Called when the tour is dismissed before completion.
+    - `onFinish: () => void` — Called when the last step is completed.
+
+### navigation — `import { … } from "wimui/navigation"`
+
+- **Affix** — Sticky elements
+    - `offsetTop: number` — Offset distance from the top of the window (in pixels)
+    - `offsetBottom: number` — Offset distance from the bottom of the window (in pixels)
+    - `onChange: (lastAffixed: boolean) => void` — Callback when the affix state changes
+    - `target: () => HTMLElement | Window | null` = () => window — Target container that will be scrolled
+    - `children: React.ReactNode` (required) — Children to be rendered inside the affix
+    - `className: string` — Additional class names
+    - `style: React.CSSProperties` — Style attribute
+- **Anchor** — Smooth scroll links
+    - `items: AnchorLinkItem[]` = [] — Array of anchor link configurations
+    - `bounds: number` = 5 — Bounding distance (in pixels) for triggering active state
+    - `offset: number` = 0 — Offset (in pixels) from top when clicking to scroll
+    - `direction: "vertical" | "horizontal"` = "vertical" — Orientation of the anchor links
+    - `className: string` — Additional class names
+    - `style: React.CSSProperties` — Style attribute
+- **BackTop** — Back to top button
+    - `target: () => HTMLElement | Window | Document | null` = () => window — Target container that will be scrolled
+    - `visibilityHeight: number` = 400 — Scroll height after which the button becomes visible
+    - `onClick: (e: React.MouseEvent<HTMLDivElement>) => void` — Callback when clicked
+    - `children: React.ReactNode` — Children to be rendered inside the button
+    - `className: string` — Additional class names
+    - `style: React.CSSProperties` — Style attribute
+    - `aria-label: string` — Accessible label for the button
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **Breadcrumb** — Location trace
+    - `items: BreadcrumbItem[]` (required) — Items to display, from the root to the current page.
+    - `separator: React.ReactNode` — Separator displayed between items. Defaults to a chevron icon.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the breadcrumb.
+@default "md"
+    - `className: string` — Additional CSS class name for the container.
+    - `ariaLabel: string` — Accessible label of the navigation landmark. Defaults to a localized "breadcrumb" label.
+    - `asChild: boolean` — If true, the breadcrumb will be rendered as its child, merging its props onto that child.
+- **CommandPalette** — Cmd+K search overlay
+    - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
+    - `open: boolean` — Controlled open state. Use together with onOpenChange.
+    - `onOpenChange: (open: boolean) => void` — Called with the next state when the palette is opened or closed.
+- **HamburgerMenu** — Toggleable menu
+    - `asChild: boolean` = false — If true, merge button props onto the child element.
+    - `open: boolean` = false — Whether the menu is open
+    - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Callback function when the menu is toggled
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the hamburger menu
+    - `color: string` — Color of the bars
+    - `visibleBelow: "xs" | "sm" | "md" | "lg" | "xl"` — Show only below the given breakpoint (e.g. "md" matches Sidebar's mobile drawer range)
+    - `className: string` — Custom class name
+- **KeyboardShortcuts** — Display a structured list of keyboard shortcuts
+    - `shortcuts: ShortcutItem[]` (required) — List of shortcuts to display
+    - `title: string` — Section title
+    - `separator: string` = "+" — Separator displayed between keys
+@default "+"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the list
+@default "md"
+- **Link** — Hyperlinks
+    - `asChild: boolean` = false — If true, the link will be rendered as its child, merging its props onto that child.
+Useful for using the link styles with Link components from React Router or Next.js.
+    - `label: React.ReactNode` — Link text or element. Alternative to children.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Font size of the link.
+@default "md"
+    - `priority: "primary" | "secondary" | "tertiary"` = "primary" — Visual emphasis of the link.
+@default "primary"
+    - `iconName: React.ComponentProps<typeof Icon>["name"]` — Name of the icon displayed alongside the label.
+    - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label.
+@default "left"
+    - `external: boolean` = false — If true, opens the link in a new tab and shows an external-link icon.
+@default false
+    - `styles: { root?: string; label?: string; inner?: string; externalIcon?: string; }` — Custom styles for internal parts
+- **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
+- **Pagination** — Multi-page navigation
+    - `total: number` (required) — Total number of items
+    - `pageSize: number` = 10 — Number of items per page
+    - `current: number` = 1 — Current page number (1-indexed)
+    - `onChange: (page: number, pageSize: number) => void` — Callback function when page changes
+    - `onPageSizeChange: (pageSize: number) => void` — Callback function when page size changes
+    - `siblingCount: number` = 1 — Number of sibling pages to show around the current page
+    - `className: string` — Additional class names
+    - `asChild: boolean` = false — If true, merge nav props onto the child element.
+    - `children: React.ReactNode` — Optional child used when asChild is true
+    - `renderPage: (page: number, props: PaginationPageRenderProps) => React.ReactNode` — Custom renderer for page number controls. Defaults to PaginationPage.
+Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChild).
+    - `simple: boolean` = false — Whether to show a simplified version
+    - `hideOnSinglePage: boolean` = false — Whether to hide the pagination if there is only one page
+    - `showSizeChanger: boolean` = false — Whether to show the page size changer
+    - `pageSizeOptions: number[]` = [10, 20, 50, 100] — Page size options for the page size changer
+    - `showTotal: (total: number, range: [number, number]) => React.ReactNode` — Function to display the total count
+    - `showQuickJumper: boolean` = false — Whether to show quick jumper
+    - `labels: { prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }` = {} — Labels for internationalization
+- **SpeedDial** — Floating action button that expands sub-actions on hover or click.
+    - `actions: SpeedDialAction[]` (required) — Actions to display when SpeedDial is open
+    - `icon: keyof typeof ALL_ICONS` = "PlusIcon" — Icon name for the main button when closed
+    - `activeIcon: keyof typeof ALL_ICONS` = "CloseIcon" — Icon name for the main button when open
+    - `direction: "up" | "down" | "left" | "right"` = "up" — Direction in which actions expand
+    - `trigger: "hover" | "click"` = "hover" — Trigger mode to open the SpeedDial
+    - `open: boolean` — Controlled open state
+    - `onOpenChange: (open: boolean) => void` — Callback when open state changes
+- **Stepper** — Visual sequence steps
+    - `steps: Step[]` = [] — Array of step configurations
+    - `current: number` = 0 — Index of the current active step (0-indexed)
+    - `direction: "horizontal" | "vertical"` = "horizontal" — Direction of the stepper
+    - `labelPlacement: "horizontal" | "vertical"` = "horizontal" — Placement of the labels
+    - `intent: "wait" | "process" | "finish" | "error"` = "process" — Workflow intent shown on the current active step (default: "process")
+    - `className: string` — Additional class names
+    - `ariaLabel: string` — Accessibility label for the navigation
+    - `onChange: (current: number) => void` — Callback function when a step is clicked (if applicable)
+    - `asChild: boolean` — Whether to use the Radix Slot pattern
+- **TabBar** — Mobile bottom navigation
+    - `fixed: boolean` = true — Fixed position at the bottom of the screen
+    - `bordered: boolean` = true — Show top border
+    - `glass: boolean` = false — Glassmorphism effect
+- **TabNavigation** — Tab-based navigation
+    - `variant: "underline" | "pill" | "contained"` = "underline" — Visual style of the tabs
+    - `align: "start" | "center" | "end" | "justify"` = "start" — Alignment of the tabs
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the tabs
+- **Tabs** — A container to organize related content into switchable view panels
+    - `asChild: boolean` = false — If true, the tabs root will be rendered as its child, merging its props onto that child.
+    - `defaultValue: string` — Value of the tab selected initially, for uncontrolled usage.
+    - `value: string` — Controlled value of the selected tab. Use together with onChange.
+    - `onChange: (value: string) => void` — Called with the value of the newly selected tab.
+    - `orientation: "horizontal" | "vertical"` = "horizontal" — Orientation of the tab list, affecting layout and arrow-key navigation.
+@default "horizontal"
+
+### data-display — `import { … } from "wimui/data-display"`
+
+- **Accordion** — Collapsible panels
+    - `type: "single" | "multiple"` = "single" — Whether one or multiple items can be open at a time
+    - `defaultValue: string | string[]` — Initially open item value(s) (uncontrolled)
+    - `value: string | string[]` — Open item value(s) (controlled)
+    - `onChange: (value: string | string[]) => void` — Callback when the open items change
+    - `collapsible: boolean` = true — Whether the open item can be collapsed (type="single")
+    - `className: string` — Additional class names
+    - `children: React.ReactNode` (required) — Accordion.Item elements
+    - `id: string` — Unique ID for the component
+    - `asChild: boolean` — Whether to render as a child element.
+- **Avatar** — Profile initials/pics
+    - `src: string` — Image source URL
+    - `alt: string` = "" — Alternative text for the image
+    - `initials: string` — Initials shown as a fallback when no image is available
+    - `icon: React.ReactNode` — Icon shown as a fallback when no image or initials are available
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the avatar
+    - `shape: "circle" | "rounded"` = "circle" — Shape of the avatar
+    - `intent: IndicatorIntent` — Intent (semantic color) applied to the avatar
+- **AvatarGroup** — Stacked avatars
+    - `children: React.ReactNode` (required) — Avatar elements to group
+    - `max: number` — Maximum number of avatars to show before collapsing into a count
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size applied to the avatars
+    - `total: number` — Total number of avatars (used to compute the overflow count)
+    - `className: string` — Additional class names
+- **Badge** — Indicators or counts
+    - `asChild: boolean` — If true, the badge will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — Content to display
+    - `content: React.ReactNode` — Content to display (alternative to children)
+    - `icon: React.ReactNode` — Icon
+    - `intent: IndicatorIntent` — Intent (semantic state)
+    - `variant: "solid" | "outline" | "subtle"` — Visual style variant
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
+    - `interactive: boolean` = false — Whether to enable the interactive state
+- **Calendar** — Calendar view
+    - `defaultValue: Date` — Default selected date (uncontrolled)
+    - `value: Date` — Selected date (controlled)
+    - `minDate: Date` — Earliest selectable date
+    - `maxDate: Date` — Latest selectable date
+    - `disabledDates: Date[]` — Dates that cannot be selected
+    - `isDateDisabled: (date: Date) => boolean` — Function returning whether a given date is disabled
+    - `weekStartsOn: 0 | 1` = 0 — First day of the week (0 = Sunday, 1 = Monday)
+    - `className: string` — Additional class names
+    - `disabled: boolean` = false — Whether the calendar is disabled
+    - `onChange: (date: Date) => void` — Callback when a date is selected (single mode)
+    - `rangeMode: boolean` = false — Whether to enable range selection mode
+    - `range: { start: Date | null; end: Date | null; }` — Selected range (controlled, range mode)
+    - `defaultRange: { start: Date | null; end: Date | null; }` — Default selected range (uncontrolled, range mode)
+    - `onRangeChange: (range: CalendarRange) => void` — Callback when the range changes (range mode)
+- **CalendarHeatmap** — GitHub-style activity graph for visualizing continuity
+    - `data: CalendarHeatmapData[]` = [] — Activity data array.
+    - `year: number` = new Date().getFullYear() — The year to display.
+@default current year
+    - `getColorLevel: (count: number) => 0 | 1 | 2 | 3 | 4` = (count) => {
+  if (count === 0) return 0;
+  if (count < 3) return 1;
+  if (count < 6) return 2;
+  if (count < 9) return 3;
+  return 4;
+} — Function to map count to a level (0-4).
+    - `className: string` — Custom class name for the root element.
+    - `tooltipFormatter: (date: string, count: number) => React.ReactNode` — Custom tooltip formatter.
+    - `asChild: boolean` = false — Whether to render as a child component.
+    - `children: React.ReactNode` — Content to render inside.
+- **Card** — Information containers
+    - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
+    - `variant: "elevated" | "outline" | "flat" | "glass"` = "elevated" — Visual style variant of the card
+    - `interactive: boolean` = false — Whether to enable hover animation and click effects
+    - `padding: ComponentSize | "none"` = "md" — Padding size
+    - `radius: ComponentSize | "none"` = "lg" — Corner radius size
+- **Carousel** — Content slideshow
+    - `children: React.ReactNode` — Content of the carousel
+    - `autoPlay: boolean` = false — Whether to auto-play
+    - `interval: number` = 5000 — Auto-play interval (in milliseconds)
+    - `showIndicators: boolean` = true — Whether to show the indicators
+    - `showControls: boolean` = true — Whether to show the previous/next buttons
+    - `loop: boolean` = true — Whether to loop infinitely (seamless transitions)
+    - `slidesToShow: number | Breakpoints` = 1 — Number of slides to show at once. A number or an object per breakpoint.
+    - `aspectRatio: string` — Aspect ratio (e.g. '16/9', '4/3', '1/1').
+    - `objectFit: "fill" | "contain" | "cover" | "none" | "scale-down"` = "cover" — How the image fits. Effective when aspectRatio is set. (default: 'cover')
+    - `labels: { slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; }` — Labels for manual translation.
+    - `className: string` — Additional class names
+    - `asChild: boolean` — Whether to use the Radix Slot pattern
+- **Chip** — Filter/Selection tokens
+    - `asChild: boolean` = false — If true, the chip will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — Content to display
+    - `content: React.ReactNode` — Content to display (alternative to children)
+    - `onClick: (e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => void` — Click event. When provided, the chip behaves as a button.
+    - `onDelete: (e: React.SyntheticEvent) => void` — Delete event. When provided, a × button is shown.
+    - `avatar: React.ReactNode` — Avatar (e.g. an image or initials)
+    - `icon: React.ReactNode` — Icon
+    - `selected: boolean` = false — Whether the chip is selected
+    - `disabled: boolean` = false — Whether the chip is disabled
+    - `intent: IndicatorIntent` = "primary" — Intent (semantic state)
+    - `variant: "solid" | "outline" | "subtle"` = "solid" — Visual style variant
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `deleteAriaLabel: string` — Accessible label for the delete button
+    - `className: string` — Additional class names
+- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
+    - `target: Date | string | number` (required) — The moment the countdown ends, as a Date object, ISO 8601 string,
+or epoch milliseconds.
+    - `baseDate: Date | string | number` — Reference point used as "now". When set, the countdown is frozen at
+that instant (useful for snapshots and tests).
+    - `variant: "digital" | "units"` = "digital" — "digital" renders a compact colon-separated clock (04:12:33);
+"units" renders one labeled segment per unit (days / hours / min / sec).
+@default "digital"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the numbers and labels.
+@default "md"
+    - `locale: string` — BCP 47 locale override for unit labels (e.g. "en", "ja", "pt-BR").
+@default current i18next language
+    - `unitDisplay: "long" | "short" | "narrow"` = "short" — Length of the unit labels in the "units" variant.
+@default "short"
+    - `paused: boolean` = false — Pauses the countdown while true. It resumes from the real remaining
+time (the target moment does not shift).
+@default false
+    - `onComplete: () => void` — Called once when the remaining time reaches zero (also on mount if the
+target is already in the past). Not called when baseDate is set.
+    - `completedContent: React.ReactNode` — Content shown instead of the zeroed digits once the countdown ends.
+    - `fallback: React.ReactNode` — Content shown when the target cannot be parsed.
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
+- **DataGrid** — Advanced data table and manipulation
+    - `columns: DataGridColumn<T>[]` (required) — Column definitions
+    - `data: T[]` (required) — Row data
+    - `rowKey: string | ((record: T) => string)` = "id" — Row key: a field name or a function that derives the key from a record
+    - `loading: boolean` = false — Whether the grid is in a loading state
+    - `striped: boolean` = false — Whether to show striped (zebra) rows
+    - `bordered: boolean` = false — Whether to show borders between cells
+    - `hoverable: boolean` = true — Whether rows highlight on hover
+    - `stickyHeader: boolean` = true — Whether the header sticks to the top while scrolling
+    - `height: string | number` — Height of the grid (enables vertical scrolling)
+    - `maxHeight: string | number` — Maximum height of the grid (enables vertical scrolling)
+    - `emptyMessage: React.ReactNode` — Message or element to display when data is empty
+    - `mobileCard: boolean` = false — Enable mobile card layout
+    - `selection: boolean | SelectionConfig<T>` — Row selection: a boolean shorthand or a full configuration object
+    - `selectedRowKeys: string[]` — Selected row keys (used with boolean `selection`)
+    - `onSelectionChange: (keys: string[], records: T[]) => void` — Selection change callback (used with boolean `selection`)
+    - `sortConfig: { key: string; direction: "asc" | "desc" | "none"; }` — Current sort configuration
+    - `onSortChange: (key: string, direction: "asc" | "desc" | "none") => void` — Callback when the sort configuration changes
+    - `pagination: object | false` — Pagination configuration, or false to disable pagination
+    - `infiniteScroll: { hasMore: boolean; onLoadMore: () => void; threshold?: number; }` — Infinite-scroll configuration for dynamic loading
+    - `className: string` — Additional class names
+    - `ariaLabel: string` — Accessibility label for the grid
+- **DescriptionList** — Key-value pairs
+    - `children: React.ReactNode` (required) — DescriptionListItem elements
+    - `className: string` — Additional class names
+    - `layout: "horizontal" | "vertical" | "compact"` = "horizontal" — Layout of terms and descriptions
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the text
+    - `border: boolean` = false — Whether to show borders (alias of bordered)
+    - `bordered: boolean` = false — Whether to show borders
+- **EmptyState** — Missing data placeholder
+    - `title: React.ReactNode` (required) — Title to display.
+    - `description: React.ReactNode` — Description text to display.
+    - `icon: React.ReactNode` — Icon to display.
+    - `extra: React.ReactNode` — Element shown as an action (e.g. a button).
+    - `variant: "default" | "simple"` = "default" — Design variant.
+- **FAQSection** — Frequently Asked Questions section
+    - `items: FAQItem[]` (required) — FAQ items.
+    - `title: React.ReactNode` — Main title of the section.
+    - `description: React.ReactNode` — Supplementary description shown below the title.
+    - `layout: "top" | "left"` = "top" — Layout.
+- top: title and description above the accordion.
+- left: title and description on the left, accordion on the right (desktop and up).
+    - `accordionProps: Omit<AccordionProps, "children">` — Props passed to the inner Accordion component.
+    - `className: string` — Additional class names.
+- **InfiniteScroll** — Infinite scroll control
+    - `children: React.ReactNode` (required) — Content to display.
+    - `hasMore: boolean` = false — Whether there is more data to load.
+    - `loading: boolean` = false — Whether data is currently loading.
+    - `onLoadMore: () => void` (required) — Callback to load the next batch of data.
+    - `loader: React.ReactNode` — Element shown while loading.
+    - `threshold: number` = 250 — Scroll threshold (px). onLoadMore is called when the scroll position gets this close to the bottom.
+    - `className: string` — Additional class names.
+    - `container: React.RefObject<HTMLElement | null>` — Target whose scroll events are observed (defaults to window).
+- **JsonDiffViewer** — Compares two JSON values as a formatted side-by-side or unified diff, built on top of CodeDiffViewer.
+    - `before: unknown` (required) — JSON value before the change
+    - `after: unknown` (required) — JSON value after the change
+    - `indent: number` = 2 — Indentation spaces for JSON.stringify (default: 2)
+    - `view: "split" | "unified"` — Display mode inherited from CodeDiffViewer
+- **JsonViewer** — Recursive tree viewer and editor for JSON data.
+    - `data: unknown` (required) — The JSON data to display
+    - `expandDepth: number` = 1 — Initial depth to expand
+    - `showCopy: boolean` = true — If true, show copy button
+    - `showToolbar: boolean` = true — If true, show toolbar
+    - `editable: boolean` = false — If true, the data can be edited inline
+    - `onChange: (data: unknown) => void` — Callback when data changes
+- **Kanban** — Drag-and-drop board for visualizing workflow stages
+    - `columns: KanbanColumnData[]` — Kanban column data (for prop-driven usage).
+    - `onMove: (itemId: string, fromColumnId: string, toColumnId: string) => void` — Callback when a card is moved.
+    - `onCardMove: (itemId: string, fromColumnId: string, toColumnId: string) => void` — Callback when a card is moved (legacy / alternative name).
+    - `forceMobileUI: boolean` = false — Whether to force the touch-device UI.
+    - `asChild: boolean` = false — Whether to render as a child element.
+- **Leaderboard** — Display a ranked list of entries with scores and medal highlights for the top three positions.
+    - `entries: LeaderboardEntry[]` (required) — List of ranking entries
+    - `unit: string` — Label for the score unit
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+- **List** — Structurally organized items in bullet points or numbered formats
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the list items
+    - `spacing: "tight" | "normal" | "loose"` = "normal" — Spacing between items
+    - `bordered: boolean` = false — Whether to show borders between items
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `hoverable: boolean` = false — Whether items highlight on hover
+- **Markdown** — A component for safely rendering text in Markdown format.
+    - `content: string` — Markdown string to render. Provide either `content` or `children`.
+    - `children: string` — Markdown string to render (when passed as children).
+    - `gfm: boolean` = true — Whether to enable GitHub Flavored Markdown (default: true).
+    - `className: string` — Additional class names.
+- **Marquee** — Scrolling text animation
+    - `duration: number` = 20 — Animation speed (in seconds). Defaults to `20`.
+    - `reverse: boolean` = false — Whether to run the animation in reverse.
+    - `pauseOnHover: boolean` = true — Whether to pause the animation on hover.
+    - `vertical: boolean` = false — Whether to scroll vertically.
+    - `repeat: number` = 2 — Number of times the content is repeated. May need adjusting for a seamless loop. Defaults to `2`.
+- **NodeGraph** — Interactive node-based flowchart and pipeline editor
+    - `nodes: Node[]` (required) — Controlled nodes
+    - `edges: Edge[]` (required) — Controlled edges
+    - `onNodesChange: OnNodesChange` (required) — Called when nodes change (position, selection, removal)
+    - `onEdgesChange: OnEdgesChange` (required) — Called when edges change
+    - `onConnect: OnConnect` — Called when a new connection is made
+    - `nodeTypes: NodeTypes` — Custom node type renderers
+    - `edgeTypes: EdgeTypes` — Custom edge type renderers
+    - `nodesDraggable: boolean` = true — Whether nodes can be dragged
+    - `nodesConnectable: boolean` = true — Whether nodes can be connected
+    - `deleteKeyCode: string | null` = "Backspace" — Whether elements can be deleted with Backspace/Delete
+    - `showMiniMap: boolean` = false — Show the minimap panel
+    - `showControls: boolean` = true — Show zoom/fit controls
+    - `backgroundVariant: BackgroundVariant` = BackgroundVariant.Dots — Background grid style
+    - `fitView: boolean` = true — Fit view options on mount
+    - `fitViewOptions: FitViewOptions` — Options for the initial fit-view behavior
+    - `defaultEdgeOptions: DefaultEdgeOptions` — Default options applied to new edges
+    - `className: string` — Additional CSS class
+    - `aria-label: string` = "Node graph" — Accessible label for the graph region
+- **PullToRefresh** — Pull-to-refresh utility for enhancing mobile user experience.
+    - `onRefresh: () => Promise<void> | void` (required) — Callback when refresh is triggered. Should return a promise.
+    - `refreshing: boolean` — Whether the refreshing is currently in progress (controlled)
+    - `threshold: number` = 60 — Distance in pixels to pull before triggering refresh
+    - `maxDistance: number` = 120 — Maximum distance in pixels the container can be pulled
+    - `children: React.ReactNode` (required) — The content to be wrapped and pulled
+    - `asChild: boolean` = false — If true, the content div will be rendered as its child
+- **QRCode** — QR generator
+    - `value: string` (required) — Value encoded in the QR code
+    - `size: number` = 128 — Size of the QR code in px
+    - `level: "L" | "M" | "Q" | "H"` = "M" — Error correction level
+    - `bgColor: string` = "var(--wim-color-surface)" — Background color
+    - `fgColor: string` = "var(--wim-color-text-primary)" — Foreground (module) color
+    - `marginSize: number` = 0 — Size of the quiet-zone margin, in modules
+    - `renderAs: "svg" | "canvas"` = "svg" — Whether to render as an SVG or a canvas
+    - `imageSettings: React.ComponentProps<typeof QRCodeSVG>["imageSettings"]` — Settings for an image embedded in the center of the QR code
+    - `className: string` — Additional class names
+    - `aria-label: string` — Accessible label describing what the QR code represents
+- **RangeCalendar** — Range calendar view
+    - `value: [Date | null, Date | null]` — 現在選択されている範囲 [開始日, 終了日]。
+    - `onChange: (value: RangeCalendarValue) => void` — 範囲が変更された時のコールバック。
+    - `defaultValue: [Date | null, Date | null]` — 初期値。
+    - `className: string` — 追加のクラス名。
+    - `disabled: boolean` = false — 無効化。
+    - `minDate: Date` — 選択可能な最小日付。
+    - `maxDate: Date` — 選択可能な最大日付。
+    - `disabledDates: Date[]` — 無効化する日付の配列。
+    - `isDateDisabled: (date: Date) => boolean` — 特定の日付を無効化する関数。
+    - `weekStartsOn: 0 | 1` — 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+- **Reaction** — Display emoji reaction buttons with toggleable state and counts
+    - `reactions: ReactionItem[]` (required) — List of reactions
+    - `onReact: (emoji: string, active: boolean) => void` — Callback when a reaction is added or removed
+    - `showAddButton: boolean` = false — Whether to show the add button
+    - `onAdd: () => void` — Callback when the add button is clicked
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `disabled: boolean` = false — Whether the component is disabled
+- **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
+    - `date: Date | string | number` (required) — The date to display, as a Date object, ISO 8601 string, or epoch milliseconds.
+    - `baseDate: Date | string | number` — Reference point used as "now". When set, live updates are disabled.
+@default current time
+    - `locale: string` — BCP 47 locale override (e.g. "en", "ja", "pt-BR").
+@default current i18next language
+    - `numeric: Intl.RelativeTimeFormatNumeric` = "auto" — "auto" allows idiomatic phrases like "yesterday"; "always" always uses numbers ("1 day ago").
+@default "auto"
+    - `format: Intl.RelativeTimeFormatStyle` = "long" — Length of the formatted message ("long" | "short" | "narrow").
+@default "long"
+    - `live: boolean` = true — Automatically re-render as time passes. Ignored when baseDate is set.
+@default true
+    - `fallback: React.ReactNode` — Content shown when the date cannot be parsed.
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
+- **ScheduleView** — Time-grid calendar with drag-and-drop scheduling
+    - `events: ScheduleViewEvent[]` = [] — List of calendar events
+    - `initialView: "timeGridWeek" | "timeGridDay" | "dayGridMonth"` = "timeGridWeek" — Initial view mode
+    - `editable: boolean` = true — Whether events can be dragged to new times
+    - `selectable: boolean` = true — Whether date ranges can be selected by clicking/dragging
+    - `onEventClick: (arg: EventClickArg) => void` — Called when an event is clicked
+    - `onEventDrop: (arg: EventDropArg) => void` — Called when an event is dropped to a new time
+    - `onEventChange: (arg: EventChangeArg) => void` — Called when an event is resized
+    - `onDateSelect: (arg: DateSelectArg) => void` — Called when a date/time range is selected
+    - `slotMinTime: string` = "08:00:00" — First hour displayed in the time grid (e.g. "08:00:00")
+    - `slotMaxTime: string` = "20:00:00" — Last hour displayed in the time grid (e.g. "20:00:00")
+    - `slotDuration: string` = "00:30:00" — Duration of each time slot, e.g. "00:30:00"
+    - `locale: string` = "en" — Locale string, e.g. "ja", "pt"
+    - `unselectAuto: boolean` = true — Whether clicking elsewhere on the page will clear the current selection
+    - `className: string` — Additional CSS class
+    - `aria-label: string` = "Schedule" — Accessible label for the schedule region
+- **SortableList** — Item rearrangement and reordering
+    - `asChild: boolean` = false — If true, the component will be rendered as its child.
+    - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.
+    - `disabled: boolean` = false — Whether the entire list is disabled.
+- **Stats** — A component to highlight key performance indicators and metrics
+    - `variant: React.ComponentProps<typeof Card>["variant"]` = "elevated" — Visual style variant of the card
+    - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
+    - `interactive: boolean` = false — Whether to enable hover animation and click effects
+    - `padding: ComponentSize | "none"` = "md" — Padding size
+    - `radius: ComponentSize | "none"` = "lg" — Corner radius size
+- **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
+    - `as: React.ElementType` = "div" — The element to render as the root container. Default is 'div'.
+    - `leftActions: SwipeActionItem[]` = [] — Actions revealed when swiping from left to right
+    - `rightActions: SwipeActionItem[]` = [] — Actions revealed when swiping from right to left
+    - `children: React.ReactNode` (required) — The content to be wrapped and swiped
+    - `asChild: boolean` = false — If true, the content div will be rendered as its child
+    - `id: string` — Unique ID for the item. Automatically generated if not provided.
+    - `closeOnAction: boolean` = true — Whether to automatically close the actions when an action is clicked. Default is true.
+- **Table** — Rows and columns for displaying structured data efficiently
+    - `asChild: boolean` = false — Whether to render as a child element.
+    - `striped: boolean` = false — Whether to show striped (zebra) rows
+    - `bordered: boolean` = false — Whether to show borders between cells
+    - `hoverable: boolean` = false — Whether rows highlight on hover
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `stickyHeader: boolean` = false — Whether the header sticks to the top while scrolling
+    - `scrollbar: "default" | "subtle" | "hidden"` = "default" — Scrollbar style of the container
+    - `mobileCard: boolean` = false — Mobile view: Switch to card layout
+    - `height: string | number` — Height of the container (enables vertical scrolling)
+    - `maxHeight: string | number` — Maximum height of the container (enables vertical scrolling)
+    - `containerClassName: string` — Additional class name for the scroll container
+    - `card: boolean` = false — Add outer border and border-radius to the container (DataGrid look)
+- **Tag** — Compact visual descriptors used for labeling or categorizing content
+    - `asChild: boolean` — If true, the tag will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — Content to display
+    - `content: React.ReactNode` — Content to display (alternative to children)
+    - `intent: IndicatorIntent` — Intent (semantic state)
+    - `variant: "solid" | "outline" | "subtle"` — Visual style variant
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
+    - `icon: React.ReactNode` — Icon
+    - `onDelete: (e: React.MouseEvent<HTMLButtonElement>) => void` — Delete event. When provided, a × button is shown.
+    - `disabled: boolean` — Whether the tag is disabled
+    - `interactive: boolean` = false — Whether to enable the interactive state
+- **Timeline** — A vertical list mapping events or history in chronological order
+    - `children: React.ReactNode` (required) — Timeline items
+    - `align: "left" | "right" | "alternate"` = "left" — Alignment of the items relative to the line
+    - `className: string` — Additional class names
+    - `asChild: boolean` — Whether to render as a child element.
+- **TreeView** — Hierarchical data
+    - `children: React.ReactNode` — JSX-based items (children API). Use this when not using `nodes`.
+    - `nodes: TreeViewNode[]` — Node array for data-driven mode.
+    - `className: string` — Additional class names
+    - `multiSelect: boolean` = false — Whether multiple nodes can be selected
+    - `checkable: boolean` = false — Whether nodes show checkboxes
+    - `checkStrategy: "cascade" | "exclusive"` = "cascade" — Check selection behavior.
+- cascade: checking a parent selects all children; partially checked children make the parent indeterminate
+- exclusive: parent and children are mutually exclusive
+    - `searchable: boolean` = false — Whether to show a search input for filtering nodes
+    - `defaultExpandedValues: string[]` = [] — Values of the nodes expanded initially
+    - `defaultSelectedValues: string[]` = [] — Values of the nodes selected initially
+    - `defaultCheckedValues: string[]` = [] — Values of the nodes checked initially
+    - `onCheckedChange: (checked: string[]) => void` — Callback when the checked values change
+    - `onSelectedChange: (selected: string[]) => void` — Callback when the selected values change
+    - `width: string | number` — Width of the tree (CSS value or number in px)
+    - `virtualThreshold: number` = 100 — Node count threshold at which virtualization kicks in.
+    - `labels: { searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }` = {} — Labels for internationalization
+    - `labelId: string` — Accessibility label ID
+    - `styles: { root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }` — Custom styles for internal parts
+- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
+    - `items: T[]` (required) — Array of items to display
+    - `itemHeight: number` (required) — Height of each row (px)
+    - `height: number | string` (required) — Total height of the list (px)
+    - `renderItem: (item: T, index: number) => React.ReactNode` (required) — Render function for each item
+    - `overscan: number` = 3 — Number of extra items to render outside the visible range
+    - `className: string` — Additional class names
+    - `itemRole: string` = "listitem" — Role of the element wrapping each item (for accessibility)
+    - `role: string` = "list" — Role of the whole list (for accessibility)
+    - `aria-label: string` — Accessible label
+    - `aria-labelledby: string` — ID of the element that labels the list
+
+### overlay — `import { … } from "wimui/overlay"`
+
+- **BottomSheet** — Mobile bottom overlay
+    - `children: React.ReactNode` (required) — Bottom sheet parts (BottomSheetTrigger, BottomSheetContent, etc.).
+    - `open: boolean` — Controlled open state. Use together with onOpenChange.
+    - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage.
+@default false
+    - `onOpenChange: (open: boolean) => void` — Called with the next state when the sheet is opened or closed.
+- **ContextMenu** — Right-click menus
+    - `children: ReactNode` (required) — Element that opens the context menu on right-click.
+    - `menu: ReactNode` (required) — Menu items to display in the context menu
+    - `className: string` — Additional CSS class name for the container.
+    - `disabled: boolean` = false — Disable the context menu
+    - `asChild: boolean` = false — If true, merge trigger props onto the child element.
+- **Dialog** — Focused task windows
+    - `children: React.ReactNode` (required) — Dialog parts (Dialog.Trigger, Dialog.Content, etc.).
+    - `open: boolean` — Controlled open state. Use together with onOpenChange.
+    - `onOpenChange: (open: boolean) => void` — Called with the next state when the dialog is opened or closed.
+    - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage.
+@default false
+    - `className: string` — Additional CSS class name.
+    - `closeOnOverlayClick: boolean` = true — Whether clicking the overlay closes the dialog.
+@default true
+- **Drawer** — Slide-out detail panels
+    - `children: React.ReactNode` (required) — Drawer parts (DrawerTrigger, DrawerContent, etc.).
+    - `open: boolean` — Controlled open state. Use together with onOpenChange.
+    - `onOpenChange: (open: boolean) => void` — Called with the next state when the drawer is opened or closed.
+    - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage.
+@default false
+    - `side: "left" | "right" | "top" | "bottom"` = "right" — Edge of the screen the drawer slides in from.
+@default "right"
+    - `slideIn: boolean` = true — Whether to animate the drawer when opening.
+@default true
+    - `slideOut: boolean` = true — Whether to animate the drawer when closing.
+@default true
+- **Dropdown** — Overlay selection menu
+    - `children: ReactNode` (required) — Dropdown parts (Dropdown.Trigger and Dropdown.Menu).
+    - `asChild: boolean` = false — If true, the dropdown will be rendered as its child, merging its props onto that child.
+- **FocusTrap** — Focus management
+    - `children: React.ReactNode` (required) — Content to trap focus within.
+    - `active: boolean` = true — Whether the trap is active.
+@default true
+    - `initialFocus: boolean` = true — Whether to focus the first focusable element on mount.
+    - `className: string` — Additional CSS class name.
+- **HoverCard** — Rich content on hover
+    - `children: ReactNode` (required) — Hover card parts (HoverCardTrigger and HoverCardContent).
+    - `className: string` — Additional CSS class name for the container.
+    - `openDelay: number` = 700 — Delay before showing the hover card in ms.
+    - `closeDelay: number` = 300 — Delay before hiding the hover card in ms.
+    - `open: boolean` — If provided, controls the open state.
+    - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
+- **Menu** — General menus
+    - `children: ReactNode` (required) — Menu items (MenuItem, MenuItemGroup, SubMenu, MenuDivider).
+    - `className: string` — Additional CSS class name for the container.
+    - `asChild: boolean` = false — If true, the menu root will be rendered as its child, merging its props onto that child.
+    - `mode: "vertical" | "horizontal" | "inline"` = "vertical" — Mode of the menu
+    - `defaultSelectedKeys: string[]` — Default selected keys
+    - `defaultOpenKeys: string[]` = [] — Default opened submenu keys
+- **Popconfirm** — Confirmation overlay
+    - `title: ReactNode` (required) — The title of the confirmation box
+    - `description: ReactNode` — The description of the confirmation box
+    - `onConfirm: () => void` — Callback when the user clicks the confirm button
+    - `onCancel: () => void` — Callback when the user clicks the cancel button
+    - `okText: ReactNode` = "OK" — Text of the confirm button
+    - `cancelText: ReactNode` = "Cancel" — Text of the cancel button
+    - `okType: ButtonIntent` = "default" — Color role of the confirm button
+    - `children: ReactNode` (required) — The target element which the Popconfirm will be attached to
+    - `icon: ReactNode` — Customize the icon
+    - `disabled: boolean` = false — Whether to show the popconfirm
+- **Popover** — Contextual overlay
+    - `children: ReactNode` (required) — Popover parts (PopoverTrigger, PopoverContent, etc.).
+    - `className: string` — Additional CSS class name for the container.
+    - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
+    - `open: boolean` — If provided, controls the open state.
+    - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
+    - `placement: Placement` = "bottom-start" — Preferred placement of the popover.
+    - `variant: "default" | "glass"` = "default" — The variant of the popover content.
+- **Portal** — Out-of-hierarchy render
+    - `children: React.ReactNode` (required) — The content to be rendered in the portal
+    - `container: HTMLElement | null` — The container where the portal will be rendered. Defaults to document.body
+- **Tooltip** — Information on hover
+    - `children: ReactNode` (required) — Tooltip parts (TooltipTrigger and TooltipContent).
+    - `className: string` — Additional CSS class name for the container.
+    - `delay: number` = 200 — Delay before showing the tooltip in ms.
+    - `open: boolean` — If provided, controls the open state.
+    - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
+    - `placement: Placement` = "top" — Preferred placement of the tooltip.
+    - `variant: "default" | "glass"` = "default" — The variant of the tooltip content.
+
+### typography — `import { … } from "wimui/typography"`
+
+- **Blockquote** — Visually separates external quotes or text to be emphasized.
+    - `asChild: boolean` = false — If true, the blockquote will be rendered as its child, merging its props onto that child.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Font size of the quote.
+@default "md"
+    - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
+    - `content: React.ReactNode` — Quoted content. Alternative to children.
+    - `cite: React.ReactNode` — Source of the quote, rendered in a `<cite>` element.
+    - `border: boolean` = true — Whether to show the left border.
+@default true
+- **Code** — Code snippets
+    - `asChild: boolean` = false — If true, the code will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — Code to display. Ignored when `code` is set (unless asChild is true).
+    - `code: string` — Code string to display. Takes precedence over children.
+    - `block: boolean` = false — If true, renders as a block (`<pre>`) instead of inline.
+@default false
+    - `language: string` — Language identifier appended as a `language-<lang>` class for syntax highlighters.
+- **Highlight** — Text highlighting
+    - `children: React.ReactNode` (required) — The full text to highlight substrings in.
+    - `highlight: string | string[]` (required) — Substring(s) to highlight.
+    - `highlightClassName: string` — Custom class name for the highlighted `<mark>` element.
+    - `highlightStyles: React.CSSProperties` — Custom styles for the highlighted `<mark>` element.
+    - `as: React.ElementType` = "span" — The HTML tag or component to use for the container. Default is "span".
+    - `asChild: boolean` = false — If true, the component will be rendered as its child.
+- **Kbd** — Keyboard shortcuts
+    - `asChild: boolean` = false — If true, the Kbd will be rendered as its child, merging its props onto that child.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the key cap.
+@default "md"
+    - `children: React.ReactNode` — Key label(s) to display.
+- **Label** — Descriptive text for input fields, including required/optional marks
+    - `label: React.ReactNode` (required) — The main label text or element.
+    - `required: boolean` = false — Whether the field is mandatory. If true, displays a required badge.
+    - `requiredLabel: React.ReactNode` — Custom text or element for the required badge.
+@default "required"
+    - `showOptional: boolean` = false — Whether to display an optional badge when `required` is false.
+@default false
+    - `optionalLabel: React.ReactNode` — Custom text or element for the optional badge.
+@default "optional"
+    - `className: string` — Additional CSS class name for the container.
+    - `asChild: boolean` = false — If true, the Label will be rendered as its child, merging its props onto that child.
+- **Legend** — Group title
+    - `label: React.ReactNode` (required) — The main label text or element.
+    - `required: boolean` — Whether the field is mandatory. If true, displays a required badge.
+    - `requiredLabel: React.ReactNode` — Custom text or element for the required badge.
+@default "required"
+    - `showOptional: boolean` — Whether to display an optional badge when `required` is false.
+@default false
+    - `optionalLabel: React.ReactNode` — Custom text or element for the optional badge.
+@default "optional"
+    - `className: string` — Additional CSS class name for the container.
+    - `asChild: boolean` = false — If true, the Legend will be rendered as its child, merging its props onto that child.
+- **Span** — Lightweight wrapper for inline text or short labels with icon support
+    - `asChild: boolean` = false — If true, the span will be rendered as its child, merging its props onto that child.
+    - `size: Extract<ComponentSize, "xs" | "sm" | "md" | "lg" | "xl">` = "md" — Font size of the text.
+@default "md"
+    - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
+    - `weight: WimFontWeightKey` = "normal" — Font weight.
+@default "normal"
+    - `fontStyle: "normal" | "italic"` = "normal" — Font style.
+@default "normal"
+    - `decoration: "line-through" | "underline" | "highlight" | "none"` = "none" — Visual decoration applied to the text.
+@default "none"
+    - `content: React.ReactNode` — Content of the span. Alternative to children.
+    - `iconName: React.ComponentProps<typeof Icon>["name"]` = undefined — Name of the icon displayed alongside the text.
+    - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the text.
+@default "left"
+- **Spoiler** — Collapse long text such as reviews and comments to a fixed number of lines, with an accessible "show more" toggle that appears only when the text overflows.
+    - `lines: number` = 3 — Number of text lines shown while collapsed.
+@default 3
+    - `expanded: boolean` — Controlled expanded state. Use together with onExpandedChange.
+    - `defaultExpanded: boolean` = false — Initial expanded state for uncontrolled usage.
+@default false
+    - `onExpandedChange: (expanded: boolean) => void` — Called with the next state when the toggle is activated.
+    - `showLabel: React.ReactNode` — Label of the toggle while collapsed.
+@default t("spoiler.show_more")
+    - `hideLabel: React.ReactNode` — Label of the toggle while expanded.
+@default t("spoiler.show_less")
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text.
+    - `asChild: boolean` = false — If true, the text will be rendered as its child, merging its props onto that child.
+    - `size: Extract<ComponentSize, "xs" | "sm" | "md" | "lg" | "xl">` = "md" — Font size of the text.
+@default "md"
+    - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
+    - `weight: WimFontWeightKey` = "normal" — Font weight.
+@default "normal"
+    - `lineHeight: T | (string & {})` — Line height. Accepts a design token name or any CSS line-height value.
+    - `fontStyle: "normal" | "italic"` = "normal" — Font style.
+@default "normal"
+    - `decoration: "line-through" | "underline" | "highlight" | "none"` = "none" — Visual decoration applied to the text.
+@default "none"
+    - `content: React.ReactNode` — Content of the text. Alternative to children (children take precedence only with asChild).
+- **Title** — Possesses visual weight (boldness/size) to indicate page structure.
+    - `asChild: boolean` = false — If true, the heading will be rendered as its child, merging its props onto that child.
+    - `tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"` = "h1" — The semantic HTML tag to use.
+    - `size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"` = "xl" — The visual size of the title.
+    - `color: T | (string & {})` — Text color.
+    - `align: "left" | "center" | "right"` = "left" — Text alignment.
+    - `decoration: "underline" | "highlight" | "none"` = "none" — Visual decoration applied to the heading text.
+@default "none"
+    - `children: React.ReactNode` (required) — The heading content.
+
+### media — `import { … } from "wimui/media"`
+
+- **Audio** — Audio playback
+    - `src: string | string[] | AudioTrack | AudioTrack[]` — Source: a URL, list of URLs, or track object(s)
+    - `autoPlay: boolean` = false — Whether to start playing automatically
+    - `loop: boolean` = false — Whether to loop playback
+    - `muted: boolean` = false — Whether to start muted
+    - `controls: boolean` = true — Whether to show playback controls
+    - `preload: "auto" | "metadata" | "none"` — Preload behavior
+    - `radius: "none" | "sm" | "md" | "lg" | "full"` = "none" — Corner radius size
+    - `shadow: boolean` = false — Whether to show a shadow
+    - `border: boolean` = false — Whether to show a border
+    - `caption: React.ReactNode` — Caption shown below the player
+    - `customControls: boolean` = false — Whether to use the custom control bar instead of native controls
+    - `visualizer: boolean` = false — Whether to show the audio visualizer
+    - `showMetadata: boolean` = false — Whether to show track metadata (title, artist, cover art)
+    - `fadeIn: boolean | number` = false — Whether to fade in when playback starts (or the duration in seconds)
+    - `fadeOut: boolean | number` = false — Whether to fade out when playback ends (or the duration in seconds)
+    - `crossfade: boolean | number` = false — Whether to crossfade between tracks (or the duration in seconds)
+    - `playbackRate: boolean` = false — Whether to show the playback-rate control
+    - `hotkeys: boolean` = false — Whether to enable keyboard hotkeys
+    - `presets: boolean` = false — Whether to show equalizer presets
+    - `sleepTimer: boolean` = false — Whether to show the sleep timer
+    - `loading: "eager" | "lazy"` = "lazy" — Loading behavior. With "lazy", an Intersection Observer is enabled.
+    - `demoDelay: number` — Demo only: milliseconds to intentionally delay load completion
+    - `labels: { seek?: string; mute?: string; unmute?: string; volume?: string; play?: string; pause?: string; next?: string; prev?: string; repeatMode0?: string; // Off repeatMode1?: string; // One repeatMode2?: string; // All shuffle?: string; playbackSpeed?: string; bassBoost?: string; sleepTimer?: string; unknownTitle?: string; unknownArtist?: string; }` = {} — Labels for manual translation
+    - `tracks: React.ComponentPropsWithoutRef<"track">[]` — Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).
+- **Gallery** — Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.
+    - `items: GalleryItem[]` (required) — Images to display in the gallery
+    - `columns: number` = 3 — Number of grid columns. Default: 3.
+    - `gap: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Gap between items. Default: "md".
+    - `aspect: "square" | "landscape" | "portrait" | "auto"` = "square" — Aspect ratio for each image. Default: "square".
+    - `selectable: boolean` = false — Enable multi-select with checkboxes.
+    - `selected: string[]` — Controlled selected IDs.
+    - `defaultSelected: string[]` = [] — Uncontrolled initial selected IDs.
+    - `onSelectionChange: (ids: string[]) => void` — Called when selection changes.
+    - `onItemClick: (item: GalleryItem, index: number) => void` — Called when an item is clicked (outside checkbox).
+    - `renderActions: (params: { selectedIds: string[]; clearSelection: () => void; }) => React.ReactNode` — Render bulk-action toolbar when items are selected.
+- **Icon** — Visual symbols
+    - `name: keyof typeof ALL_ICONS` — Icon name. Requires `import "wimui/icons"` once at the app entry to register icons.
+    - `component: React.ComponentType<React.SVGProps<SVGSVGElement>>` — Icon component passed directly. Works without registration and is tree-shakable.
+    - `size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl"` = "md" — Size of the icon
+    - `spin: boolean` — Apply the loading rotation animation
+    - `color: "danger" | "success" | "warning" | "info" | "primary" | "secondary" | "tertiary" | "disabled"` — Semantic color of the icon
+- **Image** — Image content
+    - `src: string` (required) — Source URL of the image
+    - `alt: string` (required) — Alternative text for the image
+    - `width: string | number` — Width of the image
+    - `height: string | number` — Height of the image
+    - `radius: "none" | "sm" | "md" | "lg" | "full"` = "none" — Corner radius size
+    - `shadow: boolean` = false — Whether to show a shadow
+    - `border: boolean` = false — Whether to show a border
+    - `fit: "contain" | "cover" | "fill" | "none" | "scale-down"` = "cover" — How the image fits its box
+    - `loading: "eager" | "lazy"` — Lazy-loading behavior
+    - `caption: string` — Caption shown below the image
+    - `filter: ImageFilterOptions` — Filter applied to the image itself
+    - `hoverFilter: ImageFilterOptions` — Filter applied on hover (when omitted, `filter` is kept)
+    - `backdropFilter: ImageFilterOptions` — Filter applied to the background (effective with transparent images)
+    - `hoverBackdropFilter: ImageFilterOptions` — Filter applied to the background on hover
+    - `transition: "none" | "fast" | "normal" | "slow"` = "normal" — Animation speed when switching filters
+    - `noise: ComponentSize | "none"` — Intensity of the film-grain (noise) effect
+    - `duotone: ImageDuotoneOptions` — Duotone settings
+    - `overlay: ImageOverlayOptions` — Overlay settings
+    - `zoom: boolean | number` = false — Zoom factor on hover (e.g. 1.1) or true (defaults to 1.05)
+    - `tilt: boolean` = false — Tilt effect that follows the mouse
+    - `fadeIn: boolean` = false — Whether to fade in when loading completes
+    - `blendMode: React.CSSProperties["mixBlendMode"]` — Blend mode of the image itself
+    - `bgColor: string` — Background color used for blending
+    - `demoDelay: number` — Demo only: milliseconds to intentionally delay load completion
+    - `priority: boolean` = false — Whether to raise loading priority (e.g. an LCP candidate; sets fetchpriority="high")
+    - `fallback: React.ReactNode` — Custom element shown when loading fails
+- **ImageCompare** — ImageCompare overlays two images and reveals them with a draggable divider — a before/after slider for comparing edits, restorations, or AI-generated results against their source.
+    - `before: string` (required) — Source URL of the "before" image (revealed on the leading side)
+    - `after: string` (required) — Source URL of the "after" image (revealed on the trailing side)
+    - `beforeAlt: string` = "" — Alternative text for the before image
+    - `afterAlt: string` = "" — Alternative text for the after image
+    - `beforeLabel: React.ReactNode` — Badge label overlaid on the before side
+    - `afterLabel: React.ReactNode` — Badge label overlaid on the after side
+    - `defaultPosition: number` = 50 — Initial divider position as a percentage 0–100 (uncontrolled)
+    - `position: number` — Divider position as a percentage 0–100 (controlled)
+    - `onPositionChange: (position: number) => void` — Callback when the divider position changes
+    - `orientation: "horizontal" | "vertical"` = "horizontal" — Direction the divider slides along
+    - `width: string | number` — Width of the component
+    - `height: string | number` — Height of the component
+    - `radius: "none" | "sm" | "md" | "lg" | "full"` = "md" — Corner radius size
+    - `labels: { /** Accessible label for the drag handle */ handleAriaLabel?: string; }` — Labels for internationalization
+    - `className: string` — Additional class names
+- **Lightbox** — A high-quality overlay component for displaying images and media with gallery and zoom functionality.
+    - `children: React.ReactNode` (required) — Lightbox parts (Lightbox.Trigger, Lightbox.Content, etc.)
+    - `open: boolean` — Controlled open state
+    - `onOpenChange: (open: boolean) => void` — Callback when the open state changes
+    - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage
+    - `defaultIndex: number` = 0 — Index of the item shown first
+- **Video** — A component for embedding and controlling local or remote video content
+    - `src: string` — Source URL of the video
+    - `width: string | number` — Width of the video
+    - `height: string | number` — Height of the video
+    - `autoPlay: boolean` = false — Whether to start playing automatically
+    - `loop: boolean` = false — Whether to loop playback
+    - `muted: boolean` = false — Whether to start muted
+    - `controls: boolean` = true — Whether to show playback controls
+    - `poster: string` — Poster image shown before playback
+    - `radius: "none" | "sm" | "md" | "lg" | "full"` = "none" — Corner radius size
+    - `shadow: boolean` = false — Whether to show a shadow
+    - `border: boolean` = false — Whether to show a border
+    - `fit: "contain" | "cover" | "fill" | "none" | "scale-down"` = "cover" — How the video fits its box
+    - `preload: "auto" | "metadata" | "none"` — Preload behavior
+    - `caption: React.ReactNode` — Caption shown below the video
+    - `customControls: boolean` = false — Whether to use the custom control bar instead of native controls
+    - `advancedControls: boolean` = false — Whether to enable advanced controls (quality, playback rate, etc.)
+    - `videoId: string` — Unique ID used to persist and resume playback position
+    - `resumePlayback: boolean` = false — Whether to resume playback from the last saved position
+    - `playlist: { src: string; title?: string; poster?: string }[]` — Playlist of videos to play in sequence
+    - `autoPlayNext: boolean` = false — Whether to automatically play the next playlist item
+    - `qualities: { label: string; src: string }[]` — Selectable quality sources
+    - `loading: "eager" | "lazy"` = "lazy" — Loading behavior. With "lazy", an Intersection Observer is enabled.
+    - `fadeIn: boolean` = false — Whether to fade in when loading completes
+    - `demoDelay: number` — Demo only: milliseconds to intentionally delay load completion
+    - `labels: { playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. "seconds" or "秒" }` = {} — Labels for manual translation
+    - `tracks: React.ComponentPropsWithoutRef<"track">[]` — Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).
+
+### charts — `import { … } from "wimui/charts"`
+
+- **AreaChart** — Area charts
+    - `data: ChartDataPoint[]` (required) — Data to display in the chart.
+    - `keys: string[]` (required) — Keys in the data objects to render as areas (series).
+    - `xAxisKey: string` (required) — The key in the data objects used for the X axis labels.
+    - `stacked: boolean` = false — If true, series are stacked on top of each other.
+@default false
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `smooth: boolean` = true — If true, draws smooth (monotone) curves instead of straight lines.
+@default true
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **BarChart** — Bar charts
+    - `data: ChartDataPoint[]` (required) — Data to display in the chart.
+    - `keys: string[]` (required) — Keys in the data objects to render as bars (series).
+    - `xAxisKey: string` (required) — The key in the data objects used for the X axis labels.
+    - `stacked: boolean` = false — If true, series are stacked on top of each other.
+@default false
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **FunnelChart** — Process stage abandonment chart
+    - `data: ChartDataPoint[]` (required) — Data to display in the chart. Each entry represents one funnel stage.
+    - `dataKey: string` (required) — The key in the data objects that represents the value of each stage.
+    - `nameKey: string` (required) — The key in the data objects used for the stage labels.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **GanttChart** — Project schedule and timeline visualization
+    - `tasks: GanttTask[]` (required) — Tasks to render as bars in the chart.
+    - `startDate: Date` — Start of the visible date range. Defaults to the earliest task start date.
+    - `endDate: Date` — End of the visible date range. Defaults to the latest task end date.
+    - `viewMode: "day" | "week" | "month"` = "day" — Granularity of the time axis.
+@default "day"
+    - `columnWidth: number` — Width of one time column in pixels. Defaults to a value suited to the view mode.
+    - `rowHeight: number` = 40 — Height of one task row in pixels.
+@default 40
+    - `onTaskClick: (task: GanttTask) => void` — Called when a task bar is clicked.
+    - `className: string` — Additional CSS class name for the container.
+    - `labels: { ariaChart?: string; ariaTaskBar?: (label: string, start: string, end: string) => string; }` — Labels for manual translation overrides.
+- **GaugeChart** — KPI goal achievement chart
+    - `value: number` (required) — Current value displayed by the gauge. Clamped between min and max.
+    - `min: number` = 0 — Minimum value of the gauge.
+@default 0
+    - `max: number` = 100 — Maximum value of the gauge.
+@default 100
+    - `height: number` = 200 — The height of the chart in pixels.
+@default 200
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `label: string` — Text label displayed with the value inside the gauge.
+    - `color: string` — Color of the gauge arc. Defaults to the first chart color.
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **Heatmap** — Graphical representation of data where individual values are contained in a matrix as colors.
+    - `data: { x: string; y: string; value: number }[]` (required) — Cells to display. Each entry maps an x/y category pair to a value.
+    - `xAxisKey: string[]` (required) — Ordered list of X axis category labels.
+    - `yAxisKey: string[]` (required) — Ordered list of Y axis category labels.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `colorRange: [string, string]` = ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"] — Colors used for the lowest and highest values.
+@default ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"]
+    - `animated: boolean` = false — Whether to animate the cells on mount.
+@default false
+- **LineChart** — Line charts
+    - `data: ChartDataPoint[]` (required) — Data to display in the chart.
+    - `keys: string[]` (required) — Keys in the data objects to render as lines (series).
+    - `xAxisKey: string` (required) — The key in the data objects used for the X axis labels.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `smooth: boolean` = false — If true, draws smooth (monotone) curves instead of straight lines.
+@default false
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **PieChart** — Proportional parts of a whole chart
+    - `data: { name: string; value: number }[]` (required) — Slices to display. Each entry has a name (label) and a value.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `donut: boolean` = false — If true, renders as a donut chart with a hollow center.
+@default false
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **RadarChart** — Multivariate data on concentric axes chart
+    - `data: ChartDataPoint[]` (required) — Data to display in the chart.
+    - `keys: string[]` (required) — Keys in the data objects to render as radar areas (series).
+    - `indexKey: string` (required) — The key in the data objects used for the axis (category) labels.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **ScatterChart** — Scatter plots
+    - `data: { x: number; y: number; z?: number; name: string }[]` (required) — Points to plot. `z` optionally controls the point size.
+    - `xAxisName: string` = "X" — Name of the X axis, shown in the tooltip.
+@default "X"
+    - `yAxisName: string` = "Y" — Name of the Y axis, shown in the tooltip.
+@default "Y"
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `animated: boolean` = false — If true, animates the chart on mount.
+@default false
+- **Sparkline** — Tiny inline trend chart
+    - `data: number[]` (required) — Sequence of values to plot, in order
+    - `type: "line" | "area" | "bar"` = "line" — Visual form of the sparkline
+    - `width: number | string` = 100 — Width of the sparkline (number in px, or a CSS value such as "100%")
+    - `height: number` = 24 — Height of the sparkline in px
+    - `color: string` = "var(--wim-color-primary)" — Stroke/fill color (defaults to the primary chart color)
+    - `strokeWidth: number` = 2 — Stroke width for line and area types
+    - `showLastDot: boolean` = false — Whether to emphasize the last data point with a dot (line and area only)
+    - `min: number` — Lower bound of the y-axis domain (defaults to the data minimum)
+    - `max: number` — Upper bound of the y-axis domain (defaults to the data maximum)
+    - `ariaLabel: string` — Accessible label describing the trend; when omitted the sparkline is hidden from assistive tech
+    - `className: string` — Additional class names
+- **Treemap** — Hierarchical data area-based display
+    - `data: ChartDataPoint[]` (required) — Data to display in the treemap.
+    - `dataKey: string` (required) — The key in the data objects that represents the size of the rectangle.
+    - `aspectRatio: number` = 4 / 3 — The aspect ratio of the rectangles.
+@default 4/3
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+
+### ai — `import { … } from "wimui/ai"`
+
+- **AgentStatus** — Real-time agent state indicator (thinking / running / waiting)
+    - `status: "idle" | "thinking" | "running" | "waiting" | "done" | "error"` (required) — Current state of the agent
+    - `message: string` — Optional description of what the agent is doing; falls back to the localized status label
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size variant
+    - `showLabel: boolean` = true — Whether to show the text label next to the indicator
+    - `className: string` — Additional CSS class
+- **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
+    - `feedback: AIFeedbackValue | null` — Currently selected feedback value (controlled)
+    - `defaultFeedback: AIFeedbackValue | null` = null — Default feedback value (uncontrolled)
+    - `onFeedback: (value: AIFeedbackValue | null) => void` — Called when user clicks a feedback button. Passes null when deselected.
+    - `showRegenerate: boolean` = false — Whether to show the regenerate button
+    - `onRegenerate: () => void` — Called when the regenerate button is clicked
+    - `disabled: boolean` = false — Whether all buttons are disabled
+- **ArtifactsOverlay** — ArtifactsOverlay is a specialized side-panel for displaying large AI-generated content (Artifacts) without interrupting the main chat context.
+    - `open: boolean` (required) — Whether the overlay is open
+    - `onOpenChange: (open: boolean) => void` (required) — Callback when open state changes
+    - `title: string` (required) — Title of the artifact
+    - `subtitle: string` — Subtitle or version info
+    - `children: React.ReactNode` (required) — Main content
+    - `showFullscreenToggle: boolean` = false — Whether to show a full-screen toggle (default: false)
+    - `className: string` — Additional CSS class
+- **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
+- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow.
+    - `code: string` (required) — The code string to display
+    - `language: string` — Programming language label shown in the header (e.g. "tsx", "bash")
+    - `filename: string` — Optional filename shown in the header instead of the language label
+    - `showCopy: boolean` = true — Whether to show the copy-to-clipboard button (default: true)
+    - `showLineNumbers: boolean` = false — Whether to show line numbers (default: false)
+    - `maxLines: number` — Maximum visible height before the block becomes scrollable.
+Pass a CSS value (e.g. "300px") or a number of lines (e.g. 20).
+When set, an expand/collapse toggle is shown.
+    - `className: string` — Additional CSS class
+- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions.
+    - `before: string` (required) — Code before the change
+    - `after: string` (required) — Code after the change
+    - `language: string` — Language label shown in header
+    - `filename: string` — Filename shown in header (takes precedence over language)
+    - `view: "split" | "unified"` = "split" — Display mode
+    - `onApply: () => void` — Called when user clicks Apply
+    - `onReject: () => void` — Called when user clicks Reject
+    - `className: string` — Additional CSS class
+    - `isApplying: boolean` = false — Whether the change is currently being applied
+    - `isApplied: boolean` = false — Whether the change has been successfully applied
+- **InteractiveGraph** — InteractiveGraph provides a canvas for visualizing node-based data. Ideal for RAG knowledge bases, agent workflows, or state machines.
+    - `nodes: Node[]` (required) — Initial nodes
+    - `edges: Edge[]` (required) — Initial edges
+    - `height: string | number` — Height of the container
+    - `width: string | number` — Width of the container
+    - `className: string` — Additional CSS class
+    - `showGrid: boolean` — Whether to show the background grid
+    - `showMiniMap: boolean` — Whether to show the minimap
+    - `showControls: boolean` — Whether to show controls
+- **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
+    - `content: string` (required) — The markdown string to render
+    - `className: string` — Additional CSS class for the root element
+    - `withAnchors: boolean` — Whether to render titles with anchor links (default: false)
+- **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.
+    - `models: ModelOption[]` (required) — List of selectable models
+    - `value: string` — Selected model id (controlled)
+    - `defaultValue: string` — Initially selected model id (uncontrolled)
+    - `onChange: (id: string, model: ModelOption) => void` — Callback when the selected model changes
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the trigger
+    - `disabled: boolean` = false — Whether the selector is disabled
+    - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `showPricing: boolean` = true — Whether to show pricing metadata in the dropdown
+    - `showContext: boolean` = true — Whether to show the context-length metadata in the dropdown
+    - `labels: { /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default "Context") */ contextLabel?: string; /** Prefix for the input price meta (default "In") */ inputLabel?: string; /** Prefix for the output price meta (default "Out") */ outputLabel?: string; /** Suffix appended to prices (default "/1M") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }` — Labels for internationalization
+    - `className: string` — Additional class names
+- **PromptInput** — Auto-resizing prompt input with send and attachment actions
+    - `value: string` — Current text value (controlled)
+    - `defaultValue: string` = "" — Default value (uncontrolled)
+    - `onChange: (value: string) => void` — Callback when value changes
+    - `onSubmit: (value: string) => void` — Callback when user submits (Enter or button click)
+    - `placeholder: string` — Placeholder text
+    - `maxLength: number` — Maximum number of characters
+    - `disabled: boolean` = false — Whether the input is disabled
+    - `loading: boolean` = false — Whether the input is in a loading state
+    - `showAttach: boolean` = false — Whether to show the attachment button
+    - `onAttach: () => void` — Callback when attachment button is clicked
+    - `maxRows: number` = 8 — Maximum number of rows to show before scrolling
+    - `fullWidth: boolean` = false — Whether the input should take up the full width of its container
+    - `className: string` — Additional CSS class
+    - `label: React.ReactNode` — Label for the field
+    - `error: string` — Error message
+    - `required: boolean` — Whether the field is required
+    - `layout: "vertical" | "horizontal"` — Layout of the field
+- **SourceCitation** — Displays cited sources with title, domain, and external link for AI-generated content.
+    - `title: string` (required) — Title of the source
+    - `url: string` — Source URL. When provided, renders as a clickable link.
+    - `description: string` — Brief excerpt or description of the source
+    - `index: number` — Numeric citation index shown as a badge (e.g. 1, 2, 3)
+    - `domain: string` — Domain label shown below the title (auto-derived from url when omitted)
+    - `className: string` — Additional CSS class
+- **StreamingText** — Streaming Markdown renderer for AI-generated responses
+    - `content: string` (required) — The markdown text content to render
+    - `isStreaming: boolean` = false — When true, a blinking cursor is shown at the end of the content
+    - `components: Components` — Override the default markdown component renderers
+    - `className: string` — Additional CSS class
+- **Terminal** — Renders terminal-style output with ANSI color support, prompt prefixes, and copy/clear controls.
+    - `lines: TerminalLine[]` = [] — Lines to display
+    - `title: string` — Window title shown in header bar
+    - `height: string | number` — Explicit height; omit to let the terminal grow with content
+    - `autoScroll: boolean` = true — Scroll to bottom when lines change
+    - `prompt: string` = "$" — Prompt prefix for input lines
+    - `showCopy: boolean` = true — Whether to show the copy button
+    - `onClear: () => void` — Whether to show the clear button; fires onClear when clicked
+    - `className: string` — Additional CSS class
+- **ThoughtProcess** — Visualizes AI reasoning steps and execution states in a timeline format.
+    - `children: React.ReactNode` (required) — Reasoning steps to display (typically ThoughtStep elements)
+    - `title: string` = "Thinking Process" — Header title
+    - `className: string` — Additional CSS class
+    - `isCollapsible: boolean` = true — Whether the body can be collapsed
+    - `defaultExpanded: boolean` = true — Initial expanded state (only relevant when isCollapsible is true)
+    - `isThinking: boolean` = false — Whether the AI is currently thinking (shows a pulsating background)
+- **ThreadList** — ThreadList renders a conversation-history sidebar for AI chat apps — a scrollable list of past threads with an optional new-conversation action and per-thread deletion.
+    - `threads: Thread[]` (required) — Conversations to display, ordered newest first
+    - `activeId: string` — Id of the currently active thread
+    - `onSelect: (id: string) => void` — Callback when a thread is selected
+    - `onDelete: (id: string) => void` — Callback when a thread's delete button is clicked (shows the button when set)
+    - `onNewThread: () => void` — Callback when the new-conversation button is clicked (shows the button when set)
+    - `labels: { /** Label of the new-conversation button */ newThread?: string; /** Text shown when there are no threads */ empty?: string; /** Accessible label for each delete button */ delete?: string; /** Accessible label for the list */ listAriaLabel?: string; }` — Labels for internationalization
+    - `className: string` — Additional class names
+- **UsageMeter** — UsageMeter (also exported as TokenCounter) visualizes token consumption against a budget such as a model's context window — a labeled bar plus a numeric readout that shifts to warning and danger colors near the limit.
+    - `used: number` (required) — Number of tokens used so far
+    - `max: number` — Maximum available tokens (e.g. the context window). Omit for a counter-only display.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the meter
+    - `showBar: boolean` = true — Whether to render the progress bar (requires `max`)
+    - `showPercentage: boolean` = false — Whether to show the percentage instead of the raw count in the readout
+    - `warnThreshold: number` = 0.75 — Fraction (0–1) at which the meter turns to the warning color
+    - `dangerThreshold: number` = 0.9 — Fraction (0–1) at which the meter turns to the danger color
+    - `labels: { /** Leading label (default "Tokens") */ label?: string; /** Unit appended to the raw counts (default "tokens") */ unit?: string; /** Accessible label describing the meter */ ariaLabel?: string; }` — Labels for internationalization
+    - `className: string` — Additional class names
+- **VoiceVisualizer** — Animated voice-level indicator (bars / waveform)
+    - `mode: "bars" | "waveform"` = "bars" — Visualization style
+    - `data: unknown` — Normalized amplitude values (0–1) per slot.
+When omitted, a looping idle animation plays.
+For bars: one value per bar. For waveform: time-domain samples.
+    - `isActive: boolean` = true — Whether the component is in an active (recording/playing) state
+    - `barCount: number` = 24 — Number of bars — bars mode only (default 24)
+    - `height: number` = 40 — Rendered height in pixels (default 40)
+    - `className: string` — Additional CSS class
+    - `sentiment: "neutral" | "positive" | "caution" | "negative" | "informative"` = "neutral" — Sentiment context for coloring (default 'neutral')
