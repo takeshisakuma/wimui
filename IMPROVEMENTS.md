@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-22（npm 公開済み `wimui@0.2.0` を反映して publish 関連の文言を実態化。CI-2 NodeGraph VRT フレークを prefix 除外で解決。CI-3 pre-push から build-storybook を除去）  
+最終更新: 2026-07-23（llms.txt / llms-full.txt を出荷し `wimui@0.3.0` を公開。addon-mcp 実測で相補関係を確認。llms.txt 拡張候補 T21/T22 を起票）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -59,6 +59,17 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | CI-2 | NodeGraph (dark) の VRT フレーク | `dark/components-visualization-nodegraph--read-only` が**非決定的に描画**され、無関係な PR で VRT の赤ノイズを出す。2026-07-21 に #50 の VRT compare で顕在化: update 直後に撮った**自分自身のベースラインにすら差分**（1564px / ratio 0.01, dark のみ light は緑）→ 同シャード再実行で緑＝flaky 確定。 | **済**（2026-07-22。**真因を特定**: 力学レイアウトではなく（ノード位置は固定）、React Flow の `fitView` がノードを ResizeObserver で**非同期計測**してからビューポート transform を再計算するため、計測確定タイミング次第で zoom/pan にサブピクセル差が乗り、キャンバス全体の AA ジッタが `maxDiffPixels 400` を超える。**対応②（除外）を採用**＝ScheduleView と同じく **NodeGraph 全体を prefix 除外に集約**（`components-visualization-nodegraph--`）。根拠: `with-mini-map` は既に除外済（minimap が全体を縮小再描画して増幅）、`read-only` は #50 で update→compare 不一致を確認、`default` は `read-only` と非可視フラグ違いのみの同一静的描画で同じ計測ジッタを共有＝除外による可視カバレッジ損失ほぼゼロ。**根治（`defaultViewport` 固定で計測依存 transform を除去）を見送った理由**: 公開コンポーネントを `__VRT__` に結合させるか、ストーリーの demo 内容＋ベースライン変更が必要になり、フレーク1本のコストに見合わない） |
 | CI-3 | pre-push フックが重い / Windows で脆い | `.husky/pre-push` が `i18n:check` + フル `vitest` + `build-storybook` を回す。2026-07-21 に **build-storybook が Windows の `EPERM`（ローカル dev サーバのファイルロック疑い）**で push をブロック（`--no-verify` で回避）。 | **済**（2026-07-22。ユーザー合意で **build-storybook のみ pre-push から除去**。EPERM の直接原因かつ重い部分で、ストーリー/MDX のビルド破綻は CI（vrt.yml / a11y.yml / deploy.yml が storybook build を回す）が完全カバー＝ローカル固有の価値なし。`i18n:check`（軽量・CI は paths 絞り）と全 `vitest`（cross-file テスト破綻を push 前に担保）は維持＝「push 前に固める」意図を保ったまま Windows の脆さと重さを解消。lint/型は既に pre-commit（lint-staged + tsc-check）でゲート済み） |
 | CI-4 | release.yml の no-op ラン抑制 | `release.yml` が **main への push 毎**に走り `release` 環境の承認ゲートで `waiting` になるため、changeset を含まない push でも「no-op なのに承認待ちラン＋レビュー依頼メール」が毎回発生し、次の本番リリースを concurrency で詰まらせる（2026-07-21 に #53 マージで実発生、no-op ランを手動キャンセル）。**対応**: `on.push` に `paths: [".changeset/**"]` を追加。changesets の実リリース契機は必ず `.changeset/` を触る（追加 push=Version PR 生成 / Version PR マージの削除 push=publish）ことを #51/#52/#53 の実 diff で確認済み。安全弁に `workflow_dispatch` も追加（承認ゲートは維持）。 | **済**（2026-07-21） |
+
+### llms.txt / AI 合成可能性（2026-07-23 起票）
+
+`llms.txt` / `llms-full.txt`（`scripts/generate-llms.js`・`npm run llms:build`）は出荷済み（PR #64/#66/#67、npm `0.3.0` に #64 分は反映済み、recipe 分 #66/#67 は changeset 未同梱＝次リリース同乗）。addon-mcp 実測で「個別 API 正当性は addon-mcp が担うが、CSS 契約 + anti-generic 合成は llms.txt でしか埋まらない」と判明済み。以下は未着手の拡張候補。
+
+| # | 改善 | 内容 | 状態 |
+|---|---|---|---|
+| T21 | per-category の合成例（idiom 集） | full-screen recipe より粒度の小さい、カテゴリ内の慣用的な組み合わせ例を追加（例: form 群＝field+バリデーション+submit の最小フォーム / nav 群＝AppShell の sidebar⇔tabbar 切替 / feedback 群＝toast/alert フロー / overlay 群＝Dialog+フォーム）。`generate-llms.js` の `recipesExtra` と同様に管理し、サイズ配慮で `llms-full.txt` 限定 or 抜粋。**必須**: 全 prop を docgen 照合・app 形状（story 足場 `fn()`/`t()` 禁止）・合成ルール準拠 | **未着手** |
+| T22 | recipe のさらなる拡張（full-screen） | 現行4本（setup / composed screen / auth / settings）に加え billing table・onboarding flow・empty state・フィルタ付き data-table 等を追加。粒度は既存 recipe と同じ完成画面。**必須**: T21 と同じく docgen 照合・app 形状・合成ルール準拠。サイズ肥大時は `llms-full.txt` 限定に寄せる（concise は索引＋ポインタを維持） | **未着手** |
+
+参考メモ: [[llms-txt-ai-composability]]（再フレームの経緯・addon-mcp 実測・recipe 管理方針）
 
 ### デザイン（コンポジション）
 
