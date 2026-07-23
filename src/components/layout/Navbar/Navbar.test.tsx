@@ -42,6 +42,14 @@ describe("Navbar", () => {
     expect(nav).toHaveClass(styles.bordered);
   });
 
+  it("applies the fluid class to the inner container (disables max-width)", () => {
+    const { container, rerender } = render(<Navbar>content</Navbar>);
+    const inner = () => container.querySelector(`.${styles.container}`);
+    expect(inner()).not.toHaveClass(styles.fluid);
+    rerender(<Navbar fluid>content</Navbar>);
+    expect(inner()).toHaveClass(styles.fluid);
+  });
+
   it("applies active class to NavbarItem and NavbarLink", () => {
     render(
       <Navbar>

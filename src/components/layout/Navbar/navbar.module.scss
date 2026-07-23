@@ -47,6 +47,11 @@
     max-width: var(--wim-layout-max-width);
     height: 100%;
     margin: 0 auto;
+
+    /* full-bleed: ヒーロー等で下の全幅コンテンツと content 幅を揃えるため max-width を外す */
+    &.fluid {
+      max-width: none;
+    }
   }
 
   .brand {

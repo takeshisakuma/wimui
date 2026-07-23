@@ -22,6 +22,8 @@ export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
   glass?: boolean;
   /** Whether to show a bottom border */
   bordered?: boolean;
+  /** Expand content to full width (disable the centered max-width container) */
+  fluid?: boolean;
   /** Initial open state of the mobile menu (uncontrolled) */
   defaultMenuOpen?: boolean;
   /** Open state of the mobile menu (controlled) */
@@ -40,6 +42,7 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
       transparent,
       glass,
       bordered,
+      fluid,
       defaultMenuOpen = false,
       isMenuOpen: controlledIsMenuOpen,
       onMenuOpenChange,
@@ -71,7 +74,9 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
           )}
           {...props}
         >
-          <div className={styles.container}>{children}</div>
+          <div className={classNames(styles.container, fluid && styles.fluid)}>
+            {children}
+          </div>
         </nav>
       </NavbarContext.Provider>
     );

@@ -74,7 +74,7 @@ export const GlassEffect: Story = {
           position: "relative",
         }}
       >
-        <Navbar {...args} glass fixed style={{ position: "absolute" }}>
+        <Navbar {...args} glass fixed fluid style={{ position: "absolute" }}>
           <Navbar.Brand>
             <span>{t("story.navbar_glass_ui")}</span>
           </Navbar.Brand>
@@ -90,7 +90,9 @@ export const GlassEffect: Story = {
             <Navbar.MenuItem>{t("story.navbar_docs")}</Navbar.MenuItem>
           </Navbar.Menu>
         </Navbar>
-        <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "var(--wim-color-text-primary)" }}>
+        {/* fluid Navbar は左右パディング --wim-spacing-xl で全幅。hero も同じ
+            トークンで揃え、ナビ内容と main 内容の左端を一致させる。 */}
+        <div style={{ paddingTop: "80px", paddingLeft: "var(--wim-spacing-xl)", color: "var(--wim-color-text-primary)" }}>
           <h1>{t("story.navbar_glass_title")}</h1>
           <p>{t("story.navbar_glass_desc")}</p>
         </div>
