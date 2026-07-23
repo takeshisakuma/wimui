@@ -173,6 +173,113 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 8. Add intentional "wobble": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).
 `;
 
+// Copy-paste starting points. Unlike Storybook story snippets, these are
+// APP-shaped: no story-only scaffolding (no fn(), no useTranslation/t()), the
+// CSS contract is explicit, spacing/size come from tokens via props, and the
+// composition follows the rules above (one protagonist, jagged data, a wobble
+// row). Every symbol/prop below is verified against the real API.
+const recipes = `## Recipes — copy-paste starting points
+
+### 1. Required setup (the contract)
+
+Without \`styles.css\` nothing is styled — this is the one step Storybook hides from you. Import it once at the app entry, wrap the tree in \`WimProvider\`, then build screens inside.
+
+\`\`\`tsx
+// main.tsx — app entry
+import { createRoot } from "react-dom/client";
+import "${pkg.name}/styles.css"; // REQUIRED: design tokens + component styles
+import "${pkg.name}/reset.css";  // optional base reset
+import { WimProvider } from "${pkg.name}";
+import { App } from "./App";
+
+// theme: "light" | "dark" | "system" (default). density: "comfortable" | "compact".
+createRoot(document.getElementById("root")!).render(
+  <WimProvider theme="system" density="comfortable">
+    <App />
+  </WimProvider>,
+);
+\`\`\`
+
+\`\`\`tsx
+// App.tsx — app frame. AppShell wires header/sidebar; page content is children.
+import { AppShell, Header, Sidebar, Stack, Title, Text, Button } from "${pkg.name}";
+
+export function App() {
+  return (
+    <AppShell
+      header={<Header sticky bordered><Title tag="h1" size="md">Larkfield</Title></Header>}
+      sidebar={
+        <Sidebar width={240}>
+          <Stack gap="2xs" p="md">
+            <Button variant="ghost" justify="start" fullWidth>Overview</Button>
+            <Button variant="ghost" justify="start" fullWidth>Customers</Button>
+            <Button variant="ghost" justify="start" fullWidth>Settings</Button>
+          </Stack>
+        </Sidebar>
+      }
+    >
+      <Stack gap="lg">
+        <Title tag="h2" size="lg">Overview</Title>
+        <Text color="secondary">Spacing/size/color come from --wim-* tokens via props — never hardcode px/hex.</Text>
+      </Stack>
+    </AppShell>
+  );
+}
+\`\`\`
+
+### 2. A composed content screen
+
+One protagonist (the KPI row), a dense table below, tokens via props, jagged real data, and one deliberately incomplete row. Note the compound components (\`Stats.Value\`, \`Table.Head\`) and that \`Grid\` uses \`cols\` (not \`columns\`).
+
+\`\`\`tsx
+import { Stack, Grid, Card, Stats, Table, Badge, Title, Text } from "${pkg.name}";
+
+const rows = [
+  { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610.50", status: "paid" },
+  { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199.00", status: "failed" },
+  { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
+];
+const intent = { paid: "success", failed: "danger", pending: undefined } as const;
+
+export function BillingOverview() {
+  return (
+    <Stack gap="lg">
+      <Title tag="h2" size="lg">Billing</Title>
+
+      {/* Protagonist: KPI row. Uneven content per tile — not three clones. */}
+      <Grid cols={{ base: 1, sm: 2, lg: 3 }} gap="md">
+        <Stats><Stats.Label>MRR</Stats.Label><Stats.Value>$48,210</Stats.Value><Stats.Trend>+6.4%</Stats.Trend></Stats>
+        <Stats><Stats.Label>Active workspaces</Stats.Label><Stats.Value>1,204</Stats.Value><Stats.Description>176 idle over 30 days</Stats.Description></Stats>
+        <Stats><Stats.Label>Failed webhooks</Stats.Label><Stats.Value>137</Stats.Value><Stats.Trend>+23 today</Stats.Trend></Stats>
+      </Grid>
+
+      {/* Dense data region */}
+      <Card padding="none">
+        <Table hoverable fullWidth>
+          <Table.Header>
+            <Table.Row>
+              <Table.Head>Customer</Table.Head><Table.Head>Plan</Table.Head>
+              <Table.Head>Amount</Table.Head><Table.Head>Status</Table.Head>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {rows.map((r) => (
+              <Table.Row key={r.id}>
+                <Table.Cell>{r.name}</Table.Cell>
+                <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
+                <Table.Cell>{r.amount}</Table.Cell>
+                <Table.Cell><Badge variant="subtle" intent={intent[r.status]}>{r.status}</Badge></Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </Card>
+    </Stack>
+  );
+}
+\`\`\`
+`;
+
 // --- component sections ---------------------------------------------------
 
 const catalogSection = (withProps) => {
@@ -209,6 +316,7 @@ const concise = [
   banner,
   setup,
   composition,
+  recipes,
   catalogSection(false),
   `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.`,
 ].join('\n');
@@ -217,6 +325,7 @@ const full = [
   banner.replace('llms.txt', 'llms-full.txt'),
   setup,
   composition,
+  recipes,
   catalogSection(true),
 ].join('\n');
 
