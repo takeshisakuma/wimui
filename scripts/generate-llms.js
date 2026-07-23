@@ -12,13 +12,22 @@
 //   - public/locales/en/**.json          … English descriptions (descKey resolution)
 //   - DESIGN.md (composition section)     … anti-generic rules (condensed inline below)
 
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const readJSON = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
+
+// docgen_*.json are generated artifacts (gitignored) — absent on a clean CI
+// checkout until `vite build` runs. Since this script must run BEFORE vite
+// build (so public/llms*.txt exist when vite copies public/ → dist/), generate
+// them here if missing. No-op when the cache is warm.
+if (!existsSync(join(ROOT, 'src/data/docgen_index.json'))) {
+  const { generateDocgenData } = await import('./docgen-plugin.js');
+  await generateDocgenData();
+}
 
 const pkg = readJSON('package.json');
 const catalog = readJSON('src/data/components.json');
