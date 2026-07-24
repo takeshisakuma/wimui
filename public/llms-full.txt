@@ -268,6 +268,333 @@ function SettingRow({ label, hint, children }: { label: string; hint?: string; c
 }
 ```
 
+### 5. Empty state — a real zero state, not a shrug
+
+One protagonist (the primary action), calm copy that says *why* it's empty and what happens next. Reuse the `EmptyState` component instead of hand-rolling centered divs.
+
+```tsx
+import { Center, EmptyState, Button } from "wimui";
+import { DocumentIcon } from "wimui/icons";
+
+export function NoInvoices() {
+  return (
+    <Center h="60dvh" p="lg">
+      <EmptyState
+        icon={<DocumentIcon />}
+        title="No invoices yet"
+        description="Invoices show up here after your first billing cycle closes. Nothing is due today."
+        extra={<Button variant="solid" intent="primary">Create a manual invoice</Button>}
+      />
+    </Center>
+  );
+}
+```
+
+### 6. Filtered data table — toolbar + table
+
+A search/filter toolbar as the sparse region above a dense table. Filtering is client-side here; swap in your query. Note the deliberately jagged data: a failed row, a member with no team (incomplete), and a long name.
+
+```tsx
+import { Stack, Group, SearchInput, Select, Table, Badge, Text } from "wimui";
+import { useMemo, useState } from "react";
+
+const members = [
+  { id: "u_1", name: "Marisol Okonkwo", team: "Growth", role: "admin", status: "active" },
+  { id: "u_2", name: "Dmitri Sørensen", team: "Platform", role: "member", status: "invited" },
+  { id: "u_3", name: "Aleksandra Wiśniewska-Nowak", team: null, role: "member", status: "active" }, // no team
+  { id: "u_4", name: "Thomas O'Reilly", team: "Growth", role: "member", status: "suspended" }, // non-happy path
+];
+const roleIntent = { admin: "primary", member: undefined } as const;
+const statusIntent = { active: "success", invited: undefined, suspended: "danger" } as const;
+
+export function MembersTable() {
+  const [q, setQ] = useState("");
+  const [role, setRole] = useState("all");
+
+  const rows = useMemo(
+    () =>
+      members.filter(
+        (m) =>
+          (role === "all" || m.role === role) &&
+          m.name.toLowerCase().includes(q.trim().toLowerCase()),
+      ),
+    [q, role],
+  );
+
+  return (
+    <Stack gap="md">
+      {/* Sparse toolbar */}
+      <Group justify="between" align="center" gap="md">
+        <SearchInput
+          placeholder="Search members"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          allowClear
+          width={280}
+        />
+        <Select
+          aria-label="Filter by role"
+          value={role}
+          onChange={setRole}
+          options={[
+            { label: "All roles", value: "all" },
+            { label: "Admins", value: "admin" },
+            { label: "Members", value: "member" },
+          ]}
+        />
+      </Group>
+
+      {/* Dense data region */}
+      <Table hoverable fullWidth>
+        <Table.Header>
+          <Table.Row>
+            <Table.Head>Member</Table.Head><Table.Head>Team</Table.Head>
+            <Table.Head>Role</Table.Head><Table.Head>Status</Table.Head>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {rows.map((m) => (
+            <Table.Row key={m.id}>
+              <Table.Cell>{m.name}</Table.Cell>
+              <Table.Cell>{m.team ?? <Text color="tertiary">No team</Text>}</Table.Cell>
+              <Table.Cell><Badge variant="subtle" intent={roleIntent[m.role]}>{m.role}</Badge></Table.Cell>
+              <Table.Cell><Badge variant="subtle" intent={statusIntent[m.status]}>{m.status}</Badge></Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </Stack>
+  );
+}
+```
+
+### 7. Onboarding — a stepper flow
+
+The `Stepper` shows where you are; the card is the single focused task for the current step. Starts mid-flow (step 1) so it reads like a real session, not a fresh render.
+
+```tsx
+import { Stack, Card, Stepper, Title, Text, Group, Button, Input } from "wimui";
+import { useState } from "react";
+
+const steps = [
+  { title: "Account", description: "Your details" },
+  { title: "Workspace", description: "Name & URL" },
+  { title: "Invite", description: "Optional" },
+];
+
+export function Onboarding() {
+  const [current, setCurrent] = useState(1); // mid-flow
+  const back = () => setCurrent((c) => Math.max(0, c - 1));
+  const next = () => setCurrent((c) => Math.min(steps.length - 1, c + 1));
+
+  return (
+    <Stack gap="lg" style={{ maxWidth: 640 }}>
+      <Stepper steps={steps} current={current} onChange={setCurrent} />
+
+      <Card padding="lg">
+        <Stack gap="md">
+          <Stack gap="2xs">
+            <Title tag="h2" size="md">Name your workspace</Title>
+            <Text color="secondary">You can change this later in Settings — existing links keep working.</Text>
+          </Stack>
+          <Input label="Workspace name" placeholder="Acme Inc." fullWidth />
+        </Stack>
+      </Card>
+
+      <Group justify="between" align="center">
+        <Button variant="ghost" onClick={back} disabled={current === 0}>Back</Button>
+        <Button variant="solid" intent="primary" onClick={next}>Continue</Button>
+      </Group>
+    </Stack>
+  );
+}
+```
+
+## Idioms — per-category minimal combinations
+
+Smaller than the full-screen recipes above: the canonical way to wire one
+category together. Same rules apply (tokens via props, real copy, show a
+non-happy-path state).
+
+### Form — field + validation + submit
+
+The field owns its own label and error: pass `error` a **string** to render the message and the danger state together. No wrapper component needed.
+
+```tsx
+import { Stack, Input, Textarea, Button } from "wimui";
+import { useState } from "react";
+
+export function ContactForm() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string>();
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(email.includes("@") ? undefined : "Enter a valid work email.");
+  }
+
+  return (
+    <form onSubmit={submit} noValidate>
+      <Stack gap="md" style={{ maxWidth: 420 }}>
+        <Input
+          label="Work email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={error}          // string → message + danger intent
+          fullWidth
+        />
+        <Textarea label="What do you need help with?" fullWidth />
+        <Button type="submit" variant="solid" intent="primary">Send</Button>
+      </Stack>
+    </form>
+  );
+}
+```
+
+### Navigation — sidebar (desktop) ⇄ tab bar (mobile)
+
+Same destinations, two shells. `AppShell` takes a `sidebar` for wide viewports; `TabBar` (fixed, bottom) is the mobile equivalent — show/hide each with your breakpoint CSS. Active state is data, not duplicated markup.
+
+```tsx
+import { AppShell, Sidebar, Stack, Button, TabBar } from "wimui";
+import { HomeIcon, UserIcon, SettingsIcon } from "wimui/icons";
+
+const nav = [
+  { id: "home", label: "Home", icon: <HomeIcon /> },
+  { id: "people", label: "People", icon: <UserIcon /> },
+  { id: "settings", label: "Settings", icon: <SettingsIcon /> },
+];
+
+export function Shell({
+  tab,
+  onTab,
+  children,
+}: {
+  tab: string;
+  onTab: (id: string) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <AppShell
+      sidebar={
+        <Sidebar width={240}>
+          <Stack gap="2xs" p="md">
+            {nav.map((n) => (
+              <Button
+                key={n.id}
+                variant={tab === n.id ? "solid" : "ghost"}
+                intent={tab === n.id ? "primary" : "default"}
+                justify="start"
+                icon={n.icon}
+                fullWidth
+                onClick={() => onTab(n.id)}
+              >
+                {n.label}
+              </Button>
+            ))}
+          </Stack>
+        </Sidebar>
+      }
+    >
+      {children}
+      {/* Mobile: same destinations as a fixed bottom bar */}
+      <TabBar>
+        {nav.map((n) => (
+          <TabBar.Item
+            key={n.id}
+            active={tab === n.id}
+            icon={n.icon}
+            label={n.label}
+            onClick={() => onTab(n.id)}
+          />
+        ))}
+      </TabBar>
+    </AppShell>
+  );
+}
+```
+
+### Feedback — persistent Alert vs. transient toast
+
+Use an inline `Alert` for state that stays true (a limit, an outage); use a toast (`useToast().show`) for a one-off confirmation. Wrap the app once in `ToastProvider`.
+
+```tsx
+import { ToastProvider, useToast, Alert, Button, Stack } from "wimui";
+
+// once, at the app root
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <ToastProvider position="top-right">{children}</ToastProvider>;
+}
+
+export function InvitePanel() {
+  const { show } = useToast();
+  return (
+    <Stack gap="md" style={{ maxWidth: 480 }}>
+      <Alert
+        intent="warning"
+        title="Seat limit reached"
+        description="Your plan includes 5 seats. Remove a member or upgrade to invite more."
+      />
+      <Button
+        variant="solid"
+        intent="primary"
+        onClick={() =>
+          show({
+            intent: "success",
+            title: "Invitation sent",
+            description: "We emailed marisol@okonkwo.dev.",
+          })
+        }
+      >
+        Resend invite
+      </Button>
+    </Stack>
+  );
+}
+```
+
+### Overlay — Dialog wrapping a form
+
+`Dialog` is compound: a `DialogTrigger asChild` around your own button, and `DialogClose asChild` around the cancel action so it dismisses without wiring state. Keep the form inside `DialogContent`.
+
+```tsx
+import {
+  Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle,
+  DialogDescription, DialogFooter, DialogClose, Button, Stack, Input,
+} from "wimui";
+
+export function RenameWorkspace() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Rename workspace</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Rename workspace</DialogTitle>
+          <DialogDescription>
+            This changes the URL. Existing links keep working via a redirect.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Stack gap="md" p="md">
+            <Input label="Workspace name" defaultValue="Larkfield" fullWidth />
+          </Stack>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancel</Button>
+            </DialogClose>
+            <Button type="submit" variant="solid" intent="primary">Save</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
 ## Components
 
 ### layout — `import { … } from "wimui/layout"`
@@ -434,6 +761,7 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `transparent: boolean` — Whether the navbar background is transparent
     - `glass: boolean` — Whether to apply the frosted-glass effect
     - `bordered: boolean` — Whether to show a bottom border
+    - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
     - `defaultMenuOpen: boolean` = false — Initial open state of the mobile menu (uncontrolled)
     - `isMenuOpen: boolean` — Open state of the mobile menu (controlled)
     - `onMenuOpenChange: (isOpen: boolean) => void` — Callback when the mobile menu open state changes
