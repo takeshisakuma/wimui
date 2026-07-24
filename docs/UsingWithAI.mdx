@@ -1,0 +1,155 @@
+import { Meta } from "@storybook/blocks";
+import { Command } from "../stories/Command";
+import { T } from "../stories/T";
+
+<Meta title="Getting Started/Using with AI" />
+
+<div className="withai-container">
+  <h1><T k="withai.title" /></h1>
+  <p className="lead"><T k="withai.intro" /></p>
+
+  <h3><T k="withai.files_title" /></h3>
+  <p><T k="withai.files_desc" /></p>
+  <table>
+    <thead>
+      <tr>
+        <th><T k="withai.files_h_file" /></th>
+        <th><T k="withai.files_h_use" /></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>llms.txt</code></td>
+        <td><T k="withai.concise_use" /></td>
+      </tr>
+      <tr>
+        <td><code>llms-full.txt</code></td>
+        <td><T k="withai.full_use" /></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><T k="withai.urls_title" /></h3>
+  <p><T k="withai.urls_desc" /></p>
+  <p><strong><T k="withai.urls_public_label" /></strong></p>
+  <Command>{`https://takeshisakuma.github.io/wimui/llms.txt
+https://takeshisakuma.github.io/wimui/llms-full.txt`}</Command>
+  <p><strong><T k="withai.urls_npm_label" /></strong></p>
+  <Command>{`node -e "console.log(require.resolve('wimui/llms.txt'))"
+# or reference the export directly: wimui/llms.txt  •  wimui/llms-full.txt`}</Command>
+
+  <h3><T k="withai.prompts_title" /></h3>
+  <p><T k="withai.prompts_desc" /></p>
+
+  <h4><T k="withai.prompt_generic_title" /></h4>
+  <Command>{`You are building UI with "wimui" (a React 19 component library).
+Follow this file exactly — its import paths, its required CSS setup, and its
+composition rules. Do not invent components or props that are not listed.
+
+<paste llms.txt here, or llms-full.txt for real code>
+
+Now build: a settings page with a sidebar, a profile form, and a save action.`}</Command>
+
+  <h4><T k="withai.prompt_cursor_title" /></h4>
+  <p><T k="withai.prompt_cursor_desc" /></p>
+  <Command>{`@Docs wimui — build a dashboard screen. Use the import paths and CSS
+setup from the doc, and follow its composition rules.`}</Command>
+
+  <h4><T k="withai.prompt_claude_title" /></h4>
+  <p><T k="withai.prompt_claude_desc" /></p>
+  <Command>{`Read https://takeshisakuma.github.io/wimui/llms-full.txt and use it to
+build a wimui screen: an auth page (sign in + sign up). Follow the CSS
+contract and composition rules from the file.`}</Command>
+
+  <h4><T k="withai.prompt_v0_title" /></h4>
+  <p><T k="withai.prompt_v0_desc" /></p>
+
+  <h3><T k="withai.includes_title" /></h3>
+  <p><T k="withai.includes_desc" /></p>
+  <table>
+    <tbody>
+      <tr><td><T k="withai.inc_setup" /></td></tr>
+      <tr><td><T k="withai.inc_imports" /></td></tr>
+      <tr><td><T k="withai.inc_catalog" /></td></tr>
+      <tr><td><T k="withai.inc_composition" /></td></tr>
+    </tbody>
+  </table>
+  <p className="note"><T k="withai.note_version" /></p>
+</div>
+
+<style>
+  {`
+  .withai-container {
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: var(--wim-font-family-default, sans-serif);
+    color: var(--wim-color-text-primary);
+  }
+
+  .withai-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+
+  .withai-container .lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--wim-color-text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .withai-container h3 {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .withai-container h4 {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .withai-container .note {
+    font-size: 13px;
+    color: var(--wim-color-text-secondary);
+    border-left: 2px solid var(--wim-color-border-secondary);
+    padding-left: 12px;
+    margin-top: 24px;
+  }
+
+  .withai-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    background: var(--wim-color-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .withai-container th,
+  .withai-container td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wim-color-border-secondary);
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  .withai-container th {
+    background: var(--wim-color-surface-subtle);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+
+  .withai-container tr:last-child td {
+    border-bottom: none;
+  }
+  `}
+</style>
