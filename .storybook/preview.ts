@@ -203,7 +203,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Getting Started",
-          ["Installation", "Registry", "Using with AI"],
+          ["Installation", "Registry", "Using with AI", "Playground"],
           "Foundation",
           ["Philosophy", "Accessibility", "Voice & Tone", "*"],
           "Token",

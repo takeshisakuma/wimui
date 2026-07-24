@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-24（T21/T22 完了＝llms-full.txt に per-category idiom 4本＋full-screen recipe §5–§7 追加。T25「Using wimui with AI」docs は merge 済）  
+最終更新: 2026-07-24（T24 完了＝Playground docs＋StackBlitz 起動ボタン。`sandbox/recipes/*.tsx` を単一ソースにライブ描画と sandbox 供給。型検証で Button intent=primary 無効を発見し llms recipe も修正。T21/T22/T25 は merge 済）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -78,7 +78,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
-| T24 | StackBlitz/CodeSandbox 起動ボタン | 各 Pattern（`stories/Patterns/**`）に「Open in StackBlitz」を付け、wimui 配線済みの**編集可能な実行環境**を即開けるようにする（B＋A）。リポジトリ自体をソースにするため維持が軽い。**要調査**: Storybook docs から sandbox へ現在のストーリーコード＋依存を渡す方法（StackBlitz SDK / GitHub テンプレ連携 / project embed）。最小雛形に CSS 契約（`styles.css`）と `WimProvider` を含める | **未着手** |
+| T24 | StackBlitz/CodeSandbox 起動ボタン | 各 Pattern（`stories/Patterns/**`）に「Open in StackBlitz」を付け、wimui 配線済みの**編集可能な実行環境**を即開けるようにする（B＋A）。リポジトリ自体をソースにするため維持が軽い。**要調査**: Storybook docs から sandbox へ現在のストーリーコード＋依存を渡す方法（StackBlitz SDK / GitHub テンプレ連携 / project embed）。最小雛形に CSS 契約（`styles.css`）と `WimProvider` を含める | **済**（2026-07-24。**調査結論**: Pattern ストーリーは i18n/Storybook 形状（`t()` が Form だけで97箇所・`StoryObj`・src alias）で **そのままは runnable にならない**ため「story source をそのまま渡す」路線は不成立。代わりに **T21/T22 の検証済み app 形状 recipe を単一ソース**にした。**実装**: `sandbox/recipes/*.tsx`（5本＝Billing/SignIn/Settings/MembersTable/Onboarding、default export・`t()`/`fn()` なし・`from "wimui"`）を `sandbox/Playground.tsx` が **①default import でライブ描画 ②`?raw` import で StackBlitz へ送る source** の両方に使う（プレビューと sandbox が1ファイル由来で乖延不可）。「Open in StackBlitz」は**依存なしの form POST**（`https://stackblitz.com/run`、template=node、Vite+React19+`wimui@^0.3.0`・styles.css・WimProvider 同梱の最小雛形）。docs entry `Getting Started/Playground`（i18n 3言語 `docs_guide_playground.json`）。sandbox は `stories/` 外＝ハードコード英語ガード対象外だが **tsconfig include に追加して `tsc --noEmit` で型検証**。**副産物の実バグ修正**: 型検証で `Button intent="primary"` が無効（ButtonIntent=default/danger/success のみ）と判明→ sandbox＋**既存 llms recipe（§3/§4 既存分＋§5–§7/idioms）を全て修正**して再生成。※ボタン設置は各 Pattern ではなく専用 Playground ページに集約（story 形状の壁のため。ユーザー承認済み方針） |
 | T25 | 「Using wimui with AI」ドキュメント | `llms.txt` / `llms-full.txt` の存在と使い方を1ページに集約（Cursor / Claude Code / v0 等へ渡すコピペ用プロンプト、公開 URL `…github.io/wimui/llms.txt`、npm の `wimui/llms.txt` サブパス）。作った資産の"入口"を見せるだけ＝**最小工数**。A（無限テンプレの入口）。MDX の docs entry として追加（i18n 3言語） | **済**（2026-07-24。`docs/UsingWithAI.mdx`＝`Meta title="Getting Started/Using with AI"`、storySort に `Using with AI` 追加。2ファイルの用途表・公開 URL / npm サブパス・コピペプロンプト（generic / Cursor / Claude Code / v0）・エージェントが受け取る内容の4節。i18n 3言語新設 `docs_guide_ai_agents.json`（`withai.*`、ja/pt は手動翻訳）。プロンプト本文は Command ブロックで英語据え置き（エージェント直読）。i18n:check / audit-mdx pass） |
 | T26 | テーマプリセット / ブランドキット | 色・角丸・密度のプリセットを数種用意し、雰囲気を一発で切替（**C＝見た目の即決**＝他案と別軸の差別化）。トークン SSOT（`tokens/*.json` → `--wim-*`）があるので低コスト。**要検討**: 配布形態（追加 CSS or `WimProvider` の preset prop or `data-*` 属性）、公開契約（`styles.css` との関係）、プリセット数と性格付け（例: ミニマル / ソフト / コントラスト強）、VRT がプリセット別に増える点 | **未着手** |
 

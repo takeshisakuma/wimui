@@ -306,7 +306,7 @@ export function SignIn() {
                 <Checkbox>Keep me signed in</Checkbox>
                 <Link href="#" priority="secondary">Forgot password?</Link>
               </Group>
-              <Button type="submit" variant="solid" intent="primary" fullWidth>Sign in</Button>
+              <Button type="submit" variant="solid" fullWidth>Sign in</Button>
             </Stack>
           </form>
           <Text size="sm" color="tertiary">No account? <Link href="#">Start a 14-day trial</Link></Text>
@@ -358,7 +358,7 @@ export function NotificationSettings() {
 
       <Group justify="end" gap="sm">
         <Button variant="ghost">Reset</Button>
-        <Button variant="solid" intent="primary">Save changes</Button>
+        <Button variant="solid">Save changes</Button>
       </Group>
     </Stack>
   );
@@ -393,7 +393,7 @@ export function NoInvoices() {
         icon={<DocumentIcon />}
         title="No invoices yet"
         description="Invoices show up here after your first billing cycle closes. Nothing is due today."
-        extra={<Button variant="solid" intent="primary">Create a manual invoice</Button>}
+        extra={<Button variant="solid">Create a manual invoice</Button>}
       />
     </Center>
   );
@@ -513,7 +513,7 @@ export function Onboarding() {
 
       <Group justify="between" align="center">
         <Button variant="ghost" onClick={back} disabled={current === 0}>Back</Button>
-        <Button variant="solid" intent="primary" onClick={next}>Continue</Button>
+        <Button variant="solid" onClick={next}>Continue</Button>
       </Group>
     </Stack>
   );
@@ -561,7 +561,7 @@ export function ContactForm() {
           fullWidth
         />
         <Textarea label="What do you need help with?" fullWidth />
-        <Button type="submit" variant="solid" intent="primary">Send</Button>
+        <Button type="submit" variant="solid">Send</Button>
       </Stack>
     </form>
   );
@@ -600,7 +600,6 @@ export function Shell({
               <Button
                 key={n.id}
                 variant={tab === n.id ? "solid" : "ghost"}
-                intent={tab === n.id ? "primary" : "default"}
                 justify="start"
                 icon={n.icon}
                 fullWidth
@@ -654,7 +653,6 @@ export function InvitePanel() {
       />
       <Button
         variant="solid"
-        intent="primary"
         onClick={() =>
           show({
             intent: "success",
@@ -701,7 +699,7 @@ export function RenameWorkspace() {
             <DialogClose asChild>
               <Button variant="ghost">Cancel</Button>
             </DialogClose>
-            <Button type="submit" variant="solid" intent="primary">Save</Button>
+            <Button type="submit" variant="solid">Save</Button>
           </DialogFooter>
         </form>
       </DialogContent>
