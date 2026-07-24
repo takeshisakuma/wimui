@@ -137,6 +137,7 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -152,21 +153,33 @@ jobs:
           path: .
 
       - name: Commit updated snapshots
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add vrt/vrt.spec.ts-snapshots/
           if git diff --staged --quiet; then
             echo "No snapshot changes to commit."
+            exit 0
+          fi
+          # 品質ゲートは update-gate ジョブが update フロー内で検証済み（needs 参照）。
+          # [skip ci] は付けない: squash マージ時に main の merge commit へ leak し
+          # deploy.yml 等を黙ってスキップさせる（2026-07-21 実発生）ため。
+          git commit -m "chore: update VRT baseline snapshots"
+          TARGET="${{ github.head_ref || github.ref_name }}"
+          if [ "$TARGET" = "main" ]; then
+            # main は保護ブランチ（直 push 禁止＝GH006）。ベースラインは PR 経由で
+            # 取り込む。required checks（Lint & Type Check / Vitest）は paths 無指定で
+            # 全 PR に走るため、スナップショットのみの PR でもマージ可能になる。
+            BRANCH="vrt-baseline/${{ github.run_id }}"
+            git push origin "HEAD:$BRANCH"
+            gh pr create --base main --head "$BRANCH" \
+              --title "chore: update VRT baseline snapshots" \
+              --body "Automated VRT baseline update from the vrt.yml update dispatch (run ${{ github.run_id }}). Snapshot-only — merge to adopt the new baselines." \
+              || echo "PR already exists for $BRANCH"
           else
-            # [skip ci] は付けない。このコミットバックは GITHUB_TOKEN push のため
-            # どのみち workflow を再起動しない（[skip ci] は冗長）。むしろ [skip ci] を
-            # 付けると、このベースライン commit を含む PR を squash マージした際に
-            # メッセージ連結で main の merge commit へ [skip ci] が leak し、deploy.yml
-            # (GitHub Pages) を含む全ワークフローが黙ってスキップされる（2026-07-21 実発生）。
-            # 品質ゲートは下の update-gate ジョブが update フロー内で検証済みで、
-            # それが通らないと commit-snapshots に到達しない（needs 参照）。
-            git commit -m "chore: update VRT baseline snapshots"
-            git pull --rebase origin "${{ github.head_ref || github.ref_name }}"
-            git push
+            # feature ブランチ（非保護）は従来どおり直 push。
+            git pull --rebase origin "$TARGET"
+            git push origin "HEAD:$TARGET"
           fi
