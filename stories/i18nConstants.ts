@@ -20,6 +20,7 @@ export const ALL_NAMESPACES = [
   "docs_form_pickers",
   "docs_guide_a11y_usability",
   "docs_guide_ai",
+  "docs_guide_ai_agents",
   "docs_guide_colors",
   "docs_guide_common",
   "docs_guide_components",
