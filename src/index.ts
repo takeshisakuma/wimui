@@ -31,5 +31,13 @@ export { setWimLocale, getWimLocale } from "./i18n/instance";
 export { setWimDensity, getWimDensity, type WimDensity } from "./density";
 // テーマ（light / dark / system）。data-theme を document に付与する。
 export { setWimTheme, getWimTheme, type WimTheme } from "./theme";
-// 正面の React セットアップ（theme / density / locale）。属性契約はそのまま。
+// テーマプリセット（ブランドキット）。data-wim-preset を document に付与する。
+export {
+  setWimPreset,
+  getWimPreset,
+  WIM_PRESETS,
+  type WimPreset,
+  type WimPresetName,
+} from "./preset";
+// 正面の React セットアップ（theme / density / locale / preset）。属性契約はそのまま。
 export { WimProvider, useWim, type WimProviderProps, type WimContextValue } from "./WimProvider";

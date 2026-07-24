@@ -15197,5 +15197,17 @@
       "intro": "Runnable, editable versions of the core wimui recipes. Each card renders live below, and \"Open in StackBlitz\" boots a full Vite + React 19 project — wired with the required styles.css and WimProvider — against the published wimui package, so you can try before you adopt. Expand \"View source\" to see the exact code that ships to the sandbox.",
       "note": "The sandboxes install wimui from npm and open in a new tab. The previews here render the same source you send to StackBlitz — they can't drift, because both come from one file."
     }
+  },
+  "docs_guide_presets": {
+    "presets": {
+      "doc_title": "Presets",
+      "doc_intro": "Theme presets are small \"brand kits\": one attribute swaps a screen's shape (radius) and accent, layered over styles.css. They compose with theme (light/dark) and density, and can scope to a subtree — so a marketing section can feel different from the app around it. Presets only override role tokens; they add no new base tokens.",
+      "usage_title": "Applying a preset",
+      "usage_desc": "Use the WimProvider prop (recommended) or set the attribute directly — same contract as theme and density.",
+      "list_title": "Built-in presets",
+      "list_desc": "Accent text (links) stays AA-contrast in both themes; solid fills keep white text. Minimal changes shape only and keeps the default accent.",
+      "extend_title": "Adding your own",
+      "extend_desc": "Presets are generated from tokens/presets/*.json (radius + PCCS-referenced accents) into a [data-wim-preset] CSS layer by npm run tokens:build. Add a file, rebuild, and it appears in WIM_PRESETS and the preset type."
+    }
   }
 }

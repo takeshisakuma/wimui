@@ -1,0 +1,10 @@
+{
+  "order": 1,
+  "label": "Minimal",
+  "description": "Sharp corners and restrained emphasis. Keeps the default accent.",
+  "radius": {
+    "component": "2px",
+    "container": "4px",
+    "overlay": "4px"
+  }
+}

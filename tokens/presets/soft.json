@@ -1,0 +1,11 @@
+{
+  "order": 2,
+  "label": "Soft",
+  "description": "Rounded, friendly shapes with a calm violet accent.",
+  "radius": {
+    "component": "12px",
+    "container": "16px",
+    "overlay": "16px"
+  },
+  "accent": "{pccs.b20}"
+}

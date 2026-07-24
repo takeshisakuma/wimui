@@ -82,8 +82,14 @@ componentFiles.forEach(file => {
 console.log('\n--- Auditing Guide MDX Files ---');
 guideFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  // Guides only need a title (h1) or Meta title
-  if (!content.includes('# ') && !content.includes('<Meta title=')) {
+  // Guides only need a title: a markdown/HTML heading, a `<Meta title=…>`, or a
+  // `<Meta of={…}>` that inherits the title from the referenced story.
+  const hasTitle =
+    content.includes('# ') ||
+    /<h1[\s>]/.test(content) ||
+    content.includes('<Meta title=') ||
+    /<Meta\s+of=\{/.test(content);
+  if (!hasTitle) {
     console.log(`[FAIL] ${file} is missing a title or Meta title.`);
     allPass = false;
   }

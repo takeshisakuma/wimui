@@ -223,6 +223,16 @@ Alert / Banner / Toast 等のバリアント色は、公開 role トークン（
 
 コンポーネントの SCSS に `[data-theme="dark"]` や `@media (prefers-color-scheme: dark)` を書かない。セマンティックトークンを使用するだけでライト/ダーク両モードに自動で対応する。
 
+### テーマプリセット（ブランドキット）
+
+`data-wim-preset`（`WimProvider` の `preset` prop / `setWimPreset`）で、画面の**形（角丸）とアクセント**を1属性で切り替える。`styles.css` に**重ねる**レイヤーで、テーマ・密度と直交して合成し、サブツリー単位でも適用できる（マーケ区画だけ別の雰囲気、など）。
+
+- **公開契約**: `data-wim-preset` の値は `minimal` / `soft` / `bold`（+ 未指定＝既定）。属性契約は `data-theme` / `data-density` と同格。`styles.css` 必須は不変（プリセット CSS はその中に同梱）。
+- **単一ソース生成**: `tokens/presets/*.json`（角丸 + PCCS 参照のアクセント）→ `npm run tokens:build`（`scripts/generate-presets.js`）で `src/tokens/generated/_presets.scss`（`[data-wim-preset]` レイヤー）と `presets.ts`（`WIM_PRESETS` / `WimPresetName`）を生成。**新しい基底トークンは足さない**（role トークンの上書きのみ）。
+- **上書き対象**: `--wim-radius-component|container|overlay`、アクセントを持つプリセットは `--wim-color-primary`（+ `-rgb`。hover/active・primary-soft 等の派生は自動追従）。アクセントは**ライト/ダーク共通の単一値**（テーマ別分岐なし）。
+- **a11y 契約**: アクセントは PCCS の中トーンから、**4 条件すべてが AA** を満たす値のみ採用＝①塗り上の白文字（両テーマ）②リンク文字（`color-mix(primary 50%, text-primary)`）が白カード上 ③同・ダークカード（`#393939`）上。1 値で両テーマを満たすため `text-accent` の上書きや `data-theme` 別セレクタは不要。※Link の hover（`l*0.9`）は axe 非対象かつ既定テーマと同特性のため対象外。
+- **VRT**: プリセット CSS は `[data-wim-preset]` 配下でのみ発火するため、属性を持たない既存ストーリーのスナップショットは不変（差分ゼロ）。可視化は `Token/Presets` ストーリー1本に集約（＝VRT/a11y の増分はこの1ストーリーのみ）。
+
 ---
 
 ## タイポグラフィ
