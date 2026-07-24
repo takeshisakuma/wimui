@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { getWimDensity, setWimDensity, type WimDensity } from "./density";
 import { getWimLocale, setWimLocale } from "./i18n/instance";
+import { getWimPreset, setWimPreset, type WimPreset } from "./preset";
 import { getWimTheme, setWimTheme, type WimTheme } from "./theme";
 
 export type WimProviderProps = {
@@ -18,7 +19,12 @@ export type WimProviderProps = {
   /** Built-in UI locale (`en` / `ja` / `pt`). Omit to leave the current locale unchanged. */
   locale?: string;
   /**
-   * Element that receives `data-theme` / `data-density`.
+   * Theme preset ("brand kit"). Writes `data-wim-preset` on `root`, or removes it for `none`.
+   * @default "none"
+   */
+  preset?: WimPreset;
+  /**
+   * Element that receives `data-theme` / `data-density` / `data-wim-preset`.
    * Defaults to `document.documentElement` (`<html>`).
    */
   root?: Element | null;
@@ -28,6 +34,7 @@ export type WimContextValue = {
   theme: WimTheme;
   density: WimDensity;
   locale: string;
+  preset: WimPreset;
 };
 
 const WimContext = createContext<WimContextValue | null>(null);
@@ -43,6 +50,7 @@ export function useWim(): WimContextValue {
     theme: getWimTheme(),
     density: getWimDensity(),
     locale: getWimLocale(),
+    preset: getWimPreset(),
   };
 }
 
@@ -66,6 +74,7 @@ export function WimProvider({
   theme = "system",
   density = "comfortable",
   locale,
+  preset = "none",
   root,
 }: WimProviderProps) {
   useEffect(() => {
@@ -80,13 +89,18 @@ export function WimProvider({
     if (locale != null) setWimLocale(locale);
   }, [locale]);
 
+  useEffect(() => {
+    setWimPreset(preset, root);
+  }, [preset, root]);
+
   const value = useMemo<WimContextValue>(
     () => ({
       theme,
       density,
       locale: locale ?? getWimLocale(),
+      preset,
     }),
-    [theme, density, locale],
+    [theme, density, locale, preset],
   );
 
   return <WimContext.Provider value={value}>{children}</WimContext.Provider>;

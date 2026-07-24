@@ -1,0 +1,11 @@
+{
+  "order": 3,
+  "label": "Bold",
+  "description": "Confident radius and a high-impact red accent.",
+  "radius": {
+    "component": "6px",
+    "container": "8px",
+    "overlay": "8px"
+  },
+  "accent": "{pccs.s2}"
+}

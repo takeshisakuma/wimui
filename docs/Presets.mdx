@@ -1,0 +1,61 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import * as PresetStories from "../stories/Token/Presets.stories";
+import { Command } from "../stories/Command";
+import { T } from "../stories/T";
+
+<Meta of={PresetStories} />
+
+<div className="presets-doc">
+  <h1><T k="presets.doc_title" /></h1>
+  <p className="lead"><T k="presets.doc_intro" /></p>
+
+  <h3><T k="presets.usage_title" /></h3>
+  <p><T k="presets.usage_desc" /></p>
+  <Command>{`import { WimProvider } from "wimui";
+
+// Recommended — React
+<WimProvider theme="system" preset="soft">
+  <App />
+</WimProvider>
+
+// Or set the attribute directly (or a subtree)
+// <html data-wim-preset="bold">
+// <section data-wim-preset="soft"> … </section>
+
+// Imperative helpers
+import { setWimPreset, WIM_PRESETS } from "wimui";
+setWimPreset("bold"); // "minimal" | "soft" | "bold" | "none"`}</Command>
+
+  <h3><T k="presets.list_title" /></h3>
+  <p><T k="presets.list_desc" /></p>
+</div>
+
+<Canvas of={PresetStories.Overview} />
+
+<div className="presets-doc">
+  <h3><T k="presets.extend_title" /></h3>
+  <p><T k="presets.extend_desc" /></p>
+  <Command>{`// tokens/presets/ocean.json
+{
+  "order": 4,
+  "label": "Ocean",
+  "description": "…",
+  "radius": { "component": "8px", "container": "12px", "overlay": "12px" },
+  "accent": "{pccs.s16}"
+}`}</Command>
+</div>
+
+<style>
+  {`
+  .presets-doc {
+    padding: 0 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: var(--wim-font-family-default, sans-serif);
+    color: var(--wim-color-text-primary);
+  }
+  .presets-doc h1 { font-size: 32px; font-weight: 700; margin: 24px 0 16px; }
+  .presets-doc .lead { font-size: 16px; line-height: 1.7; color: var(--wim-color-text-secondary); }
+  .presets-doc h3 { margin-top: 32px; margin-bottom: 12px; font-size: 20px; }
+  `}
+</style>

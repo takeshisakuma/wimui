@@ -35,6 +35,7 @@ export const ALL_NAMESPACES = [
   "docs_guide_navigation",
   "docs_guide_philosophy",
   "docs_guide_playground",
+  "docs_guide_presets",
   "docs_guide_qa",
   "docs_guide_standardization",
   "docs_guide_styling_spacing",

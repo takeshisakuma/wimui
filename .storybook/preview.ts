@@ -213,6 +213,7 @@ const preview: Preview = {
             "Typography Tokens",
             "Spacings & Radius",
             "Density",
+            "Presets",
             "Effects",
             "Breakpoints",
             "PCCS",
