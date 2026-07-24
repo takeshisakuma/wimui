@@ -172,7 +172,7 @@ export function BillingOverview() {
 }
 ```
 
-> More full-screen patterns with verified code (auth sign-in, settings form) are in `llms-full.txt`.
+> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in `llms-full.txt`.
 ## Components
 
 ### layout — `import { … } from "wimui/layout"`
