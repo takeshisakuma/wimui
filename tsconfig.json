@@ -51,6 +51,8 @@
     "stories/**/*.js",
     "stories/**/*.mdx",
     "src/**/*.mdx",
+    "sandbox/**/*.ts",
+    "sandbox/**/*.tsx",
     ".storybook/i18n.ts"
   ],
   "exclude": ["node_modules", "dist", "storybook-static"]

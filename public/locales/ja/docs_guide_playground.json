@@ -1,0 +1,7 @@
+{
+  "playground": {
+    "title": "プレイグラウンド",
+    "intro": "wimui の主要レシピを、実行・編集できる形で置いています。各カードは下にライブで描画され、「Open in StackBlitz」を押すと Vite + React 19 の完全なプロジェクト（必須の styles.css と WimProvider を配線済み）が公開版 wimui パッケージに対して起動します。導入前に試せます。「View source」を開くと、サンドボックスへ送られる実際のコードが確認できます。",
+    "note": "サンドボックスは wimui を npm から install し、新規タブで開きます。ここのプレビューは StackBlitz へ送るのと同じソースを描画しています（両方が1ファイル由来なので乖離しません）。"
+  }
+}

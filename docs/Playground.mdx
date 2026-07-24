@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { Playground } from "../sandbox/Playground";
+
+<Meta title="Getting Started/Playground" />
+
+<div className="playground-doc">
+  <h1><T k="playground.title" /></h1>
+  <p className="lead"><T k="playground.intro" /></p>
+
+  <Playground />
+
+  <p className="note"><T k="playground.note" /></p>
+</div>
+
+<style>
+  {`
+  .playground-doc {
+    padding: 24px;
+    max-width: 920px;
+    margin: 0 auto;
+    font-family: var(--wim-font-family-default, sans-serif);
+    color: var(--wim-color-text-primary);
+  }
+
+  .playground-doc h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+
+  .playground-doc .lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--wim-color-text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .playground-doc .note {
+    font-size: 13px;
+    color: var(--wim-color-text-secondary);
+    border-left: 2px solid var(--wim-color-border-secondary);
+    padding-left: 12px;
+    margin-top: 32px;
+  }
+  `}
+</style>
