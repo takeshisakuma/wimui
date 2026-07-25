@@ -125,17 +125,11 @@ export const PricingTable: StoryObj = {
             }
           }
         `}</style>
-        <Stack align="center" gap="3xl" style={{ marginBottom: "var(--wim-spacing-4xl)" }}>
-          <Title tag="h2" size="xl" align="center">
+        <Stack gap="md" style={{ marginBottom: "var(--wim-spacing-4xl)" }}>
+          <Title tag="h2" size="xl">
             {t("pricing.title")}
           </Title>
-          <Container size="sm">
-            <Text
-              content={t("pricing.subtitle")}
-              color="text-secondary"
-              style={{ textAlign: "center" }}
-            />
-          </Container>
+          <Text content={t("pricing.subtitle")} color="text-secondary" />
         </Stack>
 
         <Grid
