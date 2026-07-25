@@ -3,9 +3,13 @@
 @layer component {
   .root {
     @include token-base;
-  
+
     gap: var(--wim-spacing-xs);
     font-weight: var(--wim-font-weight-medium);
+
+    // token-base の line-height: normal は CJK 字形が下寄りに見えるため、
+    // Badge と同様 1 に固定して flex 中央寄せと合わせて上下中央にする
+    line-height: 1;
     border-radius: var(--wim-radius-sm);
   
     &.md {

@@ -11,44 +11,50 @@
     border-radius: var(--wim-radius-full);
 
     // Sizes
+    // height は em 固定ではなく min-height にして、border-box で padding が
+    // 内寸を削って CJK 字形が上下にはみ出すのを防ぐ（箱が中身に合わせて伸びる）。
+    // dot 表示の iconOnly は固定寸法を保つため min-height を 0 に戻す。
     &.sm {
       min-width: 1.25em;
-      height: 1.25em;
-      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      min-height: 1.25em;
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-xs);
       font-size: var(--wim-font-size-2xs); // Use 2xs for small badge
 
       &.iconOnly {
         width: var(--wim-badge-dot-sm, var(--wim-spacing-md));
         min-width: 0;
         height: var(--wim-badge-dot-sm, var(--wim-spacing-md));
+        min-height: 0;
         padding: 0;
       }
     }
 
     &.md {
       min-width: 1.5em;
-      height: 1.5em;
-      padding: var(--wim-spacing-2xs) var(--wim-spacing-md);
+      min-height: 1.5em;
+      padding: var(--wim-spacing-xs) var(--wim-spacing-md);
       font-size: var(--wim-font-size-xs);
 
       &.iconOnly {
         width: var(--wim-badge-dot-md, var(--wim-spacing-xs));
         min-width: 0;
         height: var(--wim-badge-dot-md, var(--wim-spacing-xs));
+        min-height: 0;
         padding: 0;
       }
     }
 
     &.lg {
       min-width: 1.75em;
-      height: 1.75em;
-      padding: var(--wim-spacing-xs) var(--wim-spacing-lg);
+      min-height: 1.75em;
+      padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
       font-size: var(--wim-font-size-sm);
 
       &.iconOnly {
         width: var(--wim-badge-dot-lg, var(--wim-spacing-md));
         min-width: 0;
         height: var(--wim-badge-dot-lg, var(--wim-spacing-md));
+        min-height: 0;
         padding: 0;
       }
     }

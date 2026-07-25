@@ -125,17 +125,11 @@ export const PricingTable: StoryObj = {
             }
           }
         `}</style>
-        <Stack align="center" gap="3xl" style={{ marginBottom: "var(--wim-spacing-4xl)" }}>
-          <Title tag="h2" size="xl" align="center">
+        <Stack gap="md" style={{ marginBottom: "var(--wim-spacing-4xl)" }}>
+          <Title tag="h2" size="xl">
             {t("pricing.title")}
           </Title>
-          <Container size="sm">
-            <Text
-              content={t("pricing.subtitle")}
-              color="text-secondary"
-              style={{ textAlign: "center" }}
-            />
-          </Container>
+          <Text content={t("pricing.subtitle")} color="text-secondary" />
         </Stack>
 
         <Grid
@@ -452,19 +446,32 @@ export const FeatureSection: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const demoWrap: React.CSSProperties = {
-      flex: 1,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       width: "100%",
+      height: "100%",
       minHeight: "6rem",
       padding: "var(--wim-spacing-xl)",
+    };
+    // アイコンにトークン準拠の左右余白（8px = spacing-md）を持たせて窮屈さを解消。
+    // 上に少し余白（4px = spacing-2xs）を足し、アイコン上端を右の見出し文字の上端に揃える。
+    // itemTitle は line-height:normal・font-size 固定で言語別の上書きが無いため、
+    // この固定値で en/ja/pt とも同様に揃う。
+    const iconWrap: React.CSSProperties = {
+      display: "inline-flex",
+      paddingInline: "var(--wim-spacing-md)",
+      paddingTop: "var(--wim-spacing-2xs)",
     };
     const items = [
       {
         title: t("feature.item_1_title"),
         desc: t("feature.item_1_desc"),
-        icon: <Icon name="ChartIcon" />,
+        icon: (
+          <span style={iconWrap}>
+            <Icon name="ChartIcon" />
+          </span>
+        ),
         span: "wim-bento-grid-item--col-span-2",
         header: (
           <div style={demoWrap}>
@@ -482,7 +489,11 @@ export const FeatureSection: StoryObj = {
       {
         title: t("feature.item_2_title"),
         desc: t("feature.item_2_desc"),
-        icon: <Icon name="LoadingIcon" />,
+        icon: (
+          <span style={iconWrap}>
+            <Icon name="LoadingIcon" />
+          </span>
+        ),
         span: "wim-bento-grid-item--col-span-1",
         header: (
           <div style={demoWrap}>
@@ -493,7 +504,11 @@ export const FeatureSection: StoryObj = {
       {
         title: t("feature.item_3_title"),
         desc: t("feature.item_3_desc"),
-        icon: <Icon name="CheckIcon" />,
+        icon: (
+          <span style={iconWrap}>
+            <Icon name="CheckIcon" />
+          </span>
+        ),
         span: "wim-bento-grid-item--col-span-1",
         header: (
           <div style={demoWrap}>
@@ -520,7 +535,11 @@ export const FeatureSection: StoryObj = {
       {
         title: t("feature.item_4_title"),
         desc: t("feature.item_4_desc"),
-        icon: <Icon name="UserIcon" />,
+        icon: (
+          <span style={iconWrap}>
+            <Icon name="UserIcon" />
+          </span>
+        ),
         span: "wim-bento-grid-item--col-span-2",
         header: (
           <div style={demoWrap}>
@@ -544,7 +563,7 @@ export const FeatureSection: StoryObj = {
           </Title>
           <Text content={t("feature.subtitle")} color="text-secondary" />
         </Stack>
-        <BentoGrid>
+        <BentoGrid rowHeight="13rem">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}
