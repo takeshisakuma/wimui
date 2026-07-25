@@ -16,7 +16,7 @@ type BannerProps = {
   description?: React.ReactNode;
   /**
    * Intent (semantic state) of the banner
-   * @default "info"
+   * @default "default"
    */
   intent?: FeedbackIntent;
   /**
@@ -49,7 +49,7 @@ type BannerProps = {
 export const Banner = ({
   title,
   description,
-  intent = "info",
+  intent = "default",
   icon = true,
   extra,
   onClose,
@@ -57,6 +57,13 @@ export const Banner = ({
   children,
   ...props
 }: BannerProps) => {
+  const showIcon =
+    icon !== false &&
+    (typeof icon !== "boolean" ||
+      intent === "success" ||
+      intent === "warning" ||
+      intent === "danger" ||
+      intent === "info");
 
   return (
     <div
@@ -66,7 +73,7 @@ export const Banner = ({
     >
       <div className={styles.container}>
         <div className={styles.content}>
-          {icon !== false && (
+          {showIcon && (
             <div className={styles.icon}>
               <FeedbackIcon
                 intent={intent}

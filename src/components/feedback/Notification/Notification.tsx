@@ -36,6 +36,7 @@ export type NotificationProps = {
   icon?: ReactNode;
   /**
    * The intent of notification
+   * @default "default"
    */
   intent?: FeedbackIntent;
   /**
@@ -56,7 +57,8 @@ export const Notification = ({
   id,
   title,
   description,
-  icon, intent,
+  icon,
+  intent = "default",
   onClose,
   closable = true,
   className,
@@ -70,30 +72,38 @@ export const Notification = ({
     if (onClose) onClose(id);
   };
 
-  const typeToColorMap: Record<string, string> = {
+  const typeToColorMap: Record<string, "danger" | "success" | "warning" | "info"> = {
     success: "success",
     danger: "danger",
     warning: "warning",
     info: "info",
   };
 
+  const showIcon =
+    icon !== undefined ||
+    intent === "success" ||
+    intent === "warning" ||
+    intent === "danger" ||
+    intent === "info";
+
   return (
     <div
-      className={classNames("wim-notification", 
+      className={classNames(
+        "wim-notification",
         styles.root,
-        intent && styles[intent],
+        styles[intent],
         className,
       )}
       role="alert"
     >
       <div className={styles.content}>
-        {(icon || intent) && (
+        {showIcon && (
           <div className={styles.icon}>
             <FeedbackIcon
-              intent={ intent }
+              intent={intent}
               icon={icon}
               size="md"
-              color={intent ? typeToColorMap[intent] as "danger" | "success" | "warning" | "info" : undefined}
+              color={typeToColorMap[intent]}
             />
           </div>
         )}

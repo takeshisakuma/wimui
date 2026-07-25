@@ -88,6 +88,15 @@
 
   // Variants — テキストはテーマ対応の text-* トークンを使う
   // （oklch(l*0.7) の暗色化はダークテーマで背景より暗くなり AA を割る）
+  .default {
+    color: var(--wim-color-text-primary);
+    border-color: var(--wim-color-border-secondary);
+
+    .icon {
+      color: var(--wim-color-text-secondary);
+    }
+  }
+
   .info {
     color: var(--wim-color-text-info);
     background: oklch(from var(--wim-color-info) l c h / 0.1);

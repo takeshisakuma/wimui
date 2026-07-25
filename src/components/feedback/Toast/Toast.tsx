@@ -35,7 +35,7 @@ export type ToastProps = {
   description?: string;
   /**
    * Intent (semantic state) of the toast.
-   * @default "info"
+   * @default "default"
    */
   intent?: FeedbackIntent;
   /**
@@ -65,7 +65,7 @@ export const Toast = ({
   id,
   title,
   description,
-  intent = "info",
+  intent = "default",
   duration = 3000,
   open = true,
   onClose,
@@ -100,9 +100,14 @@ export const Toast = ({
       role="status"
       aria-live="polite"
     >
-      <div className={styles.icon}>
-        <FeedbackIcon intent={ intent } size="sm" />
-      </div>
+      {(intent === "success" ||
+        intent === "warning" ||
+        intent === "danger" ||
+        intent === "info") && (
+        <div className={styles.icon}>
+          <FeedbackIcon intent={intent} size="sm" />
+        </div>
+      )}
       <div className={styles.content}>
         {title && <h5 className={styles.title}>{title}</h5>}
         {description && <p className={styles.description}>{description}</p>}

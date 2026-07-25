@@ -15,7 +15,7 @@ const meta: Meta<typeof Progress> = {
         "secondary",
         "success",
         "warning",
-        "error",
+        "danger",
         "neutral",
         "info",
       ],

@@ -21,7 +21,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
   description?: React.ReactNode;
   /**
    * Intent (semantic state) of the alert
-   * @default "info"
+   * @default "default"
    */
   intent?: FeedbackIntent;
   /**
@@ -49,7 +49,7 @@ export const Alert = ({
   title,
   titleTag: TitleTag = "h4",
   description,
-  intent = "info",
+  intent = "default",
   icon,
   onClose,
   className,
@@ -65,15 +65,24 @@ export const Alert = ({
     if (onClose) onClose();
   };
 
+  const showIcon =
+    icon !== undefined ||
+    intent === "success" ||
+    intent === "warning" ||
+    intent === "danger" ||
+    intent === "info";
+
   return (
     <div
       className={classNames("wim-alert", styles.root, styles[intent], className)}
       role="alert"
       {...props}
     >
-      <div className={styles.icon}>
-        <FeedbackIcon intent={intent} icon={icon} size="sm" />
-      </div>
+      {showIcon && (
+        <div className={styles.icon}>
+          <FeedbackIcon intent={intent} icon={icon} size="sm" />
+        </div>
+      )}
       <div className={styles.content}>
         {title && <TitleTag className={styles.title}>{title}</TitleTag>}
         {(description || children) && (

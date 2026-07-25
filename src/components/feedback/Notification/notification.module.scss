@@ -62,6 +62,10 @@
   }
 
   // Variants
+  .default {
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-border);
+  }
+
   .success {
     border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-success);
   }

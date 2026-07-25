@@ -7,24 +7,25 @@ export type ChartDataPoint = Record<string, string | number | null>;
 // SVG presentation attribute として使用するため CSS カスタムプロパティは利用不可。
 // とされていますが、現代のブラウザ（Recharts環境）では `fill` や `stroke` への `var()` 指定が有効なため、
 // ダークモード対応とブランドカラー統一のためにトークンを適用します。
+/** Soft-tone series palette — kept separate from Vivid UI semantics. */
 export const CHART_COLORS = [
-  "var(--wim-color-primary)",
-  "var(--wim-color-info)",
-  "var(--wim-color-success)",
-  "var(--wim-color-warning)",
-  "var(--wim-color-danger)",
-  "var(--wim-color-secondary)",
+  "var(--wim-color-chart-primary)",
+  "var(--wim-color-chart-info)",
+  "var(--wim-color-chart-success)",
+  "var(--wim-color-chart-warning)",
+  "var(--wim-color-chart-danger)",
+  "var(--wim-color-chart-secondary)",
   "var(--wim-color-text-tertiary)",
   "var(--wim-color-disabled)",
 ];
 
 export const CHART_TEXT_COLORS = [
-  "var(--wim-color-text-on-primary)",
-  "var(--wim-color-text-on-info)",
-  "var(--wim-color-text-on-success)",
-  "var(--wim-color-text-on-warning)",
-  "var(--wim-color-text-on-danger)",
-  "var(--wim-color-text-on-secondary)",
+  "var(--wim-color-text-on-chart-primary)",
+  "var(--wim-color-text-on-chart-info)",
+  "var(--wim-color-text-on-chart-success)",
+  "var(--wim-color-text-on-chart-warning)",
+  "var(--wim-color-text-on-chart-danger)",
+  "var(--wim-color-text-on-chart-secondary)",
   "var(--wim-color-text-primary)",
   "var(--wim-color-text-primary)",
 ];

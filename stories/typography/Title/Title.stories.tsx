@@ -27,7 +27,7 @@ const meta: Meta<TitleProps> = {
         "gray",
         "lightgray",
         "white",
-        "error",
+        "danger",
         "primary",
         "success",
         "warning",

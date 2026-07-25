@@ -24,8 +24,8 @@
       "values": ["primary", "secondary", "success", "warning", "danger", "info", "neutral"]
     },
     "FeedbackIntent": {
-      "description": "Intent values for feedback-style components (Alert, Banner, Toast, Notification).",
-      "values": ["info", "success", "warning", "danger"]
+      "description": "Intent values for feedback-style components (Alert, Banner, Toast, Notification, Snackbar). Includes neutral default — colored intents are opt-in.",
+      "values": ["default", "info", "success", "warning", "danger"]
     },
     "FieldIntent": {
       "description": "Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).",

@@ -12,7 +12,7 @@ const meta: Meta<typeof Toast> = {
   argTypes: {
     intent: {
       control: "select",
-      options: ["info", "success", "warning", "error"],
+      options: ["default", "info", "success", "warning", "danger"],
     },
   },
 };
@@ -26,13 +26,13 @@ export const Default: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story.toast_saved_title")}
-        description={args.description || t("story.toast_saved_desc")}
+        title={args.title || t("story.toast_system_notif")}
+        description={args.description || t("story.toast_update_desc")}
       />
     );
   },
   args: {
-    intent: "success",
+    intent: "default",
   },
 };
 
@@ -84,7 +84,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

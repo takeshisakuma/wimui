@@ -46,9 +46,14 @@ export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengt
         case 2:
           return { intent: "warning", label: t("password_strength.fair") };
         case 3:
-          return { intent: "info", label: t("password_strength.strong") };
         case 4:
-          return { intent: "success", label: t("password_strength.very_strong") };
+          return {
+            intent: "success",
+            label:
+              lvl === 4
+                ? t("password_strength.very_strong")
+                : t("password_strength.strong"),
+          };
         default:
           return { intent: "danger", label: "" };
       }

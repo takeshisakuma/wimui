@@ -28,7 +28,7 @@ export const Overview: StoryObj = {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     const sizes = ["sm", "md", "lg", "xl"] as const;
-    const colors = ["primary", "secondary", "success", "warning", "error", "neutral"] as const;
+    const colors = ["primary", "secondary", "success", "warning", "danger", "neutral"] as const;
     const loaderVariants = ["bars", "dots", "pulse"] as const;
     const skeletonAnimations = ["pulse", "wave", "none"] as const;
 

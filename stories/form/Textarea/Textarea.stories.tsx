@@ -17,7 +17,7 @@ const meta: Meta<typeof Textarea> = {
     },
     intent: {
       control: "select",
-      options: ["default", "error"],
+      options: ["default", "danger"],
     },
     variant: {
       control: "select",
@@ -65,7 +65,7 @@ export const Ghost: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

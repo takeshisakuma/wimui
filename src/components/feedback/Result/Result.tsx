@@ -6,13 +6,17 @@ import type { WimIntent } from "../../../types/tokens";
 import styles from "./result.module.scss";
 import { CircleIcon, CheckIcon } from "@/icon";
 
-export type ResultIntent = Extract<WimIntent, "success" | "danger" | "info" | "warning">;
+export type ResultIntent = Extract<
+  WimIntent,
+  "default" | "success" | "danger" | "info" | "warning"
+>;
 
 export type ResultHttpStatus = "404" | "403" | "500";
 
 export type ResultProps = {
   /**
    * Semantic intent — determines the icon and color.
+   * @default "default"
    */
   intent?: ResultIntent;
   /**
@@ -65,13 +69,14 @@ const DefaultIcon = ({
       return <Icon component={CircleIcon} color="warning" className={className} />;
     case "info":
       return <Icon component={CircleIcon} color="info" className={className} />;
+    case "default":
     default:
-      return null;
+      return <Icon component={CircleIcon} color="secondary" className={className} />;
   }
 };
 
 export const Result = ({
-  intent = "info",
+  intent = "default",
   status,
   title,
   description,

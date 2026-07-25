@@ -11,7 +11,7 @@ const meta: Meta<typeof AgentStatus> = {
     layout: "padded",
   },
   args: {
-    status: "thinking",
+    status: "idle",
     showLabel: true,
     size: "md",
   },

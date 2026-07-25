@@ -22,6 +22,13 @@ export default meta;
 type Story = StoryObj<typeof PasswordStrength>;
 
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: 280 }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     score: 0,
   },

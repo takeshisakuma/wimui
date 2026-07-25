@@ -11,7 +11,7 @@ const meta: Meta<typeof Indicator> = {
   argTypes: {
     color: {
       control: "select",
-      options: ["primary", "success", "error", "warning", "neutral"],
+      options: ["primary", "secondary", "success", "warning", "danger", "info", "neutral"],
     },
     size: {
       control: "radio",
@@ -30,7 +30,7 @@ type Story = StoryObj<typeof Indicator>;
 export const Default: Story = {
   args: {
     children: <Avatar initials="JD" />,
-    color: "success",
+    color: "primary",
     position: "bottom-right",
   },
 };

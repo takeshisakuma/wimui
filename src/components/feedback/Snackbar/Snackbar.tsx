@@ -30,7 +30,7 @@ export interface SnackbarProps {
   open?: boolean;
   /**
    * Intent (semantic state)
-   * @default "info"
+   * @default "default"
    */
   intent?: FeedbackIntent;
   /**
@@ -64,7 +64,7 @@ export interface SnackbarProps {
 export const Snackbar = ({
   message,
   open = false,
-  intent = "info",
+  intent = "default",
   position = "bottom-center",
   autoHideDuration = 5000,
   showCloseButton = false,
@@ -165,12 +165,11 @@ export const Snackbar = ({
           onBlur={handleMouseLeave}
         >
           <div className={styles.content}>
-            {intent !== "info" && (
+            {(intent === "success" ||
+              intent === "warning" ||
+              intent === "danger") && (
               <div className={styles.icon}>
-                <FeedbackIcon
-                  intent={ intent }
-                  size="sm"
-                />
+                <FeedbackIcon intent={intent} size="sm" />
               </div>
             )}
             <span className={styles.message}>{message}</span>

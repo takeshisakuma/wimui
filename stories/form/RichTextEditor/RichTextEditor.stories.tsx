@@ -10,7 +10,7 @@ const meta: Meta<typeof RichTextEditor> = {
   argTypes: {
     intent: {
       control: "select",
-      options: ["default", "error", "disabled"],
+      options: ["default", "danger"],
     },
     variant: {
       control: "select",
@@ -96,7 +96,7 @@ export const Controlled: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

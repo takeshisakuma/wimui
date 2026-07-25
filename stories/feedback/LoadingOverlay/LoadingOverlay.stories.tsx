@@ -30,7 +30,7 @@ const meta: Meta<typeof LoadingOverlay> = {
         "secondary",
         "success",
         "warning",
-        "error",
+        "danger",
         "neutral",
         "currentColor",
       ],

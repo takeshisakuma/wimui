@@ -11,6 +11,10 @@ const meta: Meta<typeof Notification> = {
   tags: [],
   argTypes: {
     onClose: { action: "closed" },
+    intent: {
+      control: "select",
+      options: ["default", "info", "success", "warning", "danger"],
+    },
   },
 };
 
@@ -27,6 +31,9 @@ export const Default: Story = {
         description={args.description || t("story.notification_desc")}
       />
     );
+  },
+  args: {
+    intent: "default",
   },
 };
 
@@ -62,7 +69,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

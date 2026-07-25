@@ -49,9 +49,10 @@ export type IndicatorIntent =
   | "neutral";
 
 /**
- * Intent values for feedback-style components (Alert, Banner, Toast, Notification).
+ * Intent values for feedback-style components (Alert, Banner, Toast, Notification, Snackbar). Includes neutral default — colored intents are opt-in.
  */
 export type FeedbackIntent =
+  | "default"
   | "info"
   | "success"
   | "warning"
