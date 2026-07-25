@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { SimpleGrid } from "wimui";
+import { DemoCell, demoCellIntent } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof SimpleGrid> = {
@@ -19,31 +20,16 @@ const meta: Meta<typeof SimpleGrid> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const Box = ({ children }: { children: React.ReactNode }) => (
-  <div
-    style={{
-      backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",
-      color: "var(--wim-color-text-accent)",
-      padding: "20px",
-      borderRadius: "8px",
-      textAlign: "center",
-      fontWeight: "bold",
-    }}
-  >
-    {children}
-  </div>
-);
-
 export const FixedColumns: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story.grid_item", "1")}</Box>
-        <Box>{t("story.grid_item", "2")}</Box>
-        <Box>{t("story.grid_item", "3")}</Box>
-        <Box>{t("story.grid_item", "4")}</Box>
-        <Box>{t("story.grid_item", "5")}</Box>
+        {Array.from({ length: 5 }, (_, i) => (
+          <DemoCell key={i} intent={demoCellIntent(i)}>
+            {t("story.grid_item", String(i + 1))}
+          </DemoCell>
+        ))}
       </SimpleGrid>
     );
   },
@@ -58,11 +44,11 @@ export const ResponsiveAuto: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story.grid_min_width")}</Box>
-        <Box>{t("story.grid_min_width")}</Box>
-        <Box>{t("story.grid_min_width")}</Box>
-        <Box>{t("story.grid_min_width")}</Box>
-        <Box>{t("story.grid_min_width")}</Box>
+        {Array.from({ length: 5 }, (_, i) => (
+          <DemoCell key={i} intent={demoCellIntent(i)}>
+            {t("story.grid_min_width")}
+          </DemoCell>
+        ))}
       </SimpleGrid>
     );
   },
@@ -77,14 +63,11 @@ export const ResponsiveBreakpoints: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story.grid_item", "1")}</Box>
-        <Box>{t("story.grid_item", "2")}</Box>
-        <Box>{t("story.grid_item", "3")}</Box>
-        <Box>{t("story.grid_item", "4")}</Box>
-        <Box>{t("story.grid_item", "5")}</Box>
-        <Box>{t("story.grid_item", "6")}</Box>
-        <Box>{t("story.grid_item", "7")}</Box>
-        <Box>{t("story.grid_item", "8")}</Box>
+        {Array.from({ length: 8 }, (_, i) => (
+          <DemoCell key={i} intent={demoCellIntent(i)}>
+            {t("story.grid_item", String(i + 1))}
+          </DemoCell>
+        ))}
       </SimpleGrid>
     );
   },

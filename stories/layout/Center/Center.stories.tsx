@@ -2,7 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Box, Center, Icon } from "wimui";
+import { Center, Icon } from "wimui";
+import { DemoCell } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Center> = {
@@ -22,14 +23,9 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Center {...args}>
-        <Box
-          bg="var(--wim-color-primary-subtle)"
-          p={40}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-primary)" }}
-        >
+        <DemoCell intent="primary" p="xl">
           {t("story.center_content")}
-        </Box>
+        </DemoCell>
       </Center>
     );
   },

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Splitter } from "wimui";
+import { DemoCell, type DemoCellIntent } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Splitter> = {
@@ -18,27 +19,19 @@ type Story = StoryObj<typeof Splitter>;
 
 const PanelContent = ({
   children,
-  color,
-  textColor = "var(--wim-color-text-accent)",
+  intent = "primary",
 }: {
   children: React.ReactNode;
-  color: string;
-  textColor?: string;
+  intent?: DemoCellIntent;
 }) => (
-  <div
-    style={{
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: color,
-      fontSize: "24px",
-      fontWeight: "bold",
-      color: textColor,
-    }}
+  <DemoCell
+    intent={intent}
+    h="100%"
+    radius={0}
+    style={{ fontSize: "var(--wim-font-size-2xl)" }}
   >
     {children}
-  </div>
+  </DemoCell>
 );
 
 export const Horizontal: Story = {
@@ -55,11 +48,11 @@ export const Horizontal: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={30}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_left", "Left Panel")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_left", "Left Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={70}>
-            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_right", "Right Panel")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_right", "Right Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -75,18 +68,17 @@ export const Vertical: Story = {
         style={{
           height: "400px",
           border: "1px solid", borderColor: "var(--wim-color-border)",
-          // Ensuring handle has contrast against colorful backgrounds
           "--wim-splitter-handle-color": "var(--wim-color-border)",
           "--wim-splitter-handle-width": "1px",
         } as React.CSSProperties}
       >
         <Splitter orientation="vertical">
           <Splitter.Panel defaultSize={40}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_top", "Top Panel")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_top", "Top Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_bottom", "Bottom Panel")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_bottom", "Bottom Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -108,15 +100,15 @@ export const MultiplePanels: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="var(--wim-color-surface-variant)" textColor="var(--wim-color-text-primary)">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
+            <PanelContent intent="secondary">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -138,17 +130,17 @@ export const Nested: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={25}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={75}>
             <Splitter orientation="vertical">
               <Splitter.Panel defaultSize={70}>
-                <PanelContent color="var(--wim-color-surface-app)" textColor="var(--wim-color-text-primary)">{t("story.splitter_main", "Main Content")}</PanelContent>
+                <PanelContent intent="neutral">{t("story.splitter_main", "Main Content")}</PanelContent>
               </Splitter.Panel>
               <Splitter.Handle />
               <Splitter.Panel defaultSize={30}>
-                <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
+                <PanelContent intent="secondary">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
               </Splitter.Panel>
             </Splitter>
           </Splitter.Panel>
@@ -172,11 +164,11 @@ export const Constraints: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel minSize={20} maxSize={50} defaultSize={30}>
-            <PanelContent color="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" textColor="var(--wim-color-text-accent)">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel>
-            <PanelContent color="var(--wim-color-surface-subtle-alpha)" textColor="var(--wim-color-text-primary)">{t("story.splitter_flexible", "Flexible Panel")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_flexible", "Flexible Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>

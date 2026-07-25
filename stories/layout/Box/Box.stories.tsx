@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box } from "../../../src/components/layout/Box/Box";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { DemoCell } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Box> = {
@@ -65,26 +66,13 @@ export const Spacing: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Box bg="var(--wim-color-surface-variant)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
-        <Box
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
-          p={15}
-          mb={15}
-          color="var(--wim-color-text-accent)"
-          radius={4}
-          style={{ border: "1px solid var(--wim-color-primary)" }}
-        >
+      <Box bg="var(--wim-color-surface-variant)" p="md" radius="md" style={{ border: "1px solid var(--wim-color-border)" }}>
+        <DemoCell intent="primary" p="sm" mb="sm">
           {t("story.box_margin")}
-        </Box>
-        <Box
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
-          p={15}
-          color="var(--wim-color-text-success)"
-          radius={4}
-          style={{ border: "1px solid var(--wim-color-success)" }}
-        >
+        </DemoCell>
+        <DemoCell intent="success" p="sm">
           {t("story.box_2")}
-        </Box>
+        </DemoCell>
       </Box>
     );
   },

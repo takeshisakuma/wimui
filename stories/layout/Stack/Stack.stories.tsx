@@ -2,7 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Box, Stack } from "wimui";
+import { Stack } from "wimui";
+import { DemoCell } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Stack> = {
@@ -29,33 +30,9 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
-        <Box
-          key="1"
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-primary)" }}
-        >
-          {t("story.stack_item_1", "Item 1")}
-        </Box>
-        <Box
-          key="2"
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-success)" }}
-        >
-          {t("story.stack_item_2", "Item 2")}
-        </Box>
-        <Box
-          key="3"
-          bg="color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-warning)" }}
-        >
-          {t("story.stack_item_3", "Item 3")}
-        </Box>
+        <DemoCell intent="primary">{t("story.stack_item_1", "Item 1")}</DemoCell>
+        <DemoCell intent="success">{t("story.stack_item_2", "Item 2")}</DemoCell>
+        <DemoCell intent="warning">{t("story.stack_item_3", "Item 3")}</DemoCell>
       </Stack>
     );
   },
@@ -70,33 +47,9 @@ export const Row: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
-        <Box
-          key="1"
-          bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-primary)" }}
-        >
-          {t("story.stack_item_1", "Item 1")}
-        </Box>
-        <Box
-          key="2"
-          bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-success)" }}
-        >
-          {t("story.stack_item_2", "Item 2")}
-        </Box>
-        <Box
-          key="3"
-          bg="color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))"
-          p={20}
-          radius={8}
-          style={{ border: "1px solid var(--wim-color-warning)" }}
-        >
-          {t("story.stack_item_3", "Item 3")}
-        </Box>
+        <DemoCell intent="primary">{t("story.stack_item_1", "Item 1")}</DemoCell>
+        <DemoCell intent="success">{t("story.stack_item_2", "Item 2")}</DemoCell>
+        <DemoCell intent="warning">{t("story.stack_item_3", "Item 3")}</DemoCell>
       </Stack>
     );
   },
@@ -111,30 +64,18 @@ export const SpacingTokens: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack gap="xl">
-        <Box bg="var(--wim-color-surface-variant)" p={10}>
+        <DemoCell intent="neutral" p="sm">
           {t("story.stack_gap", "Gap: ")}xl
-        </Box>
+        </DemoCell>
         <Stack direction="row" gap="xs">
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}xs
-          </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}xs
-          </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}xs
-          </Box>
+          <DemoCell intent="primary" p="sm">{t("story.stack_gap", "Gap: ")}xs</DemoCell>
+          <DemoCell intent="primary" p="sm">{t("story.stack_gap", "Gap: ")}xs</DemoCell>
+          <DemoCell intent="primary" p="sm">{t("story.stack_gap", "Gap: ")}xs</DemoCell>
         </Stack>
         <Stack direction="row" gap="lg">
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}lg
-          </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}lg
-          </Box>
-          <Box bg="color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" p={10}>
-            {t("story.stack_gap", "Gap: ")}lg
-          </Box>
+          <DemoCell intent="success" p="sm">{t("story.stack_gap", "Gap: ")}lg</DemoCell>
+          <DemoCell intent="success" p="sm">{t("story.stack_gap", "Gap: ")}lg</DemoCell>
+          <DemoCell intent="success" p="sm">{t("story.stack_gap", "Gap: ")}lg</DemoCell>
         </Stack>
       </Stack>
     );
