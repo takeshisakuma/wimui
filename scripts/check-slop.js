@@ -26,38 +26,15 @@ import { globSync } from 'glob';
 // --- ラチェット基準（既定値上書き＋px 直書きの合計）。増やさない・減らしたら更新する。 ---
 const STYLE_OVERRIDE_BASELINE = 40;
 
-// --- 誇張形容詞辞書（多言語・SSOT）。DESIGN.md 禁止パターン「誇張形容詞」と同期する。 ---
-// 追加時は DESIGN.md の該当行にも反映すること（将来 A+C で JSON へ SSOT 化する候補）。
-// 一部は Nutlope/hallmark の references/copy.md・anti-patterns.md から採掘（同ミッションの反 AI-slop skill）。
-const HYPE_WORDS = [
-  // en（部分一致。派生形 powerfully / seamlessly 等も拾う）
-  'seamless', 'powerful', 'effortless', 'cutting-edge', 'next-gen', 'next-generation',
-  'revolutionary', 'game-changing', 'state-of-the-art', 'world-class', 'best-in-class',
-  'unparalleled', 'lightning-fast', 'blazing-fast', 'supercharge',
-  // en（hallmark 由来のマーケ動詞・形容詞）
-  'innovative', 'disruptive', 'harness', 'leverage', 'elevate', 'empower',
-  'reimagine', 'unleash', 'delight', 'magical',
-  // ja（部分一致）
-  '圧倒的', '革新的', '次世代', '究極', '最先端',
-];
-
-// 誇張フレーズ（定型オープナー）。hallmark references/copy.md「Banned Opening Lines」由来。
-const HYPE_PHRASES = [
-  "in today's digital landscape",
-  'built for the modern team',
-  'supercharge your',
-  'unleash your',
-  'reimagine the way',
-  'experience the power of',
-  'innovative solutions',
-];
-
-// 定型プレースホルダ名（実在感の無いダミー名）。DESIGN.md「連番・アルファベット順のダミー名」＋
-// hallmark「Stock placeholder names」由来。※入力欄プレースホルダ（*placeholder* キー）は
-// 「氏名フォーマット例」として正当な UX なのでスコープ外。
-const PLACEHOLDER_NAMES = [
-  'John Doe', 'Jane Doe', 'John Smith', 'Jane Smith', 'Lorem Ipsum', 'Example User', 'Acme',
-];
+// --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
+// 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
+// HYPE_WORDS: 誇張形容詞（部分一致。派生形 powerfully / seamlessly 等も拾う。ja は部分一致）
+// HYPE_PHRASES: 誇張フレーズ（定型オープナー）
+// PLACEHOLDER_NAMES: 定型ダミー名（※入力欄 placeholder の氏名フォーマット例は正当な UX なのでスコープ外）
+const DICT = JSON.parse(fs.readFileSync(new URL('./slop-dictionary.json', import.meta.url), 'utf8'));
+const HYPE_WORDS = DICT.hypeWords;
+const HYPE_PHRASES = DICT.hypePhrases;
+const PLACEHOLDER_NAMES = DICT.placeholderNames;
 
 // Pattern デモコピーが実在する locale ファイル（en/ja/pt）。
 // ガイド docs（docs_guide_*）はドキュメント散文であり禁止語を正当に引用しうるため対象外。
