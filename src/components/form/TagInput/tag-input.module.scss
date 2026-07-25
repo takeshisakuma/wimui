@@ -2,26 +2,21 @@
   cursor: text;
 }
 
+/* inputBaseInner + container are on the same DOM node (InputBase merges
+   styles.inner onto its child). Chrome padding must be set here with
+   !important so it beats InputBase .inner left/right offsets. */
 .inputBaseInner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: auto;
-  min-height: var(--wim-height-md);
-
-  // InputBase applies .inner to its child.
-  // In TagInput, the child of InputBase is the div.container.
-  padding: 0;
-}
-
-.container {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  min-height: inherit;
-  padding: var(--wim-spacing-2xs) var(--wim-field-padding-x);
+  height: auto !important;
+  min-height: var(--wim-height-md);
+  padding: var(--wim-field-padding-y) var(--wim-field-padding-x) !important;
+}
 
+.container {
   &.disabled {
     cursor: not-allowed;
   }
