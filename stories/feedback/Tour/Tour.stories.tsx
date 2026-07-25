@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Tour } from "wimui";
-
+import {
+  Box,
+  Button,
+  Group,
+  SearchInput,
+  Stack,
+  Stats,
+  Tour,
+} from "wimui";
 
 const meta: Meta<typeof Tour> = {
   title: "Components/Overlays/Tour",
@@ -39,53 +46,35 @@ export const Default: Story = {
     ];
 
     return (
-      <div style={{ padding: "40px", height: "1000px" }}>
-        <Button onClick={() => setOpen(true)}>{t("story.tour_start")}</Button>
+      <Box p="5xl">
+        <Stack gap="5xl">
+          <Group justify="between" align="center" wrap="wrap" gap="md">
+            <div id="tour-step-1">
+              <SearchInput
+                width="md"
+                placeholder={t("story.tour_search_placeholder")}
+                aria-label={t("story.tour_search_placeholder")}
+              />
+            </div>
+            <Button onClick={() => setOpen(true)}>{t("story.tour_start")}</Button>
+          </Group>
 
-        <div
-          style={{
-            marginTop: "100px",
-            display: "flex",
-            gap: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            id="tour-step-1"
-            style={{
-              padding: "20px",
-              background: "var(--wim-color-surface-variant)",
-              border: "1px solid var(--wim-color-border)",
-              minWidth: "120px",
-            }}
-          >
-            {t("story.tour_step_target", { n: 1 })}
-          </div>
-          <div
-            id="tour-step-2"
-            style={{
-              padding: "20px",
-              background: "var(--wim-color-surface-variant)",
-              border: "1px solid var(--wim-color-border)",
-              minWidth: "120px",
-            }}
-          >
-            {t("story.tour_step_target", { n: 2 })}
-          </div>
-        </div>
+          <Box id="tour-step-2" w="var(--wim-width-sm)">
+            <Stats>
+              <Stats.Label>{t("story.tour_stats_label")}</Stats.Label>
+              <Stats.Value>4,281</Stats.Value>
+              <Stats.Description>{t("story.tour_stats_caption")}</Stats.Description>
+            </Stats>
+          </Box>
 
-        <div
-          id="tour-step-3"
-          style={{
-            marginTop: "400px",
-            padding: "20px",
-            background: "var(--wim-color-surface-variant)",
-            border: "1px solid var(--wim-color-border)",
-            width: "150px",
-          }}
-        >
-          {t("story.tour_step_target", { n: 3 })}
-        </div>
+          <Group justify="end">
+            <div id="tour-step-3">
+              <Button variant="ghost" size="sm" icon="HelpCircleIcon">
+                {t("story.tour_help_action")}
+              </Button>
+            </div>
+          </Group>
+        </Stack>
 
         <Tour
           {...args}
@@ -93,7 +82,7 @@ export const Default: Story = {
           steps={steps}
           onClose={() => setOpen(false)}
         />
-      </div>
+      </Box>
     );
   },
 };
