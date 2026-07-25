@@ -5,8 +5,16 @@ import { InteractiveGraph } from "./InteractiveGraph";
 import type { Node, Edge } from "@xyflow/react";
 
 vi.mock("@xyflow/react", () => ({
-  ReactFlow: ({ children }: { children?: React.ReactNode }) => (
-    <div data-testid="react-flow">{children}</div>
+  ReactFlow: ({
+    children,
+    colorMode,
+  }: {
+    children?: React.ReactNode;
+    colorMode?: string;
+  }) => (
+    <div data-testid="react-flow" data-color-mode={colorMode}>
+      {children}
+    </div>
   ),
   Background: () => <div data-testid="react-flow-background" />,
   Controls: ({ className }: { className?: string }) => (
@@ -84,5 +92,12 @@ describe("InteractiveGraph", () => {
       <InteractiveGraph nodes={sampleNodes} edges={sampleEdges} className="my-graph" />,
     );
     expect(container.firstChild?.firstChild).toHaveClass("my-graph");
+  });
+
+  it("passes WIM data-theme to ReactFlow colorMode", () => {
+    document.documentElement.setAttribute("data-theme", "dark");
+    render(<InteractiveGraph nodes={sampleNodes} edges={sampleEdges} />);
+    expect(screen.getByTestId("react-flow")).toHaveAttribute("data-color-mode", "dark");
+    document.documentElement.removeAttribute("data-theme");
   });
 });
