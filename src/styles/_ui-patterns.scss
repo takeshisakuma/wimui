@@ -33,9 +33,10 @@
   --wim-control-padding-x-md: var(--wim-spacing-2xl);
   --wim-control-padding-x-lg: var(--wim-spacing-3xl);
 
-  /* Field chrome (Input shell, Textarea, TagInput, select triggers) */
+  /* Field chrome (Input shell, Textarea, TagInput, select triggers).
+     x > y: line-box + fixed control height make equal padding look top-heavy. */
   --wim-field-padding-y: var(--wim-spacing-md);
-  --wim-field-padding-x: var(--wim-spacing-md);
+  --wim-field-padding-x: var(--wim-spacing-lg);
   --wim-field-padding-y-tight: var(--wim-spacing-sm);
 
   /* SegmentedControl / ToggleGroup / TabNavigation item horizontal padding */
