@@ -538,7 +538,7 @@ export const FeatureSection: StoryObj = {
           </Title>
           <Text content={t("feature.subtitle")} color="text-secondary" />
         </Stack>
-        <BentoGrid>
+        <BentoGrid rowHeight="13rem">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}

@@ -16,6 +16,18 @@ describe("BentoGrid", () => {
     const { container } = render(<BentoGrid className="custom-grid" />);
     expect(container.firstChild?.firstChild).toHaveClass("custom-grid");
   });
+
+  it("sets --wim-bento-row-height from the rowHeight prop", () => {
+    const { container } = render(<BentoGrid rowHeight="13rem" />);
+    const grid = container.firstChild?.firstChild as HTMLElement;
+    expect(grid.style.getPropertyValue("--wim-bento-row-height")).toBe("13rem");
+  });
+
+  it("omits --wim-bento-row-height when rowHeight is not given (keeps the default)", () => {
+    const { container } = render(<BentoGrid />);
+    const grid = container.firstChild?.firstChild as HTMLElement;
+    expect(grid.style.getPropertyValue("--wim-bento-row-height")).toBe("");
+  });
 });
 
 describe("BentoGridItem", () => {

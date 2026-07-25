@@ -8,7 +8,7 @@
 .root {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-auto-rows: 18rem;
+  grid-auto-rows: var(--wim-bento-row-height, 18rem);
   gap: var(--wim-spacing-md);
   max-width: 1200px; /* Exception: Structural Logic — grid content measure ceiling */
   margin: 0 auto;
