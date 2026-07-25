@@ -7,7 +7,7 @@ import type { DashboardWidget, DashboardProps } from "@/components/layout/Dashbo
 
 // Static content components defined at module level to avoid shared React Element instances between stories
 const RevenueContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-success)" }}>
+  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-success)" }}>
     $12,400
   </div>
 );
