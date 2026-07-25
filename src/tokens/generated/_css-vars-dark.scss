@@ -4,7 +4,7 @@
 
 [data-theme="dark"] {
   --wim-color-danger: #fb7482;
-  --wim-color-success: #33a23d;
+  --wim-color-success: #28853f;
   --wim-color-warning: #fc0;
   --wim-color-primary: #055d87;
   --wim-color-secondary: #b6b6b6;
@@ -12,7 +12,7 @@
   --wim-color-disabled: #4f4f4f;
   --wim-color-text-on-primary: #fff;
   --wim-color-text-on-danger: #000;
-  --wim-color-text-on-success: #000;
+  --wim-color-text-on-success: #fff;
   --wim-color-text-on-warning: #000;
   --wim-color-text-on-secondary: #000;
   --wim-color-text-on-info: #fff;
@@ -230,7 +230,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --wim-color-danger: #fb7482;
-    --wim-color-success: #33a23d;
+    --wim-color-success: #28853f;
     --wim-color-warning: #fc0;
     --wim-color-primary: #055d87;
     --wim-color-secondary: #b6b6b6;
@@ -238,7 +238,7 @@
     --wim-color-disabled: #4f4f4f;
     --wim-color-text-on-primary: #fff;
     --wim-color-text-on-danger: #000;
-    --wim-color-text-on-success: #000;
+    --wim-color-text-on-success: #fff;
     --wim-color-text-on-warning: #000;
     --wim-color-text-on-secondary: #000;
     --wim-color-text-on-info: #fff;

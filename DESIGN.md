@@ -45,7 +45,7 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 |------|----------|-------------|-------------|
 | Primary | `--wim-color-primary` | `s16` (#205b85) | `v16` (#055d87) |
 | Danger | `--wim-color-danger` | `s1` (#b01040) | `lt2` (#fb7482) |
-| Success | `--wim-color-success` | `s12` (#28853f) | `v12` (#33a23d) |
+| Success | `--wim-color-success` | `s12` (#28853f) | `s12` (#28853f) |
 | Warning | `--wim-color-warning` | `s8` (#ccb914) | `v7` (#ffcc00) |
 | Info | `--wim-color-info` | `s18` (#243b8b) | `v17` (#093f86) |
 
