@@ -52,7 +52,7 @@
     }
 
     &.secondary {
-      --wim-chat-bubble-bg: var(--wim-color-surface-variant);
+      --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-received);
     }
   }
   
