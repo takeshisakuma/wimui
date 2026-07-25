@@ -270,6 +270,16 @@ export const WithIcon: Story = { args: { ... } };
 
 MDX から参照する際はエクスポート名と完全一致が必要です。
 
+### Layout demo chrome（色付きセル）
+
+Flex / Grid / Stack / SimpleGrid / Masonry など、**子はレイアウト構造を見せるためだけ**にあるストーリーでは、共有ヘルパー `stories/layout/_helpers/DemoCell.tsx` を使う。
+
+- intent 淡色塗り + `text-*` 文字色 + **中立** `border`（intent 色の枠は使わない）
+- padding / radius はトークン（既定 `md`）。生 HSL・px 直書きの角丸は避ける
+- 複数子は `demoCellIntent(i)` で cycle。ホスト枠（幅デモの外側）は `surface-variant` / `surface` + 中立 border
+
+使わないケース: Box 自身の props デモ、実コンポーネントを載せるデモ（Group+Button、AppShell、Patterns）、製品 UI 風の合成画面。
+
 ### argTypes の書き方
 
 control の型指定はオブジェクト形式でなく文字列の短縮形を使用してください。

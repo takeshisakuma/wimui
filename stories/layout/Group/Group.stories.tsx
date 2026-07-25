@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Group } from "wimui";
+import { DemoCell } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Group> = {
@@ -67,15 +68,9 @@ export const AlignEnd: Story = {
     align: "end",
     children: (
       <>
-        <div
-          style={{ height: "40px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))" }}
-        />
-        <div
-          style={{ height: "80px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))" }}
-        />
-        <div
-          style={{ height: "60px", width: "40px", backgroundColor: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))" }}
-        />
+        <DemoCell intent="primary" p={0} w={40} h={40} />
+        <DemoCell intent="success" p={0} w={40} h={80} />
+        <DemoCell intent="danger" p={0} w={40} h={60} />
       </>
     ),
     gap: 16,

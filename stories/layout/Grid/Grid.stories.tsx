@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Grid } from "wimui";
+import { DemoCell, demoCellIntent, type DemoCellIntent } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Grid> = {
@@ -31,54 +32,17 @@ const meta: Meta<typeof Grid> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type BoxIntent = "primary" | "success" | "warning" | "danger" | "secondary" | "info";
-const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
-  primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-accent)" },
-  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))",    text: "var(--wim-color-text-success)" },
-  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-warning)" },
-  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))", text: "var(--wim-color-text-danger)" },
-  secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-surface))",   text: "var(--wim-color-text-secondary)" },
-  info: { bg: "color-mix(in srgb, var(--wim-color-info) 12%, var(--wim-color-surface))", text: "var(--wim-color-text-info)" },
-};
-
-const Box = ({
-  children,
-  intent = "primary",
-}: {
-  children: React.ReactNode;
-  intent?: BoxIntent;
-}) => (
-  <div
-    style={{
-      backgroundColor: intentStyles[intent].bg,
-      color: intentStyles[intent].text,
-      // グリッドセルの輪郭。intent の淡色塗り（12% mix）は canvas が surface-app
-      // （#f5f5f5）のとき achromatic な secondary がほぼ同色に沈むため、
-      // 塗りに依存せずセル境界が常に見えるよう境界線で縁取る。
-      border: "1px solid var(--wim-color-border)",
-      padding: "20px",
-      borderRadius: "8px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "bold",
-    }}
-  >
-    {children}
-  </div>
-);
-
 export const Basic: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Grid {...args}>
-        <Box>{t("story.grid_item", "1")}</Box>
-        <Box intent="success">{t("story.grid_item", "2")}</Box>
-        <Box intent="warning">{t("story.grid_item", "3")}</Box>
-        <Box intent="danger">{t("story.grid_item", "4")}</Box>
-        <Box intent="secondary">{t("story.grid_item", "5")}</Box>
-        <Box intent="info">{t("story.grid_item", "6")}</Box>
+        <DemoCell intent="primary">{t("story.grid_item", "1")}</DemoCell>
+        <DemoCell intent="success">{t("story.grid_item", "2")}</DemoCell>
+        <DemoCell intent="warning">{t("story.grid_item", "3")}</DemoCell>
+        <DemoCell intent="danger">{t("story.grid_item", "4")}</DemoCell>
+        <DemoCell intent="secondary">{t("story.grid_item", "5")}</DemoCell>
+        <DemoCell intent="info">{t("story.grid_item", "6")}</DemoCell>
       </Grid>
     );
   },
@@ -92,9 +56,9 @@ export const CustomColumns: Story = {
   render: function Render(args) {
     return (
       <Grid {...args}>
-        <Box>1fr</Box>
-        <Box intent="success">2fr</Box>
-        <Box intent="warning">1fr</Box>
+        <DemoCell intent="primary">1fr</DemoCell>
+        <DemoCell intent="success">2fr</DemoCell>
+        <DemoCell intent="warning">1fr</DemoCell>
       </Grid>
     );
   },
@@ -107,11 +71,11 @@ export const CustomColumns: Story = {
 export const Responsive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const intents: BoxIntent[] = ["primary", "success", "warning", "danger", "secondary", "info", "secondary", "success"];
+    const intents: DemoCellIntent[] = Array.from({ length: 8 }, (_, i) => demoCellIntent(i));
     return (
       <Grid {...args}>
         {intents.map((intent, i) => (
-          <Box key={i} intent={intent}>{t("story.grid_item", String(i + 1))}</Box>
+          <DemoCell key={i} intent={intent}>{t("story.grid_item", String(i + 1))}</DemoCell>
         ))}
       </Grid>
     );

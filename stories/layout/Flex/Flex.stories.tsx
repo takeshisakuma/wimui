@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Flex } from "wimui";
+import { DemoCell } from "../_helpers/DemoCell";
 
 
 const meta: Meta<typeof Flex> = {
@@ -42,47 +43,14 @@ const meta: Meta<typeof Flex> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type BoxIntent = "primary" | "success" | "warning" | "danger" | "secondary";
-const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
-  primary:     { bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-accent)" },
-  success:    { bg: "color-mix(in srgb, var(--wim-color-success) 12%, var(--wim-color-surface))",    text: "var(--wim-color-text-success)" },
-  warning:     { bg: "color-mix(in srgb, var(--wim-color-warning) 12%, var(--wim-color-surface))",     text: "var(--wim-color-text-warning)" },
-  danger: { bg: "color-mix(in srgb, var(--wim-color-danger) 12%, var(--wim-color-surface))", text: "var(--wim-color-text-danger)" },
-  secondary:   { bg: "color-mix(in srgb, var(--wim-color-secondary) 12%, var(--wim-color-surface))",   text: "var(--wim-color-text-secondary)" },
-};
-
-const Box = ({
-  children,
-  intent = "primary",
-}: {
-  children: React.ReactNode;
-  intent?: BoxIntent;
-}) => (
-  <div
-    style={{
-      backgroundColor: intentStyles[intent].bg,
-      color: intentStyles[intent].text,
-      padding: "20px",
-      borderRadius: "8px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "bold",
-      minWidth: "60px",
-    }}
-  >
-    {children}
-  </div>
-);
-
 export const Basic: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box intent="success">{t("story.flex_item_2", "2")}</Box>
-        <Box intent="warning">{t("story.flex_item_3", "3")}</Box>
+        <DemoCell intent="primary" style={{ minWidth: 60 }}>{t("story.flex_item_1", "1")}</DemoCell>
+        <DemoCell intent="success" style={{ minWidth: 60 }}>{t("story.flex_item_2", "2")}</DemoCell>
+        <DemoCell intent="warning" style={{ minWidth: 60 }}>{t("story.flex_item_3", "3")}</DemoCell>
       </Flex>
     );
   },
@@ -97,9 +65,9 @@ export const Column: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story.flex_item_1", "Item 1")}</Box>
-        <Box intent="success">{t("story.flex_item_2", "Item 2")}</Box>
-        <Box intent="danger">{t("story.flex_item_3", "Item 3")}</Box>
+        <DemoCell intent="primary">{t("story.flex_item_1", "Item 1")}</DemoCell>
+        <DemoCell intent="success">{t("story.flex_item_2", "Item 2")}</DemoCell>
+        <DemoCell intent="danger">{t("story.flex_item_3", "Item 3")}</DemoCell>
       </Flex>
     );
   },
@@ -114,9 +82,9 @@ export const JustifyBetween: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story.flex_left")}</Box>
-        <Box intent="secondary">{t("story.flex_middle")}</Box>
-        <Box intent="secondary">{t("story.flex_right")}</Box>
+        <DemoCell intent="primary">{t("story.flex_left")}</DemoCell>
+        <DemoCell intent="secondary">{t("story.flex_middle")}</DemoCell>
+        <DemoCell intent="secondary">{t("story.flex_right")}</DemoCell>
       </Flex>
     );
   },
@@ -132,11 +100,11 @@ export const Wrapped: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box intent="success">{t("story.flex_item_2", "2")}</Box>
-        <Box intent="warning">{t("story.flex_item_3", "3")}</Box>
-        <Box intent="danger">{t("story.flex_item_4", "4")}</Box>
-        <Box intent="secondary">{t("story.flex_item_5", "5")}</Box>
+        <DemoCell intent="primary">{t("story.flex_item_1", "1")}</DemoCell>
+        <DemoCell intent="success">{t("story.flex_item_2", "2")}</DemoCell>
+        <DemoCell intent="warning">{t("story.flex_item_3", "3")}</DemoCell>
+        <DemoCell intent="danger">{t("story.flex_item_4", "4")}</DemoCell>
+        <DemoCell intent="secondary">{t("story.flex_item_5", "5")}</DemoCell>
       </Flex>
     );
   },

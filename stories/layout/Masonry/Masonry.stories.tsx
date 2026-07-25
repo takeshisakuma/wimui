@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Box, Masonry } from "wimui";
+import { Masonry } from "wimui";
+import { DemoCell, demoCellIntent } from "../_helpers/DemoCell";
 
 const meta: Meta<typeof Masonry> = {
   title: "Components/Layout/Masonry",
@@ -21,22 +22,14 @@ const MasonryDemo = (args: Parameters<typeof Masonry>[0]) => {
   return (
     <Masonry {...args}>
       {heights.map((height, index) => (
-        <Box
+        <DemoCell
           key={index}
-          bg={`hsl(${index * 40}, 70%, 80%)`}
-          radius={8}
+          intent={demoCellIntent(index)}
           h={height}
-          display="flex"
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: `hsl(${index * 40}, 70%, 30%)`,
-          }}
+          style={{ fontSize: "var(--wim-font-size-2xl)" }}
         >
           {index + 1}
-        </Box>
+        </DemoCell>
       ))}
     </Masonry>
   );
