@@ -95,15 +95,16 @@
         "value": "{pccs.lt2}"
       },
       "text-on-success": {
-        "$comment": "dark の success (v12 #33a23d) は白文字だと 3.3:1。黒文字で 6.4:1",
-        "value": "{pccs.bk}"
+        "$comment": "dark も success を s12 に揃え、白文字 4.65:1（AA）。旧 v12 は白 3.3:1 で不足",
+        "value": "{pccs.w}"
       },
       "text-on-danger": {
         "$comment": "dark の danger (lt2 #fb7482) は白文字だと 2.7:1。黒文字で 7.9:1",
         "value": "{pccs.bk}"
       },
       "success": {
-        "value": "{pccs.v12}"
+        "$comment": "light と同じ s12。Vivid(v12) だと白文字 AA 未満のため Strong に固定",
+        "value": "{pccs.s12}"
       },
       "warning": {
         "value": "{pccs.v7}"

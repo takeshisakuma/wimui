@@ -22,9 +22,9 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 
 | トーン | 略称 | 特徴 | 用途例 |
 |--------|------|------|--------|
-| Vivid | `v` | 最高彩度、鮮やか | アクセント、ダークモードのプライマリ |
+| Vivid | `v` | 最高彩度、鮮やか | ライトの primary / danger / warning / info 塗り、ダークの primary など |
 | Bright | `b` | 明るく鮮やか | ダークモード Accent、Avatar |
-| Strong | `s` | やや暗く力強い | ライトモードのプライマリ・セマンティック色 |
+| Strong | `s` | やや暗く力強い | success 塗り（白文字 AA 用）。テキスト用の一段暗いトーンにも使う |
 | Deep | `dp` | 深く落ち着いた色 | 強調背景 |
 | Light | `lt` | 明るく柔らか | ホバー状態、淡いアクセント |
 | Soft | `sf` | くすんだ柔らかさ | 控えめな装飾 |
@@ -43,16 +43,16 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 
 | 意味 | トークン | ライトモード | ダークモード |
 |------|----------|-------------|-------------|
-| Primary | `--wim-color-primary` | `s16` (#205b85) | `v16` (#055d87) |
-| Danger | `--wim-color-danger` | `s1` (#b01040) | `lt2` (#fb7482) |
-| Success | `--wim-color-success` | `s12` (#28853f) | `v12` (#33a23d) |
-| Warning | `--wim-color-warning` | `s8` (#ccb914) | `v7` (#ffcc00) |
-| Info | `--wim-color-info` | `s18` (#243b8b) | `v17` (#093f86) |
+| Primary | `--wim-color-primary` | `v16` (#055d87) | `v16` (#055d87) |
+| Danger | `--wim-color-danger` | `v1` (#d40045) | `lt2` (#fb7482) |
+| Success | `--wim-color-success` | `s12` (#28853f) | `s12` (#28853f) |
+| Warning | `--wim-color-warning` | `v6` (#ff7f00) | `v7` (#ffcc00) |
+| Info | `--wim-color-info` | `v18` (#0f218b) | `v17` (#093f86) |
 
-ダークモードでは彩度を上げたトーン（Vivid / Bright）に切り替えることで、暗い背景上でもコントラストを確保しています。
+ライトの intent 塗りは原則 Vivid。success だけ Strong（`s12`）で、solid 上の白文字 AA を確保する。ダークは背景との差のため Light / Vivid へ切り替える（danger は `lt2`、warning は `v7`）。
 
 **インテント色は塗り専用。** テキストに使うと WCAG AA を満たさない組合せが多い
-（例: warning `#ccb914` は白背景でも 2.0:1）。テキストには次の `text-*` トークンを使う。
+（例: warning `#ff7f00` は白背景でも約 2.5:1）。テキストには次の `text-*` トークンを使う。
 outline/subtle バリアントの文字色も intents SSOT の `text` ロール経由でこれらに解決される。
 
 | 用途 | トークン | ライト | ダーク |

@@ -6,7 +6,8 @@
         "value": "{pccs.v1}"
       },
       "success": {
-        "value": "{pccs.v12}"
+        "$comment": "Strong(s12): Vivid(v12) は白文字 AA 未満のため一段暗い Strong。solid Button の on を primary/danger と同じ白に揃える",
+        "value": "{pccs.s12}"
       },
       "warning": {
         "value": "{pccs.v6}"
@@ -30,8 +31,8 @@
         "value": "{pccs.w}"
       },
       "text-on-success": {
-        "$comment": "Vivid(v12) 塗りは白文字だと AA 未満のため黒",
-        "value": "{pccs.bk}"
+        "$comment": "success 塗り (s12 #28853f) 上で白文字 4.65:1（AA）。primary/danger の solid on と揃える",
+        "value": "{pccs.w}"
       },
       "text-on-warning": {
         "value": "{pccs.bk}"

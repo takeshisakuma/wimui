@@ -336,9 +336,9 @@ export const NotificationCenter: Story = {
                       marginBottom: "4px",
                       color:
                         log.type === "success"
-                           ? "var(--wim-color-success)"
+                           ? "var(--wim-color-text-success)"
                           : log.type === "warning"
-                             ? "var(--wim-color-warning)"
+                             ? "var(--wim-color-text-warning)"
                             : "var(--wim-color-text-tertiary)",
                     }}
                   >

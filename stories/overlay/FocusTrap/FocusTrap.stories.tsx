@@ -101,7 +101,7 @@ export const InitialFocus: Story = {
                 }}
               >
                 <Card.Header>
-                  <strong style={{ color: "var(--wim-color-success)" }}>
+                  <strong style={{ color: "var(--wim-color-text-success)" }}>
                     {t("story.focustrap_autofocus_title")}
                   </strong>
                 </Card.Header>
