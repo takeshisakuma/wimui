@@ -6,7 +6,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: auto;
+
+  // InputBase .inner uses height: 100% — force content-sized box so tags
+  // are not pinned to the top of a stretched shell.
+  height: auto !important;
   min-height: var(--wim-height-md);
 
   // InputBase .inner sets padding-left/right with !important for icon offsets.
@@ -15,12 +18,13 @@
 }
 
 .container {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
   min-height: inherit;
-  padding: var(--wim-field-padding-x);
+  padding: var(--wim-field-padding-y) var(--wim-field-padding-x);
 
   &.disabled {
     cursor: not-allowed;

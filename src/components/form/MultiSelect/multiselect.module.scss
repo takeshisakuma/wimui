@@ -19,7 +19,10 @@
     justify-content: space-between;
     width: 100%;
     min-height: var(--wim-height-md);
-    padding: var(--wim-field-padding-y) var(--wim-input-offset-right) var(--wim-field-padding-y) var(--wim-control-item-padding-x-sm);
+
+    /* Inline padding comes from InputBase .inner (!important offsets). */
+    padding-block: var(--wim-field-padding-y);
+    padding-inline: 0;
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-snug-jp);
     color: var(--wim-color-text-primary);
