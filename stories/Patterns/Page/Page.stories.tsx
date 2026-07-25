@@ -578,48 +578,57 @@ export const ShoppingCart: StoryObj = {
                   border: "1px solid var(--wim-color-border-secondary)",
                 }}
               >
-                <Stack direction="row" align="start" gap="lg">
-                  <Box style={{ flexShrink: 0 }}>
-                    <Image
-                      src={noImage}
-                      alt={t("cart.image_alt")}
-                      width={80}
-                      height={80}
-                      fit="cover"
-                      radius="lg"
-                    />
-                  </Box>
+                <Stack direction="row" align="stretch" gap="lg">
+                  <Box
+                    role="img"
+                    aria-label={t("cart.image_alt")}
+                    style={{
+                      width: 140,
+                      flexShrink: 0,
+                      alignSelf: "stretch",
+                      borderRadius: "var(--wim-radius-lg)",
+                      backgroundImage: `url(${noImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
                   <Stack gap="md" style={{ flex: 1, minWidth: 0 }}>
-                    <Stack gap="2xs">
-                      <Text content={item.name} style={{ fontWeight: 600 }} />
-                      <Text content={item.price} color="text-secondary" size="sm" />
-                    </Stack>
-                    <Stack direction="row" align="center" justify="space-between">
-                      <Stack direction="row" align="center" gap="sm">
-                        <Button
+                    <Stack
+                      direction="row"
+                      align="start"
+                      justify="space-between"
+                      gap="md"
+                    >
+                      <Stack gap="2xs" style={{ minWidth: 0 }}>
+                        <Text content={item.name} style={{ fontWeight: 600 }} />
+                        <Text
+                          content={item.price}
+                          color="text-secondary"
                           size="sm"
-                          variant="outline"
-                          aria-label={t("docs_stories_recipes:page.qty_decrease")}
-                        >
-                          <Icon name="MinusIcon" size="sm" />
-                        </Button>
-                        <Text content={String(item.qty)} />
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          aria-label={t("docs_stories_recipes:page.qty_increase")}
-                        >
-                          <Icon name="PlusIcon" size="sm" />
-                        </Button>
+                        />
                       </Stack>
                       <Button
                         size="sm"
                         variant="ghost"
                         intent="danger"
+                        icon="CloseIcon"
                         aria-label={t("docs_stories_recipes:page.remove_item")}
-                      >
-                        <Icon name="CloseIcon" size="sm" />
-                      </Button>
+                      />
+                    </Stack>
+                    <Stack direction="row" align="center" gap="sm">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        icon="MinusIcon"
+                        aria-label={t("docs_stories_recipes:page.qty_decrease")}
+                      />
+                      <Text content={String(item.qty)} />
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        icon="PlusIcon"
+                        aria-label={t("docs_stories_recipes:page.qty_increase")}
+                      />
                     </Stack>
                   </Stack>
                 </Stack>
