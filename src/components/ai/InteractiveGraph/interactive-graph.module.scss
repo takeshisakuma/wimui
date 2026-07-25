@@ -1,4 +1,13 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
 .root {
+  /* Align xyflow defaults with WIM tokens (color uses currentColor on SVGs). */
+  --xy-controls-button-background-color-default: var(--wim-color-surface);
+  --xy-controls-button-background-color-hover-default: var(--wim-color-surface-hover);
+  --xy-controls-button-color-default: var(--wim-color-text-primary);
+  --xy-controls-button-color-hover-default: var(--wim-color-text-primary);
+  --xy-controls-button-border-color-default: var(--wim-color-border);
+
   position: relative;
   overflow: hidden;
   background-color: var(--wim-color-surface-app);
@@ -24,13 +33,35 @@
   }
 
   :global(.react-flow__controls-button) {
+    width: 44px; /* Exception: Structural Logic — WCAG 2.5.5 touch target */
+    height: 44px; /* Exception: Structural Logic — WCAG 2.5.5 touch target */
+    padding: var(--wim-spacing-xs);
+    color: var(--wim-color-text-primary);
     background-color: var(--wim-color-surface);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
-    fill: var(--wim-color-text-primary);
+    fill: currentcolor;
+
+    /* Fixed square box (overrides xyflow `width: 100%`). MinusIcon’s
+       viewBox is 32×5 — without a square box it grows edge-to-edge. */
+    svg {
+      width: 22px; /* Exception: Geometric Harmony — icon vs 44px control */
+      max-width: 22px; /* Exception: Geometric Harmony — icon vs 44px control */
+      height: 22px; /* Exception: Geometric Harmony — icon vs 44px control */
+      max-height: 22px; /* Exception: Geometric Harmony — icon vs 44px control */
+      fill: currentcolor;
+    }
 
     &:hover {
+      color: var(--wim-color-text-primary);
       background-color: var(--wim-color-surface-hover);
     }
+  }
+
+  /* Minus path fills the full viewBox width; scaleX adds L/R optical padding
+     to match Plus / FitView (empty corners in a square box). */
+  :global(.react-flow__controls-zoomout) svg {
+    transform: scaleX(0.72);
+    transform-origin: center;
   }
 
   // React Flow の attribution リンクは既定 #999 でキャンバス上 2.7:1（AA 未満）
@@ -47,6 +78,11 @@
   background-color: var(--wim-color-surface);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
+
+  /* Narrow viewports: overview overlaps the canvas and blocks pan/zoom. */
+  @include breakpoints.down(md) {
+    display: none;
+  }
 }
 
 .controls {
