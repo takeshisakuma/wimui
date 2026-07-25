@@ -158,8 +158,8 @@
   }
 
   .warning {
-    /* v6 橙は l*0.5 だと茶赤に潰れるため、他 intent と同じ 0.75 でオレンジを残す */
-    --wim-snackbar-bg: oklch(from var(--wim-color-warning) calc(l * 0.75) c h);
+    /* White-on-warning AA: 0.75 yields ~3.2:1 after vivid tokens; 0.58 keeps orange and clears 4.5:1 */
+    --wim-snackbar-bg: oklch(from var(--wim-color-warning) calc(l * 0.58) c h);
     --wim-snackbar-action: var(--wim-color-white);
     --wim-snackbar-action-hover: var(--wim-snackbar-border);
   }
