@@ -63,6 +63,11 @@ const checks = [
     name: "Peer import paths (root barrel must not pull optional peers)",
     command: "node scripts/check-imports.js",
   },
+  {
+    category: "docs",
+    name: "AI-slop composition guard (Patterns anti-pattern gates)",
+    command: "node scripts/check-slop.js",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",

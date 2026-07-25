@@ -667,6 +667,8 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 
 以下は生成 AI が高頻度で出力する定型であり、1 つあるだけで画面全体がテンプレに見える。使用禁止。
 
+> **機械ガード（`npm run check:slop`）**: この表のうち決定的に検出できる部分集合は `stories/Patterns/**` に対して自動強制される（`audit:docs` / lint-staged / CI）。①`linear-gradient(...135deg...)` と②誇張形容詞（`seamless` / `圧倒的` 等、`docs_stories_recipes` を照合）はハードゲート、③インライン style の既定値上書き（`padding`/`margin`/`borderRadius: 0`）と px 直書きはラチェット（現状値を凍結し増加をブロック）。残りの判断依存パターンは引き続きセルフレビューと `composition-guidelines` skill で担保する。誇張形容詞辞書を増やすときは `scripts/check-slop.js` の `HYPE_WORDS` と同期する。
+
 | 禁止 | 代わりに |
 |------|----------|
 | `linear-gradient(135deg, ...)` のヒーロー背景 | サーフェス階層トークン（`surface` / `surface-raised` 等）による面の切り替え |
