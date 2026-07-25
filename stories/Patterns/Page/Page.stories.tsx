@@ -6,6 +6,7 @@ import {
   Alert,
   Avatar,
   Badge,
+  Box,
   Button,
   Card,
   Center,
@@ -14,6 +15,7 @@ import {
   Grid,
   Header,
   Icon,
+  Image,
   Input,
   InputGroup,
   Rating,
@@ -23,6 +25,7 @@ import {
   Title,
 } from "wimui";
 import { Sparkline } from "wimui/charts";
+import noImage from "@/media/no-image.png";
 
 const meta: Meta = {
   title: "Patterns/Page",
@@ -477,22 +480,14 @@ export const ProductCard: StoryObj = {
               padding="none"
               style={{ overflow: "hidden" }}
             >
-              <div
-                style={{
-                  height: "180px",
-                  background: "var(--wim-color-surface-variant)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon
-                  name="ImageIcon"
-                  size="lg"
-                  color="tertiary"
-                  aria-hidden="true"
-                />
-              </div>
+              <Image
+                src={noImage}
+                alt={t("product.image_alt")}
+                height={180}
+                width="100%"
+                fit="cover"
+                radius="none"
+              />
               <Stack gap="sm" style={{ padding: "var(--wim-spacing-lg)" }}>
                 <Badge
                   intent="primary"
@@ -583,47 +578,57 @@ export const ShoppingCart: StoryObj = {
                   border: "1px solid var(--wim-color-border-secondary)",
                 }}
               >
-                <Stack direction="row" align="start" gap="lg">
-                  <div
+                <Stack direction="row" align="stretch" gap="lg">
+                  <Box
+                    role="img"
+                    aria-label={t("cart.image_alt")}
                     style={{
-                      width: "80px",
-                      height: "80px",
-                      borderRadius: "var(--wim-radius-lg)",
-                      background: "var(--wim-color-surface-variant)",
+                      width: 140,
                       flexShrink: 0,
+                      alignSelf: "stretch",
+                      borderRadius: "var(--wim-radius-lg)",
+                      backgroundImage: `url(${noImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   />
                   <Stack gap="md" style={{ flex: 1, minWidth: 0 }}>
-                    <Stack gap="2xs">
-                      <Text content={item.name} style={{ fontWeight: 600 }} />
-                      <Text content={item.price} color="text-secondary" size="sm" />
-                    </Stack>
-                    <Stack direction="row" align="center" justify="space-between">
-                      <Stack direction="row" align="center" gap="sm">
-                        <Button
+                    <Stack
+                      direction="row"
+                      align="start"
+                      justify="space-between"
+                      gap="md"
+                    >
+                      <Stack gap="2xs" style={{ minWidth: 0 }}>
+                        <Text content={item.name} style={{ fontWeight: 600 }} />
+                        <Text
+                          content={item.price}
+                          color="text-secondary"
                           size="sm"
-                          variant="outline"
-                          aria-label={t("docs_stories_recipes:page.qty_decrease")}
-                        >
-                          <Icon name="MinusIcon" size="sm" />
-                        </Button>
-                        <Text content={String(item.qty)} />
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          aria-label={t("docs_stories_recipes:page.qty_increase")}
-                        >
-                          <Icon name="PlusIcon" size="sm" />
-                        </Button>
+                        />
                       </Stack>
                       <Button
                         size="sm"
                         variant="ghost"
                         intent="danger"
+                        icon="CloseIcon"
                         aria-label={t("docs_stories_recipes:page.remove_item")}
-                      >
-                        <Icon name="CloseIcon" size="sm" />
-                      </Button>
+                      />
+                    </Stack>
+                    <Stack direction="row" align="center" gap="sm">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        icon="MinusIcon"
+                        aria-label={t("docs_stories_recipes:page.qty_decrease")}
+                      />
+                      <Text content={String(item.qty)} />
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        icon="PlusIcon"
+                        aria-label={t("docs_stories_recipes:page.qty_increase")}
+                      />
                     </Stack>
                   </Stack>
                 </Stack>
