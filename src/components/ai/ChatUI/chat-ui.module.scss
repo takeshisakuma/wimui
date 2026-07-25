@@ -17,7 +17,7 @@
     gap: var(--wim-spacing-xl);
     padding: var(--wim-spacing-md);
     overflow-y: auto;
-    background-color: var(--wim-color-surface-variant);
+    background-color: var(--wim-comp-chat-surface, var(--wim-color-surface-variant));
   }
   
   .message {
@@ -174,7 +174,9 @@
   
   .timestamp {
     font-size: var(--wim-font-size-xs);
-    color: var(--wim-color-text-tertiary);
+
+    /* 背景が淡青（comp-chat-surface）になり text-tertiary では AA 未満のため一段濃く */
+    color: var(--wim-color-text-secondary);
   }
   
   .inputArea {
