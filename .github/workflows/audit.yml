@@ -23,7 +23,12 @@ jobs:
           node-version: 22
           cache: "npm"
       - run: npm ci --ignore-scripts
-      # high / critical があれば非0終了して落とす。moderate 以下は許容
-      # （false positive が多く運用が回らなくなるため）。必要なら --audit-level を上げる。
+      # 監査対象は「公開物に載る依存」= production 依存のみ（--omit=dev）。
+      # 本パッケージは files:["dist"] で dev ツール（eslint / storybook / postcss 等）は
+      # 出荷されず、その推移的 advisory は npm の range 集約（例: brace-expansion を
+      # <=5.0.7 と集約しパッチ済み版まで脆弱扱い）で恒常的な false positive を生み、
+      # かつ major override は caller 互換を壊すため綺麗に潰せない。dev ツールの脆弱性は
+      # Dependabot と lockfile レビューで別途対応する。
+      # high / critical があれば非0終了して落とす。moderate 以下は許容。必要なら --audit-level を上げる。
       - name: npm audit
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=high
