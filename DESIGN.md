@@ -737,3 +737,5 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 - [ ] インタラクティブな状態（hover / error / empty / loading）を happy path 以外も見せているか
 - [ ] 短い placeholder ではなく実データ（長文・多件数）でレイアウトを確認したか
 - [ ] 量産型グラスモーフィズム／近未来テック調に逃げず、製品のトーンを選び取っているか
+
+**判定（judge）**: 組み上げた画面が「AI 的か」を採点したいときは、VRT の Pattern スクショ（`vrt/vrt.spec.ts-snapshots/light-patterns-*.png`）を上のチェックリストの観点で pass/warn/fail 採点する。エージェント（Claude Code 等）に「Pattern スクショを judge して」と頼めば API キー無しでこの採点を実行できる（同一ルーブリックのスクリプト版は `npm run judge:slop`＝`@anthropic-ai/sdk` と `ANTHROPIC_API_KEY` が必要）。決定的に検出できる部分は `npm run check:slop`（A 層）が担当。
