@@ -55,11 +55,16 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 - Emoji used as UI icons (☰ ★ ✓) → use `src/icon/` components. (Emoji as functional markers in docs/README is fine; as UI icons it is not.)
 - Skeleton used as anything but loading (fake screenshots) → real-looking content or an actual mini UI.
 - Every section center-aligned → default to left-aligned; at most one centered section per page.
-- Round numbers ("1000+", "99%") + generic copy ("Get started", "seamless/powerful/effortless") → jagged realistic numbers (4,281) and product-specific voice.
+- Round numbers ("1000+", "99%") + generic copy ("Get started") → jagged realistic numbers (4,281) and product-specific voice.
 - Sequential/alphabetical dummy names (Alice/Bob/Charlie, User 1/2) → culturally diverse, unordered, real-feeling names.
 - Rainbow color-per-category → color carries state only (success/warning/danger); everything else neutral.
 - Perfectly even grids (2×2, 3×3 all same size) → break the grid (span the protagonist cell, size differences, hero+sidebar asymmetry).
 - Filling every slot / uniform gaps everywhere → leave whitespace; group by proximity (tight within a group, loose between groups).
+
+**Machine-enforced banned vocabulary** (a linter, `check:slop`, fails builds that use these in demo copy — say concrete actions/numbers instead):
+- Hype adjectives/verbs: seamless, powerful, effortless, cutting-edge, next-gen, next-generation, revolutionary, game-changing, state-of-the-art, world-class, best-in-class, unparalleled, lightning-fast, blazing-fast, supercharge, innovative, disruptive, harness, leverage, elevate, empower, reimagine, unleash, delight, magical, 圧倒的, 革新的, 次世代, 究極, 最先端.
+- Hype phrases: "in today's digital landscape", "built for the modern team", "supercharge your", "unleash your", "reimagine the way", "experience the power of", "innovative solutions".
+- Stock placeholder names: John Doe, Jane Doe, John Smith, Jane Smith, Lorem Ipsum, Example User, Acme (a realistic example name in an input placeholder is fine).
 
 **Must rules:**
 1. One visual protagonist per screen (jump in size/weight/color creates the entry point).

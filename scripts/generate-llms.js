@@ -32,6 +32,9 @@ if (!existsSync(join(ROOT, 'src/data/docgen_index.json'))) {
 const pkg = readJSON('package.json');
 const catalog = readJSON('src/data/components.json');
 const nameToExportCat = readJSON('src/data/docgen_index.json');
+// AI-slop 機械強制辞書（SSOT）。check-slop.js と同じソースを読み、composition 節の
+// 「machine-enforced vocabulary」行を生成する（辞書は scripts/slop-dictionary.json のみで管理）。
+const slopDict = readJSON('scripts/slop-dictionary.json');
 
 // export category -> import subpath. Root barrel ("wimui") always works too.
 const EXPORT_CATS = new Set([
@@ -156,11 +159,16 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 - Emoji used as UI icons (☰ ★ ✓) → use \`src/icon/\` components. (Emoji as functional markers in docs/README is fine; as UI icons it is not.)
 - Skeleton used as anything but loading (fake screenshots) → real-looking content or an actual mini UI.
 - Every section center-aligned → default to left-aligned; at most one centered section per page.
-- Round numbers ("1000+", "99%") + generic copy ("Get started", "seamless/powerful/effortless") → jagged realistic numbers (4,281) and product-specific voice.
+- Round numbers ("1000+", "99%") + generic copy ("Get started") → jagged realistic numbers (4,281) and product-specific voice.
 - Sequential/alphabetical dummy names (Alice/Bob/Charlie, User 1/2) → culturally diverse, unordered, real-feeling names.
 - Rainbow color-per-category → color carries state only (success/warning/danger); everything else neutral.
 - Perfectly even grids (2×2, 3×3 all same size) → break the grid (span the protagonist cell, size differences, hero+sidebar asymmetry).
 - Filling every slot / uniform gaps everywhere → leave whitespace; group by proximity (tight within a group, loose between groups).
+
+**Machine-enforced banned vocabulary** (a linter, \`check:slop\`, fails builds that use these in demo copy — say concrete actions/numbers instead):
+- Hype adjectives/verbs: ${slopDict.hypeWords.join(', ')}.
+- Hype phrases: ${slopDict.hypePhrases.map((p) => `"${p}"`).join(', ')}.
+- Stock placeholder names: ${slopDict.placeholderNames.join(', ')} (a realistic example name in an input placeholder is fine).
 
 **Must rules:**
 1. One visual protagonist per screen (jump in size/weight/color creates the entry point).

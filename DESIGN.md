@@ -667,6 +667,8 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 
 以下は生成 AI が高頻度で出力する定型であり、1 つあるだけで画面全体がテンプレに見える。使用禁止。
 
+> **機械ガード（`npm run check:slop`）**: この表のうち決定的に検出できる部分集合は `stories/Patterns/**` ＋ Pattern デモコピー（`docs_stories_recipes`）に対して自動強制される（`audit:docs` / lint-staged / CI）。**ハードゲート（baseline 0）**: ①`linear-gradient(...135deg...)` ②誇張形容詞・定型フレーズ（`seamless` / `圧倒的` / `Built for the modern team` 等） ③定型プレースホルダ名（`John Doe` 等。入力欄 placeholder の氏名例は正当なのでスコープ外）。**ラチェット**（現状値を凍結し増加をブロック）: ④インライン style の既定値上書き（`padding`/`margin`/`borderRadius: 0`）と px 直書き。残りの判断依存パターン（1 主役・中央揃え多用・rule of three・実在感）は引き続きセルフレビュー／`composition-guidelines` skill／LLM-judge（`npm run judge:slop`）で担保する。辞書は **`scripts/slop-dictionary.json` が単一ソース（SSOT）**で、`check:slop` ガードと `llms.txt` 生成（`generate-llms.js`）の両方がここを読む。増やすときはこの JSON だけを編集し `npm run llms:build` で llms.txt を再生成する（上の例示は代表例で網羅ではない）。辞書の一部は反 AI-slop skill `Nutlope/hallmark` から採掘。
+
 | 禁止 | 代わりに |
 |------|----------|
 | `linear-gradient(135deg, ...)` のヒーロー背景 | サーフェス階層トークン（`surface` / `surface-raised` 等）による面の切り替え |
@@ -735,3 +737,5 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 - [ ] インタラクティブな状態（hover / error / empty / loading）を happy path 以外も見せているか
 - [ ] 短い placeholder ではなく実データ（長文・多件数）でレイアウトを確認したか
 - [ ] 量産型グラスモーフィズム／近未来テック調に逃げず、製品のトーンを選び取っているか
+
+**判定（judge）**: 組み上げた画面が「AI 的か」を採点したいときは、VRT の Pattern スクショ（`vrt/vrt.spec.ts-snapshots/light-patterns-*.png`）を上のチェックリストの観点で pass/warn/fail 採点する。エージェント（Claude Code 等）に「Pattern スクショを judge して」と頼めば API キー無しでこの採点を実行できる（同一ルーブリックのスクリプト版は `npm run judge:slop`＝`@anthropic-ai/sdk` と `ANTHROPIC_API_KEY` が必要）。決定的に検出できる部分は `npm run check:slop`（A 層）が担当。

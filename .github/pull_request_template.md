@@ -13,6 +13,7 @@
 - [ ] `npm run i18n:check:mdx` / `npm run audit:stories-i18n`（Docs・stories の英語直書き）
 - [ ] `npm run i18n:check:ignore`（`i18n-ignore` を増やしていない）
 - [ ] `npm run check:imports`（charts / ai / peer data-display をルートから import していない）
+- [ ] `npm run check:slop`（`stories/Patterns/**` を触ったとき。135deg グラデ・誇張形容詞・style 既定値上書き/px 直書きの増加を検出）
 - [ ] `npm run lint` / `npm run stylelint`（触った TS/SCSS）
 - [ ] 新規コンポーネントなら `npm run audit-mdx` と MDX 必須セクション
 
