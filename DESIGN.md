@@ -667,7 +667,7 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 
 以下は生成 AI が高頻度で出力する定型であり、1 つあるだけで画面全体がテンプレに見える。使用禁止。
 
-> **機械ガード（`npm run check:slop`）**: この表のうち決定的に検出できる部分集合は `stories/Patterns/**` に対して自動強制される（`audit:docs` / lint-staged / CI）。①`linear-gradient(...135deg...)` と②誇張形容詞（`seamless` / `圧倒的` 等、`docs_stories_recipes` を照合）はハードゲート、③インライン style の既定値上書き（`padding`/`margin`/`borderRadius: 0`）と px 直書きはラチェット（現状値を凍結し増加をブロック）。残りの判断依存パターンは引き続きセルフレビューと `composition-guidelines` skill で担保する。誇張形容詞辞書を増やすときは `scripts/check-slop.js` の `HYPE_WORDS` と同期する。
+> **機械ガード（`npm run check:slop`）**: この表のうち決定的に検出できる部分集合は `stories/Patterns/**` ＋ Pattern デモコピー（`docs_stories_recipes`）に対して自動強制される（`audit:docs` / lint-staged / CI）。**ハードゲート（baseline 0）**: ①`linear-gradient(...135deg...)` ②誇張形容詞・定型フレーズ（`seamless` / `圧倒的` / `Built for the modern team` 等） ③定型プレースホルダ名（`John Doe` 等。入力欄 placeholder の氏名例は正当なのでスコープ外）。**ラチェット**（現状値を凍結し増加をブロック）: ④インライン style の既定値上書き（`padding`/`margin`/`borderRadius: 0`）と px 直書き。残りの判断依存パターン（1 主役・中央揃え多用・rule of three・実在感）は引き続きセルフレビュー／`composition-guidelines` skill／LLM-judge（`npm run judge:slop`）で担保する。辞書（`HYPE_WORDS` / `HYPE_PHRASES` / `PLACEHOLDER_NAMES`）を増やすときは `scripts/check-slop.js` と同期する。辞書の一部は反 AI-slop skill `Nutlope/hallmark` から採掘。
 
 | 禁止 | 代わりに |
 |------|----------|

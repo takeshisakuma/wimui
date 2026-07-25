@@ -28,13 +28,35 @@ const STYLE_OVERRIDE_BASELINE = 40;
 
 // --- 誇張形容詞辞書（多言語・SSOT）。DESIGN.md 禁止パターン「誇張形容詞」と同期する。 ---
 // 追加時は DESIGN.md の該当行にも反映すること（将来 A+C で JSON へ SSOT 化する候補）。
+// 一部は Nutlope/hallmark の references/copy.md・anti-patterns.md から採掘（同ミッションの反 AI-slop skill）。
 const HYPE_WORDS = [
   // en（部分一致。派生形 powerfully / seamlessly 等も拾う）
   'seamless', 'powerful', 'effortless', 'cutting-edge', 'next-gen', 'next-generation',
   'revolutionary', 'game-changing', 'state-of-the-art', 'world-class', 'best-in-class',
   'unparalleled', 'lightning-fast', 'blazing-fast', 'supercharge',
+  // en（hallmark 由来のマーケ動詞・形容詞）
+  'innovative', 'disruptive', 'harness', 'leverage', 'elevate', 'empower',
+  'reimagine', 'unleash', 'delight', 'magical',
   // ja（部分一致）
   '圧倒的', '革新的', '次世代', '究極', '最先端',
+];
+
+// 誇張フレーズ（定型オープナー）。hallmark references/copy.md「Banned Opening Lines」由来。
+const HYPE_PHRASES = [
+  "in today's digital landscape",
+  'built for the modern team',
+  'supercharge your',
+  'unleash your',
+  'reimagine the way',
+  'experience the power of',
+  'innovative solutions',
+];
+
+// 定型プレースホルダ名（実在感の無いダミー名）。DESIGN.md「連番・アルファベット順のダミー名」＋
+// hallmark「Stock placeholder names」由来。※入力欄プレースホルダ（*placeholder* キー）は
+// 「氏名フォーマット例」として正当な UX なのでスコープ外。
+const PLACEHOLDER_NAMES = [
+  'John Doe', 'Jane Doe', 'John Smith', 'Jane Smith', 'Lorem Ipsum', 'Example User', 'Acme',
 ];
 
 // Pattern デモコピーが実在する locale ファイル（en/ja/pt）。
@@ -80,15 +102,25 @@ for (const file of patternFiles) {
   });
 }
 
-// --- hype 辞書スキャン（locale JSON） ---
+// --- コピースキャン（locale JSON）: hype 語・hype フレーズ・プレースホルダ名 ---
+const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const hypeRe = new RegExp([...HYPE_WORDS, ...HYPE_PHRASES].map(esc).join('|'), 'i');
+const nameRe = new RegExp(PLACEHOLDER_NAMES.map(esc).join('|'), 'i');
+const isPlaceholderKey = (line) => /"[^"]*placeholder[^"]*"\s*:/i.test(line);
+
 const hypeHits = [];
-const hypeRe = new RegExp(HYPE_WORDS.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'i');
+const nameHits = [];
 for (const file of HYPE_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   lines.forEach((line, i) => {
-    const m = line.match(hypeRe);
-    if (m) hypeHits.push(`${file}:${i + 1}: 「${m[0]}」 ${line.trim().slice(0, 80)}`);
+    const hm = line.match(hypeRe);
+    if (hm) hypeHits.push(`${file}:${i + 1}: 「${hm[0]}」 ${line.trim().slice(0, 80)}`);
+    // 入力欄プレースホルダの氏名例は正当（スコープ外）
+    if (!isPlaceholderKey(line)) {
+      const nm = line.match(nameRe);
+      if (nm) nameHits.push(`${file}:${i + 1}: 「${nm[0]}」 ${line.trim().slice(0, 80)}`);
+    }
   });
 }
 
@@ -102,8 +134,14 @@ if (gradientHits.length > 0) {
 }
 
 if (hypeHits.length > 0) {
-  console.log(`\n[FAIL] 誇張形容詞は禁止（具体的な動作・数値で言う。DESIGN.md 禁止パターン参照）:`);
+  console.log(`\n[FAIL] 誇張形容詞・定型フレーズは禁止（具体的な動作・数値で言う。DESIGN.md 禁止パターン参照）:`);
   for (const h of hypeHits) console.log(`  ${h}`);
+  failed = true;
+}
+
+if (nameHits.length > 0) {
+  console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。DESIGN.md 規約13）:`);
+  for (const h of nameHits) console.log(`  ${h}`);
   failed = true;
 }
 
