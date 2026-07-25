@@ -106,6 +106,17 @@ export const Dropzone = ({
       errorId={errorId}
       className={classNames("wim-dropzone", styles.container, className)}
     >
+      <input
+        type="file"
+        ref={inputRef}
+        accept={accept}
+        multiple={multiple}
+        disabled={disabled}
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
       <InteractiveArea
         className={styles.dropzone}
         size={size}
@@ -135,18 +146,7 @@ export const Dropzone = ({
         }
         description={resolvedDescription}
       >
-        <input
-          type="file"
-          ref={inputRef}
-          accept={accept}
-          multiple={multiple}
-          disabled={disabled}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-          aria-hidden="true"
-          tabIndex={-1}
-        />
-        {files && files.length > 0 && (
+        {files && files.length > 0 ? (
           <div className={styles.fileList}>
             {Array.from(files).map((file, index) => (
               <span key={index} className={styles.fileName}>
@@ -154,7 +154,7 @@ export const Dropzone = ({
               </span>
             ))}
           </div>
-        )}
+        ) : null}
       </InteractiveArea>
     </FieldTemplate>
   );

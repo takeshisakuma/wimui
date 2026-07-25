@@ -94,6 +94,7 @@
     "dropzone_multiple_desc": "multiple プロパティを true に設定することで、複数のファイルを選択・ドロップできるようになります。",
     "dropzone_scenario_avatar": "画像ファイルのアップロード。",
     "dropzone_scenario_docs": "PDFやOfficeファイルの提出。",
+    "dropzone_size_desc": "size プロパティは InteractiveArea のパディングとアイコンスケール（sm / md / lg）に対応します。",
     "dropzone_title": "ドラッグ＆ドロップによるファイルアップロード領域",
     "file_upload_desc": "ファイル選択",
     "file_upload_title": "ファイル選択",
