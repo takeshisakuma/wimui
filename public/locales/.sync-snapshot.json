@@ -4893,6 +4893,7 @@
       "dropzone_multiple_desc": "By setting the multiple property to true, you can select and drop multiple files.",
       "dropzone_scenario_avatar": "Uploading image files.",
       "dropzone_scenario_docs": "Submitting PDF or Office files.",
+      "dropzone_size_desc": "The size prop maps to InteractiveArea padding and icon scale (sm / md / lg).",
       "dropzone_title": "Area for uploading files via drag and drop",
       "file_upload_desc": "File selection",
       "file_upload_title": "File selection",

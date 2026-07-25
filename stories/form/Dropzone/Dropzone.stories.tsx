@@ -75,6 +75,34 @@ export const Disabled: Story = {
   },
 };
 
+export const Small: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dropzone
+        {...args}
+        size="sm"
+        label={t("story.dropzone_label_file")}
+        description={t("story.dropzone_default_desc")}
+      />
+    );
+  },
+};
+
+export const Large: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dropzone
+        {...args}
+        size="lg"
+        label={t("story.dropzone_label_file")}
+        description={t("story.dropzone_default_desc")}
+      />
+    );
+  },
+};
+
 export const CustomIcon: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

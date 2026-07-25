@@ -94,6 +94,7 @@
     "dropzone_multiple_desc": "Ao definir a propriedade multiple como true, pode selecionar e soltar vários arquivos.",
     "dropzone_scenario_avatar": "Carregar arquivos de imagem.",
     "dropzone_scenario_docs": "Enviar arquivos PDF ou Office.",
+    "dropzone_size_desc": "A propriedade size mapeia para o padding e a escala do ícone do InteractiveArea (sm / md / lg).",
     "dropzone_title": "Área para carregar arquivos via arrastar e soltar",
     "file_upload_desc": "Seleção de arquivo",
     "file_upload_title": "Seleção de arquivo",
