@@ -203,10 +203,16 @@ export function DataGrid<T extends Record<string, unknown>>({
   const colCount = columns.length + (selection ? 1 : 0);
 
   return (
-    <div className={classNames("wim-data-grid", styles.root, loading && styles.loading, className)}>
+    <div
+      className={classNames("wim-data-grid", styles.root, loading && styles.loading, className)}
+      aria-busy={loading || undefined}
+    >
       <div
         className={styles.container}
         style={{ height, maxHeight }}
+        // loading 中はフェード（opacity）した内容を a11y ツリー/タブ順から外す。
+        // 半透明化で低下したコントラストを axe が過渡的に評価するのを防ぐ（busy は root で告知）。
+        inert={loading || undefined}
       >
         <Table
           ref={containerRef}
@@ -342,7 +348,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       </div>
 
       {pagination && (
-        <div className={styles.footer}>
+        <div className={styles.footer} inert={loading || undefined}>
           <div className={styles.info}>
             Displaying {data.length} of {pagination.total} records
             {selection?.selectedRowKeys && selection.selectedRowKeys.length > 0 && (
