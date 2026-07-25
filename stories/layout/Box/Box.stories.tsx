@@ -56,8 +56,9 @@ export const AsButton: Story = {
     as: "button",
     bg: "color-mix(in srgb, var(--wim-color-primary) 12%, var(--wim-color-surface))",
     color: "var(--wim-color-text-accent)",
-    p: "10px 20px",
-    radius: 6,
+    px: "md",
+    py: "sm",
+    radius: "md",
     style: { border: "1px solid var(--wim-color-primary)", cursor: "pointer", fontWeight: 600 },
   },
 };
