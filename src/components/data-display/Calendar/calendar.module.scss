@@ -89,7 +89,7 @@
     align-items: center;
     justify-content: center;
     height: var(--wim-calendar-day-height, var(--wim-height-xs));
-    padding: 0;
+    padding: 0 var(--wim-spacing-3xs);
     font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
     cursor: pointer;
