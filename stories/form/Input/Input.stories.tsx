@@ -24,7 +24,7 @@ const meta: Meta<typeof Input> = {
     },
     intent: {
       control: "select",
-      options: ["default", "error"],
+      options: ["default", "danger"],
     },
     disabled: {
       control: "boolean",
@@ -156,7 +156,7 @@ export const Ghost: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

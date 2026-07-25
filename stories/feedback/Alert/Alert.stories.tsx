@@ -13,13 +13,29 @@ const meta: Meta<typeof Alert> = {
     onClose: { action: "closed" },
     intent: {
       control: "select",
-      options: ["info", "success", "warning", "error"],
+      options: ["default", "info", "success", "warning", "danger"],
     },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Alert>;
+
+export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Alert
+        {...args}
+        title={args.title || t("story.alert_update_title")}
+        description={args.description || t("story.alert_update_desc")}
+      />
+    );
+  },
+  args: {
+    intent: "default",
+  },
+};
 
 export const Info: Story = {
   render: function Render(args) {
@@ -69,7 +85,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

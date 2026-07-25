@@ -14,7 +14,7 @@ const meta: Meta<typeof Banner> = {
     icon: { control: "boolean" },
     intent: {
       control: "select",
-      options: ["info", "success", "warning", "error"],
+      options: ["default", "info", "success", "warning", "danger"],
     },
   },
   parameters: {
@@ -24,6 +24,22 @@ const meta: Meta<typeof Banner> = {
 
 export default meta;
 type Story = StoryObj<typeof Banner>;
+
+export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Banner
+        {...args}
+        title={args.title || t("story.banner_cookie_title")}
+        description={args.description || t("story.banner_cookie_desc")}
+      />
+    );
+  },
+  args: {
+    intent: "default",
+  },
+};
 
 export const Info: Story = {
   render: function Render(args) {
@@ -73,7 +89,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

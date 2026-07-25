@@ -27,7 +27,7 @@ export default {
         "primary",
         "success",
         "warning",
-        "error",
+        "danger",
         "info",
       ],
     },

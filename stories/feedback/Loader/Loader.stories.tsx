@@ -18,7 +18,7 @@ const meta: Meta<typeof Loader> = {
         "secondary",
         "success",
         "warning",
-        "error",
+        "danger",
         "neutral",
         "currentColor",
       ],

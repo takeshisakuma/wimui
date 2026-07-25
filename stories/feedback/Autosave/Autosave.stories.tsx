@@ -20,12 +20,6 @@ const meta: Meta<typeof Autosave> = {
 export default meta;
 type Story = StoryObj<typeof Autosave>;
 
-export const Default: Story = {
-  args: {
-    status: "saved",
-  },
-};
-
 export const Saving: Story = {
   args: {
     status: "saving",

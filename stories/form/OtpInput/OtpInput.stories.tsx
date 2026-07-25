@@ -50,7 +50,7 @@ export const Disabled: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   args: {
     length: 6,
     error: "Invalid code",

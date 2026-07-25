@@ -15,7 +15,7 @@ const meta: Meta<typeof Snackbar> = {
   argTypes: {
     intent: {
       control: "select",
-      options: ["default", "success", "warning", "error", "info"],
+      options: ["default", "success", "warning", "danger", "info"],
     },
     position: {
       control: "select",
@@ -46,7 +46,7 @@ export const Default: Story = {
   },
   args: {
     open: true,
-    intent: "info",
+    intent: "default",
     position: "bottom-center",
   },
 };
@@ -101,7 +101,7 @@ export const Success: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

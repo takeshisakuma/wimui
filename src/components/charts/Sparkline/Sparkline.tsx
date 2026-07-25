@@ -40,7 +40,7 @@ export interface SparklineProps {
   className?: string;
 }
 
-const DEFAULT_COLOR = "var(--wim-color-primary)";
+const DEFAULT_COLOR = "var(--wim-color-chart-primary)";
 
 /**
  * Sparkline is a tiny, axis-free chart for embedding a trend inline — inside a

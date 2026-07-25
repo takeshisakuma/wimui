@@ -27,9 +27,27 @@ export const Default: Story = {
         title={t("story.popconfirm_delete_title")}
         okText={t("story.popconfirm_yes")}
         cancelText={t("story.popconfirm_no")}
-        okType="danger"
       >
         <Button variant="solid">{t("story.popconfirm_delete_btn")}</Button>
+      </Popconfirm>
+    );
+  },
+};
+
+export const Danger: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Popconfirm
+        {...args}
+        title={t("story.popconfirm_delete_title")}
+        okText={t("story.popconfirm_yes")}
+        cancelText={t("story.popconfirm_no")}
+        okType="danger"
+      >
+        <Button variant="solid" intent="danger">
+          {t("story.popconfirm_delete_btn")}
+        </Button>
       </Popconfirm>
     );
   },
@@ -41,12 +59,12 @@ export const WithDescription: Story = {
     return (
       <Popconfirm
         {...args}
-        title={t("story.popconfirm_delete_btn")} // Using "Delete the task" title logic in simpler way or re-t
+        title={t("story.popconfirm_delete_btn")}
         description={t("story.popconfirm_delete_desc")}
         okText={t("story.popconfirm_yes")}
         cancelText={t("story.popconfirm_no")}
       >
-        <Button >{t("story.popconfirm_delete_btn")}</Button>
+        <Button>{t("story.popconfirm_delete_btn")}</Button>
       </Popconfirm>
     );
   },

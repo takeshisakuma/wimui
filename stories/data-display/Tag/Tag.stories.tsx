@@ -20,7 +20,7 @@ const meta: Meta<typeof Tag> = {
         "secondary",
         "success",
         "warning",
-        "error",
+        "danger",
         "info",
         "neutral",
       ],

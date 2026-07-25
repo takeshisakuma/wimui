@@ -88,7 +88,7 @@ import type {
   ButtonIntent as GeneratedButtonIntent,
   IndicatorIntent as GeneratedIndicatorIntent,
   FeedbackIntent as GeneratedFeedbackIntent,
-  FieldIntent as GeneratedFieldIntent
+  FieldIntent as GeneratedFieldIntent,
 } from './generated-intents';
 
 /**
@@ -197,7 +197,7 @@ export type WimOpacity = LiteralWithAutocomplete<WimOpacityKey | WimOpacityToken
 export type IndicatorIntent = GeneratedIndicatorIntent;
 
 /**
- * Intent values for feedback-style components (Alert, Banner, Toast, Notification).
+ * Intent values for feedback-style components (Alert, Banner, Toast, Notification, Snackbar).
  * Generated from tokens/intents.json.
  */
 export type FeedbackIntent = GeneratedFeedbackIntent;

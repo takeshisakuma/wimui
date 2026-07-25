@@ -14,6 +14,20 @@ const meta: Meta<typeof Result> = {
 export default meta;
 type Story = StoryObj<typeof Result>;
 
+export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Result
+        {...args}
+        intent="default"
+        title={t("story.result_info_title")}
+        extra={<Button variant="solid">{t("story.result_go_console")}</Button>}
+      />
+    );
+  },
+};
+
 export const Success: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -38,6 +52,7 @@ export const Info: Story = {
     return (
       <Result
         {...args}
+        intent="info"
         title={t("story.result_info_title")}
         extra={<Button variant="solid">{t("story.result_go_console")}</Button>}
       />
@@ -59,7 +74,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorStatus: Story = {
+export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

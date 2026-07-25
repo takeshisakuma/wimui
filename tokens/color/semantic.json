@@ -2,22 +2,23 @@
   "wim": {
     "color": {
       "danger": {
-        "value": "{pccs.s1}"
+        "$comment": "experiment/semantic-soft-tone: Strong(s) → Vivid(v) trial",
+        "value": "{pccs.v1}"
       },
       "success": {
-        "value": "{pccs.s12}"
+        "value": "{pccs.v12}"
       },
       "warning": {
-        "value": "{pccs.s8}"
+        "value": "{pccs.v6}"
       },
       "primary": {
-        "value": "{pccs.s16}"
+        "value": "{pccs.v16}"
       },
       "secondary": {
         "value": "{pccs.gy7-5}"
       },
       "info": {
-        "value": "{pccs.s18}"
+        "value": "{pccs.v18}"
       },
       "disabled": {
         "value": "{pccs.gy8-5}"
@@ -29,7 +30,8 @@
         "value": "{pccs.w}"
       },
       "text-on-success": {
-        "value": "{pccs.w}"
+        "$comment": "Vivid(v12) 塗りは白文字だと AA 未満のため黒",
+        "value": "{pccs.bk}"
       },
       "text-on-warning": {
         "value": "{pccs.bk}"
@@ -64,8 +66,8 @@
         "value": "{pccs.dk12}"
       },
       "text-warning": {
-        "$comment": "warning (s8 #ccb914) は白背景でも 2.0:1 のためテキストには使えない。dk8 は subtle 塗り上でも 5.5:1",
-        "value": "{pccs.dk8}"
+        "$comment": "warning 塗り (v6 橙) に合わせた Dark。塗り自体はテキスト用途に使えないため dk6（subtle 上でも AA 確保）",
+        "value": "{pccs.dk6}"
       },
       "text-info": {
         "value": "{wim.color.info}"
@@ -191,7 +193,44 @@
         "value": "{pccs.gy7-5}"
       },
       "primary-fill": {
-        "value": "{pccs.s16}"
+        "value": "{pccs.v16}"
+      },
+      "chart-primary": {
+        "$comment": "Chart series Soft tone (UI semantics stay Vivid)",
+        "value": "{pccs.sf16}"
+      },
+      "chart-info": {
+        "value": "{pccs.sf18}"
+      },
+      "chart-success": {
+        "value": "{pccs.sf12}"
+      },
+      "chart-warning": {
+        "value": "{pccs.sf6}"
+      },
+      "chart-danger": {
+        "value": "{pccs.sf1}"
+      },
+      "chart-secondary": {
+        "value": "{pccs.gy7-5}"
+      },
+      "text-on-chart-primary": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-info": {
+        "value": "{pccs.w}"
+      },
+      "text-on-chart-success": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-warning": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-danger": {
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-secondary": {
+        "value": "{pccs.bk}"
       },
       "border-inverse": {
         "value": "{pccs.gy3-5}"

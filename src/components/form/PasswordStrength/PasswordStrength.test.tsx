@@ -46,6 +46,13 @@ describe("PasswordStrength", () => {
     expect(screen.getByText(expected)).toBeInTheDocument();
   });
 
+  it("uses success intent for score 3 and 4", () => {
+    const { container, rerender } = render(<PasswordStrength score={3} />);
+    expect(container.querySelector(".success")).toBeInTheDocument();
+    rerender(<PasswordStrength score={4} />);
+    expect(container.querySelector(".success")).toBeInTheDocument();
+  });
+
   it("prefers explicit score over calculated level", () => {
     render(<PasswordStrength password="Abcdefg1!" score={1} />);
     expect(screen.getByText("Weak")).toBeInTheDocument();

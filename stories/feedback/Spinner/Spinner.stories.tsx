@@ -15,7 +15,7 @@ const meta: Meta<typeof Spinner> = {
         "secondary",
         "success",
         "warning",
-        "error",
+        "danger",
         "neutral",
         "currentColor",
       ],

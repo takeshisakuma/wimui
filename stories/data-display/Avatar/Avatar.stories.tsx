@@ -22,7 +22,7 @@ const meta: Meta<typeof Avatar> = {
     },
     intent: {
       control: "select",
-      options: ["primary", "secondary", "neutral", "error", "success"],
+      options: ["primary", "secondary", "success", "warning", "danger", "info", "neutral"],
     },
   },
 };
