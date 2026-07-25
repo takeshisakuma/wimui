@@ -1,5 +1,30 @@
 # wimui
 
+## 0.5.0
+
+### Minor Changes
+
+- 7ad0ee3: `BentoGrid` に `rowHeight` prop を追加
+
+  各行の高さ（`grid-auto-rows`）を指定できる `rowHeight` prop を追加（任意の CSS length、既定 `18rem`）。コンパクトな内容のタイルで余白が空きすぎて「ほぼ空パネル」に見えるのを防ぐ。既定は従来どおりのため非破壊。
+
+### Patch Changes
+
+- 7ad0ee3: `DataGrid` の loading 状態の a11y を改善
+
+  `loading` 中はグリッド内容全体を半透明（`opacity`）にしていたが、a11y ツリーには残っていたため、フェードした内容（例: セル内の `Badge`）を支援技術/axe が過渡的に評価し、合成後の低コントラストが color-contrast 違反として検出されていた。root に `aria-busy` を付けて読み込み中を告知し、フェードする内容（テーブル本体・フッター）を `inert` にしてタブ順と a11y ツリーから外す。表示上の変更はない。
+
+- 7ad0ee3: `Chip` / `Tag` / `Badge` の CJK テキストの縦位置を修正
+
+  - `Chip` / `Tag`: `line-height` を `1` に固定し、`token-base` の `line-height: normal` に起因して CJK 字形が下寄りに見える問題を解消（`Badge` と同じ対処）。
+  - `Badge`: 固定 `height` を `min-height` に変更し上下 padding を一段増やして、`box-sizing: border-box` で CJK テキストがはみ出すのを防止（dot 表示の `iconOnly` は従来の固定寸法を維持）。
+
+  見た目のみの修正で、公開 API・ラテン文字の表示に変更はない。
+
+- 7ad0ee3: `wimui/rhf` の `zod` peer 範囲を `^3.25.0 || ^4.0.0` に拡大
+
+  `@hookform/resolvers` 自身の zod peer 範囲に合わせ、zod 3 系を含むツリー（`@hookform/resolvers` 5.x が推移的に引く `@typeschema/zod` は zod `^3.23.8` を要求）でも `npm install` が `ERESOLVE` で失敗しないようにする。`wimui` は `@hookform/resolvers/zod` の `zodResolver` を再エクスポートするのみで zod v4 固有 API は未使用。開発・テストは引き続き zod 4 を対象。
+
 ## 0.4.0
 
 ### Minor Changes
