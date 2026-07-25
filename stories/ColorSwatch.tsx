@@ -11,6 +11,12 @@ interface ColorSwatchProps {
   value?: string;
   /** The actual color (CSS variable, hex, etc.) */
   color: string;
+  /**
+   * Foreground color for preview content (e.g. text-on-* demos).
+   * Applied on the preview surface so MDX-wrapped `<p>` children can inherit
+   * instead of picking up docs `p { color: ... !important }` rules.
+   */
+  foreground?: string;
   /** Text or element to display on top of the color swatch */
   children?: React.ReactNode;
   /** Variant of the swatch */
@@ -21,6 +27,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
   name,
   value,
   color,
+  foreground,
   children,
   variant = "card",
 }) => {
@@ -65,6 +72,11 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           font-weight: 500;
           position: relative;
           border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        /* MDX may wrap children in <p>; inherit preview foreground over docs p color */
+        .wim-swatch-card-preview .contrast-label,
+        .wim-swatch-card-preview p {
+          color: inherit;
         }
         .wim-swatch-card-info {
           padding: 16px;
@@ -186,9 +198,12 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           </div>
           <div
             className="wim-swatch-card-preview"
-            style={{ background: color }}
+            style={{ background: color, color: foreground }}
           >
-            {children}
+            {children ??
+              (foreground ? (
+                <span className="contrast-label">Text</span>
+              ) : null)}
           </div>
           <div className="wim-swatch-card-info">
             {name && <span className="wim-swatch-name">{name}</span>}

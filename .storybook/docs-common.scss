@@ -1,6 +1,16 @@
 
 /* Storybook Docs Common Overrides (Global for all themes) */
 
+/*
+ * Contrast swatch labels: MDX may wrap preview copy in <p>, and
+ * `.sbdocs-content p { color: ... !important }` would paint them black/white
+ * instead of the intended text-on-* foreground on the preview surface.
+ */
+.sbdocs-content .wim-swatch-card-preview .contrast-label,
+.sbdocs-content .wim-swatch-card-preview p {
+  color: inherit !important;
+}
+
 /* Canvas (Story preview enclosure) */
 .sbdocs-preview {
   border-radius: 4px !important;
