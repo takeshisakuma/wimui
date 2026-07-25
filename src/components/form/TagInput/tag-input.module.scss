@@ -9,9 +9,9 @@
   height: auto;
   min-height: var(--wim-height-md);
 
-  // InputBase applies .inner to its child.
-  // In TagInput, the child of InputBase is the div.container.
-  padding: 0;
+  // InputBase .inner sets padding-left/right with !important for icon offsets.
+  // Clear all sides so only .container owns the field chrome padding.
+  padding: 0 !important;
 }
 
 .container {
@@ -20,7 +20,7 @@
   align-items: center;
   width: 100%;
   min-height: inherit;
-  padding: var(--wim-spacing-2xs) var(--wim-field-padding-x);
+  padding: var(--wim-field-padding-x);
 
   &.disabled {
     cursor: not-allowed;

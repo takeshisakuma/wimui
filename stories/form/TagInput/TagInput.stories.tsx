@@ -34,8 +34,8 @@ export const Controlled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [tags, setTags] = React.useState(["WIM UI", "Premium", "Modern"]);
     return (
-      <div style={{ width: "400px" }}>
-        <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
+      <div>
+        <p style={{ marginBottom: "var(--wim-spacing-sm)", fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-secondary)" }}>
           {t("story.taginput_current_tags")} {tags.join(", ")}
         </p>
         {/* placeholder "frontend" is a generic example tag, kept verbatim. i18n-ignore-next-line */}
