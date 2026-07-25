@@ -1,5 +1,15 @@
 # wimui
 
+## 0.5.1
+
+### Patch Changes
+
+- c44e30e: `ChatUI` の配色を刷新（ライトモード）
+
+  PCCS の淡いトーンで配色し直した。背景を淡い水色（PCCS p18）、受信吹き出しを白、送信吹き出しを淡緑（PCCS lt11）に変更。あわせて、背景が淡青になったことで本文背景の上に載る `.timestamp` が text-tertiary では AA を満たさなくなるため text-secondary に一段濃くした（sender/timestamp とも背景に対して十分なコントラストを確保）。吹き出し内の文字は従来どおり text-primary で高コントラスト。ダークモードは据え置き。
+
+- bfce64b: Patch release after 0.5.0: success fill uses Strong `s12` with white `text-on-success` (solid Button/Badge labels); a11y text-* on PasswordStrength/Icon; Calendar day padding; Title fluid display sizes; InteractiveGraph mobile controls; field/TagInput horizontal padding; Dropzone/InteractiveArea padding stack; Snackbar warning contrast.
+
 ## 0.5.0
 
 ### Minor Changes
