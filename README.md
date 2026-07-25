@@ -18,7 +18,7 @@ The npm package is **a single `wimui`** (not a split monorepo of packages). You 
 | **Core** | `wimui` / `wimui/form` / `wimui/layout`, etc. | None (React 19 only) |
 | Optional — Charts | `wimui/charts` | `recharts` |
 | Optional — Peer components | dedicated subpath per component, e.g. `wimui/ai/markdown-renderer`, `wimui/data-display/qr-code` | that component's peer (see table below) |
-| Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` 4 (+ resolvers) |
+| Optional — RHF | `wimui/rhf` | `react-hook-form` + `zod` (3.25+ / 4) (+ resolvers) |
 
 **Why subpaths are separated:** optional components pull in heavy peers (recharts, etc.). By not exporting them from the root `wimui`, a Core-only app is far less likely to drag those peers into type resolution or bundle analysis without installing them. Import only the subpath for the feature you use, and install only that peer.
 
@@ -40,7 +40,7 @@ Supported version ranges for public peers. Wider ranges are unsupported.
 | Package | Supported | Peer range | Notes |
 |---|---|---|---|
 | `react` / `react-dom` | **19** | `^19.0.0` | Development, tests, and published types target React 19. React 18 is unsupported |
-| `zod` (when using `wimui/rhf`) | **4** | `^4.0.0` | Development and tests target zod 4. zod 3 is unsupported |
+| `zod` (when using `wimui/rhf`) | **3.25+ / 4** | `^3.25.0 \|\| ^4.0.0` | Range mirrors `@hookform/resolvers` so a zod-3 ecosystem resolves without `ERESOLVE`. Development and tests target zod 4 |
 | `@hookform/resolvers` | **5.1+** | `^5.1.0` | When using `wimui/rhf` |
 | `react-hook-form` | **7.43+** | `^7.43.0` | Only when using `wimui/rhf` |
 
@@ -275,7 +275,7 @@ Each peer-dependent component has its **own subpath** whose name documents its p
 | CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
 | InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
 | Audio (only when `showMetadata`) | `wimui` or `wimui/media` | `music-metadata` |
-| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
+| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^3.25 \|\| ^4` |
 
 Source of truth: `src/data/peer-imports.json` (CI's `check:imports` also reads this). Audio's metadata peer is a dynamic optional import, so it also lives at the root.
 
