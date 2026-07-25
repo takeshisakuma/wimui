@@ -116,6 +116,11 @@ export const Default: Story = {
                         left: 10px;
                         z-index: 101;
                         padding: 5px 10px;
+                        /* color を明示しないと UA 既定のボタン文字色に依存し、
+                           OS の color-scheme とテーマがズレると背景と同化して読めなくなる
+                           （ダークテーマの黒文字・Android 実機ライト等）。surface と対の
+                           text-primary を明示してテーマ/プラットフォーム非依存で可読にする。 */
+                        color: var(--wim-color-text-primary);
                         background: var(--wim-color-surface);
                         border: 1px solid var(--wim-color-border);
                         border-radius: 4px;
