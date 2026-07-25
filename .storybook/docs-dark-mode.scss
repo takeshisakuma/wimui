@@ -3,34 +3,36 @@
 @mixin docs-dark-overrides {
   /* MDX Canvas (Canvas component container) */
   .sbdocs-preview {
-    background-color: var(--bg-app) !important;
+    background-color: var(--wim-color-surface-app) !important;
     border-color: var(--wim-color-border) !important;
   }
 
   /* Preview area within the Canvas */
   .sbdocs-preview > div:first-child {
-    background-color: var(--bg-app) !important;
+    background-color: var(--wim-color-surface-app) !important;
   }
 
   /* Story inner area in Docs (Standard Storybook classes) */
   .docs-story,
   .story-template {
-    background-color: var(--bg-app) !important;
+    background-color: var(--wim-color-surface-app) !important;
   }
 
   /* Legacy or Vite-specific variants */
   .sb-story-v6-all {
-    background-color: var(--bg-app) !important;
+    background-color: var(--wim-color-surface-app) !important;
   }
 
   /* Docs page wrapper – 純粋な MDX ページの本文背景 */
   .sbdocs-wrapper,
   .sbdocs-content {
-    background-color: var(--bg-app) !important;
-    color: var(--text-primary) !important;
+    background-color: var(--wim-color-surface-app) !important;
+    color: var(--wim-color-text-primary) !important;
   }
 
-  /* Docs 見出し・本文テキスト – Storybook addon-docs の rgba(0,0,0,x) を上書き */
+  /* Docs 見出し・本文テキスト – Storybook addon-docs の rgba(0,0,0,x) を上書き。
+     span / strong は一括で塗らない（Colors の text-on-* 見本やコンポーネント内色を潰すため）。
+     入れ子の phrasing（.wim-t 等）は親から継承させる。 */
   .sbdocs-content h1,
   .sbdocs-content h2,
   .sbdocs-content h3,
@@ -38,10 +40,12 @@
   .sbdocs-content h5,
   .sbdocs-content h6,
   .sbdocs-content p,
-  .sbdocs-content li,
-  .sbdocs-content strong,
-  .sbdocs-content span {
-    color: var(--text-primary) !important;
+  .sbdocs-content li {
+    color: var(--wim-color-text-primary) !important;
+  }
+
+  .sbdocs-content .wim-t {
+    color: inherit !important;
   }
 
   /* Docs内テーブル行 – zebra stripe の白背景を除去 */
@@ -55,7 +59,7 @@
   .sbdocs-content table th,
   .sbdocs-content table td {
     background-color: transparent !important;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
     border-color: var(--wim-color-border) !important;
   }
 
