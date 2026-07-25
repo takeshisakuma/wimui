@@ -8,9 +8,10 @@
       align-items: center;
     }
 
-    .icon {
-      margin-bottom: var(--wim-spacing-sm);
+    // Tighter stack than default InteractiveArea; padding still comes from --ia-padding
+    --ia-stack-gap: var(--wim-spacing-sm);
 
+    .icon {
       svg {
         width: var(--wim-result-icon-size, 80px);
         height: var(--wim-result-icon-size, 80px);
@@ -20,7 +21,6 @@
 
     .content {
       padding: var(--wim-spacing-md);
-      margin-top: var(--wim-spacing-lg);
       text-align: left;
       background-color: var(--wim-color-surface-subtle);
       border-radius: var(--wim-radius-sm);

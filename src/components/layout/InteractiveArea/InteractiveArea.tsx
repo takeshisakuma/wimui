@@ -126,19 +126,23 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
               {icon}
             </div>
           )}
-          {title && (
-            <div className={classNames(localStyles.title, stylesProp?.title)}>
-              {title}
-            </div>
-          )}
-          {description && (
-            <div
-              className={classNames(
-                localStyles.description,
-                stylesProp?.description,
+          {(title || description) && (
+            <div className={localStyles.text}>
+              {title && (
+                <div className={classNames(localStyles.title, stylesProp?.title)}>
+                  {title}
+                </div>
               )}
-            >
-              {description}
+              {description && (
+                <div
+                  className={classNames(
+                    localStyles.description,
+                    stylesProp?.description,
+                  )}
+                >
+                  {description}
+                </div>
+              )}
             </div>
           )}
           {children && (

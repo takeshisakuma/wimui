@@ -1,15 +1,20 @@
 .root {
+  --ia-padding: var(--wim-spacing-xl);
+  --ia-stack-gap: var(--wim-spacing-md);
+  --ia-title-gap: var(--wim-spacing-xs);
+  --ia-icon-size: var(--wim-font-size-4xl);
+  --ia-title-size: var(--wim-font-size-lg);
+  --_bg: transparent;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--wim-spacing-xl);
+  padding: var(--ia-padding);
   background-color: var(--_bg);
   border-radius: var(--wim-radius-container);
   transition: all var(--wim-transition-fast);
-
-  --_bg: transparent;
 
   &.dashed {
     border: var(--wim-border-width-thick) dashed var(--wim-color-border);
@@ -36,20 +41,23 @@
   }
 
   &.sm {
-    padding: var(--wim-spacing-md);
-
+    --ia-padding: var(--wim-spacing-md);
+    --ia-stack-gap: var(--wim-spacing-sm);
+    --ia-icon-size: var(--wim-font-size-2xl);
     --ia-title-size: var(--wim-font-size-md);
   }
 
   &.md {
-    padding: var(--wim-spacing-xl);
-
+    --ia-padding: var(--wim-spacing-xl);
+    --ia-stack-gap: var(--wim-spacing-md);
+    --ia-icon-size: var(--wim-font-size-4xl);
     --ia-title-size: var(--wim-font-size-lg);
   }
 
   &.lg {
-    padding: var(--wim-spacing-3xl);
-
+    --ia-padding: var(--wim-spacing-3xl);
+    --ia-stack-gap: var(--wim-spacing-lg);
+    --ia-icon-size: var(--wim-font-size-5xl);
     --ia-title-size: var(--wim-font-size-xl);
   }
 
@@ -81,18 +89,22 @@
 .inner {
   display: flex;
   flex-direction: column;
+  gap: var(--ia-stack-gap);
   align-items: center;
   justify-content: center;
+  width: 100%;
   text-align: center;
+}
 
-  & > :last-child {
-    margin-bottom: 0;
-  }
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ia-title-gap);
+  align-items: center;
 }
 
 .icon {
-  margin-bottom: var(--wim-spacing-md);
-  font-size: var(--wim-font-size-4xl);
+  font-size: var(--ia-icon-size);
   color: var(--wim-color-text-secondary);
 
   // Force Icon component to inherit font-size if it has the .root class (from icon.module.scss)
@@ -103,21 +115,18 @@
 }
 
 .title {
-  margin-bottom: var(--wim-spacing-xs);
-  font-size: var(--ia-title-size, var(--wim-font-size-lg));
+  font-size: var(--ia-title-size);
   font-weight: var(--wim-font-weight-bold);
   color: var(--wim-color-text-primary);
 }
 
 .description {
-  margin-bottom: var(--wim-spacing-md);
   font-size: var(--wim-font-size-md);
   color: var(--wim-color-text-secondary);
 }
 
 .content {
   width: 100%;
-  margin-bottom: var(--wim-spacing-md);
 }
 
 .actions {
@@ -125,5 +134,4 @@
   flex-wrap: wrap;
   gap: var(--wim-spacing-sm);
   justify-content: center;
-  margin-top: var(--wim-spacing-md);
 }
