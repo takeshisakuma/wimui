@@ -1,3 +1,15 @@
+/* Display Title sizes: interpolate between font-size tokens from
+   --wim-breakpoint-xs → --wim-breakpoint-xl. Max stays the existing
+   Title→token mapping; min is one step down (xl / 2xl) or two (3xl / 4xl)
+   so large heroes do not dominate narrow viewports. */
+@mixin fluid-display-size($min, $max) {
+  font-size: clamp(
+    var(--wim-font-size-#{$min}),
+    calc(var(--wim-font-size-#{$min}) + (var(--wim-font-size-#{$max}) - var(--wim-font-size-#{$min})) * ((100vw - var(--wim-breakpoint-xs)) / (var(--wim-breakpoint-xl) - var(--wim-breakpoint-xs)))),
+    var(--wim-font-size-#{$max})
+  );
+}
+
 @layer component {
   .root {
     width: 100%;
@@ -41,7 +53,8 @@
       }
     }
 
-    /* Sizes（Title 実効比は 1.265 定数。段を飛ばして参照するためこのマッピングは変更しない） */
+    /* Sizes（Title 実効比は 1.265 定数。段を飛ばして参照するためこのマッピングは変更しない）
+       ディスプレイ段（xl〜）のみ viewport で fluid。max は従来どおり。 */
     &.xs {
       font-size: var(--wim-font-size-md); // 1rem
     }
@@ -59,19 +72,19 @@
     }
 
     &.xl {
-      font-size: var(--wim-font-size-4xl); // 2.6rem
+      @include fluid-display-size(3xl, 4xl); // → max 2.6rem
     }
 
     &.xl2 {
-      font-size: var(--wim-font-size-5xl); // 3.2rem
+      @include fluid-display-size(4xl, 5xl); // → max 3.2rem
     }
 
     &.xl3 {
-      font-size: var(--wim-font-size-6xl); // 4.1rem
+      @include fluid-display-size(4xl, 6xl); // → max 4.1rem（狭幅はヒーロー相当）
     }
 
     &.xl4 {
-      font-size: var(--wim-font-size-7xl); // 5.2rem
+      @include fluid-display-size(5xl, 7xl); // → max 5.2rem
     }
 
     /* Align */
