@@ -27,6 +27,7 @@
     "btn_continue": "買い物を続ける",
     "coupon_label": "クーポンコード",
     "coupon_placeholder": "SAVE20",
+    "image_alt": "商品画像なし",
     "item_1_name": "ワイヤレスヘッドフォン Pro",
     "item_1_price": "¥44,800",
     "item_2_name": "メカニカルキーボード",
@@ -225,6 +226,7 @@
   },
   "product": {
     "btn_add": "カートに追加",
+    "image_alt": "商品画像なし",
     "item_1_category": "オーディオ",
     "item_1_name": "ワイヤレスヘッドフォン Pro",
     "item_1_price": "¥44,800",

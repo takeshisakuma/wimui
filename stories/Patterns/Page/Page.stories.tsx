@@ -6,6 +6,7 @@ import {
   Alert,
   Avatar,
   Badge,
+  Box,
   Button,
   Card,
   Center,
@@ -14,6 +15,7 @@ import {
   Grid,
   Header,
   Icon,
+  Image,
   Input,
   InputGroup,
   Rating,
@@ -23,6 +25,7 @@ import {
   Title,
 } from "wimui";
 import { Sparkline } from "wimui/charts";
+import noImage from "@/media/no-image.png";
 
 const meta: Meta = {
   title: "Patterns/Page",
@@ -477,22 +480,14 @@ export const ProductCard: StoryObj = {
               padding="none"
               style={{ overflow: "hidden" }}
             >
-              <div
-                style={{
-                  height: "180px",
-                  background: "var(--wim-color-surface-variant)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon
-                  name="ImageIcon"
-                  size="lg"
-                  color="tertiary"
-                  aria-hidden="true"
-                />
-              </div>
+              <Image
+                src={noImage}
+                alt={t("product.image_alt")}
+                height={180}
+                width="100%"
+                fit="cover"
+                radius="none"
+              />
               <Stack gap="sm" style={{ padding: "var(--wim-spacing-lg)" }}>
                 <Badge
                   intent="primary"
@@ -584,15 +579,16 @@ export const ShoppingCart: StoryObj = {
                 }}
               >
                 <Stack direction="row" align="start" gap="lg">
-                  <div
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      borderRadius: "var(--wim-radius-lg)",
-                      background: "var(--wim-color-surface-variant)",
-                      flexShrink: 0,
-                    }}
-                  />
+                  <Box style={{ flexShrink: 0 }}>
+                    <Image
+                      src={noImage}
+                      alt={t("cart.image_alt")}
+                      width={80}
+                      height={80}
+                      fit="cover"
+                      radius="lg"
+                    />
+                  </Box>
                   <Stack gap="md" style={{ flex: 1, minWidth: 0 }}>
                     <Stack gap="2xs">
                       <Text content={item.name} style={{ fontWeight: 600 }} />

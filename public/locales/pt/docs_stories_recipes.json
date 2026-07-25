@@ -27,6 +27,7 @@
     "btn_continue": "Continuar Comprando",
     "coupon_label": "Código de Cupom",
     "coupon_placeholder": "SAVE20",
+    "image_alt": "Sem imagem do produto",
     "item_1_name": "Headphones Sem Fio Pro",
     "item_1_price": "R$1.499,00",
     "item_2_name": "Teclado Mecânico",
@@ -225,6 +226,7 @@
   },
   "product": {
     "btn_add": "Adicionar ao Carrinho",
+    "image_alt": "Sem imagem do produto",
     "item_1_category": "Áudio",
     "item_1_name": "Headphones Sem Fio Pro",
     "item_1_price": "R$1.499",

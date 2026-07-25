@@ -12311,6 +12311,7 @@
       "item_4_price": "$79",
       "item_4_category": "Accessories",
       "btn_add": "Add to Cart",
+      "image_alt": "No product image",
       "reviews": "reviews"
     },
     "cart": {
@@ -12319,6 +12320,7 @@
       "btn_continue": "Continue Shopping",
       "coupon_label": "Coupon Code",
       "coupon_placeholder": "SAVE20",
+      "image_alt": "No product image",
       "item_1_name": "Wireless Headphones Pro",
       "item_1_price": "$299.00",
       "item_2_name": "Mechanical Keyboard",
