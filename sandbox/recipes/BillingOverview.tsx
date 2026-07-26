@@ -15,10 +15,12 @@ const rows: Row[] = [
   { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
 ];
 
-const statusIntent: Record<Status, "success" | "danger" | undefined> = {
+// Colour carries state only: paid and failed earn an intent, pending stays
+// neutral. Leaving it undefined would fall back to primary and read as a state.
+const statusIntent: Record<Status, "success" | "danger" | "neutral"> = {
   paid: "success",
   failed: "danger",
-  pending: undefined,
+  pending: "neutral",
 };
 
 // One protagonist (the KPI row), a dense table below, tokens via props,
@@ -43,7 +45,9 @@ export default function BillingOverview() {
         <Stats>
           <Stats.Label>Failed webhooks</Stats.Label>
           <Stats.Value>137</Stats.Value>
-          <Stats.Trend>+23 today</Stats.Trend>
+          {/* Not a Trend: rising failures are bad, and Trend only pairs ↑ with
+              the success colour. A plain description says it without lying. */}
+          <Stats.Description>+23 today</Stats.Description>
         </Stats>
       </Grid>
 

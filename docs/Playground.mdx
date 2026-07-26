@@ -4,7 +4,10 @@ import { Playground } from "../sandbox/Playground";
 
 <Meta title="Getting Started/Playground" />
 
-<div className="playground-doc">
+{/* `sb-unstyled` is Storybook's own opt-out: every rule in its docs stylesheet
+    is written as `:where(tag:not(.sb-anchor, .sb-unstyled, .sb-unstyled tag))`,
+    so this hands the whole subtree back to the library's own styles. */}
+<div className="playground-doc sb-unstyled">
   <h1><T k="playground.title" /></h1>
   <p className="lead"><T k="playground.intro" /></p>
 
@@ -27,20 +30,6 @@ import { Playground } from "../sandbox/Playground";
     margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
-  }
-
-  /* Storybook's docs stylesheet is unlayered, so it outranks the library's
-     @layer component rules and restyles every bare element the recipes render:
-     spans lose the wim font and snap to 16px, headings pick up a rule and a
-     heavier weight, table cells shrink to 14px. Reverting to the component
-     layer inside this subtree makes the previews look like the library does.
-     Two rules because Storybook's own selectors sit at both specificities. */
-  .playground-doc * {
-    all: revert-layer;
-  }
-
-  .playground-doc :is(h1, h2, h3, h4, p, ul, ol, li, table, tr, th, td, pre, code, details, summary) {
-    all: revert-layer;
   }
 
   /* Direct child only — the recipes render their own h1, and those belong to

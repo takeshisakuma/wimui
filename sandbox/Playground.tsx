@@ -227,7 +227,11 @@ function SourceDisclosure({ source }: { source: string }) {
       >
         View source
       </summary>
-      <Code block language="tsx" code={source} />
+      {/* Code brings its own vertical margin; the inset keeps its border off
+          the card's. */}
+      <div style={{ padding: "0 var(--wim-spacing-2xl)" }}>
+        <Code block language="tsx" code={source} />
+      </div>
     </details>
   );
 }
@@ -252,7 +256,9 @@ function FeaturedRecipe({ recipe }: { recipe: Recipe }) {
         </Button>
       </Group>
 
-      <Card padding="none" variant="outline">
+      {/* The preview fills the top edge, so the card has to clip — otherwise the
+          preview's own background squares off the rounded corners. */}
+      <Card padding="none" variant="outline" style={{ overflow: "hidden" }}>
         <Stack gap={0}>
           <Preview Component={recipe.Component} pad="var(--wim-spacing-4xl)" />
           <SourceDisclosure source={recipe.source} />
@@ -268,7 +274,7 @@ function FeaturedRecipe({ recipe }: { recipe: Recipe }) {
  */
 function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
-    <Card padding="none" variant="outline">
+    <Card padding="none" variant="outline" style={{ overflow: "hidden" }}>
       <Stack gap={0}>
         <Preview Component={recipe.Component} pad="var(--wim-spacing-3xl)" />
 
