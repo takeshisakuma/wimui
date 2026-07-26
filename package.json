@@ -140,49 +140,149 @@
   },
   "size-limit": [
     {
-      "name": "ESM library total (gzip)",
-      "path": [
-        "dist/**/*.js",
-        "!dist/wimui.umd.js"
+      "name": "import { Button } — 単体利用の下限 (gzip)",
+      "path": "dist/index.js",
+      "import": "{ Button }",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "380 kB"
+      "limit": "13 kB"
     },
     {
-      "name": "Bundled third-party code (gzip)",
-      "path": "dist/node_modules/**/*.js",
+      "name": "小さな画面: Button/Input/Card/Stack/Text (gzip)",
+      "path": "dist/index.js",
+      "import": "{ Button, Input, Card, Stack, Text }",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
       "gzip": true,
-      "limit": "5 kB"
+      "limit": "19 kB"
     },
     {
-      "name": "form components (gzip)",
-      "path": "dist/components/form/**/*.js",
+      "name": "フォーム画面: 入力7種 (gzip)",
+      "path": "dist/index.js",
+      "import": "{ Button, Input, Select, Checkbox, Switch, Textarea, Label }",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
       "gzip": true,
-      "limit": "88 kB"
+      "limit": "23 kB"
     },
     {
-      "name": "charts components (gzip)",
-      "path": "dist/components/charts/**/*.js",
+      "name": "ルートバレル全部 — 最悪ケース (gzip)",
+      "path": "dist/index.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
       "gzip": true,
-      "limit": "15 kB"
+      "limit": "205 kB"
+    },
+    {
+      "name": "wimui/form 全部 (gzip)",
+      "path": "dist/form.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
+      "gzip": true,
+      "limit": "95 kB"
+    },
+    {
+      "name": "wimui/layout 全部 (gzip)",
+      "path": "dist/layout.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
+      "gzip": true,
+      "limit": "30 kB"
+    },
+    {
+      "name": "wimui/data-display 全部 (gzip)",
+      "path": "dist/data-display.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
+      "gzip": true,
+      "limit": "76 kB"
+    },
+    {
+      "name": "wimui/charts 全部 (gzip)",
+      "path": "dist/charts.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "recharts"
+      ],
+      "gzip": true,
+      "limit": "10 kB"
+    },
+    {
+      "name": "wimui/ai 全部 (gzip)",
+      "path": "dist/ai.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime"
+      ],
+      "gzip": true,
+      "limit": "29 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "145 kB"
+      "limit": "145 kB",
+      "disablePlugins": [
+        "@size-limit/esbuild"
+      ]
     },
     {
       "name": "styles.css — tokens + components (gzip)",
       "path": "dist/styles.css",
       "gzip": true,
-      "limit": "78 kB"
+      "limit": "78 kB",
+      "disablePlugins": [
+        "@size-limit/esbuild"
+      ]
     },
     {
       "name": "reset.css — reset/base (gzip)",
       "path": "dist/reset.css",
       "gzip": true,
-      "limit": "4 kB"
+      "limit": "4 kB",
+      "disablePlugins": [
+        "@size-limit/esbuild"
+      ]
+    },
+    {
+      "name": "Bundled third-party code (gzip)",
+      "path": "dist/node_modules/**/*.js",
+      "gzip": true,
+      "limit": "5 kB",
+      "disablePlugins": [
+        "@size-limit/esbuild"
+      ]
     }
   ],
   "engines": {
@@ -300,6 +400,7 @@
     "@google/genai": "2.12.0",
     "@hookform/resolvers": "5.4.0",
     "@playwright/test": "^1.59.0",
+    "@size-limit/esbuild": "12.1.0",
     "@size-limit/file": "^12.0.1",
     "@storybook/addon-a11y": "10.5.3",
     "@storybook/addon-docs": "10.5.3",
