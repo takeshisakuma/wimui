@@ -142,6 +142,32 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 > **運用（起票不要・恒常）**: Dependabot は weekly で minor/patch を 1 本にまとめる（直近 #55 = 07-22、次は 07-29 頃）。**playwright（Chromium が変わる）と Storybook（VRT のレンダリング母体）が含まれる回は、CI 緑ではなく VRT compare の結果を見てからマージする**。`size-limit` 12 → 13 は major だが破壊的変更が Node 20 打ち切りのみで `engines: >=22` の本リポジトリには非該当、かつ計測専用ツールなので CI 緑で上げてよい。
 
+
+#### T32 の進め方（2026-07-27 決定）
+
+**置き場所**: `stories/Patterns/` に置き、**最初から en/ja/pt の 3 言語**で書く。
+
+- SKILLS.md「複合 UI / レシピ優先」が「画面パターンは Patterns に書く」としており、そこに沿う
+- **「まず英語だけ、あとで多言語化」は退けた**: `check-stories-hardcoded.js` は**ラチェットではなくハードゲート**（生の英語 UI テキストが 1 件でも exit 1）。英語のみで置くには `i18n-ignore` を大量投入するしかなく、`check-i18n-ignore` のラチェット（現在 30）を押し上げたうえ、多言語化時に全部剥がして戻すことになる＝二度手間
+- コストの目安: `ALL_NAMESPACES` を読むので既存キー（`common` 638 / `docs_common` 298 / `docs_stories_recipes` 305）を使い回せる。新規は画面固有のコピーのみで **1 画面 15〜25 キー**程度の見込み。**ja/pt は手翻訳**（この環境は `GOOGLE_GENERATIVE_AI_API_KEY` 未設定のため `i18n:sync` は自動翻訳しない）
+
+**最初の 3 画面**（未合成の塊が大きい順に狙う）:
+
+1. **管理テーブル** — 一括選択・インライン編集・削除確認（DataGrid / Pagination / Dropdown / Popconfirm / Toast / EmptyState / Skeleton）
+2. **複数ステップのフォーム** — バリデーションエラー付き（form 42 個の大半: Cascader / TreeSelect / NumberInput / PhoneInput / OtpInput / FileUpload / Dropzone）
+3. **AI アシスタント画面** — ai 16 個のほぼ全部（ChatUI / PromptInput / StreamingText / ThoughtProcess / SourceCitation / Terminal）
+
+1〜3 で 60〜80 個、6 画面まで行けば 100〜120 個が一度は合成される。ただし**全 161 個の網羅は目的ではない**（今日の穴はすべて「よく使う部品の組み合わせ」から出ており、単独完結型の部品からではない）。**まず 1 枚を完成まで通して実測し、出た指摘の数で残りを見積もる。**
+
+**1 画面あたりの手順**（CLAUDE.md「委任時の 2 つの約束」に従う）:
+
+1. app-shaped で画面を書く
+2. **story 化して VRT / a11y / `judge:slop` に通す** — Playground ではこれで Switch のラベル欠落（axe critical）が自動検出された
+3. その結果を添えて人間のレビューへ（**視覚判定は自己申告しない**）
+4. 出た穴を起票して修正
+
+**保留**: T32 の画面は i18n に依存するため **StackBlitz には出せない**。「Patterns を全部 StackBlitz に出す」構想は実測でブロッカーを確認済み（`t()` が 302 箇所 / Storybook の殻 / 1 ファイルに複数画面 / `AI.stories.tsx` が `../../../src` を import）。**変換器は当面作らない**（検証を優先）。必要になった時点で別途判断する。
+
 ---
 
 ## 緑地視点の改善候補（今の WIM を知ったうえで最初から作るなら）
