@@ -15,33 +15,60 @@ import { Playground } from "../sandbox/Playground";
 
 <style>
   {`
+  /* Storybook caps docs content at 1000px; the gallery needs the wider measure
+     so the featured preview reaches its own lg breakpoint. */
+  .sbdocs-content:has(> .playground-doc) {
+    max-width: none;
+  }
+
   .playground-doc {
-    padding: 24px;
-    max-width: 920px;
+    padding: var(--wim-spacing-4xl);
+    max-width: var(--wim-breakpoint-xl);
     margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
   }
 
-  .playground-doc h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0 0 16px;
+  /* Storybook's docs stylesheet is unlayered, so it outranks the library's
+     @layer component rules and restyles every bare element the recipes render:
+     spans lose the wim font and snap to 16px, headings pick up a rule and a
+     heavier weight, table cells shrink to 14px. Reverting to the component
+     layer inside this subtree makes the previews look like the library does.
+     Two rules because Storybook's own selectors sit at both specificities. */
+  .playground-doc * {
+    all: revert-layer;
   }
 
+  .playground-doc :is(h1, h2, h3, h4, p, ul, ol, li, table, tr, th, td, pre, code, details, summary) {
+    all: revert-layer;
+  }
+
+  /* Direct child only — the recipes render their own h1, and those belong to
+     the Title component. */
+  .playground-doc > h1 {
+    font-size: var(--wim-font-size-3xl);
+    font-weight: var(--wim-font-weight-semibold);
+    line-height: var(--wim-line-height-tight);
+    margin: 0 0 var(--wim-spacing-2xl);
+  }
+
+  /* Intro copy stays at a readable measure even though the gallery below is wide. */
   .playground-doc .lead {
-    font-size: 16px;
-    line-height: 1.7;
+    max-width: 68ch;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-secondary);
-    margin-bottom: 32px;
+    margin-bottom: var(--wim-spacing-5xl);
   }
 
   .playground-doc .note {
-    font-size: 13px;
+    max-width: 68ch;
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-secondary);
-    border-left: 2px solid var(--wim-color-border-secondary);
-    padding-left: 12px;
-    margin-top: 32px;
+    border-left: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    padding-left: var(--wim-spacing-2xl);
+    margin-top: var(--wim-spacing-5xl);
   }
   `}
 </style>

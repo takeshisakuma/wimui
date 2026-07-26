@@ -3,12 +3,14 @@ import { Center, Card, Stack, Group, Title, Text, Input, PasswordInput, Checkbox
 // A focused single-protagonist screen: one centered card, a left-aligned form.
 // Not the generic badge → heading → two-buttons hero. Real product context.
 export default function SignIn() {
+  // `h="100%"` fills the host container when it has a height (the sandbox app
+  // shell) and hugs its content when it does not (the docs preview).
   return (
-    <Center h="100dvh" p="lg">
+    <Center h="100%" p="lg">
       <Card padding="lg" style={{ width: "min(380px, 100%)" }}>
         <Stack gap="lg">
           <Stack gap="2xs">
-            <Title tag="h1" size="lg">Sign in to Larkfield</Title>
+            <Title tag="h1" size="md">Sign in to Larkfield</Title>
             <Text color="secondary">Use your work email — SSO is enabled for Enterprise workspaces.</Text>
           </Stack>
           <form onSubmit={(e) => e.preventDefault()}>
