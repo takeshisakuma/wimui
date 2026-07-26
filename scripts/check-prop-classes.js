@@ -24,7 +24,10 @@ import path from 'node:path';
 import { globSync } from 'glob';
 
 // 2026-07-26 実測。内訳は実行結果に出る。
-const MISSING_BASELINE = 11;
+// 11 → 6: 既定値の除外で偽陽性 2 件が消え、トークンが実在する 3 値（Card の
+// padding-xs / radius-xl / radius-2xl）を実装した。残る 6 件は対応するトークンが
+// 無く、実装すると値が互いに区別できないため、型を狭める側で解決する（T38・0.6.0）。
+const MISSING_BASELINE = 6;
 
 const TEMPLATE_RE = /styles\[`([a-zA-Z][\w-]*)-\$\{(\w+)\}`\]/g;
 
@@ -85,7 +88,15 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
       skipped.push(`${component}.${prop}: 値を列挙できない型（${propDef.tsType?.raw ?? '?'}）`);
       continue;
     }
+    // 既定値は基底スタイルが実装するのが普通で、修飾クラスは要らない。
+    // 例: `Spinner` の `labelPosition = "right"` は既定で、SCSS には `.label-bottom`
+    // しか無い（右寄せは素の状態）。`FAQSection` の `layout = "top"` も同様。
+    // これを欠落として数えると偽陽性になる。
+    const defaultRaw = propDef.defaultValue && propDef.defaultValue.value;
+    const defaultValue = defaultRaw && String(defaultRaw).replace(/^["']|["']$/g, '');
+
     for (const v of values) {
+      if (v === defaultValue) continue;
       // CSS モジュールのクラス名。`.padding-2xl` は SCSS 上 `&.padding-2xl` 等で現れる
       const re = new RegExp(`[.&]${prefix}-${v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
       if (!re.test(scss)) {
