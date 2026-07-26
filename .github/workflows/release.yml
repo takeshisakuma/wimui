@@ -50,6 +50,14 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: npm run release
+          # llms.txt はソースに package.json の version を埋め込むため、
+          # `changeset version` でバージョンが上がるとコミット済みコピーが古くなる。
+          # Version PR の中で再生成しないと `check:llms` が必ず落ちて
+          # **リリース PR が構造的にマージ不能になる**（2026-07-26 に実際に発生）。
+          # 公開される dist/llms.txt はビルド時生成なので常に正しいが、
+          # GitHub Pages が配信するのはコミット済みの public/llms.txt なので、
+          # ここで再生成しておかないと Pages 側の版数が古いまま残る。
+          version: npm run version:packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
