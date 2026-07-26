@@ -15,6 +15,7 @@
  *   --pm <npm|pnpm|yarn>  … install に使うパッケージマネージャ（既定 npm）。
  *                            pnpm は strict な node_modules で peer 宣言漏れを露呈させる
  *   --treeshake           … tree-shaking 検証（bare 相当の install が前提）
+ *   --recipes             … sandbox/recipes/*.tsx が公開物だけで bundle できるか検証（T35）
  *
  * 前提: dist/ がビルド済みであること（npm run smoke は build を前段に連結）。
  * 環境変数 SMOKE_KEEP=1 で失敗調査用に一時ディレクトリを残す。
@@ -30,6 +31,7 @@ const repoRoot = join(here, "..", "..");
 const argv = process.argv.slice(2);
 const profile = argv.includes("--full") ? "full" : "bare";
 const treeshake = argv.includes("--treeshake");
+const recipes = argv.includes("--recipes");
 const pmArg = argv.find((a) => a.startsWith("--pm"));
 const pm = pmArg ? (pmArg.includes("=") ? pmArg.split("=")[1] : argv[argv.indexOf(pmArg) + 1]) : "npm";
 if (!["npm", "pnpm", "yarn"].includes(pm)) {
@@ -135,6 +137,80 @@ async function runTreeshake(consumer) {
   return true;
 }
 
+/**
+ * Playground の「Open in StackBlitz」が公開版パッケージに対して起動する建付けなのに、
+ * これまで**このリポジトリ内で tsc が通ること**しか確認していなかった（T35）。
+ * レシピが使う名前が公開物に実在するかは別の話で、リポジトリ内では src の alias で
+ * 解決してしまうため素通りする。
+ *
+ * ここでは隔離した consumer（= tarball を install しただけの環境）で、各レシピを
+ * StackBlitz の main.tsx と同じ入口（`wimui/styles.css` + `WimProvider` + レシピ）
+ * から esbuild で bundle する。ESM の名前解決を伴うので、**公開物に存在しない
+ * named export を使っていれば bundle が失敗する**。
+ *
+ * **限界（検証済み）**: esbuild は未使用の import を tree-shake してから解決するため、
+ * **import しただけで使っていない名前は検査されない**。実際、import 名だけを存在しない
+ * ものに書き換えて JSX 側を元のままにすると通ってしまう（両方書き換えれば落ちる）。
+ * 「レシピが実際に使っている名前が公開物に在るか」を見るゲートであり、
+ * 死んだ import まで拾うものではない。
+ *
+ * また bundle が通ることは「ブラウザで正しく描画される」ことまでは意味しない
+ * （実行はしない）。見た目は VRT / 人間のレビューの担当。
+ */
+async function runRecipes(consumer) {
+  const { build } = await import("esbuild");
+  const recipeDir = join(repoRoot, "sandbox", "recipes");
+  if (!existsSync(recipeDir)) {
+    console.log("\n[smoke] === recipes === sandbox/recipes が無いのでスキップ");
+    return true;
+  }
+  const { readdirSync } = await import("node:fs");
+  const files = readdirSync(recipeDir).filter((f) => f.endsWith(".tsx"));
+
+  console.log(`\n[smoke] === recipes (${files.length}) ===`);
+  let ok = true;
+  for (const file of files) {
+    const name = file.replace(/\.tsx$/, "");
+    cpSync(join(recipeDir, file), join(consumer, file));
+    // StackBlitz の main.tsx が足すもの（必須 CSS と Provider）まで含めて解決させる
+    const entry = join(consumer, `recipe-entry-${name}.tsx`);
+    writeFileSync(
+      entry,
+      [
+        'import "wimui/styles.css";',
+        'import { WimProvider } from "wimui";',
+        `import Recipe from "./${name}";`,
+        "export default function Main() {",
+        '  return <WimProvider theme="system"><Recipe /></WimProvider>;',
+        "}",
+        "",
+      ].join("\n"),
+    );
+    try {
+      await build({
+        entryPoints: [entry],
+        bundle: true,
+        format: "esm",
+        platform: "browser",
+        write: false,
+        logLevel: "silent",
+        absWorkingDir: consumer,
+        // styles.css を含むため出力先の指定が要る（write:false なのでディスクには書かない）
+        outdir: "recipe-out",
+        jsx: "automatic",
+        loader: { ".tsx": "tsx", ".css": "css", ".woff2": "empty", ".png": "empty", ".svg": "dataurl" },
+        external: ["react", "react-dom", "react/jsx-runtime", "react-dom/client"],
+      });
+      console.log(`  PASS ${file}`);
+    } catch (e) {
+      ok = false;
+      console.log(`  FAIL ${file}`);
+      console.log("  " + String(e.message || e).split("\n").slice(0, 8).join("\n  "));
+    }
+  }
+  return ok;
+}
+
 const packDir = mkdtempSync(join(tmpdir(), "wimui-pack-"));
 const consumer = mkdtempSync(join(tmpdir(), "wimui-smoke-"));
 let failed = false;
@@ -173,6 +249,11 @@ try {
 
   if (treeshake) {
     const ok = await runTreeshake(consumer);
+    if (!ok) failed = true;
+  }
+
+  if (recipes) {
+    const ok = await runRecipes(consumer);
     if (!ok) failed = true;
   }
 } finally {
