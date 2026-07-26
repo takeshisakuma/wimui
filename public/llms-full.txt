@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.3.0 — a React 19 component library: 216 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.5.1 — a React 19 component library: 216 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -615,6 +615,7 @@ export function RenameWorkspace() {
     - `children: React.ReactNode` (required) — Child content
 - **BentoGrid** — Modern card grid
     - `children: React.ReactNode` — Grid items (typically BentoGrid.Item elements)
+    - `rowHeight: string` — Fixed height of each grid row (`grid-auto-rows`). Any CSS length; defaults to `18rem`. Lower it when tiles hold compact content so they don't read as mostly-empty panels.
 - **Box** — Polymorphic box
     - `as: C` — The component used for the root node. Either a string to use a HTML element or a component.
     - `asChild: boolean` = false — If true, the box will be rendered as its child, merging its props onto that child.
@@ -1678,8 +1679,8 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `titleTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"` = "h4" — HTML tag used for the alert title
 @default "h4"
     - `description: React.ReactNode` — Description text of the alert
-    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the alert
-@default "info"
+    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the alert
+@default "default"
     - `icon: React.ReactNode` — Custom icon. When omitted, a default icon matching the intent is displayed.
     - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
     - `className: string` — Additional CSS class name
@@ -1691,8 +1692,8 @@ Useful for using the button styles with Link components (e.g. from React Router 
 - **Banner** — Top prominent messages
     - `title: React.ReactNode` — Title of the banner
     - `description: React.ReactNode` — Description text of the banner
-    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the banner
-@default "info"
+    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the banner
+@default "default"
     - `icon: boolean | React.ReactNode` = true — Whether to show the icon, or a custom icon element
 @default true
     - `extra: React.ReactNode` — Action element (e.g. a Button component)
@@ -1750,7 +1751,8 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
     - `title: ReactNode` (required) — The title of notification
     - `description: ReactNode` — The description of notification
     - `icon: ReactNode` — The icon of notification
-    - `intent: FeedbackIntent` — The intent of notification
+    - `intent: FeedbackIntent` = "default" — The intent of notification
+@default "default"
     - `onClose: (id?: string) => void` — Callback when notification is closed
     - `closable: boolean` = true — Whether to show close button
     - `className: string` — Additional class name
@@ -1769,7 +1771,8 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
 - **Result** — Task status indicator
-    - `intent: Extract<WimIntent, "success" | "danger" | "info" | "warning">` = "info" — Semantic intent — determines the icon and color.
+    - `intent: Extract< WimIntent, "default" | "success" | "danger" | "info" | "warning" >` = "default" — Semantic intent — determines the icon and color.
+@default "default"
     - `status: "404" | "403" | "500"` — HTTP error status — adds a status-specific CSS class and shows a neutral icon.
 Use for error pages (404, 403, 500).
     - `title: ReactNode` — The title
@@ -1799,8 +1802,8 @@ Use for error pages (404, 403, 500).
     - `message: string` (required) — Message displayed in the snackbar
     - `open: boolean` = false — Whether the snackbar is shown
 @default false
-    - `intent: FeedbackIntent` = "info" — Intent (semantic state)
-@default "info"
+    - `intent: FeedbackIntent` = "default" — Intent (semantic state)
+@default "default"
     - `position: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"` = "bottom-center" — Position on the screen
 @default "bottom-center"
     - `autoHideDuration: number` = 5000 — Time in milliseconds before the snackbar closes automatically. Set 0 to disable auto-close.
@@ -1823,8 +1826,8 @@ Use for error pages (404, 403, 500).
     - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
     - `title: string` — Title of the toast.
     - `description: string` — Description text displayed below the title.
-    - `intent: FeedbackIntent` = "info" — Intent (semantic state) of the toast.
-@default "info"
+    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the toast.
+@default "default"
     - `duration: number` = 3000 — Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.
 @default 3000
     - `open: boolean` = true — Whether the toast is shown.
@@ -2725,8 +2728,8 @@ target is already in the past). Not called when baseDate is set.
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
 @default "100%"
     - `title: string` — Optional title displayed above the chart.
-    - `colorRange: [string, string]` = ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"] — Colors used for the lowest and highest values.
-@default ["var(--wim-color-surface-variant)", "var(--wim-color-primary)"]
+    - `colorRange: [string, string]` = ["var(--wim-color-surface-variant)", "var(--wim-color-chart-primary)"] — Colors used for the lowest and highest values.
+@default ["var(--wim-color-surface-variant)", "var(--wim-color-chart-primary)"]
     - `animated: boolean` = false — Whether to animate the cells on mount.
 @default false
 - **LineChart** — Line charts
@@ -2782,7 +2785,7 @@ target is already in the past). Not called when baseDate is set.
     - `type: "line" | "area" | "bar"` = "line" — Visual form of the sparkline
     - `width: number | string` = 100 — Width of the sparkline (number in px, or a CSS value such as "100%")
     - `height: number` = 24 — Height of the sparkline in px
-    - `color: string` = "var(--wim-color-primary)" — Stroke/fill color (defaults to the primary chart color)
+    - `color: string` = "var(--wim-color-chart-primary)" — Stroke/fill color (defaults to the primary chart color)
     - `strokeWidth: number` = 2 — Stroke width for line and area types
     - `showLastDot: boolean` = false — Whether to emphasize the last data point with a dot (line and area only)
     - `min: number` — Lower bound of the y-axis domain (defaults to the data minimum)

@@ -769,8 +769,32 @@ const full = [
   catalogSection(true),
 ].join('\n');
 
-writeFileSync(join(ROOT, 'public/llms.txt'), concise);
-writeFileSync(join(ROOT, 'public/llms-full.txt'), full);
+// --check: 生成せず、コミット済みの内容と一致するかだけを見る。
+// `llms:build` は `npm run build` の一部なので dist（＝npm 公開分）は常に最新だが、
+// **`public/` のコミット済みコピーは誰かがビルド結果をコミットしない限り古いまま**になる。
+// これが GitHub Pages で配信され、ドキュメントが AI エージェントに案内している URL
+// （https://takeshisakuma.github.io/wimui/llms.txt）の中身になる。実際 v0.3.0 の内容が
+// 0.5.1 まで残っていた（2026-07-26 に発見）。generate-intents.js の --check と同じ運用。
+const outputs = [
+  { file: join(ROOT, 'public/llms.txt'), content: concise },
+  { file: join(ROOT, 'public/llms-full.txt'), content: full },
+];
+
+if (process.argv.includes('--check')) {
+  const stale = outputs.filter(
+    (o) => !existsSync(o.file) || readFileSync(o.file, 'utf8') !== o.content,
+  );
+  if (stale.length > 0) {
+    console.error('✗ public/llms*.txt がソースと一致しません（コミット済みの内容が古い）:');
+    for (const o of stale) console.error(`  - ${o.file.replace(ROOT, '').replace(/\\/g, '/')}`);
+    console.error('  `npm run llms:build` を実行して差分をコミットしてください。');
+    process.exit(1);
+  }
+  console.log('✓ public/llms*.txt はソースと一致しています。');
+  process.exit(0);
+}
+
+for (const o of outputs) writeFileSync(o.file, o.content);
 
 const unresolved = catalog
   .flatMap((g) => g.components)
