@@ -19,12 +19,16 @@ const useThreads = (): Thread[] => {
   const { t } = useTranslation(ALL_NAMESPACES);
   // @ts-expect-error: __VRT__ is a custom global flag for testing
   if (typeof window !== "undefined" && window.__VRT__) {
+    // VRT 専用の固定データ。ロケールに依存しない文字列でなければスクリーンショットが
+    // 言語ごとにずれるため、ここは意図的に t() を通さない（下の通常経路が翻訳版）。
+    // i18n-ignore-start
     return [
       { id: "1", title: "Product roadmap Q3", preview: "Can you outline the milestones?", timestamp: "2m" },
       { id: "2", title: "API error handling", preview: "Retry with exponential backoff…", timestamp: "1h", unread: true },
       { id: "3", title: "Onboarding copy", preview: "Tone should stay friendly.", timestamp: "3h" },
       { id: "4", title: "Usage quotas", preview: "Soft limit vs hard limit.", timestamp: "1d" },
     ];
+    // i18n-ignore-end
   }
   return [
     { id: "1", title: t("story.threadlist_t1_title"), preview: t("story.threadlist_t1_preview"), timestamp: "2m" },
