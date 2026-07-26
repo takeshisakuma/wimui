@@ -2463,22 +2463,22 @@ target is already in the past). Not called when baseDate is set.
     - `label: React.ReactNode` (required) — The main label text or element.
     - `required: boolean` = false — Whether the field is mandatory. If true, displays a required badge.
     - `requiredLabel: React.ReactNode` — Custom text or element for the required badge.
-@default "required"
+Defaults to the localized `form.required` string.
     - `showOptional: boolean` = false — Whether to display an optional badge when `required` is false.
 @default false
     - `optionalLabel: React.ReactNode` — Custom text or element for the optional badge.
-@default "optional"
+Defaults to the localized `form.optional` string.
     - `className: string` — Additional CSS class name for the container.
     - `asChild: boolean` = false — If true, the Label will be rendered as its child, merging its props onto that child.
 - **Legend** — Group title
     - `label: React.ReactNode` (required) — The main label text or element.
     - `required: boolean` — Whether the field is mandatory. If true, displays a required badge.
     - `requiredLabel: React.ReactNode` — Custom text or element for the required badge.
-@default "required"
+Defaults to the localized `form.required` string.
     - `showOptional: boolean` — Whether to display an optional badge when `required` is false.
 @default false
     - `optionalLabel: React.ReactNode` — Custom text or element for the optional badge.
-@default "optional"
+Defaults to the localized `form.optional` string.
     - `className: string` — Additional CSS class name for the container.
     - `asChild: boolean` = false — If true, the Legend will be rendered as its child, merging its props onto that child.
 - **Span** — Lightweight wrapper for inline text or short labels with icon support

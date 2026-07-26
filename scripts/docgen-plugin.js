@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Bump this when parsing logic changes to force a full cache invalidation
-const CACHE_VERSION = 6;
+const CACHE_VERSION = 7;
 
 // FindAll: JSX を返す通常のコンポーネントを検出
 // FindAnnotated: createPortal 返しなど JSX と認識されない定義を JSDoc の @component 注釈で検出
