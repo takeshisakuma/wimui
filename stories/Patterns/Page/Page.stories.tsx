@@ -577,11 +577,11 @@ export const ShoppingCart: StoryObj = {
                   <Box
                     role="img"
                     aria-label={t("cart.image_alt")}
+                    radius="lg"
                     style={{
                       width: 140,
                       flexShrink: 0,
                       alignSelf: "stretch",
-                      borderRadius: "var(--wim-radius-lg)",
                       backgroundImage: `url(${noImage})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",

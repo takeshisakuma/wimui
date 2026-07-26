@@ -228,22 +228,19 @@ export default function WelcomeCard() {
           </div>
 
           {/* Canvas Content */}
-          <Box style={{ 
-            flex: 1, 
-            overflow: "auto", 
-            padding: "var(--wim-spacing-4xl)", 
+          <Box p="4xl" style={{
+            flex: 1,
+            overflow: "auto",
             background: "var(--wim-color-surface-variant)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
           }}>
             {activeTab === "preview" ? (
-              <Box style={{ 
+              <Box radius="lg" shadow="lg" style={{
                 width: "100%",
-                maxWidth: "600px", 
-                background: "var(--wim-color-surface)", 
-                borderRadius: "var(--wim-radius-lg)",
-                boxShadow: "var(--wim-shadow-lg)",
+                maxWidth: "600px",
+                background: "var(--wim-color-surface)",
                 overflow: "hidden"
               }}>
                 <Box

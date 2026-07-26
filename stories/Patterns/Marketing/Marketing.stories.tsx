@@ -899,7 +899,7 @@ export const FeatureComparison: StoryObj = {
     };
 
     return (
-      <Box style={{ padding: "var(--wim-spacing-3xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}>
+      <Box py="3xl" px="xl" style={{ background: "var(--wim-color-surface-app)" }}>
         <style>{`
           @media (max-width: 480px) {
             .wim-feature-comparison-table td,
@@ -924,11 +924,11 @@ export const FeatureComparison: StoryObj = {
           </Stack>
 
           <Box
+            radius="container"
+            shadow="sm"
             style={{
               overflow: "hidden",
-              borderRadius: "var(--wim-radius-container)",
               border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
-              boxShadow: "var(--wim-shadow-sm)",
             }}
           >
             <table
