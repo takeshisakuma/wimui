@@ -18,13 +18,20 @@ const members: Member[] = [
   { id: "u_4", name: "Thomas O'Reilly", team: "Growth", role: "member", status: "suspended" }, // non-happy path
 ];
 
-// Only the exceptional value is coloured — an undefined intent falls back to
-// primary, which would paint every row and tell the reader nothing.
-const roleIntent: Record<Role, "primary" | "neutral"> = { admin: "primary", member: "neutral" };
-const statusIntent: Record<MemberStatus, "success" | "danger" | "neutral"> = {
-  active: "success",
-  invited: "neutral",
-  suspended: "danger",
+// Only the exceptional value is filled. The ordinary one gets an outline, which
+// stays visible on a white row — `neutral`/`subtle` is a 15%-alpha grey that
+// does not, and an undefined intent falls back to primary and paints every row.
+type BadgeLook = { variant: "subtle" | "outline"; intent: "primary" | "success" | "danger" | "secondary" };
+const ordinary: BadgeLook = { variant: "outline", intent: "secondary" };
+
+const roleBadge: Record<Role, BadgeLook> = {
+  admin: { variant: "subtle", intent: "primary" },
+  member: ordinary,
+};
+const statusBadge: Record<MemberStatus, BadgeLook> = {
+  active: { variant: "subtle", intent: "success" },
+  invited: ordinary,
+  suspended: { variant: "subtle", intent: "danger" },
 };
 
 // A search/filter toolbar as the sparse region above a dense table.
@@ -66,7 +73,7 @@ export default function MembersTable() {
       </Group>
 
       {/* Dense data region */}
-      <Table hoverable fullWidth>
+      <Table card hoverable fullWidth>
         <Table.Header>
           <Table.Row>
             <Table.Head>Member</Table.Head>
@@ -81,10 +88,10 @@ export default function MembersTable() {
               <Table.Cell>{m.name}</Table.Cell>
               <Table.Cell>{m.team ?? <Text color="tertiary">No team</Text>}</Table.Cell>
               <Table.Cell>
-                <Badge variant="subtle" intent={roleIntent[m.role]}>{m.role}</Badge>
+                <Badge {...roleBadge[m.role]}>{m.role}</Badge>
               </Table.Cell>
               <Table.Cell>
-                <Badge variant="subtle" intent={statusIntent[m.status]}>{m.status}</Badge>
+                <Badge {...statusBadge[m.status]}>{m.status}</Badge>
               </Table.Cell>
             </Table.Row>
           ))}

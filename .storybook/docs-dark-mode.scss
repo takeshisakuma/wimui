@@ -48,16 +48,17 @@
     color: inherit !important;
   }
 
-  /* Docs内テーブル行 – zebra stripe の白背景を除去 */
-  .sbdocs-content table tr,
-  .sbdocs-content table tr:nth-child(even),
-  .sbdocs-content table tr:nth-child(odd) {
+  /* Docs内テーブル行 – zebra stripe の白背景を除去。
+     `.sb-unstyled` 配下はライブラリ自身の Table なので除外する（docs-common.scss と同じ規約）。 */
+  .sbdocs-content table:not(.sb-unstyled table) tr,
+  .sbdocs-content table:not(.sb-unstyled table) tr:nth-child(even),
+  .sbdocs-content table:not(.sb-unstyled table) tr:nth-child(odd) {
     background-color: transparent !important;
   }
 
   /* Docs内テーブルセル – Storybook 既定の白背景を上書き */
-  .sbdocs-content table th,
-  .sbdocs-content table td {
+  .sbdocs-content table:not(.sb-unstyled table) th,
+  .sbdocs-content table:not(.sb-unstyled table) td {
     background-color: transparent !important;
     color: var(--wim-color-text-primary) !important;
     border-color: var(--wim-color-border) !important;

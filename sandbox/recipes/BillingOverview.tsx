@@ -15,12 +15,16 @@ const rows: Row[] = [
   { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
 ];
 
-// Colour carries state only: paid and failed earn an intent, pending stays
-// neutral. Leaving it undefined would fall back to primary and read as a state.
-const statusIntent: Record<Status, "success" | "danger" | "neutral"> = {
-  paid: "success",
-  failed: "danger",
-  pending: "neutral",
+// Colour carries state only. paid and failed earn a filled intent; pending is
+// the ordinary case, so it gets an outline instead — `neutral`/`subtle` would
+// be a 15%-alpha grey that disappears on a white row, and leaving intent
+// undefined falls back to primary and reads as a state of its own.
+type BadgeLook = { variant: "subtle" | "outline"; intent: "success" | "danger" | "primary" | "secondary" };
+
+const statusBadge: Record<Status, BadgeLook> = {
+  paid: { variant: "subtle", intent: "success" },
+  failed: { variant: "subtle", intent: "danger" },
+  pending: { variant: "outline", intent: "secondary" },
 };
 
 // One protagonist (the KPI row), a dense table below, tokens via props,
@@ -51,31 +55,31 @@ export default function BillingOverview() {
         </Stats>
       </Grid>
 
-      {/* Dense data region */}
-      <Card padding="none">
-        <Table hoverable fullWidth>
-          <Table.Header>
-            <Table.Row>
-              <Table.Head>Customer</Table.Head>
-              <Table.Head>Plan</Table.Head>
-              <Table.Head>Amount</Table.Head>
-              <Table.Head>Status</Table.Head>
+      {/* Dense data region. `card` frames the table itself — wrapping it in a
+          Card instead would stack the table's border on the last row's and put
+          a 4px radius inside a 12px one. */}
+      <Table card hoverable fullWidth>
+        <Table.Header>
+          <Table.Row>
+            <Table.Head>Customer</Table.Head>
+            <Table.Head>Plan</Table.Head>
+            <Table.Head>Amount</Table.Head>
+            <Table.Head>Status</Table.Head>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {rows.map((r) => (
+            <Table.Row key={r.id}>
+              <Table.Cell>{r.name}</Table.Cell>
+              <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
+              <Table.Cell>{r.amount}</Table.Cell>
+              <Table.Cell>
+                <Badge {...statusBadge[r.status]}>{r.status}</Badge>
+              </Table.Cell>
             </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {rows.map((r) => (
-              <Table.Row key={r.id}>
-                <Table.Cell>{r.name}</Table.Cell>
-                <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
-                <Table.Cell>{r.amount}</Table.Cell>
-                <Table.Cell>
-                  <Badge variant="subtle" intent={statusIntent[r.status]}>{r.status}</Badge>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Card>
+          ))}
+        </Table.Body>
+      </Table>
     </Stack>
   );
 }
