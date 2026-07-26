@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type React from "react";
 import { Stack, Group, Title, Text, Card, Divider, Select, Switch, Button } from "wimui";
 
@@ -14,23 +15,25 @@ export default function NotificationSettings() {
       <Card padding="lg" variant="outline">
         <Stack gap="md">
           <SettingRow label="Deliverability alerts" hint="Bounce-rate spikes and blocklist hits.">
-            <Switch defaultChecked />
+            {(ids) => <Switch defaultChecked {...ids} />}
           </SettingRow>
           <Divider />
           <SettingRow label="Weekly summary" hint="Every Monday, 09:00 in your timezone.">
-            <Switch />
+            {(ids) => <Switch {...ids} />}
           </SettingRow>
           <Divider />
           <SettingRow label="Digest timezone">
-            <Select
-              aria-label="Digest timezone"
-              value="jst"
-              options={[
-                { label: "Asia/Tokyo (JST)", value: "jst" },
-                { label: "Europe/Berlin (CET)", value: "cet" },
-                { label: "UTC", value: "utc" },
-              ]}
-            />
+            {(ids) => (
+              <Select
+                {...ids}
+                value="jst"
+                options={[
+                  { label: "Asia/Tokyo (JST)", value: "jst" },
+                  { label: "Europe/Berlin (CET)", value: "cet" },
+                  { label: "UTC", value: "utc" },
+                ]}
+              />
+            )}
           </SettingRow>
         </Stack>
       </Card>
@@ -43,7 +46,11 @@ export default function NotificationSettings() {
   );
 }
 
-// Local helper: label-left / control-right row. One protagonist per row = the control.
+// Local helper: label-left / control-right row. One protagonist per row = the
+// control. The row *looks* labelled, but nothing associates the text with the
+// control — so the row wires it up itself: the child is called with the ids to
+// put on `aria-labelledby` / `aria-describedby`. Without this the switches are
+// unlabelled to a screen reader (axe `label`, critical).
 function SettingRow({
   label,
   hint,
@@ -51,15 +58,22 @@ function SettingRow({
 }: {
   label: string;
   hint?: string;
-  children: React.ReactNode;
+  children: (ids: { "aria-labelledby": string; "aria-describedby"?: string }) => React.ReactNode;
 }) {
+  const id = useId();
+  const labelId = `${id}-label`;
+  const hintId = `${id}-hint`;
+
   return (
     <Group justify="between" align="center" gap="md">
       <Stack gap="3xs">
-        <Text weight="medium">{label}</Text>
-        {hint ? <Text size="sm" color="secondary">{hint}</Text> : null}
+        <Text id={labelId} weight="medium">{label}</Text>
+        {hint ? <Text id={hintId} size="sm" color="secondary">{hint}</Text> : null}
       </Stack>
-      {children}
+      {children({
+        "aria-labelledby": labelId,
+        "aria-describedby": hint ? hintId : undefined,
+      })}
     </Group>
   );
 }
