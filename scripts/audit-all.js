@@ -75,6 +75,20 @@ const checks = [
     name: "llms.txt freshness (committed copy matches source)",
     command: "node scripts/generate-llms.js --check",
   },
+  {
+    category: "lib",
+    // 単体では正しいトークンが、組み合わせたときだけ不可視になる事故を防ぐ。
+    // axe も VRT も捕まえられない種類（T34）。
+    name: "Contrast / fill visibility (intent × variant × surface)",
+    command: "node scripts/check-contrast.js",
+  },
+  {
+    category: "lib",
+    // 型が受け付けるのに CSS が無い prop 値＝「書いても効かない prop」。
+    // 呼び出し側が style へ逃げる原因になる（T33）。
+    name: "Prop values without a CSS class",
+    command: "node scripts/check-prop-classes.js",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",
