@@ -19,11 +19,11 @@ export const Default: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
+          <Badge intent="primary" variant="subtle">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story.marquee_update")}</Badge>
+          <Badge intent="neutral" variant="subtle">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_check_out")}
           </span>
@@ -42,11 +42,11 @@ export const Fast: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
+          <Badge intent="primary" variant="subtle">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story.marquee_update")}</Badge>
+          <Badge intent="neutral" variant="subtle">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_check_out")}
           </span>
@@ -65,11 +65,11 @@ export const Slow: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
+          <Badge intent="primary" variant="subtle">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story.marquee_update")}</Badge>
+          <Badge intent="neutral" variant="subtle">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_check_out")}
           </span>
@@ -88,11 +88,11 @@ export const Reverse: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
+          <Badge intent="primary" variant="subtle">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story.marquee_update")}</Badge>
+          <Badge intent="neutral" variant="subtle">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
             {t("story.marquee_check_out")}
           </span>

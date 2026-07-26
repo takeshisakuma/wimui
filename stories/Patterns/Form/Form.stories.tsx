@@ -48,12 +48,11 @@ export const LoginForm: StoryObj = {
         style={{ height: "100vh", backgroundColor: "var(--wim-color-surface-app)" }}
       >
         <Card
+          variant="outline"
+          padding="xl"
           style={{
             width: "100%",
             maxWidth: "400px",
-            padding: "var(--wim-spacing-3xl)",
-            border: "1px solid",
-            borderColor: "var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="xl">
@@ -143,11 +142,11 @@ export const SignupForm: StoryObj = {
         }}
       >
         <Card
+          variant="outline"
+          padding="xl"
           style={{
             width: "100%",
             maxWidth: "420px",
-            padding: "var(--wim-spacing-3xl)",
-            border: "1px solid var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="xl">
@@ -262,11 +261,11 @@ export const MultiStepForm: StoryObj = {
         }}
       >
         <Card
+          variant="outline"
+          padding="xl"
           style={{
             width: "100%",
             maxWidth: "560px",
-            padding: "var(--wim-spacing-3xl)",
-            border: "1px solid var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="3xl">
@@ -405,11 +404,11 @@ export const WelcomeScreen: StoryObj = {
         }}
       >
         <Card
+          variant="outline"
+          padding="3xl"
           style={{
             width: "100%",
             maxWidth: "600px",
-            padding: "var(--wim-spacing-5xl)",
-            border: "1px solid var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="3xl" align="center">
@@ -512,11 +511,11 @@ export const ProgressChecklist: StoryObj = {
         }}
       >
         <Card
+          variant="outline"
+          padding="xl"
           style={{
             width: "100%",
             maxWidth: "500px",
-            padding: "var(--wim-spacing-3xl)",
-            border: "1px solid var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="2xl">

@@ -28,10 +28,10 @@ import fs from 'fs';
 import { globSync } from 'glob';
 
 // --- ラチェット基準（既定値上書き＋px 直書きの合計）。増やさない・減らしたら更新する。 ---
-// 2026-07-26 の実測 109 件で凍結（docs 66 / stories/Patterns 41 / sandbox 2）。
+// 2026-07-26 の実測 108 件で凍結（docs 66 / stories/Patterns 40 / sandbox 2）。
 // docs の 66 件は Configure / Colors / AppLayout など既存ページの負債で、この
 // スコープ拡張で初めて可視化されたもの。減らしたらこの値を下げること。
-const STYLE_OVERRIDE_BASELINE = 109;
+const STYLE_OVERRIDE_BASELINE = 108;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。

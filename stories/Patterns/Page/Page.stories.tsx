@@ -388,10 +388,10 @@ export const MaintenancePage: StoryObj = {
           </Alert>
 
           <Card
+            variant="outline"
+            padding="md"
             style={{
               width: "100%",
-              padding: "var(--wim-spacing-xl)",
-              border: "1px solid var(--wim-color-border-secondary)",
             }}
           >
             <Stack gap="md">
@@ -489,8 +489,9 @@ export const ProductCard: StoryObj = {
                 radius="none"
               />
               <Stack gap="sm" style={{ padding: "var(--wim-spacing-lg)" }}>
+                {/* カテゴリは状態ではないのでニュートラル（色は状態に限定する） */}
                 <Badge
-                  intent="primary"
+                  intent="neutral"
                   content={p.category}
                   size="sm"
                   variant="subtle"
@@ -571,13 +572,7 @@ export const ShoppingCart: StoryObj = {
         <Grid cols={{ base: 1, lg: "1fr 340px" }} gap={32}>
           <Stack gap="md">
             {items.map((item, i) => (
-              <Card
-                key={i}
-                style={{
-                  padding: "var(--wim-spacing-lg)",
-                  border: "1px solid var(--wim-color-border-secondary)",
-                }}
-              >
+              <Card key={i} variant="outline" padding="md">
                 <Stack direction="row" align="stretch" gap="lg">
                   <Box
                     role="img"
@@ -637,9 +632,9 @@ export const ShoppingCart: StoryObj = {
           </Stack>
 
           <Card
+            variant="outline"
+            padding="md"
             style={{
-              padding: "var(--wim-spacing-xl)",
-              border: "1px solid var(--wim-color-border-secondary)",
               alignSelf: "start",
             }}
           >

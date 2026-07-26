@@ -35,10 +35,10 @@ export const Default: Story = {
         description: t("story.bento_ai_desc", "Seamlessly integrate AI into your workflow."),
         header: (
           <div style={{ ...fillHeader, flexWrap: "wrap", alignContent: "center", gap: "var(--wim-spacing-xs)" }}>
-            <Badge variant="subtle">{t("story.bento_ai_cap_summarize")}</Badge>
-            <Badge variant="subtle">{t("story.bento_ai_cap_classify")}</Badge>
-            <Badge variant="subtle">{t("story.bento_ai_cap_extract")}</Badge>
-            <Badge variant="subtle">{t("story.bento_ai_cap_translate")}</Badge>
+            <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_summarize")}</Badge>
+            <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_classify")}</Badge>
+            <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_extract")}</Badge>
+            <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_translate")}</Badge>
           </div>
         ),
         className: "wim-bento-grid-item--col-span-2",

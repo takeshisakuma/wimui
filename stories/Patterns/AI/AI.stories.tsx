@@ -183,7 +183,7 @@ export default function WelcomeCard() {
                 <div style={{ display: "flex", alignItems: "center", gap: "var(--wim-spacing-md)", minWidth: 0, overflow: "hidden", flex: 1 }}>
                   <Icon component={DocumentIcon} size="sm" color="primary" style={{ flexShrink: 0 }} />
                   <Title tag="h4" size="sm" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, flex: 1 }}>WelcomeCard.tsx</Title>
-                  {!isMobile && <Badge content="v2" size="sm" variant="subtle" style={{ flexShrink: 0 }} />}
+                  {!isMobile && <Badge content="v2" intent="neutral" size="sm" variant="subtle" style={{ flexShrink: 0 }} />}
                 </div>
               </div>
 
@@ -261,14 +261,13 @@ export default function WelcomeCard() {
                   </Text>
                 </Box>
                 <Box p="5xl" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                   <Card 
-                    variant="glass" 
-                    style={{ 
-                      textAlign: "center", 
-                      border: "1px solid var(--wim-color-glass-border)", 
-                      backdropFilter: "blur(var(--wim-blur-md))",
+                   {/* border と backdrop-filter は variant="glass" が既に当てている */}
+                   <Card
+                    variant="glass"
+                    padding="2xl"
+                    style={{
+                      textAlign: "center",
                       margin: "var(--wim-spacing-xl)",
-                      padding: "var(--wim-spacing-4xl)"
                     }}
                   >
                       <Stack gap="xl" align="center">
