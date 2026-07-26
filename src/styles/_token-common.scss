@@ -14,10 +14,24 @@
   white-space: nowrap;
 }
 
+// subtle の背景。intents.json が "subtle" を明示していればそれをそのまま使い、
+// 無ければ base を 15% で敷く。neutral のように base 自体がサーフェス寄りの淡色
+// だと 15% では白背景に対して消えてしまうため、明示できる余地を残している。
+@function subtle-bg($pairs) {
+  $explicit: map.get($pairs, "subtle");
+
+  @if $explicit {
+    @return $explicit;
+  }
+
+  @return oklch(from #{map.get($pairs, "base")} l c h / 0.15);
+}
+
 @mixin token-variants($prefix) {
   @each $name, $pairs in $token-colors {
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
+    $subtle: subtle-bg($pairs);
 
     // outline/subtle の文字は base（塗り用）ではなく AA 可読の text ロールを使う
     // （warning #ccb914 等の塗り色はテキストとしてはコントラスト不足）
@@ -37,7 +51,7 @@
 
     &--#{$name}.#{$prefix}--subtle {
       color: $text;
-      background-color: oklch(from #{$base} l c h / 0.15);
+      background-color: $subtle;
       border: 1px solid transparent;
     }
   }
@@ -48,6 +62,7 @@
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
     $text: map.get($pairs, "text");
+    $subtle: subtle-bg($pairs);
 
     // :where() で特異度を 0-1-0 に抑え、disabled 等の状態セレクタが !important なしで上書きできるようにする
     &:where(.#{$name}) {
@@ -66,10 +81,10 @@
       }
 
       &:where(.subtle) {
-        --bg: oklch(from #{$base} l c h / 0.15);
+        --bg: #{$subtle};
 
         color: $text;
-        background-color: oklch(from #{$base} l c h / 0.15);
+        background-color: $subtle;
         border: 1px solid transparent;
       }
     }

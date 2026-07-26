@@ -7,7 +7,7 @@ export default function SignIn() {
   // shell) and hugs its content when it does not (the docs preview).
   return (
     <Center h="100%" p="lg">
-      <Card padding="lg" style={{ width: "min(380px, 100%)" }}>
+      <Card padding="lg" variant="outline" style={{ width: "min(380px, 100%)" }}>
         <Stack gap="lg">
           <Stack gap="2xs">
             <Title tag="h1" size="md">Sign in to Larkfield</Title>

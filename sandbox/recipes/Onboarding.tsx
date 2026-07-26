@@ -18,7 +18,7 @@ export default function Onboarding() {
     <Stack gap="lg" style={{ maxWidth: 640 }}>
       <Stepper steps={steps} current={current} onChange={setCurrent} />
 
-      <Card padding="lg">
+      <Card padding="lg" variant="outline">
         <Stack gap="md">
           <Stack gap="2xs">
             <Title tag="h2" size="md">Name your workspace</Title>

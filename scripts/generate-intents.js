@@ -56,13 +56,14 @@ function readColorKeys() {
 function resolveSurface(def) {
   const surface = def && def.surface;
   if (!surface) return null;
+  // `subtle` is optional: when absent the subtle variant derives base at 15%.
   if (surface === true) {
     if (!def.color) {
       throw new Error(`surface: true requires a non-null color`);
     }
     return { base: def.color, on: `text-on-${def.color}`, text: `text-${def.color}` };
   }
-  return { base: surface.base, on: surface.on, text: surface.text };
+  return { base: surface.base, on: surface.on, text: surface.text, subtle: surface.subtle };
 }
 
 function loadAndValidate() {
@@ -101,8 +102,9 @@ function loadAndValidate() {
       continue;
     }
     if (!surface) continue;
-    for (const role of ["base", "on", "text"]) {
+    for (const role of ["base", "on", "text", "subtle"]) {
       const key = surface[role];
+      if (key === undefined) continue; // `subtle` is optional
       if (!colorKeys.has(key)) {
         errors.push(
           `canonical intent "${name}" surface.${role} "${key}" but --wim-color-${key} does not exist.`
@@ -137,7 +139,7 @@ function buildTs({ canonical, sets }) {
 }
 
 function buildScss({ canonical }) {
-  let out = `// Do not edit directly, this file was auto-generated from tokens/intents.json.\n// Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n//\n// $token-colors maps each indicator-painting intent to its base surface color,\n// the readable "on" color used for solid fills, and the AA-readable "text"\n// color used by outline/subtle variants. Keys match the semantic intent\n// vocabulary exactly, so \`styles?.[intent]\` (IndicatorBase) always hits.\n\n`;
+  let out = `// Do not edit directly, this file was auto-generated from tokens/intents.json.\n// Run \`npm run intents:build\` (also part of \`npm run tokens:build\`).\n//\n// $token-colors maps each indicator-painting intent to its base surface color,\n// the readable "on" color used for solid fills, and the AA-readable "text"\n// color used by outline/subtle variants. Keys match the semantic intent\n// vocabulary exactly, so \`styles?.[intent]\` (IndicatorBase) always hits.\n//\n// An optional "subtle" key overrides the subtle variant's background. Without\n// it the variant uses base at 15% alpha, which is invisible for an intent whose\n// base is already a near-surface tint.\n\n`;
   out += `$token-colors: (\n`;
   for (const [name, def] of Object.entries(canonical)) {
     const surface = resolveSurface(def);
@@ -146,6 +148,7 @@ function buildScss({ canonical }) {
     out += `    "base": var(--wim-color-${surface.base}),\n`;
     out += `    "on": var(--wim-color-${surface.on}),\n`;
     out += `    "text": var(--wim-color-${surface.text}),\n`;
+    if (surface.subtle) out += `    "subtle": var(--wim-color-${surface.subtle}),\n`;
     out += `  ),\n`;
   }
   out += `);\n`;

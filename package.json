@@ -448,7 +448,9 @@
     ],
     "stories/**/*.{ts,tsx}": [
       "node scripts/check-stories-hardcoded.js",
-      "node scripts/check-i18n-ignore.js",
+      "node scripts/check-i18n-ignore.js"
+    ],
+    "{stories,sandbox}/**/*.tsx": [
       "node scripts/check-slop.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
@@ -459,7 +461,8 @@
       "node scripts/check-mdx-hardcoded.js",
       "node scripts/check-i18n-components.js",
       "node scripts/check-mdx-links.js",
-      "node scripts/audit-mdx.js"
+      "node scripts/audit-mdx.js",
+      "node scripts/check-slop.js"
     ],
     "public/locales/**/*.json": [
       "node scripts/sync-i18n.js",

@@ -5,6 +5,10 @@
 // the readable "on" color used for solid fills, and the AA-readable "text"
 // color used by outline/subtle variants. Keys match the semantic intent
 // vocabulary exactly, so `styles?.[intent]` (IndicatorBase) always hits.
+//
+// An optional "subtle" key overrides the subtle variant's background. Without
+// it the variant uses base at 15% alpha, which is invisible for an intent whose
+// base is already a near-surface tint.
 
 $token-colors: (
   "primary": (
@@ -41,5 +45,6 @@ $token-colors: (
     "base": var(--wim-color-disabled),
     "on": var(--wim-color-text-primary),
     "text": var(--wim-color-text-secondary),
+    "subtle": var(--wim-color-disabled),
   ),
 );

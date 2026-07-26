@@ -11,7 +11,7 @@ export default function NotificationSettings() {
         <Text color="secondary">Control what Larkfield emails you about. Changes apply immediately.</Text>
       </Stack>
 
-      <Card padding="lg">
+      <Card padding="lg" variant="outline">
         <Stack gap="md">
           <SettingRow label="Deliverability alerts" hint="Bounce-rate spikes and blocklist hits.">
             <Switch defaultChecked />

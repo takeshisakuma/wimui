@@ -15,16 +15,13 @@ const rows: Row[] = [
   { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
 ];
 
-// Colour carries state only. paid and failed earn a filled intent; pending is
-// the ordinary case, so it gets an outline instead — `neutral`/`subtle` would
-// be a 15%-alpha grey that disappears on a white row, and leaving intent
-// undefined falls back to primary and reads as a state of its own.
-type BadgeLook = { variant: "subtle" | "outline"; intent: "success" | "danger" | "primary" | "secondary" };
-
-const statusBadge: Record<Status, BadgeLook> = {
-  paid: { variant: "subtle", intent: "success" },
-  failed: { variant: "subtle", intent: "danger" },
-  pending: { variant: "outline", intent: "secondary" },
+// Colour carries state only: paid and failed earn an intent, pending is the
+// ordinary case. Leaving the intent undefined would fall back to primary and
+// paint the ordinary case as loudly as the exceptions.
+const statusIntent: Record<Status, "success" | "danger" | "neutral"> = {
+  paid: "success",
+  failed: "danger",
+  pending: "neutral",
 };
 
 // One protagonist (the KPI row), a dense table below, tokens via props,
@@ -34,19 +31,21 @@ export default function BillingOverview() {
     <Stack gap="lg">
       <Title tag="h2" size="lg">Billing</Title>
 
-      {/* Protagonist: KPI row. Uneven content per tile — not three clones. */}
+      {/* Protagonist: KPI row. Uneven content per tile — not three clones.
+          `outline` everywhere: one elevation stance per screen, and the table
+          below is framed by a border too. Stats defaults to `elevated`. */}
       <Grid cols={{ base: 1, sm: 2, lg: 3 }} gap="md">
-        <Stats>
+        <Stats variant="outline">
           <Stats.Label>MRR</Stats.Label>
           <Stats.Value>$48,210</Stats.Value>
           <Stats.Trend>+6.4%</Stats.Trend>
         </Stats>
-        <Stats>
+        <Stats variant="outline">
           <Stats.Label>Active workspaces</Stats.Label>
           <Stats.Value>1,204</Stats.Value>
           <Stats.Description>176 idle over 30 days</Stats.Description>
         </Stats>
-        <Stats>
+        <Stats variant="outline">
           <Stats.Label>Failed webhooks</Stats.Label>
           <Stats.Value>137</Stats.Value>
           {/* Not a Trend: rising failures are bad, and Trend only pairs ↑ with
@@ -74,7 +73,7 @@ export default function BillingOverview() {
               <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
               <Table.Cell>{r.amount}</Table.Cell>
               <Table.Cell>
-                <Badge {...statusBadge[r.status]}>{r.status}</Badge>
+                <Badge variant="subtle" intent={statusIntent[r.status]}>{r.status}</Badge>
               </Table.Cell>
             </Table.Row>
           ))}

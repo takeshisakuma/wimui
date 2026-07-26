@@ -2,7 +2,10 @@
  * check:slop — AI-slop（AI 的な画面）の機械ガード。
  *
  * DESIGN.md「コンポジションガイドライン（AI 的な画面を避ける）」の禁止パターンのうち、
- * 決定的に検出できる部分集合だけを `stories/Patterns/**` に対して機械強制する。
+ * 決定的に検出できる部分集合だけを、合成画面を書く 3 か所に対して機械強制する:
+ *   - `stories/Patterns/**`  Pattern デモ
+ *   - `sandbox/**`           Playground のギャラリーと StackBlitz へ出るレシピ
+ *   - `docs/*.mdx` の <style> ドキュメントページ自身のレイアウト CSS
  * 判断依存のルール（1 画面 1 主役・中央揃え多用・実在感など）は DESIGN.md の
  * セルフレビュー／composition-guidelines skill に委ね、ここでは扱わない。
  *
@@ -13,10 +16,11 @@
  *   3. styleOverride — インライン style の既定値上書き（padding/margin/borderRadius = 0）と
  *                     px 直書き（gap:"16px" 等）。**ラチェット方式**（現状値を凍結し増加をブロック）。
  *                     既存 `PX_BASELINE`（check-hardcoded-values.js）と同じ運用。
+ *                     MDX の <style> ブロックは CSS 宣言（`padding: 24px;`）として同じ 2 種を見る。
  *
  * 使い方:
- *   node scripts/check-slop.js            # stories/Patterns 全体を検査（audit:docs / CI）
- *   node scripts/check-slop.js <file...>  # 指定ファイルのみ（lint-staged 用。Patterns 以外は無視）
+ *   node scripts/check-slop.js            # 対象全体を検査（audit:docs / CI）
+ *   node scripts/check-slop.js <file...>  # 指定ファイルのみ（lint-staged 用。対象外のパスは無視）
  *
  * ベースラインを下回ったら STYLE_OVERRIDE_BASELINE を実測値まで下げてコミットすること。
  */
@@ -24,7 +28,10 @@ import fs from 'fs';
 import { globSync } from 'glob';
 
 // --- ラチェット基準（既定値上書き＋px 直書きの合計）。増やさない・減らしたら更新する。 ---
-const STYLE_OVERRIDE_BASELINE = 40;
+// 2026-07-26 の実測 109 件で凍結（docs 66 / stories/Patterns 41 / sandbox 2）。
+// docs の 66 件は Configure / Colors / AppLayout など既存ページの負債で、この
+// スコープ拡張で初めて可視化されたもの。減らしたらこの値を下げること。
+const STYLE_OVERRIDE_BASELINE = 109;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
@@ -44,14 +51,17 @@ const HYPE_SCAN_FILES = [
   'public/locales/pt/docs_stories_recipes.json',
 ];
 
-const argv = process.argv.slice(2);
-const explicitFiles = argv.filter((a) => a.endsWith('.tsx') && !a.endsWith('.test.tsx'));
-// lint-staged は全 staged tsx を渡すため Patterns 配下のみに絞る。
-const patternFiles = (
-  explicitFiles.length > 0
-    ? explicitFiles.filter((f) => /(^|\/)stories\/Patterns\//.test(f.replace(/\\/g, '/')))
-    : globSync('stories/Patterns/**/*.tsx', { posix: true })
-).filter((f) => !f.endsWith('.test.tsx') && fs.existsSync(f));
+// 対象は常に全量。lint-staged は staged ファイルだけを渡してくるが、それで絞ると
+// styleHits の合計がベースラインを必ず下回り、ラチェットが素通りしてしまう
+// （合計を凍結する方式なので、部分集合と全体の基準を比べても意味がない）。
+// 走査対象は数百ファイル程度なので、毎回全量で数える。引数は互換のため無視する。
+const TSX_GLOBS = ['stories/Patterns/**/*.tsx', 'sandbox/**/*.tsx'];
+const MDX_GLOBS = ['docs/*.mdx'];
+
+const composedFiles = TSX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter(
+  (f) => !f.endsWith('.test.tsx') && fs.existsSync(f),
+);
+const mdxFiles = MDX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter((f) => fs.existsSync(f));
 
 const gradientHits = [];
 const styleHits = [];
@@ -60,23 +70,68 @@ const GRADIENT_RE = /linear-gradient\s*\([^)]*135deg/i;
 // 既定値上書き: padding / margin / borderRadius を 0（数値 or "0"）へリセット。
 // 位置指定の top/right/bottom/left: 0 は正当（絶対配置）なので対象外。
 const DEFAULT_OVERRIDE_RE = /\b(padding|margin|border[Rr]adius)([A-Z][A-Za-z]*)?\s*:\s*(0|["']0["'])\s*[,}]/;
-// px 直書き: 任意プロパティの "<num>px" 文字列（var() 参照行は除外）。
-const PX_LITERAL_RE = /\b[a-zA-Z]+\s*:\s*["'][0-9.]+px["']/;
+// px 直書き: 任意プロパティの値に px を含む文字列（var() 参照行は除外）。
+// 単独値 gap:"16px" だけでなく padding:"0 16px" や width:"min(380px, 100%)" も拾う。
+const PX_LITERAL_RE = /\b[a-zA-Z]+\s*:\s*["'][^"']*\b[0-9.]+px\b/;
 
-for (const file of patternFiles) {
+for (const file of composedFiles) {
   const lines = fs.readFileSync(file, 'utf8').split('\n');
+  // `style={{ ... }}` の内側かどうかを波括弧の深さで追う。ルールが対象にするのは
+  // インライン style であって、散文や設定オブジェクトではない（`description:
+  // "One card, 380px..."` のような普通の文字列を px 直書きと誤検出しないため）。
+  let styleDepth = 0;
+
   lines.forEach((line, i) => {
     if (/^\s*(\/\/|\*|\/\*)/.test(line)) return; // コメント行
     const loc = `${file}:${i + 1}`;
     if (GRADIENT_RE.test(line)) {
       gradientHits.push(`${loc}: ${line.trim().slice(0, 100)}`);
     }
-    if (DEFAULT_OVERRIDE_RE.test(line)) {
-      styleHits.push(`${loc} [default-override] ${line.trim().slice(0, 80)}`);
-    } else if (PX_LITERAL_RE.test(line) && !/var\(/.test(line)) {
-      styleHits.push(`${loc} [px-literal] ${line.trim().slice(0, 80)}`);
+
+    const opensHere = /\bstyle\s*=\s*\{\{/.test(line);
+    const inStyle = styleDepth > 0 || opensHere;
+    if (inStyle) {
+      if (DEFAULT_OVERRIDE_RE.test(line)) {
+        styleHits.push(`${loc} [default-override] ${line.trim().slice(0, 80)}`);
+      } else if (PX_LITERAL_RE.test(line) && !/var\(/.test(line)) {
+        styleHits.push(`${loc} [px-literal] ${line.trim().slice(0, 80)}`);
+      }
     }
+
+    // 深さ更新は判定のあと。style= で始まった行はその行の増減だけを数える。
+    const delta = (line.match(/\{/g) ?? []).length - (line.match(/\}/g) ?? []).length;
+    if (opensHere) styleDepth = Math.max(0, delta);
+    else if (styleDepth > 0) styleDepth = Math.max(0, styleDepth + delta);
   });
+}
+
+// --- MDX の <style> ブロック: CSS 宣言として同じ 2 種を見る ---
+// ドキュメントページのレイアウト CSS も合成画面の一部なので、px 直書きを許すと
+// トークンを持つデザインシステムのドキュメントがトークンを使っていない状態になる。
+const CSS_DEFAULT_OVERRIDE_RE = /\b(padding|margin|border-radius)(-[a-z]+)?\s*:\s*0\s*(!important)?\s*;/;
+const CSS_PX_LITERAL_RE = /:\s*[^;]*\b[0-9.]+px\b/;
+const STYLE_BLOCK_RE = /<style[^>]*>([\s\S]*?)<\/style>/g;
+
+for (const file of mdxFiles) {
+  const source = fs.readFileSync(file, 'utf8');
+  const upto = (index) => source.slice(0, index).split('\n').length; // 1-origin
+  for (const block of source.matchAll(STYLE_BLOCK_RE)) {
+    const startLine = upto(block.index);
+    block[1].split('\n').forEach((line, i) => {
+      if (/^\s*(\/\*|\*)/.test(line)) return; // コメント行
+      // メディアクエリの px はトークン化できない（CSS 変数は @media で解決されない）
+      if (/^\s*@media/.test(line)) return;
+      const loc = `${file}:${startLine + i}`;
+      if (GRADIENT_RE.test(line)) {
+        gradientHits.push(`${loc}: ${line.trim().slice(0, 100)}`);
+      }
+      if (CSS_DEFAULT_OVERRIDE_RE.test(line)) {
+        styleHits.push(`${loc} [default-override] ${line.trim().slice(0, 80)}`);
+      } else if (CSS_PX_LITERAL_RE.test(line) && !/var\(/.test(line)) {
+        styleHits.push(`${loc} [px-literal] ${line.trim().slice(0, 80)}`);
+      }
+    });
+  }
 }
 
 // --- コピースキャン（locale JSON）: hype 語・hype フレーズ・プレースホルダ名 ---
@@ -122,7 +177,16 @@ if (nameHits.length > 0) {
   failed = true;
 }
 
-console.log(`\nインライン style の既定値上書き＋px 直書き: ${styleHits.length} 件（baseline: ${STYLE_OVERRIDE_BASELINE}）`);
+// 3 領域それぞれの内訳。合計だけだと「どこが増えたか」が分からずラチェットを更新しづらい。
+const area = (h) =>
+  h.startsWith('sandbox/') ? 'sandbox' : h.startsWith('docs/') ? 'docs' : 'stories/Patterns';
+const byArea = styleHits.reduce((acc, h) => ((acc[area(h)] = (acc[area(h)] ?? 0) + 1), acc), {});
+const breakdown = Object.entries(byArea)
+  .sort((a, b) => b[1] - a[1])
+  .map(([k, v]) => `${k} ${v}`)
+  .join(' / ');
+
+console.log(`\nインライン style の既定値上書き＋px 直書き: ${styleHits.length} 件（${breakdown}）（baseline: ${STYLE_OVERRIDE_BASELINE}）`);
 if (styleHits.length > STYLE_OVERRIDE_BASELINE) {
   console.log(`[FAIL] ベースライン超過。既定値の style 上書き（padding/margin/borderRadius: 0）や`);
   console.log(`       px 直書き（gap:"16px" 等）を増やさないこと。余白・サイズは --wim-spacing-* トークンを使う。`);
