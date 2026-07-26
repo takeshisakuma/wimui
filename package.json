@@ -357,6 +357,7 @@
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",
     "check:intents:scss": "node scripts/check-intents-scss.js",
+    "check:contrast": "node scripts/check-contrast.js",
     "check:slop": "node scripts/check-slop.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "changeset": "changeset",
@@ -582,6 +583,12 @@
     "tokens/intents.json": [
       "node scripts/generate-intents.js",
       "node scripts/stage-generated.js src/types/generated-intents.ts src/tokens/generated/_intents.scss --"
+    ],
+    "tokens/**/*.json": [
+      "node scripts/check-contrast.js"
+    ],
+    "src/styles/_token-common.scss": [
+      "node scripts/check-contrast.js"
     ]
   },
   "dependencies": {

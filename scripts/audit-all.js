@@ -75,6 +75,13 @@ const checks = [
     name: "llms.txt freshness (committed copy matches source)",
     command: "node scripts/generate-llms.js --check",
   },
+  {
+    category: "lib",
+    // 単体では正しいトークンが、組み合わせたときだけ不可視になる事故を防ぐ。
+    // axe も VRT も捕まえられない種類（T34）。
+    name: "Contrast / fill visibility (intent × variant × surface)",
+    command: "node scripts/check-contrast.js",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",
