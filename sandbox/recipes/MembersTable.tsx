@@ -18,10 +18,12 @@ const members: Member[] = [
   { id: "u_4", name: "Thomas O'Reilly", team: "Growth", role: "member", status: "suspended" }, // non-happy path
 ];
 
-const roleIntent: Record<Role, "primary" | undefined> = { admin: "primary", member: undefined };
-const statusIntent: Record<MemberStatus, "success" | "danger" | undefined> = {
+// Only the exceptional value is coloured — an undefined intent falls back to
+// primary, which would paint every row and tell the reader nothing.
+const roleIntent: Record<Role, "primary" | "neutral"> = { admin: "primary", member: "neutral" };
+const statusIntent: Record<MemberStatus, "success" | "danger" | "neutral"> = {
   active: "success",
-  invited: undefined,
+  invited: "neutral",
   suspended: "danger",
 };
 
@@ -64,7 +66,7 @@ export default function MembersTable() {
       </Group>
 
       {/* Dense data region */}
-      <Table hoverable fullWidth>
+      <Table card hoverable fullWidth>
         <Table.Header>
           <Table.Row>
             <Table.Head>Member</Table.Head>

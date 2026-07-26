@@ -4,7 +4,10 @@ import { Playground } from "../sandbox/Playground";
 
 <Meta title="Getting Started/Playground" />
 
-<div className="playground-doc">
+{/* `sb-unstyled` is Storybook's own opt-out: every rule in its docs stylesheet
+    is written as `:where(tag:not(.sb-anchor, .sb-unstyled, .sb-unstyled tag))`,
+    so this hands the whole subtree back to the library's own styles. */}
+<div className="playground-doc sb-unstyled">
   <h1><T k="playground.title" /></h1>
   <p className="lead"><T k="playground.intro" /></p>
 
@@ -15,33 +18,46 @@ import { Playground } from "../sandbox/Playground";
 
 <style>
   {`
+  /* Storybook caps docs content at 1000px; the gallery needs the wider measure
+     so the featured preview reaches its own lg breakpoint. */
+  .sbdocs-content:has(> .playground-doc) {
+    max-width: none;
+  }
+
   .playground-doc {
-    padding: 24px;
-    max-width: 920px;
+    padding: var(--wim-spacing-4xl);
+    max-width: var(--wim-breakpoint-xl);
     margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
   }
 
-  .playground-doc h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0 0 16px;
+  /* Direct child only — the recipes render their own h1, and those belong to
+     the Title component. */
+  .playground-doc > h1 {
+    font-size: var(--wim-font-size-3xl);
+    font-weight: var(--wim-font-weight-semibold);
+    line-height: var(--wim-line-height-tight);
+    margin: 0 0 var(--wim-spacing-2xl);
   }
 
+  /* Intro copy stays at a readable measure even though the gallery below is wide. */
   .playground-doc .lead {
-    font-size: 16px;
-    line-height: 1.7;
+    max-width: 68ch;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-secondary);
-    margin-bottom: 32px;
+    margin-bottom: var(--wim-spacing-5xl);
   }
 
   .playground-doc .note {
-    font-size: 13px;
+    max-width: 68ch;
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-secondary);
-    border-left: 2px solid var(--wim-color-border-secondary);
-    padding-left: 12px;
-    margin-top: 32px;
+    border-left: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    padding-left: var(--wim-spacing-2xl);
+    margin-top: var(--wim-spacing-5xl);
   }
   `}
 </style>

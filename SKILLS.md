@@ -120,6 +120,14 @@ padding: var(--wim-spacing-md);
 
 `surface-subtle` と `surface-subtle-alpha` は別物。サーフェスは `surface*`、反転面は `surface-inverse` / `text-on-inverse`。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
 
+### intent の `subtle` 変種は「base を 15% で敷く」が既定
+
+`Badge` / `Tag` / `Chip` の `variant="subtle"` は `_token-common.scss` が `oklch(from <base> l c h / 0.15)` を敷きます。**base 自体がサーフェス寄りの淡色だと 15% では消えます** — `neutral` の base は `--wim-color-disabled`（light `#e5e5e5`）で、15% を白背景に敷くと `#fbfbfb` 相当になり、見えませんでした。
+
+そのため `tokens/intents.json` の `surface` は **`subtle` ロール（任意）** を持ちます。指定するとその色をそのまま subtle の背景に使い、未指定なら従来どおり 15% を導出します。淡色 base の intent を足すときは `subtle` も併せて指定すること。
+
+> この種の「薄すぎて見えない」は **VRT では捕まりません**。`vrt.spec.ts` の `threshold: 0.1` はピクセル単位の色差の許容値で、`#fbfbfb` → `#e5e5e5`（差 ≈ 0.086）はしきい値を下回るため差分ゼロ扱いになります。実際 neutral の修正で更新されたベースラインは dark 側だけでした。コントラストは VRT ではなく実物とコントラスト比で確認すること。
+
 ---
 
 ## 既存トークンが不足している場合のフロー
@@ -342,6 +350,19 @@ intent: {
 
 
 表は `<table>` タグ、リストは `<ul><li>` タグで記述します（Markdown 記法は使用禁止）。
+
+### MDX ページでライブラリのコンポーネントを素で描画するときは `sb-unstyled`
+
+MDX の本文に `<Table>` や `<Card>` などを直接置くと、**Storybook の docs スタイルシートと `.storybook/docs-common.scss` の上書きがコンポーネントに当たります**。どちらもレイヤ外の（`docs-common.scss` は `!important` 付きの）ルールなので、ライブラリの `@layer component` より強く、次のような症状が出ます。
+
+- `span` が wim のフォントを失って 16px に固定される（親の見出しサイズを継承しない）
+- 見出しに罫線と重いウェイトが付く
+- テーブルに `border` / `border-radius: 4px` / `border-collapse: separate` が強制され、**コンポーネント自身の枠と二重になる**
+- テーブルセルが 14px に縮む
+
+対処は Storybook 公式の opt-out である **`sb-unstyled` をラッパーに付ける**こと（`docs/Playground.mdx` が実例）。Storybook のルールは全て `:where(tag:not(.sb-anchor, .sb-unstyled, .sb-unstyled tag))` の形で書かれており、このリポジトリの `docs-common.scss` / `docs-dark-mode.scss` も同じ規約に揃えてあります。**Canvas（ストーリープレビュー）は Storybook が自動で `sb-unstyled` で包むので元から対象外**です。素の MDX 本文に置くときだけ必要になります。
+
+> `all: revert-layer` で消そうとしないこと。レイヤ外の宣言からの `revert-layer` は `@layer component` には着地せず**その下まで転がり落ちる**ため、Storybook の CSS と一緒にコンポーネント自身のスタイル（padding・セル罫線・文字色）まで消えます。
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "playground": {
     "title": "Playground",
-    "intro": "Versões executáveis e editáveis das receitas centrais do wimui. Cada cartão é renderizado ao vivo abaixo, e \"Open in StackBlitz\" inicia um projeto Vite + React 19 completo — já com o styles.css obrigatório e o WimProvider configurados — contra o pacote wimui publicado, para você experimentar antes de adotar. Expanda \"View source\" para ver o código exato enviado ao sandbox.",
+    "intro": "Versões executáveis e editáveis das receitas centrais do wimui. Todos os previews abaixo estão ao vivo — os botões clicam, a tabela filtra conforme você digita, o stepper avança — e \"Open in StackBlitz\" inicia um projeto Vite + React 19 completo contra o pacote wimui publicado, já com o styles.css obrigatório e o WimProvider configurados. Expanda \"View source\" para ver o código exato enviado ao sandbox.",
     "note": "Os sandboxes instalam o wimui do npm e abrem em uma nova aba. Os previews aqui renderizam o mesmo código enviado ao StackBlitz — eles não podem divergir, porque ambos vêm de um único arquivo."
   }
 }

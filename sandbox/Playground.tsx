@@ -1,5 +1,5 @@
 import type React from "react";
-import { Button, Card, Group, Stack, Text } from "wimui";
+import { Button, Card, Code, Grid, Group, Stack, Text, Title } from "wimui";
 
 // Live components (rendered in the docs preview) + their raw source (shipped to
 // StackBlitz). Both come from the same file, so the preview and the sandbox can
@@ -19,7 +19,14 @@ import onboardingSource from "./recipes/Onboarding.tsx?raw";
 type Recipe = {
   id: string;
   title: string;
-  description: string;
+  /** Omitted where the title already says it — not every card needs a caption. */
+  description?: string;
+  /**
+   * Which gallery column the recipe belongs to. Tables and steppers need the
+   * width; an auth card and a settings list do not. The featured recipe (the
+   * first entry) spans both and has no column.
+   */
+  column?: "wide" | "narrow";
   Component: React.ComponentType;
   source: string;
 };
@@ -28,37 +35,41 @@ const RECIPES: Recipe[] = [
   {
     id: "billing-overview",
     title: "Billing overview",
-    description: "A KPI row over a dense invoice table — the composed-screen baseline.",
+    description:
+      "A KPI row over a dense invoice table. One customer has no plan and one payment failed — the two rows a billing screen actually has to survive.",
     Component: BillingOverview,
     source: billingSource,
   },
   {
-    id: "sign-in",
-    title: "Sign in",
-    description: "A focused auth screen: one centered card, a real product form.",
-    Component: SignIn,
-    source: signInSource,
-  },
-  {
-    id: "notification-settings",
-    title: "Settings form",
-    description: "Label-left / control-right rows grouped in a card, actions bottom-right.",
-    Component: NotificationSettings,
-    source: settingsSource,
-  },
-  {
     id: "members-table",
-    title: "Filtered data table",
-    description: "A search + role filter toolbar over a live-filtered members table.",
+    title: "Members",
+    description: "A search and role filter over a table that narrows as you type.",
+    column: "wide",
     Component: MembersTable,
     source: membersSource,
   },
   {
+    id: "sign-in",
+    title: "Sign in",
+    description: "One card, 380px, form left-aligned.",
+    column: "narrow",
+    Component: SignIn,
+    source: signInSource,
+  },
+  {
     id: "onboarding",
-    title: "Onboarding flow",
-    description: "A Stepper driving a single focused task per step.",
+    title: "Workspace onboarding",
+    description: "Opened at step 2, the way you would find it after a reload.",
+    column: "wide",
     Component: Onboarding,
     source: onboardingSource,
+  },
+  {
+    id: "notification-settings",
+    title: "Notification settings",
+    column: "narrow",
+    Component: NotificationSettings,
+    source: settingsSource,
   },
 ];
 
@@ -110,7 +121,14 @@ import Recipe from "./App";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <WimProvider theme="system">
-      <div style={{ padding: 24, minHeight: "100vh", background: "var(--wim-color-surface-app)" }}>
+      <div
+        style={{
+          height: "100dvh",
+          boxSizing: "border-box",
+          padding: "var(--wim-spacing-4xl)",
+          background: "var(--wim-color-surface-app)",
+        }}
+      >
         <Recipe />
       </div>
     </WimProvider>
@@ -172,7 +190,7 @@ function openInStackBlitz(recipe: Recipe): void {
   };
 
   add("project[title]", `wimui — ${recipe.title}`);
-  add("project[description]", recipe.description);
+  add("project[description]", recipe.description ?? `A wimui recipe: ${recipe.title}.`);
   add("project[template]", "node");
   for (const [path, content] of Object.entries(projectFiles(recipe.source))) {
     add(`project[files][${path}]`, content);
@@ -185,68 +203,129 @@ function openInStackBlitz(recipe: Recipe): void {
 
 // --- gallery ---------------------------------------------------------------
 
-function RecipeCard({ recipe }: { recipe: Recipe }) {
-  const { Component } = recipe;
+const HAIRLINE = "1px solid var(--wim-color-border-secondary)";
+
+/** Live preview surface. Recipes sit on the app background, not on the card. */
+function Preview({ Component, pad }: { Component: React.ComponentType; pad: string }) {
   return (
-    <Card padding="none" variant="outline">
+    <div style={{ padding: pad, background: "var(--wim-color-surface-app)", overflow: "auto" }}>
+      <Component />
+    </div>
+  );
+}
+
+function SourceDisclosure({ source }: { source: string }) {
+  return (
+    <details style={{ borderTop: HAIRLINE }}>
+      <summary
+        style={{
+          padding: "var(--wim-spacing-xl) var(--wim-spacing-2xl)",
+          cursor: "pointer",
+          fontSize: "var(--wim-font-size-sm)",
+          color: "var(--wim-color-text-secondary)",
+        }}
+      >
+        View source
+      </summary>
+      {/* Code brings its own vertical margin; the inset keeps its border off
+          the card's. */}
+      <div style={{ padding: "0 var(--wim-spacing-2xl)" }}>
+        <Code block language="tsx" code={source} />
+      </div>
+    </details>
+  );
+}
+
+/**
+ * The protagonist: one recipe gets the full width, the heading treatment, and
+ * the only solid button on the page. Its caption sits above the frame, so it
+ * reads as a section rather than as another tile in the gallery.
+ */
+function FeaturedRecipe({ recipe }: { recipe: Recipe }) {
+  return (
+    <Stack gap="xl">
+      <Group justify="between" align="end" gap="2xl">
+        {/* Capped to a readable measure — the page itself is much wider. */}
+        <Stack gap="2xs" style={{ maxWidth: "58ch" }}>
+          {/* One step below the page h1, one step above the card captions. */}
+          <Title tag="h2" size="md">{recipe.title}</Title>
+          <Text color="secondary">{recipe.description}</Text>
+        </Stack>
+        <Button variant="solid" onClick={() => openInStackBlitz(recipe)}>
+          Open in StackBlitz
+        </Button>
+      </Group>
+
+      {/* The preview fills the top edge, so the card has to clip — otherwise the
+          preview's own background squares off the rounded corners. */}
+      <Card padding="none" variant="outline" style={{ overflow: "hidden" }}>
+        <Stack gap={0}>
+          <Preview Component={recipe.Component} pad="var(--wim-spacing-4xl)" />
+          <SourceDisclosure source={recipe.source} />
+        </Stack>
+      </Card>
+    </Stack>
+  );
+}
+
+/**
+ * The rest. Caption below the preview (figure/caption order) so the screen is
+ * what you see first, and a quiet button so the accent stays on the featured one.
+ */
+function RecipeCard({ recipe }: { recipe: Recipe }) {
+  return (
+    <Card padding="none" variant="outline" style={{ overflow: "hidden" }}>
       <Stack gap={0}>
-        <Group justify="between" align="center" gap="md" style={{ padding: "var(--wim-spacing-md)" }}>
+        <Preview Component={recipe.Component} pad="var(--wim-spacing-3xl)" />
+
+        <Group
+          justify="between"
+          align="center"
+          gap="xl"
+          style={{ padding: "var(--wim-spacing-2xl) var(--wim-spacing-3xl)", borderTop: HAIRLINE }}
+        >
           <Stack gap="3xs">
             <Text weight="medium">{recipe.title}</Text>
-            <Text size="sm" color="secondary">{recipe.description}</Text>
+            {recipe.description ? (
+              <Text size="sm" color="secondary">{recipe.description}</Text>
+            ) : null}
           </Stack>
-          <Button variant="solid" onClick={() => openInStackBlitz(recipe)}>
-            Open in StackBlitz
+          <Button
+            variant="ghost"
+            size="sm"
+            aria-label={`Open ${recipe.title} in StackBlitz`}
+            onClick={() => openInStackBlitz(recipe)}
+          >
+            Open
           </Button>
         </Group>
 
-        {/* Live preview — the same component whose source ships to the sandbox */}
-        <div
-          style={{
-            padding: "var(--wim-spacing-lg)",
-            borderTop: "1px solid var(--wim-color-border-secondary)",
-            background: "var(--wim-color-surface-app)",
-            overflow: "auto",
-          }}
-        >
-          <Component />
-        </div>
-
-        <details style={{ borderTop: "1px solid var(--wim-color-border-secondary)" }}>
-          <summary
-            style={{
-              padding: "var(--wim-spacing-sm) var(--wim-spacing-md)",
-              cursor: "pointer",
-              color: "var(--wim-color-text-secondary)",
-              fontSize: 14,
-            }}
-          >
-            View source
-          </summary>
-          <pre
-            style={{
-              margin: 0,
-              padding: "var(--wim-spacing-md)",
-              overflow: "auto",
-              fontSize: 13,
-              lineHeight: 1.5,
-              background: "var(--wim-color-surface-subtle)",
-            }}
-          >
-            <code>{recipe.source}</code>
-          </pre>
-        </details>
+        <SourceDisclosure source={recipe.source} />
       </Stack>
     </Card>
   );
 }
 
 export function Playground() {
+  const [featured, ...rest] = RECIPES;
+  const column = (side: Recipe["column"]) =>
+    rest
+      .filter((recipe) => recipe.column === side)
+      .map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+
   return (
-    <Stack gap="xl">
-      {RECIPES.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+    // Loose between the two groups, tight inside the gallery — proximity does
+    // the grouping instead of a divider.
+    <Stack gap="5xl">
+      <FeaturedRecipe recipe={featured} />
+
+      {/* Two stacked columns rather than grid rows: cards keep their own height
+          and pack against the one above, so a short recipe next to a tall one
+          leaves no dead row. */}
+      <Grid cols={{ base: 1, md: "minmax(0, 7fr) minmax(0, 5fr)" }} gap="2xl" align="start">
+        <Stack gap="2xl">{column("wide")}</Stack>
+        <Stack gap="2xl">{column("narrow")}</Stack>
+      </Grid>
     </Stack>
   );
 }

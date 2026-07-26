@@ -23,8 +23,14 @@
   border-radius: 4px !important;
 }
 
-/* Tables in MDX */
-.sbdocs-content table {
+/* Tables in MDX.
+ *
+ * `:not(.sb-unstyled table)` follows Storybook's own convention: a subtree
+ * marked `sb-unstyled` opts out of docs styling entirely. Without it these
+ * !important rules also hit the library's own <Table>, which arrives with its
+ * own border, radius and border-collapse — the result is a doubled bottom
+ * rule and a 4px radius nested inside the container's 12px one. */
+.sbdocs-content table:not(.sb-unstyled table) {
   border-radius: 4px !important;
   /* Ensure table corners also clip content if they have background/border */
   border-collapse: separate !important;
