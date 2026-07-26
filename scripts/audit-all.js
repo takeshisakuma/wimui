@@ -82,6 +82,13 @@ const checks = [
     name: "Contrast / fill visibility (intent × variant × surface)",
     command: "node scripts/check-contrast.js",
   },
+  {
+    category: "lib",
+    // 型が受け付けるのに CSS が無い prop 値＝「書いても効かない prop」。
+    // 呼び出し側が style へ逃げる原因になる（T33）。
+    name: "Prop values without a CSS class",
+    command: "node scripts/check-prop-classes.js",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",
