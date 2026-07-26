@@ -87,10 +87,10 @@ export const WithZod: StoryObj = {
 
     return (
       <Card
+        variant="outline"
+        padding="xl"
         style={{
           width: "min(100vw - 2rem, 28rem)",
-          padding: "var(--wim-spacing-3xl)",
-          border: "1px solid var(--wim-color-border-secondary)",
         }}
       >
         <form
@@ -270,10 +270,10 @@ export const WithPickers: StoryObj = {
 
     return (
       <Card
+        variant="outline"
+        padding="xl"
         style={{
           width: "min(100vw - 2rem, 28rem)",
-          padding: "var(--wim-spacing-3xl)",
-          border: "1px solid var(--wim-color-border-secondary)",
         }}
       >
         <form

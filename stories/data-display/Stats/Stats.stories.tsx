@@ -42,13 +42,16 @@ export const WithTrend: Story = {
   }
 };
 
+// `direction` は矢印と色をまとめて決める（down = danger）。指標は「下がると悪い」
+// ものを選ぶこと。アラート件数のように「下がると良い」指標に down を使うと、
+// 改善を悪いニュースの色で描画してしまう。
 export const NegativeTrend: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args}>
-        <Stats.Label>{t('story.stats_active_alerts')}</Stats.Label>
-        <Stats.Value>12</Stats.Value>
+        <Stats.Label>{t('story.stats_conversion_rate')}</Stats.Label>
+        <Stats.Value>3.2%</Stats.Value>
         <Stats.Trend direction="down">-5%</Stats.Trend>
       </Stats>
     );

@@ -142,13 +142,13 @@ export const PricingTable: StoryObj = {
           }}
         >
           <Card
+            variant="outline"
+            padding="md"
             style={{
               display: "grid",
               gridRow: "span 5",
               gridTemplateRows: "subgrid",
               gap: "var(--wim-spacing-md)",
-              padding: "var(--wim-spacing-xl)",
-              border: "2px solid var(--wim-color-border-secondary)",
             }}
           >
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -220,15 +220,18 @@ export const PricingTable: StoryObj = {
             </Button>
           </Card>
 
+          {/* 推奨プランだけ枠をアクセント色にする。Card に「枠の色」を選ぶ API は
+              無いが、これは既定値のリセットではなく意味の付与なので残す。 */}
           <Card
+            variant="outline"
+            padding="md"
             style={{
               display: "grid",
               gridRow: "span 5",
               gridTemplateRows: "subgrid",
               gap: "var(--wim-spacing-md)",
-              padding: "var(--wim-spacing-xl)",
-              border: "var(--wim-border-width-thick) solid var(--wim-color-primary)",
               position: "relative",
+              borderColor: "var(--wim-color-primary)",
             }}
           >
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -297,13 +300,13 @@ export const PricingTable: StoryObj = {
           </Card>
 
           <Card
+            variant="outline"
+            padding="md"
             style={{
               display: "grid",
               gridRow: "span 5",
               gridTemplateRows: "subgrid",
               gap: "var(--wim-spacing-md)",
-              padding: "var(--wim-spacing-xl)",
-              border: "var(--wim-border-width-thick) solid var(--wim-color-border-secondary)",
             }}
           >
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -409,13 +412,7 @@ export const Testimonial: StoryObj = {
           style={{ maxWidth: "1100px", margin: "0 auto" }}
         >
           {people.map((p, i) => (
-            <Card
-              key={i}
-              style={{
-                padding: "var(--wim-spacing-xl)",
-                border: "1px solid var(--wim-color-border-secondary)",
-              }}
-            >
+            <Card key={i} variant="outline" padding="md">
               <Stack gap="xl">
                 <Text
                   content={`"${p.text}"`}
@@ -902,7 +899,7 @@ export const FeatureComparison: StoryObj = {
     };
 
     return (
-      <Box style={{ padding: "var(--wim-spacing-3xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}>
+      <Box py="3xl" px="xl" style={{ background: "var(--wim-color-surface-app)" }}>
         <style>{`
           @media (max-width: 480px) {
             .wim-feature-comparison-table td,
@@ -927,11 +924,11 @@ export const FeatureComparison: StoryObj = {
           </Stack>
 
           <Box
+            radius="container"
+            shadow="sm"
             style={{
               overflow: "hidden",
-              borderRadius: "var(--wim-radius-container)",
               border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
-              boxShadow: "var(--wim-shadow-sm)",
             }}
           >
             <table

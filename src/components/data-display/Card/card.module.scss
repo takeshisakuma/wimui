@@ -91,14 +91,48 @@
   
     &.padding-lg {
       padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
-  
+
       & > .header,
       & > .body,
       & > .footer {
         padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
       }
     }
-  
+
+    /* `padding` は ComponentSize 全体を受け取るのに実装が lg で止まっており、
+       `padding="xl"` はクラスが無く無効になっていた。ページ級のカードが要る
+       余白（22.4〜35px）を表現できず、呼び出し側が style で padding を直書き
+       する原因になっていたので、既存の刻み（prop の 2 段上の spacing）を延長する。 */
+    &.padding-xl {
+      padding: var(--wim-spacing-3xl) var(--wim-spacing-3xl);
+
+      & > .header,
+      & > .body,
+      & > .footer {
+        padding: var(--wim-spacing-3xl) var(--wim-spacing-3xl);
+      }
+    }
+
+    &.padding-2xl {
+      padding: var(--wim-spacing-4xl) var(--wim-spacing-4xl);
+
+      & > .header,
+      & > .body,
+      & > .footer {
+        padding: var(--wim-spacing-4xl) var(--wim-spacing-4xl);
+      }
+    }
+
+    &.padding-3xl {
+      padding: var(--wim-spacing-5xl) var(--wim-spacing-5xl);
+
+      & > .header,
+      & > .body,
+      & > .footer {
+        padding: var(--wim-spacing-5xl) var(--wim-spacing-5xl);
+      }
+    }
+
     /* Radius */
     &.radius-none {
       border-radius: 0;

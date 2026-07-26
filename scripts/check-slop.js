@@ -13,7 +13,8 @@
  *   1. gradient135  — `linear-gradient(... 135deg ...)` のヒーロー背景（ハードゲート、baseline 0）
  *   2. hype         — 誇張形容詞辞書（多言語）を Pattern デモコピー（docs_stories_recipes）で照合
  *                     （ハードゲート、baseline 0）
- *   3. styleOverride — インライン style の既定値上書き（padding/margin/borderRadius = 0）と
+ *   3. propBacked   — prop があるのに style で書いている（ルール 3 の本体。ハードゲート、baseline 0）
+ *   4. styleOverride — インライン style の既定値上書き（padding/margin/borderRadius = 0）と
  *                     px 直書き（gap:"16px" 等）。**ラチェット方式**（現状値を凍結し増加をブロック）。
  *                     既存 `PX_BASELINE`（check-hardcoded-values.js）と同じ運用。
  *                     MDX の <style> ブロックは CSS 宣言（`padding: 24px;`）として同じ 2 種を見る。
@@ -28,10 +29,10 @@ import fs from 'fs';
 import { globSync } from 'glob';
 
 // --- ラチェット基準（既定値上書き＋px 直書きの合計）。増やさない・減らしたら更新する。 ---
-// 2026-07-26 の実測 109 件で凍結（docs 66 / stories/Patterns 41 / sandbox 2）。
+// 2026-07-26 の実測 108 件で凍結（docs 66 / stories/Patterns 40 / sandbox 2）。
 // docs の 66 件は Configure / Colors / AppLayout など既存ページの負債で、この
 // スコープ拡張で初めて可視化されたもの。減らしたらこの値を下げること。
-const STYLE_OVERRIDE_BASELINE = 109;
+const STYLE_OVERRIDE_BASELINE = 108;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
@@ -65,6 +66,27 @@ const mdxFiles = MDX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter((
 
 const gradientHits = [];
 const styleHits = [];
+const propBackedHits = [];
+
+/**
+ * prop があるのに style で書いている箇所。DESIGN.md 必須ルール 3 の本体だが、
+ * styleOverride（px 直書き＋0 リセット）はこれを取りこぼす: `padding:
+ * "var(--wim-spacing-3xl)"` はトークンを使っているので px 直書きに当たらず、
+ * 0 リセットでもないため、どちらの網にもかからない。実際 2026-07-26 の監査で
+ * 消した 31 件の style 宣言のうち、styleOverride が数えていたのは 1 件だけだった。
+ *
+ * 値がトークンかどうかに関係なく「その prop が存在するコンポーネントで
+ * インライン指定している」ことを見る。誤検出を避けるため、prop との対応が
+ * 明確なものだけを対象にする（例: borderColor は Card に対応する prop が無く、
+ * 強調の意味付けに使う正当なケースがあるので対象外）。
+ */
+const PROP_BACKED = {
+  Card: { padding: 'padding', borderRadius: 'radius', border: 'variant' },
+  Stats: { padding: 'padding', borderRadius: 'radius', border: 'variant' },
+  Box: { padding: 'p', borderRadius: 'radius', boxShadow: 'shadow' },
+};
+const PROP_BACKED_TAGS = Object.keys(PROP_BACKED).join('|');
+const OPEN_TAG_RE = new RegExp(`<(${PROP_BACKED_TAGS})\\b`);
 
 const GRADIENT_RE = /linear-gradient\s*\([^)]*135deg/i;
 // 既定値上書き: padding / margin / borderRadius を 0（数値 or "0"）へリセット。
@@ -73,6 +95,20 @@ const DEFAULT_OVERRIDE_RE = /\b(padding|margin|border[Rr]adius)([A-Z][A-Za-z]*)?
 // px 直書き: 任意プロパティの値に px を含む文字列（var() 参照行は除外）。
 // 単独値 gap:"16px" だけでなく padding:"0 16px" や width:"min(380px, 100%)" も拾う。
 const PX_LITERAL_RE = /\b[a-zA-Z]+\s*:\s*["'][^"']*\b[0-9.]+px\b/;
+
+/** 開きタグ（属性列）を、対応する `>` まで読む。 */
+function readOpenTag(lines, start) {
+  let depth = 0;
+  for (let i = start; i < Math.min(lines.length, start + 24); i += 1) {
+    const line = lines[i];
+    for (const ch of line) {
+      if (ch === '{') depth += 1;
+      else if (ch === '}') depth -= 1;
+      else if (ch === '>' && depth <= 0) return lines.slice(start, i + 1).join('\n');
+    }
+  }
+  return lines.slice(start, start + 24).join('\n');
+}
 
 for (const file of composedFiles) {
   const lines = fs.readFileSync(file, 'utf8').split('\n');
@@ -102,6 +138,21 @@ for (const file of composedFiles) {
     const delta = (line.match(/\{/g) ?? []).length - (line.match(/\}/g) ?? []).length;
     if (opensHere) styleDepth = Math.max(0, delta);
     else if (styleDepth > 0) styleDepth = Math.max(0, styleDepth + delta);
+
+    // prop があるのに style で書いている箇所（ルール 3 の本体）
+    const tag = line.match(OPEN_TAG_RE);
+    if (!tag) return;
+    const openTag = readOpenTag(lines, i);
+    if (!/\bstyle\s*=\s*\{\{/.test(openTag)) return;
+    for (const [cssProp, propName] of Object.entries(PROP_BACKED[tag[1]])) {
+      // borderRadius は border より長いので、border の判定が食わないよう境界を付ける
+      const re = new RegExp(`\\b${cssProp}\\s*:`);
+      if (re.test(openTag.replace(/<[^>]*?\bstyle\s*=\s*\{\{/, ''))) {
+        propBackedHits.push(
+          `${file}:${i + 1} <${tag[1]} style={{ ${cssProp} }}> → prop \`${propName}\` を使う`,
+        );
+      }
+    }
   });
 }
 
@@ -174,6 +225,16 @@ if (hypeHits.length > 0) {
 if (nameHits.length > 0) {
   console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。DESIGN.md 規約13）:`);
   for (const h of nameHits) console.log(`  ${h}`);
+  failed = true;
+}
+
+// ハードゲート（baseline 0）。2026-07-26 の T15 で全件解消済みなのでラチェットにしない。
+if (propBackedHits.length > 0) {
+  console.log(`\n[FAIL] prop があるのに style で指定している（DESIGN.md 必須ルール 3）:`);
+  for (const h of propBackedHits) console.log(`  ${h}`);
+  console.log(`       余白や枠はコンポーネントの prop で表現する。prop の刻みが足りない場合は`);
+  console.log(`       style で回避せず、コンポーネント側に段を足すこと（T15 で Card の padding に`);
+  console.log(`       xl / 2xl / 3xl を追加したのがその例）。`);
   failed = true;
 }
 
