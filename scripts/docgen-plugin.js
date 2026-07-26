@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { parse, builtinResolvers } from 'react-docgen';
 import { glob } from 'glob';
@@ -8,8 +9,29 @@ import { glob } from 'glob';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Bump this when parsing logic changes to force a full cache invalidation
-const CACHE_VERSION = 7;
+/**
+ * キャッシュキー。**手で上げる定数ではなく、パース結果を左右するものから導出する。**
+ *
+ * エントリ単位のキーはコンポーネントファイルの content hash なので、コンポーネントを
+ * 編集すればそのエントリだけが正しく無効化される。しかし**このファイル（パース／描画
+ * ロジック）を変えてもどのコンポーネントの hash も変わらない**ため、以前は手動の
+ * `CACHE_VERSION` に頼っていた。それが上げ忘れられ、暖かいキャッシュを持つ全員が古い
+ * 出力を得ていた（2026-07-26。CI はクリーンチェックアウトなので気づけなかった）。
+ *
+ * 内訳:
+ *   - このファイル自身の content hash — ローカルの他モジュールを import していないので、
+ *     ロジック変更はすべてここに現れる（import を足すときはこの前提を見直すこと）
+ *   - react-docgen のバージョン — パーサが変われば同じ入力でも出力が変わりうる
+ */
+const CACHE_VERSION = (() => {
+  const selfHash = crypto
+    .createHash('sha1')
+    .update(fs.readFileSync(__filename, 'utf8'))
+    .digest('hex')
+    .slice(0, 12);
+  const { version } = createRequire(import.meta.url)('react-docgen/package.json');
+  return `${selfHash}-react-docgen@${version}`;
+})();
 
 // FindAll: JSX を返す通常のコンポーネントを検出
 // FindAnnotated: createPortal 返しなど JSX と認識されない定義を JSDoc の @component 注釈で検出
