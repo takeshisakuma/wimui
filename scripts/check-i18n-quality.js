@@ -69,6 +69,12 @@ const IDENTICAL_ALLOWLIST = new Set([
   'story.thoughtprocess_title_complex',
   // en 側もプレースホルダーのままのキー（翻訳ではなく en の改善が必要）
   'doc.common_customization_desc_generic',
+  // 値がパッケージ名・API 識別子のみで、訳す部分が無いキー
+  // （"`wimui`, `wimui/form`, …" / "`react-hook-form` + `zod` 4 (+ resolvers)" /
+  //  "`data-density` / `setWimDensity` — comfortable / compact"）
+  'config.scope_core_import',
+  'config.scope_rhf_peers',
+  'doc.token_density_desc',
 ]);
 
 // RULES.md「PT-PT（禁止）」の表 + 明確な PT-PT 語彙
@@ -253,7 +259,10 @@ let wiringWarnings = 0;
     for (const m of src.matchAll(/placeholder=\{t\(\s*["']([^"']+)["']/g)) {
       const key = m[1];
       if (WIRING_ALLOWLIST.has(key.replace(/^[\w-]+:/, ''))) continue;
-      if (!/placeholder|sample/i.test(key)) {
+      // `_ph` 接尾辞も placeholder キーの命名（例: story.density_email_ph）。
+      // これを見ていなかったため、正しく placeholder 用に作られたキーまで
+      // 「label の使い回し」として警告していた。
+      if (!/placeholder|sample/i.test(key) && !/_ph$/.test(key)) {
         console.log(`[WARN] ${path.relative('.', file)}: placeholder に非 placeholder キーを流用: ${key}（label の使い回しは説明文表示になります）`);
         wiringWarnings++;
       }
@@ -294,6 +303,8 @@ const HARDCODED_TEXT_ALLOWLIST = new Set([
   'Tip: run `lsof -i :3000` to find the conflicting process',
   // サンプル人名・サービス名
   'John Doe', 'Sarah Miller', 'WimStore',
+  // ダッシュボードデモのユーザー名（人名は各ロケールで訳さない）
+  'Aoi Tanaka',
 ]);
 const JSX_TEXT_RE = />([A-Z][a-zA-Z0-9 .,&!?()'/-]{4,})<\/(Text|Title|Button|Badge|Tag|span|p|h[1-6]|Label|Legend|strong|b|li|td|th|Dialog\.Title|Drawer\.Title|BottomSheet\.Title)>/g;
 // 複数行のテキストノード（<Text>\n  English text\n</Text> 形式）
@@ -316,15 +327,34 @@ let hardcodedWarnings = 0;
   })('stories');
   for (const file of storyFiles) {
     const src = fs.readFileSync(file, 'utf8');
-    const report = (text, kind) => {
+
+    // 意図的な英語（ブランド名・モデル名・VRT 固定データ等）の抑制マーカーを尊重する。
+    // check-stories-hardcoded.js と同じ意味論: i18n-ignore（同一行） /
+    // i18n-ignore-next-line（直後の 1 行） / i18n-ignore-start 〜 -end（ブロック）。
+    // ここが未対応だったため、既に理由付きで ignore 済みの箇所まで警告が出ていた
+    // （ModelSelector のモデル名・プロバイダ名など）。
+    const srcLines = src.split('\n');
+    const ignoredLines = new Set();
+    let ignoreBlock = false;
+    srcLines.forEach((line, i) => {
+      if (line.includes('i18n-ignore-start')) { ignoreBlock = true; ignoredLines.add(i); return; }
+      if (line.includes('i18n-ignore-end')) { ignoreBlock = false; ignoredLines.add(i); return; }
+      if (ignoreBlock || line.includes('i18n-ignore')) ignoredLines.add(i);
+      if (i > 0 && srcLines[i - 1].includes('i18n-ignore-next-line')) ignoredLines.add(i);
+    });
+    // 文字オフセット → 0 起点の行番号
+    const lineOf = (index) => src.slice(0, index).split('\n').length - 1;
+
+    const report = (text, kind, index) => {
       const trimmed = text.trim();
       if (HARDCODED_TEXT_ALLOWLIST.has(trimmed)) return;
+      if (index !== undefined && ignoredLines.has(lineOf(index))) return;
       console.log(`[WARN] ${path.relative('.', file)}: ハードコード${kind}（t() 未使用のため翻訳されません）: "${trimmed}"`);
       hardcodedWarnings++;
     };
-    for (const m of src.matchAll(JSX_TEXT_RE)) report(m[1], 'テキスト');
-    for (const m of src.matchAll(JSX_MULTILINE_TEXT_RE)) report(m[1], 'テキスト（複数行）');
-    for (const m of src.matchAll(JSX_ATTR_TEXT_RE)) report(m[2], `属性 ${m[1]}`);
+    for (const m of src.matchAll(JSX_TEXT_RE)) report(m[1], 'テキスト', m.index);
+    for (const m of src.matchAll(JSX_MULTILINE_TEXT_RE)) report(m[1], 'テキスト（複数行）', m.index);
+    for (const m of src.matchAll(JSX_ATTR_TEXT_RE)) report(m[2], `属性 ${m[1]}`, m.index);
     for (const m of src.matchAll(OBJ_TEXT_RE)) {
       //  等を含む値はターミナル出力等のコード類なので対象外
       if (/\\u00/.test(m[2])) continue;
@@ -337,7 +367,7 @@ let hardcodedWarnings = 0;
         const other = Math.max(before.lastIndexOf('render:'), before.lastIndexOf(' args:'), before.lastIndexOf('= ['));
         if (ctx > other) continue;
       }
-      report(m[2], `オブジェクト ${m[1]}`);
+      report(m[2], `オブジェクト ${m[1]}`, m.index);
     }
   }
 }
