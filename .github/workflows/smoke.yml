@@ -44,10 +44,12 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Build
         run: npm run build
-      - name: Smoke (bare profile) + tree-shaking
+      - name: Smoke (bare profile) + tree-shaking + recipes
         # --treeshake は bare の全アサート + esbuild による tree-shaking 検証
         # （Button 単体 import が未使用 optional-peer コードを引き込まないこと）
-        run: node scripts/smoke/run.mjs --treeshake
+        # --recipes は sandbox/recipes/*.tsx を公開物だけで bundle できるか検証（T35）。
+        # レシピは core のみを使うので bare プロファイルで足りる。
+        run: node scripts/smoke/run.mjs --treeshake --recipes
 
   pnpm:
     name: Smoke (pnpm strict)
