@@ -775,14 +775,21 @@ const full = [
 // これが GitHub Pages で配信され、ドキュメントが AI エージェントに案内している URL
 // （https://takeshisakuma.github.io/wimui/llms.txt）の中身になる。実際 v0.3.0 の内容が
 // 0.5.1 まで残っていた（2026-07-26 に発見）。generate-intents.js の --check と同じ運用。
+// 行末は LF に正規化してから書く/比較する。出力にはソースから読んだ断片（コード例など）が
+// 埋め込まれるため、Windows のワーキングコピーから生成すると CRLF が混ざる（実測 46 行）。
+// `.gitattributes` は `* text=auto eol=lf` なのでコミットされる中身は常に LF になり、
+// **バイト厳密比較の --check が Windows でだけ落ちる**（git 的には差分ゼロなのに）。
+const lf = (s) => s.replace(/\r\n/g, '\n');
+
 const outputs = [
-  { file: join(ROOT, 'public/llms.txt'), content: concise },
-  { file: join(ROOT, 'public/llms-full.txt'), content: full },
+  { file: join(ROOT, 'public/llms.txt'), content: lf(concise) },
+  { file: join(ROOT, 'public/llms-full.txt'), content: lf(full) },
 ];
 
 if (process.argv.includes('--check')) {
   const stale = outputs.filter(
-    (o) => !existsSync(o.file) || readFileSync(o.file, 'utf8') !== o.content,
+    // 読み出し側も正規化する（既存のコミット済みファイルが CRLF で入っている場合に備えて）
+    (o) => !existsSync(o.file) || lf(readFileSync(o.file, 'utf8')) !== o.content,
   );
   if (stale.length > 0) {
     console.error('✗ public/llms*.txt がソースと一致しません（コミット済みの内容が古い）:');

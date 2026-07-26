@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
+最終更新: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -9,7 +9,9 @@
 
 1. **運用維持**  
    `PX_BASELINE = 0` / `i18n:check` / `check:api` / `check:imports`。触った SCSS に未注記 px を増やさない。品質ゲートは PR テンプレに従う。
-2. ~~**T31: docgen の CACHE_VERSION 上げ忘れを機械検知**~~ — **済**（PR #113。②を採用＝キャッシュキーを自動導出し、手動定数を廃止）
+2. **T32: 未合成コンポーネントを実アプリ形状で使う**（2026-07-26 起票・未着手・**P1**）  
+   **221 コンポーネント中 176（80%）が一度も合成画面に登場していない。** T27 で出た API の穴 4 件はすべて「1 画面作ったら出てきた」もので、ガード設計では見つからなかった。現状いちばん打率が高い探索手段。P2 以降（T33 型と実装の乖離 / T34 コントラスト計算 / T35 レシピ起動 / T36 ホスト差分 / T37 主張の検証）とあわせて下表「使う側の穴の探索」に詳細。
+3. ~~**T31: docgen の CACHE_VERSION 上げ忘れを機械検知**~~ — **済**（PR #113。②を採用＝キャッシュキーを自動導出し、手動定数を廃止）
 3. ~~**T28: コンポジション監査の指摘 20 箇所**~~ — **済**（PR #109）  
    DESIGN.md 必須ルール 8〜11 を新設した際に既存 Patterns を掃いて出たもの。**`check:slop` では捕まらない**（トークンを使っているので px 直書きでも `: 0` リセットでもない）＝判断依存。詳細は下表 T15。
 3. ~~**T29: docs の px 直書き 66 件**~~ — **済**（PR #111。残 10 件はトークン非対応の実寸）  
@@ -104,6 +106,27 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T29 | docs の px 直書き 66 件 | 起票 2026-07-26、**未着手**。`check:slop` を `docs/*.mdx` の `<style>` に拡張して可視化された既存負債。`Configure.mdx`（`padding-left: 20px` / `font-size: 14px` / `box-shadow: 0 1px 3px rgba(...)` 等）、`Colors.mdx`、`AppLayout.mdx`（レイアウト図の `grid-template-*`）が主。**@media の px は対象外**（CSS 変数はメディアクエリで解決されないため意図的に除外済み）。トークンへ寄せたら `scripts/check-slop.js` の `STYLE_OVERRIDE_BASELINE` を実測値まで下げる | **未着手** |
 | T27 | Playground のコンポジション再設計と AI-slop ガード拡張 | 起票 2026-07-26。Playground が「同型カード5枚の等間隔スタック・全カードに solid アクセント・同構文の説明文」で AI 的だった。**副産物として発見した実害が本体より大きい**: ①`.storybook/docs-common.scss` の `!important` テーブル上書きがライブラリの `<Table>` に当たりボーダー二重・角丸入れ子 ②Storybook の docs CSS が span/見出し/セルを再スタイル（`sb-unstyled` で解決） ③`Badge`/`Tag`/`Chip` の `intent` 未指定が `primary` に落ち、「普通の値」が例外値と同じ声量で塗られる ④`neutral`×`subtle` が light で不可視（base=`disabled` の 15%） ⑤`Stats.Trend` が `up`=成功色固定のため「増えると悪い指標」を good news として描画 ⑥`Card`/`Stats` の既定 `elevated` で影あり/なしが同一画面に混在 | **済**（2026-07-26、PR #108）。主役1つ＋非対称2カラム（7fr/5fr、カラムを Stack にして詰める）に再設計。docs 上書きは `:not(.sb-unstyled table)` で除外、MDX は px 直書き→トークン。`intents.json` に任意の `subtle` ロールを追加し neutral を不透明化（light 8.5:1 / dark 6.5:1）。**check:slop のスコープを `sandbox/**` と `docs/*.mdx` の `<style>` へ拡張**し、その過程で 2 つの欠陥を修正: ラチェットが lint-staged では常に素通りしていた（部分集合と全体基準の比較）／px 正規表現が単独値しか拾えず `padding:"0 16px"` が漏れていた（広げたうえで `style={{}}` 内に限定＝散文の誤検出回避）。ベースライン 109 で凍結（docs 66 / Patterns 41 / sandbox 2、docs は既存負債）。`Patterns/Playground` ストーリーを追加し VRT + `judge:slop` の対象化。DESIGN.md に必須ルール 8〜11 とチェックリスト 5 項目、SKILLS.md に `sb-unstyled` 節と subtle 15% 節を追記。**残: docs 66 件の px 負債の解消、Badge/Tag/Chip の既定 intent を neutral にするか（破壊的・0.6.0 相当）** |
 | T11 | VRT 基盤再建 | 調査で判明（2026-07-16）: ①直近40ランが cancelled20/failure16/success3 で、main の compare は 6h 上限到達で全滅（993 stories×2 themes を workers=2 の単一ジョブで回す構造が原因）②スナップショット 4,117 枚中、CI 未使用の chromium-win32 が 2,942 枚・削除済みストーリーの orphan が 80 枚・dark-linux は 230 枚しかない歴史的部分集合 ③マウント待ち導入前の世代の不良ベースライン（Storybook マネージャ UI + スピナーが写った画像等）が残存 | **着手中**（2026-07-16。win32 2,942 + orphan 80 を削除（linux 1,095 維持）。vrt.yml を 4 シャード matrix + 90min timeout + concurrency 自動キャンセル + update はシャード毎 artifact → merge job で一括コミットバックに再設計。playwright workers CI 2→4。**追加で真因2件を発見・修正**: ① 6h タイムアウトの正体は `npx serve -s`（バージョン未固定）が `/iframe.html` を 301 → `/iframe` にリダイレクトしマネージャ UI を配信 → 全テストがマウント待ちで空回りしていたこと。`http-server@14 -c-1` のリテラル配信に固定（不良ベースライン「マネージャ+スピナー」画像の発生源も同じ）。② T7 の sideEffects 削除リグレッションで本番ビルドの Icon レジストリが空 → name 指定 Icon が全 null（VRT の Icon ストーリー空描画 8 件で検出、`./src/icons.ts` を sideEffects に復元）。シャード実測: 約500テスト/12.5分。**07-16〜17 完了**: 全量 update 完走（9分49秒、1,986枚→非決定分除外後 1,916 枚コミットバック、dark 全量含む）。compare を4回反復して回転フレークを収束（13→8→3→0）: maxDiffPixels 400（AA ジッタ ≤220px 実測を吸収）+ 非決定ストーリー除外（Audit/* 21件=内部QA合成ページ、ChatUI/PromptInput=prefix、Toast/LoadingOverlay 等 ID 指定14件）。最終 compare 全緑。除外基準「同一コミットで update→compare が落ちること」をスペックのコメントに明記） |
+
+### 使う側の穴の探索（2026-07-26 起票）
+
+**背景**: T27（Playground）で出た穴は、単体テスト 2804 件・VRT・axe が全緑のまま存在していた。どれも「単体を、そのコンポーネント自身の土俵で」検証する仕組みでは**原理的に見えない場所**にあったため。見つかった経路は 3 種類に割れる。
+
+- **A. コンポーネントを隣り合わせた瞬間** — `Card` の `padding` が lg で止まっていた（型は `xl` を受け付けるのに CSS クラスが無かった）／`Card` と `Table` の枠の二重／`elevated` 既定による影の混在／label-left 行でラベルとスイッチが未関連付け（axe critical）
+- **B. 別のホストに置いた瞬間** — Storybook docs CSS と自前 `docs-common.scss` の上書き（`sb-unstyled` が必要）
+- **C. リポジトリ自身の主張を検証した瞬間** — llms.txt の版落ち／docgen キャッシュの陳腐化／サイズ予算が誰も払わない数字を測っていた
+
+**探索の余地（実測）**: 公開コンポーネント **221** のうち、合成画面（`stories/Patterns/**` + `sandbox/**`）に一度でも登場したのは **45（20%）**。Playground のレシピが触ったのは **21（10%）**。**176（80%）は一度も合成されたことがない。**
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T32 | 未合成コンポーネントを実アプリ形状で使う | **P1** | 上記 A の 4 件はすべて「1 画面作ったら出てきた」もので、ガードを設計して見つけたものではない。**今のところ最も打率が高い探索手段**。まだ合成していない画面形状: 一括選択＋インライン編集のある管理テーブル／バリデーションエラー付きの複数ステップ／empty・error・loading を主役にした画面／モバイル前提のレイアウト。デモではなく「足場のない app-shaped コード」で書くこと（Playground のレシピが該当。Storybook / i18n の足場があると穴が隠れる） | 合成カバレッジを指標化する: `stories/Patterns/**` + `sandbox/**` の JSX から使用コンポーネント名を集計し、`src/data/components.json` の総数と比較（2026-07-26 実測 45/221）。画面を足すたびに再測し、**出た穴を必ず起票する**（数字ではなく出た穴が成果） |
+| T33 | 型は受け付けるのに実装が無い prop 値の検出 | **P2** | `Card` の `padding="xl"` が典型 — `ComponentSize` 全体を受け取る型なのに `.padding-xl` クラスが存在せず、**書いても黙って無効**だった。誰も端の値を使っていなかったので誰も気づかない。同型の穴が他にもある可能性が高い | `styles[\`<prefix>-${prop}\`]` 形式のクラス参照を持つコンポーネントについて、**prop の型 union と `*.module.scss` のクラス集合を突き合わせる**。docgen が prop union を持っているのでそこから取れる。※ 2026-07-26 に簡易スキャナを書いたが自己検証が通らず結果を破棄した（0 件という出力は信用していない）。作り直しから |
+| T34 | intent × variant × サーフェスのコントラスト計算検証 | **P2** | `neutral` × `subtle` が light テーマで不可視だった件。**個々のトークンは正しく、組み合わせだけが壊れていた**。しかも **VRT では原理的に捕まらない**（`threshold: 0.1` を下回る色差は差分ゼロ扱い。実際 dark 側のベースラインしか動かなかった） | `tokens/intents.json` と `_token-common.scss` の導出規則（subtle = base 15% alpha 等）を再現して色を解決し、**WCAG コントラスト比を計算**。非テキスト UI 要素は 3:1、テキストは 4.5:1 を閾値に、light / dark 両テーマ × 置かれうるサーフェス（`surface` / `surface-app` / `surface-subtle`）の全組み合わせを検査 |
+| T35 | StackBlitz レシピが実際に起動するか | **P3** | `sandbox/recipes/*.tsx` は「Open in StackBlitz」で公開版 `wimui` に対して起動する建付けだが、**このリポジトリ内で `tsc` が通ることしか確認していない**。公開版パッケージ＋宣言された peer だけで動くかは未検証 | 既存の tarball スモークゲート（`scripts/smoke/`）の土台を再利用し、レシピを隔離プロジェクトに配置して `vite build` が通るかを検査。Playground の StackBlitz scaffold（`PACKAGE_JSON` / `MAIN_TSX`）と同じ構成にすること |
+| T36 | ホスト環境マトリクス | **P3** | ライブラリが描画される環境は Storybook canvas / Storybook docs MDX / StackBlitz / 利用者アプリの 4 つだが、**継続検証されているのは canvas だけ**。docs MDX が壊れていたのは T27 で偶然見つけた（`sb-unstyled` で解決済みだが回帰ガードは無い） | カナリア画面を各ホストで描画し、主要コンポーネントの computed style（font-size / border / padding）を突き合わせる。canvas を基準に差分が出たらホスト側 CSS の侵入を疑う |
+| T37 | リポジトリの「主張」の機械検証 | **P3** | llms.txt の版落ちは「常に最新」という主張が破れていた例で、`check:llms` で塞いだ（T27）。同種の主張が他にもある | README / MDX のコード例が実際にコンパイルできるか（llms.txt の価値は PR #64 の A/B で「API 正当性＝コンパイル可否」と測定済み）。README の peer 表と `package.json` の `peerDependencies` の一致 |
+
+> **運用（起票不要・恒常）**: Dependabot は weekly で minor/patch を 1 本にまとめる（直近 #55 = 07-22、次は 07-29 頃）。**playwright（Chromium が変わる）と Storybook（VRT のレンダリング母体）が含まれる回は、CI 緑ではなく VRT compare の結果を見てからマージする**。`size-limit` 12 → 13 は major だが破壊的変更が Node 20 打ち切りのみで `engines: >=22` の本リポジトリには非該当、かつ計測専用ツールなので CI 緑で上げてよい。
 
 ---
 
