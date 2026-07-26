@@ -50,10 +50,12 @@ export const Default: Story = {
         <Stack gap="5xl">
           <Group justify="between" align="center" wrap="wrap" gap="md">
             <div id="tour-step-1">
+              {/* placeholder は入力例、aria-label は欄の説明。同じキーを流用すると
+                  スクリーンリーダーに「Q3 ロードマップ」という欄名が読まれてしまう。 */}
               <SearchInput
                 width="md"
                 placeholder={t("story.tour_search_placeholder")}
-                aria-label={t("story.tour_search_placeholder")}
+                aria-label={t("story.tour_search_label")}
               />
             </div>
             <Button onClick={() => setOpen(true)}>{t("story.tour_start")}</Button>
