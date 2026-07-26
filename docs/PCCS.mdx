@@ -15,17 +15,17 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   .tone-header {
     display: flex;
     align-items: baseline;
-    gap: 12px;
+    gap: var(--wim-spacing-xl);
     border-bottom: 2px solid var(--wim-color-border, #eee);
-    padding-bottom: 8px;
-    margin-bottom: 24px;
+    padding-bottom: var(--wim-spacing-md);
+    margin-bottom: var(--wim-spacing-3xl);
     transition: border-color 0.3s;
   }
   .tone-header:hover {
     border-color: var(--wim-color-primary);
   }
   .tone-symbol {
-    font-size: 28px;
+    font-size: var(--wim-font-size-2xl);
     font-weight: 800;
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
@@ -33,7 +33,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   }
   .tone-header h3 {
     margin: 0;
-    font-size: 20px;
+    font-size: var(--wim-font-size-xl);
     font-weight: 600;
   }
   `}

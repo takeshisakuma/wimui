@@ -29,10 +29,16 @@ import fs from 'fs';
 import { globSync } from 'glob';
 
 // --- ラチェット基準（既定値上書き＋px 直書きの合計）。増やさない・減らしたら更新する。 ---
-// 2026-07-26 の実測 108 件で凍結（docs 66 / stories/Patterns 40 / sandbox 2）。
-// docs の 66 件は Configure / Colors / AppLayout など既存ページの負債で、この
-// スコープ拡張で初めて可視化されたもの。減らしたらこの値を下げること。
-const STYLE_OVERRIDE_BASELINE = 108;
+// 2026-07-26 の実測 52 件で凍結（stories/Patterns 40 / docs 10 / sandbox 2）。
+// docs は T16 で 66 → 10 へ削減。残る 10 件は**トークンが対応しない値**で、
+// 寄せるとかえって嘘になるため意図的に残している:
+//   - AppLayout.mdx のレイアウト図の寸法（grid-template-rows: 60px 300px 40px 等）
+//   - ロゴ画像・凡例の実寸（height: 64px / width: 180px）
+//   - h2 のブラウザ既定リセット（margin: 0）
+//   - PCCS.mdx の margin-bottom: 60px（最も近い 5xl=35.2px とは 25px 差）
+// stories/Patterns の 40 件・sandbox の 2 件も同様に、対応するトークンが無い
+// 実寸（min(380px,100%) 等）が中心。減らしたらこの値を下げること。
+const STYLE_OVERRIDE_BASELINE = 52;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。

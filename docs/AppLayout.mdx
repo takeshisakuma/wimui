@@ -16,13 +16,13 @@ import { T } from "../stories/T";
     grid-template-areas: "header header header" "sidebar main right" "footer footer footer";
     grid-template-rows: 60px 300px 40px;
     grid-template-columns: 200px 1fr 200px;
-    gap: 2px;
+    gap: var(--wim-spacing-3xs);
     background: var(--wim-color-border);
     border: 1px solid var(--wim-color-border);
     color: var(--wim-color-text-secondary);
-    font-size: 14px;
+    font-size: var(--wim-font-size-sm);
     font-family: sans-serif;
-    margin: 24px 0;
+    margin: var(--wim-spacing-3xl) 0;
     width: 100%;
     min-width: 0;
     overflow: hidden;
@@ -33,7 +33,7 @@ import { T } from "../stories/T";
   .layout-sidebar { grid-area: sidebar; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; }
   .layout-main { grid-area: main; background: var(--wim-color-surface); position: relative; }
   .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: var(--wim-color-surface-variant); border-bottom: 1px dashed var(--wim-color-border); display: flex; align-items: center; justify-content: center; font-size: 12px; }
-  .layout-main-content { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 40px; font-weight: bold; }
+  .layout-main-content { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: var(--wim-spacing-5xl); font-weight: bold; }
   .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: var(--wim-color-primary-soft); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
   .layout-right { grid-area: right; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid var(--wim-color-border); }
   .layout-footer { grid-area: footer; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-size: 12px; }
