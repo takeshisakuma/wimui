@@ -68,6 +68,13 @@ const checks = [
     name: "AI-slop composition guard (Patterns anti-pattern gates)",
     command: "node scripts/check-slop.js",
   },
+  {
+    category: "docs",
+    // public/ のコミット済みコピーが GitHub Pages で配信され、docs が AI エージェントに
+    // 案内している URL の中身になる。ビルド結果をコミットし忘れると版落ちしたまま残る。
+    name: "llms.txt freshness (committed copy matches source)",
+    command: "node scripts/generate-llms.js --check",
+  },
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",
