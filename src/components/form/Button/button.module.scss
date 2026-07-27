@@ -161,14 +161,16 @@
       border-color: var(--wim-comp-control-default-border);
     }
 
+    /* 文字は text-* ロール（AA 安全）、枠は intent 色。生の intent 色を文字に使うと
+       dark で AA を割る（outline danger 4.36:1 / success 2.48:1）。 */
     &.danger {
-      color: var(--wim-color-danger);
+      color: var(--wim-color-text-danger);
       background-color: var(--wim-color-surface);
       border-color: var(--wim-color-danger);
     }
 
     &.success {
-      color: var(--wim-color-success);
+      color: var(--wim-color-text-success);
       background-color: var(--wim-color-surface);
       border-color: var(--wim-color-success);
     }
@@ -204,12 +206,13 @@
       color: var(--wim-comp-control-default-fg);
     }
 
+    /* outline と同じ理由で text-* ロールを使う（背景は ghost-bg ＝ ほぼサーフェス）。 */
     &.danger {
-      color: var(--wim-color-danger);
+      color: var(--wim-color-text-danger);
     }
 
     &.success {
-      color: var(--wim-color-success);
+      color: var(--wim-color-text-success);
     }
 
     &:disabled {
