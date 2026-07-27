@@ -2,6 +2,12 @@
   .root {
     box-sizing: border-box;
     width: 100%;
+
+    /* ページのガター。これが無いと、ビューポートが max-width より狭いとき中身が
+       画面の端に張り付き、各画面が padding をインライン style で足して回避していた
+       （必須ルール 3 違反の発生源）。box-sizing: border-box なので max-width の
+       内側が左右 16px ずつ狭まる。 */
+    padding-inline: var(--wim-spacing-2xl);
     margin-right: auto;
     margin-left: auto;
   }

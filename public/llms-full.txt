@@ -2097,7 +2097,7 @@ target is already in the past). Not called when baseDate is set.
     - `height: string | number` — Height of the grid (enables vertical scrolling)
     - `maxHeight: string | number` — Maximum height of the grid (enables vertical scrolling)
     - `emptyMessage: React.ReactNode` — Message or element to display when data is empty
-    - `mobileCard: boolean` = false — Enable mobile card layout
+    - `mobileCard: boolean | "sm" | "md"` = false — Enable the card layout below a container width (`true`/`"sm"` = 576px, `"md"` = 768px)
     - `selection: boolean | SelectionConfig<T>` — Row selection: a boolean shorthand or a full configuration object
     - `selectedRowKeys: string[]` — Selected row keys (used with boolean `selection`)
     - `onSelectionChange: (keys: string[], records: T[]) => void` — Selection change callback (used with boolean `selection`)
@@ -2289,7 +2289,8 @@ target is already in the past). Not called when baseDate is set.
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `stickyHeader: boolean` = false — Whether the header sticks to the top while scrolling
     - `scrollbar: "default" | "subtle" | "hidden"` = "default" — Scrollbar style of the container
-    - `mobileCard: boolean` = false — Mobile view: Switch to card layout
+    - `mobileCard: boolean | "sm" | "md"` = false — Mobile view: switch to a card layout below a container width.
+`true` / `"sm"` switches under 576px, `"md"` under 768px (the old default).
     - `height: string | number` — Height of the container (enables vertical scrolling)
     - `maxHeight: string | number` — Maximum height of the container (enables vertical scrolling)
     - `containerClassName: string` — Additional class name for the scroll container

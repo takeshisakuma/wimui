@@ -49,8 +49,8 @@ export type DataGridProps<T> = {
   maxHeight?: string | number;
   /** Message or element to display when data is empty */
   emptyMessage?: React.ReactNode;
-  /** Enable mobile card layout */
-  mobileCard?: boolean;
+  /** Enable the card layout below a container width (`true`/`"sm"` = 576px, `"md"` = 768px) */
+  mobileCard?: boolean | "sm" | "md";
   /** Row selection: a boolean shorthand or a full configuration object */
   selection?: boolean | SelectionConfig<T>;
   /** Selected row keys (used with boolean `selection`) */
@@ -210,7 +210,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         loading && styles.loading,
         // 狭い幅でカード表示に切り替わる場合、外側のパネル装飾も一緒に降ろす必要がある
         // （切替自体は Table 側のコンテナクエリが行う）。
-        mobileCard && styles.mobileCard,
+        mobileCard === "md" ? styles.mobileCardMd : mobileCard && styles.mobileCard,
         className,
       )}
       aria-busy={loading || undefined}

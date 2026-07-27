@@ -24,9 +24,10 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   /** Scrollbar style of the container */
   scrollbar?: "default" | "subtle" | "hidden";
   /**
-   * Mobile view: Switch to card layout
+   * Mobile view: switch to a card layout below a container width.
+   * `true` / `"sm"` switches under 576px, `"md"` under 768px (the old default).
    */
-  mobileCard?: boolean;
+  mobileCard?: boolean | "sm" | "md";
   /** Height of the container (enables vertical scrolling) */
   height?: string | number;
   /** Maximum height of the container (enables vertical scrolling) */
@@ -91,7 +92,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
             hoverable && styles.hoverable,
             fullWidth && styles.fullWidth,
             stickyHeader && styles.stickyHeader,
-            mobileCard && styles.mobileCard,
+            mobileCard === "md" ? styles.mobileCardMd : mobileCard && styles.mobileCard,
             "wim-table",
             className,
           )}
