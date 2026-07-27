@@ -1,5 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./kanban.module.scss";
@@ -46,6 +47,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
     },
     ref,
   ) => {
+    const { t } = useWimTranslation("common");
     const [draggedItem, setDraggedItem] = useState<{
       itemId: string;
       columnId: string;
@@ -158,7 +160,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
             className,
           )}
           role="region"
-          aria-label="Kanban Board"
+          aria-label={t("a11y.kanban_board")}
         >
           <Slottable>{renderContent()}</Slottable>
         </Component>
@@ -255,6 +257,7 @@ export const KanbanCard = ({
   disabled,
   className,
 }: KanbanCardProps) => {
+  const { t } = useWimTranslation("common");
   const {
     draggedItem,
     handleDragStart,
@@ -288,7 +291,7 @@ export const KanbanCard = ({
           onClick={() =>
             setActiveMobileMenu(activeMobileMenu === id ? null : id)
           }
-          aria-label="Move card"
+          aria-label={t("a11y.move_card")}
           disabled={disabled}
         >
           <Icon component={MoreHorizontalIcon} size="sm" />
@@ -298,7 +301,7 @@ export const KanbanCard = ({
           <div
             className={styles.cardMoveMenu}
             role="listbox"
-            aria-label="Move to column"
+            aria-label={t("a11y.move_to_column")}
           >
             {columns
               .filter((c) => c.id !== colId)

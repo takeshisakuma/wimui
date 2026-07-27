@@ -9,11 +9,15 @@ export const wimResources: WimResources = {
   "en": {
     "common": {
       "a11y": {
+        "attach_file": "Attach file",
         "back_to_top": "Back to top",
         "breadcrumb": "Breadcrumb",
+        "calendar": "Calendar",
         "clear_input": "Clear input",
         "close": "Close",
         "close_menu": "Close menu",
+        "cover_art": "Cover art",
+        "crop_target": "Image being cropped",
         "data_grid": "Data Grid",
         "delete": "Delete",
         "exit_fullscreen": "Exit Fullscreen",
@@ -24,9 +28,13 @@ export const wimResources: WimResources = {
         "hide_password": "Hide password",
         "items_per_page": "Items per page",
         "jump_to_page": "Jump to page",
+        "kanban_board": "Kanban board",
         "left_icon_action": "Perform action",
         "loading": "Loading",
+        "move_card": "Move card",
+        "move_to_column": "Move to column",
         "mute": "Mute",
+        "next_month": "Next month",
         "next_track": "Next track",
         "open_menu": "Open menu",
         "pagination_nav": "Pagination navigation",
@@ -34,6 +42,7 @@ export const wimResources: WimResources = {
         "picture_in_picture": "Picture-in-Picture",
         "play": "Play",
         "playlist": "Playlist",
+        "prev_month": "Previous month",
         "resize_panel": "Resize panel",
         "right_icon_action": "Perform action",
         "scroll_progress": "Scroll progress",
@@ -98,6 +107,11 @@ export const wimResources: WimResources = {
         "saved": "Saved",
         "saved_at": "Saved at {{time}}",
         "error": "Failed to save"
+      },
+      "dataGrid": {
+        "displaying": "Showing {{shown}} of {{total}}",
+        "loading_more": "Loading more…",
+        "rows_selected": "({{selected}} selected)"
       }
     },
     "components": {
@@ -294,11 +308,15 @@ export const wimResources: WimResources = {
   "ja": {
     "common": {
       "a11y": {
+        "attach_file": "ファイルを添付",
         "back_to_top": "トップへ戻る",
         "breadcrumb": "パンくずリスト",
+        "calendar": "カレンダー",
         "clear_input": "入力をクリア",
         "close": "閉じる",
         "close_menu": "メニューを閉じる",
+        "cover_art": "カバー画像",
+        "crop_target": "切り抜き対象の画像",
         "data_grid": "データグリッド",
         "delete": "削除",
         "exit_fullscreen": "全画面を終了",
@@ -309,9 +327,13 @@ export const wimResources: WimResources = {
         "hide_password": "パスワードを隠す",
         "items_per_page": "1ページあたりの件数",
         "jump_to_page": "特定のページへ移動",
+        "kanban_board": "かんばんボード",
         "left_icon_action": "アクションを実行",
         "loading": "読み込み中",
+        "move_card": "カードを移動",
+        "move_to_column": "列へ移動",
         "mute": "ミュート",
+        "next_month": "翌月",
         "next_track": "次のトラック",
         "open_menu": "メニューを開く",
         "pagination_nav": "ページネーション ナビゲーション",
@@ -319,6 +341,7 @@ export const wimResources: WimResources = {
         "picture_in_picture": "ピクチャーインピクチャー",
         "play": "再生",
         "playlist": "プレイリスト",
+        "prev_month": "前月",
         "resize_panel": "パネルのサイズ変更",
         "right_icon_action": "アクションを実行",
         "scroll_progress": "スクロール進捗",
@@ -383,7 +406,12 @@ export const wimResources: WimResources = {
       "sun": "日",
       "thu": "木",
       "tue": "火",
-      "wed": "水"
+      "wed": "水",
+      "dataGrid": {
+        "displaying": "{{total}} 件中 {{shown}} 件を表示",
+        "loading_more": "さらに読み込み中…",
+        "rows_selected": "（{{selected}} 件を選択中）"
+      }
     },
     "components": {
       "a11y": {
@@ -579,11 +607,15 @@ export const wimResources: WimResources = {
   "pt": {
     "common": {
       "a11y": {
+        "attach_file": "Anexar arquivo",
         "back_to_top": "Voltar ao topo",
         "breadcrumb": "Trilha de navegação",
+        "calendar": "Calendário",
         "clear_input": "Limpar entrada",
         "close": "Fechar",
         "close_menu": "Fechar menu",
+        "cover_art": "Capa",
+        "crop_target": "Imagem sendo recortada",
         "data_grid": "Grade de Dados",
         "delete": "Excluir",
         "exit_fullscreen": "Sair da tela cheia",
@@ -594,9 +626,13 @@ export const wimResources: WimResources = {
         "hide_password": "Ocultar senha",
         "items_per_page": "Itens por página",
         "jump_to_page": "Ir para a página",
+        "kanban_board": "Quadro Kanban",
         "left_icon_action": "Executar ação",
         "loading": "Carregando",
+        "move_card": "Mover cartão",
+        "move_to_column": "Mover para a coluna",
         "mute": "Mudo",
+        "next_month": "Próximo mês",
         "next_track": "Próxima faixa",
         "open_menu": "Abrir menu",
         "pagination_nav": "Navegação da paginação",
@@ -604,6 +640,7 @@ export const wimResources: WimResources = {
         "picture_in_picture": "Picture-in-Picture",
         "play": "Reproduzir",
         "playlist": "Lista de reprodução",
+        "prev_month": "Mês anterior",
         "resize_panel": "Redimensionar painel",
         "right_icon_action": "Executar ação",
         "scroll_progress": "Progresso de rolagem",
@@ -668,7 +705,12 @@ export const wimResources: WimResources = {
       "sun": "Dom",
       "thu": "Qui",
       "tue": "Ter",
-      "wed": "Qua"
+      "wed": "Qua",
+      "dataGrid": {
+        "displaying": "Exibindo {{shown}} de {{total}}",
+        "loading_more": "Carregando mais…",
+        "rows_selected": "({{selected}} selecionados)"
+      }
     },
     "components": {
       "a11y": {

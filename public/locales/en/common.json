@@ -1,7 +1,9 @@
 {
   "a11y": {
+    "attach_file": "Attach file",
     "back_to_top": "Back to top",
     "breadcrumb": "Breadcrumb",
+    "calendar": "Calendar",
     "clear_date": "Clear date",
     "clear_input": "Clear input",
     "clear_selection": "Clear selection",
@@ -10,6 +12,8 @@
     "close_dialog": "Close dialog",
     "close_menu": "Close menu",
     "considerations": "Accessibility",
+    "cover_art": "Cover art",
+    "crop_target": "Image being cropped",
     "data_grid": "Data Grid",
     "delete": "Delete",
     "edit": "Edit",
@@ -23,8 +27,11 @@
     "icon_fallback": "Icon: {{name}}",
     "items_per_page": "Items per page",
     "jump_to_page": "Jump to page",
+    "kanban_board": "Kanban board",
     "left_icon_action": "Perform action",
     "loading": "Loading",
+    "move_card": "Move card",
+    "move_to_column": "Move to column",
     "mute": "Mute",
     "next_month": "Next month",
     "next_slide": "Next slide",
@@ -688,5 +695,10 @@
     "saved": "Saved",
     "saved_at": "Saved at {{time}}",
     "error": "Failed to save"
+  },
+  "dataGrid": {
+    "displaying": "Showing {{shown}} of {{total}}",
+    "loading_more": "Loading more…",
+    "rows_selected": "({{selected}} selected)"
   }
 }
