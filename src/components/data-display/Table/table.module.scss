@@ -149,6 +149,26 @@
                 text-align: left;
                 content: attr(data-label);
               }
+
+              /* 選択列はデスクトップ用に固定幅 60px・中央寄せ・sticky の枠線を持つ。
+                 カード表示では「行の先頭にある 1 個のチェックボックス」なので、それらを
+                 解除しないと 60px の島の右端にチェックが寄り、左に空白が残る
+                 （data-label が無いぶん ::before が空のまま space-between に参加するため）。 */
+              &.selection {
+                position: static;
+                justify-content: flex-start;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                padding-right: var(--wim-table-cell-padding-y);
+                padding-left: var(--wim-table-cell-padding-y);
+                text-align: left;
+                box-shadow: none;
+
+                &::before {
+                  content: none;
+                }
+              }
             }
           }
         }
@@ -230,6 +250,13 @@
   .cell {
     padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
     vertical-align: middle;
+
+    /* 識別子（ロット番号・SKU・ID）を途中で折らない。狭い列では既定の折り返しが
+       1 文字ずつの縦積みになるため。あふれは .container の overflow-x が引き受ける
+       ＝ページ自体は横スクロールしない。 */
+    code {
+      white-space: nowrap;
+    }
   
     &.selection {
       width: 60px; /* Exception: Structural Logic — 選択列の固定幅（チェックボックス中央寄せ） */
