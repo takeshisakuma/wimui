@@ -204,7 +204,15 @@ export function DataGrid<T extends Record<string, unknown>>({
 
   return (
     <div
-      className={classNames("wim-data-grid", styles.root, loading && styles.loading, className)}
+      className={classNames(
+        "wim-data-grid",
+        styles.root,
+        loading && styles.loading,
+        // 狭い幅でカード表示に切り替わる場合、外側のパネル装飾も一緒に降ろす必要がある
+        // （切替自体は Table 側のコンテナクエリが行う）。
+        mobileCard && styles.mobileCard,
+        className,
+      )}
       aria-busy={loading || undefined}
     >
       <div

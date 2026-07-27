@@ -90,18 +90,23 @@ const basicColumns: DataGridColumn<Record<string, unknown>>[] = [
   { key: "role", title: "Role", width: 100 },
   {
     key: "status",
+    // データ側のフィールド名は intent。dataIndex を省くと value が undefined になり、
+    // 全行が同じ分岐（Pending）に落ちる。
+    dataIndex: "intent",
     title: "Status",
     width: 100,
     render: (value: unknown) => (
       <Badge
         content={value as string}
         size="sm"
-        color={
+        // Badge の prop は intent（color は存在せず、span の HTML 属性として素通りするため
+        // 指定しても全て既定の primary で描画されていた）。
+        intent={
           value === "Active"
-            ? "primary"
+            ? "success"
             : value === "Inactive"
               ? "neutral"
-              : "secondary"
+              : "warning"
         }
       />
     ),
@@ -119,7 +124,7 @@ const useDataGridTranslations = () => {
         <Badge
           content={translatedValue}
           size="sm"
-          color={value === "Active" ? "primary" : value === "Inactive" ? "neutral" : "secondary"}
+          intent={value === "Active" ? "success" : value === "Inactive" ? "neutral" : "warning"}
         />
       );
     }) : c.render
@@ -518,6 +523,39 @@ export const WithRightFixedColumn: Story = {
           columns={columns}
           data={sampleData as unknown as Record<string, unknown>[]}
           bordered
+        />
+      </div>
+    );
+  },
+};
+
+/**
+ * 狭い幅ではカード表示に切り替わる（`mobileCard`）。切替は DataGrid 自身のコンテナ幅で
+ * 判定されるため、狭いラッパーに入れればビューポート幅によらず再現でき、VRT / axe の
+ * 対象にできる。この表示形態はストーリーが 1 つも無く、外枠の二重フレームと選択列の
+ * レイアウト崩れが誰にも見えていなかった。
+ */
+export const MobileCard: Story = {
+  render: () => {
+    const { tColumns, tSampleData } = useDataGridTranslations();
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>(["2"]);
+    return (
+      <div style={{ maxWidth: "380px" }}>
+        <DataGrid
+          columns={tColumns}
+          data={tSampleData}
+          mobileCard
+          selection={{
+            type: "checkbox",
+            selectedRowKeys,
+            onChange: (keys) => setSelectedRowKeys(keys),
+          }}
+          pagination={{
+            current: 1,
+            pageSize: 5,
+            total: tSampleData.length,
+            onChange: () => undefined,
+          }}
         />
       </div>
     );
