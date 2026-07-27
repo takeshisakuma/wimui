@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSizeBasic, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
@@ -37,6 +38,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
   ({ children, content, icon, onDelete, disabled, interactive = false, ...props }, ref) => {
+    const { t } = useWimTranslation("common");
     return (
       <IndicatorBase
         ref={ref}
@@ -56,7 +58,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
               e.stopPropagation();
               onDelete(e);
             }}
-            aria-label="Close"
+            aria-label={t("a11y.close")}
           >
             <Icon component={CloseIcon} size="sm" />
           </button>

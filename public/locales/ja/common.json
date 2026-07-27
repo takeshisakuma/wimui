@@ -1,7 +1,9 @@
 {
   "a11y": {
+    "attach_file": "ファイルを添付",
     "back_to_top": "トップへ戻る",
     "breadcrumb": "パンくずリスト",
+    "calendar": "カレンダー",
     "clear_date": "日付をクリア",
     "clear_input": "入力をクリア",
     "clear_selection": "選択をクリア",
@@ -10,6 +12,8 @@
     "close_dialog": "ダイアログを閉じる",
     "close_menu": "メニューを閉じる",
     "considerations": "アクセシビリティ",
+    "cover_art": "カバー画像",
+    "crop_target": "切り抜き対象の画像",
     "data_grid": "データグリッド",
     "delete": "削除",
     "edit": "編集",
@@ -23,8 +27,11 @@
     "icon_fallback": "アイコン: {{name}}",
     "items_per_page": "1ページあたりの件数",
     "jump_to_page": "特定のページへ移動",
+    "kanban_board": "かんばんボード",
     "left_icon_action": "アクションを実行",
     "loading": "読み込み中",
+    "move_card": "カードを移動",
+    "move_to_column": "列へ移動",
     "mute": "ミュート",
     "next_month": "翌月",
     "next_slide": "次のスライド",
@@ -688,5 +695,10 @@
   "upload": "アップロード",
   "username": "ユーザー名",
   "wed": "水",
-  "welcome": "アプリケーションへようこそ"
+  "welcome": "アプリケーションへようこそ",
+  "dataGrid": {
+    "displaying": "{{total}} 件中 {{shown}} 件を表示",
+    "loading_more": "さらに読み込み中…",
+    "rows_selected": "（{{selected}} 件を選択中）"
+  }
 }

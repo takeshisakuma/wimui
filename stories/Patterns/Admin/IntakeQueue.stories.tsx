@@ -317,6 +317,7 @@ function IntakeQueue({
         <InlineEdit
           value={slots[lot.id] ?? lot.slot}
           placeholder={t("intake.slot_unset")}
+          aria-label={t("intake.slot_edit", { lot: lot.id })}
           onChange={(value) => setSlots((prev) => ({ ...prev, [lot.id]: value }))}
         />
       ),
