@@ -168,7 +168,10 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         const items = Array.from(
           (refs.floating.current ?? containerRef.current)?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
         ) as HTMLElement[];
-        items[focusedIndex]?.focus();
+        // preventScroll は必須。メニューはポータル先に生まれ、floating-ui が位置を
+        // 決めるまで文書の先頭付近にいる。そこへ focus するとブラウザがその位置まで
+        // スクロールし、ページ最上部へ飛ぶ（実測: 390px で scrollY 2503 → 0）。
+        items[focusedIndex]?.focus({ preventScroll: true });
       }
     }, [focusedIndex, isOpen]);
 
