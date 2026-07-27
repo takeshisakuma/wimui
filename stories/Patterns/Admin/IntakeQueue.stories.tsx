@@ -354,7 +354,7 @@ function IntakeQueue({
   ];
 
   return (
-    <Box bg="surface-app" py="4xl" px="2xl">
+    <Box bg="surface-app" py="4xl">
       <Container size="xl">
         <Stack gap="2xl">
           <Stack gap="sm">

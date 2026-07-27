@@ -48,12 +48,31 @@
 /* カード表示（Table の mobileCard が効く幅）では、行そのものが枠と影を持つカードになる。
    その外側にパネルの枠と白背景が残ると二重フレームになり、カードの隙間から
    外側の白が見える（DESIGN.md 必須ルール 8・9 に反する）。パネルをやめてキャンバスを見せる。 */
+@mixin panel-off {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+/* 閾値は Table 側と一致させること（既定 sm / mobileCard="md" のときだけ md）。 */
 .mobileCard {
   .container {
+    @include breakpoints.container-down(sm) {
+      @include panel-off;
+    }
+  }
+
+  .footer {
+    @include breakpoints.container-down(sm) {
+      border-radius: var(--wim-radius-component);
+    }
+  }
+}
+
+.mobileCardMd {
+  .container {
     @include breakpoints.container-down(md) {
-      background-color: transparent;
-      border: none;
-      border-radius: 0;
+      @include panel-off;
     }
   }
 

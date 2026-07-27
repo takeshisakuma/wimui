@@ -1,6 +1,69 @@
 @use "../../../tokens/generated/tokens" as tokens;
 @use "../../../tokens/breakpoints" as breakpoints;
 
+@mixin card-layout {
+        display: block;
+        border: none;
+  
+        thead {
+          display: none;
+        }
+  
+        tbody {
+          display: block;
+  
+          tr {
+            display: block;
+            margin-bottom: var(--wim-spacing-lg);
+            border: var(--wim-border-width-thin) solid var(--wim-color-border);
+            border-radius: var(--wim-radius-container);
+            box-shadow: var(--wim-shadow-sm);
+  
+            td {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: var(--wim-table-cell-padding-y);
+              text-align: right;
+              border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+  
+              &:last-child {
+                border-bottom: none;
+              }
+  
+              &::before {
+                flex-shrink: 0;
+                font-weight: var(--wim-font-weight-semibold);
+                color: var(--wim-color-text-secondary);
+                text-align: left;
+                content: attr(data-label);
+              }
+
+              /* 選択列はデスクトップ用に固定幅 60px・中央寄せ・sticky の枠線を持つ。
+                 カード表示では「行の先頭にある 1 個のチェックボックス」なので、それらを
+                 解除しないと 60px の島の右端にチェックが寄り、左に空白が残る
+                 （data-label が無いぶん ::before が空のまま space-between に参加するため）。 */
+              &.selection {
+                position: static;
+                justify-content: flex-start;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                padding-right: var(--wim-table-cell-padding-y);
+                padding-left: var(--wim-table-cell-padding-y);
+                text-align: left;
+                box-shadow: none;
+
+                &::before {
+                  content: none;
+                }
+              }
+            }
+          }
+        }
+}
+
+
 @layer component {
   .container {
     width: 100%;
@@ -111,67 +174,19 @@
       }
     }
 
+    /* 既定の切替は sm（576px）。md（768px）はタブレット縦の幅そのもので、
+       表がまだ十分入るのにカードへ落ちてしまうため下げた。従来の挙動が要る場合は
+       mobileCard="md" を指定する。※コンテナクエリの条件に CSS 変数は使えない
+       （実測で発火しない）ので、閾値はトークンではなくクラスで出し分ける。 */
     &.mobileCard {
+      @include breakpoints.container-down(sm) {
+        @include card-layout;
+      }
+    }
+
+    &.mobileCardMd {
       @include breakpoints.container-down(md) {
-        display: block;
-        border: none;
-  
-        thead {
-          display: none;
-        }
-  
-        tbody {
-          display: block;
-  
-          tr {
-            display: block;
-            margin-bottom: var(--wim-spacing-lg);
-            border: var(--wim-border-width-thin) solid var(--wim-color-border);
-            border-radius: var(--wim-radius-container);
-            box-shadow: var(--wim-shadow-sm);
-  
-            td {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              padding: var(--wim-table-cell-padding-y);
-              text-align: right;
-              border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-  
-              &:last-child {
-                border-bottom: none;
-              }
-  
-              &::before {
-                flex-shrink: 0;
-                font-weight: var(--wim-font-weight-semibold);
-                color: var(--wim-color-text-secondary);
-                text-align: left;
-                content: attr(data-label);
-              }
-
-              /* 選択列はデスクトップ用に固定幅 60px・中央寄せ・sticky の枠線を持つ。
-                 カード表示では「行の先頭にある 1 個のチェックボックス」なので、それらを
-                 解除しないと 60px の島の右端にチェックが寄り、左に空白が残る
-                 （data-label が無いぶん ::before が空のまま space-between に参加するため）。 */
-              &.selection {
-                position: static;
-                justify-content: flex-start;
-                width: auto;
-                min-width: 0;
-                max-width: none;
-                padding-right: var(--wim-table-cell-padding-y);
-                padding-left: var(--wim-table-cell-padding-y);
-                text-align: left;
-                box-shadow: none;
-
-                &::before {
-                  content: none;
-                }
-              }
-            }
-          }
-        }
+        @include card-layout;
       }
     }
   }
