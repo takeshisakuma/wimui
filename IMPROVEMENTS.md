@@ -1,6 +1,7 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
+最終更新: 2026-07-27（**T32 の 1 枚目**「管理テーブル」を実装し、出た穴 10 件を起票＝下の「T32 の 1 枚目の結果」。ガードの穴として **T40**（`src/` の生 UI 文字列）・**T41**（コントラスト検査がトークン止まりでコンポーネントの実使用を見ていない）・**T39**（合成ルールが 3 箇所に複製）を新規起票。DESIGN.md に必須ルール 12「クロームを黙らせる」と狭幅チェックを追加し、llms.txt / judge:slop にも反映）  
+旧: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
 ---
@@ -138,6 +139,9 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T38 | 「書いても効かない prop 値」の始末 | **一部済 / 残は 0.6.0** | T33 の検出器が出した実在の欠落。**型が `ComponentSize` 全体を宣言しているのに実装が部分集合**という共通パターン: `Card.padding`（xs/4xl/5xl が無い）・`Card.radius`（xs/xl/2xl/3xl/4xl/5xl が無い＝実装は none/sm/md/lg のみ）・`Spinner.labelPosition="right"`・`FAQSection.layout="top"`。**方針の判断が要る**: ①CSS クラスを足す（加算・非破壊だが「radius 5xl とは何か」を新たに決めることになる）②型を実装に合わせて狭める（`Extract<ComponentSize, "sm" \| "md" \| "lg">` 等。**型が真実を語るようになるが union の縮小は破壊的変更**＝`api-snapshot.json` が変わる。ただし「黙って効かなかった値」なのでコンパイルエラーになるコードは元から壊れていた）③現状維持でラチェット凍結 | **11 → 6**（2026-07-26）。内訳: ①**偽陽性 2 件**は検出器側を修正（`Spinner.labelPosition="right"` / `FAQSection.layout="top"` はいずれも **prop の既定値**で、既定は基底スタイルが実装するため修飾クラスは不要。docgen の `defaultValue` を見て除外するようにした）②**トークンが実在する 3 値を実装**（`Card` の `padding-xs` → `spacing-sm`、`radius-xl` → `radius-xl`、`radius-2xl` → `radius-2xl`）。**残り 6 件は 0.6.0 で型を狭めて解決する**: `Card.radius` の xs/3xl/4xl/5xl（radius トークンが sm/md/lg/xl/2xl/full しか無く、実装するには新トークンの新設が要る＝RULES.md が禁止に近いとしている）と `Card.padding` の 4xl/5xl（spacing が 5xl 止まりのため実装すると**両者が同じ余白になり区別できない**＝受け付けるのに意味が無いのは同じ）。**縮小は破壊的変更**なので 0.6.0 に置く。縮小後は baseline を 0 にしてハードゲート化できる |
 | T35 | StackBlitz レシピが実際に起動するか | **済** | `sandbox/recipes/*.tsx` は「Open in StackBlitz」で公開版 `wimui` に対して起動する建付けだが、**このリポジトリ内で `tsc` が通ることしか確認していない**。公開版パッケージ＋宣言された peer だけで動くかは未検証 | 既存の tarball スモークゲート（`scripts/smoke/`）の土台を再利用し、レシピを隔離プロジェクトに配置して `vite build` が通るかを検査。Playground の StackBlitz scaffold（`PACKAGE_JSON` / `MAIN_TSX`）と同じ構成にすること ／ **受け入れ条件**: レシピの import を 1 つ壊した状態で**落ちること**を実証する。 ／ **済**（`node scripts/smoke/run.mjs --recipes` = `npm run smoke:recipes`。既存の tarball スモーク基盤を再利用し、隔離 consumer で各レシピを `wimui/styles.css` + `WimProvider` + レシピの入口から esbuild で bundle。5 本すべて PASS。CI は bare ジョブに `--treeshake --recipes` として相乗り。**受け入れ条件の検証で 1 度失敗を経験している**: import 名だけを書き換えて JSX 側を残したところ通ってしまった＝未使用 import は tree-shake されて検査されない。両方書き換えれば落ちる。この限界はスクリプトのコメントに明記済み） |
 | T36 | ホスト環境マトリクス | **P3** | ライブラリが描画される環境は Storybook canvas / Storybook docs MDX / StackBlitz / 利用者アプリの 4 つだが、**継続検証されているのは canvas だけ**。docs MDX が壊れていたのは T27 で偶然見つけた（`sb-unstyled` で解決済みだが回帰ガードは無い） | カナリア画面を各ホストで描画し、主要コンポーネントの computed style（font-size / border / padding）を突き合わせる。canvas を基準に差分が出たらホスト側 CSS の侵入を疑う ／ **受け入れ条件**: `docs/Playground.mdx` から `sb-unstyled` を外した状態で**差分が出ること**を実証する。 |
+| T39 | 合成ルールの SSOT 化 | **P2** | 起票 2026-07-27。**汎用の合成ルール本文が 3 箇所に複製されている**: `DESIGN.md`（日本語・人間と `composition-guidelines` skill 向け）／`scripts/generate-llms.js`（英語・llms.txt = 外部 AI への主配信）／`scripts/judge-slop.mjs`（採点ルーブリック）。同日「クロームを黙らせる」と「狭い幅で見る」の 2 ルールを足した際、3 ファイルを手で編集した。**前例がある**: AI-slop 辞書は `scripts/slop-dictionary.json` を単一ソースにして `check:slop` と `generate-llms.js` の両方が読む形になっている。※`.claude/skills/composition-guidelines/SKILL.md` は「本文は複製しない・DESIGN.md を読む」手順のみなので複製元ではない。**「汎用ルールは skill・プロジェクト固有は DESIGN.md」という分け方は採らない**: design.md の spec（トークン＋根拠の自己完結文書）にも Agent Skills の仕様（手続き知識の可搬パッケージ。company/team 固有の文脈も含んでよいと明記）にもその分担は書かれておらず、llms.txt という**外部 AI 向けの主配信経路が skill とは別に存在する**ため、汎用分を skill へ移すと公開物の生成元が Claude Code 専用ディレクトリに依存する。現行の「skill = 手順 / DESIGN.md = 規範の SSOT」を維持する | 合成ルールを機械可読な単一ソース（例 `design/composition-rules.json`）に置き、DESIGN.md の表・llms.txt の Must rules・judge のルーブリックを生成する。**受け入れ条件**: ルールを 1 つ足して 3 つの出力すべてに反映されることを実証する |
+| T40 | `src/` の生 UI 文字列を検出するガード | **P1** | 起票 2026-07-27（T32 の穴 ①）。`check-stories-hardcoded` は `stories/**` のみ、`check-i18n-components` は「src は型付きキー（`WimI18nKey`）で守る」として**意図的に src を走査しない**。しかし型が守るのは**キーの間違い**であって、**`t()` を呼ばない生文字列**は誰の網にもかからない。実際 `DataGrid` のページャ文言 3 件と aria-label / alt の 8 件が漏れていた | `src/components/**/*.tsx` を対象に、JSX テキスト子要素・テキスト系 prop・`aria-label` / `alt` の生英語を検出（`check-stories-hardcoded.js` の検出器を流用可）。既存 11 件を baseline にしたラチェットで開始し、解消後に 0 でハードゲート化 ／ **受け入れ条件**: `DataGrid.tsx:353` を含む既知 11 件を**鳴らせること**を実証する |
+| T41 | コントラスト検査を「トークン」から「コンポーネントの実使用」へ | **P1** | 起票 2026-07-27（T32 の穴 ②）。`check:contrast`（T34）は **outline の文字色を `text-{intent}` ロールで解決する前提**（`check-contrast.js:121`）で 126 組すべて緑。しかし `Button` の SCSS は `color: var(--wim-color-danger)` を直接使っており、**SSOT を迂回している事実がガードから見えない**。結果 dark の `outline`×`danger` が 4.35:1 で出荷されていた。`color:` に intent 色を直接使う箇所は src 全体で **50 件**あり、同型が他にもある可能性が高い。Button のストーリーに `outline`×`danger` の組み合わせが 1 つも無かったため a11y スイートも見ていなかった | ①短期: `*.module.scss` で `color:` に `--wim-color-{intent}` を直接使っている箇所を列挙し、`text-{intent}` へ寄せる（または例外として明示） ②恒久: コントラスト検査を SCSS の実際の `color` / `background-color` ペアから解決する方式へ寄せる ／ **受け入れ条件**: 現行の `button.module.scss:165` に対して**鳴ること**を実証する |
 | T37 | リポジトリの「主張」の機械検証 | **P3** | llms.txt の版落ちは「常に最新」という主張が破れていた例で、`check:llms` で塞いだ（T27）。同種の主張が他にもある | README / MDX のコード例が実際にコンパイルできるか（llms.txt の価値は PR #64 の A/B で「API 正当性＝コンパイル可否」と測定済み）。README の peer 表と `package.json` の `peerDependencies` の一致 ／ **受け入れ条件**: README のコード例を 1 つ壊した状態で**落ちること**を実証する。 |
 
 > **運用（起票不要・恒常）**: Dependabot は weekly で minor/patch を 1 本にまとめる（直近 #55 = 07-22、次は 07-29 頃）。**playwright（Chromium が変わる）と Storybook（VRT のレンダリング母体）が含まれる回は、CI 緑ではなく VRT compare の結果を見てからマージする**。`size-limit` 12 → 13 は major だが破壊的変更が Node 20 打ち切りのみで `engines: >=22` の本リポジトリには非該当、かつ計測専用ツールなので CI 緑で上げてよい。
@@ -163,8 +167,32 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 1. app-shaped で画面を書く
 2. **story 化して VRT / a11y / `judge:slop` に通す** — Playground ではこれで Switch のラベル欠落（axe critical）が自動検出された
-3. その結果を添えて人間のレビューへ（**視覚判定は自己申告しない**）
-4. 出た穴を起票して修正
+3. **狭い幅（390px / 768px）で確認する** — 1 枚目で 2 件出た観点（ページ自体の横スクロール／`mobileCard` 未指定による列の潰れ）。ページの `scrollWidth > clientWidth` は不合格。VRT は 1 幅しか撮らないため**現状は機械では拾えない**（狭幅ストーリーを足すかは別途判断）
+4. その結果を添えて人間のレビューへ（**視覚判定は自己申告しない**）
+5. 出た穴を起票して修正
+
+#### T32 の 1 枚目「管理テーブル」の結果（2026-07-27）
+
+**成果物**: `stories/Patterns/Admin/IntakeQueue.stories.tsx`（焙煎所の入荷ロット検品キュー。4 ストーリー = 通常 / 一括選択 / 該当なし / 再取得中）。en/ja/pt を最初から。合成カバレッジ **45/208 → 60/208（29%）**（docs-only / internal を除いた公開コンポーネント）。
+
+**見積もりの実測値**（2 枚目以降はこの数字を使う）: i18n キーは **55 個**＝当初見込み 20〜25 の 2 倍以上。ja/pt は手翻訳。ゲートは tsc / eslint / i18n:check / check-stories-hardcoded / check:slop すべて緑で、**インライン style ゼロのため `check:slop` のラチェット 52 を増やしていない**。a11y は 8 ケース中 1 件赤（下表 ②）。
+
+**出た穴 10 件**。すべて「1 画面作ったら出てきた」もので、ガード設計では見つからなかった。⑤〜⑩ は**狭い幅（390 / 768px）で見たときだけ出る**もので、VRT が 1 幅しか撮らない現状ではどのガードにもかからない。
+
+| # | 穴 | 層 | 状態 |
+|---|---|---|---|
+| ① | `DataGrid` のページャ文言が英語ハードコード（`DataGrid.tsx:353` `Displaying {n} of {total} records` / `:356` `({n} row(s) selected)` / `:345` `Loading more...`）。**同じファイルは a11y ラベルだけ `t()` 済み**＝可視文言のみ漏れ。ja/pt の画面に英語が出る。同型として aria-label / alt の生英語が 8 件（`Tag` "Close" / `Kanban`×3 / `Calendar`×3 / `ChatUI` "Attach file" / `Audio` alt="Cover" / `ImageCropper` alt="Crop target"） | ライブラリ | 未着手 → **T40** |
+| ② | dark で `Button variant="outline" intent="danger"` が **AA 不合格**（4.35:1、要 4.5:1。`#fb7482` on `#393939`）。`button.module.scss:165` が `color: var(--wim-color-danger)` を使い、T12 で用意した AA 安全な `text-danger` を使っていない | ライブラリ | 未着手 → **T41** |
+| ③ | `EmptyState` の `icon` スロットが未正規化。`<Icon name="SearchIcon" size="lg" />` を渡すと巨大な真っ黒アイコンになる | ライブラリ | 未着手 |
+| ④ | `InlineEdit` の編集トリガー（`role="button"`）に**アクセシブル名を与える手段が無い**。`aria-label` は外側 div に落ち、名前を付けられるのは可視 `label` だけ＝テーブルセルでは使えない | ライブラリ | 未着手 |
+| ⑤ | `Toolbar.Group` が折り返せない（`toolbar.module.scss:37` の `.group` に `flex-wrap` が無く既定 `nowrap`）。ボタンを 1 グループに詰めると **390px でページごと横スクロール**する。`.group { flex-wrap: wrap }` で直る。アプリ側はグループを分けて回避可能だが、知らないと必ず踏む | ライブラリ | 未着手 |
+| ⑥ | `Code` に `white-space: nowrap` が無く、狭い列で **1 文字ずつ縦に折り返る**（ロット番号が縦一列になる）。アプリ側の回避はインライン style しかなく必須ルール 3 に反する | ライブラリ | 未着手 |
+| ⑦ | 狭幅カード表示の切替点が `container-down(md)` 固定＝**タブレット幅でもカードになる**。閾値を変える prop が無い | ライブラリ | 要判断 |
+| ⑧ | `mobileCard` が**選択列をリセットしない**。`.selection` の固定幅 60px と `_stickyLeft` の inset 影が残り、`justify-content: space-between` ＋ 空の `::before` でチェックボックスが 60px の右端へ押される＝「四角い囲みの左に謎の空間」 | ライブラリ | 未着手（⑩と同一原因） |
+| ⑨ | **`Container` に横ガターが無い**（`container.module.scss` は max-width と中央寄せのみ）。ビューポートが max-width より狭いと必ず端に張り付く。**既存のインライン style 負債の出どころ**でもある（`Marketing.stories.tsx:112` が `style={{ padding: … }}` で回避＝`check:slop` ラチェット 52 の一部）。修正は破壊的（全画面の余白と VRT 全面更新）ため方針判断が要る: ①既定の `padding-inline` を入れる（0.6.0 相当）②`gutter` prop で opt-in（非破壊）③ドキュメントで「ページ余白は `Box` の `px`」と明文化 | ライブラリ | **要判断** |
+| ⑩ | `mobileCard` で**外枠パネルが残る**。消えるのは `<table>` の枠だけで、`.wim-data-grid` の白背景 + 枠 + 角丸と `.tableContainer` の白背景が残る＝枠付きパネルの中に枠＋影のカードが並ぶ二重フレーム（カード間に外側の白が見える）。**ライブラリ自身が必須ルール 8・9 を破っている**。card モードで root の背景/枠/角丸を落とし footer の border-top を外す案を注入で検証済み | ライブラリ | 未着手（⑧と同一原因） |
+
+**この画面側で対処したもの**: `mobileCard` の有効化（⑥の症状は表からは消える）／一括バーを `Toolbar.Group` 3 つに分割（⑤の回避）／ページのガターを `Box px="2xl"` で付与（⑨の回避。インライン style を使わない形）。
 
 **保留**: T32 の画面は i18n に依存するため **StackBlitz には出せない**。「Patterns を全部 StackBlitz に出す」構想は実測でブロッカーを確認済み（`t()` が 302 箇所 / Storybook の殻 / 1 ファイルに複数画面 / `AI.stories.tsx` が `../../../src` を import）。**変換器は当面作らない**（検証を優先）。必要になった時点で別途判断する。
 
