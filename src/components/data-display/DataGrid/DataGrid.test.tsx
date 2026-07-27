@@ -46,6 +46,27 @@ describe("DataGrid", () => {
     expect(container.firstChild).toHaveClass(styles.loading);
   });
 
+  it("blocks interaction while blocking, but not while refreshing", () => {
+    const blocking = render(
+      <DataGrid columns={mockColumns} data={mockRows} loading="blocking" />,
+    );
+    const blockingRoot = blocking.container.firstChild as HTMLElement;
+    expect(blockingRoot).toHaveAttribute("aria-busy", "true");
+    expect(blockingRoot).toHaveClass(styles.loading);
+    expect(blockingRoot.querySelector("[inert]")).not.toBeNull();
+    blocking.unmount();
+
+    // refresh は「更新中」を告げるだけ。行は読めるし触れる（inert を付けない）。
+    // 減光もしない: 不透明度を落とすと二次テキストが AA を割るため。
+    const refreshing = render(
+      <DataGrid columns={mockColumns} data={mockRows} loading="refresh" />,
+    );
+    const refreshingRoot = refreshing.container.firstChild as HTMLElement;
+    expect(refreshingRoot).toHaveAttribute("aria-busy", "true");
+    expect(refreshingRoot).not.toHaveClass(styles.loading);
+    expect(refreshingRoot.querySelector("[inert]")).toBeNull();
+  });
+
   it("handles selection", async () => {
     const user = userEvent.setup();
     const onSelectionChange = vi.fn();
