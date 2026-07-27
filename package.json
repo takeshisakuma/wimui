@@ -593,7 +593,21 @@
       "node scripts/check-contrast.js"
     ],
     "src/components/**/*.module.scss": [
-      "node scripts/check-prop-classes.js"
+      "node scripts/check-prop-classes.js",
+      "node scripts/generate-llms.js",
+      "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
+    ],
+    "src/components/**/*.{ts,tsx}": [
+      "node scripts/generate-llms.js",
+      "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
+    ],
+    "public/locales/en/**/*.json": [
+      "node scripts/generate-llms.js",
+      "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
+    ],
+    "{src/data/components.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
+      "node scripts/generate-llms.js",
+      "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ]
   },
   "dependencies": {
