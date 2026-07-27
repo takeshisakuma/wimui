@@ -50,6 +50,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
       fullWidth = false,
       label,
       className,
+      "aria-label": ariaLabel,
       ...props
     },
     ref
@@ -134,6 +135,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
               onKeyDown={handleKeyDown}
               disabled={disabled}
               placeholder={placeholder}
+              aria-label={ariaLabel}
               fullWidth={fullWidth}
               className={localStyles.input}
             />
@@ -168,6 +170,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             }}
             tabIndex={disabled ? -1 : 0}
             role="button"
+            aria-label={ariaLabel}
             aria-disabled={disabled}
           >
             <span className={classNames(localStyles.text, !currentValue && localStyles.placeholder)}>

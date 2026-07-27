@@ -342,7 +342,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         )}
         {infiniteScroll?.hasMore && (
           <div ref={loaderRef} className={styles.loader}>
-            {infiniteScroll.hasMore && "Loading more..."}
+            {infiniteScroll.hasMore && t("dataGrid.loading_more")}
           </div>
         )}
       </div>
@@ -350,10 +350,10 @@ export function DataGrid<T extends Record<string, unknown>>({
       {pagination && (
         <div className={styles.footer} inert={loading || undefined}>
           <div className={styles.info}>
-            Displaying {data.length} of {pagination.total} records
+            {t("dataGrid.displaying", { shown: data.length, total: pagination.total })}
             {selection?.selectedRowKeys && selection.selectedRowKeys.length > 0 && (
               <span className={styles.selectionInfo}>
-                ({selection.selectedRowKeys.length} row(s) selected)
+                {t("dataGrid.rows_selected", { selected: selection.selectedRowKeys.length })}
               </span>
             )}
           </div>

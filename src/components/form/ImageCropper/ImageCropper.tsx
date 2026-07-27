@@ -153,7 +153,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
             <img
               ref={imageRef}
               src={src}
-              alt="Crop target"
+              alt={t("a11y.crop_target")}
               className={styles.image}
               style={{
                 transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg) scale(${zoom})`,

@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
@@ -180,6 +181,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
     },
     ref,
   ) => {
+    const { t } = useWimTranslation("common");
     const [internalValue, setInternalValue] = React.useState("");
     const isControlled = props.value !== undefined;
     const value = isControlled ? (props.value as string) : internalValue;
@@ -222,7 +224,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
               type="button"
               className={styles.attachButton}
               onClick={onAttach}
-              aria-label="Attach file"
+              aria-label={t("a11y.attach_file")}
             >
               <Icon component={PaperclipIcon} size="sm" />
             </button>
