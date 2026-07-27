@@ -9,9 +9,9 @@
     cursor: pointer;
   }
   
+  /* 位置は floating-ui がインラインスタイルで与える（body 直下のポータルに出るため、
+     トリガー基準の top/left をここで持つことはできない）。 */
   .menu {
-    position: absolute;
-    top: calc(100% + var(--wim-spacing-xs));
     z-index: var(--wim-z-overlay);
     display: flex;
     flex-direction: column;
@@ -22,14 +22,6 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
-  
-    &.alignLeft {
-      left: 0;
-    }
-  
-    &.alignRight {
-      right: 0;
-    }
   }
   
   .item {

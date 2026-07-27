@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, ReactNode, useId, forwardRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { useFloating, autoUpdate, offset, flip, shift, FloatingPortal } from "@floating-ui/react";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { Transition } from "../../layout/Transition/Transition";
@@ -17,6 +18,11 @@ const DropdownContext = React.createContext<{
   setFocusedIndex: (index: number) => void;
   registerItem: () => number;
   containerRef: React.RefObject<HTMLDivElement | null>;
+  setReference: (node: HTMLElement | null) => void;
+  setFloating: (node: HTMLElement | null) => void;
+  floatingStyles: React.CSSProperties;
+  floatingRef: React.RefObject<HTMLElement | null>;
+  setAlign: (align: "left" | "right") => void;
 }>({
   isOpen: false,
   toggle: () => { },
@@ -27,6 +33,11 @@ const DropdownContext = React.createContext<{
   setFocusedIndex: () => { },
   registerItem: () => 0,
   containerRef: { current: null },
+  setReference: () => { },
+  setFloating: () => { },
+  floatingStyles: {},
+  floatingRef: { current: null },
+  setAlign: () => { },
 });
 
 export interface DropdownProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -46,6 +57,18 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
     const itemCountRef = useRef(0);
+    const [align, setAlign] = useState<"left" | "right">("left");
+
+    // メニューはポータルで body 直下に出す。トリガーの近くに絶対配置していると、
+    // スクロールコンテナ（DataGrid の overflow: auto）や overflow: hidden の内側に
+    // 閉じ込められ、開いた瞬間にスクロール領域が伸びる・見えなくなる、が起きる。
+    // Popover / Tooltip と同じ floating-ui の土台に揃える。
+    const { refs, floatingStyles } = useFloating({
+      open: isOpen,
+      placement: align === "right" ? "bottom-end" : "bottom-start",
+      whileElementsMounted: autoUpdate,
+      middleware: [offset(4), flip(), shift({ padding: 8 })],
+    });
 
     // Combine refs
     const combinedRef = mergeRefs(containerRef, ref);
@@ -80,9 +103,14 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node;
+        // メニューはポータル先（body 直下）にあるので、コンテナの外＝外側クリックでは
+        // なくなった。フローティング要素の内側も「内」として扱う。
+        const insideMenu = refs.floating.current?.contains(target) ?? false;
         if (
           containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
+          !containerRef.current.contains(target) &&
+          !insideMenu
         ) {
           close();
         }
@@ -109,7 +137,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
       if (!isOpen) return;
 
       const items = Array.from(
-        containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+        (refs.floating.current ?? containerRef.current)?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
       ) as HTMLElement[];
 
       switch (e.key) {
@@ -138,7 +166,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     useEffect(() => {
       if (isOpen && focusedIndex >= 0) {
         const items = Array.from(
-          containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+          (refs.floating.current ?? containerRef.current)?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
         ) as HTMLElement[];
         items[focusedIndex]?.focus();
       }
@@ -148,7 +176,14 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
 
     return (
       <DropdownContext.Provider
-        value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
+        value={{
+          isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef,
+          setReference: refs.setReference,
+          setFloating: refs.setFloating,
+          floatingStyles,
+          floatingRef: refs.floating,
+          setAlign,
+        }}
       >
         <Component
           {...props}
@@ -172,14 +207,16 @@ export interface DropdownTriggerProps extends React.ComponentPropsWithoutRef<"di
 
 export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
   ({ children, className, asChild = false, ...props }, ref) => {
-    const { toggle, isOpen, menuId, triggerId } = React.useContext(DropdownContext);
+    const { toggle, isOpen, menuId, triggerId, setReference } = React.useContext(DropdownContext);
 
     const Component = asChild ? Slot : "div";
+    // トリガーは floating-ui の基準要素でもある（メニューはここを基準に配置される）。
+    const combinedRef = mergeRefs(setReference as React.Ref<HTMLDivElement>, ref);
 
     return (
       <Component
         {...props}
-        ref={ref}
+        ref={combinedRef}
         id={triggerId}
         className={classNames(styles.trigger, className)}
         onClick={toggle}
@@ -210,27 +247,36 @@ export interface DropdownMenuProps extends Omit<React.ComponentPropsWithoutRef<t
 }
 
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
-  ({ children, className, align = "left", show: forceShow, ...props }, ref) => {
-    const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
-    const alignClass = align === "left" ? styles.alignLeft : styles.alignRight;
+  ({ children, className, align = "left", show: forceShow, style, ...props }, ref) => {
+    const { isOpen, menuId, triggerId, setFloating, floatingStyles, setAlign } =
+      React.useContext(DropdownContext);
+
+    // align は配置の指定なので、位置計算を持つルートへ伝える。
+    useEffect(() => {
+      setAlign(align);
+    }, [align, setAlign]);
+
+    const combinedRef = mergeRefs(setFloating as React.Ref<HTMLDivElement>, ref);
 
     return (
-      <Transition
-        {...props}
-        ref={ref}
-        show={forceShow !== undefined ? forceShow : isOpen}
-        preset="fade"
-        id={menuId}
-        className={classNames(
-          styles.menu,
-          alignClass,
-          className,
-        )}
-        role="menu"
-        aria-labelledby={triggerId}
-      >
-        {children}
-      </Transition>
+      // body 直下へ出す。トリガーの隣に絶対配置していると、スクロールコンテナ
+      // （DataGrid の overflow: auto）の中に閉じ込められてスクロール領域を伸ばし、
+      // overflow: hidden の中（カード表示の行）では丸ごと見えなくなる。
+      <FloatingPortal>
+        <Transition
+          {...props}
+          ref={combinedRef}
+          show={forceShow !== undefined ? forceShow : isOpen}
+          preset="fade"
+          id={menuId}
+          style={{ ...floatingStyles, ...style }}
+          className={classNames(styles.menu, className)}
+          role="menu"
+          aria-labelledby={triggerId}
+        >
+          {children}
+        </Transition>
+      </FloatingPortal>
     );
   }
 );
