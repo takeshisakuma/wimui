@@ -131,7 +131,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         document.removeEventListener("mousedown", handleClickOutside);
         document.removeEventListener("keydown", handleKeyDownGlobal);
       };
-    }, [isOpen]);
+    }, [isOpen, refs.floating]);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (!isOpen) return;
@@ -173,7 +173,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         // スクロールし、ページ最上部へ飛ぶ（実測: 390px で scrollY 2503 → 0）。
         items[focusedIndex]?.focus({ preventScroll: true });
       }
-    }, [focusedIndex, isOpen]);
+    }, [focusedIndex, isOpen, refs.floating]);
 
     const Component = asChild ? Slot : "div";
 
