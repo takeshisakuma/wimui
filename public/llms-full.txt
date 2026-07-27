@@ -2089,7 +2089,12 @@ target is already in the past). Not called when baseDate is set.
     - `columns: DataGridColumn<T>[]` (required) — Column definitions
     - `data: T[]` (required) — Row data
     - `rowKey: string | ((record: T) => string)` = "id" — Row key: a field name or a function that derives the key from a record
-    - `loading: boolean` = false — Whether the grid is in a loading state
+    - `loading: boolean | "blocking" | "refresh"` = false — Loading state.
+`true` / `"blocking"` fades the grid and blocks interaction (first load — the
+rows are not there yet, or are about to be replaced wholesale).
+`"refresh"` only announces `aria-busy`: the rows stay readable and usable while
+fresh data is fetched. It deliberately does not dim, because fading the content
+drops secondary text below the AA contrast floor.
     - `striped: boolean` = false — Whether to show striped (zebra) rows
     - `bordered: boolean` = false — Whether to show borders between cells
     - `hoverable: boolean` = true — Whether rows highlight on hover
