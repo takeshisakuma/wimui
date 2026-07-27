@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./calendar.module.scss";
@@ -52,6 +53,7 @@ export const Calendar = ({
   weekStartsOn = 0,
   ...props
 }: CalendarProps) => {
+  const { t } = useWimTranslation("common");
   const {
     handlePrevMonth,
     handleNextMonth,
@@ -161,7 +163,7 @@ export const Calendar = ({
       )}
       onKeyDown={handleKeyDown}
       role="application"
-      aria-label="Calendar"
+      aria-label={t("a11y.calendar")}
       {...props}
     >
       <div className={styles.header}>
@@ -170,7 +172,7 @@ export const Calendar = ({
           className={styles.navBtn}
           onClick={handlePrevMonth}
           disabled={disabled}
-          aria-label="Previous month"
+          aria-label={t("a11y.prev_month")}
         >
           <Icon component={ChevronLeftIcon} size="sm" />
         </button>
@@ -182,7 +184,7 @@ export const Calendar = ({
           className={styles.navBtn}
           onClick={handleNextMonth}
           disabled={disabled}
-          aria-label="Next month"
+          aria-label={t("a11y.next_month")}
         >
           <Icon component={ChevronRightIcon} size="sm" />
         </button>

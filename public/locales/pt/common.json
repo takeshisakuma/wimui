@@ -1,7 +1,9 @@
 {
   "a11y": {
+    "attach_file": "Anexar arquivo",
     "back_to_top": "Voltar ao topo",
     "breadcrumb": "Trilha de navegação",
+    "calendar": "Calendário",
     "clear_date": "Limpar data",
     "clear_input": "Limpar entrada",
     "clear_selection": "Limpar seleção",
@@ -10,6 +12,8 @@
     "close_dialog": "Fechar diálogo",
     "close_menu": "Fechar menu",
     "considerations": "Acessibilidade",
+    "cover_art": "Capa",
+    "crop_target": "Imagem sendo recortada",
     "data_grid": "Grade de Dados",
     "delete": "Excluir",
     "edit": "Editar",
@@ -23,8 +27,11 @@
     "icon_fallback": "Ícone: {{name}}",
     "items_per_page": "Itens por página",
     "jump_to_page": "Ir para a página",
+    "kanban_board": "Quadro Kanban",
     "left_icon_action": "Executar ação",
     "loading": "Carregando",
+    "move_card": "Mover cartão",
+    "move_to_column": "Mover para a coluna",
     "mute": "Mudo",
     "next_month": "Próximo mês",
     "next_slide": "Próximo slide",
@@ -688,5 +695,10 @@
   "upload": "Upload",
   "username": "Nome de usuário",
   "wed": "Qua",
-  "welcome": "Bem-vindo ao nosso aplicativo"
+  "welcome": "Bem-vindo ao nosso aplicativo",
+  "dataGrid": {
+    "displaying": "Exibindo {{shown}} de {{total}}",
+    "loading_more": "Carregando mais…",
+    "rows_selected": "({{selected}} selecionados)"
+  }
 }
