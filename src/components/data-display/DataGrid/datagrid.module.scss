@@ -1,5 +1,9 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
+/* 枠・背景・角丸は .root ではなく内側（.container / .footer）が持つ。
+   .root は container-type: inline-size の起点なので、コンテナクエリからは
+   自分自身を参照できず、カード表示で外枠だけを外すことができないため。
+   デスクトップの見た目は同一（.root に padding が無く、境界の位置が変わらない）。 */
 .root {
   box-sizing: border-box;
   display: flex;
@@ -7,9 +11,6 @@
   width: 100%;
   height: 100%;
   container-type: inline-size;
-  background-color: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
 }
 
 .container {
@@ -17,6 +18,19 @@
   flex: 1;
   overflow: auto;
   overscroll-behavior-x: contain;
+  background-color: var(--wim-color-surface);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border-radius: var(--wim-radius-component) var(--wim-radius-component) 0 0;
+
+  /* ページャが無いときは単独のパネル。 */
+  &:last-child {
+    border-radius: var(--wim-radius-component);
+  }
+
+  /* ページャがあるときは .footer の border-top が継ぎ目を担う（二重線を避ける）。 */
+  &:not(:last-child) {
+    border-bottom: none;
+  }
 }
 
 .footer {
@@ -27,7 +41,27 @@
   justify-content: space-between;
   padding: var(--wim-spacing-md);
   background-color: var(--wim-color-surface-subtle);
-  border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
+}
+
+/* カード表示（Table の mobileCard が効く幅）では、行そのものが枠と影を持つカードになる。
+   その外側にパネルの枠と白背景が残ると二重フレームになり、カードの隙間から
+   外側の白が見える（DESIGN.md 必須ルール 8・9 に反する）。パネルをやめてキャンバスを見せる。 */
+.mobileCard {
+  .container {
+    @include breakpoints.container-down(md) {
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  .footer {
+    @include breakpoints.container-down(md) {
+      border-radius: var(--wim-radius-component);
+    }
+  }
 }
 
 .info {
