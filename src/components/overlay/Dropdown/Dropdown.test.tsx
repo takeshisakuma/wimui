@@ -86,7 +86,10 @@ describe("Dropdown", () => {
     
     // items should be rendered
     const items = screen.getAllByRole("menuitem");
-    const dropdown = items[0].closest('[role="none"]') as HTMLElement;
+    // メニューは body 直下のポータルに出るので、項目から DOM を遡ってもルートには
+    // 着かない（React はポータル越しでも React ツリーでイベントを伝播させるため、
+    // 実際のキー操作はルートの onKeyDown に届く）。
+    const dropdown = trigger.closest('[role="none"]') as HTMLElement;
 
     fireEvent.keyDown(dropdown, { key: "ArrowDown" });
     expect(document.activeElement).toBe(items[1]);
