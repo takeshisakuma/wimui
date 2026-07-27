@@ -180,6 +180,10 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
               <IconButton
                 iconName="EditIcon"
                 variant="ghost"
+                // 編集の合図であって操作対象ではない（aria-hidden / tabIndex -1）。
+                // 既定の md はコントロール 1 つ分の高さ（36px）を要求し、テキストの隣に
+                // 置くと行だけが背高になる。テーブルのセルではこれが露骨に出る。
+                size="sm"
                 tabIndex={-1}
                 aria-label={t("action.edit")}
                 aria-hidden="true"
