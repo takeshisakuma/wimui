@@ -3,34 +3,62 @@
 
 @mixin card-layout {
         display: block;
+        border-spacing: 0;
+
+        /* collapse のままだと行の border-radius が描画されず、カードの上端の角が
+           欠けて見える。カード表示では行が独立した箱なので separate にする。 */
+        border-collapse: separate;
         border: none;
-  
+
         thead {
           display: none;
         }
-  
+
         tbody {
           display: block;
-  
+
+          /* 表としての面（surface）は行がカードになった時点で不要。残すとカードと
+             カードの隙間に白が出て、キャンバスの上に浮いて見えない。 */
+          background-color: transparent;
+
           tr {
             display: block;
             margin-bottom: var(--wim-spacing-lg);
+            overflow: hidden; /* 角丸の内側にセルの境界線を収める */
+            background-color: var(--wim-color-surface);
             border: var(--wim-border-width-thin) solid var(--wim-color-border);
             border-radius: var(--wim-radius-container);
             box-shadow: var(--wim-shadow-sm);
-  
+
             td {
               display: flex;
+              gap: var(--wim-spacing-lg);
               align-items: center;
               justify-content: space-between;
-              padding: var(--wim-table-cell-padding-y);
+
+              /* 行の高さを揃える。カードでは 1 行 = ラベル + 値の対で、テキストだけの行と
+                 コントロールを含む行が混ざると、コントロールの行だけ背が高くなって崩れる
+                 （実測: テキスト 33px に対し InlineEdit の行が 57px）。 */
+              min-height: var(--wim-height-md);
+
+              /* 表の密度（縦詰め）をそのまま持ち込むとカードの内側が窮屈になる。
+                 セルの padding トークン（compact で 4.8px / 8px）ではなく、カード用の
+                 余白を取る。カードは 1 行が独立した情報で、横は画面端まで使えるため。 */
+              padding: var(--wim-spacing-md) var(--wim-spacing-2xl);
               text-align: right;
               border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   
               &:last-child {
                 border-bottom: none;
               }
-  
+
+              /* コントロールを含むセルは、コントロール自身が最低高さを持っている。
+                 そこへセルの上下 padding を足すと、そのセルだけ 1 行分背が高くなる
+                 （実測: テキスト 39px に対し InlineEdit を含む行が 55px）。 */
+              &:has(input, button, [role="button"]) {
+                padding-block: 0;
+              }
+
               &::before {
                 flex-shrink: 0;
                 font-weight: var(--wim-font-weight-semibold);
@@ -49,8 +77,8 @@
                 width: auto;
                 min-width: 0;
                 max-width: none;
-                padding-right: var(--wim-table-cell-padding-y);
-                padding-left: var(--wim-table-cell-padding-y);
+                padding-right: var(--wim-spacing-2xl);
+                padding-left: var(--wim-spacing-2xl);
                 text-align: left;
                 box-shadow: none;
 
@@ -70,6 +98,13 @@
     container-type: inline-size;
     overflow-x: auto;
     background-color: var(--wim-color-surface);
+
+    /* カード表示になりうる表を包むときは面を持たない。行がカードになった幅では、
+       この白がカードとカードの隙間に出てキャンバスを隠す（表として描かれる幅では
+       ヘッダ（.header）と本体（.body）が各自塗るので、透明でも見た目は変わらない）。 */
+    &:has(> .mobileCard, > .mobileCardMd) {
+      background-color: transparent;
+    }
   
     &.sticky {
       overflow: auto;
