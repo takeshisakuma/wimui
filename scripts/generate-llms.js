@@ -179,6 +179,8 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 6. Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.
 7. Give demo content real substance (product-context copy, internally consistent numbers/dates/names — active ≤ total, dates not evenly spaced).
 8. Add intentional "wobble": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).
+9. Keep the chrome quiet. Breadcrumb, page title, summary line, toolbar and filter bar frame the content; they must not compete with the protagonist. Don't promote a one-line summary to an \`Alert\`/\`Banner\`, don't wrap the filter bar in a \`Card\` (its border doubles up with the data region's), keep primary surfaces out of the chrome, and don't stack a KPI tile row above a table screen. Corollary of 1 and 6, but it is the rule most often broken on admin/list screens — the test is whether the eye lands on the data first.
+10. Check the screen at 390px and 768px before calling it done. The page itself must never scroll sideways (\`document.scrollWidth > document.documentElement.clientWidth\` is a bug — the usual cause is a group of controls that cannot wrap, e.g. several buttons packed into one \`Toolbar.Group\`; split them into separate groups). Data tables need their narrow mode turned on (\`<DataGrid mobileCard>\`) rather than an inner scrollbar: without it columns collapse and a short string like a \`Code\` lot number breaks one character per line. The switch to cards happens at the \`md\` container width, so tablets get cards too.
 `;
 
 // Copy-paste starting points. Unlike Storybook story snippets, these are

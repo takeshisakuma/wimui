@@ -40,6 +40,7 @@ const RULES = {
   realism: '名前・数値・コピーが実在感を持つか（連番/丸すぎる数値/プレースホルダ臭＝fail）',
   gratuitous_decoration: '操作/理解を助けない装飾（過剰な影・枠・グラデ・絵文字）が無いか',
   fake_chrome: '偽のブラウザバー/フォンフレーム/IDE 枠を手描きしていないか',
+  quiet_chrome: 'クローム（パンくず・見出し・補足文・ツールバー・フィルタ帯）が主役より静かか（補足文の Alert 化・フィルタ帯の Card 囲み・クローム側の primary 面・表の上の KPI タイル列＝fail）',
   generic_gradient: '量産型グラデ blob／135deg ヒーロー背景に逃げていないか',
 };
 
