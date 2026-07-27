@@ -180,7 +180,7 @@ type IntakeQueueProps = {
   initialSelected?: string[];
   /** 初期の検索語。 */
   initialQuery?: string;
-  /** 再取得中の表示。 */
+  /** 再取得中の表示。行は読める・触れるまま更新中であることだけ伝える。 */
   loading?: boolean;
 };
 
@@ -475,7 +475,7 @@ function IntakeQueue({
                 columns={columns}
                 data={rows}
                 rowKey="id"
-                loading={loading}
+                loading={loading ? "refresh" : false}
                 mobileCard
                 ariaLabel={t("intake.grid_label")}
                 selection

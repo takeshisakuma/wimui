@@ -33,8 +33,15 @@ export type DataGridProps<T> = {
   data: T[];
   /** Row key: a field name or a function that derives the key from a record */
   rowKey?: string | ((record: T) => string);
-  /** Whether the grid is in a loading state */
-  loading?: boolean;
+  /**
+   * Loading state.
+   * `true` / `"blocking"` fades the grid and blocks interaction (first load — the
+   * rows are not there yet, or are about to be replaced wholesale).
+   * `"refresh"` only announces `aria-busy`: the rows stay readable and usable while
+   * fresh data is fetched. It deliberately does not dim, because fading the content
+   * drops secondary text below the AA contrast floor.
+   */
+  loading?: boolean | "blocking" | "refresh";
   /** Whether to show striped (zebra) rows */
   striped?: boolean;
   /** Whether to show borders between cells */
@@ -107,6 +114,10 @@ export function DataGrid<T extends Record<string, unknown>>({
   ariaLabel,
 }: DataGridProps<T>) {
   const { t } = useWimTranslation("common");
+  // "refresh" は読める・触れるまま更新中であることだけを伝える。従来の boolean は
+  // blocking と同義（既定の挙動を変えない）。
+  const isBusy = loading !== false && loading !== undefined;
+  const isBlocking = loading === true || loading === "blocking";
   // Normalize selection to a consistent object form
   const selection: SelectionConfig<T> | null = useMemo(() => {
     if (!selectionProp) return null;
@@ -207,20 +218,20 @@ export function DataGrid<T extends Record<string, unknown>>({
       className={classNames(
         "wim-data-grid",
         styles.root,
-        loading && styles.loading,
+        isBlocking && styles.loading,
         // 狭い幅でカード表示に切り替わる場合、外側のパネル装飾も一緒に降ろす必要がある
         // （切替自体は Table 側のコンテナクエリが行う）。
         mobileCard === "md" ? styles.mobileCardMd : mobileCard && styles.mobileCard,
         className,
       )}
-      aria-busy={loading || undefined}
+      aria-busy={isBusy || undefined}
     >
       <div
         className={styles.container}
         style={{ height, maxHeight }}
-        // loading 中はフェード（opacity）した内容を a11y ツリー/タブ順から外す。
+        // blocking 中はフェード（opacity）した内容を a11y ツリー/タブ順から外す。
         // 半透明化で低下したコントラストを axe が過渡的に評価するのを防ぐ（busy は root で告知）。
-        inert={loading || undefined}
+        inert={isBlocking || undefined}
       >
         <Table
           ref={containerRef}
@@ -356,7 +367,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       </div>
 
       {pagination && (
-        <div className={styles.footer} inert={loading || undefined}>
+        <div className={styles.footer} inert={isBlocking || undefined}>
           <div className={styles.info}>
             {t("dataGrid.displaying", { shown: data.length, total: pagination.total })}
             {selection?.selectedRowKeys && selection.selectedRowKeys.length > 0 && (
