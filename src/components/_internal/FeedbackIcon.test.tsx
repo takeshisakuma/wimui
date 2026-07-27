@@ -25,6 +25,19 @@ describe("FeedbackIcon", () => {
     }
   });
 
+  // 「null でない」だけを見ていたため、success 以外が全部ただの丸に落ちていたのを
+  // 誰も検出できなかった。intent ごとに別のグリフであることまで見る。
+  it("gives success, danger and info glyphs of their own", () => {
+    const markup = (intent: "default" | "success" | "danger" | "warning" | "info") =>
+      render(<FeedbackIcon intent={intent} />).container.innerHTML;
+
+    const plain = markup("default");
+    expect(markup("success")).not.toBe(plain);
+    expect(markup("danger")).not.toBe(plain);
+    expect(markup("info")).not.toBe(plain);
+    expect(markup("info")).not.toBe(markup("danger"));
+  });
+
   it("applies className to the icon", () => {
     const { container } = render(<FeedbackIcon className="my-icon" />);
     expect(container.querySelector(".my-icon")).toBeInTheDocument();

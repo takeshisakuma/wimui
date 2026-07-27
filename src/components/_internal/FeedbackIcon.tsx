@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize, WimIntent } from "../../types/tokens";
-import { CheckIcon, CircleIcon } from "@/icon";
+import { AlertCircleIcon, CheckIcon, CircleIcon, InfoCircleIcon } from "@/icon";
 
 /**
  * Props for the FeedbackIcon component.
@@ -51,25 +51,21 @@ export const FeedbackIcon = ({
   if (icon === false) return null;
 
   // Notification.tsx などで明示的に指定されている色を優先、
-  // 指定がない場合はインテントに基づいてデフォルトアイコンを返す
-  switch (intent) {
-    case "success":
-      return (
-        <Icon
-          component={CheckIcon}
-          size={size}
-          className={className}
-          color={color}
-        />
-      );
-    default:
-      return (
-        <Icon
-          component={CircleIcon}
-          size={size}
-          className={className}
-          color={color}
-        />
-      );
-  }
+  // 指定がない場合はインテントに基づいてデフォルトアイコンを返す。
+  // warning は danger と同じグリフ（三角のアイコンが無いため）で、区別は色が担う。
+  return (
+    <Icon
+      component={INTENT_ICON[intent] ?? CircleIcon}
+      size={size}
+      className={className}
+      color={color}
+    />
+  );
+};
+
+const INTENT_ICON: Partial<Record<WimIntent, typeof CircleIcon>> = {
+  success: CheckIcon,
+  danger: AlertCircleIcon,
+  warning: AlertCircleIcon,
+  info: InfoCircleIcon,
 };
