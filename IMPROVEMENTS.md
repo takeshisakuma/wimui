@@ -136,7 +136,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T32 | 未合成コンポーネントを実アプリ形状で使う | **P1** | 上記 A の 4 件はすべて「1 画面作ったら出てきた」もので、ガードを設計して見つけたものではない。**今のところ最も打率が高い探索手段**。まだ合成していない画面形状: 一括選択＋インライン編集のある管理テーブル／バリデーションエラー付きの複数ステップ／empty・error・loading を主役にした画面／モバイル前提のレイアウト。デモではなく「足場のない app-shaped コード」で書くこと（Playground のレシピが該当。Storybook / i18n の足場があると穴が隠れる） | 合成カバレッジを指標化する: `stories/Patterns/**` + `sandbox/**` の JSX から使用コンポーネント名を集計し、`src/data/components.json` の総数と比較（2026-07-26 実測 45/221）。画面を足すたびに再測し、**出た穴を必ず起票する**（数字ではなく出た穴が成果） |
 | T33 | 型は受け付けるのに実装が無い prop 値の検出 | **済** | `Card` の `padding="xl"` が典型 — `ComponentSize` 全体を受け取る型なのに `.padding-xl` クラスが存在せず、**書いても黙って無効**だった。誰も端の値を使っていなかったので誰も気づかない。同型の穴が他にもある可能性が高い | `styles[\`<prefix>-${prop}\`]` 形式のクラス参照を持つコンポーネントについて、**prop の型 union と `*.module.scss` のクラス集合を突き合わせる**。docgen が prop union を持っているのでそこから取れる。※ 2026-07-26 に簡易スキャナを書いたが自己検証が通らず結果を破棄した（0 件という出力は信用していない）。作り直して `npm run check:prop-classes` として実装（**済**）。敗因は SCSS のパス解決をコンポーネント名からのケバブ変換で行っていたこと（`loadingoverlay.module.scss` / `faq-section.module.scss` を外していた）＝ディレクトリ glob に変更。prop の受け入れ値は docgen の `tsType` から取る。受け入れ条件どおり #109 以前の Card を再現して 11 → 14 件に増え `padding="xl"` を名指しで検出することを実証済み。ラチェット（baseline 11） ／ **受け入れ条件**: #109 以前の `Card`（`.padding-xl` クラスが無い状態）に対して走らせて**鳴ること**を実証する。 |
 | T34 | intent × variant × サーフェスのコントラスト計算検証 | **済** | `neutral` × `subtle` が light テーマで不可視だった件。**個々のトークンは正しく、組み合わせだけが壊れていた**。しかも **VRT では原理的に捕まらない**（`threshold: 0.1` を下回る色差は差分ゼロ扱い。実際 dark 側のベースラインしか動かなかった） | `tokens/intents.json` と `_token-common.scss` の導出規則（subtle = base 15% alpha 等）を再現して色を解決し、**WCAG コントラスト比を計算**。非テキスト UI 要素は 3:1、テキストは 4.5:1 を閾値に、light / dark 両テーマ × 置かれうるサーフェス（`surface` / `surface-app` / `surface-subtle`）の全組み合わせを検査 ／ **受け入れ条件**: #109 以前の `neutral` × `subtle`（light テーマで `#fbfbfb` 相当＝白背景に対し不可視）に対して走らせて**鳴ること**を実証する。 ／ **済**（`npm run check:contrast`。126 組を検査。文字は WCAG 4.5:1、塗りはサーフェスとの OKLab 距離 0.015 — **後者は WCAG 由来ではなく実測から決めた**: 壊れていた neutral×subtle が 0.0072〜0.0116、現存最小の正常値が 0.0217 でその間。受け入れ条件どおり #109 以前の状態を再現して 4 組が鳴ることを実証済み。`audit:lib` / lint-staged に配線。subtle のアルファは `_token-common.scss` から読み、読めなければ落とす＝導出規則の変更を黙って見逃さない） |
-| T38 | 「書いても効かない prop 値」の始末 | **一部済 / 残は 0.6.0** | T33 の検出器が出した実在の欠落。**型が `ComponentSize` 全体を宣言しているのに実装が部分集合**という共通パターン: `Card.padding`（xs/4xl/5xl が無い）・`Card.radius`（xs/xl/2xl/3xl/4xl/5xl が無い＝実装は none/sm/md/lg のみ）・`Spinner.labelPosition="right"`・`FAQSection.layout="top"`。**方針の判断が要る**: ①CSS クラスを足す（加算・非破壊だが「radius 5xl とは何か」を新たに決めることになる）②型を実装に合わせて狭める（`Extract<ComponentSize, "sm" \| "md" \| "lg">` 等。**型が真実を語るようになるが union の縮小は破壊的変更**＝`api-snapshot.json` が変わる。ただし「黙って効かなかった値」なのでコンパイルエラーになるコードは元から壊れていた）③現状維持でラチェット凍結 | **11 → 6**（2026-07-26）。内訳: ①**偽陽性 2 件**は検出器側を修正（`Spinner.labelPosition="right"` / `FAQSection.layout="top"` はいずれも **prop の既定値**で、既定は基底スタイルが実装するため修飾クラスは不要。docgen の `defaultValue` を見て除外するようにした）②**トークンが実在する 3 値を実装**（`Card` の `padding-xs` → `spacing-sm`、`radius-xl` → `radius-xl`、`radius-2xl` → `radius-2xl`）。**残り 6 件は 0.6.0 で型を狭めて解決する**: `Card.radius` の xs/3xl/4xl/5xl（radius トークンが sm/md/lg/xl/2xl/full しか無く、実装するには新トークンの新設が要る＝RULES.md が禁止に近いとしている）と `Card.padding` の 4xl/5xl（spacing が 5xl 止まりのため実装すると**両者が同じ余白になり区別できない**＝受け付けるのに意味が無いのは同じ）。**縮小は破壊的変更**なので 0.6.0 に置く。縮小後は baseline を 0 にしてハードゲート化できる |
+| T38 | 「書いても効かない prop 値」の始末 | **一部済 / 残は 0.7.0**（2026-07-27 に 0.6.0 から移動。0.6.0 は「見た目の既定値が変わる」回、T38 は「型が通らなくなる」回で、混ぜると利用者が原因を切り分けられないため） | T33 の検出器が出した実在の欠落。**型が `ComponentSize` 全体を宣言しているのに実装が部分集合**という共通パターン: `Card.padding`（xs/4xl/5xl が無い）・`Card.radius`（xs/xl/2xl/3xl/4xl/5xl が無い＝実装は none/sm/md/lg のみ）・`Spinner.labelPosition="right"`・`FAQSection.layout="top"`。**方針の判断が要る**: ①CSS クラスを足す（加算・非破壊だが「radius 5xl とは何か」を新たに決めることになる）②型を実装に合わせて狭める（`Extract<ComponentSize, "sm" \| "md" \| "lg">` 等。**型が真実を語るようになるが union の縮小は破壊的変更**＝`api-snapshot.json` が変わる。ただし「黙って効かなかった値」なのでコンパイルエラーになるコードは元から壊れていた）③現状維持でラチェット凍結 | **11 → 6**（2026-07-26）。内訳: ①**偽陽性 2 件**は検出器側を修正（`Spinner.labelPosition="right"` / `FAQSection.layout="top"` はいずれも **prop の既定値**で、既定は基底スタイルが実装するため修飾クラスは不要。docgen の `defaultValue` を見て除外するようにした）②**トークンが実在する 3 値を実装**（`Card` の `padding-xs` → `spacing-sm`、`radius-xl` → `radius-xl`、`radius-2xl` → `radius-2xl`）。**残り 6 件は 0.7.0 で型を狭めて解決する**（当初 0.6.0 予定だったが 2026-07-27 に移動）: `Card.radius` の xs/3xl/4xl/5xl（radius トークンが sm/md/lg/xl/2xl/full しか無く、実装するには新トークンの新設が要る＝RULES.md が禁止に近いとしている）と `Card.padding` の 4xl/5xl（spacing が 5xl 止まりのため実装すると**両者が同じ余白になり区別できない**＝受け付けるのに意味が無いのは同じ）。**縮小は破壊的変更**なので 0.6.0 に置く。縮小後は baseline を 0 にしてハードゲート化できる |
 | T35 | StackBlitz レシピが実際に起動するか | **済** | `sandbox/recipes/*.tsx` は「Open in StackBlitz」で公開版 `wimui` に対して起動する建付けだが、**このリポジトリ内で `tsc` が通ることしか確認していない**。公開版パッケージ＋宣言された peer だけで動くかは未検証 | 既存の tarball スモークゲート（`scripts/smoke/`）の土台を再利用し、レシピを隔離プロジェクトに配置して `vite build` が通るかを検査。Playground の StackBlitz scaffold（`PACKAGE_JSON` / `MAIN_TSX`）と同じ構成にすること ／ **受け入れ条件**: レシピの import を 1 つ壊した状態で**落ちること**を実証する。 ／ **済**（`node scripts/smoke/run.mjs --recipes` = `npm run smoke:recipes`。既存の tarball スモーク基盤を再利用し、隔離 consumer で各レシピを `wimui/styles.css` + `WimProvider` + レシピの入口から esbuild で bundle。5 本すべて PASS。CI は bare ジョブに `--treeshake --recipes` として相乗り。**受け入れ条件の検証で 1 度失敗を経験している**: import 名だけを書き換えて JSX 側を残したところ通ってしまった＝未使用 import は tree-shake されて検査されない。両方書き換えれば落ちる。この限界はスクリプトのコメントに明記済み） |
 | T36 | ホスト環境マトリクス | **P3** | ライブラリが描画される環境は Storybook canvas / Storybook docs MDX / StackBlitz / 利用者アプリの 4 つだが、**継続検証されているのは canvas だけ**。docs MDX が壊れていたのは T27 で偶然見つけた（`sb-unstyled` で解決済みだが回帰ガードは無い） | カナリア画面を各ホストで描画し、主要コンポーネントの computed style（font-size / border / padding）を突き合わせる。canvas を基準に差分が出たらホスト側 CSS の侵入を疑う ／ **受け入れ条件**: `docs/Playground.mdx` から `sb-unstyled` を外した状態で**差分が出ること**を実証する。 |
 | T39 | 合成ルールの SSOT 化 | **P2** | 起票 2026-07-27。**汎用の合成ルール本文が 3 箇所に複製されている**: `DESIGN.md`（日本語・人間と `composition-guidelines` skill 向け）／`scripts/generate-llms.js`（英語・llms.txt = 外部 AI への主配信）／`scripts/judge-slop.mjs`（採点ルーブリック）。同日「クロームを黙らせる」と「狭い幅で見る」の 2 ルールを足した際、3 ファイルを手で編集した。**前例がある**: AI-slop 辞書は `scripts/slop-dictionary.json` を単一ソースにして `check:slop` と `generate-llms.js` の両方が読む形になっている。※`.claude/skills/composition-guidelines/SKILL.md` は「本文は複製しない・DESIGN.md を読む」手順のみなので複製元ではない。**「汎用ルールは skill・プロジェクト固有は DESIGN.md」という分け方は採らない**: design.md の spec（トークン＋根拠の自己完結文書）にも Agent Skills の仕様（手続き知識の可搬パッケージ。company/team 固有の文脈も含んでよいと明記）にもその分担は書かれておらず、llms.txt という**外部 AI 向けの主配信経路が skill とは別に存在する**ため、汎用分を skill へ移すと公開物の生成元が Claude Code 専用ディレクトリに依存する。現行の「skill = 手順 / DESIGN.md = 規範の SSOT」を維持する | 合成ルールを機械可読な単一ソース（例 `design/composition-rules.json`）に置き、DESIGN.md の表・llms.txt の Must rules・judge のルーブリックを生成する。**受け入れ条件**: ルールを 1 つ足して 3 つの出力すべてに反映されることを実証する |
@@ -165,6 +165,19 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 1〜3 で 60〜80 個、6 画面まで行けば 100〜120 個が一度は合成される。ただし**全 161 個の網羅は目的ではない**（今日の穴はすべて「よく使う部品の組み合わせ」から出ており、単独完結型の部品からではない）。**まず 1 枚を完成まで通して実測し、出た指摘の数で残りを見積もる。**
 
+**1 枚目の実測（2026-07-27。2 枚目以降はこの数字で見積もること）**
+
+| | 起票時の見込み | 1 枚目の実測 |
+|---|---|---|
+| i18n キー | 15〜25 / 画面 | **56** |
+| 合成カバレッジ | — | 45 → 60 / 208（+15） |
+| 出た穴 | — | **13 件**（当初 10 ＋ スマホ表示で 3） |
+| 派生 PR | — | **7 本**（#129 #130 #131 #132 #135 #136 #137） |
+
+**画面を書く時間より、出た穴を塞ぐ時間のほうがはるかに大きい。** 画面自体は 1 ファイル（約 560 行）で書き上がったが、そこから出た修正は Button のコントラスト・DataGrid の i18n・`mobileCard` 一式・`Container` のガター・Dropdown のポータル化・`loading` の粒度へ広がった。**所要時間は「画面 n 枚ぶん」ではなく「画面 n 枚 × 派生修正」で見積もる。**
+
+**穴の出方は狭い幅に偏る。** 13 件のうち **7 件が 390 / 768px でしか現れない**（`Toolbar.Group` の折り返し・`Code` の 1 文字折り返し・`mobileCard` の外枠と選択列・カードの角丸と隙間と行高と余白・Dropdown のクリップ）。**VRT は 1 幅しか撮らないためこれらは機械で拾えず**、`judge:slop` も同じデスクトップ幅のスクショを見るので死角を共有する。実機幅で見る手順（「1 画面あたりの手順」3）が唯一の検出経路であり、省略すると 7 件がそのまま出荷される。
+
 **1 画面あたりの手順**（CLAUDE.md「委任時の 2 つの約束」に従う）:
 
 1. app-shaped で画面を書く
@@ -173,7 +186,16 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 4. その結果を添えて人間のレビューへ（**視覚判定は自己申告しない**）
 5. 出た穴を起票して修正
 
-#### 0.6.0 のリリース方針（2026-07-27 決定）
+#### 0.6.0 のリリース方針（2026-07-27 決定 → **同日改定: 1 枚目の終了時点で切る**）
+
+**改定後（これが現行）**: **T32 の 1 枚目が終わった時点で 0.6.0 を切る。T38 は 0.6.0 から外し 0.7.0 へ送る。** 2 枚目・3 枚目は 0.6.0 の後に続け、そこで出た修正は 0.6.1 / 0.7.0 に乗せる。
+
+- **前倒し条件が 1 枚目だけで満たされた**: 「すでに 0.5.3 に出荷済みの実害」として ①dark の `outline`×`success` が 2.48:1（AA 不合格）②ja/pt で `DataGrid` のページャが英語、の 2 件が出た。デザインシステムが a11y 不合格を出荷し続ける状態を、画面 2 枚ぶんの制作期間だけ寝かせる理由がない
+- **ソークテストの価値が想定より下がった**: 3 枚目まで待つ理由は「#132 の新既定値を 1 枚しか通していない」ことだったが、その 1 枚で 390 / 768 / 1280 を往復しながら**新既定値の下でカード表示・Dropdown・loading を 3 回作り直している**。加えてこの 2 変更（ガター 16px / 切替 576px）の失敗モードは見た目であって機能ではない
+- **T38 を外す理由**: 未着手であることに加え、**破壊の性質が違う**（0.6.0 は「見た目の既定値が変わる」、T38 は「型が通らなくなる」）。同じリリースに混ぜると利用者が原因を切り分けられない。0.7.0 に単独で置き、CHANGELOG で意図的な縮小として説明する
+- 旧方針（3 枚目まで待つ）の記録は以下に残す。判断の前提が変わった経緯として読むこと
+
+<details><summary>旧方針（2026-07-27 の当初決定）</summary>
 
 **T32 の 3 枚目が終わった時点で 0.6.0 を切る。4 枚目以降をやるかは未定のままでよく、リリースはそこに紐づけない。**
 
@@ -183,6 +205,10 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 - **T38 は 0.6.0 に入れる**（`Card.radius` の xs/3xl/4xl/5xl と `Card.padding` の 4xl/5xl を型で狭める）。型の縮小と `api-snapshot.json` の更新はセットで、縮小後は `check:prop-classes` の baseline を 0 にしてハードゲート化する。**リリース直前ではなく 2〜3 枚目と並行して進める**
 - 0.5.3 時点で未リリースの修正: #129（dark の outline success 2.48:1 / danger 4.36:1 ＝ AA 不合格）・#130（mobileCard 一式）・#131（`DataGrid` の英語文言と aria-label 8 件）・#132（レスポンシブ既定）。**①②は現に出荷済みの欠陥**なので、これ以上寝かせない
 - publish 操作自体はエージェントが進めない（changeset の用意までは可、Version PR のマージは人間の判断）
+
+</details>
+
+**0.6.0 の中身**（`.changeset/clever-pears-cheer.md` = minor）: #129 outline/ghost の文字色（AA 不合格の解消）／#130 #135 `mobileCard` 一式／#131 `DataGrid` の英語文言・aria-label 8 件・EmptyState のアイコン色・InlineEdit の名前／#132 `Container` のガターとカード切替 576px（**利用者のレイアウトが左右 16px ずつ動く**）／#136 Dropdown のポータル化／#137 `loading` の `"blocking"` / `"refresh"`。
 
 #### T32 の 1 枚目「管理テーブル」の結果（2026-07-27）
 
