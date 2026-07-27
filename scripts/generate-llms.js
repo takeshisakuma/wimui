@@ -23,11 +23,14 @@ const readJSON = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
 // docgen_*.json are generated artifacts (gitignored) — absent on a clean CI
 // checkout until `vite build` runs. Since this script must run BEFORE vite
 // build (so public/llms*.txt exist when vite copies public/ → dist/), generate
-// them here if missing. No-op when the cache is warm.
-if (!existsSync(join(ROOT, 'src/data/docgen_index.json'))) {
-  const { generateDocgenData } = await import('./docgen-plugin.js');
-  await generateDocgenData();
-}
+// them here.
+//
+// Always refresh, not just when missing: a stale docgen JSON would silently
+// feed old props into llms.txt, so a local run could look consistent while CI
+// (clean checkout → freshly derived) disagreed. The cache is content-hashed
+// (T31), so a warm run costs ~0.6s.
+const { generateDocgenData } = await import('./docgen-plugin.js');
+await generateDocgenData();
 
 const pkg = readJSON('package.json');
 const catalog = readJSON('src/data/components.json');
