@@ -162,4 +162,22 @@ describe("OtpInput", () => {
     expect(inputs[1].value).toBe("y");
     expect(inputs[2].value).toBe("z");
   });
+
+  // digitAriaLabel は 1 始まりで呼ばれる。型にそう書いてあるだけでは黙って
+  // ずれるので、位置そのものを固定する。0 始まりと解釈して +1 すると
+  // 最初の箱が "Digit 2" になる（実際に踏んだ）。
+  it("calls digitAriaLabel with 1-based positions", () => {
+    const digitAriaLabel = vi.fn((position: number) => `Digit ${position}`);
+    render(<OtpInput length={3} labels={{ digitAriaLabel }} />);
+
+    expect(digitAriaLabel.mock.calls.map(([p]) => p)).toEqual([1, 2, 3]);
+  });
+
+  it("names the first box 'Digit 1' by default", () => {
+    render(<OtpInput length={3} />);
+    const inputs = screen.getAllByRole("textbox");
+
+    expect(inputs[0]).toHaveAttribute("aria-label", "Digit 1");
+    expect(inputs[2]).toHaveAttribute("aria-label", "Digit 3");
+  });
 });

@@ -5,7 +5,18 @@ import { FieldTemplate } from "../FieldTemplate";
 import styles from "./otp-input.module.scss";
 
 export type OtpInputLabels = {
-  digitAriaLabel?: (index: number) => string;
+  /**
+   * Accessible name for one digit box.
+   *
+   * `position` is **1-based**: the first box is `1`, and the last is `length`.
+   * It is meant to be read aloud ("Digit 3 of 6"), so it counts the way a person
+   * would. Treating it as a 0-based index and adding one yields "Digit 2" for the
+   * first box.
+   *
+   * @param position 1-based position of the box, from `1` to `length`
+   * @default (position) => `Digit ${position}`
+   */
+  digitAriaLabel?: (position: number) => string;
 };
 
 export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "value" | "defaultValue"> {
@@ -25,7 +36,10 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   label?: React.ReactNode;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
-  /** Labels for internationalization */
+  /**
+   * Labels for internationalization. `digitAriaLabel(position)` names one digit
+   * box and receives a **1-based** position — the first box is `1`, not `0`.
+   */
   labels?: OtpInputLabels;
   /** Whether to render as a child element. */
   asChild?: boolean;
@@ -64,7 +78,9 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
     },
     ref,
   ) => {
-    const { digitAriaLabel = (i: number) => `Digit ${i}` } = labels;
+    // position は 1 始まり（読み上げの「3 桁目」に対応する）。呼び出しは
+    // `digitAriaLabel(index + 1)`。
+    const { digitAriaLabel = (position: number) => `Digit ${position}` } = labels;
 
     // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
     // 初期値も value から取る。空配列で始めると prevValue === value のまま同期が
