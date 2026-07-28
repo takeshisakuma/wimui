@@ -59,7 +59,7 @@ const DefaultIcon = ({
   status?: ResultHttpStatus;
   className?: string;
 }) => {
-  if (status) return <Icon component={AlertCircleIcon} color="secondary" className={className} />;
+  if (status) return <Icon component={AlertCircleIcon} color="tertiary" className={className} />;
   switch (intent) {
     case "success":
       return <Icon component={CheckIcon} color="success" className={className} />;
@@ -71,7 +71,7 @@ const DefaultIcon = ({
       return <Icon component={InfoCircleIcon} color="info" className={className} />;
     case "default":
     default:
-      return <Icon component={CircleIcon} color="secondary" className={className} />;
+      return <Icon component={CircleIcon} color="tertiary" className={className} />;
   }
 };
 
