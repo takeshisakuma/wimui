@@ -54,6 +54,12 @@ export interface InputProps extends Omit<React.ComponentPropsWithoutRef<"input">
   hidePasswordAriaLabel?: string;
   /** Aria label for the right icon button */
   rightIconAriaLabel?: string;
+  /**
+   * Static text shown after the field, inside the same shell — a unit such as
+   * `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+   * so the unit does not have to be repeated in the label.
+   */
+  suffix?: React.ReactNode;
   /** Custom styles for internal parts */
   styles?: React.ComponentProps<typeof InputBase>["styles"];
   /** Whether to render as a child element. */
@@ -95,6 +101,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       showPasswordAriaLabel,
       hidePasswordAriaLabel,
       rightIconAriaLabel,
+      suffix,
       styles: stylesProp,
       asChild = false,
       children,
@@ -187,6 +194,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const generatedId = useId();
     const id = customId || `wim-input-${generatedId}`;
     const errorId = error ? `${id}-error` : undefined;
+    const hasSuffix = suffix !== undefined && suffix !== null && suffix !== "";
+    const suffixId = hasSuffix ? `${id}-suffix` : undefined;
+    // 単位が見えているのに読み上げられないと、ラベルに「（kg）」と書き足す
+    // 回避に戻ってしまう。エラーと併記できるよう連結する。
+    const describedBy = [errorId, suffixId].filter(Boolean).join(" ") || undefined;
     const labelId = label ? `${id}-label` : undefined;
 
     const Component = asChild ? Slot : "input";
@@ -213,6 +225,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           leftIconColor={leftIconColor}
           onLeftIconClick={onLeftIconClick}
           rightIcons={rightIcons}
+          suffix={suffix}
+          suffixId={suffixId}
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
@@ -233,7 +247,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={handleInputChange}
             type={inputType}
             aria-invalid={currentIntent === "danger"}
-            aria-describedby={errorId}
+            aria-describedby={describedBy}
             aria-labelledby={label ? labelId : undefined}
             aria-required={required}
             {...props}

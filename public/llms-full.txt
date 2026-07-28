@@ -938,6 +938,9 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **ColorPicker** — Color selection picker
@@ -963,6 +966,9 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **Combobox** — Select with search
@@ -1031,6 +1037,9 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
 - **DatePicker** — Date selection
     - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
@@ -1178,6 +1187,9 @@ still do their job for assistive technology.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
@@ -1193,6 +1205,10 @@ still do their job for assistive technology.
     - `onLeftIconClick: (e: React.MouseEvent<HTMLButtonElement>) => void` — Callback when the left icon is clicked (renders the icon as a button)
     - `leftIconAriaLabel: string` — Aria label for the left icon button
     - `rightIcons: InputBaseIcon[]` = [] — Icons to display on the right side
+    - `suffix: React.ReactNode` — Static text shown after the control, inside the same shell — a unit such
+as `kg`, `%` or `円`. It sits in the flex flow, so the control shrinks to
+make room rather than running underneath it.
+    - `suffixId: string` — `id` for the suffix, so the control can point `aria-describedby` at it
     - `allowClear: boolean` — Whether to show a clear button when value is present
     - `hasValue: boolean` — Whether the field currently has a value (controls clear button visibility)
     - `onClear: () => void` — Callback when the clear button is clicked
@@ -1227,6 +1243,9 @@ still do their job for assistive technology.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **LinkButton** — Anchor styled as button
@@ -1300,6 +1319,9 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **PasswordStrength** — Visual meter to indicate password security level
@@ -1451,6 +1473,9 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options
@@ -1619,6 +1644,9 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
+`kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
+so the unit does not have to be repeated in the label.
     - `styles: React.ComponentProps<typeof InputBase>["styles"]` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **ToggleGroup** — Toggleable buttons
