@@ -13,6 +13,15 @@
       width: 100%;
     }
 
+    // Card などすでに面を描いている中に置く用。枠を二重にしないために
+    // クロームだけ落とし、グループの意味論（fieldset / legend）は残す。
+    // 節の区切りは legend が担うので、余白も親に任せる。
+    &.plain {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
     &:disabled {
       cursor: not-allowed;
       opacity: var(--wim-opacity-disabled);
