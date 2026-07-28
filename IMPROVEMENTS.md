@@ -263,6 +263,24 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | ⑫ | **`Icon` と `Text` で色トークンの語彙が違う**（`Text color="text-tertiary"` / `Icon color="tertiary"`）。型エラーになるので事故にはならないが、同じ色を指す prop で綴りが揃っていない | ライブラリ | 未着手 |
 | ⑬ | `OtpInput` の `labels.digitAriaLabel(index)` は **1 始まり**で呼ばれる（`OtpInput.tsx:205` が `index + 1` を渡す）が、型にも docgen にも書かれていない。0 始まりと解釈して `index + 1` を渡すと "Digit 2〜7" になる（実際にそうなった） | ライブラリ | 未着手 |
 
+**作業再開ポイント（2026-07-28 時点。ここから続ける）**
+
+| PR | 中身 | 状態 |
+|---|---|---|
+| **#143** | 画面本体（`WholesaleApplication.stories.tsx` ＋ i18n 91 キー ＋ この節） | **VRT compare が赤（新規 6 ストーリーのベースライン未撮影＝想定どおり）**。他は緑 |
+| **#140** | ③ `FileUpload` の `aria-required`（axe critical） | **CI 全緑**。マージ可 |
+| **#141** | ② `OtpInput` がマウント時の value を無視 | CI 実行中（ローカルは全量緑・修正前に落ちることも実証済み） |
+| **#142** | ① `FeedbackIcon` の既定アイコン（danger/warning/info が塗り丸） | CI 実行中。**マージすると Alert / Banner / Notification / Snackbar / Toast / Result の VRT ベースラインが全部動く** |
+
+**次の手順（この順で）**:
+
+1. **#140 → #141 → #142 の順にマージ**（#140 が最優先。出荷済みの WCAG 4.1.2 違反）
+2. `feat/patterns-application-form` を main にリベース。**#140 が入って初めて #143 の a11y が緑になる**ので、ここで a11y の緑を実証する（ローカル実行は `npm run storybook` を上げてから。dev サーバが落ちていると webServer 経由でタイムアウトして偽の赤が出る）
+3. **VRT update を最後に 1 回だけ** workflow_dispatch で流す（コミットバックが素の git push なので、そのブランチへの push を全部終えてから。#142 のベースライン更新もここで一緒に入る）
+4. 残り 9 件（④〜⑬）の起票済みの穴を、要判断（④⑤）と機械的な修正（⑥⑦⑧⑨⑩⑪⑫⑬）に分けて着手するか、3 枚目（AI アシスタント画面）へ進むかを判断する
+
+**残っている判断**: ④（`Alert` のタイトルを既定で見出しにするか）と ⑤（必須マークを danger の塗りバッジのままにするか）は既定値の変更＝利用者の見た目が変わるため、0.7.0 に寄せるかどうかを含めて人間の判断が要る。
+
 **この画面側で対処したもの**: `Alert` に `titleTag="h3"`（④）／`SegmentedControl` のラベルを短い語に置き換え（⑦。pt は "A cada duas semanas" → "Quinzenal"）／`CounterTextarea` を `fieldSizing="content"` に（狭幅で本文が途中で切れるため）／`Fieldset` を使わず `Card` 直下に並べる（⑨）／単位はラベルに併記（⑪）。
 
 **保留**: T32 の画面は i18n に依存するため **StackBlitz には出せない**。「Patterns を全部 StackBlitz に出す」構想は実測でブロッカーを確認済み（`t()` が 302 箇所 / Storybook の殻 / 1 ファイルに複数画面 / `AI.stories.tsx` が `../../../src` を import）。**変換器は当面作らない**（検証を優先）。必要になった時点で別途判断する。
