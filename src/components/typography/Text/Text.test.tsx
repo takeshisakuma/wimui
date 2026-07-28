@@ -49,5 +49,28 @@ describe("Text", () => {
     expect(span.tagName).toBe("SPAN");
     expect(span).toHaveClass(styles.root);
   });
+
+  it("does not wrap when nowrap is set", () => {
+    render(<Text nowrap>1.2 MB</Text>);
+    const text = screen.getByText("1.2 MB");
+    expect(text).toHaveClass(styles.nowrap);
+    expect(text).not.toHaveClass(styles.truncate);
+  });
+
+  // truncate は nowrap を含む。省略記号は 1 行でしか出ないため、
+  // 片方だけ付くと黙って効かなくなる。
+  it("implies nowrap when truncate is set", () => {
+    render(<Text truncate>A very long line of text</Text>);
+    const text = screen.getByText("A very long line of text");
+    expect(text).toHaveClass(styles.truncate);
+    expect(text).toHaveClass(styles.nowrap);
+  });
+
+  it("wraps by default", () => {
+    render(<Text>1.2 MB</Text>);
+    const text = screen.getByText("1.2 MB");
+    expect(text).not.toHaveClass(styles.nowrap);
+    expect(text).not.toHaveClass(styles.truncate);
+  });
 });
 

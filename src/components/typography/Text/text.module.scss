@@ -93,6 +93,20 @@
     &.secondary {
       color: var(--wim-color-text-secondary);
     }
+
+    // 短い値（"1.2 MB" のような単位つき）が狭い幅で 2 行に割れるのを止める。
+    // body の `overflow-wrap: anywhere`（lang.scss）も併せて解除しないと、
+    // nowrap でも語中で割れる余地が残る。
+    &.nowrap {
+      word-break: normal;
+      overflow-wrap: normal;
+      white-space: nowrap;
+    }
+
+    &.truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   // Standalone decoration classes used on child <span> in non-asChild mode

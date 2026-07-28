@@ -2527,6 +2527,12 @@ Defaults to the localized `form.optional` string.
 @default "normal"
     - `decoration: "line-through" | "underline" | "highlight" | "none"` = "none" — Visual decoration applied to the text.
 @default "none"
+    - `nowrap: boolean` = false — Keep the text on one line instead of wrapping. Overflow is left visible —
+use `truncate` to clip it with an ellipsis.
+@default false
+    - `truncate: boolean` = false — Keep the text on one line and clip the overflow with an ellipsis.
+Implies `nowrap`.
+@default false
     - `content: React.ReactNode` — Content of the text. Alternative to children (children take precedence only with asChild).
 - **Title** — Possesses visual weight (boldness/size) to indicate page structure.
     - `asChild: boolean` = false — If true, the heading will be rendered as its child, merging its props onto that child.
