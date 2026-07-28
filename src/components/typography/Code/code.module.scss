@@ -9,7 +9,19 @@
 
     &.inline {
       padding: 0.2em 0.4em;
-      color: var(--wim-color-text-danger);
+
+      // 識別子は中立。意味色（danger）を借りると、ロット番号や受付番号のような
+      // 何でもない値がエラーと同じ色で出る（受付完了の Result 上でも赤くなる）。
+      color: var(--wim-color-text-primary);
+
+      // 以下 3 つで「識別子を折らない」を作る。既定では 2 段階で割れるため:
+      // ① body の `overflow-wrap: anywhere`（lang.scss）が継承されて 1 文字ずつ割れる
+      // ② それを normal に戻してもハイフンが改行機会として残るので、
+      //    "KR-2026-0143" は "KR-" / "2026-" / "0143" の 3 行になる（60px 幅で実測）
+      // ② を止めるのは nowrap だけ。
+      word-break: normal;
+      overflow-wrap: normal;
+      white-space: nowrap;
       background-color: var(--wim-color-ghost-bg-hover);
     }
 
