@@ -2588,7 +2588,10 @@ Implies `nowrap`.
     - `component: React.ComponentType<React.SVGProps<SVGSVGElement>>` — Icon component passed directly. Works without registration and is tree-shakable.
     - `size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl"` = "md" — Size of the icon
     - `spin: boolean` — Apply the loading rotation animation
-    - `color: "danger" | "success" | "warning" | "info" | "primary" | "secondary" | "tertiary" | "disabled"` — Semantic color of the icon
+    - `color: T | (string & {})` — Colour of the icon. Takes the semantic names — `"danger"`, `"success"`,
+`"warning"`, `"info"`, `"primary"`, `"secondary"`, `"tertiary"`,
+`"disabled"` — and, like `Text`, any design token colour name such as
+`"text-tertiary"`, or any CSS colour value.
 - **Image** — Image content
     - `src: string` (required) — Source URL of the image
     - `alt: string` (required) — Alternative text for the image

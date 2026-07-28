@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSize, WimColor } from "../../../types/tokens";
+import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./icon.module.scss";
 import type { IconName } from "../../../icon";
 import {
@@ -17,17 +18,26 @@ type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
   size?: ComponentSize;
   /** Apply the loading rotation animation */
   spin?: boolean;
-  /** Semantic color of the icon */
-  color?:
-    | "danger"
-    | "success"
-    | "warning"
-    | "info"
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "disabled";
+  /**
+   * Colour of the icon. Takes the semantic names — `"danger"`, `"success"`,
+   * `"warning"`, `"info"`, `"primary"`, `"secondary"`, `"tertiary"`,
+   * `"disabled"` — and, like `Text`, any design token colour name such as
+   * `"text-tertiary"`, or any CSS colour value.
+   */
+  color?: WimColor;
 };
+
+/** These resolve through a class; anything else goes through `getColorValue`. */
+const SEMANTIC_ICON_COLORS = [
+  "danger",
+  "success",
+  "warning",
+  "info",
+  "primary",
+  "secondary",
+  "tertiary",
+  "disabled",
+];
 
 export const Icon = ({
   name,
@@ -36,6 +46,7 @@ export const Icon = ({
   color,
   spin,
   className,
+  style,
   ...props
 }: IconProps) => {
   const IconComponent = component || (name ? registeredIcons[name] : null);
@@ -44,12 +55,20 @@ export const Icon = ({
     return null;
   }
 
+  const useClassNameForColor =
+    typeof color === "string" && SEMANTIC_ICON_COLORS.includes(color);
+
   return (
     <IconComponent
-      className={classNames("wim-icon", 
+      style={
+        !useClassNameForColor && color
+          ? { color: getColorValue(color), ...(style as React.CSSProperties) }
+          : style
+      }
+      className={classNames("wim-icon",
         styles.root,
         size && styles[`size-${size}`],
-        color && styles[color],
+        useClassNameForColor && styles[color as keyof typeof styles],
         (spin ||
           (name && (name === "LoadingIcon" || name === "SpinnerIcon"))) &&
           styles.loading,
