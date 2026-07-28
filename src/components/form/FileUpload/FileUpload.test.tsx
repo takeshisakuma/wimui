@@ -54,4 +54,20 @@ describe("FileUpload", () => {
     expect(screen.getByRole("button")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByRole("alert")).toHaveTextContent("Required");
   });
+
+  // role=button は aria-required を許可しない（axe aria-allowed-attr / WCAG 4.1.2）。
+  it("announces the requirement as a description, not as aria-required", () => {
+    render(<FileUpload label="Licence" required />);
+    const button = screen.getByRole("button");
+
+    expect(button).not.toHaveAttribute("aria-required");
+    expect(button).toHaveAccessibleDescription(/required/i);
+  });
+
+  it("keeps the error in the description when the field is also required", () => {
+    render(<FileUpload label="Licence" required error="Attach the licence" />);
+    expect(screen.getByRole("button")).toHaveAccessibleDescription(
+      /Attach the licence/,
+    );
+  });
 });

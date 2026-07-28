@@ -3,6 +3,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./file-upload.module.scss";
@@ -62,6 +63,11 @@ export const FileUpload = ({
   const id = `wim-fileupload-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+  // トリガは `role=button` なので `aria-required` を持てない（WCAG 4.1.2 / axe
+  // aria-allowed-attr）。必須であることは説明として渡す。可視の必須バッジは
+  // FieldTemplate 側で aria-hidden なので、これが唯一の読み上げ経路になる。
+  const requiredId = required ? `${id}-required` : undefined;
+  const describedBy = [errorId, requiredId].filter(Boolean).join(" ") || undefined;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -118,10 +124,10 @@ export const FileUpload = ({
           iconPosition={iconPosition}
           size={size}
           aria-labelledby={labelId}
-          aria-describedby={errorId}
-          aria-required={required}
+          aria-describedby={describedBy}
           aria-invalid={error ? true : undefined}
         >{buttonLabel ?? t("fileupload.button")}</Button>
+        {required && <VisuallyHidden id={requiredId}>{t("form.required")}</VisuallyHidden>}
         <span
           className={classNames(
             styles.fileNames,
