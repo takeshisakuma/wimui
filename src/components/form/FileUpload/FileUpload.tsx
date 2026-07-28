@@ -21,6 +21,15 @@ type FileUploadProps = {
   multiple?: boolean;
   /** Whether the component is disabled */
   disabled?: boolean;
+  /**
+   * Names of the files the field should show — typically ones that already
+   * exist on the server, from an earlier session or an earlier step.
+   *
+   * Controlled: while this is set, it is what the field displays, and picking
+   * a file only fires `onChange`. Pass the new names back to show them. Leave
+   * it undefined to let the field track its own selection.
+   */
+  value?: string[];
   /** Callback when files are selected */
   onChange?: (files: FileList | null) => void;
   /** Additional class names */
@@ -49,6 +58,7 @@ export const FileUpload = ({
   accept,
   multiple = false,
   disabled = false,
+  value,
   onChange,
   className,
   iconName,
@@ -84,11 +94,20 @@ export const FileUpload = ({
     }
   };
 
-  const fileNames = selectedFiles
-    ? Array.from(selectedFiles)
-        .map((file) => file.name)
-        .join(", ")
-    : (noFileLabel ?? t("fileupload.no_file"));
+  // value が渡っていればそれが表示のすべて。マウント時点で反映されることが
+  // 要点で、そこを差分でしか見ないと「保存済みのファイルが消える」になる
+  // （OtpInput が踏んだのと同じ形）。
+  const displayNames =
+    value !== undefined
+      ? value
+      : selectedFiles
+        ? Array.from(selectedFiles).map((file) => file.name)
+        : [];
+
+  const fileNames =
+    displayNames.length > 0
+      ? displayNames.join(", ")
+      : (noFileLabel ?? t("fileupload.no_file"));
 
   return (
     <FieldTemplate

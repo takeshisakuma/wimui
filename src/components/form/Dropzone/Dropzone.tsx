@@ -17,6 +17,15 @@ type DropzoneProps = {
   multiple?: boolean;
   /** Whether the component is disabled. */
   disabled?: boolean;
+  /**
+   * Names of the files the area should list — typically ones that already
+   * exist on the server, from an earlier session or an earlier step.
+   *
+   * Controlled: while this is set, it is what the area lists, and dropping or
+   * picking a file only fires `onChange`. Pass the new names back to show
+   * them. Leave it undefined to let the area track its own selection.
+   */
+  value?: string[];
   /** Callback when files are selected. */
   onChange?: (files: FileList | null) => void;
   /** Additional class names. */
@@ -42,6 +51,7 @@ export const Dropzone = ({
   accept,
   multiple = false,
   disabled = false,
+  value,
   onChange,
   className,
   iconName = "UploadIcon",
@@ -96,6 +106,16 @@ export const Dropzone = ({
     }
   };
 
+  // value が渡っていればそれが表示のすべて。マウント時点で反映されることが
+  // 要点で、そこを差分でしか見ないと「保存済みのファイルが消える」になる
+  // （OtpInput が踏んだのと同じ形）。
+  const displayNames =
+    value !== undefined
+      ? value
+      : files
+        ? Array.from(files).map((file) => file.name)
+        : [];
+
   return (
     <FieldTemplate
       label={label}
@@ -146,11 +166,11 @@ export const Dropzone = ({
         }
         description={resolvedDescription}
       >
-        {files && files.length > 0 ? (
+        {displayNames.length > 0 ? (
           <div className={styles.fileList}>
-            {Array.from(files).map((file, index) => (
+            {displayNames.map((name, index) => (
               <span key={index} className={styles.fileName}>
-                {file.name}
+                {name}
               </span>
             ))}
           </div>
