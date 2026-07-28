@@ -40,6 +40,14 @@ export type InputBaseProps = {
   leftIconAriaLabel?: string;
   /** Icons to display on the right side */
   rightIcons?: InputBaseIcon[];
+  /**
+   * Static text shown after the control, inside the same shell — a unit such
+   * as `kg`, `%` or `円`. It sits in the flex flow, so the control shrinks to
+   * make room rather than running underneath it.
+   */
+  suffix?: React.ReactNode;
+  /** `id` for the suffix, so the control can point `aria-describedby` at it */
+  suffixId?: string;
   /** Whether to show a clear button when value is present */
   allowClear?: boolean;
   /** Whether the field currently has a value (controls clear button visibility) */
@@ -76,6 +84,8 @@ export const InputBase = ({
   onLeftIconClick,
   leftIconAriaLabel,
   rightIcons = [],
+  suffix,
+  suffixId,
   allowClear,
   hasValue,
   onClear,
@@ -184,6 +194,18 @@ export const InputBase = ({
         </div>
       )}
       {childrenWithClasses}
+      {suffix !== undefined && suffix !== null && suffix !== "" && (
+        <span
+          id={suffixId}
+          className={classNames(
+            localStyles.suffix,
+            finalRightIcons.length > 0 && localStyles.suffixClearsIcons,
+          )}
+          data-testid="input-suffix"
+        >
+          {suffix}
+        </span>
+      )}
       {finalRightIcons.length > 0 && (
         <div
           className={classNames(

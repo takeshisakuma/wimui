@@ -144,6 +144,22 @@
     }
   }
 
+  // 単位（kg / % / 円）。アイコンと違い絶対配置にしないのは、コントロールを
+  // 縮めて場所を空けるため — 重ねると入力中の数字が単位の下に潜る。
+  .suffix {
+    flex-shrink: 0;
+    padding-right: var(--wim-field-padding-x);
+    padding-left: var(--wim-spacing-xs);
+    color: var(--wim-color-text-secondary);
+    white-space: nowrap;
+    pointer-events: none;
+
+    // 右アイコンは絶対配置なので、同時に使うときはその幅ぶん左へ逃がす。
+    &.suffixClearsIcons {
+      padding-right: var(--wim-input-offset-right);
+    }
+  }
+
   .icons {
     position: absolute;
     top: 50%;
