@@ -6,9 +6,21 @@
     @include indicator.indicator-container-segmented($padding: var(--wim-focus-outline-offset));
 
     display: inline-grid;
-    grid-auto-columns: 1fr;
+
+    // `1fr` は暗黙に min-width: auto を持つのでトラックが min-content 未満に
+    // 縮まない。結果、親より狭くできず `.label` の ellipsis も一生効かないまま
+    // 黙って切れる（実測: 320px のビューポートで 367px のまま＝ページが 79px
+    // 横スクロールした）。ラベル長は i18n で変わるので、en で収まることは
+    // 何の保証にもならない。
+    // 下限を 0 にするだけ。上限の `1fr` は据え置く＝**セグメントの等幅は
+    // このコンポーネントの見た目そのもの**なので変えない（`auto` にすると
+    // 内容幅になり、1280px で 101.6px×3 だったものが 78.5/88.7/96.7 に割れる）。
+    grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
     width: max-content;
+
+    // 親からはみ出さない。これが無いと縮む余地が生まれない。
+    max-width: 100%;
     user-select: none;
 
     &.fullWidth {
