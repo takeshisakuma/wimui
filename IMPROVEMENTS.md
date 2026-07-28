@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-28（**T32 の 2 枚目**「複数ステップのフォーム」を実装し、出た穴 13 件を起票＝下の「T32 の 2 枚目の結果」。うち **③ `FileUpload` の `aria-required`（axe critical）と ④ `Alert` の見出し順は a11y スイートが自動検出**した。0.6.0 は 1 枚目の終了時点でリリース済み）  
+最終更新: 2026-07-28（**T32 の 2 枚目**「複数ステップのフォーム」を実装し、出た穴 14 件を起票＝下の「T32 の 2 枚目の結果」。うち **③ `FileUpload` の `aria-required`（axe critical）と ④ `Alert` の見出し順は a11y スイートが自動検出**した。**⑭ は VRT の構造的な盲点**＝①を直した #142 が 6 コンポーネント中 5 つで緑のまま通過したことから判明。0.6.0 は 1 枚目の終了時点でリリース済み）  
 旧: 2026-07-27（**T32 の 1 枚目**「管理テーブル」を実装し、出た穴 10 件を起票＝下の「T32 の 1 枚目の結果」。ガードの穴として **T40**（`src/` の生 UI 文字列）・**T41**（コントラスト検査がトークン止まりでコンポーネントの実使用を見ていない）・**T39**（合成ルールが 3 箇所に複製）を新規起票。DESIGN.md に必須ルール 12「クロームを黙らせる」と狭幅チェックを追加し、llms.txt / judge:slop にも反映）  
 旧: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
@@ -245,7 +245,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 ゲートは tsc / eslint / i18n:check / check-stories-hardcoded / check:slop すべて緑（**インライン style ゼロ＝ラチェット 52 を増やしていない**）。a11y は 12 ケース中 4 件赤で、これが下表 ③④ の出どころ。狭幅は 390 / 768 / 1280 × en / ja / pt を実測し、**ページの横スクロールはどの組み合わせでも 0**。
 
-**出た穴 13 件**。1 枚目と違い、狭幅由来は ⑦ の 1 件だけ。
+**出た穴 14 件**。1 枚目と違い、狭幅由来は ⑦ の 1 件だけ。⑭ は画面そのものではなく、①を直す過程で**ガード側**に見つかったもの。
 
 | # | 穴 | 層 | 状態 |
 |---|---|---|---|
@@ -262,22 +262,36 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | ⑪ | **`NumberInput` に単位を添える手段が無い**（suffix / adornment prop なし。`rightIcon` はアイコン名しか受け取らない）。kg・円・% はフォームの定番なのでラベルに「（kg）」と書く回避が要る | ライブラリ | 未着手 |
 | ⑫ | **`Icon` と `Text` で色トークンの語彙が違う**（`Text color="text-tertiary"` / `Icon color="tertiary"`）。型エラーになるので事故にはならないが、同じ色を指す prop で綴りが揃っていない | ライブラリ | 未着手 |
 | ⑬ | `OtpInput` の `labels.digitAriaLabel(index)` は **1 始まり**で呼ばれる（`OtpInput.tsx:205` が `index + 1` を渡す）が、型にも docgen にも書かれていない。0 始まりと解釈して `index + 1` を渡すと "Digit 2〜7" になる（実際にそうなった） | ライブラリ | 未着手 |
+| ⑭ | **VRT は ~20×20px 未満に収まる変化を構造的に検知できない**。`vrt/vrt.spec.ts:133` の `maxDiffPixels: 400` は **fullPage** スクショに対する閾値だが、`size="sm"` のアイコンは実測 14×14〜16×16 ＝ 最大でも 196〜256px しか動かず、**閾値を数学的に超えられない**。①の修正（#142）で実際に露呈した: Alert / Banner / Notification / Snackbar / Toast は**グリフが変わったのに VRT 全緑のまま通過**し、落ちたのは 80×80 のアイコンを持つ `Result` だけだった（6400px）。同じ盲点にバッジのドット・フォーカスリング・ヘアラインのボーダーが入る。**「VRT が緑」は小領域の変化については何も意味しない** | ガード | **要判断**（#142 では 5 コンポーネント分の単体テスト `FeedbackIcon.consumers.test.tsx` で個別に塞いだ。閾値そのものの見直し＝要素単位スクショ / `maxDiffPixelRatio` は全ベースライン更新を伴うため別途） |
 
 **作業再開ポイント（2026-07-28 時点。ここから続ける）**
 
 | PR | 中身 | 状態 |
 |---|---|---|
-| **#143** | 画面本体（`WholesaleApplication.stories.tsx` ＋ i18n 91 キー ＋ この節） | **VRT compare が赤（新規 6 ストーリーのベースライン未撮影＝想定どおり）**。他は緑 |
-| **#140** | ③ `FileUpload` の `aria-required`（axe critical） | **CI 全緑**。マージ可 |
-| **#141** | ② `OtpInput` がマウント時の value を無視 | CI 実行中（ローカルは全量緑・修正前に落ちることも実証済み） |
-| **#142** | ① `FeedbackIcon` の既定アイコン（danger/warning/info が塗り丸） | CI 実行中。**マージすると Alert / Banner / Notification / Snackbar / Toast / Result の VRT ベースラインが全部動く** |
+| **#143** | 画面本体（`WholesaleApplication.stories.tsx` ＋ i18n 91 キー ＋ この節） | **VRT compare が赤（新規 6 ストーリーのベースライン未撮影＝想定どおり）**。a11y は #140 が main に入ったので、リベース後に緑になるはず（未実証） |
+| **#140** | ③ `FileUpload` の `aria-required`（axe critical） | **マージ済**（2026-07-28。head SHA 上で全 17 チェック緑を確認してから squash） |
+| **#141** | ② `OtpInput` がマウント時の value を無視 | **マージ済**（同上） |
+| **#142** | ① `FeedbackIcon` の既定アイコン（danger/warning/info が塗り丸）＋ ⑭ を塞ぐ単体テスト | CI 実行中。マージ待ち |
+
+**#142 について判明したこと（予測が外れた）**: 「マージすると Alert / Banner / Notification / Snackbar / Toast / Result の VRT ベースラインが全部動く」と書いていたが、**実際に動いたのは `Result` だけ**だった。修正は 5 コンポーネントにも届いている（probe で確認済み＝ピクセルは本当に変わっている）が、**VRT の閾値が小さすぎる変化を見られない**＝⑭。そのため #142 に `FeedbackIcon.consumers.test.tsx`（5 コンポーネント × intent ごとのグリフ）を追加した。**修正を revert すると 9 件すべてが落ちること、どのコンポーネントのどの intent かがメッセージに出ることを実証済み**。
 
 **次の手順（この順で）**:
 
-1. **#140 → #141 → #142 の順にマージ**（#140 が最優先。出荷済みの WCAG 4.1.2 違反）
+1. ~~#140 → #141 のマージ~~ **完了**。**#142 は CI 全緑を確認してからマージ**
 2. `feat/patterns-application-form` を main にリベース。**#140 が入って初めて #143 の a11y が緑になる**ので、ここで a11y の緑を実証する（ローカル実行は `npm run storybook` を上げてから。dev サーバが落ちていると webServer 経由でタイムアウトして偽の赤が出る）
-3. **VRT update を最後に 1 回だけ** workflow_dispatch で流す（コミットバックが素の git push なので、そのブランチへの push を全部終えてから。#142 のベースライン更新もここで一緒に入る）
+3. **VRT update を最後に 1 回だけ** workflow_dispatch で流す（コミットバックが素の git push なので、そのブランチへの push を全部終えてから。#142 のベースライン更新＝`Result` の 12 枚もここで一緒に入る）
 4. 残り 9 件（④〜⑬）の起票済みの穴を、要判断（④⑤）と機械的な修正（⑥⑦⑧⑨⑩⑪⑫⑬）に分けて着手するか、3 枚目（AI アシスタント画面）へ進むかを判断する
+
+**未解決の観測 — a11y スイートが同一コミットで違う赤を出す**: #143 の CI（同じ commit `b9e7d0ce`、同じシャード構成）で **2 回流して、赤になったストーリーが毎回違った**。#143 の差分はどちらにも一切触れていない（`IMPROVEMENTS.md` / `docs_stories_recipes.json` ×3 / 新ストーリーのみ）。ワークフローに `--max-failures` は無く、`retries: 2` なので**どちらも 3 回連続で落ちて初めて報告されている**（run 内では粘着的、run をまたぐと入れ替わる）。
+
+| run | 赤になったもの | 違反 |
+|---|---|---|
+| 1 回目 | `Media/Lightbox` Gallery（dark）/ Default（light） | `button-name`（critical） |
+| 2 回目（再実行） | `Visualization/ScheduleView` Day View（light） | `role-img-alt`（serious。FullCalendar の `<span class="fc-icon fc-icon-chevron-left" role="img">`） |
+
+**Lightbox 側の機構は特定済み**: `Image` は IntersectionObserver が発火するまで `<img>` を描画せず（`Image.tsx:400`、`isIntersecting` の初期値 false ＝ `useMediaLoader.ts:24`）、`Lightbox.Trigger` のアクセシブル名は入れ子の `alt` **だけ**が供給源。さらに `waitForStoryReady` は `document.images` をその場でスナップショットする（`story-ready.ts:36`）ため、**img が 1 枚も無いと何も待たずに素通りする**。対策候補は `Lightbox.Trigger` に `aria-label` を持たせる（名前を画像の読み込み状態に依存させない）。
+
+**ただしローカルでは両方とも再現しない**（Lightbox 18/18・ScheduleView 8/8 パス、CPU 6 倍・20 倍に絞っても 0/5・0/10）。そのため「どちらも遅延マウント由来のフレーク」までは言えるが、**ScheduleView 側は逆向きの可能性がある**＝ FullCalendar のツールバーが描画され切る前に axe が走れば違反ごと消えて緑になるので、**実在する違反がふだん隠れているだけ**かもしれない。⑭ と同じ「緑を信用してよいか」の問題なので、単独で調べる価値がある。**#143 のマージ可否には影響しない**（どちらも main 由来・変更と無関係）。
 
 **残っている判断**: ④（`Alert` のタイトルを既定で見出しにするか）と ⑤（必須マークを danger の塗りバッジのままにするか）は既定値の変更＝利用者の見た目が変わるため、0.7.0 に寄せるかどうかを含めて人間の判断が要る。
 
