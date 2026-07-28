@@ -1075,6 +1075,12 @@ so the unit does not have to be repeated in the label.
     - `accept: string` — Accepted file types (e.g. ".jpg,.png").
     - `multiple: boolean` = false — Whether multiple files can be selected.
     - `disabled: boolean` = false — Whether the component is disabled.
+    - `value: string[]` — Names of the files the area should list — typically ones that already
+exist on the server, from an earlier session or an earlier step.
+
+Controlled: while this is set, it is what the area lists, and dropping or
+picking a file only fires `onChange`. Pass the new names back to show
+them. Leave it undefined to let the area track its own selection.
     - `onChange: (files: FileList | null) => void` — Callback when files are selected.
     - `className: string` — Additional class names.
     - `iconName: React.ComponentProps<typeof Icon>["name"]` = "UploadIcon" — Icon name shown in the drop area.
@@ -1115,6 +1121,12 @@ still do their job for assistive technology.
     - `accept: string` — Accepted file types (e.g. ".jpg,.png")
     - `multiple: boolean` = false — Whether multiple files can be selected
     - `disabled: boolean` = false — Whether the component is disabled
+    - `value: string[]` — Names of the files the field should show — typically ones that already
+exist on the server, from an earlier session or an earlier step.
+
+Controlled: while this is set, it is what the field displays, and picking
+a file only fires `onChange`. Pass the new names back to show them. Leave
+it undefined to let the field track its own selection.
     - `onChange: (files: FileList | null) => void` — Callback when files are selected
     - `className: string` — Additional class names
     - `iconName: React.ComponentProps<typeof Icon>["name"]` — Icon name shown on the button
