@@ -44,6 +44,18 @@ export type TextProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
    */
   decoration?: "line-through" | "underline" | "highlight" | "none";
   /**
+   * Keep the text on one line instead of wrapping. Overflow is left visible —
+   * use `truncate` to clip it with an ellipsis.
+   * @default false
+   */
+  nowrap?: boolean;
+  /**
+   * Keep the text on one line and clip the overflow with an ellipsis.
+   * Implies `nowrap`.
+   * @default false
+   */
+  truncate?: boolean;
+  /**
    * Content of the text. Alternative to children (children take precedence only with asChild).
    */
   content?: React.ReactNode;
@@ -60,6 +72,8 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       lineHeight,
       fontStyle = "normal",
       decoration = "none",
+      nowrap = false,
+      truncate = false,
       className,
       style,
       children,
@@ -103,6 +117,8 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           fontStyle === "italic" && styles.italic,
           useClassNameForColor && styles[color as keyof typeof styles],
           asChild && decoration !== "none" && styles[decoration],
+          (nowrap || truncate) && styles.nowrap,
+          truncate && styles.truncate,
           className,
         )}
         style={{
