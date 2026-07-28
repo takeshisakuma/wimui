@@ -1,6 +1,7 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-27（**T32 の 1 枚目**「管理テーブル」を実装し、出た穴 10 件を起票＝下の「T32 の 1 枚目の結果」。ガードの穴として **T40**（`src/` の生 UI 文字列）・**T41**（コントラスト検査がトークン止まりでコンポーネントの実使用を見ていない）・**T39**（合成ルールが 3 箇所に複製）を新規起票。DESIGN.md に必須ルール 12「クロームを黙らせる」と狭幅チェックを追加し、llms.txt / judge:slop にも反映）  
+最終更新: 2026-07-28（**T32 の 2 枚目**「複数ステップのフォーム」を実装し、出た穴 14 件を起票＝下の「T32 の 2 枚目の結果」。うち **③ `FileUpload` の `aria-required`（axe critical）と ④ `Alert` の見出し順は a11y スイートが自動検出**した。**⑭ は VRT の構造的な盲点**＝①を直した #142 が 6 コンポーネント中 5 つで緑のまま通過したことから判明。0.6.0 は 1 枚目の終了時点でリリース済み）  
+旧: 2026-07-27（**T32 の 1 枚目**「管理テーブル」を実装し、出た穴 10 件を起票＝下の「T32 の 1 枚目の結果」。ガードの穴として **T40**（`src/` の生 UI 文字列）・**T41**（コントラスト検査がトークン止まりでコンポーネントの実使用を見ていない）・**T39**（合成ルールが 3 箇所に複製）を新規起票。DESIGN.md に必須ルール 12「クロームを黙らせる」と狭幅チェックを追加し、llms.txt / judge:slop にも反映）  
 旧: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
 作業再開時はここから。済んだ詳細は git 履歴を参照。
 
@@ -144,6 +145,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T41 | コントラスト検査を「トークン」から「コンポーネントの実使用」へ | **P1** | 起票 2026-07-27（T32 の穴 ②）。`check:contrast`（T34）は **outline の文字色を `text-{intent}` ロールで解決する前提**（`check-contrast.js:121`）で 126 組すべて緑。しかし `Button` の SCSS は `color: var(--wim-color-danger)` を直接使っており、**SSOT を迂回している事実がガードから見えない**。結果 dark の `outline`×`danger` が 4.35:1 で出荷されていた。`color:` に intent 色を直接使う箇所は src 全体で **50 件**あり、同型が他にもある可能性が高い。Button のストーリーに `outline`×`danger` の組み合わせが 1 つも無かったため a11y スイートも見ていなかった | ①短期: `*.module.scss` で `color:` に `--wim-color-{intent}` を直接使っている箇所を列挙し、`text-{intent}` へ寄せる（または例外として明示） ②恒久: コントラスト検査を SCSS の実際の `color` / `background-color` ペアから解決する方式へ寄せる ／ **受け入れ条件**: 現行の `button.module.scss:165` に対して**鳴ること**を実証する |
 | T42 | 生成物の再生成をコミット時に強制する | **済** | 起票 2026-07-27（#132 が `check:llms` で落ちたことから）。`llms.txt` は docgen（＝コンポーネントの props/tokens）由来なので、**prop を 1 つ変えるだけで古くなる**。しかし lint-staged は `llms:build` を呼んでおらず、CI の `audit:docs` で初めて落ちる＝「再生成が要る」という依存が人間の記憶に残っていた。同種の依存は既に `generate → stage-generated.js` の対で自動化されている（i18n リソース / アイコン / intents の 3 箇所）のに、llms.txt だけ輪の外にあった。**リリース PR で同じ形の事故が既にある**（#116 → #117。`changeset version` 後にバージョンが埋まった `llms.txt` が不一致になりマージ不能） | lint-staged に `generate-llms.js` ＋ `stage-generated.js public/llms.txt public/llms-full.txt` を追加（入力は `src/components/**/*.{ts,tsx}` / `*.module.scss` / `public/locales/en/**` / `src/data/components.json` / `scripts/slop-dictionary.json` / `scripts/generate-llms.js`）。**あわせて `generate-llms.js` が docgen を「無いときだけ生成」していたのを毎回更新に変更**（古い docgen JSON から生成すると、ローカルは整合して見えるのに CI（クリーンチェックアウト＝毎回生成）だけ落ちるため。キャッシュが効くので warm 0.6 秒） ／ **受け入れ条件**: prop の説明を 1 行変えて `lint-staged` を通し、`public/llms-full.txt` が**再生成されてステージまでされること**を実証する（実証済み: プローブ 2 回とも `llms-full.txt` に反映＋自動ステージを確認） |
 | T43 | VRT の非決定的ストーリー 4 件の始末 | **P2** | 起票 2026-07-27（#135 で顕在化）。ベースラインを update で撮り直したあと、**同じコミットの compare で 4 件が落ちた**: `snackbar--default`(dark) / `toast--success`(dark) / `voicevisualizer--large-height`(dark) / `audio--premium-features`(light)。これは T11 が定めた除外基準（同一コミットで update→compare が落ちる）にそのまま当てはまる。main では緑なので、**古いベースラインがたまたま安定した瞬間を捉えていただけ**で、撮り直すと不安定さが表面化する。#135 では 4 件を main の版へ戻して回避した（＝爆弾は残っている） | 原因の見当: Snackbar/Toast は `autoHideDuration` のタイマー（VRT の `clock.setFixedTime` は Date を固定するがタイマーは止めない）、Audio/VoiceVisualizer はメディア読み込み。**対応候補**: ①ストーリー側で `autoHideDuration={0}` 等の決定化 ②`NONDETERMINISTIC_STORY_IDS` へ追加。①のほうが可視カバレッジを失わないので優先 ／ **受け入れ条件**: 4 件について update → 同一コミットで compare を 2 回連続で緑にできること |
+| T44 | VRT の閾値が小領域の変化を構造的に見られない | **P1** | 起票 2026-07-28（T32 の 2 枚目 ⑭）。`vrt/vrt.spec.ts:133` の `maxDiffPixels: 400` は **fullPage スクショに対する**閾値。`size="sm"` のアイコンは実測 14×14〜16×16 ＝ **最大でも 196〜256px しか動かず、閾値を数学的に超えられない**。#142 で実証された: 6 コンポーネントすべてでグリフが変わったのに、VRT が落ちたのは 80×80 のアイコンを持つ `Result` だけ（6400px）で、**Alert / Banner / Notification / Snackbar / Toast は緑のまま通過**した。同じ盲点にバッジのドット・フォーカスリング・ヘアライン幅のボーダー・14px 前後のアイコン全般が入る。**「VRT が緑」は小領域の変化について何も意味しない**。#142 では 5 コンポーネント分の単体テスト（`FeedbackIcon.consumers.test.tsx`）で個別に塞いだが、これは同型の穴が出るたびに手で塞ぐ形で、構造的な解決ではない | **対応候補**: ①`maxDiffPixelRatio` へ寄せる（ページ面積に比例させる。ただし小さいストーリーほど厳しくなり、既存のジッタ許容 ≤220px と衝突しないか要実測） ②fullPage をやめて対象要素単位のスクショにする（面積が縮むので同じ 400 でも効く。ストーリー側に撮影対象の指定が要る） ③閾値は据え置き、小領域の変化は単体テスト側で担保する方針を明文化する。**いずれもベースライン全面更新を伴う**ため単独の作業として切ること ／ **受け入れ条件**: `FeedbackIcon.tsx` を #142 以前の「全部塗り丸」に戻した状態で、**Alert / Banner / Notification / Snackbar / Toast の VRT が落ちること**を実証する（現行は 5 件とも緑のまま通る＝これが再現手順そのもの） |
 | T37 | リポジトリの「主張」の機械検証 | **P3** | llms.txt の版落ちは「常に最新」という主張が破れていた例で、`check:llms` で塞いだ（T27）。同種の主張が他にもある | README / MDX のコード例が実際にコンパイルできるか（llms.txt の価値は PR #64 の A/B で「API 正当性＝コンパイル可否」と測定済み）。README の peer 表と `package.json` の `peerDependencies` の一致 ／ **受け入れ条件**: README のコード例を 1 つ壊した状態で**落ちること**を実証する。 |
 
 > **運用（起票不要・恒常）**: Dependabot は weekly で minor/patch を 1 本にまとめる（直近 #55 = 07-22、次は 07-29 頃）。**playwright（Chromium が変わる）と Storybook（VRT のレンダリング母体）が含まれる回は、CI 緑ではなく VRT compare の結果を見てからマージする**。`size-limit` 12 → 13 は major だが破壊的変更が Node 20 打ち切りのみで `engines: >=22` の本リポジトリには非該当、かつ計測専用ツールなので CI 緑で上げてよい。
@@ -165,14 +167,16 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 1〜3 で 60〜80 個、6 画面まで行けば 100〜120 個が一度は合成される。ただし**全 161 個の網羅は目的ではない**（今日の穴はすべて「よく使う部品の組み合わせ」から出ており、単独完結型の部品からではない）。**まず 1 枚を完成まで通して実測し、出た指摘の数で残りを見積もる。**
 
-**1 枚目の実測（2026-07-27。2 枚目以降はこの数字で見積もること）**
+**実測（1 枚目 2026-07-27 / 2 枚目 2026-07-28。3 枚目以降はこの数字で見積もること）**
 
-| | 起票時の見込み | 1 枚目の実測 |
-|---|---|---|
-| i18n キー | 15〜25 / 画面 | **56** |
-| 合成カバレッジ | — | 45 → 60 / 208（+15） |
-| 出た穴 | — | **13 件**（当初 10 ＋ スマホ表示で 3） |
-| 派生 PR | — | **7 本**（#129 #130 #131 #132 #135 #136 #137） |
+| | 起票時の見込み | 1 枚目 | 2 枚目 |
+|---|---|---|---|
+| i18n キー | 15〜25 / 画面 | **56** | **91** |
+| 合成カバレッジ | — | 45 → 60 / 208（+15） | 60 → 74 / 208（+14） |
+| 出た穴 | — | **13 件**（当初 10 ＋ スマホ表示で 3） | **13 件**（うち a11y スイートが自動検出 2 件） |
+| 派生 PR | — | **7 本**（#129 #130 #131 #132 #135 #136 #137） | 後述 |
+
+**穴の件数は 2 枚目でも減らなかった（13 → 13）。** ただし**種類が入れ替わっている**: 1 枚目は狭幅レイアウトが 7/13 だったのに対し、2 枚目は狭幅由来が 1 件だけで、代わりに**「prop を渡したのに効かない／意味色の誤用／ARIA の取り違え」が中心**になった。**画面の形（表 / フォーム）を変えると出る穴の種類が変わる**ので、同じ形の画面を重ねるより形を変えるほうが打率が高い。
 
 **画面を書く時間より、出た穴を塞ぐ時間のほうがはるかに大きい。** 画面自体は 1 ファイル（約 560 行）で書き上がったが、そこから出た修正は Button のコントラスト・DataGrid の i18n・`mobileCard` 一式・`Container` のガター・Dropdown のポータル化・`loading` の粒度へ広がった。**所要時間は「画面 n 枚ぶん」ではなく「画面 n 枚 × 派生修正」で見積もる。**
 
@@ -224,17 +228,79 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | ② | dark で `Button variant="outline" intent="danger"` が **AA 不合格**（4.35:1、要 4.5:1。`#fb7482` on `#393939`）。`button.module.scss:165` が `color: var(--wim-color-danger)` を使い、T12 で用意した AA 安全な `text-danger` を使っていない | ライブラリ | 未着手 → **T41** |
 | ③ | `EmptyState` の `icon` スロットが未正規化。`<Icon name="SearchIcon" size="lg" />` を渡すと巨大な真っ黒アイコンになる | ライブラリ | 未着手 |
 | ④ | `InlineEdit` の編集トリガー（`role="button"`）に**アクセシブル名を与える手段が無い**。`aria-label` は外側 div に落ち、名前を付けられるのは可視 `label` だけ＝テーブルセルでは使えない | ライブラリ | 未着手 |
-| ⑤ | `Toolbar.Group` が折り返せない（`toolbar.module.scss:37` の `.group` に `flex-wrap` が無く既定 `nowrap`）。ボタンを 1 グループに詰めると **390px でページごと横スクロール**する。`.group { flex-wrap: wrap }` で直る。アプリ側はグループを分けて回避可能だが、知らないと必ず踏む | ライブラリ | 未着手 |
-| ⑥ | `Code` に `white-space: nowrap` が無く、狭い列で **1 文字ずつ縦に折り返る**（ロット番号が縦一列になる）。アプリ側の回避はインライン style しかなく必須ルール 3 に反する | ライブラリ | 未着手 |
-| ⑦ | 狭幅カード表示の切替点が `container-down(md)` 固定＝**タブレット幅でもカードになる**。閾値を変える prop が無い | ライブラリ | 要判断 |
+| ⑤ | `Toolbar.Group` が折り返せない（`toolbar.module.scss:37` の `.group` に `flex-wrap` が無く既定 `nowrap`）。ボタンを 1 グループに詰めると **390px でページごと横スクロール**する。`.group { flex-wrap: wrap }` で直る。アプリ側はグループを分けて回避可能だが、知らないと必ず踏む | ライブラリ | **済**（`layout/Toolbar/toolbar.module.scss:40` に `flex-wrap: wrap` あり。2026-07-28 に実物で確認） |
+| ⑥ | `Code` に `white-space: nowrap` が無く、狭い列で **1 文字ずつ縦に折り返る**（ロット番号が縦一列になる）。アプリ側の回避はインライン style しかなく必須ルール 3 に反する | ライブラリ | **PR #145**（2026-07-28。**診断が不足していた**: 1 文字ずつ割れる正体は `body { overflow-wrap: anywhere }`（`lang.scss:15`）の継承で、それを `normal` に戻しても**ハイフンが改行機会として残り 60px 幅で 3 行**（`KR-` / `2026-` / `0143`）。`white-space: nowrap` まで入れて 1 行になる。2 枚目 ⑥ の色と同じ `.inline` の話なので 1 本にまとめた） |
+| ⑦ | 狭幅カード表示の切替点が `container-down(md)` 固定＝**タブレット幅でもカードになる**。閾値を変える prop が無い | ライブラリ | **済**（`DataGrid.tsx:60` が `mobileCard?: boolean \| "sm" \| "md"`。#132 で 576px 既定＋`"md"` で旧閾値。2026-07-28 に実物で確認） |
 | ⑧ | `mobileCard` が**選択列をリセットしない**。`.selection` の固定幅 60px と `_stickyLeft` の inset 影が残り、`justify-content: space-between` ＋ 空の `::before` でチェックボックスが 60px の右端へ押される＝「四角い囲みの左に謎の空間」 | ライブラリ | 未着手（⑩と同一原因） |
-| ⑨ | **`Container` に横ガターが無い**（`container.module.scss` は max-width と中央寄せのみ）。ビューポートが max-width より狭いと必ず端に張り付く。**既存のインライン style 負債の出どころ**でもある（`Marketing.stories.tsx:112` が `style={{ padding: … }}` で回避＝`check:slop` ラチェット 52 の一部）。修正は破壊的（全画面の余白と VRT 全面更新）ため方針判断が要る: ①既定の `padding-inline` を入れる（0.6.0 相当）②`gutter` prop で opt-in（非破壊）③ドキュメントで「ページ余白は `Box` の `px`」と明文化 | ライブラリ | **要判断** |
+| ⑨ | **`Container` に横ガターが無い**（`container.module.scss` は max-width と中央寄せのみ）。ビューポートが max-width より狭いと必ず端に張り付く。**既存のインライン style 負債の出どころ**でもある（`Marketing.stories.tsx:112` が `style={{ padding: … }}` で回避＝`check:slop` ラチェット 52 の一部）。修正は破壊的（全画面の余白と VRT 全面更新）ため方針判断が要る: ①既定の `padding-inline` を入れる（0.6.0 相当）②`gutter` prop で opt-in（非破壊）③ドキュメントで「ページ余白は `Box` の `px`」と明文化 | ライブラリ | **済＝案①**（`container.module.scss:10` に `padding-inline: var(--wim-spacing-2xl)`。#132 で 0.6.0 に出荷済み。2026-07-28 に実物で確認） |
 | ⑩ | `mobileCard` で**外枠パネルが残る**。消えるのは `<table>` の枠だけで、`.wim-data-grid` の白背景 + 枠 + 角丸と `.tableContainer` の白背景が残る＝枠付きパネルの中に枠＋影のカードが並ぶ二重フレーム（カード間に外側の白が見える）。**ライブラリ自身が必須ルール 8・9 を破っている**。card モードで root の背景/枠/角丸を落とし footer の border-top を外す案を注入で検証済み | ライブラリ | 未着手（⑧と同一原因） |
 | ⑪ | スマホ表示の仕上げ 4 件（カード上端の角丸が描かれない＝`border-collapse: collapse` では行の `border-radius` が描画されない／カード間に白が出る＝`tbody` と **Table 自身のラッパー**が面を塗り続ける（⑩ で直したのは DataGrid 側のコンテナだけだった）／`InlineEdit` を含む行だけ 16〜24px 高い＝編集アイコンが `aria-hidden` なのに md の IconButton で 36px を要求＋セルが控えめな高さのコントロールにさらに padding を足す／カード内の行が窮屈＝表の compact 密度（4.8px/8px）をそのまま継承） | ライブラリ | **済**（#135） |
 | ⑫ | 行アクションのメニューを開くと**表が伸びる／カード表示では消える**。`Dropdown` だけが floating-ui を使わず `position: absolute` のままで、スクロールコンテナ（`overflow: auto`）とカードの `overflow: hidden` から出られなかった。実測: 表表示で `containerScrollH` 423 → 536、カード表示は描画ゼロ。**さらにポータル化の副作用として、位置決定前の要素に `focus()` してページ最上部へ飛ぶ退行が出た**（390px で `scrollY` 2503 → 0）＝`preventScroll` で解消 | ライブラリ | **済**（#136） |
 | ⑬ | `loading` が「初回ロード」と「再取得」を区別できない。true にすると常に `inert` ＋ 不透明度 0.6 ＋ `pointer-events: none` で**全操作を遮断**する。再取得のたびに表全体が触れなくなるのは強すぎるが、弱める手段が利用者側に無かった（`Intake queue / refetching` が永久に操作不能に見えたのがきっかけ） | ライブラリ | **済**（`loading: boolean | "blocking" | "refresh"`。既定は不変。refresh は `aria-busy` のみで**減光しない**＝不透明度を落とすと二次テキストが AA を割るため） |
 
 **この画面側で対処したもの**: `mobileCard` の有効化（⑥の症状は表からは消える）／一括バーを `Toolbar.Group` 3 つに分割（⑤の回避）／ページのガターを `Box px="2xl"` で付与（⑨の回避。インライン style を使わない形）。
+
+#### T32 の 2 枚目「複数ステップのフォーム」の結果（2026-07-28）
+
+**成果物**: `stories/Patterns/Form/WholesaleApplication.stories.tsx`（同じ Kiyosumi Roasters に卸売取引を申し込む側の画面。4 ステップ = 事業者 / 納品条件 / 書類 / 担当者と確認コード、6 ストーリー = 通常 / 送信して弾かれた / 納品条件 / 書類 / コード不一致 / 受付完了）。en/ja/pt を最初から。合成カバレッジ **60/208 → 74/208（36%）**。**i18n キーは 91**（1 枚目の 56 の 1.6 倍。フォームはラベル・エラー文・選択肢がすべてコピーになるため）。
+
+ゲートは tsc / eslint / i18n:check / check-stories-hardcoded / check:slop すべて緑（**インライン style ゼロ＝ラチェット 52 を増やしていない**）。a11y は 12 ケース中 4 件赤で、これが下表 ③④ の出どころ。狭幅は 390 / 768 / 1280 × en / ja / pt を実測し、**ページの横スクロールはどの組み合わせでも 0**。
+
+**出た穴 14 件**。1 枚目と違い、狭幅由来は ⑦ の 1 件だけ。⑭ は画面そのものではなく、①を直す過程で**ガード側**に見つかったもの。
+
+| # | 穴 | 層 | 状態 |
+|---|---|---|---|
+| ① | **`Alert` / `Banner` / `Notification` / `Snackbar` / `Toast` / `Result` の既定アイコンが、success 以外すべて「塗りつぶした丸」**。`_internal/FeedbackIcon.tsx` の switch が `success → CheckIcon` しか持たず、danger / warning / info / default は全部 `CircleIcon` に落ちる。`alert-circle` も `info-circle` も `src/icon/` に実在するのに使われていない。**docgen と llms.txt は「intent に応じた既定アイコンが出る」と主張している**＝T37 型の主張破れでもある。0.6.0 に出荷済み | ライブラリ | 未着手 |
+| ② | **`OtpInput` が初期 `value` を無視する**。derived-state で `prevValue` を `useState(value)` と初期化しているため、**マウント時の value は一度も反映されない**（変化して初めて同期する）。`<OtpInput value="418203" />` が空欄 6 個で描画される＝保存済みコードの再表示・ステップの再マウントで消える | ライブラリ | 未着手 |
+| ③ | **`FileUpload required` が axe critical を出す**（`aria-allowed-attr`）。トリガの `<Button>` に `aria-required="true"` を付けているが、`role=button` は `aria-required` を許可しない。`FileUpload.tsx:122`。**0.6.0 に出荷済みの WCAG 4.1.2 違反**で、a11y スイートが自動検出した | ライブラリ | 未着手 |
+| ④ | **`Alert` のタイトルが既定で `<h4>`**。h1 → h2（ステップ見出し）の下に置くだけで `heading-order`（moderate）に落ちる。そもそもアラートのタイトルは文書構造の見出しではないので、既定が見出しタグであること自体が要判断。画面側は `titleTag="h3"` で回避した | ライブラリ | **要判断** |
+| ⑤ | **必須表示が塗りの `Badge intent="danger"`**（`_internal/FieldLabelContent.tsx`）。必須項目の多いフォームでは**何も間違えていない状態でページ中がエラー色**になり、実際のエラーと同じ色なので区別が消える。`aria-required` は別途正しく付いているので a11y ではなく視覚設計の問題 | ライブラリ | **要判断** |
+| ⑥ | **`Code` の inline が `--wim-color-text-danger` を直接使う**（`code.module.scss`）。ロット番号・受付番号のような**中立な識別子が赤く出る**（受付完了の Result 上でも赤）。専用トークンが無く意味色を流用している＝**T41 と同型**（コンポーネントが SSOT を迂回して intent 色を使う） | ライブラリ | **PR #145**（2026-07-28。**専用トークンは不要だった** — `.block` が既に `--wim-color-text-primary` を使っているので inline をそれに合わせた。1 枚目 ⑥ の折り返しと同じ `.inline` なので 1 本にまとめた） |
+| ⑦ | **`SegmentedControl` は入りきらないと黙って切れる**。`overflow: hidden` で、折り返しも縮小もスクロールもしない。**ラベル長は i18n で変わる**ので en で収まっても他言語で切れる（実測: pt 390px で `clientWidth 298 < scrollWidth 368`＝最後の選択肢が読めない）。en の 390px でも 5px 欠けていた | ライブラリ | 未着手 |
+| ⑧ | **`FileUpload` / `Dropzone` に「すでにアップロード済み」を表す手段が無い**（`value` / `files` prop が無く `onChange` だけ）。実アプリでは必ずサーバ側の既存ファイルを出すので、**一覧はアプリが自前で描くことになり、コンポーネントは永久に「ファイル未選択」と言い続ける** | ライブラリ | 未着手 |
+| ⑨ | **カード内でフィールドをグルーピングする手段が無い**。`Fieldset` は `variant` が default / full-width のどちらも枠＋角丸つきで、`Card` の中に置くと必須ルール 9（枠の二重）に反する。`Legend` は `<legend>` を出すので fieldset の外では使えない。結果、節見出しを `Text` で自作するしかなく**グループの意味論（`<fieldset>`）が失われる** | ライブラリ | 未着手 |
+| ⑩ | **`Text` に折り返しを止める手段が無い**（`truncate` / `nowrap` prop なし）。狭幅で「1.2 MB」のような短い値が 2 行に割れる。回避はインライン style しかなく必須ルール 3 に反する＝**1 枚目の ⑥（`Code` に `white-space: nowrap` が無い）と同型** | ライブラリ | 未着手 |
+| ⑪ | **`NumberInput` に単位を添える手段が無い**（suffix / adornment prop なし。`rightIcon` はアイコン名しか受け取らない）。kg・円・% はフォームの定番なのでラベルに「（kg）」と書く回避が要る | ライブラリ | 未着手 |
+| ⑫ | **`Icon` と `Text` で色トークンの語彙が違う**（`Text color="text-tertiary"` / `Icon color="tertiary"`）。型エラーになるので事故にはならないが、同じ色を指す prop で綴りが揃っていない | ライブラリ | 未着手 |
+| ⑬ | `OtpInput` の `labels.digitAriaLabel(index)` は **1 始まり**で呼ばれる（`OtpInput.tsx:205` が `index + 1` を渡す）が、型にも docgen にも書かれていない。0 始まりと解釈して `index + 1` を渡すと "Digit 2〜7" になる（実際にそうなった） | ライブラリ | 未着手 |
+| ⑭ | **VRT は ~20×20px 未満に収まる変化を構造的に検知できない**。`vrt/vrt.spec.ts:133` の `maxDiffPixels: 400` は **fullPage** スクショに対する閾値だが、`size="sm"` のアイコンは実測 14×14〜16×16 ＝ 最大でも 196〜256px しか動かず、**閾値を数学的に超えられない**。①の修正（#142）で実際に露呈した: Alert / Banner / Notification / Snackbar / Toast は**グリフが変わったのに VRT 全緑のまま通過**し、落ちたのは 80×80 のアイコンを持つ `Result` だけだった（6400px）。同じ盲点にバッジのドット・フォーカスリング・ヘアラインのボーダーが入る。**「VRT が緑」は小領域の変化については何も意味しない** | ガード | **起票済 → T44**（2026-07-28。#142 では 5 コンポーネント分の単体テスト `FeedbackIcon.consumers.test.tsx` で個別に塞いだ。閾値そのものの見直しは全ベースライン更新を伴うため単独の作業として切る） |
+
+**作業再開ポイント（2026-07-28 時点。ここから続ける）**
+
+| PR | 中身 | 状態 |
+|---|---|---|
+| **#143** | 画面本体（`WholesaleApplication.stories.tsx` ＋ i18n 91 キー ＋ この節） | **VRT compare が赤（新規 6 ストーリーのベースライン未撮影＝想定どおり）**。a11y は #140 が main に入ったので、リベース後に緑になるはず（未実証） |
+| **#140** | ③ `FileUpload` の `aria-required`（axe critical） | **マージ済**（2026-07-28。head SHA 上で全 17 チェック緑を確認してから squash） |
+| **#141** | ② `OtpInput` がマウント時の value を無視 | **マージ済**（同上） |
+| **#142** | ① `FeedbackIcon` の既定アイコン（danger/warning/info が塗り丸）＋ ⑭ を塞ぐ単体テスト | CI 実行中。マージ待ち |
+
+**#142 について判明したこと（予測が外れた）**: 「マージすると Alert / Banner / Notification / Snackbar / Toast / Result の VRT ベースラインが全部動く」と書いていたが、**実際に動いたのは `Result` だけ**だった。修正は 5 コンポーネントにも届いている（probe で確認済み＝ピクセルは本当に変わっている）が、**VRT の閾値が小さすぎる変化を見られない**＝⑭。そのため #142 に `FeedbackIcon.consumers.test.tsx`（5 コンポーネント × intent ごとのグリフ）を追加した。**修正を revert すると 9 件すべてが落ちること、どのコンポーネントのどの intent かがメッセージに出ることを実証済み**。
+
+**次の手順（この順で）**:
+
+1. ~~#140 → #141 のマージ~~ **完了**。**#142 は CI 全緑を確認してからマージ**
+2. `feat/patterns-application-form` を main にリベース。**#140 が入って初めて #143 の a11y が緑になる**ので、ここで a11y の緑を実証する（ローカル実行は `npm run storybook` を上げてから。dev サーバが落ちていると webServer 経由でタイムアウトして偽の赤が出る）
+3. **VRT update を最後に 1 回だけ** workflow_dispatch で流す（コミットバックが素の git push なので、そのブランチへの push を全部終えてから。#142 のベースライン更新＝`Result` の 12 枚もここで一緒に入る）
+4. 残り 9 件（④〜⑬）の起票済みの穴を、要判断（④⑤）と機械的な修正（⑥⑦⑧⑨⑩⑪⑫⑬）に分けて着手するか、3 枚目（AI アシスタント画面）へ進むかを判断する
+
+**未解決の観測 — a11y スイートが同一コミットで違う赤を出す**: #143 の CI（同じ commit `b9e7d0ce`、同じシャード構成）で **2 回流して、赤になったストーリーが毎回違った**。#143 の差分はどちらにも一切触れていない（`IMPROVEMENTS.md` / `docs_stories_recipes.json` ×3 / 新ストーリーのみ）。ワークフローに `--max-failures` は無く、`retries: 2` なので**どちらも 3 回連続で落ちて初めて報告されている**（run 内では粘着的、run をまたぐと入れ替わる）。
+
+| run | 赤になったもの | 違反 |
+|---|---|---|
+| 1 回目 | `Media/Lightbox` Gallery（dark）/ Default（light） | `button-name`（critical） |
+| 2 回目（再実行） | `Visualization/ScheduleView` Day View（light） | `role-img-alt`（serious。FullCalendar の `<span class="fc-icon fc-icon-chevron-left" role="img">`） |
+
+**Lightbox 側の機構は特定済み**: `Image` は IntersectionObserver が発火するまで `<img>` を描画せず（`Image.tsx:400`、`isIntersecting` の初期値 false ＝ `useMediaLoader.ts:24`）、`Lightbox.Trigger` のアクセシブル名は入れ子の `alt` **だけ**が供給源。さらに `waitForStoryReady` は `document.images` をその場でスナップショットする（`story-ready.ts:36`）ため、**img が 1 枚も無いと何も待たずに素通りする**。対策候補は `Lightbox.Trigger` に `aria-label` を持たせる（名前を画像の読み込み状態に依存させない）。
+
+**ScheduleView 側の機構も特定した（当初の推測とは別だった）**: この違反は「実在するが普段は隠れている」のでも「テストの都合」でもなく、**一時的に実在する**。`ScheduleView.tsx:118-133` が FullCalendar 内部 DOM の axe 違反を**事後パッチで補正している** — `.fc-icon[role="img"]` に `aria-hidden` を、`a.fc-more-link` に `role="button"` を、`useEffect` の 1 回目と `MutationObserver` で当てている。FullCalendar がビュー切替やイベント再描画で要素を作り直してから、パッチが当たるまでの窓では**違反が本当に存在する**。axe がその窓に入れば赤、外れれば緑。つまり**支援技術が同じ窓を読めば同じものを読む**ので、テスト専用の問題ではない。恒久対策は「補正を後から当てる」形をやめること（FullCalendar の API 側でアイコンを装飾扱いにできないか、あるいはツールバーを自前に置き換える）。
+
+**ローカルでは両方とも再現しない**（Lightbox 18/18・ScheduleView 8/8 パス、CPU 6 倍・20 倍に絞っても 0/5・0/10）。共通しているのは「a11y の正しさが描画のタイミングに依存している」ことで、⑭ と同じ「緑を信用してよいか」の問題。**#143 のマージ可否には影響しない**（どちらも main 由来・変更と無関係）。
+
+**④⑤ の判断（2026-07-28 決定）**: **どちらも既定を変え、0.7.0 に載せる。** 「既定は据え置いて prop とドキュメントで逃がす」案は採らない — 逃げ道を用意しても、既定のまま使う利用者が同じ欠陥を踏み続けるため。④ は `Alert` のタイトルを既定で見出しタグにしないこと（`titleTag` は残す）、⑤ は必須マークを danger の塗りバッジ以外にすること。**0.6.1（#144）には入れない**＝患部が「出荷済みの欠陥の修正」に限られたリリースなので混ぜない。
+
+**リリースの順序（この制約を外すと 0.6.1 の中身が変わる）**: changeset は溜まったぶんが 1 つの Version PR にまとまるため、**#144 をマージして 0.6.1 を publish し切るまで、既定を変える PR を main に入れない**こと。先に入ると 0.7.0 相当の変更が 0.6.1 に同梱される（あるいは changeset 無しで黙って混ざる）。同じ理由で #145（inline `Code`）も changeset をまだ付けていない。
+
+**この画面側で対処したもの**: `Alert` に `titleTag="h3"`（④）／`SegmentedControl` のラベルを短い語に置き換え（⑦。pt は "A cada duas semanas" → "Quinzenal"）／`CounterTextarea` を `fieldSizing="content"` に（狭幅で本文が途中で切れるため）／`Fieldset` を使わず `Card` 直下に並べる（⑨）／単位はラベルに併記（⑪）。
 
 **保留**: T32 の画面は i18n に依存するため **StackBlitz には出せない**。「Patterns を全部 StackBlitz に出す」構想は実測でブロッカーを確認済み（`t()` が 302 箇所 / Storybook の殻 / 1 ファイルに複数画面 / `AI.stories.tsx` が `../../../src` を import）。**変換器は当面作らない**（検証を優先）。必要になった時点で別途判断する。
 
