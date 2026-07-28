@@ -1080,7 +1080,12 @@ Useful for using the button styles with Link components (e.g. from React Router 
 - **Fieldset** — Form grouping
     - `children: React.ReactNode` (required) — Form elements to group
     - `disabled: boolean` = false — Whether all contained form elements are disabled
-    - `variant: "default" | "full-width"` = "default" — Visual variant of the fieldset
+    - `variant: "default" | "full-width" | "plain"` = "default" — Visual variant of the fieldset.
+
+`plain` drops the frame and padding and keeps only the grouping — use it
+inside a `Card` or any surface that already draws a border, where a framed
+fieldset would put a box inside a box. The `<fieldset>` and its `<legend>`
+still do their job for assistive technology.
     - `className: string` — Additional class names
 - **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
     - `asChild: boolean` = false — Whether to render as a child element.
