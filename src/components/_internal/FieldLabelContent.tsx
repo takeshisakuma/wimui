@@ -63,6 +63,10 @@ export const FieldLabelContent = ({
       {required ? (
         <Badge
           intent="danger"
+          // 塗りだと、必須項目の多いフォームでは何も間違えていない状態で
+          // ページ中がエラー色になり、実際のエラーと同じ色なので区別が消える。
+          // subtle にすると「必須」という語は残したまま、その衝突だけが消える。
+          variant="subtle"
           size="sm"
           className={styles.badge}
           aria-hidden="true"

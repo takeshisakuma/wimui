@@ -46,4 +46,22 @@ describe("FieldLabelContent", () => {
     render(<FieldLabelContent label="Name" required requiredLabel="必須" />);
     expect(screen.getByText("必須")).toBeInTheDocument();
   });
+
+  // 塗りの danger だと、必須項目の多いフォームでは何も間違えていない状態で
+  // ページ中がエラー色になり、実際のエラーと同じ色なので区別が消える。
+  // 語は残し、塗りだけをやめる。
+  it("marks required with a subtle badge, not a filled one", () => {
+    const { container } = render(<FieldLabelContent label="Name" required />);
+    const badge = container.querySelector(".wim-badge")!;
+
+    expect(badge.className).toContain("subtle");
+    expect(badge.className).not.toContain("solid");
+    // 語そのものは残っている（アスタリスクに置き換えたわけではない）
+    expect(badge).toHaveTextContent("Required");
+  });
+
+  it("still uses the danger intent, so required is not mistaken for optional", () => {
+    const { container } = render(<FieldLabelContent label="Name" required />);
+    expect(container.querySelector(".wim-badge")!.className).toContain("danger");
+  });
 });
