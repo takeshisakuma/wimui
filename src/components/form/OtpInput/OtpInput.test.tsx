@@ -27,6 +27,20 @@ describe("OtpInput", () => {
     // No focus shift since we are at the last input
   });
 
+  // マウント時に渡された value は「変化」ではないので、同期を差分でしか行わないと
+  // 一度も表示されない（保存済みコードの再表示・ステップの再マウントで消える）。
+  it("shows the value it is mounted with", () => {
+    render(<OtpInput length={6} value="418203" />);
+    const inputs = screen.getAllByRole("textbox") as HTMLInputElement[];
+    expect(inputs.map((input) => input.value).join("")).toBe("418203");
+  });
+
+  it("pads the value it is mounted with when it is shorter than length", () => {
+    render(<OtpInput length={4} value="41" />);
+    const inputs = screen.getAllByRole("textbox") as HTMLInputElement[];
+    expect(inputs.map((input) => input.value)).toEqual(["4", "1", "", ""]);
+  });
+
   it("handles backspace and moves focus to the previous input", () => {
     render(<OtpInput length={4} value="12" />);
     const inputs = screen.getAllByRole("textbox") as HTMLInputElement[];

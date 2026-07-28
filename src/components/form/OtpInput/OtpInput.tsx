@@ -33,6 +33,14 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   fullWidth?: boolean;
 }
 
+/** value を 1 文字ずつの配列（長さ length）に割り付ける。 */
+const toDigits = (value: string, length: number): string[] => {
+  const chars = value.split("").slice(0, length);
+  return Array(length)
+    .fill("")
+    .map((_, i) => chars[i] ?? "");
+};
+
 /**
  * Component for entering an OTP (one-time password).
  */
@@ -59,8 +67,10 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
     const { digitAriaLabel = (i: number) => `Digit ${i}` } = labels;
 
     // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
-    const [internalValues, setInternalValues] = useState<string[]>(
-      Array(length).fill(""),
+    // 初期値も value から取る。空配列で始めると prevValue === value のまま同期が
+    // 走らず、マウント時に渡された value が一度も表示されない。
+    const [internalValues, setInternalValues] = useState<string[]>(() =>
+      toDigits(value, length),
     );
     const [prevValue, setPrevValue] = useState(value);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -73,11 +83,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
     // value propsが変更されたら内部状態を同期 (Derived State Pattern)
     if (value !== prevValue) {
       setPrevValue(value);
-      const chars = value.split("").slice(0, length);
-      const newValues = Array(length)
-        .fill("")
-        .map((_, i) => chars[i] || "");
-      setInternalValues(newValues);
+      setInternalValues(toDigits(value, length));
     }
 
     const triggerChange = (newValues: string[]) => {
