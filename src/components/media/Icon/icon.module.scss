@@ -96,7 +96,12 @@
     }
 
     &.secondary {
-      color: var(--wim-color-secondary);
+      // 塗り用の --wim-color-secondary (#b6b6b6) は light で 1.86:1 しかなく、
+      // 意味のあるアイコンに使うと WCAG 1.4.11（非テキスト 3:1）を割る（実測）。
+      // dark では 7.46:1 通るので、light だけで壊れていた。
+      // 他の色はすべて text-* を使っており、ここだけが SSOT を迂回していた。
+      // Text の同名 prop も同じ理由で text-secondary に解決している。
+      color: var(--wim-color-text-secondary);
     }
 
     &.tertiary {
