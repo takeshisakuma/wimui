@@ -58,4 +58,24 @@ describe("Alert", () => {
     const heading = screen.getByText("Heading 2");
     expect(heading.tagName).toBe("H2");
   });
+
+  // 見出しにすると h2 の下に置いただけで heading-order（moderate）に落ちる。
+  // アラートは文書のセクションではないので、既定では見出しにしない。
+  it("does not put its title in the heading outline by default", () => {
+    render(<Alert title="Something happened" />);
+    const title = screen.getByText("Something happened");
+
+    expect(title.tagName).toBe("DIV");
+    expect(screen.queryByRole("heading")).toBeNull();
+  });
+
+  it("accepts a non-heading tag other than the default", () => {
+    render(<Alert title="Notice" titleTag="p" />);
+    expect(screen.getByText("Notice").tagName).toBe("P");
+  });
+
+  it("still becomes a heading when one is asked for", () => {
+    render(<Alert title="Section" titleTag="h3" />);
+    expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent("Section");
+  });
 });

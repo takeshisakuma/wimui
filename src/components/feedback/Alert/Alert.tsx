@@ -11,10 +11,27 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   title?: React.ReactNode;
   /**
-   * HTML tag used for the alert title
-   * @default "h4"
+   * HTML tag used for the alert title.
+   *
+   * The default is a `div`: an alert is a notice, not a section of the
+   * document, so its title does not belong in the heading outline. Making it
+   * one also breaks `heading-order` as soon as the alert sits under anything
+   * other than an `h3`. Pass a heading only when the alert really does head a
+   * section of the page.
+   *
+   * @default "div"
    */
-  titleTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  titleTag?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "div"
+    | "p"
+    | "strong"
+    | "span";
   /**
    * Description text of the alert
    */
@@ -47,7 +64,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Alert = ({
   title,
-  titleTag: TitleTag = "h4",
+  titleTag: TitleTag = "div",
   description,
   intent = "default",
   icon,
