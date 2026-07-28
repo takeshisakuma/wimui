@@ -2,7 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import type { ComponentSize } from "../../../types/tokens";
+import { warnUnstyledValue } from "../../../utilities/warn-unstyled-value";
+import { CARD_STYLED_PADDING, CARD_STYLED_RADIUS } from "./styled-values";
 import styles from "./card.module.scss";
+
 
 export type CardProps = {
   /**
@@ -41,6 +44,14 @@ const CardInner = (
   ref: React.Ref<HTMLDivElement>,
 ) => {
   const Component = asChild ? Slot : "div";
+
+  if (!(CARD_STYLED_PADDING as readonly string[]).includes(padding)) {
+    warnUnstyledValue("Card", "padding", padding, CARD_STYLED_PADDING);
+  }
+  if (!(CARD_STYLED_RADIUS as readonly string[]).includes(radius)) {
+    warnUnstyledValue("Card", "radius", radius, CARD_STYLED_RADIUS);
+  }
+
   return (
     <Component
       ref={ref}
