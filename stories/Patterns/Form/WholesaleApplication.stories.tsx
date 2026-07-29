@@ -21,6 +21,7 @@ import {
   DescriptionListTerm,
   Divider,
   Dropzone,
+  Fieldset,
   FileUpload,
   Grid,
   Group,
@@ -28,6 +29,7 @@ import {
   IconButton,
   Input,
   InputMask,
+  Legend,
   Link,
   NumberInput,
   OtpInput,
@@ -286,309 +288,312 @@ function WholesaleApplication({
 
             <Card variant="outline" padding="2xl">
               <Stack gap="2xl">
-                <Stack gap="2xs">
-                  <Title tag="h2" size="sm">
-                    {steps[step].title}
-                  </Title>
+                <Fieldset variant="plain">
+                  {/* legend は heading content を直接含められるので、
+                      グループ名とステップ見出し（h2）を 1 つで兼ねられる。 */}
+                  <Legend>
+                    <Title tag="h2" size="sm">
+                      {steps[step].title}
+                    </Title>
+                  </Legend>
                   <Text size="sm" color="text-secondary">
                     {stepLead}
                   </Text>
-                </Stack>
 
-                {invalidHere && (
-                  <Alert
-                    intent="danger"
-                    // 既定の h4 はステップ見出し（h2）の直下で heading-order に落ちる。
-                    titleTag="h3"
-                    title={t("wholesale.invalid_title")}
-                    description={t("wholesale.invalid_desc", { count: 4 })}
-                  />
-                )}
-
-                {step === 0 && (
-                  <Stack gap="xl">
-                    <Input
-                      label={t("wholesale.field_trade_name")}
-                      required
-                      fullWidth
-                      value={tradeName}
-                      onChange={(event) => setTradeName(event.target.value)}
-                      error={invalid ? t("wholesale.error_trade_name") : undefined}
+                  {invalidHere && (
+                    <Alert
+                      intent="danger"
+                      title={t("wholesale.invalid_title")}
+                      description={t("wholesale.invalid_desc", { count: 4 })}
                     />
-                    <Grid cols={{ base: 1, sm: 2 }} gap="xl">
-                      <RadioGroup
-                        label={t("wholesale.field_entity")}
-                        direction="horizontal"
-                        value={entity}
-                        onChange={setEntity}
-                        options={[
-                          { value: "corporation", label: t("wholesale.entity_corporation") },
-                          { value: "sole", label: t("wholesale.entity_sole") },
-                        ]}
-                      />
-                      <InputMask
-                        label={t("wholesale.field_registration")}
+                  )}
+
+                  {step === 0 && (
+                    <Stack gap="xl">
+                      <Input
+                        label={t("wholesale.field_trade_name")}
                         required
                         fullWidth
-                        mask="9999-99-999999"
-                        value={registration}
-                        onChange={(event) => setRegistration(event.target.value)}
-                        error={invalid ? t("wholesale.error_registration") : undefined}
+                        value={tradeName}
+                        onChange={(event) => setTradeName(event.target.value)}
+                        error={invalid ? t("wholesale.error_trade_name") : undefined}
                       />
-                    </Grid>
-                    <Grid cols={{ base: 1, sm: 2 }} gap="xl">
-                      <Cascader
-                        label={t("wholesale.field_category")}
-                        required
-                        fullWidth
-                        options={categoryOptions}
-                        value={category}
-                        onChange={(value) => setCategory(value)}
-                        placeholder={t("wholesale.category_placeholder")}
-                        allowClear
-                        error={invalid ? t("wholesale.error_category") : undefined}
-                      />
-                      <NumberInput
-                        label={t("wholesale.field_stores")}
-                        required
-                        fullWidth
-                        min={1}
-                        value={storeCount}
-                        onChange={(event) => setStoreCount(event.target.value)}
-                        error={invalid ? t("wholesale.error_stores") : undefined}
-                      />
-                    </Grid>
-                  </Stack>
-                )}
-
-                {step === 1 && (
-                  <Stack gap="xl">
-                    <TreeSelect
-                      label={t("wholesale.field_deliver_to")}
-                      required
-                      fullWidth
-                      multiple
-                      searchable
-                      treeData={storeTree}
-                      value={deliverTo}
-                      onChange={(value) => setDeliverTo(value as string[])}
-                      defaultExpandedKeys={["tokyo"]}
-                      placeholder={t("wholesale.deliver_to_placeholder")}
-                    />
-                    <Grid cols={{ base: 1, sm: 2 }} gap="xl">
-                      <NumberInput
-                        label={t("wholesale.field_monthly")}
-                        required
-                        fullWidth
-                        min={1}
-                        value={monthlyKg}
-                        onChange={(event) => setMonthlyKg(event.target.value)}
-                      />
-                      <SegmentedControl
-                        label={t("wholesale.field_frequency")}
-                        value={frequency}
-                        onChange={setFrequency}
-                        fullWidth
-                        options={[
-                          { value: "weekly", label: t("wholesale.freq_weekly") },
-                          { value: "biweekly", label: t("wholesale.freq_biweekly") },
-                          { value: "on_demand", label: t("wholesale.freq_on_demand") },
-                        ]}
-                      />
-                    </Grid>
-                    <CheckboxGroup
-                      label={t("wholesale.field_weekdays")}
-                      direction="horizontal"
-                      value={weekdays}
-                      onChange={setWeekdays}
-                      options={[
-                        { value: "mon", label: t("wholesale.day_mon") },
-                        { value: "tue", label: t("wholesale.day_tue") },
-                        { value: "wed", label: t("wholesale.day_wed") },
-                        { value: "thu", label: t("wholesale.day_thu") },
-                        { value: "fri", label: t("wholesale.day_fri") },
-                        { value: "sat", label: t("wholesale.day_sat"), disabled: true },
-                      ]}
-                    />
-                    <Grid cols={{ base: 1, sm: 2 }} gap="xl">
-                      <TimePicker
-                        label={t("wholesale.field_receive_at")}
-                        fullWidth
-                        value={receiveAt}
-                        onChange={(event) => setReceiveAt(event.target.value)}
-                      />
-                      <DatePicker
-                        label={t("wholesale.field_first_delivery")}
-                        fullWidth
-                        value={firstDelivery}
-                        onChange={setFirstDelivery}
-                        minDate={FIRST_DELIVERY}
-                      />
-                    </Grid>
-                    <Text size="xs" color="text-tertiary">
-                      {t("wholesale.delivery_note")}
-                    </Text>
-                  </Stack>
-                )}
-
-                {step === 2 && (
-                  <Stack gap="xl">
-                    <FileUpload
-                      label={t("wholesale.field_license")}
-                      required
-                      accept=".pdf,.jpg,.png"
-                      buttonLabel={t("wholesale.license_button")}
-                      noFileLabel={t("wholesale.license_none")}
-                      onChange={() => undefined}
-                    />
-                    <Stack gap="2xs">
-                      {DOCUMENTS.map((doc) => (
-                        <React.Fragment key={doc.name}>
-                          <Group justify="between" gap="sm" wrap="nowrap">
-                            <Group gap="xs" wrap="nowrap">
-                              <Icon
-                                name={doc.accepted ? "DocumentIcon" : "AlertCircleIcon"}
-                                size="sm"
-                                color={doc.accepted ? "tertiary" : "danger"}
-                              />
-                              <Text size="sm">{doc.name}</Text>
-                              <Text size="xs" color="text-tertiary">
-                                {doc.sizeLabel}
-                              </Text>
-                            </Group>
-                            <Group gap="2xs" wrap="nowrap">
-                              <Tag
-                                intent={doc.accepted ? "success" : "danger"}
-                                variant="subtle"
-                                size="sm"
-                              >
-                                {doc.accepted
-                                  ? t("wholesale.doc_accepted")
-                                  : t("wholesale.doc_too_large")}
-                              </Tag>
-                              <IconButton
-                                iconName="TrashIcon"
-                                variant="ghost"
-                                size="sm"
-                                aria-label={t("wholesale.doc_remove", { name: doc.name })}
-                              />
-                            </Group>
-                          </Group>
-                          <Divider />
-                        </React.Fragment>
-                      ))}
+                      <Grid cols={{ base: 1, sm: 2 }} gap="xl">
+                        <RadioGroup
+                          label={t("wholesale.field_entity")}
+                          direction="horizontal"
+                          value={entity}
+                          onChange={setEntity}
+                          options={[
+                            { value: "corporation", label: t("wholesale.entity_corporation") },
+                            { value: "sole", label: t("wholesale.entity_sole") },
+                          ]}
+                        />
+                        <InputMask
+                          label={t("wholesale.field_registration")}
+                          required
+                          fullWidth
+                          mask="9999-99-999999"
+                          value={registration}
+                          onChange={(event) => setRegistration(event.target.value)}
+                          error={invalid ? t("wholesale.error_registration") : undefined}
+                        />
+                      </Grid>
+                      <Grid cols={{ base: 1, sm: 2 }} gap="xl">
+                        <Cascader
+                          label={t("wholesale.field_category")}
+                          required
+                          fullWidth
+                          options={categoryOptions}
+                          value={category}
+                          onChange={(value) => setCategory(value)}
+                          placeholder={t("wholesale.category_placeholder")}
+                          allowClear
+                          error={invalid ? t("wholesale.error_category") : undefined}
+                        />
+                        <NumberInput
+                          label={t("wholesale.field_stores")}
+                          required
+                          fullWidth
+                          min={1}
+                          value={storeCount}
+                          onChange={(event) => setStoreCount(event.target.value)}
+                          error={invalid ? t("wholesale.error_stores") : undefined}
+                        />
+                      </Grid>
                     </Stack>
-                    <Dropzone
-                      label={t("wholesale.field_extra_docs")}
-                      description={t("wholesale.extra_docs_desc")}
-                      accept=".pdf,.xlsx,.jpg"
-                      multiple
-                      onChange={() => undefined}
-                      error={t("wholesale.error_too_large")}
-                    />
-                    <CounterTextarea
-                      label={t("wholesale.field_note")}
-                      fullWidth
-                      fieldSizing="content"
-                      maxLength={300}
-                      value={note}
-                      onChange={(event) => setNote(event.target.value)}
-                    />
-                  </Stack>
-                )}
+                  )}
 
-                {step === 3 && (
-                  <Stack gap="xl">
-                    <Grid cols={{ base: 1, sm: 2 }} gap="xl">
-                      <Input
-                        label={t("wholesale.field_contact")}
+                  {step === 1 && (
+                    <Stack gap="xl">
+                      <TreeSelect
+                        label={t("wholesale.field_deliver_to")}
                         required
                         fullWidth
-                        value={contact}
-                        onChange={(event) => setContact(event.target.value)}
+                        multiple
+                        searchable
+                        treeData={storeTree}
+                        value={deliverTo}
+                        onChange={(value) => setDeliverTo(value as string[])}
+                        defaultExpandedKeys={["tokyo"]}
+                        placeholder={t("wholesale.deliver_to_placeholder")}
                       />
-                      <Input
-                        label={t("wholesale.field_email")}
-                        type="email"
+                      <Grid cols={{ base: 1, sm: 2 }} gap="xl">
+                        <NumberInput
+                          label={t("wholesale.field_monthly")}
+                          required
+                          fullWidth
+                          min={1}
+                          suffix="kg"
+                          value={monthlyKg}
+                          onChange={(event) => setMonthlyKg(event.target.value)}
+                        />
+                        <SegmentedControl
+                          label={t("wholesale.field_frequency")}
+                          value={frequency}
+                          onChange={setFrequency}
+                          fullWidth
+                          options={[
+                            { value: "weekly", label: t("wholesale.freq_weekly") },
+                            { value: "biweekly", label: t("wholesale.freq_biweekly") },
+                            { value: "on_demand", label: t("wholesale.freq_on_demand") },
+                          ]}
+                        />
+                      </Grid>
+                      <CheckboxGroup
+                        label={t("wholesale.field_weekdays")}
+                        direction="horizontal"
+                        value={weekdays}
+                        onChange={setWeekdays}
+                        options={[
+                          { value: "mon", label: t("wholesale.day_mon") },
+                          { value: "tue", label: t("wholesale.day_tue") },
+                          { value: "wed", label: t("wholesale.day_wed") },
+                          { value: "thu", label: t("wholesale.day_thu") },
+                          { value: "fri", label: t("wholesale.day_fri") },
+                          { value: "sat", label: t("wholesale.day_sat"), disabled: true },
+                        ]}
+                      />
+                      <Grid cols={{ base: 1, sm: 2 }} gap="xl">
+                        <TimePicker
+                          label={t("wholesale.field_receive_at")}
+                          fullWidth
+                          value={receiveAt}
+                          onChange={(event) => setReceiveAt(event.target.value)}
+                        />
+                        <DatePicker
+                          label={t("wholesale.field_first_delivery")}
+                          fullWidth
+                          value={firstDelivery}
+                          onChange={setFirstDelivery}
+                          minDate={FIRST_DELIVERY}
+                        />
+                      </Grid>
+                      <Text size="xs" color="text-tertiary">
+                        {t("wholesale.delivery_note")}
+                      </Text>
+                    </Stack>
+                  )}
+
+                  {step === 2 && (
+                    <Stack gap="xl">
+                      <FileUpload
+                        label={t("wholesale.field_license")}
                         required
-                        fullWidth
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        accept=".pdf,.jpg,.png"
+                        buttonLabel={t("wholesale.license_button")}
+                        noFileLabel={t("wholesale.license_none")}
+                        onChange={() => undefined}
                       />
-                    </Grid>
-                    <PhoneInput
-                      label={t("wholesale.field_phone")}
-                      required
-                      value={phone}
-                      onChange={setPhone}
-                      countryCode={countryCode}
-                      onCountryChange={setCountryCode}
-                    />
-                    <OtpInput
-                      label={t("wholesale.field_code")}
-                      length={6}
-                      value={code}
-                      onChange={setCode}
-                      error={codeMismatch ? t("wholesale.error_code") : undefined}
-                      // digitAriaLabel は 1 始まりの桁番号で呼ばれる（OtpInput.tsx:205）。
-                      labels={{
-                        digitAriaLabel: (index) => t("wholesale.code_digit", { index }),
-                      }}
-                    />
-                    <Text size="xs" color="text-tertiary">
-                      {t("wholesale.code_hint", { phone: APPLICANT.phone })}
-                    </Text>
+                      <Stack gap="2xs">
+                        {DOCUMENTS.map((doc) => (
+                          <React.Fragment key={doc.name}>
+                            <Group justify="between" gap="sm" wrap="nowrap">
+                              <Group gap="xs" wrap="nowrap">
+                                <Icon
+                                  name={doc.accepted ? "DocumentIcon" : "AlertCircleIcon"}
+                                  size="sm"
+                                  color={doc.accepted ? "tertiary" : "danger"}
+                                />
+                                <Text size="sm">{doc.name}</Text>
+                                <Text size="xs" color="text-tertiary">
+                                  {doc.sizeLabel}
+                                </Text>
+                              </Group>
+                              <Group gap="2xs" wrap="nowrap">
+                                <Tag
+                                  intent={doc.accepted ? "success" : "danger"}
+                                  variant="subtle"
+                                  size="sm"
+                                >
+                                  {doc.accepted
+                                    ? t("wholesale.doc_accepted")
+                                    : t("wholesale.doc_too_large")}
+                                </Tag>
+                                <IconButton
+                                  iconName="TrashIcon"
+                                  variant="ghost"
+                                  size="sm"
+                                  aria-label={t("wholesale.doc_remove", { name: doc.name })}
+                                />
+                              </Group>
+                            </Group>
+                            <Divider />
+                          </React.Fragment>
+                        ))}
+                      </Stack>
+                      <Dropzone
+                        label={t("wholesale.field_extra_docs")}
+                        description={t("wholesale.extra_docs_desc")}
+                        accept=".pdf,.xlsx,.jpg"
+                        multiple
+                        onChange={() => undefined}
+                        error={t("wholesale.error_too_large")}
+                      />
+                      <CounterTextarea
+                        label={t("wholesale.field_note")}
+                        fullWidth
+                        fieldSizing="content"
+                        maxLength={300}
+                        value={note}
+                        onChange={(event) => setNote(event.target.value)}
+                      />
+                    </Stack>
+                  )}
 
-                    <Divider />
+                  {step === 3 && (
+                    <Stack gap="xl">
+                      <Grid cols={{ base: 1, sm: 2 }} gap="xl">
+                        <Input
+                          label={t("wholesale.field_contact")}
+                          required
+                          fullWidth
+                          value={contact}
+                          onChange={(event) => setContact(event.target.value)}
+                        />
+                        <Input
+                          label={t("wholesale.field_email")}
+                          type="email"
+                          required
+                          fullWidth
+                          value={email}
+                          onChange={(event) => setEmail(event.target.value)}
+                        />
+                      </Grid>
+                      <PhoneInput
+                        label={t("wholesale.field_phone")}
+                        required
+                        value={phone}
+                        onChange={setPhone}
+                        countryCode={countryCode}
+                        onCountryChange={setCountryCode}
+                      />
+                      <OtpInput
+                        label={t("wholesale.field_code")}
+                        length={6}
+                        value={code}
+                        onChange={setCode}
+                        error={codeMismatch ? t("wholesale.error_code") : undefined}
+                        // digitAriaLabel は 1 始まりの桁番号で呼ばれる（OtpInput.tsx:205）。
+                        labels={{
+                          digitAriaLabel: (index) => t("wholesale.code_digit", { index }),
+                        }}
+                      />
+                      <Text size="xs" color="text-tertiary">
+                        {t("wholesale.code_hint", { phone: APPLICANT.phone })}
+                      </Text>
 
-                    <DescriptionList layout="horizontal" size="sm">
-                      <DescriptionListItem>
-                        <DescriptionListTerm>
-                          {t("wholesale.review_business")}
-                        </DescriptionListTerm>
-                        <DescriptionListDetails>
-                          {t("wholesale.review_business_value", {
-                            name: APPLICANT.tradeName,
-                            stores: storeCount,
-                          })}
-                        </DescriptionListDetails>
-                      </DescriptionListItem>
-                      <DescriptionListItem>
-                        <DescriptionListTerm>
-                          {t("wholesale.review_deliver_to")}
-                        </DescriptionListTerm>
-                        <DescriptionListDetails>
-                          {t("wholesale.review_deliver_to_value", {
-                            count: deliverTo.length,
-                            kg: monthlyKg,
-                          })}
-                        </DescriptionListDetails>
-                      </DescriptionListItem>
-                      <DescriptionListItem>
-                        <DescriptionListTerm>
-                          {t("wholesale.review_documents")}
-                        </DescriptionListTerm>
-                        <DescriptionListDetails>
-                          {t("wholesale.review_documents_value")}
-                        </DescriptionListDetails>
-                      </DescriptionListItem>
-                    </DescriptionList>
+                      <Divider />
 
-                    <Group gap="sm" align="center">
-                      <Checkbox
-                        checked={agreed}
-                        onChange={(event) => setAgreed(event.target.checked)}
-                      >
-                        <Text size="sm" asChild>
-                          <span>{t("wholesale.agree")}</span>
-                        </Text>
-                      </Checkbox>
-                      <Link href="#" size="sm" priority="secondary" external>
-                        {t("wholesale.agree_link")}
-                      </Link>
-                    </Group>
-                  </Stack>
-                )}
+                      <DescriptionList layout="horizontal" size="sm">
+                        <DescriptionListItem>
+                          <DescriptionListTerm>
+                            {t("wholesale.review_business")}
+                          </DescriptionListTerm>
+                          <DescriptionListDetails>
+                            {t("wholesale.review_business_value", {
+                              name: APPLICANT.tradeName,
+                              stores: storeCount,
+                            })}
+                          </DescriptionListDetails>
+                        </DescriptionListItem>
+                        <DescriptionListItem>
+                          <DescriptionListTerm>
+                            {t("wholesale.review_deliver_to")}
+                          </DescriptionListTerm>
+                          <DescriptionListDetails>
+                            {t("wholesale.review_deliver_to_value", {
+                              count: deliverTo.length,
+                              kg: monthlyKg,
+                            })}
+                          </DescriptionListDetails>
+                        </DescriptionListItem>
+                        <DescriptionListItem>
+                          <DescriptionListTerm>
+                            {t("wholesale.review_documents")}
+                          </DescriptionListTerm>
+                          <DescriptionListDetails>
+                            {t("wholesale.review_documents_value")}
+                          </DescriptionListDetails>
+                        </DescriptionListItem>
+                      </DescriptionList>
+
+                      <Group gap="sm" align="center">
+                        <Checkbox
+                          checked={agreed}
+                          onChange={(event) => setAgreed(event.target.checked)}
+                        >
+                          <Text size="sm" asChild>
+                            <span>{t("wholesale.agree")}</span>
+                          </Text>
+                        </Checkbox>
+                        <Link href="#" size="sm" priority="secondary" external>
+                          {t("wholesale.agree_link")}
+                        </Link>
+                      </Group>
+                    </Stack>
+                  )}
+                </Fieldset>
 
                 <Divider />
 

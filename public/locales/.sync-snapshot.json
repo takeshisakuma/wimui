@@ -12536,7 +12536,7 @@
       "area_tokyo": "Tokyo",
       "area_kanagawa": "Kanagawa",
       "area_warehouse": "Shared warehouse (from 200 kg a month)",
-      "field_monthly": "Monthly volume (kg)",
+      "field_monthly": "Monthly volume",
       "field_frequency": "Frequency",
       "freq_weekly": "Weekly",
       "freq_biweekly": "Every 2 weeks",
