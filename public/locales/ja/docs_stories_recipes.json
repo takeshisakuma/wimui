@@ -448,7 +448,7 @@
     "area_tokyo": "東京",
     "area_kanagawa": "神奈川",
     "area_warehouse": "共同倉庫（月 200 kg から）",
-    "field_monthly": "月間の見込み量（kg）",
+    "field_monthly": "月間の見込み量",
     "field_frequency": "頻度",
     "freq_weekly": "毎週",
     "freq_biweekly": "隔週",
