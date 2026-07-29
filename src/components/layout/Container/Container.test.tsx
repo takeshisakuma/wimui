@@ -47,7 +47,12 @@ describe("Container", () => {
 
   it("applies arbitrary string size", () => {
     render(<Container size="50vw">VW</Container>);
-    expect(screen.getByText("VW")).toHaveStyle({ maxWidth: "50vw" });
+    // インラインの宣言で見る。`toHaveStyle` は getComputedStyle を通すため、
+    // ビューポート単位は解決されてしまう（実ブラウザも同じ。jsdom は 29 まで
+    // `50vw` をそのまま返していたが、30 で 512px＝既定ウィンドウ 1024 の
+    // 半分を返すようになった）。ここで確かめたいのは Container が渡された
+    // 文字列をそのまま max-width に置くことなので、解決前の値を見る。
+    expect((screen.getByText("VW") as HTMLElement).style.maxWidth).toBe("50vw");
   });
 
   it("renders as child element when asChild is true", () => {
