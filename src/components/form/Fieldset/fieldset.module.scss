@@ -20,6 +20,12 @@
       padding: 0;
       border: 0;
       border-radius: 0;
+
+      // legend の左右 padding は枠を切り欠いて見出しを載せるためのもの。
+      // 枠が無い plain では、見出しがフィールドより右にずれるだけになる。
+      > :global(.wim-legend) {
+        padding-inline: 0;
+      }
     }
 
     &:disabled {

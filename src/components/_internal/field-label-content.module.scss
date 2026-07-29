@@ -1,6 +1,9 @@
 @layer component {
   .text {
-    font-weight: var(--wim-font-weight-medium);
+    // 既定はフィールドラベルの medium。Legend のように「節見出し」として
+    // 別の太さを持つ器に置かれるときだけ、器側がこのフックで上書きする
+    // （`label` を渡した場合と children で書いた場合で太さが変わらないように）。
+    font-weight: var(--wim-field-label-font-weight, var(--wim-font-weight-medium));
   }
 
   .badge {
