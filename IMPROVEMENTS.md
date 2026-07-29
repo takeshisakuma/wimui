@@ -1,6 +1,6 @@
 # WIM UI 改善リスト（継続用）
 
-最終更新: 2026-07-29（**0.7.0 を公開**＝T32 の 2 枚目で出た穴 14 件のうち 11 件を出荷した「既定が変わる回」。あわせて **T45**（light パレットに面の分離が無く、コンポーネントが影に依存している）を起票。次の一手は下の「T32 の 2 枚目のあと（2026-07-29 の再開ポイント）」）  
+最終更新: 2026-07-29（**0.7.0 を公開**＝T32 の 2 枚目で出た穴 14 件のうち 11 件を出荷した「既定が変わる回」。あわせて **T45**（light パレットに面の分離が無く、コンポーネントが影に依存している）を起票。次の一手は下の「T32 の 2 枚目のあと（2026-07-29 の再開ポイント）」）。**同日続き: 回避策 4 つをすべて外した**（結果は同節「回避策を外した結果」。⑦ の残りは `SegmentedControl` を「省略せず横スクロール」へ倒して解消。ライブラリ側は 1 本の PR に、画面側は別 PR に分けた）  
 旧: 2026-07-28（**T32 の 2 枚目**「複数ステップのフォーム」を実装し、出た穴 14 件を起票＝下の「T32 の 2 枚目の結果」。うち **③ `FileUpload` の `aria-required`（axe critical）と ④ `Alert` の見出し順は a11y スイートが自動検出**した。**⑭ は VRT の構造的な盲点**＝①を直した #142 が 6 コンポーネント中 5 つで緑のまま通過したことから判明。0.6.0 は 1 枚目の終了時点でリリース済み）  
 旧: 2026-07-27（**T32 の 1 枚目**「管理テーブル」を実装し、出た穴 10 件を起票＝下の「T32 の 1 枚目の結果」。ガードの穴として **T40**（`src/` の生 UI 文字列）・**T41**（コントラスト検査がトークン止まりでコンポーネントの実使用を見ていない）・**T39**（合成ルールが 3 箇所に複製）を新規起票。DESIGN.md に必須ルール 12「クロームを黙らせる」と狭幅チェックを追加し、llms.txt / judge:slop にも反映）  
 旧: 2026-07-26（**T27〜T31** を起票。T27 Playground 再設計 + AI-slop ガード拡張(#108) / T28 コンポジション監査 + T30 prop 検出ガード(#109) / T29 docs の px 負債(#111) は完了。T31（docgen キャッシュキーの自動導出）も完了。**T32〜T37「使う側の穴の探索」を新規起票**＝221 コンポーネント中 176 が未合成という実測から。※起票時に T14〜T17 と番号が衝突していたため T27 以降へ採番し直し）  
@@ -344,6 +344,42 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 **判定**: 4 つとも外せて画面が素直になれば 0.7.0 は当たり。外せないものが残れば**そこが次に直す場所**。どちらに転んでも次の一手が決まる。VRT のベースラインは動くので最後に update を 1 回 → **close → reopen**（上の運用メモ参照）。
 
 **その結果で分岐**: 全部外せた → 3 枚目（AI アシスタント画面）へ。外せないものが残った → その修正を先に。
+
+##### 回避策を外した結果（2026-07-29 実測）
+
+**4 つとも外せた。** ただし ⑦ だけは「外したら壊れた」ので、**`SegmentedControl` 本体を直してから外した**（下記）。
+
+| 外すもの | 結果 | 実測 |
+|---|---|---|
+| `Alert` の `titleTag="h3"` | **外せた** | 予測どおり**ピクセルは動かない**。BEFORE の `h3` と AFTER の既定 `div` がボックス完全一致（x=391 / y=219.5 / w=760.2 / h=21、15px・600・行高 21px）。見出しは H1→H2 だけになり heading-order の余地が消えた |
+| `SegmentedControl` の pt 短縮ラベル | **外せた**（本体の修正が要った） | まず**そのまま外すと壊れた**: 390px の pt で `A cada duas semanas` は 164px、枠は 82px ＝ 半分で省略（`A cada d…`）。ページ横スクロールは 0 のまま＝#149 が直したのは**そこだけ**だった。**しかも短縮ラベルを戻した状態（＝0.7.0 の出荷形）でも省略していた**: en 768px の `Every 2 weeks`（107 → 93px）、pt 390px の `Sob pedido`（86 → 82px）。**600px では収まり 768px で切れる**（`cols={{ base: 1, sm: 2 }}` の 2 カラム化直後がいちばん狭い）。→ 下の修正後に長い pt ラベルへ戻して省略ゼロを確認 |
+| `Fieldset` を使わず `Card` 直下 | **外せた**（ライブラリ側の追加修正が要った） | 各ステップのフィールドを `Fieldset variant="plain"` + `Legend` に置換し `<fieldset>`/`<legend>` の意味論が戻った。axe は 6 ストーリー × light/dark = **12/12 緑**（スペックと同一設定）、group の accessible name = ステップ見出し |
+| 単位のラベル併記「（kg）」 | **外せた** | `field_monthly` から「（kg）」を落として `suffix="kg"` へ（en/ja/pt の 3 値を編集、**キー追加なし**）。`aria-describedby` にも載る |
+
+**⑦ の直し方（2026-07-29 決定・実装）**: **省略でも折り返しでもなく「入りきらないときだけ横スクロール」を既定のフォールバックにする。**
+
+- **却下した案**: (a) 省略＝選択肢を選ぶ前に読めなくなる（このコンポーネントは「全部を見て比べる」のが前提）。ellipsis + tooltip も、ホバーがタッチで出ない・省略同士が判別不能・WCAG 1.4.13 の要件と overlay 依存が付いてくるので不採用。(b) 折り返し＝2 段になると 1 つの整ったコントロールに見えず「四角いボタンの群れ」になる。加えて **`useIndicator` は `offsetLeft`/`offsetWidth` の 1 行前提**なのでスライダーが破綻する。
+- **実装**（`segmented-control.module.scss` の `.root` 3 行）: `grid-auto-columns` の下限を `0` → `max-content` にし、`overflow: auto hidden` を追加（スクロールバーは `CalendarHeatmap` と同じ 2xs の薄いもの）。**上限の `1fr` は据え置き**なので、余裕があるかぎり従来どおり等幅。詰まると各セグメントが内容幅を保ち、それでも入らなければ `.root` 自身がスクロールコンテナになる。DOM も prop も増やさない。
+- **なぜ prop（`fitContent` / `variant="fixed|auto"`）にしなかったか**: 実測で **`fullWidth` の有無は狭幅では 1px も変わらない**（390/768px で `fullWidth` あり/なしが完全一致。既定が既に `width: max-content` + `max-width: 100%` のため）。差が出るのは余白があるときだけ（1280px で 398.2 vs en 373.7 / pt 309.1）＝**prop を足しても ⑦ は直らず、既定の壊れ方も変わらない**。既定のまま使う利用者が踏み続ける形は ④⑤ で一度却下している。
+- **実測**: 省略は全ケースでゼロ。pt 390/320/768px でスクロール発生（368 > 298/228/332）、ページ横スクロールは 0、セグメント高さは 38px のまま（スクロールバーが高さを食っていない）。最後のセグメントが箱の端で切れる＝スクロール可能のチラ見せがそのまま成立。
+- **既存への波及なし**: `SegmentedControl` の全ストーリー（small/medium/large/two-options/with-icons/icon-only/long-label）と、#149 で赤になった `QueryBuilder`・`Token/Density`、`ThemeToggle` を 1280px で実測し、**すべて等幅のまま**（`with-icons` は #149 の記録と同じ 101.6px×3）。
+- **残る判断（未着手）**: 提案にあった **(d) ツールバー等の狭小固定領域で `Select` へ変形**は入れていない。スクロールさせたくない領域向けの別軸なので、必要になった時点で prop（例 `overflow="scroll" | "select"`）として判断する。
+
+**⑨ で出た角 2 件（どちらもライブラリ側）**:
+
+0. **`Legend` の型・実装・ドキュメントが三者不一致だった**（調査で判明、**案 A を採用して修正**）。①`label` が必須なので **docs の Usage サンプル `<Legend>Group title</Legend>` が tsc に通らない**（実証: TS2741。ストーリーは `{...args}` 経由なので通っていただけ）②children 経路と `label` 経路で**太さが違う**（実測 700 / 500。後者は `FieldLabelContent` の `.text` が medium で上書き）③`requiredLabel` / `optionalLabel` が**型では受かるのに転送されず** `<legend requiredlabel="必須です">` として DOM に漏れ、バッジは既定文言のまま（実証済み）。**対応**: `label?` へ緩和し、ラベルもバッジも無ければ `FieldLabelContent` ごと描かない（空の `<div><span></span></div>` が消える）＋ `requiredLabel`/`optionalLabel` を転送。**非破壊**（既存呼び出しは全て通る。`check:api` はスナップショット対象外で更新不要）。テスト 3 本を追加し、**旧実装に戻すと 3 本とも落ちることを実証**。申込画面は `<legend><h2 class="wim-title">…</h2></legend>` になり、`<span>` 内に見出しを入れる content model 違反が消えた。②は **700（bold）に統一**（2026-07-29 決定）＝ 枠を落とした `plain` では節を区切るのが文字の強さだけになるため。実装は `FieldLabelContent` の `.text` を `var(--wim-field-label-font-weight, var(--wim-font-weight-medium))` にし、`legend.module.scss` の `.root` でだけ bold を差す。**`--wim-field-label-font-weight: inherit` は不可**（カスタムプロパティの値としての CSS 全域キーワードは「親の同名プロパティを継承」と解釈され、値が空に落ちてフォールバックの medium になる。実測で判明）。他の `FieldLabelContent` 利用側（Input / NumberInput / CounterTextarea / 申込画面のフィールド）は **500 のまま**を実測で確認。**VRT**: `Fieldset` の 3 ストーリーは legend のテキストが太くなるのでベースラインが動く
+1. **`.plain` が `Legend` の `padding-inline: xs` を残していた** — 見出しがフィールドより **4.8px 右にずれる**（実測 h2 x=360.6 / fieldset・フィールド x=355.8）。枠を切り欠いて見出しを載せるための padding なので、枠の無い `plain` では不要。`fieldset.module.scss` の `.plain > :global(.wim-legend) { padding-inline: 0 }` で 355.8 に一致することを実測
+2. **`Legend` は `label` が必須**で `children` は label の後ろに出るため、見出しタグ（h2）を保ったままグループ名にするには `label={<Title tag="h2">…</Title>}` と流し込むしかない（DOM は `<legend><div><span><h2>`）。「legend を見出しの器として使う」経路が無い
+
+**副作用（VRT ベースラインは動く）**: 縦のリズムが 4px 変わる。`Legend` の `margin-bottom: md`（8px）が元の `Stack gap="2xs"`（4px）より広く、`Fieldset` の `gap: xl`（12px）が `Card` 直下の Stack gap（16px）より狭いため、Alert のあるストーリーでフィールド以下が 4px 上がる（実測 divider y=645.5 → 641.5）。
+
+**出し方（2026-07-29 決定）**: **PR は 2 本に割る。** ①**ライブラリ**（`Fieldset` の plain の legend padding + `Legend` の `label?` 緩和と `requiredLabel`/`optionalLabel` 転送 + legend の太さ統一 + `SegmentedControl` の横スクロール、**changeset は minor**＝`.changeset/lazy-donkeys-scroll.md`）②**画面**（回避策 4 つを外した `WholesaleApplication.stories.tsx` + i18n 3 値、VRT update 込み）。**①が先**（画面側は①が main に入らないと緑にならない）。VRT ベースラインが動くのは `Fieldset` 3 ストーリー（legend が太くなる）と申込画面（`Fieldset` 化で 4px）。
+
+**次の一手（2026-07-29 決定）**: **①がマージされた時点で 2 枚目は完了**とし、**3 枚目（AI アシスタント画面）へ進む**。
+
+**観察（穴とまでは言わない）**: `suffix` は `fullWidth` の数値フィールドだと右端に離れて置かれる（`45 ……… kg`）ので、単位と数値の視覚的な結び付きは弱い。
+
+**ゲート**: tsc / eslint / stylelint / check:api / check:aschild / audit:hardcoded / i18n:check / check:imports / audit-mdx / check:slop（52 のまま）すべて緑。unit は触った 6 コンポーネント 93 pass。axe はスペックと同一設定で **12/12 緑**（申込画面 6 × light/dark）＋ SegmentedControl 消費者 4 ストーリー × light/dark も緑。横スクロールは **6 ストーリー × en/ja/pt × 390/768/1280 の 54 通りすべて 0**。**VRT はローカル未実行**（Fieldset 化の 4px 差でベースライン更新が要る。SegmentedControl 側は 1280px 実測で等幅不変＝差分は出ない見込みだが未検証）。
 
 **画面作りをいつ止めるか（停止条件の提案・未決）**: 穴の数は減っていない（1 コンポーネントあたり **0.67 → 1.00**。1 枚目 15 個で 10 件、2 枚目 14 個で 14 件。カバレッジ 74/208 = 36%）。ただし追うべきは数ではなく**種類**で、2 枚目には既知の型の再発が 3 件混じっていた（⑩ `Text` の折返し ≡ 1 枚目 ⑥ の `Code`／⑥ inline `Code` と ⑫ `Icon` の色 ≡ どちらも T41 型）。**その画面の穴の過半が「既知の型の再発」になったら、画面作りを止めてガード（T40 / T41）へ移る**、を停止条件にしてはどうか。T38 で学んだとおり、カテゴリでの先送りには自然な停止点が無いため、先に決めておく。
 
