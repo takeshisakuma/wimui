@@ -406,7 +406,7 @@
     "@hookform/resolvers": "5.5.7",
     "@playwright/test": "^1.59.0",
     "@size-limit/esbuild": "12.1.0",
-    "@size-limit/file": "^12.0.1",
+    "@size-limit/file": "^13.0.1",
     "@storybook/addon-a11y": "10.5.5",
     "@storybook/addon-docs": "10.5.5",
     "@storybook/addon-mcp": "0.7.0",
