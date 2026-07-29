@@ -76,12 +76,15 @@ export async function waitForStoryReady(page: Page) {
       // FieldError や InputGroup のような、アニメーションも画像も無いテキスト主体の
       // ストーリーだった）。`fonts.ready` は「保留中の読み込みが無い」までしか保証せず、
       // 未要求のフォントには反応しないので、実際に使えるかを check() で確かめる。
-      const deadline = Date.now() + timeoutMs;
-      const wanted = ['400 16px "Noto Sans"', '700 16px "Noto Sans"'];
-      while (Date.now() < deadline && !wanted.every((f) => document.fonts.check(f))) {
-        await new Promise((r) => setTimeout(r, 50));
-        await document.fonts.ready;
-      }
+      // ポーリングで待つと、check() が false のままのストーリーで毎回 5 秒を
+      // 使い切る（実測: 6 テストが 14 秒 → 6.4 分、CI も 8 分 → 18 分超）。
+      // load() は必要なフェイスを能動的に読ませてから解決するので待ち時間が
+      // 実費だけになる。フォントが取れない環境でも解決するよう catch する。
+      await Promise.all(
+        ['400 16px "Noto Sans"', '700 16px "Noto Sans"'].map((f) =>
+          document.fonts.load(f).catch(() => undefined),
+        ),
+      );
 
       const settled = (img: HTMLImageElement) =>
         img.complete
