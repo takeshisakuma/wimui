@@ -1,5 +1,11 @@
 @layer component {
   .root {
+    // `label` 経由のテキストも legend 自身の太さに揃える。これが無いと
+    // `<Legend label="X" />` は medium、`<Legend>X</Legend>` は bold になる。
+    // （`inherit` は不可＝カスタムプロパティの値としての CSS 全域キーワードは
+    //   「親の同名プロパティを継承」の意味になり、値が空に落ちる。実測済み）
+    --wim-field-label-font-weight: var(--wim-font-weight-bold);
+
     float: left;
     box-sizing: border-box;
     display: table;

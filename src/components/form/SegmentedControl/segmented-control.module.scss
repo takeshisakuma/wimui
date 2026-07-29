@@ -7,21 +7,34 @@
 
     display: inline-grid;
 
-    // `1fr` は暗黙に min-width: auto を持つのでトラックが min-content 未満に
-    // 縮まない。結果、親より狭くできず `.label` の ellipsis も一生効かないまま
-    // 黙って切れる（実測: 320px のビューポートで 367px のまま＝ページが 79px
-    // 横スクロールした）。ラベル長は i18n で変わるので、en で収まることは
-    // 何の保証にもならない。
-    // 下限を 0 にするだけ。上限の `1fr` は据え置く＝**セグメントの等幅は
-    // このコンポーネントの見た目そのもの**なので変えない（`auto` にすると
-    // 内容幅になり、1280px で 101.6px×3 だったものが 78.5/88.7/96.7 に割れる）。
-    grid-auto-columns: minmax(0, 1fr);
+    // 上限の `1fr` は据え置く＝**セグメントの等幅はこのコンポーネントの見た目
+    // そのもの**なので、余裕があるかぎり等幅（1280px で 101.6px×3）。
+    // 下限は 0 ではなく `max-content`。0 だと入りきらないときにラベルが
+    // ellipsis で切れるが、セグメンテッドコントロールは「全部の選択肢を読んで
+    // 比べる」UI なので、選ぶ前に読めなくなる省略は許容できない（実測: pt 390px
+    // で `A cada duas semanas` の 164px が 82px に、en は 768px で `Every 2 weeks`
+    // が切れていた。ラベル長は i18n で変わるので en で収まることは保証にならない）。
+    // 下限を内容幅にするとトラックが箱をはみ出し、`.root` 自身がスクロール
+    // コンテナになる＝詰まってきたら内容幅、それでも入らなければ横スクロール。
+    grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
     width: max-content;
 
-    // 親からはみ出さない。これが無いと縮む余地が生まれない。
+    // 箱自体は親に収まる。ページや親が横スクロールしないのはこれのおかげ。
     max-width: 100%;
+
+    // はみ出しは横スクロール（縦はスライダーの都合で従来どおり hidden）。
+    overflow: auto hidden;
     user-select: none;
+
+    &::-webkit-scrollbar {
+      height: var(--wim-spacing-2xs);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--wim-color-border);
+      border-radius: var(--wim-radius-full);
+    }
 
     &.fullWidth {
       display: grid;
