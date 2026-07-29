@@ -6,6 +6,20 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 5
     groups:
+      # size-limit のプラグインは peer で core を完全一致指定する
+      # （@size-limit/esbuild@13.0.1 → peerDependencies { "size-limit": "13.0.1" }）。
+      # 1 本ずつ上がると npm ci が ERESOLVE で必ず落ちるため、major も含めて
+      # 3 パッケージを 1 PR にまとめる。minor-and-patch より前に置くこと
+      # （先に一致したグループが優先されるため、"*" に吸われると major が分離する）。
+      size-limit:
+        applies-to: version-updates
+        patterns:
+          - "size-limit"
+          - "@size-limit/*"
+        update-types:
+          - "minor"
+          - "patch"
+          - "major"
       # minor / patch は1本の PR にまとめる（CI 緑ならそのままマージ可）
       minor-and-patch:
         applies-to: version-updates
