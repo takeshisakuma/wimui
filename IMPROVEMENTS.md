@@ -148,7 +148,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T41 | コントラスト検査を「トークン」から「コンポーネントの実使用」へ | **P1** | 起票 2026-07-27（T32 の穴 ②）。`check:contrast`（T34）は **outline の文字色を `text-{intent}` ロールで解決する前提**（`check-contrast.js:121`）で 126 組すべて緑。しかし `Button` の SCSS は `color: var(--wim-color-danger)` を直接使っており、**SSOT を迂回している事実がガードから見えない**。結果 dark の `outline`×`danger` が 4.35:1 で出荷されていた。`color:` に intent 色を直接使う箇所は src 全体で **50 件**あり、同型が他にもある可能性が高い。Button のストーリーに `outline`×`danger` の組み合わせが 1 つも無かったため a11y スイートも見ていなかった | ①短期: `*.module.scss` で `color:` に `--wim-color-{intent}` を直接使っている箇所を列挙し、`text-{intent}` へ寄せる（または例外として明示） ②恒久: コントラスト検査を SCSS の実際の `color` / `background-color` ペアから解決する方式へ寄せる ／ **受け入れ条件**: 現行の `button.module.scss:165` に対して**鳴ること**を実証する |
 | T42 | 生成物の再生成をコミット時に強制する | **済** | 起票 2026-07-27（#132 が `check:llms` で落ちたことから）。`llms.txt` は docgen（＝コンポーネントの props/tokens）由来なので、**prop を 1 つ変えるだけで古くなる**。しかし lint-staged は `llms:build` を呼んでおらず、CI の `audit:docs` で初めて落ちる＝「再生成が要る」という依存が人間の記憶に残っていた。同種の依存は既に `generate → stage-generated.js` の対で自動化されている（i18n リソース / アイコン / intents の 3 箇所）のに、llms.txt だけ輪の外にあった。**リリース PR で同じ形の事故が既にある**（#116 → #117。`changeset version` 後にバージョンが埋まった `llms.txt` が不一致になりマージ不能） | lint-staged に `generate-llms.js` ＋ `stage-generated.js public/llms.txt public/llms-full.txt` を追加（入力は `src/components/**/*.{ts,tsx}` / `*.module.scss` / `public/locales/en/**` / `src/data/components.json` / `scripts/slop-dictionary.json` / `scripts/generate-llms.js`）。**あわせて `generate-llms.js` が docgen を「無いときだけ生成」していたのを毎回更新に変更**（古い docgen JSON から生成すると、ローカルは整合して見えるのに CI（クリーンチェックアウト＝毎回生成）だけ落ちるため。キャッシュが効くので warm 0.6 秒） ／ **受け入れ条件**: prop の説明を 1 行変えて `lint-staged` を通し、`public/llms-full.txt` が**再生成されてステージまでされること**を実証する（実証済み: プローブ 2 回とも `llms-full.txt` に反映＋自動ステージを確認） |
 | T43 | VRT の非決定的ストーリー 4 件の始末 | **P2** | 起票 2026-07-27（#135 で顕在化）。ベースラインを update で撮り直したあと、**同じコミットの compare で 4 件が落ちた**: `snackbar--default`(dark) / `toast--success`(dark) / `voicevisualizer--large-height`(dark) / `audio--premium-features`(light)。これは T11 が定めた除外基準（同一コミットで update→compare が落ちる）にそのまま当てはまる。main では緑なので、**古いベースラインがたまたま安定した瞬間を捉えていただけ**で、撮り直すと不安定さが表面化する。#135 では 4 件を main の版へ戻して回避した（＝爆弾は残っている） | 原因の見当: Snackbar/Toast は `autoHideDuration` のタイマー（VRT の `clock.setFixedTime` は Date を固定するがタイマーは止めない）、Audio/VoiceVisualizer はメディア読み込み。**対応候補**: ①ストーリー側で `autoHideDuration={0}` 等の決定化 ②`NONDETERMINISTIC_STORY_IDS` へ追加。①のほうが可視カバレッジを失わないので優先 ／ **受け入れ条件**: 4 件について update → 同一コミットで compare を 2 回連続で緑にできること |
-| T44 | VRT の閾値が小領域の変化を構造的に見られない | **P1** | 起票 2026-07-28（T32 の 2 枚目 ⑭）。`vrt/vrt.spec.ts:133` の `maxDiffPixels: 400` は **fullPage スクショに対する**閾値。`size="sm"` のアイコンは実測 14×14〜16×16 ＝ **最大でも 196〜256px しか動かず、閾値を数学的に超えられない**。#142 で実証された: 6 コンポーネントすべてでグリフが変わったのに、VRT が落ちたのは 80×80 のアイコンを持つ `Result` だけ（6400px）で、**Alert / Banner / Notification / Snackbar / Toast は緑のまま通過**した。同じ盲点にバッジのドット・フォーカスリング・ヘアライン幅のボーダー・14px 前後のアイコン全般が入る。**「VRT が緑」は小領域の変化について何も意味しない**。#142 では 5 コンポーネント分の単体テスト（`FeedbackIcon.consumers.test.tsx`）で個別に塞いだが、これは同型の穴が出るたびに手で塞ぐ形で、構造的な解決ではない | **対応候補**: ①`maxDiffPixelRatio` へ寄せる（ページ面積に比例させる。ただし小さいストーリーほど厳しくなり、既存のジッタ許容 ≤220px と衝突しないか要実測） ②fullPage をやめて対象要素単位のスクショにする（面積が縮むので同じ 400 でも効く。ストーリー側に撮影対象の指定が要る） ③閾値は据え置き、小領域の変化は単体テスト側で担保する方針を明文化する。**いずれもベースライン全面更新を伴う**ため単独の作業として切ること ／ **受け入れ条件**: `FeedbackIcon.tsx` を #142 以前の「全部塗り丸」に戻した状態で、**Alert / Banner / Notification / Snackbar / Toast の VRT が落ちること**を実証する（現行は 5 件とも緑のまま通る＝これが再現手順そのもの）<br>**計測済み（2026-07-29）＝案①が成立する。実装は途中**。下の「T44 の計測結果」参照 |
+| T44 | VRT の閾値が小領域の変化を構造的に見られない | **P1** | 起票 2026-07-28（T32 の 2 枚目 ⑭）。`vrt/vrt.spec.ts:133` の `maxDiffPixels: 400` は **fullPage スクショに対する**閾値。`size="sm"` のアイコンは実測 14×14〜16×16 ＝ **最大でも 196〜256px しか動かず、閾値を数学的に超えられない**。#142 で実証された: 6 コンポーネントすべてでグリフが変わったのに、VRT が落ちたのは 80×80 のアイコンを持つ `Result` だけ（6400px）で、**Alert / Banner / Notification / Snackbar / Toast は緑のまま通過**した。同じ盲点にバッジのドット・フォーカスリング・ヘアライン幅のボーダー・14px 前後のアイコン全般が入る。**「VRT が緑」は小領域の変化について何も意味しない**。#142 では 5 コンポーネント分の単体テスト（`FeedbackIcon.consumers.test.tsx`）で個別に塞いだが、これは同型の穴が出るたびに手で塞ぐ形で、構造的な解決ではない | **対応候補**: ①`maxDiffPixelRatio` へ寄せる（ページ面積に比例させる。ただし小さいストーリーほど厳しくなり、既存のジッタ許容 ≤220px と衝突しないか要実測） ②fullPage をやめて対象要素単位のスクショにする（面積が縮むので同じ 400 でも効く。ストーリー側に撮影対象の指定が要る） ③閾値は据え置き、小領域の変化は単体テスト側で担保する方針を明文化する。**いずれもベースライン全面更新を伴う**ため単独の作業として切ること ／ **受け入れ条件**: `FeedbackIcon.tsx` を #142 以前の「全部塗り丸」に戻した状態で、**Alert / Banner / Notification / Snackbar / Toast の VRT が落ちること**を実証する（現行は 5 件とも緑のまま通る＝これが再現手順そのもの）<br>**済（2026-07-30・#176）** — 閾値 50（案①ではなく素の `maxDiffPixels` 引き下げ。案①より単純で、残ジッタ 11px と信号 68〜176px の間に十分な余地があった）。受け入れ条件も実証済み＝`FeedbackIcon` を戻すと `Alerts & Notifications` 106 件中 36 件が落ちる。下の「T44 の計測結果」と「⑤ 受け入れ条件の実証」「撮り直した 226 枚の仕分け」参照 |
 | T45 | light パレットに面の分離が無く、コンポーネントが影に依存している | **P2** | 起票 2026-07-29（`Alert` の影が妥当かという相談から実測して判明）。DESIGN.md のアンチパターン表は「サーフェス階層トークンで面を分ける。影/枠は操作を誘導する要素だけに」と定めているが、**light テーブルではその処方が成立しない**。ページ（`surface-app` #f5f5f5）に対し、置ける面がどれも 1.1〜1.2:1 に収まるため: 現行の frosted（白 80%）1.07:1 ／ 純白 `surface` 約 1.10:1 ／ `surface-variant` 約 1.19:1 ／ 標準ボーダーを当てた縁でも 1.16:1（dark は 1.85:1）。結果、**面の輪郭は影が担っている**。`Alert` から `box-shadow` を外すと `intent="default"` が輪郭を失うことを実測で確認（`border` が既定で `solid transparent` のため縁も無い）。つまり `Alert` の影は症状であって原因ではなく、ここだけ直すと「ルールは守ったが読めない」になる。**※`backdrop-filter` は無意味ではない** — 単色の上でも 5.49%、模様の上では 99.70% のピクセルが変わる（当初「流し込みでは無意味」と見立てたが実測で否定された） | トークン側で面に実効的な段差を作る（`surface-app` を落とす / `surface` 系の段を作り直す等）。**影響はライブラリ全体・VRT 全面更新**なので T44 と同様に単独で切る ／ **受け入れ条件**: `Alert intent="default"` から `box-shadow` を外しても面が判別できること（現行 1.07:1 → 目標を決めて実測）。あわせて **`Card` の中に `Alert` を置くと枠付きの面の中に影付きの島が出る＝必須ルール 9 の二重フレーム**になる件も解消できるか確認する |
 | T46 | 外部語彙との対応表（別名／エイリアス）を持つ | **P2** | 起票 2026-07-30（namethatui.com の用語一覧との突き合わせから）。**穴の大半は「無い」ではなく「名前が違って見つからない」だった**。相手側 33 の macOS 用語のうち大半に実体があるのに、語彙が一致しない: Scrim/Backdrop=`OverlayBase`・Source List=`Sidebar`・Token Field=`TagInput`・Outline View=`TreeView`・Column View=`Cascader`・Overflow Menu(The Three Dots)=`Dropdown`・Pop-Up/Pull-Down Button=`Select`/`Dropdown`・Color Well=`ColorInput`・Level Indicator=`PasswordStrength`/`UsageMeter`・Pill=`Chip`/`Tag`・Sheet=`BottomSheet`・Inspector=`Sidebar`・Sticky/Fixed=`Affix`・Search Field=`SearchInput`・Disclosure=`Accordion`。**さらに危険な衝突が 1 件**: macOS の **Stepper は数値増減（WIM では `NumberInput`）**だが WIM の `Stepper` は手順表示＝同じ語で別物。探した人・AI が確実に取り違える | **置き場所は `src/data/components.json`（新しい SSOT を作らない）**。既に ①`docs/componentList.mdx`（人向けカタログ・ブラウザ ⌘F が効く） ②`docs/NavigationElementsSelection.mdx` ③`scripts/generate-llms.js`（**llms.txt = AI 向け主配信**） ④`scripts/check_consistency.js` が読んでいる。**lint-staged が `components.json` 変更時に llms.txt を自動再生成＋ステージする**（`package.json:611`）ので AI 経路は追加機構ゼロで届く。**i18n の負荷も無い**: `check_stories_keys.js` は `*Key` で終わるフィールドしか検証しない（`scripts/check_stories_keys.js:90`）ので生文字列で置ける。`check_consistency.js` も `comp.name` だけ見るのでフィールド追加で壊れない（いずれも 2026-07-30 に確認済み）。**データ形**: `aliases: []`（同義語）と `disambiguation`（他所では別の意味で使われる語。`Stepper` はここ。別名にすると 1 語 2 解になる）を分ける。**範囲は 221 全部ではなく 40〜60 語**＝外部語彙と実際にズレているものだけ。**別名は実在の体系（Apple HIG / Material / ARIA APG / Radix / MUI）が使っている語に限る**（自分で同義語を発明するとキーワード詰め込み＝`judge:slop` 案件になる）。**やらないこと**: Storybook サイドバー検索への注入（story タイトル/tags を汚す。人向けはカタログ ⌘F、機械向けは llms.txt で足りる） ／ **受け入れ条件（ガード）**: ①別名が既存コンポーネント名と一致したら落ちる（`Stepper` 型の事故） ②別名が全体で一意でなければ落ちる ③空文字・同一コンポーネント内の重複で落ちる。**3 つとも故意に違反を作って、通る経路すべて（ローカル全量 / lint-staged の部分集合 / CI）で鳴ることを実証してから完成**（`check:slop` が lint-staged 経由で素通りしていた件と同型の穴があり得る） |
 | T47 | 追加予定コンポーネント（外部語彙との突き合わせで出た実装の穴） | **P2** | 起票 2026-07-30（同上）。namethatui の Web 37 項目のうち実装が無いのは以下。コード確認済み。<br>①**Progress Ring（円形プログレス）** — `Progress` の prop は `value/max/intent/size/label/showValue/indeterminate` のみ＝**線形専用**。SVG のリング描画はリポジトリ内に 0 件（`GaugeChart` はチャート、`Spinner` は不定）。**明確な穴**<br>②**SplitButton（macOS の Combo Button）** — `SplitButton`/`split-button` の該当 0 件。`ButtonGroup`+`Dropdown` で組めるが部品もパターンも無い（`SpeedDial` は FAB で別物）<br>③`Text` の **`lineClamp`** — `Text` は `truncate`（1 行省略）のみ。多行は `Spoiler`（line-clamp）だが**必ず開閉トグルが付く**ので「3 行で止めるだけ」ができない<br>④**Panel / HUD（移動できる浮遊パネル）** — ドラッグは `Kanban`/`SortableList` のみ。Web では需要が薄く**保留**<br>⑤**Parallax Scrolling / Text Scramble / Spring Animation** — いずれも 0 件（`ScrollProgress` は別物、`StreamingText` はタイプライタ系、`Transition` は CSS ベース） | ①②③は実装候補（**①②は T32 の 3 枚目＝AI アシスタント画面でも出番がありそう**なので、その画面を作る回に合わせると合成検証つきで入る）。⑤は **DESIGN.md の「AI 的な画面を避ける・演出は控える」と正面から当たる**ので「無い」ではなく**「採らない」を明文化**する（llms.txt に書けばエージェントの自作も抑えられる。`backdrop-filter`/Vibrancy を実測で棄却した記録と同じ扱い） ／ **注意**: 追加時は `src/data/components.json` / `src/<category>.ts` / MDX / 翻訳キーまで CLAUDE.md の最短手順どおり通すこと |
@@ -712,10 +712,71 @@ npm run check:aschild     # asChild 必須リスト
 ### それ以前（要約）
 - VRT・ダーク安定化、Toolbar / Menubar、asChild 高中優先、エクスポート DX、Props i18n leaf など一式
 
-#### T46 の初回投入とメニュー語彙ページ（2026-07-30。ブランチ `docs/menu-vocabulary` で作業中）
+##### ⑤ 受け入れ条件の実証（2026-07-30 **達成**）
 
-**済（push 済み）**: アイコン 2 つ（`menu` = 等長 3 本線 / `grid` = 3×3）と、**T46 の最初のエイリアス 3 件**（`Dropdown` / `HamburgerMenu` / `BentoGrid`）。`generate-llms.js` を 1 箇所拡張して `llms.txt` が `(aka Overflow Menu, Kebab Menu, …)` を出すようにした（実出力を確認）。`api-snapshot.json` も更新（アイコン追加＝公開サーフェスが増える）。
+`FeedbackIcon` を #142 以前（danger / warning / info が `CircleIcon` だった版）に戻すと、閾値 50 のスイートは **`Alerts & Notifications` 106 件中 36 件で落ちる**（light 18 / dark 18）。事前の見積もりは「5 コンポーネント × light/dark = 10 枚」だったが、実際にはアイコンを描くストーリーが 1 コンポーネントにつき複数あり、Alert / Banner / Notification / Snackbar / Toast の 36 枚が鳴った。
+
+**実測した信号（ローカル Windows / chromium）**: Alert - Danger 69px、Banner - Warning 70px、Notification - Info 88px、Snackbar - Danger 70px、Toast - Info 68px。
+
+これが結論の核心で、**同じ差分が旧閾値 400 では 1 枚も落ちない**。#142 が 6 コンポーネント中 5 つで素通りしたのは、まさにこの桁の差による。16px グリフの差し替えは数十〜百数十 px にしかならず、400 は数学的に検出できない値だった。
+
+なお閾値の根拠として記録していた「信号 139〜176px」は別環境での測定で、今回の Windows ローカルでは 68〜88px と約半分だった。**環境によって信号量は 2 倍動く**が、50 < 68 < 400 の関係は変わらないので閾値 50 の判断には影響しない。ジッタ側の残存が 11px（Tabs - Scrolling）であることと併せて、50 は下から 6 倍・上から 1.4 倍の位置にある。
+
+**鳴ってはいけない経路で鳴らないこと**: #176 の CI は正しいコードのまま VRT compare 4 シャードすべて緑（撮り直した linux ベースライン 226 枚に対して）。Lint & Type Check / Vitest も緑。
+
+**手順**（再現するとき。`test/vrt-threshold-50` ブランチで）:
+
+1. 正しいコードのまま `npm run build-storybook`
+2. `CI=1 npx playwright test vrt/vrt.spec.ts --update-snapshots -g "Alerts & Notifications"`（106 テスト）でローカル baseline を撮る
+3. `git show 5a315dfc4~1:src/components/_internal/FeedbackIcon.tsx > src/components/_internal/FeedbackIcon.tsx`
+4. **もう一度 `npm run build-storybook`**
+5. `CI=1 npx playwright test vrt/vrt.spec.ts -g "Alerts & Notifications"` → 落ちた枚数と px を確認
+6. 片付け: `git checkout -- src/components/_internal/FeedbackIcon.tsx` と `rm -f vrt/vrt.spec.ts-snapshots/*win32*`（win32 は実験用の未追跡ファイル。**絶対にコミットに混ぜない**）
+
+**踏んだ落とし穴（同じ轍を踏まないため）**:
+
+- **④ の再ビルドを飛ばすと実証が成立しない。** VRT は `storybook-static` に対して走るので、`src/` を書き換えてもビルドしないと反映されない。1 回目の試行はこれで `106 passed` になり、「落ちなかった」ではなく「変更が届いていなかった」だった
+- **テストタイトルは `Components/Alerts & Notifications/…` で `&` が入る。** `-g "Alerts Notifications"` は 1 件もマッチしない
+- **`-g` が 0 件マッチでも Playwright は静かに成功する。** 必ず実行件数を見ること（106 なのか 0 なのか）
+- **px を採りたいなら出力を `tail` で切らない。** 落ちた一覧はサマリに出るが px 値は各失敗ブロックにしかないので、切り詰めると証拠が残らず取り直しになる
+
+##### 撮り直した 226 枚の仕分け（2026-07-30。**回帰は出なかった／見逃していた修正が 200 件超あった**）
+
+閾値 50 でベースラインを撮り直した `57a6c90bf` は **226 枚すべてが M（変更）で追加は 0**。つまり「新しいストーリーが増えた」のではなく、**既存の絵が 226 枚変わっていたのを誰も見ないまま新ベースラインとして確定した**。全部が旧閾値 400 未満＝**#142 と同じ隠れ方をした差分の集合**なので、中身を割った。
+
+**位置による分類は使えなかった。** 差分の広がり（クラスタ数・縦方向のスパン）で「フォント由来＝全面に散る／コンポーネント変更＝一箇所」を分ける当初案は、`Badge` や `Code - Inline` のように**そもそも小さなテキストしか置いていないストーリー**がフォント差分でも局所的に見えるため成立しない（LOCALIZED と判定された 111 件の大半がこれ）。
+
+**履歴による帰属も単独では決まらない。** 各画像の前回ベースライン以降にそのコンポーネントのソースが変わったかを見ると 147 / 61 / 18（変更あり / 無し / パターン等で未解決）に割れるが、`_internal/FeedbackIcon`（#142）のような共有部品は component ディレクトリの履歴に出ないうえ、**#171（フォント自前化）と #175（アニメーション停止）は全画像に対するアリバイになる**。
+
+**効いたのは差分領域の平均色の移動量**（`sqrt` 距離、旧 vs 新）。フォントのにじみは同じ前景色と背景色の間でピクセルが入れ替わるだけなので平均色がほぼ動かず、グリフ差し替え・色トークンの変更・境界線の追加は動く。この順で並べて上位と下位の両方を目視した:
+
+| 順位 | 対象 | 変化 | 原因 |
+|---|---|---|---|
+| 1 | `OtpInput - Danger / Disabled` | **6 個の空箱 → `1 2 3 4 5 6`** | #141「マウント時の value が表示されない」の修正。**実バグが数週間ベースラインに写っていた** |
+| 2 | `ErrorBoundary - Custom Fallback`(dark) | 成功文言が判読困難な暗緑 → 明るい緑 | text トークン切替 |
+| 4 | `Stats - With Trend`(dark) | Trend が鮮やかな緑 → 淡い緑 | 同上。**要判断**（下記） |
+| 13 | `SearchInput - Default` | 検索アイコンがほぼ見えない薄灰 → 濃色 | #150（`secondary` が fill 色だった件） |
+| 25 | `EmptyState - Custom Action`(dark) | `+` アイコンが白 → 灰 | 同上。**要判断** |
+| 61 | `Sparkline - Default`(dark) | 線が鮮やかな青 → 淡い青 | `feat(tokens): soft charts` |
+| 121 | `PasswordStrength - Default` | 同色・グリフ形状のみ | フォント（#171） |
+| 201 | `Badge - Outline` | 同色・グリフ形状のみ | フォント（#171） |
+
+**境界は平均色シフト 41〜69 のあたり**にある（順位 61 はまだ実変更、121 は既にフォント）。上位＝実変更、下位＝フォント描画差、という並びは目視で両側から確認した。
+
+**結論**: **回帰は見つからなかった。** 226 枚の大半は「**直したのに VRT が記録していなかった**」もので、T44 の主張を裏づける実データになった。とくに `OtpInput` は、コンポジション画面（T32）が見つけた実バグの修正すら VRT には最後まで見えていなかったことを示している。
+
+**残る判断事項（デザイン判断なので単独で切る）**:
+
+- `Stats - With Trend` の上昇トレンドが淡い緑になった。コントラストは上がったが**「成功」として読めるか**は別問題（既知の落とし穴「`Stats.Trend` の up=成功色固定」と同じ論点）
+- `EmptyState` の `+` が白→灰で目立たなくなった。`secondary` の正しい適用ではあるが、空状態の主役アイコンとして妥当か
+
+**注意**: `57a6c90bf` は #176 の squash マージでリーチャブルでなくなる。上記を再現するならローカルの reflog が生きているうちに。仕分けスクリプト 3 本（クラスタ分類 / 履歴帰属 / 平均色シフト + 切り出し）はリポジトリには入れていない。ベースライン更新のたびに同じ点検を回すなら、平均色シフトの順位表を update PR に添える形が候補。
+#### T46 の初回投入とメニュー語彙ページ（2026-07-30 着手）
+
+**済**: アイコン 2 つ（`menu` = 等長 3 本線 / `grid` = 3×3）と、**T46 の最初のエイリアス 3 件**（`Dropdown` / `HamburgerMenu` / `BentoGrid`）。`generate-llms.js` を 1 箇所拡張して `llms.txt` が `(aka Overflow Menu, Kebab Menu, …)` を出すようにした（実出力を確認）。`api-snapshot.json` も更新（アイコン追加＝公開サーフェスが増える）。
 
 **アイコンを増やさなかったもの（判断）**: ホットドッグ / タコス・ナチョス / チョコバー / ストロベリー / ベーコン。**形の俗称であって「その形でしか表せない機能」が無い**（`filter` の漏斗がソート/フィルタ意図を既にカバー）。作れば `check:api` のスナップショットとバンドルに載り続けるので、需要シグナルが出るまで語彙としてのみ扱う。
 
-**未着手（次はここから）**: **`docs/MenuVocabulary.mdx`** ＝ `<Meta title="Components/Navigation Elements/Menu vocabulary" />`（既存 Overview の隣に置く）。表の列は **正式名（主）→ 俗称（副）→ 見た目 → WIM で使うもの → 避ける場面**。正式名を主見出しにするのは、俗称は言い伝えで揺れる一方 ARIA/HIG と対応が取れるのは正式名の側だから。掲載する 7 群: Overflow menu（ケバブ/ミートボール→`Dropdown`）/ Navigation drawer trigger（ハンバーガー/サンドイッチ→`HamburgerMenu`）/ App switcher（ベントー/ワッフル→`BentoGrid`・`Dropdown`）/ Filter・Sort control（ドネル/タコス→`filter` + `Dropdown`・`QueryBuilder`）/ Context menu（→`ContextMenu`）/ Speed dial（→`SpeedDial`）/ 「俗称のみ」欄（ホットドッグ・チョコバー・ストロベリー・ベーコン・パンケーキ・チーズバーガー）。**コスト**: `<T k="…" />` 必須（`check-mdx-hardcoded` はハードゲート）で**新規キー 40 前後 × en/ja/pt、ja/pt は手翻訳**（この環境は API キー未設定）。`audit-mdx` の必須セクションにも合わせること。**PR はこのページまで入れてから 1 本で出す**（ユーザー判断）。
+**未着手（次はここから）**: **`docs/MenuVocabulary.mdx`** ＝ `<Meta title="Components/Navigation Elements/Menu vocabulary" />`（既存 Overview の隣に置く）。表の列は **正式名（主）→ 俗称（副）→ 見た目 → WIM で使うもの → 避ける場面**。正式名を主見出しにするのは、俗称は言い伝えで揺れる一方 ARIA/HIG と対応が取れるのは正式名の側だから。掲載する 7 群: Overflow menu（ケバブ/ミートボール→`Dropdown`）/ Navigation drawer trigger（ハンバーガー/サンドイッチ→`HamburgerMenu`）/ App switcher（ベントー/ワッフル→`BentoGrid`・`Dropdown`）/ Filter・Sort control（ドネル/タコス→`filter` + `Dropdown`・`QueryBuilder`）/ Context menu（→`ContextMenu`）/ Speed dial（→`SpeedDial`）/ 「俗称のみ」欄（ホットドッグ・チョコバー・ストロベリー・ベーコン・パンケーキ・チーズバーガー）。**コスト**: `<T k="…" />` 必須（`check-mdx-hardcoded` はハードゲート）で**新規キー 40 前後 × en/ja/pt、ja/pt は手翻訳**（この環境は API キー未設定）。`audit-mdx` の必須セクションにも合わせること。
+
+**PR の切り方（2026-07-31 に変更）**: 当初は「MDX まで入れて 1 本で出す」方針だったが、**アイコンとエイリアスを先に出し、MDX は別 PR**に分けた。前者は検証済みで自己完結しており、翻訳待ちの MDX に出荷を人質に取らせないため。
