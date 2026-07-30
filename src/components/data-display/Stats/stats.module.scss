@@ -40,19 +40,30 @@
     font-weight: var(--wim-font-weight-semibold);
     border-radius: var(--wim-radius-sm);
 
+    /* 面はティント、ステータスの札は塗り。ティント（15%）は面を分けるための
+       ものなので、値の脇に置く小さな札には弱い。塗りに使う色は `success` /
+       `danger` ではなく `text-*` の方で、こちらは既にテーマごとにコントラストが
+       調整されている（`success` を塗ると白抜きが 4.65:1 しか出ない）。
+       文字は白固定にできない — dark の `text-success` は淡い緑なので白抜きだと
+       1.43:1 になる。`surface` は light=#fff / dark=#393939 でカードの面と一致し、
+       札が面から切り抜かれたように見える。`text-on-success` は塗り用 `success`
+       前提の値（dark でも #fff）なのでここでは使えない。 */
+
+    /* up だけ text-success ではなく comp トークンを使う。理由は
+       `_component-colors.scss` の該当行を参照（dk12 は塗りには暗すぎる）。 */
     &.up {
-      color: var(--wim-color-text-success);
-      background-color: oklch(from var(--wim-color-success) l c h / 0.15);
+      color: var(--wim-color-surface);
+      background-color: var(--wim-comp-trend-up-fill);
     }
 
     &.down {
-      color: var(--wim-color-text-danger);
-      background-color: oklch(from var(--wim-color-danger) l c h / 0.15);
+      color: var(--wim-color-surface);
+      background-color: var(--wim-color-text-danger);
     }
 
     &.neutral {
-      color: var(--wim-color-text-tertiary);
-      background-color: var(--wim-color-disabled);
+      color: var(--wim-color-surface);
+      background-color: var(--wim-color-text-tertiary);
     }
   }
 

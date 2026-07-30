@@ -20,6 +20,12 @@
   --wim-comp-heatmap-level-2: #7fc97e;
   --wim-comp-heatmap-level-3: #28853f;
   --wim-comp-heatmap-level-4: #306f42;
+
+  /* Stats.Trend の塗り。PCCS dp12。text-success は dk12 で、これは「subtle
+     ティントの上に載る文字」として 1 段暗くした値なので、塗りに転用すると
+     danger（dp2）より暗い緑になる。dp12 なら白抜きで 6.03:1（dk12 は 7.98:1、
+     s12 まで明るくすると 4.65:1 で余裕が無い）。 */
+  --wim-comp-trend-up-fill: #306f42;
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
@@ -63,6 +69,9 @@
   --wim-comp-heatmap-level-2: #5a814c;
   --wim-comp-heatmap-level-3: #7fc97e;
   --wim-comp-heatmap-level-4: #32a65d;
+
+  /* dark は text-success が既に淡い緑で、カードの面から十分浮く。 */
+  --wim-comp-trend-up-fill: var(--wim-color-text-success);
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
@@ -106,6 +115,9 @@
   --wim-comp-heatmap-level-2: #5a814c;
   --wim-comp-heatmap-level-3: #7fc97e;
   --wim-comp-heatmap-level-4: #32a65d;
+
+  /* dark は text-success が既に淡い緑で、カードの面から十分浮く。 */
+  --wim-comp-trend-up-fill: var(--wim-color-text-success);
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
