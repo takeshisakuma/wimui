@@ -771,3 +771,12 @@ npm run check:aschild     # asChild 必須リスト
 - `EmptyState` の `+` が白→灰で目立たなくなった。`secondary` の正しい適用ではあるが、空状態の主役アイコンとして妥当か
 
 **注意**: `57a6c90bf` は #176 の squash マージでリーチャブルでなくなる。上記を再現するならローカルの reflog が生きているうちに。仕分けスクリプト 3 本（クラスタ分類 / 履歴帰属 / 平均色シフト + 切り出し）はリポジトリには入れていない。ベースライン更新のたびに同じ点検を回すなら、平均色シフトの順位表を update PR に添える形が候補。
+#### T46 の初回投入とメニュー語彙ページ（2026-07-30 着手）
+
+**済**: アイコン 2 つ（`menu` = 等長 3 本線 / `grid` = 3×3）と、**T46 の最初のエイリアス 3 件**（`Dropdown` / `HamburgerMenu` / `BentoGrid`）。`generate-llms.js` を 1 箇所拡張して `llms.txt` が `(aka Overflow Menu, Kebab Menu, …)` を出すようにした（実出力を確認）。`api-snapshot.json` も更新（アイコン追加＝公開サーフェスが増える）。
+
+**アイコンを増やさなかったもの（判断）**: ホットドッグ / タコス・ナチョス / チョコバー / ストロベリー / ベーコン。**形の俗称であって「その形でしか表せない機能」が無い**（`filter` の漏斗がソート/フィルタ意図を既にカバー）。作れば `check:api` のスナップショットとバンドルに載り続けるので、需要シグナルが出るまで語彙としてのみ扱う。
+
+**未着手（次はここから）**: **`docs/MenuVocabulary.mdx`** ＝ `<Meta title="Components/Navigation Elements/Menu vocabulary" />`（既存 Overview の隣に置く）。表の列は **正式名（主）→ 俗称（副）→ 見た目 → WIM で使うもの → 避ける場面**。正式名を主見出しにするのは、俗称は言い伝えで揺れる一方 ARIA/HIG と対応が取れるのは正式名の側だから。掲載する 7 群: Overflow menu（ケバブ/ミートボール→`Dropdown`）/ Navigation drawer trigger（ハンバーガー/サンドイッチ→`HamburgerMenu`）/ App switcher（ベントー/ワッフル→`BentoGrid`・`Dropdown`）/ Filter・Sort control（ドネル/タコス→`filter` + `Dropdown`・`QueryBuilder`）/ Context menu（→`ContextMenu`）/ Speed dial（→`SpeedDial`）/ 「俗称のみ」欄（ホットドッグ・チョコバー・ストロベリー・ベーコン・パンケーキ・チーズバーガー）。**コスト**: `<T k="…" />` 必須（`check-mdx-hardcoded` はハードゲート）で**新規キー 40 前後 × en/ja/pt、ja/pt は手翻訳**（この環境は API キー未設定）。`audit-mdx` の必須セクションにも合わせること。
+
+**PR の切り方（2026-07-31 に変更）**: 当初は「MDX まで入れて 1 本で出す」方針だったが、**アイコンとエイリアスを先に出し、MDX は別 PR**に分けた。前者は検証済みで自己完結しており、翻訳待ちの MDX に出荷を人質に取らせないため。

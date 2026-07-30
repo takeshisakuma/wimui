@@ -106,7 +106,13 @@ for (const group of catalog) {
   for (const comp of group.components) {
     if (!isTopLevel(comp.name) || seen.has(comp.name)) continue;
     seen.add(comp.name);
-    const entry = { name: comp.name, desc: resolve(comp.descKey) };
+    // `aliases` は「他所の語彙で来た読者/エージェントが辿り着けるようにする」ためのもの
+    // （T46）。外部の実在する体系が使っている語だけを載せる規約なので、そのまま流す。
+    const entry = {
+      name: comp.name,
+      desc: resolve(comp.descKey),
+      aliases: comp.aliases,
+    };
     const cat = nameToExportCat[comp.name];
     if (byExportCat.has(cat)) byExportCat.get(cat).push(entry);
     else rootOnly.push(entry);
@@ -731,8 +737,11 @@ const catalogSection = (withProps) => {
     if (!comps.length) continue;
     comps.sort((a, b) => a.name.localeCompare(b.name));
     lines.push(`\n### ${cat} — \`import { … } from "${pkg.name}/${cat}"\`\n`);
-    for (const { name, desc } of comps) {
-      lines.push(`- **${name}**${desc ? ` — ${desc}` : ''}`);
+    for (const { name, desc, aliases } of comps) {
+      // "aka" は語彙の橋渡し。利用者やエージェントが別の体系の名前（Overflow Menu /
+      // Kebab / Waffle 等）で探しても、実装名に辿り着けるようにする。
+      const aka = aliases?.length ? ` (aka ${aliases.join(', ')})` : '';
+      lines.push(`- **${name}**${desc ? ` — ${desc}` : ''}${aka}`);
       if (!withProps) continue;
       const dg = docgen[name];
       if (!dg?.props) continue;

@@ -187,7 +187,7 @@ export function BillingOverview() {
 
 - **AppShell** — Basic application shell layout
 - **AspectRatio** — Fixed ratio container
-- **BentoGrid** — Modern card grid
+- **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
 - **Box** — Polymorphic box
 - **Center** — Radial centering
 - **Container** — Layout wrapper
@@ -295,7 +295,7 @@ export function BillingOverview() {
 - **BackTop** — Back to top button
 - **Breadcrumb** — Location trace
 - **CommandPalette** — Cmd+K search overlay
-- **HamburgerMenu** — Toggleable menu
+- **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー)
 - **KeyboardShortcuts** — Display a structured list of keyboard shortcuts
 - **Link** — Hyperlinks
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
@@ -352,7 +352,7 @@ export function BillingOverview() {
 - **ContextMenu** — Right-click menus
 - **Dialog** — Focused task windows
 - **Drawer** — Slide-out detail panels
-- **Dropdown** — Overlay selection menu
+- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー)
 - **FocusTrap** — Focus management
 - **HoverCard** — Rich content on hover
 - **Menu** — General menus
