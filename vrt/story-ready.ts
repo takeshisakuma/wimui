@@ -5,39 +5,6 @@ const STORY_READY_TIMEOUT_MS = 30_000;
 const SETTLE_TIMEOUT_MS = 5_000;
 
 /**
- * ストーリーが参照する外部画像（Unsplash / picsum のホットリンク）を固定の
- * プレースホルダに差し替える。
- *
- * 実測（2026-07-29、閾値 0 で 2 ラン）: 非決定的だった 28 ケースのうち
- * `Avatar - Sizes` と `SourceCitation - Default` は、外部画像が間に合ったり
- * 間に合わなかったりで数百〜1500px 揺れていた。ネットワークの機嫌に依存する
- * 限りベースラインは安定しないので、VRT/a11y ではネットワークに出ない。
- *
- * SVG を返すのは固有サイズ（800x600）を持たせるため。1x1 を伸ばすと
- * intrinsic size が変わってレイアウトが崩れる。
- */
-const PLACEHOLDER_SVG =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">' +
-  '<rect width="800" height="600" fill="#c9c9c9"/></svg>';
-
-export async function stubExternalImages(page: Page) {
-  await page.route(
-    (url) => url.hostname !== "localhost" && url.hostname !== "127.0.0.1",
-    async (route) => {
-      if (route.request().resourceType() !== "image") {
-        await route.continue();
-        return;
-      }
-      await route.fulfill({
-        status: 200,
-        contentType: "image/svg+xml",
-        body: PLACEHOLDER_SVG,
-      });
-    },
-  );
-}
-
-/**
  * Wait until the Storybook iframe has actually mounted the story.
  * `networkidle` alone races code-split story chunks on CI (empty #storybook-root).
  * Under heavy local parallelism the Vite Storybook preview can stick on the
@@ -70,20 +37,27 @@ export async function waitForStoryReady(page: Page) {
     async (timeoutMs) => {
       await document.fonts.ready;
 
-      // `.storybook/preview-head.html` は Noto Sans / Noto Sans JP を Google Fonts から
-      // **display=swap** で読む。swap はフォント到着前にフォールバック字形で描くので、
-      // 到着前に撮ると全テキストがずれる（実測 2026-07-29: 非決定的な 28 ケースの多くが
-      // FieldError や InputGroup のような、アニメーションも画像も無いテキスト主体の
-      // ストーリーだった）。`fonts.ready` は「保留中の読み込みが無い」までしか保証せず、
-      // 未要求のフォントには反応しないので、実際に使えるかを check() で確かめる。
-      // ポーリングで待つと、check() が false のままのストーリーで毎回 5 秒を
-      // 使い切る（実測: 6 テストが 14 秒 → 6.4 分、CI も 8 分 → 18 分超）。
-      // load() は必要なフェイスを能動的に読ませてから解決するので待ち時間が
-      // 実費だけになる。フォントが取れない環境でも解決するよう catch する。
+      // フォントは `font-display: swap`＝到着前はフォールバック字形で描かれるので、
+      // 到着前に撮ると全テキストがずれる。`fonts.ready` は「保留中の読み込みが無い」
+      // までしか保証せず、**未要求のフォントには反応しない**。実測（2026-07-30、
+      // 公開 Storybook を CDP 込みで計測）ではストーリーがマウントした時点の
+      // `check()` が 10/10 で false、`load()` のマッチは 1 面＝**宣言はあるが
+      // バイナリが未着なのが常態**だった。だから能動的に読ませる load() が要る。
+      // ※ポーリング（check() が true になるまで待つ）は、常に false のままの
+      // ストーリーで毎回 5 秒を使い切る（実測: 6 テスト 14 秒 → 6.4 分、CI も
+      // 8 分 → 18 分超）。load() なら待ち時間が実費だけになる。
+      //
+      // フォント自体は `@fontsource`（node_modules）から同一オリジンで配信される
+      // ＝この待ちがネットワークの機嫌に左右されない（Google Fonts から読んでいた
+      // 頃は、2 ラン比較で片方だけ 25 ケースがフォールバック字形で撮れていた）。
+      // 取れない環境でも進めるよう catch は残す。
       await Promise.all(
-        ['400 16px "Noto Sans"', '700 16px "Noto Sans"'].map((f) =>
-          document.fonts.load(f).catch(() => undefined),
-        ),
+        [
+          '400 16px "Noto Sans"',
+          '500 16px "Noto Sans"',
+          '700 16px "Noto Sans"',
+          '400 16px "Noto Sans Mono"',
+        ].map((f) => document.fonts.load(f).catch(() => undefined)),
       );
 
       const settled = (img: HTMLImageElement) =>

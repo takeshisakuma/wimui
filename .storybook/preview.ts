@@ -11,6 +11,48 @@ import { setWimLocale } from "../src/i18n/instance";
 import { setWimDensity, type WimDensity } from "../src/density";
 // 文字列ベースの icon/name API を Storybook 全体で有効化（全アイコン登録）
 import "../src/icons";
+// Web フォントは **node_modules から** 読む（Google Fonts への外部リクエストを廃止）。
+// 理由（T44、2026-07-30 実測）: `preview-head.html` は Noto Sans / Noto Sans JP を
+// Google Fonts から `media="print"` + onload で遅延ロードしていた。この形だと
+// ①スタイルシートが有効になるまで `@font-face` が document.fonts に登録されないため
+// `document.fonts.load()` が「マッチ 0 件」で即解決しうる ②ネットワークが遅い/失敗すると
+// display=swap でフォールバック字形のまま撮れる。閾値 0 の連続 2 ラン比較で、run B にだけ
+// 25 ケースの差分が出て、diff は「文字だけが二重にずれ、行の後ろほどずれが大きい」＝
+// 別書体で描かれた形だった（`Breadcrumb - Default` / `Span - Large Span` ほか）。
+// ローカル解決なら撮影時点で必ず同じ字形になる。バージョンは package-lock で固定。
+// ja も同じ経路に揃える（3 言語で 1 つの機構）。pt はラテン + Latin-1 で足りる
+// （ã ç õ は latin サブセットに含まれる）。
+//
+// JP は **名前付きサブセット（japanese / latin）** を読む。番号付きの `400.css`
+// （unicode-range で 124 面に分割）も選べるが、それだと
+// `document.fonts.load('400 16px "Noto Sans JP"')` がマッチするのは 2 面だけで、
+// 実際に描画に要る範囲が撮影時点で未ロードになりうる（実測: ローカルビルドで
+// loadMatched=2 / 全 382 面）。待ち合わせが「読んだつもりで読めていない」形は
+// まさに今回直している不具合なので、1 ウェイト = 1 面に寄せる。
+// 副作用: ja を人が閲覧するときの初回ダウンロードが 1MB/ウェイトになる（範囲分割なら
+// 数十 KB）。VRT は locale:en 固定なので撮影には無関係、閲覧はキャッシュされる。
+import "@fontsource/noto-sans/latin-400.css";
+import "@fontsource/noto-sans/latin-500.css";
+import "@fontsource/noto-sans/latin-700.css";
+import "@fontsource/noto-sans/latin-ext-400.css";
+import "@fontsource/noto-sans/latin-ext-500.css";
+import "@fontsource/noto-sans/latin-ext-700.css";
+import "@fontsource/noto-sans-jp/latin-400.css";
+import "@fontsource/noto-sans-jp/latin-500.css";
+import "@fontsource/noto-sans-jp/latin-700.css";
+import "@fontsource/noto-sans-jp/japanese-400.css";
+import "@fontsource/noto-sans-jp/japanese-500.css";
+import "@fontsource/noto-sans-jp/japanese-700.css";
+// 等幅も同梱する。`--wim-font-family-mono` は `"Noto Sans Mono"` を先頭に置くのに
+// Storybook はこれまで sans しか読んでいなかったため、`CodeBlock` / `Terminal` /
+// `JsonViewer` ほか 9 コンポーネント（ベースライン 62 枚）は宣言を全部素通りして
+// **ランナー既定の等幅**で描かれていた（＝公開サイトの見た目も閲覧者の OS 依存）。
+import "@fontsource/noto-sans-mono/latin-400.css";
+import "@fontsource/noto-sans-mono/latin-500.css";
+import "@fontsource/noto-sans-mono/latin-700.css";
+import "@fontsource/noto-sans-mono/latin-ext-400.css";
+import "@fontsource/noto-sans-mono/latin-ext-500.css";
+import "@fontsource/noto-sans-mono/latin-ext-700.css";
 // 配布と同じ分割エントリを読み込む（tokens = :root トークン, reset = リセット/base）。
 // base.scss 単体はトークンを出力しないため、必ず tokens.entry を併せて読み込むこと。
 import "../src/styles/tokens.entry.scss";

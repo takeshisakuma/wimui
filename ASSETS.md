@@ -36,6 +36,32 @@ Storybook / リポジトリで使うサンプル画像の出所・権利・目�
   権利を侵害するものではない）。
 - Claude（Anthropic）は写真調のラスター画像を生成しないため、写真調画像の出所には該当しない。
 
+## Web フォント（2026-07-30 追加）
+
+Storybook は Noto Sans / Noto Sans JP / Noto Sans Mono を **`@fontsource`（devDependency）から**
+読む。以前は Google Fonts から遅延ロードしていたが、撮影時点でフォントが届いているかが
+ネットワーク次第になり VRT の非決定要因だったため自前化した（T44）。
+
+| ファミリー | パッケージ | 配信サブセット | ライセンス |
+|---|---|---|---|
+| Noto Sans | `@fontsource/noto-sans` 5.3.0 | latin / latin-ext（400・500・700） | OFL-1.1 |
+| Noto Sans JP | `@fontsource/noto-sans-jp` 5.3.0 | latin / japanese（400・500・700） | OFL-1.1 |
+| Noto Sans Mono | `@fontsource/noto-sans-mono` 5.3.0 | latin / latin-ext（400・500・700） | OFL-1.1 |
+
+### 権利メモ
+
+- **OFL-1.1 は再配布を明示的に許諾している**（条件 2: ソフトウェアと一緒に配布してよい。ただし
+  各コピーに著作権表示とライセンス本文を同梱する）。フォントは**未改変**（サブセット化・改名なし。
+  上流が用意したサブセットファイルのうちどれを配信するかを選んだだけ）。
+- 公開サイト（gh-pages Storybook）は woff2 を実際に配信する＝再配布に当たるため、
+  **`public/fonts/` に OFL 全文と `NOTICE.txt`（ファミリー・バージョン・著作権表示）を置いて
+  同じサイトから配信している**。`staticDirs: ["../public"]` 経由で `/fonts/NOTICE.txt` として届く。
+- `@fontsource/noto-sans-jp` 同梱の LICENSE は先頭が "Google Inc." のみで上流（google/fonts の
+  `ofl/notosansjp/OFL.txt` = `Copyright 2014-2021 Adobe …, with Reserved Font Name 'Source'`）より
+  弱いため、`NOTICE.txt` に両方を記載している。予約名は 'Source' で、本プロジェクトは使用しない。
+- **npm 公開物（`files: ["dist"]`）にフォントは一切含まれない**。利用者側は自分のホストの
+  フォントになる（opt-in の手順は README の Fonts 節）。したがって消費者に権利上の義務は生じない。
+
 ## 外部ホットリンク画像（ストーリー内）
 
 一部のストーリー（Avatar / AvatarGroup / AspectRatio / HoverCard / Skeleton / LoadingOverlay /
