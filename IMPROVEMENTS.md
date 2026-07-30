@@ -711,3 +711,11 @@ npm run check:aschild     # asChild 必須リスト
 
 ### それ以前（要約）
 - VRT・ダーク安定化、Toolbar / Menubar、asChild 高中優先、エクスポート DX、Props i18n leaf など一式
+
+#### T46 の初回投入とメニュー語彙ページ（2026-07-30。ブランチ `docs/menu-vocabulary` で作業中）
+
+**済（push 済み）**: アイコン 2 つ（`menu` = 等長 3 本線 / `grid` = 3×3）と、**T46 の最初のエイリアス 3 件**（`Dropdown` / `HamburgerMenu` / `BentoGrid`）。`generate-llms.js` を 1 箇所拡張して `llms.txt` が `(aka Overflow Menu, Kebab Menu, …)` を出すようにした（実出力を確認）。`api-snapshot.json` も更新（アイコン追加＝公開サーフェスが増える）。
+
+**アイコンを増やさなかったもの（判断）**: ホットドッグ / タコス・ナチョス / チョコバー / ストロベリー / ベーコン。**形の俗称であって「その形でしか表せない機能」が無い**（`filter` の漏斗がソート/フィルタ意図を既にカバー）。作れば `check:api` のスナップショットとバンドルに載り続けるので、需要シグナルが出るまで語彙としてのみ扱う。
+
+**未着手（次はここから）**: **`docs/MenuVocabulary.mdx`** ＝ `<Meta title="Components/Navigation Elements/Menu vocabulary" />`（既存 Overview の隣に置く）。表の列は **正式名（主）→ 俗称（副）→ 見た目 → WIM で使うもの → 避ける場面**。正式名を主見出しにするのは、俗称は言い伝えで揺れる一方 ARIA/HIG と対応が取れるのは正式名の側だから。掲載する 7 群: Overflow menu（ケバブ/ミートボール→`Dropdown`）/ Navigation drawer trigger（ハンバーガー/サンドイッチ→`HamburgerMenu`）/ App switcher（ベントー/ワッフル→`BentoGrid`・`Dropdown`）/ Filter・Sort control（ドネル/タコス→`filter` + `Dropdown`・`QueryBuilder`）/ Context menu（→`ContextMenu`）/ Speed dial（→`SpeedDial`）/ 「俗称のみ」欄（ホットドッグ・チョコバー・ストロベリー・ベーコン・パンケーキ・チーズバーガー）。**コスト**: `<T k="…" />` 必須（`check-mdx-hardcoded` はハードゲート）で**新規キー 40 前後 × en/ja/pt、ja/pt は手翻訳**（この環境は API キー未設定）。`audit-mdx` の必須セクションにも合わせること。**PR はこのページまで入れてから 1 本で出す**（ユーザー判断）。
