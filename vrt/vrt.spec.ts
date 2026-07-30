@@ -123,6 +123,19 @@ test.describe("Visual Regression Testing", () => {
 
           await waitForStoryReady(page);
 
+          // Playwright の `animations: "disabled"` は無限アニメーションを初期状態へ
+          // キャンセルする建付けだが、実測では**時間依存が残る**。`VoiceVisualizer` の
+          // SVG バー（`voice-bar-idle` 無限アニメーション + バーごとの `animation-delay`）は、
+          // 撮影前に 6 秒待つと 80〜456px 変わった（2026-07-30 実測。CI で観測された
+          // 452⇄344px と同じ規模）。そこでアニメーションを撮影対象から構造的に外す。
+          // 同じ注入で T44 の残り 4 件（`Tabs - Default` / `Tabs - Scrolling` /
+          // `TabNavigation - Pills` / `Cascader - Hover Expand`）も 6 秒待ち + 2 ラン
+          // 連続で安定した。VRT はレイアウトと色の回帰を見る仕組みなので、アニメーションの
+          // 途中のフレームは元から撮る対象ではない（`animations: "disabled"` の意図の徹底）。
+          await page.addStyleTag({
+            content: "*, *::before, *::after { animation: none !important; }",
+          });
+
           // Compare screenshot
           // Playwright will look for snapshots in vrt/vrt.spec.ts-snapshots/
           await expect(page).toHaveScreenshot(`${theme}/${story.id}.png`, {
