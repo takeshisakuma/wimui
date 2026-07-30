@@ -712,17 +712,25 @@ npm run check:aschild     # asChild 必須リスト
 ### それ以前（要約）
 - VRT・ダーク安定化、Toolbar / Menubar、asChild 高中優先、エクスポート DX、Props i18n leaf など一式
 
-##### ⑤ 受け入れ条件の実証（手順書。2026-07-30 時点で**未達**）
+##### ⑤ 受け入れ条件の実証（2026-07-30 **達成**）
 
-④③ は完了（#176 = 閾値 50 + ベースライン 226 枚撮り直し、compare 全緑）。**残るのは ⑤ だけ**で、`FeedbackIcon` を #142 以前に戻して **Alert / Banner / Notification / Snackbar / Toast の 10 枚（5 件 × light/dark）が落ちること**を確認する。信号の実測は 139〜176px なので閾値 50 なら捕まるはず。
+`FeedbackIcon` を #142 以前（danger / warning / info が `CircleIcon` だった版）に戻すと、閾値 50 のスイートは **`Alerts & Notifications` 106 件中 36 件で落ちる**（light 18 / dark 18）。事前の見積もりは「5 コンポーネント × light/dark = 10 枚」だったが、実際にはアイコンを描くストーリーが 1 コンポーネントにつき複数あり、Alert / Banner / Notification / Snackbar / Toast の 36 枚が鳴った。
 
-**手順**（`test/vrt-threshold-50` ブランチで）:
+**実測した信号（ローカル Windows / chromium）**: Alert - Danger 69px、Banner - Warning 70px、Notification - Info 88px、Snackbar - Danger 70px、Toast - Info 68px。
+
+これが結論の核心で、**同じ差分が旧閾値 400 では 1 枚も落ちない**。#142 が 6 コンポーネント中 5 つで素通りしたのは、まさにこの桁の差による。16px グリフの差し替えは数十〜百数十 px にしかならず、400 は数学的に検出できない値だった。
+
+なお閾値の根拠として記録していた「信号 139〜176px」は別環境での測定で、今回の Windows ローカルでは 68〜88px と約半分だった。**環境によって信号量は 2 倍動く**が、50 < 68 < 400 の関係は変わらないので閾値 50 の判断には影響しない。ジッタ側の残存が 11px（Tabs - Scrolling）であることと併せて、50 は下から 6 倍・上から 1.4 倍の位置にある。
+
+**鳴ってはいけない経路で鳴らないこと**: #176 の CI は正しいコードのまま VRT compare 4 シャードすべて緑（撮り直した linux ベースライン 226 枚に対して）。Lint & Type Check / Vitest も緑。
+
+**手順**（再現するとき。`test/vrt-threshold-50` ブランチで）:
 
 1. 正しいコードのまま `npm run build-storybook`
 2. `CI=1 npx playwright test vrt/vrt.spec.ts --update-snapshots -g "Alerts & Notifications"`（106 テスト）でローカル baseline を撮る
 3. `git show 5a315dfc4~1:src/components/_internal/FeedbackIcon.tsx > src/components/_internal/FeedbackIcon.tsx`
 4. **もう一度 `npm run build-storybook`**
-5. `CI=1 npx playwright test vrt/vrt.spec.ts -g "Alerts & Notifications"` → 10 枚が落ちることと px を確認
+5. `CI=1 npx playwright test vrt/vrt.spec.ts -g "Alerts & Notifications"` → 落ちた枚数と px を確認
 6. 片付け: `git checkout -- src/components/_internal/FeedbackIcon.tsx` と `rm -f vrt/vrt.spec.ts-snapshots/*win32*`（win32 は実験用の未追跡ファイル。**絶対にコミットに混ぜない**）
 
 **踏んだ落とし穴（同じ轍を踏まないため）**:
@@ -730,5 +738,4 @@ npm run check:aschild     # asChild 必須リスト
 - **④ の再ビルドを飛ばすと実証が成立しない。** VRT は `storybook-static` に対して走るので、`src/` を書き換えてもビルドしないと反映されない。1 回目の試行はこれで `106 passed` になり、「落ちなかった」ではなく「変更が届いていなかった」だった
 - **テストタイトルは `Components/Alerts & Notifications/…` で `&` が入る。** `-g "Alerts Notifications"` は 1 件もマッチしない
 - **`-g` が 0 件マッチでも Playwright は静かに成功する。** 必ず実行件数を見ること（106 なのか 0 なのか）
-
-**#176 のマージ方針**: ⑤ が通ってからにする。閾値 50 の根拠（残ジッタ 11px / 信号 139〜176px / 撮り直し後 compare 全緑）は揃っているが、「ガードは鳴らして初めて完成」の規約に従う。
+- **px を採りたいなら出力を `tail` で切らない。** 落ちた一覧はサマリに出るが px 値は各失敗ブロックにしかないので、切り詰めると証拠が残らず取り直しになる
