@@ -67,7 +67,7 @@ export const CustomAction: Story = {
         {...args}
         title={t("story.emptystate_ready_title")}
         description={t("story.emptystate_ready_desc")}
-        icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
+        icon={<Icon name="PlusIcon" size="lg" />}
         extra={
           <>
             <Button variant="outline">{t("story.emptystate_browse_templates")}</Button>
