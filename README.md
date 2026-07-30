@@ -78,6 +78,38 @@ export const App = () => <Button>Save</Button>;
 
 No `i18next` initialization is required. To manage theme, density, and locale together, `WimProvider` is recommended (see below).
 
+## Fonts (optional, not bundled)
+
+**The package ships no font binaries** (`files: ["dist"]`), and `styles.css` makes no request to a font host. The typography tokens name a preferred family first and then fall back to system faces:
+
+| Token | Stack |
+|---|---|
+| `--wim-font-family-default` / `-en` / `-pt` | `"Noto Sans"` → Segoe UI → Roboto → Helvetica Neue → Arial |
+| `--wim-font-family-ja` | `"Noto Sans JP"` → Yu Gothic → Hiragino Kaku Gothic ProN → Meiryo |
+| `--wim-font-family-mono` | `"Noto Sans Mono"` → Cascadia Code → Fira Code → Consolas → Monaco → Menlo |
+
+So out of the box you get your users' system fonts, and everything still works. To reproduce the reference look of the documentation site, install the faces yourself — the design tokens already point at them, so nothing else changes:
+
+```bash
+npm install @fontsource/noto-sans @fontsource/noto-sans-mono
+# add only if you render Japanese:
+npm install @fontsource/noto-sans-jp
+```
+
+```tsx
+// at the same entry point as wimui/styles.css, before it
+import "@fontsource/noto-sans/latin-400.css";
+import "@fontsource/noto-sans/latin-500.css";
+import "@fontsource/noto-sans/latin-700.css";
+import "@fontsource/noto-sans-mono/latin-400.css";
+// Japanese only:
+import "@fontsource/noto-sans-jp/japanese-400.css";
+
+import "wimui/styles.css";
+```
+
+Weights 400 / 500 / 700 are the ones the components use. Add `latin-ext-*` for Central/Eastern European coverage; Portuguese diacritics (ã ç õ) are already in `latin`. Any other loading mechanism works too (self-hosted `@font-face`, a font host, `next/font`) — the tokens only need the family names `Noto Sans`, `Noto Sans JP`, and `Noto Sans Mono` to resolve. To use entirely different fonts, override the tokens instead (see "Design tokens").
+
 ### Commonly used public types / APIs
 
 ```tsx
