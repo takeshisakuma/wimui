@@ -1,10 +1,7 @@
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" fetchpriority="high"
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" />
-<link
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap"
-  rel="stylesheet" media="print" onload="this.media = 'all'" />
+<!-- Noto Sans / Noto Sans JP は preview.ts が @fontsource（node_modules）から読む。
+     ここに Google Fonts の link を戻さないこと: 遅延ロード（media="print" + onload）は
+     @font-face の登録自体を遅らせるため、VRT の待ち合わせが「マッチ 0 件」で通過して
+     フォールバック字形のまま撮れる。実測の経緯は preview.ts のコメント（T44）。 -->
 <meta name="color-scheme" content="light dark" />
 <script>
   (function () {

@@ -1,9 +1,11 @@
 @layer component {
   .root {
     box-sizing: border-box;
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
+
+    // 等幅の契約はトークン 1 本に寄せる。ここに独自スタックを直書きすると
+    // `CodeBlock` / `Terminal` / `JsonViewer`（いずれも `--wim-font-family-mono`）と
+    // **同じページで別の書体**になる（Noto Sans Mono が入っている環境で顕在化する）。
+    font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-small-scale, 0.875em);
     border-radius: var(--wim-radius-sm, var(--wim-radius-component));
 
@@ -42,6 +44,11 @@
 
       code {
         padding: 0;
+
+        // UA の `code { font-family: monospace }` は親の指定を子に継承させない
+        // （作成者の宣言が無いプロパティは UA 宣言が生きる）。block では本文が
+        // この `<code>` なので、これが無いと `.root` のトークンが本文に届かない。
+        font-family: inherit;
         font-size: 1em;
         color: inherit;
         background-color: transparent;

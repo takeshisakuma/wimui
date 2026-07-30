@@ -80,6 +80,38 @@ export const App = () => <Button>保存</Button>;
 
 i18next の初期化は不要です。テーマ・密度・ロケールをまとめて扱うなら `WimProvider` を推奨します（後述）。
 
+## フォント（任意・非同梱）
+
+**パッケージにフォントのバイナリは含まれません**（`files: ["dist"]`）。`styles.css` もフォント配信元へリクエストしません。タイポグラフィのトークンは「推奨ファミリーを先頭に置き、以降はシステムフォントへフォールバック」する形です。
+
+| トークン | スタック |
+|---|---|
+| `--wim-font-family-default` / `-en` / `-pt` | `"Noto Sans"` → Segoe UI → Roboto → Helvetica Neue → Arial |
+| `--wim-font-family-ja` | `"Noto Sans JP"` → 游ゴシック体 → ヒラギノ角ゴ ProN → メイリオ |
+| `--wim-font-family-mono` | `"Noto Sans Mono"` → Cascadia Code → Fira Code → Consolas → Monaco → Menlo |
+
+したがって何もしなければ利用者の環境のフォントで表示され、動作に支障はありません。ドキュメントサイトと同じ見た目を再現したい場合は、フォントを自分で読み込んでください（トークンは既にそのファミリー名を指しているので、他の変更は不要です）。
+
+```bash
+npm install @fontsource/noto-sans @fontsource/noto-sans-mono
+# 日本語を表示する場合のみ:
+npm install @fontsource/noto-sans-jp
+```
+
+```tsx
+// wimui/styles.css と同じエントリポイントで、その前に読み込む
+import "@fontsource/noto-sans/latin-400.css";
+import "@fontsource/noto-sans/latin-500.css";
+import "@fontsource/noto-sans/latin-700.css";
+import "@fontsource/noto-sans-mono/latin-400.css";
+// 日本語:
+import "@fontsource/noto-sans-jp/japanese-400.css";
+
+import "wimui/styles.css";
+```
+
+コンポーネントが使うウェイトは 400 / 500 / 700 です。中欧・東欧の文字が必要なら `latin-ext-*` を追加してください（ポルトガル語の ã ç õ は `latin` に含まれます）。読み込み方法は問いません（自前ホストの `@font-face`、フォント配信サービス、`next/font` など）。トークンは `Noto Sans` / `Noto Sans JP` / `Noto Sans Mono` というファミリー名が解決できれば足ります。まったく別のフォントを使う場合は、トークン自体を上書きしてください（「デザイントークン」節を参照）。
+
 ### よく使う公開型・API
 
 ```tsx

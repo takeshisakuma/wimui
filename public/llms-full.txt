@@ -26,6 +26,7 @@ import { Stack, Grid } from "wimui/layout";
 - **Density**: `data-density="comfortable|compact"`, or `WimProvider` / `setWimDensity()`.
 - **Never hardcode** colors / spacing / sizes in consumer code — use the `--wim-*` CSS custom properties (tokens) that styles.css defines.
 - **Form + RHF** helpers live in `wimui/rhf` (react-hook-form + zod), not the root barrel.
+- **Fonts are NOT bundled** and styles.css requests none. The tokens name `"Noto Sans"` (default/en/pt), `"Noto Sans JP"` (ja) and `"Noto Sans Mono"` (mono) first, then fall back to system faces — so omitting fonts is valid and renders fine. To match the documentation site, have the app load those families itself (weights 400/500/700), e.g. `npm i @fontsource/noto-sans @fontsource/noto-sans-mono` then `import "@fontsource/noto-sans/latin-400.css"` before styles.css. Do not invent a `wimui/fonts.css` — it does not exist. To use different fonts, override `--wim-font-family-*` instead.
 
 ## Import paths
 

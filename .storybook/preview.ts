@@ -11,6 +11,50 @@ import { setWimLocale } from "../src/i18n/instance";
 import { setWimDensity, type WimDensity } from "../src/density";
 // 文字列ベースの icon/name API を Storybook 全体で有効化（全アイコン登録）
 import "../src/icons";
+// Web フォントは **node_modules から** 読む（Google Fonts への外部リクエストを廃止）。
+// 理由（T44、2026-07-30 実測）: `preview-head.html` は Noto Sans / Noto Sans JP を
+// Google Fonts から遅延ロードしていた。CDP で測ると、ストーリーがマウントした時点で
+// **@font-face は 400 面登録済みなのに `check()` は 10/10 で false**（`load()` の
+// マッチは 1 面）＝宣言はあってもバイナリが未着なのが常態で、毎ショットが
+// `fonts.gstatic.com` への往復が待ち時間内に終わることに依存していた。閾値 0 の連続
+// 2 ラン比較で片方のランにだけ 25 ケースの差分が出て、diff は「文字だけが二重にずれ、
+// 行の後ろほどずれが大きい」＝フォールバック字形で撮れた形だった。ローカル解決なら
+// 撮影時点で必ず同じ字形になる。バージョンは package-lock で固定。
+// ja も同じ経路に揃える（3 言語で 1 つの機構）。pt はラテン + Latin-1 で足りる
+// （ã ç õ は latin サブセットに含まれる）。
+//
+// JP は **`japanese` サブセット 1 面**を読む。番号付きの `400.css`（unicode-range で
+// 124 面に分割）も選べるが、それだと `document.fonts.load('400 16px "Noto Sans JP"')`
+// のマッチが 2 面だけで、実際に描画に要る範囲が撮影時点で未ロードになりうる（実測:
+// loadMatched=2 / 全 382 面）。待ち合わせが「読んだつもりで読めていない」形は、まさに
+// ここで直している不具合なので避ける。副作用: ja の初回表示が 1MB/ウェイト（範囲分割なら
+// 数十 KB）。VRT は locale:en 固定なので撮影には無関係、閲覧はキャッシュされる。
+//
+// **1 ファミリー × 1 ウェイトにつき 1 面だけ import すること。**
+// `@fontsource` のサブセット別 CSS は **`unicode-range` を持たない**ので、同じ
+// family+weight を 2 面宣言すると**最後に宣言した面が全文字を担当する**（CSS の
+// font matching は最後勝ち）。そして**サブセットファイルごとに平均文字幅
+// （OS/2 xAvgCharWidth）が違う**ため、`<input>` の既定幅（size=20 相当）が変わる。
+// 実測（2026-07-30、#171 の VRT で 75 件が動いて判明）: latin + latin-ext を
+// 両方入れると latin-ext が勝ち、`Label - Default` の input が **204px → 220px**
+// になった（グリフの字幅自体は不変。Pages との advance width 一致は確認済み）。
+// 影響は input を持つ全ストーリー＋それを含む画面。
+// ext の文字（ā ł ș 等）は対応ロケール（en/ja/pt）に不要なので latin だけを読む。
+// 必要になったら**自前の @font-face に unicode-range を書いて**追加すること。
+import "@fontsource/noto-sans/latin-400.css";
+import "@fontsource/noto-sans/latin-500.css";
+import "@fontsource/noto-sans/latin-700.css";
+// JP は japanese サブセット 1 面のみ（U+0000-00FF を含むので ja の ASCII もこれで出る）。
+import "@fontsource/noto-sans-jp/japanese-400.css";
+import "@fontsource/noto-sans-jp/japanese-500.css";
+import "@fontsource/noto-sans-jp/japanese-700.css";
+// 等幅も同梱する。`--wim-font-family-mono` は `"Noto Sans Mono"` を先頭に置くのに
+// Storybook はこれまで sans しか読んでいなかったため、`CodeBlock` / `Terminal` /
+// `JsonViewer` ほか 9 コンポーネント（ベースライン 62 枚）は宣言を全部素通りして
+// **ランナー既定の等幅**で描かれていた（＝公開サイトの見た目も閲覧者の OS 依存）。
+import "@fontsource/noto-sans-mono/latin-400.css";
+import "@fontsource/noto-sans-mono/latin-500.css";
+import "@fontsource/noto-sans-mono/latin-700.css";
 // 配布と同じ分割エントリを読み込む（tokens = :root トークン, reset = リセット/base）。
 // base.scss 単体はトークンを出力しないため、必ず tokens.entry を併せて読み込むこと。
 import "../src/styles/tokens.entry.scss";

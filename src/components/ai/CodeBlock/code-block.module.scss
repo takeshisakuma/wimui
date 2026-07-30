@@ -100,6 +100,14 @@
 
   .code {
     display: block;
+
+    // UA スタイルシートの `code { font-family: monospace }` は、親（.pre）が
+    // トークンで指定していても**子には継承させない**（作成者側の宣言が無い
+    // プロパティは UA 宣言が生きるため）。結果としてコード本文だけが常に
+    // 汎用等幅で描かれていた（実測: `pre` は "Noto Sans Mono"、内側の `code` は
+    // computed が `monospace` で実描画は Consolas）。`StreamingText` /
+    // `Markdown` は `code` セレクタ自体に family を持つのでこの穴が無い。
+    font-family: inherit;
   }
 
   // Line-number layout

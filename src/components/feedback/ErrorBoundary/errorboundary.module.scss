@@ -6,10 +6,17 @@
   .details {
     max-height: 300px; /* Exception: Structural Logic — error details viewport ceiling */
     overflow-y: auto;
-    font-family: var(--font-family-mono, monospace);
+    font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
     word-break: break-all;
     white-space: pre-wrap;
     border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+
+    // スタックトレースは子の `<code>` に入る。UA の `code { font-family: monospace }`
+    // が上の指定を遮るため、家族名は継承させる（実測: .details は "Noto Sans Mono"
+    // なのに中の <code> が Consolas で 924 グリフ描かれていた）。
+    code {
+      font-family: inherit;
+    }
   }
 }
