@@ -586,6 +586,15 @@
       {
         "name": "BentoGrid",
         "descKey": "doc.bentoGrid_desc",
+        "aliases": [
+          "Waffle Menu",
+          "Bento Menu",
+          "Grid Menu",
+          "Candy Bar Menu",
+          "Chocolate Bar Menu",
+          "ベントーメニュー",
+          "ワッフルメニュー"
+        ],
         "pc": true,
         "mobile": true
       },
@@ -763,6 +772,18 @@
       {
         "name": "HamburgerMenu",
         "descKey": "doc.hamburgerMenu_desc",
+        "aliases": [
+          "Sandwich Menu",
+          "Navigation Drawer Trigger",
+          "Nav Toggle",
+          "Cheeseburger Menu",
+          "Veggie Burger Menu",
+          "Pancake Menu",
+          "Bacon Menu",
+          "Hot Dog Menu",
+          "ハンバーガーメニュー",
+          "サンドイッチメニュー"
+        ],
         "pc": false,
         "mobile": true
       },
@@ -879,6 +900,19 @@
       {
         "name": "Dropdown",
         "descKey": "doc.dropdown_desc",
+        "aliases": [
+          "Overflow Menu",
+          "Kebab Menu",
+          "Meatball Menu",
+          "Vertical Ellipsis",
+          "Horizontal Ellipsis",
+          "Three Dots Menu",
+          "More Menu",
+          "App Switcher",
+          "オーバーフローメニュー",
+          "ケバブメニュー",
+          "ミートボールメニュー"
+        ],
         "pc": true,
         "mobile": true
       },

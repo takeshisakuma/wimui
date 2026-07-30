@@ -25,6 +25,7 @@ import ExternalLinkIcon from "./external-link.svg?react";
 import EyeOffIcon from "./eye-off.svg?react";
 import EyeIcon from "./eye.svg?react";
 import FilterIcon from "./filter.svg?react";
+import GridIcon from "./grid.svg?react";
 import GripVerticalIcon from "./grip-vertical.svg?react";
 import HelpCircleIcon from "./help-circle.svg?react";
 import HomeIcon from "./home.svg?react";
@@ -35,6 +36,7 @@ import LoadingIcon from "./loading.svg?react";
 import LogInIcon from "./log-in.svg?react";
 import LogOutIcon from "./log-out.svg?react";
 import MaximizeIcon from "./maximize.svg?react";
+import MenuIcon from "./menu.svg?react";
 import MinimizeIcon from "./minimize.svg?react";
 import MinusIcon from "./minus.svg?react";
 import MonitorIcon from "./monitor.svg?react";
@@ -99,6 +101,7 @@ export {
   EyeOffIcon,
   EyeIcon,
   FilterIcon,
+  GridIcon,
   GripVerticalIcon,
   HelpCircleIcon,
   HomeIcon,
@@ -109,6 +112,7 @@ export {
   LogInIcon,
   LogOutIcon,
   MaximizeIcon,
+  MenuIcon,
   MinimizeIcon,
   MinusIcon,
   MonitorIcon,
@@ -174,6 +178,7 @@ export const ALL_ICONS = {
   EyeOffIcon,
   EyeIcon,
   FilterIcon,
+  GridIcon,
   GripVerticalIcon,
   HelpCircleIcon,
   HomeIcon,
@@ -184,6 +189,7 @@ export const ALL_ICONS = {
   LogInIcon,
   LogOutIcon,
   MaximizeIcon,
+  MenuIcon,
   MinimizeIcon,
   MinusIcon,
   MonitorIcon,

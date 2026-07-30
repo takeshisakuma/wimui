@@ -616,7 +616,7 @@ export function RenameWorkspace() {
 - **AspectRatio** — Fixed ratio container
     - `ratio: number` = 1 — Aspect ratio (e.g. 16 / 9, 1, 4 / 3)
     - `children: React.ReactNode` (required) — Child content
-- **BentoGrid** — Modern card grid
+- **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
     - `children: React.ReactNode` — Grid items (typically BentoGrid.Item elements)
     - `rowHeight: string` — Fixed height of each grid row (`grid-auto-rows`). Any CSS length; defaults to `18rem`. Lower it when tiles hold compact content so they don't read as mostly-empty panels.
 - **Box** — Polymorphic box
@@ -1934,7 +1934,7 @@ Use for error pages (404, 403, 500).
     - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the palette is opened or closed.
-- **HamburgerMenu** — Toggleable menu
+- **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー)
     - `asChild: boolean` = false — If true, merge button props onto the child element.
     - `open: boolean` = false — Whether the menu is open
     - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Callback function when the menu is toggled
@@ -2437,7 +2437,7 @@ drops secondary text below the AA contrast floor.
 @default true
     - `slideOut: boolean` = true — Whether to animate the drawer when closing.
 @default true
-- **Dropdown** — Overlay selection menu
+- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー)
     - `children: ReactNode` (required) — Dropdown parts (Dropdown.Trigger and Dropdown.Menu).
     - `asChild: boolean` = false — If true, the dropdown will be rendered as its child, merging its props onto that child.
 - **FocusTrap** — Focus management
