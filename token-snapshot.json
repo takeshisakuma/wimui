@@ -47,6 +47,7 @@
   "--wim-color-glass-blur-sm",
   "--wim-color-glass-border",
   "--wim-color-info",
+  "--wim-color-neutral-fill",
   "--wim-color-overlay",
   "--wim-color-overlay-medium",
   "--wim-color-overlay-sidebar",

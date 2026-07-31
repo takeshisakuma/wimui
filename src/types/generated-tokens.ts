@@ -29,6 +29,7 @@ export type WimColorKey =
   | "glass-blur-sm"
   | "glass-border"
   | "info"
+  | "neutral-fill"
   | "overlay"
   | "overlay-medium"
   | "overlay-sidebar"

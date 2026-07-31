@@ -7,7 +7,7 @@
     "warning": { "color": "warning", "surface": true },
     "danger": { "color": "danger", "surface": true },
     "info": { "color": "info", "surface": true },
-    "neutral": { "color": null, "surface": { "base": "disabled", "on": "text-primary", "text": "text-secondary", "subtle": "disabled" } },
+    "neutral": { "color": null, "surface": { "base": "neutral-fill", "on": "text-primary", "text": "text-secondary", "subtle": "neutral-fill" } },
     "default": { "color": null }
   },
   "sets": {

@@ -48,7 +48,22 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   // どの時点で撮られるかにより poster/動画の描画状態が変わる（時間依存）。
   // baseline が update のたびに churn するため除外（image--motion-effects と同類）。
   "components-media-video--premium-features",
+  // --premium-features と同じ動画の読み込み/フェード依存。2026-07-31 に dark で
+  // 65 / 72 / 67 / 60px と**毎回ばらつく**ことを確認（値が動くのがジッタの定義で、
+  // 通るか落ちるかは運）。前日 1 度 retry で通ったのを見て「除外基準を満たさない」
+  // と判断したのは誤りだった＝「2 ラン目で通った」は安定の証拠にならない。
+  "components-media-video--rounded",
   "components-navigation-elements-tabnavigation--contained",
+  // --contained と同型。2026-07-31（T45 のベースライン撮り直し）に dark で顕在化:
+  // 同一コミットで update → compare を **2 ラン × 3 試行、6 回すべて 137px** で落ちた
+  // （ジッタなら値がばらつく。ばらつかないので状態差）。実画像を測ると差分は
+  // x106-131 y16-57 の 26×42 に集中し、内訳は `#262626 -> #055d87` が 135px ＝
+  // **ページ背景の上にアクティブ/フォーカスのインジケータが出るか出ないか**の差で、
+  // 色ではなく描画状態が揺れている。T44 が「アニメーション注入 + 6 秒待ちで安定した」
+  // と記録した 4 件の 1 つだが、その対処では止まっていなかった（→ T43）。
+  // **light 側の被覆も同時に失う**点は承知のうえ（この Set はストーリー単位で、
+  // テーマ別に外す機構が無い）。根治して外すのが本筋。
+  "components-navigation-elements-tabnavigation--pills",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
 ]);

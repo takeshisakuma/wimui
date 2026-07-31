@@ -67,7 +67,17 @@ jobs:
 
       - name: Run VRT (update snapshots)
         if: ${{ github.event.inputs.update_snapshots == 'true' }}
-        run: npx playwright test vrt/vrt.spec.ts --update-snapshots --shard=${{ matrix.shard }}/4
+        # **`=all` は必須**（2026-07-31・T45）。Playwright 1.51+ の素の
+        # `--update-snapshots` は既定が `changed` ＝「比較に失敗した分だけ書き戻す」で、
+        # その合否は `vrt.spec.ts` の `threshold` / `maxDiffPixels` が決める。つまり
+        # **閾値未満の変更はベースラインに反映されないまま残る**。T45 でページ色を
+        # `#f5f5f5` → `#e5e5e5` に変えたとき、YIQ 距離 129.4 が `threshold: 0.1` の
+        # 基準 352.2 を下回ったため、light 937 枚のうち **852 枚が撮り直されず**、
+        # 新旧が混在したベースラインがコミットバックされた（85 枚は `disabled` の
+        # 変更で閾値を超えた巻き添えで更新された）。update は「今の描画に合わせる」
+        # 操作であって「差分検知」ではないので、閾値の判断を挟ませない。
+        # 検知側の盲点そのものは T49 で別途扱う。
+        run: npx playwright test vrt/vrt.spec.ts --update-snapshots=all --shard=${{ matrix.shard }}/4
 
       - name: Collect updated snapshots
         if: ${{ github.event.inputs.update_snapshots == 'true' }}

@@ -22,7 +22,12 @@
         "value": "{pccs.v18}"
       },
       "disabled": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45: surface-app が gy8-5 に下がったため、gy8-5 のままだと無効コントロールがページ上で完全に消える（body 背景 = surface-app）。gy9-5 なら 1.16:1 で分離する。**一度 gy7-5 まで落としたが a11y で差し戻した**: 無効面には text-on-disabled(gy3-5) だけでなく text-tertiary(#646464) も載っており、gy7-5 上で 2.91:1（axe 12 件）。check:contrast は intent×variant×surface しか見ないため鳴らなかった（T41 の穴）。gy9-5 が check:contrast に落ちていたのは neutral がこのトークンを塗りに流用していたためで、neutral-fill を分けて解消した",
+        "value": "{pccs.gy9-5}"
+      },
+      "neutral-fill": {
+        "$comment": "T45: neutral intent の塗り。以前は disabled を流用していたが、『無効なコントロール』と『意味を持たない indicator』は別物で、disabled の行き先が変わるたびに neutral の見た目が巻き添えになっていた（intents.json の $comment が指摘していた『neutral = disabled は淡すぎる』もこれ）。gy7-5 は surface / surface-app / surface-subtle の 3 面すべてで check:contrast の 0.015 を満たす唯一の段",
+        "value": "{pccs.gy7-5}"
       },
       "text-on-primary": {
         "value": "{pccs.w}"
@@ -53,7 +58,8 @@
         "value": "{pccs.gy3-5}"
       },
       "text-tertiary": {
-        "value": "{pccs.gy5-5}"
+        "$comment": "T45: gy5-5 (#646464) だと、暗くなったページ (#e5e5e5) の上に敷いた淡いティントの上で AA を割る（Leaderboard のハイライト行 4.18、文字カウント 4.48）。gy4-5 なら 5.79〜6.21。text-secondary (gy3-5) との差が 1 段に詰まる代償は承知のうえ",
+        "value": "{pccs.gy4-5}"
       },
       "text-disabled": {
         "value": "{pccs.gy6-5}"
@@ -74,7 +80,8 @@
         "value": "{wim.color.info}"
       },
       "text-accent": {
-        "value": "{wim.color.primary}"
+        "$comment": "T45: danger/success/warning は塗り色より 1 段暗い専用のテキスト色を持つのに、accent だけ primary をそのまま指していた。primary (v16) は subtle 塗り (15%) をページ上に敷いた面で 4.38 と AA を割る（Badge/Tag/Chip の primary+subtle）。他 intent と同じ規則で dp16 へ＝6.29",
+        "value": "{pccs.dp16}"
       },
       "border": {
         "value": "{pccs.gy7-5}"
@@ -107,7 +114,8 @@
         "value": "{pccs.w}"
       },
       "surface-variant": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45: ページが gy8-5 へ下がったので、カード内側の段は下げるのではなく上げる（gy8-5 のままだとページと同色になる）",
+        "value": "{pccs.gy9-5}"
       },
       "surface-hover": {
         "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
@@ -176,7 +184,8 @@
         "value": "{pccs.gy2-5}"
       },
       "surface-app": {
-        "value": "{pccs.gy9-5}"
+        "$comment": "T45: ページと面を分離する（旧 gy9-5 では白カードと 1.09:1 で段が無かった）。gy8-5 で 1.26:1。目標の 1.3:1 に対し 3% 足りないが、PCCS グレーの次の段 gy7-5 は 2.03:1 で飛びすぎるため妥協値。**この色は「ページ」専用。他の role をここに置かないこと**（disabled と border-secondary が衝突した）",
+        "value": "{pccs.gy8-5}"
       },
       "surface-subtle": {
         "value": "#fafafa"

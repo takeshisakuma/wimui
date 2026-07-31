@@ -68,6 +68,10 @@
       "disabled": {
         "value": "{pccs.gy4-5}"
       },
+      "neutral-fill": {
+        "$comment": "T45 で neutral の塗りを disabled から分離した際、dark の見た目を変えないために従来値（= dark の disabled と同じ gy4-5）を明示。dark は light と違って両者を分ける必要が無い（面が十分に離れている）が、base 側の gy7-5 を継承すると dark で明るい灰色の badge になるため上書きは必須",
+        "value": "{pccs.gy4-5}"
+      },
       "text-on-disabled": {
         "$comment": "gy7-5 (#b6b6b6) は disabled 塗り (#4f4f4f) 上 4.03:1。Avatar default が通常テキストに流用するため AA を満たす gy8-5 へ",
         "value": "{pccs.gy8-5}"

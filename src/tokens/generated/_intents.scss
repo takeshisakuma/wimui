@@ -42,9 +42,9 @@ $token-colors: (
     "text": var(--wim-color-text-info),
   ),
   "neutral": (
-    "base": var(--wim-color-disabled),
+    "base": var(--wim-color-neutral-fill),
     "on": var(--wim-color-text-primary),
     "text": var(--wim-color-text-secondary),
-    "subtle": var(--wim-color-disabled),
+    "subtle": var(--wim-color-neutral-fill),
   ),
 );
