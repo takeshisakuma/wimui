@@ -11,10 +11,17 @@ on:
       - "playwright.config.ts"
   push:
     branches: [main]
+    # `pull_request` 側と同じ 6 つを見る。ソース 3 つしか見ていなかったため、
+    # **VRT の設定そのものを変えた PR はマージしても main で VRT が走らなかった**
+    # （#185 が `threshold` を 0.1 → 0.05 にしたとき、main では 1 本も起動していない）。
+    # ベースラインと設定がずれても気付けない形だったので揃える（CI-6）。
     paths:
       - "src/**"
       - "stories/**"
       - "public/locales/**"
+      - "vrt/vrt.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
   workflow_dispatch:
     inputs:
       update_snapshots:
