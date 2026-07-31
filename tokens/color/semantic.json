@@ -22,7 +22,11 @@
         "value": "{pccs.v18}"
       },
       "disabled": {
-        "$comment": "T45: surface-app が gy8-5 に下がったため gy8-5 のままだと無効コントロールがページ上で完全に消える（body 背景 = surface-app）。gy9-5 は逃げ場にならない（surface-subtle との知覚距離 0.014953 で check:contrast の 0.015 を割る）。gy7-5 はページに対し 1.61:1 / 0.146 で、dark の実績値 1.85:1 / 0.159 に最も近い",
+        "$comment": "T45: surface-app が gy8-5 に下がったため、gy8-5 のままだと無効コントロールがページ上で完全に消える（body 背景 = surface-app）。gy9-5 なら 1.16:1 で分離する。**一度 gy7-5 まで落としたが a11y で差し戻した**: 無効面には text-on-disabled(gy3-5) だけでなく text-tertiary(#646464) も載っており、gy7-5 上で 2.91:1（axe 12 件）。check:contrast は intent×variant×surface しか見ないため鳴らなかった（T41 の穴）。gy9-5 が check:contrast に落ちていたのは neutral がこのトークンを塗りに流用していたためで、neutral-fill を分けて解消した",
+        "value": "{pccs.gy9-5}"
+      },
+      "neutral-fill": {
+        "$comment": "T45: neutral intent の塗り。以前は disabled を流用していたが、『無効なコントロール』と『意味を持たない indicator』は別物で、disabled の行き先が変わるたびに neutral の見た目が巻き添えになっていた（intents.json の $comment が指摘していた『neutral = disabled は淡すぎる』もこれ）。gy7-5 は surface / surface-app / surface-subtle の 3 面すべてで check:contrast の 0.015 を満たす唯一の段",
         "value": "{pccs.gy7-5}"
       },
       "text-on-primary": {
