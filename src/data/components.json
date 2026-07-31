@@ -20,13 +20,21 @@
         "name": "Rating",
         "descKey": "doc.rating_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Star Rating",
+          "Rating Indicator"
+        ]
       },
       {
         "name": "Cascader",
         "descKey": "doc.cascader_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Column View",
+          "Miller Columns"
+        ]
       },
       {
         "name": "Transfer",
@@ -56,7 +64,11 @@
         "name": "TagInput",
         "descKey": "doc.tagInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Token Field",
+          "Chips Input"
+        ]
       }
     ]
   },
@@ -148,7 +160,11 @@
         "name": "Sidebar",
         "descKey": "doc.sidebar_desc",
         "pc": true,
-        "mobile": false
+        "mobile": false,
+        "aliases": [
+          "Source List",
+          "Inspector"
+        ]
       },
       {
         "name": "TabBar",
@@ -179,7 +195,10 @@
         "name": "PasswordStrength",
         "descKey": "doc.passwordStrength_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Strength Meter"
+        ]
       },
       {
         "name": "PhoneInput",
@@ -191,13 +210,21 @@
         "name": "SearchInput",
         "descKey": "doc.searchInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Search Field",
+          "Search Bar"
+        ]
       },
       {
         "name": "NumberInput",
         "descKey": "doc.numberInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Spin Button",
+          "Numeric Stepper"
+        ]
       },
       {
         "name": "Textarea",
@@ -245,7 +272,10 @@
         "name": "InlineEdit",
         "descKey": "doc.inlineEdit_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Editable Text"
+        ]
       },
       {
         "name": "SmartSearchInput",
@@ -313,7 +343,12 @@
         "name": "Accordion",
         "descKey": "doc.accordion_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Disclosure",
+          "Disclosure Group",
+          "Expander"
+        ]
       },
       {
         "name": "FAQSection",
@@ -344,7 +379,10 @@
         "name": "AvatarGroup",
         "descKey": "doc.avatarGroup_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Face Pile"
+        ]
       },
       {
         "name": "Badge",
@@ -362,7 +400,11 @@
         "name": "EmptyState",
         "descKey": "doc.emptyState_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Blank Slate",
+          "Zero State"
+        ]
       },
       {
         "name": "Indicator",
@@ -465,7 +507,10 @@
         "name": "TreeView",
         "descKey": "doc.treeView_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Outline View"
+        ]
       },
       {
         "name": "Timeline",
@@ -650,7 +695,10 @@
         "name": "Toolbar",
         "descKey": "doc.toolbar_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Action Bar"
+        ]
       }
     ]
   },
@@ -669,19 +717,26 @@
         "name": "Progress",
         "descKey": "doc.progress_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "Material's \"Progress Indicator\" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`."
       },
       {
         "name": "Skeleton",
         "descKey": "doc.skeleton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Shimmer"
+        ]
       },
       {
         "name": "Spinner",
         "descKey": "doc.spinner_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Activity Indicator"
+        ]
       },
       {
         "name": "LoadingOverlay",
@@ -724,7 +779,10 @@
         "name": "Lightbox",
         "descKey": "doc.lightbox_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Image Viewer"
+        ]
       },
       {
         "name": "Gallery",
@@ -749,7 +807,11 @@
         "name": "Breadcrumb",
         "descKey": "doc.breadcrumb_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Path Bar",
+          "Path Control"
+        ]
       },
       {
         "name": "Tabs",
@@ -791,13 +853,17 @@
         "name": "Stepper",
         "descKey": "doc.stepper_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "In Apple HIG and macOS, a \"Stepper\" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper."
       },
       {
         "name": "Anchor",
         "descKey": "doc.anchor_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Scrollspy"
+        ]
       },
       {
         "name": "KeyboardShortcuts",
@@ -822,13 +888,19 @@
         "name": "Affix",
         "descKey": "doc.affix_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Sticky"
+        ]
       },
       {
         "name": "BackTop",
         "descKey": "doc.backTop_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Back to Top"
+        ]
       },
       {
         "name": "FloatButton",
@@ -853,7 +925,11 @@
         "name": "Dialog",
         "descKey": "doc.dialog_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Modal",
+          "Modal Dialog"
+        ]
       },
       {
         "name": "Popover",
@@ -865,19 +941,29 @@
         "name": "Tooltip",
         "descKey": "doc.tooltip_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Help Tag"
+        ]
       },
       {
         "name": "Drawer",
         "descKey": "doc.drawer_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Navigation Drawer"
+        ]
       },
       {
         "name": "BottomSheet",
         "descKey": "doc.bottomSheet_desc",
         "pc": false,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Sheet",
+          "Action Sheet"
+        ]
       },
       {
         "name": "HoverCard",
@@ -889,7 +975,11 @@
         "name": "CommandPalette",
         "descKey": "doc.commandPalette_desc",
         "pc": true,
-        "mobile": false
+        "mobile": false,
+        "aliases": [
+          "Command Bar",
+          "Quick Open"
+        ]
       },
       {
         "name": "Tour",
@@ -920,7 +1010,8 @@
         "name": "Menu",
         "descKey": "doc.menu_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "In macOS, a \"Menu\" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`."
       },
       {
         "name": "ContextMenu",
@@ -981,7 +1072,11 @@
         "name": "ColorInput",
         "descKey": "doc.colorInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Color Well",
+          "Color Field"
+        ]
       }
     ]
   },
@@ -1018,7 +1113,11 @@
         "name": "Switch",
         "descKey": "doc.switch_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Toggle",
+          "Toggle Switch"
+        ]
       },
       {
         "name": "SwitchGroup",
@@ -1030,7 +1129,11 @@
         "name": "Select",
         "descKey": "doc.select_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pop-Up Button",
+          "Select Menu"
+        ]
       },
       {
         "name": "MultiSelect",
@@ -1042,13 +1145,21 @@
         "name": "SegmentedControl",
         "descKey": "doc.segmented_control_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Segmented Buttons",
+          "Segmented Picker"
+        ]
       },
       {
         "name": "Chip",
         "descKey": "doc.chip_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pill",
+          "Token"
+        ]
       },
       {
         "name": "ToggleGroup",
@@ -1140,7 +1251,11 @@
         "name": "Divider",
         "descKey": "doc.divider_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Separator",
+          "Horizontal Rule"
+        ]
       },
       {
         "name": "ScrollArea",
@@ -1176,7 +1291,10 @@
         "name": "Marquee",
         "descKey": "doc.marquee_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Ticker"
+        ]
       },
       {
         "name": "Portal",
@@ -1200,7 +1318,11 @@
         "name": "VisuallyHidden",
         "descKey": "doc.visuallyhidden_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Screen Reader Only",
+          "SR Only"
+        ]
       },
       {
         "name": "SwipeAction",
@@ -1231,7 +1353,12 @@
         "name": "OverlayBase",
         "descKey": "doc.overlay_base_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Scrim",
+          "Backdrop",
+          "Dimming View"
+        ]
       },
       {
         "name": "StatusContent",
@@ -1455,7 +1582,12 @@
         "name": "UsageMeter",
         "descKey": "doc.usagemeter_intro",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Level Indicator",
+          "Capacity Indicator",
+          "Meter"
+        ]
       }
     ]
   },

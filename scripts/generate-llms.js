@@ -112,6 +112,10 @@ for (const group of catalog) {
       name: comp.name,
       desc: resolve(comp.descKey),
       aliases: comp.aliases,
+      // `disambiguation` は「同じ語が他所では別物を指す」ことの警告（T46）。
+      // 別名にすると 1 語が 2 つを指すので分けてある。エージェントが取り違える
+      // のはまさにこの手の語なので、llms.txt には必ず出す。
+      disambiguation: comp.disambiguation,
     };
     const cat = nameToExportCat[comp.name];
     if (byExportCat.has(cat)) byExportCat.get(cat).push(entry);
@@ -737,11 +741,14 @@ const catalogSection = (withProps) => {
     if (!comps.length) continue;
     comps.sort((a, b) => a.name.localeCompare(b.name));
     lines.push(`\n### ${cat} — \`import { … } from "${pkg.name}/${cat}"\`\n`);
-    for (const { name, desc, aliases } of comps) {
+    for (const { name, desc, aliases, disambiguation } of comps) {
       // "aka" は語彙の橋渡し。利用者やエージェントが別の体系の名前（Overflow Menu /
       // Kebab / Waffle 等）で探しても、実装名に辿り着けるようにする。
       const aka = aliases?.length ? ` (aka ${aliases.join(', ')})` : '';
       lines.push(`- **${name}**${desc ? ` — ${desc}` : ''}${aka}`);
+      // 取り違え注意は箇条書きの子として出す。別名と同じ行に混ぜると
+      // 「その語で呼んでよい」と読めてしまうため、明示的に分ける。
+      if (disambiguation) lines.push(`  - ⚠️ Not the same as elsewhere: ${disambiguation}`);
       if (!withProps) continue;
       const dg = docgen[name];
       if (!dg?.props) continue;

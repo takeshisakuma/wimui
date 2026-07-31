@@ -76,6 +76,14 @@ const checks = [
     command: "node scripts/generate-llms.js --check",
   },
   {
+    category: "docs",
+    // 別名は「他所の語彙で探した人を実装名へ導く」ためのものなので、
+    // 間違えると**別のコンポーネントへ誘導する**（T46）。既存名との衝突・
+    // 全体での重複を禁じる。全量を見る必要があるため引数は取らない。
+    name: "External vocabulary aliases (no collisions or duplicates)",
+    command: "node scripts/check-aliases.js",
+  },
+  {
     category: "lib",
     // 単体では正しいトークンが、組み合わせたときだけ不可視になる事故を防ぐ。
     // axe も VRT も捕まえられない種類（T34）。

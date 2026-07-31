@@ -367,7 +367,8 @@
     "release": "npm run build && changeset publish",
     "version:packages": "changeset version && npm run llms:build",
     "prepublishOnly": "npm run build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check:aliases": "node scripts/check-aliases.js"
   },
   "keywords": [
     "react",
@@ -609,6 +610,7 @@
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
     "{src/data/components.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
+      "node scripts/check-aliases.js",
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ]
