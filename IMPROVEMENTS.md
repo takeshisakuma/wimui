@@ -892,6 +892,43 @@ light neutral/subtle on surface-app: 同上
 
 `check:contrast` ✓ / `check:tokens` ✓（294 tokens 不変）/ `check:intents` ✓ / `lint` ✓ / `stylelint` ✓ / `test` ✓ 243 files・2869 tests
 
+### a11y が 18 件落ちた（2026-07-31。**T41 の実証データ**）
+
+ベースラインを撮り直して CI を回したところ、**`check:contrast` は緑のまま axe が 6 ストーリー・18 件で落ちた**。すべて light、すべて T45 起因。
+
+| 前景 on 背景 | 比 | 由来 |
+|---|---|---|
+| `text-tertiary #646464` on `disabled #b6b6b6` | **2.91** | `disabled` を gy7-5 に落としたため |
+| `text-accent #055d87` on `primary@15% #bfccd3` | 4.38 | ページが暗くなり subtle 塗りも暗化 |
+| `text-tertiary` on `#d3dadd` / `#e0e0e0` | 4.18 / 4.48 | 同上（半透明ティントの合成） |
+| `text-disabled #8a8a8a` on ページ `#e5e5e5` | 2.74 | 装飾 404（大文字 3:1 基準） |
+
+**`check:contrast` は 1 件も鳴らなかった。** 理由は 2 つあり、どちらも T41 の主張そのもの:
+
+1. **無効面に載る文字色を網羅していない。** `disabled` を動かすとき `text-on-disabled`（gy3-5 = 5.70:1）だけを確認して「通る」と判断したが、実際のコンポーネントは `text-tertiary` や `text-disabled` も無効面に載せている。検査は `intents.json` が宣言した組み合わせしか見ない
+2. **導出モデルと実描画がずれる。** `primary/subtle on surface-app` は検査対象**そのもの**で 4.58 と報告されたが、axe の実測は 4.37。合成の前提（アルファ・入れ子の面）が実際と一致していない
+
+**対処（すべて数値で確認してから実施）**:
+
+| | 変更 | 効果 |
+|---|---|---|
+| `disabled` | gy7-5 → **gy9-5**、`neutral-fill`（gy7-5）を新設して分離 | 2.91 → **7.51** |
+| `text-tertiary` | gy5-5 → **gy4-5** | 4.18 / 4.48 → **5.79 / 6.21** |
+| `text-accent` | `{primary}` → **`{pccs.dp16}`** | 4.38 → **6.29** |
+| `Page.stories.tsx:309` | `text-disabled` → `text-tertiary` | 2.74 → **6.50** |
+
+**`disabled` と `neutral` の分離が本質的な収穫。** 1 つのトークンが「無効なコントロール」と「意味を持たない indicator の塗り」を兼ねていたため、片方の都合で動かすともう片方が巻き添えになっていた（`intents.json` の `$comment` が以前から「neutral = disabled は淡すぎる」と書いていたのは、この兼務の症状）。分離した結果、**`disabled` は intent 面ではなくなり `check:contrast` の対象から外れた**ので、当初「gy9-5 は選べない」とした制約自体が消えた。
+
+**`text-accent` は既存規則へ合流させただけ。** `danger`/`success`/`warning` はいずれも塗りより 1 段暗い専用テキスト色を `$comment` 付きで持っていたのに、`accent` だけが `primary` を直接指していた。
+
+**代償**: `text-tertiary` が `text-secondary`（gy3-5）と 1 段差に詰まり、淡色文字の 3 段階の階層が実質 2 段に近づいた。
+
+### 完了時の状態（2026-07-31）
+
+**PR [#181](https://github.com/takeshisakuma/wimui/pull/181) で全チェック緑。** VRT compare 4 シャード / axe-core 4 シャード / Vitest / Lint / Smoke / bundle size / i18n。ベースラインはピクセル実測で検証済み（light 914 枚が新ページ色、21 枚は `surface-variant` 由来、dark 929 枚は不変）。
+
+**VRT から外したもの**: `tabnavigation--pills`（T43。137px が 6 回とも同値＝状態差）／ `video--rounded`（65〜72px でばらつく＝ジッタ）。
+
 ### 再現用メモ
 
 - ローカル VRT は `CI=1 npx playwright test vrt/vrt.spec.ts -g "<title>"`。**ポート 6006 に古いサーバーが残っていると起動できずエラーで終わる**（今日 1 回踏んだ）。`netstat -ano | grep :6006` → `taskkill //F //PID <pid>`
