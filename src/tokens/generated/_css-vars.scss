@@ -28,10 +28,10 @@
   --wim-color-text-info: #0f218b;
   --wim-color-text-accent: #04436e;
   --wim-color-border: #b6b6b6;
-  --wim-color-border-secondary: #e5e5e5;
+  --wim-color-border-secondary: oklch(from var(--wim-color-surface-void) l c h / 0.1);
   --wim-color-focus-outline: var(--wim-color-primary);
   --wim-color-scrollbar-thumb: #b6b6b6;
-  --wim-color-scrollbar-track: #e5e5e5;
+  --wim-color-scrollbar-track: oklch(from var(--wim-color-surface-void) l c h / 0.1);
   --wim-color-primary-rgb: #055d87;
   --wim-color-primary-hover: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
   --wim-color-primary-active: oklch(from var(--wim-color-primary) calc(l * 0.85) c h);

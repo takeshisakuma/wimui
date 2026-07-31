@@ -87,7 +87,8 @@
         "value": "{pccs.gy7-5}"
       },
       "border-secondary": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45 の積み残し: `gy8-5` はページ色そのものになったため、背景を持たないコンポーネント（DescriptionList / ErrorBoundary / KeyboardShortcuts）がページ上に置かれると区切り線の両側が同色になって消えていた。不透明の 1 色では白カード (#fff) とページ (#e5e5e5) の両方に効く値が無い（両方より暗い＝`gy7-5` にすると `border` と同値になり 2 段構えが潰れる）。**背面に追随する半透明にして解決**＝黒 10% はどの面でも 1.25:1 で、白カード上の従来の見え方 (1.26:1) をそのまま保つ。`ghost-border` などと同じ書き方",
+        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.1)"
       },
       "focus-outline": {
         "value": "var(--wim-color-primary)"
@@ -96,7 +97,8 @@
         "value": "{pccs.gy7-5}"
       },
       "scrollbar-track": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45 の積み残し: `border-secondary` と同じ理由（`gy8-5` = ページ色）で、ページ上ではトラックが溝として見えず thumb だけが浮く。両者は元から同値だったので、同じ黒 10% にして関係を保つ",
+        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.1)"
       },
       "primary-rgb": {
         "value": "{wim.color.primary}"
