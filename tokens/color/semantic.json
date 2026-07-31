@@ -22,7 +22,8 @@
         "value": "{pccs.v18}"
       },
       "disabled": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45: surface-app が gy8-5 に下がったため gy8-5 のままだと無効コントロールがページ上で完全に消える（body 背景 = surface-app）。gy9-5 は逃げ場にならない（surface-subtle との知覚距離 0.014953 で check:contrast の 0.015 を割る）。gy7-5 はページに対し 1.61:1 / 0.146 で、dark の実績値 1.85:1 / 0.159 に最も近い",
+        "value": "{pccs.gy7-5}"
       },
       "text-on-primary": {
         "value": "{pccs.w}"
@@ -107,7 +108,8 @@
         "value": "{pccs.w}"
       },
       "surface-variant": {
-        "value": "{pccs.gy8-5}"
+        "$comment": "T45: ページが gy8-5 へ下がったので、カード内側の段は下げるのではなく上げる（gy8-5 のままだとページと同色になる）",
+        "value": "{pccs.gy9-5}"
       },
       "surface-hover": {
         "value": "oklch(from var(--wim-color-primary) l c h / 0.08)"
@@ -176,7 +178,8 @@
         "value": "{pccs.gy2-5}"
       },
       "surface-app": {
-        "value": "{pccs.gy9-5}"
+        "$comment": "T45: ページと面を分離する（旧 gy9-5 では白カードと 1.09:1 で段が無かった）。gy8-5 で 1.26:1。目標の 1.3:1 に対し 3% 足りないが、PCCS グレーの次の段 gy7-5 は 2.03:1 で飛びすぎるため妥協値。**この色は「ページ」専用。他の role をここに置かないこと**（disabled と border-secondary が衝突した）",
+        "value": "{pccs.gy8-5}"
       },
       "surface-subtle": {
         "value": "#fafafa"

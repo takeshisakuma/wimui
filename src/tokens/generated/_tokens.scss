@@ -7,7 +7,7 @@ $wim-color-warning: #ff7f00;
 $wim-color-primary: #055d87;
 $wim-color-secondary: #b6b6b6;
 $wim-color-info: #0f218b;
-$wim-color-disabled: #e5e5e5;
+$wim-color-disabled: #b6b6b6;
 $wim-color-text-on-primary: #fff;
 $wim-color-text-on-danger: #fff;
 $wim-color-text-on-success: #fff;
@@ -34,7 +34,7 @@ $wim-color-primary-hover: oklch(from var(--wim-color-primary) calc(l * 0.9) c h)
 $wim-color-primary-active: oklch(from var(--wim-color-primary) calc(l * 0.85) c h);
 $wim-color-text-placeholder: var(--wim-color-text-tertiary);
 $wim-color-surface: #fff;
-$wim-color-surface-variant: #e5e5e5;
+$wim-color-surface-variant: #f5f5f5;
 $wim-color-surface-hover: oklch(from var(--wim-color-primary) l c h / 0.08);
 $wim-color-surface-variant-alpha: oklch(from var(--wim-color-surface-void) l c h / 0.02);
 $wim-color-text-on-overlay: #fff;
@@ -57,7 +57,7 @@ $wim-color-ghost-bg-hover: oklch(from var(--wim-color-surface-void) l c h / 0.05
 $wim-color-primary-subtle: oklch(from var(--wim-color-primary) l c h / 0.04);
 $wim-color-danger-subtle: oklch(from var(--wim-color-danger) l c h / 0.1);
 $wim-color-surface-inverse: #262626;
-$wim-color-surface-app: #f5f5f5;
+$wim-color-surface-app: #e5e5e5;
 $wim-color-surface-subtle: #fafafa;
 $wim-color-surface-subtle-alpha: oklch(from var(--wim-color-surface-void) l c h / 0.02);
 $wim-color-surface-void: #000;
