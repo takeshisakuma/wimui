@@ -306,7 +306,11 @@ export const ErrorPage: StoryObj = {
             style={{
               fontSize: "var(--wim-font-size-7xl)",
               fontWeight: "900",
-              color: "var(--wim-color-text-disabled)",
+              // 装飾の 404。text-disabled は「無効なコントロール」の色で、これは
+              // 無効ではないため axe の除外に入らない。ページが T45 で暗くなり
+              // #8a8a8a on #e5e5e5 = 2.74 が大きな文字の基準 3:1 を割った
+              // （T45 前は #f5f5f5 上 3.17 でぎりぎり通っていた）。
+              color: "var(--wim-color-text-tertiary)",
               lineHeight: "1",
               margin: "0",
             }}

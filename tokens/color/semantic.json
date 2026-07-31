@@ -58,7 +58,8 @@
         "value": "{pccs.gy3-5}"
       },
       "text-tertiary": {
-        "value": "{pccs.gy5-5}"
+        "$comment": "T45: gy5-5 (#646464) だと、暗くなったページ (#e5e5e5) の上に敷いた淡いティントの上で AA を割る（Leaderboard のハイライト行 4.18、文字カウント 4.48）。gy4-5 なら 5.79〜6.21。text-secondary (gy3-5) との差が 1 段に詰まる代償は承知のうえ",
+        "value": "{pccs.gy4-5}"
       },
       "text-disabled": {
         "value": "{pccs.gy6-5}"
@@ -79,7 +80,8 @@
         "value": "{wim.color.info}"
       },
       "text-accent": {
-        "value": "{wim.color.primary}"
+        "$comment": "T45: danger/success/warning は塗り色より 1 段暗い専用のテキスト色を持つのに、accent だけ primary をそのまま指していた。primary (v16) は subtle 塗り (15%) をページ上に敷いた面で 4.38 と AA を割る（Badge/Tag/Chip の primary+subtle）。他 intent と同じ規則で dp16 へ＝6.29",
+        "value": "{pccs.dp16}"
       },
       "border": {
         "value": "{pccs.gy7-5}"
