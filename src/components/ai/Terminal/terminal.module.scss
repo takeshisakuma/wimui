@@ -1,3 +1,5 @@
+@use "../../../styles/font-mixins" as font;
+
 @layer component {
   /* ── macOS-style dark window ── */
 
@@ -42,11 +44,12 @@
   }
 
   .titleText {
+    @include font.mono-family;
+
     flex: 1;
     padding: 0 var(--wim-spacing-sm);
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
     text-align: center;
@@ -96,11 +99,12 @@
 
   /* ── Output body ── */
   .body {
+    @include font.mono-family;
+
     flex: 1;
     padding: var(--wim-spacing-md);
     overflow-y: auto;
     overscroll-behavior: contain;
-    font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-primary);

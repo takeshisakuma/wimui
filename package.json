@@ -358,6 +358,7 @@
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",
     "check:intents:scss": "node scripts/check-intents-scss.js",
+    "check:mono": "node scripts/check-mono-family.js",
     "check:contrast": "node scripts/check-contrast.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",
     "check:slop": "node scripts/check-slop.js",
@@ -564,7 +565,8 @@
       "node scripts/check-slop.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
-      "stylelint --fix --max-warnings=0 --cache"
+      "stylelint --fix --max-warnings=0 --cache",
+      "node scripts/check-mono-family.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",

@@ -1,3 +1,5 @@
+@use "../../../styles/font-mixins" as font;
+
 .root {
   display: flex;
   flex-direction: column;
@@ -38,8 +40,9 @@
 }
 
 .inlineCode {
+  @include font.mono-family;
+
   padding: 0.2em 0.4em;
-  font-family: var(--wim-font-family-mono);
   font-size: 0.9em;
   color: var(--wim-color-text-accent);
   background-color: var(--wim-color-surface-variant-alpha);

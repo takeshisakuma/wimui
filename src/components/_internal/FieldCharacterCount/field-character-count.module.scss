@@ -1,8 +1,12 @@
+@use "../../../styles/font-mixins" as font;
+
 @layer component {
   .root {
+    // Use mono for numbers to prevent jumping
+    @include font.mono-family;
+
     display: inline-flex;
     align-items: center;
-    font-family: var(--wim-font-family-mono); // Use mono for numbers to prevent jumping
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
     pointer-events: none;

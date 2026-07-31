@@ -143,6 +143,11 @@ const checks = [
     name: "Intent → SCSS class coverage (no silently-unstyled intents)",
     command: "node scripts/check-intents-scss.js",
   },
+  {
+    category: "lib",
+    name: "Monospace contract (token + descendant inheritance, always paired)",
+    command: "node scripts/check-mono-family.js",
+  },
 ];
 
 const wantLib = process.argv.includes("--lib");

@@ -1,3 +1,4 @@
+@use "../../../styles/font-mixins" as font;
 
 @layer component {
   .root {
@@ -19,7 +20,8 @@
   }
 
   .lang {
-    font-family: var(--wim-font-family-mono, monospace);
+    @include font.mono-family;
+
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
@@ -86,10 +88,14 @@
   }
 
   .pre {
+    // 本文は内側の `<code>` に入る。mixin が子孫への継承まで面倒を見る
+    // （実測: `pre` は "Noto Sans Mono"、内側の `code` は computed が
+    // `monospace` で実描画は Consolas 286 グリフだった）。
+    @include font.mono-family;
+
     padding: var(--wim-spacing-md);
     margin: 0;
     overflow: visible;
-    font-family: var(--wim-font-family-mono, monospace);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-primary);
@@ -100,14 +106,6 @@
 
   .code {
     display: block;
-
-    // UA スタイルシートの `code { font-family: monospace }` は、親（.pre）が
-    // トークンで指定していても**子には継承させない**（作成者側の宣言が無い
-    // プロパティは UA 宣言が生きるため）。結果としてコード本文だけが常に
-    // 汎用等幅で描かれていた（実測: `pre` は "Noto Sans Mono"、内側の `code` は
-    // computed が `monospace` で実描画は Consolas）。`StreamingText` /
-    // `Markdown` は `code` セレクタ自体に family を持つのでこの穴が無い。
-    font-family: inherit;
   }
 
   // Line-number layout

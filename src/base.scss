@@ -2,6 +2,10 @@
 // base.scss は要素の base スタイルのみを担当し、値は var(--wim-*) 経由で参照する
 // （Sass レベルのトークン名前空間は未使用のため @use しない）。
 // この分離により reset.css へトークンが二重出力されるのを防ぐ。
+// ※ font-mixins は CSS を持たない mixin だけの partial なので、@use しても
+//   reset.css には include した箇所の出力しか増えない。
+
+@use "./styles/font-mixins" as font;
 
 @layer base {
   /* Base Styles: 要素へのグローバルなスタイル定義 */
@@ -172,6 +176,11 @@
   }
 
   code {
+    // 塗りと余白だけ当てて `font-family` を書かないと、UA の
+    // `code { font-family: monospace }` が生きて**ここだけ汎用等幅**になる
+    // （トークンの mono スタックが効かない）。T48。
+    @include font.mono-family;
+
     padding: 2px 4px;
     color: var(--wim-color-text-primary) !important;
     background-color: var(--wim-color-surface-variant);
@@ -214,7 +223,11 @@
 .wim-t code {
   display: inline-block;
   padding: 3px 5px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  // 独自スタックの直書きは、同じページの `CodeBlock` / `Code`（いずれもトークン）と
+  // **別の書体**になる。トークン 1 本に寄せる（T48 の 6 件目）。
+  @include font.mono-family;
+
   font-size: var(--wim-font-size-xs);
   line-height: 1;
   vertical-align: middle;
