@@ -53,20 +53,25 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   // 通るか落ちるかは運）。前日 1 度 retry で通ったのを見て「除外基準を満たさない」
   // と判断したのは誤りだった＝「2 ラン目で通った」は安定の証拠にならない。
   "components-media-video--rounded",
-  "components-navigation-elements-tabnavigation--contained",
-  // --contained と同型。2026-07-31（T45 のベースライン撮り直し）に dark で顕在化:
-  // 同一コミットで update → compare を **2 ラン × 3 試行、6 回すべて 137px** で落ちた
-  // （ジッタなら値がばらつく。ばらつかないので状態差）。実画像を測ると差分は
-  // x106-131 y16-57 の 26×42 に集中し、内訳は `#262626 -> #055d87` が 135px ＝
-  // **ページ背景の上にアクティブ/フォーカスのインジケータが出るか出ないか**の差で、
-  // 色ではなく描画状態が揺れている。T44 が「アニメーション注入 + 6 秒待ちで安定した」
-  // と記録した 4 件の 1 つだが、その対処では止まっていなかった（→ T43）。
-  // **light 側の被覆も同時に失う**点は承知のうえ（この Set はストーリー単位で、
-  // テーマ別に外す機構が無い）。根治して外すのが本筋。
-  "components-navigation-elements-tabnavigation--pills",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
 ]);
+
+/*
+ * 2026-08-01（T43）に `tabnavigation--pills` と `--contained` をここから外した。
+ * 揺れの正体は撮影側ではなく **`useIndicator` の実装バグ**だった: スライダーの寸法は
+ * active item の `offsetWidth` から取るのに、ResizeObserver はコンテナしか見ていない。
+ * 横並びのタブはコンテナが `width: 100%` なので、**Web フォントが差し替わって item が
+ * 伸びてもコンテナは動かず、再計測が走らない**＝フォールバック字形で測った寸法のまま
+ * 固定される。`--pills` はフォント到着がマウントに間に合うかどうかの境界にあり
+ * 113px ⇄ 117px の二状態になっていた（「6 回すべて 137px」＝値がばらつかない＝
+ * ジッタではなく状態差、という読みは当たっていた）。
+ *
+ * 重要なのは、この穴が **VRT に緑と報告させていた**こと: `Tabs - Default`（8.03px）
+ * `Tabs - Scrolling`（6.78px）`TabNavigation - Default`（4.36px）`- Contained`（1.94px）
+ * `- With Icons`（1.73px）は「ズレたまま安定」なので毎回同じ絵が撮れていた。
+ * つまり除外を外す作業ではなく、出荷され続けていた描画バグを 1 つ直す作業だった。
+ */
 
 /**
  * コンポーネント丸ごと非決定的なもの（複数ストーリーが別ランで順繰りに
