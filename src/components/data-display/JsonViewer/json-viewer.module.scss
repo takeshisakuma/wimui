@@ -1,8 +1,11 @@
+@use "../../../styles/font-mixins" as font;
+
 @layer component {
   .root {
+    @include font.mono-family;
+
     width: 100%;
     overflow: hidden;
-    font-family: var(--wim-font-family-mono);
     font-size: var(--wim-font-size-sm);
     background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);

@@ -1,3 +1,5 @@
+@use "../../../styles/font-mixins" as font;
+
 @layer component {
   .root {
     line-height: var(--wim-line-height-normal);
@@ -49,8 +51,9 @@
     }
   
     code {
+      @include font.mono-family;
+
       padding: 0.2em 0.4em;
-      font-family: var(--wim-font-family-mono);
       font-size: 0.9em;
       background-color: var(--wim-color-surface-subtle);
       border-radius: var(--wim-radius-sm);

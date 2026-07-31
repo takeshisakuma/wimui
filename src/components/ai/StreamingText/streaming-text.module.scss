@@ -1,3 +1,5 @@
+@use "../../../styles/font-mixins" as font;
+
 .root {
   font-size: var(--wim-font-size-md);
   line-height: var(--wim-line-height-loose);
@@ -34,8 +36,9 @@
   }
 
   code {
+    @include font.mono-family;
+
     padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
-    font-family: var(--wim-font-family-mono, monospace);
     font-size: 0.875em;
     background: var(--wim-color-ghost-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);

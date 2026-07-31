@@ -1,0 +1,34 @@
+/**
+ * Shared font-family contracts.
+ *
+ * These mixins emit no CSS on their own (only when `@include`-ed), so `@use`-ing
+ * this partial from a component module adds nothing to the bundle until used.
+ */
+
+/*
+ * 等幅の契約。**`font-family: var(--wim-font-family-mono)` を直接書かず、必ずこれを使う**
+ * （`scripts/check-mono-family.js` が強制する）。
+ *
+ * トークンを当てるだけでは足りない。UA スタイルシートは
+ * `code, pre, kbd, samp { font-family: monospace }` を持っており、**作成者の宣言が
+ * 無いプロパティには UA 宣言が生きる**ため、親が mono を指定していても
+ * 子孫の `<code>` には継承されない。結果、**コンテナの computed は正しく
+ * `"Noto Sans Mono"` を返すのに、本文が入る内側の `<code>` だけが汎用等幅で
+ * 描かれる**。ソースを読むだけでは見えず、実描画（CDP `CSS.getPlatformFontsForNode`）を
+ * 測って初めて出る類のバグで、2026-07-30 に 5 件見つかった（`CodeBlock` の本文は
+ * Consolas で 286 グリフ、`ErrorBoundary` のスタックトレースは 924 グリフ）。
+ *
+ * そこで「トークンを当てる」と「子孫に継承させる」を分離できないようにする。
+ * 個別に `font-family: inherit` を書いて回る形は、書き忘れても**誰にも見えない**
+ * （computed は正しいので検査も素通りする）ため、構造で塞ぐ（T48）。
+ *
+ * `:where()` で包むのは特異度を 0 に保つため＝親セレクタの重みのまま出るので、
+ * コンポーネント側の後続ルールや利用者の上書きを邪魔しない。
+ */
+@mixin mono-family {
+  font-family: var(--wim-font-family-mono, monospace);
+
+  :where(code, pre, kbd, samp) {
+    font-family: inherit;
+  }
+}
