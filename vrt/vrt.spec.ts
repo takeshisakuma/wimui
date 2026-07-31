@@ -156,7 +156,10 @@ test.describe("Visual Regression Testing", () => {
           await expect(page).toHaveScreenshot(`${theme}/${story.id}.png`, {
             fullPage: true,
             animations: "disabled",
-            threshold: 0.1, // Slight per-pixel color tolerance
+            // T49 の実測用。0.1 では面の色が丸ごと変わっても差分ゼロと数えられる
+            // （YIQ 距離 129.4 < 基準 35215*0.1^2 = 352.2）。0.05 なら基準 88.0。
+            // この値でジッタが 50px を超えないかは CI で確認中。
+            threshold: 0.05, // per-pixel color tolerance
             // **400 → 50**（T44、2026-07-30）。旧コメントの「連続ランで実測 ≤220px の
             // ジッタ」は**ジッタとドリフトの合計**を見た誤りだった。閾値 0 / retries 0 の
             // 2 ラン突き合わせでの実測: 1986 ケースのうち 1615（81.3%）は差分ゼロ、
