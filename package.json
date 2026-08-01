@@ -371,7 +371,8 @@
     "prepublishOnly": "npm run build",
     "prepare": "husky",
     "check:aliases": "node scripts/check-aliases.js",
-    "check:improvements": "node scripts/check-improvements-status.js"
+    "check:improvements": "node scripts/check-improvements-status.js",
+    "audit:src-i18n": "node scripts/check-src-hardcoded.js"
   },
   "keywords": [
     "react",
@@ -622,6 +623,9 @@
     ],
     "IMPROVEMENTS.md": [
       "node scripts/check-improvements-status.js"
+    ],
+    "src/components/**/*.tsx": [
+      "node scripts/check-src-hardcoded.js"
     ]
   },
   "dependencies": {
