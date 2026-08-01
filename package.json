@@ -375,7 +375,8 @@
     "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",
-    "check:readme": "node scripts/check-readme-claims.js"
+    "check:readme": "node scripts/check-readme-claims.js",
+    "check:sandbox-pin": "node scripts/check-sandbox-pin.js"
   },
   "keywords": [
     "react",
@@ -569,7 +570,8 @@
     ],
     "{stories,sandbox}/**/*.tsx": [
       "node scripts/check-slop.js",
-      "node scripts/check-story-tokens.js"
+      "node scripts/check-story-tokens.js",
+      "node scripts/check-sandbox-pin.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
