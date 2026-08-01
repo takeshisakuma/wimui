@@ -75,6 +75,13 @@ const checks = [
   },
   {
     category: "docs",
+    // 合成ルールは DESIGN.md / llms.txt / judge-slop の 3 箇所で使われる。
+    // 手で同期していた頃は既にドリフトしていた（T39）。
+    name: "Composition rules single source (DESIGN.md / llms.txt / judge-slop)",
+    command: "node scripts/check-composition-rules.js",
+  },
+  {
+    category: "docs",
     name: "AI-slop composition guard (Patterns anti-pattern gates)",
     command: "node scripts/check-slop.js",
   },
