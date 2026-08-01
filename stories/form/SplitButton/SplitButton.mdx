@@ -1,0 +1,76 @@
+import { Meta, Canvas, Controls, Title, Primary } from "@storybook/addon-docs/blocks";
+import * as SplitButtonStories from "./SplitButton.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={SplitButtonStories} />
+
+<Title />
+
+<p><T k="doc.splitbutton_long_desc" /></p>
+
+<Canvas of={SplitButtonStories.Default} />
+<Controls of={SplitButtonStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<p><T k="doc.splitbutton_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+
+<p><T k="doc.splitbutton_choice_matrix_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.when_to_use" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SplitButton</code></td>
+      <td><T k="doc.splitbutton_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><code>ButtonGroup</code> / <code>Dropdown</code> / <code>SpeedDial</code></td>
+      <td><T k="doc.splitbutton_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="SplitButton" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+
+<p><T k="doc.splitbutton_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li><T k="doc.splitbutton_scenario_1" /></li>
+  <li><T k="doc.splitbutton_scenario_2" /></li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li><T k="doc.splitbutton_best_practice_1" /></li>
+  <li><T k="doc.splitbutton_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="SplitButton" section="props" />
+
+<Docgen componentName="SplitButton" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<p><T k="doc.splitbutton_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+
+<Docgen componentName="SplitButton" section="i18n" />
+
+<Docgen componentName="SplitButton" section="test" />
+
+<Primary />

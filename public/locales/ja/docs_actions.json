@@ -295,6 +295,17 @@
     "linkbutton_scenario_1": "CTAセクション: 会員登録ページへと導く「今すぐ始める」ボタンとして使用します。",
     "linkbutton_scenario_2": "ソーシャル共有: フッターに「GitHubで表示」や「Twitterでフォロー」などのボタンを提供します。",
     "linkbutton_title": "ボタンの外観を持ちながら、ページ遷移などのアクションを実行するコンポーネント",
-    "action": "アクション"
+    "action": "アクション",
+    "splitbutton_long_desc": "主となる操作と、その関連操作をトグルの奥に置いたメニューを組み合わせた部品です。ほとんどの場合は 1 つの選択で正しいが、近い選択肢もすぐ届く必要がある場面で使います（「保存」の奥に「下書きとして保存」、「デプロイ」の奥に「ステージングへデプロイ」など）。",
+    "splitbutton_design_intent": "2 つの半分は同じ variant / intent / size を受け取り、「たまたま隣り合った 2 つのボタン」ではなく 1 つのコントロールとして読めるようにしています。片方だけ変える指定は持ちません。分かれた瞬間に「1 つのもの」に見えなくなるからです。",
+    "splitbutton_choice_matrix_desc": "1 つの操作が明らかに既定かどうかで選びます。",
+    "splitbutton_choice_self_when": "1 つの操作が支配的で、残りはその変種であるとき。",
+    "splitbutton_choice_alt_when": "操作が対等なら ButtonGroup、どれも既定でないなら Dropdown、タッチの浮遊ボタンなら SpeedDial。",
+    "splitbutton_a11y_desc": "トグル側は矢印しか描かないので、名前になるテキストがありません。そのため toggleLabel を型で必須にしています ── 名前の無いボタンは WCAG 違反で、テスト実行より前にコンパイラで捕まえるべきものです。メニューは Dropdown が描き、フォーカス移動と Escape もそちらが持ちます。",
+    "splitbutton_keyboard_desc": "Tab では主操作とトグルが 2 つの停止点になります。トグルは Enter / Space で開き、メニュー内は矢印キーで移動、Escape で閉じます（いずれも Dropdown の担当）。",
+    "splitbutton_scenario_1": "フォームのフッター。ほとんどの人が押すのは「保存」だが、「下書きとして保存」「保存して閉じる」も 1 クリックで届かせたい場面。",
+    "splitbutton_scenario_2": "デプロイボタン。「本番へデプロイ」が既定で、他の環境はトグルの奥に置く。",
+    "splitbutton_best_practice_1": "最もよく使う操作を主側に置いてください。1 つに絞れないなら Dropdown を使うべきです。既定が恣意的な split button は、素直なメニューより分かりにくくなります。",
+    "splitbutton_best_practice_2": "メニューは短く保ってください。項目が数個を超えたら、それは「ボタンがくっついたメニュー」であって split button ではありません。"
   }
 }

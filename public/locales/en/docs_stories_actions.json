@@ -1,6 +1,11 @@
 {
   "story": {
     "button_click_me": "Click me",
-    "linkbutton_google": "Go to Google"
+    "linkbutton_google": "Go to Google",
+    "splitbutton_main": "Save",
+    "splitbutton_toggle": "More save options",
+    "splitbutton_draft": "Save as draft",
+    "splitbutton_close": "Save and close",
+    "splitbutton_template": "Save as template"
   }
 }

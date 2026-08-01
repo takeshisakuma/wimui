@@ -190,7 +190,8 @@
     "spoiler_desc": "Recolhe textos longos, como avaliações e comentários, a um número fixo de linhas, com um botão \"mostrar mais\" acessível que aparece apenas quando o texto transborda.",
     "toolbar_desc": "Faixa de ações para IconButton, ToggleGroup e controles relacionados, com navegação por teclado de toolbar.",
     "menubar_desc": "Barra de menus no estilo desktop, com submenus flutuantes de Arquivo / Editar / Exibir.",
-    "progressRing_desc": "ProgressRing description."
+    "progressRing_desc": "ProgressRing description.",
+    "splitButton_desc": "SplitButton description."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

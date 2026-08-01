@@ -1436,7 +1436,8 @@
       "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows.",
       "toolbar_desc": "Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.",
       "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus.",
-      "progressRing_desc": "ProgressRing description."
+      "progressRing_desc": "ProgressRing description.",
+      "splitButton_desc": "SplitButton description."
     },
     "cat": {
       "ai": "AI"
@@ -2264,7 +2265,18 @@
       "linkbutton_keyboard_desc": "Tab focuses the link button. Enter activates it. It behaves as a standard anchor element for keyboard users.",
       "dropdown_keyboard_desc": "Tab focuses the dropdown trigger. Enter or Space opens the dropdown. Arrow keys navigate options. Enter selects the focused option. Escape closes the dropdown.",
       "action": "Action",
-      "button_is_concise": "Keep labels concise; prefer a single line by default."
+      "button_is_concise": "Keep labels concise; prefer a single line by default.",
+      "splitbutton_long_desc": "A main action with a menu of related actions behind a toggle. Use it when one choice is right almost every time but a few near-neighbours have to stay reachable — Save with Save as draft behind it, Deploy with Deploy to staging.",
+      "splitbutton_design_intent": "The two halves take the same variant, intent and size, so they read as one control rather than two buttons that happen to touch. Styling them apart is not offered: the moment they diverge, the pair stops looking like a single thing.",
+      "splitbutton_choice_matrix_desc": "Pick by whether one action is clearly the default.",
+      "splitbutton_choice_self_when": "One action dominates and the rest are variations of it.",
+      "splitbutton_choice_alt_when": "ButtonGroup when the actions are peers; Dropdown when none of them is a default; SpeedDial for a floating action button on touch.",
+      "splitbutton_a11y_desc": "The toggle half only shows a chevron, so it has no text to name it. toggleLabel is required by the type for that reason — a button with no accessible name is a WCAG failure, and the compiler is a better place to catch it than a test run. The menu comes from Dropdown, which owns the roving focus and Escape handling.",
+      "splitbutton_keyboard_desc": "Tab reaches the main action and the toggle as two stops. The toggle opens with Enter or Space; inside the menu, arrow keys move and Escape closes, all handled by Dropdown.",
+      "splitbutton_scenario_1": "A form footer where Save is what almost everyone wants, but Save as draft and Save and close must stay one click away.",
+      "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
+      "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
+      "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button."
     }
   },
   "docs_ai": {
@@ -10551,7 +10563,12 @@
   "docs_stories_actions": {
     "story": {
       "button_click_me": "Click me",
-      "linkbutton_google": "Go to Google"
+      "linkbutton_google": "Go to Google",
+      "splitbutton_main": "Save",
+      "splitbutton_toggle": "More save options",
+      "splitbutton_draft": "Save as draft",
+      "splitbutton_close": "Save and close",
+      "splitbutton_template": "Save as template"
     }
   },
   "docs_stories_ai": {

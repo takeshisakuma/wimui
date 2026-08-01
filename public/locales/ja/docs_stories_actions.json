@@ -1,6 +1,11 @@
 {
   "story": {
     "button_click_me": "クリックしてね",
-    "linkbutton_google": "Googleへ移動"
+    "linkbutton_google": "Googleへ移動",
+    "splitbutton_main": "保存",
+    "splitbutton_toggle": "その他の保存方法",
+    "splitbutton_draft": "下書きとして保存",
+    "splitbutton_close": "保存して閉じる",
+    "splitbutton_template": "テンプレートとして保存"
   }
 }
