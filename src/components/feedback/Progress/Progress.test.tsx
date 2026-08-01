@@ -5,7 +5,7 @@ import styles from "./progress.module.scss";
 
 describe("Progress", () => {
   it("renders with percentage width", () => {
-    const { container } = render(<Progress value={50} max={100} />);
+    const { container } = render(<Progress value={50} max={100}  aria-label="Progress" />);
     const progressBar = container.querySelector(`.${styles.bar}`) as HTMLElement;
     expect(progressBar.style.getPropertyValue("--wim-progress-width")).toBe("50%");
   });
@@ -23,7 +23,7 @@ describe("Progress", () => {
   });
 
   it("renders indeterminate state", () => {
-    render(<Progress indeterminate />);
+    render(<Progress indeterminate  aria-label="Progress" />);
     const progress = screen.getByRole("progressbar");
     expect(progress).toHaveClass(styles.indeterminate);
     const progressBar = progress.querySelector(`.${styles.bar}`) as HTMLElement;

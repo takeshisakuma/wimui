@@ -2,9 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { ComponentSizeBasic, IndicatorIntent } from "../../../types/tokens";
+import { WithAccessibleName, resolveAriaLabel } from "../../_internal/accessibleName";
 import styles from "./progress.module.scss";
 
-type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
+type ProgressOwnProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * Current value of the progress bar.
    * @default 0
@@ -26,7 +27,12 @@ type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   size?: ComponentSizeBasic;
   /**
-   * Text label displayed above the bar.
+   * Text label displayed above the bar. Also used as the accessible name unless
+   * `aria-label` / `aria-labelledby` is given.
+   *
+   * A progress bar always carries `role="progressbar"`, and a progressbar with no
+   * accessible name is a WCAG failure (axe `aria-progressbar-name`, serious). The
+   * type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
    */
   label?: string;
   /**
@@ -40,6 +46,8 @@ type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   indeterminate?: boolean;
 };
+
+export type ProgressProps = WithAccessibleName<ProgressOwnProps>;
 
 /**
  * Displays a progress bar.
@@ -55,6 +63,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       showValue = false,
       indeterminate = false,
       className,
+      "aria-label": ariaLabel,
       ...props
     },
     ref,
@@ -75,7 +84,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         aria-valuenow={indeterminate ? undefined : value}
         aria-valuemin={0}
         aria-valuemax={max}
-        aria-label={label}
+        aria-label={resolveAriaLabel(label, ariaLabel)}
         {...props}
       >
         {(label || showValue) && (
