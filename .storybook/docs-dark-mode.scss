@@ -1,3 +1,4 @@
+@use "host-scope" as *;
 
 /* Storybook Docs mode Canvas background fix for Dark Mode */
 @mixin docs-dark-overrides {
@@ -32,15 +33,19 @@
 
   /* Docs 見出し・本文テキスト – Storybook addon-docs の rgba(0,0,0,x) を上書き。
      span / strong は一括で塗らない（Colors の text-on-* 見本やコンポーネント内色を潰すため）。
-     入れ子の phrasing（.wim-t 等）は親から継承させる。 */
-  .sbdocs-content h1,
-  .sbdocs-content h2,
-  .sbdocs-content h3,
-  .sbdocs-content h4,
-  .sbdocs-content h5,
-  .sbdocs-content h6,
-  .sbdocs-content p,
-  .sbdocs-content li {
+     入れ子の phrasing（.wim-t 等）は親から継承させる。
+
+     $prose-only が無いと `Title` / `Text` にも当たる。とくに
+     `<Text color="secondary">` は text-primary で塗り潰されて**二次テキストが
+     一次テキストと同じ白になる**（T36 で dark の Playground 実測）。 */
+  .sbdocs-content h1#{$prose-only},
+  .sbdocs-content h2#{$prose-only},
+  .sbdocs-content h3#{$prose-only},
+  .sbdocs-content h4#{$prose-only},
+  .sbdocs-content h5#{$prose-only},
+  .sbdocs-content h6#{$prose-only},
+  .sbdocs-content p#{$prose-only},
+  .sbdocs-content li#{$prose-only} {
     color: var(--wim-color-text-primary) !important;
   }
 
@@ -49,23 +54,26 @@
   }
 
   /* Docs内テーブル行 – zebra stripe の白背景を除去。
-     `.sb-unstyled` 配下はライブラリ自身の Table なので除外する（docs-common.scss と同じ規約）。 */
-  .sbdocs-content table:not(.sb-unstyled table) tr,
-  .sbdocs-content table:not(.sb-unstyled table) tr:nth-child(even),
-  .sbdocs-content table:not(.sb-unstyled table) tr:nth-child(odd) {
+     ライブラリ自身の Table は除外する（docs-common.scss と同じ規約）。 */
+  .sbdocs-content table#{$prose-only} tr,
+  .sbdocs-content table#{$prose-only} tr:nth-child(even),
+  .sbdocs-content table#{$prose-only} tr:nth-child(odd) {
     background-color: transparent !important;
   }
 
   /* Docs内テーブルセル – Storybook 既定の白背景を上書き */
-  .sbdocs-content table:not(.sb-unstyled table) th,
-  .sbdocs-content table:not(.sb-unstyled table) td {
+  .sbdocs-content table#{$prose-only} th,
+  .sbdocs-content table#{$prose-only} td {
     background-color: transparent !important;
     color: var(--wim-color-text-primary) !important;
     border-color: var(--wim-color-border) !important;
   }
 
-  /* Docs inline code blocks – 背景とのコントラストを調整 */
-  .sbdocs-content code {
+  /* Docs inline code blocks – 背景とのコントラストを調整。
+     ライブラリの `Code` は自分で背景・枠・字送りを持つので、当てるとフォント
+     サイズごと乗っ取ることになる（T36: docs Canvas の `Code - Inline` が
+     canvas と 9 プロパティ食い違っていた）。 */
+  .sbdocs-content code#{$prose-only} {
     background-color: rgba(255, 255, 255, 0.08) !important;
     color: #b4d7dd !important; /* 高コントラストな淡い青 */
     padding: 0.15em 0.3em !important;
@@ -76,8 +84,8 @@
 
   /* MDX fenced code blocks のテキスト色 */
   /* code: テキストノードの継承元 / code span: react-syntax-highlighter のインラインスタイル上書き */
-  .sbdocs-content pre code,
-  .sbdocs-content pre code span {
+  .sbdocs-content pre#{$prose-only} code,
+  .sbdocs-content pre#{$prose-only} code span {
     color: #cdd6f4 !important;
     background-color: transparent !important;
     border: none !important;

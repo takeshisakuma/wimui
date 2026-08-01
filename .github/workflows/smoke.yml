@@ -19,9 +19,19 @@ on:
       - "scripts/prune-dist-assets.js"
   push:
     branches: [main]
+    # CI-6 と同じ非対称がここにもあった。`tokens/**` や `scripts/build-style-entries.js` を
+    # 変えた PR は、マージしても main でスモークが走らない＝**公開物のビルド手順を変えたのに
+    # 「公開して動くか」の signal が main で一度も出ない**状態だったので揃える。
     paths:
       - "src/**"
+      - "public/locales/**"
+      - "tokens/**"
       - "package.json"
+      - "vite.config.ts"
+      - "scripts/smoke/**"
+      - "scripts/build-style-entries.js"
+      - "scripts/fix-cjs-empty-css.js"
+      - "scripts/prune-dist-assets.js"
   workflow_dispatch:
   schedule:
     # 週次（月曜 06:00 UTC）に full プロファイルも回す

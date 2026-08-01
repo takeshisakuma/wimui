@@ -33,6 +33,18 @@ export async function waitForStoryReady(page: Page) {
     await waitForMountedStory();
   }
 
+  await waitForRenderSettled(page);
+}
+
+/**
+ * 「マウントは済んでいる」あとの落ち着き待ち — フォント・画像・スライダー。
+ *
+ * `waitForStoryReady` から切り出してある。マウント判定は `#storybook-root` に
+ * 子が付いたかを見る**ストーリー専用**の条件で、docs ページ（`viewMode=docs`）には
+ * そのまま使えない。一方でここから下はホストに依らないので、docs ホストを見る
+ * `host-matrix.spec.ts` はマウント判定だけ自前でやってこれを呼ぶ。
+ */
+export async function waitForRenderSettled(page: Page) {
   await page.evaluate(
     async (timeoutMs) => {
       await document.fonts.ready;
