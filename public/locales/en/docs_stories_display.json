@@ -313,6 +313,7 @@
     "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
     "watermark_team": "WIM UI Team",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "paragraph_clamp_body": "A release note long enough to need stopping. It explains what changed, why it changed, and what a reader has to do about it — which is more than a card can show without pushing everything below it off the screen."
   }
 }

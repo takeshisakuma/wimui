@@ -169,6 +169,7 @@
     "text_extra_large": "Extra grande",
     "text_highlight": "Destaque",
     "text_strikethrough": "Tachado",
-    "typography": "Tipografia (Typeset)"
+    "typography": "Tipografia (Typeset)",
+    "paragraph_choice_clamp_when": "Parar o texto após N linhas com reticências e sem forma de expandir — o resumo de um cartão, uma célula de tabela, o subtítulo de uma lista. Prefira Spoiler quando o leitor precisar do resto: ele sempre renderiza um botão de alternância, e por isso não consegue apenas parar em três linhas."
   }
 }

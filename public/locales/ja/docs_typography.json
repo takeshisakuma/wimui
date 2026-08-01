@@ -169,6 +169,7 @@
     "text_extra_large": "特大",
     "text_highlight": "ハイライト",
     "text_strikethrough": "取り消し線",
-    "typography": "タイポグラフィ (Typeset)"
+    "typography": "タイポグラフィ (Typeset)",
+    "paragraph_choice_clamp_when": "N 行で打ち切って省略記号を出し、展開手段は付けない場合 — カードの説明文、テーブルのセル、リストの副題など。続きを読ませたいときは Spoiler を使ってください。あちらは必ず開閉トグルを描くので、「3 行で止めるだけ」ができません。"
   }
 }

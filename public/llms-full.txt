@@ -2615,6 +2615,15 @@ use `truncate` to clip it with an ellipsis.
     - `truncate: boolean` = false — Keep the text on one line and clip the overflow with an ellipsis.
 Implies `nowrap`.
 @default false
+    - `lineClamp: number` — Clip the text after this many lines and end it with an ellipsis.
+
+`truncate` is the one-line case; this is the multi-line one. Use it when the
+text simply has to stop — a card blurb, a table cell, a list subtitle. If the
+reader needs a way to see the rest, use `Spoiler` instead: it always renders
+a toggle, which is the point of that component and the reason it cannot be
+used for "just stop at three lines".
+
+Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `content: React.ReactNode` — Content of the text. Alternative to children (children take precedence only with asChild).
 - **Title** — Possesses visual weight (boldness/size) to indicate page structure.
     - `asChild: boolean` = false — If true, the heading will be rendered as its child, merging its props onto that child.
