@@ -315,6 +315,12 @@
         "mobile": true
       },
       {
+        "name": "SplitButton",
+        "descKey": "doc.splitButton_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "CopyButton",
         "descKey": "doc.copyButton_desc",
         "pc": true,

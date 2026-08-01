@@ -118,7 +118,8 @@
     "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows.",
     "toolbar_desc": "Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.",
     "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus.",
-    "progressRing_desc": "ProgressRing description."
+    "progressRing_desc": "ProgressRing description.",
+    "splitButton_desc": "SplitButton description."
   },
   "cat": {
     "ai": "AI"

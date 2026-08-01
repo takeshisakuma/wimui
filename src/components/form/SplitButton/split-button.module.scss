@@ -1,0 +1,43 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    align-items: stretch;
+
+    // 2 つのボタンを 1 つのコントロールに見せる。隣り合う辺の角丸を落とし、
+    // 境界の枠が二重にならないよう片側を負のマージンで重ねる。
+    // **手で組むと必ず抜ける**ので部品側で持つ（T47 ②）。
+    .main {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .toggle {
+      position: relative;
+      padding-inline: var(--wim-spacing-md);
+      margin-left: calc(var(--wim-border-width-thin) * -1);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+
+      // 境界に薄い区切りを入れて「押せる箇所が 2 つある」ことを示す。
+      // solid のときは面が同色で境目が消えるため。
+      &::before {
+        position: absolute;
+        top: var(--wim-spacing-xs);
+        bottom: var(--wim-spacing-xs);
+        left: 0;
+        width: var(--wim-border-width-thin);
+        content: "";
+        background-color: var(--wim-color-overlay-soft);
+      }
+    }
+  }
+
+  .chevron {
+    display: flex;
+  }
+
+  .itemIcon {
+    display: inline-flex;
+    margin-right: var(--wim-spacing-xs);
+  }
+}

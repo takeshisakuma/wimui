@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.10.0 — a React 19 component library: 217 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.10.0 — a React 19 component library: 218 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -1578,6 +1578,17 @@ so the unit does not have to be repeated in the label.
     - `onChange: (value: string) => void` — Callback when the value changes
     - `defaultValue: string` = "" — Initial value (uncontrolled)
     - `maxLength: number` — Maximum number of characters
+- **SplitButton** — SplitButton description.
+    - `children: React.ReactNode` — Text of the main action.
+    - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Called when the main action is pressed.
+    - `actions: SplitButtonAction[]` (required) — Secondary actions listed behind the toggle.
+    - `variant: "solid" | "outline" | "ghost"` = "solid" — Visual style, applied to both halves so they read as one control.
+    - `intent: "default" | "danger" | "success"` = "default" — Intent (semantic color), applied to both halves.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of both halves.
+    - `disabled: boolean` = false — Disable the whole control.
+    - `loading: boolean` = false — Show a loading state on the main action.
+    - `toggleLabel: string` (required) — Accessible name for the toggle half. The main half is named by its own text,
+but the toggle only shows a chevron, so it needs one of its own.
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the switch

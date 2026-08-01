@@ -190,7 +190,8 @@
     "spoiler_desc": "レビューやコメントなどの長文を指定行数に折りたたみ、テキストがあふれる場合のみアクセシブルな「もっと見る」トグルを表示します。",
     "toolbar_desc": "IconButton や ToggleGroup などをまとめるアクション帯。ツールバーのキーボード操作に対応します。",
     "menubar_desc": "File / Edit / View のようなデスクトップ型メニューバー。フローティングのサブメニューを開きます。",
-    "progressRing_desc": "ProgressRing description."
+    "progressRing_desc": "ProgressRing description.",
+    "splitButton_desc": "SplitButton description."
   },
   "effects": {
     "common_vars": "共通変数"

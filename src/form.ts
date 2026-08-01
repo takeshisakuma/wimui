@@ -55,3 +55,4 @@ export * from "./components/form/CreditCardInput/CreditCardInput";
 export * from "./components/form/CounterTextarea/CounterTextarea";
 
 export * from "./components/form/ThemeToggle/ThemeToggle";
+export * from "./components/form/SplitButton/SplitButton";
