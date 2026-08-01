@@ -82,8 +82,13 @@ export const Required: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Badge {...args} content={t("required")} />;
   },
+  // 実使用（`FieldLabelContent` が `<Input required>` で描く必須バッジ）と
+  // 同じ形にする。塗りだと必須項目の多いフォームで、何も間違えていないのに
+  // ページ中がエラー色になり実際のエラーと区別が付かなくなるため subtle を使う。
+  // 見本と実装が違うと、読んだ人が別の見た目を書くことになる（T51-①）。
   args: {
     intent: "danger",
+    variant: "subtle",
     size: "sm",
   },
 };

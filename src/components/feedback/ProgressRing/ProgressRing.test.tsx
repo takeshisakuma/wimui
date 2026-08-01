@@ -13,23 +13,23 @@ describe("ProgressRing", () => {
   });
 
   it("shows the percentage only when asked", () => {
-    const { rerender } = render(<ProgressRing value={40} />);
+    const { rerender } = render(<ProgressRing value={40}  aria-label="Progress" />);
     expect(screen.queryByText("40%")).not.toBeInTheDocument();
 
-    rerender(<ProgressRing value={40} showValue />);
+    rerender(<ProgressRing value={40} showValue  aria-label="Progress" />);
     expect(screen.getByText("40%")).toBeInTheDocument();
   });
 
   it("scales the percentage against max", () => {
-    render(<ProgressRing value={25} max={50} showValue />);
+    render(<ProgressRing value={25} max={50} showValue  aria-label="Progress" />);
     expect(screen.getByText("50%")).toBeInTheDocument();
   });
 
   it("clamps out-of-range values instead of overflowing the ring", () => {
-    const { rerender } = render(<ProgressRing value={150} showValue />);
+    const { rerender } = render(<ProgressRing value={150} showValue  aria-label="Progress" />);
     expect(screen.getByText("100%")).toBeInTheDocument();
 
-    rerender(<ProgressRing value={-20} showValue />);
+    rerender(<ProgressRing value={-20} showValue  aria-label="Progress" />);
     expect(screen.getByText("0%")).toBeInTheDocument();
   });
 
@@ -39,14 +39,14 @@ describe("ProgressRing", () => {
    * TSX 側の計算とズレる。
    */
   it("drives the arc through a custom property, not a computed length", () => {
-    const { container } = render(<ProgressRing value={40} />);
+    const { container } = render(<ProgressRing value={40}  aria-label="Progress" />);
     const indicator = container.querySelector("circle:last-of-type") as SVGCircleElement;
     expect(indicator.getAttribute("pathLength")).toBe("100");
     expect(indicator.style.getPropertyValue("--wim-progress-ring-value")).toBe("40");
   });
 
   it("drops the value when indeterminate", () => {
-    const { container } = render(<ProgressRing indeterminate showValue value={40} />);
+    const { container } = render(<ProgressRing indeterminate showValue value={40}  aria-label="Progress" />);
     expect(screen.getByRole("progressbar")).not.toHaveAttribute("aria-valuenow");
     expect(screen.queryByText("40%")).not.toBeInTheDocument();
 
