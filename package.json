@@ -372,6 +372,7 @@
     "prepare": "husky",
     "check:aliases": "node scripts/check-aliases.js",
     "check:improvements": "node scripts/check-improvements-status.js",
+    "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js"
   },
   "keywords": [
@@ -570,7 +571,8 @@
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
-      "node scripts/check-mono-family.js"
+      "node scripts/check-mono-family.js",
+      "node scripts/check-intent-text-color.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
