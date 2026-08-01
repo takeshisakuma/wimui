@@ -32,17 +32,14 @@ const CONCURRENCY = 4;
 const SNAPSHOT_DIR = 'vrt/vrt.spec.ts-snapshots';
 
 // 判断依存ルール（A 層で機械化できない視覚判断）。DESIGN.md 必須ルール＋hallmark 視覚ゲート由来。
-const RULES = {
-  protagonist: '1 画面に視覚的主役が 1 つあるか（全要素が同じ声量＝fail）',
-  centered_overuse: '中央揃えセクションが 1 ページ 1 回以内か（多用＝fail）',
-  rule_of_three: '3 つ均等の機能カード／"Fast. Secure. Reliable." 型の並列に陥っていないか',
-  density_contrast: '密度のコントラスト（見せ場は疎・データ領域は密）があるか',
-  realism: '名前・数値・コピーが実在感を持つか（連番/丸すぎる数値/プレースホルダ臭＝fail）',
-  gratuitous_decoration: '操作/理解を助けない装飾（過剰な影・枠・グラデ・絵文字）が無いか',
-  fake_chrome: '偽のブラウザバー/フォンフレーム/IDE 枠を手描きしていないか',
-  quiet_chrome: 'クローム（パンくず・見出し・補足文・ツールバー・フィルタ帯）が主役より静かか（補足文の Alert 化・フィルタ帯の Card 囲み・クローム側の primary 面・表の上の KPI タイル列＝fail）',
-  generic_gradient: '量産型グラデ blob／135deg ヒーロー背景に逃げていないか',
-};
+// ルーブリックは合成ルールの SSOT から引く（T39）。以前はここに本文を書き写しており、
+// DESIGN.md / llms.txt と手で同期していたため、既にドリフトが起きていた。
+const COMPOSITION = JSON.parse(
+  fs.readFileSync(new URL('./composition-rules.json', import.meta.url), 'utf8'),
+);
+const RULES = Object.fromEntries(
+  COMPOSITION.rules.filter((r) => r.judge).map((r) => [r.id, r.judge]),
+);
 
 const SCHEMA = {
   type: 'object',

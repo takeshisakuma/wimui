@@ -158,6 +158,15 @@ Every component works from the root barrel \`"${pkg.name}"\`. For smaller bundle
 ${[...EXPORT_CATS].map((c) => `- \`${pkg.name}/${c}\``).join('\n')}
 `;
 
+// 合成ルールは SSOT から引く（T39）。以前はここに本文を書き写しており、
+// DESIGN.md / judge-slop.mjs と手で同期していたため、既にドリフトが起きていた
+// （「エレベーションのスタンス」「intent を省略しない」は llms.txt に 1 度も届いていなかった）。
+const compositionRules = readJSON('scripts/composition-rules.json');
+const mustRules = compositionRules.rules
+  .filter((r) => r.en)
+  .map((r, i) => `${i + 1}. ${r.en}`)
+  .join("\n");
+
 // Condensed, agent-actionable version of DESIGN.md's composition guidelines.
 // The full authored source is DESIGN.md → "コンポジションガイドライン".
 const composition = `## Composition rules — build screens that don't look AI-generated
@@ -185,16 +194,7 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 - Stock placeholder names: ${slopDict.placeholderNames.join(', ')} (a realistic example name in an input placeholder is fine).
 
 **Must rules:**
-1. One visual protagonist per screen (jump in size/weight/color creates the entry point).
-2. Contrast density: hero/showcase sparse, data regions (tables/lists) dense. Uniform "medium density" reads as AI.
-3. Never override a component's defaults via inline \`style\` (\`padding:0\`, \`borderRadius:0\`). Add a prop/token instead.
-4. Never hardcode gap/padding/size — use \`--wim-spacing-*\` tokens.
-5. Keep one radius stance per screen (\`radius.component\` / \`radius.container\` / \`radius.overlay\`); don't mix 0 and lg arbitrarily.
-6. Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.
-7. Give demo content real substance (product-context copy, internally consistent numbers/dates/names — active ≤ total, dates not evenly spaced).
-8. Add intentional "wobble": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).
-9. Keep the chrome quiet. Breadcrumb, page title, summary line, toolbar and filter bar frame the content; they must not compete with the protagonist. Don't promote a one-line summary to an \`Alert\`/\`Banner\`, don't wrap the filter bar in a \`Card\` (its border doubles up with the data region's), keep primary surfaces out of the chrome, and don't stack a KPI tile row above a table screen. Corollary of 1 and 6, but it is the rule most often broken on admin/list screens — the test is whether the eye lands on the data first.
-10. Check the screen at 390px and 768px before calling it done. The page itself must never scroll sideways (\`document.scrollWidth > document.documentElement.clientWidth\` is a bug — the usual cause is a group of controls that cannot wrap, e.g. several buttons packed into one \`Toolbar.Group\`; split them into separate groups). Data tables need their narrow mode turned on (\`<DataGrid mobileCard>\`) rather than an inner scrollbar: without it columns collapse and a short string like a \`Code\` lot number breaks one character per line. The switch to cards happens at the \`md\` container width, so tablets get cards too.
+${mustRules}
 `;
 
 // Copy-paste starting points. Unlike Storybook story snippets, these are

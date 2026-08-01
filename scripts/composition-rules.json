@@ -1,0 +1,130 @@
+{
+  "$comment": "合成ルールの単一ソース（T39）。DESIGN.md の必須ルール本文・llms.txt の Must rules・judge-slop.mjs のルーブリックは、いずれもここから導く。3 箇所を手で同期していた結果、既にドリフトが起きていた: DESIGN.md の『エレベーションのスタンスも 1 画面 1 つ』と『intent は省略せず明示する』は llms.txt に 1 度も届いていなかった（2026-08-01 実測）。ルールを増やすときはこのファイルだけを編集し、`npm run llms:build`（llms.txt）を再生成する。judge-slop はこのファイルを直接読む。`npm run check:composition-rules` が DESIGN.md との対応を検証する。",
+  "$fields": {
+    "id": "機械可読な識別子。judge-slop の判定キーになる",
+    "ja": "DESIGN.md 用の見出し（規範の短い言い切り）",
+    "en": "llms.txt 用。外部 AI がそのまま従える粒度の英語",
+    "judge": "judge-slop のルーブリック。LLM が pass/warn/fail を付けられる問いの形。省略すると採点対象にならない",
+    "designAnchor": "DESIGN.md 側で対応する本文を探すための語。check-composition-rules.js が使う"
+  },
+  "rules": [
+    {
+      "id": "protagonist",
+      "ja": "1 画面に視覚的主役は 1 つ",
+      "en": "One visual protagonist per screen (jump in size/weight/color creates the entry point).",
+      "judge": "1 画面に視覚的主役が 1 つあるか（全要素が同じ声量＝fail）",
+      "designAnchor": "1 画面に視覚的主役は 1 つ"
+    },
+    {
+      "id": "density_contrast",
+      "ja": "密度のコントラストをつける",
+      "en": "Contrast density: hero/showcase sparse, data regions (tables/lists) dense. Uniform \"medium density\" reads as AI.",
+      "judge": "密度のコントラスト（見せ場は疎・データ領域は密）があるか",
+      "designAnchor": "密度のコントラストをつける"
+    },
+    {
+      "id": "no_style_override",
+      "ja": "コンポーネントの既定値を style で上書きしない",
+      "en": "Never override a component's defaults via inline `style` (`padding:0`, `borderRadius:0`). Add a prop/token instead.",
+      "designAnchor": "既定値を `style` で上書きしない"
+    },
+    {
+      "id": "no_hardcoded_space",
+      "ja": "gap / padding / サイズのハードコード禁止",
+      "en": "Never hardcode gap/padding/size — use `--wim-spacing-*` tokens.",
+      "designAnchor": "ハードコード禁止"
+    },
+    {
+      "id": "one_radius_stance",
+      "ja": "角丸の幾何学スタンスを混在させない",
+      "en": "Keep one radius stance per screen (`radius.component` / `radius.container` / `radius.overlay`); don't mix 0 and lg arbitrarily.",
+      "designAnchor": "角丸の幾何学スタンス"
+    },
+    {
+      "id": "limit_accent",
+      "ja": "アクセントカラーは 1 ビューで限定的に",
+      "en": "Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.",
+      "designAnchor": "アクセントカラーは 1 ビューで限定的に"
+    },
+    {
+      "id": "realism",
+      "ja": "デモ内容に実在感を持たせる",
+      "en": "Give demo content real substance (product-context copy, internally consistent numbers/dates/names — active ≤ total, dates not evenly spaced).",
+      "judge": "名前・数値・コピーが実在感を持つか（連番/丸すぎる数値/プレースホルダ臭＝fail）",
+      "designAnchor": "デモ内容に実在感を持たせる"
+    },
+    {
+      "id": "one_elevation_stance",
+      "ja": "エレベーションのスタンスも 1 画面 1 つ",
+      "en": "Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant=\"outline\"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border.",
+      "designAnchor": "エレベーションのスタンスも 1 画面 1 つ"
+    },
+    {
+      "id": "no_double_frame",
+      "ja": "枠を持つコンポーネントを枠で包まない",
+      "en": "Never wrap a component that already draws its own frame. `<Card><Table card /></Card>` doubles the border and nests radii (12px inside 4px). `Table` takes a `card` prop and `Stats` is already a Card — place them directly.",
+      "designAnchor": "枠を持つコンポーネントを枠で包まない"
+    },
+    {
+      "id": "explicit_intent",
+      "ja": "intent は省略せず明示する（Badge / Tag / Chip）",
+      "en": "Always pass `intent` on `Badge` / `Tag` / `Chip`. Their default is `primary` (the accent), so an ordinary value like `pending` or `member` gets painted as loudly as an exception and the colour stops carrying information. Use `intent=\"neutral\"` for ordinary values.",
+      "designAnchor": "intent` は省略せず明示する"
+    },
+    {
+      "id": "colour_means_good_or_bad",
+      "ja": "色は「方向」ではなく「良し悪し」で選ぶ",
+      "en": "Pick colour by good/bad, not by direction. `Stats.Trend` ties the arrow and the colour together, so `up` is always the success colour — using it for a metric where up is bad (failures, error rate) renders the bad news as good. Use a colourless form such as `Stats.Description` instead. Don't approximate a meaning the API cannot express.",
+      "designAnchor": "色は「方向」ではなく「良し悪し」で選ぶ"
+    },
+    {
+      "id": "quiet_chrome",
+      "ja": "クローム（枠回り）は黙らせる",
+      "en": "Keep the chrome quiet. Breadcrumb, page title, summary line, toolbar and filter bar frame the content; they must not compete with the protagonist. Don't promote a one-line summary to an `Alert`/`Banner`, don't wrap the filter bar in a `Card` (its border doubles up with the data region's), keep primary surfaces out of the chrome, and don't stack a KPI tile row above a table screen. Corollary of protagonist and accent limits, but it is the rule most often broken on admin/list screens — the test is whether the eye lands on the data first.",
+      "judge": "クローム（パンくず・見出し・補足文・ツールバー・フィルタ帯）が主役より静かか（補足文の Alert 化・フィルタ帯の Card 囲み・クローム側の primary 面・表の上の KPI タイル列＝fail）",
+      "designAnchor": "クローム（枠回り）は黙らせる"
+    },
+    {
+      "id": "wobble",
+      "ja": "意図的な不揃いを混ぜる",
+      "en": "Add intentional \"wobble\": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).",
+      "designAnchor": "不完全な行"
+    },
+    {
+      "id": "narrow_widths",
+      "ja": "狭い幅で確認してから完成とする",
+      "en": "Check the screen at 390px and 768px before calling it done. The page itself must never scroll sideways (`document.scrollWidth > document.documentElement.clientWidth` is a bug — the usual cause is a group of controls that cannot wrap, e.g. several buttons packed into one `Toolbar.Group`; split them into separate groups). Data tables need their narrow mode turned on (`<DataGrid mobileCard>`) rather than an inner scrollbar: without it columns collapse and a short string like a `Code` lot number breaks one character per line. The switch to cards happens at the `md` container width, so tablets get cards too.",
+      "designAnchor": "狭幅"
+    },
+    {
+      "id": "centered_overuse",
+      "ja": "中央揃えを多用しない",
+      "judge": "中央揃えセクションが 1 ページ 1 回以内か（多用＝fail）",
+      "designAnchor": "中央揃え"
+    },
+    {
+      "id": "rule_of_three",
+      "ja": "3 つ均等の並列に逃げない",
+      "judge": "3 つ均等の機能カード／\"Fast. Secure. Reliable.\" 型の並列に陥っていないか",
+      "designAnchor": "3 つ均等"
+    },
+    {
+      "id": "gratuitous_decoration",
+      "ja": "意図の無い装飾を足さない",
+      "judge": "操作/理解を助けない装飾（過剰な影・枠・グラデ・絵文字）が無いか",
+      "designAnchor": "装飾は引き算で検証する"
+    },
+    {
+      "id": "fake_chrome",
+      "ja": "偽のスクリーンショット・クロームを手描きしない",
+      "judge": "偽のブラウザバー/フォンフレーム/IDE 枠を手描きしていないか",
+      "designAnchor": "偽スクリーンショット"
+    },
+    {
+      "id": "generic_gradient",
+      "ja": "量産型グラデーションに逃げない",
+      "judge": "量産型グラデ blob／135deg ヒーロー背景に逃げていないか",
+      "designAnchor": "グラデ"
+    }
+  ]
+}
