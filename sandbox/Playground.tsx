@@ -1,6 +1,17 @@
 import type React from "react";
 import { Button, Card, Code, Grid, Group, Stack, Text, Title } from "wimui";
 
+// The version StackBlitz will install. Read from package.json rather than
+// written down: between releases this file holds the last published version,
+// and inside a release PR it holds the one about to publish — which is exactly
+// what the sandbox should ask for in both cases.
+//
+// It used to be the literal `^0.3.0`, and stayed there through seven releases.
+// The comment below promised that the preview and the sandbox "can never
+// drift"; that was true of the code and false of the version, so people opened
+// a sandbox running a library seven minors older than the preview above it.
+import { version as publishedVersion } from "../package.json";
+
 // Live components (rendered in the docs preview) + their raw source (shipped to
 // StackBlitz). Both come from the same file, so the preview and the sandbox can
 // never drift. These recipes are app-shaped (no Storybook / i18n scaffolding),
@@ -82,7 +93,7 @@ const PACKAGE_JSON = JSON.stringify(
     type: "module",
     scripts: { dev: "vite", build: "vite build" },
     dependencies: {
-      wimui: "^0.3.0",
+      wimui: `^${publishedVersion}`,
       react: "^19.0.0",
       "react-dom": "^19.0.0",
     },

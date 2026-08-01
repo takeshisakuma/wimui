@@ -82,6 +82,13 @@ const checks = [
   },
   {
     category: "docs",
+    // 「Open in StackBlitz」が install するバージョン。手書きだった頃は `^0.3.0` の
+    // まま 7 リリース放置され、プレビューと sandbox が別のライブラリになっていた。
+    name: "StackBlitz scaffold pins the published version",
+    command: "node scripts/check-sandbox-pin.js",
+  },
+  {
+    category: "docs",
     // 合成ルールは DESIGN.md / llms.txt / judge-slop の 3 箇所で使われる。
     // 手で同期していた頃は既にドリフトしていた（T39）。
     name: "Composition rules single source (DESIGN.md / llms.txt / judge-slop)",
