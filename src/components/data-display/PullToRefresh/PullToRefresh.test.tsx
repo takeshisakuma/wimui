@@ -112,4 +112,41 @@ describe("PullToRefresh", () => {
       expect(onRefresh).toHaveBeenCalledTimes(1);
     });
   });
+
+  // `onRefresh` が解決したあと、50ms の整定タイマーが state を idle へ戻す。
+  // このタイマーを片付けていなかったため、アンマウント済みのコンポーネントに
+  // setState が着地していた。テストランナーではさらに悪く、jsdom が畳まれた
+  // あとに発火して `ReferenceError: window is not defined` を投げ、全テストが
+  // 通っているのに実行そのものが 1 件の unhandled error で失敗していた。
+  it("leaves no timer behind when unmounted mid-refresh", async () => {
+    vi.useFakeTimers();
+    try {
+      let resolveRefresh: () => void = () => {};
+      const onRefresh = vi.fn(() => new Promise<void>((r) => (resolveRefresh = r)));
+      const { container, unmount } = render(
+        <PullToRefresh onRefresh={onRefresh} threshold={60}>
+          Test content
+        </PullToRefresh>,
+      );
+      const root = container.firstChild as HTMLElement;
+
+      touchStart(root, 0);
+      touchMove(200);
+      touchEnd();
+      expect(onRefresh).toHaveBeenCalledTimes(1);
+
+      // ここで整定タイマーが仕掛けられる。
+      await vi.waitFor(() => expect(resolveRefresh).toBeTruthy());
+      resolveRefresh();
+      await Promise.resolve();
+      await Promise.resolve();
+
+      unmount();
+      // アンマウント後に残っている待機タイマーがあってはならない。これが 1 以上だと、
+      // あとで発火して消えたコンポーネントを触りにいく。
+      expect(vi.getTimerCount()).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 });
