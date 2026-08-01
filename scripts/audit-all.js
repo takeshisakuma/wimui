@@ -65,6 +65,11 @@ const checks = [
   },
   {
     category: "docs",
+    name: "IMPROVEMENTS.md status column matches the body",
+    command: "node scripts/check-improvements-status.js",
+  },
+  {
+    category: "docs",
     name: "Story/sandbox/docs token references resolve",
     command: "node scripts/check-story-tokens.js",
   },
