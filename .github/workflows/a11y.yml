@@ -11,10 +11,16 @@ on:
       - "playwright.config.ts"
   push:
     branches: [main]
+    # CI-6 と同じ非対称がここにも残っていた（CI-6 は `vrt.yml` だけを直した）。
+    # ハーネス側（`vrt/a11y.spec.ts` / `vrt/story-ready.ts` / `playwright.config.ts`）を
+    # 変えた PR は、マージしても main で a11y が一度も走らない状態だったので揃える。
     paths:
       - "src/**"
       - "stories/**"
       - "public/locales/**"
+      - "vrt/a11y.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
 
 # 同一ブランチの古いランを自動キャンセル
 concurrency:

@@ -1,0 +1,78 @@
+name: Host Matrix (canvas vs docs)
+
+# ライブラリが描画される面は canvas だけではない。docs ページの本文と Canvas ブロックは
+# Storybook 用スタイルシートの支配下にあり、VRT は `type === "story"` しか撮らないので
+# **281 件ある docs ページを 1 枚も見ていない**。ここはその穴を塞ぐジョブ（T36）。
+#
+# push と pull_request の paths は**一字一句同じにしてある**。片方だけ狭い状態は CI-6 で
+# 実際に起きていて、「PR では走らないのに main では走る」（またはその逆）を生む。
+# YAML アンカーで共有したくなるが、GitHub Actions のワークフロー構文はアンカーを
+# 保証していないので、素直に 2 度書いて差分レビューで揃える。
+
+on:
+  pull_request:
+    paths:
+      # ホスト側スタイルシート本体（このガードが守っている当のもの）
+      - ".storybook/**"
+      # カナリアが置かれている docs 本文。`sb-unstyled` が外れたらここで落ちる
+      - "docs/Playground.mdx"
+      # カナリアの中身
+      - "sandbox/**"
+      - "stories/Patterns/Playground/**"
+      - "stories/typography/Code/**"
+      # ガード自身と、その実行条件
+      - "vrt/host-matrix.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+  push:
+    branches: [main]
+    paths:
+      - ".storybook/**"
+      - "docs/Playground.mdx"
+      - "sandbox/**"
+      - "stories/Patterns/Playground/**"
+      - "stories/typography/Code/**"
+      - "vrt/host-matrix.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+
+concurrency:
+  group: host-matrix-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  host-matrix:
+    name: Same computed style in every host
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      # 6 ケース（2 テーマ × 3 カナリア）だけなのでシャーディングは要らない。
+      - name: Compare hosts
+        run: npx playwright test vrt/host-matrix.spec.ts
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: host-matrix-report
+          path: playwright-report/
+          retention-days: 7

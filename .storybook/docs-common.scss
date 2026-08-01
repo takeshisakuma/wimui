@@ -1,3 +1,4 @@
+@use "host-scope" as *;
 
 /* Storybook Docs Common Overrides (Global for all themes) */
 
@@ -16,8 +17,13 @@
   border-radius: 4px !important;
 }
 
-/* Code blocks (Storybook built-in snippets) */
-.sbdocs-content pre,
+/* Code blocks (Storybook built-in snippets).
+ *
+ * $prose-only は必須。これが無いと `<Code block>` が描く `pre.wim-code` にも
+ * 当たり、docs では 4px・canvas では 2px という別物になる（T36 で実測）。
+ * `.docblock-code-wrapper` / `.sbdocs-code-block` は Storybook 自身のクラスなので
+ * ライブラリと衝突しない。 */
+.sbdocs-content pre#{$prose-only},
 .sbdocs-content .docblock-code-wrapper,
 .sbdocs-content .sbdocs-code-block {
   border-radius: 4px !important;
@@ -25,12 +31,10 @@
 
 /* Tables in MDX.
  *
- * `:not(.sb-unstyled table)` follows Storybook's own convention: a subtree
- * marked `sb-unstyled` opts out of docs styling entirely. Without it these
- * !important rules also hit the library's own <Table>, which arrives with its
- * own border, radius and border-collapse — the result is a doubled bottom
- * rule and a 4px radius nested inside the container's 12px one. */
-.sbdocs-content table:not(.sb-unstyled table) {
+ * 除外が無いと、これらの !important 規則はライブラリ自身の <Table> にも当たる。
+ * <Table> は自前の border・radius・border-collapse を持って来るので、
+ * 下罫が二重になり、コンテナの 12px の内側に 4px の角が生まれる。 */
+.sbdocs-content table#{$prose-only} {
   border-radius: 4px !important;
   /* Ensure table corners also clip content if they have background/border */
   border-collapse: separate !important;

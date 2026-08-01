@@ -316,7 +316,14 @@ export function Playground() {
   return (
     // Loose between the two groups, tight inside the gallery — proximity does
     // the grouping instead of a divider.
-    <Stack gap="5xl">
+    //
+    // `data-host-canary` is the anchor `vrt/host-matrix.spec.ts` uses to find
+    // this same subtree in two different hosts (the canvas story and the MDX
+    // body of Getting Started/Playground) and compare their computed styles.
+    // It has to live on the component itself: the two hosts wrap it in
+    // different chrome, so there is no positional selector that means the same
+    // thing in both.
+    <Stack gap="5xl" data-host-canary>
       <FeaturedRecipe recipe={featured} />
 
       {/* Two stacked columns rather than grid rows: cards keep their own height
