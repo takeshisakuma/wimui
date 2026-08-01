@@ -463,7 +463,18 @@
     "progress_feat_1": "Exibição de progresso por numeração de 0 a 100",
     "progress_feat_2": "Opções de exibição de rótulo e porcentagem",
     "progress_feat_3": "Várias variações de cores e tamanhos",
-    "progress_feat_4": "Suporte a animação para estado indeterminado (carregando)"
+    "progress_feat_4": "Suporte a animação para estado indeterminado (carregando)",
+    "progressring_long_desc": "Mostra o andamento de uma tarefa com total conhecido, desenhado como um anel. Use onde uma barra linear ocuparia largura demais — no cabeçalho de um cartão, numa célula de tabela ou ao lado de um avatar.",
+    "progressring_design_intent": "O vocabulário de props é deliberadamente idêntico ao de Progress (value, max, intent, size, label, showValue, indeterminate), para que os dois sejam intercambiáveis quando o layout muda. Só a forma difere: o anel funciona bem num espaço quadrado, a barra funciona bem numa linha de largura total.",
+    "progressring_choice_matrix_desc": "Escolha pelo espaço disponível e por saber ou não o total.",
+    "progressring_choice_self_when": "Uma tarefa com total conhecido, num espaço compacto e aproximadamente quadrado.",
+    "progressring_choice_alt_when": "Progress para linhas de largura total; Spinner quando o total é desconhecido; GaugeChart quando o próprio número é o assunto.",
+    "progressring_a11y_desc": "O elemento externo tem role=\"progressbar\" com aria-valuenow, aria-valuemin e aria-valuemax; label fornece o nome acessível. Com indeterminate, aria-valuenow é removido para que a tecnologia assistiva anuncie uma quantidade desconhecida em vez de um número desatualizado. O SVG é aria-hidden porque o valor já está no elemento externo.",
+    "progressring_keyboard_desc": "Não recebe foco nem é operável: isto é uma saída de estado, não um controle. Mantenha-o fora da ordem de tabulação e deixe o controle vizinho ser o dono do foco.",
+    "progressring_scenario_1": "Progresso de envio dentro da linha de um arquivo, onde uma barra de largura total empurraria o nome do arquivo para fora da linha.",
+    "progressring_scenario_2": "Quota ou armazenamento usado num cartão de painel, onde o anel serve também de elemento visual do cartão.",
+    "progressring_best_practice_1": "Defina label sempre que o anel aparecer sozinho — sem ele o progressbar fica sem nome acessível.",
+    "progressring_best_practice_2": "Use indeterminate em vez de animar value manualmente quando o total é desconhecido; ele remove aria-valuenow por si."
   },
   "guide": {
     "progress_bad_blocking": "Evite designs que bloqueiem completamente todas as operações durante processos longos. Forneça opções de cancelamento/pausa para dar aos usuários uma sensação de controle.",

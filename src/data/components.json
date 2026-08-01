@@ -721,6 +721,12 @@
         "disambiguation": "Material's \"Progress Indicator\" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`."
       },
       {
+        "name": "ProgressRing",
+        "descKey": "doc.progressRing_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "Skeleton",
         "descKey": "doc.skeleton_desc",
         "pc": true,

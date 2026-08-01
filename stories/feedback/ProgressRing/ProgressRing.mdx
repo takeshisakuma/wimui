@@ -1,0 +1,76 @@
+import { Meta, Canvas, Controls, Title, Primary } from "@storybook/addon-docs/blocks";
+import * as ProgressRingStories from "./ProgressRing.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={ProgressRingStories} />
+
+<Title />
+
+<p><T k="doc.progressring_long_desc" /></p>
+
+<Canvas of={ProgressRingStories.Default} />
+<Controls of={ProgressRingStories.Default} />
+
+## <T k="doc.design_intent_title" />
+
+<p><T k="doc.progressring_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+
+<p><T k="doc.progressring_choice_matrix_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.when_to_use" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ProgressRing</code></td>
+      <td><T k="doc.progressring_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><code>Progress</code> / <code>Spinner</code> / <code>GaugeChart</code></td>
+      <td><T k="doc.progressring_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="ProgressRing" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+
+<p><T k="doc.progressring_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+
+<ul>
+  <li><T k="doc.progressring_scenario_1" /></li>
+  <li><T k="doc.progressring_scenario_2" /></li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+
+<ul>
+  <li><T k="doc.progressring_best_practice_1" /></li>
+  <li><T k="doc.progressring_best_practice_2" /></li>
+</ul>
+
+<Docgen componentName="ProgressRing" section="props" />
+
+<Docgen componentName="ProgressRing" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+
+<p><T k="doc.progressring_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+
+<Docgen componentName="ProgressRing" section="i18n" />
+
+<Docgen componentName="ProgressRing" section="test" />
+
+<Primary />
