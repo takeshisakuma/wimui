@@ -1850,6 +1850,13 @@ Use for error pages (404, 403, 500).
     - `description: ReactNode` — The description
     - `extra: ReactNode` — Operating area
     - `icon: ReactNode` — Custom icon
+    - `iconSurface: boolean` = false — Sit the icon on a tinted circle in the intent's colour, instead of drawing it bare.
+
+Off by default so existing pages keep their look. Turn it on when the icon is
+the page's main visual — a maintenance or error page, where a bare glyph reads
+as an afterthought. The tint comes from `--wim-color-<intent>-subtle`, so it
+follows the theme and never needs a hand-mixed colour.
+@default false
     - `className: string` — Custom class name
     - `children: ReactNode` — The children
 - **ScrollProgress** — Reading progress indicator

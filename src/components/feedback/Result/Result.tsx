@@ -41,6 +41,16 @@ export type ResultProps = {
    */
   icon?: ReactNode;
   /**
+   * Sit the icon on a tinted circle in the intent's colour, instead of drawing it bare.
+   *
+   * Off by default so existing pages keep their look. Turn it on when the icon is
+   * the page's main visual — a maintenance or error page, where a bare glyph reads
+   * as an afterthought. The tint comes from `--wim-color-<intent>-subtle`, so it
+   * follows the theme and never needs a hand-mixed colour.
+   * @default false
+   */
+  iconSurface?: boolean;
+  /**
    * Custom class name
    */
   className?: string;
@@ -82,6 +92,7 @@ export const Result = ({
   description,
   extra,
   icon,
+  iconSurface = false,
   className,
   children,
 }: ResultProps) => {
@@ -93,10 +104,11 @@ export const Result = ({
       actions={extra}
       variant="none"
       bgVariant="transparent"
-      className={classNames("wim-result", 
+      className={classNames("wim-result",
         styles.root,
         intent && styles[intent],
         status && styles[status],
+        iconSurface && styles.iconSurface,
         className,
       )}
       styles={{

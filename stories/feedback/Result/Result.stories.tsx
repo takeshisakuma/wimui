@@ -136,3 +136,21 @@ export const Status500: Story = {
     );
   },
 };
+
+// アイコンを intent の淡い円に載せる opt-in。メンテナンス/エラー画面のように
+// アイコンが主役になる場面向け。外形（80px）は変えず中のグリフだけ縮めるので、
+// 付けても周囲のレイアウトは動かない。
+export const IconSurface: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Result
+        {...args}
+        intent="warning"
+        iconSurface
+        title={t("story.result_warning_title")}
+        extra={<Button variant="solid">{t("story.result_go_console")}</Button>}
+      />
+    );
+  },
+};
