@@ -12,7 +12,10 @@
     background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-container);
-    box-shadow: var(--wim-shadow-md);
+
+    // 影は使わない。ページ内に置くパネルで、輪郭は面と枠が作る（T50）。
+    // 実測 2026-08-01: 面↔ページ light 0.0542 / dark 0.0559、枠↔ページ
+    // 0.0366 / 0.0836。影の寄与は 0.0122 / 0.0084 で基準 0.015 未満だった。
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
     &.data-driven > .item {
