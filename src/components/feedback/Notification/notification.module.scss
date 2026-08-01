@@ -9,7 +9,11 @@
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-modal);
+
+    // 影は `.container`（position: fixed ＝内容に重なるとき）へ移した。ここは
+    // in-page 配置で、輪郭は面と枠が作る（T50）。実測 2026-08-01: 面↔ページの
+    // 知覚距離は light 0.1025 / dark 0.0843、枠↔ページは 0.0244 / 0.1673 で
+    // いずれも基準 0.015 超。影の寄与は light/dark とも 0.0000 だった。
   }
 
   .content {
@@ -91,6 +95,10 @@
 
     & > * {
       pointer-events: auto;
+
+      // ここだけが「浮いて内容に重なる」配置。影は重なりの手掛かりなので、
+      // in-page の `.root` ではなく浮いているときだけ出す（T50）。
+      box-shadow: var(--wim-shadow-modal);
     }
 
     &.topRight {

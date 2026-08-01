@@ -9,9 +9,22 @@
     
     // Glassmorphism effect base
     background: var(--wim-color-frosted-bg);
+
+    // 輪郭は面と枠が作る。**影は使わない** — Alert はページ内に置く要素で、
+    // DESIGN.md は「面はサーフェス階層トークンで分ける。影/枠は操作を誘導する
+    // 要素だけに」と定めている（T50）。
+    // 2026-07-29 に「影を外すと intent="default" が輪郭を失う」として一度棄却された
+    // 判断だが、その前提は T45（ページを gy8-5 へ下げた）で消えている。実描画の
+    // ピクセルを読んで測り直した結果（2026-08-01、light/dark × 5 intent）:
+    //   - 面↔ページの知覚距離は 10 組すべてが基準 0.015 を超える（最小 0.0178、
+    //     light default は 0.0632）
+    //   - **影の寄与は枠外 2px で light 0.0030 / dark 0.0042** ＝ 基準の 1/5〜1/3.5。
+    //     つまり影は輪郭をほとんど作っていなかった
+    //   - 枠↔面は 10 組すべて基準超（light default 0.0754）
+    // ※ `backdrop-filter` は残す。T45 で実測済み＝単色の上でも 5.49%、模様の上では
+    //   99.70% のピクセルが変わるので「流し込みでは無意味」ではない。
     border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-overlay);
-    box-shadow: var(--wim-shadow-sm);
     backdrop-filter: blur(var(--wim-spacing-lg));
     transition: var(--wim-transition-fast);
   }
