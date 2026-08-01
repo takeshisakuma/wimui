@@ -27,4 +27,48 @@
     }
   }
 
+  /*
+   * `iconSurface`: アイコンを intent の淡い円に載せる（既定は off）。
+   *
+   * 素の 80px グリフだけだと、メンテナンス画面やエラー画面の主役として弱い。
+   * これが無かったため合成画面が `<div>` に width/height/borderRadius/background を
+   * 直書きしてこの形を手で再現していた（T52 で見つかった孤島。当時
+   * 「置き換え先が無い」と記録して T47 の候補⑥ に引き継いだもの）。
+   *
+   * 円の直径は据え置き（`--wim-result-icon-size`、既定 80px）で、**中の
+   * グリフを 50% に縮めて余白を作る**。外形が変わらないので、`iconSurface` を
+   * 付けても周囲のレイアウトは動かない。
+   */
+  .root.iconSurface {
+    .icon {
+      display: grid;
+      place-items: center;
+      width: var(--wim-result-icon-size, 80px);
+      height: var(--wim-result-icon-size, 80px);
+      background-color: var(--wim-color-neutral-subtle);
+      border-radius: var(--wim-radius-full);
+
+      svg {
+        width: 50%;
+        height: 50%;
+        font-size: 50%;
+      }
+    }
+
+    &.info .icon {
+      background-color: var(--wim-color-info-subtle);
+    }
+
+    &.success .icon {
+      background-color: var(--wim-color-success-subtle);
+    }
+
+    &.warning .icon {
+      background-color: var(--wim-color-warning-subtle);
+    }
+
+    &.danger .icon {
+      background-color: var(--wim-color-danger-subtle);
+    }
+  }
 }

@@ -53,4 +53,23 @@ describe("Result", () => {
     render(<Result extra={<button>Retry</button>} />);
     expect(screen.getByText("Retry")).toBeInTheDocument();
   });
+
+  // iconSurface は opt-in。既定で付けてしまうと Result / EmptyState の
+  // 既存画面が一斉に変わるため（T47 ⑥ の判断）。
+  it("draws the icon bare by default", () => {
+    const { container } = render(<Result intent="warning" />);
+    expect(container.querySelector(".wim-result")?.className).not.toContain("iconSurface");
+  });
+
+  it("puts the icon on a surface when asked", () => {
+    const { container } = render(<Result intent="warning" iconSurface />);
+    expect(container.querySelector(".wim-result")?.className).toContain("iconSurface");
+  });
+
+  it("keeps the intent class so the tint follows the intent", () => {
+    const { container } = render(<Result intent="danger" iconSurface />);
+    const cls = container.querySelector(".wim-result")?.className ?? "";
+    expect(cls).toContain("danger");
+    expect(cls).toContain("iconSurface");
+  });
 });
