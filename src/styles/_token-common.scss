@@ -27,11 +27,28 @@
   @return oklch(from #{map.get($pairs, "base")} l c h / 0.15);
 }
 
+// subtle の縁。**塗りだけでは輪郭が立たない**ので、一段濃い同色の枠を添える。
+// これは `Alert` が既に持っているレシピ（塗り `intent / 0.1` + 枠 `intent / 0.2`）と
+// 同じ考え方で、`subtle` はその半分しか実装していなかった（T51-②）。
+// 箱は元から `1px solid transparent` で確保済みなので、**色を入れても
+// レイアウトは 1px も動かない**。
+// `subtle` が明示されている intent（neutral）は「base の 15% では消える」から
+// 明示しているのであって、**同じ理由で base からの枠も導出できない**。
+// その場合はサーフェス階層の枠トークンに寄せる。
+@function subtle-border($pairs) {
+  @if map.get($pairs, "subtle") {
+    @return var(--wim-color-border-secondary);
+  }
+
+  @return oklch(from #{map.get($pairs, "base")} l c h / 0.3);
+}
+
 @mixin token-variants($prefix) {
   @each $name, $pairs in $token-colors {
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
     $subtle: subtle-bg($pairs);
+    $subtle-border: subtle-border($pairs);
 
     // outline/subtle の文字は base（塗り用）ではなく AA 可読の text ロールを使う
     // （warning #ccb914 等の塗り色はテキストとしてはコントラスト不足）
@@ -52,7 +69,7 @@
     &--#{$name}.#{$prefix}--subtle {
       color: $text;
       background-color: $subtle;
-      border: 1px solid transparent;
+      border: 1px solid $subtle-border;
     }
   }
 }
@@ -63,6 +80,7 @@
     $on: map.get($pairs, "on");
     $text: map.get($pairs, "text");
     $subtle: subtle-bg($pairs);
+    $subtle-border: subtle-border($pairs);
 
     // :where() で特異度を 0-1-0 に抑え、disabled 等の状態セレクタが !important なしで上書きできるようにする
     &:where(.#{$name}) {
@@ -85,7 +103,7 @@
 
         color: $text;
         background-color: $subtle;
-        border: 1px solid transparent;
+        border: 1px solid $subtle-border;
       }
     }
   }
