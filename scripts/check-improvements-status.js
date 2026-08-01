@@ -1,0 +1,104 @@
+#!/usr/bin/env node
+/**
+ * Guard: IMPROVEMENTS.md の状態列が本文と矛盾していないか。
+ *
+ * この表は「残っているものを一覧で見る」ためにあるのに、**完了しても状態列を
+ * 直さない**ことが繰り返し起きていた。2026-08-01 の掃除時点で、済んでいるのに
+ * `P1` / `P2` / `未着手` のままだった行が **5 件**あった（T28 / T29 / T44 /
+ * T45 / T50）。うち T50 は**完了記録そのものが本文にも無かった**。
+ *
+ * 番号を振っても状態が嘘なら、完了済みが上位に居座って本当の残件が埋もれる。
+ * 人が読んで気付く前提にせず、機械に突き合わせさせる。
+ *
+ * 見るもの:
+ *   1. 状態列が未完了（P1/P2/P3/未着手）なのに、本文に完了記録（「済（日付…）」
+ *      「**済**」）がある行 → 矛盾
+ *   2. 「済」なのに完了の根拠（日付か PR 番号）が**行のどこにも**無い行
+ *
+ * 表ごとにヘッダーが違う（`状態` の表と `優先` の表がある）ので、
+ * ヘッダー行から状態列の位置を毎回読み直す。
+ *
+ * **このガードで catch できないもの**: 「実際は済んでいるのに、ファイルの
+ * どこにもそう書かれていない」（T50 がこれだった）。ファイル内の矛盾は見えるが、
+ * ファイルと現実のズレは見えない。そこは人間かレビューが埋めるしかない。
+ *
+ * Usage: node scripts/check-improvements-status.js
+ */
+import fs from "fs";
+
+const FILE = "IMPROVEMENTS.md";
+const ID = /^\|\s*(T\d+|CI-\d+|SMOKE)\s*\|/;
+const OPEN = /^\*\*(P\d|未着手)|^未着手/;
+const DONE_IN_BODY = /\*\*済\*\*|済（20\d\d-\d\d-\d\d|済（#|済（PR #/;
+const DONE_STATUS = /^\*\*済|^済/;
+const EVIDENCE = /20\d\d-\d\d-\d\d|#\d{2,}/;
+
+function main() {
+  if (!fs.existsSync(FILE)) {
+    console.error(`✗ ${FILE} が無い。`);
+    process.exit(1);
+  }
+
+  const lines = fs.readFileSync(FILE, "utf8").split(/\r?\n/);
+  let statusIdx = -1;
+  const contradictions = [];
+  const unevidenced = [];
+  let checked = 0;
+  let open = 0;
+
+  lines.forEach((line, i) => {
+    if (/^\|\s*#\s*\|/.test(line)) {
+      statusIdx = line.split("|").findIndex((c) => /状態|優先/.test(c));
+      return;
+    }
+    const m = line.match(ID);
+    if (!m || statusIdx < 0) return;
+
+    const status = (line.split("|")[statusIdx] ?? "").trim();
+    if (!status) return;
+    checked += 1;
+
+    if (OPEN.test(status)) {
+      open += 1;
+      if (DONE_IN_BODY.test(line)) {
+        contradictions.push({ line: i + 1, id: m[1], status: status.slice(0, 40) });
+      }
+    } else if (DONE_STATUS.test(status) && !EVIDENCE.test(line)) {
+      // 根拠は行のどこにあってもよい（多くの行は本文側に日付や PR 番号を書いている）。
+      unevidenced.push({ line: i + 1, id: m[1], status: status.slice(0, 40) });
+    }
+  });
+
+  let failed = false;
+
+  if (contradictions.length) {
+    failed = true;
+    console.error("✗ 状態列が未完了なのに、本文には完了記録がある:");
+    for (const c of contradictions) {
+      console.error(`  - ${FILE}:${c.line}  ${c.id}  状態列='${c.status}'`);
+    }
+    console.error(
+      "\n  完了したら状態列も直すこと。直さないと、済んだ項目が P1 として\n" +
+        "  居座り続け、本当の残件が埋もれる。",
+    );
+  }
+
+  if (unevidenced.length) {
+    failed = true;
+    console.error(
+      `${contradictions.length ? "\n" : ""}✗ 「済」だが根拠（日付か PR 番号）が状態列に無い:`,
+    );
+    for (const u of unevidenced) {
+      console.error(`  - ${FILE}:${u.line}  ${u.id}  状態列='${u.status}'`);
+    }
+    console.error("\n  `**済**（2026-08-01・#191）` のように、いつ何で済んだかを残すこと。");
+  }
+
+  if (failed) process.exit(1);
+
+  console.log(
+    `✓ IMPROVEMENTS.md の状態列は本文と整合（${checked} 行を照合、未完了 ${open} 件）。`,
+  );
+}
+
+main();

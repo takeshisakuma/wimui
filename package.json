@@ -370,7 +370,8 @@
     "version:packages": "changeset version && npm run llms:build",
     "prepublishOnly": "npm run build",
     "prepare": "husky",
-    "check:aliases": "node scripts/check-aliases.js"
+    "check:aliases": "node scripts/check-aliases.js",
+    "check:improvements": "node scripts/check-improvements-status.js"
   },
   "keywords": [
     "react",
@@ -618,6 +619,9 @@
       "node scripts/check-aliases.js",
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
+    ],
+    "IMPROVEMENTS.md": [
+      "node scripts/check-improvements-status.js"
     ]
   },
   "dependencies": {
