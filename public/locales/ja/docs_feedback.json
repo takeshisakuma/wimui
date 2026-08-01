@@ -463,7 +463,18 @@
     "progress_feat_1": "0から100までの数値による進捗表示",
     "progress_feat_2": "ラベルとパーセンテージの表示オプション",
     "progress_feat_3": "複数のカラーバリエーションとサイズ",
-    "progress_feat_4": "不確定状態（読み込み中）のアニメーションサポート"
+    "progress_feat_4": "不確定状態（読み込み中）のアニメーションサポート",
+    "progressring_long_desc": "完了までの進み具合をリングで示します。線形のバーでは幅を取りすぎる場所 — カードのヘッダー内、テーブルのセル、アバターの隣など — で使います。",
+    "progressring_design_intent": "prop の語彙は Progress と意図的に同一です（value / max / intent / size / label / showValue / indeterminate）。レイアウトが変わったときに差し替えられるようにするためで、違うのは形だけです。正方形に近い場所ではリングが、横幅いっぱいの行ではバーが読みやすくなります。",
+    "progressring_choice_matrix_desc": "使える面積と、全体量が分かっているかどうかで選びます。",
+    "progressring_choice_self_when": "全体量が分かっていて、狭くて正方形に近い場所に置くとき。",
+    "progressring_choice_alt_when": "横幅いっぱいの行には Progress、全体量が不明なときは Spinner、数値そのものが主役なら GaugeChart。",
+    "progressring_a11y_desc": "外側の要素が role=\"progressbar\" と aria-valuenow / aria-valuemin / aria-valuemax を持ち、label がアクセシブル名になります。indeterminate のときは aria-valuenow を外すので、支援技術は古い数値ではなく「量が不明」と伝えます。値は外側にあるため SVG は aria-hidden です。",
+    "progressring_keyboard_desc": "フォーカスも操作もできません。これは操作部品ではなく状態の出力なので、タブ順から外し、フォーカスは周囲のコントロールに持たせます。",
+    "progressring_scenario_1": "ファイル行の中のアップロード進捗。横幅いっぱいのバーだとファイル名が行から押し出されてしまう場面。",
+    "progressring_scenario_2": "ダッシュボードのタイルで見せる使用量・残容量。リングがそのままタイルの絵になります。",
+    "progressring_best_practice_1": "リングを単独で置くときは必ず label を設定してください。無いと progressbar にアクセシブル名が付きません。",
+    "progressring_best_practice_2": "全体量が不明なときは value を自分で動かさず indeterminate を使ってください。aria-valuenow の除去まで面倒を見ます。"
   },
   "guide": {
     "progress_bad_blocking": "長時間の処理中に全操作をブロックしてしまうデザインは避けるべきです。キャンセルや一時停止の選択肢を提供し、ユーザーにコントロール感を与えることが重要です。",

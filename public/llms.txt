@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.10.0 — a React 19 component library: 216 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.10.0 — a React 19 component library: 217 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -281,6 +281,7 @@ export function BillingOverview() {
 - **Notification** — Rich notification card
 - **Progress** — Progress bar
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
+- **ProgressRing** — ProgressRing description.
 - **Result** — Task status indicator
 - **ScrollProgress** — Reading progress indicator
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)

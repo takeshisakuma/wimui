@@ -1435,7 +1435,8 @@
       "countdown_desc": "Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.",
       "spoiler_desc": "Collapse long text such as reviews and comments to a fixed number of lines, with an accessible \"show more\" toggle that appears only when the text overflows.",
       "toolbar_desc": "Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.",
-      "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus."
+      "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus.",
+      "progressRing_desc": "ProgressRing description."
     },
     "cat": {
       "ai": "AI"
@@ -4722,7 +4723,18 @@
       "progress_feat_1": "Progress display by numerical value from 0 to 100",
       "progress_feat_2": "Label and percentage display options",
       "progress_feat_3": "Multiple color variations and sizes",
-      "progress_feat_4": "Animation support for indeterminate state (loading)"
+      "progress_feat_4": "Animation support for indeterminate state (loading)",
+      "progressring_long_desc": "Shows how far along a determinate task is, drawn as a ring. Use it where a linear bar would be too wide for the space — inside a card header, a table cell, or next to an avatar.",
+      "progressring_design_intent": "The prop vocabulary is deliberately identical to Progress (value, max, intent, size, label, showValue, indeterminate), so the two are interchangeable when a layout changes. Only the shape differs: a ring reads well in a fixed square, a bar reads well across a full-width row.",
+      "progressring_choice_matrix_desc": "Pick by the space you have and by whether the total is known.",
+      "progressring_choice_self_when": "A determinate task in a compact, roughly square space.",
+      "progressring_choice_alt_when": "Progress for full-width rows; Spinner when the total is unknown; GaugeChart when the number itself is the subject.",
+      "progressring_a11y_desc": "The wrapper carries role=\"progressbar\" with aria-valuenow, aria-valuemin and aria-valuemax; label supplies the accessible name. When indeterminate is set, aria-valuenow is dropped so assistive technology announces an unknown amount rather than a stale number. The SVG is aria-hidden because the value is already on the wrapper.",
+      "progressring_keyboard_desc": "Not focusable and not operable: this is a status output, not a control. Keep it out of the tab order and let the surrounding control own the focus.",
+      "progressring_scenario_1": "Upload progress inside a file row, where a full-width bar would push the filename off the line.",
+      "progressring_scenario_2": "Quota or storage usage in a dashboard tile, where the ring doubles as the tile visual.",
+      "progressring_best_practice_1": "Set label whenever the ring stands alone — without it the progressbar has no accessible name.",
+      "progressring_best_practice_2": "Use indeterminate rather than animating value yourself when the total is unknown; it drops aria-valuenow for you."
     },
     "guide": {
       "progress_bad_blocking": "Avoid designs that completely block all operations during long processes. Provide cancel/pause options to give users a sense of control.",

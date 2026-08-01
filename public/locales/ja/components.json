@@ -189,7 +189,8 @@
     "countdown_desc": "セール終了・OTP再送待ち・メンテナンス告知などの目標時刻までの残り時間を、毎秒更新されるタイマーとして表示します。",
     "spoiler_desc": "レビューやコメントなどの長文を指定行数に折りたたみ、テキストがあふれる場合のみアクセシブルな「もっと見る」トグルを表示します。",
     "toolbar_desc": "IconButton や ToggleGroup などをまとめるアクション帯。ツールバーのキーボード操作に対応します。",
-    "menubar_desc": "File / Edit / View のようなデスクトップ型メニューバー。フローティングのサブメニューを開きます。"
+    "menubar_desc": "File / Edit / View のようなデスクトップ型メニューバー。フローティングのサブメニューを開きます。",
+    "progressRing_desc": "ProgressRing description."
   },
   "effects": {
     "common_vars": "共通変数"

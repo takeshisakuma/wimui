@@ -1,0 +1,137 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+  }
+
+  .ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--wim-progress-ring-size);
+    height: var(--wim-progress-ring-size);
+  }
+
+  .svg {
+    width: 100%;
+    height: 100%;
+
+    // 0% を 12 時から時計回りに始める（SVG の既定は 3 時から）。
+    transform: rotate(-90deg);
+  }
+
+  .track,
+  .indicator {
+    fill: none;
+    stroke-width: var(--wim-progress-ring-thickness);
+  }
+
+  .track {
+    stroke: var(--wim-color-surface-variant);
+  }
+
+  .indicator {
+    stroke-linecap: round;
+
+    // `pathLength="100"` を付けているので dasharray はそのまま「％」になる。
+    // 半径をサイズごとに変えても、この式は書き換えなくてよい。
+    stroke-dasharray: var(--wim-progress-ring-value, 0) 100;
+    transition: stroke-dasharray var(--wim-duration-base) var(--wim-easing-standard);
+  }
+
+  .value {
+    position: absolute;
+    font-size: var(--wim-progress-ring-value-font-size);
+    font-weight: var(--wim-font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--wim-color-text-primary);
+  }
+
+  .label {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  /* Sizes — 直径・線の太さ・中央の数字を 1 段ずつ上げる。
+     直径は制御の高さトークン（`_ui-patterns.scss`）に乗せて、
+     隣に置く Button / Input と視覚的な段が揃うようにする。
+
+     **サイズは `showValue` が収まることで下限が決まる。** 実測（2026-08-01）:
+     内径 = 直径 × 0.84 − 線幅 に対し「100%」の文字幅は xs で 26px・sm で 29px・
+     md で 33px。最初 sm を `--wim-height-sm`（32px・線 spacing-sm）にしたところ
+     内径 20px に対し文字 26px で**はみ出した**ので、1 段上げて線を細くした。 */
+  .sm {
+    --wim-progress-ring-size: var(--wim-height-md);
+    --wim-progress-ring-thickness: var(--wim-spacing-xs);
+    --wim-progress-ring-value-font-size: var(--wim-font-size-xs);
+  }
+
+  .md {
+    --wim-progress-ring-size: var(--wim-height-lg);
+    --wim-progress-ring-thickness: var(--wim-spacing-md);
+    --wim-progress-ring-value-font-size: var(--wim-font-size-sm);
+  }
+
+  .lg {
+    --wim-progress-ring-size: var(--wim-height-xl);
+    --wim-progress-ring-thickness: var(--wim-spacing-lg);
+    --wim-progress-ring-value-font-size: var(--wim-font-size-md);
+  }
+
+  /* Colors — Progress と同じ intent 語彙 */
+  .primary .indicator {
+    stroke: var(--wim-color-primary);
+  }
+
+  .secondary .indicator {
+    stroke: var(--wim-color-secondary);
+  }
+
+  .success .indicator {
+    stroke: var(--wim-color-success);
+  }
+
+  .warning .indicator {
+    stroke: var(--wim-color-warning);
+  }
+
+  .danger .indicator {
+    stroke: var(--wim-color-danger);
+  }
+
+  .info .indicator {
+    stroke: var(--wim-color-info);
+  }
+
+  .neutral .indicator {
+    stroke: var(--wim-color-neutral-fill);
+  }
+
+  /* Indeterminate — 弧を一定長にして回す */
+  .indeterminate {
+    .indicator {
+      stroke-dasharray: 25 100;
+      transform-origin: center;
+      transition: none;
+      animation: ring-spin var(--wim-duration-circle) linear infinite;
+    }
+  }
+
+  @keyframes ring-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .indeterminate .indicator {
+      animation: none;
+    }
+
+    .indicator {
+      transition: none;
+    }
+  }
+}

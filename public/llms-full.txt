@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.10.0 — a React 19 component library: 216 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.10.0 — a React 19 component library: 217 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -1824,6 +1824,20 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
 @default "md"
     - `label: string` — Text label displayed above the bar.
     - `showValue: boolean` = false — Whether to display the current value as a percentage.
+@default false
+    - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
+@default false
+- **ProgressRing** — ProgressRing description.
+    - `value: number` = 0 — Current value of the progress ring.
+@default 0
+    - `max: number` = 100 — Maximum value of the progress ring.
+@default 100
+    - `intent: IndicatorIntent` = "primary" — Intent (semantic color) of the ring.
+@default "primary"
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the ring.
+@default "md"
+    - `label: string` — Text label displayed below the ring. Also used as the accessible name.
+    - `showValue: boolean` = false — Whether to display the current value as a percentage inside the ring.
 @default false
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
