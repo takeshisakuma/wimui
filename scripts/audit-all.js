@@ -75,6 +75,13 @@ const checks = [
   },
   {
     category: "docs",
+    // README は npm のパッケージページにそのまま出る。peer 範囲や import 経路が
+    // package.json とずれていると、利用者は install 前に間違った情報を読む（T37）。
+    name: "README claims match package.json (peers / export paths)",
+    command: "node scripts/check-readme-claims.js",
+  },
+  {
+    category: "docs",
     // 合成ルールは DESIGN.md / llms.txt / judge-slop の 3 箇所で使われる。
     // 手で同期していた頃は既にドリフトしていた（T39）。
     name: "Composition rules single source (DESIGN.md / llms.txt / judge-slop)",
