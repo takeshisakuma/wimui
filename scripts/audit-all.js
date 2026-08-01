@@ -155,6 +155,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 型は「キーの間違い」を守るが、**t() を呼ばない生文字列**は誰の網にも
+    // かからない。stories 用のガードは stories しか見ず、check-i18n-components は
+    // 意図的に src を走査しない（T40）。
+    name: "Raw UI strings in src (i18n ratchet)",
+    command: "node scripts/check-src-hardcoded.js",
+  },
+  {
+    category: "lib",
     name: "Monospace contract (token + descendant inheritance, always paired)",
     command: "node scripts/check-mono-family.js",
   },

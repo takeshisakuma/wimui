@@ -71,6 +71,7 @@ export interface ScheduleViewProps {
 
 const PLUGINS = [timeGridPlugin, dayGridPlugin, interactionPlugin];
 const HEADER_TOOLBAR = {
+  // i18n-ignore-next-line FullCalendar のツールバー指定（ボタン名の列挙）であって UI テキストではない
   left: "prev,next today",
   center: "title",
   right: "dayGridMonth,timeGridWeek,timeGridDay",
