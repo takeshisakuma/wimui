@@ -8,7 +8,10 @@
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+
+    // 影は使わない。ページ内に置くウィジェットで、輪郭は面と枠が作る（T50）。
+    // 実測 2026-08-01: 面↔ページ light 0.0781 / dark 0.0756、枠↔ページ
+    // 0.1456 / 0.5073。影の寄与は 0.0122 で**基準 0.015 に届いていなかった**。
   
     &.disabled {
       cursor: not-allowed;
