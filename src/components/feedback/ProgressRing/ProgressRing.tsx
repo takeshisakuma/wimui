@@ -2,9 +2,10 @@ import React from "react";
 import classNames from "classnames";
 
 import { ComponentSizeBasic, IndicatorIntent } from "../../../types/tokens";
+import { WithAccessibleName, resolveAriaLabel } from "../../_internal/accessibleName";
 import styles from "./progress-ring.module.scss";
 
-export type ProgressRingProps = Omit<
+type ProgressRingOwnProps = Omit<
   React.ComponentPropsWithoutRef<"div">,
   "children"
 > & {
@@ -44,6 +45,8 @@ export type ProgressRingProps = Omit<
   indeterminate?: boolean;
 };
 
+export type ProgressRingProps = WithAccessibleName<ProgressRingOwnProps>;
+
 /**
  * Displays progress as a ring.
  *
@@ -70,6 +73,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
       showValue = false,
       indeterminate = false,
       className,
+      "aria-label": ariaLabel,
       ...props
     },
     ref,
@@ -91,7 +95,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
         aria-valuenow={indeterminate ? undefined : value}
         aria-valuemin={0}
         aria-valuemax={max}
-        aria-label={label}
+        aria-label={resolveAriaLabel(label, ariaLabel)}
         {...props}
       >
         <div className={styles.ring}>
