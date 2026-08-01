@@ -9,6 +9,7 @@ import path from 'path';
 import { globSync } from 'glob';
 
 const docsDir = './docs';
+const storiesDir = './stories';
 
 // 複数行にわたる可能性のある、完全に無視すべきパターン
 const multiLineIgnorePatterns = [
@@ -23,6 +24,7 @@ const multiLineIgnorePatterns = [
 // 1行内で無視すべきパターン
 const inlineIgnorePatterns = [
   /<T\s+.*?\/>/g,                       // 翻訳コンポーネント
+  /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/g, // GitHub Markdown の alert 記法（構文であって文章ではない）
   /`[^`]*`/g,                           // インラインコード
   /--[a-zA-Z0-9-]+/g,                   // CSS変数名 (--wim-...)
   /"#[0-9a-fA-F]{3,8}"/g,              // クォートされた16進カラー値 ("#{hex}")
@@ -37,8 +39,30 @@ const inlineIgnorePatterns = [
   /[ \t\n\r\(\)\[\]\{\}\\\/\|\^_%$@#&!?,:;."'-]+/g, // 記号と空白
 ];
 
+/**
+ * コンポーネント名は固有名詞で翻訳対象ではない。**手で列挙せず SSOT から引く。**
+ *
+ * 以前は下の `excludeWords` に名前をベタ書きしていた（「Missing component names」
+ * という節まであった）。当然すぐ古くなり、あとから足したコンポーネントの MDX が
+ * 軒並み「生英語」として鳴る状態になっていた。ただし**全量モードが
+ * `./docs` しか見ていなかったので、誰もそれに気付けなかった**（CI-7）。
+ */
+function componentNamesFromSsot() {
+  const src = JSON.parse(fs.readFileSync('./src/data/components.json', 'utf8'));
+  const names = [];
+  for (const category of src) {
+    for (const c of category.components ?? []) {
+      names.push(c.name);
+      // `Tabs.Item` のような複合名は分解した各語も固有名詞として扱う
+      for (const part of c.name.split('.')) names.push(part);
+    }
+  }
+  return names;
+}
+
 // 除外ワード（技術用語やプロパティ名など、翻訳不要なもの）
 const excludeWords = [
+  ...componentNamesFromSsot(),
   'import', 'from', 'export', 'default', 'Meta', 'title', 'components', 'stories', 'docs',
   'name', 'value', 'shadow', 'color', 'tokenName', 'tokenValue', 'columns', 'duration', 'easing',
   'standard', 'instant', 'extra', 'fast', 'short', 'base', 'slow', 'entrance', 'exit', 'spring',
@@ -118,21 +142,63 @@ function checkFile(filePath) {
 }
 
 const filesFromArgs = process.argv.slice(2).filter(f => f.endsWith('.mdx'));
-const mdxFiles = filesFromArgs.length > 0 
-  ? filesFromArgs 
-  : globSync(`${docsDir}/**/*.mdx`, { posix: true });
 
-let hasErrors = false;
-console.log(filesFromArgs.length > 0 ? `Checking ${filesFromArgs.length} changed MDX file(s)...` : 'Checking all MDX files...');
+/**
+ * 全量モードは `./docs` **と** `./stories` の両方を見る。
+ *
+ * 以前は `docs` だけだった。lint-staged は変更ファイルを引数で渡すので
+ * `stories/**` も検査されるが、**CI（`audit:docs`）は引数なしで走るため
+ * 212 個のコンポーネント MDX を 1 つも見ていなかった**（CI-7）。
+ * 「部分集合だと素通りする」の逆で、**全量のほうが狭い**という形の穴。
+ */
+const mdxFiles = filesFromArgs.length > 0
+  ? filesFromArgs
+  : [
+      ...globSync(`${docsDir}/**/*.mdx`, { posix: true }),
+      ...globSync(`${storiesDir}/**/*.mdx`, { posix: true }),
+    ];
+
+const failures = [];
+console.log(
+  filesFromArgs.length > 0
+    ? `Checking ${filesFromArgs.length} changed MDX file(s)...`
+    : `Checking all MDX files (${mdxFiles.length})...`,
+);
 
 mdxFiles.forEach(file => {
-  if (checkFile(file)) hasErrors = true;
+  if (checkFile(file)) failures.push(file);
 });
 
-if (hasErrors) {
-  console.error('\nTips: Use the <T k="key" ns="ns" /> component for documentation text.');
+/**
+ * ラチェット。走査範囲を広げた時点で残っていた既存の生英語の数。
+ * **減らしたらこの値を下げてコミットする。増やすことは許さない。**
+ * 全量モードでのみ意味を持つ（部分集合では総数を判定できないため、
+ * 引数付きの実行は従来どおり「1 件でも出たら落ちる」）。
+ */
+const HARDCODED_FILE_BASELINE = 53;
+
+if (filesFromArgs.length > 0) {
+  if (failures.length > 0) {
+    console.error('\nTips: Use the <T k="key" ns="ns" /> component for documentation text.');
+    process.exit(1);
+  }
+} else if (failures.length > HARDCODED_FILE_BASELINE) {
+  console.error(
+    `\n✗ 生英語を含む MDX が ${failures.length} ファイル（baseline: ${HARDCODED_FILE_BASELINE}）。` +
+      '\n  Tips: Use the <T k="key" ns="ns" /> component for documentation text.',
+  );
   process.exit(1);
-} else {
-  console.log('✓ No hardcoded text found in MDX files.');
+} else if (failures.length < HARDCODED_FILE_BASELINE) {
+  console.log(
+    `✓ ${failures.length} ファイル（baseline: ${HARDCODED_FILE_BASELINE}）。` +
+      '\n  減ったので scripts/check-mdx-hardcoded.js の HARDCODED_FILE_BASELINE を下げてコミットしてください。',
+  );
   process.exit(0);
 }
+
+console.log(
+  failures.length > 0
+    ? `✓ 生英語を含む MDX は ${failures.length} ファイル（baseline どおり）。`
+    : '✓ No hardcoded text found in MDX files.',
+);
+process.exit(0);
