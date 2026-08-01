@@ -69,3 +69,8 @@ see without going looking for them.
   when the web font swaps in and the item underneath it grows. The slider kept
   whatever it measured against the fallback face. It was consistently wrong
   rather than intermittently wrong, which is why screenshots never caught it.
+
+- **`PullToRefresh` no longer updates state after it has been unmounted.** When
+  `onRefresh` resolved it started a 50ms timer to settle back to idle, and never
+  cancelled it. Unmount inside that window — navigate away while the spinner is
+  showing — and the timer still fired.

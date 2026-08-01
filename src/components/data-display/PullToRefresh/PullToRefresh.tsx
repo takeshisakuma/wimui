@@ -52,6 +52,12 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
     const isPulling = useRef(false);
     // Use a ref for immediate access in handlers, and state for re-renders
     const isDraggingRef = useRef(false);
+    // The settle timer started after `onRefresh` resolves. It has to be
+    // cancellable: unmounting while it is pending would otherwise land a
+    // setState on a component that is gone.
+    const settleTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+    useEffect(() => () => clearTimeout(settleTimer.current), []);
 
     const refreshing = controlledRefreshing ?? internalRefreshing;
 
@@ -100,7 +106,8 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
         try {
           await onRefresh();
         } finally {
-          setTimeout(() => {
+          clearTimeout(settleTimer.current);
+          settleTimer.current = setTimeout(() => {
             setInternalRefreshing(false);
             if (controlledRefreshing === undefined) {
               setState("idle");
