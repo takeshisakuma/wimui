@@ -26,7 +26,7 @@ export const CustomColor: Story = {
   args: {
     value: 92,
     label: "DANGER",
-    color: "var(--wim-color-negative)",
+    color: "var(--wim-color-danger)",
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

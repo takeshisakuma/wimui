@@ -65,6 +65,11 @@ const checks = [
   },
   {
     category: "docs",
+    name: "Story/sandbox/docs token references resolve",
+    command: "node scripts/check-story-tokens.js",
+  },
+  {
+    category: "docs",
     name: "AI-slop composition guard (Patterns anti-pattern gates)",
     command: "node scripts/check-slop.js",
   },

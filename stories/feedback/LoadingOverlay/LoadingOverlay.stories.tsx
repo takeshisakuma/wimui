@@ -154,7 +154,7 @@ export const BackdropVariants: Story = {
             height: "300px",
             border: "1px solid var(--wim-color-border)",
             borderRadius: "8px",
-            background: "var(--wim-gradient-glass)",
+            background: "var(--wim-color-glass-bg)",
           }}
         >
           <div style={{ padding: "20px", color: "var(--wim-color-text-on-primary)" }}>
@@ -172,7 +172,7 @@ export const BackdropVariants: Story = {
             height: "300px",
             border: "1px solid var(--wim-color-border)",
             borderRadius: "8px",
-            background: "var(--wim-gradient-glass)",
+            background: "var(--wim-color-glass-bg)",
           }}
         >
           <div style={{ padding: "20px", color: "var(--wim-color-text-on-primary)" }}>

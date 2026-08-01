@@ -29,7 +29,9 @@ export type WimColorKey =
   | "glass-blur-sm"
   | "glass-border"
   | "info"
+  | "info-subtle"
   | "neutral-fill"
+  | "neutral-subtle"
   | "overlay"
   | "overlay-medium"
   | "overlay-sidebar"
@@ -50,6 +52,7 @@ export type WimColorKey =
   | "skeleton-bg"
   | "skeleton-shine"
   | "success"
+  | "success-subtle"
   | "surface"
   | "surface-app"
   | "surface-hover"
@@ -88,6 +91,7 @@ export type WimColorKey =
   | "text-tertiary"
   | "text-warning"
   | "warning"
+  | "warning-subtle"
   | "white";
 
 export type WimBreakpointKey = 

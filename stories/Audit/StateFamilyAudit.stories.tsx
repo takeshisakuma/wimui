@@ -59,7 +59,7 @@ export const Overview: StoryObj = {
               p="lg"
               radius="md"
               bg="var(--wim-color-danger-subtle)"
-              style={{ border: "1px solid var(--wim-color-danger-border)" }}
+              style={{ border: "1px solid var(--wim-color-danger)" }}
             >
               <Stack gap="md">
                 <Text weight="bold" color="danger">{t("audit:state_error_boundary_mock")}</Text>

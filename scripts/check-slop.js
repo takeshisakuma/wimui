@@ -38,7 +38,7 @@ import { globSync } from 'glob';
 //   - PCCS.mdx の margin-bottom: 60px（最も近い 5xl=35.2px とは 25px 差）
 // stories/Patterns の 40 件・sandbox の 2 件も同様に、対応するトークンが無い
 // 実寸（min(380px,100%) 等）が中心。減らしたらこの値を下げること。
-const STYLE_OVERRIDE_BASELINE = 52;
+const STYLE_OVERRIDE_BASELINE = 50;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。

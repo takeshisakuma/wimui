@@ -70,7 +70,7 @@ export const GlassEffect: Story = {
         style={{
           height: "400px",
           background:
-            "var(--wim-gradient-glass)",
+            "var(--wim-color-glass-bg)",
           position: "relative",
         }}
       >

@@ -163,7 +163,9 @@ export default function WelcomeCard() {
           >
             {/* Top Row: Title & Actions */}
             <div style={{
-              height: "var(--wim-spacing-6xl)",
+              /* 高さは内容に任せる。ここには `var(--wim-spacing-6xl)` と書かれていたが
+                 spacing は 5xl 止まりで**宣言ごと無効になっていた**（実測でこの 2 行は
+                 32px と 40.98px ＝ 内容依存）。復元すべき値が存在しないので宣言を落とす。T52 */
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -203,7 +205,9 @@ export default function WelcomeCard() {
 
             {/* Bottom Row: Tabs (Always visible on Canvas view) */}
             <div style={{ 
-              height: "var(--wim-spacing-6xl)",
+              /* 高さは内容に任せる。ここには `var(--wim-spacing-6xl)` と書かれていたが
+                 spacing は 5xl 止まりで**宣言ごと無効になっていた**（実測でこの 2 行は
+                 32px と 40.98px ＝ 内容依存）。復元すべき値が存在しないので宣言を落とす。T52 */
               display: "flex", 
               alignItems: "center", 
               justifyContent: "center",
