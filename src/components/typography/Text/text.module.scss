@@ -107,6 +107,17 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    // 多行の打ち切り。`Spoiler` と同じ `-webkit-box` 方式に揃える
+    // （標準の `line-clamp` はまだ Baseline に載っていないので、両方書いて
+    //  対応済みの実装に拾わせる）。行数はインラインの CSS 変数で受け取る。
+    &.lineClamp {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: var(--wim-text-line-clamp, 3);
+      line-clamp: var(--wim-text-line-clamp, 3);
+    }
   }
 
   // Standalone decoration classes used on child <span> in non-asChild mode

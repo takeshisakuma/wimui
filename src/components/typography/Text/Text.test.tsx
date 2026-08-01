@@ -72,5 +72,37 @@ describe("Text", () => {
     expect(text).not.toHaveClass(styles.nowrap);
     expect(text).not.toHaveClass(styles.truncate);
   });
-});
 
+  // 多行の打ち切り。1 行の  と同時には成立しないので、
+  // 片方が勝つことをテストで固定する（両方当てると -webkit-box と
+  // white-space: nowrap が食い合ってどちらの見た目にもならない）。
+  it("clamps to the given number of lines", () => {
+    render(<Text lineClamp={3}>A long blurb that needs to stop</Text>);
+    const text = screen.getByText("A long blurb that needs to stop");
+    expect(text).toHaveClass(styles.lineClamp);
+    expect(text.style.getPropertyValue("--wim-text-line-clamp")).toBe("3");
+  });
+
+  it("lets truncate win over lineClamp", () => {
+    render(
+      <Text truncate lineClamp={3}>
+        Only one line
+      </Text>,
+    );
+    const text = screen.getByText("Only one line");
+    expect(text).toHaveClass(styles.truncate);
+    expect(text).not.toHaveClass(styles.lineClamp);
+    expect(text.style.getPropertyValue("--wim-text-line-clamp")).toBe("");
+  });
+
+  it("ignores non-positive line counts instead of clamping to nothing", () => {
+    render(<Text lineClamp={0}>Still visible</Text>);
+    const text = screen.getByText("Still visible");
+    expect(text).not.toHaveClass(styles.lineClamp);
+  });
+
+  it("does not clamp by default", () => {
+    render(<Text>Plain</Text>);
+    expect(screen.getByText("Plain")).not.toHaveClass(styles.lineClamp);
+  });
+});

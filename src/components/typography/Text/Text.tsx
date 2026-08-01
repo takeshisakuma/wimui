@@ -56,6 +56,18 @@ export type TextProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
    */
   truncate?: boolean;
   /**
+   * Clip the text after this many lines and end it with an ellipsis.
+   *
+   * `truncate` is the one-line case; this is the multi-line one. Use it when the
+   * text simply has to stop — a card blurb, a table cell, a list subtitle. If the
+   * reader needs a way to see the rest, use `Spoiler` instead: it always renders
+   * a toggle, which is the point of that component and the reason it cannot be
+   * used for "just stop at three lines".
+   *
+   * Ignored when `truncate` is set (one line wins; they cannot both apply).
+   */
+  lineClamp?: number;
+  /**
    * Content of the text. Alternative to children (children take precedence only with asChild).
    */
   content?: React.ReactNode;
@@ -74,6 +86,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       decoration = "none",
       nowrap = false,
       truncate = false,
+      lineClamp,
       className,
       style,
       children,
@@ -107,6 +120,13 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
 
     const Component = asChild ? Slot : "p";
 
+    // 1 行と多行は同時に成立しない。`truncate` を優先し、`lineClamp` は無視する
+    // （両方当てると `-webkit-box` と `white-space: nowrap` が食い合って、
+    //  どちらの見た目にもならない）。
+    const clampLines = !truncate && typeof lineClamp === "number" && lineClamp > 0
+      ? Math.floor(lineClamp)
+      : undefined;
+
     return (
       <Component
         ref={ref}
@@ -119,6 +139,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           asChild && decoration !== "none" && styles[decoration],
           (nowrap || truncate) && styles.nowrap,
           truncate && styles.truncate,
+          clampLines !== undefined && styles.lineClamp,
           className,
         )}
         style={{
@@ -126,6 +147,9 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           fontSize: getFontSizeValue(size as WimFontSize),
           lineHeight: getLineHeightValue(lineHeight),
           fontWeight: getFontWeightValue(weight as WimFontWeight),
+          ...(clampLines !== undefined
+            ? ({ "--wim-text-line-clamp": clampLines } as React.CSSProperties)
+            : null),
           ...(style as React.CSSProperties),
         }}
         {...props}

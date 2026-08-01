@@ -169,6 +169,7 @@
     "text_extra_large": "Extra Large",
     "text_highlight": "Highlight",
     "text_strikethrough": "Strikethrough",
-    "typography": "Typography (Typeset)"
+    "typography": "Typography (Typeset)",
+    "paragraph_choice_clamp_when": "Stopping text after N lines with an ellipsis and no way to expand it — a card blurb, a table cell, a list subtitle. Reach for Spoiler instead when the reader needs the rest: it always renders a toggle, which is why it cannot do a plain stop at three lines."
   }
 }

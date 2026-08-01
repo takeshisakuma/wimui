@@ -313,6 +313,7 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "paragraph_clamp_body": "Uma nota de versão longa o suficiente para precisar parar. Explica o que mudou, por que mudou e o que o leitor precisa fazer — mais do que um cartão consegue mostrar sem empurrar tudo abaixo dele para fora da tela."
   }
 }

@@ -128,3 +128,20 @@ export const HighlightText = {
     decoration: "highlight",
   }
 };
+
+// 多行の打ち切り。1 行の `truncate` に対する多行版で、`Spoiler` と違って
+// 開閉トグルは付かない（「3 行で止めるだけ」がこの prop の役目）。
+export const LineClamp = {
+  render: (args: React.ComponentProps<typeof Text>) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ maxWidth: "22rem" }}>
+        <Text {...args} content={t("story.paragraph_clamp_body")} />
+      </div>
+    );
+  },
+  args: {
+    size: "md",
+    lineClamp: 3,
+  },
+};

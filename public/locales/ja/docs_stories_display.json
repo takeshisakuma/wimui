@@ -313,6 +313,7 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "paragraph_clamp_body": "打ち切りが必要になる程度に長いリリースノート。何が変わったか、なぜ変わったか、読む人が何をすればよいかを説明していますが、カードにそのまま載せると下の要素が画面の外へ押し出されてしまいます。"
   }
 }
