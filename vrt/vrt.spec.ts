@@ -53,6 +53,19 @@ const NONDETERMINISTIC_STORY_IDS = new Set([
   // 通るか落ちるかは運）。前日 1 度 retry で通ったのを見て「除外基準を満たさない」
   // と判断したのは誤りだった＝「2 ラン目で通った」は安定の証拠にならない。
   "components-media-video--rounded",
+  // 兄弟 2 件と同じ動画の読み込み/フェード依存。**除外を保留していた経緯がある**:
+  // 2026-08-01 の朝、update のコミットバックを 3 回分測ったところ、非意図的に
+  // `maxDiffPixels` を超えるのはこれだけだった（#189 で 98 画素・#192 で 96 画素、
+  // maxYIQ 32,600 ＝ 動画フレームがまるごと違う）。しかし**落ちるところを一度も
+  // 見ていなかった**ため（ローカルで update → compare を 2 回とも緑、main の
+  // compare も 4 ラン連続緑）、この Set の追加基準「同一コミットで update →
+  // compare が落ちる」を満たしていないと判断して見送った。
+  // **同日夕方に基準を満たした**: #204 のブランチで update（run 30698540931）と
+  // compare（run 30698542269）が**同じ head `01f4ed23a`** で走り、compare が
+  // これ 1 件だけで落ちた。`--rounded` のコメントが記録している
+  // 「1 度 retry で通ったのを見て除外基準を満たさないと判断したのは誤りだった」の
+  // 逆側（落ちるのを見ずに除外する）を避けた結果、判断に半日かかった形。
+  "components-media-video--default",
   // ChatMessage の isTyping アニメーションを含む
   "patterns-ai--artifacts-canvas",
 ]);
