@@ -114,7 +114,7 @@ export const Both: Story = {
           style={{
             width: "150rem",
             height: "40rem",
-            background: "var(--wim-gradient-glass)",
+            background: "var(--wim-color-glass-bg)",
             padding: "var(--wim-spacing-md)",
           }}
         >

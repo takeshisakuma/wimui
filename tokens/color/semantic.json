@@ -182,6 +182,20 @@
       "danger-subtle": {
         "value": "oklch(from var(--wim-color-danger) l c h / 0.1)"
       },
+      "info-subtle": {
+        "$comment": "T52: ファミリーが danger / primary までしか無く、合成画面が var(--wim-color-info-subtle) を参照しては黙って無効化されていた（CSS は存在しない名前の宣言を捨てるだけでエラーを出さない）。アルファは danger-subtle と Alert の intent 面に合わせて 0.1（primary-subtle の 0.04 は Badge/Tag 向けの別用途で、揃えると intent 面として薄すぎる）",
+        "value": "oklch(from var(--wim-color-info) l c h / 0.1)"
+      },
+      "success-subtle": {
+        "value": "oklch(from var(--wim-color-success) l c h / 0.1)"
+      },
+      "warning-subtle": {
+        "value": "oklch(from var(--wim-color-warning) l c h / 0.1)"
+      },
+      "neutral-subtle": {
+        "$comment": "neutral は base の色トークンを持たない（intents.json が surface.base を neutral-fill に振っている）ため、そこから導く",
+        "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.1)"
+      },
       "surface-inverse": {
         "value": "{pccs.gy2-5}"
       },

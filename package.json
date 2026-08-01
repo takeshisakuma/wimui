@@ -359,6 +359,7 @@
     "check:intents": "node scripts/generate-intents.js --check",
     "check:intents:scss": "node scripts/check-intents-scss.js",
     "check:mono": "node scripts/check-mono-family.js",
+    "check:story-tokens": "node scripts/check-story-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",
     "check:slop": "node scripts/check-slop.js",
@@ -562,7 +563,8 @@
       "node scripts/check-i18n-ignore.js"
     ],
     "{stories,sandbox}/**/*.tsx": [
-      "node scripts/check-slop.js"
+      "node scripts/check-slop.js",
+      "node scripts/check-story-tokens.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
@@ -574,7 +576,8 @@
       "node scripts/check-i18n-components.js",
       "node scripts/check-mdx-links.js",
       "node scripts/audit-mdx.js",
-      "node scripts/check-slop.js"
+      "node scripts/check-slop.js",
+      "node scripts/check-story-tokens.js"
     ],
     "public/locales/**/*.json": [
       "node scripts/sync-i18n.js",

@@ -38,7 +38,7 @@ export const Overview: StoryObj = {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          border: "1px dashed var(--wim-color-primary-border)",
+          border: "1px dashed var(--wim-color-primary)",
           padding: "0 1rem",
           minWidth: "60px"
         }}

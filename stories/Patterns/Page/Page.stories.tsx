@@ -366,7 +366,7 @@ export const MaintenancePage: StoryObj = {
               width: "80px",
               height: "80px",
               borderRadius: "var(--wim-radius-full)",
-              background: "var(--wim-color-warning-light)",
+              background: "var(--wim-color-warning-subtle)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
