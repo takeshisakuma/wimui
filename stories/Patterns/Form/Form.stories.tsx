@@ -378,21 +378,26 @@ export const MultiStepForm: StoryObj = {
 export const WelcomeScreen: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
+    // 番号つきの手順は `Stepper` が描く。以前はここで素の <div> に
+    // `--wim-color-primary-muted` + `--wim-color-primary` を直書きして
+    // 「薄い面＋濃い同色文字」を手で再現していたが、それだとトークンや
+    // バリアントを変えてもこの画面には届かない（T52）。
+    // どれも「これからやること」なので全部 `wait`（進行中の 1 件を作らない）。
     const steps = [
       {
-        num: "1",
         title: t("welcome.step_1_title"),
-        desc: t("welcome.step_1_desc"),
+        description: t("welcome.step_1_desc"),
+        intent: "wait" as const,
       },
       {
-        num: "2",
         title: t("welcome.step_2_title"),
-        desc: t("welcome.step_2_desc"),
+        description: t("welcome.step_2_desc"),
+        intent: "wait" as const,
       },
       {
-        num: "3",
         title: t("welcome.step_3_title"),
-        desc: t("welcome.step_3_desc"),
+        description: t("welcome.step_3_desc"),
+        intent: "wait" as const,
       },
     ];
     return (
@@ -442,36 +447,12 @@ export const WelcomeScreen: StoryObj = {
 
             <Divider style={{ width: "100%" }} />
 
-            <Stack gap="xl" style={{ width: "100%" }}>
-              {steps.map((s) => (
-                <Stack key={s.num} direction="row" gap="lg" align="start">
-                  <div
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "var(--wim-radius-lg)",
-                      background: "var(--wim-color-primary-muted)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Text
-                      content={s.num}
-                      style={{
-                        fontWeight: 700,
-                        color: "var(--wim-color-primary)",
-                      }}
-                    />
-                  </div>
-                  <Stack gap="2xs">
-                    <Text content={s.title} style={{ fontWeight: 600 }} />
-                    <Text content={s.desc} size="sm" color="text-secondary" />
-                  </Stack>
-                </Stack>
-              ))}
-            </Stack>
+            <Stepper
+              steps={steps}
+              direction="vertical"
+              ariaLabel={t("welcome.title")}
+              className="wim-welcome-steps"
+            />
 
             <Group gap="md">
               <Button variant="solid" size="lg">
