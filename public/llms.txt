@@ -143,7 +143,7 @@ const rows = [
   { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610.50", status: "paid" },
   { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199.00", status: "failed" },
   { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
-];
+] as const;
 const intent = { paid: "success", failed: "danger", pending: undefined } as const;
 
 export function BillingOverview() {

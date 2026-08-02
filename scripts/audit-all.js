@@ -123,6 +123,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 上が「宣言された組み合わせ」を見るのに対し、こちらは **SCSS に実際に
+    // 書かれた color / background の対**を解いて比を出す（T41 案②）。
+    // 宣言が正しくても実装が SSOT を迂回していれば、上は緑のまま通る。
+    name: "Contrast resolved from the SCSS that actually ships",
+    command: "node scripts/check-contrast-scss.js",
+  },
+  {
+    category: "lib",
     // 型が受け付けるのに CSS が無い prop 値＝「書いても効かない prop」。
     // 呼び出し側が style へ逃げる原因になる（T33）。
     name: "Prop values without a CSS class",

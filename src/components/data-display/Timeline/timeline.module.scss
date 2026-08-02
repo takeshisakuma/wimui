@@ -128,18 +128,23 @@
         border-color: var(--wim-color-primary);
       }
 
+      // 中のグリフの色は `color`（currentColor）で決まるので、文字と同じ規則で見る。
+      // `.primary` だけが `text-accent`（文字用）を使い、他の 3 つは塗り用の
+      // intent 色を使っていた。塗り用はテーマで反転しないため、実測で
+      // secondary 2.03（light）/ success 2.48（dark）/ danger 4.36（dark）まで落ちる。
+      // 枠（border-color）は面ではなく輪郭なので塗り用のままでよい。T41 案② で検出。
       &.secondary {
-        color: var(--wim-color-secondary);
+        color: var(--wim-color-text-secondary);
         border-color: var(--wim-color-secondary);
       }
 
       &.danger {
-        color: var(--wim-color-danger);
+        color: var(--wim-color-text-danger);
         border-color: var(--wim-color-danger);
       }
 
       &.success {
-        color: var(--wim-color-success);
+        color: var(--wim-color-text-success);
         border-color: var(--wim-color-success);
       }
     }
