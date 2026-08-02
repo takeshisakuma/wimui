@@ -3,6 +3,7 @@ import {
   AgentStatus,
   AIResponseFeedback,
   Badge,
+  Box,
   Button,
   ChatContainer,
   ChatInputArea,
@@ -200,19 +201,26 @@ export default function DeployAssistant() {
               `surface-tertiary`, and 3.10–3.63:1 once a `subtle` tint
               composites on top. `check:contrast` stays green because it tests
               three of the eleven surface tokens. Filed as T56. */}
-          <Stack gap="md">
-            <Group gap="md" align="center">
-              <Badge intent="danger">No answer</Badge>
-              <Text size="sm" color="text-secondary">
-                Search over incident history timed out
-              </Text>
-            </Group>
-            <Group gap="sm">
-              <Button variant="outline" size="sm">
-                Search without history
-              </Button>
-            </Group>
-          </Stack>
+          {/* ChatMessageList pads its own children; a sibling of the list gets
+              nothing, so the padding is stated here rather than left to chance.
+              2xl (16px) rather than the list's own md (8px): the sender labels
+              inside sit 14px from the list edge, so md left this block visibly
+              tighter than everything above it. */}
+          <Box px="2xl" py="2xl">
+            <Stack gap="md">
+              <Group gap="md" align="center">
+                <Badge intent="danger">No answer</Badge>
+                <Text size="sm" color="text-secondary">
+                  Search over incident history timed out
+                </Text>
+              </Group>
+              <Group gap="sm">
+                <Button variant="outline" size="sm">
+                  Search without history
+                </Button>
+              </Group>
+            </Stack>
+          </Box>
 
           <ChatInputArea>
             <PromptInput
