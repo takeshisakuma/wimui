@@ -3,6 +3,11 @@
   margin: 0;
   list-style-position: outside;
 
+  /* `fullWidth` はこのクラスで効く。無いあいだ prop は黙って無視されていた（T58）。 */
+  &.fullWidth {
+    width: 100%;
+  }
+
   &.spacing-tight {
     .item {
       margin-bottom: 0.5rem;
