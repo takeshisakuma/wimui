@@ -115,12 +115,57 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
 // **足りないのではなく死んだ参照**だった（前者は `:focus-visible` が、後者はチェック
 // アイコンが既に同じ状態を描いている）。**33 件すべてが「クラスを足す」で直るとは
 // 限らない** — 1 件ずつ「足す / 消す」を判定すること。
+// **当初の「35 件」は誤りだった**（下のリゾルバの説明参照）。素朴な走査が
+// `&Header` を `Header` として「定義済み」に入れていたため、`BentoGrid` の item 6 部位を
+// 偽陽性で数え、逆に `styles.primary` のような名前を誤って存在扱いで隠していた。
+// リゾルバを入れて測り直した真の総数は **29 件**（対応済み 12 + 残り 17）。
 // 31 → 23: 同日 2 巡目。**8 件のうち 7 件が「消す」だった**。無効状態は
 // `:disabled`（Combobox / SmartSearchInput）が既に持ち、トリガーは意図的に無スタイル
 // （Dialog / BottomSheet。Drawer は SCSS に空の `.trigger` を置いている）、
 // ストリーミング表示は `.cursor` が描いている。**足したのは Stepper の無効ステップ 1 件だけ**で、
 // それも `<div>` に `:disabled` は当たらないので既存の `aria-disabled` に紐づけた。
-const BARE_CLASS_BASELINE = 23;
+/**
+ * SCSS が定義するクラス名を集める。**`&Suffix` の連結を解決する**のが要点。
+ *
+ * `.item { &Header { … } }` は `.itemHeader` にコンパイルされるが、素朴に
+ * `[.&](\w+)` で拾うと `Header` になり、**実在するクラスを「無い」と誤判定する**。
+ * 実際 `BentoGrid` の item 6 部位はこの形で、最初の計測では 6 件すべてが偽陽性だった
+ * （「35 件」という当初の数字にはこれが含まれていた）。
+ */
+function definedClasses(scss) {
+  // ① ドット付きで現れる名前は、どこにあっても定義とみなす。
+  //    これが安全側の基本集合で、`&.primary,`（複数行のセレクタリスト）や
+  //    `&.active { opacity: 1; }`（1 行完結）も漏らさない。行ベースの構文解析だけに
+  //    すると、この 2 つの形を落として**実在するクラスを「無い」と言う**
+  //    （リゾルバを入れた直後に FloatButton と VoiceVisualizer で実際にそうなった）。
+  const out = new Set([...scss.matchAll(/\.([A-Za-z][\w-]*)/g)].map((m) => m[1]));
+
+  // ② `&Suffix` の連結だけは、親を辿らないと名前が復元できないので別に解く。
+  //    `.item { &Header { … } }` → `.itemHeader`。
+  const stack = [];
+  for (const raw of scss.split(/\r?\n/)) {
+    const line = raw.replace(/\/\/.*$/, '');
+    const open = line.match(/^\s*([^{}]+?)\s*\{/);
+    if (open) {
+      const sel = open[1].trim();
+      const parent = stack.length ? stack[stack.length - 1] : null;
+      const amp = sel.match(/^&([A-Za-z][\w-]*)/); // `&.foo` は ① が拾うのでここでは対象外
+      const dot = sel.match(/^\.([A-Za-z][\w-]*)/);
+      const name = amp && parent ? parent + amp[1] : dot ? dot[1] : null;
+      if (name) out.add(name);
+      if (!/\}\s*$/.test(line)) stack.push(name ?? parent); // 1 行完結の規則は積まない
+      continue;
+    }
+    if (/^\s*\}/.test(line)) stack.pop();
+  }
+  return out;
+}
+
+// 23 → 17: リゾルバ修正後の実測。BentoGrid の 6 件は最初から存在していた。
+// 17 → 12: 3 巡目。5 件とも「消す」だった — 間隔は親の `gap` が、書体と左右の
+// 配置は `.header`（space-between）が既に持っていた。**ここまで 17 件中 14 件が
+// 「消す」**で、見た目の欠陥は少数だった。
+const BARE_CLASS_BASELINE = 12;
 const bareMissing = [];
 
 for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
@@ -136,7 +181,7 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
   if (files.length === 0) continue;
 
   const scss = files.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
-  const defined = new Set([...scss.matchAll(/[.&]([a-zA-Z][\w-]*)/g)].map((m) => m[1]));
+  const defined = definedClasses(scss);
 
   const used = new Set([
     ...[...src.matchAll(/\bstyles\.([a-zA-Z][\w]*)/g)].map((m) => m[1]),

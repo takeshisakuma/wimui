@@ -87,7 +87,9 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         {iconName ? (
           <div className={styles.itemContent}>
             {iconPosition === "left" && (
-              <div className={classNames(styles.iconContainer, styles.left)}>
+              // 左右の間隔は `.item.withIcon .itemContent` の gap が作る。
+              // 位置は DOM の前後で表せているので、位置クラスは要らない（T58）。
+              <div className={styles.iconContainer}>
                 <Icon name={iconName} size={size} color={iconColor} className={styles.icon} />
               </div>
             )}
@@ -95,7 +97,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
               <Slottable>{children}</Slottable>
             </div>
             {iconPosition === "right" && (
-              <div className={classNames(styles.iconContainer, styles.right)}>
+              <div className={styles.iconContainer}>
                 <Icon name={iconName} size={size} color={iconColor} className={styles.icon} />
               </div>
             )}

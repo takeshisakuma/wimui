@@ -95,7 +95,8 @@ export const Banner = ({
           </div>
         </div>
         <div className={styles.actions}>
-          {extra && <div className={styles.action}>{extra}</div>}
+          {/* 間隔は `.actions`（gap: md の flex）が作る（T58） */}
+          {extra && <div>{extra}</div>}
           <FeedbackCloseButton
              onClose={onClose}
              className={styles.close}

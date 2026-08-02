@@ -55,7 +55,11 @@ describe("List", () => {
         <ListItem iconName="SearchIcon" iconPosition="left">Item</ListItem>
       </List>,
     );
-    expect(container.querySelector(`.${styles.iconContainer}.${styles.left}`)).toBeInTheDocument();
+    // 位置は DOM の前後で表す（間隔は `.item.withIcon .itemContent` の gap）。
+    // 以前は位置クラスの有無を見ていたが、そのクラスには実体が無く、
+    // **スタイルの当たらないクラスが付いていること**を固定していただけだった（T58）。
+    const content = container.querySelector(`.${styles.itemContent}`)!;
+    expect(content.firstElementChild).toHaveClass(styles.iconContainer);
   });
 
   it("renders ListItem with right icon", () => {
@@ -64,7 +68,8 @@ describe("List", () => {
         <ListItem iconName="SearchIcon" iconPosition="right">Item</ListItem>
       </List>,
     );
-    expect(container.querySelector(`.${styles.iconContainer}.${styles.right}`)).toBeInTheDocument();
+    const content = container.querySelector(`.${styles.itemContent}`)!;
+    expect(content.lastElementChild).toHaveClass(styles.iconContainer);
   });
 
   it("renders ListItem with non-string children", () => {
