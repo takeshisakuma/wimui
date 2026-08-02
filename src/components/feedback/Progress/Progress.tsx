@@ -89,9 +89,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       >
         {(label || showValue) && (
           <div className={styles.header}>
-            {label && <span className={styles.label}>{label}</span>}
+            {/* 書体・色・左右の配置は `.header`（space-between の flex）が持つ（T58） */}
+            {label && <span>{label}</span>}
             {showValue && !indeterminate && (
-              <span className={styles.value}>{Math.round(percentage)}%</span>
+              <span>{Math.round(percentage)}%</span>
             )}
           </div>
         )}

@@ -162,7 +162,10 @@ function definedClasses(scss) {
 }
 
 // 23 → 17: リゾルバ修正後の実測。BentoGrid の 6 件は最初から存在していた。
-const BARE_CLASS_BASELINE = 17;
+// 17 → 12: 3 巡目。5 件とも「消す」だった — 間隔は親の `gap` が、書体と左右の
+// 配置は `.header`（space-between）が既に持っていた。**ここまで 17 件中 14 件が
+// 「消す」**で、見た目の欠陥は少数だった。
+const BARE_CLASS_BASELINE = 12;
 const bareMissing = [];
 
 for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
