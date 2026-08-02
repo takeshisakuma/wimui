@@ -156,7 +156,8 @@ export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooter
     const Component = asChild ? Slot : "tfoot";
     return (
       <Component
-        className={classNames(styles.footer, className)}
+        // `thead` / `tbody` と同じく要素セレクタで書く流儀に揃えた（T58）。
+        className={className}
         ref={ref}
         data-testid="table-footer"
         {...(props as React.HTMLAttributes<HTMLTableSectionElement>)}

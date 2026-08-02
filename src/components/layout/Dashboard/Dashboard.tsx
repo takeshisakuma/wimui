@@ -120,9 +120,8 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
                 size="sm"
                 variant={editable ? "solid" : "outline"}
                 intent="default"
-                className={classNames(styles.editToggle, {
-                  [styles.editActive]: editable,
-                })}
+                // 状態は `variant`（solid/outline）と `aria-pressed` が表す（T58）。
+                className={undefined}
                 onClick={toggleEdit}
                 aria-pressed={editable}
                 aria-label={

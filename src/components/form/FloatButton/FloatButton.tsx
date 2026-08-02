@@ -146,7 +146,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
           positionClass,
           !!label && styles.extended,
           !!shrink && styles.shrink,
-          backTop && !!label && styles.backtop,
+          // back-to-top の見た目は `.iconBacktop`（アイコンを 180° 回す）が持つ（T58）。
           className,
         )}
         style={style}

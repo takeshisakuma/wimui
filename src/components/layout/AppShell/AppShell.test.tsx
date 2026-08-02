@@ -68,12 +68,15 @@ describe("AppShell", () => {
     expect(appshell).toHaveClass("custom-class");
   });
 
-  it("applies with-sidebar class when sidebar is provided", () => {
-    const { container } = render(
+  it("renders the sidebar it is given", () => {
+    // 以前は `withSidebar` クラスの有無を見ていたが、そのクラスは SCSS に存在せず、
+    // **スタイルの当たらないクラスが付いていること**を固定していただけだった（T58）。
+    // 実際に起きるのは「サイドバーが描かれる」ことなので、そちらを見る。
+    const { container, getByText } = render(
       <AppShell sidebar={<div>Sidebar</div>}>Content</AppShell>,
     );
-    const appshell = container.firstChild as HTMLElement;
-    expect(appshell).toHaveClass(styles.withSidebar);
+    expect(getByText("Sidebar")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.sidebar}`)).toBeInTheDocument();
   });
 
   it("renders AppShellHeader as standalone component", () => {
