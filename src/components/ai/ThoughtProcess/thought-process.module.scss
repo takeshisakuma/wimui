@@ -1,3 +1,4 @@
+@use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .root {
@@ -135,6 +136,13 @@
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+
+    /* 狭幅では大文字化と字間をやめる。両方あわせて語が実質 1.3 倍ほど長くなり、
+       390px では `READ THE ROLLOUT EVENTS` が 1 単語ずつ 3 行に積まれた（T60）。 */
+    @include breakpoints.down(sm) {
+      text-transform: none;
+      letter-spacing: normal;
+    }
   }
 
   .text {

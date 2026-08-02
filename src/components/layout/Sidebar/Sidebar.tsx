@@ -11,9 +11,35 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
   width?: number | string;
   /** Border at the right */
   bordered?: boolean;
-  /** Enable responsive behavior (mobile drawer) */
+  /**
+   * Below the `md` breakpoint, move the sidebar off-canvas so it stops taking
+   * width from the content. Defaults to `true`.
+   *
+   * **It does not bring a way back on screen.** Off-canvas means
+   * `left: -{width}` until `mobileOpen` is true, and nothing in this component
+   * flips that — so on a phone the sidebar and everything in it become
+   * unreachable unless you wire a trigger yourself. Measured at 390px: the rail
+   * sits at `x = -260` with no control anywhere on the page (T60).
+   *
+   * Pair it with `mobileOpen` and a `HamburgerMenu`, the way the AppShell story
+   * does:
+   *
+   * ```tsx
+   * const [open, setOpen] = useState(false);
+   *
+   * <HamburgerMenu visibleBelow="md" open={open} onClick={() => setOpen((o) => !o)} />
+   * <Sidebar mobileOpen={open} onOverlayClick={() => setOpen(false)}>…</Sidebar>
+   * ```
+   *
+   * `visibleBelow="md"` keeps the control out of the way at widths where the
+   * rail is already on screen. The trigger lives outside this component on
+   * purpose: it usually belongs in the header, and a built-in one would sit in
+   * the wrong place or duplicate the one you already have.
+   *
+   * Set `responsive={false}` to keep the sidebar in flow at every width.
+   */
   responsive?: boolean;
-  /** Mobile drawer open state */
+  /** Mobile drawer open state. Required for the rail to be reachable below `md` — see `responsive`. */
   mobileOpen?: boolean;
   /** Callback when overlay is clicked */
   onOverlayClick?: () => void;

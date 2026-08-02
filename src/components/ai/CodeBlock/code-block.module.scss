@@ -1,3 +1,4 @@
+@use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/font-mixins" as font;
 
 @layer component {
@@ -102,6 +103,17 @@
     white-space: pre;
     background: transparent;
     border: none;
+
+    /* 狭幅では折り返す。`white-space: pre` + `overflow-x: auto` は
+       「コードは折り返さない」という正しい判断だが、390px では 1 行が 20 文字も
+       見えず、内部スクロールに頼ると読めない（T60 で実測: ファイル名も
+       `k8s/deployment` で切れ、各行も `readinessP` のように途切れる）。
+       単語の途中では折らない（`pre-wrap`）ので、識別子は保たれる。 */
+    @include breakpoints.down(sm) {
+      word-break: normal;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
   }
 
   .code {
