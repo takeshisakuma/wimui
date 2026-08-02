@@ -120,20 +120,25 @@ export default function DeployAssistant() {
 
       <Grid cols={{ base: "1fr", lg: "auto 1fr" }} gap="xl" align="start">
         <Sidebar bordered>
-          <Stack gap="lg">
-            <ThreadList threads={threads} activeId={activeThread} onSelect={setActiveThread} />
-            <Box px="md">
-              <Stack gap="md">
-                <ModelSelector models={models} value="sonnet" />
-                <UsageMeter
-                  used={128400}
-                  max={200000}
-                  size="sm"
-                  labels={{ label: "Context", unit: "tokens" }}
-                />
-              </Stack>
-            </Box>
-          </Stack>
+          {/* Sidebar has no padding of its own (measured 0 on all four sides),
+              so the rail states its own. Without it the thread list sits on the
+              top edge and the meter on the bottom one. */}
+          <Box py="lg">
+            <Stack gap="lg">
+              <ThreadList threads={threads} activeId={activeThread} onSelect={setActiveThread} />
+              <Box px="md">
+                <Stack gap="md">
+                  <ModelSelector models={models} value="sonnet" />
+                  <UsageMeter
+                    used={128400}
+                    max={200000}
+                    size="sm"
+                    labels={{ label: "Context", unit: "tokens" }}
+                  />
+                </Stack>
+              </Box>
+            </Stack>
+          </Box>
         </Sidebar>
 
         <ChatContainer>
