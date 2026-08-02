@@ -18,10 +18,21 @@
  *                     px 直書き（gap:"16px" 等）。**ラチェット方式**（現状値を凍結し増加をブロック）。
  *                     既存 `PX_BASELINE`（check-hardcoded-values.js）と同じ運用。
  *                     MDX の <style> ブロックは CSS 宣言（`padding: 24px;`）として同じ 2 種を見る。
+ *   5. intentSurface — インライン style で **intent の面色**を background に敷いている箇所（T52）。
+ *                     ハードゲート（baseline 0）＋ `intent-surface-ok` で個別に逃がす。
+ *
+ * **5 を足した理由**（T52）: 「薄い intent 面＋濃い同色文字」を素の `<div>` で手組みすると、
+ * `Badge variant="subtle"` とまったく同じ見た目になるのに、**トークンやバリアントの変更が
+ * そこには届かない**。実際 T51-② で `subtle` にボーダーを入れたとき、手組み側だけが
+ * 取り残された。しかも取り残されても**気付けない**（VRT は壊れた状態でベースラインを
+ * 撮っているので「いつもどおり」に見える。T45 でページ色を変えたのに 852 枚が旧色のまま
+ * 残ったのと同じ構造）。px と違い正当な用途が少ないので、ラチェットではなく 0 で止める。
  *
  * 使い方:
  *   node scripts/check-slop.js            # 対象全体を検査（audit:docs / CI）
  *   node scripts/check-slop.js <file...>  # 指定ファイルのみ（lint-staged 用。対象外のパスは無視）
+ *   node scripts/check-slop.js --probe <file...>  # 指定ファイルだけを intentSurface で見る
+ *                                                 （過去のコミットを流し込む受け入れ条件の検証用）
  *
  * ベースラインを下回ったら STYLE_OVERRIDE_BASELINE を実測値まで下げてコミットすること。
  */
@@ -38,7 +49,9 @@ import { globSync } from 'glob';
 //   - PCCS.mdx の margin-bottom: 60px（最も近い 5xl=35.2px とは 25px 差）
 // stories/Patterns の 40 件・sandbox の 2 件も同様に、対応するトークンが無い
 // 実寸（min(380px,100%) 等）が中心。減らしたらこの値を下げること。
-const STYLE_OVERRIDE_BASELINE = 50;
+// 2026-08-02: 50 → 48。T52 のガードで見つかったメンテナンス画面の孤島を `Result`
+// （`iconSurface`）へ寄せた結果、80px の直書き 2 件が消えた。
+const STYLE_OVERRIDE_BASELINE = 48;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
@@ -65,14 +78,67 @@ const HYPE_SCAN_FILES = [
 const TSX_GLOBS = ['stories/Patterns/**/*.tsx', 'sandbox/**/*.tsx'];
 const MDX_GLOBS = ['docs/*.mdx'];
 
-const composedFiles = TSX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter(
-  (f) => !f.endsWith('.test.tsx') && fs.existsSync(f),
-);
+// `--probe` は受け入れ条件の検証専用。過去のコミットから取り出したファイルを渡して
+// 「検出すべき既知の事例で実際に鳴るか」を確かめる（check-intent-text-color.js と同じ運用）。
+// 通常の引数（lint-staged 由来）とは違い、こちらは**渡されたファイルだけ**を見る。
+const argv = process.argv.slice(2);
+const probeIdx = argv.indexOf('--probe');
+const probeFiles = probeIdx >= 0 ? argv.slice(probeIdx + 1).filter((f) => fs.existsSync(f)) : [];
+
+const composedFiles =
+  probeFiles.length > 0
+    ? probeFiles
+    : TSX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter(
+        (f) => !f.endsWith('.test.tsx') && fs.existsSync(f),
+      );
 const mdxFiles = MDX_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter((f) => fs.existsSync(f));
 
 const gradientHits = [];
 const styleHits = [];
 const propBackedHits = [];
+const intentSurfaceHits = [];
+
+/**
+ * intent の**面色**を指すトークン（T52）。intent 名は SSOT から引く — ここに 6 語を
+ * 書き写すと、intent を足したときに新しい名前だけが黙って素通りする。
+ *
+ * 接尾辞まで含めて `--wim-color-<intent>` の形だけを見るのが要点で、`text-secondary` /
+ * `border-secondary` / `surface-subtle` / `chart-primary` は**面ではない or intent 面ではない**
+ * ので当たらない（`--wim-color-` の直後に intent 名が来ることを要求している）。
+ * `surface-subtle` の縞模様や `border-secondary` の罫線は正当なのでここで落としてはいけない。
+ */
+const INTENT_NAMES = Object.keys(
+  JSON.parse(fs.readFileSync(new URL('../tokens/intents.json', import.meta.url), 'utf8')).canonical,
+).filter((n) => n !== 'default');
+const INTENT_SURFACE_TOKEN = new RegExp(
+  `--wim-color-(${INTENT_NAMES.join('|')})(-(subtle|muted|soft|fill|hover|active|rgb))?\\b`,
+);
+// background / backgroundColor の**値**としての使用だけを見る。`color:` は別ガード
+// （check:intent-text-color）の担当で、あちらは文字色として AA を割る話。
+//
+// 宣言名だけを見て「同じ行に intent トークンがあるか」で判定すると誤検出する:
+// `{ background: "var(--wim-color-surface)", borderColor: "var(--wim-color-primary)" }`
+// は面がサーフェスで枠だけがアクセント＝正当なのに落ちる（実装中に AI.stories.tsx:115 で
+// 実際に踏んだ）。値を切り出してから照合すること。
+const BG_DECL_VALUE = /\bbackground(Color)?\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]+))/g;
+const bgValues = (line) =>
+  [...line.matchAll(BG_DECL_VALUE)].map((m) => m[2] ?? m[3] ?? m[4] ?? '');
+
+/**
+ * 逃がす注記を、その行と**直前の連続したコメント行**から探す。理由を 2 行以上で
+ * 書いた瞬間に効かなくなる形（直前 1 行だけを見る）は避ける。逃がすこと自体より、
+ * 逃がした理由がコードの隣に残ることのほうが目的なので、複数行を許す必要がある。
+ */
+const EXCUSE = 'intent-surface-ok';
+function excused(lines, i) {
+  if (lines[i].includes(EXCUSE)) return true;
+  for (let k = i - 1; k >= 0; k -= 1) {
+    const prev = lines[k].trim();
+    if (!prev.startsWith('//') && !prev.startsWith('*') && !prev.startsWith('/*')) return false;
+    if (prev.includes(EXCUSE)) return true;
+  }
+  return false;
+}
 
 /**
  * prop があるのに style で書いている箇所。DESIGN.md 必須ルール 3 の本体だが、
@@ -137,6 +203,11 @@ for (const file of composedFiles) {
         styleHits.push(`${loc} [default-override] ${line.trim().slice(0, 80)}`);
       } else if (PX_LITERAL_RE.test(line) && !/var\(/.test(line)) {
         styleHits.push(`${loc} [px-literal] ${line.trim().slice(0, 80)}`);
+      }
+      // 逃がすときは理由を書けるよう、同じ行と**直前の連続したコメント行**を見る。
+      // 1 行前だけだと、理由を複数行で書いた瞬間に効かなくなる（実装中に踏んだ）。
+      if (!excused(lines, i) && bgValues(line).some((v) => INTENT_SURFACE_TOKEN.test(v))) {
+        intentSurfaceHits.push(`${loc} ${line.trim().slice(0, 90)}`);
       }
     }
 
@@ -232,6 +303,24 @@ if (nameHits.length > 0) {
   console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。DESIGN.md 規約13）:`);
   for (const h of nameHits) console.log(`  ${h}`);
   failed = true;
+}
+
+// ハードゲート（baseline 0）。intent の面を素の要素で敷くのは、既にある
+// `Badge` / `Tag` / `Chip` / `Alert` の subtle を手で書き直しているのと同じ。
+if (intentSurfaceHits.length > 0) {
+  console.log(`\n[FAIL] intent の面色をインライン style で敷いています（T52）:`);
+  for (const h of intentSurfaceHits) console.log(`  ${h}`);
+  console.log(`       同じ見た目は \`Badge\` / \`Tag\` / \`Chip\` の \`variant="subtle"\` や \`Alert\` が持っています。`);
+  console.log(`       手組みするとトークン・バリアントの変更がそこだけ届かず、しかも`);
+  console.log(`       VRT は壊れた状態のベースラインを撮るので気付けません。`);
+  console.log(`       強調として面を敷くこと自体が目的なら \`intent-surface-ok\` を添えて理由を書くこと。`);
+  failed = true;
+}
+
+// --probe は受け入れ条件の検証なので、intentSurface だけを見て 1 件でも鳴らす。
+if (probeFiles.length > 0) {
+  console.log(`\n${intentSurfaceHits.length} 件検出（probe: ${probeFiles.length} ファイル）。`);
+  process.exit(intentSurfaceHits.length > 0 ? 1 : 0);
 }
 
 // ハードゲート（baseline 0）。2026-07-26 の T15 で全件解消済みなのでラチェットにしない。
