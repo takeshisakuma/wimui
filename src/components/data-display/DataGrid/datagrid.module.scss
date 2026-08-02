@@ -168,3 +168,14 @@
   font-weight: var(--wim-font-weight-medium);
   color: var(--wim-color-text-accent);
 }
+
+/* 空状態。クラスは参照されていたが実体が無く、素のテキストが左端に出ていた（T58）。 */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wim-spacing-4xl) var(--wim-spacing-2xl);
+  font-size: var(--wim-font-size-sm);
+  color: var(--wim-color-text-secondary);
+  text-align: center;
+}

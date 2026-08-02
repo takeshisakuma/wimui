@@ -219,7 +219,8 @@ export const DrawerContent = ({
       data-side={side}
     >
       <Component data-testid="drawer-content" data-side={side}>
-        <div className={styles.inner}>
+        {/* 余白は `.content` が持つ。この包みは構造だけで、スタイルは無い（T58） */}
+        <div>
           <Slottable>{children}</Slottable>
         </div>
       </Component>

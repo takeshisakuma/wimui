@@ -147,7 +147,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               aria-label={label ? undefined : "Select country"}
             >
               <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
-              <span className={styles.dialCode}>+{selectedCountry.dialCode}</span>
+              {/* 旗・番号・シェブロンの間隔はセレクタの gap が作る（T58） */}
+              <span>+{selectedCountry.dialCode}</span>
               <Icon
                 component={ChevronDownIcon}
                 size="sm"

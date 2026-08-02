@@ -52,7 +52,9 @@ export interface AppShellProps extends Omit<
  * </AppShell>
  * ```
  *
- * @note Props API で `sidebar` を渡した場合、`--with-sidebar` クラスが自動付与されます。
+ * @note サイドバーの幅は渡した `Sidebar` 自身が持つ（`width` prop、既定 260）。
+ *       以前ここには「`--with-sidebar` クラスが自動付与される」と書いてあったが、
+ *       そのクラスは SCSS に存在せず、付いても何も起きなかった（T58）。
  *       Composition API で `AppShell.Sidebar` を使う場合は、
  *       親 `AppShell` に `sidebar` prop として何かを渡すか、
  *       `AppShell.Body` を使って手動でレイアウトを構成してください。
@@ -85,7 +87,8 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
         ref={ref}
         className={classNames("wim-app-shell", 
           styles.root,
-          !!sidebar && styles.withSidebar,
+          // `withSidebar` は SCSS に存在せず、付いても何も起きなかった（T58）。
+          // サイドバーの幅は渡した `Sidebar` 自身が持つ。
           !!navbar && styles.withNavbar,
           className,
         )}

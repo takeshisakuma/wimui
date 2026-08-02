@@ -265,7 +265,8 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
         >
           {option.iconName && <Icon name={option.iconName} size={size} className={styles.icon} />}
           {option.label && (
-            <span className={styles.label}>{option.label}</span>
+            // アイコンとの間隔はボタンの gap が作る（T58）。
+            <span>{option.label}</span>
           )}
         </button>
       )})}

@@ -14,6 +14,16 @@
           display: none;
         }
 
+        /* 本文との区切り。参照だけあってスタイルが無く、合計行が本文行と
+           見分けられなかった（T58）。 */
+        tfoot {
+          border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+
+          td, th {
+            font-weight: var(--wim-font-weight-medium);
+          }
+        }
+
         tbody {
           display: block;
 

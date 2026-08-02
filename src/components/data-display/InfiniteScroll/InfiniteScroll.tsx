@@ -71,7 +71,9 @@ export const InfiniteScroll = ({
   return (
     <div className={classNames("wim-infinite-scroll", styles.root, className)}>
       {children}
-      {loading && <div role="status" className={styles.loading}>{loader}</div>}
+      {/* 監視用のセンチネルと同じ見た目にする。専用クラスは実体が無く、
+          読み込み表示だけ左寄せ・余白無しになっていた（T58）。 */}
+      {loading && <div role="status" className={styles.loader}>{loader}</div>}
       {hasMore && (
         <div ref={observerTarget} className={styles.loader} />
       )}
