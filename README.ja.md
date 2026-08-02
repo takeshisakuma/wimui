@@ -161,8 +161,8 @@ npm install recharts
 ```tsx
 import { Button, Icon, CheckIcon } from "wimui";
 
-<Button icon={<Icon component={CheckIcon} />}>保存</Button>
-<Icon component={CheckIcon} size="sm" />
+<Button icon={<Icon component={CheckIcon} />}>保存</Button>;
+<Icon component={CheckIcon} size="sm" />;
 ```
 
 **2. 文字列で指定する**
@@ -266,6 +266,8 @@ Storybook ではツールバーの **Density**、または Token → Density / T
 ## バンドルサイズと import 方法
 
 ルートからの named import で未使用コンポーネントはバンドルに含まれません（`sideEffects` 設定済み）。カテゴリ別のサブパスも利用できます。
+
+<!-- code-example: skip — 同じ名前を 2 つの経路から import する「どちらでも書ける」の例示。1 ファイルとしては重複識別子になるのが正しい -->
 
 ```tsx
 import { Button } from "wimui";      // tree-shaking が効く（推奨）

@@ -82,6 +82,14 @@ const checks = [
   },
   {
     category: "docs",
+    // 上が README の「表」の主張を見るのに対し、こちらは**コード例そのもの**を
+    // コンパイルする（T37 の残り）。llms.txt のレシピは generate-llms.js の中に
+    // 手書きで存在し、「実 API に対して検証済み」とコメントされているだけだった。
+    name: "README / llms.txt code examples compile",
+    command: "node scripts/check-code-examples.js",
+  },
+  {
+    category: "docs",
     // 「Open in StackBlitz」が install するバージョン。手書きだった頃は `^0.3.0` の
     // まま 7 リリース放置され、プレビューと sandbox が別のライブラリになっていた。
     name: "StackBlitz scaffold pins the published version",
