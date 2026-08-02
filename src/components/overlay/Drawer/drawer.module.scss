@@ -6,6 +6,13 @@
     display: flex;
     background-color: var(--wim-color-overlay);
     backdrop-filter: blur(var(--wim-blur-xs));
+
+    /* `showOverlay={false}` はこのクラスで効く。無いあいだ prop は黙って
+       無視され、暗幕は必ず出ていた（T58）。 */
+    &.hideOverlay {
+      background-color: transparent;
+      backdrop-filter: none;
+    }
   }
 
   .content {

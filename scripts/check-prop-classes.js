@@ -94,25 +94,100 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
   }
 }
 
+// --- 素の `styles.foo` 参照（T58） ---------------------------------------
+//
+// 上はテンプレート形（`styles[`padding-${prop}`]`）だけを見る。**素の
+// `styles.foo` は誰も見ていなかった**ので、SCSS に無いクラス名を書いても
+// `undefined` が付くだけで、その状態・部位のスタイルが黙って当たらない。
+//
+// T32 の 3 枚目で `AppShell` の `styles.withSidebar` を踏んだのが発端で、
+// 数えたら 21 コンポーネントに 35 件あった。多くは **prop が効いていない**形:
+// `Drawer` の `showOverlay={false}` / `slideIn` / `slideOut`、`List` の
+// `fullWidth`、`Stepper` の無効ステップ、`ModelSelector` の選択中の強調、
+// `GanttChart` のフォーカス表示。
+//
+// **同ディレクトリの `*.module.scss` に加え、import している module も読む**
+// （親の module を使うコンポーネントを偽陽性にしないため。実測では該当なしだが、
+// 将来そう書かれたときに誤検出で止まらないようにしておく）。
+// 35 → 33: 2026-08-02。`Drawer` の `showOverlay` と `List` の `fullWidth` を実装した
+// （どちらも「prop が黙って無視される」形だった）。残り 33 は見た目の設計判断が要る。
+// 33 → 31: 同日。`GanttChart` の `.focused` と `ModelSelector` の `.selected` は
+// **足りないのではなく死んだ参照**だった（前者は `:focus-visible` が、後者はチェック
+// アイコンが既に同じ状態を描いている）。**33 件すべてが「クラスを足す」で直るとは
+// 限らない** — 1 件ずつ「足す / 消す」を判定すること。
+const BARE_CLASS_BASELINE = 31;
+const bareMissing = [];
+
+for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
+  if (tsx.endsWith('.test.tsx')) continue;
+  const src = fs.readFileSync(tsx, 'utf8');
+  const dir = path.posix.dirname(tsx);
+
+  const scssPaths = new Set(globSync(`${dir}/*.module.scss`, { posix: true }));
+  for (const m of src.matchAll(/import\s+\w+\s+from\s+["']([^"']+\.module\.scss)["']/g)) {
+    scssPaths.add(path.posix.normalize(path.posix.join(dir, m[1])));
+  }
+  const files = [...scssPaths].filter((f) => fs.existsSync(f));
+  if (files.length === 0) continue;
+
+  const scss = files.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+  const defined = new Set([...scss.matchAll(/[.&]([a-zA-Z][\w-]*)/g)].map((m) => m[1]));
+
+  const used = new Set([
+    ...[...src.matchAll(/\bstyles\.([a-zA-Z][\w]*)/g)].map((m) => m[1]),
+    ...[...src.matchAll(/\bstyles\[\s*["']([a-zA-Z][\w-]*)["']\s*\]/g)].map((m) => m[1]),
+  ]);
+  for (const u of [...used].sort()) {
+    if (!defined.has(u)) {
+      bareMissing.push(`${tsx.replace('src/components/', '')}: styles.${u} が SCSS に無い`);
+    }
+  }
+}
+
 console.log('--- check:prop-classes (型は受け付けるのに CSS が無い prop 値) ---');
 console.log(`\n欠落: ${missing.length} 件（baseline: ${MISSING_BASELINE}）`);
 for (const m of missing) console.log(`  ${m}`);
+
+console.log(
+  `\n実体の無いクラス参照: ${bareMissing.length} 件（baseline: ${BARE_CLASS_BASELINE}）`,
+);
+if (bareMissing.length > BARE_CLASS_BASELINE) {
+  for (const b of bareMissing) console.log(`  ${b}`);
+}
 
 if (skipped.length > 0) {
   console.log(`\n対象外 ${skipped.length} 件:`);
   for (const s of skipped) console.log(`  ${s}`);
 }
 
+let failed = false;
+
 if (missing.length > MISSING_BASELINE) {
   console.log(`\n[FAIL] ベースライン超過。型が受け付ける値には CSS クラスを用意するか、`);
   console.log(`       prop の型をそのコンポーネントが実際に対応する値へ狭めてください。`);
   console.log(`       （書いても効かない prop は、呼び出し側が style へ逃げる原因になります）`);
+  failed = true;
+}
+
+if (bareMissing.length > BARE_CLASS_BASELINE) {
+  console.log(`\n[FAIL] 実体の無いクラス参照が増えています（T58）。`);
+  console.log(`       \`styles.foo\` は SCSS に \`.foo\` が無いと \`undefined\` になり、`);
+  console.log(`       その状態・部位のスタイルが黙って当たりません（prop が効かない形になります）。`);
+  failed = true;
+}
+
+if (failed) {
   console.log('\n✗ check:prop-classes failed.');
   process.exit(1);
 }
 
 if (missing.length < MISSING_BASELINE) {
-  console.log(`\nベースラインを ${missing.length} に更新できます（scripts/check-prop-classes.js）。`);
+  console.log(`\nベースラインを ${missing.length} に更新できます（MISSING_BASELINE）。`);
+}
+if (bareMissing.length < BARE_CLASS_BASELINE) {
+  console.log(
+    `ベースラインを ${bareMissing.length} に更新できます（BARE_CLASS_BASELINE）。`,
+  );
 }
 
 console.log('\n✓ 欠落は増えていません。');

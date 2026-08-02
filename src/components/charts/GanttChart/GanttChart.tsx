@@ -301,9 +301,10 @@ export const GanttChart = ({
                     <div
                       role="gridcell"
                       data-gantt-bar="true"
+                      // フォーカスの表示は `.bar:focus-visible` が描く。`focusedIndex` は
+                      // `onFocus` でも更新されるので DOM フォーカスと同義で、別クラスは要らない（T58）。
                       className={classNames(styles.bar, {
                         [styles.clickable]: !!onTaskClick,
-                        [styles.focused]: focusedIndex === index,
                       })}
                       style={{
                         left,

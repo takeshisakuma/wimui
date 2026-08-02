@@ -313,7 +313,8 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
                   className={classNames(
                     styles.option,
                     index === activeIndex && styles.active,
-                    isSelected && styles.selected,
+                    // 選択は `.check` のアイコン（isSelected のときだけ描かれる）が示す。
+                    // 別クラスは実体が無く、付けても何も起きなかった（T58）。
                     model.disabled && styles.optionDisabled,
                   )}
                   onMouseEnter={() => setActiveIndex(index)}
