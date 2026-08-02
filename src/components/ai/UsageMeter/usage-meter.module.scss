@@ -6,6 +6,10 @@
     flex-direction: column;
     gap: var(--wim-spacing-xs);
     width: 100%;
+
+    /* 読み取り値が 1 行に収まる下限。無いと横並びで 1 文字ずつ縦に折り返った
+       （T59 で実測: 幅 12px・高さ 272px）。 */
+    min-width: var(--wim-width-sm);
     container-type: inline-size;
     font-family: var(--wim-font-family-default);
 

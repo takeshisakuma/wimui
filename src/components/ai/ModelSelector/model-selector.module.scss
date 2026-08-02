@@ -4,7 +4,12 @@
   .root {
     position: relative;
     width: 100%;
-    min-width: 0;
+
+    /* `min-width: 0` だと横並びの中で 1 文字幅まで潰れる（T59 で実測 12px・
+       コンテナ 610px）。`width: 100%` は flex アイテムの自動最小サイズを
+       「指定サイズと内容サイズの小さいほう」にするため、既定の
+       `min-width: auto` の保護が効かない。読める下限を明示する。 */
+    min-width: var(--wim-width-sm);
     max-width: var(--wim-width-md);
     container-type: inline-size;
     font-family: var(--wim-font-family-default);
