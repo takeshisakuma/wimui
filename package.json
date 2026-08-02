@@ -361,6 +361,7 @@
     "check:intents": "node scripts/generate-intents.js --check",
     "check:intents:scss": "node scripts/check-intents-scss.js",
     "check:mono": "node scripts/check-mono-family.js",
+    "check:shrinkable": "node scripts/check-shrinkable-roots.js",
     "check:story-tokens": "node scripts/check-story-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
     "check:contrast:scss": "node scripts/check-contrast-scss.js",
@@ -581,7 +582,8 @@
       "stylelint --fix --max-warnings=0 --cache",
       "node scripts/check-mono-family.js",
       "node scripts/check-intent-text-color.js",
-      "node scripts/check-contrast-scss.js"
+      "node scripts/check-contrast-scss.js",
+      "node scripts/check-shrinkable-roots.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",

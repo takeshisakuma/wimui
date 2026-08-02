@@ -208,6 +208,11 @@ const checks = [
   },
   {
     category: "lib",
+    name: "Shrinkable roots (width:100% + min-width:0 collapse in a flex row)",
+    command: "node scripts/check-shrinkable-roots.js",
+  },
+  {
+    category: "lib",
     name: "Monospace contract (token + descendant inheritance, always paired)",
     command: "node scripts/check-mono-family.js",
   },
