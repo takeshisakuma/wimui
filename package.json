@@ -332,6 +332,8 @@
     "check:aschild": "node scripts/check-aschild.js",
     "check:api": "node scripts/check-public-api.js",
     "check:api:update": "node scripts/check-public-api.js --update",
+    "check:prop-api": "node scripts/check-prop-api.js",
+    "check:prop-api:update": "node scripts/check-prop-api.js --update",
     "check:hooks": "node scripts/check-root-hooks.js",
     "check:tokens": "node scripts/check-tokens.js",
     "check:tokens:update": "node scripts/check-tokens.js --update",
@@ -634,7 +636,8 @@
       "node scripts/check-improvements-status.js"
     ],
     "src/components/**/*.tsx": [
-      "node scripts/check-src-hardcoded.js"
+      "node scripts/check-src-hardcoded.js",
+      "node scripts/check-prop-api.js"
     ],
     "{scripts/composition-rules.json,DESIGN.md}": [
       "node scripts/check-composition-rules.js"

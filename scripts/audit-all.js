@@ -162,6 +162,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 上は「exports マップ + シンボル名」しか見ないので、**prop の型が狭まっても
+    // 任意が必須になっても無風で通る**（T38 で実測）。こちらは prop シグネチャを
+    // 凍結し、差分を破壊/加算に分類して**破壊だけで落とす**（T54）。
+    name: "Prop signatures (breaking changes the symbol guard cannot see)",
+    command: "node scripts/check-prop-api.js",
+  },
+  {
+    category: "lib",
     name: "Root override hooks (wim-<name> stability)",
     command: "node scripts/check-root-hooks.js",
   },
