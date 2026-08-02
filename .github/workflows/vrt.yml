@@ -5,6 +5,11 @@ on:
     paths:
       - "src/**"
       - "stories/**"
+      # sandbox は `patterns-playground--default` として VRT の対象に入っているのに
+      # ここに無く、**レシピを足しても VRT が 1 度も走らなかった**（#219）。
+      # main のベースラインが古いまま残り、次に VRT を走らせた PR（#220）が
+      # 自分と無関係な差分で落ちた。CI-6 で 3 → 6 に揃えたときの取りこぼし。
+      - "sandbox/**"
       - "public/locales/**"
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
@@ -18,6 +23,11 @@ on:
     paths:
       - "src/**"
       - "stories/**"
+      # sandbox は `patterns-playground--default` として VRT の対象に入っているのに
+      # ここに無く、**レシピを足しても VRT が 1 度も走らなかった**（#219）。
+      # main のベースラインが古いまま残り、次に VRT を走らせた PR（#220）が
+      # 自分と無関係な差分で落ちた。CI-6 で 3 → 6 に揃えたときの取りこぼし。
+      - "sandbox/**"
       - "public/locales/**"
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
