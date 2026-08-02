@@ -26,8 +26,11 @@ import { globSync } from 'glob';
 // 2026-07-26 実測。内訳は実行結果に出る。
 // 11 → 6: 既定値の除外で偽陽性 2 件が消え、トークンが実在する 3 値（Card の
 // padding-xs / radius-xl / radius-2xl）を実装した。残る 6 件は対応するトークンが
-// 無く、実装すると値が互いに区別できないため、型を狭める側で解決する（T38・0.6.0）。
-const MISSING_BASELINE = 6;
+// 無く、実装すると値が互いに区別できないため、型を狭める側で解決する（T38）。
+// 6 → 0: 2026-08-02（0.13.0）。`CardProps` の `padding` / `radius` を
+// `CARD_STYLED_*`（SCSS が実装する値の配列）から導き、書けない値は書けなくした。
+// **ラチェットではなく 0 が正**になったので、増えたら必ず落ちる。
+const MISSING_BASELINE = 0;
 
 const TEMPLATE_RE = /styles\[`([a-zA-Z][\w-]*)-\$\{(\w+)\}`\]/g;
 
@@ -41,6 +44,48 @@ const docgen = {};
 for (const f of globSync('src/data/docgen_*.json', { posix: true })) {
   if (f.endsWith('docgen_index.json')) continue;
   Object.assign(docgen, JSON.parse(fs.readFileSync(f, 'utf8')));
+}
+
+/**
+ * `(typeof SOME_CONST)[number]` を、その `as const` 配列の中身へ解決する。
+ *
+ * T38 で `CardProps` の `padding` / `radius` を「SCSS が実装する値の配列」から
+ * 導いた結果、docgen の tsType が `{ name: "unknown[number]" }` になり、
+ * **このガードから Card が丸ごと見えなくなった**（「対象外」に落ちて緑）。
+ * 型と実装が 1 つのソースを共有したこと自体は正しいが、**ガードが何も見ずに
+ * 通る形**はこのリポジトリで繰り返し事故になっているので、読めるようにする。
+ *
+ * 配列は `as const` で、要素が文字列リテラルのものだけを受け付ける。
+ * 見つからなければ null を返し、従来どおり「列挙できない型」として報告する。
+ */
+const constArrayCache = new Map();
+function resolveConstArray(raw, tsxPath) {
+  const m = /^\(typeof\s+([A-Za-z_$][\w$]*)\)\[number\]$/.exec(raw ?? '');
+  if (!m) return null;
+  const name = m[1];
+
+  // その名前をどこから import しているかを、宣言元まで辿る（同一ディレクトリ想定）
+  const src = fs.readFileSync(tsxPath, 'utf8');
+  const imp = new RegExp(`import\\s*\\{[^}]*\\b${name}\\b[^}]*\\}\\s*from\\s*["']([^"']+)["']`).exec(src);
+  const from = imp ? imp[1] : null;
+  const file = from
+    ? path.resolve(path.dirname(tsxPath), `${from}.ts`)
+    : tsxPath;
+  const key = `${file}#${name}`;
+  if (constArrayCache.has(key)) return constArrayCache.get(key);
+
+  let values = null;
+  if (fs.existsSync(file)) {
+    const decl = new RegExp(`\\b${name}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as\\s+const`).exec(
+      fs.readFileSync(file, 'utf8'),
+    );
+    if (decl) {
+      const items = [...decl[1].matchAll(/["']([^"']+)["']/g)].map((x) => x[1]);
+      if (items.length > 0) values = items;
+    }
+  }
+  constArrayCache.set(key, values);
+  return values;
 }
 
 /** tsType から文字列リテラルを再帰的に集める。リテラル以外が混ざる型は null。 */
@@ -83,7 +128,8 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
       skipped.push(`${component}.${prop}: docgen に prop が無い`);
       continue;
     }
-    const values = literalValues(propDef.tsType);
+    const values =
+      literalValues(propDef.tsType) ?? resolveConstArray(propDef.tsType?.raw, tsx);
     if (!values) {
       skipped.push(`${component}.${prop}: 値を列挙できない型（${propDef.tsType?.raw ?? '?'}）`);
       continue;
