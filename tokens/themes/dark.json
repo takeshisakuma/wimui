@@ -69,23 +69,24 @@
         "value": "{pccs.gy4-5}"
       },
       "neutral-fill": {
-        "$comment": "T45 で neutral の塗りを disabled から分離した際、dark の見た目を変えないために従来値（= dark の disabled と同じ gy4-5）を明示。dark は light と違って両者を分ける必要が無い（面が十分に離れている）が、base 側の gy7-5 を継承すると dark で明るい灰色の badge になるため上書きは必須",
-        "value": "{pccs.gy4-5}"
+        "$comment": "T45 で neutral の塗りを disabled から分離した際、dark の見た目を変えないために従来値（= dark の disabled と同じ gy4-5）を明示。base 側の gy7-5 を継承すると dark で明るい灰色の badge になるため上書きは必須。**T56 で gy4-5 から離した**: gy4-5 は surface-variant と同値(#4f4f4f)で、その面に置いた neutral の Badge / Tag は塗りも輪郭も完全に消えていた（知覚距離 0.0000）。#575757 で 0.0292（基準 0.015）",
+        "value": "#575757"
       },
       "text-on-disabled": {
         "$comment": "gy7-5 (#b6b6b6) は disabled 塗り (#4f4f4f) 上 4.03:1。Avatar default が通常テキストに流用するため AA を満たす gy8-5 へ",
         "value": "{pccs.gy8-5}"
       },
       "text-danger": {
-        "$comment": "#ff8c8c は danger-subtle 塗り (15% over surface-variant) 上 4.15:1 のため 1 段明るく (4.9:1)",
-        "value": "#ffa3a3"
+        "$comment": "danger-subtle 塗り (surface-variant の上) で AA を満たす値。**T56 で #ffa3a3 から上げた**: この値は当初 surface-variant 上 4.9:1 のつもりだったが、T45 で面が動いた結果 3.65:1 まで落ちていた（check:contrast は 3 面しか見ておらず気付けなかった）。#ffc1c1 は対象 6 面の outline / subtle すべてで最悪 4.52:1",
+        "value": "#ffc1c1"
       },
       "text-success": {
         "$comment": "lt12 (#7fc97e) は success-subtle over surface-variant 上 3.7:1 のためカスタム値 (5.2:1)",
         "value": "#b7e3b6"
       },
       "text-warning": {
-        "value": "{pccs.lt7}"
+        "$comment": "T56: lt7 (#fcd474) は warning-subtle over surface-variant 上 4.32:1 だったため引き上げ。#ffda7a で最悪 4.54:1",
+        "value": "#ffda7a"
       },
       "text-info": {
         "$comment": "lt18 は surface (#393939) 上 3.8:1 で AA を割るため p トーン",

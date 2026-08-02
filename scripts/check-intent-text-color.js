@@ -53,7 +53,9 @@ const FILL_INTENT =
  * 2026-08-01 の実測値。`text-{intent}` へ寄せるか、文字でない用途なら
  * `intent-color-ok` を添えて理由を書く。
  */
-const BASELINE = 43;
+// 43 → 39: 2026-08-02。T58 の死んだ参照の削除で、塗り用 intent 色を `color:` に
+// 使っていた箇所が 4 件減った。
+const BASELINE = 39;
 
 const hits = [];
 

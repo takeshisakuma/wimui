@@ -56,8 +56,44 @@ function readSubtleAlpha() {
   return Number(m[1]);
 }
 
-// 判定対象のサーフェス。indicator 類が実際に載る面。
-const SURFACES = ['surface', 'surface-app', 'surface-subtle'];
+/**
+ * 判定対象のサーフェス。indicator 類が実際に載る面。
+ *
+ * **3 面しか見ていなかった**（T56）。トークンには surface 系が 11 個あり、検査されて
+ * いない面に載せた瞬間に AA を割る。実測（2026-08-02、T32 の 3 枚目で axe が serious を
+ * 出して発覚）: dark の `text-danger` は `surface`(#393939) で 6.06:1 だが
+ * `surface-variant`(#4f4f4f) では 4.30:1、`subtle` のティントが重なると 3.65:1。
+ *
+ * **通常の文字は両面とも余裕で通る**（`text-primary` 8.19〜19.26 / `text-secondary`
+ * 5.70〜10.59）ので、面が悪いのではなく **intent の文字色だけが上の 3 面向けに
+ * 調整されている**のが実態。
+ */
+const SURFACES = [
+  'surface',
+  'surface-app',
+  'surface-subtle',
+  // 中身が載る面。ここを見ていなかったのが T56。
+  'surface-variant',
+  'surface-hover',
+  'surface-inset',
+  'surface-subtle-alpha',
+  'surface-variant-alpha',
+];
+
+/**
+ * 検査しない面と、その理由。
+ *
+ * - `surface-inverse`(#262626) と `surface-void`(#000) は**両テーマとも暗く固定**で、
+ *   載せるのは反転用の文字。intent × variant を検査しても意味がない（26 件出るが全部これ）
+ * - `surface-tertiary` は light が #b6b6b6 の中間グレーで、intent のティントを載せると
+ *   構造的に厳しい（10 件）。**ここに intent の variant を置くことを想定しない**という
+ *   線引きであって、面が壊れているわけではない
+ */
+const SURFACES_OUT_OF_SCOPE = {
+  'surface-inverse': '両テーマとも暗く固定。載せるのは反転用の文字',
+  'surface-void': '完全な黒。Lightbox 等の背景で、intent の面は載らない',
+  'surface-tertiary': '中間グレー。intent の variant を置くことを想定しない',
+};
 
 function readVars(file) {
   const src = fs.readFileSync(file, 'utf8');
