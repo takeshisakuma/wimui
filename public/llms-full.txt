@@ -835,7 +835,13 @@ The container-query wrapper div is preserved to maintain responsive column behav
 - **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
     - `show: boolean` (required) — Whether the content is shown (drives the enter/leave transitions)
     - `children: React.ReactNode` (required) — Content to transition
-    - `preset: "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — Preset transition (fade, scale, slide-*)
+    - `preset: "none" | "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — Preset transition (fade, scale, slide-*) — 入りと出の両方に効く
+    - `enterPreset: "none" | "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — 入りだけ別扱いにしたいときのプリセット。`"none"` で入りのアニメーションを止める。
+省略時は `preset` に従う。
+
+`Drawer` の `slideIn` / `slideOut` のように**片方だけ切りたい** API があるのに、
+`preset` は両相を一括で決めるため表現できなかった（T58）。
+    - `leavePreset: "none" | "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — 出だけ別扱いにしたいときのプリセット。`"none"` で出のアニメーションを止める。
     - `enter: string` = "" — Class applied during the enter transition
     - `enterFrom: string` = "" — Class applied at the start of the enter transition
     - `enterTo: string` = "" — Class applied at the end of the enter transition

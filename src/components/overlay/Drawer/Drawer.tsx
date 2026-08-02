@@ -205,14 +205,16 @@ export const DrawerContent = ({
       open={open}
       onOpenChange={onOpenChange}
       overlayClassName={classNames(styles.overlay, !showOverlay && styles.hideOverlay)}
-      contentClassName={classNames(
-        "wim-drawer",
-        styles.content,
-        styles[side],
-        !slideIn && styles.noSlideIn,
-        !slideOut && styles.noSlideOut,
-        className,
-      )}
+      contentClassName={classNames("wim-drawer", styles.content, styles[side], className)}
+      // 引き出しは辺から滑って出る。既定の `scale` では引き出しなのに拡大縮小で出ていた。
+      // `slideIn` / `slideOut` はどこにも繋がっておらず、実体の無いクラス名
+      // （`.noSlideIn` / `.noSlideOut`）を付けていただけだった（T58）。
+      // `Transition` に相ごとのプリセットを足したので、prop がそのまま意味を持つ。
+      transitionProps={{
+        preset: `slide-${side}` as const,
+        enterPreset: slideIn ? undefined : "none",
+        leavePreset: slideOut ? undefined : "none",
+      }}
       role="dialog"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
