@@ -92,8 +92,16 @@ function declaredOptionality(tsx) {
   if (optionalityCache.has(tsx)) return optionalityCache.get(tsx);
   const map = new Map();
   if (fs.existsSync(tsx)) {
-    const src = fs.readFileSync(tsx, 'utf8');
-    for (const m of src.matchAll(/^\s{2,}(?:\/\*\*[\s\S]*?\*\/\s*)?([A-Za-z_$][\w$]*)(\?)?\s*:\s*[^;]+;/gm)) {
+    // 改行は正規化する。`.gitattributes` が LF なので CI は LF、Windows の
+    // ワーキングコピーは CRLF になりうる。行の形に依存する判定を、
+    // **プラットフォームで結果が変わる**まま出荷しない。
+    const src = fs.readFileSync(tsx, 'utf8').replace(/\r\n/g, '\n');
+    // **1 行で閉じる宣言だけを見る。** 値側を `[^;]+` にすると改行をまたいで
+    // 次の `;` まで伸び、**関数の引数リストを prop 宣言として拾う**。
+    // 実際 `TreeView.tsx` の `collect(nodes: TreeViewNode[], …)` を
+    // `TreeViewProps.nodes` の宣言と誤読し、任意の prop を必須と報告した（CI で発覚）。
+    // 複数行にわたる宣言は読めないが、読めないものは「判定しない」で通す。
+    for (const m of src.matchAll(/^[ \t]{2,}([A-Za-z_$][\w$]*)(\?)?\s*:\s*[^;\n]+;[ \t]*$/gm)) {
       // 同名が複数の型ブロックに出る場合は最初を採る
       if (!map.has(m[1])) map.set(m[1], !m[2]);
     }

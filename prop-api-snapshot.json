@@ -1,129 +1,6 @@
 {
   "version": 1,
   "props": {
-    "Title.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Title.tag": {
-      "required": false,
-      "values": [
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6"
-      ]
-    },
-    "Title.size": {
-      "required": false,
-      "values": [
-        "2xl",
-        "3xl",
-        "4xl",
-        "lg",
-        "md",
-        "sm",
-        "xl",
-        "xs"
-      ]
-    },
-    "Title.color": {
-      "required": false,
-      "type": "T | (string & {})"
-    },
-    "Title.align": {
-      "required": false,
-      "values": [
-        "center",
-        "left",
-        "right"
-      ]
-    },
-    "Title.decoration": {
-      "required": false,
-      "values": [
-        "highlight",
-        "none",
-        "underline"
-      ]
-    },
-    "Title.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "Span.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Span.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\">"
-    },
-    "Span.color": {
-      "required": false,
-      "type": "T | (string & {})"
-    },
-    "Span.weight": {
-      "required": false,
-      "type": "WimFontWeightKey"
-    },
-    "Span.fontStyle": {
-      "required": false,
-      "values": [
-        "italic",
-        "normal"
-      ]
-    },
-    "Span.decoration": {
-      "required": false,
-      "values": [
-        "highlight",
-        "line-through",
-        "none",
-        "underline"
-      ]
-    },
-    "Span.content": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Span.iconName": {
-      "required": false,
-      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
-    },
-    "Span.iconPosition": {
-      "required": false,
-      "values": [
-        "left",
-        "right"
-      ]
-    },
-    "Spoiler.lines": {
-      "required": false,
-      "type": "number"
-    },
-    "Spoiler.expanded": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Spoiler.defaultExpanded": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Spoiler.onExpandedChange": {
-      "required": false,
-      "type": "(expanded: boolean) => void"
-    },
-    "Spoiler.showLabel": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Spoiler.hideLabel": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
     "Text.asChild": {
       "required": false,
       "type": "boolean"
@@ -176,27 +53,81 @@
       "required": false,
       "type": "React.ReactNode"
     },
-    "Label.label": {
-      "type": "React.ReactNode"
-    },
-    "Label.required": {
-      "type": "boolean"
-    },
-    "Label.requiredLabel": {
-      "type": "React.ReactNode"
-    },
-    "Label.showOptional": {
-      "type": "boolean"
-    },
-    "Label.optionalLabel": {
-      "type": "React.ReactNode"
-    },
-    "Label.className": {
-      "type": "string"
-    },
-    "Label.asChild": {
+    "Title.asChild": {
       "required": false,
       "type": "boolean"
+    },
+    "Title.tag": {
+      "required": false,
+      "values": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ]
+    },
+    "Title.size": {
+      "required": false,
+      "values": [
+        "2xl",
+        "3xl",
+        "4xl",
+        "lg",
+        "md",
+        "sm",
+        "xl",
+        "xs"
+      ]
+    },
+    "Title.color": {
+      "required": false,
+      "type": "T | (string & {})"
+    },
+    "Title.align": {
+      "required": false,
+      "values": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "Title.decoration": {
+      "required": false,
+      "values": [
+        "highlight",
+        "none",
+        "underline"
+      ]
+    },
+    "Title.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "Spoiler.lines": {
+      "required": false,
+      "type": "number"
+    },
+    "Spoiler.expanded": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Spoiler.defaultExpanded": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Spoiler.onExpandedChange": {
+      "required": false,
+      "type": "(expanded: boolean) => void"
+    },
+    "Spoiler.showLabel": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Spoiler.hideLabel": {
+      "required": false,
+      "type": "React.ReactNode"
     },
     "Legend.label": {
       "required": false,
@@ -226,6 +157,53 @@
       "required": false,
       "type": "boolean"
     },
+    "Span.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Span.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\">"
+    },
+    "Span.color": {
+      "required": false,
+      "type": "T | (string & {})"
+    },
+    "Span.weight": {
+      "required": false,
+      "type": "WimFontWeightKey"
+    },
+    "Span.fontStyle": {
+      "required": false,
+      "values": [
+        "italic",
+        "normal"
+      ]
+    },
+    "Span.decoration": {
+      "required": false,
+      "values": [
+        "highlight",
+        "line-through",
+        "none",
+        "underline"
+      ]
+    },
+    "Span.content": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Span.iconName": {
+      "required": false,
+      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+    },
+    "Span.iconPosition": {
+      "required": false,
+      "values": [
+        "left",
+        "right"
+      ]
+    },
     "Kbd.asChild": {
       "required": false,
       "type": "boolean"
@@ -237,6 +215,28 @@
     "Kbd.children": {
       "required": false,
       "type": "React.ReactNode"
+    },
+    "Label.label": {
+      "type": "React.ReactNode"
+    },
+    "Label.required": {
+      "type": "boolean"
+    },
+    "Label.requiredLabel": {
+      "type": "React.ReactNode"
+    },
+    "Label.showOptional": {
+      "type": "boolean"
+    },
+    "Label.optionalLabel": {
+      "type": "React.ReactNode"
+    },
+    "Label.className": {
+      "type": "string"
+    },
+    "Label.asChild": {
+      "required": false,
+      "type": "boolean"
     },
     "Highlight.children": {
       "required": true,
@@ -352,14 +352,6 @@
     "TooltipContent.className": {
       "type": "string"
     },
-    "Portal.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "Portal.container": {
-      "required": false,
-      "type": "HTMLElement | null"
-    },
     "Popconfirm.title": {
       "required": true,
       "type": "ReactNode"
@@ -399,6 +391,75 @@
     "Popconfirm.disabled": {
       "required": false,
       "type": "boolean"
+    },
+    "Popover.children": {
+      "required": true,
+      "type": "ReactNode"
+    },
+    "Popover.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Popover.defaultOpen": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Popover.open": {
+      "required": true,
+      "type": "boolean"
+    },
+    "Popover.onOpenChange": {
+      "required": true,
+      "type": "(open: boolean) => void"
+    },
+    "Popover.placement": {
+      "required": false,
+      "type": "Placement"
+    },
+    "Popover.variant": {
+      "required": true,
+      "values": [
+        "default",
+        "glass"
+      ]
+    },
+    "PopoverTrigger.children": {
+      "type": "ReactNode"
+    },
+    "PopoverTrigger.className": {
+      "type": "string"
+    },
+    "PopoverTrigger.asChild": {
+      "type": "boolean"
+    },
+    "PopoverContent.children": {
+      "type": "ReactNode"
+    },
+    "PopoverContent.className": {
+      "type": "string"
+    },
+    "PopoverContent.align": {
+      "type": "\"left\" | \"right\" | \"center\""
+    },
+    "PopoverContent.side": {
+      "type": "\"top\" | \"bottom\""
+    },
+    "PopoverContent.modal": {
+      "type": "boolean"
+    },
+    "PopoverClose.asChild": {
+      "type": "boolean"
+    },
+    "PopoverClose.ariaLabel": {
+      "type": "string"
+    },
+    "Portal.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "Portal.container": {
+      "required": false,
+      "type": "HTMLElement | null"
     },
     "MenuInner.children": {
       "type": "ReactNode"
@@ -496,67 +557,6 @@
     "Menu.defaultOpenKeys": {
       "required": false,
       "type": "string[]"
-    },
-    "Popover.children": {
-      "required": true,
-      "type": "ReactNode"
-    },
-    "Popover.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Popover.defaultOpen": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Popover.open": {
-      "required": true,
-      "type": "boolean"
-    },
-    "Popover.onOpenChange": {
-      "required": true,
-      "type": "(open: boolean) => void"
-    },
-    "Popover.placement": {
-      "required": false,
-      "type": "Placement"
-    },
-    "Popover.variant": {
-      "required": true,
-      "values": [
-        "default",
-        "glass"
-      ]
-    },
-    "PopoverTrigger.children": {
-      "type": "ReactNode"
-    },
-    "PopoverTrigger.className": {
-      "type": "string"
-    },
-    "PopoverTrigger.asChild": {
-      "type": "boolean"
-    },
-    "PopoverContent.children": {
-      "type": "ReactNode"
-    },
-    "PopoverContent.className": {
-      "type": "string"
-    },
-    "PopoverContent.align": {
-      "type": "\"left\" | \"right\" | \"center\""
-    },
-    "PopoverContent.side": {
-      "type": "\"top\" | \"bottom\""
-    },
-    "PopoverContent.modal": {
-      "type": "boolean"
-    },
-    "PopoverClose.asChild": {
-      "type": "boolean"
-    },
-    "PopoverClose.ariaLabel": {
-      "type": "string"
     },
     "HoverCardInner.children": {
       "type": "ReactNode"
@@ -668,7 +668,6 @@
       ]
     },
     "Dropdown.Menu.show": {
-      "required": false,
       "type": "boolean"
     },
     "Dropdown.Item.asChild": {
@@ -700,49 +699,6 @@
     "Dropdown.Item.onClick": {
       "required": false,
       "type": "() => void"
-    },
-    "Dialog.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "Dialog.open": {
-      "required": true,
-      "type": "boolean"
-    },
-    "Dialog.onOpenChange": {
-      "required": true,
-      "type": "(open: boolean) => void"
-    },
-    "Dialog.defaultOpen": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Dialog.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Dialog.closeOnOverlayClick": {
-      "required": true,
-      "type": "boolean"
-    },
-    "Dialog.Trigger.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Dialog.Close.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Dialog.Content.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Dialog.Footer.layout": {
-      "required": false,
-      "values": [
-        "column",
-        "row"
-      ]
     },
     "DrawerInner.children": {
       "type": "React.ReactNode"
@@ -817,6 +773,117 @@
     },
     "Drawer.slideOut": {
       "required": true,
+      "type": "boolean"
+    },
+    "Dialog.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "Dialog.open": {
+      "required": true,
+      "type": "boolean"
+    },
+    "Dialog.onOpenChange": {
+      "required": true,
+      "type": "(open: boolean) => void"
+    },
+    "Dialog.defaultOpen": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Dialog.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Dialog.closeOnOverlayClick": {
+      "required": true,
+      "type": "boolean"
+    },
+    "Dialog.Trigger.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Dialog.Close.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Dialog.Content.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Dialog.Footer.layout": {
+      "required": false,
+      "values": [
+        "column",
+        "row"
+      ]
+    },
+    "ContextMenuInner.children": {
+      "type": "ReactNode"
+    },
+    "ContextMenuInner.menu": {
+      "type": "ReactNode"
+    },
+    "ContextMenuInner.className": {
+      "type": "string"
+    },
+    "ContextMenuInner.disabled": {
+      "type": "boolean"
+    },
+    "ContextMenuInner.asChild": {
+      "type": "boolean"
+    },
+    "ContextMenuItem.children": {
+      "type": "ReactNode"
+    },
+    "ContextMenuItem.onClick": {
+      "type": "() => void"
+    },
+    "ContextMenuItem.disabled": {
+      "type": "boolean"
+    },
+    "ContextMenuItem.className": {
+      "type": "string"
+    },
+    "ContextMenuItem.icon": {
+      "type": "ReactNode"
+    },
+    "ContextMenuItem.danger": {
+      "type": "boolean"
+    },
+    "ContextMenuItem.asChild": {
+      "type": "boolean"
+    },
+    "ContextMenuDivider.className": {
+      "type": "string"
+    },
+    "ContextMenuGroup.children": {
+      "type": "ReactNode"
+    },
+    "ContextMenuGroup.title": {
+      "type": "string"
+    },
+    "ContextMenuGroup.className": {
+      "type": "string"
+    },
+    "ContextMenu.children": {
+      "required": true,
+      "type": "ReactNode"
+    },
+    "ContextMenu.menu": {
+      "required": true,
+      "type": "ReactNode"
+    },
+    "ContextMenu.className": {
+      "required": false,
+      "type": "string"
+    },
+    "ContextMenu.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ContextMenu.asChild": {
+      "required": false,
       "type": "boolean"
     },
     "BottomSheetInner.children": {
@@ -901,74 +968,6 @@
       "required": true,
       "type": "(open: boolean) => void"
     },
-    "ContextMenuInner.children": {
-      "type": "ReactNode"
-    },
-    "ContextMenuInner.menu": {
-      "type": "ReactNode"
-    },
-    "ContextMenuInner.className": {
-      "type": "string"
-    },
-    "ContextMenuInner.disabled": {
-      "type": "boolean"
-    },
-    "ContextMenuInner.asChild": {
-      "type": "boolean"
-    },
-    "ContextMenuItem.children": {
-      "type": "ReactNode"
-    },
-    "ContextMenuItem.onClick": {
-      "type": "() => void"
-    },
-    "ContextMenuItem.disabled": {
-      "type": "boolean"
-    },
-    "ContextMenuItem.className": {
-      "type": "string"
-    },
-    "ContextMenuItem.icon": {
-      "type": "ReactNode"
-    },
-    "ContextMenuItem.danger": {
-      "type": "boolean"
-    },
-    "ContextMenuItem.asChild": {
-      "type": "boolean"
-    },
-    "ContextMenuDivider.className": {
-      "type": "string"
-    },
-    "ContextMenuGroup.children": {
-      "type": "ReactNode"
-    },
-    "ContextMenuGroup.title": {
-      "type": "string"
-    },
-    "ContextMenuGroup.className": {
-      "type": "string"
-    },
-    "ContextMenu.children": {
-      "required": true,
-      "type": "ReactNode"
-    },
-    "ContextMenu.menu": {
-      "required": true,
-      "type": "ReactNode"
-    },
-    "ContextMenu.className": {
-      "required": false,
-      "type": "string"
-    },
-    "ContextMenu.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "ContextMenu.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
     "Tabs.asChild": {
       "required": false,
       "type": "boolean"
@@ -1015,6 +1014,38 @@
       "required": false,
       "type": "string"
     },
+    "TabBar.fixed": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TabBar.bordered": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TabBar.glass": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TabBar.Item.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TabBar.Item.active": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TabBar.Item.icon": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "TabBar.Item.label": {
+      "required": false,
+      "type": "string"
+    },
+    "TabBar.Item.badge": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
     "TabNavigation.variant": {
       "required": false,
       "values": [
@@ -1052,37 +1083,41 @@
       "required": false,
       "type": "React.ReactNode"
     },
-    "TabBar.fixed": {
+    "SpeedDial.actions": {
+      "required": true,
+      "type": "SpeedDialAction[]"
+    },
+    "SpeedDial.icon": {
+      "required": true,
+      "type": "keyof typeof ALL_ICONS"
+    },
+    "SpeedDial.activeIcon": {
+      "required": false,
+      "type": "keyof typeof ALL_ICONS"
+    },
+    "SpeedDial.direction": {
+      "required": false,
+      "values": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ]
+    },
+    "SpeedDial.trigger": {
+      "required": false,
+      "values": [
+        "click",
+        "hover"
+      ]
+    },
+    "SpeedDial.open": {
       "required": false,
       "type": "boolean"
     },
-    "TabBar.bordered": {
+    "SpeedDial.onOpenChange": {
       "required": false,
-      "type": "boolean"
-    },
-    "TabBar.glass": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TabBar.Item.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TabBar.Item.active": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TabBar.Item.icon": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "TabBar.Item.label": {
-      "required": false,
-      "type": "string"
-    },
-    "TabBar.Item.badge": {
-      "required": false,
-      "type": "React.ReactNode"
+      "type": "(open: boolean) => void"
     },
     "Stepper.steps": {
       "required": true,
@@ -1205,44 +1240,45 @@
       "type": "boolean"
     },
     "Pagination.labels": {
-      "required": false,
       "type": "{ prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }"
     },
-    "SpeedDial.actions": {
-      "required": true,
-      "type": "SpeedDialAction[]"
-    },
-    "SpeedDial.icon": {
-      "required": true,
-      "type": "keyof typeof ALL_ICONS"
-    },
-    "SpeedDial.activeIcon": {
-      "required": false,
-      "type": "keyof typeof ALL_ICONS"
-    },
-    "SpeedDial.direction": {
-      "required": false,
-      "values": [
-        "down",
-        "left",
-        "right",
-        "up"
-      ]
-    },
-    "SpeedDial.trigger": {
-      "required": false,
-      "values": [
-        "click",
-        "hover"
-      ]
-    },
-    "SpeedDial.open": {
+    "Link.asChild": {
       "required": false,
       "type": "boolean"
     },
-    "SpeedDial.onOpenChange": {
+    "Link.label": {
       "required": false,
-      "type": "(open: boolean) => void"
+      "type": "React.ReactNode"
+    },
+    "Link.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Link.priority": {
+      "required": false,
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    "Link.iconName": {
+      "required": false,
+      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+    },
+    "Link.iconPosition": {
+      "required": false,
+      "values": [
+        "left",
+        "right"
+      ]
+    },
+    "Link.external": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Link.styles": {
+      "type": "{ root?: string; label?: string; inner?: string; externalIcon?: string; }"
     },
     "Menubar.asChild": {
       "required": false,
@@ -1298,45 +1334,6 @@
       "required": false,
       "type": "() => void"
     },
-    "Link.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Link.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Link.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "Link.priority": {
-      "required": false,
-      "values": [
-        "primary",
-        "secondary",
-        "tertiary"
-      ]
-    },
-    "Link.iconName": {
-      "required": false,
-      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
-    },
-    "Link.iconPosition": {
-      "required": false,
-      "values": [
-        "left",
-        "right"
-      ]
-    },
-    "Link.external": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Link.styles": {
-      "required": false,
-      "type": "{ root?: string; label?: string; inner?: string; externalIcon?: string; }"
-    },
     "KeyboardShortcuts.shortcuts": {
       "required": true,
       "type": "ShortcutItem[]"
@@ -1386,6 +1383,30 @@
     "HamburgerMenu.className": {
       "required": false,
       "type": "string"
+    },
+    "Breadcrumb.items": {
+      "required": true,
+      "type": "BreadcrumbItem[]"
+    },
+    "Breadcrumb.separator": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Breadcrumb.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Breadcrumb.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Breadcrumb.ariaLabel": {
+      "required": false,
+      "type": "string"
+    },
+    "Breadcrumb.asChild": {
+      "required": false,
+      "type": "boolean"
     },
     "CommandPalette.children": {
       "required": true,
@@ -1455,30 +1476,6 @@
     },
     "CommandPaletteFooter.children": {
       "type": "ReactNode"
-    },
-    "Breadcrumb.items": {
-      "required": true,
-      "type": "BreadcrumbItem[]"
-    },
-    "Breadcrumb.separator": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Breadcrumb.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "Breadcrumb.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Breadcrumb.ariaLabel": {
-      "required": false,
-      "type": "string"
-    },
-    "Breadcrumb.asChild": {
-      "required": false,
-      "type": "boolean"
     },
     "BackTop.target": {
       "required": false,
@@ -1655,7 +1652,6 @@
       "type": "boolean"
     },
     "Video.playlist": {
-      "required": false,
       "type": "{ src: string; title?: string; poster?: string }[]"
     },
     "Video.autoPlayNext": {
@@ -1663,7 +1659,6 @@
       "type": "boolean"
     },
     "Video.qualities": {
-      "required": false,
       "type": "{ label: string; src: string }[]"
     },
     "Video.loading": {
@@ -1752,6 +1747,75 @@
     "Lightbox.Gallery.items": {
       "required": true,
       "type": "LightboxItem[]"
+    },
+    "ImageCompare.before": {
+      "required": true,
+      "type": "string"
+    },
+    "ImageCompare.after": {
+      "required": true,
+      "type": "string"
+    },
+    "ImageCompare.beforeAlt": {
+      "required": false,
+      "type": "string"
+    },
+    "ImageCompare.afterAlt": {
+      "required": false,
+      "type": "string"
+    },
+    "ImageCompare.beforeLabel": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "ImageCompare.afterLabel": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "ImageCompare.defaultPosition": {
+      "required": false,
+      "type": "number"
+    },
+    "ImageCompare.position": {
+      "required": false,
+      "type": "number"
+    },
+    "ImageCompare.onPositionChange": {
+      "required": false,
+      "type": "(position: number) => void"
+    },
+    "ImageCompare.orientation": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "ImageCompare.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "ImageCompare.height": {
+      "required": false,
+      "type": "string | number"
+    },
+    "ImageCompare.radius": {
+      "required": false,
+      "values": [
+        "full",
+        "lg",
+        "md",
+        "none",
+        "sm"
+      ]
+    },
+    "ImageCompare.labels": {
+      "required": false,
+      "type": "{ /** Accessible label for the drag handle */ handleAriaLabel?: string; }"
+    },
+    "ImageCompare.className": {
+      "required": false,
+      "type": "string"
     },
     "Image.src": {
       "required": true,
@@ -1888,75 +1952,6 @@
       "required": false,
       "type": "React.ReactNode"
     },
-    "ImageCompare.before": {
-      "required": true,
-      "type": "string"
-    },
-    "ImageCompare.after": {
-      "required": true,
-      "type": "string"
-    },
-    "ImageCompare.beforeAlt": {
-      "required": false,
-      "type": "string"
-    },
-    "ImageCompare.afterAlt": {
-      "required": false,
-      "type": "string"
-    },
-    "ImageCompare.beforeLabel": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "ImageCompare.afterLabel": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "ImageCompare.defaultPosition": {
-      "required": false,
-      "type": "number"
-    },
-    "ImageCompare.position": {
-      "required": false,
-      "type": "number"
-    },
-    "ImageCompare.onPositionChange": {
-      "required": false,
-      "type": "(position: number) => void"
-    },
-    "ImageCompare.orientation": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "ImageCompare.width": {
-      "required": false,
-      "type": "string | number"
-    },
-    "ImageCompare.height": {
-      "required": false,
-      "type": "string | number"
-    },
-    "ImageCompare.radius": {
-      "required": false,
-      "values": [
-        "full",
-        "lg",
-        "md",
-        "none",
-        "sm"
-      ]
-    },
-    "ImageCompare.labels": {
-      "required": false,
-      "type": "{ /** Accessible label for the drag handle */ handleAriaLabel?: string; }"
-    },
-    "ImageCompare.className": {
-      "required": false,
-      "type": "string"
-    },
     "Gallery.items": {
       "required": true,
       "type": "GalleryItem[]"
@@ -2005,7 +2000,6 @@
       "type": "(item: GalleryItem, index: number) => void"
     },
     "Gallery.renderActions": {
-      "required": false,
       "type": "(params: { selectedIds: string[]; clearSelection: () => void; }) => React.ReactNode"
     },
     "GalleryItemInternal.item": {
@@ -2250,7 +2244,6 @@
       "type": "(menu: ActiveMenu) => void"
     },
     "VideoAdvancedMenu.qualities": {
-      "required": false,
       "type": "{ label: string; src: string }[]"
     },
     "VideoAdvancedMenu.currentQualityIndex": {
@@ -2284,7 +2277,6 @@
       "type": "(fit: FitOption) => void"
     },
     "VideoAdvancedMenu.playlist": {
-      "required": false,
       "type": "{ src: string; title?: string; poster?: string }[]"
     },
     "VideoAdvancedMenu.currentPlayIndex": {
@@ -2455,25 +2447,6 @@
       "required": true,
       "type": "React.ReactNode"
     },
-    "Toolbar.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Toolbar.size": {
-      "required": false,
-      "type": "ComponentSizeBasic"
-    },
-    "Toolbar.orientation": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "Toolbar.Group.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
     "Transition.show": {
       "required": true,
       "type": "boolean"
@@ -2542,11 +2515,9 @@
       "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
     },
     "Stack.align": {
-      "required": false,
       "type": "| \"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\" | React.CSSProperties[\"alignItems\"]"
     },
     "Stack.justify": {
-      "required": false,
       "type": "| \"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\" | \"stretch\" | React.CSSProperties[\"justifyContent\"]"
     },
     "Stack.wrap": {
@@ -2619,6 +2590,25 @@
     "Stack.position": {
       "type": "React.CSSProperties[\"position\"]"
     },
+    "Toolbar.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Toolbar.size": {
+      "required": false,
+      "type": "ComponentSizeBasic"
+    },
+    "Toolbar.orientation": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "Toolbar.Group.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
     "Splitter.orientation": {
       "required": true,
       "values": [
@@ -2643,7 +2633,7 @@
       "type": "number"
     },
     "Splitter.Panel.size": {
-      "required": true,
+      "required": false,
       "type": "number"
     },
     "Splitter.Handle.index": {
@@ -2651,7 +2641,7 @@
       "type": "number"
     },
     "Splitter.Handle.active": {
-      "required": true,
+      "required": false,
       "type": "boolean"
     },
     "Splitter.Handle.ariaLabel": {
@@ -2673,26 +2663,6 @@
     "SimpleGrid.minChildWidth": {
       "required": false,
       "type": "number | string"
-    },
-    "ScrollArea.text": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "ScrollArea.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "ScrollArea.scrollAxis": {
-      "required": false,
-      "values": [
-        "both",
-        "x",
-        "y"
-      ]
-    },
-    "ScrollArea.maxHeight": {
-      "required": false,
-      "type": "string"
     },
     "Sidebar.fixed": {
       "required": false,
@@ -2733,6 +2703,26 @@
     "Sidebar.Item.icon": {
       "required": false,
       "type": "React.ReactNode"
+    },
+    "ScrollArea.text": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "ScrollArea.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "ScrollArea.scrollAxis": {
+      "required": false,
+      "values": [
+        "both",
+        "x",
+        "y"
+      ]
+    },
+    "ScrollArea.maxHeight": {
+      "required": false,
+      "type": "string"
     },
     "Navbar.fixed": {
       "required": false,
@@ -2860,7 +2850,6 @@
       "type": "boolean"
     },
     "InteractiveArea.styles": {
-      "required": false,
       "type": "{ inner?: string; icon?: string; title?: string; description?: string; content?: string; actions?: string; }"
     },
     "Header.fixed": {
@@ -3018,6 +3007,17 @@
       "required": false,
       "type": "string"
     },
+    "Divider.orientation": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "Divider.thickness": {
+      "required": false,
+      "type": "number"
+    },
     "Flex.asChild": {
       "required": false,
       "type": "boolean"
@@ -3042,7 +3042,6 @@
       ]
     },
     "Flex.justify": {
-      "required": false,
       "values": [
         "around",
         "between",
@@ -3117,17 +3116,6 @@
     },
     "DashboardWidgetCard.widget": {
       "type": "DashboardWidget"
-    },
-    "Divider.orientation": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "Divider.thickness": {
-      "required": false,
-      "type": "number"
     },
     "Container.size": {
       "required": false,
@@ -3439,96 +3427,6 @@
       "required": false,
       "type": "boolean"
     },
-    "TransferList.data": {
-      "type": "TransferItem[]"
-    },
-    "TransferList.title": {
-      "type": "React.ReactNode"
-    },
-    "TransferList.listType": {
-      "type": "\"source\" | \"target\""
-    },
-    "TransferList.id": {
-      "type": "string"
-    },
-    "TransferList.disabled": {
-      "type": "boolean"
-    },
-    "TransferList.selectedKeys": {
-      "type": "string[]"
-    },
-    "TransferList.focusedKey": {
-      "type": "string | null"
-    },
-    "TransferList.setFocusedKey": {
-      "type": "(key: string | null) => void"
-    },
-    "TransferList.onSelect": {
-      "type": "(key: string) => void"
-    },
-    "TransferList.onSelectAll": {
-      "type": "(keys: string[], listType: \"source\" | \"target\") => void"
-    },
-    "TransferList.onKeyDown": {
-      "type": "( e: React.KeyboardEvent, listType: \"source\" | \"target\", data: TransferItem[], ) => void"
-    },
-    "TransferList.labels": {
-      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
-    },
-    "TransferList.className": {
-      "type": "string"
-    },
-    "Transfer.dataSource": {
-      "required": true,
-      "type": "TransferItem[]"
-    },
-    "Transfer.targetKeys": {
-      "required": false,
-      "type": "string[]"
-    },
-    "Transfer.onChange": {
-      "required": false,
-      "type": "( targetKeys: string[], direction: \"toLeft\" | \"toRight\", moveKeys: string[], ) => void"
-    },
-    "Transfer.titles": {
-      "required": false,
-      "type": "[React.ReactNode, React.ReactNode]"
-    },
-    "Transfer.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Transfer.style": {
-      "required": false,
-      "type": "React.CSSProperties"
-    },
-    "Transfer.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Transfer.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Transfer.error": {
-      "required": false,
-      "type": "string"
-    },
-    "Transfer.required": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Transfer.layout": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "Transfer.labels": {
-      "required": false,
-      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
-    },
     "TreeSelect.treeData": {
       "required": true,
       "type": "TreeSelectNode[]"
@@ -3623,6 +3521,95 @@
     "TreeSelect.fullWidth": {
       "required": false,
       "type": "boolean"
+    },
+    "TransferList.data": {
+      "type": "TransferItem[]"
+    },
+    "TransferList.title": {
+      "type": "React.ReactNode"
+    },
+    "TransferList.listType": {
+      "type": "\"source\" | \"target\""
+    },
+    "TransferList.id": {
+      "type": "string"
+    },
+    "TransferList.disabled": {
+      "type": "boolean"
+    },
+    "TransferList.selectedKeys": {
+      "type": "string[]"
+    },
+    "TransferList.focusedKey": {
+      "type": "string | null"
+    },
+    "TransferList.setFocusedKey": {
+      "type": "(key: string | null) => void"
+    },
+    "TransferList.onSelect": {
+      "type": "(key: string) => void"
+    },
+    "TransferList.onSelectAll": {
+      "type": "(keys: string[], listType: \"source\" | \"target\") => void"
+    },
+    "TransferList.onKeyDown": {
+      "type": "( e: React.KeyboardEvent, listType: \"source\" | \"target\", data: TransferItem[], ) => void"
+    },
+    "TransferList.labels": {
+      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
+    },
+    "TransferList.className": {
+      "type": "string"
+    },
+    "Transfer.dataSource": {
+      "required": true,
+      "type": "TransferItem[]"
+    },
+    "Transfer.targetKeys": {
+      "required": false,
+      "type": "string[]"
+    },
+    "Transfer.onChange": {
+      "type": "( targetKeys: string[], direction: \"toLeft\" | \"toRight\", moveKeys: string[], ) => void"
+    },
+    "Transfer.titles": {
+      "required": false,
+      "type": "[React.ReactNode, React.ReactNode]"
+    },
+    "Transfer.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Transfer.style": {
+      "required": false,
+      "type": "React.CSSProperties"
+    },
+    "Transfer.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Transfer.label": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Transfer.error": {
+      "required": false,
+      "type": "string"
+    },
+    "Transfer.required": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Transfer.layout": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "Transfer.labels": {
+      "required": false,
+      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
     },
     "ToggleGroup.options": {
       "required": true,
@@ -4129,65 +4116,6 @@
       "required": true,
       "type": "string"
     },
-    "SignaturePad.width": {
-      "required": false,
-      "type": "number"
-    },
-    "SignaturePad.height": {
-      "required": false,
-      "type": "number"
-    },
-    "SignaturePad.penColor": {
-      "required": false,
-      "type": "string"
-    },
-    "SignaturePad.penWidth": {
-      "required": false,
-      "type": "number"
-    },
-    "SignaturePad.onChange": {
-      "required": false,
-      "type": "(dataUrl: string | null) => void"
-    },
-    "SignaturePad.clearLabel": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "SignaturePad.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SignaturePad.className": {
-      "required": false,
-      "type": "string"
-    },
-    "SignaturePad.style": {
-      "required": false,
-      "type": "React.CSSProperties"
-    },
-    "SignaturePad.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "SignaturePad.error": {
-      "required": false,
-      "type": "string"
-    },
-    "SignaturePad.required": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SignaturePad.layout": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "SignaturePad.canvasAriaLabel": {
-      "required": false,
-      "type": "string"
-    },
     "Slider.value": {
       "required": false,
       "type": "number"
@@ -4254,6 +4182,65 @@
     "Slider.styles": {
       "required": false,
       "type": "React.ComponentPropsWithoutRef<typeof FieldTemplate>[\"styles\"]"
+    },
+    "SignaturePad.width": {
+      "required": false,
+      "type": "number"
+    },
+    "SignaturePad.height": {
+      "required": false,
+      "type": "number"
+    },
+    "SignaturePad.penColor": {
+      "required": false,
+      "type": "string"
+    },
+    "SignaturePad.penWidth": {
+      "required": false,
+      "type": "number"
+    },
+    "SignaturePad.onChange": {
+      "required": false,
+      "type": "(dataUrl: string | null) => void"
+    },
+    "SignaturePad.clearLabel": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "SignaturePad.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SignaturePad.className": {
+      "required": false,
+      "type": "string"
+    },
+    "SignaturePad.style": {
+      "required": false,
+      "type": "React.CSSProperties"
+    },
+    "SignaturePad.label": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "SignaturePad.error": {
+      "required": false,
+      "type": "string"
+    },
+    "SignaturePad.required": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SignaturePad.layout": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "SignaturePad.canvasAriaLabel": {
+      "required": false,
+      "type": "string"
     },
     "Select.options": {
       "required": true,
@@ -4343,8 +4330,69 @@
       "type": "boolean"
     },
     "Select.styles": {
-      "required": false,
       "type": "{ root?: string; trigger?: string; value?: string; dropdown?: string; list?: string; option?: string; search?: string; searchInput?: string; groupLabel?: string; separator?: string; empty?: string; inputBase?: React.ComponentProps<typeof InputBase>[\"styles\"]; }"
+    },
+    "SegmentedControl.options": {
+      "required": true,
+      "type": "Option[]"
+    },
+    "SegmentedControl.value": {
+      "required": true,
+      "type": "string"
+    },
+    "SegmentedControl.onChange": {
+      "required": true,
+      "type": "(value: string) => void"
+    },
+    "SegmentedControl.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "SegmentedControl.fullWidth": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SegmentedControl.className": {
+      "required": false,
+      "type": "string"
+    },
+    "SegmentedControl.label": {
+      "required": false,
+      "type": "string"
+    },
+    "SegmentedControl.error": {
+      "required": false,
+      "type": "string"
+    },
+    "SegmentedControl.required": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SegmentedControl.layout": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "SegmentedControl.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SegmentedControl.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SegmentedControl.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "SegmentedControl.id": {
+      "required": false,
+      "type": "string"
+    },
+    "SegmentedControl.styles": {
+      "type": "{ root?: string; item?: string; slider?: string; label?: string; }"
     },
     "SearchInput.intent": {
       "type": "FieldIntent"
@@ -4426,168 +4474,6 @@
     },
     "SearchInput.asChild": {
       "type": "boolean"
-    },
-    "SegmentedControl.options": {
-      "required": true,
-      "type": "Option[]"
-    },
-    "SegmentedControl.value": {
-      "required": true,
-      "type": "string"
-    },
-    "SegmentedControl.onChange": {
-      "required": true,
-      "type": "(value: string) => void"
-    },
-    "SegmentedControl.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "SegmentedControl.fullWidth": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SegmentedControl.className": {
-      "required": false,
-      "type": "string"
-    },
-    "SegmentedControl.label": {
-      "required": false,
-      "type": "string"
-    },
-    "SegmentedControl.error": {
-      "required": false,
-      "type": "string"
-    },
-    "SegmentedControl.required": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SegmentedControl.layout": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "SegmentedControl.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SegmentedControl.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SegmentedControl.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "SegmentedControl.id": {
-      "required": false,
-      "type": "string"
-    },
-    "SegmentedControl.styles": {
-      "required": false,
-      "type": "{ root?: string; item?: string; slider?: string; label?: string; }"
-    },
-    "ToolbarButton.onClick": {
-      "type": "() => void"
-    },
-    "ToolbarButton.active": {
-      "type": "boolean"
-    },
-    "ToolbarButton.disabled": {
-      "type": "boolean"
-    },
-    "ToolbarButton.title": {
-      "type": "string"
-    },
-    "ToolbarButton.children": {
-      "type": "React.ReactNode"
-    },
-    "RichTextEditor.value": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.defaultValue": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.onChange": {
-      "required": false,
-      "type": "(value: string) => void"
-    },
-    "RichTextEditor.placeholder": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "RichTextEditor.intent": {
-      "required": false,
-      "type": "FieldIntent"
-    },
-    "RichTextEditor.variant": {
-      "required": false,
-      "values": [
-        "ghost",
-        "outline"
-      ]
-    },
-    "RichTextEditor.fullWidth": {
-      "required": false,
-      "type": "boolean"
-    },
-    "RichTextEditor.width": {
-      "required": false,
-      "type": "FieldWidth | string | number"
-    },
-    "RichTextEditor.minHeight": {
-      "required": false,
-      "type": "number | string"
-    },
-    "RichTextEditor.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "RichTextEditor.error": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.required": {
-      "required": false,
-      "type": "boolean"
-    },
-    "RichTextEditor.layout": {
-      "required": false,
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "RichTextEditor.className": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.id": {
-      "required": false,
-      "type": "string"
-    },
-    "RichTextEditor.toolbar": {
-      "required": false,
-      "type": "RichTextEditorToolbarItem[]"
-    },
-    "RichTextEditor.labels": {
-      "required": false,
-      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }"
-    },
-    "RichTextEditor.aria-label": {
-      "type": "string"
-    },
-    "RichTextEditor.aria-labelledby": {
-      "type": "string"
     },
     "Rating.value": {
       "required": false,
@@ -4729,6 +4615,105 @@
       "required": false,
       "type": "boolean"
     },
+    "ToolbarButton.onClick": {
+      "type": "() => void"
+    },
+    "ToolbarButton.active": {
+      "type": "boolean"
+    },
+    "ToolbarButton.disabled": {
+      "type": "boolean"
+    },
+    "ToolbarButton.title": {
+      "type": "string"
+    },
+    "ToolbarButton.children": {
+      "type": "React.ReactNode"
+    },
+    "RichTextEditor.value": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.defaultValue": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.onChange": {
+      "required": false,
+      "type": "(value: string) => void"
+    },
+    "RichTextEditor.placeholder": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "RichTextEditor.intent": {
+      "required": false,
+      "type": "FieldIntent"
+    },
+    "RichTextEditor.variant": {
+      "required": false,
+      "values": [
+        "ghost",
+        "outline"
+      ]
+    },
+    "RichTextEditor.fullWidth": {
+      "required": false,
+      "type": "boolean"
+    },
+    "RichTextEditor.width": {
+      "required": false,
+      "type": "FieldWidth | string | number"
+    },
+    "RichTextEditor.minHeight": {
+      "required": false,
+      "type": "number | string"
+    },
+    "RichTextEditor.label": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "RichTextEditor.error": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.required": {
+      "required": false,
+      "type": "boolean"
+    },
+    "RichTextEditor.layout": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "RichTextEditor.className": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.id": {
+      "required": false,
+      "type": "string"
+    },
+    "RichTextEditor.toolbar": {
+      "required": false,
+      "type": "RichTextEditorToolbarItem[]"
+    },
+    "RichTextEditor.labels": {
+      "required": false,
+      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }"
+    },
+    "RichTextEditor.aria-label": {
+      "type": "string"
+    },
+    "RichTextEditor.aria-labelledby": {
+      "type": "string"
+    },
     "RadioGroup.options": {
       "required": true,
       "type": "Option[]"
@@ -4776,6 +4761,18 @@
       "required": false,
       "type": "boolean"
     },
+    "Radio.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Radio.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Radio.error": {
+      "required": false,
+      "type": "boolean"
+    },
     "QueryBuilder.fields": {
       "required": true,
       "type": "QueryField[]"
@@ -4807,18 +4804,6 @@
     "QueryBuilder.labels": {
       "required": false,
       "type": "QueryBuilderLabels"
-    },
-    "Radio.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Radio.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Radio.error": {
-      "required": false,
-      "type": "boolean"
     },
     "PhoneInput.value": {
       "required": false,
@@ -5339,8 +5324,47 @@
       "type": "string"
     },
     "InputBase.styles": {
-      "required": false,
       "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }"
+    },
+    "InlineEdit.value": {
+      "required": false,
+      "type": "string"
+    },
+    "InlineEdit.defaultValue": {
+      "required": false,
+      "type": "string"
+    },
+    "InlineEdit.onChange": {
+      "required": false,
+      "type": "(value: string) => void"
+    },
+    "InlineEdit.onSave": {
+      "required": false,
+      "type": "(value: string) => void"
+    },
+    "InlineEdit.onCancel": {
+      "required": false,
+      "type": "() => void"
+    },
+    "InlineEdit.onEdit": {
+      "required": false,
+      "type": "() => void"
+    },
+    "InlineEdit.placeholder": {
+      "required": false,
+      "type": "string"
+    },
+    "InlineEdit.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "InlineEdit.fullWidth": {
+      "required": false,
+      "type": "boolean"
+    },
+    "InlineEdit.label": {
+      "required": false,
+      "type": "React.ReactNode"
     },
     "Input.intent": {
       "required": false,
@@ -5448,123 +5472,6 @@
       "required": false,
       "type": "boolean"
     },
-    "InlineEdit.value": {
-      "required": false,
-      "type": "string"
-    },
-    "InlineEdit.defaultValue": {
-      "required": false,
-      "type": "string"
-    },
-    "InlineEdit.onChange": {
-      "required": false,
-      "type": "(value: string) => void"
-    },
-    "InlineEdit.onSave": {
-      "required": false,
-      "type": "(value: string) => void"
-    },
-    "InlineEdit.onCancel": {
-      "required": false,
-      "type": "() => void"
-    },
-    "InlineEdit.onEdit": {
-      "required": false,
-      "type": "() => void"
-    },
-    "InlineEdit.placeholder": {
-      "required": false,
-      "type": "string"
-    },
-    "InlineEdit.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "InlineEdit.fullWidth": {
-      "required": false,
-      "type": "boolean"
-    },
-    "InlineEdit.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "FloatButton.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "FloatButton.iconName": {
-      "required": false,
-      "type": "| \"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\" | \"ArrowUpIcon\" | string"
-    },
-    "FloatButton.variant": {
-      "required": false,
-      "values": [
-        "default",
-        "glass",
-        "primary"
-      ]
-    },
-    "FloatButton.intent": {
-      "required": false,
-      "type": "ButtonIntent"
-    },
-    "FloatButton.shape": {
-      "required": false,
-      "values": [
-        "circle",
-        "square"
-      ]
-    },
-    "FloatButton.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "FloatButton.label": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "FloatButton.shrink": {
-      "required": false,
-      "type": "boolean"
-    },
-    "FloatButton.position": {
-      "required": false,
-      "values": [
-        "bottom-center",
-        "bottom-left",
-        "bottom-right",
-        "static",
-        "top-left",
-        "top-right"
-      ]
-    },
-    "FloatButton.description": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "FloatButton.badge": {
-      "required": false,
-      "type": "number | boolean"
-    },
-    "FloatButton.backTop": {
-      "required": false,
-      "type": "boolean"
-    },
-    "FloatButton.visibilityHeight": {
-      "required": false,
-      "type": "number"
-    },
-    "FloatButton.className": {
-      "required": false,
-      "type": "string"
-    },
-    "FloatButton.style": {
-      "required": false,
-      "type": "React.CSSProperties"
-    },
-    "FloatButton.aria-label": {
-      "type": "string"
-    },
     "IconButton.iconName": {
       "required": true,
       "type": "React.ComponentProps<typeof Icon>[\"name\"]"
@@ -5610,6 +5517,81 @@
     "ImageCropper.onApply": {
       "required": false,
       "type": "(dataUrl: string) => void"
+    },
+    "FloatButton.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "FloatButton.iconName": {
+      "type": "| \"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\" | \"ArrowUpIcon\" | string"
+    },
+    "FloatButton.variant": {
+      "required": false,
+      "values": [
+        "default",
+        "glass",
+        "primary"
+      ]
+    },
+    "FloatButton.intent": {
+      "required": false,
+      "type": "ButtonIntent"
+    },
+    "FloatButton.shape": {
+      "required": false,
+      "values": [
+        "circle",
+        "square"
+      ]
+    },
+    "FloatButton.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "FloatButton.label": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "FloatButton.shrink": {
+      "required": false,
+      "type": "boolean"
+    },
+    "FloatButton.position": {
+      "values": [
+        "bottom-center",
+        "bottom-left",
+        "bottom-right",
+        "static",
+        "top-left",
+        "top-right"
+      ]
+    },
+    "FloatButton.description": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "FloatButton.badge": {
+      "required": false,
+      "type": "number | boolean"
+    },
+    "FloatButton.backTop": {
+      "required": false,
+      "type": "boolean"
+    },
+    "FloatButton.visibilityHeight": {
+      "required": false,
+      "type": "number"
+    },
+    "FloatButton.className": {
+      "required": false,
+      "type": "string"
+    },
+    "FloatButton.style": {
+      "required": false,
+      "type": "React.CSSProperties"
+    },
+    "FloatButton.aria-label": {
+      "type": "string"
     },
     "FileUpload.label": {
       "required": false,
@@ -5717,7 +5699,6 @@
       "type": "string"
     },
     "FieldTemplate.styles": {
-      "required": false,
       "type": "{ root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }"
     },
     "Fieldset.children": {
@@ -6147,103 +6128,6 @@
       "required": false,
       "type": "{ noResults?: React.ReactNode; }"
     },
-    "ColorInput.intent": {
-      "type": "FieldIntent"
-    },
-    "ColorInput.variant": {
-      "values": [
-        "ghost",
-        "outline"
-      ]
-    },
-    "ColorInput.fullWidth": {
-      "type": "boolean"
-    },
-    "ColorInput.leftIcon": {
-      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
-    },
-    "ColorInput.rightIcon": {
-      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
-    },
-    "ColorInput.leftIconColor": {
-      "type": "React.ComponentProps<typeof Icon>[\"color\"]"
-    },
-    "ColorInput.rightIconColor": {
-      "type": "React.ComponentProps<typeof Icon>[\"color\"]"
-    },
-    "ColorInput.onLeftIconClick": {
-      "type": "(e: React.MouseEvent<HTMLButtonElement>) => void"
-    },
-    "ColorInput.onRightIconClick": {
-      "type": "(e: React.MouseEvent<HTMLButtonElement>) => void"
-    },
-    "ColorInput.allowClear": {
-      "type": "boolean"
-    },
-    "ColorInput.showPasswordToggle": {
-      "type": "boolean"
-    },
-    "ColorInput.rightIconClassName": {
-      "type": "string"
-    },
-    "ColorInput.rightIconRotated": {
-      "type": "boolean"
-    },
-    "ColorInput.width": {
-      "type": "FieldWidth | string | number"
-    },
-    "ColorInput.label": {
-      "type": "React.ReactNode"
-    },
-    "ColorInput.error": {
-      "type": "string"
-    },
-    "ColorInput.required": {
-      "type": "boolean"
-    },
-    "ColorInput.layout": {
-      "values": [
-        "horizontal",
-        "vertical"
-      ]
-    },
-    "ColorInput.inputClassName": {
-      "type": "string"
-    },
-    "ColorInput.showPasswordAriaLabel": {
-      "type": "string"
-    },
-    "ColorInput.hidePasswordAriaLabel": {
-      "type": "string"
-    },
-    "ColorInput.rightIconAriaLabel": {
-      "type": "string"
-    },
-    "ColorInput.suffix": {
-      "type": "React.ReactNode"
-    },
-    "ColorInput.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
-    },
-    "ColorInput.asChild": {
-      "type": "boolean"
-    },
-    "Checkbox.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Checkbox.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Checkbox.indeterminate": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Checkbox.error": {
-      "required": false,
-      "type": "boolean"
-    },
     "ColorPicker.intent": {
       "required": false,
       "type": "FieldIntent"
@@ -6328,6 +6212,87 @@
     "ColorPicker.asChild": {
       "type": "boolean"
     },
+    "ColorInput.intent": {
+      "type": "FieldIntent"
+    },
+    "ColorInput.variant": {
+      "values": [
+        "ghost",
+        "outline"
+      ]
+    },
+    "ColorInput.fullWidth": {
+      "type": "boolean"
+    },
+    "ColorInput.leftIcon": {
+      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+    },
+    "ColorInput.rightIcon": {
+      "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+    },
+    "ColorInput.leftIconColor": {
+      "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "ColorInput.rightIconColor": {
+      "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "ColorInput.onLeftIconClick": {
+      "type": "(e: React.MouseEvent<HTMLButtonElement>) => void"
+    },
+    "ColorInput.onRightIconClick": {
+      "type": "(e: React.MouseEvent<HTMLButtonElement>) => void"
+    },
+    "ColorInput.allowClear": {
+      "type": "boolean"
+    },
+    "ColorInput.showPasswordToggle": {
+      "type": "boolean"
+    },
+    "ColorInput.rightIconClassName": {
+      "type": "string"
+    },
+    "ColorInput.rightIconRotated": {
+      "type": "boolean"
+    },
+    "ColorInput.width": {
+      "type": "FieldWidth | string | number"
+    },
+    "ColorInput.label": {
+      "type": "React.ReactNode"
+    },
+    "ColorInput.error": {
+      "type": "string"
+    },
+    "ColorInput.required": {
+      "type": "boolean"
+    },
+    "ColorInput.layout": {
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "ColorInput.inputClassName": {
+      "type": "string"
+    },
+    "ColorInput.showPasswordAriaLabel": {
+      "type": "string"
+    },
+    "ColorInput.hidePasswordAriaLabel": {
+      "type": "string"
+    },
+    "ColorInput.rightIconAriaLabel": {
+      "type": "string"
+    },
+    "ColorInput.suffix": {
+      "type": "React.ReactNode"
+    },
+    "ColorInput.styles": {
+      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+    },
+    "ColorInput.asChild": {
+      "type": "boolean"
+    },
     "CheckboxGroup.options": {
       "required": true,
       "type": "Option[]"
@@ -6372,6 +6337,22 @@
       "type": "boolean"
     },
     "CheckboxGroup.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Checkbox.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Checkbox.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Checkbox.indeterminate": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Checkbox.error": {
       "required": false,
       "type": "boolean"
     },
@@ -6537,7 +6518,6 @@
       "type": "boolean"
     },
     "Button.styles": {
-      "required": false,
       "type": "{ root?: string; loader?: string; icon?: string; }"
     },
     "Button.className": {
@@ -6754,30 +6734,6 @@
       "required": false,
       "type": "ReactNode"
     },
-    "Progress.value": {
-      "required": false,
-      "type": "unknown"
-    },
-    "Progress.max": {
-      "required": false,
-      "type": "unknown"
-    },
-    "Progress.intent": {
-      "required": false,
-      "type": "unknown"
-    },
-    "Progress.size": {
-      "required": false,
-      "type": "unknown"
-    },
-    "Progress.showValue": {
-      "required": false,
-      "type": "unknown"
-    },
-    "Progress.indeterminate": {
-      "required": false,
-      "type": "unknown"
-    },
     "ProgressRing.value": {
       "required": false,
       "type": "unknown"
@@ -6799,6 +6755,30 @@
       "type": "unknown"
     },
     "ProgressRing.indeterminate": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.value": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.max": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.intent": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.size": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.showValue": {
+      "required": false,
+      "type": "unknown"
+    },
+    "Progress.indeterminate": {
       "required": false,
       "type": "unknown"
     },
@@ -6863,7 +6843,6 @@
       ]
     },
     "LoadingOverlay.loaderColor": {
-      "required": false,
       "values": [
         "currentColor",
         "danger",
@@ -6972,7 +6951,6 @@
       "type": "{ title?: string; retry?: string; showDetails?: string; hideDetails?: string; }"
     },
     "ErrorBoundary.fallback": {
-      "required": false,
       "type": "| ReactNode | ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)"
     },
     "ErrorBoundary.onError": {
@@ -7023,12 +7001,28 @@
       "required": false,
       "type": "React.ReactNode"
     },
+    "Autosave.status": {
+      "required": true,
+      "values": [
+        "error",
+        "idle",
+        "saved",
+        "saving"
+      ]
+    },
+    "Autosave.savedAt": {
+      "required": false,
+      "type": "Date"
+    },
+    "Autosave.errorMessage": {
+      "required": false,
+      "type": "string"
+    },
     "Alert.title": {
       "required": false,
       "type": "React.ReactNode"
     },
     "Alert.titleTag": {
-      "required": false,
       "values": [
         "div",
         "h1",
@@ -7065,23 +7059,6 @@
     "Alert.children": {
       "required": false,
       "type": "React.ReactNode"
-    },
-    "Autosave.status": {
-      "required": true,
-      "values": [
-        "error",
-        "idle",
-        "saved",
-        "saving"
-      ]
-    },
-    "Autosave.savedAt": {
-      "required": false,
-      "type": "Date"
-    },
-    "Autosave.errorMessage": {
-      "required": false,
-      "type": "string"
     },
     "VirtualList.items": {
       "required": true,
@@ -7120,6 +7097,100 @@
     },
     "VirtualList.aria-labelledby": {
       "type": "string"
+    },
+    "TreeView.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "TreeView.nodes": {
+      "required": false,
+      "type": "TreeViewNode[]"
+    },
+    "TreeView.className": {
+      "required": false,
+      "type": "string"
+    },
+    "TreeView.multiSelect": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TreeView.checkable": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TreeView.checkStrategy": {
+      "required": true,
+      "values": [
+        "cascade",
+        "exclusive"
+      ]
+    },
+    "TreeView.searchable": {
+      "required": false,
+      "type": "boolean"
+    },
+    "TreeView.defaultExpandedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "TreeView.defaultSelectedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "TreeView.defaultCheckedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "TreeView.onCheckedChange": {
+      "required": false,
+      "type": "(checked: string[]) => void"
+    },
+    "TreeView.onSelectedChange": {
+      "required": false,
+      "type": "(selected: string[]) => void"
+    },
+    "TreeView.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "TreeView.virtualThreshold": {
+      "required": false,
+      "type": "number"
+    },
+    "TreeView.labels": {
+      "required": false,
+      "type": "{ searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }"
+    },
+    "TreeView.labelId": {
+      "required": false,
+      "type": "string"
+    },
+    "TreeView.styles": {
+      "type": "{ root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }"
+    },
+    "TreeView.Item.value": {
+      "required": true,
+      "type": "string"
+    },
+    "TreeView.Item.label": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "TreeView.Item.icon": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "TreeView.Item.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "TreeView.Item.className": {
+      "required": false,
+      "type": "string"
+    },
+    "TreeView.Item.disabled": {
+      "required": false,
+      "type": "boolean"
     },
     "Timeline.children": {
       "required": true,
@@ -7198,101 +7269,6 @@
     "TimelineOppositeContent.asChild": {
       "type": "boolean"
     },
-    "TreeView.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "TreeView.nodes": {
-      "required": false,
-      "type": "TreeViewNode[]"
-    },
-    "TreeView.className": {
-      "required": false,
-      "type": "string"
-    },
-    "TreeView.multiSelect": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TreeView.checkable": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TreeView.checkStrategy": {
-      "required": true,
-      "values": [
-        "cascade",
-        "exclusive"
-      ]
-    },
-    "TreeView.searchable": {
-      "required": false,
-      "type": "boolean"
-    },
-    "TreeView.defaultExpandedValues": {
-      "required": false,
-      "type": "string[]"
-    },
-    "TreeView.defaultSelectedValues": {
-      "required": false,
-      "type": "string[]"
-    },
-    "TreeView.defaultCheckedValues": {
-      "required": false,
-      "type": "string[]"
-    },
-    "TreeView.onCheckedChange": {
-      "required": false,
-      "type": "(checked: string[]) => void"
-    },
-    "TreeView.onSelectedChange": {
-      "required": false,
-      "type": "(selected: string[]) => void"
-    },
-    "TreeView.width": {
-      "required": false,
-      "type": "string | number"
-    },
-    "TreeView.virtualThreshold": {
-      "required": false,
-      "type": "number"
-    },
-    "TreeView.labels": {
-      "required": false,
-      "type": "{ searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }"
-    },
-    "TreeView.labelId": {
-      "required": false,
-      "type": "string"
-    },
-    "TreeView.styles": {
-      "required": false,
-      "type": "{ root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }"
-    },
-    "TreeView.Item.value": {
-      "required": true,
-      "type": "string"
-    },
-    "TreeView.Item.label": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "TreeView.Item.icon": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "TreeView.Item.children": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "TreeView.Item.className": {
-      "required": false,
-      "type": "string"
-    },
-    "TreeView.Item.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
     "Tag.asChild": {
       "required": false,
       "type": "boolean"
@@ -7336,70 +7312,6 @@
     "Tag.interactive": {
       "required": false,
       "type": "boolean"
-    },
-    "SwipeAction.as": {
-      "required": false,
-      "type": "React.ElementType"
-    },
-    "SwipeAction.leftActions": {
-      "required": false,
-      "type": "SwipeActionItem[]"
-    },
-    "SwipeAction.rightActions": {
-      "required": false,
-      "type": "SwipeActionItem[]"
-    },
-    "SwipeAction.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "SwipeAction.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SwipeAction.id": {
-      "required": false,
-      "type": "string"
-    },
-    "SwipeAction.closeOnAction": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SwipeableList.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "SwipeableList.exclusive": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SwipeableList.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Stats.variant": {
-      "required": false,
-      "type": "React.ComponentProps<typeof Card>[\"variant\"]"
-    },
-    "Stats.asChild": {
-      "type": "boolean"
-    },
-    "Stats.interactive": {
-      "type": "boolean"
-    },
-    "Stats.padding": {
-      "type": "(typeof CARD_STYLED_PADDING)[number]"
-    },
-    "Stats.radius": {
-      "type": "(typeof CARD_STYLED_RADIUS)[number]"
-    },
-    "Stats.Trend.direction": {
-      "required": false,
-      "values": [
-        "down",
-        "neutral",
-        "up"
-      ]
     },
     "Table.asChild": {
       "required": false,
@@ -7549,6 +7461,98 @@
       "required": false,
       "type": "number"
     },
+    "SwipeAction.as": {
+      "required": false,
+      "type": "React.ElementType"
+    },
+    "SwipeAction.leftActions": {
+      "required": false,
+      "type": "SwipeActionItem[]"
+    },
+    "SwipeAction.rightActions": {
+      "required": false,
+      "type": "SwipeActionItem[]"
+    },
+    "SwipeAction.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "SwipeAction.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SwipeAction.id": {
+      "required": false,
+      "type": "string"
+    },
+    "SwipeAction.closeOnAction": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SwipeableList.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "SwipeableList.exclusive": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SwipeableList.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Stats.variant": {
+      "required": false,
+      "type": "React.ComponentProps<typeof Card>[\"variant\"]"
+    },
+    "Stats.asChild": {
+      "type": "boolean"
+    },
+    "Stats.interactive": {
+      "type": "boolean"
+    },
+    "Stats.padding": {
+      "type": "(typeof CARD_STYLED_PADDING)[number]"
+    },
+    "Stats.radius": {
+      "type": "(typeof CARD_STYLED_RADIUS)[number]"
+    },
+    "Stats.Trend.direction": {
+      "required": false,
+      "values": [
+        "down",
+        "neutral",
+        "up"
+      ]
+    },
+    "SortableList.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SortableList.onSortEnd": {
+      "required": false,
+      "type": "(oldIndex: number, newIndex: number) => void"
+    },
+    "SortableList.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SortableList.Item.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SortableList.Item.index": {
+      "required": true,
+      "type": "number"
+    },
+    "SortableList.Item.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SortableList.DragHandle.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
     "ScheduleView.events": {
       "required": false,
       "type": "ScheduleViewEvent[]"
@@ -7611,34 +7615,6 @@
     },
     "ScheduleView.aria-label": {
       "type": "string"
-    },
-    "SortableList.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SortableList.onSortEnd": {
-      "required": false,
-      "type": "(oldIndex: number, newIndex: number) => void"
-    },
-    "SortableList.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SortableList.Item.asChild": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SortableList.Item.index": {
-      "required": true,
-      "type": "number"
-    },
-    "SortableList.Item.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
-    "SortableList.DragHandle.asChild": {
-      "required": false,
-      "type": "boolean"
     },
     "RelativeTime.date": {
       "required": true,
@@ -7719,30 +7695,6 @@
     "QRCode.aria-label": {
       "type": "string"
     },
-    "Reaction.reactions": {
-      "required": true,
-      "type": "ReactionItem[]"
-    },
-    "Reaction.onReact": {
-      "required": false,
-      "type": "(emoji: string, active: boolean) => void"
-    },
-    "Reaction.showAddButton": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Reaction.onAdd": {
-      "required": false,
-      "type": "() => void"
-    },
-    "Reaction.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "Reaction.disabled": {
-      "required": false,
-      "type": "boolean"
-    },
     "PullToRefresh.onRefresh": {
       "required": true,
       "type": "() => Promise<void> | void"
@@ -7767,25 +7719,29 @@
       "required": false,
       "type": "boolean"
     },
-    "Marquee.duration": {
-      "required": false,
-      "type": "number"
+    "Reaction.reactions": {
+      "required": true,
+      "type": "ReactionItem[]"
     },
-    "Marquee.reverse": {
+    "Reaction.onReact": {
+      "required": false,
+      "type": "(emoji: string, active: boolean) => void"
+    },
+    "Reaction.showAddButton": {
       "required": false,
       "type": "boolean"
     },
-    "Marquee.pauseOnHover": {
+    "Reaction.onAdd": {
+      "required": false,
+      "type": "() => void"
+    },
+    "Reaction.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Reaction.disabled": {
       "required": false,
       "type": "boolean"
-    },
-    "Marquee.vertical": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Marquee.repeat": {
-      "required": false,
-      "type": "number"
     },
     "NodeGraph.nodes": {
       "required": true,
@@ -7858,33 +7814,25 @@
     "NodeGraph.aria-label": {
       "type": "string"
     },
-    "Markdown.content": {
+    "Marquee.duration": {
       "required": false,
-      "type": "string"
+      "type": "number"
     },
-    "Markdown.children": {
-      "required": false,
-      "type": "string"
-    },
-    "Markdown.gfm": {
+    "Marquee.reverse": {
       "required": false,
       "type": "boolean"
     },
-    "Markdown.className": {
+    "Marquee.pauseOnHover": {
       "required": false,
-      "type": "string"
+      "type": "boolean"
     },
-    "Leaderboard.entries": {
-      "required": true,
-      "type": "LeaderboardEntry[]"
-    },
-    "Leaderboard.unit": {
+    "Marquee.vertical": {
       "required": false,
-      "type": "string"
+      "type": "boolean"
     },
-    "Leaderboard.size": {
+    "Marquee.repeat": {
       "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+      "type": "number"
     },
     "List.asChild": {
       "required": false,
@@ -7940,6 +7888,34 @@
     "List.Item.selected": {
       "required": false,
       "type": "boolean"
+    },
+    "Markdown.content": {
+      "required": false,
+      "type": "string"
+    },
+    "Markdown.children": {
+      "required": false,
+      "type": "string"
+    },
+    "Markdown.gfm": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Markdown.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Leaderboard.entries": {
+      "required": true,
+      "type": "LeaderboardEntry[]"
+    },
+    "Leaderboard.unit": {
+      "required": false,
+      "type": "string"
+    },
+    "Leaderboard.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "Kanban.columns": {
       "required": false,
@@ -8271,7 +8247,6 @@
       "type": "(keys: string[], records: T[]) => void"
     },
     "DataGrid.sortConfig": {
-      "required": false,
       "type": "{ key: string; direction: \"asc\" | \"desc\" | \"none\"; }"
     },
     "DataGrid.onSortChange": {
@@ -8279,11 +8254,9 @@
       "type": "(key: string, direction: \"asc\" | \"desc\" | \"none\") => void"
     },
     "DataGrid.pagination": {
-      "required": false,
       "type": "{ current: number; pageSize: number; total: number; onChange: (page: number, pageSize: number) => void; } | false"
     },
     "DataGrid.infiniteScroll": {
-      "required": false,
       "type": "{ hasMore: boolean; onLoadMore: () => void; threshold?: number; }"
     },
     "DataGrid.className": {
@@ -8293,57 +8266,6 @@
     "DataGrid.ariaLabel": {
       "required": false,
       "type": "string"
-    },
-    "Countdown.target": {
-      "required": true,
-      "type": "Date | string | number"
-    },
-    "Countdown.baseDate": {
-      "required": false,
-      "type": "Date | string | number"
-    },
-    "Countdown.variant": {
-      "required": false,
-      "values": [
-        "digital",
-        "units"
-      ]
-    },
-    "Countdown.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "Countdown.locale": {
-      "required": false,
-      "type": "string"
-    },
-    "Countdown.unitDisplay": {
-      "required": false,
-      "values": [
-        "long",
-        "narrow",
-        "short"
-      ]
-    },
-    "Countdown.paused": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Countdown.onComplete": {
-      "required": false,
-      "type": "() => void"
-    },
-    "Countdown.completedContent": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Countdown.fallback": {
-      "required": false,
-      "type": "React.ReactNode"
-    },
-    "Countdown.asChild": {
-      "required": false,
-      "type": "boolean"
     },
     "Chip.asChild": {
       "required": false,
@@ -8404,6 +8326,57 @@
     "Chip.className": {
       "required": false,
       "type": "string"
+    },
+    "Countdown.target": {
+      "required": true,
+      "type": "Date | string | number"
+    },
+    "Countdown.baseDate": {
+      "required": false,
+      "type": "Date | string | number"
+    },
+    "Countdown.variant": {
+      "required": false,
+      "values": [
+        "digital",
+        "units"
+      ]
+    },
+    "Countdown.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Countdown.locale": {
+      "required": false,
+      "type": "string"
+    },
+    "Countdown.unitDisplay": {
+      "required": false,
+      "values": [
+        "long",
+        "narrow",
+        "short"
+      ]
+    },
+    "Countdown.paused": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Countdown.onComplete": {
+      "required": false,
+      "type": "() => void"
+    },
+    "Countdown.completedContent": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Countdown.fallback": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Countdown.asChild": {
+      "required": false,
+      "type": "boolean"
     },
     "Carousel.children": {
       "required": false,
@@ -8585,7 +8558,6 @@
       "type": "Date[]"
     },
     "Calendar.isDateDisabled": {
-      "required": true,
       "type": "(date: Date) => boolean"
     },
     "Calendar.weekStartsOn": {
@@ -8618,26 +8590,6 @@
     "Calendar.onRangeChange": {
       "required": false,
       "type": "(range: CalendarRange) => void"
-    },
-    "AvatarGroup.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "AvatarGroup.max": {
-      "required": false,
-      "type": "number"
-    },
-    "AvatarGroup.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "AvatarGroup.total": {
-      "required": false,
-      "type": "number"
-    },
-    "AvatarGroup.className": {
-      "required": false,
-      "type": "string"
     },
     "Badge.asChild": {
       "required": false,
@@ -8675,36 +8627,25 @@
       "required": false,
       "type": "boolean"
     },
-    "Avatar.src": {
-      "required": false,
-      "type": "string"
-    },
-    "Avatar.alt": {
-      "required": false,
-      "type": "string"
-    },
-    "Avatar.initials": {
-      "required": false,
-      "type": "string"
-    },
-    "Avatar.icon": {
-      "required": false,
+    "AvatarGroup.children": {
+      "required": true,
       "type": "React.ReactNode"
     },
-    "Avatar.size": {
+    "AvatarGroup.max": {
+      "required": false,
+      "type": "number"
+    },
+    "AvatarGroup.size": {
       "required": false,
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
-    "Avatar.shape": {
+    "AvatarGroup.total": {
       "required": false,
-      "values": [
-        "circle",
-        "rounded"
-      ]
+      "type": "number"
     },
-    "Avatar.intent": {
+    "AvatarGroup.className": {
       "required": false,
-      "type": "IndicatorIntent"
+      "type": "string"
     },
     "AccordionRoot.type": {
       "type": "\"single\" | \"multiple\""
@@ -8800,6 +8741,37 @@
       "required": false,
       "type": "boolean"
     },
+    "Avatar.src": {
+      "required": false,
+      "type": "string"
+    },
+    "Avatar.alt": {
+      "required": false,
+      "type": "string"
+    },
+    "Avatar.initials": {
+      "required": false,
+      "type": "string"
+    },
+    "Avatar.icon": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Avatar.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Avatar.shape": {
+      "required": false,
+      "values": [
+        "circle",
+        "rounded"
+      ]
+    },
+    "Avatar.intent": {
+      "required": false,
+      "type": "IndicatorIntent"
+    },
     "Treemap.data": {
       "required": true,
       "type": "ChartDataPoint[]"
@@ -8873,7 +8845,6 @@
       "type": "string"
     },
     "ScatterChart.data": {
-      "required": true,
       "type": "{ x: number; y: number; z?: number; name: string }[]"
     },
     "ScatterChart.xAxisName": {
@@ -8897,6 +8868,29 @@
       "type": "string"
     },
     "ScatterChart.animated": {
+      "required": false,
+      "type": "boolean"
+    },
+    "PieChart.data": {
+      "type": "{ name: string; value: number }[]"
+    },
+    "PieChart.height": {
+      "required": false,
+      "type": "number"
+    },
+    "PieChart.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "PieChart.title": {
+      "required": false,
+      "type": "string"
+    },
+    "PieChart.donut": {
+      "required": false,
+      "type": "boolean"
+    },
+    "PieChart.animated": {
       "required": false,
       "type": "boolean"
     },
@@ -8925,62 +8919,6 @@
       "type": "string"
     },
     "RadarChart.animated": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Heatmap.data": {
-      "required": true,
-      "type": "{ x: string; y: string; value: number }[]"
-    },
-    "Heatmap.xAxisKey": {
-      "required": true,
-      "type": "string[]"
-    },
-    "Heatmap.yAxisKey": {
-      "required": true,
-      "type": "string[]"
-    },
-    "Heatmap.height": {
-      "required": false,
-      "type": "number"
-    },
-    "Heatmap.width": {
-      "required": false,
-      "type": "string | number"
-    },
-    "Heatmap.title": {
-      "required": false,
-      "type": "string"
-    },
-    "Heatmap.colorRange": {
-      "required": false,
-      "type": "[string, string]"
-    },
-    "Heatmap.animated": {
-      "required": false,
-      "type": "boolean"
-    },
-    "PieChart.data": {
-      "required": true,
-      "type": "{ name: string; value: number }[]"
-    },
-    "PieChart.height": {
-      "required": false,
-      "type": "number"
-    },
-    "PieChart.width": {
-      "required": false,
-      "type": "string | number"
-    },
-    "PieChart.title": {
-      "required": false,
-      "type": "string"
-    },
-    "PieChart.donut": {
-      "required": false,
-      "type": "boolean"
-    },
-    "PieChart.animated": {
       "required": false,
       "type": "boolean"
     },
@@ -9013,6 +8951,73 @@
       "type": "boolean"
     },
     "LineChart.animated": {
+      "required": false,
+      "type": "boolean"
+    },
+    "GaugeChart.value": {
+      "required": true,
+      "type": "number"
+    },
+    "GaugeChart.min": {
+      "required": false,
+      "type": "number"
+    },
+    "GaugeChart.max": {
+      "required": false,
+      "type": "number"
+    },
+    "GaugeChart.height": {
+      "required": false,
+      "type": "number"
+    },
+    "GaugeChart.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "GaugeChart.title": {
+      "required": false,
+      "type": "string"
+    },
+    "GaugeChart.label": {
+      "required": false,
+      "type": "string"
+    },
+    "GaugeChart.color": {
+      "required": false,
+      "type": "string"
+    },
+    "GaugeChart.animated": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Heatmap.data": {
+      "type": "{ x: string; y: string; value: number }[]"
+    },
+    "Heatmap.xAxisKey": {
+      "required": true,
+      "type": "string[]"
+    },
+    "Heatmap.yAxisKey": {
+      "required": true,
+      "type": "string[]"
+    },
+    "Heatmap.height": {
+      "required": false,
+      "type": "number"
+    },
+    "Heatmap.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "Heatmap.title": {
+      "required": false,
+      "type": "string"
+    },
+    "Heatmap.colorRange": {
+      "required": false,
+      "type": "[string, string]"
+    },
+    "Heatmap.animated": {
       "required": false,
       "type": "boolean"
     },
@@ -9055,42 +9060,6 @@
     "GanttChart.labels": {
       "required": false,
       "type": "{ ariaChart?: string; ariaTaskBar?: (label: string, start: string, end: string) => string; }"
-    },
-    "GaugeChart.value": {
-      "required": true,
-      "type": "number"
-    },
-    "GaugeChart.min": {
-      "required": false,
-      "type": "number"
-    },
-    "GaugeChart.max": {
-      "required": false,
-      "type": "number"
-    },
-    "GaugeChart.height": {
-      "required": false,
-      "type": "number"
-    },
-    "GaugeChart.width": {
-      "required": false,
-      "type": "string | number"
-    },
-    "GaugeChart.title": {
-      "required": false,
-      "type": "string"
-    },
-    "GaugeChart.label": {
-      "required": false,
-      "type": "string"
-    },
-    "GaugeChart.color": {
-      "required": false,
-      "type": "string"
-    },
-    "GaugeChart.animated": {
-      "required": false,
-      "type": "boolean"
     },
     "FunnelChart.data": {
       "required": true,
@@ -9188,6 +9157,42 @@
       "required": false,
       "type": "boolean"
     },
+    "UsageMeter.used": {
+      "required": true,
+      "type": "number"
+    },
+    "UsageMeter.max": {
+      "required": false,
+      "type": "number"
+    },
+    "UsageMeter.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "UsageMeter.showBar": {
+      "required": false,
+      "type": "boolean"
+    },
+    "UsageMeter.showPercentage": {
+      "required": false,
+      "type": "boolean"
+    },
+    "UsageMeter.warnThreshold": {
+      "required": false,
+      "type": "number"
+    },
+    "UsageMeter.dangerThreshold": {
+      "required": false,
+      "type": "number"
+    },
+    "UsageMeter.labels": {
+      "required": false,
+      "type": "{ /** Leading label (default \"Tokens\") */ label?: string; /** Unit appended to the raw counts (default \"tokens\") */ unit?: string; /** Accessible label describing the meter */ ariaLabel?: string; }"
+    },
+    "UsageMeter.className": {
+      "required": false,
+      "type": "string"
+    },
     "VoiceVisualizer.mode": {
       "required": false,
       "values": [
@@ -9225,42 +9230,6 @@
         "positive"
       ]
     },
-    "UsageMeter.used": {
-      "required": true,
-      "type": "number"
-    },
-    "UsageMeter.max": {
-      "required": false,
-      "type": "number"
-    },
-    "UsageMeter.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "UsageMeter.showBar": {
-      "required": false,
-      "type": "boolean"
-    },
-    "UsageMeter.showPercentage": {
-      "required": false,
-      "type": "boolean"
-    },
-    "UsageMeter.warnThreshold": {
-      "required": false,
-      "type": "number"
-    },
-    "UsageMeter.dangerThreshold": {
-      "required": false,
-      "type": "number"
-    },
-    "UsageMeter.labels": {
-      "required": false,
-      "type": "{ /** Leading label (default \"Tokens\") */ label?: string; /** Unit appended to the raw counts (default \"tokens\") */ unit?: string; /** Accessible label describing the meter */ ariaLabel?: string; }"
-    },
-    "UsageMeter.className": {
-      "required": false,
-      "type": "string"
-    },
     "ThreadList.threads": {
       "required": true,
       "type": "Thread[]"
@@ -9286,38 +9255,6 @@
       "type": "{ /** Label of the new-conversation button */ newThread?: string; /** Text shown when there are no threads */ empty?: string; /** Accessible label for each delete button */ delete?: string; /** Accessible label for the list */ listAriaLabel?: string; }"
     },
     "ThreadList.className": {
-      "required": false,
-      "type": "string"
-    },
-    "Terminal.lines": {
-      "required": false,
-      "type": "TerminalLine[]"
-    },
-    "Terminal.title": {
-      "required": false,
-      "type": "string"
-    },
-    "Terminal.height": {
-      "required": false,
-      "type": "string | number"
-    },
-    "Terminal.autoScroll": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Terminal.prompt": {
-      "required": false,
-      "type": "string"
-    },
-    "Terminal.showCopy": {
-      "required": false,
-      "type": "boolean"
-    },
-    "Terminal.onClear": {
-      "required": false,
-      "type": "() => void"
-    },
-    "Terminal.className": {
       "required": false,
       "type": "string"
     },
@@ -9359,6 +9296,38 @@
     "ThoughtProcess.isThinking": {
       "required": false,
       "type": "boolean"
+    },
+    "Terminal.lines": {
+      "required": false,
+      "type": "TerminalLine[]"
+    },
+    "Terminal.title": {
+      "required": false,
+      "type": "string"
+    },
+    "Terminal.height": {
+      "required": false,
+      "type": "string | number"
+    },
+    "Terminal.autoScroll": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Terminal.prompt": {
+      "required": false,
+      "type": "string"
+    },
+    "Terminal.showCopy": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Terminal.onClear": {
+      "required": false,
+      "type": "() => void"
+    },
+    "Terminal.className": {
+      "required": false,
+      "type": "string"
     },
     "StreamingText.content": {
       "required": true,
@@ -9404,6 +9373,50 @@
       "type": "SourceCitationProps[]"
     },
     "SourceCitationList.className": {
+      "type": "string"
+    },
+    "ModelSelector.models": {
+      "required": true,
+      "type": "ModelOption[]"
+    },
+    "ModelSelector.value": {
+      "required": false,
+      "type": "string"
+    },
+    "ModelSelector.defaultValue": {
+      "required": false,
+      "type": "string"
+    },
+    "ModelSelector.onChange": {
+      "required": false,
+      "type": "(id: string, model: ModelOption) => void"
+    },
+    "ModelSelector.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "ModelSelector.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ModelSelector.fullWidth": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ModelSelector.showPricing": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ModelSelector.showContext": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ModelSelector.labels": {
+      "required": false,
+      "type": "{ /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default \"Context\") */ contextLabel?: string; /** Prefix for the input price meta (default \"In\") */ inputLabel?: string; /** Prefix for the output price meta (default \"Out\") */ outputLabel?: string; /** Suffix appended to prices (default \"/1M\") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }"
+    },
+    "ModelSelector.className": {
+      "required": false,
       "type": "string"
     },
     "PromptInput.value": {
@@ -9477,49 +9490,17 @@
         "vertical"
       ]
     },
-    "ModelSelector.models": {
+    "MarkdownRenderer.content": {
       "required": true,
-      "type": "ModelOption[]"
+      "type": "string"
     },
-    "ModelSelector.value": {
+    "MarkdownRenderer.className": {
       "required": false,
       "type": "string"
     },
-    "ModelSelector.defaultValue": {
-      "required": false,
-      "type": "string"
-    },
-    "ModelSelector.onChange": {
-      "required": false,
-      "type": "(id: string, model: ModelOption) => void"
-    },
-    "ModelSelector.size": {
-      "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "ModelSelector.disabled": {
+    "MarkdownRenderer.withAnchors": {
       "required": false,
       "type": "boolean"
-    },
-    "ModelSelector.fullWidth": {
-      "required": false,
-      "type": "boolean"
-    },
-    "ModelSelector.showPricing": {
-      "required": false,
-      "type": "boolean"
-    },
-    "ModelSelector.showContext": {
-      "required": false,
-      "type": "boolean"
-    },
-    "ModelSelector.labels": {
-      "required": false,
-      "type": "{ /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default \"Context\") */ contextLabel?: string; /** Prefix for the input price meta (default \"In\") */ inputLabel?: string; /** Prefix for the output price meta (default \"Out\") */ outputLabel?: string; /** Suffix appended to prices (default \"/1M\") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }"
-    },
-    "ModelSelector.className": {
-      "required": false,
-      "type": "string"
     },
     "InteractiveGraphContent.nodes": {
       "type": "Node[]"
@@ -9577,18 +9558,6 @@
       "required": false,
       "type": "boolean"
     },
-    "MarkdownRenderer.content": {
-      "required": true,
-      "type": "string"
-    },
-    "MarkdownRenderer.className": {
-      "required": false,
-      "type": "string"
-    },
-    "MarkdownRenderer.withAnchors": {
-      "required": false,
-      "type": "boolean"
-    },
     "LineNum.num": {
       "type": "number"
     },
@@ -9640,62 +9609,6 @@
     "CodeDiffViewer.isApplied": {
       "required": false,
       "type": "boolean"
-    },
-    "CodeBlock.code": {
-      "required": true,
-      "type": "string"
-    },
-    "CodeBlock.language": {
-      "required": false,
-      "type": "string"
-    },
-    "CodeBlock.filename": {
-      "required": false,
-      "type": "string"
-    },
-    "CodeBlock.showCopy": {
-      "required": false,
-      "type": "boolean"
-    },
-    "CodeBlock.showLineNumbers": {
-      "required": false,
-      "type": "boolean"
-    },
-    "CodeBlock.maxLines": {
-      "required": false,
-      "type": "number"
-    },
-    "CodeBlock.className": {
-      "required": false,
-      "type": "string"
-    },
-    "ArtifactsOverlay.open": {
-      "required": true,
-      "type": "boolean"
-    },
-    "ArtifactsOverlay.onOpenChange": {
-      "required": true,
-      "type": "(open: boolean) => void"
-    },
-    "ArtifactsOverlay.title": {
-      "required": true,
-      "type": "string"
-    },
-    "ArtifactsOverlay.subtitle": {
-      "required": false,
-      "type": "string"
-    },
-    "ArtifactsOverlay.children": {
-      "required": true,
-      "type": "React.ReactNode"
-    },
-    "ArtifactsOverlay.showFullscreenToggle": {
-      "required": false,
-      "type": "boolean"
-    },
-    "ArtifactsOverlay.className": {
-      "required": false,
-      "type": "string"
     },
     "ChatContainer.children": {
       "type": "React.ReactNode"
@@ -9785,6 +9698,62 @@
       "type": "\"s1\" | \"s3\" | \"s5\" | \"s7\" | \"s10\" | \"s12\" | \"s14\" | \"s16\" | \"s18\" | \"s20\" | \"s22\" | \"s24\""
     },
     "ChatAvatar.className": {
+      "type": "string"
+    },
+    "CodeBlock.code": {
+      "required": true,
+      "type": "string"
+    },
+    "CodeBlock.language": {
+      "required": false,
+      "type": "string"
+    },
+    "CodeBlock.filename": {
+      "required": false,
+      "type": "string"
+    },
+    "CodeBlock.showCopy": {
+      "required": false,
+      "type": "boolean"
+    },
+    "CodeBlock.showLineNumbers": {
+      "required": false,
+      "type": "boolean"
+    },
+    "CodeBlock.maxLines": {
+      "required": false,
+      "type": "number"
+    },
+    "CodeBlock.className": {
+      "required": false,
+      "type": "string"
+    },
+    "ArtifactsOverlay.open": {
+      "required": true,
+      "type": "boolean"
+    },
+    "ArtifactsOverlay.onOpenChange": {
+      "required": true,
+      "type": "(open: boolean) => void"
+    },
+    "ArtifactsOverlay.title": {
+      "required": true,
+      "type": "string"
+    },
+    "ArtifactsOverlay.subtitle": {
+      "required": false,
+      "type": "string"
+    },
+    "ArtifactsOverlay.children": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "ArtifactsOverlay.showFullscreenToggle": {
+      "required": false,
+      "type": "boolean"
+    },
+    "ArtifactsOverlay.className": {
+      "required": false,
       "type": "string"
     },
     "AIResponseFeedback.feedback": {
