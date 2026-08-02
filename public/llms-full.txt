@@ -2099,8 +2099,17 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `variant: "elevated" | "outline" | "flat" | "glass"` = "elevated" — Visual style variant of the card
     - `interactive: boolean` = false — Whether to enable hover animation and click effects
-    - `padding: ComponentSize | "none"` = "md" — Padding size
-    - `radius: ComponentSize | "none"` = "lg" — Corner radius size
+    - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
+
+Derived from the values `card.module.scss` implements, not from
+`ComponentSize`. Declaring the whole scale meant `padding="5xl"`
+type-checked and then did nothing (T38); deriving it means the type cannot
+drift from the stylesheet again, because `Card.unstyled-values.test.tsx`
+fails if the list stops matching the SCSS.
+    - `radius: (typeof CARD_STYLED_RADIUS)[number]` = "lg" — Corner radius size.
+
+Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
+`-4xl` / `-5xl` token, so those values had nothing they could have meant.
 - **Carousel** — Content slideshow
     - `children: React.ReactNode` — Content of the carousel
     - `autoPlay: boolean` = false — Whether to auto-play
@@ -2342,8 +2351,17 @@ drops secondary text below the AA contrast floor.
     - `variant: React.ComponentProps<typeof Card>["variant"]` = "elevated" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `interactive: boolean` = false — Whether to enable hover animation and click effects
-    - `padding: ComponentSize | "none"` = "md" — Padding size
-    - `radius: ComponentSize | "none"` = "lg" — Corner radius size
+    - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
+
+Derived from the values `card.module.scss` implements, not from
+`ComponentSize`. Declaring the whole scale meant `padding="5xl"`
+type-checked and then did nothing (T38); deriving it means the type cannot
+drift from the stylesheet again, because `Card.unstyled-values.test.tsx`
+fails if the list stops matching the SCSS.
+    - `radius: (typeof CARD_STYLED_RADIUS)[number]` = "lg" — Corner radius size.
+
+Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
+`-4xl` / `-5xl` token, so those values had nothing they could have meant.
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
     - `as: React.ElementType` = "div" — The element to render as the root container. Default is 'div'.
     - `leftActions: SwipeActionItem[]` = [] — Actions revealed when swiping from left to right

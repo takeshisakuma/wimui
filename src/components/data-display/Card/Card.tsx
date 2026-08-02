@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
-import type { ComponentSize } from "../../../types/tokens";
 import { warnUnstyledValue } from "../../../utilities/warn-unstyled-value";
 import { CARD_STYLED_PADDING, CARD_STYLED_RADIUS } from "./styled-values";
 import styles from "./card.module.scss";
@@ -16,10 +15,23 @@ export type CardProps = {
   variant?: "elevated" | "outline" | "flat" | "glass";
   /** Whether to enable hover animation and click effects */
   interactive?: boolean;
-  /** Padding size */
-  padding?: ComponentSize | "none";
-  /** Corner radius size */
-  radius?: ComponentSize | "none";
+  /**
+   * Padding size.
+   *
+   * Derived from the values `card.module.scss` implements, not from
+   * `ComponentSize`. Declaring the whole scale meant `padding="5xl"`
+   * type-checked and then did nothing (T38); deriving it means the type cannot
+   * drift from the stylesheet again, because `Card.unstyled-values.test.tsx`
+   * fails if the list stops matching the SCSS.
+   */
+  padding?: (typeof CARD_STYLED_PADDING)[number];
+  /**
+   * Corner radius size.
+   *
+   * Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
+   * `-4xl` / `-5xl` token, so those values had nothing they could have meant.
+   */
+  radius?: (typeof CARD_STYLED_RADIUS)[number];
 } & React.ComponentPropsWithoutRef<"div">;
 
 interface CardComponent {
