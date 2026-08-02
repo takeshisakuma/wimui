@@ -159,8 +159,8 @@ There are two ways to specify an icon.
 ```tsx
 import { Button, Icon, CheckIcon } from "wimui";
 
-<Button icon={<Icon component={CheckIcon} />}>Save</Button>
-<Icon component={CheckIcon} size="sm" />
+<Button icon={<Icon component={CheckIcon} />}>Save</Button>;
+<Icon component={CheckIcon} size="sm" />;
 ```
 
 **2. Specify by string**
@@ -264,6 +264,8 @@ In Storybook, check it via the toolbar **Density**, or Token → Density / Theme
 ## Bundle size and import style
 
 Named imports from the root exclude unused components from the bundle (`sideEffects` is configured). Per-category subpaths are also available.
+
+<!-- code-example: skip — 同じ名前を 2 つの経路から import する「どちらでも書ける」の例示。1 ファイルとしては重複識別子になるのが正しい -->
 
 ```tsx
 import { Button } from "wimui";      // tree-shakeable (recommended)

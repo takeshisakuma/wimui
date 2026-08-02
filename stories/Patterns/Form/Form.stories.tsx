@@ -422,6 +422,8 @@ export const WelcomeScreen: StoryObj = {
                 width: "64px",
                 height: "64px",
               borderRadius: "var(--wim-radius-xl)",
+                // intent-surface-ok: アプリのロゴマーク。ブランドの面であって
+                // intent（状態）の面ではない。デザインシステムに「ロゴ」部品は無い。
                 background: "var(--wim-color-primary)",
                 display: "flex",
                 alignItems: "center",

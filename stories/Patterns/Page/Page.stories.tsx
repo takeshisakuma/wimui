@@ -19,6 +19,7 @@ import {
   Input,
   InputGroup,
   Rating,
+  Result,
   Stack,
   Stats,
   Text,
@@ -89,6 +90,8 @@ export const DashboardHeader: StoryObj = {
                 style={{
                   width: "var(--wim-spacing-4xl)",
                   height: "var(--wim-spacing-4xl)",
+                  // intent-surface-ok: アプリのロゴマーク。ブランドの面であって
+                  // intent（状態）の面ではないので、Badge/Tag に寄せる対象ではない。
                   backgroundColor: "var(--wim-color-primary)",
                   borderRadius: "var(--wim-radius-md)",
                   display: "flex",
@@ -361,30 +364,26 @@ export const MaintenancePage: StoryObj = {
           align="center"
           style={{ maxWidth: "560px", textAlign: "center" }}
         >
-          <div
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "var(--wim-radius-full)",
-              background: "var(--wim-color-warning-subtle)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Icon name="SettingsIcon" style={{ width: "40px", height: "40px", color: "var(--wim-color-warning, var(--wim-color-warning))" }} />
-          </div>
-
-          <Stack gap="md" align="center">
-            <Title tag="h1" size="xl" align="center">
-              {t("maintenance.title")}
-            </Title>
-            <Text
-              content={t("maintenance.desc")}
-              color="text-secondary"
-              style={{ textAlign: "center" }}
-            />
-          </Stack>
+          {/*
+            この 3 要素（淡い円のアイコン → 見出し → 説明）は `Result` そのもの。
+            以前は 80px の円を <div> に直書きしていたが、それは当時「淡い円の上に
+            アイコン」を描く部品が無かったため（T52 で孤島として記録し、T47⑥ で
+            `Result` に `iconSurface` を足して解消した）。intent="warning" が
+            --wim-color-warning-subtle を敷くので、手で色を指定するところは無くなる。
+            title に Title を渡しているのは、`Result` の見出しが <div> だからで、
+            ここはページの h1 が要る（下の Alert が h2 なので、抜けると heading-order）。
+          */}
+          <Result
+            intent="warning"
+            iconSurface
+            icon={<Icon name="SettingsIcon" />}
+            title={
+              <Title tag="h1" size="xl" align="center">
+                {t("maintenance.title")}
+              </Title>
+            }
+            description={t("maintenance.desc")}
+          />
 
           {/* h1 直後の見出しなので h2（axe: heading-order） */}
           <Alert intent="info" title={t("maintenance.eta_label")} titleTag="h2">

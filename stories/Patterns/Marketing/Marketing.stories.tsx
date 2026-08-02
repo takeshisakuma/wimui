@@ -740,6 +740,9 @@ export const ComparisonTable: StoryObj = {
                     padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                     textAlign: "center",
                     fontWeight: 700,
+                    // intent-surface-ok: 比較表で薦めるプランの列に帯を敷いている。
+                    // 「列を通して強調する」形の部品はライブラリに無く、Badge に
+                    // 寄せると帯ではなく点になって列の対応が読めなくなる。
                     background: "var(--wim-color-primary-muted)",
                     fontSize: "var(--wim-font-size-sm)",
                     color: "var(--wim-color-text-accent)",
@@ -786,6 +789,8 @@ export const ComparisonTable: StoryObj = {
                     style={{
                       padding: "var(--wim-spacing-md) var(--wim-spacing-xl)",
                       textAlign: "center",
+                      // intent-surface-ok: 上のヘッダセルと同じ帯の続き。
+                      // ここで切れると強調が列にならない。
                       background: "var(--wim-color-primary-muted)",
                     }}
                   >

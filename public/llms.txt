@@ -143,7 +143,7 @@ const rows = [
   { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610.50", status: "paid" },
   { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199.00", status: "failed" },
   { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
-];
+] as const;
 const intent = { paid: "success", failed: "danger", pending: undefined } as const;
 
 export function BillingOverview() {
@@ -427,6 +427,14 @@ export function BillingOverview() {
 - **ThreadList** — ThreadList renders a conversation-history sidebar for AI chat apps — a scrollable list of past threads with an optional new-conversation action and per-thread deletion.
 - **UsageMeter** — UsageMeter (also exported as TokenCounter) visualizes token consumption against a budget such as a model's context window — a labeled bar plus a numeric readout that shifts to warning and danger colors near the limit. (aka Level Indicator, Capacity Indicator, Meter)
 - **VoiceVisualizer** — Animated voice-level indicator (bars / waveform)
+
+## Not in scope — deliberately not provided
+
+These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
+
+- **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.
 
 ---
 For per-component props, types and defaults, see `llms-full.txt`.

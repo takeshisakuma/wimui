@@ -1,0 +1,33 @@
+{
+  "$comment": "外部語彙に載っているが WIM UI では『採らない』ものの単一ソース（T47⑤）。`src/data/components.json` の `aliases` が『他所の名前 → 実装名』の橋渡しなのに対し、こちらは『他所の名前 → 採らない理由』を答える。両者は同じ問い（外部の語彙で来た人が探し物に辿り着けるか）の裏表なので、`check:aliases` が両方を一度に検証する。llms.txt へは `generate-llms.js` が出す。ここに載せる条件は『実装が無い』ではなく『あっても入れない』こと — 単に未実装なだけのものは IMPROVEMENTS.md の T47 に置き、実装候補のまま残すこと。",
+  "$fields": {
+    "name": "外部の体系で使われている呼び名（見出しになる）",
+    "aka": "同じものを指す別表記。実装名・既存の alias と衝突してはならない（check:aliases が検証する）",
+    "ja": "DESIGN.md 用。採らない理由を日本語で",
+    "en": "llms.txt 用。外部 AI が『無いから自作する』へ進まない粒度の英語",
+    "instead": "代わりに使うもの。実在するコンポーネント名かトークン名を書く"
+  },
+  "notPlanned": [
+    {
+      "name": "Parallax Scrolling",
+      "aka": ["Parallax", "Scroll Parallax", "Parallax Hero"],
+      "ja": "背景と前景をスクロール速度差で動かす演出。動きが内容の変化に対応しておらず、DESIGN.md のモーション方針（動かすのは状態が変わったときだけ）と正面から当たる。スクロール位置を伝えたいなら位置そのものを出す。",
+      "en": "Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position.",
+      "instead": "ScrollProgress"
+    },
+    {
+      "name": "Text Scramble",
+      "aka": ["Scramble Text", "Decrypt Text", "Glitch Text"],
+      "ja": "確定するまで文字をランダムに入れ替える演出。読み手は同じ文を 2 度読むことになり、可読性を落とした分の見返りが無い。文字が順に出る必然性があるのは生成中のテキストだけで、それは StreamingText が担当する。",
+      "en": "Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers.",
+      "instead": "StreamingText"
+    },
+    {
+      "name": "Spring Animation",
+      "aka": ["Spring Physics", "Springs", "Physics-based Animation"],
+      "ja": "質量・剛性・減衰を prop で受け、rAF ループで解く物理アニメーション基盤。バウンスの曲線自体は `--wim-easing-spring` として既にあり、押下やスワイプの戻りはこれで足りる。基盤を持つと『どのコンポーネントにも渡せる物理パラメータ』が公開契約に増え、CSS で完結していたモーションが JS 依存になる。",
+      "en": "A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS.",
+      "instead": "--wim-easing-spring"
+    }
+  ]
+}

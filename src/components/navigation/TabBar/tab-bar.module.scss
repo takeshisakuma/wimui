@@ -87,7 +87,11 @@
       font-size: var(--wim-font-size-2xs);
       font-weight: var(--wim-font-weight-bold);
       line-height: var(--wim-spacing-xl);
-      color: var(--wim-color-text-on-primary);
+
+      // 面は danger なのに文字が on-**primary** だった。light は白同士でたまたま
+      // 合っていたが、dark の danger は #fb7482（明るいピンク）なので白を載せると
+      // 2.65:1 になる。on-danger は dark で #000 に反転する。T41 案② で検出。
+      color: var(--wim-color-text-on-danger);
       pointer-events: none;
       background-color: var(--wim-color-danger);
       border-radius: var(--wim-radius-full);

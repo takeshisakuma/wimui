@@ -361,6 +361,7 @@
     "check:mono": "node scripts/check-mono-family.js",
     "check:story-tokens": "node scripts/check-story-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
+    "check:contrast:scss": "node scripts/check-contrast-scss.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",
     "check:slop": "node scripts/check-slop.js",
     "judge:slop": "node scripts/judge-slop.mjs",
@@ -376,6 +377,7 @@
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",
     "check:readme": "node scripts/check-readme-claims.js",
+    "check:examples": "node scripts/check-code-examples.js",
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js"
   },
   "keywords": [
@@ -576,7 +578,8 @@
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
       "node scripts/check-mono-family.js",
-      "node scripts/check-intent-text-color.js"
+      "node scripts/check-intent-text-color.js",
+      "node scripts/check-contrast-scss.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
@@ -622,7 +625,7 @@
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
-    "{src/data/components.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
+    "{src/data/components.json,src/data/not-planned.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
       "node scripts/check-aliases.js",
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
@@ -638,6 +641,9 @@
     ],
     "{README.md,package.json}": [
       "node scripts/check-readme-claims.js"
+    ],
+    "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt}": [
+      "node scripts/check-code-examples.js"
     ]
   },
   "dependencies": {

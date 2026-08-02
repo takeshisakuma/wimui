@@ -250,7 +250,10 @@
       padding: 0 var(--wim-spacing-2xs);
       font-size: var(--wim-font-size-3xs);
       line-height: 1;
-      color: var(--wim-color-text-on-primary);
+
+      // TabBar の通知バッジと同じ取り違え（面は danger・文字は on-primary）。
+      // dark で 2.65:1。T41 案② で検出。
+      color: var(--wim-color-text-on-danger);
       text-align: center;
       background-color: var(--wim-color-danger);
       border-radius: var(--wim-radius-full);

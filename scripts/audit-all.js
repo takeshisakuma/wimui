@@ -82,6 +82,14 @@ const checks = [
   },
   {
     category: "docs",
+    // 上が README の「表」の主張を見るのに対し、こちらは**コード例そのもの**を
+    // コンパイルする（T37 の残り）。llms.txt のレシピは generate-llms.js の中に
+    // 手書きで存在し、「実 API に対して検証済み」とコメントされているだけだった。
+    name: "README / llms.txt code examples compile",
+    command: "node scripts/check-code-examples.js",
+  },
+  {
+    category: "docs",
     // 「Open in StackBlitz」が install するバージョン。手書きだった頃は `^0.3.0` の
     // まま 7 リリース放置され、プレビューと sandbox が別のライブラリになっていた。
     name: "StackBlitz scaffold pins the published version",
@@ -120,6 +128,14 @@ const checks = [
     // axe も VRT も捕まえられない種類（T34）。
     name: "Contrast / fill visibility (intent × variant × surface)",
     command: "node scripts/check-contrast.js",
+  },
+  {
+    category: "lib",
+    // 上が「宣言された組み合わせ」を見るのに対し、こちらは **SCSS に実際に
+    // 書かれた color / background の対**を解いて比を出す（T41 案②）。
+    // 宣言が正しくても実装が SSOT を迂回していれば、上は緑のまま通る。
+    name: "Contrast resolved from the SCSS that actually ships",
+    command: "node scripts/check-contrast-scss.js",
   },
   {
     category: "lib",
