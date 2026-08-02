@@ -183,7 +183,9 @@ export const Combobox = ({
           >
             <input
               id={id}
-              className={classNames(styles.input, disabled && styles.disabled)}
+              // 無効時の見た目は `.input:disabled` が持つ（下で disabled 属性を渡している）。
+              // 別クラスは実体が無く、付けても何も起きなかった（T58）。
+              className={styles.input}
               placeholder={placeholder}
               value={inputValue}
               onChange={handleInputChange}

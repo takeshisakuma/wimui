@@ -109,7 +109,9 @@ export const DialogTrigger = ({
   return (
     <Component
       type="button"
-      className={classNames(styles.trigger, className)}
+      // トリガーは意図的に無スタイル（中身は利用者が差し込む）。`Drawer` 側は
+      // SCSS に空の `.trigger` を置いているが、空の規則は死んだ重さなので参照を外す（T58）。
+      className={className}
       onClick={handleClick}
       {...props}
     >
@@ -144,7 +146,8 @@ export const DialogClose = ({
   return (
     <Component
       type="button"
-      className={classNames(styles.close, className)}
+      // 同上（T58）。
+      className={className}
       onClick={handleClick}
       {...props}
     >

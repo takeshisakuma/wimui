@@ -121,7 +121,8 @@ export const BottomSheetTrigger = ({
 
   return (
     <button
-      className={classNames(styles.trigger, className)}
+      // トリガーは意図的に無スタイル（T58）。
+      className={className}
       onClick={handleClick}
     >
       {children}
@@ -173,7 +174,8 @@ export const BottomSheetClose = ({
   return (
     <button
       type="button"
-      className={classNames(styles.close, className)}
+      // 同上（T58）。
+      className={className}
       onClick={handleClick}
     >
       {children}

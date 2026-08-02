@@ -25,6 +25,14 @@
       flex: 1;
       vertical-align: top;
 
+      /* 無効なステップ。`<div>` なので `:disabled` は当たらず、クラスも実体が
+         無かったため**有効なステップと見分けが付かなかった**（T58）。既に付いている
+         `aria-disabled` に紐づけて、意味と見た目を 1 つの条件から出す。 */
+      &[aria-disabled="true"] {
+        cursor: not-allowed;
+        opacity: var(--wim-opacity-disabled);
+      }
+
       &:last-child {
         flex: none;
       }

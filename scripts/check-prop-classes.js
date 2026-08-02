@@ -115,7 +115,12 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
 // **足りないのではなく死んだ参照**だった（前者は `:focus-visible` が、後者はチェック
 // アイコンが既に同じ状態を描いている）。**33 件すべてが「クラスを足す」で直るとは
 // 限らない** — 1 件ずつ「足す / 消す」を判定すること。
-const BARE_CLASS_BASELINE = 31;
+// 31 → 23: 同日 2 巡目。**8 件のうち 7 件が「消す」だった**。無効状態は
+// `:disabled`（Combobox / SmartSearchInput）が既に持ち、トリガーは意図的に無スタイル
+// （Dialog / BottomSheet。Drawer は SCSS に空の `.trigger` を置いている）、
+// ストリーミング表示は `.cursor` が描いている。**足したのは Stepper の無効ステップ 1 件だけ**で、
+// それも `<div>` に `:disabled` は当たらないので既存の `aria-disabled` に紐づけた。
+const BARE_CLASS_BASELINE = 23;
 const bareMissing = [];
 
 for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
