@@ -109,24 +109,31 @@ export default function DeployAssistant() {
     <Stack gap="xl">
       {/* Chrome: which model, how much budget is left, nothing else. No primary
           surface here — the page's one accent belongs to Send. */}
-      <Group justify="between" align="center" gap="lg">
-        <Title tag="h1" size="sm">
-          Deploy assistant
-        </Title>
-        <Group gap="xl" align="center">
-          <UsageMeter
-            used={128400}
-            max={200000}
-            size="sm"
-            labels={{ label: "Context", unit: "tokens" }}
-          />
-          <ModelSelector models={models} value="sonnet" />
-        </Group>
-      </Group>
+      {/* Chrome: the page title alone. UsageMeter and ModelSelector are
+          `width: 100%` column fillers (ModelSelector even sets `min-width: 0`),
+          so a flex row squeezes them to one character per line — measured 12px
+          wide and 272px tall before they moved. They live in the rail, which is
+          a column and the size they expect. Filed as T59. */}
+      <Title tag="h1" size="sm">
+        Deploy assistant
+      </Title>
 
       <Grid cols={{ base: "1fr", lg: "auto 1fr" }} gap="xl" align="start">
         <Sidebar bordered>
-          <ThreadList threads={threads} activeId={activeThread} onSelect={setActiveThread} />
+          <Stack gap="lg">
+            <ThreadList threads={threads} activeId={activeThread} onSelect={setActiveThread} />
+            <Box px="md">
+              <Stack gap="md">
+                <ModelSelector models={models} value="sonnet" />
+                <UsageMeter
+                  used={128400}
+                  max={200000}
+                  size="sm"
+                  labels={{ label: "Context", unit: "tokens" }}
+                />
+              </Stack>
+            </Box>
+          </Stack>
         </Sidebar>
 
         <ChatContainer>
