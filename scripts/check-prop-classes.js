@@ -111,7 +111,11 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
 // 将来そう書かれたときに誤検出で止まらないようにしておく）。
 // 35 → 33: 2026-08-02。`Drawer` の `showOverlay` と `List` の `fullWidth` を実装した
 // （どちらも「prop が黙って無視される」形だった）。残り 33 は見た目の設計判断が要る。
-const BARE_CLASS_BASELINE = 33;
+// 33 → 31: 同日。`GanttChart` の `.focused` と `ModelSelector` の `.selected` は
+// **足りないのではなく死んだ参照**だった（前者は `:focus-visible` が、後者はチェック
+// アイコンが既に同じ状態を描いている）。**33 件すべてが「クラスを足す」で直るとは
+// 限らない** — 1 件ずつ「足す / 消す」を判定すること。
+const BARE_CLASS_BASELINE = 31;
 const bareMissing = [];
 
 for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
