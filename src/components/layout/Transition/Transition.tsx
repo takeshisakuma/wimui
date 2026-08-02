@@ -8,7 +8,9 @@ import React, {
 import classNames from "classnames";
 import styles from "./transition.module.scss";
 
+/** `"none"` は「その相はアニメーションしない」の意味で、`enterPreset` / `leavePreset` に渡す。 */
 export type TransitionPreset =
+  | "none"
   | "fade"
   | "scale"
   | "slide-right"
@@ -21,8 +23,18 @@ export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
   show: boolean;
   /** Content to transition */
   children: React.ReactNode;
-  /** Preset transition (fade, scale, slide-*) */
+  /** Preset transition (fade, scale, slide-*) — 入りと出の両方に効く */
   preset?: TransitionPreset;
+  /**
+   * 入りだけ別扱いにしたいときのプリセット。`"none"` で入りのアニメーションを止める。
+   * 省略時は `preset` に従う。
+   *
+   * `Drawer` の `slideIn` / `slideOut` のように**片方だけ切りたい** API があるのに、
+   * `preset` は両相を一括で決めるため表現できなかった（T58）。
+   */
+  enterPreset?: TransitionPreset;
+  /** 出だけ別扱いにしたいときのプリセット。`"none"` で出のアニメーションを止める。 */
+  leavePreset?: TransitionPreset;
   /** Class applied during the enter transition */
   enter?: string;
   /** Class applied at the start of the enter transition */
@@ -113,6 +125,8 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       show,
       children,
       preset,
+      enterPreset,
+      leavePreset,
       enter = "",
       enterFrom = "",
       enterTo = "",
@@ -133,13 +147,18 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     const [prevShow, setPrevShow] = useState(show);
     const internalRef = useRef<HTMLDivElement>(null);
 
-    const presetClasses = preset ? getPresetClasses(preset) : {};
-    const effectiveEnter    = classNames(presetClasses.enter,     enter);
-    const effectiveEnterFrom = classNames(presetClasses.enterFrom, enterFrom);
-    const effectiveEnterTo  = classNames(presetClasses.enterTo,   enterTo);
-    const effectiveLeave    = classNames(presetClasses.leave,     leave);
-    const effectiveLeaveFrom = classNames(presetClasses.leaveFrom, leaveFrom);
-    const effectiveLeaveTo  = classNames(presetClasses.leaveTo,   leaveTo);
+    // 相ごとに解決する。`enterPreset` / `leavePreset` が省略なら `preset` に従い、
+    // `"none"` ならその相のプリセットクラスを付けない（明示した enter/leave は残す）。
+    const resolve = (p: TransitionPreset | undefined) =>
+      p && p !== "none" ? getPresetClasses(p) : {};
+    const enterClasses = resolve(enterPreset ?? preset);
+    const leaveClasses = resolve(leavePreset ?? preset);
+    const effectiveEnter    = classNames(enterClasses.enter,     enter);
+    const effectiveEnterFrom = classNames(enterClasses.enterFrom, enterFrom);
+    const effectiveEnterTo  = classNames(enterClasses.enterTo,   enterTo);
+    const effectiveLeave    = classNames(leaveClasses.leave,     leave);
+    const effectiveLeaveFrom = classNames(leaveClasses.leaveFrom, leaveFrom);
+    const effectiveLeaveTo  = classNames(leaveClasses.leaveTo,   leaveTo);
 
     // Derived state: mount the element when show becomes true.
     if (show && !shouldRender) {

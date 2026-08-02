@@ -165,10 +165,10 @@ function definedClasses(scss) {
 // 17 → 12: 3 巡目。5 件とも「消す」だった — 間隔は親の `gap` が、書体と左右の
 // 配置は `.header`（space-between）が既に持っていた。**ここまで 17 件中 14 件が
 // 「消す」**で、見た目の欠陥は少数だった。
-// 12 → 2: 4 巡目。残る 2 件は `Drawer` の `.noSlideIn` / `.noSlideOut` で、
-// **クラスを足すのが間違った直し方**（Drawer にアニメーション自体が無い）。
-// 実装するか prop を消すかの判断待ちなので、ここで止める。
-const BARE_CLASS_BASELINE = 2;
+// 12 → 0: 完了。最後の 2 件（`Drawer` の `.noSlideIn` / `.noSlideOut`）は
+// クラスではなく `Transition` の相ごとプリセットで解決した。**0 が正**なので、
+// 増えたら必ず落ちる。
+const BARE_CLASS_BASELINE = 0;
 const bareMissing = [];
 
 for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {

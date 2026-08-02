@@ -140,6 +140,13 @@ export const OverlayBase = ({
           aria-modal={ariaModal}
           onClick={(e) => e.stopPropagation()}
           preset="scale"
+          // **`appear` が要る。** この Transition はオーバーレイ Transition の子なので、
+          // 閉じている間はマウントされておらず、開いた瞬間に `show=true` の状態で
+          // 新規マウントされる。`Transition` の初期状態は `show && appear ? "entering" : "idle"`
+          // なので、`appear` が無いと入りのアニメーションが一度も走らない。
+          // 外側のオーバーレイは閉じている間も残るため `show` の false→true を見られて動く。
+          // その差で、**中身だけ preset が効いていなかった**（T58 の Drawer 調査で判明）。
+          appear
           {...transitionProps}
           {...rest}
         >
