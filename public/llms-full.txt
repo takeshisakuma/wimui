@@ -3044,3 +3044,11 @@ For bars: one value per bar. For waveform: time-domain samples.
     - `height: number` = 40 — Rendered height in pixels (default 40)
     - `className: string` — Additional CSS class
     - `sentiment: "neutral" | "positive" | "caution" | "negative" | "informative"` = "neutral" — Sentiment context for coloring (default 'neutral')
+
+## Not in scope — deliberately not provided
+
+These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
+
+- **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.

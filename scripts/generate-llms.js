@@ -767,6 +767,24 @@ const catalogSection = (withProps) => {
   return lines.join('\n');
 };
 
+// --- not in scope (T47⑤) --------------------------------------------------
+//
+// 「カタログに無い」は「まだ実装していない」と読まれる。読んだエージェントは
+// 素直に自作して埋めるので、**採らないと決めたものは決めたと書く**しかない。
+// 理由と代替を必ず添えるのは、判断を再検討できる形で残すため（`check:aliases` が
+// 空を落とす）。SSOT は `src/data/not-planned.json`。
+const notPlannedList = readJSON('src/data/not-planned.json').notPlanned;
+const notPlanned = [
+  `## Not in scope — deliberately not provided`,
+  ``,
+  `These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a ${pkg.name} screen; the alternative given is the supported way to express the same intent.`,
+  ``,
+  ...notPlannedList.map(
+    (n) =>
+      `- **${n.name}**${n.aka?.length ? ` (aka ${n.aka.join(', ')})` : ''} — ${n.en} Use \`${n.instead}\` instead.`,
+  ),
+].join('\n');
+
 // --- assemble & write -----------------------------------------------------
 
 const banner = `# WIM UI — LLM guide (llms.txt)\n\n> Machine-readable map of the ${pkg.name} React component library for coding agents. Read this before generating any UI with ${pkg.name}: it defines the required CSS/setup, the correct import paths, the full component list, and the composition rules that keep screens from looking AI-generated.\n`;
@@ -778,6 +796,7 @@ const concise = [
   recipes,
   `> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in \`llms-full.txt\`.`,
   catalogSection(false),
+  `\n${notPlanned}`,
   `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.`,
 ].join('\n');
 
@@ -789,6 +808,7 @@ const full = [
   recipesExtra,
   idioms,
   catalogSection(true),
+  `\n${notPlanned}`,
 ].join('\n');
 
 // --check: 生成せず、コミット済みの内容と一致するかだけを見る。
