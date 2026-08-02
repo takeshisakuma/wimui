@@ -241,10 +241,11 @@ setWimDensity("compact");
 
 <style>
   {`
+  /* No max-width here: Storybook already caps .sbdocs-content at 1000px and
+     centers it. Capping again (this was 72ch) made this page visibly narrower
+     than every other MDX page — and narrower than its own trailing section,
+     which sits outside this container. */
   .config-container {
-    padding: var(--wim-spacing-3xl);
-    max-width: 72ch;
-    margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
   }

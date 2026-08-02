@@ -47,10 +47,10 @@ setWimPreset("bold"); // "minimal" | "soft" | "bold" | "none"`}</Command>
 
 <style>
   {`
+  /* No max-width here: Storybook already caps .sbdocs-content at 1000px and
+     centers it. Capping again (this was 80ch) made this page narrower than
+     every other MDX page. */
   .presets-doc {
-    padding: 0 var(--wim-spacing-3xl);
-    max-width: 80ch;
-    margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
     color: var(--wim-color-text-primary);
   }
