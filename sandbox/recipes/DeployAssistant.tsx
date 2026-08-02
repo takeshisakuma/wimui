@@ -12,6 +12,7 @@ import {
   CodeBlock,
   Grid,
   Group,
+  HamburgerMenu,
   ModelSelector,
   PromptInput,
   Sidebar,
@@ -104,6 +105,7 @@ const sources = [
 export default function DeployAssistant() {
   const [activeThread, setActiveThread] = useState("t_8f2c");
   const [draft, setDraft] = useState("");
+  const [railOpen, setRailOpen] = useState(false);
 
   return (
     <Stack gap="xl">
@@ -114,18 +116,33 @@ export default function DeployAssistant() {
           so a flex row squeezes them to one character per line — measured 12px
           wide and 272px tall before they moved. They live in the rail, which is
           a column and the size they expect. Filed as T59. */}
-      <Title tag="h1" size="sm">
-        Deploy assistant
-      </Title>
+      <Group gap="md" align="center">
+        {/* Sidebar retreats off-canvas below md and does not bring its own way
+            back: without this the rail — threads, model, budget — is simply
+            unreachable on a phone. visibleBelow keeps the control out of the
+            way at desktop widths, where the rail is already on screen. */}
+        <HamburgerMenu
+          size="sm"
+          visibleBelow="md"
+          open={railOpen}
+          onClick={() => setRailOpen((o) => !o)}
+        />
+        <Title tag="h1" size="sm">
+          Deploy assistant
+        </Title>
+      </Group>
 
       <Grid cols={{ base: "1fr", lg: "auto 1fr" }} gap="xl" align="start">
-        <Sidebar bordered>
+        <Sidebar bordered mobileOpen={railOpen} onOverlayClick={() => setRailOpen(false)}>
           {/* Sidebar has no padding of its own (measured 0 on all four sides),
               so the rail states its own. Without it the thread list sits on the
               top edge and the meter on the bottom one. */}
           <Box py="lg">
             <Stack gap="lg">
-              <ThreadList threads={threads} activeId={activeThread} onSelect={setActiveThread} />
+              <ThreadList threads={threads} activeId={activeThread} onSelect={(id) => {
+                  setActiveThread(id);
+                  setRailOpen(false);
+                }} />
               <Box px="md">
                 <Stack gap="md">
                   <ModelSelector models={models} value="sonnet" />
