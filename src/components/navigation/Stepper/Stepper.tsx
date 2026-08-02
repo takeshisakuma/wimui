@@ -142,7 +142,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
                 styles.item,
                 styles[stepIntent],
                 labelPlacement === "vertical" && styles.labelVertical,
-                step.disabled && styles.disabled,
               )}
               onClick={() => isClickable && onChange(index)}
               style={{ cursor: isClickable ? "pointer" : "default" }}

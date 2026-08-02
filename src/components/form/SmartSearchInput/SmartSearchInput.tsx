@@ -145,7 +145,8 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
             <textarea
               id={id}
               ref={textareaRef}
-              className={classNames(styles.textarea, styles[variant], disabled && styles.disabled)}
+              // 無効時は `.textarea:disabled` が持つ（T58）。
+              className={classNames(styles.textarea, styles[variant])}
               value={currentValue}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
