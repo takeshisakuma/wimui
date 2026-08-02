@@ -26,6 +26,8 @@ import MembersTable from "./recipes/MembersTable";
 import membersSource from "./recipes/MembersTable.tsx?raw";
 import Onboarding from "./recipes/Onboarding";
 import onboardingSource from "./recipes/Onboarding.tsx?raw";
+import DeployAssistant from "./recipes/DeployAssistant";
+import deployAssistantSource from "./recipes/DeployAssistant.tsx?raw";
 
 type Recipe = {
   id: string;
@@ -50,6 +52,15 @@ const RECIPES: Recipe[] = [
       "A KPI row over a dense invoice table. One customer has no plan and one payment failed — the two rows a billing screen actually has to survive.",
     Component: BillingOverview,
     source: billingSource,
+  },
+  {
+    id: "deploy-assistant",
+    title: "Deploy assistant",
+    description:
+      "A conversation mid-incident: one answer with its reasoning and sources, one that failed and offers a retry, one still being written.",
+    column: "wide",
+    Component: DeployAssistant,
+    source: deployAssistantSource,
   },
   {
     id: "members-table",
