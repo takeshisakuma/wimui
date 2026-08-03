@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Avatar } from "wimui";
+import avatar1 from "@/media/avatar_1.svg";
 
 
 const meta: Meta<typeof Avatar> = {
@@ -36,7 +37,7 @@ export const Default: Story = {
     return (
       <Avatar
         {...args}
-        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&h=120"
+        src={avatar1}
         alt={t("story.avatar_alt")}
       />
     );
