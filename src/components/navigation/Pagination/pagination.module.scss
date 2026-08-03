@@ -3,6 +3,13 @@
 @layer component {
   .container {
     width: 100%;
+
+    /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
+       flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 24px** に対し内容は 125px。
+       **containment は外せない**（`container-name` を使っていないため、中に置かれた
+       子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
+       使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
     container-type: inline-size;
   }
 

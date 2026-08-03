@@ -26,13 +26,7 @@
  * するのは内側の `.tableWrapper` だけ。実測（610px の flex row・残り 24px）では
  * 幅 24px・高さ 6950px・テキスト幅 4px＝1 文字ずつの折り返しになっていた。
  *
- * **このガードが見ていない同型がある（未対応）。** `container-type: inline-size` は
- * `contain: inline-size` なので、それ自体が内容の寸法を 0 として扱い、
- * `min-width: 0` が一切無くても同じ潰れ方をする。単独実験（残り 40px の flex row）:
- *   `width:100%` のみ → 190px（保護あり） / `width:100%` + `min-width:0` → 40px
- *   `width:100%` + `container-type` → **40px** / `container-type` のみ → **0px**
- *   `container-type` + `min-width:min-content` → **40px**（`min-content` も 0 に潰れる）
- * `src/` には同じ規則に `min-width` を持たない `container-type: inline-size` が 19 件ある。
+ * **同型がもう 1 つあり、下の第 2 の形で見ている（T61）。**
  *
  * 使い方: node scripts/check-shrinkable-roots.js
  * 引数は取らない（lint-staged から部分集合を渡されても全量を見る）。
@@ -91,6 +85,72 @@ for (const file of globSync('src/**/*.module.scss', { posix: true })) {
   });
 }
 
+/**
+ * ── 第 2 の形（T61）: `container-type: inline-size` に下限が無い ──────────────
+ *
+ * `container-type: inline-size` は `contain: layout style inline-size` なので、
+ * **内容の寸法が 0 として扱われる**。`min-width: 0` を 1 文字も書かなくても
+ * 上と同じ潰れ方をするため、第 1 の形だけでは母集団の半分しか見ていなかった。
+ *
+ * 単独実験（610px の flex row・残り 40px・内容は 190px の語）:
+ *   `width:100%` のみ → 190px（保護あり） / `width:100%` + `min-width:0` → 40px
+ *   `width:100%` + `container-type` → **40px** / `container-type` のみ → **0px**
+ *   `container-type` + `min-width:min-content` → **40px**（`min-content` も 0 に潰れる）
+ *
+ * 2026-08-03 に 610px の flex row（残り 24px）で 19 コンポーネントを実測し、**全件
+ * 潰れた**（`Gallery` と `Dashboard` は 0px、`ChatUI` は 2px。高さは
+ * `ThoughtProcess` 375→3923px / `DescriptionList` 377→3199px / `Tabs` 142→1329px）。
+ *
+ * **`min-content` を下限に使わないこと** — containment 下では 0 に潰れる。
+ *
+ * 2026-08-03 に 20 件すべてへ下限を与え（1 件は `TreeView` の行として `shrinkable-ok`）、
+ * **0 件**になったので、以後は新規の containment をそのまま落とすハードゲート。
+ * **containment を外す方向は採らなかった** — `container-name` を使っていないため、
+ * 中に置かれた子の `@container` が最も近い祖先としてそこを参照している
+ * （`Dashboard` から外したらカラムの高さが 717→538px に変わった）。
+ */
+const CONTAINMENT_BASELINE = 0;
+const containmentHits = [];
+
+for (const file of globSync('src/**/*.module.scss', { posix: true })) {
+  const src = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+  const lines = src.split('\n');
+
+  lines.forEach((raw, i) => {
+    const line = raw.replace(/\/\/.*$/, '');
+    if (!/container-type:\s*inline-size\s*;/.test(line)) return;
+
+    // 同じ規則の中に下限があるか。`min-width: 0` は下限ではないので数えない。
+    //
+    // **値を取り出して判定すること。** 最初は
+    // `/min-width:\s*(?!0(px)?\s*;)/` と否定先読みで書いたが、`\s*` が
+    // バックトラックして**値ではなく空白の位置**で先読みが評価されるため、
+    // `min-width: 0;` が下限として通っていた（実証で判明。既知の 19 件に
+    // `min-width: 0` を足しても鳴らなかった）。**この修正で 20 件目（`TreeView`）が
+    // 現れた** — 壊れた先読みが実在のケースを 1 件覆い隠していた。
+    const isFloor = (l) => {
+      const m = l.match(/(^|\s)min-width:\s*([^;]+);/);
+      if (!m) return false;
+      return !/^0(px)?(\s*!important)?$/.test(m[2].trim());
+    };
+    const scan = (from, to, step) => {
+      for (let k = from; k !== to; k += step) {
+        const l = lines[k]?.replace(/\/\/.*$/, '') ?? '';
+        if (/[{}]/.test(l)) return false;
+        if (isFloor(l)) return true;
+      }
+      return false;
+    };
+    const hasFloor =
+      scan(i - 1, Math.max(-1, i - 40), -1) || scan(i + 1, Math.min(lines.length, i + 40), 1);
+
+    const excused =
+      line.includes(EXCUSE) ||
+      lines.slice(Math.max(0, i - 6), i).some((l) => l.includes(EXCUSE));
+    if (!hasFloor && !excused) containmentHits.push(`${file.replace('src/components/', '')}:${i + 1}`);
+  });
+}
+
 console.log('--- check:shrinkable (width:100% と min-width:0 の同居) ---');
 console.log(`\n同居している箇所: ${hits.length} 件（baseline: ${BASELINE}）`);
 if (hits.length > BASELINE) {
@@ -105,4 +165,22 @@ if (hits.length > BASELINE) {
 if (hits.length < BASELINE) {
   console.log(`ベースラインを ${hits.length} に更新できます（scripts/check-shrinkable-roots.js）。`);
 }
+
+console.log('\n--- check:shrinkable (container-type: inline-size に下限が無い) ---');
+console.log(`\n下限の無い containment: ${containmentHits.length} 件（baseline: ${CONTAINMENT_BASELINE}）`);
+if (containmentHits.length > CONTAINMENT_BASELINE) {
+  for (const h of containmentHits) console.log(`  ${h}`);
+  console.log(`\n[FAIL] 横並びに置くと潰れます（T61）。`);
+  console.log(`       \`container-type: inline-size\` は \`contain: inline-size\` なので`);
+  console.log(`       内容の寸法が 0 として扱われ、\`min-width: auto\` の保護が消えます。`);
+  console.log(`       \`min-width: 0\` を書いていなくても同じ結果になります。`);
+  console.log(`       読める下限を与えるか（**\`min-content\` は containment 下では 0 に潰れるので不可**）、`);
+  console.log(`       そのコンテナが誰にも参照されていないなら \`container-type\` 自体を外してください。`);
+  console.log(`       意図的に縮ませるなら \`${EXCUSE}\` を添えて理由を書いてください。`);
+  process.exit(1);
+}
+if (containmentHits.length < CONTAINMENT_BASELINE) {
+  console.log(`ベースラインを ${containmentHits.length} に更新できます（scripts/check-shrinkable-roots.js）。`);
+}
+
 console.log('\n✓ 増えていません。');
