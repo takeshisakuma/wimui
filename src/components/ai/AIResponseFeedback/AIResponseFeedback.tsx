@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { ThumbUpIcon, ThumbDownIcon, RefreshIcon } from "@/icon";
 import styles from "./airesponse-feedback.module.scss";
 
@@ -67,56 +66,38 @@ export const AIResponseFeedback = React.forwardRef<HTMLDivElement, AIResponseFee
         className={classNames("wim-ai-response-feedback", styles.root, className)}
         {...props}
       >
-        {/* アイコンだけのボタンなので、`aria-label` の文言を目にも見せる。
-            これが無いと、**同じ情報が支援技術にだけ渡っている**状態になる
-            （`CopyButton` が先に採っている形。T62）。 */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              type="button"
-              className={classNames(styles.button, current === "positive" && styles.positive)}
-              onClick={() => handleFeedback("positive")}
-              aria-label={t("ai_feedback.positive_label")}
-              aria-pressed={current === "positive"}
-              disabled={disabled}
-            >
-              <Icon component={ThumbUpIcon} size="sm" />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent>{t("ai_feedback.positive_label")}</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              type="button"
-              className={classNames(styles.button, current === "negative" && styles.negativeActive)}
-              onClick={() => handleFeedback("negative")}
-              aria-label={t("ai_feedback.negative_label")}
-              aria-pressed={current === "negative"}
-              disabled={disabled}
-            >
-              <Icon component={ThumbDownIcon} size="sm" />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent>{t("ai_feedback.negative_label")}</TooltipContent>
-        </Tooltip>
+        <button
+          type="button"
+          className={classNames(styles.button, current === "positive" && styles.positive)}
+          onClick={() => handleFeedback("positive")}
+          aria-label={t("ai_feedback.positive_label")}
+          aria-pressed={current === "positive"}
+          disabled={disabled}
+        >
+          <Icon component={ThumbUpIcon} size="sm" />
+        </button>
+        <button
+          type="button"
+          className={classNames(styles.button, current === "negative" && styles.negativeActive)}
+          onClick={() => handleFeedback("negative")}
+          aria-label={t("ai_feedback.negative_label")}
+          aria-pressed={current === "negative"}
+          disabled={disabled}
+        >
+          <Icon component={ThumbDownIcon} size="sm" />
+        </button>
         {showRegenerate && (
           <>
             <div className={styles.divider} aria-hidden="true" />
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={onRegenerate}
-                  aria-label={t("ai_feedback.regenerate_label")}
-                  disabled={disabled}
-                >
-                  <Icon component={RefreshIcon} size="sm" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>{t("ai_feedback.regenerate_label")}</TooltipContent>
-            </Tooltip>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={onRegenerate}
+              aria-label={t("ai_feedback.regenerate_label")}
+              disabled={disabled}
+            >
+              <Icon component={RefreshIcon} size="sm" />
+            </button>
           </>
         )}
       </div>
