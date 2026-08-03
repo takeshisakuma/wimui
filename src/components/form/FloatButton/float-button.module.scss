@@ -285,8 +285,20 @@
       transition: opacity var(--wim-transition-fast);
     }
 
-    &:hover .description {
+    // `:focus-within` が無いと、キーボードで辿ったときにラベルが出ない
+    // （説明が読めるのがマウス利用者だけになる）。
+    &:hover .description,
+    &:focus-within .description {
       opacity: 1;
+    }
+
+    // **タッチにはホバーが無い。** これが無いとスマホでは説明が一生出ず、
+    // アイコンだけで何のアクションか判断させることになる（T62）。
+    // `.description` は `pointer-events: none` なので誤タップは起きない。
+    @media (hover: none) {
+      .description {
+        opacity: 1;
+      }
     }
 
     &:active:not(:disabled) {
