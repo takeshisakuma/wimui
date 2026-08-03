@@ -4,6 +4,15 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+
+    /* `container-type: inline-size` は `contain: layout style inline-size` なので、
+       **内容の寸法が 0 として扱われ** flex の自動最小サイズの保護が消える。
+       無いと 610px の row（残り 24px）で **幅 24px・高さ 81→947px**。
+       **containment 自体は外せない** — `container-name` を使っていないため、
+       中に置かれた子コンポーネントの `@container` がここを最も近い祖先として
+       参照している（`Dashboard` で外して実測したらカラムの高さが 717→538px に
+       変わった）。**`min-content` も使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     container-type: inline-size;
     
