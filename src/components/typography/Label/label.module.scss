@@ -4,7 +4,15 @@
     flex-direction: column;
     gap: var(--wim-spacing-xs);
     width: 100%;
-    min-width: 0;
+
+    /* `width: 100%` は flex アイテムの自動最小サイズを「指定サイズと内容サイズの
+       小さいほう」にするので、既定の `min-width: auto`（内容より小さくならない）が
+       効かなくなる。そこへ `min-width: 0` を足すと下限が消える。実測（610px の
+       flex row・残り 24px）: 幅 24px・高さ 71→161px で `Username` が 2.7 文字ずつ
+       折り返った。ここは固定値ではなく `min-content` で、失われた保護そのものを
+       戻す — Label は Checkbox のような小さい部品も包むので、180px のような
+       下限を置くと横に並べたときに不必要な幅を取る（T59）。 */
+    min-width: min-content;
     max-width: 100%;
 
     &:has([class*="inputBase"]) {

@@ -12,6 +12,12 @@
       }
 
       .content:has(input[type="color"]) {
+        /* 色見本の欄は 320px も要らないので `--wim-width-xs` に絞っている。
+           `InputBase` の既定の下限（`--wim-width-sm` = 180px）はこれより広いため、
+           **ここで下げないと殻が枠を 60px 押し広げる**（T59 の下限を入れた直後、
+           `ColorPicker` / `ColorInput` の 10 ストーリーで実測）。 */
+        --wim-input-min-width: var(--wim-width-xs);
+
         width: fit-content;
         min-width: var(--wim-width-xs);
         max-width: var(--wim-width-xs);

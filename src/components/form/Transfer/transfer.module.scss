@@ -2,7 +2,12 @@
 
 .container {
     width: 100%;
-    min-width: 0;
+
+    /* 2 つのリストを持つ大きな部品。実測（610px の flex row・残り 24px）:
+       幅 24px のまま高さ 680px の縦棒になり、`0 / 3` のカウンタが 19px まで
+       痩せた。`container-type: inline-size` は「0 まで縮めてよい」ことを
+       要求しないので、読める下限を置く（T59）。 */
+    min-width: var(--wim-width-sm);
     container-type: inline-size;
   }
 
@@ -11,6 +16,9 @@
     gap: var(--wim-spacing-4xl);
     align-items: center;
     width: 100%;
+
+    /* shrinkable-ok: `.container` が下限を持つので、その内側でリスト 2 列を
+       コンテナ幅に合わせて縮めるのは正当（768px 未満では縦積みに切り替わる）。 */
     min-width: 0;
     max-width: 100%;
     font-family: var(--wim-font-family-default);

@@ -2,7 +2,11 @@
   .root {
     position: relative;
     width: 100%;
-    min-width: 0;
+
+    /* 選択値が読める下限。実測（610px の flex row・残り 24px）: 幅 24px になり、
+       選ばれている `Option 1` が 1 文字も出なくなった（理由は `InputBase` と
+       同じ。T59）。**フィルタ帯に Select を横並びに置くのは実アプリで普通の形**。 */
+    min-width: var(--wim-width-sm);
     max-width: var(--wim-width-md);
     font-family: var(--wim-font-family-default);
 
@@ -20,6 +24,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    /* shrinkable-ok: `.root` が下限を持つので、この 0 は「トリガーを殻の幅まで
+       縮めて、値が長ければ中で省略させる」ための正当な縮み（T59）。 */
     min-width: 0;
     min-height: var(--wim-height-md);
     font-size: var(--wim-font-size-md);

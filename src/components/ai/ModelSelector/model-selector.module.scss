@@ -30,6 +30,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    /* shrinkable-ok: `.root` が下限（`--wim-width-sm`）を持つので、この 0 は
+       モデル名が長いときにトリガー内で省略させるための正当な縮み。 */
     min-width: 0;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-family: inherit;

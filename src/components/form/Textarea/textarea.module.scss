@@ -6,7 +6,10 @@
     box-sizing: border-box;
     display: block;
     width: 100%;
-    min-width: 0;
+
+    /* 入力欄として使える下限（理由は `InputBase` と同じ）。実測: 610px の
+       flex row で幅 24px まで潰れた（T59）。 */
+    min-width: var(--wim-width-sm);
     max-width: var(--wim-input-width, var(--wim-width-md));
 
     /* Allow vertical resizing by default */

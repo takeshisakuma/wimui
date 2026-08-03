@@ -12,7 +12,30 @@
     display: flex;
     align-items: center;
     width: 100%;
-    min-width: 0;
+
+    /* 入力欄として使える下限。`width: 100%` があると flex の自動最小サイズが
+       指定サイズ側で決まり、`min-width: 0` を足した時点で下限が消える。実測
+       （610px の flex row・残り 24px）: 幅 24px の空箱になった。`InputBase` は
+       多くのフォーム部品の土台なので、ここが潰れると連鎖する（T59）。
+
+       **下限を変数にしている理由。** 固定の 180px は、**わざと狭くした親を
+       押し広げる** — `FieldTemplate` は `input[type="color"]` の欄を
+       `--wim-width-xs`（120px）に絞っているのに 180px の下限がそれに勝ち、
+       `ColorPicker` / `ColorInput` の 10 ストーリーで 60px はみ出した
+       （全 1017 ストーリーの実測で発見）。**狭くしたい側が明示的に下げられる**
+       ようにして、既定は守る。
+
+       **`min(180px, 100%)` は不採用。** % の `min-width` は包含ブロックに対して
+       解決されるので狭い親でははみ出さない、までは正しい（単独実験で確認）。
+       だが**祖先の内容サイズに寄与しなくなる**ため、`InputBase` を内側に持つ
+       `Label` が 180→24px、`SmartSearchInput` が 180→58px と、いったん直した
+       下限が外れた（実測）。下限は伝播しないと意味がない。
+
+       **既定値は自分では宣言せず `var()` のフォールバックで持つこと。** ここで
+       `--wim-input-min-width: …` と宣言すると自己宣言が継承値に勝つので、
+       `FieldTemplate` が祖先で下げた値が届かない（一度そう書いて、
+       `ColorPicker` の 10 ストーリーが 180px のまま直らなかった）。 */
+    min-width: var(--wim-input-min-width, var(--wim-width-sm));
     max-width: var(--wim-input-width, var(--wim-width-md));
     min-height: var(--wim-height-md);
     background-color: var(--wim-color-surface);
@@ -216,6 +239,9 @@
   .inner {
     box-sizing: border-box !important;
     width: 100%;
+
+    /* shrinkable-ok: 殻（`.root`）が下限を持つので、その内側で入力欄を
+       殻いっぱいに広げるためのもの。ここに下限を置くと中身が殻より広くなる。 */
     min-width: 0 !important;
     height: 100%;
     padding-top: var(--wim-spacing-xs);

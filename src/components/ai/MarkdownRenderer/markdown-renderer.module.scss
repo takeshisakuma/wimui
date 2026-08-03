@@ -5,7 +5,16 @@
   flex-direction: column;
   gap: var(--wim-spacing-md);
   width: 100%;
-  min-width: 0;
+
+  /* 縮んで内部スクロールする面ではない（スクロールするのは `.tableWrapper` だけで、
+     `.root` は overflow を持たない flex column）。`width: 100%` + `min-width: 0` の
+     まま横並びに置くと下限が消えて、実測（610px の flex row・残り 24px）で
+     幅 24px・高さ 1160→6950px・テキスト幅 4px＝**1 文字ずつの折り返し**になった。
+     **`min-content` は使えない** — 中身に表とコードブロックが入るので最小幅が
+     479px になり、243px のカラムに置いただけで外へはみ出した（実測。`Label` は
+     同じ `min-content` で 180px に収まるが、それは中身が入力欄 1 つだから）。
+     固定の下限を置く（T59）。 */
+  min-width: var(--wim-width-sm);
   max-width: 100%;
   line-height: var(--wim-line-height-normal);
   color: var(--wim-color-text-primary);

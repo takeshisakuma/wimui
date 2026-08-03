@@ -13,6 +13,9 @@
     box-sizing: border-box !important;
     display: block;
     width: 100%;
+
+    /* shrinkable-ok: これは `InputBase` の内側に置かれる入力面で、下限は
+       `InputBase` の `.root` が持つ。ここに下限を置くと殻より中身が広くなる。 */
     min-width: 0;
     padding-top: 0;
     padding-bottom: 0;
