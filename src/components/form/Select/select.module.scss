@@ -2,7 +2,16 @@
   .root {
     position: relative;
     width: 100%;
-    min-width: 0;
+
+    /* **ここに下限を置くと `width` prop が壊れる。** `Select` は殻として
+       `InputBase` を描画し、`width` もそちらへ渡すので、根は `--wim-input-width`
+       を見ない。実測: `width="xs"` にしても**根 180px・中身 120px**。
+       T59 の下限を入れた直後に作り込んだ欠陥で、VRT の差分を追う過程で判明した。 */
+
+    /* そこで `min-content` にする。根の最小内容サイズは中の `InputBase` の下限を
+       含むので、既定では 180px、`width="xs"` なら 120px と**中身に追随する**。
+       固定値だと追随せず、`0` だと潰れる（どちらも実測で確認済み）。 */
+    min-width: min-content;
     max-width: var(--wim-width-md);
     font-family: var(--wim-font-family-default);
 
@@ -20,6 +29,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    /* shrinkable-ok: `.root` が下限を持つので、この 0 は「トリガーを殻の幅まで
+       縮めて、値が長ければ中で省略させる」ための正当な縮み（T59）。 */
     min-width: 0;
     min-height: var(--wim-height-md);
     font-size: var(--wim-font-size-md);

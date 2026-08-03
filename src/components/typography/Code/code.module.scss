@@ -35,7 +35,13 @@
       box-sizing: border-box;
       display: block;
       width: 100%;
-      min-width: 0;
+
+      /* 中身は `white-space: pre` + `overflow-x: auto` なので縮んでも折り返らず、
+         ただ覗き窓が狭くなるだけ。実測（610px の flex row・残り 24px）:
+         幅 34px の窓に scrollWidth 300px＝**3 文字分しか見えない**。
+         `min-content` は `pre` の最長行になってスクロールを殺すので使えない。
+         読める窓の下限を固定で置く（T59。T60 の「1 行 20 文字」も参照）。 */
+      min-width: var(--wim-width-sm);
       max-width: 100%;
       padding: var(--wim-spacing-2xl);
       margin: var(--wim-spacing-2xl) 0;

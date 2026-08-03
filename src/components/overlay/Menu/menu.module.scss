@@ -20,7 +20,13 @@
       flex-flow: row nowrap;
       align-items: center;
       width: 100%;
-      min-width: 0;
+
+      /* 横並びメニューは `overflow-x: auto` で溢れをスクロールさせる前提だが、
+         下限が無いと窓そのものが消える。実測（610px の flex row・残り 24px）:
+         幅 24px の窓に scrollWidth 289px＝項目が 1 つも読めない。
+         `.vertical` が `--wim-menu-min-width` を持つのと同じ理由で、
+         横にも下限を与える（T59）。 */
+      min-width: var(--wim-menu-min-width);
       height: auto;
       padding: var(--wim-spacing-xs) 0;
       overflow-x: auto;

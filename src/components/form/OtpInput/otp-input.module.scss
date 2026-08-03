@@ -5,7 +5,15 @@
   .root {
     box-sizing: border-box;
     width: 100%;
-    min-width: 0;
+
+    /* セルが固定寸法（3rem）なので、根が縮んでもセルは縮まない。`min-width: 0`
+       のままだと根だけが痩せてセルが外へはみ出す（実測: 610px の flex row・
+       残り 24px で 幅 24px に対し scrollWidth 174px）。
+       **`min-content` は使えない** — `container-type: inline-size` は
+       `contain: inline-size` なので内容の寸法が 0 として扱われ、`min-content`
+       も 0 に潰れる（単独実験で確認: 残り 40px の行で `min-width: min-content`
+       を付けても 40px のまま）。固定の下限を置く（T59）。 */
+    min-width: var(--wim-width-sm);
     max-width: var(--wim-width-md);
     container-type: inline-size;
 

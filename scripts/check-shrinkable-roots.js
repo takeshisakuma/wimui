@@ -16,12 +16,31 @@
  * （`scrollWidth === clientWidth`）すべて緑のまま出荷されていた。DESIGN.md の
  * チェックリストは「1 文字ずつ折り返る」を名指ししているのに、検出する仕組みが無い。
  *
- * **0 のハードゲートにはしない。** 長い内容を縮めて内部スクロールさせたい場面
- * （`MarkdownRenderer` 等）では `min-width: 0` が正当なので、ラチェットで増加を止め、
- * `shrinkable-ok` を添えて理由を書けば逃がせる。
+ * **正当な `min-width: 0` は「下限を持つ根の内側」だけ。** `Select` の `.trigger` の
+ * ように、根が下限を持ったうえで中身を省略させる縮みは正しいので、`shrinkable-ok`
+ * を添えて理由を書けば逃がせる。
+ *
+ * ※ 初版のこのコメントは「長い内容を縮めて内部スクロールさせたい場面
+ * （`MarkdownRenderer` 等）」を正当例として挙げていたが、**実装を見ずに書いた誤り**。
+ * `MarkdownRenderer` の `.root` は overflow を持たない flex column で、スクロール
+ * するのは内側の `.tableWrapper` だけ。実測（610px の flex row・残り 24px）では
+ * 幅 24px・高さ 6950px・テキスト幅 4px＝1 文字ずつの折り返しになっていた。
+ *
+ * **このガードが見ていない同型がある（未対応）。** `container-type: inline-size` は
+ * `contain: inline-size` なので、それ自体が内容の寸法を 0 として扱い、
+ * `min-width: 0` が一切無くても同じ潰れ方をする。単独実験（残り 40px の flex row）:
+ *   `width:100%` のみ → 190px（保護あり） / `width:100%` + `min-width:0` → 40px
+ *   `width:100%` + `container-type` → **40px** / `container-type` のみ → **0px**
+ *   `container-type` + `min-width:min-content` → **40px**（`min-content` も 0 に潰れる）
+ * `src/` には同じ規則に `min-width` を持たない `container-type: inline-size` が 19 件ある。
  *
  * 使い方: node scripts/check-shrinkable-roots.js
  * 引数は取らない（lint-staged から部分集合を渡されても全量を見る）。
+ *
+ * **`shrinkable-ok` は宣言と同じ行か、直前 6 行以内に置くこと。** 理由を長く書くと
+ * 窓から外れて落ちる（2026-08-03 に `QueryBuilder` で実際に踏んだ）。窓を広げると
+ * 無関係な宣言まで免除してしまうので、**長い理由は別の段落に分け、`shrinkable-ok`
+ * を含む短い一段落を宣言の直前に置く**のが正しい書き方。
  */
 import fs from 'node:fs';
 import { globSync } from 'glob';
@@ -30,11 +49,12 @@ import { globSync } from 'glob';
  * 実測後のラチェット。減らしたらこの値を下げること。**増やすことは許さない。**
  * 残っているものは「意図的に縮ませる」もの。
  */
-// 2026-08-03 実測 15 件。**実害が出た 3 件は直済み**（`UsageMeter` / `ModelSelector` /
-// `PromptInput`。T32 の 3 枚目で 12px まで潰れたもの）。残る 15 件は同じ形だが
-// 実害を確認していないので、まず増加を止める。1 件ずつ「横並びに置かれうるか」を
-// 見て、読める下限を与えるか `shrinkable-ok` で逃がすこと。
-const BASELINE = 15;
+// 2026-08-03 **0 件**。残っていた 15 件を 610px の flex row（残り 24px）で 1 件ずつ
+// 実測し、**12 件すべてが実害だった**（幅 24px まで潰れる。`MarkdownRenderer` は
+// 高さ 1160→6950px で 1 文字ずつの折り返し、`RichTextEditor` は 271→906px）。
+// 9 件に読める下限を与え、6 件は「下限を持つ根の内側」として `shrinkable-ok`。
+// これで 0 になったので、以後は**新規の同居をそのまま落とす**ハードゲート。
+const BASELINE = 0;
 const EXCUSE = 'shrinkable-ok';
 
 const hits = [];
@@ -49,7 +69,9 @@ for (const file of globSync('src/**/*.module.scss', { posix: true })) {
   // （最初の実装がそれで 38 件の偽陽性を出した）。
   lines.forEach((raw, i) => {
     const line = raw.replace(/\/\/.*$/, '');
-    if (!/(^|\s)min-width:\s*0(px)?\s*;/.test(line)) return;
+    // `!important` を数えないと素通りする。実際 `InputBase` の `.inner` が
+    // `min-width: 0 !important;` で 15 件の外に隠れていた（2026-08-03 に判明）。
+    if (!/(^|\s)min-width:\s*0(px)?\s*(!important\s*)?;/.test(line)) return;
 
     const sameRule = (from, to, step) => {
       for (let k = from; k !== to; k += step) {

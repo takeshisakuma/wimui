@@ -191,6 +191,16 @@
 
     .select {
       width: 100%;
+
+      /* **現状ここは根に守られていない** — QueryBuilder の `.root` は
+         `container-type: inline-size` を持つため、`min-width: 0` が無くても
+         内容の寸法が 0 として扱われて潰れる（実測: 610px の flex row・残り 24px
+         で幅 24px のまま。T59 の修正後もここだけ残った）。**根の下限は T61 で
+         入れる**。そのときこの逃がしの前提が初めて成立する。 */
+
+      /* shrinkable-ok: `Select` の `.root` が持つ下限を、ここでは意図して外す。
+         列は `flex: 1 1 240px` で折り返す設計なので、下限を残すと折り返す前に
+         行がはみ出す。 */
       min-width: 0;
     }
 
