@@ -68,6 +68,32 @@ describe("AppShell", () => {
     expect(appshell).toHaveClass("custom-class");
   });
 
+  // JSDoc が「推奨」として最初に載せている書き方。**これが動くことが T57 の受け入れ条件**。
+  // 実測（対策前）: `<main>` が 2 つになり、外側の暗黙の `<main>` の中に
+  // Header / Sidebar / Main が丸ごと入っていた（wim-app-shell > div > main > div > main）。
+  it("does not wrap composition children in an implicit main", () => {
+    const { container } = render(
+      <AppShell>
+        <AppShell.Header>H</AppShell.Header>
+        <AppShell.Body>
+          <AppShell.Sidebar>S</AppShell.Sidebar>
+          <AppShell.Main>M</AppShell.Main>
+        </AppShell.Body>
+      </AppShell>,
+    );
+    const mains = container.querySelectorAll("main");
+    expect(mains).toHaveLength(1);
+    expect(mains[0].closest("main")).toBe(mains[0]);
+  });
+
+  // **鳴ってはいけない経路**: props API は children を素の内容として受けるので、
+  // 従来どおり暗黙の `<main>` で包む。
+  it("still wraps plain children in a main", () => {
+    const { container } = render(<AppShell>Content</AppShell>);
+    expect(container.querySelectorAll("main")).toHaveLength(1);
+    expect(container.querySelector("main")).toHaveTextContent("Content");
+  });
+
   it("renders the sidebar it is given", () => {
     // 以前は `withSidebar` クラスの有無を見ていたが、そのクラスは SCSS に存在せず、
     // **スタイルの当たらないクラスが付いていること**を固定していただけだった（T58）。
