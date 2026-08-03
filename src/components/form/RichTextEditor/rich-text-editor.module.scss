@@ -10,7 +10,7 @@
     /* 編集面として使える下限。実測（610px の flex row・残り 24px）: 幅 24px・
        高さ 271→906px になり、ツールバーのボタンが 1 個ずつ縦に積まれた
        （理由は `InputBase` と同じ。T59）。 */
-    min-width: var(--wim-width-sm);
+    min-width: min(var(--wim-width-sm), var(--wim-input-width, 320px));
     max-width: var(--wim-input-width, 320px);
     overflow: hidden;
     background-color: var(--wim-color-surface);
@@ -105,6 +105,9 @@
     &.fullWidth {
       --wim-input-width: 100%;
 
+      /* fullWidth では max-width が無いので素の下限へ戻す（% を min() に
+         入れると祖先へ下限が伝播しなくなる。理由は InputBase に詳述）。 */
+      min-width: var(--wim-width-sm);
       max-width: none;
     }
 
