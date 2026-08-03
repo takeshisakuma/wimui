@@ -64,6 +64,10 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+
+    /* shrinkable-ok: ここは部品の根ではなく**木の 1 行**で、木と一緒に縮むのが
+       正しい。containment は必要（この行の子孫が `@container (width <= 480px)` で
+       狭幅表示に切り替える）。下限は木の根の側で持つべきもの。T61 */
     container-type: inline-size;
     outline: none;
     border-radius: var(--wim-radius-component);

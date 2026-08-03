@@ -102,8 +102,14 @@ for (const file of globSync('src/**/*.module.scss', { posix: true })) {
  * `ThoughtProcess` 375→3923px / `DescriptionList` 377→3199px / `Tabs` 142→1329px）。
  *
  * **`min-content` を下限に使わないこと** — containment 下では 0 に潰れる。
+ *
+ * 2026-08-03 に 20 件すべてへ下限を与え（1 件は `TreeView` の行として `shrinkable-ok`）、
+ * **0 件**になったので、以後は新規の containment をそのまま落とすハードゲート。
+ * **containment を外す方向は採らなかった** — `container-name` を使っていないため、
+ * 中に置かれた子の `@container` が最も近い祖先としてそこを参照している
+ * （`Dashboard` から外したらカラムの高さが 717→538px に変わった）。
  */
-const CONTAINMENT_BASELINE = 20;
+const CONTAINMENT_BASELINE = 0;
 const containmentHits = [];
 
 for (const file of globSync('src/**/*.module.scss', { posix: true })) {
