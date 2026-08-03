@@ -3,10 +3,15 @@
     position: relative;
     width: 100%;
 
-    /* 選択値が読める下限。実測（610px の flex row・残り 24px）: 幅 24px になり、
-       選ばれている `Option 1` が 1 文字も出なくなった（理由は `InputBase` と
-       同じ。T59）。**フィルタ帯に Select を横並びに置くのは実アプリで普通の形**。 */
-    min-width: var(--wim-width-sm);
+    /* **ここに下限を置くと `width` prop が壊れる。** `Select` は殻として
+       `InputBase` を描画し、`width` もそちらへ渡すので、根は `--wim-input-width`
+       を見ない。実測: `width="xs"` にしても**根 180px・中身 120px**。
+       T59 の下限を入れた直後に作り込んだ欠陥で、VRT の差分を追う過程で判明した。 */
+
+    /* そこで `min-content` にする。根の最小内容サイズは中の `InputBase` の下限を
+       含むので、既定では 180px、`width="xs"` なら 120px と**中身に追随する**。
+       固定値だと追随せず、`0` だと潰れる（どちらも実測で確認済み）。 */
+    min-width: min-content;
     max-width: var(--wim-width-md);
     font-family: var(--wim-font-family-default);
 
