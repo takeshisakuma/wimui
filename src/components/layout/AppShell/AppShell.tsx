@@ -55,10 +55,31 @@ export interface AppShellProps extends Omit<
  * @note サイドバーの幅は渡した `Sidebar` 自身が持つ（`width` prop、既定 260）。
  *       以前ここには「`--with-sidebar` クラスが自動付与される」と書いてあったが、
  *       そのクラスは SCSS に存在せず、付いても何も起きなかった（T58）。
- *       Composition API で `AppShell.Sidebar` を使う場合は、
- *       親 `AppShell` に `sidebar` prop として何かを渡すか、
- *       `AppShell.Body` を使って手動でレイアウトを構成してください。
+ *       Composition API では**暗黙のラップをしない** — children に
+ *       `AppShell.Body` / `.Main` / `.Sidebar` / `.Header` / `.Footer` / `.Navbar`
+ *       のいずれかがあれば、そのまま出す。以前はここでも `<div class=body><main>`
+ *       で包んでいたため、**推奨として上に載せている書き方が `<main>` を 2 つ作り**、
+ *       Header も Sidebar も Main も暗黙の `<main>` の中に入っていた（T57）。
+ *       props API（children が素の内容）のときは従来どおり包む。
  */
+/**
+ * children が**構造サブコンポーネント**（`AppShell.Body` / `.Main` / `.Sidebar` /
+ * `.Header` / `.Footer` / `.Navbar`）を含むか。
+ *
+ * 含む場合、暗黙の `<div class=body><main>` で包んではいけない。包むと
+ * **JSDoc が「推奨」として最初に載せている書き方が壊れる** — 実測（対策前、
+ * `Audit/LayoutFamily`）で `<main>` が 2 つになり、外側の暗黙の `<main>` の中へ
+ * Header も Sidebar も Main も丸ごと入っていた（`wim-app-shell > div > main > div > main`）。
+ * JSDoc 末尾には「Composition API では `AppShell.Body` で手動構成せよ」という
+ * 推奨と矛盾する注記まで付いていた（T57）。
+ */
+const STRUCTURAL_PARTS = new Set<unknown>([]);
+
+const hasStructuralChild = (children: React.ReactNode): boolean =>
+  React.Children.toArray(children).some(
+    (child) => React.isValidElement(child) && STRUCTURAL_PARTS.has(child.type),
+  );
+
 export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
   (
     {
@@ -75,6 +96,8 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
     },
     ref,
   ) => {
+    const composed = hasStructuralChild(children);
+
     const style = maxWidth
       ? ({
         "--wim-appshell-max-width":
@@ -97,24 +120,29 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
       >
         {header && <div className={styles.header}>{header}</div>}
 
-        <div className={styles.body}>
-          {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
+        {composed ? (
+          // Composition API: 利用者が構造を組んでいるので、そのまま出す。
+          children
+        ) : (
+          <div className={styles.body}>
+            {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
 
-          <main
-            className={classNames(
-              styles.main,
-              padding && styles.padded,
-              centered && styles.centered,
-            )}
-            tabIndex={0}
-          >
-            {centered ? (
-              <div className={styles.content}>{children}</div>
-            ) : (
-              children
-            )}
-          </main>
-        </div>
+            <main
+              className={classNames(
+                styles.main,
+                padding && styles.padded,
+                centered && styles.centered,
+              )}
+              tabIndex={0}
+            >
+              {centered ? (
+                <div className={styles.content}>{children}</div>
+              ) : (
+                children
+              )}
+            </main>
+          </div>
+        )}
 
         {navbar && <div className={styles.navbar}>{navbar}</div>}
         {footer && <div className={styles.footer}>{footer}</div>}
@@ -268,6 +296,19 @@ const AppShellComponent = AppShellRoot as typeof AppShellRoot & {
   Footer: typeof AppShellFooter;
   Navbar: typeof AppShellNavbar;
 };
+
+// 判定用の集合はここで埋める（サブコンポーネントの定義がルートより後ろにあるため）。
+// 参照は render 時に引かれるので、モジュール初期化のこの時点で足りる。
+for (const part of [
+  AppShellBody,
+  AppShellMain,
+  AppShellHeader,
+  AppShellSidebar,
+  AppShellFooter,
+  AppShellNavbar,
+]) {
+  STRUCTURAL_PARTS.add(part);
+}
 
 AppShellComponent.Main = AppShellMain;
 AppShellComponent.Body = AppShellBody;
