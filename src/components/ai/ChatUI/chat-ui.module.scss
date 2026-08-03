@@ -129,13 +129,24 @@
     opacity: 0;
     transition: opacity var(--wim-transition-fast);
 
-    // AI messages often show actions on hover, or always if it's the last one.
-    // For standard, we'll show them when the message is hovered.
-    .message:hover & {
+    // ポインタがある環境ではホバーで出す。**`:focus-within` を必ず併記する** —
+    // `opacity: 0` は要素を無効化しないので、これが無いとキーボードの Tab で
+    // 見えないボタンにフォーカスが乗る（WCAG 2.4.7）。
+    .message:hover &,
+    .message:focus-within & {
       opacity: 1;
     }
 
+    // 「最後のメッセージだけ常時出す」等、利用者が明示的に出したいとき。
+    // `ChatMessage` の `actionsVisible` から付く。
     &.visible {
+      opacity: 1;
+    }
+
+    // **タッチにはホバーが無い。** 隠したままだと、👍👎 が「見えないのに
+    // 当たり判定は生きている」状態になり、実機（Android）で👎を誤爆しうる。
+    // 機能があること自体が分からないという指摘もここから出た（T62）。
+    @media (hover: none) {
       opacity: 1;
     }
   }

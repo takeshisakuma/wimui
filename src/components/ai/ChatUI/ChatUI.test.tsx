@@ -75,6 +75,26 @@ describe("ChatMessage", () => {
     expect(container.firstChild).toHaveClass(styles.right);
   });
 
+  // NOTE: ここで検証できるのは**クラスの付け外しまで**。Vitest の CSS モジュールは
+  // 全キーに答えるので、`styles.visible` の存在を確かめたことにはならない
+  // （実体の無いクラスを検証すると必ず通る、という既知の罠）。
+  // 「実際に見えるか」は 610px/タッチのブラウザ実測で確認している（T62）。
+  it("hides actions behind hover by default", () => {
+    const { container } = render(<ChatMessage actions={<button>Good</button>}>Test</ChatMessage>);
+    const actions = container.querySelector(`.${styles.actions}`);
+    expect(actions).toBeInTheDocument();
+    expect(actions).not.toHaveClass(styles.visible);
+  });
+
+  it("keeps actions visible when actionsVisible is set", () => {
+    const { container } = render(
+      <ChatMessage actions={<button>Good</button>} actionsVisible>
+        Test
+      </ChatMessage>,
+    );
+    expect(container.querySelector(`.${styles.actions}`)).toHaveClass(styles.visible);
+  });
+
   it("renders sender name when provided", () => {
     render(<ChatMessage senderName="John Doe">Message</ChatMessage>);
     expect(screen.getByText("John Doe")).toBeInTheDocument();

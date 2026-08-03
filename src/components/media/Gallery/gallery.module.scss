@@ -145,9 +145,20 @@
   opacity: 0;
   transition: opacity var(--wim-duration-fast) var(--wim-easing-standard);
 
+  // `:focus-within` が無いと、キーボードの Tab で見えないチェックボックスに
+  // フォーカスが乗る（`opacity: 0` は要素を無効化しない。WCAG 2.4.7）。
   .item.selectable:hover &,
+  .item.selectable:focus-within &,
   .item.selected & {
     opacity: 1;
+  }
+
+  // **タッチにはホバーが無い。** 選択済みなら見えるが、**最初の 1 個を選ぶ
+  // 手段が見えない**ので、選択可能なら常に出す（T62）。
+  @media (hover: none) {
+    .item.selectable & {
+      opacity: 1;
+    }
   }
 }
 
