@@ -237,7 +237,7 @@
       "limit": "10 kB"
     },
     {
-      "name": "wimui/ai 全部 (gzip)",
+      "name": "wimui/ai 全部 (gzip・floating-ui 込み)",
       "path": "dist/ai.js",
       "import": "*",
       "ignore": [
@@ -246,7 +246,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "29 kB"
+      "limit": "50 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
