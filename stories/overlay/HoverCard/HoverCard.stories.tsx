@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Avatar, HoverCard, HoverCardContent, HoverCardTrigger } from "wimui";
+import avatar2 from "@/media/avatar_2.svg";
 
 
 const meta: Meta<typeof HoverCard> = {
@@ -38,7 +39,7 @@ export const Default: Story = {
               }}
             >
               <Avatar
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120"
+                src={avatar2}
                 alt={t("story.hovercard_name")}
               />
             </a>
@@ -48,7 +49,7 @@ export const Default: Story = {
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
             >
               <Avatar
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120"
+                src={avatar2}
                 alt={t("story.hovercard_name")}
                 size="lg"
               />

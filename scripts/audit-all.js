@@ -207,6 +207,10 @@ const checks = [
     command: "node scripts/check-src-hardcoded.js",
   },
   {
+    name: "External story assets (VRT must not depend on the network)",
+    command: "node scripts/check-external-assets.js",
+  },
+  {
     category: "lib",
     name: "Shrinkable roots (width:100% + min-width:0 collapse in a flex row)",
     command: "node scripts/check-shrinkable-roots.js",

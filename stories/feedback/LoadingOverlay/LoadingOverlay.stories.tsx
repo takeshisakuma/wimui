@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Icon, LoadingOverlay } from "wimui";
+import sceneLandscape from "@/media/scene_landscape.svg";
 
 
 const meta: Meta<typeof LoadingOverlay> = {
@@ -208,7 +209,7 @@ export const BlurEffects: Story = {
               height: "300px",
               border: "1px solid var(--wim-color-border)",
               borderRadius: "8px",
-              backgroundImage: "url(https://picsum.photos/400/300)",
+              backgroundImage: `url(${sceneLandscape})`,
               backgroundSize: "cover",
             }}
           >

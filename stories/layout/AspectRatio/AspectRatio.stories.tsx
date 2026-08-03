@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { AspectRatio } from "wimui";
+import scenePortraitTall from "@/media/scene_portrait_tall.svg";
 
 
 const meta: Meta<typeof AspectRatio> = {
@@ -28,7 +29,7 @@ export const Default: Story = {
     return (
       <AspectRatio {...args}>
         <img
-          src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80"
+          src={scenePortraitTall}
           alt={t("story.aspectratio_alt", "Landscape")}
         />
       </AspectRatio>
@@ -46,7 +47,7 @@ export const Square: Story = {
     return (
       <AspectRatio {...args}>
         <img
-          src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80"
+          src={scenePortraitTall}
           alt={t("story.aspectratio_alt", "Landscape")}
         />
       </AspectRatio>

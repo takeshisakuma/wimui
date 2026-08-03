@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Avatar, AvatarGroup } from "wimui";
+import avatar1 from "@/media/avatar_1.svg";
+import avatar2 from "@/media/avatar_2.svg";
+import avatar3 from "@/media/avatar_3.svg";
+import avatar4 from "@/media/avatar_4.svg";
 
 const meta: Meta<typeof AvatarGroup> = {
   title: "Components/Data Indicators/AvatarGroup",
@@ -14,19 +18,19 @@ type Story = StoryObj<typeof AvatarGroup>;
 
 const users = [
   {
-    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&h=80",
+    src: avatar1,
     initials: "JD",
   },
   {
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80",
+    src: avatar2,
     initials: "SA",
   },
   {
-    src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=80&h=80",
+    src: avatar3,
     initials: "ML",
   },
   {
-    src: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=80&h=80",
+    src: avatar4,
     initials: "BW",
   },
 ];

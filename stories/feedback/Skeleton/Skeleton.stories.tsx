@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Skeleton } from "wimui";
+import sceneLandscape from "@/media/scene_landscape.svg";
 
 
 const meta: Meta<typeof Skeleton> = {
@@ -186,7 +187,7 @@ export const LoadingToggle: Story = {
                 </div>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=350&q=80"
+                src={sceneLandscape}
                 alt={t("common.content")}
                 style={{
                   width: "100%",

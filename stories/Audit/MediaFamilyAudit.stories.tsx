@@ -24,15 +24,18 @@ const meta: Meta = {
 export default meta;
 
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
+import sceneCard1 from "@/media/scene_card_1.svg";
+import sceneCard2 from "@/media/scene_card_2.svg";
+import sceneCard3 from "@/media/scene_card_3.svg";
 
 export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
 
     const sampleImages = [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60",
-      "https://images.unsplash.com/photo-1618556450991-2f1af64e8191?w=800&auto=format&fit=crop&q=60",
-      "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&auto=format&fit=crop&q=60",
+      sceneCard1,
+      sceneCard2,
+      sceneCard3,
     ];
 
     return (
