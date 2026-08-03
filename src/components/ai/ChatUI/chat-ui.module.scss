@@ -158,6 +158,18 @@
     }
   }
 
+  /* 尻尾を持つバブルだけ、影を `box-shadow` から `filter: drop-shadow` へ移す。
+     `box-shadow` は要素のボーダーボックス（角丸長方形）に沿って描かれるので、
+     **三角の付け根を影の線が横切る**。実測（DPR 2.75・dark・継ぎ目の列を画素で走査）:
+     素の状態 10/44 行 → **影を消すと 0/44 行**（角丸を消しても 19 行のまま＝角丸は無関係）。
+     `drop-shadow` は合成後の不透明領域に沿うため、本体と三角がひとつの形として落ちる。
+     **尻尾の無いバブルには当てない** — `filter` は絶対配置の包含ブロックとスタッキング
+     コンテキストを作るので、必要な範囲に留める（T63）。 */
+  .message.hasAvatar .bubble {
+    box-shadow: none;
+    filter: var(--wim-drop-shadow-xs);
+  }
+
   .message.left.hasAvatar .bubble::before {
     position: absolute;
     top: 10px; /* Exception: Geometric Harmony — 矢印(高さ12px)を1行目テキストに揃える固定位置 */
@@ -165,7 +177,15 @@
     content: "";
     border-color: transparent var(--wim-chat-bubble-bg) transparent transparent;
     border-style: solid;
-    border-width: 6px 6px 6px 0; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
+
+    /* 底辺を 2px バブルへ食い込ませる（6px の突き出しに対し横幅 8px）。
+       **接するだけだと端数 DPR で継ぎ目が筋になる。** 実測（dark・継ぎ目の列を
+       画素で走査）: DPR 1 で 0/16 行、2 で 2/32、**2.75 で 35/44**、3 で 4/48、
+       **3.5 で 39/56**。整数 DPR ではほぼ出ず端数でだけ出る＝アンチエイリアス由来で、
+       Android が端数 DPR を常用することとも合う（ユーザーが実機で発見）。
+       **同じ手当ては下の typing バブルに既にあった**のに、通常バブルには
+       当たっていなかった（T63）。 */
+    border-width: 6px 8px 6px 0; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
 
   .message.right.hasAvatar .bubble::before {
@@ -175,7 +195,9 @@
     content: "";
     border-color: transparent transparent transparent var(--wim-chat-bubble-bg);
     border-style: solid;
-    border-width: 6px 0 6px 6px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
+
+    /* 左向きと同じ理由で 2px 食い込ませる（T63）。 */
+    border-width: 6px 0 6px 8px; /* Exception: Geometric Harmony — CSS border-trick による吹き出し矢印、px 固定が必須 */
   }
 
   /* typing バブルは高さが radius の2倍のピル形状になり側辺が全て曲線のため、
