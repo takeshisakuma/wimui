@@ -9,7 +9,8 @@ import {
   ChatMessage, 
   ChatMessageList, 
   PromptInput,
-  Icon
+  Icon,
+  AIResponseFeedback
 } from "../../../src/index";
 import { StreamingText } from "../../../src/ai/streaming-text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -85,6 +86,52 @@ export const Basic: Story = {
           <ChatMessageList>
             <ChatMessage position="left">{t("story.chat_msg_1")}</ChatMessage>
             <ChatMessage position="right">{t("story.chat_msg_2")}</ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat.placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
+};
+
+/**
+ * 返答へのフィードバック操作。**この形は 2026-08-03 まで 1 枚も撮られていなかった** —
+ * `actions` を描くのは `AiAssistantIntegration` だけで、そちらは初期メッセージが
+ * 1 件しか無く条件に合わないため、アクションが写ったスクリーンショットが存在せず、
+ * 「ホバーしないと出ない」不具合が VRT にも a11y にも載っていなかった（T62）。
+ *
+ * 上のメッセージは既定（ポインタではホバーで出る）、下は `actionsVisible` で常時表示。
+ * タッチ端末では `@media (hover: none)` により両方とも最初から見える。
+ */
+export const WithActions: Story = {
+  render: () => {
+    const t = useChatT();
+    const feedback = (
+      <AIResponseFeedback showRegenerate />
+    );
+    return (
+      <div style={{ height: "400px" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={<ChatAvatar fallback="A" color="s5" />}
+              senderName={t("story.chat_ai_assistant")}
+              actions={feedback}
+            >
+              {t("story.chat_msg_1")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={<ChatAvatar fallback="A" color="s5" />}
+              senderName={t("story.chat_ai_assistant")}
+              actions={feedback}
+              actionsVisible
+            >
+              {t("story.chat_msg_3")}
+            </ChatMessage>
           </ChatMessageList>
           <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
