@@ -193,6 +193,9 @@ export type WimScaleKey =
   | "active"
   | "hover";
 
+export type WimDropShadowKey = 
+  | "xs";
+
 export type WimSpacingKey = 
   | "2xl"
   | "2xs"

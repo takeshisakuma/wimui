@@ -235,6 +235,12 @@
       "hover": {
         "value": "1.02"
       }
+    },
+    "drop-shadow": {
+      "xs": {
+        "value": "drop-shadow(0 1px 2px oklch(0 0 0 / 0.08)) drop-shadow(0 1px 1px oklch(0 0 0 / 0.05))",
+        "comment": "shadow-xs と同じ影を filter で落とす形。box-shadow は要素のボーダーボックスに沿うので、吹き出しの三角のような擬似要素との継ぎ目に線が出る。drop-shadow は合成後の不透明領域に沿うため、本体と三角がひとつの形として落ちる（T63）。"
+      }
     }
   }
 }

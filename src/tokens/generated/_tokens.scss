@@ -168,6 +168,7 @@ $wim-lift-lg: -2px;
 $wim-lift-none: 0;
 $wim-scale-active: 0.98;
 $wim-scale-hover: 1.02;
+$wim-drop-shadow-xs: drop-shadow(0 1px 2px oklch(0 0 0 / 0.08)) drop-shadow(0 1px 1px oklch(0 0 0 / 0.05)); // shadow-xs と同じ影を filter で落とす形。box-shadow は要素のボーダーボックスに沿うので、吹き出しの三角のような擬似要素との継ぎ目に線が出る。drop-shadow は合成後の不透明領域に沿うため、本体と三角がひとつの形として落ちる（T63）。
 $wim-spacing-hairline: 0.0625rem;
 $wim-spacing-3xs: 0.125rem;
 $wim-spacing-2xs: 0.25rem;

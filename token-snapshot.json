@@ -122,6 +122,7 @@
   "--wim-control-padding-y-sm",
   "--wim-decoration-line-through",
   "--wim-decoration-underline",
+  "--wim-drop-shadow-xs",
   "--wim-duration-base",
   "--wim-duration-breathe",
   "--wim-duration-circle",
