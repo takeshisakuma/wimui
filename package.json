@@ -314,6 +314,7 @@
     "stylelint:fix": "stylelint \"{src,stories}/**/*.{css,scss}\" --fix --allow-empty-input",
     "test:vrt": "playwright test",
     "test:vrt:update": "playwright test --update-snapshots",
+    "vrt:report": "node scripts/vrt-color-shift-report.js",
     "test:vrt:report": "playwright show-report",
     "i18n:sync": "node scripts/sync-i18n.js",
     "i18n:bundle": "node scripts/generate-i18n-resources.js",

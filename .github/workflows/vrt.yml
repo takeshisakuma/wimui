@@ -179,6 +179,25 @@ jobs:
           merge-multiple: true
           path: .
 
+      # 撮り直した中身の順位表をジョブサマリへ出す（T69）。
+      # **この時点が唯一の測定機会**: 作業ツリーに新しい PNG、HEAD に古い PNG が
+      # 揃っていて、まだコミットしていない。commit-snapshots はここまで Node を
+      # 使っていないので setup-node と npm ci を足している（`sharp` は devDependency）。
+      # 順位表が出せなくても撮り直し自体は成立するので `continue-on-error`。
+      # ここで落として commit-back を止めるのは本末転倒。
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Report what changed
+        continue-on-error: true
+        run: node scripts/vrt-color-shift-report.js --markdown >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit updated snapshots
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
