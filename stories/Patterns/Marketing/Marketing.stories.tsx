@@ -143,7 +143,7 @@ export const PricingTable: StoryObj = {
         >
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -224,7 +224,7 @@ export const PricingTable: StoryObj = {
               無いが、これは既定値のリセットではなく意味の付与なので残す。 */}
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -301,7 +301,7 @@ export const PricingTable: StoryObj = {
 
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -412,7 +412,7 @@ export const Testimonial: StoryObj = {
           style={{ maxWidth: "1100px", margin: "0 auto" }}
         >
           {people.map((p, i) => (
-            <Card key={i} variant="outline" padding="md">
+            <Card key={i} variant="outline" padding="xl">
               <Stack gap="xl">
                 <Text
                   content={`"${p.text}"`}
