@@ -593,7 +593,7 @@ export const CTASection: StoryObj = {
         }}
       >
         <Container>
-          <Card style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Card padding="xl" style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <Grid cols={{ base: 1, md: "3fr 2fr" }} gap={{ base: 32, lg: 64 }} align="center">
               <Stack gap="2xl">
                 <Stack gap="md">
