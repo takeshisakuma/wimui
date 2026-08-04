@@ -91,6 +91,27 @@
     border: none !important;
   }
 
+  /* Storybook 標準の `IconGallery` / `IconItem`（`stories/media/Icon/Icon.mdx` が
+     12 箇所で使う）。この 2 つは **Storybook 自身のテーマ**でスタイルされていて
+     （`ItemSpecimen` = `getBlockBackgroundStyle(theme)` ＝ `theme.background.content`、
+     `ItemLabel` = `theme.color.defaultText`）、**WIM の `data-theme` を一切見ない**。
+     結果 dark では白い面が残り、アイコンのほうは `currentColor` で `.sbdocs-content`
+     の `--wim-color-text-primary`（＝白）を継ぐので、**白い面に白いアイコン**＝
+     四角しか見えない。ラベルは逆に暗い文字が暗い面に載って読めない（T71）。
+
+     子要素にクラスが無い（emotion の生成クラス）ので構造で当てる。DOM は
+     `List(.docblock-icongallery) > Item > [ItemSpecimen, ItemLabel]` の 2 段で、
+     **Storybook の major 更新で壊れうる**ことを承知で採っている。壊れたときは
+     「dark でアイコンが消える」という形で出る。 */
+  .docblock-icongallery > div > div:first-of-type {
+    background: var(--wim-color-surface) !important;
+    border-color: var(--wim-color-border) !important;
+  }
+
+  .docblock-icongallery > div > div:last-of-type {
+    color: var(--wim-color-text-primary) !important;
+  }
+
   /* コードブロックのコピーボタン */
   .docblock-code-toggle {
     background-color: rgba(255, 255, 255, 0.08) !important;

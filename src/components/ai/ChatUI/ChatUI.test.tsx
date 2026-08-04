@@ -76,23 +76,23 @@ describe("ChatMessage", () => {
   });
 
   // NOTE: ここで検証できるのは**クラスの付け外しまで**。Vitest の CSS モジュールは
-  // 全キーに答えるので、`styles.visible` の存在を確かめたことにはならない
+  // 全キーに答えるので、`styles.hoverOnly` の存在を確かめたことにはならない
   // （実体の無いクラスを検証すると必ず通る、という既知の罠）。
-  // 「実際に見えるか」は 610px/タッチのブラウザ実測で確認している（T62）。
-  it("hides actions behind hover by default", () => {
+  // 「実際に見えるか」はブラウザで opacity を実測して確認している（T62 / T70）。
+  it("shows actions without hovering by default", () => {
     const { container } = render(<ChatMessage actions={<button>Good</button>}>Test</ChatMessage>);
     const actions = container.querySelector(`.${styles.actions}`);
     expect(actions).toBeInTheDocument();
-    expect(actions).not.toHaveClass(styles.visible);
+    expect(actions).not.toHaveClass(styles.hoverOnly);
   });
 
-  it("keeps actions visible when actionsVisible is set", () => {
+  it("hides actions behind hover when actionsVisible is false", () => {
     const { container } = render(
-      <ChatMessage actions={<button>Good</button>} actionsVisible>
+      <ChatMessage actions={<button>Good</button>} actionsVisible={false}>
         Test
       </ChatMessage>,
     );
-    expect(container.querySelector(`.${styles.actions}`)).toHaveClass(styles.visible);
+    expect(container.querySelector(`.${styles.actions}`)).toHaveClass(styles.hoverOnly);
   });
 
   it("renders sender name when provided", () => {

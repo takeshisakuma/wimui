@@ -133,28 +133,33 @@
     display: flex;
     gap: var(--wim-spacing-xs);
     margin-top: var(--wim-spacing-2xs);
-    opacity: 0;
+
+    // **既定は常時表示**（T70）。T62 でタッチだけを直したとき、ポインタ側は
+    // 「既定を変えない」ことを受け入れ条件にして据え置いたが、そちらが指摘された。
+    // ホバーで出す形は**機能の存在そのものを隠す** — マウスの利用者は、たまたま
+    // 指したときにしか「返答を評価できる」と知れない。ツールチップ（T64）も
+    // ホバーを待つので、**見つけた人にしか効かず発見可能性は上がらない**。
+    opacity: 1;
     transition: opacity var(--wim-transition-fast);
 
-    // ポインタがある環境ではホバーで出す。**`:focus-within` を必ず併記する** —
-    // `opacity: 0` は要素を無効化しないので、これが無いとキーボードの Tab で
-    // 見えないボタンにフォーカスが乗る（WCAG 2.4.7）。
-    .message:hover &,
-    .message:focus-within & {
-      opacity: 1;
-    }
+    // 長い会話でくり返しのコントロールが騒がしいときだけ、利用者が
+    // `actionsVisible={false}` で降りる。`ChatMessage` から付く。
+    &.hoverOnly {
+      opacity: 0;
 
-    // 「最後のメッセージだけ常時出す」等、利用者が明示的に出したいとき。
-    // `ChatMessage` の `actionsVisible` から付く。
-    &.visible {
-      opacity: 1;
-    }
+      // **`:focus-within` を必ず併記する** — `opacity: 0` は要素を無効化しない
+      // ので、これが無いとキーボードの Tab で見えないボタンにフォーカスが乗る
+      // （WCAG 2.4.7）。
+      .message:hover &,
+      .message:focus-within & {
+        opacity: 1;
+      }
 
-    // **タッチにはホバーが無い。** 隠したままだと、👍👎 が「見えないのに
-    // 当たり判定は生きている」状態になり、実機（Android）で👎を誤爆しうる。
-    // 機能があること自体が分からないという指摘もここから出た（T62）。
-    @media (hover: none) {
-      opacity: 1;
+      // **タッチにはホバーが無い。** 隠したままだと、👍👎 が「見えないのに
+      // 当たり判定は生きている」状態になり、実機（Android）で👎を誤爆しうる（T62）。
+      @media (hover: none) {
+        opacity: 1;
+      }
     }
   }
 

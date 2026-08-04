@@ -65,14 +65,16 @@ export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> 
   /** Action elements shown below the message */
   actions?: React.ReactNode;
   /**
-   * Keep `actions` visible instead of revealing them on hover.
+   * Whether `actions` are visible without hovering. Defaults to `true`.
    *
-   * Actions are hover-revealed by default on pointer devices, which suits a long
-   * transcript. Set this on the messages that should always offer them — most
-   * often the latest reply.
+   * Hover-reveal hides the fact that the actions exist at all: a reader with a
+   * mouse has no way to learn that a reply can be rated until they happen to
+   * point at it, and a tooltip does not help because it also waits for the
+   * hover. Set `false` for a long transcript where the repeated controls are
+   * more noise than affordance.
    *
-   * Touch devices ignore this and always show the actions: there is no hover to
-   * reveal them with, and `opacity` does not disable a control, so a hidden
+   * Touch devices ignore `false` and always show the actions: there is no hover
+   * to reveal them with, and `opacity` does not disable a control, so a hidden
    * thumbs-down would still be tappable.
    */
   actionsVisible?: boolean;
@@ -90,7 +92,7 @@ export const ChatMessage = ({
   senderName,
   isTyping = false,
   actions,
-  actionsVisible = false,
+  actionsVisible = true,
   className,
   ...props
 }: ChatMessageProps): React.ReactElement => {
@@ -124,7 +126,7 @@ export const ChatMessage = ({
           )}
         </div>
         {actions && (
-          <div className={classNames(styles.actions, { [styles.visible]: actionsVisible })}>
+          <div className={classNames(styles.actions, { [styles.hoverOnly]: !actionsVisible })}>
             {actions}
           </div>
         )}

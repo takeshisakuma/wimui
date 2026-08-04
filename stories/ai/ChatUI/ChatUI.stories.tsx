@@ -100,8 +100,10 @@ export const Basic: Story = {
  * 1 件しか無く条件に合わないため、アクションが写ったスクリーンショットが存在せず、
  * 「ホバーしないと出ない」不具合が VRT にも a11y にも載っていなかった（T62）。
  *
- * 上のメッセージは既定（ポインタではホバーで出る）、下は `actionsVisible` で常時表示。
- * タッチ端末では `@media (hover: none)` により両方とも最初から見える。
+ * 上のメッセージは既定（**常時表示**）、下は `actionsVisible={false}` でホバーに隠した形。
+ * 既定を常時表示へ倒したのは T70 — ホバーで出すと、マウスの利用者は「返答を評価できる」
+ * ことを**指すまで知れない**（ツールチップもホバーを待つので発見可能性を上げない）。
+ * タッチ端末では `@media (hover: none)` により、隠した側も最初から見える。
  */
 export const WithActions: Story = {
   render: () => {
@@ -128,7 +130,7 @@ export const WithActions: Story = {
               avatar={<ChatAvatar fallback="A" color="s5" />}
               senderName={t("story.chat_ai_assistant")}
               actions={feedback}
-              actionsVisible
+              actionsVisible={false}
             >
               {t("story.chat_msg_3")}
             </ChatMessage>
