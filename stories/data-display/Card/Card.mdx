@@ -43,7 +43,7 @@ import { Docgen } from "../../Docgen";
       <td><T k="doc.card_choice_box_when" /></td>
     </tr>
     <tr>
-      <td><b>Tile</b></td>
+      <td><b>BentoGrid</b></td>
       <td><T k="doc.card_choice_tile_when" /></td>
     </tr>
   </tbody>
@@ -124,6 +124,65 @@ import { Card } from "wimui";
 #### <T k="doc.card_variant_flat" />
 
 <Canvas of={CardStories.Flat} />
+
+### <T k="doc.card_padding_scale_title" />
+
+<p><T k="doc.card_padding_scale_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.card_padding_scale_prop" /></th>
+      <th><T k="doc.card_padding_scale_token" /></th>
+      <th><T k="doc.card_padding_scale_px" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>xs</code></td>
+      <td><code>--wim-spacing-sm</code></td>
+      <td>6.4px</td>
+    </tr>
+    <tr>
+      <td><code>sm</code></td>
+      <td><code>--wim-spacing-md</code></td>
+      <td>8px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>md</code>
+        {" "}
+        <T k="doc.card_padding_scale_default" />
+      </td>
+      <td><code>--wim-spacing-xl</code></td>
+      <td>12px</td>
+    </tr>
+    <tr>
+      <td><code>lg</code></td>
+      <td><code>--wim-spacing-2xl</code></td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td><code>xl</code></td>
+      <td><code>--wim-spacing-3xl</code></td>
+      <td>22.4px</td>
+    </tr>
+    <tr>
+      <td><code>2xl</code></td>
+      <td><code>--wim-spacing-4xl</code></td>
+      <td>28.8px</td>
+    </tr>
+    <tr>
+      <td><code>3xl</code></td>
+      <td><code>--wim-spacing-5xl</code></td>
+      <td>35.2px</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><T k="doc.card_padding_scale_why" /></p>
+
+<p><T k="doc.card_padding_scale_gap" /></p>
 
 <Docgen componentName="Card" section="tokens" />
 
