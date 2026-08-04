@@ -143,7 +143,7 @@ export const PricingTable: StoryObj = {
         >
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -224,7 +224,7 @@ export const PricingTable: StoryObj = {
               無いが、これは既定値のリセットではなく意味の付与なので残す。 */}
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -301,7 +301,7 @@ export const PricingTable: StoryObj = {
 
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               display: "grid",
               gridRow: "span 5",
@@ -412,7 +412,7 @@ export const Testimonial: StoryObj = {
           style={{ maxWidth: "1100px", margin: "0 auto" }}
         >
           {people.map((p, i) => (
-            <Card key={i} variant="outline" padding="md">
+            <Card key={i} variant="outline" padding="xl">
               <Stack gap="xl">
                 <Text
                   content={`"${p.text}"`}
@@ -593,7 +593,7 @@ export const CTASection: StoryObj = {
         }}
       >
         <Container>
-          <Card style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Card padding="xl" style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <Grid cols={{ base: 1, md: "3fr 2fr" }} gap={{ base: 32, lg: 64 }} align="center">
               <Stack gap="2xl">
                 <Stack gap="md">
