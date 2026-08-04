@@ -170,7 +170,9 @@ export const wimResources: WimResources = {
         "next": "Next",
         "zoom_in": "Zoom in",
         "zoom_out": "Zoom out",
-        "counter": "{{current}} / {{total}}"
+        "counter": "{{current}} / {{total}}",
+        "open": "Open image",
+        "open_named": "Open image: {{name}}"
       },
       "gallery": {
         "toolbar_label": "Bulk actions toolbar",
@@ -460,7 +462,9 @@ export const wimResources: WimResources = {
         "next": "次へ",
         "previous": "前へ",
         "zoom_in": "拡大",
-        "zoom_out": "縮小"
+        "zoom_out": "縮小",
+        "open": "画像を開く",
+        "open_named": "画像を開く: {{name}}"
       },
       "query": {
         "builder": {
@@ -759,7 +763,9 @@ export const wimResources: WimResources = {
         "next": "Próximo",
         "previous": "Anterior",
         "zoom_in": "Aumentar zoom",
-        "zoom_out": "Diminuir zoom"
+        "zoom_out": "Diminuir zoom",
+        "open": "Abrir imagem",
+        "open_named": "Abrir imagem: {{name}}"
       },
       "query": {
         "builder": {

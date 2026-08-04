@@ -115,6 +115,10 @@ export interface LightboxTriggerProps extends React.ComponentPropsWithoutRef<"bu
   asChild?: boolean;
   index?: number;
   src?: string;
+  /**
+   * Description of the image this opens. Also becomes the button's accessible
+   * name when no `aria-label` is given.
+   */
   alt?: string;
   caption?: string;
 }
@@ -131,6 +135,7 @@ export const LightboxTrigger = ({
   ...props
 }: LightboxTriggerProps) => {
   const { setOpen, setCurrentIndex, items, setItems } = useLightbox();
+  const { t } = useWimTranslation("components");
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(e);
@@ -154,11 +159,46 @@ export const LightboxTrigger = ({
 
   const Component = asChild ? Slot : "button";
 
+  /*
+   * この button の名前は、これまで**入れ子の `alt` だけ**が供給源だった。
+   * ところが中身の `Image` は IntersectionObserver が発火するまで `<img>` を
+   * 描画しない（`Image.tsx` の `isIntersecting` 初期値 false）ので、**観測前は
+   * 名前の無いボタン**になる。スクリーンリーダーで先に到達した人には、そのまま
+   * 名前が無い。
+   *
+   * これは a11y の欠陥であると同時に、**run ごとに結果が変わる機構**でもある。
+   * `waitForStoryReady` は `document.images` をその場でスナップショットするため、
+   * img が 1 枚も無ければ何も待たずに素通りし、axe が名前の無い状態を見て
+   * `button-name` で落ちる ── T68 で「同一コミットなのに 1 回目だけ
+   * `Media/Lightbox` が赤」と記録されている、その赤がこれ。
+   *
+   * そこで名前を **DOM ではなくデータから** 決める。解決順:
+   *   1. 呼び出し側の `aria-label` / `aria-labelledby`（触らない）
+   *   2. `alt` prop
+   *   3. `index` があれば context の `items[index].alt`（`Gallery` 経路。
+   *      1 枚ごとに違う名前になる）
+   *   4. 汎用の "Open image"
+   * どれも読み込みに依存しないので、名前が空になる瞬間が無くなる。
+   *
+   * **注意**: `aria-label` は子の文言に勝つ。テキストを子に入れて使う場合は
+   * 呼び出し側で `aria-label` を明示すること（2 の経路で上書きされる）。
+   */
+  const itemAlt = index !== undefined ? items[index]?.alt : undefined;
+  const hasOwnLabel =
+    props["aria-label"] !== undefined || props["aria-labelledby"] !== undefined;
+  const name = alt ?? itemAlt;
+  const fallbackLabel = hasOwnLabel
+    ? undefined
+    : name
+      ? t("lightbox.open_named", { name })
+      : t("lightbox.open");
+
   return (
     <Component
       type="button"
       className={classNames(styles.trigger, className)}
       onClick={handleClick}
+      aria-label={fallbackLabel}
       {...props}
     >
       <Slottable>{children}</Slottable>
