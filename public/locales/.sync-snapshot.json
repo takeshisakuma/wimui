@@ -1921,7 +1921,9 @@
       "next": "Next",
       "zoom_in": "Zoom in",
       "zoom_out": "Zoom out",
-      "counter": "{{current}} / {{total}}"
+      "counter": "{{current}} / {{total}}",
+      "open": "Open image",
+      "open_named": "Open image: {{name}}"
     },
     "gallery": {
       "toolbar_label": "Bulk actions toolbar",

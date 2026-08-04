@@ -313,7 +313,9 @@
     "next": "Próximo",
     "previous": "Anterior",
     "zoom_in": "Aumentar zoom",
-    "zoom_out": "Diminuir zoom"
+    "zoom_out": "Diminuir zoom",
+    "open": "Abrir imagem",
+    "open_named": "Abrir imagem: {{name}}"
   },
   "linkvsbutton": {
     "btn_examples": "Envio de formulários, abertura de modais, alteração de estados, execução de cálculos.",

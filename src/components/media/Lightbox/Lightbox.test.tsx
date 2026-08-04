@@ -171,6 +171,63 @@ describe("Lightbox", () => {
     expect(document.querySelector(`.${styles.container}`)).toBeNull();
   });
 
+  /*
+   * T68 で「同一コミットなのに 1 回目だけ `Media/Lightbox` が `button-name` で
+   * 赤」と記録されていた件。名前が入れ子の `alt` 由来だと、中身の `Image` が
+   * まだ `<img>` を描いていない瞬間に**名前の無いボタン**になる。ここは子に
+   * 画像を一切置かないので、**その瞬間を固定して**名前が出ることを確かめる。
+   *
+   * 期待値がキーではなく英語なのは、`useWimTranslation` が `react-i18next` を
+   * 経由せず**内蔵リソースから解決する**ため（ファイル冒頭のモックはこのフックには
+   * 効かない）。出荷時と同じ経路を通っていることの確認も兼ねる。
+   */
+  it("names the trigger without depending on a rendered image", () => {
+    renderGallery();
+    expect(
+      screen.getByRole("button", { name: "Open image: image-a" }),
+    ).toBeInTheDocument();
+  });
+
+  it("gives each gallery trigger its own name from the item data", () => {
+    renderGallery();
+    expect(
+      screen.getByRole("button", { name: "Open image: image-a" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Open image: image-b" }),
+    ).toBeInTheDocument();
+  });
+
+  it("falls back to the generic name when no alt is available", () => {
+    render(
+      <LightboxRoot>
+        <LightboxRoot.Trigger src="/no-alt.png">x</LightboxRoot.Trigger>
+        <LightboxRoot.Content />
+      </LightboxRoot>,
+    );
+    expect(screen.getByRole("button")).toHaveAttribute(
+      "aria-label",
+      "Open image",
+    );
+  });
+
+  it("leaves a caller-supplied aria-label alone", () => {
+    render(
+      <LightboxRoot>
+        <LightboxRoot.Gallery items={ITEMS}>
+          <LightboxRoot.Trigger index={0} aria-label="Open the city photo">
+            x
+          </LightboxRoot.Trigger>
+        </LightboxRoot.Gallery>
+        <LightboxRoot.Content />
+      </LightboxRoot>,
+    );
+    expect(screen.getByRole("button")).toHaveAttribute(
+      "aria-label",
+      "Open the city photo",
+    );
+  });
+
   it("throws when subcomponents are used outside Lightbox", () => {
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<LightboxRoot.Trigger>x</LightboxRoot.Trigger>)).toThrow(
