@@ -43,6 +43,19 @@
   border: 1px solid var(--wim-color-border) !important;
 }
 
+/* Cells start at the top, not the middle.
+ *
+ * Storybook's docs theme centres them vertically, which is fine when every
+ * column holds one line and wrong as soon as one does not: in a selection
+ * table a five-line "when not to use it" pushes the component name it belongs
+ * to down to the middle of the row, so the eye stops being able to scan the
+ * first column. Same exclusion as above — this must not reach the library's
+ * own <Table>, which decides its own alignment. */
+.sbdocs-content table#{$prose-only} th,
+.sbdocs-content table#{$prose-only} td {
+  vertical-align: top !important;
+}
+
 /* Token demonstration boxes (often used in PCCS or Spacings docs) */
 .sbdocs-content > div[style*="border"],
 .sbdocs-content div[style*="border-radius: 8px"],

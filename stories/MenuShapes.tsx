@@ -146,10 +146,12 @@ export const ShapeButton = ({
 }) => {
   const { t } = useTranslation(ALL_NAMESPACES, { i18n });
   return (
-    <Button
-      variant="ghost"
-      aria-label={t(labelKey)}
-      icon={<Icon component={shape} size="lg" aria-hidden="true" />}
-    />
+    <div style={{ marginBottom: "var(--wim-spacing-sm)" }}>
+      <Button
+        variant="ghost"
+        aria-label={t(labelKey)}
+        icon={<Icon component={shape} size="lg" aria-hidden="true" />}
+      />
+    </div>
   );
 };
