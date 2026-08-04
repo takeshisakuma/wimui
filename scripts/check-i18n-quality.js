@@ -48,6 +48,11 @@ const IDENTICAL_ALLOWLIST = new Set([
   'doc.numeric_std_browser_chrome_firefox',
   'doc.segmentedcontrol_ex_size',
   'story.splitter_logs',
+  // メニュー語彙ページ（T65）の俗称欄。値は「外の世界で実際に使われている呼び名」の
+  // 一覧なので、翻訳すると探し物が見つからなくなる。ja は katakana 表記が定着している
+  // ぶんだけ併記できるが、pt はこの 2 群に定着した現地語形が無く、英語のまま呼ばれる
+  'menuvocab.switcher_nick',
+  'menuvocab.filter_nick',
   // キーボードキー
   'table.key_delete',
   'table.key_page_up_down',
