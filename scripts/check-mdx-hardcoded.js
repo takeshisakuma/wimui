@@ -178,7 +178,11 @@ mdxFiles.forEach(file => {
 // 2026-08-04: 53 → 52。T65 で `Icon.mdx` を触ったら引数モードが `<td>small /
 // medium / large</td>` を落とした。生英語であると同時に**内容も誤り**で、`Icon` の
 // size は `ComponentSize`（xs〜5xl）。実値を `<code>` にして両方直した。
-const HARDCODED_FILE_BASELINE = 52;
+// 2026-08-05: 52 → 51。`Card.mdx` を触ったら引数モードが `<td><b>Tile</b></td>` を
+// 落とした。生英語であると同時に**存在しないコンポーネントを勧めていた**
+// （`Tile` は `components.json` に無い＝だから除外語に入らず鳴った）。
+// 説明文に合う実在のもの＝`BentoGrid` に直した。
+const HARDCODED_FILE_BASELINE = 51;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

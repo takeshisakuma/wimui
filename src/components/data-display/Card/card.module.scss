@@ -112,7 +112,15 @@
     /* `padding` は ComponentSize 全体を受け取るのに実装が lg で止まっており、
        `padding="xl"` はクラスが無く無効になっていた。ページ級のカードが要る
        余白（22.4〜35px）を表現できず、呼び出し側が style で padding を直書き
-       する原因になっていたので、既存の刻み（prop の 2 段上の spacing）を延長する。 */
+       する原因になっていたので、既存の刻みを延長する。
+
+       **ずらし幅は一定ではない**（ここは「prop の 2 段上」と書いていたが誤り）:
+       `xs`→`sm` と `sm`→`md` は 1 段上、`md`→`xl` 以降が 2 段上。結果として
+       `--wim-spacing-lg` はどの prop からも到達できない。名前も一致しないので
+       **`padding="md"` は `--wim-spacing-md` ではない**（12px であって 8px では
+       ない）。`gap` を持つレイアウト系は同名トークンを 1:1 で引くため、
+       `Card padding="md"` と揃うのは `Stack gap="xl"` のほう。対応表は
+       `Card.mdx` の「`padding` が実際に引く値」に出してある。 */
     &.padding-xl {
       padding: var(--wim-spacing-3xl) var(--wim-spacing-3xl);
 

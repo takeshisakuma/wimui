@@ -3,6 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Card } from "wimui";
+import {
+  CARD_STYLED_PADDING,
+  CARD_STYLED_RADIUS,
+} from "@/components/data-display/Card/styled-values";
 
 
 const meta: Meta<typeof Card> = {
@@ -26,13 +30,19 @@ const meta: Meta<typeof Card> = {
       control: "select",
       options: ["elevated", "outline", "flat"],
     },
+    // SSOT から引く。手で並べていたぶんは **`xl` / `2xl` / `3xl` を足した
+    // 2026-07-26 の拡張に追随できておらず**、padding は 4 つ・radius は 2 つ
+    // 欠けていた。型と SCSS のズレは `Card.unstyled-values.test.tsx` が止めるが、
+    // ここを SSOT と突き合わせるものは無く、Docgen も
+    // `(typeof CARD_STYLED_PADDING)[number]` を生で出すだけなので、
+    // **Storybook 上で `xl` の存在を知る手段が無い**状態になっていた。
     padding: {
       control: "select",
-      options: ["none", "sm", "md", "lg"],
+      options: [...CARD_STYLED_PADDING],
     },
     radius: {
       control: "select",
-      options: ["none", "sm", "md", "lg"],
+      options: [...CARD_STYLED_RADIUS],
     },
   },
 };
