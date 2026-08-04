@@ -1,6 +1,18 @@
 import { Command } from "../stories/Command";
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
+import { MoreVerticalIcon, MenuIcon, GridIcon, FilterIcon } from "@/icon";
+import {
+  ContextMenuShape,
+  SpeedDialShape,
+  HotDogShape,
+  PancakeShape,
+  CheeseburgerShape,
+  BaconShape,
+  ChocolateBarShape,
+  StrawberryShape,
+  ShapeButton,
+} from "../stories/MenuShapes";
 
 <Meta title="Components/Navigation Elements/Menu vocabulary" />
 
@@ -13,6 +25,8 @@ import { T } from "../stories/T";
 <p><T k="menuvocab.why_canonical" /></p>
 
 ## <T k="menuvocab.types_title" />
+
+<p><T k="menuvocab.shapes_note" /></p>
 
 <table>
   <thead>
@@ -30,7 +44,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.overflow_name" /></strong>
       </td>
       <td><T k="menuvocab.overflow_nick" /></td>
-      <td><T k="menuvocab.overflow_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={MoreVerticalIcon} labelKey="menuvocab.overflow_name" />
+        </div>
+        <T k="menuvocab.overflow_look" />
+      </td>
       <td><T k="menuvocab.overflow_wim" /></td>
       <td><T k="menuvocab.overflow_avoid" /></td>
     </tr>
@@ -39,7 +58,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.drawer_name" /></strong>
       </td>
       <td><T k="menuvocab.drawer_nick" /></td>
-      <td><T k="menuvocab.drawer_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={MenuIcon} labelKey="menuvocab.drawer_name" />
+        </div>
+        <T k="menuvocab.drawer_look" />
+      </td>
       <td><T k="menuvocab.drawer_wim" /></td>
       <td><T k="menuvocab.drawer_avoid" /></td>
     </tr>
@@ -48,7 +72,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.switcher_name" /></strong>
       </td>
       <td><T k="menuvocab.switcher_nick" /></td>
-      <td><T k="menuvocab.switcher_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={GridIcon} labelKey="menuvocab.switcher_name" />
+        </div>
+        <T k="menuvocab.switcher_look" />
+      </td>
       <td><T k="menuvocab.switcher_wim" /></td>
       <td><T k="menuvocab.switcher_avoid" /></td>
     </tr>
@@ -57,7 +86,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.filter_name" /></strong>
       </td>
       <td><T k="menuvocab.filter_nick" /></td>
-      <td><T k="menuvocab.filter_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={FilterIcon} labelKey="menuvocab.filter_name" />
+        </div>
+        <T k="menuvocab.filter_look" />
+      </td>
       <td><T k="menuvocab.filter_wim" /></td>
       <td><T k="menuvocab.filter_avoid" /></td>
     </tr>
@@ -66,7 +100,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.context_name" /></strong>
       </td>
       <td><T k="menuvocab.context_nick" /></td>
-      <td><T k="menuvocab.context_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={ContextMenuShape} labelKey="menuvocab.context_name" />
+        </div>
+        <T k="menuvocab.context_look" />
+      </td>
       <td><T k="menuvocab.context_wim" /></td>
       <td><T k="menuvocab.context_avoid" /></td>
     </tr>
@@ -75,7 +114,12 @@ import { T } from "../stories/T";
         <strong><T k="menuvocab.speeddial_name" /></strong>
       </td>
       <td><T k="menuvocab.speeddial_nick" /></td>
-      <td><T k="menuvocab.speeddial_look" /></td>
+      <td>
+        <div>
+          <ShapeButton shape={SpeedDialShape} labelKey="menuvocab.speeddial_name" />
+        </div>
+        <T k="menuvocab.speeddial_look" />
+      </td>
       <td><T k="menuvocab.speeddial_wim" /></td>
       <td><T k="menuvocab.speeddial_avoid" /></td>
     </tr>
@@ -86,14 +130,89 @@ import { T } from "../stories/T";
 
 <p><T k="menuvocab.folklore_desc" /></p>
 
-<ul>
-  <li><T k="menuvocab.folklore_hotdog" /></li>
-  <li><T k="menuvocab.folklore_pancake" /></li>
-  <li><T k="menuvocab.folklore_cheeseburger" /></li>
-  <li><T k="menuvocab.folklore_bacon" /></li>
-  <li><T k="menuvocab.folklore_chocolate" /></li>
-  <li><T k="menuvocab.folklore_strawberry" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: '24%' }}><T k="menuvocab.col_nickname" /></th>
+      <th style={{ width: '38%' }}><T k="menuvocab.col_look" /></th>
+      <th style={{ width: '38%' }}><T k="menuvocab.col_wim" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_hotdog_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={HotDogShape} labelKey="menuvocab.folklore_hotdog_name" />
+        </div>
+        <T k="menuvocab.folklore_hotdog_look" />
+      </td>
+      <td><T k="menuvocab.folklore_hotdog_wim" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_pancake_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={PancakeShape} labelKey="menuvocab.folklore_pancake_name" />
+        </div>
+        <T k="menuvocab.folklore_pancake_look" />
+      </td>
+      <td><T k="menuvocab.folklore_pancake_wim" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_cheeseburger_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={CheeseburgerShape} labelKey="menuvocab.folklore_cheeseburger_name" />
+        </div>
+        <T k="menuvocab.folklore_cheeseburger_look" />
+      </td>
+      <td><T k="menuvocab.folklore_cheeseburger_wim" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_bacon_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={BaconShape} labelKey="menuvocab.folklore_bacon_name" />
+        </div>
+        <T k="menuvocab.folklore_bacon_look" />
+      </td>
+      <td><T k="menuvocab.folklore_bacon_wim" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_chocolate_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={ChocolateBarShape} labelKey="menuvocab.folklore_chocolate_name" />
+        </div>
+        <T k="menuvocab.folklore_chocolate_look" />
+      </td>
+      <td><T k="menuvocab.folklore_chocolate_wim" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="menuvocab.folklore_strawberry_name" /></strong>
+      </td>
+      <td>
+        <div>
+          <ShapeButton shape={StrawberryShape} labelKey="menuvocab.folklore_strawberry_name" />
+        </div>
+        <T k="menuvocab.folklore_strawberry_look" />
+      </td>
+      <td><T k="menuvocab.folklore_strawberry_wim" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="menuvocab.machine_title" />
 
