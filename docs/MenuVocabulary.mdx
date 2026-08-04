@@ -1,7 +1,13 @@
 import { Command } from "../stories/Command";
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
-import { MoreVerticalIcon, MenuIcon, GridIcon, FilterIcon } from "@/icon";
+import {
+  MoreVerticalIcon,
+  MoreHorizontalIcon,
+  MenuIcon,
+  GridIcon,
+  FilterIcon,
+} from "@/icon";
 import {
   HotDogShape,
   PancakeShape,
@@ -43,7 +49,8 @@ import {
       </td>
       <td><T k="menuvocab.overflow_nick" /></td>
       <td>
-        <ShapeButton shape={MoreVerticalIcon} labelKey="menuvocab.overflow_name" iconName="MoreVerticalIcon" />
+        <ShapeButton shape={MoreVerticalIcon} labelKey="menuvocab.overflow_label_kebab" iconName="MoreVerticalIcon" />
+        <ShapeButton shape={MoreHorizontalIcon} labelKey="menuvocab.overflow_label_meatball" iconName="MoreHorizontalIcon" />
         <T k="menuvocab.overflow_look" />
       </td>
       <td><T k="menuvocab.overflow_wim" /></td>

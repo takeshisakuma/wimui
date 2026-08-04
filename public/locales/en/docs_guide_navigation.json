@@ -69,6 +69,8 @@
     "col_wim": "Use in WIM",
     "col_avoid": "When not to use it",
     "overflow_name": "Overflow menu",
+    "overflow_label_kebab": "Kebab menu, three dots stacked vertically",
+    "overflow_label_meatball": "Meatball menu, three dots laid out horizontally",
     "overflow_nick": "Kebab menu, Meatball menu, Three-dot menu, Vertical ellipsis, Horizontal ellipsis, More menu",
     "overflow_look": "Three dots. Vertical (⋮) is the kebab; horizontal (⋯) is the meatball, which is what a toolbar row usually carries.",
     "overflow_wim": "`Dropdown` with the `MoreVerticalIcon` icon, or `MoreHorizontalIcon` when the trigger sits in a horizontal bar.",

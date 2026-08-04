@@ -69,6 +69,8 @@
     "col_wim": "WIM で使うもの",
     "col_avoid": "避ける場面",
     "overflow_name": "Overflow menu（オーバーフローメニュー）",
+    "overflow_label_kebab": "ケバブメニュー（点 3 つの縦並び）",
+    "overflow_label_meatball": "ミートボールメニュー（点 3 つの横並び）",
     "overflow_nick": "ケバブメニュー（Kebab menu）、ミートボールメニュー（Meatball menu）、三点リーダーメニュー、Three-dot menu、More menu",
     "overflow_look": "点が 3 つ。縦並び（⋮）がケバブ、横並び（⋯）がミートボールで、ツールバーの行に載るのはたいてい後者です。",
     "overflow_wim": "`Dropdown` に `MoreVerticalIcon` アイコン。トリガーが横方向のバーにあるときは `MoreHorizontalIcon`。",

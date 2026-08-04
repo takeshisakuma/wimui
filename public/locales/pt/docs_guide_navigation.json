@@ -69,6 +69,8 @@
     "col_wim": "O que usar no WIM",
     "col_avoid": "Quando não usar",
     "overflow_name": "Overflow menu (menu de excedente)",
+    "overflow_label_kebab": "Menu kebab, três pontos na vertical",
+    "overflow_label_meatball": "Menu meatball, três pontos na horizontal",
     "overflow_nick": "Menu de três pontinhos, Kebab menu, Meatball menu, Three-dot menu, More menu",
     "overflow_look": "Três pontos. Na vertical (⋮) é o kebab; na horizontal (⋯) é o meatball, que costuma ser o de uma barra de ferramentas.",
     "overflow_wim": "`Dropdown` com o ícone `MoreVerticalIcon`, ou `MoreHorizontalIcon` quando o gatilho fica em uma barra horizontal.",
