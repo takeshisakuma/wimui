@@ -67,6 +67,31 @@
     resize: vertical;
   }
 
+  /* 素の <code> / <kbd> / <samp> / <pre>（T67）。
+   *
+   * UA スタイルシートは `font-family: monospace` を当て、**それが「汎用等幅」
+   * キーワードであるためブラウザは本文とは別の既定サイズを使う**。実測（reset.css
+   * だけを読み込んだページ）: 本文 16px に対し素の `<code>` は **monospace / 13px**
+   * ＝ 81%。表のセルでも `<pre>` の中でも同じだった。
+   *
+   * `.wim-docs-container code` には T48（#190）でトークンが入ったが、**それは
+   * その入れ物の中だけ**で、素の要素は今も UA のまま。実測（コンポーネント docs 1 枚）:
+   * `<code>` 53 個のうち **39 個が汎用等幅**で、残る 14 個だけがトークン ── 同じページに
+   * 2 つの書体が並んでいた。`reset.css` を入れた利用者のマークアップでも同じ。
+   *
+   * `font-size: 1em` は装飾ではなく上記の縮みを打ち消すためのもの（normalize.css が
+   * 同じ理由で置いているのと同じ）。`@layer base` なので `component` 層を持つ
+   * コンポーネント側の指定は一切邪魔しない（レイヤー順は reset, base, component,
+   * utilities）。塗りや余白は当てない ── ここは書体の契約だけを揃える。 */
+  code,
+  kbd,
+  samp,
+  pre {
+    @include font.mono-family;
+
+    font-size: 1em;
+  }
+
   /* RubyチE��スト（ルビ）�E表示を老E�E */
   rt {
     font-feature-settings: "palt";

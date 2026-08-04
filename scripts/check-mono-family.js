@@ -78,14 +78,43 @@ function main() {
     const lines = fs.readFileSync(file, "utf8").split(/\r?\n/);
     const rel = path.relative(root, file).replace(/\\/g, "/");
 
+    // コメントは対象外（説明文に書体名が出る）。`//` だけを剥がしていたので
+    // **`/* … */` の中に `font-family: monospace` と書くと落ちていた**（T67）。
+    // UA の挙動を説明しようとすると必ずその文字列を書くことになるため、
+    // 「なぜ mixin が要るのか」を書き残した人だけが罰される状態だった。
+    // 複数行にまたがるので、ファイル単位で状態を持って剥がす。
+    let inBlockComment = false;
+    const stripComments = (line) => {
+      let out = "";
+      let rest = line;
+      while (rest.length > 0) {
+        if (inBlockComment) {
+          const end = rest.indexOf("*/");
+          if (end === -1) return out;
+          rest = rest.slice(end + 2);
+          inBlockComment = false;
+        } else {
+          const start = rest.indexOf("/*");
+          if (start === -1) {
+            out += rest;
+            break;
+          }
+          out += rest.slice(0, start);
+          rest = rest.slice(start + 2);
+          inBlockComment = true;
+        }
+      }
+      return out.replace(/\/\/.*$/, "");
+    };
+
     lines.forEach((line, i) => {
-      if (/@include\s+[\w.]*mono-family\b/.test(line)) {
+      const code = stripComments(line);
+
+      if (/@include\s+[\w.]*mono-family\b/.test(code)) {
         includes += 1;
         return;
       }
 
-      // コメント行は対象外（説明文に書体名が出る）。
-      const code = line.replace(/\/\/.*$/, "");
       const m = code.match(/(^|[^-\w])font-family\s*:\s*([^;]+)/);
       if (!m) return;
       const value = m[2];
