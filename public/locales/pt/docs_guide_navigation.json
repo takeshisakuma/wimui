@@ -62,7 +62,7 @@
     "why_canonical_title": "Por que o nome oficial vem primeiro",
     "why_canonical": "Apelidos são folclore: circulam de boca em boca, divergem entre times e vários deles nomeiam a mesma forma. O nome oficial é o que corresponde ao ARIA Authoring Practices e às diretrizes de cada plataforma, então é ele que vale escrever em um chamado ou em uma revisão de código. Procure pelo nome que você conhece — as duas colunas são texto puro, então a busca do navegador funciona.",
     "types_title": "Menus que têm um componente por trás",
-    "shapes_note": "Quatro das formas abaixo são o ícone que o WIM realmente entrega, com o nome ao lado. As outras duas foram desenhadas para esta página — os componentes existem, um glifo que os distinga não.",
+    "shapes_note": "Todo ícone abaixo é um que o WIM entrega, com o nome ao lado — e esse nome é o que `<Icon name>` recebe. Context menu e speed dial não têm glifo próprio, então suas linhas descrevem a forma em palavras.",
     "col_canonical": "Nome oficial",
     "col_nickname": "Apelidos",
     "col_look": "Aparência",

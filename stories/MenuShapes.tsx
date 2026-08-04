@@ -6,20 +6,23 @@ import i18n from "../.storybook/i18n";
 import { ALL_NAMESPACES } from "./i18nConstants";
 
 /**
- * Shapes drawn for `docs/MenuVocabulary.mdx` (T65) — **not part of the icon set.**
+ * Shapes drawn for the "nicknames with nothing behind them" table in
+ * `docs/MenuVocabulary.mdx` (T65) — **not part of the icon set.**
  *
- * The vocabulary page needs to show what each nickname looks like, and most of
- * those shapes have no WIM icon on purpose: T46 decided against shipping hot dog
- * / chocolate bar / strawberry / bacon glyphs because they are nicknames for a
- * shape, not a function ("形の俗称であって「その形でしか表せない機能」が無い"),
- * and anything added to `src/icon/` lands in `check:api`'s snapshot and in the
- * published bundle forever. Context menu and speed dial are the same case: the
- * components exist, a distinguishing glyph does not.
+ * T46 decided against shipping hot dog / chocolate bar / strawberry / bacon
+ * glyphs, because they are nicknames for a shape rather than for a function
+ * ("形の俗称であって「その形でしか表せない機能」が無い"), and anything added to
+ * `src/icon/` lands in `check:api`'s snapshot and in the published bundle
+ * forever. So they live here, in `stories/`, which is not shipped.
  *
- * So they live here, in `stories/`, which is not shipped. The page names the
- * real icon (`more-vertical`, `grid`, `filter`, `menu`) in its "Use in WIM"
- * column wherever one exists, and renders it from `@/icon` — those cells show
- * the actual shipped glyph, not a drawing.
+ * **Only that table draws.** The upper table renders the icon WIM actually
+ * ships, from `@/icon`, with its exported name beside it — every cell in that
+ * column is a real glyph you can type into `<Icon name>`. Context menu and
+ * speed dial started out with drawings there and lost them: two unnamed
+ * pictures among four named icons read as glyphs WIM ships, and the context
+ * menu row was contradicting itself, showing a trigger button next to a
+ * sentence that says it has no trigger of its own. Their rows describe the
+ * shape in words, which is all they ever needed.
  *
  * Conventions copied from `src/icon/*.svg` so the drawings sit next to the real
  * icons without looking foreign: 24×24 box, no fill, `currentColor` stroke at
@@ -41,28 +44,6 @@ const base = {
   strokeLinecap: "round",
   strokeLinejoin: "round",
 } as const;
-
-/** Context menu: a panel of choices with a pointer arriving at its corner. */
-export const ContextMenuShape = (props: ShapeProps) => (
-  <svg {...base} {...props}>
-    <rect x="9" y="8" width="12" height="13" rx="1" />
-    <line x1="12" y1="12" x2="18" y2="12" />
-    <line x1="12" y1="16" x2="18" y2="16" />
-    <path d="M3 2 L3 12 L6 9 L8 13 L10 12 L8 8 L11 8 Z" />
-  </svg>
-);
-
-/** Speed dial: one round button with actions fanning out above it. */
-export const SpeedDialShape = (props: ShapeProps) => (
-  <svg {...base} {...props}>
-    <circle cx="12" cy="18" r="4" />
-    <line x1="10" y1="18" x2="14" y2="18" />
-    <line x1="12" y1="16" x2="12" y2="20" />
-    <circle cx="12" cy="9" r="1.6" />
-    <circle cx="5.5" cy="12" r="1.6" />
-    <circle cx="18.5" cy="12" r="1.6" />
-  </svg>
-);
 
 /** Hot dog: a single horizontal line. */
 export const HotDogShape = (props: ShapeProps) => (
@@ -157,9 +138,9 @@ export const ShapeButton = ({
   shape: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   labelKey: string;
   /**
-   * File name in `src/icon/`, for the four rows that render a shipped icon.
-   * Omitted on the eight shapes drawn above — the absence is the point, and it
-   * saves the reader from going to look for an icon that is not there.
+   * Exported name from `src/icon/` — `MoreVerticalIcon`, not `more-vertical`,
+   * because that is what the Icon page calls it and what `<Icon name>` takes.
+   * Omitted on the six drawn shapes above, where there is no icon to name.
    */
   iconName?: string;
 }) => {

@@ -62,7 +62,7 @@
     "why_canonical_title": "Why the canonical name comes first",
     "why_canonical": "Nicknames are folklore: they travel by word of mouth, they disagree between teams, and several of them name the same shape. The canonical name is the one that lines up with the ARIA Authoring Practices and the platform guidelines, so it is the one worth writing in a ticket or a code review. Search this page by whichever name you know — both columns are plain text, so the browser's find works.",
     "types_title": "Menus that have a component behind them",
-    "shapes_note": "Four of the shapes below are the icon WIM actually ships, named next to it. The other two are drawn for this page — the components exist, a distinguishing glyph does not.",
+    "shapes_note": "Every icon below is one WIM ships, named beside it — that name is what `<Icon name>` takes. Context menu and speed dial have no glyph of their own, so their rows describe the shape in words.",
     "col_canonical": "Canonical name",
     "col_nickname": "Nicknames",
     "col_look": "What it looks like",
