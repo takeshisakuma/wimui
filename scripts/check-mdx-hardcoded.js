@@ -175,7 +175,10 @@ mdxFiles.forEach(file => {
  * 全量モードでのみ意味を持つ（部分集合では総数を判定できないため、
  * 引数付きの実行は従来どおり「1 件でも出たら落ちる」）。
  */
-const HARDCODED_FILE_BASELINE = 53;
+// 2026-08-04: 53 → 52。T65 で `Icon.mdx` を触ったら引数モードが `<td>small /
+// medium / large</td>` を落とした。生英語であると同時に**内容も誤り**で、`Icon` の
+// size は `ComponentSize`（xs〜5xl）。実値を `<code>` にして両方直した。
+const HARDCODED_FILE_BASELINE = 52;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

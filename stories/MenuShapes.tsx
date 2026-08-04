@@ -71,24 +71,36 @@ export const HotDogShape = (props: ShapeProps) => (
   </svg>
 );
 
-/** Pancake: three stacked bars, rounded and thicker than the hamburger's. */
+/**
+ * Pancake: the hamburger's three lines, but of uneven length.
+ *
+ * This is the whole distinction and it is easy to get wrong (the first draft
+ * here did): the hamburger is three lines of **equal** length, evenly spaced;
+ * the pancake staggers them, the way a stack of pancakes is never the same
+ * width twice. Centred rather than left-aligned, because a stack is centred —
+ * left-aligning them would read as the funnel instead.
+ */
 export const PancakeShape = (props: ShapeProps) => (
   <svg {...base} {...props}>
-    <rect x="3" y="4" width="18" height="4" rx="2" />
-    <rect x="3" y="10" width="18" height="4" rx="2" />
-    <rect x="3" y="16" width="18" height="4" rx="2" />
+    <line x1="5" y1="6" x2="19" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="6" y1="18" x2="18" y2="18" />
   </svg>
 );
 
-/** Cheeseburger: three lines, each with a dot alongside. */
+/**
+ * Cheeseburger: the hamburger with the **middle** line decorated.
+ *
+ * Not a dot beside every line — that was the first draft here and it is a
+ * different thing. The bun lines stay straight and only the filling in the
+ * middle waves, which is also what keeps it apart from the bacon (where all
+ * three wave).
+ */
 export const CheeseburgerShape = (props: ShapeProps) => (
   <svg {...base} {...props}>
-    <line x1="3" y1="6" x2="16" y2="6" />
-    <line x1="3" y1="12" x2="16" y2="12" />
-    <line x1="3" y1="18" x2="16" y2="18" />
-    <circle cx="20" cy="6" r="1" />
-    <circle cx="20" cy="12" r="1" />
-    <circle cx="20" cy="18" r="1" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <path d="M3 12c3-2.5 6 2.5 9 0s6-2.5 9 0" />
+    <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 );
 
@@ -140,18 +152,62 @@ export const StrawberryShape = (props: ShapeProps) => (
 export const ShapeButton = ({
   shape,
   labelKey,
+  iconName,
 }: {
   shape: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   labelKey: string;
+  /**
+   * File name in `src/icon/`, for the four rows that render a shipped icon.
+   * Omitted on the eight shapes drawn above — the absence is the point, and it
+   * saves the reader from going to look for an icon that is not there.
+   */
+  iconName?: string;
 }) => {
   const { t } = useTranslation(ALL_NAMESPACES, { i18n });
   return (
-    <div style={{ marginBottom: "var(--wim-spacing-sm)" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        // The page sets `overflow-wrap: anywhere` on the body, which chops an
+        // identifier in half rather than moving it — `MoreVerticalIcon` came
+        // out as "MoreVerticalI / con". Wrapping the row instead drops the
+        // whole name onto its own line when the column is too narrow for it.
+        flexWrap: "wrap",
+        gap: "var(--wim-spacing-sm)",
+        marginBottom: "var(--wim-spacing-sm)",
+      }}
+    >
       <Button
         variant="ghost"
         aria-label={t(labelKey)}
-        icon={<Icon component={shape} size="lg" aria-hidden="true" />}
+        /*
+         * Matched to the Icon gallery on the Icon page: 20px glyph in a 40px
+         * cell there, and `xl` resolves to 20.3px inside this 42px button, so
+         * the two read at the same weight when someone moves between the pages.
+         *
+         * The colour is `text-primary`, not the button's accent, for the same
+         * reason — the gallery draws its icons in the body text colour. Not a
+         * literal black: `text-primary` flips with the theme, and a hard black
+         * is how T71 ended up with white-on-white in dark.
+         */
+        icon={
+          <Icon component={shape} size="xl" color="text-primary" aria-hidden="true" />
+        }
       />
+      {/*
+        `.wim-t` is what gives every other inline code on this page its chip
+        (`src/base.scss` styles `.wim-t code`, and `T` converts backticks into
+        exactly this). A bare <code> here falls back to the browser's 16px
+        monospace with no chip, which reads as a different kind of thing from
+        the `more-vertical` two columns to the right — measured before this:
+        no background, no padding, 16px against their 12.64px.
+      */}
+      {iconName ? (
+        <span className="wim-t" style={{ whiteSpace: "nowrap" }}>
+          <code>{iconName}</code>
+        </span>
+      ) : null}
     </div>
   );
 };
