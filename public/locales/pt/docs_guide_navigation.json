@@ -103,7 +103,7 @@
     "folklore_title": "Apelidos sem nada por trás",
     "folklore_desc": "Estes nomes circulam por causa de uma forma, e não de uma função, então o WIM não entrega componente nem ícone para eles — as formas abaixo foram desenhadas só para esta página. Estão listados para que uma busca chegue a algum lugar, não porque valha a pena adotá-los.",
     "folklore_hotdog_name": "Menu hot dog (Hot dog menu)",
-    "folklore_hotdog_look": "Uma única linha horizontal.",
+    "folklore_hotdog_look": "Uma única linha horizontal — a mesma marca que `MinusIcon` desenha, e é por isso que nada aqui aponta para ele: um sinal de menos não é um gatilho de menu.",
     "folklore_hotdog_wim": "`HamburgerMenu`, quando significa um gatilho de gaveta.",
     "folklore_pancake_name": "Menu panqueca (Pancake menu)",
     "folklore_pancake_look": "As três linhas do hambúrguer, mas de comprimentos diferentes — empilhadas como panquecas, que nunca saem do mesmo tamanho.",

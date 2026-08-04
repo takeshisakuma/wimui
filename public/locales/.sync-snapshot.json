@@ -7548,7 +7548,7 @@
       "folklore_title": "Nicknames with nothing behind them",
       "folklore_desc": "These names circulate for a shape rather than for a job, so WIM ships no component and no icon for them — the shapes below are drawn for this page only. They are listed so a search lands somewhere, not because they are worth adopting.",
       "folklore_hotdog_name": "Hot dog menu",
-      "folklore_hotdog_look": "A single horizontal line.",
+      "folklore_hotdog_look": "A single horizontal line — the same mark `MinusIcon` draws, which is why nothing here points at it: a minus is not a menu trigger.",
       "folklore_hotdog_wim": "`HamburgerMenu`, where it means a drawer trigger.",
       "folklore_pancake_name": "Pancake menu",
       "folklore_pancake_look": "The hamburger's three lines, but of uneven length — stacked the way pancakes never come out the same size.",

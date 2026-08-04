@@ -45,7 +45,15 @@ const base = {
   strokeLinejoin: "round",
 } as const;
 
-/** Hot dog: a single horizontal line. */
+/**
+ * Hot dog: a single horizontal line.
+ *
+ * All but identical to `minus.svg` (`5→19` there, `3→21` here), and drawn here
+ * anyway. Reaching for `MinusIcon` would put its name in a column that means
+ * "the icon WIM ships for this shape", next to a cell that correctly answers
+ * `HamburgerMenu` — a minus is not a menu trigger. The row says so out loud,
+ * because a reader recognises the mark and asks the same question.
+ */
 export const HotDogShape = (props: ShapeProps) => (
   <svg {...base} {...props}>
     <line x1="3" y1="12" x2="21" y2="12" />

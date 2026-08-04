@@ -103,7 +103,7 @@
     "folklore_title": "呼び名だけで実体がないもの",
     "folklore_desc": "これらは機能ではなく形に付いた呼び名なので、対応するコンポーネントもアイコンも WIM にはありません。下に並べた形はこのページのために描いたものです。検索がどこかに着地するように載せてあるだけで、採用を勧めるものではありません。",
     "folklore_hotdog_name": "ホットドッグメニュー（Hot dog menu）",
-    "folklore_hotdog_look": "横線 1 本。",
+    "folklore_hotdog_look": "横線 1 本。`MinusIcon` とほぼ同じマークですが、ここでそれを指していないのは、マイナスはメニューのトリガーではないからです。",
     "folklore_hotdog_wim": "ドロワーのトリガーを指しているなら `HamburgerMenu`。",
     "folklore_pancake_name": "パンケーキメニュー（Pancake menu）",
     "folklore_pancake_look": "ハンバーガーと同じ横線 3 本ですが、長さが不揃いです。重ねたパンケーキの大きさが揃わないのと同じ見立て。",
