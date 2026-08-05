@@ -390,9 +390,17 @@ export const MaintenancePage: StoryObj = {
             {t("maintenance.eta")}
           </Alert>
 
+          {/*
+            `padding="xl"` は 22.4px（`--wim-spacing-3xl`）で、包んでいる
+            `Stack gap="3xl"` と同じ値。以前は `md` ＝ **12px** で、**カードの
+            内側が兄弟どうしの間隔より狭かった** ── 中身が枠に寄って見える。
+            `Card` の padding は名前と同名のトークンを引かないので（`md` は
+            `--wim-spacing-md` = 8px ではなく `--wim-spacing-xl` = 12px）、
+            ここは値で合わせる。対応表は `Card.mdx` の「`padding` が実際に引く値」。
+          */}
           <Card
             variant="outline"
-            padding="md"
+            padding="xl"
             style={{
               width: "100%",
             }}
