@@ -61,14 +61,27 @@ const fingerprint = (svg) => {
 
 const upstream = JSON.parse(fs.readFileSync(FINGERPRINTS, "utf8"));
 
+/**
+ * 照合するセット。**Feather / Lucide だけでは足りない** ── アイコンは AI に
+ * 生成させたもので、どのセットを再現したかは分からない。2026-08-05 に
+ * Heroicons / Bootstrap Icons / Tabler も加えて約 11,500 個と突き合わせた
+ * （残り 8 個はどれとも一致しなかった）。**ここに無いセットと一致した場合は
+ * 素通りする** ── 「一致なし」は「自前」の証明ではない。
+ */
+const SETS = ["feather", "lucide", "heroicons", "bootstrap", "tabler"];
+
+const lookup = (fp) => {
+  for (const set of SETS) {
+    const hit = upstream[set]?.[fp];
+    if (hit) return `${set}:${hit}`;
+  }
+  return null;
+};
+
 const actual = {};
 for (const file of fs.readdirSync(ICON_DIR).filter((f) => f.endsWith(".svg")).sort()) {
   const src = fs.readFileSync(path.join(ICON_DIR, file), "utf8").replace(/<!--[\s\S]*?-->/g, "");
-  const fp = fingerprint(src);
-  const name = file.replace(/\.svg$/, "");
-  if (upstream.feather[fp]) actual[name] = `feather:${upstream.feather[fp]}`;
-  else if (upstream.lucide[fp]) actual[name] = `lucide:${upstream.lucide[fp]}`;
-  else actual[name] = null;
+  actual[file.replace(/\.svg$/, "")] = lookup(fingerprint(src));
 }
 
 if (process.argv.includes("--update")) {
@@ -108,8 +121,7 @@ const walk = (dir) => {
     else if (e.name.endsWith(".tsx") && !e.name.includes(".test.")) {
       const src = fs.readFileSync(p, "utf8");
       for (const m of src.matchAll(/<svg[\s\S]*?<\/svg>/g)) {
-        const fp = fingerprint(m[0]);
-        const hit = upstream.feather[fp] ? `feather:${upstream.feather[fp]}` : upstream.lucide[fp] ? `lucide:${upstream.lucide[fp]}` : null;
+        const hit = lookup(fingerprint(m[0]));
         if (hit) inlineHits.push([path.relative(root, p).replace(/\\/g, "/"), hit]);
       }
     }
@@ -128,19 +140,22 @@ for (const [name, from] of Object.entries(actual)) {
 }
 for (const name of Object.keys(expected)) if (!(name in actual)) removed.push(name);
 
-const counts = Object.values(actual).reduce(
-  (a, v) => {
-    if (!v) a.none += 1;
-    else if (v.startsWith("feather:")) a.feather += 1;
-    else a.lucide += 1;
-    return a;
-  },
-  { feather: 0, lucide: 0, none: 0 },
-);
+const counts = { none: 0 };
+for (const set of SETS) counts[set] = 0;
+for (const v of Object.values(actual)) {
+  if (!v) counts.none += 1;
+  else counts[v.split(":")[0]] += 1;
+}
 
+const total = SETS.reduce((n, s) => n + Object.keys(upstream[s] ?? {}).length, 0);
 console.log("--- check:icons:provenance（出荷アイコンの出所と NOTICE の整合）---\n");
-console.log(`照合先: feather-icons ${upstream.versions["feather-icons"]} / lucide-static ${upstream.versions["lucide-static"]}`);
-console.log(`アイコン ${Object.keys(actual).length} 個: Feather 一致 ${counts.feather} / Lucide 一致 ${counts.lucide} / どちらとも非一致 ${counts.none}`);
+console.log(
+  `照合先: ${Object.entries(upstream.versions).map(([k, v]) => `${k} ${v}`).join(" / ")}（合計 ${total} 個）`,
+);
+console.log(
+  `アイコン ${Object.keys(actual).length} 個: ` +
+    `${SETS.filter((s) => counts[s]).map((s) => `${s} ${counts[s]}`).join(" / ")} / どのセットとも非一致 ${counts.none}`,
+);
 
 if (!added.length && !removed.length && !changed.length && !inlineHits.length) {
   console.log("\n✓ 記録どおりです（TSX 内のインライン SVG にも上流と一致するものはありません）。");
