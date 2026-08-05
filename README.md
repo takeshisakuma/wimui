@@ -175,6 +175,8 @@ import "wimui/icons"; // registers all icons (~30KB minified / 5KB gzip)
 
 If you never use string-based specification, you don't need to import `wimui/icons`, and the icons are not included in your bundle.
 
+The icon set is largely derived from [Feather](https://github.com/feathericons/feather) (MIT) and [Lucide](https://github.com/lucide-icons/lucide) (ISC), attributed in [`NOTICE`](./NOTICE), which ships with the package. Provenance is not taken on trust: every shipped icon is matched by path data against 236 icon sets (328,420 icons) from [Iconify](https://github.com/iconify/icon-sets), and `npm run check:icons:provenance` fails the build if an icon is added or changed so that `NOTICE` no longer describes it.
+
 ## Internationalization (i18n)
 
 Works out of the box in English with no setup (only the translation keys used by components are bundled for en / ja / pt). **No dependency on `i18next` / `react-i18next`** is required. To switch the display language:
