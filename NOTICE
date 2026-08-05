@@ -5,9 +5,10 @@ This product includes third-party material listed below.
 
 The icon set in `src/icon/` (shipped compiled into `dist/`) is substantially
 derived from Feather and Lucide. Provenance was established on 2026-08-05 by
-comparing all 88 shipped icons against feather-icons 4.29.2 (287 icons) and
-lucide-static 1.28.0 (2007 icons), matching on normalised path data rather than
-on file name — many icons are shipped here under a different name (for example
+comparing all 88 shipped icons against feather-icons 4.29.2, lucide-static
+1.28.0, heroicons 2.2.0, bootstrap-icons 1.13.1 and @tabler/icons 3.46.0 —
+11,564 icons in all — matching on normalised path data rather than on file
+name, since many icons are shipped here under a different name (for example
 `close` = Feather `x`, `email` = `mail`, `spinner` = `loader`, `refresh` =
 `refresh-cw`, `trash` = `trash-2`, `mute` = `volume-x`, `volume` = `volume-2`,
 `info-circle` = `info`, `thumb-up` = `thumbs-up`, `loading` = Lucide
@@ -17,10 +18,10 @@ on file name — many icons are shipped here under a different name (for example
   - 12 icons are identical to a Lucide icon (`eraser`, `grip-vertical`,
     `hourglass`, `list-ordered`, `loading`, `maximize`, `minimize`, `project`,
     `repeat`, `square`, `strikethrough`, `unlink`).
-  - 8 match neither set (`chart`, `grid`, `pdf`, `pip`, `send`, `settings`,
-    `skip-back`, `skip-forward`). Some remain close enough to an upstream icon
-    to be treated as derived and modified (`pip` 78%, `chart` 72% against
-    Lucide); they are covered by the notices below.
+  - 8 icons (`chart`, `grid`, `pdf`, `pip`, `send`, `settings`, `skip-back`,
+    `skip-forward`) match nothing in Feather, Lucide, Heroicons, Bootstrap
+    Icons or Tabler — 11,564 icons compared. That is not proof they are
+    original, only that they do not come from the sets that were checked.
 
 This breakdown is checked on every audit run — see `scripts/icon-provenance.json`
 and `npm run check:icons:provenance`. If an icon is added or changed so that its
