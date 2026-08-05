@@ -1,7 +1,15 @@
 import React from "react";
 import classNames from "classnames";
 import { Card } from "../../data-display/Card/Card";
+import { Icon } from "../../media/Icon/Icon";
+import { ArrowUpIcon, ArrowDownIcon, ArrowRightIcon } from "@/icon";
 import styles from "./stats.module.scss";
+
+const TREND_ICON = {
+  up: ArrowUpIcon,
+  down: ArrowDownIcon,
+  neutral: ArrowRightIcon,
+} as const;
 
 export type StatsProps = React.ComponentPropsWithoutRef<typeof Card> & {
   /** Visual style variant of the card */
@@ -81,10 +89,12 @@ export const StatsTrend = ({
       )}
       {...props}
     >
-      <span className={styles.trendIcon}>
-        {direction === "up" && "↑"}
-        {direction === "down" && "↓"}
-        {direction === "neutral" && "→"}
+      {/* **記号ではなくアイコンで描く。** ここは `"↑"` `"↓"` `"→"` の直書きだった
+          （T78）。DESIGN.md が「絵文字・記号でアイコンを代用しない」と禁じている
+          当のことを、出荷コンポーネントがやっていた。文字だと書体によって字形も
+          光学的な重さも変わり、他のアイコンと揃わない。 */}
+      <span className={styles.trendIcon} aria-hidden="true">
+        <Icon component={TREND_ICON[direction]} size="sm" />
       </span>
       <span className={styles.trendValue}>{children}</span>
     </div>

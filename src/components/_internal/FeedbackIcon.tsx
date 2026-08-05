@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize, WimIntent } from "../../types/tokens";
-import { AlertCircleIcon, CheckIcon, CircleIcon, InfoCircleIcon } from "@/icon";
+import { AlertCircleIcon, AlertTriangleIcon, CheckIcon, CircleIcon, InfoCircleIcon } from "@/icon";
 
 /**
  * Props for the FeedbackIcon component.
@@ -63,9 +63,13 @@ export const FeedbackIcon = ({
   );
 };
 
+// **warning と danger は別のグリフにする。** 以前はどちらも `AlertCircleIcon` で、
+// **色でしか区別できなかった**（T78）。色だけに意味を載せると、色覚特性のある人・
+// モノクロ印刷・グレースケール表示で 2 つの intent が同じものになる。三角は
+// 「注意」、丸に ! は「エラー」という一般的な使い分けに合わせる。
 const INTENT_ICON: Partial<Record<WimIntent, typeof CircleIcon>> = {
   success: CheckIcon,
   danger: AlertCircleIcon,
-  warning: AlertCircleIcon,
+  warning: AlertTriangleIcon,
   info: InfoCircleIcon,
 };
