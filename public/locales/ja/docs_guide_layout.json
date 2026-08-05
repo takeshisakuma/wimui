@@ -45,7 +45,7 @@
     "responsive_design_principle": "レスポンシブデザイン",
     "simple_grid_responsive_desc": "カスタムCSSを使わずにレスポンシブなカラムレイアウトを実現するため、SimpleGrid の `cols` Prop をブレークポイントオブジェクトで使用します。",
     "semantic_wrapping": "Box によるセマンティックラッピング",
-    "box_as_prop_desc": "Box の `component` Prop（例: `component=\"section\"`）を使用して、デザインシステムのスタイルを適用しながらセマンティックなHTMLをレンダリングします。",
+    "box_as_prop_desc": "Box の `as` prop（例: `as=\"section\"`）を使うと、デザインシステムのスタイルを当てたまま意味のある HTML 要素で描画できます。",
     "container_control": "最大幅を制御する",
     "container_max_width_desc": "ページコンテンツを Container で囲み、`size` をブレークポイントトークンに設定して、広い画面でも読みやすい行の長さを確保します。"
   },

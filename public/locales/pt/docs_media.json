@@ -165,7 +165,7 @@
     "icon_anim_table_row_example": "Exemplo",
     "icon_anim_table_row_example_desc": "Spinners durante o envio de botões, indicadores durante a execução da busca, ícones durante atualizações de dados",
     "icon_anim_table_row_features": "Características",
-    "icon_anim_table_row_features_desc": "Pode ser exibido em tamanhos (`small` / `medium` / `large`) que se misturam naturalmente aos layouts de UI existentes",
+    "icon_anim_table_row_features_desc": "Pode ser exibido em tamanhos (`sm` / `md` / `lg`) que se misturam naturalmente aos layouts de UI existentes",
     "icon_anim_table_row_usage": "Uso",
     "icon_anim_table_row_usage_desc": "Para indicar \"processamento\" inline dentro de botões, campos de entrada, ao lado de texto, etc.",
     "icon_anim_vs_loader": "Diferenças entre animação de ícone e componente Loader",

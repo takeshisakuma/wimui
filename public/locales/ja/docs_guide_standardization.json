@@ -92,7 +92,7 @@
     "label_std_desc": "バッジ、タグ、チップなど、情報の属性や状態を補足するコンポーネントの共通ルールを定義します。",
     "label_std_note_desc": "数値のカウントには「バッジ」、情報の分類には「タグ」、選択肢の操作には「チップ」を使用してください。",
     "label_std_note_title": "使い分けのガイド",
-    "label_std_rule_1_desc": "`small` (20-24px) と `medium` (28-32px) の2サイズを基本とします。",
+    "label_std_rule_1_desc": "small (20-24px) と medium (28-32px) の2サイズを基本とします。",
     "label_std_rule_1_title": "サイズ指定",
     "label_std_rule_2_desc": "セマンティックカラー（Success, Warning, Errorなど）を統一し、情報の意味を一貫させます。",
     "label_std_rule_2_title": "カラーパレット",
