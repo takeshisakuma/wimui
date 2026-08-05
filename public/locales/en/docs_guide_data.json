@@ -48,7 +48,7 @@
     "indicator_std_desc": "Defines common rules for components that supplement information attributes or states, such as badges, tags, and chips.",
     "indicator_std_note_desc": "Use 'Badge' for numerical counts, 'Tag' for information classification, and 'Chip' for interactive choices or removable elements.",
     "indicator_std_note_title": "Guidelines",
-    "indicator_std_rule_1": "Sizing: Based on two sizes: `small` (sm) and `medium` (md) to ensure consistent dimensions.",
+    "indicator_std_rule_1": "Sizing: Based on two sizes, `sm` and `md`, to ensure consistent dimensions.",
     "indicator_std_rule_1_desc": "Use a consistent color palette (primary, positive, caution, destructive, informative) to convey status across all indicators.",
     "indicator_std_rule_1_title": "Unified Semantic Colors",
     "indicator_std_rule_2": "Color Palette: Unifies semantic colors (Success, Warning, Error, etc.) to ensure consistent meaning of information.",

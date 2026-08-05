@@ -48,7 +48,7 @@
     "indicator_std_desc": "Define regras comuns para componentes que complementam atributos de informação ou estados, como badges, tags e chips.",
     "indicator_std_note_desc": "Use 'Badge' para contagens numéricas, 'Tag' para classificação de informações e 'Chip' para escolhas interativas ou elementos removíveis.",
     "indicator_std_note_title": "Diretrizes",
-    "indicator_std_rule_1": "Dimensionamento: Baseado em dois tamanhos: `small` (sm) e `medium` (md) para garantir dimensões consistentes.",
+    "indicator_std_rule_1": "Dimensionamento: Baseado em dois tamanhos, `sm` e `md`, para garantir dimensões consistentes.",
     "indicator_std_rule_1_desc": "Use uma paleta de cores consistente (primary, positive, caution, destructive, informative) para transmitir o status em todos os indicadores.",
     "indicator_std_rule_1_title": "Cores Semânticas Unificadas",
     "indicator_std_rule_2": "Paleta de Cores: Unifica cores semânticas (Sucesso, Aviso, Erro, etc.) para garantir um significado consistente das informações.",
