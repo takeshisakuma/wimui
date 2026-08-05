@@ -146,6 +146,49 @@ if (fixed.length) {
   console.error("\n  KNOWN から消してください（残すと、次に壊れても鳴りません）。");
 }
 
+/**
+ * **どこからも使われていないアイコンを出す（T79 ③）。** 失敗にはしない ──
+ * export の削除は破壊的変更で、「使っていない」ことは消す理由にならない。
+ * 出す理由は別で、**使われないアイコンは人の目にも触れないので、壊れていても
+ * 誰も気付かない**という構造がある。実際 `skip-forward` は右向きの矢印を
+ * 持たないまま出荷され、ギャラリーにしか出ていなかったので誰も見ていなかった。
+ */
+const componentSrc = [];
+const collect = (dir) => {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) collect(p);
+    // `src/icon/` は自分自身、`src/i18n/generated/` は**アイコン名を並べただけの
+    // 翻訳キー**なので数えない。最初これを除外し忘れ、`skip-forward` のように
+    // 実際には誰も使っていないものが「使用あり」に化けていた。
+    else if (
+      /\.tsx?$/.test(e.name) &&
+      !e.name.includes(".test.") &&
+      !p.includes(`${path.sep}icon${path.sep}`) &&
+      !p.includes(`${path.sep}i18n${path.sep}generated${path.sep}`)
+    ) {
+      componentSrc.push(fs.readFileSync(p, "utf8"));
+    }
+  }
+};
+collect(path.join(root, "src"));
+const haystack = componentSrc.join("\n");
+
+const unused = files
+  .map((f) => f.replace(/\.svg$/, ""))
+  .map((n) => ({
+    name: n,
+    component: `${n.split("-").map((s) => s[0].toUpperCase() + s.slice(1)).join("")}Icon`,
+  }))
+  .filter(({ component }) => !haystack.includes(component));
+
+if (unused.length) {
+  console.log(`\n参照ゼロ（src/ から使われていない）: ${unused.length} 個`);
+  console.log(`  ${unused.map((u) => u.name).join(" ")}`);
+  console.log("  消す必要はありません（export の削除は破壊的変更）。**誰も見ていない**ので、");
+  console.log("  形が壊れていても気付けない、ということだけ承知しておいてください（T79）。");
+}
+
 if (failed) process.exit(1);
 
 console.log("\n✓ 新しい逸脱はありません。");

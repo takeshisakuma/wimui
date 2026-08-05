@@ -365,6 +365,7 @@
     "check:mono": "node scripts/check-mono-family.js",
     "check:icons": "node scripts/check-icons.js",
     "check:icons:provenance": "node scripts/check-icon-provenance.js",
+    "check:icons:mirror": "node scripts/check-icon-mirrors.js",
     "check:shrinkable": "node scripts/check-shrinkable-roots.js",
     "check:story-tokens": "node scripts/check-story-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
