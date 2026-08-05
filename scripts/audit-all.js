@@ -195,6 +195,20 @@ const checks = [
   },
   {
     category: "lib",
+    // 線幅が揃っていても塗りが混ざれば重さは揃わない。契約は RULES.md
+    // 「SVG の描き方」に数値で書いてあり、既知の逸脱はファイル名で列挙している（T77）。
+    name: "Icon family contract (line-art, 24×24, stroke 2)",
+    command: "node scripts/check-icons.js",
+  },
+  {
+    category: "lib",
+    // 「自分で描いたつもり」は出所の証拠にならない。中身を上流と突き合わせる
+    // 以外に検出手段が無いので、NOTICE の正しさを機械に見張らせる（T80）。
+    name: "Icon provenance (shipped icons vs Feather / Lucide, keeps NOTICE honest)",
+    command: "node scripts/check-icon-provenance.js",
+  },
+  {
+    category: "lib",
     name: "Intent → SCSS class coverage (no silently-unstyled intents)",
     command: "node scripts/check-intents-scss.js",
   },

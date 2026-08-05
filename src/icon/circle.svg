@@ -1,3 +1,7 @@
+<!-- 意図的に塗り。これは「丸」ではなく**点**で、状態の印やプレースホルダとして
+     使われる（Result のフォールバック / FeedbackIcon の既定 / FloatButton の既定
+     iconName / SegmentedControl の選択肢）。線画にすると「空の丸」という別の意味に
+     なるため、線画ファミリーの契約から外して塗りのまま置く。T77 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="10" fill="currentColor" />
 </svg>

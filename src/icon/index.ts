@@ -1,7 +1,13 @@
 // This file is auto-generated. Do not edit manually.
 import AlertCircleIcon from "./alert-circle.svg?react";
+import AlertTriangleIcon from "./alert-triangle.svg?react";
 import AlignJustifyIcon from "./align-justify.svg?react";
+import ArrowDownIcon from "./arrow-down.svg?react";
+import ArrowLeftIcon from "./arrow-left.svg?react";
+import ArrowRightIcon from "./arrow-right.svg?react";
+import ArrowUpIcon from "./arrow-up.svg?react";
 import BellIcon from "./bell.svg?react";
+import BoldIcon from "./bold.svg?react";
 import CalendarIcon from "./calendar.svg?react";
 import ChartIcon from "./chart.svg?react";
 import CheckCircleIcon from "./check-circle.svg?react";
@@ -21,6 +27,7 @@ import DocumentIcon from "./document.svg?react";
 import DownloadIcon from "./download.svg?react";
 import EditIcon from "./edit.svg?react";
 import EmailIcon from "./email.svg?react";
+import EraserIcon from "./eraser.svg?react";
 import ExternalLinkIcon from "./external-link.svg?react";
 import EyeOffIcon from "./eye-off.svg?react";
 import EyeIcon from "./eye.svg?react";
@@ -32,6 +39,10 @@ import HomeIcon from "./home.svg?react";
 import HourglassIcon from "./hourglass.svg?react";
 import ImageIcon from "./image.svg?react";
 import InfoCircleIcon from "./info-circle.svg?react";
+import ItalicIcon from "./italic.svg?react";
+import LinkIcon from "./link.svg?react";
+import ListOrderedIcon from "./list-ordered.svg?react";
+import ListIcon from "./list.svg?react";
 import LoadingIcon from "./loading.svg?react";
 import LogInIcon from "./log-in.svg?react";
 import LogOutIcon from "./log-out.svg?react";
@@ -65,10 +76,13 @@ import SmartphoneIcon from "./smartphone.svg?react";
 import SpinnerIcon from "./spinner.svg?react";
 import SquareIcon from "./square.svg?react";
 import StarIcon from "./star.svg?react";
+import StrikethroughIcon from "./strikethrough.svg?react";
 import SunIcon from "./sun.svg?react";
 import ThumbDownIcon from "./thumb-down.svg?react";
 import ThumbUpIcon from "./thumb-up.svg?react";
 import TrashIcon from "./trash.svg?react";
+import UnderlineIcon from "./underline.svg?react";
+import UnlinkIcon from "./unlink.svg?react";
 import UploadIcon from "./upload.svg?react";
 import UserIcon from "./user.svg?react";
 import VideoIcon from "./video.svg?react";
@@ -76,8 +90,14 @@ import VolumeIcon from "./volume.svg?react";
 
 export {
   AlertCircleIcon,
+  AlertTriangleIcon,
   AlignJustifyIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
   BellIcon,
+  BoldIcon,
   CalendarIcon,
   ChartIcon,
   CheckCircleIcon,
@@ -97,6 +117,7 @@ export {
   DownloadIcon,
   EditIcon,
   EmailIcon,
+  EraserIcon,
   ExternalLinkIcon,
   EyeOffIcon,
   EyeIcon,
@@ -108,6 +129,10 @@ export {
   HourglassIcon,
   ImageIcon,
   InfoCircleIcon,
+  ItalicIcon,
+  LinkIcon,
+  ListOrderedIcon,
+  ListIcon,
   LoadingIcon,
   LogInIcon,
   LogOutIcon,
@@ -141,10 +166,13 @@ export {
   SpinnerIcon,
   SquareIcon,
   StarIcon,
+  StrikethroughIcon,
   SunIcon,
   ThumbDownIcon,
   ThumbUpIcon,
   TrashIcon,
+  UnderlineIcon,
+  UnlinkIcon,
   UploadIcon,
   UserIcon,
   VideoIcon,
@@ -153,8 +181,14 @@ export {
 
 export const ALL_ICONS = {
   AlertCircleIcon,
+  AlertTriangleIcon,
   AlignJustifyIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
   BellIcon,
+  BoldIcon,
   CalendarIcon,
   ChartIcon,
   CheckCircleIcon,
@@ -174,6 +208,7 @@ export const ALL_ICONS = {
   DownloadIcon,
   EditIcon,
   EmailIcon,
+  EraserIcon,
   ExternalLinkIcon,
   EyeOffIcon,
   EyeIcon,
@@ -185,6 +220,10 @@ export const ALL_ICONS = {
   HourglassIcon,
   ImageIcon,
   InfoCircleIcon,
+  ItalicIcon,
+  LinkIcon,
+  ListOrderedIcon,
+  ListIcon,
   LoadingIcon,
   LogInIcon,
   LogOutIcon,
@@ -218,10 +257,13 @@ export const ALL_ICONS = {
   SpinnerIcon,
   SquareIcon,
   StarIcon,
+  StrikethroughIcon,
   SunIcon,
   ThumbDownIcon,
   ThumbUpIcon,
   TrashIcon,
+  UnderlineIcon,
+  UnlinkIcon,
   UploadIcon,
   UserIcon,
   VideoIcon,

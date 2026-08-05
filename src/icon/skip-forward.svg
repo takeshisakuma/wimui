@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M7 4v6l5-5" />
-  <path d="M22 18v-6a9 9 0 1 0-9 9 9 9 0 0 0 6-2.3L22 15" />
+<!-- skip-back.svg の鏡像（viewBox の中心 x=12 で反転し、円弧の掃引フラグも 0→1 へ
+     反転させて巻き方向を「進む」向きに揃えた）。元は矢じりのつもりの短い折れ線が
+     円の外に浮いており、右向きの矢印がどこにも無かった。T79 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2 18v-6a9 9 0 1 1 9 9 9 9 0 0 1-6-2.3L2 15" />
+  <path d="M8 15l4-4-4-4" />
 </svg>

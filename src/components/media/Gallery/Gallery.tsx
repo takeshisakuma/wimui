@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
-import { CloseSmallIcon } from "@/icon";
+import { CloseIcon } from "@/icon";
 import { Icon } from "../Icon/Icon";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
@@ -292,7 +292,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
                   className={styles.toolbarClear}
                   onClick={clearSelection}
                   aria-label={t("gallery.clear_selection")}
-                  icon={<Icon component={CloseSmallIcon} size="sm" />}
+                  icon={<Icon component={CloseIcon} size="sm" />}
                 />
               </div>
             </div>
