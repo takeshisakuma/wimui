@@ -54,6 +54,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      # 「名前どおりに読めるか」は契約検査・VRT・axe のどれも見ない層（T79）。
+      # 対になっているべきアイコンが対かを、描画して確かめる。ブラウザが要るので
+      # `audit:lib`（Lint ワークフロー・ブラウザ無し）ではなくここに置く。
+      # シャード 1 でだけ走らせる（4 回やっても同じ結果になる）。
+      - name: Check icon mirror pairs
+        if: matrix.shard == 1
+        run: npm run check:icons:mirror
+
       - name: Build Storybook
         run: npm run build-storybook
 
