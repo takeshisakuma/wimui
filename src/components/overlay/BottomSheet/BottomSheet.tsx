@@ -195,14 +195,16 @@ export const BottomSheetContent = ({
 }: BottomSheetContentProps) => {
   const { open, onOpenChange } = useBottomSheet();
 
-  const slideTransition = {
-    enter: "slide-bottom-enter",
-    enterFrom: "slide-bottom-enter-from",
-    enterTo: "slide-bottom-enter-to",
-    leave: "slide-bottom-leave",
-    leaveFrom: "slide-bottom-leave-from",
-    leaveTo: "slide-bottom-leave-to",
-  };
+  // **実体の無いクラス名を渡していた**（`slide-bottom-enter` 等はどの CSS にも
+  // 無い）。効いていたのは `OverlayBase` の既定 `preset="scale"` のほうで、
+  // その `.scaleEnterTo { transform: scale(1) }` が `.content` の
+  // `transform: translateX(-50%)`（≥sm の中央寄せ）を**丸ごと上書き**していた。
+  // 実測（1280px・幅 448px のシート）: 滑り込みの最後の 1 フレームだけ
+  // transform が `matrix(1,0,0,1,0,0)` になり、left が 416 → **640** ＝ 右へ
+  // **224px**（幅の半分）飛んで、次のフレームで戻る。
+  // **T58 で `Drawer` を直したときの取りこぼし** ── 同じ「繋がっていない
+  // クラス名」を BottomSheet だけが持ち続けていた。
+  const slideTransition = { preset: "slide-bottom" as const };
 
   return (
     <OverlayBase

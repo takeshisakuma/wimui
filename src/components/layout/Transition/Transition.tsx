@@ -116,9 +116,6 @@ const getPresetClasses = (p: TransitionPreset) => {
   }
 };
 
-/** Split a classNames string into an array of non-empty strings */
-const toClassList = (cn: string) => cn.split(" ").filter(Boolean);
-
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
   (
     {
@@ -145,6 +142,9 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       () => (show && appear ? "entering" : "idle"),
     );
     const [prevShow, setPrevShow] = useState(show);
+    // 入り／出の途中で「どちらの端の見た目か」。from を 1 フレーム描かないと
+    // ブラウザは補間を始めない。
+    const [phase, setPhase] = useState<"from" | "to">("from");
     const internalRef = useRef<HTMLDivElement>(null);
 
     // 相ごとに解決する。`enterPreset` / `leavePreset` が省略なら `preset` に従い、
@@ -186,75 +186,67 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       }
     }, [animState, unmount]);
 
-    // DOM-only effect: applies CSS transition classes via classList.
-    // No setState here — animation state is managed in the render phase above.
+    // **相のクラスは render が決める。** ここは以前 `classList` を直接触っていたが、
+    // **JSX 側が `entering` の間ずっと `enterTo` を当てていた**ので、効果で足した
+    // `enterFrom` は同じレイヤーの後勝ちで**一度も効かなかった**。実測（要素が
+    // 現れた瞬間から毎フレーム記録）: 最初の 2 フレームは `EnterTo + EnterFrom +
+    // Base` が同居し computed は最終値のまま、`getAnimations()` は空＝
+    // **CSSTransition が 1 つも作られていない**。from が描かれない以上、reflow を
+    // 挟んでも rAF で遅らせても補間は始まらない。状態を render に持たせれば、
+    // 途中の再レンダリングでクラスが巻き戻ることもない（T75）。
     useLayoutEffect(() => {
-      const el = internalRef.current;
-      if (!el) return;
+      if (animState === "idle") return;
 
-      if (animState === "entering") {
-        const enterFromList = toClassList(effectiveEnterFrom);
-        const enterList     = toClassList(effectiveEnter);
-        const enterToList   = toClassList(effectiveEnterTo);
+      // まず from を 1 フレーム描いてから to へ移す。**2 段の `requestAnimationFrame`
+      // にするのは、1 段だと挿入と同じフレームに入る実装があるため。**
+      setPhase("from");
+      let inner = 0;
+      const outer = requestAnimationFrame(() => {
+        inner = requestAnimationFrame(() => setPhase("to"));
+      });
 
-        el.classList.add(...enterFromList, ...enterList);
-        void el.offsetHeight;
-        el.classList.remove(...enterFromList);
-        el.classList.add(...enterToList);
+      // jsdom には実際のトランジションが無いので `transitionend` を代わりに起こす。
+      const timer =
+        import.meta.env.MODE === "test"
+          ? setTimeout(() => {
+              const el = internalRef.current;
+              if (!el) return;
+              handleTransitionEnd({
+                target: el,
+                currentTarget: el,
+              } as unknown as React.TransitionEvent);
+            }, 100)
+          : undefined;
 
-        if (import.meta.env.MODE === "test") {
-          const timer = setTimeout(() => {
-            handleTransitionEnd({
-              target: el,
-              currentTarget: el,
-            } as unknown as React.TransitionEvent);
-          }, 100);
-          return () => clearTimeout(timer);
-        }
-
-        return () => {
-          el.classList.remove(...enterFromList, ...enterList, ...enterToList);
-        };
-      }
-
-      if (animState === "leaving") {
-        const leaveFromList = toClassList(effectiveLeaveFrom);
-        const leaveList     = toClassList(effectiveLeave);
-        const leaveToList   = toClassList(effectiveLeaveTo);
-
-        el.classList.add(...leaveFromList, ...leaveList);
-        void el.offsetHeight;
-        el.classList.remove(...leaveFromList);
-        el.classList.add(...leaveToList);
-
-        if (import.meta.env.MODE === "test") {
-          const timer = setTimeout(() => {
-            handleTransitionEnd({
-              target: el,
-              currentTarget: el,
-            } as unknown as React.TransitionEvent);
-          }, 100);
-          return () => clearTimeout(timer);
-        }
-
-        return () => {
-          el.classList.remove(...leaveFromList, ...leaveList, ...leaveToList);
-        };
-      }
-    }, [animState, effectiveEnter, effectiveEnterFrom, effectiveEnterTo, effectiveLeave, effectiveLeaveFrom, effectiveLeaveTo, handleTransitionEnd]);
+      return () => {
+        cancelAnimationFrame(outer);
+        cancelAnimationFrame(inner);
+        if (timer !== undefined) clearTimeout(timer);
+      };
+    }, [animState, handleTransitionEnd]);
 
     if (!shouldRender && unmount) return null;
 
     return (
       <div
         ref={internalRef}
-        className={classNames(className, {
-          [styles.hidden]: !show && animState === "idle" && !unmount,
-          [effectiveEnter]: animState === "entering",
-          [effectiveEnterTo]: animState === "entering",
-          [effectiveLeave]: animState === "leaving",
-          [effectiveLeaveTo]: animState === "leaving",
-        })}
+        // **クラス名をオブジェクトのキーにしない。** slide 系のプリセットは
+        // `enter` と `leave` がどちらも `slideBase`（＝同じ文字列）なので、
+        // `{ [effectiveEnter]: 入り, [effectiveLeave]: 出 }` と書くと**後のキーが
+        // 前を上書きし**、入りの最中に `slideBase` が落ちる。落ちると
+        // `transition: transform` を持つのはそれだけなので `transition-duration`
+        // が **0s** になり、from → to は補間されずに飛ぶ（実測でそうなっていた）。
+        // 以前は効果側が `classList` で足し直していたため表に出ていなかった（T75）。
+        className={classNames(
+          className,
+          !show && animState === "idle" && !unmount && styles.hidden,
+          animState === "entering" && effectiveEnter,
+          animState === "entering" &&
+            (phase === "from" ? effectiveEnterFrom : effectiveEnterTo),
+          animState === "leaving" && effectiveLeave,
+          animState === "leaving" &&
+            (phase === "from" ? effectiveLeaveFrom : effectiveLeaveTo),
+        )}
         onTransitionEnd={handleTransitionEnd}
         {...props}
       >

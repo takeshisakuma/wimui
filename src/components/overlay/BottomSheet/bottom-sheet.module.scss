@@ -28,20 +28,27 @@
     background-color: var(--wim-color-surface);
     border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
     box-shadow: var(--wim-shadow-modal);
-    animation: slideUp var(--wim-duration-base) var(--wim-easing-snap);
+
+    /* 出入りは `Transition` の `slide-bottom` プリセットが持つ（`Drawer` と同じ）。
+       T75 を直すまでは**プリセットが動いていなかった**ため、ここに自前の
+       `@keyframes slideUp` を置いて滑り込みを作っていたが、両方あると
+       「どちらが transform の最終値を決めるか」がフレーム単位の競争になる。
+       プリセットが実際に補間するようになったので落とした。 */
     will-change: transform;
-  
+
     &:focus {
       outline: none;
     }
-  
+
     @include breakpoints.up(sm) {
-      right: auto;
-      left: 50%;
+      /* **中央寄せに `transform` を使わない。** プリセットは `transform` を
+         プロパティごと置き換えるので、ここで `translateX(-50%)` に頼ると
+         入りの最後の 1 フレームで X が消えて右へ飛ぶ（実測 224px）。
+         `inset-inline: 0` + `margin-inline: auto` なら transform を空けておける。 */
+      right: 0;
+      left: 0;
       width: var(--wim-overlay-max-width-md);
-      margin: 0 auto;
-      transform: translateX(-50%);
-      animation: slideUpCenter var(--wim-duration-base) var(--wim-easing-snap);
+      margin-inline: auto;
     }
   }
   
@@ -99,23 +106,4 @@
     }
   }
   
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-    }
-
-    to {
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideUpCenter {
-    from {
-      transform: translate(-50%, 100%);
-    }
-
-    to {
-      transform: translate(-50%, 0);
-    }
-  }
 }
