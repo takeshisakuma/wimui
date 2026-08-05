@@ -49,8 +49,6 @@ const root = path.resolve(__dirname, "..");
  */
 const KNOWN_NOT_PROPS = {
   "ScatterChart.z": "`data` 配列の点オブジェクトのフィールド（prop ではない）",
-  "Slider.marks": "**実装に無い機能を説明した死んだ文言**。どの MDX からも参照されず、anatomy も danger/thumb/track/trackContainer だけ（T82）",
-  "Slider.vertical": "同上。実際は `layout=\"vertical\"`（T82）",
 };
 
 /**
