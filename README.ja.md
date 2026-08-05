@@ -177,6 +177,8 @@ import "wimui/icons"; // 全アイコン（約 30KB minify / 5KB gzip）を登�
 
 文字列指定を使わなければ `wimui/icons` の読み込みは不要で、アイコンはバンドルに含まれません。
 
+アイコンセットは大部分が [Feather](https://github.com/feathericons/feather)（MIT）と [Lucide](https://github.com/lucide-icons/lucide)（ISC）に由来し、パッケージに同梱される [`NOTICE`](./NOTICE) に表示しています。出所は自己申告ではなく、[Iconify](https://github.com/iconify/icon-sets) の 236 セット・328,420 個とパスデータで照合して確かめており、アイコンの追加・変更で `NOTICE` の記述とずれると `npm run check:icons:provenance` がビルドを止めます。
+
 ## 多言語化（i18n）
 
 セットアップなしで英語表示で動作します（コンポーネントが使用する翻訳キーのみを en / ja / pt で内蔵）。**i18next / react-i18next などの依存は不要**です。表示言語を切り替えるには:

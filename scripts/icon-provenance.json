@@ -2,7 +2,10 @@
   "$comment": "出荷アイコンの出所。null は「上流セットのどれとも一致しない」。NOTICE の記述はこの表に対応する。更新したら NOTICE も直すこと。",
   "upstreamVersions": {
     "feather-icons": "4.29.2",
-    "lucide-static": "1.28.0"
+    "lucide-static": "1.28.0",
+    "heroicons": "2.2.0",
+    "bootstrap-icons": "1.13.1",
+    "@tabler/icons": "3.46.0"
   },
   "icons": {
     "alert-circle": "feather:alert-circle",
@@ -72,8 +75,8 @@
     "refresh": "feather:refresh-cw",
     "repeat": "lucide:repeat",
     "search": "feather:search",
-    "send": null,
-    "settings": null,
+    "send": "feather:send",
+    "settings": "feather:settings",
     "share": "feather:share",
     "shuffle": "feather:shuffle",
     "skip-back": null,
