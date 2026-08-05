@@ -4,7 +4,18 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./tab-bar.module.scss";
 
 export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
-  /** Fixed position at the bottom of the screen */
+  /**
+   * Pins the bar to the bottom of the **viewport**. Defaults to `true`.
+   *
+   * The pin is `position: fixed`, so the bar leaves whatever container you put
+   * it in: inside a device-width frame, a preview pane, or a split view it
+   * spans the whole window instead. Pass `false` whenever the bar belongs to a
+   * container rather than to the window — a screen inside a screen.
+   *
+   * Nothing warns you about this. `position: fixed` does not widen the
+   * document, so the page never gains a horizontal scrollbar and overflow
+   * scans stay green while the bar hangs outside its parent.
+   */
   fixed?: boolean;
   /** Show top border */
   bordered?: boolean;

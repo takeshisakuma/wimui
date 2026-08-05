@@ -2,7 +2,12 @@
   .root {
     z-index: var(--wim-z-overlay);
     width: 100%;
-    height: var(--wim-tab-nav-height, var(--wim-height-md)); // Standard mobile tab bar height
+
+    /* **下限であって固定値ではない。** `height` で固定していたので、項目の
+       padding を増やしても高さが動かず、アイコンとラベルが 42px に詰め込まれた
+       ままだった（実測: nav 42px / item 41px ＝ 余白は上下 4.8px ずつ）。
+       iOS の 49pt・Android の 56dp に対しても薄い。 */
+    min-height: var(--wim-tab-nav-height, var(--wim-height-md));
     padding-bottom: env(safe-area-inset-bottom); // iOS safe area
     background-color: var(--wim-color-surface);
 
@@ -25,8 +30,8 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      max-width: var(--wim-status-desc-max-width, 37.5rem); // Centered on larger screens if needed
-      height: 100%;
+      max-width: var(--wim-tab-nav-max-width, 37.5rem); // Centered on larger screens if needed
+      min-height: 100%;
       margin: 0 auto;
     }
 
@@ -37,8 +42,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      padding: var(--wim-spacing-xs);
+      min-height: 100%;
+
+      /* 上下は横より厚くする。アイコンとラベルの 2 段組みなので、同じ値だと
+         上下が先に詰まる。**上を下より厚く**するのは、ラベルの下に
+         `env(safe-area-inset-bottom)` と端末のホームインジケータが来るぶん、
+         下は見た目上すでに空いているため。 */
+      padding: var(--wim-spacing-xl) var(--wim-spacing-xs) var(--wim-spacing-md);
       color: var(--wim-color-text-secondary);
       cursor: pointer;
       background: none;
@@ -76,8 +86,13 @@
 
     .badge {
       position: absolute;
-      top: var(--wim-spacing-sm);
-      right: calc(50% - var(--wim-spacing-md)); // Adjust based on icon size
+
+      /* **アイコンの右肩に置く。左肩ではない。** `right: calc(50% - 8px)` だと
+         バッジの右端が中心の 8px 手前に来る＝バッジがまるごとアイコンの左側に
+         かぶり、アイコンが読めなくなっていた（実測で確認）。`left` を基点にして
+         中心から右へずらすと、重なるのはアイコンの右端だけで済む。 */
+      top: var(--wim-spacing-md);
+      left: calc(50% + var(--wim-spacing-2xs));
       display: flex;
       align-items: center;
       justify-content: center;

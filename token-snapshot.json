@@ -274,6 +274,7 @@
   "--wim-switch-width-md",
   "--wim-switch-width-sm",
   "--wim-tab-nav-height",
+  "--wim-tab-nav-max-width",
   "--wim-table-cell-padding-x",
   "--wim-table-cell-padding-y",
   "--wim-text-underline-offset",
