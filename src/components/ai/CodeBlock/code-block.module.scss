@@ -1,10 +1,20 @@
-@use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/font-mixins" as font;
 
 @layer component {
   .root {
     box-sizing: border-box;
     width: 100%;
+
+    /* `container-type: inline-size` は `contain: inline-size` なので、内容の寸法が
+       0 として扱われ、flex の自動最小サイズの保護が消える。**実測**（610px の
+       flex row に縮まない兄弟を置いて残りを 24px にしたハーネス）: 下限が無いと
+       **24px** まで潰れ、`--wim-width-sm` を入れて 180px で止まる。containment を
+       入れる前は `white-space: pre` の min-content が下限として効いていたので、
+       これは今回持ち込んだ穴。ChatUI が同じ手当てを持っている（T61）。 */
+    min-width: var(--wim-width-sm);
+
+    /* 折り返すかどうかは**自分の幅**で決める（下の `.pre` の `@container`）。 */
+    container-type: inline-size;
     overflow: hidden;
     background: var(--wim-color-surface-subtle);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -108,8 +118,16 @@
        「コードは折り返さない」という正しい判断だが、390px では 1 行が 20 文字も
        見えず、内部スクロールに頼ると読めない（T60 で実測: ファイル名も
        `k8s/deployment` で切れ、各行も `readinessP` のように途切れる）。
-       単語の途中では折らない（`pre-wrap`）ので、識別子は保たれる。 */
-    @include breakpoints.down(sm) {
+       単語の途中では折らない（`pre-wrap`）ので、識別子は保たれる。
+
+       **判定はビューポートではなく自分の幅で行う（T66）。** ここは以前
+       `breakpoints.down(sm)`＝ビューポートの media query だったので、
+       **狭いのがコードブロックで画面は広い**という配置では一度も発火しなかった:
+       端末幅の枠・分割ペイン・チャットのバブル。実測（T32 の 4 枚目、1280px の
+       ページに置いた 390px の枠）: `pre` は 216px しかないのに `white-space: pre`
+       のままで、**270px 分が横スクロールに隠れていた**。閾値 480px は
+       `chat-ui.module.scss` の `.inputArea` と同じ刻みに合わせている。 */
+    @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
       word-break: normal;
       overflow-wrap: anywhere;
       white-space: pre-wrap;
