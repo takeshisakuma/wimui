@@ -159,10 +159,21 @@ if (probe) {
 
 const previous = fs.existsSync(SNAPSHOT) ? JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8')) : null;
 
+/**
+ * **キーを並べ替えてから書く（T76）。** 走査順のまま書いていたので、prop が
+ * 1 件増えただけで **478 行の差分**が出ていた（実測: 消えたキー 477 / 増えたキー
+ * 478 に対し、純減 0・純増 1）。差分が読めないことの実害は 2026-08-05 に出た ──
+ * その 478 行を「`Kbd.*` や `Highlight.*` を削っている」と誤読し、**安全な更新を
+ * 危険と報告して撤回した**。**本当に prop が消える変更が同じ差分に紛れても、
+ * 同じように見落とす。**
+ */
+const sortKeys = (obj) =>
+  Object.fromEntries(Object.keys(obj).sort().map((k) => [k, obj[k]]));
+
 if (update && !probe) {
   fs.writeFileSync(
     SNAPSHOT,
-    `${JSON.stringify({ version: SNAPSHOT_VERSION, props: current }, null, 2)}\n`,
+    `${JSON.stringify({ version: SNAPSHOT_VERSION, props: sortKeys(current) }, null, 2)}\n`,
   );
   console.log(`✓ ${SNAPSHOT} を更新しました（${Object.keys(current).length} prop）。`);
   process.exit(0);
