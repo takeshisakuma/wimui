@@ -1,7 +1,14 @@
 # リリース手順（npm 公開・CI 自動ルート）
 
 このリポジトリを npm へ公開する runbook。**CI（GitHub Actions + changesets）で自動 publish** する前提。
-`private` 解除・changeset 作成・publish 実行は**人間が行う**（エージェント対象外）。
+
+**分担**: changeset の作成と PR まではエージェントが行ってよい（コードは動かず、人がレビューしてマージする）。
+**publish を起こすのは「Version Packages」PR のマージ**で、そこと `private` 解除は**人間が行う**。
+境界は「**publish が起きるか**」であって、リリースに関係するファイルを触るかどうかではない。
+
+> 2026-08-05 に文言を直した。それまで「changeset 作成は人間が行う（エージェント対象外）」と書かれていたが、
+> **0.7.0 / 0.11.0 / 0.14.0 / 0.15.0 の changeset はいずれもエージェントが書いて PR にしている**（`git log` で確認できる）。
+> 文章が実態から取り残されていて、0.16.0 の準備で実際に手が止まった。
 
 > なぜ CI ルートか: 初回から **provenance（なりすまし publish 対策）**と **CHANGELOG 自動化**が付き、
 > 以降ずっと同じ流れで運用できる。手動 `npm publish` は捨て学習になるので使わない。
@@ -13,7 +20,7 @@
 - パッケージメタ完備（`license: MIT` + `LICENSE`、`publishConfig.access: public`、`exports` / `files:["dist"]` / `sideEffects` / `engines`）
 - `release.yml`（changesets/action・**provenance 有効**・`environment: release`）+ `.changeset/config.json`
 - 品質: スモークゲート / tree-shaking / pnpm strict / ブランチ保護 / `npm audit` 0
-- 英語 README を正本化（`README.ja.md` は tarball に入らない＝npm では英語のみ表示）
+- 英語 README を正本化（**npm のパッケージページが表示するのは `README.md` だけ**。`README.ja.md` 自体は tarball に入るが、表示はされない）
 - npm 名 `wimui` は未取得（最初の publish で取得）
 
 ## 1. 初回だけの準備（人間）
@@ -31,12 +38,14 @@
 # a. リリース用 changeset を作成
 npm run changeset      # 初回は minor を選ぶ（0.x）。変更概要を1行書く → .changeset/*.md が生成される
 
-# b. private を外す：package.json の "private": true を削除
-
-# c. README の「未公開」表記を差し替え（下の §3）
+# b. private を外す：package.json の "private": true を削除   ← 初回だけ
+# c. README の「未公開」表記を差し替え（下の §3）              ← 初回だけ
 
 # d. a〜c を 1 つの PR にして main へマージ
 ```
+
+> **b と c は初回（0.1.0・2026-07-18 の #45）で済んでいる。** 2 回目以降は a と d だけ ── `private` は既に無く、
+> README の「未公開」表記も既に消えている。0.16.0 の準備でここを読み直して一度止まったので明記する。
 
 **ここから CI が動く。初見で必ず戸惑うポイント:**
 
