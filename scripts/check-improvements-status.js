@@ -33,6 +33,9 @@ const DONE_IN_BODY = /\*\*済\*\*|済（20\d\d-\d\d-\d\d|済（#|済（PR #/;
 const DONE_STATUS = /^\*\*済|^済/;
 const EVIDENCE = /20\d\d-\d\d-\d\d|#\d{2,}/;
 
+/** 表の列数。`\|`（エスケープ済み）は区切りに数えない。 */
+const cellCount = (line) => line.split("\\|").join("§").split("|").length;
+
 function main() {
   if (!fs.existsSync(FILE)) {
     console.error(`✗ ${FILE} が無い。`);
@@ -45,14 +48,29 @@ function main() {
   const unevidenced = [];
   let checked = 0;
   let open = 0;
+  const malformed = [];
+  let headerCols = 0;
+  let headerLine = 0;
 
   lines.forEach((line, i) => {
     if (/^\|\s*#\s*\|/.test(line)) {
       statusIdx = line.split("|").findIndex((c) => /状態|優先/.test(c));
+      headerCols = cellCount(line);
+      headerLine = i + 1;
       return;
     }
     const m = line.match(ID);
     if (!m || statusIdx < 0) return;
+
+    // 列数がヘッダーと合っているか。合っていない行は**表として壊れて描画される**
+    // （余った列は落ち、足りない行は隣の列にずれ込む）。2026-08-05 の実測で 10 行が
+    // 壊れていた: 完了記録を「6 列目」として足したもの・末尾の区切りを書き忘れたもの・
+    // 本文の素の縦棒（`"from" | "to"` や `git diff | head`）が区切りに化けたもの。
+    // 状態列しか見ていなかったので、このガード自身がそれを見逃していた。
+    const cols = cellCount(line);
+    if (headerCols > 0 && cols !== headerCols) {
+      malformed.push({ line: i + 1, id: m[1], cols, headerCols, headerLine });
+    }
 
     const status = (line.split("|")[statusIdx] ?? "").trim();
     if (!status) return;
@@ -92,6 +110,23 @@ function main() {
       console.error(`  - ${FILE}:${u.line}  ${u.id}  状態列='${u.status}'`);
     }
     console.error("\n  `**済**（2026-08-01・#191）` のように、いつ何で済んだかを残すこと。");
+  }
+
+  if (malformed.length) {
+    failed = true;
+    console.error(
+      `${failed && (contradictions.length || unevidenced.length) ? "\n" : ""}✗ 表の列数がヘッダーと合っていない:`,
+    );
+    for (const b of malformed) {
+      console.error(
+        `  - ${FILE}:${b.line}  ${b.id}  ${b.cols} 列（${b.headerLine} 行目のヘッダーは ${b.headerCols} 列）`,
+      );
+    }
+    console.error(
+      "\n  多い場合は本文に素の `|` が紛れている（`\"from\" | \"to\"` や `git diff | head` 等）。\n" +
+        "  `\\|` へエスケープするか、完了記録を新しい列として足さず検証方法セルの中へ入れること。\n" +
+        "  少ない場合は末尾の区切りが抜けている。",
+    );
   }
 
   if (failed) process.exit(1);

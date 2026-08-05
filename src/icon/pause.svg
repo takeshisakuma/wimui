@@ -1,3 +1,5 @@
+<!-- 意図的に塗り。play.svg と対で、再生コントロールは塗りが慣用。
+     用途は Video / Audio のトランスポート限定。T77 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="6" y="4" width="4" height="16"></rect>
     <rect x="14" y="4" width="4" height="16"></rect>

@@ -32,10 +32,22 @@
     gap: var(--wim-spacing-sm);
     align-items: flex-start;
     max-width: 80%;
-  
+
+    /* 端末幅では 20% の取り置きが割に合わない（T66）。実測（390px の枠に
+       この列を置いた状態）: messageList 366px → message **280px** → bubble
+       238px → `pre` 216px で、55 文字のコマンドが 1 行 25 文字に折り返る。
+       92% にすると message 322px → `pre` 258px ＝ 1 行 30 文字。
+       **左右の区別は失わない** ── 28px の食い違いとアバターの位置が残る。
+       アバターを畳む案は採らなかった: 戦場のチャットで誰の発言かは色より
+       位置で読まれており、32px を削って稼げるのは 1 行あたり 4 文字。
+       広い画面には効かない（ここは ChatUI 自身のコンテナに対する問い）。 */
+    @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
+      max-width: 92%;
+    }
+
     --wim-chat-bubble-bg: var(--wim-color-surface-variant);
     --wim-chat-bubble-color: var(--wim-color-text-primary);
-  
+
     &.left {
       align-self: flex-start;
 

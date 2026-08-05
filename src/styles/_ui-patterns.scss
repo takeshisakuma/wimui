@@ -83,6 +83,12 @@
   --wim-layout-max-width: 75rem; /* 1200px */
   --wim-tab-nav-height: var(--wim-height-md);
 
+  /* 広い画面でタブバーの項目が端まで散らばらないようにする上限。
+     以前は `--wim-status-desc-max-width`（ステータス説明文の最大幅）を
+     流用していたが、**名前が用途と合っていない**ので同じ値で切り出した。
+     値を変えたいときに「説明文の幅を変えるとナビも動く」状態を残さない（T72）。 */
+  --wim-tab-nav-max-width: 37.5rem; /* 600px */
+
   /* Inner elements font sizes */
   --wim-font-size-icon-inner: 0.7em;
   --wim-font-size-icon-inner-sm: 0.875em;

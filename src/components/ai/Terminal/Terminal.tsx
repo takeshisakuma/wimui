@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../media/Icon/Icon";
-import { CheckIcon, CopyIcon, CloseSmallIcon } from "@/icon";
+import { CheckIcon, CopyIcon, CloseIcon } from "@/icon";
 import styles from "./terminal.module.scss";
 
 export interface TerminalLine {
@@ -170,7 +170,7 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
                 onClick={onClear}
                 aria-label={t("terminal.clear_label")}
               >
-                <Icon component={CloseSmallIcon} size="sm" />
+                <Icon component={CloseIcon} size="sm" />
               </button>
             )}
           </div>

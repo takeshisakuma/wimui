@@ -4,6 +4,20 @@ import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
+import { Icon } from "../../media/Icon/Icon";
+// ツールバーの字形は出荷セットから採る。以前はこのファイル内で 9 個を内製しており、
+// **stroke-width 2.5** でファミリーから外れていた（T78）。
+import {
+  BoldIcon,
+  ItalicIcon,
+  UnderlineIcon,
+  StrikethroughIcon,
+  ListIcon,
+  ListOrderedIcon,
+  LinkIcon,
+  UnlinkIcon,
+  EraserIcon,
+} from "@/icon";
 import {
   Dialog,
   DialogContent,
@@ -26,82 +40,6 @@ import {
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
-
-const BoldIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-    <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
-    <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
-  </svg>
-);
-
-const ItalicIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-    <line x1="19" y1="4" x2="10" y2="4" />
-    <line x1="14" y1="20" x2="5" y2="20" />
-    <line x1="15" y1="4" x2="9" y2="20" />
-  </svg>
-);
-
-const UnderlineIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-    <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3" />
-    <line x1="4" y1="21" x2="20" y2="21" />
-  </svg>
-);
-
-const StrikethroughIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    <line x1="4" y1="12" x2="20" y2="12" />
-  </svg>
-);
-
-const ListIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <line x1="9" y1="6" x2="20" y2="6" />
-    <line x1="9" y1="12" x2="20" y2="12" />
-    <line x1="9" y1="18" x2="20" y2="18" />
-    <circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none" />
-  </svg>
-);
-
-const OrderedListIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <line x1="10" y1="6" x2="21" y2="6" />
-    <line x1="10" y1="12" x2="21" y2="12" />
-    <line x1="10" y1="18" x2="21" y2="18" />
-    <text x="1" y="8" fontSize="7" fill="currentColor" stroke="none" fontWeight="bold">1.</text>
-    <text x="1" y="14" fontSize="7" fill="currentColor" stroke="none" fontWeight="bold">2.</text>
-    <text x="1" y="20" fontSize="7" fill="currentColor" stroke="none" fontWeight="bold">3.</text>
-  </svg>
-);
-
-const LinkIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-  </svg>
-);
-
-const UnlinkIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <path d="M18.84 12.25l1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.72" />
-    <path d="M5.17 11.75l-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71" />
-    <line x1="8" y1="2" x2="8" y2="5" />
-    <line x1="2" y1="8" x2="5" y2="8" />
-    <line x1="16" y1="19" x2="16" y2="22" />
-    <line x1="19" y1="16" x2="22" y2="16" />
-  </svg>
-);
-
-const EraseIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <path d="M20 20H7L3 16l10-10 7 7-3.5 3.5" />
-    <line x1="6" y1="7" x2="17" y2="18" />
-  </svg>
-);
 
 // ---- Types ----
 
@@ -523,25 +461,25 @@ export const RichTextEditor = ({
       case "bold":
         return (
           <ToolbarButton key="bold" {...itemProps} title={bold} onClick={() => runCommand((ed) => toggleInline(ed, "bold"))}>
-            <BoldIcon />
+            <Icon component={BoldIcon} size="sm" />
           </ToolbarButton>
         );
       case "italic":
         return (
           <ToolbarButton key="italic" {...itemProps} title={italic} onClick={() => runCommand((ed) => toggleInline(ed, "italic"))}>
-            <ItalicIcon />
+            <Icon component={ItalicIcon} size="sm" />
           </ToolbarButton>
         );
       case "underline":
         return (
           <ToolbarButton key="underline" {...itemProps} title={underline} onClick={() => runCommand((ed) => toggleInline(ed, "underline"))}>
-            <UnderlineIcon />
+            <Icon component={UnderlineIcon} size="sm" />
           </ToolbarButton>
         );
       case "strikethrough":
         return (
           <ToolbarButton key="strikethrough" {...itemProps} title={strikethrough} onClick={() => runCommand((ed) => toggleInline(ed, "strikethrough"))}>
-            <StrikethroughIcon />
+            <Icon component={StrikethroughIcon} size="sm" />
           </ToolbarButton>
         );
       case "h1":
@@ -565,31 +503,31 @@ export const RichTextEditor = ({
       case "ul":
         return (
           <ToolbarButton key="ul" {...itemProps} title={ul} onClick={() => runCommand((ed) => toggleList(ed, "ul"))}>
-            <ListIcon />
+            <Icon component={ListIcon} size="sm" />
           </ToolbarButton>
         );
       case "ol":
         return (
           <ToolbarButton key="ol" {...itemProps} title={ol} onClick={() => runCommand((ed) => toggleList(ed, "ol"))}>
-            <OrderedListIcon />
+            <Icon component={ListOrderedIcon} size="sm" />
           </ToolbarButton>
         );
       case "link":
         return (
           <ToolbarButton key="link" {...itemProps} title={link} onClick={handleInsertLink}>
-            <LinkIcon />
+            <Icon component={LinkIcon} size="sm" />
           </ToolbarButton>
         );
       case "unlink":
         return (
           <ToolbarButton key="unlink" {...itemProps} title={unlink} onClick={() => runCommand((ed) => removeLink(ed))}>
-            <UnlinkIcon />
+            <Icon component={UnlinkIcon} size="sm" />
           </ToolbarButton>
         );
       case "removeFormat":
         return (
           <ToolbarButton key="removeFormat" {...itemProps} title={removeFormat} onClick={handleRemoveFormat}>
-            <EraseIcon />
+            <Icon component={EraserIcon} size="sm" />
           </ToolbarButton>
         );
       default:

@@ -14,7 +14,7 @@ import { Icon } from "../../media/Icon/Icon";
 import styles from "./popover.module.scss";
 
 import { useFloatingElement } from "../../_internal/useFloatingElement";
-import { CloseSmallIcon } from "@/icon";
+import { CloseIcon } from "@/icon";
 
 type FloatingRefs = ReturnType<typeof useFloatingElement>["refs"];
 
@@ -271,7 +271,7 @@ export const PopoverClose = ({
       aria-label={resolvedAriaLabel}
       {...props}
     >
-      {children || <Icon component={CloseSmallIcon} width={15} height={15} />}
+      {children || <Icon component={CloseIcon} size="sm" />}
     </button>
   );
 };

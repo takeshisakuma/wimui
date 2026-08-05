@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
-import { CloseSmallIcon, EditIcon, PlusIcon } from "@/icon";
+import { CloseIcon, EditIcon, PlusIcon } from "@/icon";
 import { Icon } from "../../media/Icon/Icon";
 import { Card } from "../../data-display/Card/Card";
 import { Button } from "../../form/Button/Button";
@@ -220,7 +220,7 @@ export const DashboardWidgetCard = ({
             className={styles.removeButton}
             onClick={() => onRemove(id)}
             aria-label={t("dashboard_widget.remove_widget", { title })}
-            icon={<Icon component={CloseSmallIcon} size="sm" />}
+            icon={<Icon component={CloseIcon} size="sm" />}
           />
         )}
       </div>

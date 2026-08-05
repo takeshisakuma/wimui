@@ -1,3 +1,7 @@
+<!-- 意図的に 2 種類の線幅。輪郭と折り返しはファミリーの 2、中の P/D/F だけ 1.2。
+     24px の中に 3 文字を描くので、本文と同じ 2 では字が潰れて黒帯になる（実測:
+     16px で判読不能な塊）。1.2 なら 24px で字が立ち、16px でも「書き込みのある
+     ドキュメント」として読める。使用箇所は List / Dropzone で実測 16px。T77 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
   <polyline points="14 2 14 8 20 8"></polyline>
