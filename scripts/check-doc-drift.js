@@ -42,6 +42,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
 /**
+ * `<コンポーネント>.<語>` で、prop でないと分かっているもの。**理由を必ず書く。**
+ * ここに足す前に「docs のほうが間違っていないか」を実装で確かめること ── 実際、
+ * この 3 件を精査する過程で `Alert` / `Toast` / `Snackbar` が揃って存在しない
+ * `variant` を案内していることが分かった。
+ */
+const KNOWN_NOT_PROPS = {
+  "ScatterChart.z": "`data` 配列の点オブジェクトのフィールド（prop ではない）",
+  "Slider.marks": "**実装に無い機能を説明した死んだ文言**。どの MDX からも参照されず、anatomy も danger/thumb/track/trackContainer だけ（T82）",
+  "Slider.vertical": "同上。実際は `layout=\"vertical\"`（T82）",
+};
+
+/**
  * ギャラリーに載せない出荷アイコン。**非推奨のものだけ**が正当な理由。
  * export を消すのは破壊的変更なので残っているが、カタログに並べると
  * 「使ってよい語彙」に見えてしまう。
@@ -98,9 +110,22 @@ const ghosts = [...listed].filter((n) => !shipped.includes(n));
 const staleExclusions = Object.keys(NOT_IN_GALLERY).filter((n) => !shipped.includes(n) || listed.has(n));
 
 // --- ② docs が名指しする prop ---
+/**
+ * **`docgen_index.json` を混ぜてはいけない。** これは 371 件ぜんぶを **props 空**で
+ * 持つ一覧用のファイルで、`Object.assign` で素直に重ねるとファイル名のアルファベット順
+ * （…form, **index**, layout…）により **`_internal` / `ai` / `charts` / `data-display` /
+ * `feedback` / `form` の props を丸ごと消す**。最初の版はこれで 371 → 123 件しか
+ * 見ておらず、**「ズレなし」が「3 分の 2 を見ていない」の意味だった**。
+ * 空の props で上書きされないよう、中身のあるほうを勝たせる。
+ */
 const docgen = {};
 for (const f of walk(path.join(root, "src", "data"), /^docgen_.*\.json$/)) {
-  Object.assign(docgen, JSON.parse(fs.readFileSync(f, "utf8")));
+  if (path.basename(f) === "docgen_index.json") continue;
+  for (const [name, entry] of Object.entries(JSON.parse(fs.readFileSync(f, "utf8")))) {
+    const existing = Object.keys(docgen[name]?.props ?? {}).length;
+    if (existing && !Object.keys(entry.props ?? {}).length) continue;
+    docgen[name] = entry;
+  }
 }
 const locales = {};
 const flatten = (obj, prefix = "") => {
@@ -122,6 +147,8 @@ for (const f of walk(path.join(root, "public/locales/en"), /\.json$/)) {
  * 偽陽性が出た）。**ソースの union 宣言からも集める。**
  */
 const valuePool = new Set();
+/** 公開しているフック名（`useToast` などは prop ではないが docs が正しく名指しする） */
+const hookNames = new Set();
 for (const f of [...walk(path.join(root, "src"), /\.tsx?$/)]) {
   if (/\.test\./.test(f)) continue;
   const src = fs.readFileSync(f, "utf8");
@@ -130,7 +157,21 @@ for (const f of [...walk(path.join(root, "src"), /\.tsx?$/)]) {
     if (!body.includes("|")) continue;
     for (const lit of body.matchAll(/"([A-Za-z][\w-]*)"/g)) valuePool.add(lit[1]);
   }
+  for (const m of src.matchAll(/export\s+(?:const|function)\s+(use[A-Z]\w*)/g)) hookNames.add(m[1]);
 }
+
+/**
+ * prop でも値でもないが、docs が正しく書ける語。**除外しないと findings が
+ * 埋まって本物が読めなくなる**（最初の実行では 20 件中 15 件がこれだった）。
+ */
+const NOT_A_PROP = new Set([
+  // HTML 要素（a11y の説明で `fieldset` `legend` `form` などを名指しする）
+  "form", "fieldset", "legend", "label", "table", "dialog", "nav", "main", "section", "aside", "figure", "figcaption", "output", "progress", "meter", "details", "summary",
+  // ブラウザ / JS のグローバル
+  "window", "document", "navigator", "requestAnimationFrame", "console", "localStorage", "sessionStorage", "null", "undefined",
+  // CSS の単位・値
+  "ch", "px", "rem", "em", "vh", "vw", "fr", "deg", "ms", "auto", "none", "inherit", "initial", "unset",
+]);
 
 const families = {};
 for (const [comp, entry] of Object.entries(docgen)) {
@@ -156,9 +197,14 @@ for (const [comp, entry] of Object.entries(docgen)) {
  *   B. バッククォートの裸の語 → 一族の prop か、**どこかの型の値**であればよい。
  *      他コンポーネントの値を引き合いに出す文（比較表）が普通にあるため広く取る。
  */
+/** どのコンポーネントのものでもよい prop 名の全体プール（B でのみ使う） */
+const allProps = new Set();
+for (const fam of Object.values(families)) for (const n of fam.props) allProps.add(n);
+
 const staleProps = [];
 const seen = new Set();
 const push = (base, key, name, rule) => {
+  if (`${base}.${name}` in KNOWN_NOT_PROPS) return;
   const id = `${base}|${name}`;
   if (seen.has(id)) return;
   seen.add(id);
@@ -172,15 +218,22 @@ for (const [base, fam] of Object.entries(families)) {
     const leaf = key.slice(key.lastIndexOf(".") + 1).toLowerCase();
     if (!leaf.startsWith(prefix)) continue;
 
-    // A: 「`X` prop」「prop `X`」と名指ししている
-    for (const m of [...val.matchAll(/`(\w+)`\s+(?:prop|Prop)\b/g), ...val.matchAll(/\b(?:prop|Prop)\s+`(\w+)`/g)]) {
+    // A: 「`X` prop / property」「prop `X`」と名指ししている。**ここが本命。**
+    //    `Alert` / `Toast` / `Snackbar` が揃って「`variant` property」と書いていたが、
+    //    3 つとも持っているのは `intent` だった。`variant` は他のコンポーネントの
+    //    prop なので、**B の広いプールでは黙ってしまう** ── A を強く保つ理由。
+    for (const m of [
+      ...val.matchAll(/`(\w+)`\s+(?:prop|Prop|property|Property)\b/g),
+      ...val.matchAll(/\b(?:prop|Prop|property|Property)\s+`(\w+)`/g),
+    ]) {
       const name = m[1];
       if (!/^[a-z][A-Za-z]*$/.test(name) || /^on[A-Z]/.test(name)) continue;
-      if (fam.props.has(name)) continue;
+      if (fam.props.has(name) || NOT_A_PROP.has(name)) continue;
       push(base, key, name, "prop と名指し");
     }
 
-    // B: 裸のバッククォート
+    // B: 裸のバッククォート。**他のコンポーネントの prop を引き合いに出す文が普通にある**
+    //    （`Card` の padding 表が `Stack gap` に触れる等）ので、prop 名は全体プールで許す。
     for (const m of val.matchAll(/`(\w+)`/g)) {
       const name = m[1];
       if (!/^[a-z][A-Za-z]*$/.test(name)) continue;
@@ -188,7 +241,9 @@ for (const [base, fam] of Object.entries(families)) {
       // TabBar.Item で実際に効くのに「無い」と報告されていた。
       if (/^on[A-Z]/.test(name)) continue;
       if (name === "true" || name === "false") continue;
+      if (NOT_A_PROP.has(name) || hookNames.has(name)) continue;
       if (fam.props.has(name) || fam.values.has(name) || valuePool.has(name)) continue;
+      if (allProps.has(name)) continue;
       push(base, key, name, "prop にも値にも無い");
     }
   }

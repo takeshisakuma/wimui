@@ -48,7 +48,7 @@
     "indicator_std_desc": "バッジ、タグ、チップなど、情報の属性や状態を補足するコンポーネントの共通ルールを定義します。",
     "indicator_std_note_desc": "数値のカウントには「バッジ」、情報の分類には「タグ」、選択肢の操作や削除可能な要素には「チップ」を推奨します。",
     "indicator_std_note_title": "注意",
-    "indicator_std_rule_1": "サイズ設定: 一貫した寸法を確保するため、small (sm) と medium (md) の2つのサイズに基づいています。",
+    "indicator_std_rule_1": "サイズ設定: 一貫した寸法を確保するため、`sm` と `md` の2つのサイズに基づいています。",
     "indicator_std_rule_1_desc": "すべてのインジケーターで共通のカラーパレット（primary, positive, caution, destructive, informative）を使用し、状態を伝えます。",
     "indicator_std_rule_1_title": "共通セマンティックカラー",
     "indicator_std_rule_2": "カラーパレット: セマンティックカラー（Success, Warning, Errorなど）を統一し、情報の意味を一貫させています。",
