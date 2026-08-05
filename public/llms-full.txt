@@ -2045,7 +2045,16 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `onChange: (current: number) => void` — Callback function when a step is clicked (if applicable)
     - `asChild: boolean` — Whether to use the Radix Slot pattern
 - **TabBar** — Mobile bottom navigation
-    - `fixed: boolean` = true — Fixed position at the bottom of the screen
+    - `fixed: boolean` = true — Pins the bar to the bottom of the **viewport**. Defaults to `true`.
+
+The pin is `position: fixed`, so the bar leaves whatever container you put
+it in: inside a device-width frame, a preview pane, or a split view it
+spans the whole window instead. Pass `false` whenever the bar belongs to a
+container rather than to the window — a screen inside a screen.
+
+Nothing warns you about this. `position: fixed` does not widen the
+document, so the page never gains a horizontal scrollbar and overflow
+scans stay green while the bar hangs outside its parent.
     - `bordered: boolean` = true — Show top border
     - `glass: boolean` = false — Glassmorphism effect
 - **TabNavigation** — Tab-based navigation
