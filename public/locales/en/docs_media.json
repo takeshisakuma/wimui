@@ -165,7 +165,7 @@
     "icon_anim_table_row_example": "Example",
     "icon_anim_table_row_example_desc": "Spinners during button submission, indicators during search execution, icons during data updates",
     "icon_anim_table_row_features": "Features",
-    "icon_anim_table_row_features_desc": "Can be displayed in sizes (`small` / `medium` / `large`) that blend naturally into existing UI layouts",
+    "icon_anim_table_row_features_desc": "Can be displayed in sizes (`sm` / `md` / `lg`) that blend naturally into existing UI layouts",
     "icon_anim_table_row_usage": "Usage",
     "icon_anim_table_row_usage_desc": "To indicate \"processing\" inline within buttons, input fields, next to text, etc.",
     "icon_anim_vs_loader": "Differences Between Icon Animation and Loader Component",

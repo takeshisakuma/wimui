@@ -100,7 +100,7 @@
     "breadcrumb_scenario_admin": "Admin Panel: Returning to a list from details of setting items (User Settings > Security > Two-Step Verification).",
     "breadcrumb_scenario_ec": "E-commerce Site: Tracing category hierarchies (Home > Electronics > TV) to find a target product.",
     "breadcrumb_scenario_files": "File Management: Returning to upper levels from deep folder hierarchies (Documents > Project > 2024).",
-    "breadcrumb_size_desc": "Supports three sizes: `small`, `medium`, and `large`.",
+    "breadcrumb_size_desc": "Supports three sizes: `sm`, `md`, and `lg`.",
     "breadcrumb_title": "Location trace",
     "breadcrumb_usage_desc": "Pass an array of labels and links to the `items` property.",
     "breadcrumb_with_icons": "With Icons",

@@ -30,6 +30,11 @@ const checks = [
   },
   {
     category: "docs",
+    name: "Docs vs implementation drift",
+    command: "node scripts/check-doc-drift.js",
+  },
+  {
+    category: "docs",
     name: "I18n Consistency and File Size",
     command: "node scripts/check-i18n.js",
   },

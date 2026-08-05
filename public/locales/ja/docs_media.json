@@ -165,7 +165,7 @@
     "icon_anim_table_row_example": "例",
     "icon_anim_table_row_example_desc": "ボタン送信中のスピナー、検索実行中のインジケーター、データ更新中のアイコン",
     "icon_anim_table_row_features": "特徴",
-    "icon_anim_table_row_features_desc": "既存の UI レイアウトに自然に溶け込むサイズ（`small` / `medium` / `large`）で表示できる",
+    "icon_anim_table_row_features_desc": "既存の UI レイアウトに自然に溶け込むサイズ（`sm` / `md` / `lg`）で表示できる",
     "icon_anim_table_row_usage": "用途",
     "icon_anim_table_row_usage_desc": "ボタン内、入力フィールド、テキストの横など インライン（行内） で「処理中」を示す場合",
     "icon_anim_vs_loader": "Icon のアニメーションと Loader コンポーネントの使い分け",

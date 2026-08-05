@@ -92,7 +92,7 @@
     "label_std_desc": "Define regras comuns para componentes que suplementam atributos ou estados de informação, como selos, etiquetas e chips.",
     "label_std_note_desc": "Use 'Selo (Badge)' para contagens numéricas, 'Etiqueta (Tag)' para classificação de informações e 'Chip' para manipular escolhas.",
     "label_std_note_title": "Guia de Uso",
-    "label_std_rule_1_desc": "Com base em dois tamanhos: `small` (20-24px) e `medium` (28-32px).",
+    "label_std_rule_1_desc": "Com base em dois tamanhos: small (20-24px) e medium (28-32px).",
     "label_std_rule_1_title": "Dimensionamento",
     "label_std_rule_2_desc": "Unifica as cores semânticas (Sucesso, Aviso, Erro, etc.) para garantir o significado consistente das informações.",
     "label_std_rule_2_title": "Paleta de Cores",

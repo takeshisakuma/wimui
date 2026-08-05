@@ -45,7 +45,7 @@
     "responsive_design_principle": "Design Responsivo",
     "simple_grid_responsive_desc": "Use a prop `cols` do SimpleGrid com objetos de breakpoint para criar layouts de coluna responsivos sem CSS personalizado.",
     "semantic_wrapping": "Envolvimento Semântico com Box",
-    "box_as_prop_desc": "Use a prop `component` do Box (ex: `component=\"section\"`) para renderizar HTML semântico enquanto aplica estilos do sistema de design.",
+    "box_as_prop_desc": "Use a prop `as` do Box (ex.: `as=\"section\"`) para renderizar HTML semântico aplicando os estilos do design system.",
     "container_control": "Controlar Largura Máxima",
     "container_max_width_desc": "Envolva o conteúdo da página em Container e defina `size` como um token de breakpoint para garantir comprimentos de linha legíveis em telas largas."
   },

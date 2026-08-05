@@ -357,6 +357,7 @@
     "audit:i18n-ignore": "node scripts/check-i18n-ignore.js",
     "scaffold": "node scripts/scaffold-component.js",
     "llms:build": "node scripts/generate-llms.js",
+    "check:doc-drift": "node scripts/check-doc-drift.js",
     "check:llms": "node scripts/generate-llms.js --check",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js && node scripts/generate-presets.js",
     "intents:build": "node scripts/generate-intents.js",
