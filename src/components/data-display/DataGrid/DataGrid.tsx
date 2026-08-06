@@ -345,7 +345,23 @@ export function DataGrid<T extends Record<string, unknown>>({
                         data-col={selection ? colIndex + 1 : colIndex}
                         tabIndex={focusedCell.row === rowIndex && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
                       >
-                        {col.render ? col.render(value, record, rowIndex) : (value as React.ReactNode)}
+                        {/* T85: 宣言した `width` を**上限としても**効かせる。表は
+                            `table-layout: auto` なので、セルの `width` / `max-width` は
+                            ブラウザへの要望でしかなく、中身が要求すれば無視される
+                            （実測: `th` に `max-width` を足しても 1px も動かない）。
+                            セルの内側をブロックで包んで `max-width` を持たせると、
+                            セルの max-content 幅が頭打ちになり列が太らなくなる。
+                            これで `Text truncate` も初めて効く（T86）。
+                            `width` 未指定の列は包まないので既存の描画は変わらない。 */}
+                        {col.width != null ? (
+                          <div style={{ maxWidth: col.width }}>
+                            {col.render ? col.render(value, record, rowIndex) : (value as React.ReactNode)}
+                          </div>
+                        ) : col.render ? (
+                          col.render(value, record, rowIndex)
+                        ) : (
+                          (value as React.ReactNode)
+                        )}
                       </Table.Cell>
                     );
                   })}

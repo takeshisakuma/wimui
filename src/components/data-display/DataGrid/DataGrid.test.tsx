@@ -32,6 +32,46 @@ describe("DataGrid", () => {
     expect(screen.getByText("Charlie")).toBeInTheDocument();
   });
 
+  // T85: 宣言した `width` を上限としても効かせるため、`width` を持つ列だけ
+  // セルの内側を `max-width` 付きのブロックで包む。表は `table-layout: auto`
+  // なので、セル自身の `width` / `max-width` では中身に押し負ける。
+  describe("column width", () => {
+    const widthColumns = [
+      { key: "id", title: "ID" },
+      { key: "name", title: "Name", width: "16rem" },
+      { key: "age", title: "Age", width: 120 },
+    ];
+
+    const cellFor = (text: string) =>
+      screen.getByText(text).closest("td") as HTMLElement;
+
+    it("caps a cell whose column declares a width", () => {
+      render(<DataGrid columns={widthColumns} data={mockRows} />);
+      const wrapper = cellFor("Alice").firstElementChild as HTMLElement;
+      expect(wrapper.tagName).toBe("DIV");
+      expect(wrapper.style.maxWidth).toBe("16rem");
+    });
+
+    it("accepts a numeric width", () => {
+      render(<DataGrid columns={widthColumns} data={mockRows} />);
+      const wrapper = cellFor("25").firstElementChild as HTMLElement;
+      expect(wrapper.style.maxWidth).toBe("120px");
+    });
+
+    it("does not wrap cells of columns without a width", () => {
+      render(<DataGrid columns={widthColumns} data={mockRows} />);
+      // 既存の描画を変えないことの担保。包むと DOM が 1 段深くなる。
+      expect(cellFor("1").firstElementChild).toBeNull();
+    });
+
+    it("still declares width and min-width on the header", () => {
+      render(<DataGrid columns={widthColumns} data={mockRows} />);
+      const th = screen.getByText("Name").closest("th") as HTMLElement;
+      expect(th.style.width).toBe("16rem");
+      expect(th.style.minWidth).toBe("16rem");
+    });
+  });
+
   it("renders empty state when no rows", () => {
     render(
       <DataGrid columns={mockColumns} data={[]} emptyMessage="No data found" />,
