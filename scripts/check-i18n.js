@@ -1,7 +1,14 @@
 /**
  * i18n translation key consistency checker.
- * Exits with code 1 if any locale is missing keys that exist in another locale.
- * Intended for use in CI to catch translation gaps before merging.
+ * Exits with code 1 if any locale is missing a file, or missing keys that exist
+ * in another locale. Intended for use in CI to catch translation gaps before merging.
+ *
+ * The file-set check is not redundant with the key check: the key comparison can
+ * only see locales that actually have the file, so a namespace present in some
+ * locales but absent from others used to pass silently — either by being skipped
+ * outright (present in one locale only) or by never being compared against the
+ * locale that lacks it (present in two of three). `pt/docs_inputs.json` and
+ * `pt/docs_inputs2.json` survived that way from 2026-02 to 2026-08 (see T84).
  *
  * Usage: node scripts/check-i18n.js
  */
@@ -50,6 +57,12 @@ let totalGaps = 0;
 let totalLineErrors = 0;
 const report = [];
 const lineCountIssues = [];
+// Denominator: what was actually compared. Reported on success as well as
+// failure, so that a check that silently stopped looking at anything cannot
+// present itself as a pass.
+let comparedNamespaces = 0;
+let comparedKeys = 0;
+const fileSetIssues = [];
 
 for (const ns of namespaces) {
   // Load each locale file that exists
@@ -70,10 +83,23 @@ for (const ns of namespaces) {
   }
 
   const loadedLangs = Object.keys(loaded);
+
+  // A namespace must exist in every locale. Checked before the key comparison,
+  // which by construction can only speak for the locales that have the file.
+  if (loadedLangs.length < langs.length) {
+    fileSetIssues.push({
+      ns,
+      present: loadedLangs,
+      absent: langs.filter((lang) => !loadedLangs.includes(lang)),
+    });
+  }
+
   if (loadedLangs.length < 2) continue;
 
   // Collect the union of all nested keys across all locales
   const allKeys = new Set(loadedLangs.flatMap((lang) => [...loaded[lang]]));
+  comparedNamespaces++;
+  comparedKeys += allKeys.size;
 
   for (const lang of loadedLangs) {
     const missing = [...allKeys].filter((k) => !loaded[lang].has(k)).sort();
@@ -84,9 +110,28 @@ for (const ns of namespaces) {
   }
 }
 
-if (report.length === 0 && lineCountIssues.length === 0) {
-  console.log("✓ All translation keys are consistent across all locales and file sizes are within limits.");
+const scope = `${comparedNamespaces} namespace(s) / ${comparedKeys} key(s) across ${langs.length} locale(s) (${langs.join(", ")})`;
+
+// Comparing nothing is a failure, not a pass. Every locale file could be
+// deleted and the key comparison alone would still report success.
+if (comparedNamespaces === 0) {
+  console.error(`\n✗ Nothing was compared: ${scope}. Expected locale files under ${localesDir}.`);
+  process.exit(1);
+}
+
+if (report.length === 0 && lineCountIssues.length === 0 && fileSetIssues.length === 0) {
+  console.log(`✓ Compared ${scope}: keys are consistent, no locale is missing a file, and file sizes are within limits.`);
   process.exit(0);
+}
+
+if (fileSetIssues.length > 0) {
+  console.error(`\n✗ Found ${fileSetIssues.length} namespace(s) that do not exist in every locale:\n`);
+  for (const { ns, present, absent } of fileSetIssues) {
+    console.error(`  ✗ [${ns}] present in ${present.join(", ")} — absent from ${absent.join(", ")}`);
+  }
+  console.error(
+    "\nEither add the file to every locale (`npm run i18n:sync`) or delete the leftover copies.",
+  );
 }
 
 if (lineCountIssues.length > 0) {
@@ -110,5 +155,7 @@ if (report.length > 0) {
   console.error("\nRun `npm run i18n:sync` to fill in missing translations.");
 }
 
-const shouldExitWithError = totalGaps > 0 || totalLineErrors > 0;
+console.error(`\nCompared ${scope}.`);
+
+const shouldExitWithError = totalGaps > 0 || totalLineErrors > 0 || fileSetIssues.length > 0;
 process.exit(shouldExitWithError ? 1 : 0);
