@@ -429,7 +429,7 @@
     "@google/genai": "2.13.0",
     "@hookform/resolvers": "5.5.7",
     "@playwright/test": "^1.59.0",
-    "@size-limit/esbuild": "13.0.1",
+    "@size-limit/esbuild": "13.0.3",
     "@size-limit/file": "^13.0.1",
     "@storybook/addon-a11y": "10.5.5",
     "@storybook/addon-docs": "10.5.5",
