@@ -22,6 +22,26 @@ describe("LoadingOverlay", () => {
     expect(content?.querySelector("svg")).toBeInTheDocument();
   });
 
+  // T87: `loaderSize` は `xl` を受け付けるのに `lg` へ潰されていた（sizeMap の
+  // `xl: "lg"`）。`Spinner` / `Loader` はどちらも `.xl` を実装しているので、
+  // 「受け付けたサイズがそのまま描かれる」ことをサイズごとに固定する。
+  it.each(["sm", "md", "lg", "xl"] as const)(
+    "passes loaderSize=%s through to the spinner",
+    (size) => {
+      const { container } = render(<LoadingOverlay visible={true} loaderSize={size} />);
+      const svg = container.querySelector("svg.wim-spinner");
+      expect(svg?.getAttribute("class")).toContain(size);
+    },
+  );
+
+  it("renders a different size for xl than for lg", () => {
+    const classesFor = (size: "lg" | "xl") => {
+      const { container } = render(<LoadingOverlay visible={true} loaderSize={size} />);
+      return container.querySelector("svg.wim-spinner")?.getAttribute("class") ?? "";
+    };
+    expect(classesFor("xl")).not.toEqual(classesFor("lg"));
+  });
+
   it("renders loader with specified type", () => {
     const { container } = render(
       <LoadingOverlay visible={true} loaderType="bars" />,

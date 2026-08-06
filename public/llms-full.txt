@@ -1844,6 +1844,13 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
 @default "sm"
     - `message: string` — Loading message displayed below the indicator.
     - `fixed: boolean` = false — Whether to use position: fixed (covers the whole screen).
+
+When `false` (the default) the overlay is `position: absolute`, so it covers
+**the nearest positioned ancestor** — not necessarily the element you wrapped.
+Give that element a position explicitly, e.g. `<Box position="relative">`.
+`Card` does not set one, so `<Card><LoadingOverlay /></Card>` spreads to the
+viewport instead of the card.
+
 @default false
     - `zIndex: number` — z-index of the overlay.
     - `children: React.ReactNode` — Custom loading content, replacing the default indicator.
