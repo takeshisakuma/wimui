@@ -89,8 +89,10 @@ const DefaultFallback = ({
         {showDetails && (
           <Box
             p="md"
-            bg="rgba(0, 0, 0, 0.05)"
-            radius="sm"
+            // 固定の黒 5% だったため dark テーマでは沈まなかった。面はトークンで
+            // 取り、角丸は用途トークン（DESIGN.md 必須ルール 5）に従う。
+            bg="surface-inset"
+            radius="component"
             className={styles.details}
           >
             <code>

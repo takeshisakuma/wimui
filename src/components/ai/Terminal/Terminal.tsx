@@ -35,12 +35,16 @@ export interface TerminalProps extends React.ComponentPropsWithoutRef<"div"> {
 
 /* ── ANSI SGR parser ── */
 
+// SGR 30-37 / 90-97 は ANSI が番号で定める前景色で、デザイン上の選択ではなく
+// プロトコルの対応表。値は one-dark パレット。`DESIGN.md` は terminal を
+// 「コンポーネント固有色・公開契約外（`--wim-comp-*`、テーマ上書き対象外）」と
+// 定めており、role トークンへは寄せられない。
 const ANSI_FG: Record<number, string> = {
-  30: "#2d2d2d", 31: "#e06c75", 32: "#98c379", 33: "#e5c07b",
-  34: "#61afef", 35: "#c678dd", 36: "#56b6c2", 37: "#abb2bf",
+  30: "#2d2d2d", 31: "#e06c75", 32: "#98c379", 33: "#e5c07b", /* Exception: ANSI SGR palette */
+  34: "#61afef", 35: "#c678dd", 36: "#56b6c2", 37: "#abb2bf", /* Exception: ANSI SGR palette */
   // 90 (bright black): one-dark 由来の #5c6370 は端末背景 #262626 上 2.5:1 のため明度を上げる
-  90: "#9aa1ab", 91: "#e06c75", 92: "#98c379", 93: "#e5c07b",
-  94: "#61afef", 95: "#c678dd", 96: "#56b6c2", 97: "#ffffff",
+  90: "#9aa1ab", 91: "#e06c75", 92: "#98c379", 93: "#e5c07b", /* Exception: ANSI SGR palette — 90 はコントラスト確保で明度を上げている */
+  94: "#61afef", 95: "#c678dd", 96: "#56b6c2", 97: "#ffffff", /* Exception: ANSI SGR palette */
 };
 
 interface AnsiState {
