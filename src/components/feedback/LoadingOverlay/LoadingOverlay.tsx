@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import { Spinner } from "../../feedback/Spinner/Spinner";
 import { Loader } from "../../feedback/Loader/Loader";
-import { ComponentSizeExtended } from "../../../types/tokens";
 import styles from "./loadingoverlay.module.scss";
 
 export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -20,6 +19,9 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
    * Size of the loading indicator.
    * @default "lg"
    */
+  // 値を列挙したまま書く。`ComponentSizeExtended` は同じ union だが
+  // `Extract<...>` なので `check:prop-api` が値を数えられず、集合が狭まって
+  // いないかを検証できなくなる（エイリアス化を試して止められた）。
   loaderSize?: "sm" | "md" | "lg" | "xl";
   /**
    * Color of the loading indicator.
@@ -49,6 +51,13 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
   message?: string;
   /**
    * Whether to use position: fixed (covers the whole screen).
+   *
+   * When `false` (the default) the overlay is `position: absolute`, so it covers
+   * **the nearest positioned ancestor** — not necessarily the element you wrapped.
+   * Give that element a position explicitly, e.g. `<Box position="relative">`.
+   * `Card` does not set one, so `<Card><LoadingOverlay /></Card>` spreads to the
+   * viewport instead of the card.
+   *
    * @default false
    */
   fixed?: boolean;
@@ -84,13 +93,9 @@ export const LoadingOverlay = ({
     return null;
   }
 
-  const sizeMap: Record<"sm" | "md" | "lg" | "xl", ComponentSizeExtended> = {
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-    xl: "lg",
-  };
-  const mappedSize = loaderSize ? sizeMap[loaderSize] : undefined;
+  // `Spinner` / `Loader` はどちらも `ComponentSizeExtended`（`xl` を含む）を受け、
+  // SCSS にも `.xl` を実装している。ここで詰め替えると、受け付けたサイズを描け
+  // ないだけなので素通しする（T87: 以前は `xl` を `lg` へ潰していた）。
 
   const renderLoader = () => {
     if (children) {
@@ -98,13 +103,13 @@ export const LoadingOverlay = ({
     }
 
     if (loaderType === "spinner") {
-      return <Spinner size={mappedSize} color={loaderColor} />;
+      return <Spinner size={loaderSize} color={loaderColor} />;
     }
 
     return (
       <Loader
         variant={loaderType as "bars" | "dots" | "pulse"}
-        size={mappedSize}
+        size={loaderSize}
         color={loaderColor}
       />
     );
