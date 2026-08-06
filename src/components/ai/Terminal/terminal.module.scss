@@ -14,6 +14,14 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
+
+    // T91: `lang.scss` は en / pt に `hyphens: auto` を敷いており（見出しだけ除外）、
+    // コードもその対象だった。実測（全 1,029 ストーリー）で、390px のとき
+    // `kubectl -n checkout get pods -l app=checkout-api -o wide` や
+    // `import { useState } from "react";` が単語の途中で割れていた（7 件）。
+    // **コードをハイフンで分断すると意味が壊れる**ので、ここで継承を止める。
+    // 散文側の `hyphens: auto` はそのまま残す（右端がそろって読みやすくなる本来の用途）。
+    hyphens: manual;
     background: var(--wim-color-surface-app);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);

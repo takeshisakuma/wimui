@@ -3,15 +3,22 @@
 @layer component {
   .root {
     box-sizing: border-box;
+    font-size: var(--wim-font-size-small-scale, 0.875em);
+
+    // T91: `lang.scss` は en / pt に `hyphens: auto` を敷いており（見出しだけ除外）、
+    // コードもその対象だった。実測（全 1,029 ストーリー）で、390px のとき
+    // `kubectl -n checkout get pods -l app=checkout-api -o wide` や
+    // `import { useState } from "react";` が単語の途中で割れていた（7 件）。
+    // **コードをハイフンで分断すると意味が壊れる**ので、ここで継承を止める。
+    // 散文側の `hyphens: auto` はそのまま残す（右端がそろって読みやすくなる本来の用途）。
+    hyphens: manual;
+    border-radius: var(--wim-radius-sm, var(--wim-radius-component));
 
     // 等幅の契約はトークン 1 本に寄せる。ここに独自スタックを直書きすると
     // `CodeBlock` / `Terminal` / `JsonViewer` と**同じページで別の書体**になる
     // （Noto Sans Mono が入っている環境で顕在化する）。block では本文が内側の
     // `<code>` に入るが、その継承も mixin が持つ。
     @include font.mono-family;
-
-    font-size: var(--wim-font-size-small-scale, 0.875em);
-    border-radius: var(--wim-radius-sm, var(--wim-radius-component));
 
     &.inline {
       padding: 0.2em 0.4em;
