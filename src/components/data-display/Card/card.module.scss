@@ -1,5 +1,14 @@
 @layer component {
   .root {
+    // T88: **カードの中に絶対配置したものが、カードの外へ逃げないようにする。**
+    // `LoadingOverlay` は既定（`fixed={false}`）で `position: absolute; inset: 0`
+    // なので、覆うのは「包んだ要素」ではなく**位置を持つ最も近い祖先**。`Card` が
+    // `static` だったため、`<Card><LoadingOverlay /></Card>` と素直に書くと
+    // **画面全体が覆われていた**（実測 1280x800 @0,0 に対しカードは 1248x75 @16,16。
+    // `relative` を足すと 1246x73 @17,17 ＝ カードの内側に収まる）。
+    // `z-index` を伴わない `relative` は重ね合わせコンテキストを作らないので、
+    // 影響は「絶対配置の子の基準」に限られる。
+    position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
