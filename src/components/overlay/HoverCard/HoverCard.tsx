@@ -1,16 +1,44 @@
-import React, { useState, useRef, useEffect, ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
+import {
+  useFloating,
+  useHover,
+  useFocus,
+  useInteractions,
+  useMergeRefs,
+  safePolygon,
+} from "@floating-ui/react";
 import classNames from "classnames";
 import styles from "./hover-card.module.scss";
 
-// Context to share state and handlers between components
+/**
+ * ホバーの開閉は Floating UI に委ねる（**位置決めは委ねない**）。
+ *
+ * **セーフトライアングル。** トリガーからカードへ動くとき、人は直線ではなく斜めに
+ * 動く。素朴に `onMouseLeave` で閉じると、**カードに着く前にトリガーを外れた瞬間に
+ * 閉じる** ── 追いかけて動いているのに逃げられる形になる。`safePolygon()` は
+ * ポインタとカードの角を結ぶ三角形を「まだ向かっている領域」として扱い、その中に
+ * いる間は閉じない。1980 年代の Mac のメニューからある手法。
+ *
+ * **自前で `clip-path` と `mousemove` を書く必要は無い。** `@floating-ui/react` は
+ * 依存に既にあり、`Tooltip` と `useFloatingElement`（`Popover` が使用）は同じ
+ * `safePolygon()` を既に使っていた。ここだけが**自前の `setTimeout` 2 本**で
+ * 開閉していて、三角形を持っていなかった。
+ *
+ * **位置決めは CSS のまま**にしてある（`side` / `align` は公開 prop で、
+ * `styles[side]` がクラスで位置を決める）。Floating UI に移すと prop の意味と
+ * VRT のベースラインが同時に動くので、ここでは扱わない。`useFloating` は
+ * **ref と context を得るためだけ**に使い、`floatingStyles` は当てない。
+ */
 const HoverCardContext = React.createContext<{
   isOpen: boolean;
-  open: () => void;
-  close: () => void;
+  refs: ReturnType<typeof useFloating>["refs"] | null;
+  getReferenceProps: (props?: React.HTMLProps<Element>) => Record<string, unknown>;
+  getFloatingProps: (props?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
 }>({
   isOpen: false,
-  open: () => {},
-  close: () => {},
+  refs: null,
+  getReferenceProps: () => ({}),
+  getFloatingProps: () => ({}),
 });
 
 export type HoverCardProps = {
@@ -51,56 +79,31 @@ const HoverCardInner = ({
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const isControlled = controlledOpen !== undefined;
   const isOpen = isControlled ? controlledOpen : uncontrolledOpen;
-  const openTimerRef = useRef<number | null>(null);
-  const closeTimerRef = useRef<number | null>(null);
 
-  const open = () => {
-    if (closeTimerRef.current) {
-      window.clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-
-    if (isOpen) return;
-
-    if (openTimerRef.current) {
-      window.clearTimeout(openTimerRef.current);
-    }
-
-    openTimerRef.current = window.setTimeout(() => {
-      if (!isControlled) setUncontrolledOpen(true);
-      onOpenChange?.(true);
-      openTimerRef.current = null;
-    }, openDelay);
+  const setOpen = (next: boolean) => {
+    if (!isControlled) setUncontrolledOpen(next);
+    onOpenChange?.(next);
   };
 
-  const close = () => {
-    if (openTimerRef.current) {
-      window.clearTimeout(openTimerRef.current);
-      openTimerRef.current = null;
-    }
+  // 位置決めには使わない（middleware も `floatingStyles` も無し）。ref と context を
+  // 得るためだけ ── `safePolygon()` はトリガーとカードの矩形を context から読む。
+  const { refs, context } = useFloating({ open: isOpen, onOpenChange: setOpen });
 
-    if (!isOpen) return;
+  const hover = useHover(context, {
+    delay: { open: openDelay, close: closeDelay },
+    // **これがセーフトライアングル。** ポインタとカードの角で三角形を作り、
+    // その中を通っている間は「まだ向かっている」とみなして閉じない。
+    handleClose: safePolygon({ requireIntent: false }),
+  });
+  // 従来どおりキーボードでも開く（focus / blur）。
+  const focus = useFocus(context);
 
-    if (closeTimerRef.current) {
-      window.clearTimeout(closeTimerRef.current);
-    }
-
-    closeTimerRef.current = window.setTimeout(() => {
-      if (!isControlled) setUncontrolledOpen(false);
-      onOpenChange?.(false);
-      closeTimerRef.current = null;
-    }, closeDelay);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (openTimerRef.current) window.clearTimeout(openTimerRef.current);
-      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
-    };
-  }, []);
+  const { getReferenceProps, getFloatingProps } = useInteractions([hover, focus]);
 
   return (
-    <HoverCardContext.Provider value={{ isOpen, open, close }}>
+    <HoverCardContext.Provider
+      value={{ isOpen, refs, getReferenceProps, getFloatingProps }}
+    >
       <div className={classNames("wim-hover-card", styles.root, className)}>{children}</div>
     </HoverCardContext.Provider>
   );
@@ -117,56 +120,30 @@ export const HoverCardTrigger = ({
   className,
   asChild,
 }: HoverCardTriggerProps) => {
-  const { open, close } = React.useContext(HoverCardContext);
-
-  const handleMouseEnter = () => open();
-  const handleMouseLeave = () => close();
+  const { refs, getReferenceProps } = React.useContext(HoverCardContext);
+  const childrenRef = (children as React.ReactElement & { ref?: React.Ref<unknown> })
+    ?.ref;
+  // `asChild` の子に ref を渡しつつ、子が元から持っている ref も壊さない
+  // （`Popover.Trigger` と同じ組み方）。
+  const ref = useMergeRefs([refs?.setReference ?? null, childrenRef ?? null]);
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
-      onMouseEnter: (e: React.MouseEvent) => {
-        const child = children as React.ReactElement<{
-          onMouseEnter?: React.MouseEventHandler;
-        }>;
-        child.props.onMouseEnter?.(e);
-        handleMouseEnter();
-      },
-      onMouseLeave: (e: React.MouseEvent) => {
-        const child = children as React.ReactElement<{
-          onMouseLeave?: React.MouseEventHandler;
-        }>;
-        child.props.onMouseLeave?.(e);
-        handleMouseLeave();
-      },
-      onFocus: (e: React.FocusEvent) => {
-        const child = children as React.ReactElement<{
-          onFocus?: React.FocusEventHandler;
-        }>;
-        child.props.onFocus?.(e);
-        handleMouseEnter();
-      },
-      onBlur: (e: React.FocusEvent) => {
-        const child = children as React.ReactElement<{
-          onBlur?: React.FocusEventHandler;
-        }>;
-        child.props.onBlur?.(e);
-        handleMouseLeave();
-      },
-      className: classNames(
-        className,
-        (children as React.ReactElement<{ className?: string }>).props.className,
-      ),
-    });
+    const childProps = children.props as Record<string, unknown>;
+    // eslint-disable-next-line react-hooks/refs
+    const referenceProps = getReferenceProps({
+      ref,
+      ...(childProps as React.HTMLProps<Element>),
+      className: classNames(className, childProps.className as string | undefined),
+    }) as React.HTMLAttributes<Element>;
+    return React.cloneElement(children, referenceProps);
   }
 
   return (
     <div
+      ref={ref as React.Ref<HTMLDivElement>}
       className={classNames(styles.trigger, className)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onFocus={handleMouseEnter}
-      onBlur={handleMouseLeave}
       tabIndex={0}
+      {...(getReferenceProps() as React.HTMLAttributes<HTMLDivElement>)}
     >
       {children}
     </div>
@@ -189,7 +166,7 @@ export const HoverCardContent = ({
   sideOffset: _sideOffset = 8,
   ...props
 }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const { isOpen, open, close } = React.useContext(HoverCardContext);
+  const { isOpen, refs, getFloatingProps } = React.useContext(HoverCardContext);
 
   if (!isOpen) return null;
 
@@ -198,17 +175,18 @@ export const HoverCardContent = ({
 
   return (
     <div
+      // `safePolygon()` はここを「向かっている先」として読む。ref を渡さないと
+      // 三角形が作れず、ホバーは従来どおり素朴な離脱判定に戻る。
+      ref={refs?.setFloating}
       className={classNames(
         styles.content,
         sideClass,
         alignClass,
         className,
       )}
-      onMouseEnter={open}
-      onMouseLeave={close}
       data-side={side}
       data-align={align}
-      {...props}
+      {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
     >
       {children}
     </div>
