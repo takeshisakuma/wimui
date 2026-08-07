@@ -14,6 +14,21 @@ on:
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      # T92: **撮る側の道具**も対象にする。撮られる中身（`src` / `stories`）と
+      # スペックしか見ていなかったため、**スクリーンショットを撮る実装そのものを
+      # 差し替える PR で VRT が 1 本も起動しなかった**。
+      #   - #250 は `playwright` を 1.62.0 → 1.62.1 に上げるが VRT は走らない
+      #   - #272 では `playwright` と Storybook 10.5.6 が**同時に**動いた
+      #     （撮る側と撮られる側の両方）。しかもベースラインを 104 枚更新した
+      #     直後で、ずれたときの切り分けが最も難しいタイミングだった
+      #   - #9 / #10 / #19 は `actions/checkout` / `upload-artifact` /
+      #     `download-artifact` を**このファイルの中で**差し替えたのに走らない
+      # 影響が出るのは遅れてから ── 次に VRT を走らせた無関係な PR が落ちる
+      # （#220 が実例）。落ちた側は自分の変更を疑うので原因にたどり着けない。
+      # 4 箇所（2 ファイル × 2 トリガー）の同期は `check:ci-paths` が見張る。
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/vrt.yml"
   push:
     branches: [main]
     # `pull_request` 側と同じ 6 つを見る。ソース 3 つしか見ていなかったため、
@@ -32,6 +47,11 @@ on:
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      # T92。**`pull_request` 側と必ず同じ内容にする** ── #185 は `push` 側だけ
+      # 漏れていた事例で、2 ファイル × 2 トリガー = 4 箇所が独立に腐る。
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/vrt.yml"
   workflow_dispatch:
     inputs:
       update_snapshots:
