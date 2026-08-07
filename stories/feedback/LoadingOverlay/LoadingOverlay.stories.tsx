@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Icon, LoadingOverlay } from "wimui";
+import { Button, Card, Icon, LoadingOverlay } from "wimui";
 import sceneLandscape from "@/media/scene_landscape.svg";
 
 
@@ -77,6 +77,29 @@ export const Basic: Story = {
         </div>
         <LoadingOverlay {...args} />
       </div>
+    );
+  },
+};
+
+// T88: **既定の `fixed={false}` は「包んだ要素」ではなく「位置を持つ最も近い祖先」を
+// 覆う。** 既存のストーリーは 8 つとも `position: relative` の div で包んでいるので、
+// 覆う先が正しいかを一度も撮っていなかった ── **素直に書いたときに何が起きるかを
+// 写したストーリーが 1 枚も無い**状態だった。これはその 1 枚で、`Card` に直接置く。
+export const InsideCard: Story = {
+  args: {
+    visible: true,
+    loaderType: "spinner",
+    loaderSize: "lg",
+    loaderColor: "primary",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Card>
+        <h3>{t("story.loading_overlay_content_title")}</h3>
+        <p>{t("story.loading_overlay_content_desc")}</p>
+        <LoadingOverlay {...args} />
+      </Card>
     );
   },
 };
