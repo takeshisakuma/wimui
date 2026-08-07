@@ -595,7 +595,7 @@
   },
   "captions": {
     "col_dur": "Dur.",
-    "col_flag": "",
+    "col_flag": "Flag",
     "col_speaker": "Speaker",
     "col_tc": "Timecode",
     "col_text": "Caption",
