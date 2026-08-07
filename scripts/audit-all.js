@@ -226,8 +226,22 @@ const checks = [
     command: "node scripts/check-src-hardcoded.js",
   },
   {
+    // category が無いと `--lib` / `--docs` のどちらにも入らない。lint.yml は
+    // `audit:lib` と `audit:docs` しか呼ばないので、**このガードは CI で一度も
+    // 走っていなかった**（T92 の「対象なのに起動しない」と同じ形が、ワークフローの
+    // paths ではなく検査の一覧側に出たもの）。
+    category: "lib",
     name: "External story assets (VRT must not depend on the network)",
     command: "node scripts/check-external-assets.js",
+  },
+  {
+    category: "lib",
+    // VRT / a11y は `paths` フィルタを持つため、フィルタが漏れると「対象なのに
+    // 1 本も起動しない」形で壊れる。**2 ファイル × 2 トリガー = 4 箇所が独立に
+    // 腐る**うえ、壊れた瞬間は何も起きず、次の無関係な PR が落ちて初めて分かる。
+    // 同じ形で 3 度再発している（#185 / #219 / #250・#272）ので機械に見張らせる（T92）。
+    name: "VRT / a11y trigger paths (the run that never starts)",
+    command: "node scripts/check-ci-paths.js",
   },
   {
     category: "lib",
