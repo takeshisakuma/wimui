@@ -397,6 +397,8 @@
     "hovercard_long_desc": "Um componente para exibir informações adicionais quando focalizado com o mouse.",
     "hovercard_pc_only": "Apenas para PC",
     "hovercard_pc_only_desc": "Este componente foi projetado principalmente para PCs, pois assume operações de hover do ponteiro. Pode não funcionar como pretendido em dispositivos táteis.",
+    "hovercard_safe_triangle": "Ao ir do gatilho para o cartão, o ponteiro cruza um espaço na diagonal, e uma implementação ingênua fecha o cartão assim que o ponteiro deixa o gatilho — antes de chegar. Este cartão trata o triângulo entre o ponteiro e o cartão como \"ainda a caminho\" e permanece aberto enquanto o ponteiro estiver dentro dele (safePolygon do Floating UI). Medido na story padrão: uma diagonal que termina 20px dentro do cartão antes fechava e agora permanece aberta, e uma diagonal rasa em direção ao canto superior direito só se manteve com requireIntent desligado. Afastar-se do cartão continua fechando. Dispositivos de toque não são afetados.",
+    "hovercard_safe_triangle_title": "Triângulo seguro",
     "hovercard_scenario_1": "Integrando HoverCard em fluxos de trabalho para coleta ou exibição de dados.",
     "hovercard_scenario_2": "Usando HoverCard em visualizações de gerenciamento para organização de informações.",
     "hovercard_title": "Cartão de Identificação (Hover)",
