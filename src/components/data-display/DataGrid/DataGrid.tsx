@@ -14,7 +14,27 @@ export type DataGridColumn<T> = {
   /** If provided, read cell value from this field instead of `key` */
   dataIndex?: string;
   title: React.ReactNode;
+  /**
+   * Column width. This is a **floor, not a cap** — the table is
+   * `table-layout: auto`, so a column never renders narrower than this but
+   * grows past it when the content asks for room or when the table has
+   * spare width to hand out. Use `maxWidth` when the content has to stop.
+   */
   width?: string | number;
+  /**
+   * Stop the cell's content at this width. Long values are clipped here
+   * instead of pushing the column wider and starving its neighbours (T85),
+   * and this is what makes `Text truncate` produce an ellipsis inside a
+   * cell (T86).
+   *
+   * **This caps the content, not the column.** The table still distributes
+   * spare width, so a column can be drawn wider than `maxWidth` with the
+   * content stopping early — at 1280px a `maxWidth: 200` column measured
+   * 523px wide with 303px of empty space to the right of the ellipsis
+   * (T93). Set it to the width the text should stop at, not to the width
+   * you want the column to be.
+   */
+  maxWidth?: string | number;
   sortable?: boolean;
   fixed?: "left" | "right";
   render?: (value: unknown, record: T, index: number) => React.ReactNode;
@@ -345,16 +365,21 @@ export function DataGrid<T extends Record<string, unknown>>({
                         data-col={selection ? colIndex + 1 : colIndex}
                         tabIndex={focusedCell.row === rowIndex && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
                       >
-                        {/* T85: 宣言した `width` を**上限としても**効かせる。表は
+                        {/* T85/T93: 中身を止めるのは `maxWidth` **だけ**。表は
                             `table-layout: auto` なので、セルの `width` / `max-width` は
                             ブラウザへの要望でしかなく、中身が要求すれば無視される
                             （実測: `th` に `max-width` を足しても 1px も動かない）。
                             セルの内側をブロックで包んで `max-width` を持たせると、
                             セルの max-content 幅が頭打ちになり列が太らなくなる。
-                            これで `Text truncate` も初めて効く（T86）。
-                            `width` 未指定の列は包まないので既存の描画は変わらない。 */}
-                        {col.width != null ? (
-                          <div style={{ maxWidth: col.width }}>
+                            これで `Text truncate` も初めて省略記号を出す（T86）。
+                            **一度は `width` にこの役目を兼ねさせたが（#277）、`width` は
+                            下限としても効くため、同じ 1 つの値が「列幅の下限」と
+                            「中身の上限」の両方になっていた。** 表が余りを配ると列だけが
+                            広がり、中身は宣言幅で切られたまま右に空白が残る（1280px で
+                            303px）。意味が 2 つあるものは prop も 2 つに分ける（T93）。
+                            `maxWidth` 未指定の列は包まないので既存の描画は変わらない。 */}
+                        {col.maxWidth != null ? (
+                          <div style={{ maxWidth: col.maxWidth }}>
                             {col.render ? col.render(value, record, rowIndex) : (value as React.ReactNode)}
                           </div>
                         ) : col.render ? (

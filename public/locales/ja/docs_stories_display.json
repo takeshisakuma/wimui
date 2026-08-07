@@ -99,6 +99,7 @@
     "datagrid_col_joinDate": "入会日",
     "datagrid_col_join_date": "入会日",
     "datagrid_col_name": "名前",
+    "datagrid_col_note": "備考",
     "datagrid_col_role": "権限",
     "datagrid_col_status": "ステータス",
     "datagrid_empty": "ユーザーが見つかりません",
@@ -106,6 +107,7 @@
     "datagrid_status_active": "有効",
     "datagrid_status_inactive": "無効",
     "datagrid_status_pending": "保留",
+    "datagrid_truncate_note": "旧請求システムのエクスポートから取り込み。元の行に通貨列が無かったため、金額は USD とみなしている。",
     "dialog_cancel": "キャンセル",
     "dialog_confirm": "削除",
     "dialog_confirm_desc": "本当に削除してもよろしいですか？この操作は取り消せません。",
@@ -189,6 +191,7 @@
     "nodegraph_label_process": "処理",
     "nodegraph_label_start": "開始",
     "paragraph_bold": "太字の段落",
+    "paragraph_clamp_body": "打ち切りが必要になる程度に長いリリースノート。何が変わったか、なぜ変わったか、読む人が何をすればよいかを説明していますが、カードにそのまま載せると下の要素が画面の外へ押し出されてしまいます。",
     "paragraph_exlarge": "特大の段落",
     "paragraph_exsmall": "極小の段落",
     "paragraph_highlight": "ハイライト段落",
@@ -234,8 +237,8 @@
     "spoiler_rich_pros_label": "良い点:",
     "spoiler_short": "良いノートPCです。また買います。",
     "spoiler_show_label": "レビュー全文を読む",
-    "stats_conversion_rate": "コンバージョン率",
     "stats_avg_session": "平均セッション時間",
+    "stats_conversion_rate": "コンバージョン率",
     "stats_desc_session": "5分以上のセッション",
     "stats_desc_users": "先月から+12.5%",
     "stats_page_views": "ページビュー",
@@ -313,7 +316,6 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui",
-    "paragraph_clamp_body": "打ち切りが必要になる程度に長いリリースノート。何が変わったか、なぜ変わったか、読む人が何をすればよいかを説明していますが、カードにそのまま載せると下の要素が画面の外へ押し出されてしまいます。"
+    "watermark_wimui": "wimui"
   }
 }

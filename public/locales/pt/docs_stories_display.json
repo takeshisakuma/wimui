@@ -99,6 +99,7 @@
     "datagrid_col_joinDate": "Data de Entrada",
     "datagrid_col_join_date": "Data de Entrada",
     "datagrid_col_name": "Nome",
+    "datagrid_col_note": "Observação",
     "datagrid_col_role": "Função",
     "datagrid_col_status": "Status",
     "datagrid_empty": "Mensagem vazia personalizada",
@@ -106,6 +107,7 @@
     "datagrid_status_active": "Ativo",
     "datagrid_status_inactive": "Inativo",
     "datagrid_status_pending": "Pendente",
+    "datagrid_truncate_note": "Importado da exportação de faturamento legada; a linha de origem não trazia coluna de moeda, então o valor foi assumido como USD.",
     "dialog_cancel": "Cancelar",
     "dialog_confirm": "Excluir",
     "dialog_confirm_desc": "Tem certeza de que deseja excluir este item? Esta ação não pode ser desfeita.",
@@ -189,6 +191,7 @@
     "nodegraph_label_process": "Processo",
     "nodegraph_label_start": "Início",
     "paragraph_bold": "Bold Paragraph",
+    "paragraph_clamp_body": "Uma nota de versão longa o suficiente para precisar parar. Explica o que mudou, por que mudou e o que o leitor precisa fazer — mais do que um cartão consegue mostrar sem empurrar tudo abaixo dele para fora da tela.",
     "paragraph_exlarge": "ex-large paragraph",
     "paragraph_exsmall": "ex-small paragraph",
     "paragraph_highlight": "Highlight Paragraph",
@@ -234,8 +237,8 @@
     "spoiler_rich_pros_label": "Prós:",
     "spoiler_short": "Ótimo notebook, compraria de novo.",
     "spoiler_show_label": "Ler avaliação completa",
-    "stats_conversion_rate": "Taxa de conversão",
     "stats_avg_session": "Tempo Médio de Sessão",
+    "stats_conversion_rate": "Taxa de conversão",
     "stats_desc_session": "Sessões acima de 5 minutos",
     "stats_desc_users": "+12,5% em relação ao mês passado",
     "stats_page_views": "Page Views",
@@ -313,7 +316,6 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui",
-    "paragraph_clamp_body": "Uma nota de versão longa o suficiente para precisar parar. Explica o que mudou, por que mudou e o que o leitor precisa fazer — mais do que um cartão consegue mostrar sem empurrar tudo abaixo dele para fora da tela."
+    "watermark_wimui": "wimui"
   }
 }

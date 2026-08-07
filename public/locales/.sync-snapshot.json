@@ -11030,6 +11030,7 @@
       "datagrid_col_joinDate": "Join Date",
       "datagrid_col_join_date": "Join Date",
       "datagrid_col_name": "Name",
+      "datagrid_col_note": "Note",
       "datagrid_col_role": "Role",
       "datagrid_col_status": "Status",
       "datagrid_empty": "No users found",
@@ -11037,6 +11038,7 @@
       "datagrid_status_active": "Active",
       "datagrid_status_inactive": "Inactive",
       "datagrid_status_pending": "Pending",
+      "datagrid_truncate_note": "Imported from the legacy billing export; the source row carried no currency column, so the amount was assumed to be USD.",
       "dialog_cancel": "Cancel",
       "dialog_confirm": "Delete",
       "dialog_confirm_desc": "Are you sure you want to delete this item? This action cannot be undone.",
@@ -11120,6 +11122,7 @@
       "nodegraph_label_process": "Process",
       "nodegraph_label_start": "Start",
       "paragraph_bold": "Bold Paragraph",
+      "paragraph_clamp_body": "A release note long enough to need stopping. It explains what changed, why it changed, and what a reader has to do about it — which is more than a card can show without pushing everything below it off the screen.",
       "paragraph_exlarge": "ex-large paragraph",
       "paragraph_exsmall": "ex-small paragraph",
       "paragraph_highlight": "Highlight Paragraph",
@@ -11165,8 +11168,8 @@
       "spoiler_rich_pros_label": "Pros:",
       "spoiler_short": "Great laptop, would buy again.",
       "spoiler_show_label": "Read full review",
-      "stats_conversion_rate": "Conversion Rate",
       "stats_avg_session": "Avg. Session Time",
+      "stats_conversion_rate": "Conversion Rate",
       "stats_desc_session": "Sessions over 5 minutes",
       "stats_desc_users": "+12.5% from last month",
       "stats_page_views": "Page Views",
@@ -11244,8 +11247,7 @@
       "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
       "watermark_team": "WIM UI Team",
       "watermark_text": "wimui watermark",
-      "watermark_wimui": "wimui",
-      "paragraph_clamp_body": "A release note long enough to need stopping. It explains what changed, why it changed, and what a reader has to do about it — which is more than a card can show without pushing everything below it off the screen."
+      "watermark_wimui": "wimui"
     }
   },
   "docs_stories_feedback": {
