@@ -121,11 +121,38 @@ for v in solid outline subtle; do printf "%-10s %s\n" "$v" "$(grep -rho "variant
 
 > 実例: `Chip` の `subtle` は 3 つの variant のうちここだけ**どのストーリーにも出ていなかった**（2026-08-07 に追加）。`LoadingOverlay` は 8 ストーリーすべてが `position: relative` の親で包んでおり、**素直に書いたときの姿を一度も撮っていなかった**。
 
+### 7. まだ合成画面で使っていないコンポーネントを数える
+
+合成による探索（T32）は**いちばん打率の高い欠陥の見つけ方**で、5 枚目は 7 件出して 7 件とも実在した。次にどこを作るかは、**印象ではなく残りの数**で決める。
+
+```bash
+node - <<'EOF'
+import fs from "node:fs"; import path from "node:path";
+const walk=(d,a=[])=>{for(const f of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,f.name);
+  if(f.isDirectory())walk(p,a); else if(/\.(tsx|mdx)$/.test(f.name))a.push(p);} return a;};
+const src=[...walk("stories/Patterns"),...walk("sandbox")].map(f=>fs.readFileSync(f,"utf8")).join("\n");
+// `<` を許すのはジェネリクス付き JSX（`<DataGrid<Row> …>`）のため
+const count=(n)=>(src.match(new RegExp("<"+n.replace(/\./g,"\\.")+"[\\s/><]","g"))||[]).length;
+// **自己検証を先に通す。** 走査が壊れていれば全部「未合成」に見えてしまう
+if (count("Button")===0 || count("DataGrid")===0) { console.error("走査が成立していない"); process.exit(1); }
+const idx=JSON.parse(fs.readFileSync("src/data/docgen_index.json","utf8"));
+const INTERNAL=/(Inner|Internal|Wrapper|^Default|^parse)/;
+const un=Object.entries(idx).filter(([n,c])=>c!=="_internal"&&!n.includes(".")&&!INTERNAL.test(n)&&count(n)===0);
+const by={}; un.forEach(([n,c])=>(by[c] ??= []).push(n));
+for (const c of Object.keys(by).sort()) console.log(`[${c}] ${by[c].length}\n  ${by[c].sort().join(", ")}`);
+console.log("\n未合成 " + un.length + " 件");
+EOF
+```
+
+**自己検証を先に置くこと。** この走査は 2 回間違えた ── 1 回目は `Button` まで未合成と出し（使用済み 44 件という数字がおかしくて気付いた）、2 回目は `DataGrid` を 0 件と誤報した（**ジェネリクス付き JSX** は名前の直後が `<`）。**走査が壊れると「全部未合成」に見えるので、緑ではなく数字の大きさで気付くしかない。**
+
+**2026-08-08 時点**: 362 件中 使用済み 136 / 未合成 226（合成に使える単位では 158）。`AppShell` / `Navbar` / `Footer` が未合成＝**既存 5 枚はどれも「画面の中身」だけを作っていた**。詳細と次の候補は `IMPROVEMENTS.md` の T95。
+
 ---
 
 ## リリース前
 
-### 7. 公開物を**実物で**確かめる
+### 8. 公開物を**実物で**確かめる
 
 リポジトリに置いてあることと、`npm` から取れることは別。
 
@@ -137,7 +164,7 @@ tar -xzf wimui-*.tgz && ls package/  # NOTICE / dist / llms.txt
 
 > 実例: 公開済み 0.15.0 の tarball を取ったら `NOTICE` が入っていなかった（T80）。「リポジトリにある」では確認になっていない。
 
-### 8. README / llms.txt の主張と `package.json` の一致
+### 9. README / llms.txt の主張と `package.json` の一致
 
 ガードがある。リリース前に手でも通す。
 
@@ -151,19 +178,19 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 ## 四半期
 
-### 9. Node の EOL と `engines`
+### 10. Node の EOL と `engines`
 
 下限は「**CI で検証している非 EOL の LTS**」に保つ。いまは `>=22`。**次の見直しは Node 22 の EOL（2027-04）前**。
 
-### 10. GitHub Actions の runner image と actions の major
+### 11. GitHub Actions の runner image と actions の major
 
 `ubuntu-24.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
 
-### 11. a11y 全量の再測定（T68）
+### 12. a11y 全量の再測定（T68）
 
 同一コミットで複数回流し、赤の集合が一致するかを見る。**1 ラン 4 シャード × 約 9 分の CI 律速**なので、回数を増やす費用対効果は低い。2026-08-05 に 5 回流して 5 回とも緑だったが、**それは非決定性が消えた証明ではない**（起票時も赤は 1〜2 件で、緑を引くことはありうる）。
 
-### 12. VRT スナップショットの衛生
+### 13. VRT スナップショットの衛生
 
 ```bash
 ls vrt/vrt.spec.ts-snapshots/*.png | wc -l
