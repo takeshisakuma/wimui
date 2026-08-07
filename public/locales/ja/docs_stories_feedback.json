@@ -85,6 +85,8 @@
     "toast_5s_desc": "これは5秒後に消えます。",
     "toast_connection_desc": "インターネット接続が不安定なようです。",
     "toast_connection_title": "接続を確認してください",
+    "toast_long_desc": "通貨列が空だった 4 行は金額を換算できないため取り込みをスキップしました。残りは取り込み済みで、確認できる状態です。",
+    "toast_long_title": "夜間の取り込みが警告付きで完了しました",
     "toast_saved_desc": "変更内容がクラウドに保存されました。",
     "toast_saved_title": "保存完了",
     "toast_show_5s": "5秒間表示",

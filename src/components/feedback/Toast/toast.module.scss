@@ -64,7 +64,19 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    align-self: center;
+
+    // T90 の横展開。`Alert` とまったく同じ形がここにもあった ── `.root` は既に
+    // `align-items: flex-start` で「1 行目に揃える」と宣言しているのに、
+    // `align-self: center` がそれを打ち消し、**アイコンは常にテキスト塊の中央**に
+    // 来ていた。塊が短いうちは 1 行目と近いので気付きにくく、内容が伸びるほど
+    // 下へ落ちる。
+    // 実測（`Toast - Warning`、アイコンの top と title の top の差）:
+    //   既定（塊 43px・1280px）         14px → 0px
+    //   説明を 480 字に（塊 81px）       33px → 0px
+    //   390px で折り返し（塊 100px）     43px → 0px
+    // `Alert` では短い内容で 2px → 7px と少し悪くなる条件があったが、ここは
+    // **どの条件でも 0px** になる（アイコンの箱と 1 行目の高さが揃っているため）。
+    align-self: flex-start;
     font-size: var(--wim-font-size-xl);
   }
 

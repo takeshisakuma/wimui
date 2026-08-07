@@ -11337,6 +11337,8 @@
       "toast_5s_desc": "This will disappear in 5 seconds.",
       "toast_connection_desc": "The internet connection seems unstable.",
       "toast_connection_title": "Check your connection",
+      "toast_long_desc": "Four rows were skipped because their currency column was empty, so the amounts could not be converted. The rest of the batch was imported and is ready to review.",
+      "toast_long_title": "Nightly import finished with warnings",
       "toast_saved_desc": "Your changes have been saved to the cloud.",
       "toast_saved_title": "Successfully saved",
       "toast_show_5s": "Show 5s Toast",

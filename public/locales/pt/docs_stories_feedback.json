@@ -85,6 +85,8 @@
     "toast_5s_desc": "Este desaparecerá em 5 segundos.",
     "toast_connection_desc": "A conexão com a internet parece instável.",
     "toast_connection_title": "Verifique sua conexão",
+    "toast_long_desc": "Quatro linhas foram ignoradas porque a coluna de moeda estava vazia e os valores não puderam ser convertidos. O restante do lote foi importado e está pronto para revisão.",
+    "toast_long_title": "A importação noturna terminou com avisos",
     "toast_saved_desc": "Suas alterações foram salvas na nuvem.",
     "toast_saved_title": "Salvo com sucesso",
     "toast_show_5s": "Mostrar Toast por 5s",
