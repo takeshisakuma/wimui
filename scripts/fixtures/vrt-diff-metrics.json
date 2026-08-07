@@ -1,0 +1,2148 @@
+{
+ "note": "vrt-diff-classify の回帰用。実際のベースライン更新から測った値で、生成は scripts/fixtures/README を見ること。",
+ "measuredWithStrongChannelDelta": 64,
+ "datasets": [
+  {
+   "id": "#257",
+   "range": "c4db850ec..5a88e93d8",
+   "why": "SettingsIcon / SendIcon を上流の字形に差し替えた",
+   "images": [
+    {
+     "name": "dark-components-application-shell-appshell--modern-app",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-application-shell-appshell--with-sidebar",
+     "shift": 21.5,
+     "area": 0.016,
+     "strongPct": 50.3,
+     "real": true
+    },
+    {
+     "name": "dark-components-application-shell-sidebar--collapsed",
+     "shift": 21.5,
+     "area": 0.016,
+     "strongPct": 50.3,
+     "real": true
+    },
+    {
+     "name": "dark-components-application-shell-sidebar--custom-width",
+     "shift": 21.5,
+     "area": 0.016,
+     "strongPct": 50.3,
+     "real": true
+    },
+    {
+     "name": "dark-components-application-shell-sidebar--default",
+     "shift": 21.5,
+     "area": 0.016,
+     "strongPct": 50.3,
+     "real": true
+    },
+    {
+     "name": "dark-components-basic-inputs-input--clearable",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--custom-width",
+     "shift": 1.6,
+     "area": 0.004,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--danger",
+     "shift": 1.4,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--disabled",
+     "shift": 1,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--outline",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--search-indicator",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--custom-mask",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--phone",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--zip-code",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-mentions--custom-trigger",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-mentions--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-numberinput--decimal-and-negative",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-otpinput--disabled",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--with-error",
+     "shift": 1.5,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--disabled",
+     "shift": 19.1,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-indicators-qrcode--with-image",
+     "shift": 0.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-structures-baselistitem--with-right-section",
+     "shift": 20.8,
+     "area": 0.016,
+     "strongPct": 47.6,
+     "real": true
+    },
+    {
+     "name": "dark-components-form-layout-fieldset--default",
+     "shift": 1.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--with-error",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--default",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--disabled",
+     "shift": 0.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--multiple-right-icons",
+     "shift": 17.6,
+     "area": 0.016,
+     "strongPct": 42.4,
+     "real": true
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--with-icons",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-label--optional",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-label--required",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-layout-toolbar--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-loading-states-skeleton--card-example",
+     "shift": 1.5,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-media-audio--default",
+     "shift": 1.5,
+     "area": 0.064,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-navigation-utilities-speeddial--custom-icons",
+     "shift": 20,
+     "area": 0.016,
+     "strongPct": 56.9,
+     "real": true
+    },
+    {
+     "name": "dark-components-pickers-sliders-colorinput--custom-states",
+     "shift": 12.6,
+     "area": 0.015,
+     "strongPct": 38.4,
+     "real": true
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--danger",
+     "shift": 1.4,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--default",
+     "shift": 0.9,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-timepicker--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-combobox--with-icon",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-togglegroup--full-width",
+     "shift": 1.5,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-patterns-admin--intake-queue-loading",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-patterns-page--maintenance-page",
+     "shift": 32.8,
+     "area": 0.073,
+     "strongPct": 74.7,
+     "real": true
+    },
+    {
+     "name": "light-components-ai-codediffviewer--applying",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-application-shell-appshell--modern-app",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-application-shell-appshell--with-sidebar",
+     "shift": 27.6,
+     "area": 0.016,
+     "strongPct": 57.6,
+     "real": true
+    },
+    {
+     "name": "light-components-application-shell-sidebar--collapsed",
+     "shift": 27.6,
+     "area": 0.016,
+     "strongPct": 57.6,
+     "real": true
+    },
+    {
+     "name": "light-components-application-shell-sidebar--custom-width",
+     "shift": 27.6,
+     "area": 0.016,
+     "strongPct": 57.6,
+     "real": true
+    },
+    {
+     "name": "light-components-application-shell-sidebar--default",
+     "shift": 27.6,
+     "area": 0.016,
+     "strongPct": 57.6,
+     "real": true
+    },
+    {
+     "name": "light-components-basic-inputs-countertextarea--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-creditcardinput--amex",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--outline",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-inputmask--credit-card",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-mentions--custom-trigger",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-numberinput--decimal-and-negative",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-numberinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-otpinput--disabled",
+     "shift": 1.7,
+     "area": 0.004,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-searchinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-smartsearchinput--with-max-length",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--field-sizing-content",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-data-indicators-jsondiffviewer--unified-view",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-data-structures-baselistitem--with-right-section",
+     "shift": 18.8,
+     "area": 0.016,
+     "strongPct": 44.1,
+     "real": true
+    },
+    {
+     "name": "light-components-form-layout-inputbase--multiple-right-icons",
+     "shift": 21.5,
+     "area": 0.016,
+     "strongPct": 50.7,
+     "real": true
+    },
+    {
+     "name": "light-components-form-layout-inputgroup--suffix",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputgroup--with-button",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-label--optional",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-label--required",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-loading-states-skeleton--loading-toggle",
+     "shift": 1.7,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-navigation-elements-stepper--custom-icons",
+     "shift": 6,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-navigation-utilities-affix--basic",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-navigation-utilities-speeddial--custom-icons",
+     "shift": 20,
+     "area": 0.016,
+     "strongPct": 56.9,
+     "real": true
+    },
+    {
+     "name": "light-components-pickers-sliders-colorinput--custom-states",
+     "shift": 6.9,
+     "area": 0.015,
+     "strongPct": 13.1,
+     "real": true
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--danger",
+     "shift": 0.9,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--outline",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--danger",
+     "shift": 0.9,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--default",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-combobox--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-combobox--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-togglegroup--full-width",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-togglegroup--single-selection",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-patterns-page--maintenance-page",
+     "shift": 29.5,
+     "area": 0.073,
+     "strongPct": 72.6,
+     "real": true
+    }
+   ]
+  },
+  {
+   "id": "#277",
+   "range": "a28ae1552..c1e3f510d",
+   "why": "DataGrid の列幅が上限として効くようになった",
+   "images": [
+    {
+     "name": "dark-components-ai-codediffviewer--applying",
+     "shift": 0.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-interactivegraph--default",
+     "shift": 1.2,
+     "area": 0.011,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-thoughtprocess--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-thoughtprocess--streaming",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-thoughtprocess--thinking",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-application-shell-appshell--modern-app",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-countertextarea--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-creditcardinput--amex",
+     "shift": 0,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--search-indicator",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--select-like",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--credit-card",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--zip-code",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-mentions--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-numberinput--decimal-and-negative",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-otpinput--disabled",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--minimal-toolbar",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--with-default-value",
+     "shift": 24,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-searchinput--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-searchinput--smart-search-with-ai-example",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-smartsearchinput--default",
+     "shift": 1.5,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--danger",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--disabled",
+     "shift": 1.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--field-sizing-content",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-indicators-jsondiffviewer--unified-view",
+     "shift": 0.6,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-indicators-qrcode--with-image",
+     "shift": 0.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-structures-datagrid--mobile-card",
+     "shift": 0,
+     "area": 0.109,
+     "strongPct": 44.6,
+     "real": true
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--horizontal",
+     "shift": 0.9,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--default",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--disabled",
+     "shift": 0.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--error",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--with-icons",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputgroup--basic",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputgroup--suffix",
+     "shift": 0.9,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-label--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-loading-states-skeleton--card-example",
+     "shift": 1.5,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-navigation-utilities-affix--offset-bottom",
+     "shift": 0,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--default",
+     "shift": 0.9,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--disabled",
+     "shift": 0.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-daterangepicker--default",
+     "shift": 1.3,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-timepicker--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-timepicker--outline",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-combobox--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-combobox--with-icon",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-togglegroup--full-width",
+     "shift": 1.5,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-togglegroup--sizes",
+     "shift": 1.2,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-ai-interactivegraph--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-application-shell-appshell--modern-app",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-countertextarea--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-creditcardinput--amex",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-creditcardinput--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-creditcardinput--visa",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--custom-width",
+     "shift": 1.7,
+     "area": 0.004,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--outline",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--search-indicator",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--select-like",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-inputmask--credit-card",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-inputmask--phone",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-numberinput--decimal-and-negative",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-numberinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-otpinput--danger",
+     "shift": 0.8,
+     "area": 0.01,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-phoneinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-phoneinput--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-phoneinput--with-error",
+     "shift": 0.8,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--danger",
+     "shift": 0.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--disabled",
+     "shift": 16.6,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--minimal-toolbar",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--with-default-value",
+     "shift": 27.9,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-searchinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-searchinput--smart-search-with-ai-example",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-smartsearchinput--default",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--basic",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-data-structures-datagrid--mobile-card",
+     "shift": 0.1,
+     "area": 0.109,
+     "strongPct": 56.1,
+     "real": true
+    },
+    {
+     "name": "light-components-form-layout-fieldset--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-fieldtemplate--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-fieldtemplate--horizontal",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--multiple-right-icons",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--with-icons",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputgroup--basic",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputgroup--disabled",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-loading-states-skeleton--card-example",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-loading-states-skeleton--loading-toggle",
+     "shift": 1.7,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-daterangepicker--default",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--danger",
+     "shift": 0.9,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--outline",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-combobox--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-combobox--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-combobox--with-icon",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-selection-controls-togglegroup--single-selection",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-patterns-admin--intake-queue-loading",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    }
+   ]
+  },
+  {
+   "id": "#278",
+   "range": "9e4afcff5..1f96c3f84",
+   "why": "Alert のアイコンが 1 行目に揃うようになった",
+   "images": [
+    {
+     "name": "dark-components-ai-interactivegraph--default",
+     "shift": 1.2,
+     "area": 0.011,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-thoughtprocess--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-ai-thoughtprocess--streaming",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--danger",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 68.5,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--info",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 27.7,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--long-content",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 27.7,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--success",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 29.4,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--warning",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 56.5,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--with-close-button",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 29.4,
+     "real": true
+    },
+    {
+     "name": "dark-components-alerts-notifications-alert--without-title",
+     "shift": 0,
+     "area": 0.018,
+     "strongPct": 25.2,
+     "real": true
+    },
+    {
+     "name": "dark-components-basic-inputs-creditcardinput--visa",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--danger",
+     "shift": 1.4,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--disabled",
+     "shift": 1,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--outline",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-input--search-indicator",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--credit-card",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--custom-mask",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--phone",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-inputmask--zip-code",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-mentions--custom-trigger",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-mentions--default",
+     "shift": 1.2,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-numberinput--decimal-and-negative",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-otpinput--danger",
+     "shift": 1.4,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-otpinput--disabled",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-phoneinput--with-error",
+     "shift": 1.5,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--disabled",
+     "shift": 19.1,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--minimal-toolbar",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-richtexteditor--with-default-value",
+     "shift": 24,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-searchinput--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-smartsearchinput--with-max-length",
+     "shift": 1.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--danger",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-basic-inputs-textarea--full-width",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-data-indicators-jsondiffviewer--unified-view",
+     "shift": 0.6,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--horizontal",
+     "shift": 0.9,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-fieldtemplate--with-error",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--default",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-form-layout-inputbase--multiple-right-icons",
+     "shift": 1.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-internal-portal--custom-container",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 0,
+     "real": true
+    },
+    {
+     "name": "dark-components-navigation-elements-stepper--custom-icons",
+     "shift": 5,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-navigation-utilities-affix--offset-bottom",
+     "shift": 0,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-overlays-tour--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-datepicker--disabled",
+     "shift": 0.3,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-timepicker--disabled",
+     "shift": 1.1,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-pickers-sliders-timepicker--outline",
+     "shift": 1.4,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-combobox--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-combobox--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-selection-controls-togglegroup--sizes",
+     "shift": 1.2,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-components-utilities-errorboundary--custom-fallback",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 30.8,
+     "real": true
+    },
+    {
+     "name": "dark-components-utilities-errorboundary--default",
+     "shift": 0,
+     "area": 0.017,
+     "strongPct": 24.1,
+     "real": true
+    },
+    {
+     "name": "dark-patterns-admin--intake-queue-loading",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "dark-patterns-form-wholesale-account--business-invalid",
+     "shift": 0,
+     "area": 0.019,
+     "strongPct": 66.3,
+     "real": true
+    },
+    {
+     "name": "dark-patterns-importjob--bulk-upload",
+     "shift": 0,
+     "area": 0.018,
+     "strongPct": 52.2,
+     "real": true
+    },
+    {
+     "name": "dark-patterns-page--error-page",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 27.7,
+     "real": true
+    },
+    {
+     "name": "dark-patterns-page--maintenance-page",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 27.7,
+     "real": true
+    },
+    {
+     "name": "light-components-ai-codediffviewer--applying",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-ai-thoughtprocess--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--danger",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 70.7,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--info",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 68.1,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--long-content",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 68.1,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--success",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 55.9,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--warning",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 64.1,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--with-close-button",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 55.9,
+     "real": true
+    },
+    {
+     "name": "light-components-alerts-notifications-alert--without-title",
+     "shift": 0,
+     "area": 0.018,
+     "strongPct": 60.7,
+     "real": true
+    },
+    {
+     "name": "light-components-basic-inputs-countertextarea--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-creditcardinput--amex",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--clearable",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--custom-width",
+     "shift": 1.7,
+     "area": 0.004,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--danger",
+     "shift": 0.9,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--outline",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-input--select-like",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-inputmask--zip-code",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-mentions--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-otpinput--disabled",
+     "shift": 1.7,
+     "area": 0.004,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--basic",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--controlled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-richtexteditor--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-searchinput--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-smartsearchinput--default",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--danger",
+     "shift": 0.8,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--field-sizing-content",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-basic-inputs-textarea--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-fieldset--default",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-fieldtemplate--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--error",
+     "shift": 0.9,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputbase--multiple-right-icons",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-inputgroup--basic",
+     "shift": 1.7,
+     "area": 0.002,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-form-layout-label--optional",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-internal-portal--custom-container",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 59.9,
+     "real": true
+    },
+    {
+     "name": "light-components-layout-toolbar--default",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-loading-states-skeleton--loading-toggle",
+     "shift": 1.7,
+     "area": 0.003,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-navigation-utilities-affix--offset-bottom",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--danger",
+     "shift": 0.9,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-datepicker--outline",
+     "shift": 1.7,
+     "area": 0.001,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--disabled",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-pickers-sliders-timepicker--full-width",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-components-utilities-errorboundary--custom-fallback",
+     "shift": 0,
+     "area": 0.007,
+     "strongPct": 58.5,
+     "real": true
+    },
+    {
+     "name": "light-components-utilities-errorboundary--default",
+     "shift": 0,
+     "area": 0.017,
+     "strongPct": 63.9,
+     "real": true
+    },
+    {
+     "name": "light-patterns-admin--intake-queue-loading",
+     "shift": 1.7,
+     "area": 0,
+     "strongPct": 0,
+     "real": false
+    },
+    {
+     "name": "light-patterns-form-wholesale-account--business-invalid",
+     "shift": 0,
+     "area": 0.019,
+     "strongPct": 71.7,
+     "real": true
+    },
+    {
+     "name": "light-patterns-importjob--bulk-upload",
+     "shift": 0,
+     "area": 0.018,
+     "strongPct": 64.1,
+     "real": true
+    },
+    {
+     "name": "light-patterns-page--error-page",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 68.1,
+     "real": true
+    },
+    {
+     "name": "light-patterns-page--maintenance-page",
+     "shift": 0,
+     "area": 0.02,
+     "strongPct": 68.1,
+     "real": true
+    }
+   ]
+  }
+ ]
+}

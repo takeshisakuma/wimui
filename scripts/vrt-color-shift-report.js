@@ -15,10 +15,17 @@
  * 差分画素が約 7 万（画像の数十 %）あった。**そこで面積を第 2 軸に置く** ──
  * 「色は動いていないのに広い」は、にじみではなく描かれ方が変わった印。
  *
- * 分類（`shift` = 差分画素の平均色移動量、`area` = 差分画素の割合）:
+ * **平均色シフトと面積の 2 軸でも足りない（T81 で判明）。** `shift` は**符号付きの
+ * 平均**なので、**要素が動いただけの変更は相殺されて 0 になる**。実際、当時の規則を
+ * コミットバックに当てると #277 の実変更 2 枚と #278 の実変更 28 枚が**すべて noise**
+ * だった。第 3 軸として**差分の大きさ**（`strongPct`）を置く。判定と根拠は
+ * `vrt-diff-classify.js` に切り出してあり、実測値の固定資産で回帰テストしている。
+ *
+ * 分類（`shift` = 平均色移動量、`area` = 差分画素の割合、`strongPct` = 大きく動いた画素の割合）:
  *   reflow  … 寸法が変わった。レイアウトが動いているので必ず実変更
  *   repaint … shift >= 41。塗り・文字色が動いた
- *   glyph   … shift < 41 かつ area >= 1%。色は動かず広い＝書体や描かれ方の変化
+ *   moved   … strongPct >= 5。要素が動いた・差し替わった（T81）
+ *   glyph   … area >= 1%。色は動かず広い＝書体や描かれ方の変化
  *   noise   … 残り。フォントのにじみ・アンチエイリアスの揺れ
  *
  * 使い方:
@@ -35,13 +42,9 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
+import { classify, KIND_RANK, STRONG_CHANNEL_DELTA } from "./vrt-diff-classify.js";
 
 const SNAPSHOT_GLOB = "vrt/**/*.png";
-
-/** shift がこれ以上なら「塗り・文字色が動いた」。2026-07-30 の仕分けの実測値。 */
-const REPAINT_SHIFT = 41;
-/** shift が小さくても、差分がこれだけ広ければ書体・描かれ方の変化を疑う。 */
-const GLYPH_AREA_PERCENT = 1;
 
 const argv = process.argv.slice(2);
 const flag = (name) => argv.includes(name);
@@ -82,12 +85,13 @@ async function raw(buffer) {
 async function measure(file) {
   const [aBuf, bBuf] = [readSide(base, file), readSide(head, file)];
   const name = path.basename(file).replace("-chromium-linux.png", "");
-  if (!aBuf) return { name, kind: "added", shift: Infinity, area: 100 };
-  if (!bBuf) return { name, kind: "removed", shift: Infinity, area: 100 };
+  const whole = { shift: Infinity, area: 100, strongPct: 100 };
+  if (!aBuf) return { name, kind: "added", ...whole };
+  if (!bBuf) return { name, kind: "removed", ...whole };
 
   const [a, b] = await Promise.all([raw(aBuf), raw(bBuf)]);
   if (a.info.width !== b.info.width || a.info.height !== b.info.height) {
-    return { name, kind: "reflow", shift: Infinity, area: 100 };
+    return { name, kind: "reflow", ...whole };
   }
 
   const ch = a.info.channels;
@@ -95,6 +99,7 @@ async function measure(file) {
   let sr = 0;
   let sg = 0;
   let sb = 0;
+  let strong = 0;
   for (let i = 0; i < a.data.length; i += ch) {
     const dr = b.data[i] - a.data[i];
     const dg = b.data[i + 1] - a.data[i + 1];
@@ -104,6 +109,10 @@ async function measure(file) {
       sr += dr;
       sg += dg;
       sb += db;
+      // T81: **符号を落として**その画素がどれだけ動いたかを見る。合計ではなく
+      // 件数を数えるのは、「大きく動いた画素が一定割合あるか」が知りたいから。
+      const mag = Math.max(Math.abs(dr), Math.abs(dg), Math.abs(db));
+      if (mag >= STRONG_CHANNEL_DELTA) strong += 1;
     }
   }
   const total = a.info.width * a.info.height;
@@ -111,13 +120,8 @@ async function measure(file) {
     ? Math.sqrt((sr / n) ** 2 + (sg / n) ** 2 + (sb / n) ** 2)
     : 0;
   const area = (100 * n) / total;
-  const kind =
-    shift >= REPAINT_SHIFT
-      ? "repaint"
-      : area >= GLYPH_AREA_PERCENT
-        ? "glyph"
-        : "noise";
-  return { name, kind, shift, area };
+  const strongPct = n ? (100 * strong) / n : 0;
+  return { name, kind: classify({ shift, area, strongPct }), shift, area, strongPct };
 }
 
 const files = changedFiles();
@@ -129,11 +133,16 @@ if (files.length === 0) {
 const rows = [];
 for (const f of files) rows.push(await measure(f));
 
-/** reflow / added / removed を先頭に、その後は shift 降順、同点は面積降順。 */
-const rank = { reflow: 0, added: 0, removed: 0 };
+/**
+ * 実変更を上に、その中では大きく変わったものを上に。
+ *
+ * **`shift` を第 1 キーにしない**（T81）。要素が動いただけの変更は `shift` が 0 に
+ * 相殺されるので、shift 順に並べると**実変更が noise の下に沈む**。
+ */
 rows.sort(
   (x, y) =>
-    (rank[x.kind] ?? 1) - (rank[y.kind] ?? 1) ||
+    (KIND_RANK[x.kind] ?? 3) - (KIND_RANK[y.kind] ?? 3) ||
+    y.strongPct - x.strongPct ||
     y.shift - x.shift ||
     y.area - x.area,
 );
@@ -153,13 +162,13 @@ if (asMarkdown) {
       .join(" · "),
   );
   console.log(
-    "\n`repaint` and `reflow` are real changes. `glyph` means the colours did not move but a wide area did — a typeface or rendering change, which the colour metric alone cannot see. `noise` is anti-aliasing.\n",
+    "\n`reflow`, `repaint` and `moved` are real changes. `moved` means pixels flipped between far-apart values — something was drawn somewhere else, which the colour metric cannot see because a move cancels out to a shift of zero. `glyph` means the colours did not move but a wide area did. `noise` is anti-aliasing.\n",
   );
-  console.log("| # | kind | colour shift | area | snapshot |");
-  console.log("|--:|---|--:|--:|---|");
+  console.log("| # | kind | colour shift | strong px | area | snapshot |");
+  console.log("|--:|---|--:|--:|--:|---|");
   shown.forEach((r, i) =>
     console.log(
-      `| ${i + 1} | ${r.kind} | ${num(r.shift)} | ${r.area.toFixed(2)}% | \`${r.name}\` |`,
+      `| ${i + 1} | ${r.kind} | ${num(r.shift)} | ${r.strongPct.toFixed(1)}% | ${r.area.toFixed(2)}% | \`${r.name}\` |`,
     ),
   );
   if (shown.length < rows.length) {
@@ -178,6 +187,7 @@ if (asMarkdown) {
       String(i + 1).padStart(4),
       r.kind.padEnd(8),
       num(r.shift).padStart(7),
+      `${r.strongPct.toFixed(1)}%`.padStart(7),
       `${r.area.toFixed(2)}%`.padStart(8),
       r.name,
     ),
