@@ -91,6 +91,7 @@
     "chip_selected": "選択済み",
     "chip_selected_label": "選択済みアイテム",
     "chip_solid": "ソリッド",
+    "chip_subtle": "サトル",
     "datagrid_action_delete": "{{name}}を削除",
     "datagrid_action_edit": "{{name}}を編集",
     "datagrid_col_actions": "アクション",

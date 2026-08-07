@@ -127,6 +127,10 @@ export const Variants: Story = {
       <div style={{ display: "flex", gap: "10px" }}>
         <Chip {...args} variant="solid" onClick={() => {}}>{t("docs_stories_display:story.chip_solid")}</Chip>
         <Chip {...args} variant="outline" onClick={() => {}}>{t("docs_stories_display:story.chip_outline")}</Chip>
+        {/* subtle は 3 つの variant のうちここだけ**どのストーリーにも出ていなかった**。
+            Badge と Tag は写っているので、subtle を変えたとき Chip だけ VRT が
+            何も言わない状態だった。 */}
+        <Chip {...args} variant="subtle" onClick={() => {}}>{t("docs_stories_display:story.chip_subtle")}</Chip>
         <Chip
           {...args}
           variant="outline"

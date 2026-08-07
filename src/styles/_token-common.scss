@@ -98,12 +98,31 @@
         border: 1px solid $base;
       }
 
+      // subtle は「淡い塗り」をやめ、**濃い色の太枠 + 太字**にする（2026-08-07）。
+      // 塗りの淡さは意味を運ばないわりに画面全体を眠くする ── 同じ画面に何個も
+      // 並ぶ Badge / Tag / Chip では特に、どれも同じ薄さでぼやける。
+      // 文字と枠を同じ `$text`（AA 可読の濃いロール）に揃えると、面ではなく
+      // 輪郭で区別が付き、値そのものが読みやすくなる。
+      // **枠を 1px → 2px にすると外寸が育つ。** これらは `inline-flex` で中身に
+      // 合わせて縮む箱なので、`box-sizing: border-box` があっても（幅・高さを
+      // 明示していない以上）ボーダーは外寸に足される。実測: Tag 53.0x24.2 →
+      // 56.8x26.2、Badge 59.3x21.2 → 64.0x23.2。増えた高さ 2.0px は
+      // ちょうど枠 1px × 2 辺。
+      // そこで**増えた分を内側から返す**。ただし `padding` をここで宣言しても
+      // 効かない ── このブロックは `:where()` で特異度を 0 にしてあるので、
+      // サイズ側の `&.sm`（特異度が上）に負ける。**実装して実測して初めて分かった**
+      // （見た目は変わるのにパディングだけ 4.8px のまま動かなかった）。
+      // そこで宣言するのは**削り幅だけ**にして、`padding` の計算はサイズ側に置く。
+      // カスタムプロパティは値の解決だけなので、特異度の勝負にならない
+      // （競合する宣言が他に無いため、`:where()` の中でも確実に届く）。
       &:where(.subtle) {
-        --bg: #{$subtle};
+        --bg: transparent;
+        --wim-indicator-trim: var(--wim-border-width-thin);
 
+        font-weight: var(--wim-font-weight-bold);
         color: $text;
-        background-color: $subtle;
-        border: 1px solid $subtle-border;
+        background-color: transparent;
+        border: var(--wim-border-width-thick) solid $text;
       }
     }
   }

@@ -91,6 +91,7 @@
     "chip_selected": "Selecionado",
     "chip_selected_label": "Item Selecionado",
     "chip_solid": "Sólido",
+    "chip_subtle": "Sutil",
     "datagrid_action_delete": "Excluir {{name}}",
     "datagrid_action_edit": "Editar {{name}}",
     "datagrid_col_actions": "Ações",

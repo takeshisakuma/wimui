@@ -11022,6 +11022,7 @@
       "chip_selected": "Selected",
       "chip_selected_label": "Selected Item",
       "chip_solid": "Solid",
+      "chip_subtle": "Subtle",
       "datagrid_action_delete": "Delete {{name}}",
       "datagrid_action_edit": "Edit {{name}}",
       "datagrid_col_actions": "Actions",
