@@ -33,7 +33,15 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    align-self: center; // Vertically center the icon
+
+    // T90: 以前は `align-self: center` で、`.root` の `flex-start` を打ち消して
+    // いた。塊が短いうちは 1 行目と偶然そろうが、**内容が伸びるほどアイコンが
+    // 下へ落ちる** ── 実測で title + 2 行 description（塊 68px）のとき 1 行目から
+    // 24px、390px で折り返して塊 132px になると 45px ずれる。
+    // `flex-start` にすると 3px / 14px。短い Alert では 2px → 7px と少し悪くなるが、
+    // 7px は行の中に収まる。行高から光学補正を足す案は 1280px で 0px になる一方
+    // 390px では 9px 残り、**行高しだいで結果が変わる**ので採らない。
+    align-self: flex-start;
     font-size: var(--wim-font-size-xl);
   }
 
