@@ -19,7 +19,15 @@
   
     &.md {
       height: 2rem;
-      padding: 0 var(--wim-spacing-md);
+
+      --wim-indicator-pad-y: 0px;
+      --wim-indicator-pad-x: var(--wim-spacing-md);
+
+      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
+      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
+      padding:
+        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
+        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
       font-size: var(--wim-font-size-xs);
   
       .avatar {
@@ -31,7 +39,15 @@
   
     &.sm {
       height: 1.6rem;
-      padding: 0 var(--wim-spacing-sm);
+
+      --wim-indicator-pad-y: 0px;
+      --wim-indicator-pad-x: var(--wim-spacing-sm);
+
+      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
+      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
+      padding:
+        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
+        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
       font-size: var(--wim-font-size-2xs);
   
       .avatar {
@@ -43,7 +59,15 @@
   
     &.lg {
       height: 2.4rem;
-      padding: 0 var(--wim-spacing-lg);
+
+      --wim-indicator-pad-y: 0px;
+      --wim-indicator-pad-x: var(--wim-spacing-lg);
+
+      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
+      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
+      padding:
+        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
+        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
       font-size: var(--wim-font-size-sm);
   
       .avatar {
