@@ -32,43 +32,66 @@ describe("DataGrid", () => {
     expect(screen.getByText("Charlie")).toBeInTheDocument();
   });
 
-  // T85: 宣言した `width` を上限としても効かせるため、`width` を持つ列だけ
-  // セルの内側を `max-width` 付きのブロックで包む。表は `table-layout: auto`
-  // なので、セル自身の `width` / `max-width` では中身に押し負ける。
-  describe("column width", () => {
+  // T85/T93: 中身を止めるのは `maxWidth` だけ。`width` は列幅の**下限**のまま。
+  // 表は `table-layout: auto` なので、セル自身の `width` / `max-width` では
+  // 中身に押し負ける ── 内側をブロックで包んで初めて頭打ちになる。
+  describe("column width / maxWidth", () => {
     const widthColumns = [
       { key: "id", title: "ID" },
-      { key: "name", title: "Name", width: "16rem" },
-      { key: "age", title: "Age", width: 120 },
+      { key: "name", title: "Name", width: "16rem", maxWidth: "16rem" },
+      { key: "age", title: "Age", maxWidth: 120 },
+      { key: "city", title: "City", width: 200 },
     ];
+
+    const widthRows = mockRows.map((r, i) => ({
+      ...r,
+      city: ["Tokyo", "Lisbon", "Oslo"][i],
+    }));
 
     const cellFor = (text: string) =>
       screen.getByText(text).closest("td") as HTMLElement;
 
-    it("caps a cell whose column declares a width", () => {
-      render(<DataGrid columns={widthColumns} data={mockRows} />);
+    it("caps a cell whose column declares a maxWidth", () => {
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
       const wrapper = cellFor("Alice").firstElementChild as HTMLElement;
       expect(wrapper.tagName).toBe("DIV");
       expect(wrapper.style.maxWidth).toBe("16rem");
     });
 
-    it("accepts a numeric width", () => {
-      render(<DataGrid columns={widthColumns} data={mockRows} />);
+    it("accepts a numeric maxWidth", () => {
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
       const wrapper = cellFor("25").firstElementChild as HTMLElement;
       expect(wrapper.style.maxWidth).toBe("120px");
     });
 
-    it("does not wrap cells of columns without a width", () => {
-      render(<DataGrid columns={widthColumns} data={mockRows} />);
+    // T93: `width` だけの列を包むと、同じ 1 つの値が「列幅の下限」と
+    // 「中身の上限」を兼ねてしまう。#277 はそうなっており、表が余りを配ると
+    // 列だけ広がって中身は宣言幅で切られ、右に空白が残った。
+    it("does not cap a column that only declares a width", () => {
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
+      expect(cellFor("Tokyo").firstElementChild).toBeNull();
+    });
+
+    it("does not wrap cells of columns without either", () => {
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
       // 既存の描画を変えないことの担保。包むと DOM が 1 段深くなる。
       expect(cellFor("1").firstElementChild).toBeNull();
     });
 
     it("still declares width and min-width on the header", () => {
-      render(<DataGrid columns={widthColumns} data={mockRows} />);
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
       const th = screen.getByText("Name").closest("th") as HTMLElement;
       expect(th.style.width).toBe("16rem");
       expect(th.style.minWidth).toBe("16rem");
+    });
+
+    // `maxWidth` は列幅の宣言ではないので、`width` を持たない列のヘッダには
+    // 何も出さない（出すと下限として効いてしまい T93 に戻る）。
+    it("does not put maxWidth on the header", () => {
+      render(<DataGrid columns={widthColumns} data={widthRows} />);
+      const th = screen.getByText("Age").closest("th") as HTMLElement;
+      expect(th.style.width).toBe("");
+      expect(th.style.maxWidth).toBe("");
     });
   });
 

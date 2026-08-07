@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Badge, Button, DataGrid, Icon, type DataGridColumn, type DataGridProps } from "wimui";
+import { Badge, Button, DataGrid, Icon, Text, type DataGridColumn, type DataGridProps } from "wimui";
 
 
 const meta: Meta<typeof DataGrid> = {
@@ -454,6 +454,37 @@ export const WithFixedColumn: Story = {
           data={tSampleData}
           bordered
           stickyHeader
+        />
+      </div>
+    );
+  },
+};
+
+// T86: `maxWidth` を宣言した列の中で `Text truncate` が実際に省略記号を出すか。
+// `maxWidth` が無かった頃は列が内容幅まで伸びるので省略が起きず、代わりに隣の列が
+// 潰れていた（実測 `scrollWidth === clientWidth === 933` / `truncated: false`）。
+// 表の外枠を絞ってあるのは、`maxWidth` が**中身**の上限で列幅の上限ではないため
+// （T93）── 余りが大きいと省略記号の右に空白が残り、demo として読みにくくなる。
+export const TruncatedColumn: Story = {
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const columns = [
+      { key: "id", title: t("story.datagrid_col_id"), width: 55 },
+      { key: "name", title: t("story.datagrid_col_name"), width: 150 },
+      {
+        key: "note",
+        title: t("story.datagrid_col_note"),
+        maxWidth: 200,
+        render: () => <Text truncate>{t("story.datagrid_truncate_note")}</Text>,
+      },
+      { key: "role", title: t("story.datagrid_col_role"), width: 100 },
+    ];
+    return (
+      <div style={{ maxWidth: "560px" }}>
+        <DataGrid
+          columns={columns}
+          data={sampleData as unknown as Record<string, unknown>[]}
+          bordered
         />
       </div>
     );
