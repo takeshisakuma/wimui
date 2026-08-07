@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "props": {
     "AIResponseFeedback.defaultFeedback": {
       "required": false,
@@ -285,7 +285,8 @@
     },
     "AreaChart.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "AreaChart.height": {
       "required": false,
@@ -393,7 +394,77 @@
     },
     "Audio.labels": {
       "required": false,
-      "type": "{ seek?: string; mute?: string; unmute?: string; volume?: string; play?: string; pause?: string; next?: string; prev?: string; repeatMode0?: string; // Off repeatMode1?: string; // One repeatMode2?: string; // All shuffle?: string; playbackSpeed?: string; bassBoost?: string; sleepTimer?: string; unknownTitle?: string; unknownArtist?: string; }"
+      "type": "{ seek?: string; mute?: string; unmute?: string; volume?: string; play?: string; pause?: string; next?: string; prev?: string; repeatMode0?: string; // Off repeatMode1?: string; // One repeatMode2?: string; // All shuffle?: string; playbackSpeed?: string; bassBoost?: string; sleepTimer?: string; unknownTitle?: string; unknownArtist?: string; }",
+      "shape": {
+        "bassBoost": {
+          "required": false,
+          "type": "string"
+        },
+        "mute": {
+          "required": false,
+          "type": "string"
+        },
+        "next": {
+          "required": false,
+          "type": "string"
+        },
+        "pause": {
+          "required": false,
+          "type": "string"
+        },
+        "play": {
+          "required": false,
+          "type": "string"
+        },
+        "playbackSpeed": {
+          "required": false,
+          "type": "string"
+        },
+        "prev": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode0": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode1": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode2": {
+          "required": false,
+          "type": "string"
+        },
+        "seek": {
+          "required": false,
+          "type": "string"
+        },
+        "shuffle": {
+          "required": false,
+          "type": "string"
+        },
+        "sleepTimer": {
+          "required": false,
+          "type": "string"
+        },
+        "unknownArtist": {
+          "required": false,
+          "type": "string"
+        },
+        "unknownTitle": {
+          "required": false,
+          "type": "string"
+        },
+        "unmute": {
+          "required": false,
+          "type": "string"
+        },
+        "volume": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Audio.loading": {
       "required": false,
@@ -498,7 +569,77 @@
     },
     "AudioCustomControls.labels": {
       "required": false,
-      "type": "{ seek?: string; mute?: string; unmute?: string; volume?: string; play?: string; pause?: string; next?: string; prev?: string; repeatMode0?: string; // Off repeatMode1?: string; // One repeatMode2?: string; // All shuffle?: string; playbackSpeed?: string; bassBoost?: string; sleepTimer?: string; unknownTitle?: string; unknownArtist?: string; }"
+      "type": "{ seek?: string; mute?: string; unmute?: string; volume?: string; play?: string; pause?: string; next?: string; prev?: string; repeatMode0?: string; // Off repeatMode1?: string; // One repeatMode2?: string; // All shuffle?: string; playbackSpeed?: string; bassBoost?: string; sleepTimer?: string; unknownTitle?: string; unknownArtist?: string; }",
+      "shape": {
+        "bassBoost": {
+          "required": false,
+          "type": "string"
+        },
+        "mute": {
+          "required": false,
+          "type": "string"
+        },
+        "next": {
+          "required": false,
+          "type": "string"
+        },
+        "pause": {
+          "required": false,
+          "type": "string"
+        },
+        "play": {
+          "required": false,
+          "type": "string"
+        },
+        "playbackSpeed": {
+          "required": false,
+          "type": "string"
+        },
+        "prev": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode0": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode1": {
+          "required": false,
+          "type": "string"
+        },
+        "repeatMode2": {
+          "required": false,
+          "type": "string"
+        },
+        "seek": {
+          "required": false,
+          "type": "string"
+        },
+        "shuffle": {
+          "required": false,
+          "type": "string"
+        },
+        "sleepTimer": {
+          "required": false,
+          "type": "string"
+        },
+        "unknownArtist": {
+          "required": false,
+          "type": "string"
+        },
+        "unknownTitle": {
+          "required": false,
+          "type": "string"
+        },
+        "unmute": {
+          "required": false,
+          "type": "string"
+        },
+        "volume": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "AudioCustomControls.playNext": {
       "required": true,
@@ -737,7 +878,8 @@
     },
     "BarChart.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "BarChart.height": {
       "required": false,
@@ -911,7 +1053,29 @@
     },
     "Box.h": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Box.m": {
       "required": false,
@@ -983,7 +1147,29 @@
     },
     "Box.w": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Breadcrumb.ariaLabel": {
       "required": false,
@@ -999,7 +1185,21 @@
     },
     "Breadcrumb.items": {
       "required": true,
-      "type": "BreadcrumbItem[]"
+      "type": "BreadcrumbItem[]",
+      "shape": {
+        "href": {
+          "required": false,
+          "type": "string"
+        },
+        "iconName": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
     },
     "Breadcrumb.separator": {
       "required": false,
@@ -1062,7 +1262,21 @@
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "Button.styles": {
-      "type": "{ root?: string; loader?: string; icon?: string; }"
+      "type": "{ root?: string; loader?: string; icon?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "loader": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Button.variant": {
       "required": false,
@@ -1106,7 +1320,17 @@
     },
     "Calendar.defaultRange": {
       "required": false,
-      "type": "{ start: Date | null; end: Date | null; }"
+      "type": "{ start: Date | null; end: Date | null; }",
+      "shape": {
+        "end": {
+          "required": true,
+          "type": "Date | null"
+        },
+        "start": {
+          "required": true,
+          "type": "Date | null"
+        }
+      }
     },
     "Calendar.defaultValue": {
       "type": "Date"
@@ -1137,7 +1361,17 @@
     },
     "Calendar.range": {
       "required": false,
-      "type": "{ start: Date | null; end: Date | null; }"
+      "type": "{ start: Date | null; end: Date | null; }",
+      "shape": {
+        "end": {
+          "required": true,
+          "type": "Date | null"
+        },
+        "start": {
+          "required": true,
+          "type": "Date | null"
+        }
+      }
     },
     "Calendar.rangeMode": {
       "required": false,
@@ -1164,7 +1398,17 @@
     },
     "CalendarHeatmap.data": {
       "required": true,
-      "type": "CalendarHeatmapData[]"
+      "type": "CalendarHeatmapData[]",
+      "shape": {
+        "count": {
+          "required": true,
+          "type": "number"
+        },
+        "date": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "CalendarHeatmap.getColorLevel": {
       "required": false,
@@ -1245,7 +1489,25 @@
     },
     "Carousel.labels": {
       "required": false,
-      "type": "{ slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; }"
+      "type": "{ slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; }",
+      "shape": {
+        "goToSlide": {
+          "required": false,
+          "type": "(number: number) => string"
+        },
+        "nextSlide": {
+          "required": false,
+          "type": "string"
+        },
+        "prevSlide": {
+          "required": false,
+          "type": "string"
+        },
+        "slideLabel": {
+          "required": false,
+          "type": "(number: number) => string"
+        }
+      }
     },
     "Carousel.loop": {
       "required": false,
@@ -1271,7 +1533,29 @@
     },
     "Carousel.slidesToShow": {
       "required": false,
-      "type": "number | Breakpoints"
+      "type": "number | Breakpoints",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number"
+        },
+        "lg": {
+          "required": false,
+          "type": "number"
+        },
+        "md": {
+          "required": false,
+          "type": "number"
+        },
+        "sm": {
+          "required": false,
+          "type": "number"
+        },
+        "xl": {
+          "required": false,
+          "type": "number"
+        }
+      }
     },
     "Cascader.allowClear": {
       "required": false,
@@ -1328,7 +1612,25 @@
     },
     "Cascader.options": {
       "required": true,
-      "type": "CascaderOption[]"
+      "type": "CascaderOption[]",
+      "shape": {
+        "children": {
+          "required": false,
+          "type": "CascaderOption[]"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Cascader.placeholder": {
       "required": false,
@@ -1363,7 +1665,29 @@
       "type": "React.CSSProperties[\"display\"]"
     },
     "Center.h": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Center.inline": {
       "required": false,
@@ -1421,7 +1745,29 @@
       "type": "T | (string & {})"
     },
     "Center.w": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "ChatAvatar.alt": {
       "type": "string"
@@ -1569,7 +1915,21 @@
     },
     "CheckboxGroup.options": {
       "required": true,
-      "type": "Option[]"
+      "type": "Option[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "CheckboxGroup.required": {
       "required": false,
@@ -1929,7 +2289,13 @@
     },
     "Combobox.labels": {
       "required": false,
-      "type": "{ noResults?: React.ReactNode; }"
+      "type": "{ noResults?: React.ReactNode; }",
+      "shape": {
+        "noResults": {
+          "required": false,
+          "type": "React.ReactNode"
+        }
+      }
     },
     "Combobox.layout": {
       "required": false,
@@ -1944,7 +2310,17 @@
     },
     "Combobox.options": {
       "required": true,
-      "type": "ComboboxOption[]"
+      "type": "ComboboxOption[]",
+      "shape": {
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Combobox.placeholder": {
       "required": false,
@@ -2044,7 +2420,29 @@
       "type": "boolean"
     },
     "Container.h": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Container.m": {
       "type": "number | WimSpacing"
@@ -2102,7 +2500,29 @@
       "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | number | string"
     },
     "Container.w": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "ContextMenu.asChild": {
       "required": false,
@@ -2450,7 +2870,41 @@
     },
     "DataGrid.columns": {
       "required": true,
-      "type": "DataGridColumn<T>[]"
+      "type": "DataGridColumn<T>[]",
+      "shape": {
+        "dataIndex": {
+          "required": false,
+          "type": "string"
+        },
+        "fixed": {
+          "required": false,
+          "type": "\"left\" | \"right\""
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        },
+        "maxWidth": {
+          "required": false,
+          "type": "string | number"
+        },
+        "render": {
+          "required": false,
+          "type": "(value: unknown, record: T, index: number) => React.ReactNode"
+        },
+        "sortable": {
+          "required": false,
+          "type": "boolean"
+        },
+        "title": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "width": {
+          "required": false,
+          "type": "string | number"
+        }
+      }
     },
     "DataGrid.data": {
       "required": true,
@@ -2469,7 +2923,21 @@
       "type": "boolean"
     },
     "DataGrid.infiniteScroll": {
-      "type": "{ hasMore: boolean; onLoadMore: () => void; threshold?: number; }"
+      "type": "{ hasMore: boolean; onLoadMore: () => void; threshold?: number; }",
+      "shape": {
+        "hasMore": {
+          "required": true,
+          "type": "boolean"
+        },
+        "onLoadMore": {
+          "required": true,
+          "type": "() => void"
+        },
+        "threshold": {
+          "required": false,
+          "type": "number"
+        }
+      }
     },
     "DataGrid.loading": {
       "required": false,
@@ -2492,11 +2960,30 @@
       "type": "(key: string, direction: \"asc\" | \"desc\" | \"none\") => void"
     },
     "DataGrid.pagination": {
-      "type": "{ current: number; pageSize: number; total: number; onChange: (page: number, pageSize: number) => void; } | false"
+      "type": "{ current: number; pageSize: number; total: number; onChange: (page: number, pageSize: number) => void; } | false",
+      "shape": {
+        "current": {
+          "required": true,
+          "type": "number"
+        },
+        "onChange": {
+          "required": true,
+          "type": "(page: number, pageSize: number) => void"
+        },
+        "pageSize": {
+          "required": true,
+          "type": "number"
+        },
+        "total": {
+          "required": true,
+          "type": "number"
+        }
+      }
     },
     "DataGrid.rowKey": {
       "required": false,
-      "type": "string | ((record: T) => string)"
+      "type": "string | ((record: T) => string)",
+      "resolvedType": "string | unknown"
     },
     "DataGrid.selectedRowKeys": {
       "required": true,
@@ -2504,10 +2991,34 @@
     },
     "DataGrid.selection": {
       "required": false,
-      "type": "boolean | SelectionConfig<T>"
+      "type": "boolean | SelectionConfig<T>",
+      "shape": {
+        "onChange": {
+          "required": true,
+          "type": "(keys: string[], records: T[]) => void"
+        },
+        "selectedRowKeys": {
+          "required": true,
+          "type": "string[]"
+        },
+        "type": {
+          "required": false,
+          "type": "\"checkbox\" | \"radio\""
+        }
+      }
     },
     "DataGrid.sortConfig": {
-      "type": "{ key: string; direction: \"asc\" | \"desc\" | \"none\"; }"
+      "type": "{ key: string; direction: \"asc\" | \"desc\" | \"none\"; }",
+      "shape": {
+        "direction": {
+          "required": true,
+          "type": "\"asc\" | \"desc\" | \"none\""
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "DataGrid.stickyHeader": {
       "required": false,
@@ -2555,7 +3066,13 @@
     },
     "DatePicker.labels": {
       "required": false,
-      "type": "{ placeholder?: string; }"
+      "type": "{ placeholder?: string; }",
+      "shape": {
+        "placeholder": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "DatePicker.layout": {
       "required": false,
@@ -2637,7 +3154,25 @@
       "type": "ErrorInfo | null"
     },
     "DefaultFallback.labels": {
-      "type": "{ title?: string; retry?: string; showDetails?: string; hideDetails?: string; }"
+      "type": "{ title?: string; retry?: string; showDetails?: string; hideDetails?: string; }",
+      "shape": {
+        "hideDetails": {
+          "required": false,
+          "type": "string"
+        },
+        "retry": {
+          "required": false,
+          "type": "string"
+        },
+        "showDetails": {
+          "required": false,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "DefaultFallback.reset": {
       "type": "() => void"
@@ -2978,11 +3513,30 @@
       "type": "ReactNode"
     },
     "ErrorBoundary.fallback": {
-      "type": "| ReactNode | ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)"
+      "type": "| ReactNode | ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode)",
+      "resolvedType": "ReactNode | unknown"
     },
     "ErrorBoundary.labels": {
       "required": false,
-      "type": "{ title?: string; retry?: string; showDetails?: string; hideDetails?: string; }"
+      "type": "{ title?: string; retry?: string; showDetails?: string; hideDetails?: string; }",
+      "shape": {
+        "hideDetails": {
+          "required": false,
+          "type": "string"
+        },
+        "retry": {
+          "required": false,
+          "type": "string"
+        },
+        "showDetails": {
+          "required": false,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ErrorBoundary.onError": {
       "required": false,
@@ -3071,7 +3625,29 @@
       "type": "boolean"
     },
     "FieldTemplate.styles": {
-      "type": "{ root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }"
+      "type": "{ root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }",
+      "shape": {
+        "content": {
+          "required": false,
+          "type": "string"
+        },
+        "error": {
+          "required": false,
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "labelWrapper": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Fieldset.children": {
       "required": true,
@@ -3326,7 +3902,8 @@
     },
     "FunnelChart.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "FunnelChart.dataKey": {
       "required": true,
@@ -3418,7 +3995,17 @@
     },
     "GanttChart.labels": {
       "required": false,
-      "type": "{ ariaChart?: string; ariaTaskBar?: (label: string, start: string, end: string) => string; }"
+      "type": "{ ariaChart?: string; ariaTaskBar?: (label: string, start: string, end: string) => string; }",
+      "shape": {
+        "ariaChart": {
+          "required": false,
+          "type": "string"
+        },
+        "ariaTaskBar": {
+          "required": false,
+          "type": "(label: string, start: string, end: string) => string"
+        }
+      }
     },
     "GanttChart.onTaskClick": {
       "required": false,
@@ -3434,7 +4021,33 @@
     },
     "GanttChart.tasks": {
       "required": true,
-      "type": "GanttTask[]"
+      "type": "GanttTask[]",
+      "shape": {
+        "color": {
+          "required": false,
+          "type": "string"
+        },
+        "endDate": {
+          "required": true,
+          "type": "Date"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "progress": {
+          "required": false,
+          "type": "number"
+        },
+        "startDate": {
+          "required": true,
+          "type": "Date"
+        }
+      }
     },
     "GanttChart.viewMode": {
       "required": false,
@@ -3495,11 +4108,55 @@
     },
     "Grid.cols": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Grid.columnGap": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Grid.flow": {
       "required": false,
@@ -3513,7 +4170,29 @@
     },
     "Grid.gap": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Grid.inline": {
       "required": false,
@@ -3532,7 +4211,29 @@
     },
     "Grid.rowGap": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Grid.rows": {
       "required": false,
@@ -3658,7 +4359,21 @@
       "type": "[string, string]"
     },
     "Heatmap.data": {
-      "type": "{ x: string; y: string; value: number }[]"
+      "type": "{ x: string; y: string; value: number }[]",
+      "shape": {
+        "value": {
+          "required": true,
+          "type": "number"
+        },
+        "x": {
+          "required": true,
+          "type": "string"
+        },
+        "y": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Heatmap.height": {
       "required": false,
@@ -3983,7 +4698,13 @@
     },
     "ImageCompare.labels": {
       "required": false,
-      "type": "{ /** Accessible label for the drag handle */ handleAriaLabel?: string; }"
+      "type": "{ /** Accessible label for the drag handle */ handleAriaLabel?: string; }",
+      "shape": {
+        "handleAriaLabel": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ImageCompare.onPositionChange": {
       "required": false,
@@ -4319,10 +5040,62 @@
     },
     "InputBase.rightIcons": {
       "required": false,
-      "type": "InputBaseIcon[]"
+      "type": "InputBaseIcon[]",
+      "shape": {
+        "ariaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "className": {
+          "required": false,
+          "type": "string"
+        },
+        "color": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+        },
+        "name": {
+          "required": true,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "onClick": {
+          "required": false,
+          "type": "(e: React.MouseEvent<HTMLButtonElement>) => void"
+        },
+        "rotated": {
+          "required": false,
+          "type": "boolean"
+        }
+      }
     },
     "InputBase.styles": {
-      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "InputBase.suffix": {
       "required": false,
@@ -4487,7 +5260,33 @@
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "InteractiveArea.styles": {
-      "type": "{ inner?: string; icon?: string; title?: string; description?: string; content?: string; actions?: string; }"
+      "type": "{ inner?: string; icon?: string; title?: string; description?: string; content?: string; actions?: string; }",
+      "shape": {
+        "actions": {
+          "required": false,
+          "type": "string"
+        },
+        "content": {
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "required": false,
+          "type": "string"
+        },
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "InteractiveArea.title": {
       "required": false,
@@ -4598,7 +5397,8 @@
       "type": "(path: (string | number)[], val: unknown) => void"
     },
     "JsonNode.path": {
-      "type": "(string | number)[]"
+      "type": "(string | number)[]",
+      "resolvedType": "unknown[]"
     },
     "JsonNode.value": {
       "type": "unknown"
@@ -4707,7 +5507,17 @@
     },
     "KeyboardShortcuts.shortcuts": {
       "required": true,
-      "type": "ShortcutItem[]"
+      "type": "ShortcutItem[]",
+      "shape": {
+        "keys": {
+          "required": true,
+          "type": "string[]"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "KeyboardShortcuts.size": {
       "required": false,
@@ -4741,7 +5551,29 @@
     },
     "Leaderboard.entries": {
       "required": true,
-      "type": "LeaderboardEntry[]"
+      "type": "LeaderboardEntry[]",
+      "shape": {
+        "avatar": {
+          "required": false,
+          "type": "string"
+        },
+        "highlight": {
+          "required": false,
+          "type": "boolean"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "score": {
+          "required": true,
+          "type": "number | string"
+        }
+      }
     },
     "Leaderboard.size": {
       "required": false,
@@ -4849,7 +5681,8 @@
     },
     "LineChart.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "LineChart.height": {
       "required": false,
@@ -4914,7 +5747,25 @@
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "Link.styles": {
-      "type": "{ root?: string; label?: string; inner?: string; externalIcon?: string; }"
+      "type": "{ root?: string; label?: string; inner?: string; externalIcon?: string; }",
+      "shape": {
+        "externalIcon": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "LinkButton.asChild": {
       "type": "unknown"
@@ -5157,7 +6008,17 @@
     },
     "Mentions.options": {
       "required": true,
-      "type": "MentionOption[]"
+      "type": "MentionOption[]",
+      "shape": {
+        "display": {
+          "required": true,
+          "type": "string"
+        },
+        "id": {
+          "required": true,
+          "type": "string | number"
+        }
+      }
     },
     "Mentions.trigger": {
       "required": false,
@@ -5317,11 +6178,67 @@
     },
     "ModelSelector.labels": {
       "required": false,
-      "type": "{ /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default \"Context\") */ contextLabel?: string; /** Prefix for the input price meta (default \"In\") */ inputLabel?: string; /** Prefix for the output price meta (default \"Out\") */ outputLabel?: string; /** Suffix appended to prices (default \"/1M\") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }"
+      "type": "{ /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default \"Context\") */ contextLabel?: string; /** Prefix for the input price meta (default \"In\") */ inputLabel?: string; /** Prefix for the output price meta (default \"Out\") */ outputLabel?: string; /** Suffix appended to prices (default \"/1M\") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }",
+      "shape": {
+        "contextLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "inputLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "outputLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "perTokensLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "placeholder": {
+          "required": false,
+          "type": "string"
+        },
+        "triggerAriaLabel": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ModelSelector.models": {
       "required": true,
-      "type": "ModelOption[]"
+      "type": "ModelOption[]",
+      "shape": {
+        "badge": {
+          "required": false,
+          "type": "string"
+        },
+        "contextLength": {
+          "required": false,
+          "type": "number"
+        },
+        "description": {
+          "required": false,
+          "type": "string"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "pricing": {
+          "required": false,
+          "type": "{ /** Input (prompt) price per 1M tokens */ input?: number; /** Output (completion) price per 1M tokens */ output?: number; /** Currency symbol shown before the price (default \"$\") */ currency?: string; }"
+        }
+      }
     },
     "ModelSelector.onChange": {
       "required": false,
@@ -5397,7 +6314,21 @@
     },
     "MultiSelect.options": {
       "required": true,
-      "type": "MultiSelectOption[]"
+      "type": "MultiSelectOption[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "MultiSelect.placeholder": {
       "required": false,
@@ -5638,7 +6569,13 @@
     },
     "OtpInput.labels": {
       "required": false,
-      "type": "{ /** * Accessible name for one digit box. * * `position` is **1-based**: the first box is `1`, and the last is `length`. * It is meant to be read aloud (\"Digit 3 of 6\"), so it counts the way a person * would. Treating it as a 0-based index and adding one yields \"Digit 2\" for the * first box. * * @param position 1-based position of the box, from `1` to `length` * @default (position) => `Digit ${position}` */ digitAriaLabel?: (position: number) => string; }"
+      "type": "{ /** * Accessible name for one digit box. * * `position` is **1-based**: the first box is `1`, and the last is `length`. * It is meant to be read aloud (\"Digit 3 of 6\"), so it counts the way a person * would. Treating it as a 0-based index and adding one yields \"Digit 2\" for the * first box. * * @param position 1-based position of the box, from `1` to `length` * @default (position) => `Digit ${position}` */ digitAriaLabel?: (position: number) => string; }",
+      "shape": {
+        "digitAriaLabel": {
+          "required": false,
+          "type": "(position: number) => string"
+        }
+      }
     },
     "OtpInput.layout": {
       "required": false,
@@ -5684,7 +6621,49 @@
       "type": "boolean"
     },
     "Pagination.labels": {
-      "type": "{ prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }"
+      "type": "{ prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }",
+      "shape": {
+        "go": {
+          "required": false,
+          "type": "string"
+        },
+        "goTo": {
+          "required": false,
+          "type": "string"
+        },
+        "itemsPerPage": {
+          "required": false,
+          "type": "string"
+        },
+        "jumpToPageAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "navAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "nextPage": {
+          "required": false,
+          "type": "string"
+        },
+        "pageAriaLabel": {
+          "required": false,
+          "type": "(page: number) => string"
+        },
+        "pageSizeAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "prevPage": {
+          "required": false,
+          "type": "string"
+        },
+        "totalLabel": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Pagination.onChange": {
       "required": false,
@@ -5883,7 +6862,17 @@
       "type": "boolean"
     },
     "PieChart.data": {
-      "type": "{ name: string; value: number }[]"
+      "type": "{ name: string; value: number }[]",
+      "shape": {
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "number"
+        }
+      }
     },
     "PieChart.donut": {
       "required": false,
@@ -6238,7 +7227,8 @@
     },
     "RadarChart.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "RadarChart.height": {
       "required": false,
@@ -6309,7 +7299,21 @@
     },
     "RadioGroup.options": {
       "required": true,
-      "type": "Option[]"
+      "type": "Option[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "RadioGroup.required": {
       "required": false,
@@ -6470,7 +7474,17 @@
     },
     "Rating.labels": {
       "required": false,
-      "type": "{ star?: (count: number) => string; readonly?: (value: number, max: number) => string; }"
+      "type": "{ star?: (count: number) => string; readonly?: (value: number, max: number) => string; }",
+      "shape": {
+        "readonly": {
+          "required": false,
+          "type": "(value: number, max: number) => string"
+        },
+        "star": {
+          "required": false,
+          "type": "(count: number) => string"
+        }
+      }
     },
     "Rating.layout": {
       "required": false,
@@ -6513,7 +7527,29 @@
     },
     "Reaction.reactions": {
       "required": true,
-      "type": "ReactionItem[]"
+      "type": "ReactionItem[]",
+      "shape": {
+        "active": {
+          "required": false,
+          "type": "boolean"
+        },
+        "count": {
+          "required": true,
+          "type": "number"
+        },
+        "icon": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Reaction.showAddButton": {
       "required": false,
@@ -6635,7 +7671,73 @@
     },
     "RichTextEditor.labels": {
       "required": false,
-      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }"
+      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }",
+      "shape": {
+        "bold": {
+          "required": false,
+          "type": "string"
+        },
+        "h1": {
+          "required": false,
+          "type": "string"
+        },
+        "h2": {
+          "required": false,
+          "type": "string"
+        },
+        "h3": {
+          "required": false,
+          "type": "string"
+        },
+        "italic": {
+          "required": false,
+          "type": "string"
+        },
+        "link": {
+          "required": false,
+          "type": "string"
+        },
+        "linkApply": {
+          "required": false,
+          "type": "string"
+        },
+        "linkCancel": {
+          "required": false,
+          "type": "string"
+        },
+        "linkPrompt": {
+          "required": false,
+          "type": "string"
+        },
+        "ol": {
+          "required": false,
+          "type": "string"
+        },
+        "removeFormat": {
+          "required": false,
+          "type": "string"
+        },
+        "strikethrough": {
+          "required": false,
+          "type": "string"
+        },
+        "toolbar": {
+          "required": false,
+          "type": "string"
+        },
+        "ul": {
+          "required": false,
+          "type": "string"
+        },
+        "underline": {
+          "required": false,
+          "type": "string"
+        },
+        "unlink": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "RichTextEditor.layout": {
       "required": false,
@@ -6684,7 +7786,25 @@
       "type": "boolean"
     },
     "ScatterChart.data": {
-      "type": "{ x: number; y: number; z?: number; name: string }[]"
+      "type": "{ x: number; y: number; z?: number; name: string }[]",
+      "shape": {
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "x": {
+          "required": true,
+          "type": "number"
+        },
+        "y": {
+          "required": true,
+          "type": "number"
+        },
+        "z": {
+          "required": false,
+          "type": "number"
+        }
+      }
     },
     "ScatterChart.height": {
       "required": false,
@@ -6719,7 +7839,8 @@
     },
     "ScheduleView.events": {
       "required": false,
-      "type": "ScheduleViewEvent[]"
+      "type": "ScheduleViewEvent[]",
+      "resolvedType": "EventInput[]"
     },
     "ScheduleView.initialView": {
       "required": false,
@@ -6929,7 +8050,21 @@
     },
     "SegmentedControl.options": {
       "required": true,
-      "type": "Option[]"
+      "type": "Option[]",
+      "shape": {
+        "iconName": {
+          "required": false,
+          "type": "\"CircleIcon\" | \"SquareIcon\" | \"LoadingIcon\" | \"ExternalLinkIcon\""
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "SegmentedControl.required": {
       "required": false,
@@ -6940,7 +8075,25 @@
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "SegmentedControl.styles": {
-      "type": "{ root?: string; item?: string; slider?: string; label?: string; }"
+      "type": "{ root?: string; item?: string; slider?: string; label?: string; }",
+      "shape": {
+        "item": {
+          "required": false,
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        },
+        "slider": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "SegmentedControl.value": {
       "required": true,
@@ -7026,7 +8179,57 @@
       "type": "boolean"
     },
     "Select.styles": {
-      "type": "{ root?: string; trigger?: string; value?: string; dropdown?: string; list?: string; option?: string; search?: string; searchInput?: string; groupLabel?: string; separator?: string; empty?: string; inputBase?: React.ComponentProps<typeof InputBase>[\"styles\"]; }"
+      "type": "{ root?: string; trigger?: string; value?: string; dropdown?: string; list?: string; option?: string; search?: string; searchInput?: string; groupLabel?: string; separator?: string; empty?: string; inputBase?: React.ComponentProps<typeof InputBase>[\"styles\"]; }",
+      "shape": {
+        "dropdown": {
+          "required": false,
+          "type": "string"
+        },
+        "empty": {
+          "required": false,
+          "type": "string"
+        },
+        "groupLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "inputBase": {
+          "required": false,
+          "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+        },
+        "list": {
+          "required": false,
+          "type": "string"
+        },
+        "option": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        },
+        "search": {
+          "required": false,
+          "type": "string"
+        },
+        "searchInput": {
+          "required": false,
+          "type": "string"
+        },
+        "separator": {
+          "required": false,
+          "type": "string"
+        },
+        "trigger": {
+          "required": false,
+          "type": "string"
+        },
+        "value": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Select.value": {
       "required": false,
@@ -7137,7 +8340,29 @@
     },
     "SimpleGrid.cols": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number"
+        },
+        "lg": {
+          "required": false,
+          "type": "number"
+        },
+        "md": {
+          "required": false,
+          "type": "number"
+        },
+        "sm": {
+          "required": false,
+          "type": "number"
+        },
+        "xl": {
+          "required": false,
+          "type": "number"
+        }
+      }
     },
     "SimpleGrid.minChildWidth": {
       "required": false,
@@ -7568,7 +8793,25 @@
     },
     "SplitButton.actions": {
       "required": true,
-      "type": "SplitButtonAction[]"
+      "type": "SplitButtonAction[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "icon": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "onSelect": {
+          "required": false,
+          "type": "() => void"
+        }
+      }
     },
     "SplitButton.children": {
       "required": false,
@@ -7691,7 +8934,29 @@
     },
     "Stack.direction": {
       "required": false,
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "\"row\" | \"column\""
+        },
+        "lg": {
+          "required": false,
+          "type": "\"row\" | \"column\""
+        },
+        "md": {
+          "required": false,
+          "type": "\"row\" | \"column\""
+        },
+        "sm": {
+          "required": false,
+          "type": "\"row\" | \"column\""
+        },
+        "xl": {
+          "required": false,
+          "type": "\"row\" | \"column\""
+        }
+      }
     },
     "Stack.display": {
       "type": "React.CSSProperties[\"display\"]"
@@ -7701,7 +8966,29 @@
       "type": "number | string"
     },
     "Stack.h": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Stack.justify": {
       "type": "| \"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\" | \"stretch\" | React.CSSProperties[\"justifyContent\"]"
@@ -7758,7 +9045,29 @@
       "type": "T | (string & {})"
     },
     "Stack.w": {
-      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }"
+      "type": "| T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }",
+      "shape": {
+        "base": {
+          "required": false,
+          "type": "number | string"
+        },
+        "lg": {
+          "required": false,
+          "type": "number | string"
+        },
+        "md": {
+          "required": false,
+          "type": "number | string"
+        },
+        "sm": {
+          "required": false,
+          "type": "number | string"
+        },
+        "xl": {
+          "required": false,
+          "type": "number | string"
+        }
+      }
     },
     "Stack.wrap": {
       "required": false,
@@ -7963,7 +9272,21 @@
     },
     "SwitchGroup.options": {
       "required": true,
-      "type": "Option[]"
+      "type": "Option[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "SwitchGroup.required": {
       "required": false,
@@ -8501,7 +9824,25 @@
     },
     "ThemeToggle.labels": {
       "required": false,
-      "type": "{ /** Label for the light mode */ light?: string; /** Label for the dark mode */ dark?: string; /** Label for the system (auto) mode */ system?: string; /** Accessible label / group label for the control */ toggle?: string; }"
+      "type": "{ /** Label for the light mode */ light?: string; /** Label for the dark mode */ dark?: string; /** Label for the system (auto) mode */ system?: string; /** Accessible label / group label for the control */ toggle?: string; }",
+      "shape": {
+        "dark": {
+          "required": false,
+          "type": "string"
+        },
+        "light": {
+          "required": false,
+          "type": "string"
+        },
+        "system": {
+          "required": false,
+          "type": "string"
+        },
+        "toggle": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ThemeToggle.modes": {
       "required": false,
@@ -8583,7 +9924,25 @@
     },
     "ThreadList.labels": {
       "required": false,
-      "type": "{ /** Label of the new-conversation button */ newThread?: string; /** Text shown when there are no threads */ empty?: string; /** Accessible label for each delete button */ delete?: string; /** Accessible label for the list */ listAriaLabel?: string; }"
+      "type": "{ /** Label of the new-conversation button */ newThread?: string; /** Text shown when there are no threads */ empty?: string; /** Accessible label for each delete button */ delete?: string; /** Accessible label for the list */ listAriaLabel?: string; }",
+      "shape": {
+        "delete": {
+          "required": false,
+          "type": "string"
+        },
+        "empty": {
+          "required": false,
+          "type": "string"
+        },
+        "listAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "newThread": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ThreadList.onDelete": {
       "required": false,
@@ -8599,7 +9958,33 @@
     },
     "ThreadList.threads": {
       "required": true,
-      "type": "Thread[]"
+      "type": "Thread[]",
+      "shape": {
+        "iconName": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "preview": {
+          "required": false,
+          "type": "string"
+        },
+        "timestamp": {
+          "required": false,
+          "type": "string"
+        },
+        "title": {
+          "required": true,
+          "type": "string"
+        },
+        "unread": {
+          "required": false,
+          "type": "boolean"
+        }
+      }
     },
     "TimePicker.allowClear": {
       "required": false,
@@ -8905,7 +10290,25 @@
     },
     "ToggleGroup.options": {
       "required": true,
-      "type": "Option[]"
+      "type": "Option[]",
+      "shape": {
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "iconName": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "ToggleGroup.required": {
       "required": false,
@@ -9020,7 +10423,25 @@
     },
     "Tour.steps": {
       "required": true,
-      "type": "TourStep[]"
+      "type": "TourStep[]",
+      "shape": {
+        "description": {
+          "required": true,
+          "type": "string"
+        },
+        "placement": {
+          "required": false,
+          "type": "\"top\" | \"bottom\" | \"left\" | \"right\""
+        },
+        "target": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Transfer.className": {
       "required": false,
@@ -9028,7 +10449,25 @@
     },
     "Transfer.dataSource": {
       "required": true,
-      "type": "TransferItem[]"
+      "type": "TransferItem[]",
+      "shape": {
+        "description": {
+          "required": false,
+          "type": "string"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
     },
     "Transfer.disabled": {
       "required": false,
@@ -9044,7 +10483,29 @@
     },
     "Transfer.labels": {
       "required": false,
-      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
+      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }",
+      "shape": {
+        "moveToSource": {
+          "required": false,
+          "type": "string"
+        },
+        "moveToTarget": {
+          "required": false,
+          "type": "string"
+        },
+        "noData": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "statusMovedToSource": {
+          "required": false,
+          "type": "(count: number) => string"
+        },
+        "statusMovedToTarget": {
+          "required": false,
+          "type": "(count: number) => string"
+        }
+      }
     },
     "Transfer.layout": {
       "required": false,
@@ -9076,7 +10537,25 @@
       "type": "string"
     },
     "TransferList.data": {
-      "type": "TransferItem[]"
+      "type": "TransferItem[]",
+      "shape": {
+        "description": {
+          "required": false,
+          "type": "string"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
     },
     "TransferList.disabled": {
       "type": "boolean"
@@ -9088,7 +10567,29 @@
       "type": "string"
     },
     "TransferList.labels": {
-      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }"
+      "type": "{ noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }",
+      "shape": {
+        "moveToSource": {
+          "required": false,
+          "type": "string"
+        },
+        "moveToTarget": {
+          "required": false,
+          "type": "string"
+        },
+        "noData": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "statusMovedToSource": {
+          "required": false,
+          "type": "(count: number) => string"
+        },
+        "statusMovedToTarget": {
+          "required": false,
+          "type": "(count: number) => string"
+        }
+      }
     },
     "TransferList.listType": {
       "type": "\"source\" | \"target\""
@@ -9276,7 +10777,29 @@
     },
     "TreeSelect.treeData": {
       "required": true,
-      "type": "TreeSelectNode[]"
+      "type": "TreeSelectNode[]",
+      "shape": {
+        "children": {
+          "required": false,
+          "type": "TreeSelectNode[]"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "icon": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "TreeSelect.value": {
       "required": true,
@@ -9347,7 +10870,29 @@
     },
     "TreeView.labels": {
       "required": false,
-      "type": "{ searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }"
+      "type": "{ searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }",
+      "shape": {
+        "collapseLabel": {
+          "required": false,
+          "type": "(label: string) => string"
+        },
+        "expandLabel": {
+          "required": false,
+          "type": "(label: string) => string"
+        },
+        "searchAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "searchPlaceholder": {
+          "required": false,
+          "type": "string"
+        },
+        "treeAriaLabel": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "TreeView.multiSelect": {
       "required": false,
@@ -9355,7 +10900,29 @@
     },
     "TreeView.nodes": {
       "required": false,
-      "type": "TreeViewNode[]"
+      "type": "TreeViewNode[]",
+      "shape": {
+        "children": {
+          "required": false,
+          "type": "TreeViewNode[]"
+        },
+        "disabled": {
+          "required": false,
+          "type": "boolean"
+        },
+        "icon": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "TreeView.onCheckedChange": {
       "required": false,
@@ -9370,7 +10937,45 @@
       "type": "boolean"
     },
     "TreeView.styles": {
-      "type": "{ root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }"
+      "type": "{ root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }",
+      "shape": {
+        "checkbox": {
+          "required": false,
+          "type": "string"
+        },
+        "expandBtn": {
+          "required": false,
+          "type": "string"
+        },
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconWrapper": {
+          "required": false,
+          "type": "string"
+        },
+        "item": {
+          "required": false,
+          "type": "string"
+        },
+        "labelContainer": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        },
+        "search": {
+          "required": false,
+          "type": "string"
+        },
+        "searchInput": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "TreeView.virtualThreshold": {
       "required": false,
@@ -9386,7 +10991,8 @@
     },
     "Treemap.data": {
       "required": true,
-      "type": "ChartDataPoint[]"
+      "type": "ChartDataPoint[]",
+      "resolvedType": "Record<string, string | number | null>[]"
     },
     "Treemap.dataKey": {
       "required": true,
@@ -9417,7 +11023,21 @@
     },
     "UsageMeter.labels": {
       "required": false,
-      "type": "{ /** Leading label (default \"Tokens\") */ label?: string; /** Unit appended to the raw counts (default \"tokens\") */ unit?: string; /** Accessible label describing the meter */ ariaLabel?: string; }"
+      "type": "{ /** Leading label (default \"Tokens\") */ label?: string; /** Unit appended to the raw counts (default \"tokens\") */ unit?: string; /** Accessible label describing the meter */ ariaLabel?: string; }",
+      "shape": {
+        "ariaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "unit": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "UsageMeter.max": {
       "required": false,
@@ -9495,7 +11115,121 @@
     },
     "Video.labels": {
       "required": false,
-      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }"
+      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }",
+      "shape": {
+        "aspectRatio": {
+          "required": false,
+          "type": "string"
+        },
+        "auto": {
+          "required": false,
+          "type": "string"
+        },
+        "back": {
+          "required": false,
+          "type": "string"
+        },
+        "contain": {
+          "required": false,
+          "type": "string"
+        },
+        "cover": {
+          "required": false,
+          "type": "string"
+        },
+        "exitFullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "fill": {
+          "required": false,
+          "type": "string"
+        },
+        "fit": {
+          "required": false,
+          "type": "string"
+        },
+        "fullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "mute": {
+          "required": false,
+          "type": "string"
+        },
+        "nextTrack": {
+          "required": false,
+          "type": "string"
+        },
+        "none": {
+          "required": false,
+          "type": "string"
+        },
+        "pause": {
+          "required": false,
+          "type": "string"
+        },
+        "pip": {
+          "required": false,
+          "type": "string"
+        },
+        "play": {
+          "required": false,
+          "type": "string"
+        },
+        "playbackRate": {
+          "required": false,
+          "type": "string"
+        },
+        "playlist": {
+          "required": false,
+          "type": "string"
+        },
+        "quality": {
+          "required": false,
+          "type": "string"
+        },
+        "scaleDown": {
+          "required": false,
+          "type": "string"
+        },
+        "seconds": {
+          "required": false,
+          "type": "string"
+        },
+        "seek": {
+          "required": false,
+          "type": "string"
+        },
+        "settings": {
+          "required": false,
+          "type": "string"
+        },
+        "skipBackward": {
+          "required": false,
+          "type": "string"
+        },
+        "skipForward": {
+          "required": false,
+          "type": "string"
+        },
+        "standard": {
+          "required": false,
+          "type": "string"
+        },
+        "unmute": {
+          "required": false,
+          "type": "string"
+        },
+        "videoAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "volume": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Video.loading": {
       "required": false,
@@ -9513,7 +11247,21 @@
       "type": "boolean"
     },
     "Video.playlist": {
-      "type": "{ src: string; title?: string; poster?: string }[]"
+      "type": "{ src: string; title?: string; poster?: string }[]",
+      "shape": {
+        "poster": {
+          "required": false,
+          "type": "string"
+        },
+        "src": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Video.poster": {
       "required": false,
@@ -9528,7 +11276,17 @@
       ]
     },
     "Video.qualities": {
-      "type": "{ label: string; src: string }[]"
+      "type": "{ label: string; src: string }[]",
+      "shape": {
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "src": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "Video.radius": {
       "required": false,
@@ -9592,7 +11350,121 @@
     },
     "VideoAdvancedMenu.labels": {
       "required": false,
-      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }"
+      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }",
+      "shape": {
+        "aspectRatio": {
+          "required": false,
+          "type": "string"
+        },
+        "auto": {
+          "required": false,
+          "type": "string"
+        },
+        "back": {
+          "required": false,
+          "type": "string"
+        },
+        "contain": {
+          "required": false,
+          "type": "string"
+        },
+        "cover": {
+          "required": false,
+          "type": "string"
+        },
+        "exitFullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "fill": {
+          "required": false,
+          "type": "string"
+        },
+        "fit": {
+          "required": false,
+          "type": "string"
+        },
+        "fullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "mute": {
+          "required": false,
+          "type": "string"
+        },
+        "nextTrack": {
+          "required": false,
+          "type": "string"
+        },
+        "none": {
+          "required": false,
+          "type": "string"
+        },
+        "pause": {
+          "required": false,
+          "type": "string"
+        },
+        "pip": {
+          "required": false,
+          "type": "string"
+        },
+        "play": {
+          "required": false,
+          "type": "string"
+        },
+        "playbackRate": {
+          "required": false,
+          "type": "string"
+        },
+        "playlist": {
+          "required": false,
+          "type": "string"
+        },
+        "quality": {
+          "required": false,
+          "type": "string"
+        },
+        "scaleDown": {
+          "required": false,
+          "type": "string"
+        },
+        "seconds": {
+          "required": false,
+          "type": "string"
+        },
+        "seek": {
+          "required": false,
+          "type": "string"
+        },
+        "settings": {
+          "required": false,
+          "type": "string"
+        },
+        "skipBackward": {
+          "required": false,
+          "type": "string"
+        },
+        "skipForward": {
+          "required": false,
+          "type": "string"
+        },
+        "standard": {
+          "required": false,
+          "type": "string"
+        },
+        "unmute": {
+          "required": false,
+          "type": "string"
+        },
+        "videoAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "volume": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "VideoAdvancedMenu.playPlaylistItem": {
       "required": true,
@@ -9603,10 +11475,34 @@
       "type": "number"
     },
     "VideoAdvancedMenu.playlist": {
-      "type": "{ src: string; title?: string; poster?: string }[]"
+      "type": "{ src: string; title?: string; poster?: string }[]",
+      "shape": {
+        "poster": {
+          "required": false,
+          "type": "string"
+        },
+        "src": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "VideoAdvancedMenu.qualities": {
-      "type": "{ label: string; src: string }[]"
+      "type": "{ label: string; src: string }[]",
+      "shape": {
+        "label": {
+          "required": true,
+          "type": "string"
+        },
+        "src": {
+          "required": true,
+          "type": "string"
+        }
+      }
     },
     "VideoAdvancedMenu.setActiveFit": {
       "required": true,
@@ -9670,11 +11566,139 @@
     },
     "VideoControls.labels": {
       "required": false,
-      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }"
+      "type": "{ playlist?: string; skipBackward?: string; skipForward?: string; play?: string; pause?: string; nextTrack?: string; seek?: string; mute?: string; unmute?: string; volume?: string; settings?: string; pip?: string; fullscreen?: string; exitFullscreen?: string; quality?: string; playbackRate?: string; aspectRatio?: string; standard?: string; back?: string; auto?: string; fit?: string; fill?: string; contain?: string; cover?: string; scaleDown?: string; none?: string; videoAriaLabel?: string; seconds?: string; // e.g. \"seconds\" or \"秒\" }",
+      "shape": {
+        "aspectRatio": {
+          "required": false,
+          "type": "string"
+        },
+        "auto": {
+          "required": false,
+          "type": "string"
+        },
+        "back": {
+          "required": false,
+          "type": "string"
+        },
+        "contain": {
+          "required": false,
+          "type": "string"
+        },
+        "cover": {
+          "required": false,
+          "type": "string"
+        },
+        "exitFullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "fill": {
+          "required": false,
+          "type": "string"
+        },
+        "fit": {
+          "required": false,
+          "type": "string"
+        },
+        "fullscreen": {
+          "required": false,
+          "type": "string"
+        },
+        "mute": {
+          "required": false,
+          "type": "string"
+        },
+        "nextTrack": {
+          "required": false,
+          "type": "string"
+        },
+        "none": {
+          "required": false,
+          "type": "string"
+        },
+        "pause": {
+          "required": false,
+          "type": "string"
+        },
+        "pip": {
+          "required": false,
+          "type": "string"
+        },
+        "play": {
+          "required": false,
+          "type": "string"
+        },
+        "playbackRate": {
+          "required": false,
+          "type": "string"
+        },
+        "playlist": {
+          "required": false,
+          "type": "string"
+        },
+        "quality": {
+          "required": false,
+          "type": "string"
+        },
+        "scaleDown": {
+          "required": false,
+          "type": "string"
+        },
+        "seconds": {
+          "required": false,
+          "type": "string"
+        },
+        "seek": {
+          "required": false,
+          "type": "string"
+        },
+        "settings": {
+          "required": false,
+          "type": "string"
+        },
+        "skipBackward": {
+          "required": false,
+          "type": "string"
+        },
+        "skipForward": {
+          "required": false,
+          "type": "string"
+        },
+        "standard": {
+          "required": false,
+          "type": "string"
+        },
+        "unmute": {
+          "required": false,
+          "type": "string"
+        },
+        "videoAriaLabel": {
+          "required": false,
+          "type": "string"
+        },
+        "volume": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "VideoControls.playlist": {
       "required": false,
-      "type": "{ src: string; title?: string; poster?: string }[]"
+      "type": "{ src: string; title?: string; poster?: string }[]",
+      "shape": {
+        "poster": {
+          "required": false,
+          "type": "string"
+        },
+        "src": {
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "VideoControls.setActiveMenu": {
       "required": true,
