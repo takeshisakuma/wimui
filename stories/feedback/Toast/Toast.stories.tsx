@@ -84,6 +84,28 @@ export const Warning: Story = {
   },
 };
 
+// T90 の横展開。**アイコンのずれは内容が伸びて初めて出る** ── 既定のストーリーは
+// 説明が 1 行なので、`align-self: center` でも 1 行目とほぼ揃って見えていた。
+// 実測でアイコンの top と title の top の差は、塊 43px で 14px、塊 100px で 43px。
+// 折り返す長さを持つストーリーが 1 つも無いと、直しても戻しても VRT が同じ絵を撮る。
+export const LongContent: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ maxWidth: "420px" }}>
+        <Toast
+          {...args}
+          title={args.title || t("story.toast_long_title")}
+          description={args.description || t("story.toast_long_desc")}
+        />
+      </div>
+    );
+  },
+  args: {
+    intent: "warning",
+  },
+};
+
 export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
