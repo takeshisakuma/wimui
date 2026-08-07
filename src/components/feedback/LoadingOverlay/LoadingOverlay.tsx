@@ -55,8 +55,11 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
    * When `false` (the default) the overlay is `position: absolute`, so it covers
    * **the nearest positioned ancestor** — not necessarily the element you wrapped.
    * Give that element a position explicitly, e.g. `<Box position="relative">`.
-   * `Card` does not set one, so `<Card><LoadingOverlay /></Card>` spreads to the
-   * viewport instead of the card.
+   *
+   * `Card` sets `position: relative` for this reason (T88), so
+   * `<Card><LoadingOverlay /></Card>` covers the card. A plain `<div>` does not,
+   * and the overlay will spread to the viewport — measured at 1280x800 from the
+   * origin while the card it was meant to cover was 1248x75.
    *
    * @default false
    */
