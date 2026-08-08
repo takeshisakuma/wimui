@@ -34,4 +34,24 @@ describe("Tag", () => {
     );
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
+
+  // T99: 以前は children が配列になり Slottable が必ず落ちていた。
+  it("supports asChild", () => {
+    render(
+      <Tag asChild>
+        <button type="button">slotted</button>
+      </Tag>,
+    );
+    expect(screen.getByRole("button", { name: "slotted" })).toBeInTheDocument();
+  });
+
+  it("rejects asChild combined with onDelete", () => {
+    expect(() =>
+      render(
+        <Tag asChild onDelete={() => {}}>
+          <button type="button">x</button>
+        </Tag>,
+      ),
+    ).toThrow(/asChild.*onDelete/);
+  });
 });

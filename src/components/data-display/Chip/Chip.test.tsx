@@ -46,4 +46,24 @@ describe("Chip", () => {
     fireEvent.keyDown(deleteButton, { key: "Escape" });
     expect(handleDelete).not.toHaveBeenCalled();
   });
+
+  // T99: 以前は Slottable が label span の内側にあり、asChild が必ず落ちていた。
+  it("supports asChild", () => {
+    render(
+      <Chip asChild>
+        <button type="button">slotted</button>
+      </Chip>,
+    );
+    expect(screen.getByRole("button", { name: "slotted" })).toBeInTheDocument();
+  });
+
+  it("rejects asChild combined with onDelete", () => {
+    expect(() =>
+      render(
+        <Chip asChild onDelete={() => {}}>
+          <button type="button">x</button>
+        </Chip>,
+      ),
+    ).toThrow(/asChild.*onDelete/);
+  });
 });

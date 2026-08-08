@@ -11,6 +11,7 @@ import { CloseIcon } from "@/icon";
 export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   /**
    * If true, the chip will be rendered as its child, merging its props onto that child.
+   * Cannot be combined with `onDelete` (T99).
    */
   asChild?: boolean;
   /** Content to display */
@@ -67,9 +68,16 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
   ) => {
     const { t } = useWimTranslation("common");
     const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
+    if (asChild && onDelete) {
+      throw new Error(
+        "[wimui] Chip: `asChild` cannot be combined with `onDelete`. " +
+          "Use a removable Chip without asChild, or put the delete control on the slotted child yourself.",
+      );
+    }
+
     const Component = asChild ? Slot : (onClick ? "button" : "span");
     const finalContent = content ?? children;
-    
+
     return (
       <Component
         ref={mergeRefs(ref)}
@@ -90,9 +98,16 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
       >
         {avatar && <span className={styles.avatar}>{avatar}</span>}
         {!avatar && icon && <span className={styles.icon}>{icon}</span>}
-        <span className={styles.label}>
+        {/*
+          Slottable は Slot の直下に置く（Button と同じ形）。
+          以前は `<span class=label>` で包んでいたため、asChild 時に Slot が
+          Slottable を見つけられず必ず落ちていた（T99）。
+        */}
+        {asChild ? (
           <Slottable>{finalContent}</Slottable>
-        </span>
+        ) : (
+          <span className={styles.label}>{finalContent}</span>
+        )}
         {onDelete && !disabled && (
           <button
             type="button"
