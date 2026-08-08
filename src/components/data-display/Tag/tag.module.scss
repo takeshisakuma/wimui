@@ -51,12 +51,15 @@
     // Colors and Variants
     @include module-token-variants;
 
+    // Button の solid disabled と同じペア（`disabled` 面 + `text-on-disabled`）。
+    // 以前の `surface` + `text-disabled` は dark で 3.34:1 しかなく AA を割る。
+    // T99 で className 上書きバグを直した結果、TagInput Disabled で初めて露見した。
     &:disabled,
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-surface);
-      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      background-color: var(--wim-color-disabled);
+      border: var(--wim-border-width-thin) solid transparent;
       opacity: 1;
       filter: none;
 
