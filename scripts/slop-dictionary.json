@@ -1,5 +1,8 @@
 {
-  "$comment": "AI-slop 機械強制辞書の単一ソース（SSOT）。check-slop.js（ガード）と generate-llms.js（llms.txt 生成）の両方がここを読む。DESIGN.md はこのファイルを指し、例示のみ載せる。辞書を増やすときはここだけを編集し、`npm run llms:build` で llms.txt を再生成する。一部は反 AI-slop skill Nutlope/hallmark（references/copy.md・anti-patterns.md）から採掘。",
+  "$comment": "AI-slop 機械強制辞書の単一ソース（SSOT）。check-slop.js（ガード）と generate-llms.js（llms.txt 生成）の両方がここを読む。DESIGN.md はこのファイルを指し、例示のみ載せる。辞書を増やすときはここだけを編集し、`npm run llms:build` で llms.txt を再生成する。一部は反 AI-slop skill Nutlope/hallmark（references/copy.md・anti-patterns.md）から採掘。hypeFalsePositives は部分一致が正当語に刺さるとき用（例: elevate ⊂ elevated＝Card/Stats の variant）。",
+  "hypeFalsePositives": [
+    "elevated"
+  ],
   "hypeWords": [
     "seamless",
     "powerful",

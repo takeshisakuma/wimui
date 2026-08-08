@@ -63,6 +63,10 @@ const DICT = JSON.parse(fs.readFileSync(new URL('./slop-dictionary.json', import
 const HYPE_WORDS = DICT.hypeWords;
 const HYPE_PHRASES = DICT.hypePhrases;
 const PLACEHOLDER_NAMES = DICT.placeholderNames;
+/** 部分一致が正当語を踏むときの除外（elevate ⊂ elevated 等）。辞書 SSOT。 */
+const HYPE_FALSE_POSITIVES = new Set(
+  (DICT.hypeFalsePositives ?? []).map((w) => String(w).toLowerCase()),
+);
 
 // ストーリーデモコピーが実在する locale ファイル（en/ja/pt の docs_stories_*）。
 // ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）はドキュメント散文であり
@@ -268,14 +272,23 @@ const hypeRe = new RegExp([...HYPE_WORDS, ...HYPE_PHRASES].map(esc).join('|'), '
 const nameRe = new RegExp(PLACEHOLDER_NAMES.map(esc).join('|'), 'i');
 const isPlaceholderKey = (line) => /"[^"]*placeholder[^"]*"\s*:/i.test(line);
 
+/** 部分一致ヒットをラテン語トークン全体に広げ、偽陽性語なら捨てる。 */
+const hypeHitOnLine = (line) => {
+  const hm = line.match(hypeRe);
+  if (!hm || hm.index === undefined) return null;
+  const token = line.slice(hm.index).match(/^[A-Za-z]+/)?.[0] ?? hm[0];
+  if (HYPE_FALSE_POSITIVES.has(token.toLowerCase())) return null;
+  return hm[0];
+};
+
 const hypeHits = [];
 const nameHits = [];
 for (const file of HYPE_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   lines.forEach((line, i) => {
-    const hm = line.match(hypeRe);
-    if (hm) hypeHits.push(`${file}:${i + 1}: 「${hm[0]}」 ${line.trim().slice(0, 80)}`);
+    const hit = hypeHitOnLine(line);
+    if (hit) hypeHits.push(`${file}:${i + 1}: 「${hit}」 ${line.trim().slice(0, 80)}`);
     // 入力欄プレースホルダの氏名例は正当（スコープ外）
     if (!isPlaceholderKey(line)) {
       const nm = line.match(nameRe);
