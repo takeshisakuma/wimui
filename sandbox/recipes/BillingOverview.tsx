@@ -56,8 +56,9 @@ export default function BillingOverview() {
 
       {/* Dense data region. `card` frames the table itself — wrapping it in a
           Card instead would stack the table's border on the last row's and put
-          a 4px radius inside a 12px one. */}
-      <Table card hoverable fullWidth>
+          a 4px radius inside a 12px one. `mobileCard` + Cell `label` keep the
+          four columns readable when the Playground card is narrow (T97). */}
+      <Table card hoverable fullWidth mobileCard>
         <Table.Header>
           <Table.Row>
             <Table.Head>Customer</Table.Head>
@@ -69,10 +70,12 @@ export default function BillingOverview() {
         <Table.Body>
           {rows.map((r) => (
             <Table.Row key={r.id}>
-              <Table.Cell>{r.name}</Table.Cell>
-              <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
-              <Table.Cell>{r.amount}</Table.Cell>
-              <Table.Cell>
+              <Table.Cell label="Customer">{r.name}</Table.Cell>
+              <Table.Cell label="Plan">
+                {r.plan ?? <Text color="tertiary">—</Text>}
+              </Table.Cell>
+              <Table.Cell label="Amount">{r.amount}</Table.Cell>
+              <Table.Cell label="Status">
                 <Badge variant="subtle" intent={statusIntent[r.status]}>{r.status}</Badge>
               </Table.Cell>
             </Table.Row>
