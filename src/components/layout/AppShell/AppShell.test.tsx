@@ -1,6 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
-import { AppShell, AppShellHeader, AppShellSidebar, AppShellFooter, AppShellNavbar } from "./AppShell";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import {
+  AppShell,
+  AppShellHeader,
+  AppShellSidebar,
+  AppShellFooter,
+  AppShellNavbar,
+} from "./AppShell";
+import { resetAppShellWarnings } from "./warn-discarded-sidebar";
 import styles from "./appshell.module.scss";
 
 describe("AppShell", () => {
@@ -149,6 +156,74 @@ describe("AppShell", () => {
     expect(screen.getByText("Main Content")).toBeInTheDocument();
     expect(screen.getByText("Footer")).toBeInTheDocument();
     expect(screen.getByText("Navbar")).toBeInTheDocument();
+  });
+});
+
+/**
+ * T98: Composition API 利用中の `sidebar` prop は描画経路が無く黙って捨てられる。
+ * 受け入れ条件 = 混ぜたときに開発時警告が出る。鳴ってはいけない経路 = 各 API 単体。
+ */
+describe("AppShell warns when sidebar prop is mixed with Composition API", () => {
+  let warn: ReturnType<typeof vi.spyOn>;
+
+  beforeEach(() => {
+    resetAppShellWarnings();
+    warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    warn.mockRestore();
+  });
+
+  it("warns when sidebar prop is passed alongside AppShell.Main", () => {
+    const { container } = render(
+      <AppShell sidebar={<div>Discarded</div>}>
+        <AppShell.Main>Main</AppShell.Main>
+      </AppShell>,
+    );
+    expect(warn).toHaveBeenCalledOnce();
+    expect(warn.mock.calls[0][0]).toContain("ignored the `sidebar` prop");
+    // 捨てられたことの実害も固定する（警告だけ出て描画されている、では足りない）。
+    expect(screen.queryByText("Discarded")).not.toBeInTheDocument();
+    expect(container.querySelectorAll(`.${styles.sidebar}`)).toHaveLength(0);
+  });
+
+  // 鳴ってはいけない経路①: props API 単体（children が素の内容）
+  it("stays silent for the props API with sidebar", () => {
+    render(
+      <AppShell sidebar={<div>Sidebar</div>}>Main Content</AppShell>,
+    );
+    expect(warn).not.toHaveBeenCalled();
+    expect(screen.getByText("Sidebar")).toBeInTheDocument();
+  });
+
+  // 鳴ってはいけない経路②: Composition API 単体（sidebar prop を渡さない）
+  it("stays silent for Composition API without the sidebar prop", () => {
+    render(
+      <AppShell>
+        <AppShell.Header>H</AppShell.Header>
+        <AppShell.Body>
+          <AppShell.Sidebar>S</AppShell.Sidebar>
+          <AppShell.Main>M</AppShell.Main>
+        </AppShell.Body>
+      </AppShell>,
+    );
+    expect(warn).not.toHaveBeenCalled();
+    expect(screen.getByText("S")).toBeInTheDocument();
+  });
+
+  it("warns once, not once per render", () => {
+    render(
+      <AppShell sidebar={<div>A</div>}>
+        <AppShell.Main>1</AppShell.Main>
+      </AppShell>,
+    );
+    render(
+      <AppShell sidebar={<div>B</div>}>
+        <AppShell.Main>2</AppShell.Main>
+      </AppShell>,
+    );
+    expect(warn).toHaveBeenCalledOnce();
   });
 });
 
