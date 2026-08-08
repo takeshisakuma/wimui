@@ -103,7 +103,9 @@
 
 
 @layer component {
-  .container {
+  /* コンテナクエリの起点。枠・背景は持たない（自分の幅を参照して自分の
+     border を外すことはできない —— DataGrid.root と同じ役割）。 */
+  .scope {
     width: 100%;
 
     /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
@@ -113,6 +115,10 @@
        使えない**（containment 下では 0 に潰れる）。T61 */
     min-width: var(--wim-width-sm);
     container-type: inline-size;
+  }
+
+  .container {
+    width: 100%;
     overflow-x: auto;
     background-color: var(--wim-color-surface);
 
@@ -143,6 +149,24 @@
         border-spacing: 0;
         border-collapse: separate;
         border: none;
+      }
+
+      /* 行がカードになった幅では外枠が二重になる（行側が border + radius + shadow）。
+         クエリは親 .scope を見るので、ここで外枠を外せる（DataGrid.panel-off と同型）。 */
+      &:has(> .mobileCard) {
+        @include breakpoints.container-down(sm) {
+          overflow: visible;
+          border: none;
+          border-radius: 0;
+        }
+      }
+
+      &:has(> .mobileCardMd) {
+        @include breakpoints.container-down(md) {
+          overflow: visible;
+          border: none;
+          border-radius: 0;
+        }
       }
     }
   }

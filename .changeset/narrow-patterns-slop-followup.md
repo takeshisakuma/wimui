@@ -2,6 +2,6 @@
 "wimui": patch
 ---
 
-Patterns: fix narrow Intake / ComparisonTable and sync composition narrow-width docs.
+Table: drop the outer `card` frame when rows become mobile cards; Patterns narrow follow-ups.
 
-IntakeQueue uses `mobileCard="md"` so the wide lot grid cards through tablet. Marketing ComparisonTable stacks feature cards below 768px instead of crushing the matrix. Dashboard KPI notes and Starter pricing copy lose the clone / contradiction, and the composition-rules / DESIGN checklist match the sm-default card break.
+`container-type` and the card border lived on the same wrapper, so the border could not be cleared by the mobileCard container query (same reason DataGrid splits root/container). IntakeQueue uses `mobileCard="md"`; ComparisonTable stacks below 768; composition docs match the sm-default break; Dashboard / Starter copy polish.

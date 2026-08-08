@@ -257,6 +257,24 @@ describe("Table", () => {
     expect(table).toHaveClass(styles.mobileCard);
   });
 
+  it("puts card frame on a child of the container-type host (so mobileCard can drop it)", () => {
+    // Regression: container-type と card 枠が同じ要素だと、カード表示で外枠を
+    // コンテナクエリで外せない（DataGrid が root/container を分けている理由と同じ）。
+    render(
+      <Table card mobileCard>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell label="Col">X</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>,
+    );
+    const frame = screen.getByTestId("table-container");
+    expect(frame).toHaveClass(styles.cardContainer);
+    expect(frame.parentElement).toHaveClass(styles.scope);
+    expect(frame).not.toHaveClass(styles.scope);
+  });
+
   it("supports asChild on Table", () => {
     // asChild intentionally renders a non-semantic element; suppress expected hydration warnings
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});

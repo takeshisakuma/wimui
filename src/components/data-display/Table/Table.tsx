@@ -70,38 +70,42 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
     const Component = asChild ? Slot : "table";
 
     return (
-      <div
-        className={classNames(
-          styles.container,
-          stickyHeader && styles.sticky,
-          scrollbar === "subtle" && styles.subtleScrollbar,
-          scrollbar === "hidden" && styles.noScrollbar,
-          card && styles.cardContainer,
-          containerClassName,
-        )}
-        style={containerStyle}
-        tabIndex={height || maxHeight ? 0 : undefined}
-        role="none"
-        data-testid="table-container"
-      >
-        <Component
+      // `container-type` は外枠（.container）とは別要素に置く。同じ要素だと
+      // コンテナクエリで自分の border を外せない（DataGrid と同じ理由）。
+      <div className={styles.scope}>
+        <div
           className={classNames(
-            styles.root,
-            striped && styles.striped,
-            bordered && styles.bordered,
-            hoverable && styles.hoverable,
-            fullWidth && styles.fullWidth,
-            stickyHeader && styles.stickyHeader,
-            mobileCard === "md" ? styles.mobileCardMd : mobileCard && styles.mobileCard,
-            "wim-table",
-            className,
+            styles.container,
+            stickyHeader && styles.sticky,
+            scrollbar === "subtle" && styles.subtleScrollbar,
+            scrollbar === "hidden" && styles.noScrollbar,
+            card && styles.cardContainer,
+            containerClassName,
           )}
-          ref={ref}
-          data-testid="table-root"
-          {...(props as React.TableHTMLAttributes<HTMLTableElement>)}
+          style={containerStyle}
+          tabIndex={height || maxHeight ? 0 : undefined}
+          role="none"
+          data-testid="table-container"
         >
-          <Slottable>{children}</Slottable>
-        </Component>
+          <Component
+            className={classNames(
+              styles.root,
+              striped && styles.striped,
+              bordered && styles.bordered,
+              hoverable && styles.hoverable,
+              fullWidth && styles.fullWidth,
+              stickyHeader && styles.stickyHeader,
+              mobileCard === "md" ? styles.mobileCardMd : mobileCard && styles.mobileCard,
+              "wim-table",
+              className,
+            )}
+            ref={ref}
+            data-testid="table-root"
+            {...(props as React.TableHTMLAttributes<HTMLTableElement>)}
+          >
+            <Slottable>{children}</Slottable>
+          </Component>
+        </div>
       </div>
     );
   },
