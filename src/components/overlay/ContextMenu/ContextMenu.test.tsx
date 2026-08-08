@@ -6,6 +6,7 @@ import {
   ContextMenuDivider,
   ContextMenuGroup,
 } from "./ContextMenu";
+import { Table } from "../../data-display/Table/Table";
 
 const menu = (
   <>
@@ -438,5 +439,62 @@ describe("ContextMenuGroup", () => {
     expect(link).toHaveAttribute("role", "menuitem");
     fireEvent.click(link);
     expect(handleClick).toHaveBeenCalled();
+  });
+});
+
+// T96: 表の行を包むと `<tbody>` の直下に `<div>` が出て表が組み上がらない。
+// asChild で `<tr>` になるが、**それだけでは直らない** ── コンテナの
+// `display: inline-block` が `<tr>` にマージされると行がインラインで流れ、
+// ヘッダと本文の列が完全にずれる（tbody の子は tr のままなので、構造だけを
+// 見る検査は素通りする）。**2 つを別々に固定する。**
+describe("asChild inside a table (T96)", () => {
+  const Rows = ({ asChild }: { asChild?: boolean }) => (
+    <Table>
+      <Table.Header>
+        <Table.Row>
+          <Table.Head>TC</Table.Head>
+          <Table.Head>Text</Table.Head>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body data-testid="tbody">
+        {["a", "b"].map((id) => (
+          <ContextMenu key={id} menu={menu} asChild={asChild}>
+            <Table.Row>
+              <Table.Cell>{id}</Table.Cell>
+              <Table.Cell>text {id}</Table.Cell>
+            </Table.Row>
+          </ContextMenu>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+
+  it("leaves only <tr> under <tbody>", () => {
+    render(<Rows asChild />);
+    const tbody = screen.getByTestId("tbody");
+    expect([...tbody.children].map((c) => c.tagName)).toEqual(["TR", "TR"]);
+  });
+
+  it("does not merge the container display onto the row", () => {
+    render(<Rows asChild />);
+    const row = screen.getByTestId("tbody").querySelector("tr")!;
+    // `container` は `display: inline-block` を持つ。`<tr>` に乗ると
+    // 構造が正しいまま描画だけが崩れるので、クラス自体を付けない
+    expect(row.className).not.toMatch(/container/);
+    expect(row.className).toMatch(/wim-context-menu/);
+  });
+
+  it("still opens the menu from the row", () => {
+    render(<Rows asChild />);
+    fireEvent.contextMenu(screen.getByTestId("tbody").querySelector("tr")!);
+    expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
+  });
+
+  // 鳴ってはいけない経路: asChild でないときは従来どおりコンテナを出す
+  it("keeps the container element when asChild is not set", () => {
+    render(<Rows />);
+    const tbody = screen.getByTestId("tbody");
+    expect([...tbody.children].map((c) => c.tagName)).toEqual(["DIV", "DIV"]);
+    expect((tbody.firstElementChild as HTMLElement).className).toMatch(/container/);
   });
 });

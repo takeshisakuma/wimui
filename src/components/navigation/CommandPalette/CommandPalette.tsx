@@ -204,12 +204,20 @@ export const CommandPaletteTrigger = ({
 export interface CommandPaletteContentProps {
   children: ReactNode;
   className?: string;
+  /**
+   * Accessible name for the dialog. Defaults to the built-in translation —
+   * `role="dialog"` without a name is an axe `aria-dialog-name` violation
+   * (serious), and the palette has no heading to borrow one from.
+   */
+  "aria-label"?: string;
 }
 
 export const CommandPaletteContent = ({
   children,
   className,
+  "aria-label": ariaLabel,
 }: CommandPaletteContentProps) => {
+  const { t } = useWimTranslation("components");
   const { open, onOpenChange, activeIndex, setActiveIndex, isKeyboardNavigating, setIsKeyboardNavigating } = useCommandPalette();
     const mousePosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -256,6 +264,7 @@ export const CommandPaletteContent = ({
                 <div
                   role="dialog"
                   aria-modal="true"
+                  aria-label={ariaLabel ?? t("command_palette.label")}
                   className={classNames("wim-command-palette", styles.content, className)}
                   onClick={(e) => e.stopPropagation()}
                   onMouseMove={handleMouseMove}

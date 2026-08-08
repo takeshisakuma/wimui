@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   AppShell,
+  Box,
   Button,
   CommandPalette,
   CommandPaletteContent,
@@ -22,10 +23,12 @@ import {
   DrawerHeader,
   DrawerTitle,
   Group,
+  Header,
   Menubar,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Sidebar,
   Stack,
   Table,
   Tag,
@@ -136,6 +139,7 @@ const CueRow = ({
   const { t } = useTranslation(ALL_NAMESPACES);
   return (
     <ContextMenu
+      asChild
       menu={
         <>
           <ContextMenuItem onClick={onOpenDetail}>
@@ -175,7 +179,12 @@ const CueRow = ({
         <Table.Cell>
           {cue.flagged ? (
             <Popover>
-              <PopoverTrigger asChild>
+              {/* `asChild` を付けない ── `PopoverTrigger` は既定で素の
+                  `<button>`（padding 0・背景なし）を出す。`asChild` + `Tag` にすると
+                  `aria-expanded` / `aria-haspopup` がロールの無い span に乗り、
+                  axe の `aria-allowed-attr` が critical で鳴る（実測）うえ、
+                  span はフォーカスできないのでキーボードから開けない */}
+              <PopoverTrigger>
                 <Tag intent="warning" variant="subtle" size="sm">
                   {t("docs_stories_recipes:captions.flag_reading_rate")}
                 </Tag>
@@ -208,73 +217,94 @@ const CaptionReviewScreen = ({
   return (
     <AppShell
       header={
-        <Group justify="between" align="center">
-          <CueMenubar />
-          <Group gap="sm" align="center">
-            <Text size="sm" color="secondary" nowrap>
-              {t("docs_stories_recipes:captions.reel_label")}
-            </Text>
-            <Button variant="ghost" size="sm" onClick={() => setPalette(true)}>
-              {t("docs_stories_recipes:captions.jump_hint")}
-            </Button>
-          </Group>
-        </Group>
-      }
-      sidebar={
-        <Stack gap="xs">
-          <Text size="xs" color="tertiary">
-            {t("docs_stories_recipes:captions.sidebar_heading")}
-          </Text>
-          <Text size="sm">{t("docs_stories_recipes:captions.reel_1")}</Text>
-          <Text size="sm">{t("docs_stories_recipes:captions.reel_2")}</Text>
-          <Text size="sm" color="secondary">
-            {t("docs_stories_recipes:captions.reel_3")}
-          </Text>
-        </Stack>
+        // クロームの余白は `Header` が持つ。素の `Group` を渡すと
+        // `AppShell` 側に padding が無いので、内容が画面の端に貼り付く
+        <Header fluid bordered>
+          <Header.Section align="start">
+            <CueMenubar />
+          </Header.Section>
+          <Header.Section align="end">
+            <Group gap="sm" align="center">
+              <Text size="sm" color="secondary" nowrap>
+                {t("docs_stories_recipes:captions.reel_label")}
+              </Text>
+              <Button variant="ghost" size="sm" onClick={() => setPalette(true)}>
+                {t("docs_stories_recipes:captions.jump_hint")}
+              </Button>
+            </Group>
+          </Header.Section>
+        </Header>
       }
       footer={
-        <Group gap="lg" align="center">
-          <Text size="xs" color="secondary">
-            {t("docs_stories_recipes:captions.status_fps")}
-          </Text>
-          <Text size="xs" color="secondary">
-            {t("docs_stories_recipes:captions.status_saved")}
-          </Text>
-        </Group>
+        // ステータスバーはページの `Footer` ではない（あちらは 2xl/xl の余白を持つ）。
+        // 高さを詰めた帯として自前で組む
+        <Box px="xl" py="xs" bg="surface">
+          <Group gap="lg" align="center">
+            <Text size="xs" color="secondary">
+              {t("docs_stories_recipes:captions.status_fps")}
+            </Text>
+            <Text size="xs" color="secondary">
+              {t("docs_stories_recipes:captions.status_saved")}
+            </Text>
+          </Group>
+        </Box>
       }
     >
-      <AppShell.Main>
-        <Stack gap="md">
-          <Stack gap="2xs">
-            <Title tag="h3" size="lg">{t("docs_stories_recipes:captions.title")}</Title>
-            <Text size="sm" color="secondary">
-              {t("docs_stories_recipes:captions.subtitle")}
-            </Text>
-          </Stack>
+      {/* `sidebar` prop と `AppShell.Main` は混ぜられない ── children に
+          構造サブコンポーネントがあると props の `sidebar` は黙って捨てられる。
+          サイドバーを使う構成は Composition API で組む */}
+      <AppShell.Body>
+        <Sidebar width={200} bordered>
+          <Sidebar.Content>
+            {/* 本文の内側余白（2xl）に合わせる。`Sidebar.Content` 自身は
+                左右 0 なので、ここで入れないとリールが画面の端に貼り付く */}
+            <Box px="2xl" py="xl">
+              <Stack gap="xs">
+                <Text size="xs" color="tertiary">
+                  {t("docs_stories_recipes:captions.sidebar_heading")}
+                </Text>
+                <Text size="sm">{t("docs_stories_recipes:captions.reel_1")}</Text>
+                <Text size="sm">{t("docs_stories_recipes:captions.reel_2")}</Text>
+                <Text size="sm" color="secondary">
+                  {t("docs_stories_recipes:captions.reel_3")}
+                </Text>
+              </Stack>
+            </Box>
+          </Sidebar.Content>
+        </Sidebar>
+        <AppShell.Main>
+          <Stack gap="md">
+            <Stack gap="2xs">
+              <Title tag="h3" size="lg">{t("docs_stories_recipes:captions.title")}</Title>
+              <Text size="sm" color="secondary">
+                {t("docs_stories_recipes:captions.subtitle")}
+              </Text>
+            </Stack>
 
-          <Table card>
-            <Table.Header>
-              <Table.Row>
-                <Table.Head>{t("docs_stories_recipes:captions.col_tc")}</Table.Head>
-                <Table.Head>{t("docs_stories_recipes:captions.col_dur")}</Table.Head>
-                <Table.Head>{t("docs_stories_recipes:captions.col_speaker")}</Table.Head>
-                <Table.Head>{t("docs_stories_recipes:captions.col_text")}</Table.Head>
-                <Table.Head>{t("docs_stories_recipes:captions.col_flag")}</Table.Head>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {CUES.map((cue) => (
-                <CueRow
-                  key={cue.id}
-                  cue={cue}
-                  onOpenDetail={() => setDrawer(true)}
-                  onDiscard={() => setDiscard(true)}
-                />
-              ))}
-            </Table.Body>
-          </Table>
-        </Stack>
-      </AppShell.Main>
+            <Table card>
+              <Table.Header>
+                <Table.Row>
+                  <Table.Head>{t("docs_stories_recipes:captions.col_tc")}</Table.Head>
+                  <Table.Head>{t("docs_stories_recipes:captions.col_dur")}</Table.Head>
+                  <Table.Head>{t("docs_stories_recipes:captions.col_speaker")}</Table.Head>
+                  <Table.Head>{t("docs_stories_recipes:captions.col_text")}</Table.Head>
+                  <Table.Head>{t("docs_stories_recipes:captions.col_flag")}</Table.Head>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {CUES.map((cue) => (
+                  <CueRow
+                    key={cue.id}
+                    cue={cue}
+                    onOpenDetail={() => setDrawer(true)}
+                    onDiscard={() => setDiscard(true)}
+                  />
+                ))}
+              </Table.Body>
+            </Table>
+          </Stack>
+        </AppShell.Main>
+      </AppShell.Body>
 
       <CommandPalette open={palette} onOpenChange={setPalette}>
         <CommandPaletteContent>

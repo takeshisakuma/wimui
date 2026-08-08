@@ -195,7 +195,8 @@ export const wimResources: WimResources = {
         "more": "More"
       },
       "command_palette": {
-        "no_results": "No results found."
+        "no_results": "No results found.",
+        "label": "Command palette"
       },
       "treeview": {
         "collapse": "Collapse {{label}}",
@@ -496,7 +497,8 @@ export const wimResources: WimResources = {
         "drag_handle_label": "ドラッグして並べ替え"
       },
       "command_palette": {
-        "no_results": "該当する結果がありません。"
+        "no_results": "該当する結果がありません。",
+        "label": "コマンドパレット"
       },
       "treeview": {
         "collapse": "{{label}} を折りたたむ",
@@ -797,7 +799,8 @@ export const wimResources: WimResources = {
         "drag_handle_label": "Arraste para reordenar"
       },
       "command_palette": {
-        "no_results": "Nenhum resultado encontrado."
+        "no_results": "Nenhum resultado encontrado.",
+        "label": "Paleta de comandos"
       },
       "treeview": {
         "collapse": "Recolher {{label}}",

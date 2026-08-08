@@ -147,7 +147,14 @@ const ContextMenuInner = ({
   return (
     <Comp
       ref={setContainerRef}
-      className={classNames("wim-context-menu", styles.container, disabled && styles.disabled, className)}
+      className={classNames(
+        "wim-context-menu",
+        // asChild は利用者の要素にマージされるので、こちらの display を
+        // 持ち込まない（`<tr>` に inline-block が乗ると表が崩れる）
+        !asChild && styles.container,
+        disabled && styles.disabled,
+        className,
+      )}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
       // role="button" を付けると内包する任意の children（Button 等）で

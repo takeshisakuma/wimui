@@ -629,7 +629,8 @@
     "accessibility": "Acessibilidade Visual"
   },
   "command_palette": {
-    "no_results": "Nenhum resultado encontrado."
+    "no_results": "Nenhum resultado encontrado.",
+    "label": "Paleta de comandos"
   },
   "treeview": {
     "collapse": "Recolher {{label}}",
