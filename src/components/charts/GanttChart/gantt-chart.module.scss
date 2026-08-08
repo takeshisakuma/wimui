@@ -58,24 +58,37 @@
     white-space: nowrap;
   }
 
-  // Right: scrollable timeline
-  .timelineWrapper {
-    display: flex;
+  // Right: one scrollport — header cells used to sit in overflow:hidden while
+  // only the body scrolled, so narrow viewports clipped the axis with no way
+  // to reach it from the header hit-target (and sync JS was easy to miss).
+  .timelineScroll {
     flex: 1;
-    flex-direction: column;
     min-width: 0;
-    overflow: hidden;
-  }
+    overflow: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track);
 
-  .headerScroll {
-    flex-shrink: 0;
-    overflow: hidden;
-    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+    &::-webkit-scrollbar {
+      width: 8px; /* Exception: Structural Logic — タイムライン横スクロールの最小視認幅 */
+      height: 8px; /* Exception: Structural Logic — タイムライン縦スクロールの最小視認幅 */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--wim-color-scrollbar-thumb);
+      border-radius: var(--wim-radius-md);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--wim-color-scrollbar-track);
+    }
   }
 
   .header {
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .headerCell {
@@ -98,27 +111,6 @@
       @include container-down(sm) {
         width: 100px; /* Exception: Structural Logic — 狭幅時のラベルヘッダ最小幅 */
       }
-    }
-  }
-
-  .bodyScroll {
-    flex: 1;
-    overflow: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track);
-
-    &::-webkit-scrollbar {
-      width: 8px; /* Exception: Structural Logic — タイムライン横スクロールの最小視認幅 */
-      height: 8px; /* Exception: Structural Logic — タイムライン縦スクロールの最小視認幅 */
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--wim-color-scrollbar-thumb);
-      border-radius: var(--wim-radius-md);
-    }
-
-    &::-webkit-scrollbar-track {
-      background: var(--wim-color-scrollbar-track);
     }
   }
 

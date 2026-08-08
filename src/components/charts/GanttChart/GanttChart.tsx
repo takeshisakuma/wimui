@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import classNames from "classnames";
 import styles from "./gantt-chart.module.scss";
 
@@ -160,8 +160,6 @@ export const GanttChart = ({
   labels,
 }: GanttChartProps): React.ReactElement => {
   const mergedLabels = { ...DEFAULT_LABELS, ...labels };
-  const bodyScrollRef = useRef<HTMLDivElement>(null);
-  const headerScrollRef = useRef<HTMLDivElement>(null);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
   const colWidth = columnWidth ?? DEFAULT_COLUMN_WIDTHS[viewMode];
@@ -192,12 +190,6 @@ export const GanttChart = ({
   );
 
   const totalWidth = headerCells.length * colWidth;
-
-  const onBodyScroll = useCallback(() => {
-    if (headerScrollRef.current && bodyScrollRef.current) {
-      headerScrollRef.current.scrollLeft = bodyScrollRef.current.scrollLeft;
-    }
-  }, []);
 
   const handleTaskKeyDown = useCallback(
     (e: React.KeyboardEvent, task: GanttTask, index: number) => {
@@ -246,98 +238,86 @@ export const GanttChart = ({
           ))}
         </div>
 
-        {/* Right: scrollable timeline */}
-        <div className={styles.timelineWrapper}>
-          {/* Header */}
+        {/* Right: one scrollport for header + body (keeps them in sync) */}
+        <div
+          className={styles.timelineScroll}
+          data-gantt-timeline-scroll="true"
+        >
           <div
-            ref={headerScrollRef}
-            className={styles.headerScroll}
-            data-gantt-header-scroll="true"
+            className={styles.header}
+            style={{ width: totalWidth, height: rowHeight }}
+            role="row"
           >
-            <div
-              className={styles.header}
-              style={{ width: totalWidth, height: rowHeight }}
-              role="row"
-            >
-              {headerCells.map((cell) => (
-                <div
-                  key={cell.date.toISOString()}
-                  className={styles.headerCell}
-                  data-gantt-header-cell="true"
-                  style={{ width: colWidth }}
-                  role="columnheader"
-                >
-                  {cell.label}
-                </div>
-              ))}
-            </div>
+            {headerCells.map((cell) => (
+              <div
+                key={cell.date.toISOString()}
+                className={styles.headerCell}
+                data-gantt-header-cell="true"
+                style={{ width: colWidth }}
+                role="columnheader"
+              >
+                {cell.label}
+              </div>
+            ))}
           </div>
 
-          {/* Body */}
           <div
-            ref={bodyScrollRef}
-            className={styles.bodyScroll}
-            data-gantt-body-scroll="true"
-            onScroll={onBodyScroll}
+            className={styles.body}
+            style={{ width: totalWidth, "--gantt-col-width": `${colWidth}px`, "--gantt-row-height": `${rowHeight}px` } as React.CSSProperties}
+            data-gantt-body="true"
           >
-            <div
-              className={styles.body}
-              style={{ width: totalWidth, "--gantt-col-width": `${colWidth}px`, "--gantt-row-height": `${rowHeight}px` } as React.CSSProperties}
-            >
-              {/* Task rows */}
-              {tasks.map((task, index) => {
-                const left = getBarLeft(task, chartStart, viewMode, colWidth);
-                const width = getBarWidth(task, viewMode, colWidth);
-                const startStr = task.startDate.toLocaleDateString();
-                const endStr = task.endDate.toLocaleDateString();
+            {tasks.map((task, index) => {
+              const left = getBarLeft(task, chartStart, viewMode, colWidth);
+              const width = getBarWidth(task, viewMode, colWidth);
+              const startStr = task.startDate.toLocaleDateString();
+              const endStr = task.endDate.toLocaleDateString();
 
-                return (
+              return (
+                <div
+                  key={task.id}
+                  className={styles.row}
+                  style={{ height: rowHeight }}
+                  role="row"
+                >
                   <div
-                    key={task.id}
-                    className={styles.row}
-                    style={{ height: rowHeight }}
-                    role="row"
+                    role="gridcell"
+                    data-gantt-bar="true"
+                    // フォーカスの表示は `.bar:focus-visible` が描く。`focusedIndex` は
+                    // `onFocus` でも更新されるので DOM フォーカスと同義で、別クラスは要らない（T58）。
+                    className={classNames(styles.bar, {
+                      [styles.clickable]: !!onTaskClick,
+                    })}
+                    style={{
+                      left,
+                      width,
+                      height: rowHeight - 12,
+                      top: 6,
+                      "--gantt-bar-bg": task.color ?? "var(--wim-color-primary)",
+                      backgroundColor: "var(--gantt-bar-bg)",
+                    } as React.CSSProperties}
+                    tabIndex={0}
+                    aria-label={mergedLabels.ariaTaskBar(
+                      task.label,
+                      startStr,
+                      endStr,
+                    )}
+                    aria-selected={focusedIndex === index}
+                    onClick={() => onTaskClick?.(task)}
+                    onKeyDown={(e) => handleTaskKeyDown(e, task, index)}
+                    onFocus={() => setFocusedIndex(index)}
                   >
-                    <div
-                      role="gridcell"
-                      data-gantt-bar="true"
-                      // フォーカスの表示は `.bar:focus-visible` が描く。`focusedIndex` は
-                      // `onFocus` でも更新されるので DOM フォーカスと同義で、別クラスは要らない（T58）。
-                      className={classNames(styles.bar, {
-                        [styles.clickable]: !!onTaskClick,
-                      })}
-                      style={{
-                        left,
-                        width,
-                        height: rowHeight - 12,
-                        top: 6,
-                        "--gantt-bar-bg": task.color ?? "var(--wim-color-primary)",
-                        backgroundColor: "var(--gantt-bar-bg)",
-                      } as React.CSSProperties}
-                      tabIndex={0}
-                      aria-label={mergedLabels.ariaTaskBar(
-                        task.label,
-                        startStr,
-                        endStr,
-                      )}
-                      aria-selected={focusedIndex === index}
-                      onClick={() => onTaskClick?.(task)}
-                      onKeyDown={(e) => handleTaskKeyDown(e, task, index)}
-                      onFocus={() => setFocusedIndex(index)}
-                    >
-                      {task.progress !== undefined && (
-                        <div
-                          className={styles.progress}
-                          data-gantt-progress="true"
-                          style={{ width: `${Math.min(task.progress, 100)}%` }}
-                          aria-hidden="true"
-                        />
-                      )}
-                    </div>
+                    {task.progress !== undefined && (
+                      <div
+                        className={styles.progress}
+                        data-gantt-progress="true"
+                        style={{ width: `${Math.min(task.progress, 100)}%` }}
+                        aria-hidden="true"
+                      />
+                    )}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
