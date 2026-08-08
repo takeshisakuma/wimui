@@ -81,80 +81,152 @@ export const ModernApp: Story = {
   // メインを full-bleed のままにすると、広い画面でヘッダー内容だけが 1200px で止まって
   // 中央に寄り、商品グリッドは全幅に広がる——という幅の不一致が起きて不自然に見える。
   // メインにも同じ 1200px を与えて中央寄せし、ヘッダー内容とメイン内容の measure を揃える。
+  //
+  // 狭幅: Header は高さ固定（64px）なので、検索をヘッダ内 3 セクションに詰めない。
+  // ブランドは nowrap、副次アイコンは隠し、検索はヘッダ下のフル幅帯へ移す。
   args: {
     centered: true,
     maxWidth: 1200,
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const searchField = (
+      <Input
+        placeholder={t("story.appshell_search_placeholder")}
+        leftIcon="SearchIcon"
+        fullWidth
+        aria-label={t("story.appshell_search_placeholder")}
+      />
+    );
     return (
-      <AppShell
-        {...args}
-        header={
-          <Header bordered>
-            <Header.Section align="start">
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <>
+        <style>{`
+          .appshell-modern-brand {
+            display: flex;
+            flex-shrink: 0;
+            gap: var(--wim-spacing-sm);
+            align-items: center;
+          }
+          .appshell-modern-brand__mark {
+            flex-shrink: 0;
+            width: var(--wim-spacing-4xl);
+            height: var(--wim-spacing-4xl);
+            background: var(--wim-color-primary);
+            border-radius: var(--wim-radius-md);
+          }
+          .appshell-modern-brand__name {
+            font-size: var(--wim-font-size-lg);
+            font-weight: var(--wim-font-weight-bold);
+            white-space: nowrap;
+          }
+          .appshell-modern-search-desktop {
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
+          }
+          .appshell-modern-search-desktop__field {
+            width: 100%;
+            max-width: 25rem;
+          }
+          .appshell-modern-meta {
+            display: inline-flex;
+            gap: var(--wim-spacing-md);
+            align-items: center;
+          }
+          .appshell-modern-icon-btn {
+            display: inline-flex;
+            padding: 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+          }
+          .appshell-modern-search-mobile {
+            display: none;
+            margin-bottom: var(--wim-spacing-xl);
+          }
+          @media (max-width: 767px) {
+            .appshell-modern-search-desktop { display: none !important; }
+            .appshell-modern-meta { display: none !important; }
+            .appshell-modern-search-mobile { display: block; }
+          }
+        `}</style>
+        <AppShell
+          {...args}
+          header={
+            <Header bordered>
+              <Header.Section align="start" style={{ flexShrink: 0 }}>
+                <div className="appshell-modern-brand">
+                  <div className="appshell-modern-brand__mark" aria-hidden />
+                  <div className="appshell-modern-brand__name">WimStore</div>
+                </div>
+              </Header.Section>
+              <Header.Section
+                align="center"
+                className="appshell-modern-search-desktop"
+              >
+                <div className="appshell-modern-search-desktop__field">
+                  {searchField}
+                </div>
+              </Header.Section>
+              <Header.Section
+                align="end"
+                style={{ flexShrink: 0, gap: "var(--wim-spacing-md)" }}
+              >
+                <span className="appshell-modern-meta">
+                  <button
+                    type="button"
+                    className="appshell-modern-icon-btn"
+                    aria-label={t("story.appshell_notifications")}
+                  >
+                    <Icon name="BellIcon" />
+                  </button>
+                  <button
+                    type="button"
+                    className="appshell-modern-icon-btn"
+                    aria-label={t("story.appshell_wishlist")}
+                  >
+                    <Icon name="StarIcon" />
+                  </button>
+                </span>
+                <Button variant="solid" size="sm">
+                  {t("story.appshell_checkout")}
+                </Button>
+              </Header.Section>
+            </Header>
+          }
+        >
+          <div className="appshell-modern-search-mobile">{searchField}</div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div
+                key={i}
+                style={{ border: "1px solid var(--wim-color-border)", borderRadius: 8, padding: 16 }}
+              >
                 <div
                   style={{
-                    width: 32,
-                    height: 32,
-                    background: "var(--wim-color-primary)",
+                    width: "100%",
+                    aspectRatio: "1",
+                    background: "var(--wim-color-surface-variant)",
                     borderRadius: 4,
+                    marginBottom: 8,
                   }}
                 />
-                <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                  WimStore
+                <div style={{ fontWeight: "bold" }}>
+                  {t("story.appshell_product")} {i}
                 </div>
+                <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>$99.00</div>
               </div>
-            </Header.Section>
-            <Header.Section align="center">
-              <div style={{ width: "100%", maxWidth: 400 }}>
-                <Input
-                  placeholder={t("story.appshell_search_placeholder")}
-                  leftIcon="SearchIcon"
-                  fullWidth
-                />
-              </div>
-            </Header.Section>
-            <Header.Section align="end" style={{ gap: "12px" }}>
-              <Icon name="BellIcon" style={{ cursor: "pointer" }} />
-              <Icon name="StarIcon" style={{ cursor: "pointer" }} />
-              <Button variant="solid" size="sm">
-                {t("story.appshell_checkout")}
-              </Button>
-            </Header.Section>
-          </Header>
-        }
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "20px",
-          }}
-        >
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              style={{ border: "1px solid var(--wim-color-border)", borderRadius: 8, padding: 16 }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  aspectRatio: "1",
-                  background: "var(--wim-color-surface-variant)",
-                  borderRadius: 4,
-                  marginBottom: 8,
-                }}
-              />
-              <div style={{ fontWeight: "bold" }}>
-                {t("story.appshell_product")} {i}
-              </div>
-              <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>$99.00</div>
-            </div>
-          ))}
-        </div>
-      </AppShell>
+            ))}
+          </div>
+        </AppShell>
+      </>
     );
   },
 };
