@@ -1,0 +1,45 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{cr as t}from"./iframe-DiXuc7DI.js";import{D as n,h as r,m as i,n as a,u as o}from"./blocks-jhaXMEKM.js";import{t as s}from"./mdx-react-shim-D1rZKK2O.js";import{n as c,t as l}from"./T-Dz91WLtt.js";import{n as u,t as d}from"./Docgen-BeElYI3e.js";import{AutoPlay as f,CustomControls as p,Default as m,FullFeatured as h,PremiumFeatures as g,Rounded as _,n as v,t as y}from"./Audio.stories-CDRd_OYX.js";function b(e){let t={h2:`h2`,h3:`h3`,...n(),...e.components};return(0,S.jsxs)(S.Fragment,{children:[(0,S.jsx)(o,{of:y}),`
+`,(0,S.jsx)(i,{}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_long_desc`})}),`
+`,(0,S.jsx)(t.h2,{id:``,children:(0,S.jsx)(l,{k:`doc.basic_usage`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_basic_desc`})}),`
+`,(0,S.jsx)(a,{of:m}),`
+`,(0,S.jsx)(t.h2,{id:`-1`,children:(0,S.jsx)(l,{k:`doc.design_intent_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_design_intent`})}),`
+`,(0,S.jsx)(t.h2,{id:`-2`,children:(0,S.jsx)(l,{k:`doc.choice_matrix_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_choice_matrix_desc`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.component`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.usage_scenario`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`b`,{children:`Audio`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.audio_choice_self_when`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`b`,{children:`Video`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.audio_choice_alt_when`})})]})]})]}),`
+`,(0,S.jsx)(d,{componentName:`Audio`,section:`anatomy`}),`
+`,(0,S.jsx)(t.h2,{id:`-3`,children:(0,S.jsx)(l,{k:`doc.a11y_spec_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_a11y_desc`})}),`
+`,(0,S.jsx)(t.h2,{id:`-4`,children:(0,S.jsx)(l,{k:`doc.real_world_scenarios_title`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.usage_scenario`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.table_header_description`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(l,{k:`doc.scenario_article_title`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.audio_scenario_1`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(l,{k:`doc.scenario_chat_title`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.audio_scenario_2`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(l,{k:`doc.scenario_gallery_title`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.audio_scenario_3`})})]})]})]}),`
+`,(0,S.jsx)(t.h2,{id:`-5`,children:(0,S.jsx)(l,{k:`doc.best_practices_title`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_best_practice_1`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_best_practice_2`})})]}),`
+`,(0,S.jsx)(t.h2,{id:`-6`,children:(0,S.jsx)(l,{k:`doc.audio_autoplay_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_autoplay_desc`})}),`
+`,(0,S.jsx)(a,{of:f}),`
+`,(0,S.jsx)(t.h2,{id:`-7`,children:(0,S.jsx)(l,{k:`doc.audio_custom_controls`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_custom_controls_desc`})}),`
+`,(0,S.jsx)(a,{of:p}),`
+`,(0,S.jsx)(t.h2,{id:`-8`,children:(0,S.jsx)(l,{k:`doc.audio_styling`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_styling_desc`})}),`
+`,(0,S.jsx)(a,{of:_}),`
+`,(0,S.jsx)(t.h3,{id:`-9`,children:(0,S.jsx)(l,{k:`doc.audio_important_notice`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_important_notice_desc`})}),`
+`,(0,S.jsx)(t.h2,{id:`-10`,children:(0,S.jsx)(l,{k:`doc.audio_customization`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_customization_desc`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_feature_speed`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_feature_seek`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_feature_loop`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.audio_feature_waveform`})})]}),`
+`,(0,S.jsx)(t.h2,{id:`-11`,children:(0,S.jsx)(l,{k:`doc.audio_full_featured_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_full_featured_desc`})}),`
+`,(0,S.jsx)(a,{of:h}),`
+`,(0,S.jsx)(t.h2,{id:`-12`,children:(0,S.jsx)(l,{k:`doc.audio_premium_features_mdx_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_premium_features_mdx_desc`})}),`
+`,(0,S.jsx)(a,{of:g}),`
+`,(0,S.jsx)(d,{componentName:`Audio`,section:`props`}),`
+`,(0,S.jsx)(d,{componentName:`Audio`,section:`tokens`}),`
+`,(0,S.jsx)(t.h2,{id:`-13`,children:(0,S.jsx)(l,{k:`doc.keyboard_nav_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.audio_keyboard_desc`})}),`
+`,(0,S.jsx)(d,{componentName:`Audio`,section:`i18n`}),`
+`,(0,S.jsx)(d,{componentName:`Audio`,section:`test`})]})}function x(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,S.jsx)(t,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;e((()=>{S=t(),s(),r(),v(),c(),u()}))();export{x as default};

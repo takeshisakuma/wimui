@@ -1,0 +1,38 @@
+{
+  "philosophy": {
+    "title": "フィロソフィー",
+    "a11y": "アクセシビリティ",
+    "aria_support": "WAI-ARIAを活用し、スクリーンリーダー等の支援技術のサポートを強化します。",
+    "feedback_desc": "ユーザーの操作に対して、期待通りのフィードバックを迅速かつ自然に行い、「手触りのある」心地よい体験を提供します。",
+    "focus_areas": "そのために以下の点に注力して設計・開発を行います。",
+    "interaction": "インタラクション",
+    "kb_a11y": "すべてのユーザーが利用できるように、キーボード操作に対応します。",
+    "tangible_ui": "手触りのあるUIを追求",
+    "standard_overview_title": "標準化の概要",
+    "standard_overview_desc": "設計および実装の標準に関する全体像については、<a href=\"./?path=/docs/architecture-standardization-overview--docs\" target=\"_top\">標準化の概要 (Standardization Overview)</a> を参照してください。",
+    "choice_matrix_desc": "すべての WIM UI コンポーネントとデザインシステムの基盤。",
+    "anatomy_desc": "主要な原則：アクセシビリティ、インタラクション、フィードバック。",
+    "scenarios_desc": "すべてのアプリケーションに手触りのある UI を提供。",
+    "best_practices_desc": "一貫性、アクセシビリティ、予測可能性。",
+    "tokens_desc": "すべての WIM UI コンポーネントとデザインシステムの基盤。",
+    "responsive_desc": "グローバルなブレークポイント仕様に基づく標準的なレスポンシブ動作。",
+    "keyboard_nav_desc": "すべてのインタラクティブな要素におけるフォーカス管理とキーボードショートカット。",
+    "i18n_desc": "グローバルなアクセシビリティのための多言語サポート。",
+    "principles_title": "デザイン原則",
+    "principles_desc": "WIM UIのすべての設計判断は、以下の5つの原則に基づいています。",
+    "principle_1_title": "一貫性 (Consistency)",
+    "principle_1_desc": "すべての UI 要素はデザイントークンを通じて統一されたビジュアル言語を共有します。",
+    "principle_2_title": "アクセシビリティ (Accessibility)",
+    "principle_2_desc": "WCAG AA 準拠のコントラスト比と WAI-ARIA パターンを前提とします。",
+    "principle_3_title": "テーマ適応性 (Theme Adaptability)",
+    "principle_3_desc": "ライトモード/ダークモードの切り替えはセマンティックトークンのみで完結します。",
+    "principle_4_title": "多言語対応 (i18n)",
+    "principle_4_desc": "日本語・英語・ポルトガル語を基本とし、言語ごとのタイポグラフィ特性を考慮します。",
+    "principle_5_title": "レスポンシブ (Responsive)",
+    "principle_5_desc": "デスクトップ/モバイルの両方で最適な体験を提供します。"
+  },
+  "internal": {
+    "philosophy_desc": "WIM UI を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
+    "philosophy_title": "内部設計の哲学"
+  }
+}

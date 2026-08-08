@@ -1,0 +1,28 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{cr as t}from"./iframe-DiXuc7DI.js";import{D as n,h as r,i,m as a,n as o,u as s}from"./blocks-jhaXMEKM.js";import{t as c}from"./mdx-react-shim-D1rZKK2O.js";import{n as l,t as u}from"./T-Dz91WLtt.js";import{n as d,t as f}from"./Docgen-BeElYI3e.js";import{Default as p,Disabled as m,Loading as h,WithAttachment as g,WithCharCount as _,n as v,t as y}from"./PromptInput.stories-CF9vcscT.js";function b(e){let t={h2:`h2`,...n(),...e.components};return(0,S.jsxs)(S.Fragment,{children:[(0,S.jsx)(s,{of:y}),`
+`,(0,S.jsx)(a,{}),`
+`,(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_desc`}),`
+`,(0,S.jsx)(i,{of:p}),`
+`,(0,S.jsx)(t.h2,{id:``,children:(0,S.jsx)(u,{k:`common:doc.example`})}),`
+`,(0,S.jsx)(o,{of:p}),`
+`,(0,S.jsx)(o,{of:g}),`
+`,(0,S.jsx)(o,{of:_}),`
+`,(0,S.jsx)(o,{of:m}),`
+`,(0,S.jsx)(o,{of:h}),`
+`,(0,S.jsx)(t.h2,{id:`-1`,children:(0,S.jsx)(u,{k:`common:doc.design_intent_title`})}),`
+`,(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_design_intent`}),`
+`,(0,S.jsx)(t.h2,{id:`-2`,children:(0,S.jsx)(u,{k:`common:doc.choice_matrix_title`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common:doc.usage`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common:doc.recommendation`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_choice_ai`})}),(0,S.jsx)(`td`,{children:`PromptInput`})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_choice_textarea`})}),(0,S.jsx)(`td`,{children:`Textarea`})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_choice_input`})}),(0,S.jsx)(`td`,{children:`Input`})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_choice_rte`})}),(0,S.jsx)(`td`,{children:`RichTextEditor`})]})]})]}),`
+`,(0,S.jsx)(f,{componentName:`PromptInput`,section:`anatomy`}),`
+`,(0,S.jsx)(t.h2,{id:`-3`,children:(0,S.jsx)(u,{k:`common:doc.a11y_spec_title`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_a11y_aria`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_a11y_live`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_a11y_button`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_a11y_disabled`})})]}),`
+`,(0,S.jsx)(t.h2,{id:`-4`,children:(0,S.jsx)(u,{k:`common:doc.real_world_scenarios_title`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common:doc.scenario`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common:doc.summary`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_chat`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_chat_desc`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_review`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_review_desc`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`strong`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_docs`})})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_scenario_docs_desc`})})]})]})]}),`
+`,(0,S.jsx)(t.h2,{id:`-5`,children:(0,S.jsx)(u,{k:`common:doc.best_practices_title`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_best_loading`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_best_controlled`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_best_attach`})})]}),`
+`,(0,S.jsx)(f,{componentName:`PromptInput`,section:`props`}),`
+`,(0,S.jsx)(f,{componentName:`PromptInput`,section:`tokens`}),`
+`,(0,S.jsx)(t.h2,{id:`-6`,children:(0,S.jsx)(u,{k:`common:doc.keyboard_nav_title`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common.name`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(u,{k:`common:doc.summary`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_guide_a11y_usability:table.key_enter`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_keyboard_enter`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_guide_a11y_usability:table.key_shift_enter`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_keyboard_shift_enter`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_guide_a11y_usability:table.key_tab`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(u,{k:`docs_form_advanced:doc.promptinput_keyboard_tab`})})]})]})]}),`
+`,(0,S.jsx)(f,{componentName:`PromptInput`,section:`i18n`}),`
+`,(0,S.jsx)(f,{componentName:`PromptInput`,section:`test`})]})}function x(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,S.jsx)(t,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;e((()=>{S=t(),c(),r(),v(),l(),d()}))();export{x as default};

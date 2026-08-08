@@ -1,0 +1,33 @@
+{
+  "guide": {
+    "composition_map_desc": "Mapeamento de quais componentes os componentes principais usam (envolvem) internamente. Ao combinar componentes de nível inferior, fornecemos funcionalidade consistente.",
+    "composition_map_title": "Mapa de Composição",
+    "composition_uses_internally": "Composição (Uso interno)",
+    "external_full_calendar": "FullCalendar (@fullcalendar/react)",
+    "external_react_flow": "React Flow (@xyflow/react)",
+    "hierarchy_desc": "Visualizando as camadas dos componentes e como eles são compostos para manter uma arquitetura saudável.",
+    "hierarchy_rules_desc": "Regras de design para manter dependências saudáveis no WIM UI.",
+    "hierarchy_rules_title": "Regras de Design",
+    "hierarchy_tiers_desc": "O WIM UI foi projetado com quatro camadas (Tiers) baseadas na complexidade e função do componente. Isso mantém as dependências unidirecionais (de cima para baixo) e melhora a manutenibilidade.",
+    "hierarchy_tiers_title": "Camadas de Componentes",
+    "hierarchy_title": "Hierarquia e Composição",
+    "input_std_desc": "Comportamento padronizado e regras de layout para áreas de entrada para garantir consistência em todos os componentes de formulário.",
+    "input_std_title": "Padronização de Área de Entrada",
+    "internal_title": "Componentes Internos Principais",
+    "principles_desc": "No WIM UI, seguimos estes princípios para manter a consistência no gerenciamento de DOM e movimento.",
+    "principles_title": "Princípios de Portais e Animações",
+    "tier1_label": "Nível 1",
+    "tier2_label": "Nível 2",
+    "tier3_label": "Nível 3",
+    "tier4_label": "Nível 4",
+    "tier_atoms": "Átomos",
+    "tier_foundations": "Fundações",
+    "tier_internal_label": "Interno",
+    "tier_molecules": "Moléculas",
+    "tier_organisms": "Organismos",
+    "usage": "Guia de Uso"
+  },
+  "table": {
+    "header_role": "Papel"
+  }
+}
