@@ -175,11 +175,11 @@ export const LoadingToggle: Story = {
                     fontWeight: "bold",
                   }}
                 >
-                  JD
+                  MS
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: "bold", fontSize: "1.1rem" }}>
-                    John Doe
+                    {t("story.skeleton_sample_name")}
                   </div>
                   <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>
                     {t("story.skeleton_sample_role")}

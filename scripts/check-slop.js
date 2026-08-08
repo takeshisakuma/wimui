@@ -11,7 +11,7 @@
  *
  * 検出（この初回カット＝ユーザー選択の 3 種）:
  *   1. gradient135  — `linear-gradient(... 135deg ...)` のヒーロー背景（ハードゲート、baseline 0）
- *   2. hype         — 誇張形容詞辞書（多言語）を Pattern デモコピー（docs_stories_recipes）で照合
+ *   2. hype         — 誇張形容詞辞書（多言語）をストーリーデモコピー（docs_stories_*）で照合
  *                     （ハードゲート、baseline 0）
  *   3. propBacked   — prop があるのに style で書いている（ルール 3 の本体。ハードゲート、baseline 0）
  *   4. styleOverride — インライン style の既定値上書き（padding/margin/borderRadius = 0）と
@@ -64,13 +64,12 @@ const HYPE_WORDS = DICT.hypeWords;
 const HYPE_PHRASES = DICT.hypePhrases;
 const PLACEHOLDER_NAMES = DICT.placeholderNames;
 
-// Pattern デモコピーが実在する locale ファイル（en/ja/pt）。
-// ガイド docs（docs_guide_*）はドキュメント散文であり禁止語を正当に引用しうるため対象外。
-const HYPE_SCAN_FILES = [
-  'public/locales/en/docs_stories_recipes.json',
-  'public/locales/ja/docs_stories_recipes.json',
-  'public/locales/pt/docs_stories_recipes.json',
-];
+// ストーリーデモコピーが実在する locale ファイル（en/ja/pt の docs_stories_*）。
+// ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）はドキュメント散文であり
+// 禁止語を正当に引用しうるため対象外。入力欄 placeholder の氏名例はスキャン時に除外。
+const HYPE_SCAN_FILES = ['en', 'ja', 'pt'].flatMap((locale) =>
+  globSync(`public/locales/${locale}/docs_stories_*.json`, { posix: true }),
+);
 
 // 対象は常に全量。lint-staged は staged ファイルだけを渡してくるが、それで絞ると
 // styleHits の合計がベースラインを必ず下回り、ラチェットが素通りしてしまう

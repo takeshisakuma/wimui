@@ -31,8 +31,11 @@ export const Default: Story = {
     const items = [
       {
         // AI: 対応できる操作を Badge チップで示す（ブランド名は使わない）
-        title: t("story.bento_ai_title", "AI Integration"),
-        description: t("story.bento_ai_desc", "Seamlessly integrate AI into your workflow."),
+        title: t("story.bento_ai_title", "Draft assist"),
+        description: t(
+          "story.bento_ai_desc",
+          "Classify, extract, summarize, and translate the same draft.",
+        ),
         header: (
           <div style={{ ...fillHeader, flexWrap: "wrap", alignContent: "center", gap: "var(--wim-spacing-xs)" }}>
             <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_summarize")}</Badge>
@@ -46,8 +49,11 @@ export const Default: Story = {
       },
       {
         // Collaboration: 実在感のある多様な頭文字の AvatarGroup + 編集中の人数
-        title: t("story.bento_collab_title", "Real-time Collaboration"),
-        description: t("story.bento_collab_desc", "Work together with your team in real-time."),
+        title: t("story.bento_collab_title", "Live co-editing"),
+        description: t(
+          "story.bento_collab_desc",
+          "Five teammates are editing the same brief right now.",
+        ),
         header: (
           <div style={{ ...fillHeader, alignItems: "center", gap: "var(--wim-spacing-sm)" }}>
             <AvatarGroup max={4} size="sm">
@@ -67,8 +73,11 @@ export const Default: Story = {
       },
       {
         // Analytics: 現実的にギザついた推移の Sparkline
-        title: t("story.bento_analytics_title", "Advanced Analytics"),
-        description: t("story.bento_analytics_desc", "Discover insights with our powerful analytics tools."),
+        title: t("story.bento_analytics_title", "Signup trends"),
+        description: t(
+          "story.bento_analytics_desc",
+          "See which campaigns drove the most signups this week.",
+        ),
         header: (
           <div style={{ ...fillHeader, flexDirection: "column", justifyContent: "flex-end", gap: "var(--wim-spacing-2xs)" }}>
             <span style={{ fontSize: "var(--wim-font-size-xs)", color: "var(--wim-color-text-secondary)" }}>
@@ -88,8 +97,11 @@ export const Default: Story = {
       },
       {
         // Cloud: リソース使用率を Progress で（実測的な半端な %）
-        title: t("story.bento_cloud_title", "Cloud Infrastructure"),
-        description: t("story.bento_cloud_desc", "Scalable and secure cloud hosting for your apps."),
+        title: t("story.bento_cloud_title", "Hosting usage"),
+        description: t(
+          "story.bento_cloud_desc",
+          "Apps share 2 TB storage and 8 Gbps bandwidth this month.",
+        ),
         header: (
           <div style={{ ...fillHeader, flexDirection: "column", justifyContent: "center", gap: "var(--wim-spacing-sm)" }}>
             <Progress value={68} label={t("story.bento_cloud_storage")} showValue size="sm" />
