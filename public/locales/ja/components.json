@@ -629,7 +629,8 @@
     "accessibility": "視覚性"
   },
   "command_palette": {
-    "no_results": "該当する結果がありません。"
+    "no_results": "該当する結果がありません。",
+    "label": "コマンドパレット"
   },
   "treeview": {
     "collapse": "{{label}} を折りたたむ",

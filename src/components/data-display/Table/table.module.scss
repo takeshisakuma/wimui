@@ -128,7 +128,13 @@
     }
   
     &.cardContainer {
-      overflow: hidden;
+      /* `overflow: hidden` は角丸の内側をクリップするために置かれていたが、
+         **横のはみ出しをユーザーから辿れなくしていた**。390px の実測（`Table card`
+         5 列）で、表 443px に対しコンテナは 354px ── 右端の列 89px は画面外にあり、
+         スクロールバーもホイールもタッチも効かない（`scrollLeft` はスクリプトから
+         だけ 89 まで動く＝存在するのに到達できない）。x だけ `auto` に戻すと
+         radius 12px のクリップは保ったまま横スクロールが戻る（実測）。 */
+      overflow: auto hidden;
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
       border-radius: var(--wim-radius-container);
 

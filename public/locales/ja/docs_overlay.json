@@ -88,6 +88,7 @@
     "contextmenu_anatomy_root_label": "Root",
     "contextmenu_best_practice_1": "予測可能なユーザー体験を維持するため、アプリケーション全体でContextMenuを一貫して使用しましょう。",
     "contextmenu_best_practice_2": "アクセシビリティを確保するため、様々な画面サイズと入力方法でテストしましょう。",
+    "contextmenu_best_practice_3": "表の行を包むときは asChild が要る。付けないとトリガーが tbody の直下に div を出すため、HTML として不正になり列の対応が崩れる。",
     "contextmenu_choice_alt_when": "Dropdownのようなシンプルな代替手段がユースケースに適している場合。",
     "contextmenu_choice_matrix_desc": "要件に基づいて最も適切なコンポーネントを選択してください。",
     "contextmenu_choice_self_when": "標準オプションのContextMenu機能が必要な場合。",
@@ -504,7 +505,8 @@
     "tour_feature_desc": "`Tour` は、特定の要素を強調しながらステップバイステップで説明を表示します。初めてのユーザーへのオンボーディングや、新機能の紹介に最適です。",
     "tour_long_desc": "ユーザーに機能の使い方や画面の操作方法を案内するためのガイドコンポーネント。",
     "tour_title": "操作ガイド/ウォークスルー",
-    "tour_usage_desc": "`steps` プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open` プロップでツアーの表示/非表示を制御します。"
+    "tour_usage_desc": "`steps` プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open` プロップでツアーの表示/非表示を制御します。",
+    "contextmenu_table_row_usage": "表の行では asChild を渡す。トリガーが tbody の直下に div を出す代わりに、<tr> 側へマージされる:"
   },
   "overlay": {
     "attn_full": "ユーザーの注意を完全に引きつける。",

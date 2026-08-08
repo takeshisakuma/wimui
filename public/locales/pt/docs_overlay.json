@@ -88,6 +88,7 @@
     "contextmenu_anatomy_root_label": "Root",
     "contextmenu_best_practice_1": "Use ContextMenu consistentemente em toda a aplicação para manter uma experiência previsível.",
     "contextmenu_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
+    "contextmenu_best_practice_3": "Para envolver uma linha de tabela, use asChild. Sem ele, o gatilho renderiza uma div diretamente dentro de tbody, o que é HTML inválido e quebra o alinhamento das colunas.",
     "contextmenu_choice_alt_when": "Quando uma alternativa mais simples como Dropdown se adequa melhor ao caso de uso.",
     "contextmenu_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "contextmenu_choice_self_when": "Quando a funcionalidade de ContextMenu com opções padrão é necessária.",
@@ -504,7 +505,8 @@
     "tour_feature_desc": "`Tour` exibe instruções passo a passo enquanto destaca elementos específicos. Ideal para integração de novos usuários ou introdução de novas funcionalidades.",
     "tour_long_desc": "Um componente de guia para orientar os usuários pelas funcionalidades ou operações da tela.",
     "tour_title": "Tour Guiado",
-    "tour_usage_desc": "Especifique seletores de elementos, títulos e descrições para cada etapa na prop `steps`. Controle a visibilidade do tour com a prop `open`."
+    "tour_usage_desc": "Especifique seletores de elementos, títulos e descrições para cada etapa na prop `steps`. Controle a visibilidade do tour com a prop `open`.",
+    "contextmenu_table_row_usage": "Em uma linha de tabela, passe asChild para que o gatilho seja mesclado no <tr> em vez de colocar uma div dentro de tbody:"
   },
   "overlay": {
     "attn_full": "Atrai completamente a atenção do usuário.",

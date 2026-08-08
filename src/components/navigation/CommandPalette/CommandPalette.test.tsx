@@ -330,4 +330,27 @@ describe("CommandPalette", () => {
     expect(handleChange).toHaveBeenCalledWith("test search");
     expect(input).toHaveValue("test search");
   });
+// role="dialog" に名前が無いと axe の aria-dialog-name（serious）が鳴る。
+  // パレットには借りられる見出しが無いので、既定は内蔵翻訳から入れる
+  it("names the dialog", () => {
+    render(
+      <CommandPalette open={true}>
+        <CommandPaletteContent>
+          <CommandPaletteInput placeholder="Search" />
+        </CommandPaletteContent>
+      </CommandPalette>,
+    );
+    expect(screen.getByRole("dialog")).toHaveAccessibleName();
+  });
+
+  it("lets the caller override the dialog name", () => {
+    render(
+      <CommandPalette open={true}>
+        <CommandPaletteContent aria-label="Jump to a cue">
+          <CommandPaletteInput placeholder="Search" />
+        </CommandPaletteContent>
+      </CommandPalette>,
+    );
+    expect(screen.getByRole("dialog")).toHaveAccessibleName("Jump to a cue");
+  });
 });

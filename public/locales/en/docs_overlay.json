@@ -504,7 +504,9 @@
     "tour_feature_desc": "`Tour` displays step-by-step instructions while highlighting specific elements. Ideal for onboarding new users or introducing new features.",
     "tour_long_desc": "A guide component to walk users through features or screen operations.",
     "tour_title": "Sequential guided walkthroughs to onboard users or highlight features",
-    "tour_usage_desc": "Specify element selectors, titles, and descriptions for each step in the `steps` prop. Control the tour visibility with the `open` prop."
+    "tour_usage_desc": "Specify element selectors, titles, and descriptions for each step in the `steps` prop. Control the tour visibility with the `open` prop.",
+    "contextmenu_best_practice_3": "Wrapping a table row requires asChild. Without it the trigger renders a div directly inside tbody, which is invalid HTML and breaks the column layout.",
+    "contextmenu_table_row_usage": "On a table row, pass asChild so the trigger merges onto the <tr> instead of putting a <div> under <tbody>:"
   },
   "overlay": {
     "attn_full": "Attracts user attention completely.",

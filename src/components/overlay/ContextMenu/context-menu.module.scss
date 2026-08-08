@@ -1,18 +1,22 @@
 @layer component {
+  // asChild のときは付けない（利用者の要素の display を上書きしないため）。
+  // 実測: `<tr>` に inline-block が乗ると行がインラインで流れ、ヘッダと
+  // 本文の列が完全にずれる（tbody の子が tr になっていても直らない）
   .container {
     display: inline-block;
-  
-    &.disabled {
-      cursor: not-allowed;
-      opacity: 0.8;
+  }
 
-      // opacity-disabled (0.6) だと内包テキストが AA を割るため、
-      // 彩度を落としつつ減衰は 0.8 に留める
-      filter: grayscale(0.6);
+  // asChild でも効くよう .container の外に出してある
+  .disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
 
-      > * {
-        pointer-events: none;
-      }
+    // opacity-disabled (0.6) だと内包テキストが AA を割るため、
+    // 彩度を落としつつ減衰は 0.8 に留める
+    filter: grayscale(0.6);
+
+    > * {
+      pointer-events: none;
     }
   }
   

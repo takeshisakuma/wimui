@@ -629,7 +629,8 @@
     "more": "More"
   },
   "command_palette": {
-    "no_results": "No results found."
+    "no_results": "No results found.",
+    "label": "Command palette"
   },
   "treeview": {
     "collapse": "Collapse {{label}}",

@@ -70,6 +70,7 @@ import { Docgen } from "../../Docgen";
 <ul>
   <li><T k="doc.contextmenu_best_practice_1" /></li>
   <li><T k="doc.contextmenu_best_practice_2" /></li>
+  <li><T k="doc.contextmenu_best_practice_3" /></li>
 </ul>
 
 ## <T k="doc.usage" />
@@ -91,6 +92,20 @@ import { ContextMenu, ContextMenuItem, ContextMenuDivider } from "wimui";
 >
   <div>Right-click this element</div>
 </ContextMenu>;
+```
+
+<p><T k="doc.contextmenu_table_row_usage" /></p>
+
+```tsx
+<Table.Body>
+  {rows.map((row) => (
+    <ContextMenu key={row.id} asChild menu={<ContextMenuItem>History</ContextMenuItem>}>
+      <Table.Row>
+        <Table.Cell>{row.tc}</Table.Cell>
+      </Table.Row>
+    </ContextMenu>
+  ))}
+</Table.Body>
 ```
 
 <Primary />
