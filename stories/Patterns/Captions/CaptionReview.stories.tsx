@@ -152,17 +152,20 @@ const CueRow = ({
       }
     >
       <Table.Row onClick={onOpenDetail}>
-        <Table.Cell>
+        {/* `label` はカード表示（`mobileCard`）でヘッダの代わりに出る。
+            `Table` は列のメタデータを持たないので、ここで渡さないと
+            カードは値だけが並んだ状態になる */}
+        <Table.Cell label={t("docs_stories_recipes:captions.col_tc")}>
           <Text size="sm" nowrap>
             {cue.tc}
           </Text>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell label={t("docs_stories_recipes:captions.col_dur")}>
           <Text size="sm" color="secondary" nowrap>
             {cue.dur}
           </Text>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell label={t("docs_stories_recipes:captions.col_speaker")}>
           {cue.speaker ? (
             <Text size="sm" nowrap>
               {cue.speaker}
@@ -173,10 +176,10 @@ const CueRow = ({
             </Text>
           )}
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell label={t("docs_stories_recipes:captions.col_text")}>
           <Text size="sm">{cue.text}</Text>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell label={t("docs_stories_recipes:captions.col_flag")}>
           {cue.flagged ? (
             <Popover>
               {/* `asChild` を付けない ── `PopoverTrigger` は既定で素の
@@ -223,15 +226,13 @@ const CaptionReviewScreen = ({
           <Header.Section align="start">
             <CueMenubar />
           </Header.Section>
+          {/* 390px ではエピソード名を並べると `Menubar` が 2 行に折れ、64px の
+              ヘッダから 6px はみ出す（実測）。エピソード名は「いま何を見ているか」
+              なので、クロームではなく見出しの側に置いた */}
           <Header.Section align="end">
-            <Group gap="sm" align="center">
-              <Text size="sm" color="secondary" nowrap>
-                {t("docs_stories_recipes:captions.reel_label")}
-              </Text>
-              <Button variant="ghost" size="sm" onClick={() => setPalette(true)}>
-                {t("docs_stories_recipes:captions.jump_hint")}
-              </Button>
-            </Group>
+            <Button variant="ghost" size="sm" onClick={() => setPalette(true)}>
+              {t("docs_stories_recipes:captions.jump_hint")}
+            </Button>
           </Header.Section>
         </Header>
       }
@@ -275,13 +276,19 @@ const CaptionReviewScreen = ({
         <AppShell.Main>
           <Stack gap="md">
             <Stack gap="2xs">
+              <Text size="xs" color="tertiary">
+                {t("docs_stories_recipes:captions.reel_label")}
+              </Text>
               <Title tag="h3" size="lg">{t("docs_stories_recipes:captions.title")}</Title>
               <Text size="sm" color="secondary">
                 {t("docs_stories_recipes:captions.subtitle")}
               </Text>
             </Stack>
 
-            <Table card>
+            {/* 390px では 5 列が入らない（実測: 表 443px / コンテナ 364px、
+                最終列は画面外）。`Table` にも `mobileCard` があるので、
+                狭幅では行をカードへ落とす */}
+            <Table card mobileCard>
               <Table.Header>
                 <Table.Row>
                   <Table.Head>{t("docs_stories_recipes:captions.col_tc")}</Table.Head>

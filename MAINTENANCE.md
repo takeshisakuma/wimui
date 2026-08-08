@@ -148,6 +148,69 @@ EOF
 
 **2026-08-08 時点**: 362 件中 使用済み 136 / 未合成 226（合成に使える単位では 158）。`AppShell` / `Navbar` / `Footer` が未合成＝**既存 5 枚はどれも「画面の中身」だけを作っていた**。詳細と次の候補は `IMPROVEMENTS.md` の T95。
 
+### 7-2. 合成画面を**狭い幅で**開く（390px / 768px）
+
+CI は 1280px でしか撮っていない。**狭幅の崩れは赤が出ない。**
+
+```bash
+npm run build-storybook
+npx http-server@14 storybook-static -p 6007 -c-1 --silent &
+node - <<'EOF'
+import { chromium } from "playwright";
+const ids = process.argv.slice(2).length ? process.argv.slice(2)
+  : ["patterns-captions--caption-review"]; // 対象のストーリー ID を渡す
+const browser = await chromium.launch();
+for (const id of ids) for (const width of [390, 768]) {
+  const page = await browser.newPage({ viewport: { width, height: 900 } });
+  await page.goto(`http://localhost:6007/iframe.html?id=${id}&viewMode=story`, { waitUntil: "load" });
+  await page.waitForSelector("#storybook-root > *"); await page.waitForTimeout(800);
+  console.log(id, width, JSON.stringify(await page.evaluate(() => {
+    const de = document.documentElement;
+    // ①ページ自体が横スクロールしない ②ビューポートより右に出ている要素が無い
+    const over = [...document.querySelectorAll("*")].filter(e => {
+      const b = e.getBoundingClientRect(); return b.width > 0 && b.right > de.clientWidth + 1;
+    }).slice(0, 4).map(e => e.tagName + "." + (e.className || "").toString().split(" ")[0]);
+    // ③クロームが自分の高さに収まっている（ヘッダから縦にはみ出していないか）
+    const hdr = document.querySelector("header"); const hr = hdr?.getBoundingClientRect();
+    const tall = hr ? [...hdr.querySelectorAll("*")].some(e => {
+      const b = e.getBoundingClientRect(); return b.height > 0 && (b.top < hr.top - 0.5 || b.bottom > hr.bottom + 0.5);
+    }) : null;
+    return { pageScrolls: de.scrollWidth > de.clientWidth, overflowing: over, chromeOverflowsHeader: tall };
+  })));
+  await page.close();
+}
+await browser.close();
+EOF
+```
+
+**3 つとも false / 空でなければ不合格。** 表を含む画面では `Table` / `DataGrid` に **`mobileCard` が付いているか**も見る（`Table` にもある。付けないと 390px で列が潰れ、最終列が画面外へ出る）。カードのラベルは `Table.Cell` の `label` から出るので、**`mobileCard` だけ付けて `label` を書かないと値だけが並ぶ**。
+
+> 実例（2026-08-08、6 枚目）: 390px で①は false（ページは横に伸びない）なのに、②で表が 456px まで出ていた（`mobileCard` 未指定）。③では `Menubar` が 2 行に折れて **64px のヘッダから 6px はみ出していた**。**どれも 1280px の VRT と a11y は全緑**だった。
+
+### 7-3. 不要になったブランチを消す
+
+マージ済み・放棄済みのブランチが残ると、`git branch -a` が長くなるだけでなく、**古い head に対して CI が回り続ける**。
+
+**このリポジトリは squash merge なので、`git branch --merged` も `git log origin/main..<branch>` も使えない。**
+squash 後のブランチ先端は main のどのコミットとも一致せず、**マージ済みのブランチが全部「未マージ・コミット 1 件あり」に見える**（2026-08-08 に実測: `--merged` は 0 件、差分ありは 39 件＝全部）。判定は **PR の状態**で行う。
+
+```bash
+git fetch --prune origin
+gh pr list --state merged --limit 200 --json headRefName -q '.[].headRefName' | sort -u > /tmp/merged.txt
+gh pr list --state open   --limit 100 --json headRefName -q '.[].headRefName' | sort -u > /tmp/open.txt
+for b in $(git branch -r | grep -v HEAD | grep -vE "origin/(main|gh-pages)$" | sed 's|  origin/||'); do
+  if grep -qx "$b" /tmp/open.txt; then continue; fi                      # 開いている PR は残す
+  if grep -qx "$b" /tmp/merged.txt; then echo "DELETABLE $b"; else echo "REVIEW    $b"; fi
+done
+git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブランチ
+```
+
+- `DELETABLE` … PR がマージ済み。`git push origin --delete <branch>` の候補
+- `REVIEW` … PR が無い／閉じただけ。**途中で止めた作業の可能性がある**ので中身を見る
+- `changeset-release/main` と `gh-pages` は**自動生成なので消さない**
+
+**削除はユーザー判断**（一覧を出して提案するところまで）。PR 作成時に `--delete-branch` を付けておけば、そもそも溜まらない。
+
 ---
 
 ## リリース前
