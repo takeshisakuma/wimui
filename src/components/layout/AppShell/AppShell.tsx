@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./appshell.module.scss";
+import { warnDiscardedSidebarProp } from "./warn-discarded-sidebar";
 
 // ─────────────────────────────────────────────
 // AppShell Root
@@ -61,6 +62,11 @@ export interface AppShellProps extends Omit<
  *       で包んでいたため、**推奨として上に載せている書き方が `<main>` を 2 つ作り**、
  *       Header も Sidebar も Main も暗黙の `<main>` の中に入っていた（T57）。
  *       props API（children が素の内容）のときは従来どおり包む。
+ * @note **`sidebar` prop と Composition API を混ぜないこと**（T98）。
+ *       `header` / `footer` / `navbar` は composed でも分岐の外で描かれるが、
+ *       `sidebar` だけは非 composed 側にしか描画が無いので**黙って捨てられる**。
+ *       混ぜた場合は開発時に警告を出す。サイドバーが要るなら
+ *       `<AppShell.Sidebar>` を `<AppShell.Body>` 内に置く。
  */
 /**
  * children が**構造サブコンポーネント**（`AppShell.Body` / `.Main` / `.Sidebar` /
@@ -97,6 +103,11 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
     ref,
   ) => {
     const composed = hasStructuralChild(children);
+
+    // T98: composed かつ `sidebar` がある = 確実に捨てられる。描画では救えない。
+    if (composed && sidebar) {
+      warnDiscardedSidebarProp();
+    }
 
     const style = maxWidth
       ? ({
