@@ -100,12 +100,13 @@
         0 0 0 var(--wim-border-width-thick) currentcolor;
     }
   
+    // Tag と同じ。`surface` + `text-disabled` は dark で AA 割れ（T99）。
     &:disabled,
     &.disabled {
-      color: var(--wim-color-text-disabled);
+      color: var(--wim-color-text-on-disabled);
       cursor: not-allowed;
-      background-color: var(--wim-color-surface);
-      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      background-color: var(--wim-color-disabled);
+      border: var(--wim-border-width-thin) solid transparent;
       opacity: 1;
       filter: none;
 

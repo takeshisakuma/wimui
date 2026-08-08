@@ -114,3 +114,6 @@ if (failures.length > 0) {
 }
 
 console.log('\n✓ All asChild implementations are correctly wired and RULES.md requirements are met.');
+console.log(
+  '  (Static wiring only — render smoke is `scripts/check-aschild-render.test.tsx`, run via `npm run check:aschild`.)',
+);

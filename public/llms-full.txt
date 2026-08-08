@@ -2174,6 +2174,7 @@ Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
     - `asChild: boolean` — Whether to use the Radix Slot pattern
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
     - `asChild: boolean` = false — If true, the chip will be rendered as its child, merging its props onto that child.
+Cannot be combined with `onDelete` (T99).
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
     - `onClick: (e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => void` — Click event. When provided, the chip behaves as a button.
@@ -2434,14 +2435,16 @@ Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
     - `containerClassName: string` — Additional class name for the scroll container
     - `card: boolean` = false — Add outer border and border-radius to the container (DataGrid look)
 - **Tag** — Compact visual descriptors used for labeling or categorizing content
-    - `asChild: boolean` — If true, the tag will be rendered as its child, merging its props onto that child.
+    - `asChild: boolean` = false — If true, the tag will be rendered as its child, merging its props onto that child.
+Cannot be combined with `onDelete` — the delete control is a second element, and
+`asChild` requires a single React element child (T99).
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
     - `intent: IndicatorIntent` — Intent (semantic state)
     - `variant: "solid" | "outline" | "subtle"` — Visual style variant
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
     - `icon: React.ReactNode` — Icon
-    - `onDelete: (e: React.MouseEvent<HTMLButtonElement>) => void` — Delete event. When provided, a × button is shown.
+    - `onDelete: (e: React.MouseEvent<HTMLButtonElement>) => void` — Delete event. When provided, a × button is shown. Incompatible with `asChild`.
     - `disabled: boolean` — Whether the tag is disabled
     - `interactive: boolean` = false — Whether to enable the interactive state
 - **Timeline** — A vertical list mapping events or history in chronological order
