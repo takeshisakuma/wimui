@@ -12218,7 +12218,9 @@
       "stats_revenue": "Total Revenue",
       "stats_users": "New Users",
       "stats_active": "Active Sessions",
-      "stats_last_month": "Compared to last month"
+      "stats_revenue_note": "Books closed through 31 Jul",
+      "stats_users_note": "14-day signup cohort",
+      "stats_active_note": "Peak today was 1,840"
     },
     "profile": {
       "title": "Edit Profile",
@@ -12277,7 +12279,7 @@
       "starter_feat_1": "Core components",
       "starter_feat_2": "Basic documentation",
       "starter_feat_3": "Community support",
-      "starter_feat_4": "Advanced patterns",
+      "starter_feat_4": "Open source on GitHub",
       "starter_title": "Starter",
       "subtitle": "Every plan uses the same MIT-licensed library. Paid tiers add patterns, priority answers and SLAs.",
       "title": "Pay for the support, not the components."

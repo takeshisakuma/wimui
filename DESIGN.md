@@ -761,7 +761,7 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 - [ ] `Badge` / `Tag` / `Chip` の `intent` を省略していないか（未指定は `primary` に落ちる）
 - [ ] 意味のある色が実態と合っているか（増えると悪い指標に `Stats.Trend` の `up` を使っていないか）
 - [ ] クローム（パンくず・見出し・補足文・ツールバー）が主役より目立っていないか（補足文の Alert 化・フィルタ帯の Card 囲み・クローム側の primary 面・表の上の KPI タイル列）
-- [ ] **狭い幅（390px / 768px）で見たか** -- ①ページ自体が横スクロールしないこと（`document.scrollWidth > document.documentElement.clientWidth` なら不合格。原因は折り返せない塊＝`Toolbar.Group` のようにボタンを 1 グループへ詰めた箇所が多い） ②テーブルは内部スクロールで済ませず狭幅モードを明示する（`<DataGrid mobileCard>`。未指定だと列が潰れ、`Code` のような要素は 1 文字ずつ折り返る） ③狭幅モードの切替点は `container-down(md)`＝**タブレット幅でもカード表示になる**（現状この閾値は変更できない）
+- [ ] **狭い幅（390px / 768px）で見たか** -- ①ページ自体が横スクロールしないこと（`document.scrollWidth > document.documentElement.clientWidth` なら不合格。原因は折り返せない塊＝`Toolbar.Group` のようにボタンを 1 グループへ詰めた箇所が多い） ②テーブルは内部スクロールで済ませず狭幅モードを明示する（`<DataGrid mobileCard>` / `<Table mobileCard>`。未指定だと列が潰れ、`Code` のような要素は 1 文字ずつ折り返る） ③既定の切替点は `container-down(sm)`（576px）。タブレットでも列が溢れる広い表は `mobileCard="md"` を渡す（`container-down(md)`＝768px までカード）
 - [ ] **ブラウザで実物を見たか** -- computed style まで確認したか。「意図した CSS が効いているか」はコードを読んでも分からない（レイヤ順・ドキュメントサイトの上書き・alpha 合成で消える色は、実物を見るまで気づけない）
 
 **判定（judge）**: 組み上げた画面が「AI 的か」を採点したいときは、VRT の Pattern スクショ（`vrt/vrt.spec.ts-snapshots/light-patterns-*.png`）を上のチェックリストの観点で pass/warn/fail 採点する。エージェント（Claude Code 等）に「Pattern スクショを judge して」と頼めば API キー無しでこの採点を実行できる（同一ルーブリックのスクリプト版は `npm run judge:slop`＝`@anthropic-ai/sdk` と `ANTHROPIC_API_KEY` が必要）。決定的に検出できる部分は `npm run check:slop`（A 層）が担当。

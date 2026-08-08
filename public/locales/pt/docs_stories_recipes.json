@@ -127,9 +127,11 @@
     "header_team": "Equipe",
     "overview_title": "Visão Geral do Painel",
     "stats_active": "Sessões Ativas",
-    "stats_last_month": "Comparado ao mês passado",
+    "stats_active_note": "Pico de hoje: 1.840",
     "stats_revenue": "Receita Total",
-    "stats_users": "Novos Usuários"
+    "stats_revenue_note": "Livros fechados até 31 jul",
+    "stats_users": "Novos Usuários",
+    "stats_users_note": "Coorte de cadastro de 14 dias"
   },
   "error": {
     "btn_home": "Voltar para a Página Inicial",
@@ -416,7 +418,7 @@
     "starter_feat_1": "Componentes principais",
     "starter_feat_2": "Documentação básica",
     "starter_feat_3": "Suporte da comunidade",
-    "starter_feat_4": "Padrões avançados",
+    "starter_feat_4": "Código aberto no GitHub",
     "starter_title": "Iniciante",
     "subtitle": "Todos os planos usam a mesma biblioteca com licença MIT. Os pagos adicionam padrões, respostas prioritárias e SLAs.",
     "title": "Pague pelo suporte, não pelos componentes."

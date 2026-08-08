@@ -471,12 +471,14 @@ function IntakeQueue({
             </Toolbar>
 
             <div data-density="compact">
+              {/* Wide lot grid still overflows at tablet with the default
+                  sm (576) card break — md keeps cards through 768. */}
               <DataGrid<Lot>
                 columns={columns}
                 data={rows}
                 rowKey="id"
                 loading={loading ? "refresh" : false}
-                mobileCard
+                mobileCard="md"
                 ariaLabel={t("intake.grid_label")}
                 selection
                 selectedRowKeys={selected}

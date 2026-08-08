@@ -51,7 +51,8 @@ import { globSync } from 'glob';
 // 実寸（min(380px,100%) 等）が中心。減らしたらこの値を下げること。
 // 2026-08-02: 50 → 48。T52 のガードで見つかったメンテナンス画面の孤島を `Result`
 // （`iconSurface`）へ寄せた結果、80px の直書き 2 件が消えた。
-const STYLE_OVERRIDE_BASELINE = 48;
+// 2026-08-08: 48 → 47。ComparisonTable の maxWidth / margin:0 auto を CSS クラスへ寄せた。
+const STYLE_OVERRIDE_BASELINE = 47;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
