@@ -37,8 +37,11 @@
             overflow: hidden; /* 角丸の内側にセルの境界線を収める */
             background-color: var(--wim-color-surface);
             border: var(--wim-border-width-thin) solid var(--wim-color-border);
-            border-radius: var(--wim-radius-container);
-            box-shadow: var(--wim-shadow-sm);
+
+            /* Toolbar / DataGrid footer と同じ枠スタンス（影なし・component 角丸）。
+               container + shadow-sm だと隣のクロームだけ平面枠になり、1 画面の
+               エレベーション／角丸スタンスが割れる（DESIGN.md 必須ルール 5・8）。 */
+            border-radius: var(--wim-radius-component);
 
             td {
               display: flex;
