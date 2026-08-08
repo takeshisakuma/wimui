@@ -65,8 +65,10 @@ export default function MembersTable() {
         />
       </Group>
 
-      {/* Dense data region */}
-      <Table card hoverable fullWidth>
+      {/* Dense data region. `mobileCard` stacks rows as labelled cards below
+          the md container breakpoint (same shape as Captions / T97) — without
+          it a wide table is clipped or scrolled inside the Playground card. */}
+      <Table card hoverable fullWidth mobileCard>
         <Table.Header>
           <Table.Row>
             <Table.Head>Member</Table.Head>
@@ -78,12 +80,14 @@ export default function MembersTable() {
         <Table.Body>
           {rows.map((m) => (
             <Table.Row key={m.id}>
-              <Table.Cell>{m.name}</Table.Cell>
-              <Table.Cell>{m.team ?? <Text color="tertiary">No team</Text>}</Table.Cell>
-              <Table.Cell>
+              <Table.Cell label="Member">{m.name}</Table.Cell>
+              <Table.Cell label="Team">
+                {m.team ?? <Text color="tertiary">No team</Text>}
+              </Table.Cell>
+              <Table.Cell label="Role">
                 <Badge variant="subtle" intent={roleIntent[m.role]}>{m.role}</Badge>
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell label="Status">
                 <Badge variant="subtle" intent={statusIntent[m.status]}>{m.status}</Badge>
               </Table.Cell>
             </Table.Row>
