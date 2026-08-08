@@ -95,7 +95,7 @@ export const Deletable: Story = {
 export const WithAvatar: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Chip {...args} avatar={<Avatar initials="JD" size="sm" />}>{t("story.chip_sample_name")}</Chip>;
+    return <Chip {...args} avatar={<Avatar initials="HI" size="sm" />}>{t("story.chip_sample_name")}</Chip>;
   },
 };
 

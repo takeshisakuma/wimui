@@ -255,14 +255,22 @@ describe("GanttChart", () => {
     expect(screen.getByRole("grid")).toBeInTheDocument();
   });
 
-  it("syncs header scroll position on body scroll", () => {
+  it("exposes a single scrollport for the timeline (header + body)", () => {
     const { container } = render(<GanttChart tasks={tasks} startDate={today} />);
-    const bodyScroll = container.querySelector("[data-gantt-body-scroll=\"true\"]") as HTMLElement;
-    const headerScroll = container.querySelector("[data-gantt-header-scroll=\"true\"]") as HTMLElement;
-    Object.defineProperty(bodyScroll, "scrollLeft", { value: 100, writable: true });
-    fireEvent.scroll(bodyScroll);
-    // headerScroll.scrollLeft should have been set to bodyScroll.scrollLeft
-    expect(headerScroll).toBeDefined();
+    const timelineScroll = container.querySelector(
+      "[data-gantt-timeline-scroll=\"true\"]",
+    );
+    expect(timelineScroll).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-gantt-header-scroll=\"true\"]"),
+    ).toBeNull();
+    expect(
+      container.querySelector("[data-gantt-body-scroll=\"true\"]"),
+    ).toBeNull();
+    expect(
+      timelineScroll?.querySelector("[data-gantt-header-cell=\"true\"]"),
+    ).toBeTruthy();
+    expect(timelineScroll?.querySelector("[data-gantt-body=\"true\"]")).toBeTruthy();
   });
 
   it("progress bar clamps at 100%", () => {

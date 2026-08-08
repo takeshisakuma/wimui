@@ -679,20 +679,72 @@ export const ComparisonTable: StoryObj = {
         —
       </span>
     );
+    const planCell = (included: boolean) => (included ? <Check /> : <Dash />);
+
     return (
       <Container
         style={{ padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)", background: "var(--wim-color-surface-app)" }}
       >
-        <Stack gap="md" style={{ maxWidth: "800px", margin: "0 auto var(--wim-spacing-3xl)" }}>
+        <style>{`
+          .compare-wrap { max-width: 800px; margin-inline: auto; }
+          .compare-cards { display: none; flex-direction: column; gap: var(--wim-spacing-sm); }
+          .compare-pro-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* intent-surface-ok: same Pro emphasis band as the matrix column. */
+            background: var(--wim-color-primary-muted);
+            margin-inline: calc(var(--wim-spacing-md) * -1);
+            padding-inline: var(--wim-spacing-md);
+            padding-block: var(--wim-spacing-2xs);
+            border-radius: var(--wim-radius-component);
+          }
+          @media (max-width: 767px) {
+            .compare-matrix { display: none; }
+            .compare-cards { display: flex; }
+          }
+        `}</style>
+        <Stack className="compare-wrap" gap="md" style={{ marginBottom: "var(--wim-spacing-3xl)" }}>
           <Title tag="h2" size="xl">
             {t("compare.title")}
           </Title>
           <Text content={t("compare.subtitle")} color="secondary" />
         </Stack>
+
+        {/* Narrow: one card per feature — the 4-col matrix crushes below ~768. */}
+        <div className="compare-wrap compare-cards">
+          {features.map((f, i) => (
+            <Card key={i} padding="md" variant="outline">
+              <Stack gap="sm">
+                <Text size="sm" weight="bold">
+                  {f.label}
+                </Text>
+                <Group justify="between" align="center">
+                  <Text size="sm" color="secondary">
+                    {t("compare.col_free")}
+                  </Text>
+                  {planCell(f.free)}
+                </Group>
+                <div className="compare-pro-row">
+                  <Text size="sm" weight="bold" color="text-accent">
+                    {t("compare.col_pro")}
+                  </Text>
+                  {planCell(f.pro)}
+                </div>
+                <Group justify="between" align="center">
+                  <Text size="sm" color="secondary">
+                    {t("compare.col_enterprise")}
+                  </Text>
+                  {planCell(f.ent)}
+                </Group>
+              </Stack>
+            </Card>
+          ))}
+        </div>
+
         <div
+          className="compare-wrap compare-matrix"
           style={{
-            maxWidth: "800px",
-            margin: "0 auto",
             overflow: "hidden",
             borderRadius: "var(--wim-radius-container)",
             border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
@@ -783,7 +835,7 @@ export const ComparisonTable: StoryObj = {
                     {f.label}
                   </td>
                   <td style={{ padding: "var(--wim-spacing-md) var(--wim-spacing-xl)", textAlign: "center" }}>
-                    {f.free ? <Check /> : <Dash />}
+                    {planCell(f.free)}
                   </td>
                   <td
                     style={{
@@ -794,10 +846,10 @@ export const ComparisonTable: StoryObj = {
                       background: "var(--wim-color-primary-muted)",
                     }}
                   >
-                    {f.pro ? <Check /> : <Dash />}
+                    {planCell(f.pro)}
                   </td>
                   <td style={{ padding: "var(--wim-spacing-md) var(--wim-spacing-xl)", textAlign: "center" }}>
-                    {f.ent ? <Check /> : <Dash />}
+                    {planCell(f.ent)}
                   </td>
                 </tr>
               ))}

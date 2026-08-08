@@ -127,9 +127,11 @@
     "header_team": "チーム",
     "overview_title": "ダッシュボードの概要",
     "stats_active": "アクティブセッション",
-    "stats_last_month": "先月比",
+    "stats_active_note": "本日のピークは 1,840",
     "stats_revenue": "総収益",
-    "stats_users": "新規ユーザー"
+    "stats_revenue_note": "7/31 締めの確定値",
+    "stats_users": "新規ユーザー",
+    "stats_users_note": "過去14日の登録コホート"
   },
   "error": {
     "btn_home": "ホームに戻る",
@@ -416,7 +418,7 @@
     "starter_feat_1": "コアコンポーネント",
     "starter_feat_2": "基本ドキュメント",
     "starter_feat_3": "コミュニティサポート",
-    "starter_feat_4": "高度なパターン",
+    "starter_feat_4": "GitHub でオープンソース",
     "starter_title": "スターター",
     "subtitle": "どのプランも同じ MIT ライセンスのライブラリです。有償プランにはパターン集・優先サポート・SLA が加わります。",
     "title": "支払うのはサポートに。コンポーネントは全プラン同じ。"

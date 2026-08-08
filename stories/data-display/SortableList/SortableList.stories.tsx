@@ -39,7 +39,7 @@ const InteractiveDemo = (args: React.ComponentProps<typeof SortableList>) => {
   };
 
   return (
-    <Box style={{ width: 400 }}>
+    <Box style={{ width: "min(100%, 400px)" }}>
       <SortableList {...args} onSortEnd={handleSortEnd}>
         {items.map((item, index) => (
           <SortableList.Item key={item.id} index={index}>

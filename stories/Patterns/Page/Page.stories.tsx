@@ -232,6 +232,7 @@ export const DashboardHeader: StoryObj = {
                   intent: "success" as const,
                   spark: [28, 30, 29, 33, 32, 36, 38, 40, 42, 45],
                   sparkColor: "var(--wim-color-success)",
+                  note: t("dashboard.stats_revenue_note"),
                 },
                 {
                   label: t("dashboard.stats_users"),
@@ -240,6 +241,7 @@ export const DashboardHeader: StoryObj = {
                   intent: "danger" as const,
                   spark: [26, 25, 27, 24, 25, 23, 24, 22, 23, 24],
                   sparkColor: "var(--wim-color-danger)",
+                  note: t("dashboard.stats_users_note"),
                 },
                 {
                   label: t("dashboard.stats_active"),
@@ -248,6 +250,7 @@ export const DashboardHeader: StoryObj = {
                   intent: "success" as const,
                   spark: [10, 11, 10, 12, 11, 12, 11, 13, 12, 12],
                   sparkColor: "var(--wim-color-success)",
+                  note: t("dashboard.stats_active_note"),
                 },
               ].map((stat, i) => (
                 <Stats key={i}>
@@ -275,9 +278,7 @@ export const DashboardHeader: StoryObj = {
                     height={36}
                     showLastDot
                   />
-                  <Stats.Description>
-                    {t("dashboard.stats_last_month")}
-                  </Stats.Description>
+                  <Stats.Description>{stat.note}</Stats.Description>
                 </Stats>
               ))}
             </Grid>

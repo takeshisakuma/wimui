@@ -11,7 +11,7 @@
  *
  * 検出（この初回カット＝ユーザー選択の 3 種）:
  *   1. gradient135  — `linear-gradient(... 135deg ...)` のヒーロー背景（ハードゲート、baseline 0）
- *   2. hype         — 誇張形容詞辞書（多言語）を Pattern デモコピー（docs_stories_recipes）で照合
+ *   2. hype         — 誇張形容詞辞書（多言語）をストーリーデモコピー（docs_stories_*）で照合
  *                     （ハードゲート、baseline 0）
  *   3. propBacked   — prop があるのに style で書いている（ルール 3 の本体。ハードゲート、baseline 0）
  *   4. styleOverride — インライン style の既定値上書き（padding/margin/borderRadius = 0）と
@@ -51,7 +51,8 @@ import { globSync } from 'glob';
 // 実寸（min(380px,100%) 等）が中心。減らしたらこの値を下げること。
 // 2026-08-02: 50 → 48。T52 のガードで見つかったメンテナンス画面の孤島を `Result`
 // （`iconSurface`）へ寄せた結果、80px の直書き 2 件が消えた。
-const STYLE_OVERRIDE_BASELINE = 48;
+// 2026-08-08: 48 → 47。ComparisonTable の maxWidth / margin:0 auto を CSS クラスへ寄せた。
+const STYLE_OVERRIDE_BASELINE = 47;
 
 // --- 辞書は単一ソース（SSOT）から読む。同じ JSON を generate-llms.js も読み、llms.txt に反映する。 ---
 // 辞書を増やすときは scripts/slop-dictionary.json だけを編集し、`npm run llms:build` で llms.txt を再生成する。
@@ -62,14 +63,17 @@ const DICT = JSON.parse(fs.readFileSync(new URL('./slop-dictionary.json', import
 const HYPE_WORDS = DICT.hypeWords;
 const HYPE_PHRASES = DICT.hypePhrases;
 const PLACEHOLDER_NAMES = DICT.placeholderNames;
+/** 部分一致が正当語を踏むときの除外（elevate ⊂ elevated 等）。辞書 SSOT。 */
+const HYPE_FALSE_POSITIVES = new Set(
+  (DICT.hypeFalsePositives ?? []).map((w) => String(w).toLowerCase()),
+);
 
-// Pattern デモコピーが実在する locale ファイル（en/ja/pt）。
-// ガイド docs（docs_guide_*）はドキュメント散文であり禁止語を正当に引用しうるため対象外。
-const HYPE_SCAN_FILES = [
-  'public/locales/en/docs_stories_recipes.json',
-  'public/locales/ja/docs_stories_recipes.json',
-  'public/locales/pt/docs_stories_recipes.json',
-];
+// ストーリーデモコピーが実在する locale ファイル（en/ja/pt の docs_stories_*）。
+// ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）はドキュメント散文であり
+// 禁止語を正当に引用しうるため対象外。入力欄 placeholder の氏名例はスキャン時に除外。
+const HYPE_SCAN_FILES = ['en', 'ja', 'pt'].flatMap((locale) =>
+  globSync(`public/locales/${locale}/docs_stories_*.json`, { posix: true }),
+);
 
 // 対象は常に全量。lint-staged は staged ファイルだけを渡してくるが、それで絞ると
 // styleHits の合計がベースラインを必ず下回り、ラチェットが素通りしてしまう
@@ -268,14 +272,23 @@ const hypeRe = new RegExp([...HYPE_WORDS, ...HYPE_PHRASES].map(esc).join('|'), '
 const nameRe = new RegExp(PLACEHOLDER_NAMES.map(esc).join('|'), 'i');
 const isPlaceholderKey = (line) => /"[^"]*placeholder[^"]*"\s*:/i.test(line);
 
+/** 部分一致ヒットをラテン語トークン全体に広げ、偽陽性語なら捨てる。 */
+const hypeHitOnLine = (line) => {
+  const hm = line.match(hypeRe);
+  if (!hm || hm.index === undefined) return null;
+  const token = line.slice(hm.index).match(/^[A-Za-z]+/)?.[0] ?? hm[0];
+  if (HYPE_FALSE_POSITIVES.has(token.toLowerCase())) return null;
+  return hm[0];
+};
+
 const hypeHits = [];
 const nameHits = [];
 for (const file of HYPE_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   lines.forEach((line, i) => {
-    const hm = line.match(hypeRe);
-    if (hm) hypeHits.push(`${file}:${i + 1}: 「${hm[0]}」 ${line.trim().slice(0, 80)}`);
+    const hit = hypeHitOnLine(line);
+    if (hit) hypeHits.push(`${file}:${i + 1}: 「${hit}」 ${line.trim().slice(0, 80)}`);
     // 入力欄プレースホルダの氏名例は正当（スコープ外）
     if (!isPlaceholderKey(line)) {
       const nm = line.match(nameRe);

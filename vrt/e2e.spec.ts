@@ -141,8 +141,8 @@ test.describe("DataGrid — Sorting", () => {
     const nameHeader = page.getByRole("columnheader", { name: "Name" });
     await nameHeader.click(); // asc
     await nameHeader.click(); // desc
-    // John Doe is alphabetically last
-    await expect(dgRow(page).locator("td").nth(1)).toHaveText("John Doe");
+    // Yuki Tanaka is alphabetically last among the demo rows
+    await expect(dgRow(page).locator("td").nth(1)).toHaveText("Yuki Tanaka");
   });
 
   test("sorts ID column numerically", async ({ page }) => {

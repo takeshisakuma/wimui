@@ -64,6 +64,7 @@
     "result_success_title": "Successfully Purchased Cloud Server ECS!",
     "result_warning_title": "There are some problems with your operation.",
     "skeleton_demo_desc": "This is a demo with the actual content loaded. The original text and image are displayed in the same positions as the placeholders provided by the skeleton.",
+    "skeleton_sample_name": "Mika Sato",
     "skeleton_sample_role": "Software Engineer",
     "skeleton_show_content": "Show Content",
     "skeleton_show_skeleton": "Show Skeleton",

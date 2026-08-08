@@ -64,6 +64,7 @@
     "result_success_title": "クラウドサーバーを購入しました",
     "result_warning_title": "操作にいくつかの問題があります。",
     "skeleton_demo_desc": "これは実際にコンテンツが読み込まれた状態のデモです。スケルトンが提供したプレースホルダーと同じ位置に、本来のテキストや画像が表示されます。",
+    "skeleton_sample_name": "佐藤 美香",
     "skeleton_sample_role": "ソフトウェアエンジニア",
     "skeleton_show_content": "コンテンツを表示",
     "skeleton_show_skeleton": "スケルトンを表示",
