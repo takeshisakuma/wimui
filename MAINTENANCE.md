@@ -224,12 +224,37 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 リポジトリに置いてあることと、`npm` から取れることは別。
 
 ```bash
+npm run build                        # ← 必須。npm pack はビルドしない
 npm pack
 tar -tzf wimui-*.tgz | head -30      # 入っているもの
 tar -xzf wimui-*.tgz && ls package/  # NOTICE / dist / llms.txt
 ```
 
 > 実例: 公開済み 0.15.0 の tarball を取ったら `NOTICE` が入っていなかった（T80）。「リポジトリにある」では確認になっていない。
+
+> **`npm run build` を省くと、この検査は古い `dist` を測る。** `npm pack` はビルドを起こさない
+> （ビルドを噛ませているのは `prepublishOnly` で、これは `npm publish` でしか走らない）。
+> 0.18.0 の準備で実際に踏んだ: 素の `npm pack` で取った tarball には `dist/reset.css` が無く、
+> その日に入れたトークンの変更も載っていなかった。**「入っていない」という結論のほうが誤りで**、
+> ビルドを挟んだら両方あった。**欠落を報告する前に、まず自分が何を測ったかを疑うこと。**
+
+### 8.5. 詰まっている Release ランが無いか
+
+```bash
+gh api "repos/takeshisakuma/wimui/actions/runs?status=waiting" \
+  --jq '.workflow_runs[] | "\(.name)\t\(.created_at)\t\(.id)"'
+```
+
+**承認されないまま `waiting` で残ったランが 1 本あるだけで、以降のリリースが無音で止まる。**
+`release.yml` の concurrency に `cancel-in-progress` が無いため、後続はジョブを 1 つも作らずに
+`pending` で待つ ── チェックも通知も承認ボタンも出ない。
+
+> 実例: 0.18.0 の準備で、**2026-08-08 の push で作られたランが 38 時間グループを占有していた**。
+> `gh run list` では `pending` としか見えず「順番待ち」に読めるので、最初は承認待ちだと誤って報告した。
+> `pending_deployments` が空だったことが手がかりになった。恒久対応は T116。
+>
+> 古いランをキャンセルするときは**承認しないこと**。承認するとその古いコミットに対して
+> changesets が走る。
 
 ### 9. README / llms.txt の主張と `package.json` の一致
 
