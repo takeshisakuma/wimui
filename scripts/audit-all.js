@@ -136,6 +136,15 @@ const checks = [
   },
   {
     category: "lib",
+    // 上の check-contrast.js が見るのは intents SSOT の 4 ロールだけで、
+    // **`semantic.json` の `*-subtle` 群は誰も測っていなかった**（T102）。
+    // しかも下限だけでは足りない: 一律アルファは hue ごとに効きが違うため、
+    // 片方が消えかけ・片方が濃すぎという**両側の**ずれを生む。
+    name: "Subtle fill tokens stay visible, consistent, and off the border",
+    command: "node scripts/check-subtle-tokens.js",
+  },
+  {
+    category: "lib",
     // 上が「宣言された組み合わせ」を見るのに対し、こちらは **SCSS に実際に
     // 書かれた color / background の対**を解いて比を出す（T41 案②）。
     // 宣言が正しくても実装が SSOT を迂回していれば、上は緑のまま通る。

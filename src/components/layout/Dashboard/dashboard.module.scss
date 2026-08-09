@@ -70,7 +70,10 @@
   }
 
   &.editMode {
-    border-color: var(--wim-color-primary-subtle);
+    /* T102: 以前は塗り用の `primary-subtle`（4%）。編集モードに入ったことを示す
+       破線が dark で 0.0063 しか無く、ほぼ見えていなかった。モードの表示なので
+       primary そのものを使う（dark 0.1482）。 */
+    border-color: var(--wim-color-primary);
     border-style: dashed;
   }
 }
@@ -156,6 +159,11 @@
   &:hover {
     color: var(--wim-color-text-accent);
     background: var(--wim-color-primary-subtle);
-    border-color: var(--wim-color-primary-subtle);
+
+    /* T102: 以前は枠にも `primary-subtle` を使っており、**基底の見える破線
+       （`border` トークン）を hover で消していた** ── 塗りと同色なので枠は
+       輪郭を作らず、ホバーすると逆に境界が曖昧になる。文字が `text-accent` へ
+       上がるのに合わせて枠も primary にする。 */
+    border-color: var(--wim-color-primary);
   }
 }

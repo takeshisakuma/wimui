@@ -182,24 +182,28 @@
         "value": "oklch(from var(--wim-color-surface-void) l c h / 0.05)"
       },
       "primary-subtle": {
-        "value": "oklch(from var(--wim-color-primary) l c h / 0.04)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.05)"
       },
       "danger-subtle": {
-        "value": "oklch(from var(--wim-color-danger) l c h / 0.1)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-danger) l c h / 0.04)"
       },
       "info-subtle": {
-        "$comment": "T52: ファミリーが danger / primary までしか無く、合成画面が var(--wim-color-info-subtle) を参照しては黙って無効化されていた（CSS は存在しない名前の宣言を捨てるだけでエラーを出さない）。アルファは danger-subtle と Alert の intent 面に合わせて 0.1（primary-subtle の 0.04 は Badge/Tag 向けの別用途で、揃えると intent 面として薄すぎる）",
-        "value": "oklch(from var(--wim-color-info) l c h / 0.1)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-info) l c h / 0.04)"
       },
       "success-subtle": {
-        "value": "oklch(from var(--wim-color-success) l c h / 0.1)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-success) l c h / 0.055)"
       },
       "warning-subtle": {
-        "value": "oklch(from var(--wim-color-warning) l c h / 0.1)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-warning) l c h / 0.07)"
       },
       "neutral-subtle": {
-        "$comment": "neutral は base の色トークンを持たない（intents.json が surface.base を neutral-fill に振っている）ため、そこから導く",
-        "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.1)"
+        "$comment": "T102: **一定にすべきはアルファではなく知覚距離**（実測 2026-08-09）。以前は primary だけ 0.04 で他は一律 0.1 だったが、同じアルファでも hue で効きが違うため、`surface` / `surface-app` に対する知覚距離が **0.0188〜0.0955 と 5 倍ばらついていた** （`danger-subtle` の面だけ明らかに強く、`info-subtle` と `primary-subtle` は消えかけ）。さらに **light と dark ではアルファの効き方が逆**なので 1 つの値では揃わない。そこで **各テーマ・各 intent で知覚距離が 0.022 前後に揃うアルファ**を測って個別に置いた（結果 0.0222〜0.0388 に収束。dark 側は themes/dark.json で上書き）。`scripts/check-subtle-tokens.js` がこの帯を守る。",
+        "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.155)"
       },
       "neutral-fill-subtle": {
         "$comment": "T101: Badge/Tag/Chip の `variant=\"subtle\"` × `intent=\"neutral\"` 専用の面。intents.json の neutral.surface.subtle はここを指す。**neutral だけは base の淡いティントで作れない**（実測 2026-08-09）: ①base を 13% で敷くと dark の surface-variant 上で知覚距離 0.0038（基準 0.015）＝消える ②base をそのまま（＝以前の実装）だと solid と面が完全一致し、subtle が「solid より淡い面」という役割を果たさない ③既存トークンで条件を満たすものは 1 つも無い。そこで surface-void（両テーマとも黒固定）のヴェールにした。**白ではなく黒**なのは、dark の text-secondary が明色のため白ヴェールだと文字が 4.69〜5.22 まで落ちるうえ、neutral-fill 自体が中間灰なので白へ寄せると solid との距離が 0.0035〜0.0184 まで潰れるから。**アルファはテーマで逆向きに効く**（dark 側は themes/dark.json で上書き）: light は面が白いので**薄いほど solid から離れ**（0.04 で 0.1177、0.15 だと 0.0398 まで落ちる）、dark は面が暗いので**濃いほど離れる**（0.30 で 0.1188）。light 0.06 / dark 0.30 で両テーマとも solid から ~0.11 に揃う。実測: light = solid から 0.1037 / 面から 0.0419 / AA 8.04、dark = 0.1188 / 0.0482 / 9.41。**なお Radix の gray は同じ指標で solid↔subtle 0.3117 あり、まだ 2.6 倍の開きがある。** 埋まらないのは subtle 側ではなく `neutral-fill`（#b6b6b6）が solid として淡すぎるためで、そちらは T101 ②。",

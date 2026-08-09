@@ -29,7 +29,11 @@
 
     &:hover:not(.disabled) {
       background: var(--wim-color-ghost-bg-hover);
-      border-color: var(--wim-color-primary-subtle);
+
+      /* T102: 以前は塗り用の `primary-subtle`（4%）で、**dark では知覚距離 0.0063 と
+         下限 0.015 の半分以下＝線として見えていなかった**。hover の枠という意味は
+         Button の ghost と同じなので同じトークンへ寄せる（dark でも 0.0615）。 */
+      border-color: var(--wim-color-ghost-border-hover);
     }
 
     &:focus-visible {

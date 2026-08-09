@@ -22,7 +22,10 @@
   justify-content: space-between;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   background-color: var(--wim-color-primary-subtle);
-  border: var(--wim-border-width-thin) solid var(--wim-color-primary-subtle);
+
+  /* T102: 以前は枠にも `primary-subtle` を使っており、**塗りと同色＝枠が輪郭を
+     作らず、ツールバーが 1px 大きく見えるだけ**だった。枠用のトークンへ寄せる。 */
+  border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   border-radius: var(--wim-radius-component);
   animation: toolbar-in var(--wim-duration-fast) var(--wim-easing-decelerate);
 }
