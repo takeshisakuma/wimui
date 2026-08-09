@@ -101,6 +101,37 @@ export const Colors: Story = {
   },
 };
 
+// `subtle` × 全 intent。**`check:contrast` はこの組み合わせを 189 通り検査するが、
+// それはモデル計算**（トークンの値を読んで合成する）。実際に DOM に出た色を測るのは
+// axe で、そちらは**描画されたストーリーしか見られない**。今まで subtle が出ていた
+// のは Tag / Chip の Variants（既定 intent のみ）だけで、warning / danger のように
+// 文字色が厳しい intent は 1 つも描画されていなかった。
+// 塗りの濃さは AA の上限側に効く（13% で最小 4.62、16% で 4.46 と割れる）ので、
+// モデルと実測の 2 系統で押さえる。
+export const SubtleIntents: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const intents = [
+      ["primary", "story.tag_primary"],
+      ["secondary", "story.tag_secondary"],
+      ["success", "story.tag_success"],
+      ["warning", "story.tag_warning"],
+      ["danger", "story.tag_error"],
+      ["neutral", "story.tag_neutral"],
+      ["info", "story.tag_info"],
+    ] as const;
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+        {intents.map(([intent, key]) => (
+          <Tag {...args} key={intent} intent={intent} variant="subtle">
+            {t(`docs_stories_display:${key}`)}
+          </Tag>
+        ))}
+      </div>
+    );
+  },
+};
+
 export const Sizes: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

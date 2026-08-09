@@ -67,6 +67,21 @@ export const Outline: Story = {
   },
 };
 
+// Badge の `subtle` は**どのストーリーにも出ていなかった**（Tag / Chip は
+// Variants に写っている）。3 変種のうち 1 つだけ VRT からも axe からも
+// 見えない状態で、2026-08-07 に subtle を作り替えたときも Badge だけは
+// 何も検出されなかった。
+export const Subtle: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Badge {...args} content={t("story.badge_subtle")} />;
+  },
+  args: {
+    variant: "subtle",
+    intent: "primary",
+  },
+};
+
 export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -13,38 +13,17 @@
     border-radius: var(--wim-radius-sm);
   
     &.md {
-      --wim-indicator-pad-y: var(--wim-spacing-xs);
-      --wim-indicator-pad-x: var(--wim-spacing-sm);
-
-      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
-      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
-      padding:
-        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
-        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       font-size: var(--wim-font-size-xs);
     }
   
     &.sm {
-      --wim-indicator-pad-y: var(--wim-spacing-2xs);
-      --wim-indicator-pad-x: var(--wim-spacing-xs);
-
-      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
-      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
-      padding:
-        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
-        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-xs);
       font-size: var(--wim-font-size-2xs);
     }
   
     &.lg {
-      --wim-indicator-pad-y: var(--wim-spacing-sm);
-      --wim-indicator-pad-x: var(--wim-spacing-md);
-
-      // subtle は枠が 1px 太い分だけ内側を返す（`--wim-indicator-trim`）。
-      // `max()` は Chip のように縦パディングが 0 の場合に負値を作らないため。
-      padding:
-        max(0px, calc(var(--wim-indicator-pad-y) - var(--wim-indicator-trim, 0px)))
-        max(0px, calc(var(--wim-indicator-pad-x) - var(--wim-indicator-trim, 0px)));
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
       font-size: var(--wim-font-size-sm);
     }
   
