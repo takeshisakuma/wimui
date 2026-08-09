@@ -36,7 +36,12 @@ export const WithinButton: Story = {
       // `#262626` の面に載っていた**（実測 1.38、基準 4.5）。`×` が 1 文字なので
       // axe は `too short` として測っておらず、a11y は緑のままだった。
       // 素の要素をストーリーで使うのは T12 が記録している型（「ストーリー直書き」）。
-      <Button aria-label={t("story.visuallyhidden_close")}>
+      // **`aria-label` は付けない。** 以前は付いていたが、アクセシブル名の計算では
+      // `aria-label` が内容より優先されるため、**`VisuallyHidden` は無視されていた** ──
+      // つまり `VisuallyHidden` を紹介するストーリーが、その効果を示せていなかった。
+      // 実測: `aria-label` を外しても名前は `button "Close"` のままで、
+      // 供給しているのが `VisuallyHidden` であることが確かめられる。
+      <Button>
         <span aria-hidden="true">×</span>
         <VisuallyHidden>{t("story.visuallyhidden_close")}</VisuallyHidden>
       </Button>
