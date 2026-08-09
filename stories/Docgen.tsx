@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../.storybook/i18n';
 import { ALL_NAMESPACES } from './i18nConstants';
 import { T } from './T';
+import { renderDescription } from './renderDescription';
 import { Command } from './Command';
 import { formatImportSnippet, resolveImportInfo } from './peerImports';
 import indexData from '@/data/docgen_index.json';
@@ -132,6 +133,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
       defaultValue: propInfo.description ?? '',
     });
 
+
   const renderProps = () => {
     const props = data.props;
     // 固有 props を持たないコンポーネント（HTML 属性のみ継承するサブパーツ等）でも
@@ -163,7 +165,11 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
                 <td><code>{propName}{propInfo.required ? '*' : ''}</code></td>
                 <td><code>{formatTsType(propInfo.tsType)}</code></td>
                 <td>{propInfo.defaultValue ? <code>{propInfo.defaultValue.value}</code> : '-'}</td>
-                <td>{propDescription(propName, propInfo)}</td>
+                <td
+                  dangerouslySetInnerHTML={{
+                    __html: renderDescription(propDescription(propName, propInfo)),
+                  }}
+                />
               </tr>
             ))}
           </tbody>

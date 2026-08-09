@@ -122,6 +122,60 @@ console.log('\n--- Auditing Docgen References ---');
       }
     });
   }
+
+  // props 表に出る説明に Markdown の強調が混ざっていないか。
+  //
+  // Docgen はバックティックと改行しか組み立てない（`**` は解釈しない）ので、
+  // 書くと**生のアスタリスクが表に出る**。ロケール側は check-i18n-quality.js が
+  // 見ているが、翻訳キーが無いコンポーネントはソースの JSDoc がそのまま出るため、
+  // そちらは誰も見ていなかった（実例: `Transition.enterPreset`）。
+  //
+  // 鳴らすのは**実際に表に出るものだけ**にする。翻訳キーがあればそちらが勝つし、
+  // props 表を出していないコンポーネントの JSDoc は誰の目にも触れない。
+  // 内部ユーティリティのコメントまで巻き込むと、読み手のいない文章を直すことになる。
+  if (Object.keys(docgenAll).length > 0) {
+    const translated = new Set();
+    const enDir = 'public/locales/en';
+    if (fs.existsSync(enDir)) {
+      for (const f of fs.readdirSync(enDir).filter(x => x.endsWith('.json'))) {
+        const flat = (o, pre = '') => {
+          for (const k of Object.keys(o)) {
+            const v = o[k];
+            const q = pre ? `${pre}.${k}` : k;
+            if (v && typeof v === 'object') flat(v, q);
+            else translated.add(q);
+          }
+        };
+        flat(JSON.parse(fs.readFileSync(path.join(enDir, f), 'utf8')));
+      }
+    }
+
+    const rendered = new Set();
+    [...componentFiles, ...guideFiles].forEach(file => {
+      const content = fs.readFileSync(file, 'utf8');
+      for (const m of content.matchAll(/<Docgen[^>]*\/>/g)) {
+        if (!/section="props"/.test(m[0])) continue;
+        const name = m[0].match(/componentName="([^"]+)"/);
+        if (name) rendered.add(name[1]);
+      }
+    });
+
+    for (const comp of rendered) {
+      const props = docgenAll[comp] && docgenAll[comp].props;
+      if (!props) continue;
+      const compact = comp.replace(/\./g, '');
+      const base = compact.charAt(0).toLowerCase() + compact.slice(1);
+      for (const [propName, info] of Object.entries(props)) {
+        const desc = info && info.description;
+        if (typeof desc !== 'string' || !desc.includes('**')) continue;
+        if (translated.has(`doc.${base}_prop_${propName}`)) continue;
+        console.log(
+          `[FAIL] ${comp}.${propName} の JSDoc に \`**\` があります。props 表には生のアスタリスクが出ます（強調は文の組み立てで表してください）`,
+        );
+        allPass = false;
+      }
+    }
+  }
 }
 
 console.log('\n--- Auditing Markdown Format Rules ---');
