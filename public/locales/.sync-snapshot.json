@@ -586,6 +586,7 @@
     "typography_family_title": "Typography Audit",
     "um_context": "Context",
     "variant_comparison": "Variant Comparison",
+    "variant_intent_matrix": "Variant × Intent (all 21 combinations)",
     "vertical_spacing_check": "Vertical Spacing & Margin Consistency",
     "viewport_backlog": "Backlog",
     "viewport_col_done": "Done",
