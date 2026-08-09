@@ -515,13 +515,20 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 | 対象 | 型名 | 値 |
 |------|------|-----|
+値は `src/types/generated-intents.ts`（`tokens/intents.json` から生成）と `src/types/tokens.ts` の実物。
+
+| 対象 | 型名 | 値 |
+|------|------|-----|
 | Button 系 | `ButtonVariant` | `solid`, `outline`, `ghost` |
-| Button 意図 | `ButtonIntent` | `default`, `destructive`, `positive` |
+| Button 意図 | `ButtonIntent` | `default`, `danger`, `success` |
 | フィールド系 | `FieldVariant` | `outline`, `ghost` |
+| フィールド意図 | `FieldIntent` | `default`, `danger` |
 | インジケータ系 | `IndicatorVariant` | `solid`, `outline`, `subtle` |
-| インジケータ状態 | `IndicatorStatus` | `primary`, `secondary`, `success`, `warning`, `error`, `info`, `neutral` |
-| フィードバック状態 | `FeedbackStatus` | `info`, `success`, `warning`, `error` |
-| フィールド状態 | `FieldStatus` | `default`, `error` |
+| インジケータ意図 | `IndicatorIntent` | `primary`, `success`, `warning`, `danger`, `info`, `neutral` |
+| フィードバック意図 | `FeedbackIntent` | `default`, `info`, `success`, `warning`, `danger` |
+| 横断（全体語彙） | `WimIntent` | `primary`, `success`, `warning`, `danger`, `info`, `neutral`, `default` |
+
+**この表は 2026-08-09 まで 5 箇所ずれていた。** `IndicatorStatus` / `FeedbackStatus` / `FieldStatus` という型は存在せず（実物は `*Intent`）、`ButtonIntent` の値は `destructive` / `positive` ではなく `danger` / `success`、状態系の `error` は全て `danger`。`secondary` intent の廃止（T101 ②）で表を触った際に、隣の行も全部間違っていることに気付いた。**型名が実在しないので、読者が grep しても何も出てこない状態だった。**
 
 ### ポリモーフィズム
 

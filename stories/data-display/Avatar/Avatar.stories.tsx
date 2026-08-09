@@ -65,8 +65,8 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
-      <Avatar {...args} shape="circle" initials="C" intent="secondary" />
-      <Avatar {...args} shape="rounded" initials="R" intent="secondary" />
+      <Avatar {...args} shape="circle" initials="C" intent="neutral" />
+      <Avatar {...args} shape="rounded" initials="R" intent="neutral" />
     </div>
   ),
 };
@@ -90,7 +90,7 @@ export const Colors: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Avatar {...args} initials="P" intent="primary" />
-      <Avatar {...args} initials="S" intent="secondary" />
+      <Avatar {...args} initials="S" intent="neutral" />
       <Avatar {...args} initials="N" intent="neutral" />
       <Avatar {...args} initials="E" intent="danger" />
       <Avatar {...args} initials="SU" intent="success" />

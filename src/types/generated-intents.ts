@@ -6,7 +6,6 @@
 /** Every semantic intent, in canonical order. */
 export const WIM_INTENTS = [
   "primary",
-  "secondary",
   "success",
   "warning",
   "danger",
@@ -20,7 +19,6 @@ export const WIM_INTENTS = [
  */
 export type WimIntent =
   | "primary"
-  | "secondary"
   | "success"
   | "warning"
   | "danger"
@@ -41,7 +39,6 @@ export type ButtonIntent =
  */
 export type IndicatorIntent =
   | "primary"
-  | "secondary"
   | "success"
   | "warning"
   | "danger"

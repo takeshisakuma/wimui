@@ -83,8 +83,8 @@ export const JustifyBetween: Story = {
     return (
       <Flex {...args}>
         <DemoCell intent="primary">{t("story.flex_left")}</DemoCell>
-        <DemoCell intent="secondary">{t("story.flex_middle")}</DemoCell>
-        <DemoCell intent="secondary">{t("story.flex_right")}</DemoCell>
+        <DemoCell intent="neutral">{t("story.flex_middle")}</DemoCell>
+        <DemoCell intent="neutral">{t("story.flex_right")}</DemoCell>
       </Flex>
     );
   },
@@ -104,7 +104,7 @@ export const Wrapped: Story = {
         <DemoCell intent="success">{t("story.flex_item_2", "2")}</DemoCell>
         <DemoCell intent="warning">{t("story.flex_item_3", "3")}</DemoCell>
         <DemoCell intent="danger">{t("story.flex_item_4", "4")}</DemoCell>
-        <DemoCell intent="secondary">{t("story.flex_item_5", "5")}</DemoCell>
+        <DemoCell intent="neutral">{t("story.flex_item_5", "5")}</DemoCell>
       </Flex>
     );
   },

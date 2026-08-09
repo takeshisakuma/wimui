@@ -68,7 +68,7 @@ export const Sizes: Story = {
       </AvatarGroup>
       <AvatarGroup {...args} size="md">
         {users.map((u, i) => (
-          <Avatar key={i} initials={u.initials} intent="secondary" />
+          <Avatar key={i} initials={u.initials} intent="neutral" />
         ))}
       </AvatarGroup>
       <AvatarGroup {...args} size="lg">
