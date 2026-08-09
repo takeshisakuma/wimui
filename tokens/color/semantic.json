@@ -196,6 +196,10 @@
         "$comment": "neutral は base の色トークンを持たない（intents.json が surface.base を neutral-fill に振っている）ため、そこから導く",
         "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.1)"
       },
+      "neutral-fill-subtle": {
+        "$comment": "T101: Badge/Tag/Chip の `variant=\"subtle\"` × `intent=\"neutral\"` 専用の面。intents.json の neutral.surface.subtle はここを指す。**neutral だけは base の淡いティントで作れない**（実測 2026-08-09）: ①base を 13% で敷くと dark の surface-variant 上で知覚距離 0.0038（基準 0.015）＝消える。neutral-fill は dark で surface-variant に近いため ②base をそのまま（＝以前の実装）だと solid と面が完全一致し、subtle が「solid より淡い面」という役割を果たさない ③既存トークンで「8 サーフェスすべてから 0.015 以上離れ、かつ solid から 0.015 以上離れる」を満たすものは 1 つも無い（surface 系はいずれかの面と一致し、neutral-fill / border は solid と一致する）。そこで surface-void（両テーマとも黒固定）のヴェールにした。**白ヴェールではなく黒**なのは、dark の text-secondary が明色のため白だと文字コントラストが 4.69〜5.22 まで落ちるのに対し、黒なら 7.84 に上がるから。実測: light = 面 0.1058 / solid から 0.0398 / AA 6.53、dark = 面 0.0238 / solid から 0.0733 / AA 7.84。`surface-subtle-alpha` と同じ導出の形。",
+        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.15)"
+      },
       "surface-inverse": {
         "value": "{pccs.gy2-5}"
       },

@@ -33,6 +33,7 @@ import {
   perceptualDistance,
   fmt,
 } from './lib/color.js';
+import { readThemes, resolveColorToken as resolve } from './lib/design-tokens.js';
 
 const TEXT_MIN = 4.5;
 const FILL_MIN = 0.015;
@@ -95,29 +96,8 @@ const SURFACES_OUT_OF_SCOPE = {
   'surface-tertiary': '中間グレー。intent の variant を置くことを想定しない',
 };
 
-function readVars(file) {
-  const src = fs.readFileSync(file, 'utf8');
-  const map = {};
-  // 同名が複数回出る場合は最初（:root）を採る
-  for (const m of src.matchAll(/^\s*(--wim-[a-z0-9-]+):\s*([^;]+);/gim)) {
-    if (!(m[1] in map)) map[m[1]] = m[2].trim();
-  }
-  return map;
-}
 
-function resolve(vars, token, depth = 0) {
-  if (depth > 10) return null;
-  const raw = vars[`--wim-color-${token}`];
-  if (!raw) return null;
-  const ref = raw.match(/^var\(\s*--wim-color-([a-z0-9-]+)/i);
-  if (ref) return resolve(vars, ref[1], depth + 1);
-  return parseColor(raw);
-}
-
-const themes = [
-  ['light', readVars('src/tokens/generated/_css-vars.scss')],
-  ['dark', readVars('src/tokens/generated/_css-vars-dark.scss')],
-];
+const themes = readThemes();
 
 const { canonical } = JSON.parse(fs.readFileSync('tokens/intents.json', 'utf8'));
 const SUBTLE_ALPHA = readSubtleAlpha();
@@ -144,11 +124,34 @@ for (const [theme, vars] of themes) {
       continue;
     }
     // subtle の背景は intents.json が明示していればそれ、無ければ base を SUBTLE_ALPHA で敷く
+    // 明示された `subtle` が解決できないときに黙って進めない。`composite(null, s)`
+    // は `s` をそのまま返すので、**「読めなかった」が「サーフェスと同じ色」に化け、
+    // 知覚距離 0.0000 という“測れているように見える”数字になる**（2026-08-09 に
+    // `neutral-fill-subtle` を足して実際に起きた）。
     const subtleFill = roles.subtle ? resolve(vars, roles.subtle) : { ...base, a: SUBTLE_ALPHA };
+    if (roles.subtle && !subtleFill) {
+      unresolved.push(`${theme} ${intent}: subtle=${roles.subtle} を解決できません`);
+      continue;
+    }
 
+    // `surface-hover` / `*-alpha` は**半透明のまま**定義されている（例:
+    // `surface-subtle-alpha` = surface-void の 2%）。下地として使うには素の
+    // `surface` へ合成して実効色にしてからでないと、アルファを無視した
+    // 相対輝度で比べることになり数字が意味を持たない。
+    //
+    // **2026-08-09 まで、この 3 面は 1 度も検査されていなかった。** 相対色を
+    // 解決できず `resolve` が null を返し、すぐ下の `continue` で落ちていた
+    // （検査数 189 → 解決できるようにした後 294。**36% が黙って抜けていた**）。
+    // `if (!surface) continue;` は「その面はこのテーマに無い」の意味だったが、
+    // 「読めなかった」も同じ扱いになっていたのが原因。読めない面は落とす。
+    const plain = resolve(vars, 'surface');
     for (const surfaceName of SURFACES) {
-      const surface = resolve(vars, surfaceName);
-      if (!surface) continue;
+      const raw = resolve(vars, surfaceName);
+      if (!raw) {
+        unresolved.push(`${theme} surface ${surfaceName}`);
+        continue;
+      }
+      const surface = raw.a >= 1 ? raw : composite(raw, plain);
 
       const cases = [
         // solid: 不透明の base を敷き、その上に `on` の文字

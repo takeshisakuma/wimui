@@ -1,35 +1,101 @@
 {
   "$comment": "Single source of truth for the semantic intent vocabulary. Edit here only. `canonical` lists every valid intent and the color token it maps to (null = the component's own default styling, no dedicated color token). `surface` (optional) declares how indicator-style components paint the intent: `true` derives base=`--wim-color-<color>`, on=`--wim-color-text-on-<color>` and text=`--wim-color-text-<color>`; an object names the base/on/text color tokens explicitly (for intents whose surface differs from their color token, e.g. neutral). `text` is the WCAG AA readable foreground used by outline/subtle variants — the base fill color is NOT contrast-safe as text (e.g. warning #ff7f00 is ~2.5:1 on white). `subtle` (optional) names the background token for the subtle variant verbatim; without it the variant derives `base` at 15% alpha, which disappears for intents whose base is already a near-surface tint (neutral = disabled #e5e5e5 at 15% is invisible on white). Intents without `surface` produce no generated indicator classes (they fall back to the component's own default styling). `sets` declares the intent subset each component family exposes; every member MUST appear in `canonical`. Run `npm run intents:build` (also part of `npm run tokens:build`) to regenerate src/types/generated-intents.ts and src/tokens/generated/_intents.scss. `npm run check:intents` fails if either committed output is stale.",
   "canonical": {
-    "primary": { "color": "primary", "surface": { "base": "primary", "on": "text-on-primary", "text": "text-accent" } },
-    "secondary": { "color": "secondary", "surface": { "base": "secondary", "on": "text-on-secondary", "text": "text-secondary" } },
-    "success": { "color": "success", "surface": true },
-    "warning": { "color": "warning", "surface": true },
-    "danger": { "color": "danger", "surface": true },
-    "info": { "color": "info", "surface": true },
-    "neutral": { "color": null, "surface": { "base": "neutral-fill", "on": "text-primary", "text": "text-secondary", "subtle": "neutral-fill" } },
-    "default": { "color": null }
+    "primary": {
+      "color": "primary",
+      "surface": {
+        "base": "primary",
+        "on": "text-on-primary",
+        "text": "text-accent"
+      }
+    },
+    "secondary": {
+      "color": "secondary",
+      "surface": {
+        "base": "secondary",
+        "on": "text-on-secondary",
+        "text": "text-secondary"
+      }
+    },
+    "success": {
+      "color": "success",
+      "surface": true
+    },
+    "warning": {
+      "color": "warning",
+      "surface": true
+    },
+    "danger": {
+      "color": "danger",
+      "surface": true
+    },
+    "info": {
+      "color": "info",
+      "surface": true
+    },
+    "neutral": {
+      "color": null,
+      "surface": {
+        "base": "neutral-fill",
+        "on": "text-primary",
+        "text": "text-secondary",
+        "subtle": "neutral-fill-subtle"
+      }
+    },
+    "default": {
+      "color": null
+    }
   },
   "sets": {
     "WimIntent": {
       "description": "Unified semantic intent values for components.",
-      "values": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "default"]
+      "values": [
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "neutral",
+        "default"
+      ]
     },
     "ButtonIntent": {
       "description": "Semantic intent values available on Button. A deliberate subset of WimIntent — buttons express danger/success/neutral, not the full palette of feedback intents.",
-      "values": ["default", "danger", "success"]
+      "values": [
+        "default",
+        "danger",
+        "success"
+      ]
     },
     "IndicatorIntent": {
       "description": "Intent values for indicator-style components (Badge, Chip, Tag, Progress).",
-      "values": ["primary", "secondary", "success", "warning", "danger", "info", "neutral"]
+      "values": [
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "neutral"
+      ]
     },
     "FeedbackIntent": {
       "description": "Intent values for feedback-style components (Alert, Banner, Toast, Notification, Snackbar). Includes neutral default — colored intents are opt-in.",
-      "values": ["default", "info", "success", "warning", "danger"]
+      "values": [
+        "default",
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ]
     },
     "FieldIntent": {
       "description": "Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).",
-      "values": ["default", "danger"]
+      "values": [
+        "default",
+        "danger"
+      ]
     }
   }
 }

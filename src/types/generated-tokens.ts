@@ -31,6 +31,7 @@ export type WimColorKey =
   | "info"
   | "info-subtle"
   | "neutral-fill"
+  | "neutral-fill-subtle"
   | "neutral-subtle"
   | "overlay"
   | "overlay-medium"

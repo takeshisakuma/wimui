@@ -61,6 +61,7 @@ $wim-color-info-subtle: oklch(from var(--wim-color-info) l c h / 0.1);
 $wim-color-success-subtle: oklch(from var(--wim-color-success) l c h / 0.1);
 $wim-color-warning-subtle: oklch(from var(--wim-color-warning) l c h / 0.1);
 $wim-color-neutral-subtle: oklch(from var(--wim-color-neutral-fill) l c h / 0.1);
+$wim-color-neutral-fill-subtle: oklch(from var(--wim-color-surface-void) l c h / 0.15);
 $wim-color-surface-inverse: #262626;
 $wim-color-surface-app: #262626;
 $wim-color-surface-subtle: #262626;

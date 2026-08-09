@@ -63,12 +63,31 @@ function parseOklch(str) {
   };
 }
 
+/**
+ * `rgb()` / `rgba()`。ダークテーマのサーフェス（`surface-inset` =
+ * `rgba(0,0,0,0.3)` など）がこの記法で書かれている。
+ *
+ * **2026-08-09 まで読めていなかった。** 読めない値は `parseColor` が null を返し、
+ * 呼び出し側の `if (!surface) continue;` が「そのテーマにこの面は無い」と同じ扱いで
+ * 飛ばしていたため、**ダークの 2 面が 1 度も検査されないまま緑だった**。
+ */
+function parseRgb(str) {
+  const m = str.match(
+    /^rgba?\(\s*([0-9.]+)[\s,]+([0-9.]+)[\s,]+([0-9.]+)(?:\s*[,/]\s*([0-9.]+%?))?\s*\)$/i,
+  );
+  if (!m) return null;
+  const alpha = m[4] === undefined ? 1 : m[4].endsWith('%') ? Number(m[4].slice(0, -1)) / 100 : Number(m[4]);
+  const out = { r: Number(m[1]), g: Number(m[2]), b: Number(m[3]), a: alpha };
+  return Object.values(out).some((v) => Number.isNaN(v)) ? null : out;
+}
+
 export function parseColor(str) {
   if (!str) return null;
   const s = String(str).trim();
   if (s === 'transparent') return { r: 0, g: 0, b: 0, a: 0 };
   if (s.startsWith('#')) return parseHex(s);
   if (s.toLowerCase().startsWith('oklch(')) return parseOklch(s);
+  if (s.toLowerCase().startsWith('rgb')) return parseRgb(s);
   return null;
 }
 
