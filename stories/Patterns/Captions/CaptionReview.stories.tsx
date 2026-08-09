@@ -65,6 +65,23 @@ type Cue = {
   /** 話者が拾えていない行が実際に混じる（DESIGN.md「不完全な行」） */
   speaker?: string;
   text: string;
+  /**
+   * その cue の言語（T105）。
+   *
+   * **素材の字幕は UI の言語と一致しない。** ここは複数言語が収録された音源を
+   * 校閲する画面なので、日本語の行と英語の行が混在するのが正しい（flagged 行は
+   * 「英語の長い行が読了速度を超える」ことを示す例なので、翻訳すると題材が壊れる）。
+   * 一方 `.storybook/preview.ts` は UI 言語に連動して `html` / `body` の `lang` を
+   * 書き換えるため、**放っておくと英語の行が `lang="ja"` を継承する**。
+   *
+   * 実害は 2 つ: ①**WCAG 3.1.2「部分の言語」は Level AA** ── スクリーンリーダーが
+   * 誤った言語の音韻で読む ②`src/lang.scss` の `body[lang="en"]` / `[lang="pt"]` の
+   * `hyphens: auto` が日本語行に、`body[lang="ja"]` の行分割規則が英語行に当たる。
+   *
+   * **axe では検出できない**（`valid-lang` は宣言済みの値の妥当性しか見ず、
+   * 「外国語の一節に `lang` が無い」は文章の言語判定が要る）。だから明示する。
+   */
+  lang: "ja" | "en";
   /** 読了速度が速すぎる cue。校閲で最初に見る対象 */
   flagged?: boolean;
 };
@@ -74,23 +91,25 @@ type Cue = {
  * 「置き換え待ちのプレースホルダ」に見える（DESIGN.md 13）。
  */
 const CUES: Cue[] = [
-  { id: "0041", tc: "00:04:12.180", dur: "1.9s", speaker: "波多野", text: "潮が引くまで待て。" },
+  { id: "0041", tc: "00:04:12.180", dur: "1.9s", speaker: "波多野", text: "潮が引くまで待て。", lang: "ja" },
   {
     id: "0042",
     tc: "00:04:14.060",
     dur: "4.2s",
     speaker: "Iris Ferreira",
     text: "The tide chart says 6:40, but the harbour master moved it twice this week already.",
+    lang: "en",
     flagged: true,
   },
-  { id: "0043", tc: "00:04:18.300", dur: "2.4s", text: "（無線のノイズ）" },
-  { id: "0044", tc: "00:04:20.740", dur: "3.1s", speaker: "陳 立文", text: "二番倉庫の鍵、まだ返してない。" },
+  { id: "0043", tc: "00:04:18.300", dur: "2.4s", text: "（無線のノイズ）", lang: "ja" },
+  { id: "0044", tc: "00:04:20.740", dur: "3.1s", speaker: "陳 立文", text: "二番倉庫の鍵、まだ返してない。", lang: "ja" },
   {
     id: "0045",
     tc: "00:04:23.880",
     dur: "1.2s",
     speaker: "波多野",
     text: "それは明日でいい。",
+    lang: "ja",
   },
   {
     id: "0046",
@@ -98,6 +117,7 @@ const CUES: Cue[] = [
     dur: "5.6s",
     speaker: "Iris Ferreira",
     text: "I filed the incident report under the old vessel number, so it will not show up in the weekly export until someone re-keys it.",
+    lang: "en",
     flagged: true,
   },
 ];
@@ -167,17 +187,27 @@ const CueRow = ({
         </Table.Cell>
         <Table.Cell label={t("docs_stories_recipes:captions.col_speaker")}>
           {cue.speaker ? (
-            <Text size="sm" nowrap>
+            // 話者名にも `lang` を付ける（T105）。**これは近似**で、人名の言語は
+            // 発話の言語と必ずしも一致しない（`Iris Ferreira` はポルトガル語系の
+            // 名前だがこの行の発話は英語）。それでも **UI の言語を継承させるより
+            // 確実に良い** ── ここでは字種が一致しており（`波多野` / `陳 立文` は
+            // CJK で `lang="ja"`、`Iris Ferreira` はラテン文字で `lang="en"`）、
+            // 継承のままだと en の UI で `波多野` が英語の音韻で読まれる。
+            <Text size="sm" nowrap lang={cue.lang}>
               {cue.speaker}
             </Text>
           ) : (
+            // 「話者不明」は UI の文言なので `t()` 経由＝ページの言語のままで正しい。
+            // ここに `lang` を付けてはいけない（**鳴ってはいけない経路**）。
             <Text size="sm" color="tertiary" nowrap>
               {t("docs_stories_recipes:captions.speaker_unknown")}
             </Text>
           )}
         </Table.Cell>
         <Table.Cell label={t("docs_stories_recipes:captions.col_text")}>
-          <Text size="sm">{cue.text}</Text>
+          <Text size="sm" lang={cue.lang}>
+            {cue.text}
+          </Text>
         </Table.Cell>
         <Table.Cell label={t("docs_stories_recipes:captions.col_flag")}>
           {cue.flagged ? (
