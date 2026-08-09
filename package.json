@@ -371,6 +371,7 @@
     "check:shrinkable": "node scripts/check-shrinkable-roots.js",
     "check:story-tokens": "node scripts/check-story-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
+    "check:subtle-tokens": "node scripts/check-subtle-tokens.js",
     "check:contrast:scss": "node scripts/check-contrast-scss.js",
     "report:variant-distinctness": "node scripts/report-variant-distinctness.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",

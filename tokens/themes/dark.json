@@ -177,6 +177,24 @@
       "neutral-fill-subtle": {
         "$comment": "T101: dark は面が暗いのでヴェールは濃いほど solid から離れる（light とは逆向き）。0.30 で solid から 0.1188 / 面から 0.0482 / AA 9.41。light の 0.06 と揃えて両テーマとも ~0.11 になる。",
         "value": "oklch(from var(--wim-color-surface-void) l c h / 0.30)"
+      },
+      "primary-subtle": {
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.145)"
+      },
+      "danger-subtle": {
+        "value": "oklch(from var(--wim-color-danger) l c h / 0.055)"
+      },
+      "info-subtle": {
+        "value": "oklch(from var(--wim-color-info) l c h / 0.155)"
+      },
+      "success-subtle": {
+        "value": "oklch(from var(--wim-color-success) l c h / 0.09)"
+      },
+      "warning-subtle": {
+        "value": "oklch(from var(--wim-color-warning) l c h / 0.035)"
+      },
+      "neutral-subtle": {
+        "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.195)"
       }
     }
   }
