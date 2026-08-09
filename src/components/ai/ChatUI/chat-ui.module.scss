@@ -354,7 +354,11 @@
     justify-content: center;
     overflow: hidden;
     font-weight: var(--wim-font-weight-medium);
-    color: var(--wim-color-white);
+
+    /* T108: 文字色はスウォッチと対にする。以前は全色で白固定で、light 3 色・dark 9 色が
+       AA を割っていた（dark の s7 は 1.52）。イニシャルは 1 文字なので axe が測らず、
+       a11y は緑のままだった。 */
+    color: var(--wim-comp-avatar-default-fg);
     background-color: var(--wim-comp-avatar-default);
     border-radius: var(--wim-radius-full);
   
@@ -377,18 +381,65 @@
     }
   
     /* Strong Tone Colors */
-    &.s1 { background-color: var(--wim-comp-avatar-s1); }
-    &.s3 { background-color: var(--wim-comp-avatar-s3); }
-    &.s5 { background-color: var(--wim-comp-avatar-s5); }
-    &.s7 { background-color: var(--wim-comp-avatar-s7); }
-    &.s10 { background-color: var(--wim-comp-avatar-s10); }
-    &.s12 { background-color: var(--wim-comp-avatar-s12); }
-    &.s14 { background-color: var(--wim-comp-avatar-s14); }
-    &.s16 { background-color: var(--wim-comp-avatar-s16); }
-    &.s18 { background-color: var(--wim-comp-avatar-s18); }
-    &.s20 { background-color: var(--wim-comp-avatar-s20); }
-    &.s22 { background-color: var(--wim-comp-avatar-s22); }
-    &.s24 { background-color: var(--wim-comp-avatar-s24); }
+    &.s1 {
+      color: var(--wim-comp-avatar-s1-fg);
+      background-color: var(--wim-comp-avatar-s1);
+    }
+
+    &.s3 {
+      color: var(--wim-comp-avatar-s3-fg);
+      background-color: var(--wim-comp-avatar-s3);
+    }
+
+    &.s5 {
+      color: var(--wim-comp-avatar-s5-fg);
+      background-color: var(--wim-comp-avatar-s5);
+    }
+
+    &.s7 {
+      color: var(--wim-comp-avatar-s7-fg);
+      background-color: var(--wim-comp-avatar-s7);
+    }
+
+    &.s10 {
+      color: var(--wim-comp-avatar-s10-fg);
+      background-color: var(--wim-comp-avatar-s10);
+    }
+
+    &.s12 {
+      color: var(--wim-comp-avatar-s12-fg);
+      background-color: var(--wim-comp-avatar-s12);
+    }
+
+    &.s14 {
+      color: var(--wim-comp-avatar-s14-fg);
+      background-color: var(--wim-comp-avatar-s14);
+    }
+
+    &.s16 {
+      color: var(--wim-comp-avatar-s16-fg);
+      background-color: var(--wim-comp-avatar-s16);
+    }
+
+    &.s18 {
+      color: var(--wim-comp-avatar-s18-fg);
+      background-color: var(--wim-comp-avatar-s18);
+    }
+
+    &.s20 {
+      color: var(--wim-comp-avatar-s20-fg);
+      background-color: var(--wim-comp-avatar-s20);
+    }
+
+    &.s22 {
+      color: var(--wim-comp-avatar-s22-fg);
+      background-color: var(--wim-comp-avatar-s22);
+    }
+
+    &.s24 {
+      color: var(--wim-comp-avatar-s24-fg);
+      background-color: var(--wim-comp-avatar-s24);
+    }
   }
   
   .image {
