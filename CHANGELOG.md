@@ -1,5 +1,208 @@
 # wimui
 
+## 0.18.0
+
+### Minor Changes
+
+- 212be0e: Remove the `secondary` intent — use `neutral` instead
+
+  **破壊的変更**（0.x のため minor）。`Badge` / `Chip` / `Tag` / `Progress` などの
+  `intent="secondary"` が使えなくなります。
+
+  ```diff
+  - <Badge intent="secondary">Draft</Badge>
+  + <Badge intent="neutral">Draft</Badge>
+  ```
+
+  `WimIntent` と `IndicatorIntent` から `secondary` を削除しました（`ButtonIntent` /
+  `FeedbackIntent` / `FieldIntent` には元から含まれていません）。TypeScript を使っていれば
+  コンパイルエラーで検出できます。
+
+  **理由**: `secondary` と `neutral` はライトテーマで**まったく同じ色**でした（どちらも
+  `{pccs.gy7-5}` = `#b6b6b6`、文字も同じ `#000`）。`solid` と `outline` では**背景・文字・枠
+  すべてが一致**し、2 つの intent が同じものを描いていました。
+
+  加えて WIM の intent 語彙は `success` / `warning` / `danger` / `info` という**意味**の軸ですが、
+  `secondary` だけが**階層**の語で軸が異なります。バリアント（`solid` / `outline` / `subtle`）
+  という別軸が既にあるため、intent 側に階層語を置くと概念が二重になっていました。
+
+  **`variant="secondary"` は影響を受けません。** これは intent とは別の語彙で、
+  `ChatMessage` と `TimelinePoint` の `variant` では `secondary` が**今も有効**です
+  （それぞれチャットバブルの受信色と `--wim-color-line` を指しています）。
+  この変更が影響するのは **`intent="secondary"` だけ**です。
+
+  **トークン `--wim-color-secondary` も残ります。** ただし**正式名は
+  `--wim-color-line` になりました**（線・マーク用の灰色。枠・スピナー・トラック・
+  ドットで 31 箇所が参照しています）。`--wim-color-secondary` は同じ値を指す
+  **エイリアスとして残す**ので、テーマをカスタマイズしている場合もこれまでどおり
+  動きます。新しく書くときは `--wim-color-line` を使ってください。
+  `--wim-color-neutral-fill` とはダークテーマで値が分岐するため、統合はしていません。
+
+### Patch Changes
+
+- 265408b: `AppShell`: warn in development when the `sidebar` prop is mixed with the Composition API.
+
+  With structural children (`AppShell.Main`, `AppShell.Sidebar`, …), only the props-API branch renders `sidebar`, so the prop was dropped with no signal. Development builds now warn once and point at `<AppShell.Sidebar>` inside `<AppShell.Body>`.
+
+- 2111453: Make `Button` の `variant="ghost"` fully transparent at rest
+
+  `ghost` は「静止時は透明、ホバーで背景」という変種ですが、`Button` だけが静止時から
+  薄い塗り（黒 3%）と枠（黒 8%）を持っていました。同じ `ghost` でも `FieldVariant` の側は
+  背景・枠とも `transparent` で、**同じ名前が 2 つの別物を指していた**状態です。
+
+  `Field` と一般的な定義に揃えました。ホバー時の背景は従来どおりです。
+
+  **ツールバーやリスト行など、静止時のボタンが薄く見えていた箇所の見た目が変わります。**
+
+- cc27263: Fix `Calendar` showing Japanese weekday headers regardless of locale
+
+  `Calendar`（および `RangeCalendar` / `DatePicker` など内部で使う全て）の曜日ヘッダが
+  **UI の言語に関係なく `日 月 火 水 木 金 土`** と表示されていました。
+
+  原因は実装内のローカル定数で、prop も i18n も経由しないため**消費者側から差し替える
+  手段がありませんでした**。英語のアプリを作ると、カレンダーの曜日だけ日本語になります。
+
+  `Intl.DateTimeFormat` で現在のロケールから導くようにしました。**内蔵リソースの
+  3 言語（en / ja / pt）に限らず**、`setWimLocale("de")` ならドイツ語の曜日が出ます。
+
+  ```
+  locale=ja: 日 月 火 水 木 金 土
+  locale=en: Sun Mon Tue Wed Thu Fri Sat
+  locale=pt: dom. seg. ter. qua. qui. sex. sáb.
+  ```
+
+  **曜日ヘッダの文字数が言語で変わります**（`日` の 1 文字に対し `Sun` は 3 文字）。
+  カレンダーの列幅を独自に狭めている場合は確認してください。
+
+- a0392dd: `CommandPalette`: the dialog now has an accessible name.
+
+  `CommandPaletteContent` rendered `role="dialog" aria-modal="true"` with nothing to name it, which axe reports as `aria-dialog-name` (serious) for every consumer — the palette has no heading to borrow a name from. It now defaults to the built-in translation (`command_palette.label`, en/ja/pt) and accepts `aria-label` to override.
+
+- a0392dd: `ContextMenu`: `asChild` no longer merges the container's `display: inline-block` onto the child element.
+
+  Wrapping a `<Table.Row>` needs `asChild` so the trigger becomes the `<tr>` instead of putting a `<div>` under `<tbody>`. Before this change `asChild` fixed the markup but not the rendering — the container class carried `display: inline-block`, so the rows flowed inline and the header no longer lined up with any column. The disabled styles moved out of `.container` so they still apply in both modes.
+
+- 6c75d36: Align the icon with the first line of text in `Banner`, `Notification` and `Snackbar`
+
+  アイコンが**テキストの 1 行目ではなく、テキスト塊の中央**に置かれていました。内容が
+  1 行に収まるうちは 1 行目とほぼ一致するので気付きにくく、**折り返すほどアイコンが
+  下へ落ちます**。`Alert` は既に修正済みで（0.16.x）、今回は残りへの横展開です。
+
+  実測（アイコンの top − 1 行目の top）:
+
+  - `Banner` の長文: 1280px で 13.2px、390px で **45.2px** → **-1.0px**
+  - `Notification`: title + description が常に 2 段のため**短文でも 20.7px** → **0.0px**
+  - `Snackbar` の長文: 1280px で 12.8px、390px で 22.8px → **0.0px**
+
+  短い内容でも悪化しません。
+
+  **アイコンの位置が変わるため、これらを含む画面の見た目が変わります。**
+  `Banner` / `Notification` / `Snackbar` を独自にレイアウトしている場合は確認してください。
+
+- bce97c7: Table: drop the outer `card` frame when rows become mobile cards; Patterns narrow follow-ups; GanttChart timeline scrolls as one.
+
+  `container-type` and the card border lived on the same wrapper, so the border could not be cleared by the mobileCard container query (same reason DataGrid splits root/container). IntakeQueue uses `mobileCard="md"`; ComparisonTable stacks below 768; composition docs match the sm-default break; Dashboard / Starter copy polish. GanttChart puts header + body in one `overflow: auto` scrollport so narrow timelines are reachable (sticky header on vertical scroll). SortableList demo uses `min(100%, 400px)` so the story no longer forces page horizontal scroll. Story demo copy drops Bento/Doe hype; `check:slop` hype scan covers all `docs_stories_*` locales. Audit table samples use real names (placeholder keys keep `John Doe`). `elevated` (Card/Stats variant) is a hype false-positive for `elevate`.
+
+- 3e8ffea: Give `intent="neutral"` a real `subtle` surface instead of reusing its solid fill
+
+  `Badge` / `Tag` / `Chip` で `variant="subtle"` と `intent="neutral"` を組み合わせると、
+  **`variant="solid"` とまったく同じ面**が塗られていました（文字色だけが違う状態）。
+  `subtle` の役割は「`solid` より淡い面」なので、これでは変種として機能していません。
+
+  原因は intents SSOT で `neutral` の `subtle` が `neutral-fill`（＝ `solid` と同じ値）を
+  指していたことです。専用トークン `--wim-color-neutral-fill-subtle` を追加して、そちらを
+  指すようにしました。
+
+  値は総当たりの実測で選んでいます。`neutral` は base 自体がサーフェス寄りの灰色なので、
+  他 intent と同じ「base の 13%」では **dark の `surface-variant` 上で消えます**（知覚距離
+  0.0038、基準 0.015）。既存トークンにも条件を満たすものは無く、`surface-void` の
+  ヴェールに落ち着きました。
+
+  **アルファはテーマで逆向きに効く**ため、light 0.06 / dark 0.30 と分けています。light は
+  面が白いので薄いほど `solid` から離れ、dark は面が暗いので濃いほど離れます。結果、素の面の上で
+  `solid` との知覚距離は light 0.1780 / dark 0.1803 と両テーマで揃います。
+
+  **見た目が変わるのは `neutral` の `subtle` だけ**で、他の intent と他の variant は変わりません。
+
+- c87eb05: Playground: stack Billing / Members tables as cards on narrow widths.
+
+  Both recipes used `Table` without `mobileCard` and Cell `label`s, so four-column tables were clipped inside the Playground cards. Same shape as the Captions fix (T97).
+
+- 6ef9ecf: Add `--wim-color-line` as the name for the border/mark grey (`--wim-color-secondary` stays as an alias)
+
+  `--wim-color-secondary` は枠・区切り線・トラック・ドットに使う灰色ですが、
+  `secondary` intent の廃止によって**語彙の中に参照先を失った名前**になっていました。
+  実態に合わせて `--wim-color-line` を追加し、ライブラリ内部の参照 36 箇所を移しました。
+
+  **旧名 `--wim-color-secondary` はそのまま残ります。** `--wim-color-line` を指すエイリアスで、
+  値は従来と同一です。独自にテーマを組んでいる場合、これまでどおり `--wim-color-secondary` を
+  上書きすれば同じように効きます。
+
+  **`--wim-color-neutral-fill` とは統合していません。** dark で値が分岐しており
+  （line は `#b6b6b6` のまま / neutral-fill は `#575757`）、`surface-variant` 上の知覚距離は
+  0.3487 対 0.0292 です。1px の枠やスピナーの線を後者で描くとダークでほぼ消えます。
+
+  あわせて、`secondary` intent の廃止時に残っていた到達不能な CSS（`Avatar` / `Progress` /
+  `ProgressRing` の `.secondary`）を削除しました。型から消えているためクラスは生成されず、
+  見た目に影響はありません。
+
+- 56df4f4: Fix text contrast on avatars, leaderboard medals and short-label controls
+
+  **1 文字のテキストは axe が色コントラストを測りません**（`Element content is too short to
+determine if it is actual text content`）。そのため、以下の違反が検出されないまま出荷されていました。
+
+  - **`ChatUI` のアバター**: 全 13 色で白文字固定。**light 3 色・dark 9 色**が WCAG AA を割っており、
+    ダークの `s7` は **1.52**（基準 4.5）。スウォッチごとに文字色を対にし、白／黒のうち
+    コントラストが高い側を機械的に選びました（全 26 通りで最小 4.60）
+  - **`Leaderboard` のメダル**: 2 位 2.88 / 3 位 3.76。メダル色は変えず文字を暗くして
+    7.28 / 5.59（1 位は元からその形）
+
+  **アバターとメダルの文字色が変わります。**
+
+- 0e463ec: Redraw `subtle` as a fill without a ring, so it stops colliding with `outline`
+
+  `Badge` / `Tag` / `Chip` の `variant="subtle"` を **面のみ**（塗り＋透明枠）に戻し、
+  `outline` を **輪郭のみ**（透明背景＋枠）のままにして、2 つを補集合にしました。
+
+  直前の実装（濃い色の 2px 枠＋太字）は `outline` とほぼ同じ見た目になっていたうえ、
+  **枠 2px・太字で 3 変種のうち最も目立つ**という逆転を起こしていました
+  （`outline` は枠 1px）。`subtle` を名乗る変種が一番強く出るのは意味が破綻しています。
+
+  その前の実装（塗り＋同色の薄いリング）に単純に戻したわけではありません。**リングは
+  落としました** — 塗りと同色の枠を添える形は Tailwind の `bg-x-100 text-x-800
+border-x-200` と同じ定型で、`outline` へ先祖返りする原因そのものだったためです。
+
+  塗りのアルファは `check:contrast`（189 組 × light/dark）の実測で **13%** に決めました。
+  通る範囲は 0.12〜0.15 しかありません: これより薄いと塗りが面と見分けられなくなり
+  （0.10 で 0.0133 < 基準 0.015）、濃いと文字が AA を割ります（0.16 で 4.46 < 4.5）。
+
+  外寸は変わりません（枠は 1px のまま透明にしただけ）。`font-weight` の上書きも外したので、
+  `Tag` / `Chip` は `medium`、`Badge` は `normal` という各コンポーネントの既定に戻ります。
+
+- 5cf9631: Tokens: make every `--wim-color-*-subtle` fill land at a consistent, visible tint, and stop using fill tokens as borders.
+
+  The alphas were uniform (0.1, with `primary` at 0.04), but a fixed alpha does not produce a fixed appearance — how far a tint moves a surface depends on its hue and on how light the surface is. Measured against `surface` and `surface-app`, the perceived tint varied 5× across intents: `info-subtle` sat at 0.0188 while `warning-subtle` reached 0.0955, so a `danger` panel read as clearly stronger than an `info` one, and five combinations fell below the project's own visibility floor of 0.015 — in dark, `primary-subtle` was 0.0063, barely a third of it.
+
+  Because light and dark respond to alpha in opposite directions, one value cannot serve both. Each intent now carries a per-theme alpha chosen so the perceived tint lands near 0.022; all 24 theme × intent × surface combinations now fall between 0.0222 and 0.0388. **Subtle fills change appearance slightly in both themes** — most visibly `primary-subtle` and `info-subtle` in dark, which were previously close to invisible.
+
+  Four places used a fill token for `border-color`. `SortableList` (hover) and `Dashboard` (edit mode) now use border tokens. `Gallery`'s toolbar drew its border in its own background colour, so it only made the toolbar look 1px larger; it now has a real edge. `Dashboard`'s add-button hover was erasing the visible dashed outline it starts with, and now strengthens it instead.
+
+  `check:subtle-tokens` keeps this from drifting, checking the floor, an upper bound, and the spread between intents.
+
+- a0392dd: `Table card`: horizontal overflow is reachable again.
+
+  The card variant set `overflow: hidden` to clip the rounded corners, which also made the overhang unreachable — measured at 390px with a 5-column table, the container was 364px against a 443px table, so the last column sat outside with no scrollbar, wheel or touch panning (only scripts could move `scrollLeft`). It is now `overflow-x: auto` with `overflow-y: hidden`; the 12px radius clipping is unchanged.
+
+  This does not give `Table` a narrow-width mode — that is still `DataGrid mobileCard` only.
+
+- bf52514: Table mobile cards: border-only elevation and `radius-component` to match toolbar/pagination chrome.
+
+  Also wire `one_elevation_stance` / `one_radius_stance` into `judge:slop` (they were DESIGN rules without a `judge` rubric).
+
+- b1b5491: `Tag` / `Chip`: `asChild` actually works (and `check:aschild` now renders to prove it).
+
+  Both advertised `asChild` but always threw: `Tag` passed a children array into `IndicatorBase`'s `Slottable`, and `Chip` wrapped `Slottable` inside a label `<span>` so `Slot` never found it. `asChild` + `onDelete` is rejected with an explicit error. The static `check:aschild` gate now also runs a render smoke test so this class of failure cannot go green again.
+
 ## 0.17.0
 
 ### Minor Changes
