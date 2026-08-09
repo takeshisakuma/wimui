@@ -18,8 +18,78 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Changesets Release
+  # どちらの経路に入るかを先に決める。changesets/action 自体も同じ判定をするが、
+  # **その判定はジョブが起動したあと**なので、環境ゲートを掛ける単位を分けるには
+  # ここで先に見る必要がある。
+  decide:
+    name: Decide version or publish
+    runs-on: ubuntu-latest
+    outputs:
+      has_changesets: ${{ steps.check.outputs.has_changesets }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: check
+        run: |
+          count=$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | wc -l)
+          echo "changeset: $count 件"
+          if [ "$count" -gt 0 ]; then
+            echo "has_changesets=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changesets=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # Version PR を作る／更新するだけの経路。**npm には触らないので環境ゲートを
+  # 掛けない。**
+  #
+  # 以前は publish と同じ 1 ジョブで、ジョブ単位の `environment: release` が
+  # 掛かっていた。そのため **npm を触らないランまで全部が承認待ちで止まり**、
+  # 承認も破棄もされないまま残った 1 本が concurrency グループを占有して、
+  # 以降のリリースを無音で止めた（2026-08-08 のランが 38 時間占有し、0.18.0 の
+  # 準備で発覚。待たされたランはジョブを 1 つも作らないため、チェックも通知も
+  # 承認ボタンも出ない）。T116。
+  version:
+    name: Create Release Pull Request
+    needs: decide
+    if: needs.decide.outputs.has_changesets == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          # `publish` を渡さない ＝ この経路は publish しない。
+          #
+          # llms.txt はソースに package.json の version を埋め込むため、
+          # `changeset version` でバージョンが上がるとコミット済みコピーが古くなる。
+          # Version PR の中で再生成しないと `check:llms` が必ず落ちて
+          # **リリース PR が構造的にマージ不能になる**（2026-07-26 に実際に発生）。
+          # 公開される dist/llms.txt はビルド時生成なので常に正しいが、
+          # GitHub Pages が配信するのはコミット済みの public/llms.txt なので、
+          # ここで再生成しておかないと Pages 側の版数が古いまま残る。
+          version: npm run version:packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 実際に npm へ出す経路だけを `release` 環境で守る。NPM_TOKEN もここだけ。
+  publish:
+    name: Publish to npm
+    needs: decide
+    if: needs.decide.outputs.has_changesets == 'false'
     runs-on: ubuntu-latest
     # publish 用 Secret（NPM_TOKEN）はこの Environment に置く。GitHub 側で
     # `release` Environment に required reviewer を設定すると、publish 前に
@@ -27,7 +97,6 @@ jobs:
     environment: release
     permissions:
       contents: write
-      pull-requests: write
       id-token: write
 
     steps:
@@ -44,20 +113,10 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
-      # changeset がある場合はバージョンアップ PR を作成し、
-      # バージョンアップコミットが main にマージされたら npm へ publish する
-      - name: Create Release Pull Request or Publish
+      - name: Publish
         uses: changesets/action@v1
         with:
           publish: npm run release
-          # llms.txt はソースに package.json の version を埋め込むため、
-          # `changeset version` でバージョンが上がるとコミット済みコピーが古くなる。
-          # Version PR の中で再生成しないと `check:llms` が必ず落ちて
-          # **リリース PR が構造的にマージ不能になる**（2026-07-26 に実際に発生）。
-          # 公開される dist/llms.txt はビルド時生成なので常に正しいが、
-          # GitHub Pages が配信するのはコミット済みの public/llms.txt なので、
-          # ここで再生成しておかないと Pages 側の版数が古いまま残る。
-          version: npm run version:packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
