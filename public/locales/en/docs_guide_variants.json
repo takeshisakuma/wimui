@@ -35,6 +35,7 @@
     "col_type": "Type",
     "col_values": "Values",
     "col_background": "Background behind the border",
-    "col_reason": "Reason"
+    "col_reason": "Reason",
+    "intents_link": "Intent decides what a component means; this page is about how loudly it says it. The intent vocabulary has its own page."
   }
 }
