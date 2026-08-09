@@ -199,14 +199,20 @@
   .ghost {
     --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
-    background-color: var(--wim-color-ghost-bg);
-    border-color: var(--wim-color-ghost-border);
+    /* T103: 以前は静止時から `ghost-bg`（黒 3%）と `ghost-border`（黒 8%）を持っており、
+       **「完全透明、ホバー時のみ背景」という ghost の定義と食い違っていた**。
+       実質「ごく薄い outline」で、同じ `ghost` でも `FieldVariant` の側は
+       背景・枠とも `transparent`（`input-base.module.scss:62`）＝ 定義どおりだった。
+       **同じ名前が 2 つの別物を指していた**ので、Field と一般定義に揃える。
+       ホバー時の背景は下の `&:hover` が持つ。 */
+    background-color: transparent;
+    border-color: transparent;
 
     &.default {
       color: var(--wim-comp-control-default-fg);
     }
 
-    /* outline と同じ理由で text-* ロールを使う（背景は ghost-bg ＝ ほぼサーフェス）。 */
+    /* outline と同じ理由で text-* ロールを使う（背景は透過＝下のサーフェスに載る）。 */
     &.danger {
       color: var(--wim-color-text-danger);
     }
