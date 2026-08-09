@@ -29,7 +29,7 @@ export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
    * 入りだけ別扱いにしたいときのプリセット。`"none"` で入りのアニメーションを止める。
    * 省略時は `preset` に従う。
    *
-   * `Drawer` の `slideIn` / `slideOut` のように**片方だけ切りたい** API があるのに、
+   * `Drawer` の `slideIn` / `slideOut` のように片方だけ切りたい API があるのに、
    * `preset` は両相を一括で決めるため表現できなかった（T58）。
    */
   enterPreset?: TransitionPreset;

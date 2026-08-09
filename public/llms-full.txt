@@ -863,7 +863,7 @@ Set `responsive={false}` to keep the sidebar in flow at every width.
     - `enterPreset: "none" | "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — 入りだけ別扱いにしたいときのプリセット。`"none"` で入りのアニメーションを止める。
 省略時は `preset` に従う。
 
-`Drawer` の `slideIn` / `slideOut` のように**片方だけ切りたい** API があるのに、
+`Drawer` の `slideIn` / `slideOut` のように片方だけ切りたい API があるのに、
 `preset` は両相を一括で決めるため表現できなかった（T58）。
     - `leavePreset: "none" | "fade" | "scale" | "slide-right" | "slide-left" | "slide-top" | "slide-bottom"` — 出だけ別扱いにしたいときのプリセット。`"none"` で出のアニメーションを止める。
     - `enter: string` = "" — Class applied during the enter transition
