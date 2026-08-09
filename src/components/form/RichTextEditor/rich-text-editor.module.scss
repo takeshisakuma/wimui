@@ -14,7 +14,7 @@
     max-width: var(--wim-input-width, 320px);
     overflow: hidden;
     background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-radius-component);
     transition: var(--wim-transition-base);
   
@@ -24,7 +24,7 @@
     }
   
     &.outline {
-      border-color: var(--wim-color-secondary);
+      border-color: var(--wim-color-line);
   
       &:focus-within {
         border-color: var(--wim-color-primary);
@@ -131,7 +131,7 @@
       gap: var(--wim-spacing-3xs);
       align-items: center;
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-line);
     }
   
     .toolbarSep {
@@ -140,7 +140,7 @@
       width: var(--wim-border-width-thin);
       height: 20px; /* Exception: Structural Logic — ツールバーアイコンに揃える区切り線高 */
       margin: 0 var(--wim-spacing-xs);
-      background-color: var(--wim-color-secondary);
+      background-color: var(--wim-color-line);
     }
   
     .toolbarBtn {

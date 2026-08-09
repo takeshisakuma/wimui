@@ -24,7 +24,7 @@
     flex-shrink: 0;
     width: var(--indicator-size, 10px);
     height: var(--indicator-size, 10px);
-    background-color: var(--wim-color-secondary);
+    background-color: var(--wim-color-line);
     border: var(--indicator-border-width, 2px) solid var(--wim-color-surface);
     border-radius: var(--wim-radius-full);
 
@@ -61,7 +61,7 @@
     }
 
     &.neutral {
-      background-color: var(--wim-color-secondary);
+      background-color: var(--wim-color-line);
     }
 
     // Positions

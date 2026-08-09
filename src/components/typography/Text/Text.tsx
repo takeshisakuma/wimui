@@ -106,7 +106,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       );
 
     // For backward compatibility with CSS classes for certain colors
-    // "secondary" は塗り用トークン --wim-color-secondary (gy7-5) ではなく
+    // "secondary" は塗り用トークン --wim-color-line (gy7-5) ではなく
     // テキスト用 --wim-color-text-secondary に解決する（axe: color-contrast）
     const mappedColors = [
       "danger",

@@ -127,14 +127,14 @@
     left: 0;
     z-index: var(--wim-z-overlay);
     background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-overlay);
   }
 
   .search {
     padding: var(--wim-field-padding-y-tight);
-    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-line);
   }
 
   .searchInput {
@@ -142,7 +142,7 @@
     padding: var(--wim-field-padding-y-tight);
     font-size: var(--wim-font-size-small-scale, 0.9rem);
     outline: none;
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-radius-sm);
     transition: border-color var(--wim-transition-fast);
 
@@ -175,7 +175,7 @@
     letter-spacing: var(--wim-letter-spacing-wide);
     white-space: nowrap;
     pointer-events: none;
-    border-top: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-line);
 
     &:first-child {
       padding-top: var(--wim-spacing-sm);
@@ -208,7 +208,7 @@
     height: var(--wim-border-width-thin);
     margin: var(--wim-spacing-xs) var(--wim-spacing-md);
     overflow: hidden;
-    background-color: var(--wim-color-secondary);
+    background-color: var(--wim-color-line);
     opacity: var(--wim-opacity-dim);
   }
 
@@ -233,7 +233,7 @@
       appearance: none;
       cursor: pointer;
       background-color: var(--wim-color-surface);
-      border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+      border: var(--wim-border-width-thin) solid var(--wim-color-line);
       border-radius: var(--wim-radius-component);
       transition:
         border-color var(--wim-transition-fast),

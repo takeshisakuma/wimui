@@ -111,7 +111,7 @@
     }
 
     &.secondary {
-      background-color: var(--wim-color-secondary);
+      background-color: var(--wim-color-line);
     }
 
     &.danger {
@@ -145,7 +145,7 @@
       // 枠（border-color）は面ではなく輪郭なので塗り用のままでよい。T41 案② で検出。
       &.secondary {
         color: var(--wim-color-text-secondary);
-        border-color: var(--wim-color-secondary);
+        border-color: var(--wim-color-line);
       }
 
       &.danger {

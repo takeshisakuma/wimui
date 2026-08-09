@@ -48,6 +48,7 @@
   "--wim-color-glass-border",
   "--wim-color-info",
   "--wim-color-info-subtle",
+  "--wim-color-line",
   "--wim-color-neutral-fill",
   "--wim-color-neutral-fill-subtle",
   "--wim-color-neutral-subtle",

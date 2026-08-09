@@ -30,6 +30,7 @@ export type WimColorKey =
   | "glass-border"
   | "info"
   | "info-subtle"
+  | "line"
   | "neutral-fill"
   | "neutral-fill-subtle"
   | "neutral-subtle"
