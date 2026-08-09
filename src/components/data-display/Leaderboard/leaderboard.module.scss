@@ -53,13 +53,19 @@
       background-color: var(--lb-rank-1);
     }
 
+    /* T108: 以前は白文字で、実測 銀 2.88 / 銅 3.76 と AA（4.5）を割っていた。
+       **順位の数字は 1 文字なので axe が測っていなかった**（`Element content is too
+       short to determine if it is actual text content` として incomplete 扱い）。
+       メダル色は変えず文字を暗くすると 銀 7.28 / 銅 5.59 になり、しかも
+       rank1 が元から `text-on-warning`（暗い文字）なので 3 つの形が揃う。
+       白文字のまま通すには銀を L=55% まで落とす必要があり、銀に見えなくなる。 */
     &.rank2 .rank {
-      color: var(--wim-color-white);
+      color: var(--wim-color-text-on-warning);
       background-color: var(--lb-rank-2);
     }
 
     &.rank3 .rank {
-      color: var(--wim-color-white);
+      color: var(--wim-color-text-on-warning);
       background-color: var(--lb-rank-3);
     }
   }

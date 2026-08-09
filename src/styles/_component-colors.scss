@@ -15,6 +15,24 @@
   --wim-comp-avatar-s20: #3d1c84;
   --wim-comp-avatar-s22: #5f2883;
   --wim-comp-avatar-s24: #9a0f50;
+
+  /* T108: アバターの文字色はスウォッチごとに決める。以前は全色で白文字を使っており、
+     **light で 3 色・dark で 9 色が AA を割っていた**（dark の s7 は 1.52）。
+     イニシャルは 1 文字なので axe は `too short` として測っておらず、
+     a11y は緑のままだった。値は白／黒のうちコントラストが高い側を機械的に選んである。 */
+  --wim-comp-avatar-default-fg: var(--wim-color-white); /* #243b8b 上で 10.13 */
+  --wim-comp-avatar-s1-fg: var(--wim-color-white); /* #b01040 上で 7.01 */
+  --wim-comp-avatar-s3-fg: var(--wim-color-white); /* #c21 上で 5.52 */
+  --wim-comp-avatar-s5-fg: var(--wim-color-text-on-warning); /* #d45f10 上で 5.44 */
+  --wim-comp-avatar-s7-fg: var(--wim-color-text-on-warning); /* #d19711 上で 8.15 */
+  --wim-comp-avatar-s10-fg: var(--wim-color-text-on-warning); /* #8ca114 上で 7.22 */
+  --wim-comp-avatar-s12-fg: var(--wim-color-white); /* #28853f 上で 4.65 */
+  --wim-comp-avatar-s14-fg: var(--wim-color-white); /* #297364 上で 5.63 */
+  --wim-comp-avatar-s16-fg: var(--wim-color-white); /* #205b85 上で 7.25 */
+  --wim-comp-avatar-s18-fg: var(--wim-color-white); /* #243b8b 上で 10.13 */
+  --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #3d1c84 上で 12.37 */
+  --wim-comp-avatar-s22-fg: var(--wim-color-white); /* #5f2883 上で 9.92 */
+  --wim-comp-avatar-s24-fg: var(--wim-color-white); /* #9a0f50 上で 8.21 */
   --wim-comp-heatmap-level-0: #e5e5e5;
   --wim-comp-heatmap-level-1: #cceac4;
   --wim-comp-heatmap-level-2: #7fc97e;
@@ -64,6 +82,24 @@
   --wim-comp-avatar-s20: #6a64ae;
   --wim-comp-avatar-s22: #a459ab;
   --wim-comp-avatar-s24: #df4c93;
+
+  /* T108: アバターの文字色はスウォッチごとに決める。以前は全色で白文字を使っており、
+     **light で 3 色・dark で 9 色が AA を割っていた**（dark の s7 は 1.52）。
+     イニシャルは 1 文字なので axe は `too short` として測っておらず、
+     a11y は緑のままだった。値は白／黒のうちコントラストが高い側を機械的に選んである。 */
+  --wim-comp-avatar-default-fg: var(--wim-color-white); /* #396bb0 上で 5.38 */
+  --wim-comp-avatar-s1-fg: var(--wim-color-text-on-warning); /* #ed3b6b 上で 5.44 */
+  --wim-comp-avatar-s3-fg: var(--wim-color-text-on-warning); /* #fc3633 上で 5.71 */
+  --wim-comp-avatar-s5-fg: var(--wim-color-text-on-warning); /* #ff6e2b 上で 7.52 */
+  --wim-comp-avatar-s7-fg: var(--wim-color-text-on-warning); /* #ffcb1f 上で 13.81 */
+  --wim-comp-avatar-s10-fg: var(--wim-color-text-on-warning); /* #99d02c 上で 11.41 */
+  --wim-comp-avatar-s12-fg: var(--wim-color-text-on-warning); /* #32a65d 上で 6.75 */
+  --wim-comp-avatar-s14-fg: var(--wim-color-text-on-warning); /* #1aa28e 上で 6.60 */
+  --wim-comp-avatar-s16-fg: var(--wim-color-text-on-warning); /* #1c86ae 上で 5.07 */
+  --wim-comp-avatar-s18-fg: var(--wim-color-white); /* #396bb0 上で 5.38 */
+  --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #6a64ae 上で 5.19 */
+  --wim-comp-avatar-s22-fg: var(--wim-color-text-on-warning); /* #a459ab 上で 4.60 */
+  --wim-comp-avatar-s24-fg: var(--wim-color-text-on-warning); /* #df4c93 上で 5.59 */
   --wim-comp-heatmap-level-0: #4f4f4f;
   --wim-comp-heatmap-level-1: #355935;
   --wim-comp-heatmap-level-2: #5a814c;
@@ -110,6 +146,24 @@
   --wim-comp-avatar-s20: #6a64ae;
   --wim-comp-avatar-s22: #a459ab;
   --wim-comp-avatar-s24: #df4c93;
+
+  /* T108: アバターの文字色はスウォッチごとに決める。以前は全色で白文字を使っており、
+     **light で 3 色・dark で 9 色が AA を割っていた**（dark の s7 は 1.52）。
+     イニシャルは 1 文字なので axe は `too short` として測っておらず、
+     a11y は緑のままだった。値は白／黒のうちコントラストが高い側を機械的に選んである。 */
+  --wim-comp-avatar-default-fg: var(--wim-color-white); /* #396bb0 上で 5.38 */
+  --wim-comp-avatar-s1-fg: var(--wim-color-text-on-warning); /* #ed3b6b 上で 5.44 */
+  --wim-comp-avatar-s3-fg: var(--wim-color-text-on-warning); /* #fc3633 上で 5.71 */
+  --wim-comp-avatar-s5-fg: var(--wim-color-text-on-warning); /* #ff6e2b 上で 7.52 */
+  --wim-comp-avatar-s7-fg: var(--wim-color-text-on-warning); /* #ffcb1f 上で 13.81 */
+  --wim-comp-avatar-s10-fg: var(--wim-color-text-on-warning); /* #99d02c 上で 11.41 */
+  --wim-comp-avatar-s12-fg: var(--wim-color-text-on-warning); /* #32a65d 上で 6.75 */
+  --wim-comp-avatar-s14-fg: var(--wim-color-text-on-warning); /* #1aa28e 上で 6.60 */
+  --wim-comp-avatar-s16-fg: var(--wim-color-text-on-warning); /* #1c86ae 上で 5.07 */
+  --wim-comp-avatar-s18-fg: var(--wim-color-white); /* #396bb0 上で 5.38 */
+  --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #6a64ae 上で 5.19 */
+  --wim-comp-avatar-s22-fg: var(--wim-color-text-on-warning); /* #a459ab 上で 4.60 */
+  --wim-comp-avatar-s24-fg: var(--wim-color-text-on-warning); /* #df4c93 上で 5.59 */
   --wim-comp-heatmap-level-0: #4f4f4f;
   --wim-comp-heatmap-level-1: #355935;
   --wim-comp-heatmap-level-2: #5a814c;

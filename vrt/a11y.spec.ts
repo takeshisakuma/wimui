@@ -64,6 +64,53 @@ async function analyzeWithRetry(page: Page, builder: AxeBuilder, retries = 3): P
   throw new Error("axe analyze failed after retries");
 }
 
+/**
+ * **axe は 1 文字（に近い）要素の色コントラストを測らない**（T108）。
+ * `Element content is too short to determine if it is actual text content` として
+ * `incomplete` に落とすので、`violations` だけを見ていると**存在する違反が素通りする**。
+ *
+ * 実際に起きた: `Calendar` の曜日ヘッダは無効時に 2.70〜4.50 しか無かったのに、
+ * 曜日名が `日` `月` の 1 文字だったため 4 か月以上どの CI でも赤にならなかった。
+ * ロケール由来の `Sun` `Mon` にした瞬間、**同じ要素・同じ色**で 7 件の violations に変わった（T107）。
+ *
+ * **自前でコントラストを計算しない。** 対象要素のテキストを一時的に伸ばして
+ * **axe にもう一度測らせる** ── このセッションで色計算を再実装したら本物と食い違った
+ * （最小コントラストが 4.62 のところ 1.01 と出た）ので、判定は axe に任せる。
+ *
+ * 短いテキストが無いストーリーでは 2 回目を走らせないので、追加コストはほぼゼロ。
+ */
+async function violationsHiddenByShortText(
+  page: Page,
+  results: Awaited<ReturnType<AxeBuilder["analyze"]>>,
+  build: () => AxeBuilder,
+): Promise<Result[]> {
+  const tooShort = results.incomplete
+    .filter((r) => r.id === "color-contrast")
+    .flatMap((r) => r.nodes)
+    .filter((n) => JSON.stringify(n).includes("too short"));
+  if (tooShort.length === 0) return [];
+
+  const targets = tooShort
+    .map((n) => n.target[0])
+    .filter((t): t is string => typeof t === "string");
+
+  // 伸ばすだけ。元に戻さないのは、この直後にテストが終わるため。
+  await page.evaluate((sels) => {
+    for (const s of sels) {
+      const el = document.querySelector(s);
+      if (el) el.textContent = "XXXXXXXX";
+    }
+  }, targets);
+
+  const after = await analyzeWithRetry(page, build());
+  return after.violations
+    .map((r) => ({
+      ...r,
+      nodes: r.nodes.filter((n) => targets.includes(n.target[0] as string)),
+    }))
+    .filter((r) => r.nodes.length > 0);
+}
+
 function formatViolations(violations: Result[]): string {
   if (violations.length === 0) return "";
   return violations
@@ -105,14 +152,16 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
               "*, *::before, *::after { transition: none !important; animation: none !important; }",
           });
 
-          const results = await analyzeWithRetry(
-            page,
+          const build = () =>
             new AxeBuilder({ page })
               .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
-              .disableRules(DISABLED_RULES),
-          );
+              .disableRules(DISABLED_RULES);
 
-          expect(results.violations, formatViolations(results.violations)).toEqual([]);
+          const results = await analyzeWithRetry(page, build());
+          const hidden = await violationsHiddenByShortText(page, results, build);
+
+          const all = [...results.violations, ...hidden];
+          expect(all, formatViolations(all)).toEqual([]);
         });
       }
     });
