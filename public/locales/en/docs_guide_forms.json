@@ -77,7 +77,8 @@
     "textarea_std_rule_header_desc": "Rule",
     "textarea_std_rule_header_title": "Item",
     "textarea_std_rules_title": "Common Rules",
-    "textarea_std_title": "TextArea Component Standardization"
+    "textarea_std_title": "TextArea Component Standardization",
+    "width_placement_link": "When to turn `fullWidth` on at all is a cross-cutting decision — the same prop appears on 32 components. See Width & Placement."
   },
   "basicinput": {
     "content_type": "Input Content",

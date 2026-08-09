@@ -1,0 +1,54 @@
+{
+  "wp": {
+    "title": "Width & Placement",
+    "desc": "Two props decide how much room a component claims and where it sits: `fullWidth` and `position`. They read as a pair, but they are not. `fullWidth` means one thing on all 32 components that have it. `position` carries five unrelated vocabularies across the 11 that have it — always read its type before you use it.",
+
+    "fw_title": "fullWidth — 32 components, one meaning",
+    "fw_desc": "Every component that takes `fullWidth` types it as `boolean`, defaults it to `false`, and means the same thing by it: take the full width of the parent. Five components (ColorInput, CreditCardInput, InputMask, PasswordInput, SearchInput) do not declare it themselves — they forward it to Input, so they inherit the same default. The question is never what it does; it is when to turn it on.",
+
+    "fw_on_title": "Turn it on when the parent already decides the width",
+    "fw_on_1": "The parent owns the measure",
+    "fw_on_1_desc": "A field in a form column, a button in a drawer footer, a table in a card. The container has already decided how wide the content should be; the control should not decide again.",
+    "fw_on_2": "Full width carries meaning",
+    "fw_on_2_desc": "A submit button spanning a panel footer reads as the action for that whole panel. The width is doing work, not filling space.",
+    "fw_on_3": "One column on narrow viewports",
+    "fw_on_3_desc": "Below the `sm` breakpoint, controls stack into a single column. Letting each keep its intrinsic width leaves a ragged right edge with no information in it.",
+
+    "fw_off_title": "Leave it off when the width is telling the user something",
+    "fw_off_1": "The input has a natural length",
+    "fw_off_1_desc": "A postal code, a one-time code, a year, a currency amount. The width of a field is a hint about how much to type. Stretching a 6-character field to 100% promises room the field will not accept.",
+    "fw_off_2": "Controls share a row",
+    "fw_off_2_desc": "Two `fullWidth` controls in the same flex row compete for the same space. Set the widths on the row instead — that is what Grid and Stack are for.",
+    "fw_off_3": "The parent is the page",
+    "fw_off_3_desc": "Text past roughly 60–70 characters per line gets harder to scan. A `fullWidth` textarea inside a full-bleed container inherits the page width, and the measure goes with it.",
+
+    "fw_not_layout_title": "It is not a layout tool",
+    "fw_not_layout_desc": "`fullWidth` makes a component fill its parent; it does not create the parent. When it is being used to fix alignment, the missing piece is usually a wrapper — Stack for a column, Grid for a row of unequal widths, Container for the measure. Reaching for `fullWidth` instead pushes the layout decision down into the leaf, where the next screen cannot reuse it.",
+
+    "pos_title": "position — one name, five vocabularies",
+    "pos_desc": "`position` is the one cross-cutting prop in WIM UI whose name does not tell you its type. Measured across the 11 components that accept it, it carries five unrelated sets of values. Read the type first.",
+
+    "pos_col_meaning": "Meaning",
+    "pos_col_components": "Components",
+    "pos_col_values": "Values",
+
+    "pos_css": "CSS position, passed through",
+    "pos_css_values": "The CSS keywords, typed as `React.CSSProperties[\"position\"]`",
+    "pos_screen": "A corner of the viewport",
+    "pos_screen_values": "`top-left` … `bottom-right`, plus `-center` variants on Snackbar and ToastProvider, plus `static` on FloatButton",
+    "pos_parent": "A corner of the parent element",
+    "pos_parent_values": "The four corners only",
+    "pos_direction": "The direction the menu opens",
+    "pos_direction_values": "`left` `right` `top` `bottom`",
+    "pos_side": "Which side the speaker is on",
+    "pos_side_values": "`left` `right`",
+    "pos_percent": "How far along the divider sits",
+    "pos_percent_values": "A number, 0–100",
+
+    "pos_uneven_title": "The vocabularies are not aligned with each other",
+    "pos_uneven_desc": "Two mismatches show up when the values are compared side by side. `FloatButton` mixes `static` — a CSS keyword, meaning \"do not place me at all\" — into a list of screen corners, so one member of the enum is answering a different question from the rest. And `Indicator` offers four corners while `Snackbar` and `ToastProvider` offer six; the same idea, placed in a parent versus placed in the viewport, has two different vocabularies. Neither is a bug you can trigger, which is why both survived: nothing measures a prop's values against the same prop on another component.",
+
+    "pos_new_title": "Adding position to a new component",
+    "pos_new_desc": "Match the closest vocabulary above rather than inventing a sixth. If the component is a layout primitive that hands the value straight to CSS, type it `React.CSSProperties[\"position\"]`. If it places something in the viewport, use the Snackbar set. If it places something inside its parent, use the four corners. A value that fits none of these is a signal that the prop wants a different name."
+  }
+}

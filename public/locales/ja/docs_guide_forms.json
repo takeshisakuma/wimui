@@ -77,7 +77,8 @@
     "textarea_std_rule_header_desc": "ルール",
     "textarea_std_rule_header_title": "項目",
     "textarea_std_rules_title": "共通ルール",
-    "textarea_std_title": "テキストエリアコンポーネントの標準化"
+    "textarea_std_title": "テキストエリアコンポーネントの標準化",
+    "width_placement_link": "`fullWidth` をそもそもいつ有効にするかは横断的な判断です ── 同じ prop が 32 コンポーネントに載っています。「幅と配置」を参照してください。"
   },
   "basicinput": {
     "content_type": "入力内容",

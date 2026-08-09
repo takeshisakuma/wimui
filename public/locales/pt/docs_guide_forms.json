@@ -77,7 +77,8 @@
     "textarea_std_rule_header_desc": "Regra",
     "textarea_std_rule_header_title": "Item",
     "textarea_std_rules_title": "Regras Comuns",
-    "textarea_std_title": "Padronização de Componentes TextArea"
+    "textarea_std_title": "Padronização de Componentes TextArea",
+    "width_placement_link": "Quando ativar `fullWidth` é uma decisão transversal — a mesma prop aparece em 32 componentes. Consulte Largura e posicionamento."
   },
   "basicinput": {
     "content_type": "Conteúdo da Entrada",

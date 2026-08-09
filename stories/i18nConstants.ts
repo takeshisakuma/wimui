@@ -43,6 +43,7 @@ export const ALL_NAMESPACES = [
   "docs_guide_variants",
   "docs_guide_visualization",
   "docs_guide_voice_tone",
+  "docs_guide_width_placement",
   "docs_guide_zindex",
   "docs_layout",
   "docs_layout_complex",
