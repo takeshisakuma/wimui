@@ -19,7 +19,11 @@
   .content {
     display: flex;
     gap: var(--wim-spacing-md);
-    align-items: center;
+
+    // T90: 以前は `center`。Notification は title + description が常に 2 段なので、
+    // **短いストーリーでも既に 20.7px ずれていた**（長文で 29.2px）。
+    // Banner / Snackbar と違い「折り返して初めて出る」欠陥ではなく、最初から出ている。
+    align-items: flex-start;
   }
 
   .icon {
