@@ -98,6 +98,16 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      # 消えたストーリーのベースラインが残っていないか（T106）。
+      # `storybook-static/index.json` が要るのでビルド後に置く。Lint ワークフローは
+      # Storybook をビルドしないため、そちらには置けない。
+      # シャード 1 だけで十分（4 回走らせても同じ結果を 4 回出すだけ）。
+      # **compare 側だけで走らせる**: update は撮り直しでベースラインを増やす経路なので、
+      # そこで落とすとコミットバック前に止まって「直しようがない赤」になる。
+      - name: Orphaned baselines
+        if: ${{ matrix.shard == 1 && github.event.inputs.update_snapshots != 'true' }}
+        run: npm run check:vrt-orphans
+
       - name: Run VRT (compare)
         if: ${{ github.event.inputs.update_snapshots != 'true' }}
         run: npx playwright test vrt/vrt.spec.ts --shard=${{ matrix.shard }}/4
