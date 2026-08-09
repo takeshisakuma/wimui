@@ -24,7 +24,14 @@ Remove the `secondary` intent — use `neutral` instead
 `secondary` だけが**階層**の語で軸が異なります。バリアント（`solid` / `outline` / `subtle`）
 という別軸が既にあるため、intent 側に階層語を置くと概念が二重になっていました。
 
-**トークン `--wim-color-secondary` は残ります。** これは線・マーク用の灰色として
-14 箇所で使われており（枠・スピナー・トラック・ドット）、`--wim-color-neutral-fill` とは
-ダークテーマで値が分岐します。テーマをカスタマイズしている場合、このトークンは
-これまでどおり有効です。
+**`variant="secondary"` は影響を受けません。** これは intent とは別の語彙で、
+`ChatMessage` と `TimelinePoint` の `variant` では `secondary` が**今も有効**です
+（それぞれチャットバブルの受信色と `--wim-color-line` を指しています）。
+この変更が影響するのは **`intent="secondary"` だけ**です。
+
+**トークン `--wim-color-secondary` も残ります。** ただし**正式名は
+`--wim-color-line` になりました**（線・マーク用の灰色。枠・スピナー・トラック・
+ドットで 31 箇所が参照しています）。`--wim-color-secondary` は同じ値を指す
+**エイリアスとして残す**ので、テーマをカスタマイズしている場合もこれまでどおり
+動きます。新しく書くときは `--wim-color-line` を使ってください。
+`--wim-color-neutral-fill` とはダークテーマで値が分岐するため、統合はしていません。
