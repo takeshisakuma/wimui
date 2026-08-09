@@ -162,6 +162,26 @@ export const DescriptionOnly: Story = {
   },
 };
 
+// T90: アイコンが「1 行目」ではなく「テキスト塊の中央」に落ちる欠陥は、
+// **内容が折り返して初めて出る**。既存ストーリーはどれも 1 行に収まるため、
+// 実測しても 2〜3px の差しか出ず見逃していた（Alert も同じ理由で LongContent を
+// 足してから直している）。判定は目視ではなく座標で行うこと。
+export const LongContent: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Banner
+        {...args}
+        title={args.title || t("story.banner_maint_title")}
+        description={args.description || t("story.banner_long_desc")}
+      />
+    );
+  },
+  args: {
+    intent: "warning",
+  },
+};
+
 export const NoIcon: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

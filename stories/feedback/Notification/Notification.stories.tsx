@@ -101,6 +101,25 @@ export const Info: Story = {
   },
 };
 
+// T90: Banner と同じ理由で追加。既存の `Default` は**アイコンを描いていない**
+// （`showIcon` は intent が success / warning / danger / info のときだけ真になる）ので、
+// アイコンの位置を測る対象になっていなかった。
+export const LongContent: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story.notification_error_title")}
+        description={args.description || t("story.notification_desc")}
+      />
+    );
+  },
+  args: {
+    intent: "danger",
+  },
+};
+
 export const Trigger: Story = {
   render: function Render() {
     const [visible, setVisible] = useState(false);

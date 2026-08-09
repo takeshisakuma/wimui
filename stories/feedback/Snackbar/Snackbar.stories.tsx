@@ -149,6 +149,24 @@ export const Info: Story = {
   },
 };
 
+// T90: Snackbar は title を持たないので、ずれは「アイコン対 message の 1 行目」で見る。
+// 既存ストーリーの message はどれも 1 行に収まるため、折り返す長さの文言を用意した。
+export const LongContent: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story.snackbar_long_message")}
+      />
+    );
+  },
+  args: {
+    open: true,
+    intent: "warning",
+  },
+};
+
 export const InteractiveDemo: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);

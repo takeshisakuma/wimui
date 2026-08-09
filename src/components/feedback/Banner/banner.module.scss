@@ -37,7 +37,13 @@
     display: flex;
     flex: 1;
     gap: var(--wim-spacing-md);
-    align-items: center;
+
+    // T90: 以前は `center` で、アイコンが**テキスト塊の中央**に落ちていた。
+    // 塊が 1 行のうちは 1 行目と偶然そろうが、折り返すほど下へずれる ── 実測で
+    // 長文ストーリーが 1280px で 13.2px、390px（塊 3 行）で **45.2px**。
+    // `Alert` は `.icon` の `align-self` が原因だったが、**Banner はここ**。
+    // 同じ症状でも効いている宣言が違うので、直す前に必ず実測すること。
+    align-items: flex-start;
     min-width: 0; // Prevent flex item from overflowing
   }
 

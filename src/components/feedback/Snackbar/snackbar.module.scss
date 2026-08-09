@@ -89,14 +89,22 @@
     display: flex;
     flex: 1;
     gap: var(--wim-spacing-sm);
-    align-items: center;
+
+    // T90: 以前は `center`。Snackbar は title を持たないので、ずれは
+    // 「アイコン対 message の 1 行目」で見る。実測で長文が 1280px 12.8px、
+    // 390px（塊 3 行）で 22.8px。
+    align-items: flex-start;
   }
 
   .icon {
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    align-self: center;
+
+    // T90: **ここが二重に効いていた。** `.content` を `flex-start` にしても、
+    // この `align-self: center` が打ち消すため片方だけでは 1px も動かない
+    // （`Alert` で「`align-items` を直したのに動かなかった」のと同じ形）。
+    align-self: flex-start;
   }
 
   .message {
