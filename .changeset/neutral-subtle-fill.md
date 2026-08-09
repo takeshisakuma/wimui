@@ -14,8 +14,11 @@ Give `intent="neutral"` a real `subtle` surface instead of reusing its solid fil
 
 値は総当たりの実測で選んでいます。`neutral` は base 自体がサーフェス寄りの灰色なので、
 他 intent と同じ「base の 13%」では **dark の `surface-variant` 上で消えます**（知覚距離
-0.0038、基準 0.015）。既存トークンにも条件を満たすものは無く、`surface-void` の 15%
-ヴェールに落ち着きました。白ではなく黒なのは、dark の `text-secondary` が明色のため
-白ヴェールだと文字コントラストが 4.69〜5.22 まで落ちるのに対し、黒なら 7.84 に上がるためです。
+0.0038、基準 0.015）。既存トークンにも条件を満たすものは無く、`surface-void` の
+ヴェールに落ち着きました。
+
+**アルファはテーマで逆向きに効く**ため、light 0.06 / dark 0.30 と分けています。light は
+面が白いので薄いほど `solid` から離れ、dark は面が暗いので濃いほど離れます。結果、素の面の上で
+`solid` との知覚距離は light 0.1780 / dark 0.1803 と両テーマで揃います。
 
 **見た目が変わるのは `neutral` の `subtle` だけ**で、他の intent と他の variant は変わりません。
