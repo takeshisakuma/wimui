@@ -15,7 +15,25 @@
   
     &.disabled {
       cursor: not-allowed;
-      opacity: var(--wim-opacity-disabled);
+
+      // 以前は `.root` 全体に `opacity` を掛けていた。**曜日ヘッダまで沈み、
+      // 実測でコントラストが 2.70〜4.50 と AA（4.5）を割っていた**（light の
+      // `surface-app` 上で `text-tertiary` が 2.70、`sunday` の `text-danger` が 3.43）。
+      // **この違反は元から在ったが、axe が測っていなかった。** 曜日名が `日` `月` の
+      // 1 文字だったため、axe は `Element content is too short to determine if it is
+      // actual text content` として **incomplete（評価不能）** に落としていた ──
+      // つまり緑だったのは「通った」からではなく「スキップされた」から。T107 で
+      // 曜日名をロケール由来（`Sun` `Mon`）にした瞬間、7 件が violations に変わった。
+      // 曜日ヘッダは**ラベルであって操作対象ではない**ので dim しない。無効である
+      // ことは日付セルと月送りボタンが沈むことで伝わる。dim を外すと同じ組が
+      // 6.50〜13.04 になる。
+      // **親の `opacity` は子から戻せない**（合成のグループを作るため
+      // `.weekday { opacity: 1 }` では効かない）。だから root ではなく、
+      // 沈めたい部分にそれぞれ掛ける。
+      .header,
+      .day {
+        opacity: var(--wim-opacity-disabled);
+      }
     }
   }
   
