@@ -15,8 +15,27 @@
 }
 
 // subtle の背景。intents.json が "subtle" を明示していればそれをそのまま使い、
-// 無ければ base を 15% で敷く。neutral のように base 自体がサーフェス寄りの淡色
-// だと 15% では白背景に対して消えてしまうため、明示できる余地を残している。
+// 無ければ base を 13% で敷く。neutral のように base 自体がサーフェス寄りの淡色
+// だと消えてしまうため、明示できる余地を残している。
+// **13% は `check:contrast` の実測で選んだ**（2026-08-09、189 組 × light/dark）。
+// 上下どちらにも壁があり、通るのは 0.12〜0.15 しかない:
+// | alpha | 最小の文字 | 最小の塗り | 判定 |
+// | ----- | ---------- | ---------- | ---- |
+// | 0.08  | 4.65       | 0.0107     | 塗りが面と見分けられない |
+// | 0.10  | 4.65       | 0.0133     | 同上 |
+// | 0.12  | 4.65       | 0.0159     | pass（塗りの余裕 +6%） |
+// | 0.13  | 4.62       | 0.0172     | pass（両側に余裕） |
+// | 0.15  | 4.52       | 0.0198     | pass（文字の余裕 +0.4%） |
+// | 0.16  | 4.46       | 0.0210     | AA 割れ |
+// 薄いほど文字は楽になるが塗りが面に埋もれ、濃いほど塗りは立つが文字が AA を割る。
+// 0.13 は両方の余裕が最も釣り合う点（文字 +2.7% / 塗り +14.7%）。
+// **「淡い subtle は 8〜10% で敷く」という一般則はここでは成立しない** ── 0.08 も
+// 0.10 も塗りの下限 0.015 を割る。枠を足して輪郭を補うのは outline に戻る道なので
+// 採れず、影で補うのは 1 画面 1 エレベーションのルール（DESIGN.md）に反する。
+// 彩度を落とす案（`l calc(c * 0.85) h`）は**採らない**。`check-contrast.js` は
+// アルファしかモデル化しておらず、この式にすると導出規則を読めずに exit 1 する
+// （実証済み）。ガードが測れない値を敷くと、2026-08-07〜08-09 に起きた
+// 「塗っていない値に対して緑を出す」状態が再発する。採るなら先にガード側を直すこと。
 @function subtle-bg($pairs) {
   $explicit: map.get($pairs, "subtle");
 
@@ -24,54 +43,7 @@
     @return $explicit;
   }
 
-  @return oklch(from #{map.get($pairs, "base")} l c h / 0.15);
-}
-
-// subtle の縁。**塗りだけでは輪郭が立たない**ので、一段濃い同色の枠を添える。
-// これは `Alert` が既に持っているレシピ（塗り `intent / 0.1` + 枠 `intent / 0.2`）と
-// 同じ考え方で、`subtle` はその半分しか実装していなかった（T51-②）。
-// 箱は元から `1px solid transparent` で確保済みなので、**色を入れても
-// レイアウトは 1px も動かない**。
-// `subtle` が明示されている intent（neutral）は「base の 15% では消える」から
-// 明示しているのであって、**同じ理由で base からの枠も導出できない**。
-// その場合はサーフェス階層の枠トークンに寄せる。
-@function subtle-border($pairs) {
-  @if map.get($pairs, "subtle") {
-    @return var(--wim-color-border-secondary);
-  }
-
-  @return oklch(from #{map.get($pairs, "base")} l c h / 0.3);
-}
-
-@mixin token-variants($prefix) {
-  @each $name, $pairs in $token-colors {
-    $base: map.get($pairs, "base");
-    $on: map.get($pairs, "on");
-    $subtle: subtle-bg($pairs);
-    $subtle-border: subtle-border($pairs);
-
-    // outline/subtle の文字は base（塗り用）ではなく AA 可読の text ロールを使う
-    // （warning #ccb914 等の塗り色はテキストとしてはコントラスト不足）
-    $text: map.get($pairs, "text");
-
-    &--#{$name}.#{$prefix}--solid {
-      color: $on;
-      background-color: $base;
-      border: 1px solid transparent;
-    }
-
-    &--#{$name}.#{$prefix}--outline {
-      color: $text;
-      background-color: transparent;
-      border: 1px solid $base;
-    }
-
-    &--#{$name}.#{$prefix}--subtle {
-      color: $text;
-      background-color: $subtle;
-      border: 1px solid $subtle-border;
-    }
-  }
+  @return oklch(from #{map.get($pairs, "base")} l c h / 0.13);
 }
 
 @mixin module-token-variants {
@@ -80,7 +52,6 @@
     $on: map.get($pairs, "on");
     $text: map.get($pairs, "text");
     $subtle: subtle-bg($pairs);
-    $subtle-border: subtle-border($pairs);
 
     // :where() で特異度を 0-1-0 に抑え、disabled 等の状態セレクタが !important なしで上書きできるようにする
     &:where(.#{$name}) {
@@ -98,31 +69,27 @@
         border: 1px solid $base;
       }
 
-      // subtle は「淡い塗り」をやめ、**濃い色の太枠 + 太字**にする（2026-08-07）。
-      // 塗りの淡さは意味を運ばないわりに画面全体を眠くする ── 同じ画面に何個も
-      // 並ぶ Badge / Tag / Chip では特に、どれも同じ薄さでぼやける。
-      // 文字と枠を同じ `$text`（AA 可読の濃いロール）に揃えると、面ではなく
-      // 輪郭で区別が付き、値そのものが読みやすくなる。
-      // **枠を 1px → 2px にすると外寸が育つ。** これらは `inline-flex` で中身に
-      // 合わせて縮む箱なので、`box-sizing: border-box` があっても（幅・高さを
-      // 明示していない以上）ボーダーは外寸に足される。実測: Tag 53.0x24.2 →
-      // 56.8x26.2、Badge 59.3x21.2 → 64.0x23.2。増えた高さ 2.0px は
-      // ちょうど枠 1px × 2 辺。
-      // そこで**増えた分を内側から返す**。ただし `padding` をここで宣言しても
-      // 効かない ── このブロックは `:where()` で特異度を 0 にしてあるので、
-      // サイズ側の `&.sm`（特異度が上）に負ける。**実装して実測して初めて分かった**
-      // （見た目は変わるのにパディングだけ 4.8px のまま動かなかった）。
-      // そこで宣言するのは**削り幅だけ**にして、`padding` の計算はサイズ側に置く。
-      // カスタムプロパティは値の解決だけなので、特異度の勝負にならない
-      // （競合する宣言が他に無いため、`:where()` の中でも確実に届く）。
+      // subtle と outline は **面のみ / 輪郭のみ** の補集合にする（2026-08-09）。
+      // 2026-08-07 に「淡い塗りをやめて濃い太枠 + 太字」にしたが、これは outline と
+      // ほぼ同じ見た目になったうえ、**枠 2px + bold で 3 変種のうち最も声が大きい**
+      // という逆転を起こしていた（outline は枠 1px）。`subtle` という名前の変種が
+      // いちばん目立つのは、似ている以前に意味が破綻している。
+      // AI 臭さの正体は「淡い塗り」ではなく **塗り + 同色の薄いリング**の組み合わせ
+      // （Tailwind の `bg-x-100 text-x-800 border-x-200` の定型）。旧実装は
+      // `subtle-border()` で base の 30% のリングを描いており、まさにこれだった。
+      // なので塗りは戻し、**リングの方を落とす**。
+      // 枠を 1px transparent で残すのは、solid / outline と外寸を揃えるため
+      // （これらは inline-flex で中身に合わせて縮むので、枠幅の差がそのまま
+      // 外寸の差になる）。幅が変わらないので `--wim-indicator-trim` による
+      // パディング補正はもう要らない。
+      // 太字も外す。Tag / Chip の root は既に `medium`、Badge は `normal` で、
+      // 変種が weight を触らなければ各コンポーネントの既定に着地する。
       &:where(.subtle) {
-        --bg: transparent;
-        --wim-indicator-trim: var(--wim-border-width-thin);
+        --bg: #{$subtle};
 
-        font-weight: var(--wim-font-weight-bold);
         color: $text;
-        background-color: transparent;
-        border: var(--wim-border-width-thick) solid $text;
+        background-color: $subtle;
+        border: var(--wim-border-width-thin) solid transparent;
       }
     }
   }
