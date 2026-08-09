@@ -585,6 +585,7 @@
   "typography_family_title": "タイポグラフィ監査",
   "um_context": "コンテキスト",
   "variant_comparison": "バリアント比較",
+  "variant_intent_matrix": "バリアント × インテント（全 21 組み合わせ）",
   "vertical_spacing_check": "要素間の垂直マージン・一貫性",
   "viewport_backlog": "バックログ",
   "viewport_col_done": "完了",
