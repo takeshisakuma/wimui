@@ -1,0 +1,54 @@
+{
+  "wp": {
+    "title": "Largura e posicionamento",
+    "desc": "Duas props decidem quanto espaço um componente ocupa e onde ele fica: `fullWidth` e `position`. Parecem um par, mas não são. `fullWidth` significa a mesma coisa nos 32 componentes que a possuem. `position` carrega cinco vocabulários sem relação entre si nos 11 que a aceitam — leia sempre o tipo antes de usá-la.",
+
+    "fw_title": "fullWidth — 32 componentes, um único significado",
+    "fw_desc": "Todo componente que aceita `fullWidth` a tipa como `boolean`, usa `false` como padrão e quer dizer o mesmo com ela: ocupar toda a largura do elemento pai. Cinco componentes (ColorInput, CreditCardInput, InputMask, PasswordInput, SearchInput) não a declaram — repassam para Input e herdam o mesmo padrão. A dúvida nunca é o que ela faz, e sim quando ativá-la.",
+
+    "fw_on_title": "Ative quando o pai já decide a largura",
+    "fw_on_1": "O pai define a medida",
+    "fw_on_1_desc": "Um campo numa coluna de formulário, um botão no rodapé de um Drawer, uma tabela dentro de um Card. O contêiner já decidiu a largura do conteúdo; o controle não precisa decidir de novo.",
+    "fw_on_2": "A largura total carrega significado",
+    "fw_on_2_desc": "Um botão de envio que atravessa o rodapé de um painel é lido como a ação daquele painel inteiro. A largura está trabalhando, não apenas preenchendo espaço.",
+    "fw_on_3": "Uma coluna em telas estreitas",
+    "fw_on_3_desc": "Abaixo do breakpoint `sm`, os controles se empilham em uma coluna. Deixar cada um com sua largura natural cria uma borda direita irregular que não comunica nada.",
+
+    "fw_off_title": "Deixe desativado quando a largura informa algo ao usuário",
+    "fw_off_1": "A entrada tem um comprimento natural",
+    "fw_off_1_desc": "Um CEP, um código de uso único, um ano, um valor monetário. A largura de um campo indica quanto se deve digitar. Esticar um campo de 6 caracteres para 100% promete um espaço que o campo não aceita.",
+    "fw_off_2": "Vários controles dividem a mesma linha",
+    "fw_off_2_desc": "Dois controles com `fullWidth` na mesma linha flex disputam o mesmo espaço. Defina as larguras na linha — é para isso que existem Grid e Stack.",
+    "fw_off_3": "O pai é a página",
+    "fw_off_3_desc": "Texto acima de cerca de 60–70 caracteres por linha fica mais difícil de ler. Um Textarea com `fullWidth` dentro de um contêiner de largura total herda a largura da página, e a medida de leitura vai junto.",
+
+    "fw_not_layout_title": "Não é uma ferramenta de layout",
+    "fw_not_layout_desc": "`fullWidth` faz o componente preencher o pai; não cria o pai. Quando ela é usada para corrigir alinhamento, o que costuma faltar é um wrapper — Stack para uma coluna, Grid para larguras diferentes lado a lado, Container para a medida. Recorrer a `fullWidth` empurra a decisão de layout para a folha da árvore, onde a próxima tela não consegue reaproveitá-la.",
+
+    "pos_title": "position — um nome, cinco vocabulários",
+    "pos_desc": "`position` é a única prop transversal do WIM UI cujo nome não revela o tipo. Medida nos 11 componentes que a aceitam, ela carrega cinco conjuntos de valores sem relação entre si. Leia o tipo primeiro.",
+
+    "pos_col_meaning": "Significado",
+    "pos_col_components": "Componentes",
+    "pos_col_values": "Valores",
+
+    "pos_css": "position do CSS, repassada",
+    "pos_css_values": "As palavras-chave do CSS, tipadas como `React.CSSProperties[\"position\"]`",
+    "pos_screen": "Um canto da viewport",
+    "pos_screen_values": "`top-left` … `bottom-right`, mais as variantes `-center` em Snackbar e ToastProvider, mais `static` em FloatButton",
+    "pos_parent": "Um canto do elemento pai",
+    "pos_parent_values": "Apenas os quatro cantos",
+    "pos_direction": "A direção em que o menu abre",
+    "pos_direction_values": "`left` `right` `top` `bottom`",
+    "pos_side": "De que lado está quem fala",
+    "pos_side_values": "`left` `right`",
+    "pos_percent": "Até onde vai o divisor",
+    "pos_percent_values": "Um número, de 0 a 100",
+
+    "pos_uneven_title": "Os vocabulários não estão alinhados entre si",
+    "pos_uneven_desc": "Comparando os valores lado a lado, aparecem duas divergências. `FloatButton` mistura `static` — uma palavra-chave do CSS, que significa \"não me posicione\" — a uma lista de cantos da tela, de modo que um membro do enum responde a uma pergunta diferente dos demais. E `Indicator` oferece quatro cantos enquanto `Snackbar` e `ToastProvider` oferecem seis; a mesma ideia, dentro do pai ou dentro da viewport, tem dois vocabulários. Nenhuma das duas é um defeito que se possa acionar, e foi por isso que sobreviveram: nada compara os valores de uma prop com a mesma prop em outro componente.",
+
+    "pos_new_title": "Ao adicionar position a um novo componente",
+    "pos_new_desc": "Adote um dos vocabulários acima em vez de inventar um sexto. Se o componente for uma primitiva de layout que entrega o valor direto ao CSS, tipe como `React.CSSProperties[\"position\"]`. Se posiciona algo na viewport, use o conjunto de Snackbar. Se posiciona algo dentro do pai, use os quatro cantos. Um valor que não caiba em nenhum deles é sinal de que a prop pede outro nome."
+  }
+}
