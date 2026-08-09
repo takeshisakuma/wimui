@@ -37,7 +37,8 @@
     {
       "id": "one_radius_stance",
       "ja": "角丸の幾何学スタンスを混在させない",
-      "en": "Keep one radius stance per screen (`radius.component` / `radius.container` / `radius.overlay`); don't mix 0 and lg arbitrarily.",
+      "en": "Keep one radius stance per screen (`radius.component` / `radius.container` / `radius.overlay`); don't mix 0 and lg arbitrarily. Narrow table cards must share the same radius token as the adjacent toolbar/pagination chrome — not jump to `radius.container` while chrome stays on `radius.component`.",
+      "judge": "角丸のスタンスが 1 画面で揃っているか（ツールバー／ページャとモバイル行カードで component と container が隣り合う＝fail）",
       "designAnchor": "角丸の幾何学スタンス"
     },
     {
@@ -56,7 +57,8 @@
     {
       "id": "one_elevation_stance",
       "ja": "エレベーションのスタンスも 1 画面 1 つ",
-      "en": "Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant=\"outline\"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border.",
+      "en": "Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant=\"outline\"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border. On admin/list screens, `Table`/`DataGrid` mobile cards must stay border-only like the toolbar and pagination — row cards with `shadow-sm` while chrome is flat outline is the same mixed stance.",
+      "judge": "影で浮く面と枠で切る面が混在していないか（モバイル行カードだけ shadow・上下の Toolbar/Pagination は枠のみ＝fail。Card/Stats の既定 elevated を枠画面で放置しているのも fail）",
       "designAnchor": "エレベーションのスタンスも 1 画面 1 つ"
     },
     {
