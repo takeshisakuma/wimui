@@ -93,7 +93,11 @@ vi.mock("@/i18n/useWimTranslation", async () => {
     useWimTranslation: (ns?: string | readonly string[]) => ({
       t: (key: string, options?: Record<string, unknown>) =>
         actual.wimTranslate(ns, key, options),
-      i18n: { language: "en", changeLanguage: () => {} },
+      // T107: 以前は `language: "en"` の固定値だった。**`i18n.language` を読む
+      // コンポーネントはユニットテストで検証できない**状態で、実際 `Calendar` の
+      // 曜日名（`Intl` へ渡す）は locale を切り替えても常に英語のままだった。
+      // 本物のストアへ委譲する（`t` を `wimTranslate` へ委譲しているのと同じ方針）。
+      i18n: { language: actual.getWimLocale(), changeLanguage: actual.setWimLocale },
     }),
   };
 });

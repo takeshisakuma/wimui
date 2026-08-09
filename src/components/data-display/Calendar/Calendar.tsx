@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
@@ -53,7 +53,7 @@ export const Calendar = ({
   weekStartsOn = 0,
   ...props
 }: CalendarProps) => {
-  const { t } = useWimTranslation("common");
+  const { t, i18n } = useWimTranslation("common");
   const {
     handlePrevMonth,
     handleNextMonth,
@@ -145,7 +145,28 @@ export const Calendar = ({
     return d > s && d < e;
   };
 
-  const weekDayNames = ["日", "月", "火", "水", "木", "金", "土"];
+  // T107: 以前は `["日","月",…]` のローカル定数で、**UI の言語に関係なく日本語が出ていた**
+  // （実測 2026-08-09: locale=ja / en / pt のいずれも `日月火水木金土`）。prop も i18n も
+  // 経由しないので、消費者側から差し替える手段が無かった。
+  //
+  // 翻訳キーを足すのではなく `Intl` から導く。理由は 2 つ:
+  // ①**内蔵リソースは en / ja / pt の 3 言語だけ**だが、消費者が使うロケールはそれに限らない。
+  //   `Intl` なら `setWimLocale("de")` でもドイツ語の曜日が出る。
+  // ②曜日名は翻訳ではなく**暦のデータ**で、辞書に置くと 3 言語ぶん保守する二重管理になる。
+  //
+  // `timeZone: "UTC"` は必須。付けないと実行環境のタイムゾーン次第で日付が前後にずれ、
+  // **曜日が 1 つずれる**（例: UTC-5 で `Date.UTC(1970,0,4)` は現地では土曜）。
+  // 1970-01-04 は日曜なので、そこから 7 日ぶんが日曜始まりの並びになる
+  // （下の `weekStartsOn` の回転ロジックはこの並びを前提にしている）。
+  const weekDayNames = useMemo(() => {
+    const format = new Intl.DateTimeFormat(i18n.language, {
+      weekday: "short",
+      timeZone: "UTC",
+    });
+    return Array.from({ length: 7 }, (_, i) =>
+      format.format(new Date(Date.UTC(1970, 0, 4 + i))),
+    );
+  }, [i18n.language]);
   const displayWeekDayNames = [...weekDayNames];
   if (weekStartsOn === 1) {
     displayWeekDayNames.push(displayWeekDayNames.shift()!);
