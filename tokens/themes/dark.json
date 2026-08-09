@@ -173,6 +173,10 @@
       },
       "ghost-bg-hover": {
         "value": "oklch(from var(--wim-color-white) l c h / 0.08)"
+      },
+      "neutral-fill-subtle": {
+        "$comment": "T101: dark は面が暗いのでヴェールは濃いほど solid から離れる（light とは逆向き）。0.30 で solid から 0.1188 / 面から 0.0482 / AA 9.41。light の 0.06 と揃えて両テーマとも ~0.11 になる。",
+        "value": "oklch(from var(--wim-color-surface-void) l c h / 0.30)"
       }
     }
   }
