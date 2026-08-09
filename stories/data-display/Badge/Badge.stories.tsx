@@ -26,16 +26,6 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary: Story = {
-  render: function Render(args) {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story.badge_secondary")} />;
-  },
-  args: {
-    intent: "secondary",
-  },
-};
-
 export const Destructive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

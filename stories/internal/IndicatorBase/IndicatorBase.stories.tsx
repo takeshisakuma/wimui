@@ -17,7 +17,6 @@ type Story = StoryObj<typeof IndicatorBase>;
 
 const intents: IndicatorIntent[] = [
   "primary",
-  "secondary",
   "success",
   "warning",
   "danger",

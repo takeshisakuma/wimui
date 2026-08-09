@@ -29,7 +29,6 @@ export const Overview: StoryObj = {
     const variants = ["solid", "outline", "subtle"] as const;
     const intents = [
       "primary",
-      "secondary",
       "success",
       "warning",
       "danger",

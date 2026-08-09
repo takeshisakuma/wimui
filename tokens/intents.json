@@ -9,14 +9,6 @@
         "text": "text-accent"
       }
     },
-    "secondary": {
-      "color": "secondary",
-      "surface": {
-        "base": "secondary",
-        "on": "text-on-secondary",
-        "text": "text-secondary"
-      }
-    },
     "success": {
       "color": "success",
       "surface": true
@@ -51,7 +43,6 @@
       "description": "Unified semantic intent values for components.",
       "values": [
         "primary",
-        "secondary",
         "success",
         "warning",
         "danger",
@@ -72,7 +63,6 @@
       "description": "Intent values for indicator-style components (Badge, Chip, Tag, Progress).",
       "values": [
         "primary",
-        "secondary",
         "success",
         "warning",
         "danger",
