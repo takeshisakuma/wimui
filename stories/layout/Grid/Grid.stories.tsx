@@ -41,7 +41,7 @@ export const Basic: Story = {
         <DemoCell intent="success">{t("story.grid_item", "2")}</DemoCell>
         <DemoCell intent="warning">{t("story.grid_item", "3")}</DemoCell>
         <DemoCell intent="danger">{t("story.grid_item", "4")}</DemoCell>
-        <DemoCell intent="secondary">{t("story.grid_item", "5")}</DemoCell>
+        <DemoCell intent="neutral">{t("story.grid_item", "5")}</DemoCell>
         <DemoCell intent="info">{t("story.grid_item", "6")}</DemoCell>
       </Grid>
     );

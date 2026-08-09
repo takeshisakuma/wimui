@@ -78,9 +78,6 @@ export const Colors: Story = {
         <Tag {...args} intent="primary">
           {t("docs_stories_display:story.tag_primary")}
         </Tag>
-        <Tag {...args} intent="secondary">
-          {t("docs_stories_display:story.tag_secondary")}
-        </Tag>
         <Tag {...args} intent="success">
           {t("docs_stories_display:story.tag_success")}
         </Tag>
@@ -113,7 +110,6 @@ export const SubtleIntents: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const intents = [
       ["primary", "story.tag_primary"],
-      ["secondary", "story.tag_secondary"],
       ["success", "story.tag_success"],
       ["warning", "story.tag_warning"],
       ["danger", "story.tag_error"],

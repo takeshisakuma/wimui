@@ -54,7 +54,7 @@ export const Colors: Story = {
       }}
     >
       <Progress {...args} intent="primary" value={20} label={t("common.primary")} />
-      <Progress {...args} intent="secondary" value={40} label={t("common.secondary")} />
+      <Progress {...args} intent="neutral" value={40} label={t("common.secondary")} />
       <Progress {...args} intent="success" value={60} label={t("common.success")} />
       <Progress {...args} intent="warning" value={80} label={t("common.warning")} />
       <Progress {...args} intent="danger" value={90} label={t("common.error")} />

@@ -108,7 +108,7 @@ export const MultiplePanels: Story = {
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={20}>
-            <PanelContent intent="secondary">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -140,7 +140,7 @@ export const Nested: Story = {
               </Splitter.Panel>
               <Splitter.Handle />
               <Splitter.Panel defaultSize={30}>
-                <PanelContent intent="secondary">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
+                <PanelContent intent="neutral">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
               </Splitter.Panel>
             </Splitter>
           </Splitter.Panel>
