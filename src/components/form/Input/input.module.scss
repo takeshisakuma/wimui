@@ -16,7 +16,7 @@
     background: none;
     background-color: var(--wim-field-bg, var(--wim-color-surface));
     border: none;
-    border: var(--wim-field-border, var(--wim-border-width-thin) solid var(--wim-color-secondary));
+    border: var(--wim-field-border, var(--wim-border-width-thin) solid var(--wim-color-line));
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))
@@ -34,7 +34,7 @@
     }
 
     &.outline {
-      border-color: var(--wim-color-secondary);
+      border-color: var(--wim-color-line);
     }
 
     &.ghost {

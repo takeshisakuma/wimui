@@ -6,7 +6,7 @@
     font-family: var(--wim-font-family-default);
     user-select: none;
     background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-radius-component);
 
     // 影は使わない。ページ内に置くウィジェットで、輪郭は面と枠が作る（T50）。

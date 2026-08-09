@@ -58,7 +58,7 @@
       color: var(--wim-color-text-primary);
     }
     &.success { --bg: var(--wim-color-success); }
-    &.neutral { --bg: var(--wim-color-secondary); }
+    &.neutral { --bg: var(--wim-color-line); }
   }
 
   .label {

@@ -15,8 +15,13 @@
       "primary": {
         "value": "{pccs.v16}"
       },
-      "secondary": {
+      "line": {
+        "$comment": "T104: 枠・区切り線・トラック・ドットに使う灰色。**旧名は `secondary`** で、2026-04-08 に MUI 由来の紫（#9c27b0）から PCCS へ一括変換された際、`text-secondary` / `border-secondary` といった『階層としてのセカンダリ』の兄弟に引きずられて灰色になった経緯を持つ（理由の記録は残っていない）。以後 `secondary` intent が廃止され（T101 ②）、この名前は語彙の中に参照先を失ったので実態に合わせて改名した。**`neutral-fill` と統合してはいけない**: dark では分岐しており（line は #b6b6b6 のまま / neutral-fill は #575757）、surface-variant 上の知覚距離は 0.3487 対 0.0292。1px の枠やスピナーの線を 0.0292 で描くとダークでほぼ消える。line = 両テーマで見えることを優先した線・マーク用、neutral-fill = サーフェスに静かに座る面用。",
         "value": "{pccs.gy7-5}"
+      },
+      "secondary": {
+        "$comment": "T104: `line` の旧名。**削除しない** ── トークンの削除・リネームは消費者のテーマ設定に対する破壊的変更で、`check-tokens.js` の凍結ガードも明示的に警告する。独自にテーマを組んでいる利用者はこの名前を上書きしている可能性があるため、エイリアスとして残す。ライブラリ内部の参照はすべて `line` へ移した。",
+        "value": "{wim.color.line}"
       },
       "info": {
         "value": "{pccs.v18}"

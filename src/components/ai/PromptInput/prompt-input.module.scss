@@ -14,7 +14,7 @@
   min-height: var(--wim-height-md);
   container-type: inline-size;
   background: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+  border: var(--wim-border-width-thin) solid var(--wim-color-line);
   border-radius: var(--wim-field-radius, var(--wim-radius-component));
   transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
     box-shadow var(--wim-duration-fast) var(--wim-easing-standard);

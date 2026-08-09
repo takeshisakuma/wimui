@@ -81,7 +81,7 @@
     text-align: center;
     white-space: nowrap;
     background-color: var(--wim-color-disabled);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))

@@ -49,7 +49,7 @@
     max-width: var(--wim-input-width, var(--wim-width-md));
     min-height: var(--wim-height-md);
     background-color: var(--wim-color-surface);
-    border: var(--wim-input-base-border, var(--wim-border-width-thin) solid var(--wim-color-secondary));
+    border: var(--wim-input-base-border, var(--wim-border-width-thin) solid var(--wim-color-line));
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-component)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-component)))
