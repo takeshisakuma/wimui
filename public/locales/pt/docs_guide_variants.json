@@ -35,6 +35,7 @@
     "col_type": "Tipo",
     "col_values": "Valores",
     "col_background": "Fundo atrás da borda",
-    "col_reason": "Motivo"
+    "col_reason": "Motivo",
+    "intents_link": "A intenção decide o que um componente significa; esta página trata de com que volume ele diz isso. O vocabulário de intenções tem sua própria página."
   }
 }

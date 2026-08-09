@@ -377,9 +377,51 @@ let hardcodedWarnings = 0;
   }
 }
 
-console.log('');
-console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件 / 指示形 placeholder（警告）: ${placeholderWarnings} 件 / stories 配線（警告）: ${wiringWarnings} 件 / TSX ハードコード（警告）: ${hardcodedWarnings} 件`);
+// 6. ロケール値の `**` — 画面に生のアスタリスクとして出る
+//
+// `stories/T.tsx` の processText が変換するのは**バッククォート（→ `<code>`）と改行だけ**で、
+// Markdown の強調は解釈しない。値に `**` を書くと `<strong>` にはならず、
+// **アスタリスクがそのまま表示される**。しかも i18n:check も audit-mdx も
+// キーの整合しか見ないので、崩れた画面のまま緑になる。
+// 実例: #322 で出した `docs_guide_width_placement.json`（ja）は生の `**` を 3 対含んでいた。
+//
+// **鳴ってはいけない経路**: `MarkdownRenderer` / `StreamingText` の `content` に渡す値は
+// マークダウンの本文そのもので、`**` は正しく `<strong>` になる。T を通らないので対象外。
+const BOLD_ALLOWLIST = new Set([
+  'story.markdown_renderer_content', // <MarkdownRenderer content={t(...)} />
+  'story.artifacts_overlay_content', // 同上
+  'story.streamingtext_sample', // <StreamingText content={t(...)} />
+]);
 
-if (duplicateErrors > 0 || ptPtErrors > 0) {
+let boldErrors = 0;
+{
+  for (const lang of langs) {
+    const dir = path.join(localesDir, lang);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+      const p = path.join(dir, file);
+      let data;
+      try {
+        data = JSON.parse(fs.readFileSync(p, 'utf8'));
+      } catch {
+        continue;
+      }
+      for (const [key, value] of Object.entries(flatten(data))) {
+        if (typeof value !== 'string' || !value.includes('**')) continue;
+        if (BOLD_ALLOWLIST.has(key.replace(/^[\w-]+:/, ''))) continue;
+        boldErrors += 1;
+        console.error(`✗ ${lang}/${file} の ${key} に \`**\` があります（画面には生のアスタリスクが出ます）`);
+      }
+    }
+  }
+  if (boldErrors > 0) {
+    console.error('  強調は文の組み立てで表してください。装飾が要る場合は MDX 側のマークアップで行います。');
+  }
+}
+
+console.log('');
+console.log(`重複キー: ${duplicateErrors} ファイル / PT-PT 語彙: ${ptPtErrors} 件 / 生の \`**\`: ${boldErrors} 件 / en 完全一致（警告）: ${identicalWarnings} 件 / 指示形 placeholder（警告）: ${placeholderWarnings} 件 / stories 配線（警告）: ${wiringWarnings} 件 / TSX ハードコード（警告）: ${hardcodedWarnings} 件`);
+
+if (duplicateErrors > 0 || ptPtErrors > 0 || boldErrors > 0) {
   process.exit(1);
 }
