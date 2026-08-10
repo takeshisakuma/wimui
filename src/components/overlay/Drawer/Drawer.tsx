@@ -239,6 +239,21 @@ export const DrawerHeader = ({
   <div className={classNames(styles.header, className)} data-testid="drawer-header" {...props}>{children}</div>
 );
 
+/**
+ * 本文。**`DrawerHeader` / `DrawerFooter` には padding があるのに、中身には無かった。**
+ * そのため置いたものが縁に貼り付き、呼び出し側は `<div style={{ padding: "20px" }}>` へ
+ * 逃げるしかなかった ── **Drawer 自身のストーリー 6 本がまさにそれをしていた**
+ * （DESIGN.md が禁じる px 直書き。「足りなければコンポーネント側に prop / トークンを
+ * 追加する」と書かれている当のケース）。7 枚目の合成画面のレビューで表に出た。
+ */
+export const DrawerBody = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={classNames(styles.body, className)} data-testid="drawer-body" {...props}>{children}</div>
+);
+
 export const DrawerFooter = ({
   children,
   className,
