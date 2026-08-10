@@ -38,7 +38,14 @@
     position: relative;
     display: block;
     width: var(--wim-rating-star-size);
+
+    /* 星は 1 つずつ正確に押す対象なので、サイズに関わらず下限を割らせない。
+       `sm` は 16px、`md` も compact では 20px で、どちらも WCAG 2.5.8（AA）の
+       24×24 に届いていなかった。**結果として `sm` は既定密度で `md` と同じ
+       見た目になる** ── 尺度の下端が下限より下にあったということ（T117）。 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-rating-star-size);
+    min-height: var(--wim-tap-target-min);
     cursor: pointer;
     transition: transform var(--wim-transition-fast);
 
