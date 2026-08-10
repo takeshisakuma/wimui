@@ -279,6 +279,7 @@
   "--wim-tab-nav-max-width",
   "--wim-table-cell-padding-x",
   "--wim-table-cell-padding-y",
+  "--wim-tap-target-min",
   "--wim-text-underline-offset",
   "--wim-theme-transition",
   "--wim-transition-base",
