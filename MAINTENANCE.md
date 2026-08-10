@@ -152,6 +152,8 @@ EOF
 
 **2026-08-09 時点**: **371 件中 未合成 144**（6 枚目 `Patterns/Captions/CaptionReview` が `AppShell` / `Navbar` / `Footer` とオーバーレイ層を埋めた）。カテゴリ別の残りは form 28 / data-display 28 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / media 8 / feedback 11 / typography 5。次の 3 枚は `IMPROVEMENTS.md` の T95（7 枚目）/ T109（8 枚目）/ T110（9 枚目）。
 
+**2026-08-09 夜（7 枚目のあと）**: **371 件中 未合成 139**（ が Kanban / TreeView / SortableList / Transfer / VirtualList を埋めた）。カテゴリ別は form 27 / data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / feedback 11 / media 8 / typography 5。次は T109（8 枚目・form 重量級）/ T110（9 枚目・charts）。
+
 ### 7-2. 合成画面を**狭い幅で**開く（390px / 768px）
 
 CI は 1280px でしか撮っていない。**狭幅の崩れは赤が出ない。**
