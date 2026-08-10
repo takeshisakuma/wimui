@@ -1841,8 +1841,9 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
 @default "spinner"
     - `loaderSize: "sm" | "md" | "lg" | "xl"` = "lg" — Size of the loading indicator.
 @default "lg"
-    - `loaderColor: "primary" | "secondary" | "success" | "warning" | "danger" | "neutral" | "currentColor"` = "primary" — Color of the loading indicator.
-@default "primary"
+    - `loaderColor: "currentColor" | WimColor` = "primary" — 渡した値はそのまま `Spinner` / `Loader` の `color` へ流れる。
+以前はここだけが独自の閉じた集合を持っており、**同じ値が 3 段で違う型を
+通っていた**（T118）。委譲先と同じ型にそろえる。
     - `backdropVariant: "light" | "dark"` = "dark" — Background style of the overlay.
 @default "dark"
     - `blur: "none" | "sm" | "md" | "lg"` = "sm" — Strength of the backdrop blur effect.

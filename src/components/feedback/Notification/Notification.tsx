@@ -72,13 +72,6 @@ export const Notification = ({
     if (onClose) onClose(id);
   };
 
-  const typeToColorMap: Record<string, "danger" | "success" | "warning" | "info"> = {
-    success: "success",
-    danger: "danger",
-    warning: "warning",
-    info: "info",
-  };
-
   const showIcon =
     icon !== undefined ||
     intent === "success" ||
@@ -103,7 +96,7 @@ export const Notification = ({
               intent={intent}
               icon={icon}
               size="md"
-              color={typeToColorMap[intent]}
+              tinted
             />
           </div>
         )}

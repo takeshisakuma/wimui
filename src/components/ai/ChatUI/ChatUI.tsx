@@ -289,7 +289,12 @@ export interface ChatAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   /** Size of the avatar */
   size?: ComponentSizeBasic;
   /** Background color token used for the fallback */
-  color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
+  /**
+   * PCCS の色調スケール。**色そのものではなく明度・彩度の段**なので、
+   * 他のコンポーネントの `color`（トークン色や任意の CSS 色）とは軸が違う。
+   * 以前は `color` という名前で、同じ prop 名が 3 つの語彙を運ぶ状態の一角だった（T118）。
+   */
+  tone?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
   /** Additional class names */
   className?: string;
 }
@@ -299,7 +304,7 @@ export const ChatAvatar = ({
   alt: altProp,
   fallback,
   size = "md",
-  color = "s18",
+  tone = "s18",
   className,
   ...props
 }: ChatAvatarProps): React.ReactElement => {
@@ -312,7 +317,7 @@ export const ChatAvatar = ({
       className={classNames(
         styles.avatar,
         styles[size],
-        styles[color],
+        styles[tone],
         className,
       )}
       {...props}
