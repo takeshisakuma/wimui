@@ -53,8 +53,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: var(--wim-spacing-3xl);
-      height: var(--wim-spacing-3xl);
+
+      /* 22.4px 角だったので下限を割っていた。ボタンはこの箱を 100% 埋めるので、
+         下限はここに置く。塗りは無く（`background: none`）中の数字だけなので
+         見た目は変わらない。WCAG 2.5.8（AA）。T117 */
+      min-width: var(--wim-tap-target-min);
+      height: var(--wim-tap-target-min);
       padding: 0 var(--wim-spacing-md);
       font-size: var(--wim-font-size-md);
       font-weight: var(--wim-font-weight-medium);

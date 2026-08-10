@@ -82,10 +82,6 @@
       }
   
       .expandBtn {
-    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。
-       塗りは内側のアイコンなので、箱を広げても静止時の見た目は変わらない。T117 */
-    min-width: var(--wim-tap-target-min);
-    min-height: var(--wim-tap-target-min);
         color: var(--wim-color-text-on-primary);
       }
     }
@@ -132,7 +128,12 @@
     align-items: center;
     justify-content: center;
     width: var(--wim-tree-icon-size, var(--wim-spacing-3xl));
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。塗りは内側のアイコンなので
+       見た目は変わらない。**22.4px（3xl）では届いていなかった。** T117 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-tree-icon-size, var(--wim-spacing-3xl));
+    min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
@@ -165,8 +166,12 @@
   }
 
   .checkbox {
-    width: 16px; /* Exception: Structural Logic — ネイティブ checkbox の最小操作サイズ */
-    height: 16px; /* Exception: Structural Logic — ネイティブ checkbox の最小操作サイズ */
+    /* 以前は 16px 直書きで、注記は「ネイティブ checkbox の最小操作サイズ」と
+       説明していた。**16px は最小操作サイズではない** ── WCAG 2.5.8（AA）は
+       24×24 を求める。根拠の記述自体が誤っていた。ここは包む <label> が無く
+       塗りが要素そのものなので、見た目ごと大きくする。T117 */
+    width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
     margin: 0;
     accent-color: var(--wim-color-primary);
     cursor: pointer;

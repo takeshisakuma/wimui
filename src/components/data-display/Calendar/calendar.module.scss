@@ -110,6 +110,11 @@
     align-items: center;
     justify-content: center;
     height: var(--wim-calendar-day-height, var(--wim-height-xs));
+
+    /* 高さが `--wim-height-xs` に紐づいており、**compact で 20px まで下がって**
+       WCAG 2.5.8（AA）の 24 を割っていた（既定密度では 24 でちょうど）。
+       密度で縮まない下限を別に置く。日付セルは 756 回出る最大の対象。T117 */
+    min-height: var(--wim-tap-target-min);
     padding: 0 var(--wim-spacing-3xs);
     font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);

@@ -4,6 +4,11 @@
   .root {
     display: inline-flex;
     align-items: center;
+
+    /* 根は <label> で input を包むので、当たり判定はここで確保する。
+       トラックは `--wim-switch-height-md` のまま（compact では 20px）で、
+       見た目は変わらない。WCAG 2.5.8（AA）の 24×24。T117 */
+    min-height: var(--wim-tap-target-min);
     cursor: pointer;
     user-select: none;
 
