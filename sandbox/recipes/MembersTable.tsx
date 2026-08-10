@@ -82,7 +82,7 @@ export default function MembersTable() {
             <Table.Row key={m.id}>
               <Table.Cell label="Member">{m.name}</Table.Cell>
               <Table.Cell label="Team">
-                {m.team ?? <Text color="tertiary">No team</Text>}
+                {m.team ?? <Text color="text-tertiary">No team</Text>}
               </Table.Cell>
               <Table.Cell label="Role">
                 <Badge variant="subtle" intent={roleIntent[m.role]}>{m.role}</Badge>

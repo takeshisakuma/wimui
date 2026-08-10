@@ -29,7 +29,7 @@ describe("Icon", () => {
     expect(container.firstChild).toBeNull();
   });
 
-  // Text は `color="text-tertiary"`、Icon は `color="tertiary"` しか受け付けず、
+  // Text は `color="text-tertiary"`、Icon は `color="text-tertiary"` しか受け付けず、
   // 同じ色を指す prop で綴りが割れていた。Icon 側を Text に合わせて広げる。
   it("accepts the token vocabulary Text uses", () => {
     const { container } = render(<Icon name="CircleIcon" color="text-tertiary" />);

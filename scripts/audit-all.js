@@ -136,6 +136,15 @@ const checks = [
   },
   {
     category: "lib",
+    // 色を当てる経路は 2 つ（mappedColors のクラス / getColorValue）あり、
+    // **どちらでも解決されない値はそのまま CSS へ渡って宣言ごと破棄される**。
+    // 型は WimColor（補完付きの任意文字列）なので通り、VRT はその絵を正として
+    // 撮るため、色が付いていないことに誰も気づかない（T118）。
+    name: "Color literals actually resolve to a colour",
+    command: "node scripts/check-color-values.js",
+  },
+  {
+    category: "lib",
     // 上の check-contrast.js が見るのは intents SSOT の 4 ロールだけで、
     // **`semantic.json` の `*-subtle` 群は誰も測っていなかった**（T102）。
     // しかも下限だけでは足りない: 一律アルファは hue ごとに効きが違うため、
