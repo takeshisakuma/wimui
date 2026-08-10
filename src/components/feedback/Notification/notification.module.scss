@@ -57,6 +57,11 @@
     right: var(--wim-spacing-sm);
     display: flex;
     align-items: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。
+       塗りは内側のアイコンなので、箱を広げても静止時の見た目は変わらない。T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     padding: var(--wim-spacing-xs);
     color: var(--wim-color-text-disabled);
     cursor: pointer;

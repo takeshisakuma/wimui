@@ -133,7 +133,12 @@
     align-items: center;
     justify-content: center;
     width: var(--wim-snackbar-close-size, var(--wim-spacing-3xl));
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。
+       塗りは内側のアイコンなので、箱を広げても静止時の見た目は変わらない。T117 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-snackbar-close-size, var(--wim-spacing-3xl));
+    min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-snackbar-close-idle);
     cursor: pointer;

@@ -14,6 +14,12 @@
   --wim-indicator-line-color: var(--wim-color-border-secondary);
   --wim-indicator-active-color: var(--wim-color-primary);
 
+  /* 操作対象の最小寸法。WCAG 2.5.8 Target Size (Minimum)・AA の 24×24 CSS px。
+     **密度で縮めない** ── `--wim-height-xs` は compact で 20px になるため下限には使えない。
+     塗りが内側にある要素（アイコンを内包するボタン等）に `min-width` / `min-height`
+     として当てると、見た目を変えずに当たり判定だけ確保できる（T117）。 */
+  --wim-tap-target-min: 1.5rem; /* 24px */
+
   /* Standard Component Heights (Button, Input, SegmentedControl, …) */
   --wim-height-xs: 1.5rem; /* 24px */
   --wim-height-sm: 2rem; /* 32px */
