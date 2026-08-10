@@ -28,13 +28,13 @@ export interface FeedbackIconProps {
   /**
    * intent の色でアイコンを塗る。省略時は継承（容器の文字色）。
    *
-   * 以前は `color?: "danger" | "success" | "warning" | "info"` で、**intent と
-   * 同じ語彙**を取っていた。そのため `intent="success" color="danger"` という
+   * 以前は `color?: "danger" | "success" | "warning" | "info"` で、intent と
+   * 同じ語彙を取っていた。そのため `intent="success" color="danger"` という
    * 矛盾が型で書けた（実際に書いている箇所は無く、唯一の利用者 `Notification` は
-   * `typeToColorMap[intent]` ＝ 恒等写像を渡していた）。真偽値にして**矛盾を
-   * 書けなくする**（T119）。
+   * `typeToColorMap[intent]` ＝ 恒等写像を渡していた）。真偽値にして矛盾を
+   * 書けなくする（T119）。
    *
-   * **prop を消すことはできない。** 容器の扱いが 3 通りに割れている ── 
+   * prop を消すことはできない。 容器の扱いが 3 通りに割れている ── 
    * `Alert` / `Banner` は容器が `color: text-{intent}` を当てるので継承で足り、
    * `Snackbar` は濃い intent 色が背景なので継承（on-color）でなければならず、
    * `Notification` は左の縦線しか intent 色にしないため明示が要る。

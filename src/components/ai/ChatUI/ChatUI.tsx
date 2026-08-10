@@ -55,7 +55,7 @@ export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> 
    * これはその上書き ── 右寄せのまま受信色にする、といった例外用。
    *
    * 以前は `primary` / `secondary` という名前だったが、指しているトークンは
-   * `--wim-comp-chat-bubble-sent` / `-received` で、**intent ではなく送受信**だった（T114）。
+   * `--wim-comp-chat-bubble-sent` / `-received` で、intent ではなく送受信だった（T114）。
    */
   variant?: "default" | "sent" | "received";
   /** Whether to show the avatar */
@@ -290,7 +290,7 @@ export interface ChatAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   size?: ComponentSizeBasic;
   /** Background color token used for the fallback */
   /**
-   * PCCS の色調スケール。**色そのものではなく明度・彩度の段**なので、
+   * PCCS の色調スケール。色そのものではなく明度・彩度の段なので、
    * 他のコンポーネントの `color`（トークン色や任意の CSS 色）とは軸が違う。
    * 以前は `color` という名前で、同じ prop 名が 3 つの語彙を運ぶ状態の一角だった（T118）。
    */
