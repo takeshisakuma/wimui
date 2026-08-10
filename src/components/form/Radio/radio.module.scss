@@ -5,6 +5,14 @@
     position: relative;
     display: inline-flex;
     align-items: center;
+
+    /* ラベル全体が操作対象（根が <label> で input を包む）なので、
+       **当たり判定はここで確保する**。塗られた箱（.input）は 18px のまま
+       中央に置かれるので見た目は変わらない。文字があるときは行高で既に
+       24px を超えるため、効くのは表の行選択のような**裸の**チェックボックス。
+       WCAG 2.5.8（AA）の 24×24。T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     font-family: var(--wim-font-family-default, var(--font-sans));
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-normal, 1.5);
