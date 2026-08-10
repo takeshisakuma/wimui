@@ -136,6 +136,15 @@ const checks = [
   },
   {
     category: "lib",
+    // ある軸の語彙が別の軸の prop に漏れていないか（T114）。
+    // **9 件あった検出が 0 になったので配線した**（T118 / T119 まで片付いた 2026-08-10）。
+    // 「同じ prop 名で値の集合が違う」ではなく「軸の混線」を見る ── 前者は
+    // 73 種類中 16 種類が割れており、その大半は割れているのが正しい。
+    name: "Prop values stay on their own axis (intent vs variant vs CSS)",
+    command: "node scripts/check-prop-vocabulary.js",
+  },
+  {
+    category: "lib",
     // 色を当てる経路は 2 つ（mappedColors のクラス / getColorValue）あり、
     // **どちらでも解決されない値はそのまま CSS へ渡って宣言ごと破棄される**。
     // 型は WimColor（補完付きの任意文字列）なので通り、VRT はその絵を正として

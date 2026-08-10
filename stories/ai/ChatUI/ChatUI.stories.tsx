@@ -118,7 +118,7 @@ export const WithActions: Story = {
             <ChatMessage
               position="left"
               showAvatar
-              avatar={<ChatAvatar fallback="A" color="s5" />}
+              avatar={<ChatAvatar fallback="A" tone="s5" />}
               senderName={t("story.chat_ai_assistant")}
               actions={feedback}
             >
@@ -127,7 +127,7 @@ export const WithActions: Story = {
             <ChatMessage
               position="left"
               showAvatar
-              avatar={<ChatAvatar fallback="A" color="s5" />}
+              avatar={<ChatAvatar fallback="A" tone="s5" />}
               senderName={t("story.chat_ai_assistant")}
               actions={feedback}
               actionsVisible={false}
@@ -152,7 +152,7 @@ export const WithAvatarImages: Story = {
             <ChatMessage 
               position="left" 
               showAvatar 
-              avatar={<ChatAvatar fallback="S" color="s5" />} 
+              avatar={<ChatAvatar fallback="S" tone="s5" />} 
               senderName={t("story.chat_support")}
             >
               {t("story.chat_msg_3")}
@@ -160,7 +160,7 @@ export const WithAvatarImages: Story = {
             <ChatMessage 
               position="right" 
               showAvatar 
-              avatar={<ChatAvatar fallback="Y" color="s18" />} 
+              avatar={<ChatAvatar fallback="Y" tone="s18" />} 
               senderName={t("story.chat_you")}
             >
               {t("story.chat_msg_4")}
@@ -246,7 +246,7 @@ export const Interactive: Story = {
                 senderName={msg.sender}
                 timestamp={msg.timestamp}
                 showAvatar
-                avatar={<ChatAvatar fallback={msg.sender?.charAt(0)} color={msg.position === "left" ? "s5" : "s18"} />}
+                avatar={<ChatAvatar fallback={msg.sender?.charAt(0)} tone={msg.position === "left" ? "s5" : "s18"} />}
               >
                 {msg.text}
               </ChatMessage>
@@ -425,7 +425,7 @@ export const AiAssistantIntegration: Story = {
                       <Icon name="StarIcon" size="sm" />
                     </div>
                   ) : (
-                    <ChatAvatar fallback="Y" color="s18" />
+                    <ChatAvatar fallback="Y" tone="s18" />
                   )
                 }
                 actions={msg.position === "left" && !msg.isStreaming && msg.id !== "1" ? <MessageActions /> : undefined}

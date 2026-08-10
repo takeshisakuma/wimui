@@ -1,4 +1,5 @@
 import React from "react";
+import type { WimColor } from "../../../types/tokens";
 import classNames from "classnames";
 import { Spinner } from "../../feedback/Spinner/Spinner";
 import { Loader } from "../../feedback/Loader/Loader";
@@ -27,14 +28,12 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
    * Color of the loading indicator.
    * @default "primary"
    */
-  loaderColor?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger"
-    | "neutral"
-    | "currentColor";
+  /**
+   * 渡した値はそのまま `Spinner` / `Loader` の `color` へ流れる。
+   * 以前はここだけが独自の閉じた集合を持っており、同じ値が 3 段で違う型を
+   * 通っていた（T118）。委譲先と同じ型にそろえる。
+   */
+  loaderColor?: "currentColor" | WimColor;
   /**
    * Background style of the overlay.
    * @default "dark"
@@ -53,7 +52,7 @@ export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
    * Whether to use position: fixed (covers the whole screen).
    *
    * When `false` (the default) the overlay is `position: absolute`, so it covers
-   * **the nearest positioned ancestor** — not necessarily the element you wrapped.
+   * the nearest positioned ancestor — not necessarily the element you wrapped.
    * Give that element a position explicitly, e.g. `<Box position="relative">`.
    *
    * `Card` sets `position: relative` for this reason (T88), so

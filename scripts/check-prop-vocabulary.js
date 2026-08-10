@@ -42,6 +42,14 @@ const ALLOW = new Map([
   ['Link.priority', '`primary` / `secondary` は**階層**の語彙。intent ではなくリンクの優先度で、variant と同じ軸'],
 ]);
 
+// **docgen は gitignore された生成物**なので、CI のクリーンチェックアウトには無い。
+// 手元には残っているため、これを読むだけのガードは**手元で緑・CI で赤**になる
+// （実際に #349 でそうなった）。他のガード（check-prop-api）と同じく自分で作る。
+{
+  const { generateDocgenData } = await import("./docgen-plugin.js");
+  await generateDocgenData();
+}
+
 const docgen = {};
 if (fs.existsSync(DATA_DIR)) {
   for (const f of fs.readdirSync(DATA_DIR).filter((x) => /^docgen_(?!index).+\.json$/.test(x))) {

@@ -1775,9 +1775,6 @@
     "ChatAvatar.className": {
       "type": "string"
     },
-    "ChatAvatar.color": {
-      "type": "\"s1\" | \"s3\" | \"s5\" | \"s7\" | \"s10\" | \"s12\" | \"s14\" | \"s16\" | \"s18\" | \"s20\" | \"s22\" | \"s24\""
-    },
     "ChatAvatar.fallback": {
       "type": "string"
     },
@@ -1786,6 +1783,9 @@
     },
     "ChatAvatar.src": {
       "type": "string"
+    },
+    "ChatAvatar.tone": {
+      "type": "\"s1\" | \"s3\" | \"s5\" | \"s7\" | \"s10\" | \"s12\" | \"s14\" | \"s16\" | \"s18\" | \"s20\" | \"s22\" | \"s24\""
     },
     "ChatContainer.children": {
       "type": "React.ReactNode"
@@ -5904,15 +5904,8 @@
       "type": "boolean"
     },
     "LoadingOverlay.loaderColor": {
-      "values": [
-        "currentColor",
-        "danger",
-        "neutral",
-        "primary",
-        "secondary",
-        "success",
-        "warning"
-      ]
+      "required": false,
+      "type": "\"currentColor\" | WimColor"
     },
     "LoadingOverlay.loaderSize": {
       "required": false,

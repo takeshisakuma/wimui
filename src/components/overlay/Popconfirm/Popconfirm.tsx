@@ -91,7 +91,7 @@ export const Popconfirm = ({
               intent="warning"
               icon={icon}
               size="sm"
-              color="warning"
+              tinted
             />
           </span>
           <div className={styles.body}>
