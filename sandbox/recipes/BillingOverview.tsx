@@ -72,7 +72,7 @@ export default function BillingOverview() {
             <Table.Row key={r.id}>
               <Table.Cell label="Customer">{r.name}</Table.Cell>
               <Table.Cell label="Plan">
-                {r.plan ?? <Text color="tertiary">—</Text>}
+                {r.plan ?? <Text color="text-tertiary">—</Text>}
               </Table.Cell>
               <Table.Cell label="Amount">{r.amount}</Table.Cell>
               <Table.Cell label="Status">

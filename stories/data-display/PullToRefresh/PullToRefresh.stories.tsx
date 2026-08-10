@@ -45,7 +45,7 @@ const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) =
               <ListItem key={item.id}>
                 <Stack gap="xs">
                   <Text weight="bold">{item.text}</Text>
-                  <Text size="sm" color="tertiary">
+                  <Text size="sm" color="text-tertiary">
                     Count: {item.count} | {new Date(item.id).toLocaleTimeString()}
                   </Text>
                 </Stack>

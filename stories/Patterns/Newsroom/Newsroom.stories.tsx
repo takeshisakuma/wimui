@@ -158,12 +158,12 @@ const ArticleCard = ({ article }: { article: Article }) => {
             {article.due}
           </Tag>
         ) : (
-          <Text size="xs" color="tertiary">
+          <Text size="xs" color="text-tertiary">
             {article.due}
           </Text>
         )}
         {article.words ? (
-          <Text size="xs" color="tertiary">
+          <Text size="xs" color="text-tertiary">
             {t(ns("words"), { count: article.words })}
           </Text>
         ) : null}
@@ -255,7 +255,7 @@ export const Default: Story = {
                   横の余白は TreeView の項目側が持つ（SidebarItem と同じ作法で、
                   ホバーの帯が端まで伸びるように容器側は横を空けない）。 */}
               <Sidebar.Header>
-                <Text size="xs" color="tertiary">
+                <Text size="xs" color="text-tertiary">
                   {t(ns("sections"))}
                 </Text>
               </Sidebar.Header>
@@ -373,7 +373,7 @@ export const FrontPageOrder: Story = {
                     <SortableList.DragHandle />
                     <Stack gap="2xs">
                       <Text size="sm">{item.label}</Text>
-                      <Text size="xs" color="tertiary">
+                      <Text size="xs" color="text-tertiary">
                         {item.slot}
                       </Text>
                     </Stack>
@@ -450,7 +450,7 @@ export const RevisionLog: Story = {
                     {entry.id}
                   </Badge>
                 </Group>
-                <Text size="xs" color="tertiary" nowrap>
+                <Text size="xs" color="text-tertiary" nowrap>
                   {entry.ago}
                 </Text>
               </Group>

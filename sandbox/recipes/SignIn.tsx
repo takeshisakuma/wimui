@@ -24,7 +24,7 @@ export default function SignIn() {
               <Button type="submit" variant="solid" fullWidth>Sign in</Button>
             </Stack>
           </form>
-          <Text size="sm" color="tertiary">
+          <Text size="sm" color="text-tertiary">
             No account? <Link href="#">Start a 14-day trial</Link>
           </Text>
         </Stack>

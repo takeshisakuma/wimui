@@ -418,7 +418,7 @@ export const Image = ({
           <div className={styles.fallback} data-testid="image-fallback">
             {fallback || (
               <div className={styles.defaultFallback}>
-                <Icon component={ImageIcon} size="lg" color="tertiary" />
+                <Icon component={ImageIcon} size="lg" color="text-tertiary" />
                 {alt && <span className={styles.fallbackText}>{alt}</span>}
               </div>
             )}

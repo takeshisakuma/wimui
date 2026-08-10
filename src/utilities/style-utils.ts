@@ -65,6 +65,9 @@ export const getColorValue = (val?: WimColor): string | undefined => {
     "overlay-strong",
     "overlay-medium",
     "overlay-sidebar",
+    // `--wim-color-text-accent` は実在するのに一覧から漏れており、
+    // `color="text-accent"` が素通りして無効な宣言になっていた（T118）。
+    "text-accent",
     "text-on-inverse",
     "text-muted-on-inverse",
     "skeleton-bg",

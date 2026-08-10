@@ -199,7 +199,7 @@ const CueRow = ({
           ) : (
             // 「話者不明」は UI の文言なので `t()` 経由＝ページの言語のままで正しい。
             // ここに `lang` を付けてはいけない（**鳴ってはいけない経路**）。
-            <Text size="sm" color="tertiary" nowrap>
+            <Text size="sm" color="text-tertiary" nowrap>
               {t("docs_stories_recipes:captions.speaker_unknown")}
             </Text>
           )}
@@ -291,7 +291,7 @@ const CaptionReviewScreen = ({
                 左右 0 なので、ここで入れないとリールが画面の端に貼り付く */}
             <Box px="2xl" py="xl">
               <Stack gap="xs">
-                <Text size="xs" color="tertiary">
+                <Text size="xs" color="text-tertiary">
                   {t("docs_stories_recipes:captions.sidebar_heading")}
                 </Text>
                 <Text size="sm">{t("docs_stories_recipes:captions.reel_1")}</Text>
@@ -306,7 +306,7 @@ const CaptionReviewScreen = ({
         <AppShell.Main>
           <Stack gap="md">
             <Stack gap="2xs">
-              <Text size="xs" color="tertiary">
+              <Text size="xs" color="text-tertiary">
                 {t("docs_stories_recipes:captions.reel_label")}
               </Text>
               <Title tag="h3" size="lg">{t("docs_stories_recipes:captions.title")}</Title>

@@ -377,6 +377,7 @@
     "report:variant-distinctness": "node scripts/report-variant-distinctness.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",
     "check:prop-vocabulary": "node scripts/check-prop-vocabulary.js",
+    "check:color-values": "node scripts/check-color-values.js",
     "check:slop": "node scripts/check-slop.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "changeset": "changeset",
