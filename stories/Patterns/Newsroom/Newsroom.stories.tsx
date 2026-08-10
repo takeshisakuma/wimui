@@ -362,15 +362,15 @@ export const FrontPageOrder: Story = {
               >
                 {order.map((item, index) => (
                   <SortableList.Item key={item.id} index={index}>
-                    <Group justify="between" align="center">
-                      <Stack gap="2xs">
-                        <Text size="sm">{item.label}</Text>
-                        <Text size="xs" color="tertiary">
-                          {item.slot}
-                        </Text>
-                      </Stack>
-                      <SortableList.DragHandle />
-                    </Group>
+                    {/* ハンドルは項目の先頭に置く（SortableList 自身のストーリーと同じ）。
+                        末尾に置くと掴む場所が行ごとに右端へ散り、テキストが右へ寄って見える。 */}
+                    <SortableList.DragHandle />
+                    <Stack gap="2xs">
+                      <Text size="sm">{item.label}</Text>
+                      <Text size="xs" color="tertiary">
+                        {item.slot}
+                      </Text>
+                    </Stack>
                   </SortableList.Item>
                 ))}
               </SortableList>
