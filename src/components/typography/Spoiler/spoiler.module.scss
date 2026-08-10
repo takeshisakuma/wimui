@@ -24,6 +24,10 @@
   // リンク風のテキストボタン
   .toggle {
     display: inline-flex;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。79×19.9。効くのは高さだけ。 T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     padding: 0;
     margin-top: var(--wim-spacing-2xs);
     font: inherit;

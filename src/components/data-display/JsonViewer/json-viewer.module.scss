@@ -57,6 +57,9 @@
     display: flex;
     gap: var(--wim-spacing-xs);
     align-items: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。折りたたみ見出しは role="button"。 T117 */
+    min-width: var(--wim-tap-target-min);
     min-height: var(--wim-height-xs);
     cursor: default;
 
