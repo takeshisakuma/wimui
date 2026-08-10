@@ -14,7 +14,7 @@ export interface HeaderProps extends React.ComponentPropsWithoutRef<"header"> {
   /** Expand content to full width (disable the centered max-width container) */
   fluid?: boolean;
   /** Background color */
-  background?: "primary" | "secondary" | "transparent";
+  background?: "surface" | "surface-variant" | "transparent";
 }
 
 const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
@@ -27,7 +27,7 @@ const HeaderRoot = React.forwardRef<HTMLElement, HeaderProps>(
       bordered,
       glass,
       fluid,
-      background = "primary",
+      background = "surface",
       ...props
     },
     ref,

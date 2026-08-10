@@ -73,7 +73,7 @@ interface Message {
   position: "left" | "right";
   sender?: string;
   timestamp?: string;
-  variant?: "default" | "primary" | "secondary";
+  variant?: "default" | "sent" | "received";
   isStreaming?: boolean;
 }
 
@@ -181,8 +181,8 @@ export const WithVariants: Story = {
         <ChatContainer>
           <ChatMessageList>
             <ChatMessage variant="default">{t("story.chat_msg_5")}</ChatMessage>
-            <ChatMessage variant="primary" position="right">{t("story.chat_msg_6")}</ChatMessage>
-            <ChatMessage variant="secondary" position="left">{t("story.chat_msg_7")}</ChatMessage>
+            <ChatMessage variant="sent" position="right">{t("story.chat_msg_6")}</ChatMessage>
+            <ChatMessage variant="received" position="left">{t("story.chat_msg_7")}</ChatMessage>
           </ChatMessageList>
           <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
@@ -222,7 +222,7 @@ export const Interactive: Story = {
           position: "right", 
           sender: t("story.chat_you"), 
           timestamp,
-          variant: "secondary"
+          variant: "received"
         }]);
       }
     };
@@ -386,7 +386,7 @@ export const AiAssistantIntegration: Story = {
           position: "right", 
           sender: t("story.chat_you"), 
           timestamp,
-          variant: "secondary"
+          variant: "received"
         }]);
       }
     };

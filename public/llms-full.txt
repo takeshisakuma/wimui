@@ -724,7 +724,7 @@ export function RenameWorkspace() {
 - **Footer** — Lower navigation
     - `bordered: boolean` — Border at the top
     - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
-    - `background: "primary" | "secondary" | "dark"` = "primary" — Background color
+    - `background: "surface" | "surface-variant" | "inverse"` = "surface" — Background color
 - **Grid** — Flexbox or CSS Grid system
     - `asChild: boolean` = false — If true, the grid will be rendered as its child, merging its props onto that child.
 The container-query wrapper div is preserved to maintain responsive column behaviour.
@@ -750,7 +750,7 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `bordered: boolean` — Border at the bottom
     - `glass: boolean` — Glassmorphism effect
     - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
-    - `background: "primary" | "secondary" | "transparent"` = "primary" — Background color
+    - `background: "surface" | "surface-variant" | "transparent"` = "surface" — Background color
 - **InteractiveArea** — Interactive empty/drop zone area
     - `title: ReactNode` — Area title
     - `description: ReactNode` — Area description

@@ -50,8 +50,14 @@ export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> 
   children?: React.ReactNode;
   /** Side the message is aligned to (typically left for others, right for self) */
   position?: "left" | "right";
-  /** Visual style variant of the message bubble */
-  variant?: "default" | "primary" | "secondary";
+  /**
+   * バブルの色。`position` が既に色を決める（`left` は受信色、`right` は送信色）ので、
+   * これはその上書き ── 右寄せのまま受信色にする、といった例外用。
+   *
+   * 以前は `primary` / `secondary` という名前だったが、指しているトークンは
+   * `--wim-comp-chat-bubble-sent` / `-received` で、**intent ではなく送受信**だった（T114）。
+   */
+  variant?: "default" | "sent" | "received";
   /** Whether to show the avatar */
   showAvatar?: boolean;
   /** Avatar element */

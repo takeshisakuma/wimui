@@ -5,17 +5,17 @@
   padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl);
   transition: all var(--wim-transition-base);
 
-  &.bg-primary {
+  &.bg-surface {
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-surface);
   }
 
-  &.bg-secondary {
+  &.bg-surface-variant {
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-surface-variant);
   }
 
-  &.bg-dark {
+  &.bg-inverse {
     color: var(--wim-color-text-on-inverse);
     background-color: var(--wim-color-surface-inverse);
 

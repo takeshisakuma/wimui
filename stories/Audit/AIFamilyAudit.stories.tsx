@@ -125,7 +125,7 @@ export const Overview: StoryObj = {
                   <ChatMessage
                     key={msg.id}
                     position={msg.role === "user" ? "right" : "left"}
-                    variant={msg.role === "user" ? "primary" : "default"}
+                    variant={msg.role === "user" ? "sent" : "default"}
                   >
                     {msg.content}
                   </ChatMessage>

@@ -66,11 +66,11 @@
       }
     }
 
-    &.primary {
+    &.sent {
       --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-sent);
     }
 
-    &.secondary {
+    &.received {
       --wim-chat-bubble-bg: var(--wim-comp-chat-bubble-received);
     }
   }

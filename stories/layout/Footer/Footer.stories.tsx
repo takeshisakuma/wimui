@@ -60,5 +60,5 @@ export const Default: Story = {
 };
 
 export const Dark: Story = {
-  render: (args) => <FooterDemo {...args} background="dark" />,
+  render: (args) => <FooterDemo {...args} background="inverse" />,
 };
