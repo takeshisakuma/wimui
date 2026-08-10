@@ -49,6 +49,14 @@
       border-radius: var(--wim-radius-sm);
     }
 
+    /* 「+2 more」。FullCalendar が出す要素なので、こちらから当たり判定の下限を足す。
+       WCAG 2.5.8（AA）の 24×24。実測は 51×16.1 だった。 T117 */
+    .fc-daygrid-more-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--wim-tap-target-min);
+    }
+
     .fc-highlight {
       background: oklch(from var(--wim-color-primary) l c h / 0.12);
     }

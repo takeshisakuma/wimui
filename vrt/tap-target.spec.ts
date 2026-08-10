@@ -102,6 +102,14 @@ const measure = async (page: import("@playwright/test").Page) =>
       }
       if (unclickable) continue;
 
+      // WCAG 2.5.8 の Inline 例外 ──「対象が文の中にある、または非対象の文字の
+      // line-height によって大きさが決まっている」場合。`display: inline` は
+      // まさにそれで、高さは行の line-height に従い、要素側では動かせない。
+      // JsonViewer の値（`<span role="button">`）が該当する。鍵・括弧・カンマと
+      // 同じ行に並ぶので、ここを 24 にすると JSON の行がすべて広がる。
+      // inline-flex / inline-block は自分で高さを持てるので例外にならない。
+      if (getComputedStyle(el).display === "inline") continue;
+
       // **外側により大きな操作対象があるなら、押される面はそちら。**
       // 入れ子（`<label>` の中のマーク、ボタンの中のアイコン）で二重に鳴らない。
       let ancestor = el.parentElement;
