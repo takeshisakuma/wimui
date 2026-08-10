@@ -1,5 +1,299 @@
 # wimui
 
+## 0.19.0
+
+### Minor Changes
+
+- 7960c1b: `ScrollProgress` and `TimelinePoint` take `intent`, matching their siblings.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+  - <ScrollProgress color="success" />
+  + <ScrollProgress intent="success" />
+
+  - <TimelinePoint variant="danger" />
+  + <TimelinePoint intent="danger" />
+  ```
+
+  Both props were painting the intent colours — `.primary` resolved to
+  `--wim-color-primary`, `.success` to `--wim-color-success`, and so on — under a
+  different name. `Progress` and `ProgressRing` already call this `intent`, so
+  `ScrollProgress` was the odd one among its own siblings, and `TimelinePoint`
+  was carrying meaning on a prop that `Foundation/Variants` defines as loudness.
+
+  **`secondary` is gone from both**, since it was removed from the intent
+  vocabulary in 0.18.0. Use `neutral`:
+
+  ```diff
+  - <TimelinePoint variant="secondary" />
+  + <TimelinePoint intent="neutral" />
+  ```
+
+  That word had survived here precisely because these props were not typed as
+  intents, so the 0.18.0 removal never reached them. `ThoughtProcess` was still
+  producing it internally for pending steps; it now uses `neutral`.
+
+  **Both gain `warning`, `info` and `neutral`**, which they could not express
+  before. Their colours now come from `tokens/intents.json` rather than
+  hand-written rules, so the two stay in step with the intent vocabulary.
+
+- 032b951: Three props stop borrowing vocabulary that is not theirs.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+  - <ChatAvatar color="s5" />
+  + <ChatAvatar tone="s5" />
+  ```
+
+  `ChatAvatar`'s scale is PCCS tone — steps of lightness and saturation, not
+  colours — so it shared a prop name with a different axis. `LoadingOverlay`'s
+  `loaderColor` now takes `"currentColor" | WimColor`, the same type as the
+  `Spinner` and `Loader` it hands the value to; it had its own closed set, so the
+  same value passed through three different types on the way down.
+
+  `FeedbackIcon` is internal, so this affects no one's code: its `color` is now
+  `tinted?: boolean`. It used to take the intent vocabulary, which made
+  `intent="success" color="danger"` expressible. Both places that passed it were
+  passing the intent's own value.
+
+- dd660f6: `Drawer.Trigger` / `Drawer.Close` require `asChild`, and `EmptyState` drops `variant`.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+  - <Drawer.Trigger>開く</Drawer.Trigger>
+  + <Drawer.Trigger asChild>
+  +   <Button>開く</Button>
+  + </Drawer.Trigger>
+
+  - <Drawer.Close>閉じる</Drawer.Close>
+  + <Drawer.Close asChild>
+  +   <Button variant="outline">閉じる</Button>
+  + </Drawer.Close>
+
+  - <EmptyState variant="simple" title="…" />
+  + <EmptyState title="…" />
+  ```
+
+  Both components referenced class names their stylesheet never exported.
+  `styles.foo` is `undefined` when `.foo` is missing, and `classNames` drops
+  `undefined` without a word — so the type checker passed, the linter stayed
+  quiet, and VRT recorded the unstyled result as correct.
+
+  `Drawer.Trigger` and `Drawer.Close` pointed at empty placeholder rules, so
+  without `asChild` they shipped a bare `<button>` carrying the browser's default
+  chrome. Giving those rules real declarations was not an option: every real
+  usage passes `asChild`, and `Slot` merges `className` onto the caller's own
+  element, where our styling would fight theirs. `asChild` is now required, and
+  the caller supplies the button.
+
+  `EmptyState.variant` accepted `"default" | "simple"` and did nothing at all —
+  `empty-state.module.scss` exported no classes whatsoever. The documentation
+  described `simple` as "a simpler design that eliminates borders and background
+  colors"; that appearance never existed. The prop, its story, its docs section
+  and its translations are gone.
+
+  `check:class-references` now asks Vite what each `.module.scss` actually
+  exports and fails on references that resolve to nothing. It runs in
+  `audit:lib`.
+
+- d38e073: `Drawer` gains `DrawerBody`, and `VirtualList` rows get the list padding tokens.
+
+  `DrawerHeader` and `DrawerFooter` both carry `spacing-lg`, but there was nothing
+  for the content between them, so anything placed there sat against the drawer
+  edges. The only way out was a wrapper with hardcoded padding — which is what
+  Drawer's own six stories were doing, in px.
+
+  ```diff
+    <DrawerHeader>…</DrawerHeader>
+  - <div style={{ padding: "20px" }}>…</div>
+  + <DrawerBody>…</DrawerBody>
+    <DrawerFooter>…</DrawerFooter>
+  ```
+
+  `DrawerBody` also takes the remaining height and scrolls, so long content no
+  longer pushes the footer off the panel.
+
+  `VirtualList` had the same gap: rows had no horizontal padding, so their content
+  touched the edges and the right side ran into the scrollbar. Its own three
+  stories worked around it with `padding: "0 16px"`. Rows now use
+  `--wim-list-item-padding-y` / `-x`, the same tokens `List` and list items
+  already use, so **rows gain inset padding**; drop any wrapper that was adding it.
+
+  Rows also clip their overflow now. They are absolutely positioned at a fixed
+  `itemHeight`, so content that wrapped used to bleed into the row below and the
+  text overlapped — visible at 320px.
+
+- d99bde7: `FloatButton`: `variant` and `position` say what they do.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+  - <FloatButton variant="primary" />
+  + <FloatButton />                      // 同じ見た目。variant は不要だった
+
+  - <FloatButton variant="default" />
+  + <FloatButton variant="outline" />    // 枠線のある見た目
+
+  - <FloatButton position="static" />
+  + <FloatButton position="inline" />
+  ```
+
+  `variant` had three values and all three were wrong. `primary` fell through to
+  the same rule as no variant at all, so it never did anything. `default` was not
+  the default look — it produced the outlined one, while omitting `variant`
+  produces the intent fill. And the stylesheet still carried a `.default_intent`
+  class that nothing applied, left behind under a comment reading "temporary name".
+
+  `variant` is now `"outline" | "glass"`, which is the loudness axis
+  `Foundation/Variants` describes, with the intent word gone from it.
+
+  `position="static"` applied `position: relative`, so it was a CSS keyword that
+  did not mean what that keyword means. It is `inline` now — the button sits in
+  the normal flow instead of floating.
+
+- ed45a1e: `ChatMessage`, `Header` and `Footer`: values renamed to say what they do.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+  - <ChatMessage variant="primary" />   // 送信側
+  + <ChatMessage variant="sent" />
+  - <ChatMessage variant="secondary" /> // 受信側
+  + <ChatMessage variant="received" />
+
+  - <Header background="primary" />
+  + <Header background="surface" />
+  - <Header background="secondary" />
+  + <Header background="surface-variant" />
+
+  - <Footer background="dark" />
+  + <Footer background="inverse" />
+  ```
+
+  None of these were intent values, despite reading like them. `ChatMessage`'s
+  `primary` and `secondary` resolved to `--wim-comp-chat-bubble-sent` and
+  `-received`; the `background` values on `Header` and `Footer` resolved to
+  `--wim-color-surface`, `-variant` and `-inverse`. The names now match the
+  tokens they reach.
+
+  `ChatMessage.variant` overrides the colour that `position` already implies —
+  `left` is the received colour and `right` the sent one — so it is only needed
+  for the exception, such as a right-aligned bubble in the received colour. That
+  is easier to see now that the values are not borrowing the intent vocabulary.
+
+### Patch Changes
+
+- b50fff2: Fix `color` values that never became a colour, and guard the class of mistake.
+
+  `color="tertiary"` appeared in 15 places and painted nothing in any of them.
+  There is no `--wim-color-tertiary` token — the text colours are `text-primary`,
+  `text-secondary` and `text-tertiary` — and `getColorValue` returns an unknown
+  string unchanged, so the element received `color: tertiary`, which the browser
+  drops. The text kept whatever colour it inherited, which is why it looked
+  merely a little off rather than broken.
+
+  `color="text-accent"` failed the same way for the opposite reason: the token
+  exists, but the key was missing from the hand-written list in `getColorValue`.
+  It is there now.
+
+  Nothing could have caught this. The type is `WimColor`, which allows any string
+  so that raw CSS colours work; VRT recorded the uncoloured render as correct; and
+  axe does not read colour names. `check:color-values` now resolves every literal
+  against both paths a colour can take — the `mappedColors` class and
+  `getColorValue` — and fails when neither would produce a colour.
+
+- 1c4910d: `Kanban`: make the scrollable board reachable by keyboard.
+
+  The board root is `role="region"` with `overflow-x: auto`, but it could not take
+  focus. When the columns are wide enough to scroll and the cards contain nothing
+  focusable, a keyboard user had no way to reach the columns off-screen — axe
+  reports this as `scrollable-region-focusable` at serious impact.
+
+  It never showed up in the component's own stories, because those do not scroll
+  far enough and focusable card content makes the rule inapplicable. It surfaced
+  in the seventh composed screen (`Patterns/Newsroom`), where four columns sit
+  inside an `AppShell`.
+
+  The board now carries `tabIndex={0}`, which adds one tab stop per board.
+
+- e08736f: `Carousel`: the slide indicators are large enough to see and to press.
+
+  The dots were 4.8×4.8, well under the 24×24 that WCAG 2.5.8 (AA) asks for and
+  small enough to be awkward with a thumb. They are 24×24 now, and the active
+  indicator widens to match.
+
+  **The dots are visibly larger.** Extending only the hit area was considered and
+  does not work here: adjacent dots sit 4.8px apart, so 24px targets would overlap
+  each other.
+
+- e8d20d0: `Checkbox` and `Radio` meet the WCAG minimum tap target when they carry no label.
+
+  Both render a `<label>` around their input, so the label is what you click. With
+  text beside the box the label is already at least 24px tall from its line
+  height; without text — a row-selection checkbox in a table, a bare radio in a
+  list — it collapsed to the 18×18 of the box itself, below the 24×24 that WCAG
+  2.5.8 (AA) asks for.
+
+  The minimum now sits on the label, so the painted box stays 18px and centred.
+  Bare checkboxes and radios claim a little more room; labelled ones are
+  unchanged.
+
+- ad3a2ea: More controls reach the WCAG minimum tap target, including under `compact`.
+
+  `Pagination` buttons, `ThemeToggle` segments and `JsonViewer` node actions were
+  under 24×24 at every density. `Calendar` day cells and `Switch` were only under
+  it in `compact`, because both sized themselves from `--wim-height-xs`, which
+  drops from 24px to 20px there.
+
+  Most of these keep their appearance — the minimum sits on a transparent box or,
+  for `Switch`, on the `<label>` that wraps the input, so the track stays the size
+  it was. Two change: `TreeView`'s checkbox grows from 16px, and `Calendar` rows
+  get taller under `compact`.
+
+  `TreeView`'s checkbox carried a comment calling 16px "the minimum operable size
+  for a native checkbox". It is not; WCAG 2.5.8 asks for 24.
+
+- 88aacbf: Give icon-only controls the WCAG minimum tap target.
+
+  Four controls were smaller than the 24×24 CSS pixels WCAG 2.5.8 (AA) asks for:
+  the clear button inside inputs (20×20), Snackbar's close button (14.2×14.2),
+  TreeView's expand toggle (22.4×22.4) and Notification's close button
+  (23.8×23.8). All four are transparent buttons whose paint is the icon inside,
+  so `min-width` and `min-height` raise the hit area without changing how they
+  look at rest.
+
+  The minimum comes from a new `--wim-tap-target-min` token, fixed at 24px and
+  deliberately **not** density-aware: `--wim-height-xs` drops to 20px under
+  `compact`, which is below the floor it would be enforcing.
+
+  Nothing was measuring this. axe does not implement the rule, and a smaller
+  button screenshots fine.
+
+- e08736f: `Carousel`, `Slider`, `RangeSlider` and `Rating`: controls you press are large
+  enough to press.
+
+  Four controls painted themselves smaller than the 24×24 WCAG 2.5.8 (AA) asks
+  for: carousel dots at 4.8×4.8, both slider thumbs at 18×18, and rating stars at
+  16×16 on `size="sm"`. **All four now look bigger** — the paint is the target
+  here, so the hit area cannot grow on its own.
+
+  Growing only the hit area was the alternative and it does not survive contact
+  with the carousel: its dots sit 4.8px apart, so 24px targets would overlap and
+  make mis-taps more likely.
+
+  **`Rating`'s whole scale moves up**, from 16/24/32 to 24/32/42. Its bottom two
+  steps were under the floor — `sm` at 16px, and `md` at 20px under `compact` —
+  and raising only those would have made `sm` and `md` render identically, leaving
+  a size value that changes nothing. Under `compact` the three stay distinct at
+  24/28/36.
+
+  `RangeSlider`'s thumb had a documented 3:1 ratio to its 6px track. The ratio
+  loses to the floor: a thumb you cannot grab is not improved by being
+  proportionate.
+
 ## 0.18.0
 
 ### Minor Changes
