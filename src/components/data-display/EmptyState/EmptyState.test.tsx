@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { EmptyState } from "./EmptyState";
-import styles from "./empty-state.module.scss";
 
 describe("EmptyState", () => {
   it("renders title and description", () => {
@@ -13,12 +12,6 @@ describe("EmptyState", () => {
   it("renders extra action", () => {
     render(<EmptyState title="Title" extra={<button>Create</button>} />);
     expect(screen.getByText("Create")).toBeInTheDocument();
-  });
-
-  it("applies variant class", () => {
-    const { container } = render(<EmptyState title="Title" variant="simple" />);
-    // We need to find the root element
-    expect(container.firstChild).toHaveClass(styles.simple);
   });
 
   it("renders with custom icon", () => {

@@ -99,18 +99,20 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
   };
 
   const bubbleStyle: React.CSSProperties = {};
+  let effectivePlacement: NonNullable<TourStep["placement"]> = step.placement || "bottom";
   if (targetRect) {
     const margin = 16;
     const gap = 12;
     const screenWidth = window.innerWidth;
     const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
 
-    let placement = step.placement || "bottom";
+    let placement = effectivePlacement;
 
     // Fallback for small screens or limited space
     if (screenWidth < 640 && (placement === "left" || placement === "right")) {
       placement = "bottom";
     }
+    effectivePlacement = placement;
 
     if (placement === "top" || placement === "bottom") {
       let left = targetRect.left + targetRect.width / 2;
@@ -166,11 +168,9 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
         />
       )}
       <div
-        className={classNames(
-          "wim-tour",
-          styles.bubble,
-          step.placement && styles[step.placement],
-        )}
+        className={classNames("wim-tour", styles.bubble)}
+        // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
+        data-placement={effectivePlacement}
         style={bubbleStyle}
       >
         <div className={styles.inner}>

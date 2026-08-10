@@ -138,7 +138,6 @@ export const Dropzone = ({
         tabIndex={-1}
       />
       <InteractiveArea
-        className={styles.dropzone}
         size={size}
         isDragging={isDragging}
         disabled={disabled}

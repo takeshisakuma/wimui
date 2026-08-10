@@ -149,6 +149,26 @@
     &.number { color: var(--wim-color-text-accent); }
     &.boolean { color: var(--wim-color-text-danger); }
     &.null { color: var(--wim-color-text-tertiary); }
+
+    /* 編集できる値であることを見せる。**この規則は今まで存在せず、`localStyles.editable`
+       は undefined のまま出荷されていた**（T121）。押せるのに見て分からない状態だった。
+       静止時は下線を敷かない ── JSON は値が縦に並ぶので、全行に線が入ると
+       構造そのものが読めなくなる。触れたときだけ点線を出す。 */
+    &.editable {
+      cursor: text;
+      border-radius: var(--wim-radius-sm);
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline dotted currentcolor;
+        text-underline-offset: var(--wim-spacing-3xs);
+      }
+
+      &:focus-visible {
+        outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+        outline-offset: var(--wim-focus-outline-offset);
+      }
+    }
   }
 
   .bracket {

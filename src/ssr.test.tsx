@@ -202,11 +202,11 @@ registerFamily(
   ["DrawerTrigger", "DrawerClose", "DrawerContent", "DrawerTitle", "DrawerDescription"],
   () => (
     <W.Drawer>
-      <W.DrawerTrigger>t</W.DrawerTrigger>
+      <W.DrawerTrigger asChild><button type="button">t</button></W.DrawerTrigger>
       <W.DrawerContent>
         <W.DrawerTitle>T</W.DrawerTitle>
         <W.DrawerDescription>d</W.DrawerDescription>
-        <W.DrawerClose>x</W.DrawerClose>
+        <W.DrawerClose asChild><button type="button">x</button></W.DrawerClose>
       </W.DrawerContent>
     </W.Drawer>
   ),

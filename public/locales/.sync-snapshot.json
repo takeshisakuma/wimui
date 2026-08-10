@@ -4447,8 +4447,6 @@
       "emptystate_scenario_inbox": "Empty Inbox: Celebrates that all tasks or emails have been cleared, allowing the user to feel a sense of accomplishment (Inbox Zero).",
       "emptystate_scenario_init": "Initial Onboarding: Encourages users who have just started using the app to create their first piece of data.",
       "emptystate_scenario_search": "Zero Search Results: Informs that matching data was not found and suggests actions like 'expanding the criteria'.",
-      "emptystate_simple": "Simple",
-      "emptystate_simple_desc": "A simpler design that eliminates borders and background colors.",
       "emptystate_title": "Component for guiding users when no data is available",
       "loader_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
       "loader_anatomy_content": "The primary area where main content or children are rendered.",

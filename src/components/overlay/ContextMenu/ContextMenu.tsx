@@ -299,7 +299,7 @@ export const ContextMenuGroup = ({
   className,
 }: ContextMenuGroupProps) => {
   return (
-    <div role="group" className={classNames(styles.group, className)} data-testid="context-menu-group">
+    <div role="group" className={className} data-testid="context-menu-group">
       {title && <div className={styles.groupTitle} data-testid="context-menu-group-title">{title}</div>}
       {children}
     </div>

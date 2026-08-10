@@ -137,12 +137,6 @@ describe("Audio", () => {
     expect(inner).toHaveClass(styles.custom);
   });
 
-  it("applies styles.hasVisualizer class when both customControls and visualizer are true", () => {
-    render(<Audio src={src} customControls visualizer />);
-    const inner = screen.getByTestId("audio-inner");
-    expect(inner).toHaveClass(styles.hasVisualizer);
-  });
-
 
   it("does not render canvas when visualizer is true but customControls is false", () => {
     render(<Audio src={src} visualizer />);

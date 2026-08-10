@@ -72,7 +72,7 @@ export const GaugeChart = ({
   const fill = color || CHART_COLORS[0];
 
   return (
-    <div className={classNames("wim-gauge-chart", styles.root, styles.gauge)} style={{ width }}>
+    <div className={classNames("wim-gauge-chart", styles.root)} style={{ width }}>
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}

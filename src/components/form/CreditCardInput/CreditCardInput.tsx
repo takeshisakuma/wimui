@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { Input, InputProps } from "../Input/Input";
-import localStyles from "./credit-card-input.module.scss";
 
 export type CreditCardBrand = "visa" | "mastercard" | "amex" | "discover" | "jcb" | "diners" | "generic";
 
@@ -113,7 +112,7 @@ export const CreditCardInput = React.forwardRef<HTMLInputElement, CreditCardInpu
         onChange={handleInputChange}
         maxLength={getMaxLength(brand)}
         rightIcon="CreditCardIcon"
-        className={`wim-credit-card-input ${localStyles.root}`}
+        className="wim-credit-card-input"
       >
         {children}
       </Component>

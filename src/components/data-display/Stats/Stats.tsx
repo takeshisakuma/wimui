@@ -93,10 +93,10 @@ export const StatsTrend = ({
           （T78）。DESIGN.md が「絵文字・記号でアイコンを代用しない」と禁じている
           当のことを、出荷コンポーネントがやっていた。文字だと書体によって字形も
           光学的な重さも変わり、他のアイコンと揃わない。 */}
-      <span className={styles.trendIcon} aria-hidden="true">
+      <span aria-hidden="true">
         <Icon component={TREND_ICON[direction]} size="sm" />
       </span>
-      <span className={styles.trendValue}>{children}</span>
+      <span>{children}</span>
     </div>
   );
 };

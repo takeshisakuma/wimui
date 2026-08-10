@@ -75,10 +75,7 @@ export const FAQSection = ({
           type="multiple"
           collapsible
           {...accordionProps}
-          className={classNames(
-            styles.accordion,
-            accordionProps?.className
-          )}
+          className={accordionProps?.className}
         >
           {items.map((item, index) => (
             <Accordion.Item key={index} value={`faq-item-${index}`}>

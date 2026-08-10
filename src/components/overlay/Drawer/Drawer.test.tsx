@@ -15,10 +15,10 @@ describe("Drawer", () => {
   it("opens and closes", async () => {
     render(
       <Drawer side="right">
-        <DrawerTrigger>Open Drawer</DrawerTrigger>
+        <DrawerTrigger asChild><button type="button">Open Drawer</button></DrawerTrigger>
         <DrawerContent>
           <DrawerTitle>Title</DrawerTitle>
-          <DrawerClose>Close</DrawerClose>
+          <DrawerClose asChild><button type="button">Close</button></DrawerClose>
         </DrawerContent>
       </Drawer>,
     );
@@ -79,7 +79,7 @@ describe("Drawer", () => {
     render(
       <Drawer open={true} onOpenChange={onOpenChange}>
         <DrawerContent>
-          <DrawerClose>Close</DrawerClose>
+          <DrawerClose asChild><button type="button">Close</button></DrawerClose>
         </DrawerContent>
       </Drawer>,
     );
@@ -91,7 +91,7 @@ describe("Drawer", () => {
     const onOpenChange = vi.fn();
     render(
       <Drawer onOpenChange={onOpenChange}>
-        <DrawerTrigger>Open</DrawerTrigger>
+        <DrawerTrigger asChild><button type="button">Open</button></DrawerTrigger>
         <DrawerContent>Content</DrawerContent>
       </Drawer>,
     );
@@ -186,7 +186,7 @@ describe("Drawer", () => {
   it("useDrawer throws outside Drawer provider", () => {
     // DrawerClose uses useDrawer internally
     const BadComponent = () => (
-      <DrawerClose>Close</DrawerClose>
+      <DrawerClose asChild><button type="button">Close</button></DrawerClose>
     );
     expect(() => render(<BadComponent />)).toThrow(
       "useDrawer must be used within a Drawer provider",

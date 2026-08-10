@@ -161,8 +161,6 @@
     "emptystate_scenario_inbox": "空の受信トレイ: すべてのタスクやメールが片付いたことを祝福し、達成感（Inbox Zero）を感じさせる。",
     "emptystate_scenario_init": "初期導入（オンボーディング）: アプリを使い始めたばかりのユーザーに、最初のデータを作成するよう促す。",
     "emptystate_scenario_search": "検索結果ゼロ: 該当するデータが見つからなかったことを伝え、「条件を広げる」などの提案をする。",
-    "emptystate_simple": "Simple",
-    "emptystate_simple_desc": "枠線や背景色を排除した、よりシンプルなデザインです。",
     "emptystate_title": "表示データがない場合に適切な案内を表示するコンポーネント",
     "loader_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
     "loader_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",

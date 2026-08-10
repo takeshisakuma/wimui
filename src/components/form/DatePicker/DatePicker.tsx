@@ -265,7 +265,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 className={classNames(
                   inputStyles.root,
                   styles.input,
-                  fullWidth && inputStyles.fullWidth,
                 )}
                 value={formatDate(currentValue)}
                 placeholder={actualPlaceholder}

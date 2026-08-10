@@ -47,10 +47,6 @@
     opacity: var(--wim-opacity-dim);
   }
   
-  .group {
-    // nothing here for now
-  }
-
   .groupTitle {
     padding: var(--wim-list-item-padding-y) calc(var(--wim-list-item-padding-x) + var(--wim-spacing-xs));
     font-size: var(--wim-font-size-xs);

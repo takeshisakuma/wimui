@@ -154,6 +154,14 @@ const checks = [
   },
   {
     category: "lib",
+    // .module.scss が書き出していない名前を参照すると undefined になり、
+    // classNames が黙って落とす。型も lint も鳴らず、VRT は装いが当たっていない
+    // 絵を正として撮る（T121）。クラス名は自分で SCSS を読まず Vite に聞く。
+    name: "CSS Modules class references actually resolve",
+    command: "node scripts/check-class-references.js",
+  },
+  {
+    category: "lib",
     // 上の check-contrast.js が見るのは intents SSOT の 4 ロールだけで、
     // **`semantic.json` の `*-subtle` 群は誰も測っていなかった**（T102）。
     // しかも下限だけでは足りない: 一律アルファは hue ごとに効きが違うため、

@@ -173,7 +173,6 @@ export const Audio = ({
           customControls && shadow && styles.shadow,
           customControls && border && styles.border,
           customControls && styles.custom,
-          visualizer && customControls && styles.hasVisualizer,
           fadeIn && styles.fadeIn,
           fadeIn && isLoaded && styles.isLoaded,
           shouldShowSkeleton && styles.loading,

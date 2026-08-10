@@ -199,7 +199,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Top Step")).toBeInTheDocument();
-    const bubble = document.querySelector(`.${styles.bubble}.${styles.top}`);
+    const bubble = document.querySelector(`.${styles.bubble}[data-placement="top"]`);
     expect(bubble).toBeInTheDocument();
   });
 
@@ -214,7 +214,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Left Step")).toBeInTheDocument();
-    const bubble = document.querySelector(`.${styles.bubble}.${styles.left}`);
+    const bubble = document.querySelector(`.${styles.bubble}[data-placement="left"]`);
     expect(bubble).toBeInTheDocument();
   });
 
@@ -229,7 +229,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Right Step")).toBeInTheDocument();
-    const bubble = document.querySelector(`.${styles.bubble}.${styles.right}`);
+    const bubble = document.querySelector(`.${styles.bubble}[data-placement="right"]`);
     expect(bubble).toBeInTheDocument();
   });
 

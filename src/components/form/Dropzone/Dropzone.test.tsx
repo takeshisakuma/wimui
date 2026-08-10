@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Dropzone } from "./Dropzone";
-import styles from "./dropzone.module.scss";
 
 describe("Dropzone", () => {
   it("renders label and description", () => {
@@ -73,8 +72,10 @@ describe("Dropzone", () => {
 
   it("does not drop files when disabled", () => {
     const handleChange = vi.fn();
+    // 無効時は role="button" を出さない設計なので、他のテストのように getByRole では引けない。
+    // クラス名で引いていたが、あれは vitest のプロキシが作った名前で実在しなかった（T121）。
     const { container } = render(<Dropzone disabled onChange={handleChange} />);
-    const dropzone = container.querySelector(`.${styles.dropzone}`)!;
+    const dropzone = container.querySelector('[data-disabled="true"]')!;
 
     const file = new File(["content"], "test.png", { type: "image/png" });
     fireEvent.drop(dropzone, { dataTransfer: { files: [file] } });

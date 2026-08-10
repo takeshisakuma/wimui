@@ -95,14 +95,23 @@ const DrawerInner = ({
 
 // --- Drawer Trigger ---
 export interface DrawerTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
-  asChild?: boolean;
+  /** 中身の要素へ委譲する。必須（理由は下のコメント）。 */
+  asChild: true;
 }
 
+/**
+ * Drawer を開く呼び出し口。
+ *
+ * `asChild` は必須。**素の `<button>` を返す道は塞いである** ── そちらには当てる
+ * 装いが無く（空の規則を参照していた）、ブラウザ既定のボタン枠がそのまま出ていた。
+ * 装いを与える案は採らなかった: 実利用はすべて `asChild` で、`Slot` が
+ * `className` を相手の要素へ合流させるため、こちらの装いが相手のボタンと競合する。
+ * 呼び出し側が `<Button>` なり自前の要素なりを渡す。（T121）
+ */
 export const DrawerTrigger = ({
   children,
   className,
   onClick,
-  asChild = false,
   ...props
 }: DrawerTriggerProps) => {
   const { onOpenChange } = useDrawer();
@@ -112,12 +121,13 @@ export const DrawerTrigger = ({
     onOpenChange(true);
   };
 
-  const Component = asChild ? Slot : "button";
+  // asChild は必須なので、常に委譲する。
+  const Component = Slot;
 
   return (
     <Component
       type="button"
-      className={classNames(styles.trigger, className)}
+      className={className}
       onClick={handleClick}
       {...props}
     >
@@ -128,14 +138,23 @@ export const DrawerTrigger = ({
 
 // --- Drawer Close ---
 export interface DrawerCloseProps extends React.ComponentPropsWithoutRef<"button"> {
-  asChild?: boolean;
+  /** 中身の要素へ委譲する。必須（理由は下のコメント）。 */
+  asChild: true;
 }
 
+/**
+ * Drawer を閉じる要素。
+ *
+ * `asChild` は必須。**素の `<button>` を返す道は塞いである** ── そちらには当てる
+ * 装いが無く（空の規則を参照していた）、ブラウザ既定のボタン枠がそのまま出ていた。
+ * 装いを与える案は採らなかった: 実利用はすべて `asChild` で、`Slot` が
+ * `className` を相手の要素へ合流させるため、こちらの装いが相手のボタンと競合する。
+ * 呼び出し側が `<Button>` なり自前の要素なりを渡す。（T121）
+ */
 export const DrawerClose = ({
   children,
   className,
   onClick,
-  asChild = false,
   ...props
 }: DrawerCloseProps) => {
   const { onOpenChange } = useDrawer();
@@ -145,12 +164,13 @@ export const DrawerClose = ({
     onOpenChange(false);
   };
 
-  const Component = asChild ? Slot : "button";
+  // asChild は必須なので、常に委譲する。
+  const Component = Slot;
 
   return (
     <Component
       type="button"
-      className={classNames(styles.closeButton, className)}
+      className={className}
       onClick={handleClick}
       data-testid="drawer-close"
       {...props}

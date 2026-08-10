@@ -161,8 +161,6 @@
     "emptystate_scenario_inbox": "Caixa de Entrada Vazia: Celebra que todas as tarefas ou e-mails foram removidos, permitindo que o usuário sinta uma sensação de realização (Inbox Zero).",
     "emptystate_scenario_init": "Integração Inicial (Onboarding): Incentiva os usuários que acabaram de começar a usar o aplicativo a criar seu primeiro dado.",
     "emptystate_scenario_search": "Zero Resultados de Pesquisa: Informa que dados correspondentes não foram encontrados e sugere ações como 'expandir os critérios'.",
-    "emptystate_simple": "Simples",
-    "emptystate_simple_desc": "Um design mais simples que elimina bordas e cores de fundo.",
     "emptystate_title": "Componente para orientar usuários quando não há dados disponíveis",
     "loader_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, rótulos e suporte a navegação por teclado.",
     "loader_anatomy_content": "A área primária onde o conteúdo principal ou filhos são renderizados.",

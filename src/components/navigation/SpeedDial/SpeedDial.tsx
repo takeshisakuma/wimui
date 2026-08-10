@@ -97,7 +97,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
                 iconName={action.icon}
                 label={action.label}
                 size="sm"
-                className={classNames(localStyles.action, action.className)}
+                className={action.className}
                 onClick={() => {
                   action.onClick?.();
                   if (trigger === "click") handleOpenChange(false);

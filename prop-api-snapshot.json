@@ -3323,7 +3323,7 @@
       "type": "boolean"
     },
     "DrawerClose.asChild": {
-      "type": "boolean"
+      "type": "literal"
     },
     "DrawerContent.asChild": {
       "type": "boolean"
@@ -3362,7 +3362,7 @@
       "type": "boolean"
     },
     "DrawerTrigger.asChild": {
-      "type": "boolean"
+      "type": "literal"
     },
     "Dropdown.Item.active": {
       "type": "boolean"
@@ -3503,13 +3503,6 @@
     "EmptyState.title": {
       "required": true,
       "type": "React.ReactNode"
-    },
-    "EmptyState.variant": {
-      "required": false,
-      "values": [
-        "default",
-        "simple"
-      ]
     },
     "ErrorBoundary.children": {
       "required": true,

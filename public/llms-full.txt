@@ -2258,7 +2258,6 @@ drops secondary text below the AA contrast floor.
     - `description: React.ReactNode` — Description text to display.
     - `icon: React.ReactNode` — Icon to display.
     - `extra: React.ReactNode` — Element shown as an action (e.g. a button).
-    - `variant: "default" | "simple"` = "default" — Design variant.
 - **FAQSection** — Frequently Asked Questions section
     - `items: FAQItem[]` (required) — FAQ items.
     - `title: React.ReactNode` — Main title of the section.
