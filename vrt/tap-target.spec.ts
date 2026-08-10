@@ -29,9 +29,11 @@ const stories = Object.values(index.entries).filter(
 );
 
 const filter = process.env.FILTER || "";
-// 既定は compact だけを見る。**下限を割るのは compact 側**で、既定密度は 24px
-// ちょうど（`--wim-height-xs`）なので、まず落ちる側から固める。
-const densities = process.env.DENSITY ? [process.env.DENSITY] : ["compact"];
+// 既定は両方の密度を見る。片方だけでは足りない ── compact は `--wim-height-xs` が
+// 20px まで縮むので compact でしか出ない不足があり（SegmentedControl・JsonViewer）、
+// 逆に密度に依らない固定寸法は comfortable でも同じだけ出る（Popover の呼び出し口）。
+// シャードは 4 本のままで、1 本あたりの本数が倍になる。
+const densities = process.env.DENSITY ? process.env.DENSITY.split(",") : ["comfortable", "compact"];
 
 // WCAG 2.5.8 Target Size (Minimum), Level AA。24×24 CSS ピクセル。
 const MIN = 24;
@@ -80,6 +82,17 @@ const measure = async (page: import("@playwright/test").Page) =>
       (el.tagName === "INPUT" && TEXT_ENTRY.includes((el as HTMLInputElement).type));
 
     const out: { label: string; w: number; h: number }[] = [];
+    // **除外した数は必ず出す。** 例外はどれも「小さいまま通す」ための穴なので、
+    // 黙って効くと 0 件が正しさの証拠にならなくなる。理由ごとに数えて表に出す。
+    const excused: Record<string, number> = {};
+    const describe = (el: HTMLElement) => {
+      const cls = (el.className || "").toString().split(/\s+/).filter(Boolean).slice(0, 2).join(".");
+      return `<${el.tagName.toLowerCase()}${el.getAttribute("role") ? ` role=${el.getAttribute("role")}` : ""}${cls ? ` class="${cls}"` : ""}>`;
+    };
+    const excuse = (reason: string, el: HTMLElement) => {
+      const key = `${reason}  ${describe(el)}`;
+      excused[key] = (excused[key] || 0) + 1;
+    };
     for (const el of Array.from(document.querySelectorAll<HTMLElement>(SELECTOR))) {
       if (el.hasAttribute("disabled") || el.getAttribute("aria-hidden") === "true") continue;
       if (isTextEntry(el)) continue;
@@ -100,7 +113,10 @@ const measure = async (page: import("@playwright/test").Page) =>
           break;
         }
       }
-      if (unclickable) continue;
+      if (unclickable) {
+        excuse("押せない状態", el);
+        continue;
+      }
 
       // WCAG 2.5.8 の Inline 例外 ──「対象が文の中にある、または非対象の文字の
       // line-height によって大きさが決まっている」場合。`display: inline` は
@@ -108,7 +124,10 @@ const measure = async (page: import("@playwright/test").Page) =>
       // JsonViewer の値（`<span role="button">`）が該当する。鍵・括弧・カンマと
       // 同じ行に並ぶので、ここを 24 にすると JSON の行がすべて広がる。
       // inline-flex / inline-block は自分で高さを持てるので例外にならない。
-      if (getComputedStyle(el).display === "inline") continue;
+      if (getComputedStyle(el).display === "inline") {
+        excuse("Inline 例外", el);
+        continue;
+      }
 
       // **外側により大きな操作対象があるなら、押される面はそちら。**
       // 入れ子（`<label>` の中のマーク、ボタンの中のアイコン）で二重に鳴らない。
@@ -130,17 +149,19 @@ const measure = async (page: import("@playwright/test").Page) =>
         }
         ancestor = ancestor.parentElement;
       }
-      if (coveredByAncestor) continue;
+      if (coveredByAncestor) {
+        excuse("外側が押される面", el);
+        continue;
+      }
 
 
-      const cls = (el.className || "").toString().split(/\s+/).filter(Boolean).slice(0, 2).join(".");
       out.push({
-        label: `<${el.tagName.toLowerCase()}${el.getAttribute("role") ? ` role=${el.getAttribute("role")}` : ""}${cls ? ` class="${cls}"` : ""}>`,
+        label: describe(el),
         w: Math.round(r.width * 10) / 10,
         h: Math.round(r.height * 10) / 10,
       });
     }
-    return out;
+    return { out, excused };
   }, MIN);
 
 test.describe("Tap target size (WCAG 2.5.8, 24x24)", () => {
@@ -155,7 +176,12 @@ test.describe("Tap target size (WCAG 2.5.8, 24x24)", () => {
           await page.goto(url, { waitUntil: "domcontentloaded" });
           await waitForStoryReady(page);
 
-          const undersized = await measure(page);
+          const { out: undersized, excused } = await measure(page);
+
+          // 除外は CI のログに残す。あとから「何を通したか」を数え直せるようにする。
+          for (const [what, n] of Object.entries(excused)) {
+            console.log(`TAP_TARGET_EXCUSED	${density}	${story.title} › ${story.name}	${n}	${what}`);
+          }
 
           expect(
             undersized,
