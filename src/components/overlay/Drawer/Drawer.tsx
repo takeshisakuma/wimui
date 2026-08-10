@@ -112,6 +112,9 @@ export const DrawerTrigger = ({
   children,
   className,
   onClick,
+  // 受け取るだけで渡さない。**`...props` に混ぜると Slot が子へ転送してしまう** ──
+  // 子の `<Button>` も `asChild` を持つので、テキストの子で React.Children.only が落ちる。
+  asChild: _asChild,
   ...props
 }: DrawerTriggerProps) => {
   const { onOpenChange } = useDrawer();
@@ -155,6 +158,9 @@ export const DrawerClose = ({
   children,
   className,
   onClick,
+  // 受け取るだけで渡さない。**`...props` に混ぜると Slot が子へ転送してしまう** ──
+  // 子の `<Button>` も `asChild` を持つので、テキストの子で React.Children.only が落ちる。
+  asChild: _asChild,
   ...props
 }: DrawerCloseProps) => {
   const { onOpenChange } = useDrawer();
