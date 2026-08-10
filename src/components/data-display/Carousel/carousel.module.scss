@@ -95,8 +95,12 @@
   }
 
   .indicator {
-    width: var(--wim-spacing-xs);
-    height: var(--wim-spacing-xs);
+    /* 4.8px の円だったが、**見るのも押すのも小さすぎた**。WCAG 2.5.8（AA）の
+       24×24 に合わせて上げる。ドットが目に見えて大きくなる ── 当たり判定だけ
+       広げる手（疑似要素）も検討したが、隣との間隔が 4.8px しかなく重なるため、
+       ここは見た目ごと変える判断（T117）。 */
+    width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
     padding: 0;
     cursor: pointer;
     background-color: var(--wim-comp-carousel-indicator-bg);
@@ -107,7 +111,8 @@
       width var(--wim-transition-fast);
   
     &.active {
-      width: var(--wim-spacing-4xl);
+      /* 現在のスライドは横長で示す。高さが上がったぶん幅も上げて比率を保つ。 */
+      width: calc(var(--wim-tap-target-min) * 2);
       background-color: var(--wim-color-primary);
       border-radius: var(--wim-radius-sm);
     }
