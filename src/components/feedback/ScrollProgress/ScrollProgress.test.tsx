@@ -20,18 +20,18 @@ describe("ScrollProgress", () => {
     expect(progressbar).toHaveAttribute("aria-valuenow", "0");
   });
 
-  it("renders with different color variants", () => {
-    render(<ScrollProgress color="success" />);
+  it("renders with different intents", () => {
+    render(<ScrollProgress intent="success" />);
     expect(screen.getByRole("progressbar")).toHaveClass(styles.success);
   });
 
-  it("renders with secondary color", () => {
-    render(<ScrollProgress color="secondary" />);
-    expect(screen.getByRole("progressbar")).toHaveClass(styles.secondary);
+  it("renders with the neutral intent", () => {
+    render(<ScrollProgress intent="neutral" />);
+    expect(screen.getByRole("progressbar")).toHaveClass(styles.neutral);
   });
 
-  it("renders with error color", () => {
-    render(<ScrollProgress color="danger" />);
+  it("renders with the danger intent", () => {
+    render(<ScrollProgress intent="danger" />);
     expect(screen.getByRole("progressbar")).toHaveClass(styles.danger);
   });
 

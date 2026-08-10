@@ -162,7 +162,7 @@ export const Overview: StoryObj = {
                 <Timeline align="left">
                   <TimelineItem>
                     <TimelineSeparator>
-                      <TimelinePoint variant="success" />
+                      <TimelinePoint intent="success" />
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
@@ -172,7 +172,7 @@ export const Overview: StoryObj = {
                   </TimelineItem>
                   <TimelineItem>
                     <TimelineSeparator>
-                      <TimelinePoint variant="primary" />
+                      <TimelinePoint intent="primary" />
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
@@ -182,7 +182,7 @@ export const Overview: StoryObj = {
                   </TimelineItem>
                   <TimelineItem>
                     <TimelineSeparator>
-                      <TimelinePoint variant="primary" />
+                      <TimelinePoint intent="primary" />
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>

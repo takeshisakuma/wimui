@@ -41,8 +41,11 @@ export const ThoughtStep = ({
       <Icon component={AlertCircleIcon} size="xs" />
     ) : null;
 
-  const pointVariant =
-    status === "completed" ? "success" : status === "error" ? "danger" : "secondary";
+  /* T114: 以前は `secondary` を渡していた。#309 で intent から廃止した語が、
+     `variant` という別名の prop 経由で生き残っていた（型に載っていなかったので
+     当時の検出網に掛からなかった）。灰色のマークは `neutral` が担う。 */
+  const pointIntent =
+    status === "completed" ? "success" : status === "error" ? "danger" : "neutral";
 
   return (
     <TimelineItem
@@ -50,7 +53,7 @@ export const ThoughtStep = ({
       aria-busy={status === "pending" || undefined}
     >
       <TimelineSeparator>
-        <TimelinePoint variant={pointVariant}>{pointContent}</TimelinePoint>
+        <TimelinePoint intent={pointIntent}>{pointContent}</TimelinePoint>
         {!isLast && <TimelineConnector className={styles.connector} />}
       </TimelineSeparator>
       <TimelineContent className={styles.content}>

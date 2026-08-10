@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import type { IndicatorIntent } from "../../../types/tokens";
 import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import styles from "./timeline.module.scss";
@@ -122,14 +123,18 @@ TimelineConnector.displayName = "TimelineConnector";
 
 export interface TimelinePointProps {
   children?: React.ReactNode;
-  variant?: "primary" | "secondary" | "danger" | "success";
+  /**
+   * 意味の軸。`variant` という名前だったが、値は 4 つとも intent の色そのもので、
+   * 音量（solid / outline / subtle）ではなかった（T114）。
+   */
+  intent?: IndicatorIntent;
   className?: string;
   asChild?: boolean;
 }
 
 export const TimelinePoint = forwardRef<HTMLDivElement, TimelinePointProps>(({
   children,
-  variant,
+  intent,
   className,
   asChild,
   ...props
@@ -141,7 +146,7 @@ export const TimelinePoint = forwardRef<HTMLDivElement, TimelinePointProps>(({
       ref={ref}
       className={classNames(
         styles.point,
-        variant && styles[variant],
+        intent && styles[intent],
         isIcon && styles.icon,
         className,
       )}

@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../../../tokens/generated/intents" as intents;
+
 @layer component {
   .root {
     position: fixed;
@@ -14,27 +17,12 @@
       transition: width var(--wim-duration-extra-fast) var(--wim-easing-standard);
     }
 
-    &.secondary {
-      .bar {
-        background-color: var(--wim-color-line);
-      }
-    }
-
-    &.success {
-      .bar {
-        background-color: var(--wim-color-success);
-      }
-    }
-
-    &.warning {
-      .bar {
-        background-color: var(--wim-color-warning);
-      }
-    }
-
-    &.danger {
-      .bar {
-        background-color: var(--wim-color-danger);
+    /* 6 つの intent を SSOT（tokens/intents.json → $token-colors）から回す。
+       手書きにすると intent が増減したときに黙って無スタイルになる ──
+       `check:intents:scss` が見張っているのはまさにそれ。 */
+    @each $name, $pairs in intents.$token-colors {
+      &.#{$name} .bar {
+        background-color: #{map.get($pairs, "base")};
       }
     }
   }
