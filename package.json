@@ -317,6 +317,7 @@
     "test:vrt:update": "playwright test vrt/vrt.spec.ts --update-snapshots",
     "vrt:report": "node scripts/vrt-color-shift-report.js",
     "test:vrt:report": "playwright show-report",
+    "test:tap-target": "playwright test vrt/tap-target.spec.ts",
     "i18n:sync": "node scripts/sync-i18n.js",
     "i18n:bundle": "node scripts/generate-i18n-resources.js",
     "i18n:check": "node scripts/check-i18n.js",
