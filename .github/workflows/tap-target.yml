@@ -1,0 +1,66 @@
+name: Tap Target Size (WCAG 2.5.8)
+
+# **手動起動だけ。** 既存の不足が 165 ストーリー分あるので、PR に付けると
+# 無関係な変更が軒並み落ちる。件数を減らす作業（T117 ②）の測定に使い、
+# 0 になってから `pull_request` を足す。
+on:
+  workflow_dispatch:
+    inputs:
+      density:
+        description: "測る密度（comfortable / compact）"
+        type: choice
+        options: ["comfortable", "compact"]
+        default: "comfortable"
+      filter:
+        description: "ストーリータイトルの絞り込み（空なら全件）"
+        type: string
+        default: ""
+
+concurrency:
+  group: tap-target-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  measure:
+    name: Measure (${{ matrix.shard }}/4)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      # 失敗しても後続シャードを止めない（測定が目的で、ゲートではない）
+      - name: Measure tap targets
+        continue-on-error: true
+        env:
+          DENSITY: ${{ inputs.density }}
+          FILTER: ${{ inputs.filter }}
+        run: npx playwright test vrt/tap-target.spec.ts --shard=${{ matrix.shard }}/4
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: tap-target-${{ inputs.density }}-${{ matrix.shard }}
+          path: playwright-report/
+          retention-days: 7
