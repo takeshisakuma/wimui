@@ -80,7 +80,11 @@
     align-items: center;
     justify-content: center;
     width: var(--wim-spacing-2xl);
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。塗りは中のつまみの線。 T117 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-spacing-2xl);
+    min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-color-text-primary);
     cursor: ew-resize;

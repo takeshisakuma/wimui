@@ -20,6 +20,10 @@
     display: inline-flex;
     gap: var(--wim-spacing-2xs);
     align-items: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。横は文字幅で足りているので、効くのは高さだけ。 T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
     margin: 0;
     font: inherit;

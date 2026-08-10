@@ -87,6 +87,21 @@ const measure = async (page: import("@playwright/test").Page) =>
       if (r.width === 0 || r.height === 0) continue; // 非表示は測れない
       if (r.width >= min && r.height >= min) continue;
 
+      // 押せない状態のものは当たり判定を持たない。SpeedDial の閉じたアクションが
+      // `opacity: 0; pointer-events: none; transform: scale(0.6)` のまま数えられ、
+      // 22.4 の箱が 13.4 として 12 件鳴っていた ── あれは欠陥ではなく測り間違い。
+      // 実測した箱そのものを見る（`transform` は getBoundingClientRect に乗る）ので、
+      // 開いた状態のサイズを別に確かめる必要はない。
+      let unclickable = false;
+      for (let n: HTMLElement | null = el; n && n !== document.body; n = n.parentElement) {
+        const cs = getComputedStyle(n);
+        if (cs.pointerEvents === "none" || cs.opacity === "0" || cs.visibility === "hidden") {
+          unclickable = true;
+          break;
+        }
+      }
+      if (unclickable) continue;
+
       // **外側により大きな操作対象があるなら、押される面はそちら。**
       // 入れ子（`<label>` の中のマーク、ボタンの中のアイコン）で二重に鳴らない。
       let ancestor = el.parentElement;
