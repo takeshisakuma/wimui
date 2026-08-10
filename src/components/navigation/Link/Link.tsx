@@ -77,7 +77,6 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           localStyles.root,
           localStyles[size],
           localStyles[priority],
-          external && localStyles.external,
           className,
           stylesProp?.root,
         )}

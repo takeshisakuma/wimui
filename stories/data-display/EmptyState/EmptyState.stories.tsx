@@ -32,20 +32,6 @@ export const Default: Story = {
   },
 };
 
-export const Simple: Story = {
-  render: function Render(args) {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    return (
-      <EmptyState
-        {...args}
-        title={t("story.emptystate_nomessages_title")}
-        description={t("story.emptystate_nomessages_desc")}
-        variant="simple"
-      />
-    );
-  },
-};
-
 export const WithoutDescription: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

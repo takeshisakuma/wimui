@@ -15,9 +15,14 @@ describe("InputBase", () => {
     expect(screen.getByTestId("inner")).toBeInTheDocument();
   });
 
-  it("applies default intent class", () => {
+  // 既定の intent はクラスを持たない ── それがこの設計で正しい。かつては存在しない
+  // styles.default を主張していたが、vitest のプロキシ同士が一致していただけで
+  // production には無かった（T121）。実在する性質＝intent クラスが付かないことを見る。
+  it("applies no intent class by default", () => {
     const { container } = render(<InputBase><input /></InputBase>);
-    expect(container.firstChild).toHaveClass(styles.default);
+    expect(container.firstChild).not.toHaveClass(styles.danger);
+    expect(container.firstChild).not.toHaveClass(styles.warning);
+    expect(container.firstChild).not.toHaveClass(styles.success);
   });
 
   it("applies error intent class", () => {
@@ -25,9 +30,10 @@ describe("InputBase", () => {
     expect(container.firstChild).toHaveClass(styles.danger);
   });
 
-  it("applies outline variant class by default", () => {
+  // outline は既定の見た目そのもので、クラスを足さない。ghost だけがクラスを持つ。
+  it("adds no variant class for the default outline look", () => {
     const { container } = render(<InputBase><input /></InputBase>);
-    expect(container.firstChild).toHaveClass(styles.outline);
+    expect(container.firstChild).not.toHaveClass(styles.ghost);
   });
 
   it("applies ghost variant class when specified", () => {

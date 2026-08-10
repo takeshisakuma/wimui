@@ -395,7 +395,8 @@
     "check:examples": "node scripts/check-code-examples.js",
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js",
     "check:external-assets": "node scripts/check-external-assets.js",
-    "check:ci-paths": "node scripts/check-ci-paths.js"
+    "check:ci-paths": "node scripts/check-ci-paths.js",
+    "check:class-references": "node scripts/check-class-references.js"
   },
   "keywords": [
     "react",

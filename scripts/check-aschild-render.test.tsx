@@ -10,7 +10,7 @@
  * そこを増やすときは「静的には緑・実行時に赤」が残っていないかを疑うこと。
  */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
 import { Title, Text, Span, Legend, Label, Highlight, Kbd, Code, Blockquote } from "../src/typography";
@@ -26,6 +26,7 @@ import {
 } from "../src/form";
 import { Box, Flex, Stack, Group, Grid, Toolbar } from "../src/layout";
 import { Badge, Chip, Tag, Card, List, RelativeTime, Countdown } from "../src/data-display-core";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerClose } from "../src/overlay";
 
 type Case = {
   name: string;
@@ -87,4 +88,37 @@ describe("asChild render smoke (T99)", () => {
       ).not.toThrow();
     });
   }
+});
+
+// 複合トリガーは親の中でしか描けないので別枠。ここを空のままにしていたせいで
+// T121 の取りこぼしが出た（root だけを見ていた）。
+// 複合トリガーは親の中でしか描けないので別枠。ここが空だったせいで T121 の
+// 取りこぼしが出た（root だけを見ていた）。
+//
+// **子は `<Button>` にする。`<span>` では鳴らない。** 壊れ方はこうだった:
+// `Drawer.Trigger` が `asChild` を `...props` に混ぜ、Slot が子へ転送する。
+// 子が `Button` だと `Button` 自身の `asChild` が立ち、テキストの子に対して
+// `React.Children.only` が落ちて**ストーリーが 6 本まるごと描画されなくなった**。
+// `<span>` は `asChild` を持たないので、同じバグでも何も起きない。
+// （最初に書いた「漏れた属性を見る」検査は、故意にバグを戻しても緑のままだった ──
+// React は未知の boolean 属性を DOM に出さない。測れないので捨てた。）
+describe("asChild render smoke: composite triggers", () => {
+  it("Drawer.Trigger / Drawer.Close が asChild を持つ子を壊さない", () => {
+    expect(() =>
+      render(
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button variant="solid">開く</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerTitle>T</DrawerTitle>
+            <DrawerClose asChild>
+              <Button variant="outline">閉じる</Button>
+            </DrawerClose>
+          </DrawerContent>
+        </Drawer>,
+      ),
+    ).not.toThrow();
+    expect(screen.getByText("開く")).toBeInTheDocument();
+  });
 });

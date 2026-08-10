@@ -41,11 +41,11 @@ export const FieldCharacterCount: React.FC<FieldCharacterCountProps> = ({
       )}
       aria-live="polite"
     >
-      <span className={styles.count}>{count}</span>
+      <span>{count}</span>
       {maxLength !== undefined && (
         <>
           <span className={styles.separator}> / </span>
-          <span className={styles.max}>{maxLength}</span>
+          <span>{maxLength}</span>
         </>
       )}
     </div>

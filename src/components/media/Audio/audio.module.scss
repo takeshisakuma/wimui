@@ -130,9 +130,6 @@
     background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
     mask-image: none;
 
-    &.hasVisualizer {
-      // styles for visualizer handled in canvas and layout
-    }
   }
 
   // When radius is full (pills), we need even more horizontal padding and width

@@ -206,7 +206,6 @@ export const IncidentTriage: StoryObj = {
             {alerts.length === 0 && (
               <Box px="2xl" py="2xl">
                 <EmptyState
-                  variant="simple"
                   icon={<Icon name="CheckCircleIcon" size="lg" color="success" />}
                   title={r("empty_title")}
                   description={r("empty_desc")}

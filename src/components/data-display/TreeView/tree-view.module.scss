@@ -18,7 +18,7 @@
     // 0.0366 / 0.0836。影の寄与は 0.0122 / 0.0084 で基準 0.015 未満だった。
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
-    &.data-driven > .item {
+    &.dataDriven > .item {
       animation: enter var(--wim-duration-fast) var(--wim-easing-standard) both;
     }
   }

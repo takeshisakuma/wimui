@@ -224,7 +224,6 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
               {filteredOptions.map((opt, index) => (
                 <BaseListItem
                   key={opt.id}
-                  className={styles.item}
                   active={index === selectedIndex}
                   // クリックでの選択時に textarea のフォーカス（と blur）を発生させない。
                   // これにより onClick が確実に発火する（旧 setTimeout ハック不要）。
