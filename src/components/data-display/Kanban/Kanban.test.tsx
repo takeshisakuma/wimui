@@ -40,6 +40,15 @@ describe("KanbanBoard", () => {
     expect(screen.getByRole("region")).toBeInTheDocument();
   });
 
+  // 根は `overflow-x: auto` のスクロール領域。フォーカスを受け取れないと
+  // キーボードで横スクロールできない（axe の `scrollable-region-focusable`）。
+  // **カードの中に focusable な要素があると規則は当たらない**ので、
+  // 単体では見えず 7 枚目の合成画面で初めて表に出た。ここで固定しておく。
+  it("keeps the scrollable board reachable by keyboard", () => {
+    render(<DefaultBoard />);
+    expect(screen.getByRole("region")).toHaveAttribute("tabindex", "0");
+  });
+
   it("renders columns with titles", () => {
     render(<DefaultBoard />);
     expect(screen.getByText("To Do")).toBeInTheDocument();

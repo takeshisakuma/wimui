@@ -161,6 +161,17 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
           )}
           role="region"
           aria-label={t("a11y.kanban_board")}
+          /*
+           * 根は `overflow-x: auto` の**スクロール領域**なので、キーボードで
+           * スクロールできるようフォーカスを受け取る（axe の
+           * `scrollable-region-focusable`、SERIOUS）。
+           *
+           * **単体ストーリーでは一度も出なかった。** 横スクロールが起きるほど
+           * カラムが並ばず、カードの中に focusable な要素があれば規則自体が
+           * 当たらないため。7 枚目の合成画面（`Patterns/Newsroom`）で、
+           * AppShell の中に 4 カラムを置いて初めて表に出た。
+           */
+          tabIndex={0}
         >
           <Slottable>{renderContent()}</Slottable>
         </Component>
