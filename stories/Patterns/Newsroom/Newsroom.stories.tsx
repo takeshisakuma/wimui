@@ -250,12 +250,18 @@ export const Default: Story = {
         <AppShell.Body>
           <AppShell.Sidebar>
             <Sidebar>
-              <Stack gap="sm">
+              {/* 中身は Sidebar.Content に入れる（既存のストーリーと同じ）。
+                  直に置くと縦の余白が無く、上端の境界に貼り付く。
+                  横の余白は TreeView の項目側が持つ（SidebarItem と同じ作法で、
+                  ホバーの帯が端まで伸びるように容器側は横を空けない）。 */}
+              <Sidebar.Header>
                 <Text size="xs" color="tertiary">
                   {t(ns("sections"))}
                 </Text>
+              </Sidebar.Header>
+              <Sidebar.Content>
                 <SectionTree />
-              </Stack>
+              </Sidebar.Content>
             </Sidebar>
           </AppShell.Sidebar>
           <AppShell.Main>
@@ -362,15 +368,15 @@ export const FrontPageOrder: Story = {
               >
                 {order.map((item, index) => (
                   <SortableList.Item key={item.id} index={index}>
-                    <Group justify="between" align="center">
-                      <Stack gap="2xs">
-                        <Text size="sm">{item.label}</Text>
-                        <Text size="xs" color="tertiary">
-                          {item.slot}
-                        </Text>
-                      </Stack>
-                      <SortableList.DragHandle />
-                    </Group>
+                    {/* ハンドルは項目の先頭に置く（SortableList 自身のストーリーと同じ）。
+                        末尾に置くと掴む場所が行ごとに右端へ散り、テキストが右へ寄って見える。 */}
+                    <SortableList.DragHandle />
+                    <Stack gap="2xs">
+                      <Text size="sm">{item.label}</Text>
+                      <Text size="xs" color="tertiary">
+                        {item.slot}
+                      </Text>
+                    </Stack>
                   </SortableList.Item>
                 ))}
               </SortableList>
