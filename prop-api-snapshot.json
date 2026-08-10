@@ -2346,6 +2346,9 @@
       "required": true,
       "type": "boolean"
     },
+    "CommandPaletteContent.aria-label": {
+      "type": "string"
+    },
     "CommandPaletteContent.children": {
       "type": "ReactNode"
     },
@@ -4436,7 +4439,7 @@
       "type": "(open: boolean) => void"
     },
     "HoverCard.open": {
-      "required": true,
+      "required": false,
       "type": "boolean"
     },
     "HoverCard.openDelay": {
@@ -7910,15 +7913,9 @@
       "required": false,
       "type": "React.ReactNode"
     },
-    "ScrollProgress.color": {
+    "ScrollProgress.intent": {
       "required": false,
-      "values": [
-        "danger",
-        "primary",
-        "secondary",
-        "success",
-        "warning"
-      ]
+      "type": "IndicatorIntent"
     },
     "ScrollProgress.target": {
       "required": false,
@@ -10133,8 +10130,8 @@
     "TimelinePoint.className": {
       "type": "string"
     },
-    "TimelinePoint.variant": {
-      "type": "\"primary\" | \"secondary\" | \"danger\" | \"success\""
+    "TimelinePoint.intent": {
+      "type": "IndicatorIntent"
     },
     "TimelineSeparator.asChild": {
       "type": "boolean"

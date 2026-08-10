@@ -275,14 +275,14 @@ export const IncidentTriage: StoryObj = {
           <Box px="2xl" pb="md">
             <Timeline>
               {[
-                { time: r("t1_time"), text: r("t1"), variant: "secondary" as const },
-                { time: r("t2_time"), text: r("t2"), variant: "danger" as const },
-                { time: r("t3_time"), text: r("t3"), variant: "secondary" as const },
-                { time: r("t4_time"), text: r("t4"), variant: "secondary" as const, last: true },
+                { time: r("t1_time"), text: r("t1"), intent: "neutral" as const },
+                { time: r("t2_time"), text: r("t2"), intent: "danger" as const },
+                { time: r("t3_time"), text: r("t3"), intent: "neutral" as const },
+                { time: r("t4_time"), text: r("t4"), intent: "neutral" as const, last: true },
               ].map((event) => (
                 <TimelineItem key={event.time}>
                   <TimelineSeparator>
-                    <TimelinePoint variant={event.variant} />
+                    <TimelinePoint intent={event.intent} />
                     {!event.last && <TimelineConnector />}
                   </TimelineSeparator>
                   <TimelineContent>

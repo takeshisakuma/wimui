@@ -1889,8 +1889,11 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Custom class name
     - `children: ReactNode` — The children
 - **ScrollProgress** — Reading progress indicator
-    - `color: "primary" | "secondary" | "success" | "warning" | "danger"` = "primary" — Color of the progress bar.
-@default "primary"
+    - `intent: IndicatorIntent` = "primary" — 意味の軸。兄弟の `Progress` / `ProgressRing` と同じ語彙にそろえてある。
+
+以前は `color` という名前で、値も独自（`secondary` を含む）だった。
+塗っているものは `Progress.intent` と構造まで同一だったので、prop 名だけが
+ずれていた（T114）。
     - `target: React.RefObject<HTMLElement | null>` — Element whose scroll position is tracked. Defaults to `window`.
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
     - `variant: "text" | "rect" | "circle"` = "text" — Shape of the skeleton.

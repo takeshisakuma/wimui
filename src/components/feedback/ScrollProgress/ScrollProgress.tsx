@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import type { IndicatorIntent } from "../../../types/tokens";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./scrollprogress.module.scss";
@@ -8,7 +9,14 @@ export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
    * Color of the progress bar.
    * @default "primary"
    */
-  color?: "primary" | "secondary" | "success" | "warning" | "danger";
+  /**
+   * 意味の軸。兄弟の `Progress` / `ProgressRing` と同じ語彙にそろえてある。
+   *
+   * 以前は `color` という名前で、値も独自（`secondary` を含む）だった。
+   * 塗っているものは `Progress.intent` と構造まで同一だったので、prop 名だけが
+   * ずれていた（T114）。
+   */
+  intent?: IndicatorIntent;
   /**
    * Element whose scroll position is tracked. Defaults to `window`.
    */
@@ -19,7 +27,7 @@ export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
  * Visualizes reading progress or scroll position as a bar.
  */
 export const ScrollProgress = ({
-  color = "primary",
+  intent = "primary",
   target,
   className,
   "aria-label": ariaLabel,
@@ -60,7 +68,7 @@ export const ScrollProgress = ({
     <div
       className={classNames("wim-scroll-progress", 
         styles.root,
-        color && styles[color],
+        styles[intent],
         className,
       )}
       role="progressbar"

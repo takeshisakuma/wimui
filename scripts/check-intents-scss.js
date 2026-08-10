@@ -63,6 +63,15 @@ function scssCoverage(scssPath) {
   if (/@include\s+module-token-variants/.test(css)) {
     for (const name of SURFACE_INTENTS) covered.add(name);
   }
+  // SSOT を直接回す形も数える: `@each $name, $pairs in intents.$token-colors`。
+  //
+  // **この検査は SCSS を評価しない静的スキャナ**なので、ループが生成するクラスは
+  // 見えない。そのため「SSOT を使ったら検査に落ちる」という逆立ちが起きていた
+  // （T114 で `ScrollProgress` / `Timeline` を SSOT へ寄せたときに発覚）。
+  // ループは `$token-colors` の全キーを回すので、被覆は canonical 全体。
+  if (/@each\s+\$\w+\s*,\s*\$\w+\s+in\s+[\w.]*\$token-colors/.test(css)) {
+    for (const name of CANONICAL_NAMES) covered.add(name);
+  }
   for (const name of CANONICAL_NAMES) {
     // `.name` or `&.name` as a class selector (word-bounded).
     const re = new RegExp(`(?:^|[^\\w-])&?\\.${name}(?![\\w-])`, "m");

@@ -23,21 +23,21 @@ export const LeftAligned: Story = {
       <Timeline {...args}>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="primary" />
+            <TimelinePoint intent="primary" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_eat")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="secondary" />
+            <TimelinePoint intent="neutral" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_code")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="success" />
+            <TimelinePoint intent="success" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_sleep")}</TimelineContent>
@@ -64,7 +64,7 @@ export const Alternate: Story = {
         <TimelineItem>
           <TimelineOppositeContent>09:00 AM</TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelinePoint variant="primary" />
+            <TimelinePoint intent="primary" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_eat")}</TimelineContent>
@@ -72,7 +72,7 @@ export const Alternate: Story = {
         <TimelineItem>
           <TimelineOppositeContent>10:00 AM</TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelinePoint variant="secondary" />
+            <TimelinePoint intent="neutral" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_code")}</TimelineContent>
@@ -80,7 +80,7 @@ export const Alternate: Story = {
         <TimelineItem>
           <TimelineOppositeContent>12:00 PM</TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelinePoint variant="success" />
+            <TimelinePoint intent="success" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_sleep")}</TimelineContent>
@@ -97,7 +97,7 @@ export const WithIcons: Story = {
       <Timeline {...args}>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="primary">
+            <TimelinePoint intent="primary">
               <Icon name="CheckIcon" size="sm" />
             </TimelinePoint>
             <TimelineConnector />
@@ -106,7 +106,7 @@ export const WithIcons: Story = {
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="secondary">
+            <TimelinePoint intent="neutral">
               <Icon name="CircleIcon" size="sm" />
             </TimelinePoint>
             <TimelineConnector />
@@ -115,7 +115,7 @@ export const WithIcons: Story = {
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelinePoint variant="danger">
+            <TimelinePoint intent="danger">
               <Icon name="CloseIcon" size="sm" />
             </TimelinePoint>
           </TimelineSeparator>

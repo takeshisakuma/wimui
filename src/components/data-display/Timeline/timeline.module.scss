@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../../../tokens/generated/intents" as intents;
+
 @layer component {
   .root {
     // Component-specific layout values
@@ -106,20 +109,12 @@
     background-color: var(--wim-color-border);
     border-radius: var(--wim-radius-full);
 
-    &.primary {
-      background-color: var(--wim-color-primary);
-    }
-
-    &.secondary {
-      background-color: var(--wim-color-line);
-    }
-
-    &.danger {
-      background-color: var(--wim-color-danger);
-    }
-
-    &.success {
-      background-color: var(--wim-color-success);
+    /* 6 つの intent を SSOT から回す。手書きだと intent が増減したときに
+       黙って無スタイルになる（check:intents:scss が見張っている）。 */
+    @each $name, $pairs in intents.$token-colors {
+      &.#{$name} {
+        background-color: #{map.get($pairs, "base")};
+      }
     }
 
     &.icon {

@@ -24,7 +24,7 @@ describe("Timeline", () => {
         <TimelineItem>
           <TimelineOppositeContent>10:00 AM</TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelinePoint variant="primary" />
+            <TimelinePoint intent="primary" />
           </TimelineSeparator>
           <TimelineContent>Go to work</TimelineContent>
         </TimelineItem>
@@ -49,8 +49,8 @@ describe("Timeline", () => {
     );
   });
 
-  it("applies variant classes to points", () => {
-    const { container } = render(<TimelinePoint variant="success" />);
+  it("applies intent classes to points", () => {
+    const { container } = render(<TimelinePoint intent="success" />);
     expect(container.firstChild).toHaveClass(styles.success);
   });
 
