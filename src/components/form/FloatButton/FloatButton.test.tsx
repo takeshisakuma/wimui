@@ -90,10 +90,10 @@ describe("FloatButton", () => {
     expect(screen.getByRole("button")).toHaveClass(styles.lg);
   });
 
-  it("renders primary variant and square shape", () => {
-    render(<FloatButton variant="primary" shape="square" />);
+  it("renders the outline variant and square shape", () => {
+    render(<FloatButton variant="outline" shape="square" />);
     const btn = screen.getByRole("button");
-    expect(btn).toHaveClass(styles.primary);
+    expect(btn).toHaveClass(styles.outline);
     expect(btn).toHaveClass(styles.square);
   });
 

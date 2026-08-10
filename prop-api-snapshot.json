@@ -3827,7 +3827,7 @@
         "bottom-center",
         "bottom-left",
         "bottom-right",
-        "static",
+        "inline",
         "top-left",
         "top-right"
       ]
@@ -3854,9 +3854,8 @@
     "FloatButton.variant": {
       "required": false,
       "values": [
-        "default",
         "glass",
-        "primary"
+        "outline"
       ]
     },
     "FloatButton.visibilityHeight": {
