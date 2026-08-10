@@ -55,8 +55,11 @@
     position: absolute;
     top: 50%;
     z-index: 1;
-    width: var(--wim-font-size-lg); // 1.125rem = 18px
-    height: var(--wim-font-size-lg);
+
+    /* 18px では WCAG 2.5.8（AA）の 24×24 に届かず、つまみを掴みにくかった。
+       つまみは単独で置かれるので、大きくしても隣と重ならない（T117）。 */
+    width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
     cursor: grab;
     outline: none;
     background-color: var(--wim-color-white);

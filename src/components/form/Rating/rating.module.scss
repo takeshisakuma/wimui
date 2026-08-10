@@ -3,20 +3,25 @@
     display: inline-flex;
     align-items: center;
 
+    /* 星は 1 つずつ正確に押す対象なので、尺度の下端を WCAG 2.5.8（AA）の
+       24px に合わせて全体を上へずらした（T117）。以前は sm 16px / md 24px（compact 20）で、
+       **下 2 段が下限を割っていた**。下限だけ足すと sm と md が同じ絵になり、
+       「指定しても結果が変わらない prop 値」ができてしまうため、尺度ごと動かしている。
+       compact でも 24 / 28 / 36 と 3 段の区別が残る。 */
     &.sm {
-      --wim-rating-star-size: var(--wim-font-size-md); // 16px
+      --wim-rating-star-size: var(--wim-tap-target-min); // 24px（密度非対応の下限）
 
       gap: var(--wim-border-width-thick);
     }
 
     &.md {
-      --wim-rating-star-size: var(--wim-height-xs); // 24px
+      --wim-rating-star-size: var(--wim-height-sm); // 32px（compact 28）
 
       gap: var(--wim-spacing-2xs);
     }
 
     &.lg {
-      --wim-rating-star-size: var(--wim-height-sm); // 32px
+      --wim-rating-star-size: var(--wim-height-md); // 42px（compact 36）
 
       gap: var(--wim-spacing-sm);
     }
@@ -38,7 +43,14 @@
     position: relative;
     display: block;
     width: var(--wim-rating-star-size);
+
+    /* 星は 1 つずつ正確に押す対象なので、サイズに関わらず下限を割らせない。
+       `sm` は 16px、`md` も compact では 20px で、どちらも WCAG 2.5.8（AA）の
+       24×24 に届いていなかった。**結果として `sm` は既定密度で `md` と同じ
+       見た目になる** ── 尺度の下端が下限より下にあったということ（T117）。 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-rating-star-size);
+    min-height: var(--wim-tap-target-min);
     cursor: pointer;
     transition: transform var(--wim-transition-fast);
 

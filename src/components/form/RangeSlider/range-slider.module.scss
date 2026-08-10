@@ -55,8 +55,12 @@
     position: absolute;
     top: 50%;
     z-index: 1;
-    width: 18px; /* Exception: Geometric Harmony — トラック高さ(6px)に対する3:1比のサム直径 */
-    height: 18px; /* Exception: Geometric Harmony — トラック高さ(6px)に対する3:1比のサム直径 */
+
+    /* 以前は 18px（トラック 6px に対する 3:1）。比率は整っていたが
+       WCAG 2.5.8（AA）の 24×24 に届かなかった。**比率より下限を優先する** ── 
+       掴めないつまみは比率が正しくても使えない（T117）。 */
+    width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
     cursor: grab;
     outline: none;
     background-color: var(--wim-color-white);
