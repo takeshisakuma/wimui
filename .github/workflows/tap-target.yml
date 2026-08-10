@@ -1,23 +1,50 @@
 name: Tap Target Size (WCAG 2.5.8)
 
-# **手動起動だけ。** 既存の不足が 165 ストーリー分あるので、PR に付けると
-# 無関係な変更が軒並み落ちる。件数を減らす作業（T117 ②）の測定に使い、
-# 0 になってから `pull_request` を足す。
+# 起票時は 165 ストーリー分の不足があったため手動起動だけにしていた。
+# 両密度とも 0 件になったので `pull_request` を足す（2026-08-10）。
+# 密度は 2 つとも 1 回の実行で見る ── compact でしか出ない不足
+#（SegmentedControl・JsonViewer）と、密度に依らない不足（Popover の呼び出し口）が
+# 両方あるので、片方だけでは通り抜ける。シャードは 4 本のまま。
 on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "vrt/tap-target.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+      # ハーネス側だけを変えた PR で走らない穴を作らない（a11y.yml と同じ理由）
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/tap-target.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "vrt/tap-target.spec.ts"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/tap-target.yml"
   workflow_dispatch:
     inputs:
       density:
-        description: "測る密度（comfortable / compact）"
+        description: "測る密度（空なら両方）"
         type: choice
-        options: ["comfortable", "compact"]
-        default: "comfortable"
+        options: ["", "comfortable", "compact"]
+        default: ""
       filter:
         description: "ストーリータイトルの絞り込み（空なら全件）"
         type: string
         default: ""
 
 concurrency:
-  group: tap-target-${{ github.ref_name }}
+  # 密度もキーに入れる。入れずに comfortable と compact を続けて投げたら、
+  # 後から投げた側が前のランを丸ごと殺した（cancelled は灰色なので、
+  # 見に行くまで「両方測った」と思い込んだままになる）。
+  group: tap-target-${{ github.ref_name }}-${{ inputs.density }}-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
@@ -49,9 +76,10 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
-      # 失敗しても後続シャードを止めない（測定が目的で、ゲートではない）
+      # ゲートである以上、落ちたら赤にする。手動測定のときだけ、
+      # 全シャードの数字を揃えて見たいので後続を止めない。
       - name: Measure tap targets
-        continue-on-error: true
+        continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           DENSITY: ${{ inputs.density }}
           FILTER: ${{ inputs.filter }}
@@ -61,6 +89,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: tap-target-${{ inputs.density }}-${{ matrix.shard }}
+          name: tap-target-${{ inputs.density || 'both' }}-${{ matrix.shard }}
           path: playwright-report/
           retention-days: 7

@@ -45,18 +45,22 @@
     }
   
     .item {
-      @include indicator.indicator-item-base;
-
       display: inline-flex;
       gap: var(--wim-spacing-xs);
       align-items: center;
       justify-content: center;
+
+      /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。縦並びで 19.6×30、横並びで ×22。 T117 */
+      min-width: var(--wim-tap-target-min);
+      min-height: var(--wim-tap-target-min);
       font-family: inherit;
       font-weight: var(--wim-font-weight-medium);
       line-height: 1;
       color: var(--wim-color-text-secondary);
       white-space: nowrap;
       border-radius: var(--wim-radius-sm);
+
+      @include indicator.indicator-item-base;
   
       &:hover:not(:disabled, .active) {
         color: var(--wim-color-text-accent);

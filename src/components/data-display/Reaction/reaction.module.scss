@@ -27,6 +27,10 @@
     display: inline-flex;
     gap: var(--wim-spacing-2xs);
     align-items: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。中身は絵文字と数。 T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
     font-family: inherit;
     font-size: var(--wim-font-size-sm);

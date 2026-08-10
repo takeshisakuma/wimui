@@ -135,6 +135,11 @@ export const ModernApp: Story = {
           }
           .appshell-modern-icon-btn {
             display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。アイコンだけだと 16×16 になる。 T117 */
+            min-width: var(--wim-tap-target-min);
+            min-height: var(--wim-tap-target-min);
             padding: 0;
             cursor: pointer;
             background: none;

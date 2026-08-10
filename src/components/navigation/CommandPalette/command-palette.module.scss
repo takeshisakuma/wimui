@@ -183,6 +183,10 @@
     display: inline-flex;
     gap: var(--wim-spacing-sm);
     align-items: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。76.6×21.2。効くのは高さだけ。 T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     color: var(--wim-color-text-secondary);
     white-space: nowrap;

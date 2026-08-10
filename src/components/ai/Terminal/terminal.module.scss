@@ -75,7 +75,11 @@
     display: grid;
     place-items: center;
     width: 24px; /* Exception: Structural Logic — terminal action touch target */
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。24×20。効くのは高さだけ。 T117 */
+    min-width: var(--wim-tap-target-min);
     height: var(--wim-height-xs);
+    min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-color-text-disabled);
     cursor: pointer;

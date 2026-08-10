@@ -132,6 +132,10 @@
     gap: var(--wim-spacing-sm);
     align-items: center;
     justify-content: center;
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。短いラベルだと 19.6 まで縮む。 T117 */
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
     font-weight: var(--wim-font-weight-medium);
     line-height: 1;
     color: var(--wim-color-text-secondary);
