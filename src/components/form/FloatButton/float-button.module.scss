@@ -133,8 +133,8 @@
       border-radius: var(--wim-radius-component);
     }
 
-    &.primary,
-    &.default_intent, // temporary name or just use .default if we don't conflict
+    /* intent 未指定（`default`）の塗り。以前は `.primary` と、誰も付けない
+       `.default_intent` が同じ規則に同居していた（T114）。 */
     &.default {
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
@@ -168,8 +168,7 @@
       }
     }
 
-    // Legacy or specific variant for outlined
-    &.variant_default {
+    &.outline {
       color: var(--wim-color-text-primary);
       background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -234,7 +233,9 @@
       left: var(--wim-spacing-2xl);
     }
 
-    &.static {
+    /* 浮かせない置き方。フローに残したまま badge の絶対配置の基準にするため
+       `relative`（`static` ではない）。 */
+    &.inline {
       position: relative;
     }
 

@@ -1173,13 +1173,18 @@ it undefined to let the field track its own selection.
 - **FloatButton** — Floating action buttons
     - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
     - `iconName: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon" | "ArrowUpIcon" | string` = "CircleIcon" — Icon name from the library
-    - `variant: "default" | "primary" | "glass"` — Variant of the button
+    - `variant: "outline" | "glass"` — 見た目の強さ。既定（未指定）は intent の塗り。
+
+以前は `"default" | "primary" | "glass"` だったが、3 つとも実態とずれていた（T114）:
+`primary` は variant 未指定とまったく同じ規則に落ちる重複、
+`default` は**既定の見た目ではなく枠線のある outline** で名前が逆、
+SCSS には誰も付けない `.default_intent` が「temporary name」のまま残っていた。
     - `intent: ButtonIntent` = "default" — Intent of the button (semantic meaning)
     - `shape: "circle" | "square"` = "circle" — Shape of the button
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
     - `label: React.ReactNode` — Label text for extended FAB
     - `shrink: boolean` = false — Whether to shrink the extended FAB (hide label)
-    - `position: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "static"` = "bottom-right" — Position of the button
+    - `position: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "inline"` = "bottom-right" — Position of the button
     - `description: React.ReactNode` — Description for tooltip
     - `badge: number | boolean` — Badge content (number or dot)
     - `backTop: boolean` = false — If true, the button will scroll to the top of the page when clicked

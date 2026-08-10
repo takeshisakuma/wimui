@@ -56,7 +56,7 @@ export const Overview: StoryObj = {
                 {t("audit:label_button")}
               </Button>
               <IconButton size="md" variant="solid" intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
-              <FloatButton intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" position="static" />
+              <FloatButton intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" position="inline" />
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -83,8 +83,8 @@ export const Overview: StoryObj = {
             <CopyButton value="Copied Text" />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_float_button")} direction="row" align="center" wrap>
-            <FloatButton iconName="PlusIcon" position="static" />
-            <FloatButton iconName="ChevronUpIcon" variant="default" position="static" />
+            <FloatButton iconName="PlusIcon" position="inline" />
+            <FloatButton iconName="ChevronUpIcon" variant="outline" position="inline" />
           </ComponentGroup>
         </ComparisonGrid>
 

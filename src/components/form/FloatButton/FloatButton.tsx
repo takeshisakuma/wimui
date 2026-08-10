@@ -19,7 +19,15 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | "ArrowUpIcon"
     | string;
   /** Variant of the button */
-  variant?: "default" | "primary" | "glass";
+  /**
+   * 見た目の強さ。既定（未指定）は intent の塗り。
+   *
+   * 以前は `"default" | "primary" | "glass"` だったが、3 つとも実態とずれていた（T114）:
+   * `primary` は variant 未指定とまったく同じ規則に落ちる重複、
+   * `default` は**既定の見た目ではなく枠線のある outline** で名前が逆、
+   * SCSS には誰も付けない `.default_intent` が「temporary name」のまま残っていた。
+   */
+  variant?: "outline" | "glass";
   /** Intent of the button (semantic meaning) */
   intent?: ButtonIntent;
   /** Shape of the button */
@@ -37,7 +45,10 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | "bottom-center"
     | "top-right"
     | "top-left"
-    | "static";
+    /* 浮かせず通常フローに置く。以前は `static` だったが、当てているのは
+       `position: relative` で、**CSS のキーワードなのに CSS の static ではない**
+       という二重のずれがあった（T114）。 */
+    | "inline";
   /** Description for tooltip */
   description?: React.ReactNode;
   /** Badge content (number or dot) */
@@ -127,7 +138,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
               ? styles.topRight
               : position === "top-left"
                 ? styles.topLeft
-                : styles.static;
+                : styles.inline;
 
     return (
       <Component
@@ -136,8 +147,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
         className={classNames("wim-float-button", 
           styles.root,
           !variant && styles[intent],
-          variant === "default" && styles.variant_default,
-          variant === "primary" && styles.primary,
+          variant === "outline" && styles.outline,
           variant === "glass" && styles.glass,
           intent === "danger" && styles.danger,
           intent === "success" && styles.success,

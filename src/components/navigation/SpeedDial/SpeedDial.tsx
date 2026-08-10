@@ -102,17 +102,16 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
                   action.onClick?.();
                   if (trigger === "click") handleOpenChange(false);
                 }}
-                position="static"
+                position="inline"
               />
             </div>
           ))}
         </div>
         <FloatButton
           iconName={open ? activeIcon : icon}
-          variant="primary"
           onClick={handleClick}
           className={localStyles.trigger}
-          position="static"
+          position="inline"
           aria-expanded={open}
           aria-haspopup="true"
         />
