@@ -5,6 +5,19 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./vrt",
+  /*
+   * **`testMatch` を足さないこと。**
+   *
+   * `vrt/` には 16 本のスペックがあり、素の `playwright test` は全部を拾う。
+   * 絞りたくなるが、**`testMatch` で絞ると CI が黙って空回りする** ── ワークフローは
+   * `npx playwright test vrt/a11y.spec.ts` のように**スペックを名指し**で実行しており、
+   * `testMatch` から外れたファイルはそもそも発見されない。実測（2026-08-09）:
+   * `testMatch: "vrt.spec.ts"` を入れた状態で a11y を名指しすると
+   * **「Total: 0 tests in 0 files」で終了コード 0** ＝ **a11y ジョブがテストを 1 件も
+   * 走らせないまま緑になる。**
+   *
+   * 走らせる範囲は npm script 側で決める（`test:vrt` は `vrt/vrt.spec.ts` を名指し）。
+   */
   /* Extra time for stories with play functions under dev server load */
   timeout: 60000,
   /* Run tests in files in parallel */
