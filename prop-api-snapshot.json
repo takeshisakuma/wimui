@@ -1854,7 +1854,7 @@
       "type": "string"
     },
     "ChatMessage.variant": {
-      "type": "\"default\" | \"primary\" | \"secondary\""
+      "type": "\"default\" | \"sent\" | \"received\""
     },
     "ChatMessageList.children": {
       "type": "React.ReactNode"
@@ -3886,9 +3886,9 @@
     "Footer.background": {
       "required": false,
       "values": [
-        "dark",
-        "primary",
-        "secondary"
+        "inverse",
+        "surface",
+        "surface-variant"
       ]
     },
     "Footer.bordered": {
@@ -4328,8 +4328,8 @@
     "Header.background": {
       "required": false,
       "values": [
-        "primary",
-        "secondary",
+        "surface",
+        "surface-variant",
         "transparent"
       ]
     },

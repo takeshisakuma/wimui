@@ -8,12 +8,12 @@ export interface FooterProps extends React.ComponentPropsWithoutRef<"footer"> {
   /** Expand content to full width (disable the centered max-width container) */
   fluid?: boolean;
   /** Background color */
-  background?: "primary" | "secondary" | "dark";
+  background?: "surface" | "surface-variant" | "inverse";
 }
 
 const FooterRoot = React.forwardRef<HTMLElement, FooterProps>(
   (
-    { className, children, bordered, fluid, background = "primary", ...props },
+    { className, children, bordered, fluid, background = "surface", ...props },
     ref,
   ) => {
     return (

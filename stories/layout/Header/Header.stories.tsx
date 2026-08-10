@@ -143,7 +143,7 @@ export const Playground: Story = {
   args: {
     bordered: true,
     glass: false,
-    background: "primary",
+    background: "surface",
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

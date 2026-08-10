@@ -27,11 +27,11 @@
     backdrop-filter: blur(var(--wim-color-glass-blur));
   }
 
-  &.bg-primary {
+  &.bg-surface {
     background-color: var(--wim-color-surface);
   }
 
-  &.bg-secondary {
+  &.bg-surface-variant {
     background-color: var(--wim-color-surface-variant);
   }
 

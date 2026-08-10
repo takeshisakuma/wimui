@@ -61,7 +61,7 @@ export const DashboardHeader: StoryObj = {
         <Header
           bordered
           sticky
-          background="primary"
+          background="surface"
           style={{ padding: "0 var(--wim-spacing-xl)" }}
         >
           <Header.Section

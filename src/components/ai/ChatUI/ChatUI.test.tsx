@@ -125,9 +125,9 @@ describe("ChatMessage", () => {
 
   it("applies variant classes", () => {
     const { container } = render(
-      <ChatMessage variant="primary">Test</ChatMessage>,
+      <ChatMessage variant="sent">Test</ChatMessage>,
     );
-    expect(container.firstChild).toHaveClass(styles.primary);
+    expect(container.firstChild).toHaveClass(styles.sent);
   });
 });
 

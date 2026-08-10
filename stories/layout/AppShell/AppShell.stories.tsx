@@ -296,7 +296,7 @@ export const WithSidebar: Story = {
           // ダッシュボードのシェルを full-bleed で統一するため、Footer も fluid（全幅）に
           // する。fluid header + サイドバー + fluid footer で、上下バーの内容が
           // サイドバー帯・main と横幅で揃う（Footer fluid の実使用デモ）。
-          <Footer bordered fluid background="secondary">
+          <Footer bordered fluid background="surface-variant">
             <Footer.Section>
               <p style={{ margin: 0 }}>{t("story.appshell_rights")}</p>
             </Footer.Section>
