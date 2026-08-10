@@ -23,5 +23,16 @@
     left: 0;
     box-sizing: border-box;
     width: 100%;
+
+    /* 行の余白は List / BaseListItem と同じトークンに揃える。
+       無かったため中身が縁に貼り付き、右端はスクロールバーと接していた。
+       呼び出し側は `style={{ padding: "0 16px" }}` へ逃げるしかなく、
+       **VirtualList 自身のストーリー 4 本がそうしていた**（px 直書き）。 */
+    padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
+
+    /* 行は絶対配置＋固定高さ（itemHeight）で並ぶので、中身が折り返すと
+       **次の行に食い込んで文字が重なる**（実測: 320px 幅の RevisionLog）。
+       溢れは切って、行の境界を守る。 */
+    overflow: hidden;
   }
 }

@@ -9,6 +9,7 @@ import {
   Button,
   Dialog,
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -66,21 +67,72 @@ const useArticles = () => {
   return useMemo(
     () => ({
       reporting: [
-        { id: "a-8841", headline: t(ns("h_ferry")), reporter: "宮下 玲奈", due: t(ns("due_1900")) },
-        { id: "a-8836", headline: t(ns("h_budget")), due: t(ns("due_tomorrow")) },
+        {
+          id: "a-8841",
+          headline: t(ns("h_ferry")),
+          reporter: "宮下 玲奈",
+          due: t(ns("due_1900")),
+        },
+        {
+          id: "a-8836",
+          headline: t(ns("h_budget")),
+          due: t(ns("due_tomorrow")),
+        },
       ],
       writing: [
-        { id: "a-8829", headline: t(ns("h_election")), reporter: "Amara Osei", due: t(ns("due_2130")), words: 1840 },
-        { id: "a-8812", headline: t(ns("h_longform")), reporter: "河合 拓真", due: t(ns("due_friday")), words: 4210 },
-        { id: "a-8805", headline: t(ns("h_weather")), reporter: "Petra Novák", due: t(ns("due_1700")), overdue: true },
+        {
+          id: "a-8829",
+          headline: t(ns("h_election")),
+          reporter: "Amara Osei",
+          due: t(ns("due_2130")),
+          words: 1840,
+        },
+        {
+          id: "a-8812",
+          headline: t(ns("h_longform")),
+          reporter: "河合 拓真",
+          due: t(ns("due_friday")),
+          words: 4210,
+        },
+        {
+          id: "a-8805",
+          headline: t(ns("h_weather")),
+          reporter: "Petra Novák",
+          due: t(ns("due_1700")),
+          overdue: true,
+        },
       ],
       desk: [
-        { id: "a-8798", headline: t(ns("h_transit")), reporter: "宮下 玲奈", due: t(ns("due_2000")), words: 920 },
+        {
+          id: "a-8798",
+          headline: t(ns("h_transit")),
+          reporter: "宮下 玲奈",
+          due: t(ns("due_2000")),
+          words: 920,
+        },
       ],
       done: [
-        { id: "a-8771", headline: t(ns("h_obituary")), reporter: "Luis Ferreira", due: t(ns("due_done")), words: 610 },
-        { id: "a-8764", headline: t(ns("h_market")), reporter: "河合 拓真", due: t(ns("due_done")), words: 1130 },
-        { id: "a-8752", headline: t(ns("h_sports")), reporter: "Amara Osei", due: t(ns("due_done")), words: 780 },
+        {
+          id: "a-8771",
+          headline: t(ns("h_obituary")),
+          reporter: "Luis Ferreira",
+          due: t(ns("due_done")),
+          words: 610,
+        },
+        {
+          id: "a-8764",
+          headline: t(ns("h_market")),
+          reporter: "河合 拓真",
+          due: t(ns("due_done")),
+          words: 1130,
+        },
+        {
+          id: "a-8752",
+          headline: t(ns("h_sports")),
+          reporter: "Amara Osei",
+          due: t(ns("due_done")),
+          words: 780,
+        },
       ],
     }),
     [t],
@@ -124,11 +176,17 @@ const ArticleCard = ({ article }: { article: Article }) => {
 const SectionTree = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return (
-    <TreeView defaultExpandedValues={["news", "news-local"]} aria-label={t(ns("tree_label"))}>
+    <TreeView
+      defaultExpandedValues={["news", "news-local"]}
+      aria-label={t(ns("tree_label"))}
+    >
       <TreeView.Item value="news" label={t(ns("sec_news"))}>
         <TreeView.Item value="news-local" label={t(ns("sec_local"))}>
           <TreeView.Item value="news-local-city" label={t(ns("sec_city"))} />
-          <TreeView.Item value="news-local-transit" label={t(ns("sec_transit"))} />
+          <TreeView.Item
+            value="news-local-transit"
+            label={t(ns("sec_transit"))}
+          />
         </TreeView.Item>
         <TreeView.Item value="news-politics" label={t(ns("sec_politics"))} />
       </TreeView.Item>
@@ -147,14 +205,21 @@ const Board = () => {
   const articles = useArticles();
 
   const columns = [
-    { id: "reporting", title: t(ns("col_reporting")), items: articles.reporting },
+    {
+      id: "reporting",
+      title: t(ns("col_reporting")),
+      items: articles.reporting,
+    },
     { id: "writing", title: t(ns("col_writing")), items: articles.writing },
     { id: "desk", title: t(ns("col_desk")), items: articles.desk },
     { id: "done", title: t(ns("col_done")), items: articles.done },
   ].map((c) => ({
     id: c.id,
     title: c.title,
-    items: c.items.map((a) => ({ id: a.id, content: <ArticleCard article={a} /> })),
+    items: c.items.map((a) => ({
+      id: a.id,
+      content: <ArticleCard article={a} />,
+    })),
   }));
 
   return <Kanban columns={columns} />;
@@ -209,13 +274,33 @@ export const Default: Story = {
 export const AssignDesk: Story = {
   render: () => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const [targetKeys, setTargetKeys] = useState<string[]>(["d-ikeda", "d-santos"]);
+    const [targetKeys, setTargetKeys] = useState<string[]>([
+      "d-ikeda",
+      "d-santos",
+    ]);
     const dataSource = [
       { key: "d-ikeda", title: "池田 さやか", description: t(ns("desk_city")) },
-      { key: "d-santos", title: "Rafael Santos", description: t(ns("desk_politics")) },
-      { key: "d-tanabe", title: "田辺 一志", description: t(ns("desk_markets")) },
-      { key: "d-oyelaran", title: "Bisi Oyelaran", description: t(ns("desk_sports")) },
-      { key: "d-mori", title: "森 千夏", description: t(ns("desk_night")), disabled: true },
+      {
+        key: "d-santos",
+        title: "Rafael Santos",
+        description: t(ns("desk_politics")),
+      },
+      {
+        key: "d-tanabe",
+        title: "田辺 一志",
+        description: t(ns("desk_markets")),
+      },
+      {
+        key: "d-oyelaran",
+        title: "Bisi Oyelaran",
+        description: t(ns("desk_sports")),
+      },
+      {
+        key: "d-mori",
+        title: "森 千夏",
+        description: t(ns("desk_night")),
+        disabled: true,
+      },
     ];
 
     return (
@@ -264,30 +349,32 @@ export const FrontPageOrder: Story = {
               <DrawerTitle>{t(ns("front_title"))}</DrawerTitle>
               <DrawerDescription>{t(ns("front_desc"))}</DrawerDescription>
             </DrawerHeader>
-            <SortableList
-              onSortEnd={(from, to) =>
-                setOrder((prev) => {
-                  const next = [...prev];
-                  const [moved] = next.splice(from, 1);
-                  next.splice(to, 0, moved);
-                  return next;
-                })
-              }
-            >
-              {order.map((item, index) => (
-                <SortableList.Item key={item.id} index={index}>
-                  <Group justify="between" align="center">
-                    <Stack gap="2xs">
-                      <Text size="sm">{item.label}</Text>
-                      <Text size="xs" color="tertiary">
-                        {item.slot}
-                      </Text>
-                    </Stack>
-                    <SortableList.DragHandle />
-                  </Group>
-                </SortableList.Item>
-              ))}
-            </SortableList>
+            <DrawerBody>
+              <SortableList
+                onSortEnd={(from, to) =>
+                  setOrder((prev) => {
+                    const next = [...prev];
+                    const [moved] = next.splice(from, 1);
+                    next.splice(to, 0, moved);
+                    return next;
+                  })
+                }
+              >
+                {order.map((item, index) => (
+                  <SortableList.Item key={item.id} index={index}>
+                    <Group justify="between" align="center">
+                      <Stack gap="2xs">
+                        <Text size="sm">{item.label}</Text>
+                        <Text size="xs" color="tertiary">
+                          {item.slot}
+                        </Text>
+                      </Stack>
+                      <SortableList.DragHandle />
+                    </Group>
+                  </SortableList.Item>
+                ))}
+              </SortableList>
+            </DrawerBody>
             <DrawerFooter>
               <Button variant="ghost">{t(ns("cancel"))}</Button>
               <Button variant="solid">{t(ns("front_lock"))}</Button>
@@ -306,8 +393,19 @@ export const FrontPageOrder: Story = {
 export const RevisionLog: Story = {
   render: () => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const actors = ["宮下 玲奈", "Amara Osei", "池田 さやか", "河合 拓真", "Rafael Santos"];
-    const actions = [t(ns("log_edit")), t(ns("log_move")), t(ns("log_assign")), t(ns("log_kill"))];
+    const actors = [
+      "宮下 玲奈",
+      "Amara Osei",
+      "池田 さやか",
+      "河合 拓真",
+      "Rafael Santos",
+    ];
+    const actions = [
+      t(ns("log_edit")),
+      t(ns("log_move")),
+      t(ns("log_assign")),
+      t(ns("log_kill")),
+    ];
     const gaps = [3, 11, 2, 27, 5, 8, 1, 19];
     let minutes = 0;
     const entries = Array.from({ length: 420 }, (_, i) => {
@@ -332,17 +430,21 @@ export const RevisionLog: Story = {
             itemHeight={44}
             aria-label={t(ns("log_title"))}
             renderItem={(entry) => (
-              <Group justify="between" align="center">
-                <Group gap="sm" align="center">
-                  <Text size="sm">{entry.actor}</Text>
-                  <Text size="sm" color="secondary">
+              <Group justify="between" align="center" wrap="nowrap">
+                {/* 行は固定高さなので、狭いときは折り返さずに切り詰める。
+                    320px では担当名と操作が入りきらず、以前は次の行に重なっていた。 */}
+                <Group gap="sm" align="center" wrap="nowrap" style={{ minWidth: 0 }}>
+                  <Text size="sm" truncate>
+                    {entry.actor}
+                  </Text>
+                  <Text size="sm" color="secondary" truncate>
                     {entry.action}
                   </Text>
                   <Badge intent="neutral" variant="subtle" size="sm">
                     {entry.id}
                   </Badge>
                 </Group>
-                <Text size="xs" color="tertiary">
+                <Text size="xs" color="tertiary" nowrap>
                   {entry.ago}
                 </Text>
               </Group>

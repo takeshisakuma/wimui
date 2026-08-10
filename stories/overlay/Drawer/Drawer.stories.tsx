@@ -4,8 +4,18 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "wimui";
-
+import {
+  Button,
+  Drawer,
+  DrawerClose,
+  DrawerBody,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "wimui";
 
 const meta: Meta<typeof Drawer> = {
   title: "Components/Overlays/Drawer",
@@ -61,10 +71,10 @@ export const Default: Story = {
             <DrawerTitle>{t("story.drawer_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_desc")}</DrawerDescription>
           </DrawerHeader>
-          <div style={{ padding: "20px" }}>
+          <DrawerBody>
             <p>{t("story.drawer_body1")}</p>
             <p>{t("story.drawer_body2")}</p>
-          </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
@@ -93,9 +103,9 @@ export const Left: Story = {
             <DrawerTitle>{t("story.drawer_left_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_left_desc")}</DrawerDescription>
           </DrawerHeader>
-          <div style={{ padding: "20px" }}>
+          <DrawerBody>
             <p>{t("story.drawer_left_body")}</p>
-          </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
@@ -123,9 +133,9 @@ export const Top: Story = {
             <DrawerTitle>{t("story.drawer_top_title")}</DrawerTitle>
             <DrawerDescription>{t("story.drawer_top_desc")}</DrawerDescription>
           </DrawerHeader>
-          <div style={{ padding: "20px" }}>
+          <DrawerBody>
             <p>{t("story.drawer_top_body")}</p>
-          </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
@@ -155,9 +165,9 @@ export const Bottom: Story = {
               {t("story.drawer_bottom_desc")}
             </DrawerDescription>
           </DrawerHeader>
-          <div style={{ padding: "20px" }}>
+          <DrawerBody>
             <p>{t("story.drawer_bottom_body")}</p>
-          </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
@@ -185,11 +195,9 @@ export const Controlled: Story = {
         <p>
           {t("story.dialog_curr_state")}: {open ? "Open" : "Closed"}
         </p>
-        <Button
-          variant="solid"
-          onClick={() => setOpen(true)}
-
-        >{t("story.dialog_state_open")}</Button>
+        <Button variant="solid" onClick={() => setOpen(true)}>
+          {t("story.dialog_state_open")}
+        </Button>
 
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent side={args.side}>
@@ -199,20 +207,16 @@ export const Controlled: Story = {
                 {t("story.dialog_controlled_desc")}
               </DrawerDescription>
             </DrawerHeader>
-            <div style={{ padding: "20px" }}>
+            <DrawerBody>
               <p>{t("story.dialog_controlled_body")}</p>
-            </div>
+            </DrawerBody>
             <DrawerFooter>
-              <Button
-                variant="outline"
-                onClick={() => setOpen(false)}
-
-              >{t("story.dialog_cancel")}</Button>
-              <Button
-                variant="solid"
-                onClick={() => setOpen(false)}
-
-              >{t("story.dialog_state_close")}</Button>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                {t("story.dialog_cancel")}
+              </Button>
+              <Button variant="solid" onClick={() => setOpen(false)}>
+                {t("story.dialog_state_close")}
+              </Button>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
@@ -241,9 +245,9 @@ export const WithoutSlide: Story = {
               {t("story.drawer_no_slide_desc")}
             </DrawerDescription>
           </DrawerHeader>
-          <div style={{ padding: "20px" }}>
+          <DrawerBody>
             <p>{t("story.drawer_no_slide_body")}</p>
-          </div>
+          </DrawerBody>
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>

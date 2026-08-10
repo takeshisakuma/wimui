@@ -93,6 +93,15 @@
     color: var(--wim-color-text-secondary);
   }
 
+  /* 本文。ヘッダー／フッターと同じ余白に揃える。中身が長いときはここが伸びて
+     スクロールし、フッターは `margin-top: auto` で下に残る。 */
+  .body {
+    flex: 1;
+    min-height: 0;
+    padding: var(--wim-spacing-lg);
+    overflow-y: auto;
+  }
+
   .footer {
     display: flex;
     gap: var(--wim-spacing-md);
