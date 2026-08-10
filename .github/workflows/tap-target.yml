@@ -17,7 +17,10 @@ on:
         default: ""
 
 concurrency:
-  group: tap-target-${{ github.ref_name }}
+  # 密度もキーに入れる。入れずに comfortable と compact を続けて投げたら、
+  # 後から投げた側が前のランを丸ごと殺した（cancelled は灰色なので、
+  # 見に行くまで「両方測った」と思い込んだままになる）。
+  group: tap-target-${{ github.ref_name }}-${{ inputs.density }}
   cancel-in-progress: true
 
 jobs:
