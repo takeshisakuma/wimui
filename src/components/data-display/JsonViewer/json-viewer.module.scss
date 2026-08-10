@@ -60,7 +60,10 @@
 
     /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。折りたたみ見出しは role="button"。 T117 */
     min-width: var(--wim-tap-target-min);
-    min-height: var(--wim-height-xs);
+
+    /* --wim-height-xs は compact で縮むので、下限と max() で合わせる。
+       min-height を別に足したときは stylelint --fix に重複として捨てられた。 */
+    min-height: max(var(--wim-height-xs), var(--wim-tap-target-min));
     cursor: default;
 
     &.collapsible {
