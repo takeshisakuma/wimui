@@ -347,7 +347,7 @@ export const QueryBuilder = ({
               aria-label={removeGroupAriaLabel}
               variant="ghost"
               size="md"
-              color="danger"
+              intent="danger"
               onClick={() => handleRemove(group.id)}
               className={styles.removeGroup}
             />
@@ -501,7 +501,7 @@ export const QueryBuilder = ({
             aria-label={removeRuleAriaLabel}
             variant="ghost"
             size="md"
-            color="danger"
+            intent="danger"
             onClick={() => handleRemove(rule.id)}
             className={styles.removeRule}
           />

@@ -61,6 +61,17 @@ body[lang="en"] {
   h6 {
     hyphens: manual;
   }
+
+  /* T127: **利用者が打った文字を見せる面**も除外する。散文の自動ハイフネーションは
+     右端が揃って読みやすくなる機能だが、入力欄の中では「自分が打っていない文字
+     （ハイフン）が見える」ことになる。実測では RichTextEditor の本文が
+     "fol-lowing"、Mentions のメモが "be-fore" と割れていた。 */
+  input,
+  textarea,
+  [contenteditable="true"],
+  [contenteditable=""] {
+    hyphens: manual;
+  }
 }
 
 /* ポルトガル語 */
@@ -76,6 +87,17 @@ body[lang="pt"] {
   h4,
   h5,
   h6 {
+    hyphens: manual;
+  }
+
+  /* T127: **利用者が打った文字を見せる面**も除外する。散文の自動ハイフネーションは
+     右端が揃って読みやすくなる機能だが、入力欄の中では「自分が打っていない文字
+     （ハイフン）が見える」ことになる。実測では RichTextEditor の本文が
+     "fol-lowing"、Mentions のメモが "be-fore" と割れていた。 */
+  input,
+  textarea,
+  [contenteditable="true"],
+  [contenteditable=""] {
     hyphens: manual;
   }
 }

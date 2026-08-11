@@ -314,7 +314,10 @@ export const MultiSelect = ({
                     key={opt.value}
                     data-testid="multiselect-chip"
                     size="sm"
-                    color="primary"
+                    /* T123: `color` は `Chip` の prop ではなく、DOM の属性として
+                       落ちていただけ（primary は Chip の既定）。選んだ値は普通の値
+                       なので neutral を明示する。 */
+                    intent="neutral"
                     variant="solid"
                     disabled={disabled}
                     onDelete={
