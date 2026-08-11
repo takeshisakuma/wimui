@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React from "react";
 import {
   LineChart as RechartsLineChart,
   Line,
@@ -66,7 +66,6 @@ export const Sparkline = ({
   ariaLabel,
   className,
 }: SparklineProps) => {
-  const gradientId = useId().replace(/:/g, "");
   const chartData = data.map((value, index) => ({ index, value }));
   const domain: [number | "auto", number | "auto"] = [min ?? "auto", max ?? "auto"];
   const lastIndex = data.length - 1;
@@ -118,19 +117,15 @@ export const Sparkline = ({
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity={0.35} />
-              <stop offset="100%" stopColor={color} stopOpacity={0} />
-            </linearGradient>
-          </defs>
           <YAxis hide domain={domain} />
           <Area
             type="monotone"
             dataKey="value"
             stroke={color}
             strokeWidth={strokeWidth}
-            fill={`url(#${gradientId})`}
+            /* T147: フェードは値と無関係な濃淡を持ち込む。塗りは 1 段階。 */
+            fill={color}
+            fillOpacity={0.15}
             dot={showLastDot ? renderLastDot : false}
             isAnimationActive={false}
           />
