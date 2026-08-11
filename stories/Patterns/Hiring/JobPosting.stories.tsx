@@ -6,7 +6,6 @@ import {
   AppShell,
   Box,
   Button,
-  ButtonGroup,
   Checkbox,
   ColorInput,
   ColorPicker,
@@ -58,8 +57,11 @@ import type { QueryGroup } from "wimui";
  * TalentPool = 条件式）。primary の面もそれぞれ 1 箇所に絞る。
  *
  * **載せなかったもの**: `FloatButton`（この 5 画面はどれもデスクトップの編集作業で、
- * 画面に浮かせる操作が無い＝置くと「スロットを埋める」ことになる）と `InputBase`
- * （入力の殻そのもので、`Input` / `Combobox` 等の内側で必ず通る）。
+ * 画面に浮かせる操作が無い＝置くと「スロットを埋める」ことになる）／`InputBase`
+ * （入力の殻そのもので、`Input` / `Combobox` 等の内側で必ず通る）／
+ * **`ButtonGroup`**（joined は「1 つの操作面」を作るもので、境目を共有して
+ * 見える。この画面に出てくる操作はどれも独立していて束ねる理由が無い。
+ * 合成のためだけに置くのは「スロットを埋める」側）。
  */
 const meta = {
   title: "Patterns/Hiring",
@@ -368,6 +370,17 @@ export const PageStyle: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [ratio, setRatio] = useState(16 / 9);
+    const [bandColor, setBandColor] = useState("#123f35");
+    const [bandOpacity, setBandOpacity] = useState(68);
+    const [headlineColor, setHeadlineColor] = useState("#f3ece1");
+
+    /** 帯は写真の上に重なるので、不透明度は**アルファ**で持つ。
+        `opacity` を使うと見出しの文字まで薄くなる。 */
+    const band = (() => {
+      const n = parseInt(bandColor.slice(1), 16);
+      const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+      return `rgba(${r}, ${g}, ${b}, ${bandOpacity / 100})`;
+    })();
 
     return (
       <Box p="2xl">
@@ -389,6 +402,32 @@ export const PageStyle: Story = {
               aspectRatio={ratio}
               applyLabel={t(ns("style_apply"))}
             />
+
+            {/* **右の 3 つが効く先**。ここが無いと、色も不透明度も動かしても
+                画面に何も起きない＝操作できるだけの飾りになる。
+                写真の上に帯を敷き、その上に見出しを載せる実際の並び。 */}
+            <Stack gap="2xs">
+              <Text size="xs" color="text-tertiary">
+                {t(ns("style_preview_label"))}
+              </Text>
+              <Box
+                style={{
+                  backgroundImage: "url(./images/sample-landscape.png)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  aspectRatio: "16 / 5",
+                  display: "flex",
+                  alignItems: "flex-end",
+                }}
+              >
+                <Box p="lg" style={{ backgroundColor: band, width: "100%" }}>
+                  {/* 見出しの色を確かめる面なので、色は state から当てる。 */}
+                  <Text size="lg" weight="bold" style={{ color: headlineColor }}>
+                    {t(ns("style_preview_headline"))}
+                  </Text>
+                </Box>
+              </Box>
+            </Stack>
           </Stack>
 
           <Stack gap="xl">
@@ -411,7 +450,8 @@ export const PageStyle: Story = {
             <Stack gap="md">
               <ColorPicker
                 label={t(ns("band_color_label"))}
-                defaultValue="#123f35"
+                value={bandColor}
+                onChange={(e) => setBandColor(e.target.value)}
                 fullWidth
               />
               <Slider
@@ -419,11 +459,13 @@ export const PageStyle: Story = {
                 min={0}
                 max={100}
                 step={4}
-                defaultValue={68}
+                value={bandOpacity}
+                onChange={setBandOpacity}
               />
               <ColorInput
                 label={t(ns("headline_color_label"))}
-                defaultValue="#f3ece1"
+                value={headlineColor}
+                onChange={(e) => setHeadlineColor(e.target.value)}
                 fullWidth
               />
             </Stack>
@@ -556,9 +598,10 @@ export const TalentPool: Story = {
             defaultQuery={QUERIES[stage]}
           />
 
-          {/* 同じ結果集合に対する 2 つの操作なので束ねる。**`ButtonGroup` は
-              `width: 100%`**（`joined` では子も `flex: 1 1 auto`）なので、
-              行に直接置くと横いっぱいに伸びる。列を与えて幅を決める。 */}
+          {/* **`ButtonGroup`（joined）は使わない。** あれはセグメント状に
+              「1 つの操作面」を作るもので、境目を共有して見える。ここの 2 つは
+              別々の操作（条件を保存する / 結果を書き出す）で、押し間違いの
+              コストも違うので、独立したボタンとして間を空ける。 */}
           <Grid
             cols={{ base: 1, sm: "auto minmax(0, 20rem)" }}
             gap="md"
@@ -567,10 +610,14 @@ export const TalentPool: Story = {
             <Text size="sm" color="text-secondary">
               {t(ns("pool_count"), { matched, total })}
             </Text>
-            <ButtonGroup joined variant="outline">
-              <Button size="sm">{t(ns("pool_save"))}</Button>
-              <Button size="sm">{t(ns("pool_export"))}</Button>
-            </ButtonGroup>
+            <Group gap="sm" justify="end">
+              <Button size="sm" variant="ghost">
+                {t(ns("pool_export"))}
+              </Button>
+              <Button size="sm" variant="outline">
+                {t(ns("pool_save"))}
+              </Button>
+            </Group>
           </Grid>
         </Stack>
       </Box>

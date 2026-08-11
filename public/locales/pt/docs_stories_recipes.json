@@ -767,6 +767,8 @@
     "style_title": "Como a página de vagas aparece",
     "style_hint": "A foto é recortada uma vez e reaproveitada em todas as vagas.",
     "style_apply": "Usar este recorte",
+    "style_preview_label": "Prévia",
+    "style_preview_headline": "Venha torrar com a gente em Kiyosumi-Shirakawa",
     "ratio_label": "Recorte",
     "ratio_wide": "16:9",
     "ratio_classic": "4:3",

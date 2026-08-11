@@ -767,6 +767,8 @@
     "style_title": "How the careers page looks",
     "style_hint": "The photo is cropped once and reused on every posting.",
     "style_apply": "Use this crop",
+    "style_preview_label": "Preview",
+    "style_preview_headline": "Roast with us in Kiyosumi-Shirakawa",
     "ratio_label": "Crop",
     "ratio_wide": "16:9",
     "ratio_classic": "4:3",

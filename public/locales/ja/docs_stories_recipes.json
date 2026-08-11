@@ -767,6 +767,8 @@
     "style_title": "採用ページの見た目",
     "style_hint": "写真は 1 度切ると、以降の求人でも同じものを使います。",
     "style_apply": "この切り抜きを使う",
+    "style_preview_label": "プレビュー",
+    "style_preview_headline": "清澄白河で、いっしょに焼きませんか",
     "ratio_label": "切り抜き",
     "ratio_wide": "16:9",
     "ratio_classic": "4:3",
