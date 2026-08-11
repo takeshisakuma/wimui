@@ -388,6 +388,7 @@
     "prepare": "husky",
     "check:aliases": "node scripts/check-aliases.js",
     "check:improvements": "node scripts/check-improvements-status.js",
+    "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",

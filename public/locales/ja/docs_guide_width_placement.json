@@ -40,6 +40,18 @@
     "pos_uneven_title": "語彙どうしが揃っていない",
     "pos_uneven_desc": "値を並べて比べると、ずれが 2 つ出てきます。`FloatButton` は画面の隅の一覧の中に `static` ── 「そもそも配置しない」という CSS のキーワード ── を混ぜており、enum の 1 つだけが他とは違う質問に答えています。そして `Indicator` は四隅なのに `Snackbar` と `ToastProvider` は 6 値です。「隅に置く」という同じ考えが、親の中か画面の中かで 2 つの語彙に分かれています。どちらも踏んで再現できる不具合ではないので残りました ── ある prop の値を、他のコンポーネントの同じ prop と突き合わせて見るものが無いからです。",
     "pos_new_title": "新しいコンポーネントに position を足すとき",
-    "pos_new_desc": "6 つ目を作らず、上のどれかに寄せてください。CSS へそのまま渡すレイアウトの基本要素なら `React.CSSProperties[\"position\"]`、ビューポートに置くなら Snackbar と同じ集合、親の中に置くなら四隅。どれにも当てはまらない値が要るなら、それはその prop に別の名前がふさわしいという合図です。"
+    "pos_new_desc": "6 つ目を作らず、上のどれかに寄せてください。CSS へそのまま渡すレイアウトの基本要素なら `React.CSSProperties[\"position\"]`、ビューポートに置くなら Snackbar と同じ集合、親の中に置くなら四隅。どれにも当てはまらない値が要るなら、それはその prop に別の名前がふさわしいという合図です。",
+    "claims_title": "幅を自分で主張する部品",
+    "claims_desc": "この 3 つは、あなたのレイアウトより先に自分の幅を決めます。警告は出ません ── 型は通り、コンソールも無言で、1280px ではたいていそれらしく見えます。",
+    "claims_col_component": "コンポーネント",
+    "claims_col_what": "何をするか",
+    "claims_col_instead": "どうするか",
+    "claims_title_what": "見出しは `width: 100%` なので、`Group` の中に置くと行を占有して隣を次の行へ押し出します。`justify=\"between\"` は効きません。",
+    "claims_title_instead": "見出しと補足は縦に積むか、見出しを行の外に出します。",
+    "claims_buttongroup_what": "グループが `width: 100%` で、`joined` では子も伸びます。行にそのまま置くと行を占有して横いっぱいに広がります。",
+    "claims_buttongroup_instead": "列（グリッドのトラック）を与えて幅を決めます。`joined` は本当に 1 つの操作面のときだけ。",
+    "claims_header_what": "ヘッダは子を flex アイテムとして並べるので、中に `Group justify=\"between\"` を置くとグループ自体が内容幅に縮み、両端揃えが効きません。",
+    "claims_header_instead": "`Header.Section` を 2 つ置きます。左右に振るのはそちらの役目です。",
+    "claims_note": "3 つとも画面を 1 枚作ったら出てきました。共通する見分け方は「レイアウトの prop が効かないときは、子が自分で幅を決めていないか疑う」。"
   }
 }

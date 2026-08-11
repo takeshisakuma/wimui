@@ -196,7 +196,12 @@
     "querybuilder_operators_desc": "`QueryRule.operator` recebe o valor abaixo, não a chave de tradução. O conjunto depende do tipo do campo.",
     "querybuilder_operators_type": "Tipo do campo",
     "querybuilder_operators_values": "Valores aceitos",
-    "querybuilder_operators_note": "Qualquer outro valor deixa o controle de operador vazio. O tipo recusa, e um aviso em desenvolvimento lista os valores aceitos para aquele tipo."
+    "querybuilder_operators_note": "Qualquer outro valor deixa o controle de operador vazio. O tipo recusa, e um aviso em desenvolvimento lista os valores aceitos para aquele tipo.",
+    "selection_guide_link": "Foundation › Componentes de seleção — tabela comparativa, momento da aplicação e a linha entre SegmentedControl e ToggleGroup",
+    "togglegroup_choice_self_when": "Quando os botões carregam um valor: formatação, uma configuração, um filtro que entra na consulta. A escolha faz parte do resultado, não troca o que você está vendo.",
+    "togglegroup_choice_alt_when": "Quando escolher um troca o que aparece abaixo — isso é SegmentedControl.",
+    "segmentedcontrol_choice_self_when": "Quando escolher um troca a visão: qual recorte dos dados, qual período, qual etapa. O que vem depois muda.",
+    "segmentedcontrol_choice_alt_when": "Quando a escolha é um valor que você mantém (formatação, configuração, filtro) — isso é ToggleGroup. Para navegar entre páginas, Tabs."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

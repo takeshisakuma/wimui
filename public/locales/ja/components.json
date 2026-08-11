@@ -196,7 +196,12 @@
     "querybuilder_operators_desc": "`QueryRule.operator` に渡すのは下の値で、翻訳キーではありません。使える集合はフィールドの型で決まります。",
     "querybuilder_operators_type": "フィールドの型",
     "querybuilder_operators_values": "渡せる値",
-    "querybuilder_operators_note": "これ以外を渡すと演算子の欄が空で描画されます。型では弾かれ、開発時にはその型で使える値を並べた警告が出ます。"
+    "querybuilder_operators_note": "これ以外を渡すと演算子の欄が空で描画されます。型では弾かれ、開発時にはその型で使える値を並べた警告が出ます。",
+    "selection_guide_link": "Foundation › 選択系コンポーネントの使い分け ── 比較表・反映のタイミング・SegmentedControl と ToggleGroup の線引き",
+    "togglegroup_choice_self_when": "ボタンが値を持つとき。書式・設定・条件に混ざる絞り込みなど、選んだものが結果の一部になる場合。見ている対象は変わらない。",
+    "togglegroup_choice_alt_when": "選ぶと下の内容が入れ替わるなら SegmentedControl。",
+    "segmentedcontrol_choice_self_when": "選ぶとビューが切り替わるとき。データのどの断面か、どの期間か、どの段階か。後ろの内容が入れ替わる場合。",
+    "segmentedcontrol_choice_alt_when": "選んだものが持ち続ける値（書式・設定・絞り込み）なら ToggleGroup。ページ間の移動なら Tabs。"
   },
   "effects": {
     "common_vars": "共通変数"

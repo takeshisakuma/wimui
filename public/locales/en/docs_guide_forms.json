@@ -403,6 +403,18 @@
     "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
     "seg_vs_tabs_title": "SegmentedControl vs Tabs",
     "segmented_control_label": "SegmentedControl",
-    "btn_group_joined_label": "Button Group (joined)"
+    "btn_group_joined_label": "Button Group (joined)",
+    "seg_vs_togglegroup_title": "SegmentedControl vs ToggleGroup",
+    "seg_vs_togglegroup_rule": "Both apply immediately, so timing does not separate them. Ask what happens after the click: if the content below is replaced, it is a view switch (SegmentedControl). If the choice is a value that goes into the result, it is an input (ToggleGroup) — the button version of a radio or checkbox group.",
+    "stg_after": "After you pick",
+    "stg_seg_after": "The content below is replaced.",
+    "stg_tg_after": "The value changes; the content stays where it is.",
+    "stg_count": "How many",
+    "stg_seg_count": "Always one.",
+    "stg_tg_count": "One or several.",
+    "stg_seg_purpose": "Switch the view.",
+    "stg_tg_purpose": "Hold a value.",
+    "stg_seg_example": "Grid / list, week / month, applied / screening / interview.",
+    "stg_tg_example": "Bold / italic, crop ratio, which tags are on."
   }
 }

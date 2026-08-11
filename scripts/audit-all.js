@@ -30,6 +30,11 @@ const checks = [
   },
   {
     category: "docs",
+    name: "Choice matrix (guidance that does not guide)",
+    command: "node scripts/check-choice-matrix.js",
+  },
+  {
+    category: "docs",
     name: "Docs vs implementation drift",
     command: "node scripts/check-doc-drift.js",
   },

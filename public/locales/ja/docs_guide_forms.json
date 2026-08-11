@@ -403,6 +403,18 @@
     "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
     "seg_vs_tabs_title": "SegmentedControl vs Tabs",
     "segmented_control_label": "SegmentedControl",
-    "btn_group_joined_label": "Button Group (joined)"
+    "btn_group_joined_label": "Button Group (joined)",
+    "seg_vs_togglegroup_title": "SegmentedControl vs ToggleGroup",
+    "seg_vs_togglegroup_rule": "どちらも即時反映なので、タイミングでは分かれません。押したあとに何が起きるかで決めます ── 下の内容が入れ替わるならビューの切り替え（SegmentedControl）。選んだものが結果に混ざる値なら入力（ToggleGroup）＝ラジオやチェックボックスのボタン版です。",
+    "stg_after": "選んだあと",
+    "stg_seg_after": "下の内容が入れ替わる。",
+    "stg_tg_after": "値が変わる。内容はその場に残る。",
+    "stg_count": "選べる数",
+    "stg_seg_count": "常に 1 つ。",
+    "stg_tg_count": "1 つでも複数でも。",
+    "stg_seg_purpose": "ビューを切り替える。",
+    "stg_tg_purpose": "値を持つ。",
+    "stg_seg_example": "グリッド / リスト、週 / 月、応募 / 書類 / 面接。",
+    "stg_tg_example": "太字 / 斜体、切り抜きの比率、どのタグを有効にするか。"
   }
 }
