@@ -286,10 +286,13 @@ export const Quality: Story = {
                 /* 折れ線は横に長いほど読める。ゲージとレーダーは正方形なので 1 列。 */
                 span: 2,
                 content: (
+                  /* 84.1〜85.4% の動きを見る図なので、0 起点だと平らになる
+                     （T134）。範囲をデータに合わせる。 */
                   <LineChart
                     data={yields}
                     keys={["yield"]}
                     xAxisKey="day"
+                    yDomain={["auto", "auto"]}
                     height={280}
                   />
                 ),

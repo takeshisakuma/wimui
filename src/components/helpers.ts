@@ -59,3 +59,13 @@ export const CHART_THEME = {
       },
     },
 };
+
+/**
+ * 軸の範囲（recharts の domain と同じ書き方）。T134 で追加。
+ * 0 起点が要るのは面積で比べる図（棒）だけで、折れ線や散布図は
+ * データに合わせたほうが差が読める。
+ */
+export type ChartAxisDomain = [
+  number | "auto" | "dataMin" | (string & {}),
+  number | "auto" | "dataMax" | (string & {}),
+];

@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import { type ChartAxisDomain } from "../../helpers";
 
 import styles from "./line-chart.module.scss";
 
@@ -47,6 +48,13 @@ export type LineChartProps = {
    */
   smooth?: boolean;
   /**
+   * Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+   * than the distance from zero (a yield moving between 84% and 85% is a flat
+   * line on a 0–100 axis).
+   * @default [0, "auto"]
+   */
+  yDomain?: ChartAxisDomain;
+  /**
    * If true, animates the chart on mount.
    * @default false
    */
@@ -61,6 +69,7 @@ export const LineChart = ({
   width = "100%",
   title,
   smooth = false,
+  yDomain = [0, "auto"],
   animated = false,
 }: LineChartProps) => {
   return (
@@ -88,7 +97,13 @@ export const LineChart = ({
             />
             {/* 既定の軸幅 60px は目盛りの文字（実測 27px）に対して広く、描画域が
                 右へ寄る。文字＋余白ぶんに詰める。 */}
-            <YAxis width={44} {...CHART_THEME.axis} tickLine={false} axisLine={false} />
+            <YAxis
+              width={44}
+              domain={yDomain}
+              {...CHART_THEME.axis}
+              tickLine={false}
+              axisLine={false}
+            />
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
