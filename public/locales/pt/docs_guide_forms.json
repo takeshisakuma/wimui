@@ -403,6 +403,18 @@
     "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
     "seg_vs_tabs_title": "SegmentedControl vs Abas",
     "segmented_control_label": "SegmentedControl",
-    "btn_group_joined_label": "Grupo de Botões (unidos)"
+    "btn_group_joined_label": "Grupo de Botões (unidos)",
+    "seg_vs_togglegroup_title": "SegmentedControl vs ToggleGroup",
+    "seg_vs_togglegroup_rule": "Os dois aplicam na hora, então o momento não separa. Pergunte o que acontece depois do clique: se o conteúdo abaixo é substituído, é troca de visão (SegmentedControl). Se a escolha é um valor que entra no resultado, é entrada (ToggleGroup) — a versão em botões de um grupo de rádio ou checkbox.",
+    "stg_after": "Depois de escolher",
+    "stg_seg_after": "O conteúdo abaixo é substituído.",
+    "stg_tg_after": "O valor muda; o conteúdo continua onde está.",
+    "stg_count": "Quantos",
+    "stg_seg_count": "Sempre um.",
+    "stg_tg_count": "Um ou vários.",
+    "stg_seg_purpose": "Trocar a visão.",
+    "stg_tg_purpose": "Guardar um valor.",
+    "stg_seg_example": "Grade / lista, semana / mês, inscritos / triagem / entrevista.",
+    "stg_tg_example": "Negrito / itálico, proporção do recorte, quais tags estão ativas."
   }
 }

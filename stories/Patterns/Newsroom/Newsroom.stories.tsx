@@ -231,11 +231,16 @@ export const Default: Story = {
     return (
       <AppShell>
         <AppShell.Header>
+          {/* 左右に振るのは `Header.Section` の役目（T129）。`Group justify="between"`
+              で包むと、グループ自体が内容幅に縮んで両端揃えが黙って効かない
+              ── ここは見出しが長いので**たまたま**そう見えていただけ。 */}
           <Header>
-            <Group justify="between" align="center">
+            <Header.Section>
               <Title tag="h1" size="md">
                 {t(ns("title"))}
               </Title>
+            </Header.Section>
+            <Header.Section align="end">
               <Group gap="sm" align="center">
                 <Text size="sm" color="secondary">
                   {t(ns("deadline"))}
@@ -244,7 +249,7 @@ export const Default: Story = {
                   {t(ns("file_copy"))}
                 </Button>
               </Group>
-            </Group>
+            </Header.Section>
           </Header>
         </AppShell.Header>
         <AppShell.Body>

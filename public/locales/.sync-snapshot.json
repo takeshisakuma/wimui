@@ -1443,7 +1443,12 @@
       "querybuilder_operators_desc": "`QueryRule.operator` takes the value below, not the translation key. The set depends on the field type.",
       "querybuilder_operators_type": "Field type",
       "querybuilder_operators_values": "Accepted values",
-      "querybuilder_operators_note": "Passing anything else renders an empty operator control. The type rejects it, and a development-time warning names the accepted values for that field type."
+      "querybuilder_operators_note": "Passing anything else renders an empty operator control. The type rejects it, and a development-time warning names the accepted values for that field type.",
+      "selection_guide_link": "Foundation › Selection components — compare table, timing and the SegmentedControl / ToggleGroup line",
+      "togglegroup_choice_self_when": "When the buttons carry a value: formatting, a setting, a filter that goes into the query. The selection is part of the result, not a change of what you are looking at.",
+      "togglegroup_choice_alt_when": "When picking one changes what is shown below it — that is SegmentedControl.",
+      "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
+      "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs."
     },
     "cat": {
       "ai": "AI"
@@ -7233,7 +7238,19 @@
       "seg_vs_dropdown_title": "SegmentedControl vs Dropdown",
       "seg_vs_tabs_title": "SegmentedControl vs Tabs",
       "segmented_control_label": "SegmentedControl",
-      "btn_group_joined_label": "Button Group (joined)"
+      "btn_group_joined_label": "Button Group (joined)",
+      "seg_vs_togglegroup_title": "SegmentedControl vs ToggleGroup",
+      "seg_vs_togglegroup_rule": "Both apply immediately, so timing does not separate them. Ask what happens after the click: if the content below is replaced, it is a view switch (SegmentedControl). If the choice is a value that goes into the result, it is an input (ToggleGroup) — the button version of a radio or checkbox group.",
+      "stg_after": "After you pick",
+      "stg_seg_after": "The content below is replaced.",
+      "stg_tg_after": "The value changes; the content stays where it is.",
+      "stg_count": "How many",
+      "stg_seg_count": "Always one.",
+      "stg_tg_count": "One or several.",
+      "stg_seg_purpose": "Switch the view.",
+      "stg_tg_purpose": "Hold a value.",
+      "stg_seg_example": "Grid / list, week / month, applied / screening / interview.",
+      "stg_tg_example": "Bold / italic, crop ratio, which tags are on."
     }
   },
   "docs_guide_icons": {
@@ -15893,7 +15910,19 @@
       "pos_uneven_title": "The vocabularies are not aligned with each other",
       "pos_uneven_desc": "Two mismatches show up when the values are compared side by side. `FloatButton` mixes `static` — a CSS keyword, meaning \"do not place me at all\" — into a list of screen corners, so one member of the enum is answering a different question from the rest. And `Indicator` offers four corners while `Snackbar` and `ToastProvider` offer six; the same idea, placed in a parent versus placed in the viewport, has two different vocabularies. Neither is a bug you can trigger, which is why both survived: nothing measures a prop's values against the same prop on another component.",
       "pos_new_title": "Adding position to a new component",
-      "pos_new_desc": "Match the closest vocabulary above rather than inventing a sixth. If the component is a layout primitive that hands the value straight to CSS, type it `React.CSSProperties[\"position\"]`. If it places something in the viewport, use the Snackbar set. If it places something inside its parent, use the four corners. A value that fits none of these is a signal that the prop wants a different name."
+      "pos_new_desc": "Match the closest vocabulary above rather than inventing a sixth. If the component is a layout primitive that hands the value straight to CSS, type it `React.CSSProperties[\"position\"]`. If it places something in the viewport, use the Snackbar set. If it places something inside its parent, use the four corners. A value that fits none of these is a signal that the prop wants a different name.",
+      "claims_title": "Components that claim the width themselves",
+      "claims_desc": "These three lay themselves out before your layout does. Nothing warns you — the type passes, the console stays quiet, and at 1280px it usually still looks right.",
+      "claims_col_component": "Component",
+      "claims_col_what": "What it does",
+      "claims_col_instead": "What to do",
+      "claims_title_what": "The heading is `width: 100%`, so inside a `Group` it takes the whole row and pushes its neighbour to the next line. `justify=\"between\"` has no effect.",
+      "claims_title_instead": "Stack the heading and its meta line vertically, or put the heading outside the row.",
+      "claims_buttongroup_what": "The group is `width: 100%`, and with `joined` the buttons grow to fill it. Dropped into a row, it takes the row and stretches.",
+      "claims_buttongroup_instead": "Give it a column of its own (a grid track). Only use `joined` when the buttons really are one surface.",
+      "claims_header_what": "The header lays its children out as flex items, so a `Group justify=\"between\"` inside it shrinks to its content and the ends stop being ends.",
+      "claims_header_instead": "Use two `Header.Section` children — that is what spreads the content.",
+      "claims_note": "All three were found by building one screen. The rule they share: if a layout prop appears to do nothing, check whether the child already decided its own width."
     }
   },
   "docs_guide_intents": {

@@ -124,7 +124,12 @@
     "querybuilder_operators_desc": "`QueryRule.operator` takes the value below, not the translation key. The set depends on the field type.",
     "querybuilder_operators_type": "Field type",
     "querybuilder_operators_values": "Accepted values",
-    "querybuilder_operators_note": "Passing anything else renders an empty operator control. The type rejects it, and a development-time warning names the accepted values for that field type."
+    "querybuilder_operators_note": "Passing anything else renders an empty operator control. The type rejects it, and a development-time warning names the accepted values for that field type.",
+    "selection_guide_link": "Foundation › Selection components — compare table, timing and the SegmentedControl / ToggleGroup line",
+    "togglegroup_choice_self_when": "When the buttons carry a value: formatting, a setting, a filter that goes into the query. The selection is part of the result, not a change of what you are looking at.",
+    "togglegroup_choice_alt_when": "When picking one changes what is shown below it — that is SegmentedControl.",
+    "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
+    "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs."
   },
   "cat": {
     "ai": "AI"
