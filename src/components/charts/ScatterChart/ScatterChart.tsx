@@ -70,7 +70,8 @@ export const ScatterChart = ({
       <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsScatterChart
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            /* 左の余白は軸が自分で持つ（AreaChart / BarChart / LineChart と同じ）。 */
+            margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
           >
             <CartesianGrid {...CHART_THEME.grid} />
             <XAxis

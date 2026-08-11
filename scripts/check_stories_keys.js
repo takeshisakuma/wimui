@@ -69,7 +69,17 @@ targetFiles.forEach(file => {
 
   for (const match of tMatches) processMatch(match[1], file);
   for (const match of TMatches) processMatch(match[1], file);
-  for (const match of keyPropMatches) processMatch(match[2], file);
+  for (const match of keyPropMatches) {
+    // T144: `nameKey` は **2 つの意味**で使われている ── 翻訳キーを取る prop と、
+    // チャートの**データの列名**（`FunnelChart` / `Treemap` 等の recharts 系）。
+    // 実在の翻訳キーは必ず名前空間を含む（`typo.lh_jpan_tight` / `menuvocab.…`）ので、
+    // **`.` も `:` も無い値はデータの列名として扱う**。
+    // 実測（2026-08-11）: 既存の該当 12 件はすべてドットを含み、含まないのは
+    // チャートの列名だけだった。
+    const value = match[2];
+    if (!value.includes(".") && !value.includes(":")) continue;
+    processMatch(value, file);
+  }
 });
 
 // 3. Scan JSON data files (e.g. src/data/components.json)
