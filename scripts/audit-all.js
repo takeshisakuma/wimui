@@ -220,6 +220,11 @@ const checks = [
   },
   {
     category: "lib",
+    name: "Chart palette (series colours must be tellable apart)",
+    command: "node scripts/check-chart-palette.js",
+  },
+  {
+    category: "lib",
     name: "Design token surface (theming freeze guard)",
     command: "node scripts/check-tokens.js",
   },

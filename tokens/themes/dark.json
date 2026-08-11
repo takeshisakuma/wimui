@@ -195,6 +195,54 @@
       },
       "neutral-subtle": {
         "value": "oklch(from var(--wim-color-neutral-fill) l c h / 0.195)"
+      },
+      "chart-primary": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.b14}"
+      },
+      "chart-info": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.b18}"
+      },
+      "chart-success": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.dp11}"
+      },
+      "chart-warning": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.s6}"
+      },
+      "chart-danger": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.b1}"
+      },
+      "chart-secondary": {
+        "$comment": "T138: dark は自動反転ではなく選び直す（明度帯が light と違う）。今までここに上書きが 1 つも無く、light と同じ hex が使われていた。",
+        "value": "{pccs.gy7-5}"
+      },
+      "text-on-chart-primary": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-info": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.w}"
+      },
+      "text-on-chart-success": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.w}"
+      },
+      "text-on-chart-warning": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-danger": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.bk}"
+      },
+      "text-on-chart-secondary": {
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。",
+        "value": "{pccs.bk}"
       }
     }
   }
