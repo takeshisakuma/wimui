@@ -79,7 +79,10 @@ export const AreaChart = ({
         <ResponsiveContainer width="100%" height="100%">
           <RechartsAreaChart
             data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            /* 左の余白は `YAxis` が自分の幅で確保する。ここに 20px を足すと
+               目盛りのぶんだけ図が右へ寄る（実測: 描画域の左端がカードから
+               93px 内側になっていた）。 */
+            margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
           >
             <defs>
               {keys.map((key, index) => {
@@ -106,7 +109,9 @@ export const AreaChart = ({
               tickLine={false}
               axisLine={false}
             />
-            <YAxis {...CHART_THEME.axis} tickLine={false} axisLine={false} />
+            {/* 既定の軸幅 60px は目盛りの文字（実測 27px）に対して広く、描画域が
+                右へ寄る。文字＋余白ぶんに詰める。 */}
+            <YAxis width={44} {...CHART_THEME.axis} tickLine={false} axisLine={false} />
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}

@@ -152,7 +152,9 @@ EOF
 
 **2026-08-09 時点**: **371 件中 未合成 144**（6 枚目 `Patterns/Captions/CaptionReview` が `AppShell` / `Navbar` / `Footer` とオーバーレイ層を埋めた）。カテゴリ別の残りは form 28 / data-display 28 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / media 8 / feedback 11 / typography 5。次の 3 枚は `IMPROVEMENTS.md` の T95（7 枚目）/ T109（8 枚目）/ T110（9 枚目）。
 
-**2026-08-11（8 枚目のあと）**: **372 件中 未合成 117**（`Patterns/Hiring` が form の重い入力を埋めた）。カテゴリ別は data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / feedback 11 / navigation 10 / media 8 / form 5 / typography 5。**form の 5 件は「使えない」ではなく「JSX タグとして書かない」もの** ── `Radio` / `ToolbarButton` / `TransferList` は `RadioGroup` / `RichTextEditor` / `Transfer` の内側で描かれ、`InputBase` は入力の殻、`FloatButton` は置く画面が無かった。**この走査はタグ名を数えるので、内側で描かれる部品は永久に「未合成」に出る。** 次は T110（9 枚目・charts）。
+**2026-08-11（9 枚目のあと）**: **372 件中 未合成 107**（`Patterns/Roastery` が charts を 13 → 2 に）。カテゴリ別は data-display 24 / overlay 15 / ai 14 / layout 12 / feedback 11 / navigation 10 / media 8 / form 6 / typography 5 / charts 2。**charts の残り 2 件は `PieChart`（`Treemap` と仕事が重なるので置かない）と `CustomizedContent`（`Treemap` の内側の描画部品）** ── どちらも「使えない」ではなく「JSX タグとして書かない」もの。次に未踏なのは overlay 15 / ai 14 / feedback 11。
+
+**旧: 2026-08-11（8 枚目のあと）**: **372 件中 未合成 117**（`Patterns/Hiring` が form の重い入力を埋めた）。カテゴリ別は data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / feedback 11 / navigation 10 / media 8 / form 5 / typography 5。**form の 5 件は「使えない」ではなく「JSX タグとして書かない」もの** ── `Radio` / `ToolbarButton` / `TransferList` は `RadioGroup` / `RichTextEditor` / `Transfer` の内側で描かれ、`InputBase` は入力の殻、`FloatButton` は置く画面が無かった。**この走査はタグ名を数えるので、内側で描かれる部品は永久に「未合成」に出る。** 次は T110（9 枚目・charts）。
 
 **旧: 2026-08-09 夜（7 枚目のあと）**: **371 件中 未合成 139**（ が Kanban / TreeView / SortableList / Transfer / VirtualList を埋めた）。カテゴリ別は form 27 / data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / feedback 11 / media 8 / typography 5。次は T109（8 枚目・form 重量級）/ T110（9 枚目・charts）。
 
@@ -192,6 +194,13 @@ EOF
 ```
 
 **3 つとも false / 空でなければ不合格。ただし ② は「祖先が `overflow: hidden` で切っているか」を見ないと嘘をつく。**
+
+> **この 3 つは「はみ出し」しか見ていない。「潰れ」は緑で通る。**（2026-08-11・9 枚目）
+> `Dashboard` が狭い幅で列を減らすのに span を畳まず、grid が
+> `0px 186.188px 151.812px` に壊れて**幅 30px のカードに 1 文字ずつ縦に折れて**いたが、
+> ページは横スクロールせず、要素も画面外に出ていないので**走査は 3 つとも false**だった。
+> ユーザーが画面を見て気付いた。**幅が極端に狭い要素（例: 文字が 1 文字ずつ折れる）**も
+> 数えること ── 目安は「テキストを持つ要素の幅が 2em 未満」。
 
 > 実例（2026-08-11、8 枚目）: `ImageCropper` は**自然サイズのままの画像をドラッグで動かす**部品なので、
 > 画像は常に viewer（`overflow: hidden`）より大きい。素の走査は 390px で `IMG(+317px)` を挙げるが、

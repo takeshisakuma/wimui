@@ -2918,6 +2918,10 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `title: string` — Optional title displayed above the chart.
     - `smooth: boolean` = false — If true, draws smooth (monotone) curves instead of straight lines.
 @default false
+    - `yDomain: [ number | "auto" | "dataMin" | (string & {}), number | "auto" | "dataMax" | (string & {}), ]` = [0, "auto"] — Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+than the distance from zero (a yield moving between 84% and 85% is a flat
+line on a 0–100 axis).
+@default [0, "auto"]
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
 - **PieChart** — Proportional parts of a whole chart
@@ -2948,6 +2952,10 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
 @default "X"
     - `yAxisName: string` = "Y" — Name of the Y axis, shown in the tooltip.
 @default "Y"
+    - `xDomain: [ number | "auto" | "dataMin" | (string & {}), number | "auto" | "dataMax" | (string & {}), ]` = ["auto", "auto"] — Range of the X axis.
+@default ["auto", "auto"]
+    - `yDomain: [ number | "auto" | "dataMin" | (string & {}), number | "auto" | "dataMax" | (string & {}), ]` = ["auto", "auto"] — Range of the Y axis.
+@default ["auto", "auto"]
     - `height: number` = 300 — The height of the chart in pixels.
 @default 300
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).

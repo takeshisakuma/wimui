@@ -2,6 +2,13 @@
 
 @layer component {
   .root {
+    /* クリックすると recharts が `tabindex="-1"` の <g> にフォーカスを移すため、
+       ブラウザ既定のアウトラインが出る（`:focus-visible` は一致しない）。
+       キーボードの輪は残し、ポインタの輪だけ消す。 */
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
     display: inline-block;
     max-width: 100%;
     line-height: 0;

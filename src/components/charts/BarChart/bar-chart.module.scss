@@ -8,6 +8,13 @@
   }
 
   .container {
+    /* クリックすると recharts が `tabindex="-1"` の <g> にフォーカスを移すため、
+       ブラウザ既定のアウトラインが出る（`:focus-visible` は一致しない＝
+       キーボード操作ではない）。キーボードの輪は残し、ポインタの輪だけ消す。 */
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
     position: relative;
     width: 100%;
 

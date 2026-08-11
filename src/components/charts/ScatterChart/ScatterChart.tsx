@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import { type ChartAxisDomain } from "../../helpers";
 
 import styles from "./scatter-chart.module.scss";
 
@@ -30,6 +31,16 @@ export type ScatterChartProps = {
    * @default "Y"
    */
   yAxisName?: string;
+  /**
+   * Range of the X axis.
+   * @default ["auto", "auto"]
+   */
+  xDomain?: ChartAxisDomain;
+  /**
+   * Range of the Y axis.
+   * @default ["auto", "auto"]
+   */
+  yDomain?: ChartAxisDomain;
   /**
    * The height of the chart in pixels.
    * @default 300
@@ -55,6 +66,11 @@ export const ScatterChart = ({
   data,
   xAxisName = "X",
   yAxisName = "Y",
+  /* T134: 既定は 0 起点ではなくデータ依存。2 つの実測値の関係を見る図なので
+     0 に意味は無く、0 起点にするとデータが隅へ寄る（実測: x 2.1〜3.8 の点が
+     0〜3.8 の軸で右半分に固まっていた）。 */
+  xDomain = ["auto", "auto"],
+  yDomain = ["auto", "auto"],
   height = 300,
   width = "100%",
   title,
@@ -70,7 +86,8 @@ export const ScatterChart = ({
       <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsScatterChart
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            /* 左の余白は軸が自分で持つ（AreaChart / BarChart / LineChart と同じ）。 */
+            margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
           >
             <CartesianGrid {...CHART_THEME.grid} />
             <XAxis
@@ -78,13 +95,18 @@ export const ScatterChart = ({
               dataKey="x"
               name={xAxisName}
               unit=""
+              domain={xDomain}
               {...CHART_THEME.axis}
             />
+            {/* 既定の軸幅 60px は目盛りの文字に対して広く、描画域が右へ寄る
+                （AreaChart / BarChart / LineChart と同じ手当て）。 */}
             <YAxis
               type="number"
               dataKey="y"
               name={yAxisName}
               unit=""
+              domain={yDomain}
+              width={44}
               {...CHART_THEME.axis}
             />
             <ZAxis type="number" dataKey="z" range={[60, 400]} />

@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import { type ChartAxisDomain } from "../../helpers";
 
 import styles from "./line-chart.module.scss";
 
@@ -47,6 +48,13 @@ export type LineChartProps = {
    */
   smooth?: boolean;
   /**
+   * Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+   * than the distance from zero (a yield moving between 84% and 85% is a flat
+   * line on a 0–100 axis).
+   * @default [0, "auto"]
+   */
+  yDomain?: ChartAxisDomain;
+  /**
    * If true, animates the chart on mount.
    * @default false
    */
@@ -61,6 +69,7 @@ export const LineChart = ({
   width = "100%",
   title,
   smooth = false,
+  yDomain = [0, "auto"],
   animated = false,
 }: LineChartProps) => {
   return (
@@ -74,7 +83,10 @@ export const LineChart = ({
         <ResponsiveContainer width="100%" height="100%">
           <RechartsLineChart
             data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            /* 左の余白は `YAxis` が自分の幅で確保する。ここに 20px を足すと
+               目盛りのぶんだけ図が右へ寄る（実測: 描画域の左端がカードから
+               93px 内側になっていた）。 */
+            margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
           >
             <CartesianGrid {...CHART_THEME.grid} vertical={false} />
             <XAxis
@@ -83,7 +95,15 @@ export const LineChart = ({
               tickLine={false}
               axisLine={false}
             />
-            <YAxis {...CHART_THEME.axis} tickLine={false} axisLine={false} />
+            {/* 既定の軸幅 60px は目盛りの文字（実測 27px）に対して広く、描画域が
+                右へ寄る。文字＋余白ぶんに詰める。 */}
+            <YAxis
+              width={44}
+              domain={yDomain}
+              {...CHART_THEME.axis}
+              tickLine={false}
+              axisLine={false}
+            />
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}

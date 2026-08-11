@@ -89,6 +89,25 @@
 .row-2 { grid-row: span 2; }
 .row-3 { grid-row: span 3; }
 
+/* 狭い幅では列数を減らすのに **span はそのまま**だったため、列数を超える span が
+   暗黙の列を作って грид を壊していた。実測（390px・4 列指定・span 3 のウィジェット）:
+   `grid-template-columns` が `0px 186.188px 151.812px` になり、幅 30px の
+   カードに文字が 1 文字ずつ縦に折れた。**列を減らすときは span も同じだけ畳む。** */
+@include breakpoints.container-down(md) {
+  .span-3,
+  .span-4 {
+    grid-column: span 2;
+  }
+}
+
+@include breakpoints.container-down(sm) {
+  .span-2,
+  .span-3,
+  .span-4 {
+    grid-column: span 1;
+  }
+}
+
 // --- Widget Header ---
 
 .widgetHeader {

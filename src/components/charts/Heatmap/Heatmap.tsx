@@ -72,16 +72,23 @@ export const Heatmap = ({
     labelY: d.y,
   }));
 
-  const maxValue = Math.max(...data.map((d) => d.value));
+  const values = data.map((d) => d.value);
+  const maxValue = Math.max(...values);
+  const minValue = Math.min(...values);
 
+  /**
+   * 値を色に写す。**以前は 2 値しか返していなかった**（`ratio < 0.1` なら薄い色、
+   * それ以外は一律に濃い色）ので、12 と 63 が同じ色で描かれ、ヒートマップが
+   * 大小を伝えていなかった（T133）。
+   *
+   * トークン（`var(--wim-color-…)`）のまま混ぜられるよう `color-mix` を使う。
+   * 最小値を 0%、最大値を 100% として 2 色の間を線形に取る。
+   */
   const getColor = (value: number) => {
-    const ratio = value / maxValue;
-    // Simple interpolation for demo (could be more sophisticated)
-    if (ratio < 0.1) return colorRange[0];
-    // Note: color interpolations like this theoretically need hex, 
-    // but we can fallback to standard colors or use CSS classes if possible.
-    // For now we keep it as is but use tokens where possible.
-    return colorRange[1]; 
+    const span = maxValue - minValue;
+    const ratio = span === 0 ? 1 : (value - minValue) / span;
+    const percent = Math.round(ratio * 100);
+    return `color-mix(in oklch, ${colorRange[1]} ${percent}%, ${colorRange[0]})`;
   };
 
   return (
@@ -93,12 +100,16 @@ export const Heatmap = ({
       )}
       <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
+          {/* 実測（410px 幅のカード）: 左端のセルが Y 軸のラベルに接し（508 と 510）、
+              右には 34px が空いて**左に寄って見えた**。軸の内側に余白を取り、
+              右の余白は詰めて左右を揃える。 */}
+          <ScatterChart margin={{ top: 20, right: 4, left: 8, bottom: 20 }}>
             <XAxis
               type="number"
               dataKey="x"
               ticks={Array.from({ length: xAxisKey.length }, (_, i) => i)}
               tickFormatter={(val) => xAxisKey[val]}
+              padding={{ left: 20, right: 20 }}
               {...CHART_THEME.axis}
             />
             <YAxis

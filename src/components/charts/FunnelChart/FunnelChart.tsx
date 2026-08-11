@@ -63,7 +63,11 @@ export const FunnelChart = ({
       )}
       <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsFunnelChart>
+          {/* T137: ラベルは図の右外に出るのに**その幅を誰も確保していなかった**ため、
+              狭い枠では切れていた（実測: カード右端 1251 に対しラベル右端 1282）。
+              いちばん長いラベル（実測 61px）が収まる余白を右に取る。**左にも同じだけ**
+              取るのは、右だけ空けると図が左へ寄って見えるため（ユーザー報告）。 */}
+          <RechartsFunnelChart margin={{ top: 8, right: 88, bottom: 8, left: 88 }}>
             <Tooltip 
               contentStyle={CHART_THEME.tooltip.contentStyle} 
               cursor={CHART_THEME.tooltip.cursor}
