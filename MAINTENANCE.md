@@ -240,6 +240,22 @@ tar -xzf wimui-*.tgz && ls package/  # NOTICE / dist / llms.txt
 > その日に入れたトークンの変更も載っていなかった。**「入っていない」という結論のほうが誤りで**、
 > ビルドを挟んだら両方あった。**欠落を報告する前に、まず自分が何を測ったかを疑うこと。**
 
+**公開したあとは、リポジトリの pack ではなくレジストリの実物で測る。**
+
+```bash
+npm pack wimui@<version>              # ← レジストリから取る（ローカルの dist を一切見ない）
+tar -tzf wimui-<version>.tgz | grep -v '^package/dist/'   # 同梱されたルートのファイル
+# ローカルの build 済み dist と突き合わせる（出ている版 == 今の main か）
+sha256sum dist/styles.css dist/reset.css dist/index.js dist/llms.txt
+```
+
+> 実例（2026-08-11、0.19.0）: **欠落なし。** `NOTICE` / `LICENSE` / `README.md` / `README.ja.md` と
+> `dist/{styles.css,reset.css,llms.txt,llms-full.txt}` / `dist/locales/{en,ja,pt}` 12 本がすべてあり、
+> `llms.txt` の版表記も `v0.19.0` で `package.json` と一致（1483 ファイル / 1.0 MB）。
+> `npm run build` 後のローカルと上記 4 ファイルが**バイト一致**したので、出ている版が現在の main と
+> 同じものであることまで確認できた。**この突き合わせをすると「実物にあるか」と「実物が最新か」を
+> 1 回で見られる。**
+
 ### 8.5. 詰まっている Release ランが無いか
 
 ```bash
