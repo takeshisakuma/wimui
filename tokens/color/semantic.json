@@ -241,41 +241,52 @@
         "value": "{pccs.v16}"
       },
       "chart-primary": {
-        "$comment": "Chart series Soft tone (UI semantics stay Vivid)",
-        "value": "{pccs.sf16}"
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。",
+        "value": "{pccs.b14}"
       },
       "chart-info": {
-        "value": "{pccs.sf18}"
+        "value": "{pccs.b18}",
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。"
       },
       "chart-success": {
-        "value": "{pccs.sf12}"
+        "value": "{pccs.dp11}",
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。"
       },
       "chart-warning": {
-        "value": "{pccs.sf6}"
+        "value": "{pccs.s6}",
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。"
       },
       "chart-danger": {
-        "value": "{pccs.sf1}"
+        "value": "{pccs.s24}",
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。"
       },
       "chart-secondary": {
-        "value": "{pccs.gy7-5}"
+        "value": "{pccs.gy6-5}",
+        "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。"
       },
       "text-on-chart-primary": {
-        "value": "{pccs.bk}"
+        "value": "{pccs.bk}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "text-on-chart-info": {
-        "value": "{pccs.w}"
+        "value": "{pccs.w}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "text-on-chart-success": {
-        "value": "{pccs.bk}"
+        "value": "{pccs.w}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "text-on-chart-warning": {
-        "value": "{pccs.bk}"
+        "value": "{pccs.bk}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "text-on-chart-danger": {
-        "value": "{pccs.bk}"
+        "value": "{pccs.w}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "text-on-chart-secondary": {
-        "value": "{pccs.bk}"
+        "value": "{pccs.bk}",
+        "$comment": "T138: 塗りを選び直したので、その上の文字も 4.5:1 を満たす側へ測り直した。"
       },
       "border-inverse": {
         "value": "{pccs.gy3-5}"
