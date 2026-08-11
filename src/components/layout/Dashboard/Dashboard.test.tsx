@@ -129,4 +129,20 @@ describe("Dashboard", () => {
     );
     expect(screen.getByText("Custom widget content")).toBeInTheDocument();
   });
+// T140: 見出しの段はページ側の構造で決まる（h1 の直後に置くと h3 では段が飛ぶ）。
+  it("renders widget titles as h3 by default", () => {
+    render(<Dashboard widgets={[{ id: "w1", title: "Roasted today", content: <p>1,624 kg</p> }]} />);
+    expect(screen.getByRole("heading", { level: 3, name: "Roasted today" })).toBeInTheDocument();
+  });
+
+  it("takes the heading level from titleLevel", () => {
+    render(
+      <Dashboard
+        titleLevel={2}
+        widgets={[{ id: "w1", title: "Roasted today", content: <p>1,624 kg</p> }]}
+      />,
+    );
+    expect(screen.getByRole("heading", { level: 2, name: "Roasted today" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { level: 3 })).not.toBeInTheDocument();
+  });
 });

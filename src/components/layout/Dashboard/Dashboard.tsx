@@ -9,6 +9,9 @@ import styles from "./dashboard.module.scss";
 
 // --- Types ---
 
+/** ウィジェットの見出しに使う段。ページ側の見出しに合わせる（T140）。 */
+export type DashboardTitleLevel = 2 | 3 | 4 | 5 | 6;
+
 export interface DashboardWidget {
   id: string;
   title: string;
@@ -23,6 +26,8 @@ export interface DashboardWidget {
 interface DashboardContextType {
   editable: boolean;
   onRemove?: (id: string) => void;
+  /** T140: 見出しの段はページ側の構造で決まるので、根から配る。 */
+  titleLevel: DashboardTitleLevel;
 }
 
 const DashboardContext = createContext<DashboardContextType | null>(null);
@@ -56,6 +61,12 @@ export interface DashboardProps
   gap?: "xs" | "sm" | "md" | "lg" | "xl";
   /** Show the edit toggle button in the header. Default: true. */
   showEditToggle?: boolean;
+  /**
+   * Heading level for the widget titles. Match it to the page: a dashboard
+   * under an `h1` needs `2`, one under an `h2` section keeps `3`.
+   * @default 3
+   */
+  titleLevel?: DashboardTitleLevel;
   /** Dashboard heading label. */
   label?: string;
 }
@@ -72,6 +83,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       columns = 3,
       gap = "md",
       showEditToggle = true,
+      titleLevel = 3,
       label,
       className,
       style,
@@ -101,8 +113,8 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
     } as React.CSSProperties;
 
     const contextValue = useMemo(
-      () => ({ editable: editable ?? false, onRemove }),
-      [editable, onRemove],
+      () => ({ editable: editable ?? false, onRemove, titleLevel }),
+      [editable, onRemove, titleLevel],
     );
 
     return (
@@ -180,7 +192,11 @@ export const DashboardWidgetCard = ({
   className,
   ...props
 }: DashboardWidgetProps) => {
-  const { editable, onRemove } = useDashboardContext();
+  const { editable, onRemove, titleLevel } = useDashboardContext();
+  /* T140: 見出しの段は**ページ側の構造**で決まる。h3 固定だと `h1` の直後に
+     置いたときに段が飛ぶ（axe heading-order）。見た目はクラスが持つので、
+     段を変えても描画は変わらない。 */
+  const Heading = `h${titleLevel}` as "h2" | "h3" | "h4" | "h5" | "h6";
   const { t } = useWimTranslation("components");
 
   const { id, title, description, content, span = 1, rowSpan = 1 } = widget;
@@ -207,7 +223,7 @@ export const DashboardWidgetCard = ({
     >
       <div className={styles.widgetHeader}>
         <div className={styles.widgetMeta}>
-          <h3 className={styles.widgetTitle}>{title}</h3>
+          <Heading className={styles.widgetTitle}>{title}</Heading>
           {description && (
             <p className={styles.widgetDescription}>{description}</p>
           )}

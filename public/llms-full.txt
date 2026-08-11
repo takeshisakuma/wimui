@@ -709,6 +709,9 @@ export function RenameWorkspace() {
     - `columns: number` = 3 — Number of columns. Default: 3.
     - `gap: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Gap between widgets. Default: "md".
     - `showEditToggle: boolean` = true — Show the edit toggle button in the header. Default: true.
+    - `titleLevel: 2 | 3 | 4 | 5 | 6` = 3 — Heading level for the widget titles. Match it to the page: a dashboard
+under an `h1` needs `2`, one under an `h2` section keeps `3`.
+@default 3
     - `label: string` — Dashboard heading label.
 - **Divider** — Content separator (aka Separator, Horizontal Rule)
     - `orientation: "horizontal" | "vertical"` = "horizontal" — Orientation of the divider
@@ -2834,6 +2837,10 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `xAxisKey: string` (required) — The key in the data objects used for the X axis labels.
     - `stacked: boolean` = false — If true, series are stacked on top of each other.
 @default false
+    - `yDomain: [ number | "auto" | "dataMin" | (string & {}), number | "auto" | "dataMax" | (string & {}), ]` = [0, "auto"] — Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+than the distance from zero. Bars keep zero by default: their length is
+the value, so cutting the axis lies about the ratio between them.
+@default [0, "auto"]
     - `height: number` = 300 — The height of the chart in pixels.
 @default 300
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
@@ -2849,6 +2856,10 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `xAxisKey: string` (required) — The key in the data objects used for the X axis labels.
     - `stacked: boolean` = false — If true, series are stacked on top of each other.
 @default false
+    - `yDomain: [ number | "auto" | "dataMin" | (string & {}), number | "auto" | "dataMax" | (string & {}), ]` = [0, "auto"] — Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+than the distance from zero. Bars keep zero by default: their length is
+the value, so cutting the axis lies about the ratio between them.
+@default [0, "auto"]
     - `height: number` = 300 — The height of the chart in pixels.
 @default 300
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).

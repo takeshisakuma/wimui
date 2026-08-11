@@ -316,6 +316,10 @@
       "required": true,
       "type": "string"
     },
+    "AreaChart.yDomain": {
+      "required": false,
+      "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
+    },
     "ArtifactsOverlay.children": {
       "required": true,
       "type": "React.ReactNode"
@@ -904,6 +908,10 @@
     "BarChart.xAxisKey": {
       "required": true,
       "type": "string"
+    },
+    "BarChart.yDomain": {
+      "required": false,
+      "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
     },
     "BentoGrid.children": {
       "required": false,
@@ -2851,6 +2859,10 @@
     "Dashboard.showEditToggle": {
       "required": false,
       "type": "boolean"
+    },
+    "Dashboard.titleLevel": {
+      "required": true,
+      "type": "2 | 3 | 4 | 5 | 6"
     },
     "Dashboard.widgets": {
       "required": false,
@@ -5703,6 +5715,10 @@
       "required": true,
       "type": "string"
     },
+    "LineChart.yDomain": {
+      "required": false,
+      "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
+    },
     "LineNum.num": {
       "type": "number"
     },
@@ -7810,9 +7826,17 @@
       "required": false,
       "type": "string"
     },
+    "ScatterChart.xDomain": {
+      "required": false,
+      "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
+    },
     "ScatterChart.yAxisName": {
       "required": false,
       "type": "string"
+    },
+    "ScatterChart.yDomain": {
+      "required": false,
+      "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
     },
     "ScheduleView.aria-label": {
       "type": "string"

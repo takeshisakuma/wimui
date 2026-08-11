@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import { type ChartAxisDomain } from "../../helpers";
 
 import styles from "./bar-chart.module.scss";
 
@@ -32,6 +33,13 @@ export type BarChartProps = {
    * @default false
    */
   stacked?: boolean;
+  /**
+   * Range of the Y axis. Pass ["auto", "auto"] when the change matters more
+   * than the distance from zero. Bars keep zero by default: their length is
+   * the value, so cutting the axis lies about the ratio between them.
+   * @default [0, "auto"]
+   */
+  yDomain?: ChartAxisDomain;
   /**
    * The height of the chart in pixels.
    * @default 300
@@ -58,6 +66,7 @@ export const BarChart = ({
   keys,
   xAxisKey,
   stacked = false,
+  yDomain = [0, "auto"],
   height = 300,
   width = "100%",
   title,
@@ -88,7 +97,13 @@ export const BarChart = ({
             />
             {/* 既定の軸幅 60px は目盛りの文字（実測 27px）に対して広く、描画域が
                 右へ寄る。文字＋余白ぶんに詰める。 */}
-            <YAxis width={44} {...CHART_THEME.axis} tickLine={false} axisLine={false} />
+            <YAxis
+              width={44}
+              domain={yDomain}
+              {...CHART_THEME.axis}
+              tickLine={false}
+              axisLine={false}
+            />
             <Tooltip
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
