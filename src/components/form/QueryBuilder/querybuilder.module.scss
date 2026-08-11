@@ -26,17 +26,14 @@
     min-height: var(--wim-height-md);
     padding: 0;
     margin-left: auto;
-    color: var(--wim-color-danger);
+
+    /* 色と hover は Button の `intent="danger"` + ghost が持つ（T132）。
+       ここで面だけ手作りすると、枠は primary 基準のまま残る。 */
     transition: var(--wim-transition-fast);
 
     svg {
       color: inherit;
       fill: currentcolor;
-    }
-
-    &:hover {
-      color: var(--wim-color-danger);
-      background-color: oklch(from var(--wim-color-danger) l c h / 0.1);
     }
   }
 

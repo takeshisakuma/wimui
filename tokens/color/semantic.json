@@ -148,6 +148,12 @@
       "ghost-border-hover": {
         "value": "oklch(from var(--wim-color-primary) l c h / 0.2)"
       },
+      "danger-surface-hover": {
+        "value": "oklch(from var(--wim-color-danger) l c h / 0.08)"
+      },
+      "danger-border-hover": {
+        "value": "oklch(from var(--wim-color-danger) l c h / 0.2)"
+      },
       "glass-bg": {
         "value": "rgba(255, 255, 255, {wim.glass.bg-opacity})"
       },

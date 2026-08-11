@@ -138,6 +138,9 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
             width={width}
             disabled={disabled}
             leftIcon="SearchIcon"
+            /* T126: アイコンは箱の中央基準なので、複数行に伸びると 2 行目の
+               高さに来る。1 行目に合わせる（T90 と同じ手当ての入力側）。 */
+            styles={{ icon: styles.icon, icons: styles.icons }}
             allowClear={allowClear}
             hasValue={!!currentValue}
             onClear={handleClear}

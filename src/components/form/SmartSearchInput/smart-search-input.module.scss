@@ -1,5 +1,10 @@
 @layer component {
   .container {
+    /* 1 行のときの見た目の高さを従来（--wim-height-md）と同じに保つため、
+       枠 2 本ぶんを引いてから半分にする。 */
+    --smart-search-line: calc(var(--wim-line-height-normal) * 1em);
+    --smart-search-pad-y: calc((var(--wim-height-md) - var(--wim-border-width-thin) * 2 - var(--smart-search-line)) / 2);
+
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -17,8 +22,13 @@
     /* shrinkable-ok: これは `InputBase` の内側に置かれる入力面で、下限は
        `InputBase` の `.root` が持つ。ここに下限を置くと殻より中身が広くなる。 */
     min-width: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+
+    /* T126: 1 行のときは殻が中央に置き、伸びると上から流れる ── 2 つの状態で
+       1 行目の位置が変わるので、アイコンを定数で合わせられなかった。
+       **上下に同じ余白を持たせて、1 行目の位置を常に同じにする**（見た目の高さは
+       従来と同じ: 余白 2 つ + 行送り = --wim-height-md）。 */
+    padding-top: var(--smart-search-pad-y);
+    padding-bottom: var(--smart-search-pad-y);
     margin: 0;
     overflow: hidden;
     font: inherit;
@@ -42,6 +52,19 @@
         color: var(--wim-color-text-on-disabled);
       }
     }
+  }
+
+  /**
+   * T126: `InputBase` の `.icon` / `.icons` は `top: 50%` の中央基準。
+   * この入力は `maxRows` まで伸びるので、2 行になった時点でアイコンだけが
+   * 下がって見える（実測: テキスト 1 行目 top 87 に対しアイコン top 101）。
+   * **1 行目の行送りの中心**に置き直す。
+   */
+  .icon,
+  .icons {
+    /* 殻の枠の内側が本文の始まり（根の padding は 0・高さは min-height で作る）。
+       実測: 1 行目の中心は根の上端から 12.2px（枠 1px + 行送り 22.4px の半分）。 */
+    top: calc(var(--wim-border-width-thin) + var(--smart-search-pad-y) + var(--smart-search-line) / 2);
   }
 
   .charCount {

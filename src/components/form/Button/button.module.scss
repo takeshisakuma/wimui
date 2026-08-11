@@ -239,6 +239,14 @@
         transform var(--wim-duration-fast) var(--wim-easing-out-back);
     }
 
+    /* T132: 破壊的な操作の ghost は、hover の面だけ部品ごとに手作りされ、
+       枠は primary 基準のまま残っていた（赤い面に青い枠）。同じ形の danger 版を
+       トークンに置き、`intent` で切り替わるようにする。 */
+    &.danger:hover:not(:disabled) {
+      background-color: var(--wim-color-danger-surface-hover);
+      border-color: var(--wim-color-danger-border-hover);
+    }
+
     &:active:not(:disabled) {
       background-color: var(--wim-color-ghost-bg-active);
       border-color: var(--wim-color-ghost-border-active);

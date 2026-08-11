@@ -165,7 +165,11 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 <Tag
                   key={tag}
                   variant="solid"
-                  intent="primary"
+                  /* T123: 以前は `intent="primary"` 固定で、利用者が
+                     DESIGN.md の必須ルール 6（アクセントは 1 画面 1〜2 箇所）と
+                     10（普通の値は neutral）を守れなかった。ここに入るのは
+                     利用者が打った**普通の値**なので neutral が既定。 */
+                  intent="neutral"
                   size="sm"
                   disabled={disabled}
                   onDelete={allowDelete && !disabled ? () => removeTag(tag) : undefined}

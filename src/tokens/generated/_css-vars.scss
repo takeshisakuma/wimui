@@ -47,6 +47,8 @@
   --wim-color-ghost-bg-active: oklch(from var(--wim-color-surface-void) l c h / 0.12);
   --wim-color-ghost-border-active: rgba(0, 0, 0, 0.25);
   --wim-color-ghost-border-hover: oklch(from var(--wim-color-primary) l c h / 0.2);
+  --wim-color-danger-surface-hover: oklch(from var(--wim-color-danger) l c h / 0.08);
+  --wim-color-danger-border-hover: oklch(from var(--wim-color-danger) l c h / 0.2);
   --wim-color-glass-bg: rgba(255, 255, 255, 0.7);
   --wim-color-glass-border: rgba(0, 0, 0, 0.12);
   --wim-color-glass-blur: 12px;

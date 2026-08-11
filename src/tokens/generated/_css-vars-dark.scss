@@ -47,6 +47,8 @@
   --wim-color-ghost-bg-active: oklch(from var(--wim-color-white) l c h / 0.12);
   --wim-color-ghost-border-active: oklch(from var(--wim-color-white) l c h / 0.3);
   --wim-color-ghost-border-hover: oklch(from var(--wim-color-primary) l c h / 0.4);
+  --wim-color-danger-surface-hover: oklch(from var(--wim-color-danger) l c h / 0.08);
+  --wim-color-danger-border-hover: oklch(from var(--wim-color-danger) l c h / 0.2);
   --wim-color-glass-bg: rgba(20, 20, 20, 0.75);
   --wim-color-glass-border: rgba(255, 255, 255, 0.15);
   --wim-color-glass-blur: 12px;
@@ -281,6 +283,8 @@
     --wim-color-ghost-bg-active: oklch(from var(--wim-color-white) l c h / 0.12);
     --wim-color-ghost-border-active: oklch(from var(--wim-color-white) l c h / 0.3);
     --wim-color-ghost-border-hover: oklch(from var(--wim-color-primary) l c h / 0.4);
+    --wim-color-danger-surface-hover: oklch(from var(--wim-color-danger) l c h / 0.08);
+    --wim-color-danger-border-hover: oklch(from var(--wim-color-danger) l c h / 0.2);
     --wim-color-glass-bg: rgba(20, 20, 20, 0.75);
     --wim-color-glass-border: rgba(255, 255, 255, 0.15);
     --wim-color-glass-blur: 12px;
