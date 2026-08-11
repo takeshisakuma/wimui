@@ -182,7 +182,7 @@ mdxFiles.forEach(file => {
 // 落とした。生英語であると同時に**存在しないコンポーネントを勧めていた**
 // （`Tile` は `components.json` に無い＝だから除外語に入らず鳴った）。
 // 説明文に合う実在のもの＝`BentoGrid` に直した。
-const HARDCODED_FILE_BASELINE = 51;
+const HARDCODED_FILE_BASELINE = 50;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

@@ -56,12 +56,14 @@ const treemapData = [
   },
 ];
 
+// 段ごとの `fill` は渡さない。T137 以降 `FunnelChart` は 1 色相の濃淡を自分で
+// 決めるので、ここの色は当たらない（**当たらない指定が残っていた**）。
 const funnelData = [
-  { value: 100, name: "Visit", fill: "var(--wim-color-primary)" },
-  { value: 80, name: "Inquiry", fill: "var(--wim-color-info)" },
-  { value: 50, name: "Order", fill: "var(--wim-color-success)" },
-  { value: 40, name: "Payment", fill: "var(--wim-color-warning)" },
-  { value: 26, name: "Success", fill: "var(--wim-color-danger)" },
+  { value: 100, name: "Visit" },
+  { value: 80, name: "Inquiry" },
+  { value: 50, name: "Order" },
+  { value: 40, name: "Payment" },
+  { value: 26, name: "Success" },
 ];
 
 const heatmapData = [

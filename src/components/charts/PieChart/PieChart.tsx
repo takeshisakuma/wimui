@@ -68,7 +68,10 @@ export const PieChart = ({
               labelLine={false}
               innerRadius={donut ? "60%" : 0}
               outerRadius="80%"
-              paddingAngle={donut ? 5 : 0}
+              // T148: 隙間は**角度ではなく太さ**で作る。`paddingAngle` は半径に
+              // 比例するので、ドーナツと円で開き方が変わり、内周と外周でも
+              // 食い違う。2px の縁取りなら、どの扇でも隣との間が 2px になる。
+              paddingAngle={0}
               dataKey="value"
               isAnimationActive={animated}
             >
@@ -76,7 +79,10 @@ export const PieChart = ({
                 <Cell
                   key={`cell-${index}`}
                   fill={CHART_COLORS[index % CHART_COLORS.length]}
-                  stroke="none"
+                  // 大きな面どうしが直に接すると境界で色が振動する。
+                  // サーフェス色で縁取り、面を触れさせない。
+                  stroke="var(--wim-color-surface)"
+                  strokeWidth={2}
                 />
               ))}
             </Pie>
