@@ -1955,6 +1955,10 @@
       "collapse": "Collapse {{label}}",
       "expand": "Expand {{label}}",
       "search_aria": "Search tree items"
+    },
+    "daterangepicker": {
+      "start": "Start date",
+      "end": "End date"
     }
   },
   "data-display": {

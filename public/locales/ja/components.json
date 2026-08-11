@@ -636,5 +636,9 @@
     "collapse": "{{label}} を折りたたむ",
     "expand": "{{label}} を展開",
     "search_aria": "ツリー項目を検索"
+  },
+  "daterangepicker": {
+    "start": "開始日",
+    "end": "終了日"
   }
 }
