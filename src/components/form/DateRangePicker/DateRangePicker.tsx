@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useId } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./date-range-picker.module.scss";
@@ -34,10 +35,28 @@ export const DateRangePicker = ({
   required,
   layout = "vertical",
 }: DateRangePickerProps) => {
+  const { t } = useWimTranslation("components");
   const generatedId = useId();
   const id = `wim-daterangepicker-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+
+  /**
+   * 内側の 2 つの入力に**必ず名前を与える**。
+   *
+   * 以前はここで `label={undefined}` と上書きしていたため、`startProps.label` を
+   * 渡しても捨てられ、外側の `label` は `role="group"` にしか効かず、**入力 2 つが
+   * 無名のまま出荷されていた**（axe `label` critical・T130）。
+   *
+   * 何も渡さないときの既定名を内蔵の翻訳から与え、`startProps` を後から広げる
+   * ことで、利用者の `aria-label` が既定に勝つようにしている。
+   *
+   * **見えるラベルがあるときは既定名を出さない。** 両方付けると DOM に
+   * `aria-label` と `aria-labelledby` が並び、accname では後者が勝つのに
+   * 前者が残る（テストで気付いた）。
+   */
+  const startName = startProps?.label ? undefined : t("daterangepicker.start");
+  const endName = endProps?.label ? undefined : t("daterangepicker.end");
 
   return (
     <FieldTemplate
@@ -57,9 +76,8 @@ export const DateRangePicker = ({
       >
         <div className={styles.pickerWrapper}>
           <DatePicker
+            aria-label={startName}
             {...startProps}
-            label={undefined}
-            error={undefined}
             intent={error ? "danger" : startProps?.intent}
             fullWidth
           />
@@ -67,9 +85,8 @@ export const DateRangePicker = ({
         <span className={styles.separator}>~</span>
         <div className={styles.pickerWrapper}>
           <DatePicker
+            aria-label={endName}
             {...endProps}
-            label={undefined}
-            error={undefined}
             intent={error ? "danger" : endProps?.intent}
             fullWidth
           />

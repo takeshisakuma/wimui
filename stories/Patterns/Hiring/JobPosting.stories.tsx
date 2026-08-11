@@ -259,20 +259,14 @@ export const Default: Story = {
                   />
                 </Stack>
 
-                {/* `startProps.label` / `endProps.label` は `DateRangePicker` が
-                    `label={undefined}` で**上書きして捨てる**ため、内側の 2 つの入力に
-                    名前が付かず axe の `label`（critical）が鳴る。`aria-label` は
-                    `{...props}` で input まで届くので、そちらで名前を与える。 */}
+                {/* T130 の修正後は、内側の 2 つの入力に名前が既定で付く
+                    （見えるラベルを渡さなければ内蔵の「開始日 / 終了日」）。
+                    **回避（`aria-label` の手当て）は外してある** ── 残したままだと
+                    直ったかどうかを a11y で測れない。 */}
                 <DateRangePicker
                   label={t(ns("window_label"))}
-                  startProps={{
-                    defaultValue: OPENS_AT,
-                    "aria-label": t(ns("window_start")),
-                  }}
-                  endProps={{
-                    defaultValue: CLOSES_AT,
-                    "aria-label": t(ns("window_end")),
-                  }}
+                  startProps={{ defaultValue: OPENS_AT }}
+                  endProps={{ defaultValue: CLOSES_AT }}
                 />
 
                 <Mentions

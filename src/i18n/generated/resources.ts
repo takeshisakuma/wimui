@@ -202,6 +202,10 @@ export const wimResources: WimResources = {
         "collapse": "Collapse {{label}}",
         "expand": "Expand {{label}}",
         "search_aria": "Search tree items"
+      },
+      "daterangepicker": {
+        "start": "Start date",
+        "end": "End date"
       }
     },
     "data-display": {
@@ -504,6 +508,10 @@ export const wimResources: WimResources = {
         "collapse": "{{label}} を折りたたむ",
         "expand": "{{label}} を展開",
         "search_aria": "ツリー項目を検索"
+      },
+      "daterangepicker": {
+        "start": "開始日",
+        "end": "終了日"
       }
     },
     "data-display": {
@@ -806,6 +814,10 @@ export const wimResources: WimResources = {
         "collapse": "Recolher {{label}}",
         "expand": "Expandir {{label}}",
         "search_aria": "Buscar itens da árvore"
+      },
+      "daterangepicker": {
+        "start": "Data inicial",
+        "end": "Data final"
       }
     },
     "data-display": {

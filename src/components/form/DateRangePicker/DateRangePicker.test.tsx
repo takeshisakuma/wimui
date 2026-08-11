@@ -29,4 +29,36 @@ describe("DateRangePicker", () => {
     expect(message).toHaveTextContent("Required");
     expect(screen.getByRole("group")).toHaveAttribute("aria-describedby", message.id);
   });
+// T130: 以前は startProps/endProps の label を label={undefined} で捨てており、
+  // 内側の入力 2 つが無名のまま出荷されていた（axe の label = critical）。
+  it("gives both inputs an accessible name by default", () => {
+    render(<DateRangePicker label="Applications open" />);
+    expect(screen.getByLabelText("Start date")).toBeInTheDocument();
+    expect(screen.getByLabelText("End date")).toBeInTheDocument();
+  });
+
+  it("keeps the label passed through startProps / endProps", () => {
+    render(
+      <DateRangePicker
+        startProps={{ label: "From" }}
+        endProps={{ label: "Until" }}
+      />,
+    );
+    expect(screen.getByLabelText("From")).toBeInTheDocument();
+    expect(screen.getByLabelText("Until")).toBeInTheDocument();
+    // 既定名は上書きされる（二重に名前が付かない）
+    expect(screen.queryByLabelText("Start date")).not.toBeInTheDocument();
+  });
+
+  it("lets an explicit aria-label win over the built-in name", () => {
+    render(<DateRangePicker startProps={{ "aria-label": "Opens" }} />);
+    expect(screen.getByLabelText("Opens")).toBeInTheDocument();
+  });
+
+  it("shows an error message passed through startProps", () => {
+    render(
+      <DateRangePicker startProps={{ label: "From", error: "Pick a date" }} />,
+    );
+    expect(screen.getByText("Pick a date")).toBeInTheDocument();
+  });
 });
