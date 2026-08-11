@@ -803,7 +803,6 @@
   "roastery": {
     "title": "Roastery floor — Tuesday",
     "subtitle": "Numbers settle at 11:00, after the last batch is weighed.",
-    "today_section": "Today",
     "kpi_roasted": "Roasted today",
     "kpi_roasted_note": "Two weeks, daily",
     "kpi_batches": "Batches",

@@ -93,24 +93,6 @@ export const AreaChart = ({
                93px 内側になっていた）。 */
             margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
           >
-            <defs>
-              {keys.map((key, index) => {
-                const color = CHART_COLORS[index % CHART_COLORS.length];
-                return (
-                  <linearGradient
-                    key={`grad-${key}`}
-                    id={`grad-${key}`}
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="5%" stopColor={color} stopOpacity={0.3} />
-                    <stop offset="95%" stopColor={color} stopOpacity={0} />
-                  </linearGradient>
-                );
-              })}
-            </defs>
             <CartesianGrid {...CHART_THEME.grid} vertical={false} />
             <XAxis
               dataKey={xAxisKey}
@@ -138,8 +120,13 @@ export const AreaChart = ({
                 type={smooth ? "monotone" : "linear"}
                 dataKey={key}
                 stroke={CHART_COLORS[index % CHART_COLORS.length]}
-                fillOpacity={1}
-                fill={`url(#grad-${key})`}
+                strokeWidth={2}
+                fill={CHART_COLORS[index % CHART_COLORS.length]}
+                /* T147: 縦のフェード（0.3 → 0）は**何も表していない**うえ、
+                   積み上げでは帯の中で値が変わって見え、帯どうしの境目も消える。
+                   塗りは 1 段階。積み上げは面で読む図なので濃く、重ねる場合は
+                   後ろが透ける濃さにする。 */
+                fillOpacity={stacked ? 0.9 : 0.18}
                 stackId={stacked ? "stack" : undefined}
                 isAnimationActive={animated}
               />

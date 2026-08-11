@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React from "react";
 import {
   LineChart as RechartsLineChart,
   Line,
@@ -54,7 +54,9 @@ const DEFAULT_COLOR = "var(--wim-color-chart-primary)";
 export const Sparkline = ({
   data,
   type = "line",
-  width = 100,
+  /* T143: 既定の 100px はタイルの左 3 分の 1 しか使わない（実測: 279px の
+     カードに 100px）。置き場所は器なので、幅は器に合わせるのが既定。 */
+  width = "100%",
   height = 24,
   color = DEFAULT_COLOR,
   strokeWidth = 2,
@@ -64,7 +66,6 @@ export const Sparkline = ({
   ariaLabel,
   className,
 }: SparklineProps) => {
-  const gradientId = useId().replace(/:/g, "");
   const chartData = data.map((value, index) => ({ index, value }));
   const domain: [number | "auto", number | "auto"] = [min ?? "auto", max ?? "auto"];
   const lastIndex = data.length - 1;
@@ -73,7 +74,10 @@ export const Sparkline = ({
   const isVrt =
     typeof window !== "undefined" &&
     Boolean((window as Window & { __VRT__?: boolean }).__VRT__);
-  const chartWidth = typeof width === "number" ? width : 100;
+  /* 撮影用の固定サイズは**数値で渡されたときだけ**。以前は文字列でも 100px に
+     落としていたので、`width="100%"` が VRT でだけ 100px で撮られていた
+     （実物と撮影像が食い違う）。文字列のときは撮影でも器に合わせる。 */
+  const chartWidth = typeof width === "number" ? width : null;
   const chartHeight = height ?? 24;
 
   const renderLastDot = (props: { cx?: number; cy?: number; index?: number }) => {
@@ -84,7 +88,8 @@ export const Sparkline = ({
     return <circle key={index} cx={cx} cy={cy} r={strokeWidth + 1} fill={color} />;
   };
 
-  const sizeProps = isVrt ? { width: chartWidth, height: chartHeight } : {};
+  const sizeProps =
+    isVrt && chartWidth !== null ? { width: chartWidth, height: chartHeight } : {};
   // ラベルはルート要素の role="img" / aria-hidden が担うため、Recharts 側の
   // アクセシビリティレイヤー（ラッパーの tabindex=0）は常に無効化する。
   // aria-hidden 内にフォーカス可能要素が残ると axe: aria-hidden-focus 違反になる。
@@ -112,19 +117,15 @@ export const Sparkline = ({
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity={0.35} />
-              <stop offset="100%" stopColor={color} stopOpacity={0} />
-            </linearGradient>
-          </defs>
           <YAxis hide domain={domain} />
           <Area
             type="monotone"
             dataKey="value"
             stroke={color}
             strokeWidth={strokeWidth}
-            fill={`url(#${gradientId})`}
+            /* T147: フェードは値と無関係な濃淡を持ち込む。塗りは 1 段階。 */
+            fill={color}
+            fillOpacity={0.15}
             dot={showLastDot ? renderLastDot : false}
             isAnimationActive={false}
           />
@@ -159,7 +160,7 @@ export const Sparkline = ({
       aria-label={ariaLabel}
       aria-hidden={ariaLabel ? undefined : true}
     >
-      {isVrt ? (
+      {isVrt && chartWidth !== null ? (
         renderChart()
       ) : (
         <ResponsiveContainer width="100%" height="100%">

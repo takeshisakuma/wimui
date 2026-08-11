@@ -68,7 +68,9 @@ export const RadarChart = ({
           <RechartsRadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
             <PolarGrid stroke={CHART_THEME.grid.stroke} />
             <PolarAngleAxis dataKey={indexKey} {...CHART_THEME.axis} />
-            <PolarRadiusAxis />
+            {/* T135: 半径の目盛りは中央付近で回転して重なり、読めなかった。
+                レーダーは**軸ごとの形**を比べる図で、絶対値は Tooltip が出す。 */}
+            <PolarRadiusAxis tick={false} axisLine={false} />
             <Tooltip 
               contentStyle={CHART_THEME.tooltip.contentStyle} 
               cursor={CHART_THEME.tooltip.cursor}
@@ -81,7 +83,10 @@ export const RadarChart = ({
                 dataKey={key}
                 stroke={CHART_COLORS[index % CHART_COLORS.length]}
                 fill={CHART_COLORS[index % CHART_COLORS.length]}
-                fillOpacity={0.6}
+                strokeWidth={2}
+                // T135: 0.6 だと 2 系列目が 1 系列目を覆って**後ろが読めない**。
+                // 面は位置の当たりだけ付け、形は輪郭線で比べる。
+                fillOpacity={0.18}
                 isAnimationActive={animated}
               />
             ))}
