@@ -42,6 +42,7 @@ import {
   Title,
   ToggleGroup,
 } from "wimui";
+import type { QueryGroup } from "wimui";
 
 /**
  * 8 枚目の合成画面（T32 / T109）。**狙いは「重い入力」の層**で、
@@ -438,13 +439,69 @@ export const PageStyle: Story = {
 };
 
 /**
+ * 選考段階ごとの条件。**段階を切り替えたら条件も件数も入れ替わる**ので、
+ * `SegmentedControl`（ビューの切り替え）が意味を持つ。切り替えても後ろが
+ * 変わらないなら、それはただの選択肢＝ラジオで足りる。
+ */
+const QUERIES: Record<string, QueryGroup> = {
+  applied: {
+    id: "root",
+    combinator: "and",
+    not: false,
+    rules: [
+      { id: "a-1", field: "years", operator: ">=", value: 1 },
+      { id: "a-2", field: "shift", operator: "contains", value: "early" },
+    ],
+  },
+  screening: {
+    id: "root",
+    combinator: "and",
+    not: false,
+    rules: [
+      { id: "s-1", field: "years", operator: ">=", value: 2 },
+      { id: "s-2", field: "shift", operator: "contains", value: "early" },
+      {
+        id: "s-g1",
+        combinator: "or",
+        not: false,
+        rules: [
+          { id: "s-3", field: "commute", operator: "<=", value: 45 },
+          { id: "s-4", field: "licence", operator: "=", value: true },
+        ],
+      },
+    ],
+  },
+  interview: {
+    id: "root",
+    combinator: "and",
+    not: false,
+    rules: [
+      { id: "i-1", field: "licence", operator: "=", value: true },
+      { id: "i-2", field: "commute", operator: "<=", value: 30 },
+    ],
+  },
+};
+
+/**
  * 応募者の抽出。**主役は条件式**で、検索欄と選考段階の切替はその入口。
- * 件数は条件と内部整合させる（27 ≤ 184）。
+ * 件数は条件と内部整合させる（一致 ≤ 母数、段階が進むほど母数が減る）。
  */
 export const TalentPool: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [stage, setStage] = useState("screening");
+
+    /**
+     * 段階を切り替えたら**後ろの内容が変わる**こと。変わらないなら
+     * `SegmentedControl` を名乗る意味が無く、ただの選択肢＝ラジオで足りる。
+     * 母数は選考が進むほど減る（184 → 41 → 12）。一致数はその部分集合。
+     */
+    const counts: Record<string, { matched: number; total: number }> = {
+      applied: { matched: 62, total: 184 },
+      screening: { matched: 27, total: 41 },
+      interview: { matched: 9, total: 12 },
+    };
+    const { matched, total } = counts[stage];
 
     return (
       <Box p="2xl">
@@ -482,7 +539,11 @@ export const TalentPool: Story = {
             />
           </Grid>
 
+          {/* 段階ごとに条件そのものが入れ替わる（`key` で作り直す）。
+              `defaultQuery` は非制御なので、`key` を変えないと段階を切り替えても
+              前の条件が残り、「切り替わったのに何も起きない」画面になる。 */}
           <QueryBuilder
+            key={stage}
             fields={[
               { name: "applied_on", label: t(ns("field_applied")), type: "date" },
               { name: "years", label: t(ns("field_years")), type: "number" },
@@ -492,29 +553,7 @@ export const TalentPool: Story = {
             ]}
             /* `operator` は記号で渡す（`>=` / `<=` / `=`）。`greater_equal` の
                ような語を渡すと、演算子の Select が**空のまま黙って描画される**。 */
-            defaultQuery={{
-              id: "root",
-              combinator: "and",
-              not: false,
-              rules: [
-                { id: "r-1", field: "years", operator: ">=", value: 2 },
-                {
-                  id: "r-2",
-                  field: "shift",
-                  operator: "contains",
-                  value: "early",
-                },
-                {
-                  id: "g-1",
-                  combinator: "or",
-                  not: false,
-                  rules: [
-                    { id: "r-3", field: "commute", operator: "<=", value: 45 },
-                    { id: "r-4", field: "licence", operator: "=", value: true },
-                  ],
-                },
-              ],
-            }}
+            defaultQuery={QUERIES[stage]}
           />
 
           {/* 同じ結果集合に対する 2 つの操作なので束ねる。**`ButtonGroup` は
@@ -526,7 +565,7 @@ export const TalentPool: Story = {
             align="center"
           >
             <Text size="sm" color="text-secondary">
-              {t(ns("pool_count"), { matched: 27, total: 184 })}
+              {t(ns("pool_count"), { matched, total })}
             </Text>
             <ButtonGroup joined variant="outline">
               <Button size="sm">{t(ns("pool_save"))}</Button>
