@@ -120,6 +120,11 @@ export const BarChart = ({
                 fill={CHART_COLORS[index % CHART_COLORS.length]}
                 stackId={stacked ? "stack" : undefined}
                 radius={stacked ? 0 : [4, 4, 0, 0]}
+                /* T148: 積み上げは段どうしが直に接するので、境界で色が振動する。
+                   サーフェス色で 2px 縁取って触れさせない。並べる場合は軸が段を
+                   分けているので縁取らない。 */
+                stroke={stacked ? "var(--wim-color-surface)" : undefined}
+                strokeWidth={stacked ? 2 : undefined}
                 isAnimationActive={animated}
               />
             ))}

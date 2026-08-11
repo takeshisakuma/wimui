@@ -66,7 +66,9 @@ const tileFill = (value: number, min: number, max: number) => {
   const ratio = span === 0 ? 1 : Math.min(1, Math.max(0, (value - min) / span));
   // 面はどの段でも「色の付いたサーフェス」に留める。こうしておくと、
   // ラベルは通常の文字色（サーフェスの上に乗る前提の色）のままでよい。
-  const strength = 12 + Math.round(ratio * 36);
+  // 下限は 20% ── 12% だと**いちばん小さいタイルがカードの地と見分けられない**
+  // （Audit の 4 段目で実際に消えかけた）。
+  const strength = 20 + Math.round(ratio * 40);
   return `color-mix(in oklch, var(--wim-color-chart-primary) ${strength}%, var(--wim-color-surface))`;
 };
 
@@ -78,7 +80,16 @@ const TileRangeContext = createContext({ min: 0, max: 1 });
 /**
  * A custom renderer for Treemap content: one-hue tiles, separated by a gap.
  */
-const TreemapTile = ({ x, y, width, height, name, value, depth }: TreemapNode) => {
+const TreemapTile = ({
+  x,
+  y,
+  width,
+  height,
+  name,
+  value,
+  depth,
+  children,
+}: TreemapNode) => {
   const { min, max } = useContext(TileRangeContext);
   /* ラベルが入るかは**描いてから測る**。以前は `width > 30 && height > 20` という
      固定のしきい値で、**文字が実際に何 px あるかを見ていなかった**（46px の
@@ -94,9 +105,11 @@ const TreemapTile = ({ x, y, width, height, name, value, depth }: TreemapNode) =
     [width],
   );
 
-  /* 根（全体を覆う 1 枚）は描かない。以前はタイルが密着していたので隠れていたが、
-     隙間を空けた今は**下から覗く**。隙間はサーフェスが見えている状態にする。 */
-  if (depth === 0) return <g />;
+  /* 葉でない段（根と中間のまとまり）は描かない。以前はタイルが密着していたので
+     隠れていたが、隙間を空けた今は**下から覗く**。隙間はサーフェスが見えている
+     状態にする。 */
+  if (depth === 0 || (Array.isArray(children) && children.length > 0))
+    return <g />;
 
   return (
     <g>
@@ -143,7 +156,14 @@ export const Treemap = ({
   // 濃淡の両端は**データ**が決める（index ではない）。recharts が内部で
   // 並べ替えても、値から引く限り同じタイルは同じ濃さになる。
   const range = useMemo(() => {
-    const values = (data ?? []).map((d) => Number(d[dataKey]) || 0);
+    /* 入れ子（`{ name, children: [...] }`）で渡される形も recharts は受ける。
+       上の段には値が無いので、そのまま読むと**全タイルが同じ濃さ**になる。
+       葉まで降りてから拾う。 */
+    const leaves = (nodes: ChartDataPoint[]): ChartDataPoint[] =>
+      nodes.flatMap((n) =>
+        Array.isArray(n.children) ? leaves(n.children as ChartDataPoint[]) : [n],
+      );
+    const values = leaves(data ?? []).map((d) => Number(d[dataKey]) || 0);
     return values.length
       ? { min: Math.min(...values), max: Math.max(...values) }
       : { min: 0, max: 1 };

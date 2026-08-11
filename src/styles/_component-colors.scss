@@ -33,11 +33,22 @@
   --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #3d1c84 上で 12.37 */
   --wim-comp-avatar-s22-fg: var(--wim-color-white); /* #5f2883 上で 9.92 */
   --wim-comp-avatar-s24-fg: var(--wim-color-white); /* #9a0f50 上で 8.21 */
+
+  /* T148: 連続量のランプは**族でひとつの色相**に揃える。`Heatmap` は
+     surface→chart-primary、`Treemap` も chart-primary の濃淡なのに、
+     ここだけ手で選んだ緑 5 段だった。
+     手で選んでいたせいで**濃さの順が壊れていた**（測って判明）:
+       light は level3 `#28853f`（輝度 .176）→ level4 `#306f42`（.126）で辛うじて
+       単調だが、**dark は level3 `#7fc97e`（.483）→ level4 `#32a65d`（.288）で
+       いちばん多い日が 2 番目より暗い**。
+     混ぜ率で書けば順序は式が保証し、明暗の反転も surface が面倒を見る
+     （dark 側の上書きを消せる）。level-0 は「データが無い」であって
+     小さい値ではないので、中立のまま分ける。 */
   --wim-comp-heatmap-level-0: #e5e5e5;
-  --wim-comp-heatmap-level-1: #cceac4;
-  --wim-comp-heatmap-level-2: #7fc97e;
-  --wim-comp-heatmap-level-3: #28853f;
-  --wim-comp-heatmap-level-4: #306f42;
+  --wim-comp-heatmap-level-1: color-mix(in oklch, var(--wim-color-chart-primary) 30%, var(--wim-color-surface));
+  --wim-comp-heatmap-level-2: color-mix(in oklch, var(--wim-color-chart-primary) 55%, var(--wim-color-surface));
+  --wim-comp-heatmap-level-3: color-mix(in oklch, var(--wim-color-chart-primary) 78%, var(--wim-color-surface));
+  --wim-comp-heatmap-level-4: var(--wim-color-chart-primary);
 
   /* Stats.Trend の塗り。PCCS dp12。text-success は dk12 で、これは「subtle
      ティントの上に載る文字」として 1 段暗くした値なので、塗りに転用すると
@@ -100,11 +111,10 @@
   --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #6a64ae 上で 5.19 */
   --wim-comp-avatar-s22-fg: var(--wim-color-text-on-warning); /* #a459ab 上で 4.60 */
   --wim-comp-avatar-s24-fg: var(--wim-color-text-on-warning); /* #df4c93 上で 5.59 */
+
+  /* level-1〜4 は :root の混ぜ率がそのまま効く（surface と chart-primary が
+     dark の値に替わるので上書きは要らない）。0 は「データ無し」の中立。 */
   --wim-comp-heatmap-level-0: #4f4f4f;
-  --wim-comp-heatmap-level-1: #355935;
-  --wim-comp-heatmap-level-2: #5a814c;
-  --wim-comp-heatmap-level-3: #7fc97e;
-  --wim-comp-heatmap-level-4: #32a65d;
 
   /* dark は text-success が既に淡い緑で、カードの面から十分浮く。 */
   --wim-comp-trend-up-fill: var(--wim-color-text-success);
@@ -164,11 +174,10 @@
   --wim-comp-avatar-s20-fg: var(--wim-color-white); /* #6a64ae 上で 5.19 */
   --wim-comp-avatar-s22-fg: var(--wim-color-text-on-warning); /* #a459ab 上で 4.60 */
   --wim-comp-avatar-s24-fg: var(--wim-color-text-on-warning); /* #df4c93 上で 5.59 */
+
+  /* level-1〜4 は :root の混ぜ率がそのまま効く（surface と chart-primary が
+     dark の値に替わるので上書きは要らない）。0 は「データ無し」の中立。 */
   --wim-comp-heatmap-level-0: #4f4f4f;
-  --wim-comp-heatmap-level-1: #355935;
-  --wim-comp-heatmap-level-2: #5a814c;
-  --wim-comp-heatmap-level-3: #7fc97e;
-  --wim-comp-heatmap-level-4: #32a65d;
 
   /* dark は text-success が既に淡い緑で、カードの面から十分浮く。 */
   --wim-comp-trend-up-fill: var(--wim-color-text-success);

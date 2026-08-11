@@ -258,7 +258,17 @@
     "virtuallist_overscan": "オーバースキャンバッファ",
     "virtuallist_overscan_desc": "overscan プロップは高速スクロール時のちらつきを抑えるため、表示領域外に追加レンダリングするアイテム数を制御します。",
     "virtuallist_scenario_1": "無限スクロールログ: メモリを圧迫することなく、数万件のシステムログエントリを処理します。",
-    "virtuallist_scenario_2": "製品カタログ: スムーズなスクロール性能を維持しながら、広範なEコマースの商品リストをレンダリングします。"
+    "virtuallist_scenario_2": "製品カタログ: スムーズなスクロール性能を維持しながら、広範なEコマースの商品リストをレンダリングします。",
+    "charts_color_title": "系列の色",
+    "charts_color_desc": "色は「何をする色か」で選ぶ。データが並んでいた順で当てない。意味の無い色相は、読み手に「この色は何？」という答えの無い問いを立てさせる。",
+    "charts_color_job_identity_label": "見分け",
+    "charts_color_job_identity_desc": "系列を区別する色。5 色相を固定順で当て、絞り込みで隣の系列が消えても同じ系列は同じ色のままにする。LineChart / AreaChart / BarChart / RadarChart / ScatterChart / PieChart ── マークから凡例へ戻る道が色しかない図で使う。",
+    "charts_color_job_magnitude_label": "量",
+    "charts_color_job_magnitude_desc": "1 色相の濃淡。Treemap / Heatmap / FunnelChart / CalendarHeatmap ── 面積や長さが既に値を表し、マークの上に自分の名前が書いてある図で使う。ここで色相を回すと、1 つの減っていく量が別々のものに見える。",
+    "charts_color_job_state_label": "状態",
+    "charts_color_job_state_desc": "success / warning / danger は状態のための色。4 本目の系列に転用しない。必ずラベルと一緒に出す ── 色だけでは伝わらない。",
+    "charts_color_area_note": "5 色相は「2px の線や 8px の点が地に対して 3:1 出る」ことを条件に選んである。大きな面には逆の要求がある ── その彩度のままツリーマップのタイルや積み上げの帯にすると声量が大きすぎ、彩度の高い 2 色が長い辺で接すると境界が振動する。面はサーフェス側へ寄せて薄め、その上に通常の文字色を置く。",
+    "charts_color_gap_note": "面どうしが接するところ（積み上げ棒・円グラフの扇・ツリーマップのタイル）は、サーフェス色で 2px あける。目が「境目」として読むのはこの隙間で、無いと隣り合う色が混ざって third color に見える。"
   },
   "doc.jsondiff_intro": "JsonDiffViewer は、2つのJSON値を並列または統合ビューで比較し、行単位で差分をハイライト表示します。両方の値をJSON.stringifyでシリアライズし、CodeDiffViewerに描画を委譲します。",
   "doc.jsondiff_design_intent": "APIレスポンス、Webhookペイロード、設定オブジェクトの比較に最適化されています。language=jsonでCodeDiffViewerに委譲することで、すべての差分コントロールを継承しながら独自のAPIを最小限に保ちます。",
