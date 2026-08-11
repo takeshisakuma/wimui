@@ -1,5 +1,61 @@
 # wimui
 
+## 0.21.0
+
+### Minor Changes
+
+- 76d6b00: Charts let you set the axis range, and `Dashboard` lets you set the widget heading level.
+
+  **追加のみ**（既定は変わりません）。
+
+  - **`yDomain` / `xDomain`** — `AreaChart` / `BarChart` / `LineChart` / `ScatterChart`。既定は据え置きです（棒は長さが値そのものなので、軸を切ると棒どうしの比が嘘になります。折れ線と面も 0 起点を期待する使い方があります）。値の幅が狭くて動きが潰れる図では `["auto", "auto"]` を渡してください。散布図だけは既定を data 依存にしてあります — 2 つの実測値の関係を見る図で 0 に意味はないためです。
+
+    ```tsx
+    <LineChart
+      data={rows}
+      keys={["yield"]}
+      indexKey="week"
+      yDomain={["auto", "auto"]}
+    />
+    ```
+
+  - **`Dashboard` の `titleLevel`（2〜6、既定 3）** — ウィジェットの見出しは `h3` 固定でした。`h1` の直後に置くと段が飛び、axe の `heading-order` が鳴ります。ページ側の構造に合わせてください。見た目はクラスが持っているので、段を変えても描画は変わりません。
+
+    ```tsx
+    <h1>Roastery floor</h1>
+    <Dashboard titleLevel={2} widgets={widgets} />
+    ```
+
+- 76d6b00: Chart series get a palette you can actually tell apart, and large fills stop shouting.
+
+  **色が変わります**（API は変わりません。0.x のため minor）。チャートを使っている画面は、見た目が確実に動きます。
+
+  - **系列の 5 色相を選び直しました。** 以前の組は隣り合う系列の分離が足りず、色覚特性のある読み手には並んだ 2 本が同じ色に見える組み合わせがありました。新しい値は light が `#1aa28e` / `#396bb0` / `#307a25` / `#d97610` / `#9a0f50`、dark は danger を `#ed3b6b`、中立を `#b6b6b6` に振り分けています。手で選んだのではなく、このライブラリ自身の PCCS ランプの中から、明度帯・彩度の下限・色覚特性下の分離・地に対する 3:1 を満たす組を探索して決めました。条件は `npm run check:chart-palette` が見張ります。
+  - **塗りの上に載る文字色を測り直しました。** light の success と danger は黒から白へ変わります。以前は塗りだけ差し替えて文字色を据え置いていたため、読みにくい組が残っていました。
+  - **大きな面には、細いマーク用の彩度を使わなくなりました。** 5 色相は「2px の線・8px の点が地に対して 3:1 出る」ことを条件に選んであります。大面積にはこの要求が逆に働くので、`Treemap` は 1 色相の濃淡になりました。ツリーマップのタイルは面の上に自分の名前が書いてあり、折れ線と違って「マークから凡例へ戻る道が色しかない」わけではありません。面積が表しているのは量なので、色も量を表します。
+  - **`CalendarHeatmap` が族の色相に揃いました。** ここだけ手で選んだ緑 5 段で、しかも **dark では濃さの順が壊れていました** — level3 が `#7fc97e`（輝度 .483）、level4 が `#32a65d`（.288）で、いちばん多い日が 2 番目より暗く出ていました。`chart-primary` の混ぜ率にしたので、順序は式が保証し、明暗の反転は surface が引き受けます。level0（データ無し）は中立のままです。
+  - **接する面の間に 2px あきました。** `PieChart` の扇、積み上げ `BarChart` の段、`Treemap` のタイル。目が「境目」として読むのはこの隙間で、無いと隣り合う色が混ざって別の色に見えます。`PieChart` の `paddingAngle` はやめました — 角度で開けると donut と円で開き方が変わり、内周と外周でも食い違うためです。
+  - **面グラフとスパークラインの縦グラデーションをやめました。** フェードは値と無関係で、積み上げでは帯の中で値が変わって見え、下の帯の濃い上端と上の帯の薄い下端が隣り合って境目が紛れていました。塗りは 1 段階（積み上げ 0.9 / 重ね 0.18 / `Sparkline` 0.15）になり、形は 2px の線が持ちます。
+
+  `--wim-color-chart-*` はトークンなので、自分の色に差し替えられます。差し替えても残す必要がある条件は Storybook の Components → Visualization → Charts の「系列の色」に書きました。
+
+- 76d6b00: `Dashboard` stops offering an edit mode it cannot deliver, and four charts start using the space they were given.
+
+  **既定の挙動が 1 つ変わります**（0.x のため minor）。
+
+  - **`Dashboard` の編集トグルは、渡された機能から決まるようになりました。** `showEditToggle` の既定は `true` で、読み取り専用の画面にも「Edit」が出ていました — 押しても `onRemove` が無ければ何も起きないボタンです。これからは、編集状態を渡しているか（`editable` / `defaultEditable`）、消す・足す手立てがあるとき（`onRemove` / `onAdd`）だけ出ます。**どれも渡していない `Dashboard` からはトグルが消えます。** 以前の挙動が必要なら `showEditToggle` を明示してください。
+
+    ```diff
+    - <Dashboard widgets={widgets} />                    {/* Edit が出ていた */}
+    + <Dashboard widgets={widgets} showEditToggle />     {/* 出したいなら明示 */}
+    ```
+
+  - **`Sparkline` の既定幅が `"100%"` になりました。** 100px 固定だったので、タイルに置くと左端しか使いませんでした。数値を渡していた場合の挙動は変わりません。
+  - **`RadarChart` の塗りが 0.6 から 0.18 に、輪郭線が 2px になりました。** 0.6 では 2 系列目が 1 系列目を覆って後ろが読めませんでした。レーダーは軸ごとの形を線で比べる図です。半径軸の目盛りは中央付近で回転して重なり読めなかったので、既定で消しました（絶対値は Tooltip が出します）。
+  - **`BarChart` が棒の名前を間引かなくなりました。** 幅 279px の枠で 4 本中 2 本が無名になっていました。棒の名前は凡例で代替できません。
+  - **`FunnelChart` の段が 1 色相の濃淡になりました。** 1 つの量が減っていく図で段ごとに色相が変わると、別のものに見えます。左右の余白も広げ、段のラベルの見切れを直しました。
+  - **軸の目盛りとプロット領域の間の無駄な余白を詰めました。** `AreaChart` / `BarChart` / `LineChart` / `ScatterChart` で、左の軸の数値のぶんグラフが右へ寄って見えていました。
+
 ## 0.20.0
 
 ### Minor Changes
