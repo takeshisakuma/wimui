@@ -803,7 +803,6 @@
   "roastery": {
     "title": "焙煎場 — 火曜",
     "subtitle": "数字が固まるのは 11:00、最後のバッチを量ってから。",
-    "today_section": "今日の数字",
     "kpi_roasted": "今日の焙煎量",
     "kpi_roasted_note": "直近 2 週間・日次",
     "kpi_batches": "バッチ数",

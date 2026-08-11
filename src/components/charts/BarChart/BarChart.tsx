@@ -89,8 +89,12 @@ export const BarChart = ({
             margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
           >
             <CartesianGrid {...CHART_THEME.grid} vertical={false} />
+            {/* T136: 既定では recharts が重なるラベルを黙って間引く。実測では
+                幅 279px の枠で 4 本中 2 本が無名になった。棒の名前は凡例で代替
+                できないので、必ず全部出す。 */}
             <XAxis
               dataKey={xAxisKey}
+              interval={0}
               {...CHART_THEME.axis}
               tickLine={false}
               axisLine={false}

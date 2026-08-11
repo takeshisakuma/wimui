@@ -708,7 +708,7 @@ export function RenameWorkspace() {
     - `onAdd: () => void` — Called when the "Add Widget" button is clicked.
     - `columns: number` = 3 — Number of columns. Default: 3.
     - `gap: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Gap between widgets. Default: "md".
-    - `showEditToggle: boolean` = true — Show the edit toggle button in the header. Default: true.
+    - `showEditToggle: boolean` — Show the edit toggle button in the header. Default: true.
     - `titleLevel: 2 | 3 | 4 | 5 | 6` = 3 — Heading level for the widget titles. Match it to the page: a dashboard
 under an `h1` needs `2`, one under an `h2` section keeps `3`.
 @default 3
@@ -2977,7 +2977,7 @@ line on a 0–100 axis).
 - **Sparkline** — Tiny inline trend chart
     - `data: number[]` (required) — Sequence of values to plot, in order
     - `type: "line" | "area" | "bar"` = "line" — Visual form of the sparkline
-    - `width: number | string` = 100 — Width of the sparkline (number in px, or a CSS value such as "100%")
+    - `width: number | string` = "100%" — Width of the sparkline (number in px, or a CSS value such as "100%")
     - `height: number` = 24 — Height of the sparkline in px
     - `color: string` = "var(--wim-color-chart-primary)" — Stroke/fill color (defaults to the primary chart color)
     - `strokeWidth: number` = 2 — Stroke width for line and area types

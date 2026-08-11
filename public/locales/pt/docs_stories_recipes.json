@@ -803,7 +803,6 @@
   "roastery": {
     "title": "Torrefação — terça",
     "subtitle": "Os números fecham às 11h, depois de pesar a última fornada.",
-    "today_section": "Hoje",
     "kpi_roasted": "Torrado hoje",
     "kpi_roasted_note": "Duas semanas, por dia",
     "kpi_batches": "Fornadas",

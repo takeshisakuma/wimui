@@ -39,9 +39,19 @@ describe("Dashboard", () => {
     expect(screen.getByText("$1,200")).toBeInTheDocument();
   });
 
-  it("shows edit toggle button by default", () => {
-    render(<Dashboard widgets={sampleWidgets} />);
-    expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
+  it("does not offer editing unless the page provides it (T139)", () => {
+    render(<Dashboard widgets={[{ id: "w1", title: "A", content: <p>a</p> }]} />);
+    expect(screen.queryByRole("button", { name: /edit/i })).not.toBeInTheDocument();
+  });
+
+  it("shows the edit toggle when the page can actually edit", () => {
+    render(
+      <Dashboard
+        onRemove={() => {}}
+        widgets={[{ id: "w1", title: "A", content: <p>a</p> }]}
+      />,
+    );
+    expect(screen.getByRole("button", { name: /edit/i })).toBeInTheDocument();
   });
 
   it("hides edit toggle when showEditToggle is false", () => {

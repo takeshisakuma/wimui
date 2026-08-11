@@ -8,7 +8,7 @@ import {
   Cell,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import { CHART_THEME, type ChartDataPoint } from "../../helpers";
 import styles from "./funnel-chart.module.scss";
 
 export type FunnelChartProps = {
@@ -79,10 +79,14 @@ export const FunnelChart = ({
                 dataKey={nameKey}
                 stroke="none"
               />
+              {/* T137: 段ごとに色相を変える（CHART_COLORS の順）と、1 つの量が
+                  減っていく図なのに**別のもの**に見える。1 色相の濃淡にする。 */}
               {data.map((_entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={CHART_COLORS[index % CHART_COLORS.length]}
+                  fill={`color-mix(in oklch, var(--wim-color-chart-primary) ${
+                    100 - Math.round((index / Math.max(data.length - 1, 1)) * 55)
+                  }%, var(--wim-color-surface))`}
                 />
               ))}
             </Funnel>

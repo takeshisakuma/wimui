@@ -82,7 +82,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       onAdd,
       columns = 3,
       gap = "md",
-      showEditToggle = true,
+      showEditToggle,
       titleLevel = 3,
       label,
       className,
@@ -112,6 +112,18 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       ...style,
     } as React.CSSProperties;
 
+    /* T139: 以前は `showEditToggle` の既定が true で、読み取り専用の画面にも
+       「Edit」が出ていた（押しても onRemove が無ければ何も起きない）。
+       **渡された機能から決める** ── 編集の状態か、消す/足す手立てがあるときだけ。 */
+    const canEdit =
+      // **`editable` ではなく `controlledEditable`**。前者は上で既定を埋めた
+      // 導出値なので常に定義済みで、条件が常に true になっていた（実測で判明）。
+      controlledEditable !== undefined ||
+      defaultEditable ||
+      onRemove !== undefined ||
+      onAdd !== undefined;
+    const showToggle = showEditToggle ?? canEdit;
+
     const contextValue = useMemo(
       () => ({ editable: editable ?? false, onRemove, titleLevel }),
       [editable, onRemove, titleLevel],
@@ -125,9 +137,13 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
           aria-label={label ?? t("dashboard_widget.label")}
           {...props}
         >
-          {showEditToggle && (
+          {/* 見出しと編集の入口は別もの。以前は同じブロックに入っていたので、
+              トグルを隠すと**見出しまで消えていた**（T139 を直したときにテストが
+              教えてくれた）。 */}
+          {(label || showToggle) && (
             <div className={styles.header}>
               {label && <h2 className={styles.heading}>{label}</h2>}
+              {showToggle && (
               <Button
                 size="sm"
                 variant={editable ? "solid" : "outline"}
@@ -143,6 +159,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
               >
                 {editable ? t("dashboard_widget.exit_edit") : t("dashboard_widget.enter_edit")}
               </Button>
+              )}
             </div>
           )}
 

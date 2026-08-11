@@ -103,14 +103,10 @@ export const Default: Story = {
             </Text>
           </Stack>
 
-          {/* T140: `Dashboard` のウィジェット見出しは `h3` 固定なので、`h1` の
-              直後に置くと見出しの段が飛ぶ（axe `heading-order`）。節見出しを
-              1 つ置いて段をつなぐ ── **部品が直ったらこの回避を外して測り直す**。 */}
-          <Title tag="h2" size="sm">
-            {t(ns("today_section"))}
-          </Title>
-
+          {/* T140 が直ったので、回避（節見出しの h2）ではなく段そのものを渡す。
+              ページの見出しが h1 なので、ウィジェットは h2。 */}
           <Dashboard
+            titleLevel={2}
             columns={4}
             gap="lg"
             widgets={[
