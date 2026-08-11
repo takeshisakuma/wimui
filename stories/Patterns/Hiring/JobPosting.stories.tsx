@@ -29,6 +29,7 @@ import {
   RadioGroup,
   RangeSlider,
   RichTextEditor,
+  SegmentedControl,
   SignaturePad,
   Slider,
   SmartSearchInput,
@@ -443,6 +444,7 @@ export const PageStyle: Story = {
 export const TalentPool: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const [stage, setStage] = useState("screening");
 
     return (
       <Box p="2xl">
@@ -464,8 +466,13 @@ export const TalentPool: Story = {
               fullWidth
               placeholder={t(ns("pool_search_placeholder"))}
             />
-            <ToggleGroup
-              defaultValue="screening"
+            {/* 見ているデータの切り替え（即時反映）は `SegmentedControl`。
+                `ToggleGroup` は「チェックボックス／ラジオのボタン版」＝**値を持つ
+                入力**で、ツールバーや設定の側（この画面では PageStyle の切り抜き比率）。
+                docs の design intent が両者をこう分けている。 */}
+            <SegmentedControl
+              value={stage}
+              onChange={setStage}
               options={[
                 { label: t(ns("stage_applied")), value: "applied" },
                 { label: t(ns("stage_screening")), value: "screening" },
