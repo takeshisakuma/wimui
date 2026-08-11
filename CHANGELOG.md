@@ -1,5 +1,103 @@
 # wimui
 
+## 0.20.0
+
+### Minor Changes
+
+- 789f403: Chips stop shouting, the header stops hiding what does not fit, and three small alignment fixes land.
+
+  **見た目が変わります**（API は変わりません。0.x のため minor）。
+
+  - **`TagInput` / `MultiSelect` chips are `neutral` by default.** They were pinned to
+    `intent="primary"` with no way to change them, so a field with three tags put
+    three accent surfaces on the page — against this library's own rule that an
+    accent belongs in one or two places per screen, and that ordinary values are
+    `neutral`. What goes into these two components is an ordinary value: a word you
+    typed, an option you picked.
+  - **`Header` grows instead of overflowing.** Its `height` is now a `min-height`. The
+    default still measures 64px, but content that does not fit used to escape the
+    header rather than wrap or clip — measured at 12px past the edge at 768px and
+    29px at 390px. **If your header has been overflowing without you noticing, it will
+    now be taller at narrow widths**, which is the state you were already in.
+  - **Right-hand icons sit where the left ones do.** The icon slot inside `InputBase`
+    read a different token than the text padding (6.4px against 10px) and ignored
+    density; both sides now follow `--wim-field-padding-x`.
+  - **`SmartSearchInput`'s leading icon aligns to the first line.** It was centred on
+    the box, so once the field grew past one line the icon drifted down with it.
+  - **Editable surfaces stop hyphenating.** `hyphens: auto` for `en` and `pt` reached
+    inputs, textareas and rich-text editors, so text you typed came back to you as
+    `fol-lowing`. Prose keeps its automatic hyphenation.
+  - **Destructive ghost buttons get a red hover instead of a red fill with a blue
+    border.** New tokens `--wim-color-danger-surface-hover` and
+    `--wim-color-danger-border-hover` mirror the existing primary-based pair, and
+    `Button` applies them for `intent="danger"` `variant="ghost"`.
+
+- 789f403: `QueryBuilder` operators are typed, and `ColorInput` becomes what its name says.
+
+  **破壊的変更**（0.x のため minor）。
+
+  ```diff
+    <QueryBuilder
+      fields={fields}
+      defaultQuery={{
+        id: "root", combinator: "and", not: false,
+        rules: [
+  -       { id: "r-1", field: "years", operator: "greater_equal", value: 2 },
+  +       { id: "r-1", field: "years", operator: ">=", value: 2 },
+        ],
+      }}
+    />
+  ```
+
+  `QueryRule.operator` was `string`, while the implementation only understood the
+  `value` side of its operator table — symbols (`=`, `!=`, `>`, `<`, `>=`, `<=`) plus
+  a few words (`contains`, `starts_with`, `ends_with`, `is_null`, `is_not_null`).
+  Neither the type nor the documentation said so, and **an operator outside that set
+  rendered an empty select with no error, no warning and no console output**. The
+  type is now derived from the table itself (`QueryOperator`, exported), so adding a
+  value to the table extends the type, and a value that slips past the type — plain
+  JS, an `as` cast, a query loaded from a server — logs once in development naming
+  the values that field type accepts. The MDX now lists them.
+
+  `ColorInput` rendered `<Input type="color">`: a swatch, nothing else. Its
+  documentation said it was the one for _entering_ an exact colour as text, while
+  `ColorPicker` was the one for finding a colour visually — but both produced the
+  same control, differing by two pixels of height. `ColorInput` is now a hex text
+  field with a swatch beside it. The text you type is kept as you type it and only
+  commits once it reads as a colour, so `#7a1f` on the way to `#7a1f1f` no longer
+  fires `onChange`. `value` / `defaultValue` / `onChange` keep their shapes.
+  `ColorPicker` is unchanged.
+
+### Patch Changes
+
+- 789f403: `DateRangePicker` gives its two inputs an accessible name, and stops throwing away `startProps` / `endProps`.
+
+  The component rendered `<DatePicker {...startProps} label={undefined} error={undefined}>`.
+  The type accepts `label` — `startProps` is `React.ComponentProps<typeof DatePicker>` —
+  and the implementation then overwrote it. The outer `label` only reaches the
+  `role="group"` wrapper through `aria-labelledby`, so **both inputs shipped with no
+  accessible name at all** (axe `label`, critical, in light and dark).
+
+  Anything you pass through `startProps` / `endProps` now reaches the inner picker.
+  If you were passing `label` and wondering why nothing appeared, it appears now.
+
+  When you pass no visible label, each input falls back to a built-in name
+  (`Start date` / `開始日` / `Data inicial`), so the default spelling is no longer an
+  a11y violation and no `aria-label` workaround is needed:
+
+  ```jsx
+  <DateRangePicker
+    label="Applications open"
+    startProps={{ defaultValue: opensAt }}
+    endProps={{ defaultValue: closesAt }}
+  />
+  ```
+
+  An explicit `aria-label` still wins over the built-in name, and a visible `label`
+  suppresses it — a field carrying both ends up with `aria-label` and
+  `aria-labelledby` at once, where the accessible name comes from the latter while
+  the former lingers in the DOM.
+
 ## 0.19.0
 
 ### Minor Changes
