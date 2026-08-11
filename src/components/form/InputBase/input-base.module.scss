@@ -210,8 +210,12 @@
     transform: translateY(-50%);
     transition: color var(--wim-transition-slow);
 
+    /* 左のアイコンは `--wim-field-padding-x`（= テキストの左余白）に揃えているのに、
+       右だけ `--wim-spacing-sm` を直接見ていて **6.4px** になっていた（左は 10px）。
+       アイコンの外側が本文より詰まって見えるうえ、密度を変えても右だけ動かない。
+       左右を同じ変数にして鏡像にする（comfortable 10px / compact 6.4px）。 */
     &.right {
-      right: var(--wim-spacing-sm);
+      right: var(--wim-field-padding-x);
     }
   }
 

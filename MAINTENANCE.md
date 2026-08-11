@@ -152,7 +152,9 @@ EOF
 
 **2026-08-09 時点**: **371 件中 未合成 144**（6 枚目 `Patterns/Captions/CaptionReview` が `AppShell` / `Navbar` / `Footer` とオーバーレイ層を埋めた）。カテゴリ別の残りは form 28 / data-display 28 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / media 8 / feedback 11 / typography 5。次の 3 枚は `IMPROVEMENTS.md` の T95（7 枚目）/ T109（8 枚目）/ T110（9 枚目）。
 
-**2026-08-09 夜（7 枚目のあと）**: **371 件中 未合成 139**（ が Kanban / TreeView / SortableList / Transfer / VirtualList を埋めた）。カテゴリ別は form 27 / data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / feedback 11 / media 8 / typography 5。次は T109（8 枚目・form 重量級）/ T110（9 枚目・charts）。
+**2026-08-11（8 枚目のあと）**: **372 件中 未合成 117**（`Patterns/Hiring` が form の重い入力を埋めた）。カテゴリ別は data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / feedback 11 / navigation 10 / media 8 / form 5 / typography 5。**form の 5 件は「使えない」ではなく「JSX タグとして書かない」もの** ── `Radio` / `ToolbarButton` / `TransferList` は `RadioGroup` / `RichTextEditor` / `Transfer` の内側で描かれ、`InputBase` は入力の殻、`FloatButton` は置く画面が無かった。**この走査はタグ名を数えるので、内側で描かれる部品は永久に「未合成」に出る。** 次は T110（9 枚目・charts）。
+
+**旧: 2026-08-09 夜（7 枚目のあと）**: **371 件中 未合成 139**（ が Kanban / TreeView / SortableList / Transfer / VirtualList を埋めた）。カテゴリ別は form 27 / data-display 24 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / feedback 11 / media 8 / typography 5。次は T109（8 枚目・form 重量級）/ T110（9 枚目・charts）。
 
 ### 7-2. 合成画面を**狭い幅で**開く（390px / 768px）
 
@@ -189,7 +191,13 @@ await browser.close();
 EOF
 ```
 
-**3 つとも false / 空でなければ不合格。** 表を含む画面では `Table` / `DataGrid` に **`mobileCard` が付いているか**も見る（`Table` にもある。付けないと 390px で列が潰れ、最終列が画面外へ出る）。カードのラベルは `Table.Cell` の `label` から出るので、**`mobileCard` だけ付けて `label` を書かないと値だけが並ぶ**。
+**3 つとも false / 空でなければ不合格。ただし ② は「祖先が `overflow: hidden` で切っているか」を見ないと嘘をつく。**
+
+> 実例（2026-08-11、8 枚目）: `ImageCropper` は**自然サイズのままの画像をドラッグで動かす**部品なので、
+> 画像は常に viewer（`overflow: hidden`）より大きい。素の走査は 390px で `IMG(+317px)` を挙げるが、
+> **切られている＝ページは横に伸びず、残りはドラッグで到達できる**ので不合格ではない。
+> 判定に「祖先に `overflow-x !== visible` があり、その祖先自身は画面内に収まっている」なら除く、を足すこと。
+> これを入れないと、パン・ズーム・仮想化のように**わざと大きい中身を持つ部品が毎回 false positive になる**。 表を含む画面では `Table` / `DataGrid` に **`mobileCard` が付いているか**も見る（`Table` にもある。付けないと 390px で列が潰れ、最終列が画面外へ出る）。カードのラベルは `Table.Cell` の `label` から出るので、**`mobileCard` だけ付けて `label` を書かないと値だけが並ぶ**。
 
 > 実例（2026-08-08、6 枚目）: 390px で①は false（ページは横に伸びない）なのに、②で表が 456px まで出ていた（`mobileCard` 未指定）。③では `Menubar` が 2 行に折れて **64px のヘッダから 6px はみ出していた**。**どれも 1280px の VRT と a11y は全緑**だった。
 
