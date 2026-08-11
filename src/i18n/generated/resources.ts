@@ -206,6 +206,9 @@ export const wimResources: WimResources = {
       "daterangepicker": {
         "start": "Start date",
         "end": "End date"
+      },
+      "colorinput": {
+        "swatch": "Pick a colour"
       }
     },
     "data-display": {
@@ -512,6 +515,9 @@ export const wimResources: WimResources = {
       "daterangepicker": {
         "start": "開始日",
         "end": "終了日"
+      },
+      "colorinput": {
+        "swatch": "色を選ぶ"
       }
     },
     "data-display": {
@@ -818,6 +824,9 @@ export const wimResources: WimResources = {
       "daterangepicker": {
         "start": "Data inicial",
         "end": "Data final"
+      },
+      "colorinput": {
+        "swatch": "Escolher uma cor"
       }
     },
     "data-display": {

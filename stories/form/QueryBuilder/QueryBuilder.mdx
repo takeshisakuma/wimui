@@ -36,11 +36,37 @@ import { Docgen } from "../../Docgen";
       <td><T k="doc.querybuilder_choice_self_when" /></td>
     </tr>
     <tr>
-      <td><b>FilterBar / SearchInput</b></td>
+      <td><b>SearchInput / MultiSelect</b></td>
       <td><T k="doc.querybuilder_choice_filterbar_when" /></td>
     </tr>
   </tbody>
 </table>
+
+## <T k="doc.querybuilder_operators_title" />
+<p><T k="doc.querybuilder_operators_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.querybuilder_operators_type" /></th>
+      <th><T k="doc.querybuilder_operators_values" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>string</code></td>
+      <td><code>=</code> <code>!=</code> <code>contains</code> <code>starts_with</code> <code>ends_with</code> <code>is_null</code> <code>is_not_null</code></td>
+    </tr>
+    <tr>
+      <td><code>number</code> / <code>date</code></td>
+      <td><code>=</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>is_null</code> <code>is_not_null</code></td>
+    </tr>
+    <tr>
+      <td><code>boolean</code></td>
+      <td><code>=</code> <code>!=</code> <code>is_null</code> <code>is_not_null</code></td>
+    </tr>
+  </tbody>
+</table>
+<p><T k="doc.querybuilder_operators_note" /></p>
 
 <Docgen componentName="QueryBuilder" section="anatomy" />
 
@@ -87,12 +113,12 @@ import { Docgen } from "../../Docgen";
   </thead>
   <tbody>
     <tr>
-      <td><strong>AND / OR</strong></td>
+      <td><code>AND</code> / <code>OR</code></td>
       <td><T k="doc.querybuilder_logic_andor_title" /></td>
       <td><T k="doc.querybuilder_logic_andor_desc" /></td>
     </tr>
     <tr>
-      <td><strong>NOT</strong></td>
+      <td><code>NOT</code></td>
       <td><T k="doc.querybuilder_logic_not_title" /></td>
       <td><T k="doc.querybuilder_logic_not_desc" /></td>
     </tr>

@@ -1,135 +1,55 @@
 @use "../../../styles/token-common.scss" as *;
+@use "../../../styles/font-mixins" as font;
 
 @layer component {
+  /* FieldTemplate（根）に付く。幅の既定は他の入力と同じ扱いにする。 */
   .root {
-  // This is applied to FieldTemplate
-  &.dark {
-    .inputBase {
-      .inputIcon,
-      .inputIcons {
-        --color-input-icon: var(--wim-color-white);
-      }
-
-      &[class*="error"] {
-        .inputIcon,
-        .inputIcons {
-          --color-input-icon: var(--wim-color-white);
-        }
-      }
-
-      &[class*="disabled"] {
-        .inputIcon,
-        .inputIcons {
-          --color-input-icon: var(--wim-color-text-on-disabled);
-        }
-      }
+    // 打った文字がそのまま値なので、等幅で桁を揃えて読みやすくする。
+    .input {
+      @include font.mono-family;
     }
   }
 
-  // Overrides for the input[type="color"] itself
-  .input {
+  /**
+   * 右端の色見本。`InputBase` の `.suffix` は `pointer-events: none`（単位表示
+   * のための面なので通過させる指定）なので、**押せるようにここで戻す**。
+   */
+  .swatch {
     box-sizing: border-box;
-    display: block;
-    align-self: stretch;
-    width: 100%;
-    min-width: var(--wim-height-md);
-    height: auto;
-    min-height: 100%;
-    padding: 0 !important;
-    margin: 0;
+    width: var(--wim-height-xs);
+    height: var(--wim-height-xs);
+    padding: 0;
     appearance: none;
+    pointer-events: auto;
     cursor: pointer;
     background: transparent;
-    border: none;
-    border-radius: 0;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
 
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+
+    /* ネイティブの見本は既定で余白と枠を持つので、枠いっぱいに塗らせる。 */
     &::-webkit-color-swatch-wrapper {
       box-sizing: border-box;
       height: 100%;
       padding: 0;
-      border-radius: 0;
     }
 
     &::-webkit-color-swatch {
       box-sizing: border-box;
       height: 100%;
       border: none;
-      border-radius: 0;
+      border-radius: calc(var(--wim-radius-component) - var(--wim-border-width-thin));
     }
 
     &::-moz-color-swatch {
       box-sizing: border-box;
       height: 100%;
       border: none;
-      border-radius: 0;
+      border-radius: calc(var(--wim-radius-component) - var(--wim-border-width-thin));
     }
   }
-
-  // Shell overrides
-  .inputBase {
-    width: 100%;
-    max-width: var(--wim-width-md);
-    min-height: var(--wim-height-md);
-    overflow: hidden;
-
-    &:hover:not([class*="disabled"]) {
-      border-color: var(--wim-color-primary);
-    }
-
-    .inputIcon,
-    .inputIcons {
-      color: var(--color-input-icon, var(--wim-color-text-primary));
-      transition: color var(--wim-duration-fast) var(--wim-easing-standard);
-
-      svg {
-        color: inherit;
-        stroke: var(--color-input-icon, var(--wim-color-text-primary));
-        transition: stroke var(--wim-duration-fast) var(--wim-easing-standard);
-      }
-    }
-
-    &[class*="disabled"] {
-      .inputIcon,
-      .inputIcons {
-        color: var(--wim-color-text-on-disabled);
-
-        svg {
-          color: inherit;
-          stroke: var(--wim-color-text-on-disabled);
-        }
-      }
-    }
-
-    &[class*="error"] {
-      .inputIcon,
-      .inputIcons {
-        color: var(--color-input-icon, var(--wim-color-text-danger));
-
-        svg {
-          color: inherit;
-          stroke: var(--color-input-icon, var(--wim-color-text-danger));
-        }
-      }
-    }
-
-    &[class*="disabled"][class*="error"] {
-      .inputIcon,
-      .inputIcons {
-        color: var(--wim-color-text-on-disabled);
-
-        svg {
-          color: inherit;
-          stroke: var(--wim-color-text-on-disabled);
-        }
-      }
-    }
-
-    .inputIcon[class*="left"] {
-      left: 0;
-      justify-content: center;
-      width: var(--wim-input-offset-left);
-    }
-
-  }
-}
 }

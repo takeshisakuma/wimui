@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
-import { QueryBuilder, QueryBuilderProps, QueryGroup } from "./QueryBuilder";
+import { QueryBuilder, QueryBuilderProps, QueryGroup, QueryRule } from "./QueryBuilder";
+import { resetQueryBuilderWarnings } from "./warn-unknown-operator";
 import styles from "./querybuilder.module.scss";
 import { act } from "@testing-library/react";
 
@@ -122,7 +123,7 @@ describe("QueryBuilder", () => {
 
   it("calls onChange with rule removed (controlled)", async () => {
     const onChange = vi.fn();
-    const existingRule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const existingRule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     const query = makeGroup({ rules: [existingRule] });
     await renderQB({ query, onChange });
 
@@ -265,7 +266,7 @@ describe("QueryBuilder", () => {
   // ─── Rule field selectors ─────────────────────────────────────────────────────
 
   it("renders field and operator comboboxes for a rule", async () => {
-    const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const rule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("combobox", { name: "Field" })).toBeInTheDocument();
@@ -273,7 +274,7 @@ describe("QueryBuilder", () => {
   });
 
   it("renders string value text input for string field", async () => {
-    const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const rule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("textbox", { name: "Value" })).toBeInTheDocument();
@@ -281,7 +282,7 @@ describe("QueryBuilder", () => {
 
   it("calls onChange with updated value when text input changes", async () => {
     const onChange = vi.fn();
-    const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const rule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     act(() => {
@@ -297,7 +298,7 @@ describe("QueryBuilder", () => {
 
   it("calls onChange with updated field when a different field is selected", async () => {
     const onChange = vi.fn();
-    const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const rule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     // Open field combobox and click "Age"
@@ -315,7 +316,7 @@ describe("QueryBuilder", () => {
 
   it("calls onChange with updated operator when a different operator is selected", async () => {
     const onChange = vi.fn();
-    const rule = { id: "r1", field: "firstName", operator: "=", value: "" };
+    const rule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     // Open operator combobox and click "Contains"
@@ -334,14 +335,14 @@ describe("QueryBuilder", () => {
   // ─── Unary operators (no value field) ────────────────────────────────────────
 
   it("hides value input for is_null operator", async () => {
-    const rule = { id: "r1", field: "firstName", operator: "is_null", value: null };
+    const rule = { id: "r1", field: "firstName", operator: "is_null", value: null } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.queryByRole("textbox", { name: "Value" })).not.toBeInTheDocument();
   });
 
   it("hides value input for is_not_null operator", async () => {
-    const rule = { id: "r1", field: "firstName", operator: "is_not_null", value: null };
+    const rule = { id: "r1", field: "firstName", operator: "is_not_null", value: null } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.queryByRole("textbox", { name: "Value" })).not.toBeInTheDocument();
@@ -350,7 +351,7 @@ describe("QueryBuilder", () => {
   // ─── Field type: number ───────────────────────────────────────────────────────
 
   it("renders number input for number field", async () => {
-    const rule = { id: "r1", field: "age", operator: "=", value: "" };
+    const rule = { id: "r1", field: "age", operator: "=", value: "" } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("spinbutton", { name: "Value" })).toBeInTheDocument();
@@ -359,7 +360,7 @@ describe("QueryBuilder", () => {
   // ─── Field type: boolean ──────────────────────────────────────────────────────
 
   it("renders true/false select for boolean field", async () => {
-    const rule = { id: "r1", field: "isActive", operator: "=", value: false };
+    const rule = { id: "r1", field: "isActive", operator: "=", value: false } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }) });
 
     expect(screen.getByRole("combobox", { name: "Value" })).toBeInTheDocument();
@@ -367,7 +368,7 @@ describe("QueryBuilder", () => {
 
   it("calls onChange with boolean true when True option is selected", async () => {
     const onChange = vi.fn();
-    const rule = { id: "r1", field: "isActive", operator: "=", value: false };
+    const rule = { id: "r1", field: "isActive", operator: "=", value: false } as const;
     await renderQB({ query: makeGroup({ rules: [rule] }), onChange });
 
     act(() => {
@@ -407,5 +408,29 @@ describe("QueryBuilder", () => {
 
     expect(screen.getByRole("group", { name: "OR group" })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
+  });
+// T124: 語彙の外の operator は Select に選択肢が無く、空のまま黙って描画されていた。
+  describe("unknown operator", () => {
+    it("warns in development, naming the accepted values", async () => {
+      resetQueryBuilderWarnings();
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      // 型では書けないので、型を通らない経路（JS / 保存済みクエリ）を模す
+      const rule = { id: "r1", field: "age", operator: "greater_equal", value: 2 } as unknown as QueryRule;
+      await renderQB({ query: makeGroup({ rules: [rule] }) });
+      expect(warn).toHaveBeenCalledTimes(1);
+      const message = warn.mock.calls[0][0] as string;
+      expect(message).toContain("greater_equal");
+      expect(message).toContain(">=");
+      warn.mockRestore();
+    });
+
+    it("stays quiet for an operator that is in the vocabulary", async () => {
+      resetQueryBuilderWarnings();
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      const rule = { id: "r1", field: "age", operator: ">=", value: 2 } as const;
+      await renderQB({ query: makeGroup({ rules: [rule] }) });
+      expect(warn).not.toHaveBeenCalled();
+      warn.mockRestore();
+    });
   });
 });

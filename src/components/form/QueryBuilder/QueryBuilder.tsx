@@ -10,6 +10,7 @@ import { DatePicker } from "../../form/DatePicker/DatePicker";
 import { Switch } from "../../form/Switch/Switch";
 import { SegmentedControl } from "../../form/SegmentedControl/SegmentedControl";
 import styles from "./querybuilder.module.scss";
+import { warnUnknownOperator } from "./warn-unknown-operator";
 
 export type QueryFieldType = "string" | "number" | "date" | "boolean";
 
@@ -22,7 +23,7 @@ export interface QueryField {
 export interface QueryRule {
   id: string;
   field: string;
-  operator: string;
+  operator: QueryOperator;
   value: string | number | boolean | null;
 }
 
@@ -98,7 +99,13 @@ const generateId = () => {
   return Math.random().toString(36).substring(2, 11);
 };
 
-const DEFAULT_OPERATORS: Record<QueryFieldType, { label: string; value: string; key: string }[]> = {
+/**
+ * 演算子の語彙。**利用者が `QueryRule.operator` に渡すのは `value`（記号）**で、
+ * `key` は翻訳の引き当てにしか使わない。以前は `operator: string` だったため
+ * `"greater_equal"` のような語を渡すと**空の Select が黙って描画された**（T124）。
+ * 型はこの表から導くので、値を足せば型も追随する（T38 と同じ形）。
+ */
+const DEFAULT_OPERATORS = {
   string: [
     { label: "Equals", value: "=", key: "equal" },
     { label: "Does not equal", value: "!=", key: "not_equal" },
@@ -134,7 +141,14 @@ const DEFAULT_OPERATORS: Record<QueryFieldType, { label: string; value: string; 
     { label: "Is null", value: "is_null", key: "is_null" },
     { label: "Is not null", value: "is_not_null", key: "is_not_null" },
   ],
-};
+} as const satisfies Record<
+  QueryFieldType,
+  readonly { label: string; value: string; key: string }[]
+>;
+
+/** `QueryRule.operator` に渡せる値（`DEFAULT_OPERATORS` の `value`）。 */
+export type QueryOperator =
+  (typeof DEFAULT_OPERATORS)[QueryFieldType][number]["value"];
 
 /**
  * 複雑な検索条件をネスト状に組み立てるためのクエリビルダーコンポーネント。
@@ -387,6 +401,16 @@ export const QueryBuilder = ({
       });
     };
 
+    // 語彙の外の値は Select に選択肢が無く、空のまま描画される。型で塞いでいるが
+    // 型を通らない経路（JS / `as` / 保存済みクエリ）のために開発時に知らせる。
+    if (!operators.some((op) => op.value === rule.operator)) {
+      warnUnknownOperator(
+        rule.operator,
+        type,
+        operators.map((op) => op.value),
+      );
+    }
+
     const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
 
     return (
@@ -411,7 +435,11 @@ export const QueryBuilder = ({
             className={styles.operator}
             options={operators.map((op) => ({ label: op.label, value: op.value }))}
             value={rule.operator}
-            onChange={(val) => handleUpdate(rule.id, { operator: val })}
+            /* Select は素の string を返す。選択肢はこの表から作っているので、
+               戻ってくるのは必ず語彙の中の値。 */
+            onChange={(val) =>
+              handleUpdate(rule.id, { operator: val as QueryOperator })
+            }
             aria-label={operatorAriaLabel}
             fullWidth
             styles={{
