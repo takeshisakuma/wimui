@@ -66,7 +66,7 @@
     "querybuilder_design_intent": "QueryBuilder enables end-users to construct complex, nested logical queries without writing code. Use it when search criteria are dynamic and user-defined rather than fixed.",
     "querybuilder_choice_matrix_desc": "Choose the right component based on the complexity of your search requirements:",
     "querybuilder_choice_self_when": "When users need to build arbitrary nested conditions with AND/OR/NOT logic across multiple field types.",
-    "querybuilder_choice_filterbar_when": "When filtering criteria are limited to a fixed set of predefined fields.",
+    "querybuilder_choice_filterbar_when": "When the filters are a fixed, known set of fields — a search box plus a few selects is enough.",
     "querybuilder_anatomy_root_label": "Root Group",
     "querybuilder_anatomy_root": "The top-level rule group. Always present and cannot be deleted. Contains the combinator toggle and the rules list.",
     "querybuilder_anatomy_group_label": "Nested Group",
@@ -119,7 +119,12 @@
     "toolbar_desc": "Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation.",
     "menubar_desc": "Desktop-style application menu bar with floating File / Edit / View submenus.",
     "progressRing_desc": "ProgressRing description.",
-    "splitButton_desc": "SplitButton description."
+    "splitButton_desc": "SplitButton description.",
+    "querybuilder_operators_title": "Operator values",
+    "querybuilder_operators_desc": "`QueryRule.operator` takes the value below, not the translation key. The set depends on the field type.",
+    "querybuilder_operators_type": "Field type",
+    "querybuilder_operators_values": "Accepted values",
+    "querybuilder_operators_note": "Passing anything else renders an empty operator control. The type rejects it, and a development-time warning names the accepted values for that field type."
   },
   "cat": {
     "ai": "AI"

@@ -147,7 +147,7 @@
     "querybuilder_anatomy_rule_label": "Linha de Regra",
     "querybuilder_best_practice_1": "Sempre forneça um defaultQuery para evitar um estado vazio que pode confundir usuários novatos.",
     "querybuilder_best_practice_2": "Valide o QueryGroup gerado no servidor; não confie apenas na estrutura de consulta do lado do cliente.",
-    "querybuilder_choice_filterbar_when": "Quando os critérios de filtragem estão limitados a um conjunto fixo de campos predefinidos.",
+    "querybuilder_choice_filterbar_when": "Quando os filtros são um conjunto fixo e conhecido de campos — uma busca e alguns seletores bastam.",
     "querybuilder_choice_matrix_desc": "Escolha o componente certo com base na complexidade dos requisitos de pesquisa:",
     "querybuilder_choice_self_when": "Quando os usuários precisam criar condições aninhadas arbitrárias com lógica AND/OR/NOT e múltiplos tipos de campo.",
     "querybuilder_content_guideline_1": "Use rótulos de campo concisos e reconhecíveis pelo usuário. Evite expor identificadores técnicos brutos como nomes de campo.",
@@ -191,7 +191,12 @@
     "toolbar_desc": "Faixa de ações para IconButton, ToggleGroup e controles relacionados, com navegação por teclado de toolbar.",
     "menubar_desc": "Barra de menus no estilo desktop, com submenus flutuantes de Arquivo / Editar / Exibir.",
     "progressRing_desc": "ProgressRing description.",
-    "splitButton_desc": "SplitButton description."
+    "splitButton_desc": "SplitButton description.",
+    "querybuilder_operators_title": "Valores de operador",
+    "querybuilder_operators_desc": "`QueryRule.operator` recebe o valor abaixo, não a chave de tradução. O conjunto depende do tipo do campo.",
+    "querybuilder_operators_type": "Tipo do campo",
+    "querybuilder_operators_values": "Valores aceitos",
+    "querybuilder_operators_note": "Qualquer outro valor deixa o controle de operador vazio. O tipo recusa, e um aviso em desenvolvimento lista os valores aceitos para aquele tipo."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

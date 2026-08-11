@@ -147,7 +147,7 @@
     "querybuilder_anatomy_rule_label": "ルール行",
     "querybuilder_best_practice_1": "初めて使うユーザーが混乱しないよう、必ず defaultQuery を提供して空の状態にならないようにしてください。",
     "querybuilder_best_practice_2": "生成された QueryGroup はサーバーサイドでバリデーションしてください。クライアント側のクエリ構造のみを信頼してはいけません。",
-    "querybuilder_choice_filterbar_when": "フィルタリング条件が固定の定義済みフィールドに限定される場合。",
+    "querybuilder_choice_filterbar_when": "絞り込む項目が決まっていて増えないとき。検索欄と選択肢がいくつかあれば足りる。",
     "querybuilder_choice_matrix_desc": "検索要件の複雑さに応じて適切なコンポーネントを選択してください：",
     "querybuilder_choice_self_when": "AND/OR/NOT ロジックと複数のフィールド型による任意のネスト条件が必要な場合。",
     "querybuilder_content_guideline_1": "ユーザーが認識できる簡潔なフィールドラベルを使用してください。技術的な識別子をそのままフィールド名に使わないでください。",
@@ -191,7 +191,12 @@
     "toolbar_desc": "IconButton や ToggleGroup などをまとめるアクション帯。ツールバーのキーボード操作に対応します。",
     "menubar_desc": "File / Edit / View のようなデスクトップ型メニューバー。フローティングのサブメニューを開きます。",
     "progressRing_desc": "ProgressRing description.",
-    "splitButton_desc": "SplitButton description."
+    "splitButton_desc": "SplitButton description.",
+    "querybuilder_operators_title": "演算子の値",
+    "querybuilder_operators_desc": "`QueryRule.operator` に渡すのは下の値で、翻訳キーではありません。使える集合はフィールドの型で決まります。",
+    "querybuilder_operators_type": "フィールドの型",
+    "querybuilder_operators_values": "渡せる値",
+    "querybuilder_operators_note": "これ以外を渡すと演算子の欄が空で描画されます。型では弾かれ、開発時にはその型で使える値を並べた警告が出ます。"
   },
   "effects": {
     "common_vars": "共通変数"
