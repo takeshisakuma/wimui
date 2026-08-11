@@ -645,5 +645,8 @@
   "daterangepicker": {
     "start": "Data inicial",
     "end": "Data final"
+  },
+  "colorinput": {
+    "swatch": "Escolher uma cor"
   }
 }

@@ -1964,6 +1964,9 @@
     "daterangepicker": {
       "start": "Start date",
       "end": "End date"
+    },
+    "colorinput": {
+      "swatch": "Pick a colour"
     }
   },
   "data-display": {

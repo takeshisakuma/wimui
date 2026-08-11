@@ -1,120 +1,95 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ColorInput } from "./ColorInput";
-import styles from "./color-input.module.scss";
 
+/**
+ * T122: 以前の ColorInput は `<Input type="color">` を出すだけで、
+ * docs が言う「正確な色値を文字で入れる」ができなかった（`ColorPicker` と
+ * 同じ見た目・同じ操作）。ここで固定するのは**文字で入れられること**。
+ */
 describe("ColorInput", () => {
-  it("renders color input", () => {
-    render(<ColorInput placeholder="Pick a color" />);
-    const input = screen.getByPlaceholderText("Pick a color");
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute("type", "color");
+  it("shows the colour as text you can read and edit", () => {
+    render(<ColorInput defaultValue="#f3ece1" aria-label="Headline colour" />);
+    const field = screen.getByLabelText("Headline colour");
+    expect(field).toHaveAttribute("type", "text");
+    expect(field).toHaveValue("#f3ece1");
   });
 
-  it("applies --dark class when the selected color is dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#000000" aria-label="dark color" />,
-    );
-    // ColorInput has className applied to its root component (Input, which delegates to FieldTemplate)
-    expect(container.firstChild).toHaveClass(styles.dark);
+  it("has a colour swatch with its own name", () => {
+    render(<ColorInput defaultValue="#123f35" aria-label="Band colour" />);
+    const swatch = screen.getByLabelText("Pick a colour");
+    expect(swatch).toHaveAttribute("type", "color");
+    expect(swatch).toHaveValue("#123f35");
   });
 
-  it("does not apply --dark class when the selected color is light", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#ffffff" aria-label="light color" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-  });
-
-  it("treats 3-character hex shorthand #000 as dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#000" aria-label="short dark" />,
-    );
-    expect(container.firstChild).toHaveClass(styles.dark);
-  });
-
-  it("treats 3-character hex shorthand #fff as light", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#fff" aria-label="short light" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-  });
-
-  it("invalid hex value is treated as not dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#gggggg" aria-label="invalid" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-  });
-
-  it("hex value with non-hex characters returns not dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="notahex" aria-label="bad hex" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-  });
-
-  it("calls onChange when color changes in uncontrolled mode", () => {
+  it("commits a typed hex value", () => {
     const onChange = vi.fn();
     render(
-      <ColorInput defaultValue="#000000" placeholder="Pick" onChange={onChange} />,
+      <ColorInput defaultValue="#000000" aria-label="Colour" onChange={onChange} />,
     );
-    const input = screen.getByPlaceholderText("Pick");
-    fireEvent.change(input, { target: { value: "#ff0000" } });
+    fireEvent.change(screen.getByLabelText("Colour"), {
+      target: { value: "#7a1f1f" },
+    });
     expect(onChange).toHaveBeenCalledTimes(1);
+    expect(screen.getByLabelText("Pick a colour")).toHaveValue("#7a1f1f");
   });
 
-  it("removes dark class when uncontrolled color changes to light", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#000000" placeholder="Pick" />,
-    );
-    expect(container.firstChild).toHaveClass(styles.dark);
-    const input = screen.getByPlaceholderText("Pick");
-    fireEvent.change(input, { target: { value: "#ffffff" } });
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-  });
-
-  it("adds dark class when uncontrolled color changes to dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#ffffff" placeholder="Pick" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
-    const input = screen.getByPlaceholderText("Pick");
-    fireEvent.change(input, { target: { value: "#000000" } });
-    expect(container.firstChild).toHaveClass(styles.dark);
-  });
-
-  it("calls onChange in controlled mode", () => {
+  it("keeps what you typed while it is not yet a colour, without committing", () => {
     const onChange = vi.fn();
     render(
-      <ColorInput value="#000000" placeholder="Pick" onChange={onChange} />,
+      <ColorInput defaultValue="#000000" aria-label="Colour" onChange={onChange} />,
     );
-    const input = screen.getByPlaceholderText("Pick");
-    fireEvent.change(input, { target: { value: "#ffffff" } });
+    const field = screen.getByLabelText("Colour");
+    fireEvent.change(field, { target: { value: "#7a1" + "f" } });
+    expect(field).toHaveValue("#7a1f");
+    expect(onChange).not.toHaveBeenCalled();
+    // 見本は最後に確定した色のまま
+    expect(screen.getByLabelText("Pick a colour")).toHaveValue("#000000");
+  });
+
+  it("expands a 3-digit hex for the swatch but leaves the text as typed", () => {
+    render(<ColorInput defaultValue="#abc" aria-label="Colour" />);
+    expect(screen.getByLabelText("Colour")).toHaveValue("#abc");
+    expect(screen.getByLabelText("Pick a colour")).toHaveValue("#aabbcc");
+  });
+
+  it("takes the colour from the swatch", () => {
+    const onChange = vi.fn();
+    render(
+      <ColorInput defaultValue="#000000" aria-label="Colour" onChange={onChange} />,
+    );
+    fireEvent.change(screen.getByLabelText("Pick a colour"), {
+      target: { value: "#ffd166" },
+    });
     expect(onChange).toHaveBeenCalledTimes(1);
+    expect(screen.getByLabelText("Colour")).toHaveValue("#ffd166");
   });
 
-  it("dark class persists in controlled mode since value prop is unchanged", () => {
-    const { container } = render(
-      <ColorInput value="#000000" placeholder="Pick" />,
-    );
-    expect(container.firstChild).toHaveClass(styles.dark);
-    const input = screen.getByPlaceholderText("Pick");
-    fireEvent.change(input, { target: { value: "#ffffff" } });
-    expect(container.firstChild).toHaveClass(styles.dark);
+  it("follows the value prop when controlled", () => {
+    const { rerender } = render(<ColorInput value="#111111" aria-label="Colour" />);
+    expect(screen.getByLabelText("Colour")).toHaveValue("#111111");
+    rerender(<ColorInput value="#222222" aria-label="Colour" />);
+    expect(screen.getByLabelText("Colour")).toHaveValue("#222222");
   });
 
-  it("detects medium-dark color (#666666) as dark", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#666666" aria-label="medium dark" />,
-    );
-    expect(container.firstChild).toHaveClass(styles.dark);
+  it("does not move on its own when controlled and the parent ignores onChange", () => {
+    const onChange = vi.fn();
+    render(<ColorInput value="#111111" aria-label="Colour" onChange={onChange} />);
+    fireEvent.change(screen.getByLabelText("Pick a colour"), {
+      target: { value: "#999999" },
+    });
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(screen.getByLabelText("Pick a colour")).toHaveValue("#111111");
   });
 
-  it("detects medium-light color (#aaaaaa) as light", () => {
-    const { container } = render(
-      <ColorInput defaultValue="#aaaaaa" aria-label="medium light" />,
-    );
-    expect(container.firstChild).not.toHaveClass(styles.dark);
+  it("falls back to black in the swatch when the text is not a colour", () => {
+    render(<ColorInput defaultValue="notahex" aria-label="Colour" />);
+    expect(screen.getByLabelText("Colour")).toHaveValue("notahex");
+    expect(screen.getByLabelText("Pick a colour")).toHaveValue("#000000");
+  });
+
+  it("disables the swatch together with the field", () => {
+    render(<ColorInput defaultValue="#000000" aria-label="Colour" disabled />);
+    expect(screen.getByLabelText("Pick a colour")).toBeDisabled();
   });
 });
