@@ -78,3 +78,29 @@ export const Large: Story = {
     height: 300,
   },
 };
+
+/**
+ * T125: `SignaturePad` の根は `FieldTemplate` の `.content`（flex 縦並び・
+ * `align-items: stretch`）の子なので、**親いっぱいに引き伸ばされる**。
+ * `.root { display: inline-flex }`（＝内容幅に縮む意図）は flex アイテムでは
+ * `flex` へ blockify されて黙って捨てられるため効かない。
+ *
+ * 他のストーリーは `layout: "centered"` で枠が 432px しかなく、canvas とほぼ
+ * 同じ幅なので**この欠陥が永久に出ない**。広い親に置いて初めて、`Clear` が
+ * canvas の右端から離れて座るのが見える。
+ */
+export const InWideField: Story = {
+  parameters: { layout: "fullscreen" },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ padding: "var(--wim-spacing-lg)", width: "100%" }}>
+        <SignaturePad {...args} label={t("story.signaturepad_wide_field")} />
+      </div>
+    );
+  },
+  args: {
+    width: 400,
+    height: 200,
+  },
+};

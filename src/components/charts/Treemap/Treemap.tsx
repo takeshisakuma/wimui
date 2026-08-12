@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import {
   Treemap as RechartsTreemap,
   ResponsiveContainer,
@@ -13,6 +13,11 @@ import styles from "./treemap.module.scss";
 const TILE_GAP = 2;
 /** ラベルとタイルの縁の間に最低限あける幅。 */
 const LABEL_PADDING = 8;
+/**
+ * 省略しても最低これだけの文字は見せる。これも入らないタイルは、
+ * どう詰めても名乗れないので隠す（T149）。
+ */
+const MIN_LABEL_CHARS = 2;
 
 /**
  * Props for the Treemap component.
@@ -96,13 +101,57 @@ const TreemapTile = ({
      タイルに 50px の "Brazil" が乗り、左右 2px ずつ食み出していた）。
      入らないときは消して Tooltip に任せる ── ただし**外さずに隠す**。
      外すと測る対象が居なくなり、二度と測り直せない。 */
-  const [fits, setFits] = useState(true);
+  /* T149: 入らないときに**黙って消す**のをやめ、まず省略して見せる。
+     `Treemap` が凡例を持たなくてよいのは「タイルが自分で名乗る」からで
+     （`check:chart-palette` の免除条件・T152 案①）、名前が消えると
+     **その免除の根拠ごと消える**。残るのは Tooltip ＝ ホバーが要るので、
+     静止画・印刷・キーボードのどれでも読めない。
+     省略記号は「まだ続きがある」と言うので、黙って消えるより落差が小さい。 */
+  const full = name ?? "";
+
+  /* **state を使わない。** recharts は `content` を毎回新しい実体として呼ぶので、
+     `useState` の値は次のレンダーで初期値へ戻る（実測: `setChars(3)` の直後の
+     レンダーが `chars=6` で始まった）。状態で「今どこまで縮めたか」を持つと
+     永久に決まらないので、**測って書き換えるところまでを ref の中で完結**させる。 */
   const measure = useCallback(
     (node: SVGTextElement | null) => {
       if (!node) return;
-      setFits(node.getComputedTextLength() + LABEL_PADDING * 2 <= width);
+      /* 余白は**タイルに対する割合で頭打ちにする**。8px 固定だと 46px の
+         タイルでは左右で 16px ＝ 幅の 3 分の 1 を余白が食い、名前を 2 文字も
+         置けなくなる（T149・実測で `Brazil` がここで落ちていた）。大きい
+         タイルでは今までどおり 8px。 */
+      const padding = Math.min(LABEL_PADDING, width * 0.12);
+      const available = width - padding * 2;
+
+      // 毎回フルの名前から測り直す。前回縮めた結果を土台にすると、枠が
+      // 広がったときに短いままになる（列数が変わるダッシュボードで起きる）。
+      node.textContent = full;
+      if (node.getComputedTextLength() <= available) {
+        node.style.visibility = "";
+        return;
+      }
+
+      // 比例配分で当たりを付けてから、**入るまで 1 文字ずつ実測で削る**。
+      const perChar = node.getComputedTextLength() / Math.max(1, full.length);
+      let chars = Math.min(
+        Math.floor(available / perChar) - 1,
+        full.length - 1,
+      );
+      while (chars >= MIN_LABEL_CHARS) {
+        // 切った端の空白を落とす（"Guatemala …" のように空きが入る）。
+        node.textContent = `${full.slice(0, chars).trimEnd()}…`;
+        if (node.getComputedTextLength() <= available) {
+          node.style.visibility = "";
+          return;
+        }
+        chars -= 1;
+      }
+
+      // ここまで来たら、どう詰めても名乗れない。Tooltip に任せる。
+      node.textContent = full;
+      node.style.visibility = "hidden";
     },
-    [width],
+    [width, full],
   );
 
   /* 葉でない段（根と中間のまとまり）は描かない。以前はタイルが密着していたので
@@ -135,10 +184,9 @@ const TreemapTile = ({
             strokeWidth: 0,
             pointerEvents: "none",
             userSelect: "none",
-            visibility: fits ? undefined : "hidden",
           }}
         >
-          {name}
+          {full}
         </text>
       )}
     </g>

@@ -3,6 +3,12 @@
     display: inline-flex;
     align-items: center;
 
+    /* `SignaturePad` と同じ機構（T125）。`FieldTemplate` の `.content` の
+       flex アイテムになると `inline-flex` は `flex` へ blockify され、
+       stretch で親いっぱいに伸びる（実測 1280px の親で根 1260px）。
+       星の右に押せる空白が広がるので、幅の側で内容に縮める。 */
+    width: fit-content;
+
     /* 星は 1 つずつ正確に押す対象なので、尺度の下端を WCAG 2.5.8（AA）の
        24px に合わせて全体を上へずらした（T117）。以前は sm 16px / md 24px（compact 20）で、
        **下 2 段が下限を割っていた**。下限だけ足すと sm と md が同じ絵になり、
