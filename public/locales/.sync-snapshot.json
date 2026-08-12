@@ -3994,7 +3994,7 @@
       "charts_color_gap_note": "Where two fills touch — stacked bars, pie wedges, treemap tiles — leave a 2px gap in the surface color. The separation is what the eye reads as an edge; without it, adjacent colors blend into a third.",
       "charts_color_override_note": "The chart hues are tokens, so you can swap them for your own. Two conditions have to survive the swap, and npm run check:chart-palette fails without them: neighbouring series stay apart for normal and for colorblind vision, and the state colors are not pulled in as extra series. Contrast against the surface is measured rather than enforced — aim for 3:1, and where a hue cannot reach it (at this chroma, blue on the dark surface cannot) keep the legend and the direct label that identify the series without color.",
       "charts_color_limit_note": "Five series is the ceiling, and a sixth is not a sixth hue. Fold the tail into a single \"Other\", split into small multiples, or add a second encoding such as shape or texture. Generated hues drift into each other and stop being distinguishable long before they run out.",
-      "charts_color_not_alone_note": "Never let color be the only difference. Two or more series always get a legend, and up to four are also labeled on the mark, so the chart still reads with the color removed — for colorblind readers, in print, and under forced-colors mode.",
+      "charts_color_not_alone_note": "Never let color be the only difference. Every chart that tells series apart by hue renders a legend, and it cannot be turned off — check:chart-palette fails if one is removed or made conditional. Charts that carry the value in area or length (Treemap, FunnelChart, Heatmap, GanttChart) name themselves on the mark instead. Contrast against the surface is measured, not enforced, so the legend is what keeps the chart readable with the color removed — for colorblind readers, in print, and under forced-colors mode.",
       "charts_color_evidence_title": "What the palette measures",
       "charts_color_evidence_desc": "These numbers are not written here. They are produced by npm run check:chart-palette, the same guard that decides whether the palette ships, so re-picking a hue moves this table in the same commit. Light and dark are chosen separately: the same token is a different step and a different number in each.",
       "charts_color_evidence_col_series": "Series token",
@@ -11369,7 +11369,8 @@
       "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
       "watermark_team": "WIM UI Team",
       "watermark_text": "wimui watermark",
-      "watermark_wimui": "wimui"
+      "watermark_wimui": "wimui",
+      "chart_narrow_tiles": "Green stock by origin (narrow tiles)"
     }
   },
   "docs_stories_feedback": {
@@ -11718,7 +11719,9 @@
       "transfer_long_desc": "This is a very very very very very very very very very very very long description",
       "transfer_long_title": "This is a very very very very very very very very very very very very very very very long title that should be truncated",
       "transfer_short_desc": "Short Description",
-      "transfer_short_title": "Short Title"
+      "transfer_short_title": "Short Title",
+      "signaturepad_wide_field": "Signature (inside a full-width field)",
+      "rating_wide_field": "Rating (inside a full-width field)"
     }
   },
   "docs_stories_layout": {
@@ -15960,7 +15963,20 @@
       "list_title": "Built-in presets",
       "list_desc": "Accent text (links) stays AA-contrast in both themes; solid fills keep white text. Minimal changes shape only and keeps the default accent.",
       "extend_title": "Adding your own",
-      "extend_desc": "Presets are generated from tokens/presets/*.json (radius + PCCS-referenced accents) into a [data-wim-preset] CSS layer by npm run tokens:build. Add a file, rebuild, and it appears in WIM_PRESETS and the preset type."
+      "extend_desc": "Presets are generated from tokens/presets/*.json (radius + PCCS-referenced accents) into a [data-wim-preset] CSS layer by npm run tokens:build. Add a file, rebuild, and it appears in WIM_PRESETS and the preset type.",
+      "showcase_title": "Theme presets",
+      "showcase_desc": "One attribute switches shape and accent. Presets compose with theme and density, and can scope to any subtree.",
+      "showcase_label_default": "Default",
+      "desc_none": "The look shipped in styles.css.",
+      "desc_minimal": "Sharp corners and restrained emphasis. Keeps the default accent.",
+      "desc_soft": "Rounded, friendly shapes with a calm violet accent.",
+      "desc_bold": "Confident radius and a high-impact red accent.",
+      "sample_primary": "Primary",
+      "sample_secondary": "Secondary",
+      "sample_badge": "New",
+      "sample_input_label": "Workspace name",
+      "sample_link": "Read the docs",
+      "sample_switch": "Weekly digest"
     }
   },
   "docs_guide_variants": {
