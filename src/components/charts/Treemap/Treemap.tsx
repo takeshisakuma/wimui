@@ -116,40 +116,66 @@ const TreemapTile = ({
   const measure = useCallback(
     (node: SVGTextElement | null) => {
       if (!node) return;
-      /* 余白は**タイルに対する割合で頭打ちにする**。8px 固定だと 46px の
-         タイルでは左右で 16px ＝ 幅の 3 分の 1 を余白が食い、名前を 2 文字も
-         置けなくなる（T149・実測で `Brazil` がここで落ちていた）。大きい
-         タイルでは今までどおり 8px。 */
-      const padding = Math.min(LABEL_PADDING, width * 0.12);
-      const available = width - padding * 2;
 
-      // 毎回フルの名前から測り直す。前回縮めた結果を土台にすると、枠が
-      // 広がったときに短いままになる（列数が変わるダッシュボードで起きる）。
-      node.textContent = full;
-      if (node.getComputedTextLength() <= available) {
-        node.style.visibility = "";
-        return;
-      }
+      const fit = () => {
+        /* 余白は**タイルに対する割合で頭打ちにする**。8px 固定だと 46px の
+           タイルでは左右で 16px ＝ 幅の 3 分の 1 を余白が食い、名前を 2 文字も
+           置けなくなる（T149・実測で `Brazil` がここで落ちていた）。大きい
+           タイルでは今までどおり 8px。
+           判定は**整数 px に落とす**。境目のタイルで小数の揺れが表示・非表示を
+           行き来させないため（下限の 2 文字が入るか入らないかは、まさにその
+           境目で起きる）。 */
+        const padding = Math.min(LABEL_PADDING, width * 0.12);
+        const available = Math.floor(width - padding * 2);
+        const fits = () => Math.ceil(node.getComputedTextLength()) <= available;
 
-      // 比例配分で当たりを付けてから、**入るまで 1 文字ずつ実測で削る**。
-      const perChar = node.getComputedTextLength() / Math.max(1, full.length);
-      let chars = Math.min(
-        Math.floor(available / perChar) - 1,
-        full.length - 1,
-      );
-      while (chars >= MIN_LABEL_CHARS) {
-        // 切った端の空白を落とす（"Guatemala …" のように空きが入る）。
-        node.textContent = `${full.slice(0, chars).trimEnd()}…`;
-        if (node.getComputedTextLength() <= available) {
+        // 毎回フルの名前から測り直す。前回縮めた結果を土台にすると、枠が
+        // 広がったときに短いままになる（列数が変わるダッシュボードで起きる）。
+        node.textContent = full;
+        if (fits()) {
           node.style.visibility = "";
           return;
         }
-        chars -= 1;
-      }
 
-      // ここまで来たら、どう詰めても名乗れない。Tooltip に任せる。
-      node.textContent = full;
-      node.style.visibility = "hidden";
+        // 比例配分で当たりを付けてから、**入るまで 1 文字ずつ実測で削る**。
+        const perChar = node.getComputedTextLength() / Math.max(1, full.length);
+        let chars = Math.min(
+          Math.floor(available / perChar) - 1,
+          full.length - 1,
+        );
+        while (chars >= MIN_LABEL_CHARS) {
+          // 切った端の空白を落とす（"Guatemala …" のように空きが入る）。
+          node.textContent = `${full.slice(0, chars).trimEnd()}…`;
+          if (fits()) {
+            node.style.visibility = "";
+            return;
+          }
+          chars -= 1;
+        }
+
+        // ここまで来たら、どう詰めても名乗れない。Tooltip に任せる。
+        node.textContent = full;
+        node.style.visibility = "hidden";
+      };
+
+      fit();
+
+      /* **書体が後から届くと文字幅が変わる。** この ref は `width` / `full` が
+         変わったときしか再実行されないので、フォント到着前に測るとその結果が
+         残り続ける。VRT で実際に出た ── 同じコード・同じ幅なのに、ある実行では
+         `Br…` が出て別の実行ではラベルごと消えた（タイル幅は 44.00px で
+         安定していたので、変わっていたのは測った時点の字形だけ）。
+         `vrt/story-ready.ts` が計測している通り、**ストーリーのマウント時点では
+         書体は未着が常態**で、撮影はその後。つまり判断はフォールバック字形の幅、
+         絵は本来の書体という食い違いが常に起きうる。
+         `document.fonts.ready` では足りない ── **未要求のフォントには反応しない**
+         ので、まだ誰も要求していない段階では即座に解決してしまう。読み込みが
+         実際に終わったときに鳴る `loadingdone` で測り直す。 */
+      const remeasure = () => {
+        if (node.isConnected) fit();
+      };
+      document.fonts?.addEventListener?.("loadingdone", remeasure);
+      return () => document.fonts?.removeEventListener?.("loadingdone", remeasure);
     },
     [width, full],
   );
