@@ -306,6 +306,15 @@ const checks = [
   },
   {
     category: "lib",
+    // T125（2026-08-12）: `check:shrinkable` は**逆向き**の事故（`width: 100%` ＋
+    // `min-width: 0` で 1 文字幅まで潰れる）を見るもので、**伸びる側は誰も
+    // 見ていなかった**。`FieldTemplate` の flex アイテムでは `display: inline-*`
+    // が blockify されて捨てられ、書いた意図と逆に親いっぱいへ伸びる。
+    name: "Field roots declare their width (no silent stretch)",
+    command: "node scripts/check-field-roots.js",
+  },
+  {
+    category: "lib",
     name: "Monospace contract (token + descendant inheritance, always paired)",
     command: "node scripts/check-mono-family.js",
   },

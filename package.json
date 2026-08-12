@@ -390,6 +390,7 @@
     "check:improvements": "node scripts/check-improvements-status.js",
     "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:chart-palette": "node scripts/check-chart-palette.js",
+    "check:field-roots": "node scripts/check-field-roots.js",
     "check:chart-palette:update": "node scripts/check-chart-palette.js --update",
     "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
@@ -601,7 +602,8 @@
       "node scripts/check-mono-family.js",
       "node scripts/check-intent-text-color.js",
       "node scripts/check-contrast-scss.js",
-      "node scripts/check-shrinkable-roots.js"
+      "node scripts/check-shrinkable-roots.js",
+      "node scripts/check-field-roots.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
