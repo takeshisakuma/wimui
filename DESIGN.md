@@ -588,6 +588,15 @@ Audio, Icon, Image, Video
 
 AreaChart, BarChart, FunnelChart, GanttChart, GaugeChart, Heatmap, LineChart, PieChart, RadarChart, ScatterChart, Treemap
 
+**色は系列を指す唯一の手がかりにしてはならない。** 実装で保証している形は 2 つだけで、`check:chart-palette` が両方を機械で見ている。
+
+1. **色相で系列を区別するチャートは、凡例を無条件で描く**（`AreaChart` / `BarChart` / `LineChart` / `PieChart` / `RadarChart`）。**消す prop を足してはならない** ── 消せるようにした時点でガードが落ちる。
+2. **面積や長さに値を持たせるチャートは、マークの上で自分の名前を出す**（`Treemap` / `FunnelChart` / `Heatmap` / `GanttChart`）。1 色相の濃淡なので凡例では区別が付かず、**名前が唯一の手がかり**になる。狭くて名前が入らないなら、そのチャート種はその枠に合っていない。
+
+**マークの上に系列名を書くこと（on-mark label）は、1 のチャートでは行っていない**（2026-08-12・T156）。折れ線や面が重なると衝突し、置き場所もチャートごとに違うため。**1 の識別は凡例 1 本で成り立っている。**
+
+なお **dark では `chart-info` / `chart-success` / `chart-danger` が地に対して 3:1 に届かない**。これは選び直しでは解けないと実測したうえで**承知で受け入れている**（T152・案①）。**凡例が保証するのは「どれがどれか」であって「マークが見えるか」ではない**ので、暗い地の上で細いマークを使う画面では、線を太くする・点を大きくするなど**寸法の側で補うこと**。
+
 ---
 
 ## トークンパイプライン

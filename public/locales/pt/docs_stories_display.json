@@ -316,6 +316,7 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "chart_narrow_tiles": "Estoque verde por origem (blocos estreitos)"
   }
 }

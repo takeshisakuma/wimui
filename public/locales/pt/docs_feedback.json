@@ -466,7 +466,9 @@
     "progressring_design_intent": "O vocabulário de props é deliberadamente idêntico ao de Progress (value, max, intent, size, label, showValue, indeterminate), para que os dois sejam intercambiáveis quando o layout muda. Só a forma difere: o anel funciona bem num espaço quadrado, a barra funciona bem numa linha de largura total.",
     "progressring_choice_matrix_desc": "Escolha pelo espaço disponível e por saber ou não o total.",
     "progressring_choice_self_when": "Uma tarefa com total conhecido, num espaço compacto e aproximadamente quadrado.",
-    "progressring_choice_alt_when": "Progress para linhas de largura total; Spinner quando o total é desconhecido; GaugeChart quando o próprio número é o assunto.",
+    "progressring_choice_alt_fullwidth": "Uma linha de largura total.",
+    "progressring_choice_alt_unknown": "O total é desconhecido.",
+    "progressring_choice_alt_number": "O próprio número é o assunto.",
     "progressring_a11y_desc": "O elemento externo tem role=\"progressbar\" com aria-valuenow, aria-valuemin e aria-valuemax; label fornece o nome acessível. Com indeterminate, aria-valuenow é removido para que a tecnologia assistiva anuncie uma quantidade desconhecida em vez de um número desatualizado. O SVG é aria-hidden porque o valor já está no elemento externo.",
     "progressring_keyboard_desc": "Não recebe foco nem é operável: isto é uma saída de estado, não um controle. Mantenha-o fora da ordem de tabulação e deixe o controle vizinho ser o dono do foco.",
     "progressring_scenario_1": "Progresso de envio dentro da linha de um arquivo, onde uma barra de largura total empurraria o nome do arquivo para fora da linha.",
@@ -540,7 +542,12 @@
     "progress_ux_estimate_title": "Mostrar Tempo Estimado Aproximado",
     "progress_ux_improvement_title": "Melhoria de UX",
     "progress_ux_steps_desc": "Exibições como \"Etapa 2/5\" ajudam os usuários a entender a visão geral e estimar a conclusão. Particularmente eficaz ao carregar múltiplos arquivos.",
-    "progress_ux_steps_title": "Mostrar Números de Etapas"
+    "progress_ux_steps_title": "Mostrar Números de Etapas",
+    "progress_std_use_unknown": "A espera é curta e sua duração não pode ser medida.",
+    "progress_std_use_percent": "A fração concluída é conhecida.",
+    "progress_std_use_shape": "O formato do conteúdo que virá já é conhecido.",
+    "progress_std_use_compact": "A conclusão de um valor, onde não há espaço para uma barra.",
+    "progress_std_use_whole": "A tela inteira fica inutilizável até os dados chegarem."
   },
   "loading": {
     "button_desc": "Processamento dentro de botões ou carregamento de curto prazo para áreas pequenas.",

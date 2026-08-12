@@ -466,7 +466,9 @@
     "progressring_design_intent": "prop の語彙は Progress と意図的に同一です（value / max / intent / size / label / showValue / indeterminate）。レイアウトが変わったときに差し替えられるようにするためで、違うのは形だけです。正方形に近い場所ではリングが、横幅いっぱいの行ではバーが読みやすくなります。",
     "progressring_choice_matrix_desc": "使える面積と、全体量が分かっているかどうかで選びます。",
     "progressring_choice_self_when": "全体量が分かっていて、狭くて正方形に近い場所に置くとき。",
-    "progressring_choice_alt_when": "横幅いっぱいの行には Progress、全体量が不明なときは Spinner、数値そのものが主役なら GaugeChart。",
+    "progressring_choice_alt_fullwidth": "横幅いっぱいの行に置くとき。",
+    "progressring_choice_alt_unknown": "全体量が不明なとき。",
+    "progressring_choice_alt_number": "数値そのものが主役のとき。",
     "progressring_a11y_desc": "外側の要素が role=\"progressbar\" と aria-valuenow / aria-valuemin / aria-valuemax を持ち、label がアクセシブル名になります。indeterminate のときは aria-valuenow を外すので、支援技術は古い数値ではなく「量が不明」と伝えます。値は外側にあるため SVG は aria-hidden です。",
     "progressring_keyboard_desc": "フォーカスも操作もできません。これは操作部品ではなく状態の出力なので、タブ順から外し、フォーカスは周囲のコントロールに持たせます。",
     "progressring_scenario_1": "ファイル行の中のアップロード進捗。横幅いっぱいのバーだとファイル名が行から押し出されてしまう場面。",
@@ -540,7 +542,12 @@
     "progress_ux_estimate_title": "おおよその見積もり時間を表示",
     "progress_ux_improvement_title": "UXの向上",
     "progress_ux_steps_desc": "「ステップ 2/5」のような表示は、全体像を把握させやすく、完了までの見通しを立てやすくします。特に複数のファイルを読み込む際などに有効です。",
-    "progress_ux_steps_title": "ステップ数を表示"
+    "progress_ux_steps_title": "ステップ数を表示",
+    "progress_std_use_unknown": "待ち時間が短く、長さを測れない",
+    "progress_std_use_percent": "終わった割合が分かる",
+    "progress_std_use_shape": "これから出る内容の形が既に分かっている",
+    "progress_std_use_compact": "バーを置く場所が無いところで 1 つの値の完了度",
+    "progress_std_use_whole": "データが来るまで画面全体が使えない"
   },
   "loading": {
     "button_desc": "ボタン内の処理、小さな領域の短時間の読み込み。",

@@ -1,0 +1,160 @@
+{
+  "$generated": "scripts/check-chart-palette.js — 手で編集しない。`npm run check:chart-palette:update` で作り直す。",
+  "thresholds": {
+    "chromaFloor": 0.1,
+    "normalDeltaEFloor": 15,
+    "cvdDeltaEFloor": 6,
+    "cvdDeltaETarget": 8,
+    "contrastMin": 3
+  },
+  "modes": {
+    "light": {
+      "surface": "#ffffff",
+      "lightnessBand": [
+        0.43,
+        0.77
+      ],
+      "series": [
+        {
+          "token": "chart-primary",
+          "pccs": "b14",
+          "hex": "#1aa28e",
+          "contrast": 3.18,
+          "lightness": 0.64,
+          "chroma": 0.112
+        },
+        {
+          "token": "chart-info",
+          "pccs": "b18",
+          "hex": "#396bb0",
+          "contrast": 5.38,
+          "lightness": 0.527,
+          "chroma": 0.122
+        },
+        {
+          "token": "chart-success",
+          "pccs": "dp11",
+          "hex": "#307a25",
+          "contrast": 5.34,
+          "lightness": 0.514,
+          "chroma": 0.14
+        },
+        {
+          "token": "chart-warning",
+          "pccs": "s6",
+          "hex": "#d97610",
+          "contrast": 3.21,
+          "lightness": 0.664,
+          "chroma": 0.157
+        },
+        {
+          "token": "chart-danger",
+          "pccs": "s24",
+          "hex": "#9a0f50",
+          "contrast": 8.21,
+          "lightness": 0.45,
+          "chroma": 0.173
+        }
+      ],
+      "neutral": {
+        "token": "chart-secondary",
+        "pccs": "gy6-5",
+        "hex": "#8a8a8a",
+        "contrast": 3.45,
+        "lightness": 0.633,
+        "chroma": 0
+      },
+      "separation": {
+        "normal": {
+          "deltaE": 15.3,
+          "between": [
+            "chart-primary",
+            "chart-success"
+          ]
+        },
+        "cvd": {
+          "deltaE": 6.7,
+          "kind": "deutan",
+          "between": [
+            "chart-success",
+            "chart-danger"
+          ]
+        }
+      }
+    },
+    "dark": {
+      "surface": "#393939",
+      "lightnessBand": [
+        0.48,
+        0.67
+      ],
+      "series": [
+        {
+          "token": "chart-primary",
+          "pccs": "b14",
+          "hex": "#1aa28e",
+          "contrast": 3.63,
+          "lightness": 0.64,
+          "chroma": 0.112
+        },
+        {
+          "token": "chart-info",
+          "pccs": "b18",
+          "hex": "#396bb0",
+          "contrast": 2.15,
+          "lightness": 0.527,
+          "chroma": 0.122
+        },
+        {
+          "token": "chart-success",
+          "pccs": "dp11",
+          "hex": "#307a25",
+          "contrast": 2.16,
+          "lightness": 0.514,
+          "chroma": 0.14
+        },
+        {
+          "token": "chart-warning",
+          "pccs": "s6",
+          "hex": "#d97610",
+          "contrast": 3.6,
+          "lightness": 0.664,
+          "chroma": 0.157
+        },
+        {
+          "token": "chart-danger",
+          "pccs": "b1",
+          "hex": "#ed3b6b",
+          "contrast": 2.99,
+          "lightness": 0.633,
+          "chroma": 0.213
+        }
+      ],
+      "neutral": {
+        "token": "chart-secondary",
+        "pccs": "gy7-5",
+        "hex": "#b6b6b6",
+        "contrast": 5.7,
+        "lightness": 0.776,
+        "chroma": 0
+      },
+      "separation": {
+        "normal": {
+          "deltaE": 15.3,
+          "between": [
+            "chart-primary",
+            "chart-success"
+          ]
+        },
+        "cvd": {
+          "deltaE": 8,
+          "kind": "deutan",
+          "between": [
+            "chart-warning",
+            "chart-danger"
+          ]
+        }
+      }
+    }
+  }
+}

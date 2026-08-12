@@ -50,6 +50,17 @@ const checks = [
   },
   {
     category: "docs",
+    // T154（2026-08-12）: このガードは **CI で一度も走っていなかった**。
+    // `package.json` の `check:links` はあるが `audit:docs` が呼ばず、
+    // 実際に走るのは lint-staged の `**/*.mdx` 経由だけだった。
+    // その結果、MDX を触らずに `<Meta title>` だけ変えた変更や、
+    // 翻訳 JSON の中のリンク（lint-staged の locales ブロックは
+    // このガードを呼ばない）は誰にも見られず、12 か所が死んでいた。
+    name: "MDX link format and reachability",
+    command: "node scripts/check-mdx-links.js",
+  },
+  {
+    category: "docs",
     name: "Storybook Hierarchy Depth",
     command: "node scripts/check_hierarchy.js",
   },

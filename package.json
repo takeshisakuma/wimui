@@ -390,6 +390,7 @@
     "check:improvements": "node scripts/check-improvements-status.js",
     "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:chart-palette": "node scripts/check-chart-palette.js",
+    "check:chart-palette:update": "node scripts/check-chart-palette.js --update",
     "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",
@@ -616,6 +617,7 @@
       "node scripts/stage-generated.js public/locales --",
       "node scripts/check-i18n.js",
       "node scripts/check-i18n-quality.js",
+      "node scripts/check-mdx-links.js",
       "node scripts/generate-i18n-resources.js",
       "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --"
     ],
@@ -626,6 +628,10 @@
     "tokens/intents.json": [
       "node scripts/generate-intents.js",
       "node scripts/stage-generated.js src/types/generated-intents.ts src/tokens/generated/_intents.scss --"
+    ],
+    "{tokens/color/base.json,tokens/color/semantic.json,tokens/themes/dark.json,src/tokens/generated/_css-vars.scss,src/tokens/generated/_css-vars-dark.scss}": [
+      "node scripts/check-chart-palette.js --update",
+      "node scripts/stage-generated.js src/data/chart-palette.json --"
     ],
     "tokens/**/*.json": [
       "node scripts/check-contrast.js"

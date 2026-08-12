@@ -238,6 +238,8 @@
     "transfer_long_desc": "Esta é uma descrição muito muito muito muito muito muito muito longa",
     "transfer_long_title": "Este é um título muito muito muito muito muito muito muito muito muito muito longo que deve ser truncado",
     "transfer_short_desc": "Descrição Curta",
-    "transfer_short_title": "Título Curto"
+    "transfer_short_title": "Título Curto",
+    "signaturepad_wide_field": "Assinatura (dentro de um campo de largura total)",
+    "rating_wide_field": "Avaliação (dentro de um campo de largura total)"
   }
 }

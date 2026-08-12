@@ -7,6 +7,17 @@
     display: inline-flex;
     flex-direction: column;
     gap: var(--wim-spacing-md);
+
+    /* `FieldTemplate` の `.content` は flex の縦並びなので、この根は flex
+       アイテムになる。すると **`display: inline-flex` は `flex` へ blockify
+       されて黙って捨てられ**、既定の `align-items: stretch` で親いっぱいに
+       引き伸ばされる（T125・実測 1280px の親で根 1152px ＝ `max-width: 90vw`
+       だけが効いている状態。`Clear` が canvas の右端から 690px 離れて座った）。
+       `display` を書き直しても効かないので、**幅の側で内容に縮める**。
+       `align-self: flex-start` でも幅は直るが、行方向の flex 親に置いたときに
+       交差軸（縦）の揃えまで変えてしまうため採らない。`fit-content` は
+       `ToggleGroup` と `FieldTemplate` の色欄で既に使っている手。 */
+    width: fit-content;
     max-width: 90vw;
     font-family: var(--wim-font-family-default);
 

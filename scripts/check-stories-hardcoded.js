@@ -16,15 +16,41 @@
 import fs from 'fs';
 import { globSync } from 'glob';
 
+/**
+ * sandbox/ を足した理由（T155・2026-08-12）
+ *
+ * `docs/Presets.mdx` は全文 `<T k>` でローカライズされているのに、その
+ * ページが実際に描くのは `<Canvas of={PresetStories.Overview} />` ＝
+ * `sandbox/PresetShowcase.tsx` で、**中身は生英語のままだった**。
+ * i18n のガードは `docs` / `stories` / `src` しか見ておらず、`sandbox/` を
+ * 見ていたのは色値・外部アセット・pin の 3 つだけだったので、
+ * `audit:docs` は緑のまま「資料は多言語、画面は英語」が成立していた。
+ *
+ * `sandbox/recipes/**` は除外する。**除外は手抜きではなく契約**で、
+ * レシピは `?raw` で読んで StackBlitz へ**そのまま送るソース**であり、
+ * 「Storybook や i18n の足場を持たず、公開済みの `wimui` に対して無改変で
+ * 動く」ことが `sandbox/Playground.tsx` に明記された前提になっている。
+ * `t()` を入れるとこの前提が壊れる（利用者の手元で動かなくなる）。
+ * レシピの英語はライブラリの UI ではなく**サンプルアプリの文面**でもある。
+ */
+const SANDBOX_CONTRACT_EXCLUDE = /^sandbox\/recipes\//;
+
 const argv = process.argv.slice(2);
 const scanAll = argv.includes('--all');
 const explicitFiles = argv.filter((a) => a !== '--all' && a.endsWith('.tsx') && !a.endsWith('.test.tsx'));
-const pattern = scanAll ? 'stories/**/*.tsx' : 'stories/Audit/*.tsx';
+const patterns = scanAll
+  ? ['stories/**/*.tsx', 'sandbox/**/*.tsx']
+  : ['stories/Audit/*.tsx', 'sandbox/**/*.tsx'];
+const pattern = patterns.join(' + ');
 const files = (
   explicitFiles.length > 0
     ? explicitFiles
-    : globSync(pattern, { posix: true })
-).filter((f) => !f.endsWith('.test.tsx') && fs.existsSync(f));
+    : patterns.flatMap((p) => globSync(p, { posix: true }))
+)
+  // 除外は入口によらず同じでなければならない。lint-staged は変更ファイルを
+  // 直接渡すので、ここで弾かないとレシピを触った瞬間だけ赤くなる。
+  .filter((f) => !SANDBOX_CONTRACT_EXCLUDE.test(f.replace(/\\/g, '/')))
+  .filter((f) => !f.endsWith('.test.tsx') && fs.existsSync(f));
 
 // 誤検出を避ける除外: URL / CSS 値 / トークン / メールアドレス例 / コード片
 const IGNORE_VALUE = /^(https?:|var\(|#|\d|[A-Z_]+$|[a-z-]+$)|@[a-z]+\.|@example|@wim/;

@@ -316,6 +316,7 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "chart_narrow_tiles": "産地別の生豆在庫（タイルが狭い場合）"
   }
 }

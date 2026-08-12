@@ -9,7 +9,7 @@
     "kb_a11y": "すべてのユーザーが利用できるように、キーボード操作に対応します。",
     "tangible_ui": "手触りのあるUIを追求",
     "standard_overview_title": "標準化の概要",
-    "standard_overview_desc": "設計および実装の標準に関する全体像については、<a href=\"./?path=/docs/architecture-standardization-overview--docs\" target=\"_top\">標準化の概要 (Standardization Overview)</a> を参照してください。",
+    "standard_overview_desc": "設計および実装の標準に関する全体像については、<a href=\"./?path=/docs/standardization-overview--docs\" target=\"_top\">標準化の概要 (Standardization Overview)</a> を参照してください。",
     "choice_matrix_desc": "すべての WIM UI コンポーネントとデザインシステムの基盤。",
     "anatomy_desc": "主要な原則：アクセシビリティ、インタラクション、フィードバック。",
     "scenarios_desc": "すべてのアプリケーションに手触りのある UI を提供。",

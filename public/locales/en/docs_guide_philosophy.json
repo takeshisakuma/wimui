@@ -9,7 +9,7 @@
     "kb_a11y": "Supports keyboard operations so all users can use it.",
     "tangible_ui": "Pursuing a Tangible UI",
     "standard_overview_title": "Standard Overview",
-    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"./?path=/docs/architecture-standardization-overview--docs\" target=\"_top\">Standardization Overview</a>.",
+    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"./?path=/docs/standardization-overview--docs\" target=\"_top\">Standardization Overview</a>.",
     "choice_matrix_desc": "Foundation for all WIM UI components and design systems.",
     "anatomy_desc": "Core principles: A11y, Interaction, Feedback.",
     "scenarios_desc": "Providing a tangible UI for all applications.",

@@ -120,6 +120,8 @@ const PACKAGE_JSON = JSON.stringify(
   2,
 );
 
+// i18n-ignore-start — StackBlitz へ送る生成物の HTML。利用者の環境で開く
+// プロジェクトの雛形であって、この Storybook の UI ではないので翻訳しない。
 const INDEX_HTML = `<!doctype html>
 <html lang="en">
   <head>
@@ -133,6 +135,7 @@ const INDEX_HTML = `<!doctype html>
   </body>
 </html>
 `;
+// i18n-ignore-end
 
 const MAIN_TSX = `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";

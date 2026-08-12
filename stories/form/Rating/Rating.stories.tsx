@@ -143,3 +143,20 @@ export const Controlled: Story = {
     );
   },
 };
+
+/**
+ * T125 と同じ機構（同族は `Rating` のこの 1 件だけ）。`FieldTemplate` の
+ * `.content` に stretch されて根が親いっぱいに伸びるため、星の右側に
+ * 押せる空白が広がる。他のストーリーは `layout: "centered"` なので出ない。
+ */
+export const InWideField: Story = {
+  parameters: { layout: "fullscreen" },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ padding: "var(--wim-spacing-lg)", width: "100%" }}>
+        <Rating {...args} label={t("story.rating_wide_field")} />
+      </div>
+    );
+  },
+};
