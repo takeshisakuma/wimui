@@ -316,6 +316,7 @@
     "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
     "watermark_team": "WIM UI Team",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "chart_narrow_tiles": "Green stock by origin (narrow tiles)"
   }
 }

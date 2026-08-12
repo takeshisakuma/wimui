@@ -7,6 +7,19 @@
     "list_title": "Built-in presets",
     "list_desc": "Accent text (links) stays AA-contrast in both themes; solid fills keep white text. Minimal changes shape only and keeps the default accent.",
     "extend_title": "Adding your own",
-    "extend_desc": "Presets are generated from tokens/presets/*.json (radius + PCCS-referenced accents) into a [data-wim-preset] CSS layer by npm run tokens:build. Add a file, rebuild, and it appears in WIM_PRESETS and the preset type."
+    "extend_desc": "Presets are generated from tokens/presets/*.json (radius + PCCS-referenced accents) into a [data-wim-preset] CSS layer by npm run tokens:build. Add a file, rebuild, and it appears in WIM_PRESETS and the preset type.",
+    "showcase_title": "Theme presets",
+    "showcase_desc": "One attribute switches shape and accent. Presets compose with theme and density, and can scope to any subtree.",
+    "showcase_label_default": "Default",
+    "desc_none": "The look shipped in styles.css.",
+    "desc_minimal": "Sharp corners and restrained emphasis. Keeps the default accent.",
+    "desc_soft": "Rounded, friendly shapes with a calm violet accent.",
+    "desc_bold": "Confident radius and a high-impact red accent.",
+    "sample_primary": "Primary",
+    "sample_secondary": "Secondary",
+    "sample_badge": "New",
+    "sample_input_label": "Workspace name",
+    "sample_link": "Read the docs",
+    "sample_switch": "Weekly digest"
   }
 }

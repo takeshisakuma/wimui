@@ -238,6 +238,8 @@
     "transfer_long_desc": "これはとてもとてもとてもとてもとてもとてもとてもとても長い説明です",
     "transfer_long_title": "これは切り捨てられるべき、とてもとてもとてもとてもとてもとてもとてもとてもとてもとても長いタイトルです",
     "transfer_short_desc": "短い説明",
-    "transfer_short_title": "短いタイトル"
+    "transfer_short_title": "短いタイトル",
+    "signaturepad_wide_field": "署名（幅いっぱいの欄の中）",
+    "rating_wide_field": "評価（幅いっぱいの欄の中）"
   }
 }

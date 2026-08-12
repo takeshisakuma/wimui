@@ -37,7 +37,6 @@
     "anchor_best_practice_label_text": "テキスト",
     "anchor_choice_anchor_when": "1つのページ内に多くのセクションがあり、目次のように機能させたい場合。",
     "anchor_choice_matrix_desc": "ページ構成とコンテンツの種類に応じて、最適なナビゲーション手段を選択してください。",
-    "anchor_choice_nav_when": "単一のページ内ではなく、サイト全体の異なるページ間を移動させたい場合。",
     "anchor_choice_tabs_when": "コンテンツを同時ではなく、切り替えて表示させたい場合。",
     "anchor_considerations": "注意事項",
     "anchor_desc": "スムーズスクロールリンク",
@@ -483,6 +482,8 @@
     "menubar_best_practice_2": "同時に開くメニューは1つ。開いている間はホバーで切替。",
     "menubar_best_practice_3": "Dialog の FocusTrap 内に入れる場合は Escape の挙動を確認する。",
     "menubar_keyboard_desc": "左右矢印（と Home/End）でトップレベル間を移動。ArrowDown / Enter / Space で開く。メニュー内は上下。Escape で閉じて Trigger に戻る。",
-    "menubar_i18n_desc": "Menubar 本体に固定文言はありません。Trigger / Item のラベルとルートの aria-label をアプリ側でローカライズしてください。"
+    "menubar_i18n_desc": "Menubar 本体に固定文言はありません。Trigger / Item のラベルとルートの aria-label をアプリ側でローカライズしてください。",
+    "anchor_choice_navbar_when": "サイトの主要な区画の間を移動したいとき",
+    "anchor_choice_breadcrumbs_when": "現在のページが階層のどこにいるかを示し、上へ戻れるようにしたいとき"
   }
 }

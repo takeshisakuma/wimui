@@ -37,7 +37,6 @@
     "anchor_best_practice_label_text": "Texto",
     "anchor_choice_anchor_when": "Quando você tem muitas seções em uma única página e deseja que elas funcionem como um sumário.",
     "anchor_choice_matrix_desc": "Escolha o método de navegação mais apropriado com base na estrutura da página e no tipo de conteúdo.",
-    "anchor_choice_nav_when": "Quando você deseja se mover entre diferentes páginas do site em vez de permanecer em uma única página.",
     "anchor_choice_tabs_when": "Quando você deseja alternar entre conteúdos em vez de exibi-los todos de uma vez.",
     "anchor_considerations": "Considerações",
     "anchor_desc": "Links de rolagem suave",
@@ -483,6 +482,8 @@
     "menubar_best_practice_2": "Abra apenas um menu por vez; troque por hover enquanto um menu estiver aberto.",
     "menubar_best_practice_3": "Não aninhe Menubar dentro do FocusTrap de um Dialog sem testar o comportamento de Escape.",
     "menubar_keyboard_desc": "Esquerda/Direita (e Home/End) movem entre triggers de nível superior. ArrowDown, Enter ou Space abrem um menu. ArrowUp/Down movem dentro do menu aberto. Escape fecha e devolve o foco ao trigger.",
-    "menubar_i18n_desc": "Menubar não tem textos embutidos. Localize rótulos de trigger e item no app consumidor; forneça um aria-label na raiz."
+    "menubar_i18n_desc": "Menubar não tem textos embutidos. Localize rótulos de trigger e item no app consumidor; forneça um aria-label na raiz.",
+    "anchor_choice_navbar_when": "Quando você quer se mover entre as áreas principais do site.",
+    "anchor_choice_breadcrumbs_when": "Quando você quer mostrar onde a página atual está na hierarquia e permitir subir de volta."
   }
 }

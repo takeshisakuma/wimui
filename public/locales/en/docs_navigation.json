@@ -37,7 +37,6 @@
     "anchor_best_practice_label_text": "Text",
     "anchor_choice_anchor_when": "When you have many sections on a single page and want them to function like a table of contents.",
     "anchor_choice_matrix_desc": "Choose the most appropriate navigation method based on the page structure and content type.",
-    "anchor_choice_nav_when": "When you want to move between different pages across the site rather than staying on a single page.",
     "anchor_choice_tabs_when": "When you want to switch between content rather than displaying it all at once.",
     "anchor_considerations": "Considerations",
     "anchor_desc": "Smooth scroll links",
@@ -483,6 +482,8 @@
     "menubar_best_practice_2": "Open only one menu at a time; hover-switch while a menu is open.",
     "menubar_best_practice_3": "Do not nest Menubar inside Dialog FocusTrap without testing Escape handling.",
     "menubar_keyboard_desc": "Left/Right (and Home/End) move between top-level triggers. ArrowDown, Enter, or Space opens a menu. ArrowUp/Down move within the open menu. Escape closes and returns focus to the trigger.",
-    "menubar_i18n_desc": "Menubar has no built-in copy. Localize trigger and item labels in the consuming app; provide an aria-label on the root."
+    "menubar_i18n_desc": "Menubar has no built-in copy. Localize trigger and item labels in the consuming app; provide an aria-label on the root.",
+    "anchor_choice_navbar_when": "When you want to move between the main areas of the site.",
+    "anchor_choice_breadcrumbs_when": "When you want to show where the current page sits in the hierarchy and let the user climb back up."
   }
 }

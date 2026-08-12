@@ -7,6 +7,19 @@
     "list_title": "内蔵プリセット",
     "list_desc": "アクセント文字（リンク）はライト/ダークどちらでも AA コントラストを保ち、ソリッド塗りは白文字を維持します。minimal は形だけ変え、既定のアクセントを保ちます。",
     "extend_title": "自作の追加",
-    "extend_desc": "プリセットは tokens/presets/*.json（角丸 + PCCS 参照のアクセント）から npm run tokens:build で [data-wim-preset] の CSS レイヤに生成されます。ファイルを追加して再ビルドすれば、WIM_PRESETS とプリセット型に反映されます。"
+    "extend_desc": "プリセットは tokens/presets/*.json（角丸 + PCCS 参照のアクセント）から npm run tokens:build で [data-wim-preset] の CSS レイヤに生成されます。ファイルを追加して再ビルドすれば、WIM_PRESETS とプリセット型に反映されます。",
+    "showcase_title": "テーマプリセット",
+    "showcase_desc": "属性 1 つで形とアクセントが切り替わります。テーマや密度と重ねられ、任意の部分木にだけ効かせられます。",
+    "showcase_label_default": "既定",
+    "desc_none": "styles.css がそのまま出す見た目",
+    "desc_minimal": "角は鋭く、強調は控えめ。アクセントは既定のまま",
+    "desc_soft": "丸みのある親しみやすい形と、落ち着いた紫のアクセント",
+    "desc_bold": "思い切った角丸と、強く目を引く赤のアクセント",
+    "sample_primary": "主操作",
+    "sample_secondary": "副操作",
+    "sample_badge": "新着",
+    "sample_input_label": "ワークスペース名",
+    "sample_link": "資料を読む",
+    "sample_switch": "週次のまとめ"
   }
 }

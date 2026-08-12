@@ -466,7 +466,9 @@
     "progressring_design_intent": "The prop vocabulary is deliberately identical to Progress (value, max, intent, size, label, showValue, indeterminate), so the two are interchangeable when a layout changes. Only the shape differs: a ring reads well in a fixed square, a bar reads well across a full-width row.",
     "progressring_choice_matrix_desc": "Pick by the space you have and by whether the total is known.",
     "progressring_choice_self_when": "A determinate task in a compact, roughly square space.",
-    "progressring_choice_alt_when": "Progress for full-width rows; Spinner when the total is unknown; GaugeChart when the number itself is the subject.",
+    "progressring_choice_alt_fullwidth": "A full-width row.",
+    "progressring_choice_alt_unknown": "The total is unknown.",
+    "progressring_choice_alt_number": "The number itself is the subject.",
     "progressring_a11y_desc": "The wrapper carries role=\"progressbar\" with aria-valuenow, aria-valuemin and aria-valuemax; label supplies the accessible name. When indeterminate is set, aria-valuenow is dropped so assistive technology announces an unknown amount rather than a stale number. The SVG is aria-hidden because the value is already on the wrapper.",
     "progressring_keyboard_desc": "Not focusable and not operable: this is a status output, not a control. Keep it out of the tab order and let the surrounding control own the focus.",
     "progressring_scenario_1": "Upload progress inside a file row, where a full-width bar would push the filename off the line.",
@@ -540,7 +542,12 @@
     "progress_ux_estimate_title": "Show Approximate Estimated Time",
     "progress_ux_improvement_title": "UX Improvement",
     "progress_ux_steps_desc": "Displays like \"Step 2/5\" help users grasp the overall picture and estimate completion. Particularly effective when loading multiple files.",
-    "progress_ux_steps_title": "Show Step Numbers"
+    "progress_ux_steps_title": "Show Step Numbers",
+    "progress_std_use_unknown": "The wait is short and its length cannot be measured.",
+    "progress_std_use_percent": "The share completed is known.",
+    "progress_std_use_shape": "The shape of the content that is coming is already known.",
+    "progress_std_use_compact": "One value's completion, where there is no room for a bar.",
+    "progress_std_use_whole": "The whole view is unusable until the data arrives."
   },
   "loading": {
     "button_desc": "Processing within buttons or short-term loading for small areas.",

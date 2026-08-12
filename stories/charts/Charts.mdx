@@ -3,6 +3,7 @@ import * as ChartsStories from "./Charts.stories";
 import { T } from "../T";
 import { Docgen } from "../Docgen";
 import { Command } from "../Command";
+import palette from "../../src/data/chart-palette.json";
 
 <Meta title="Components/Visualization/Charts" of={ChartsStories} />
 
@@ -113,6 +114,103 @@ import { BarChart, LineChart } from "wimui/charts";
 <p><T k="doc.charts_color_limit_note" /></p>
 
 <p><T k="doc.charts_color_override_note" /></p>
+
+### <T k="doc.charts_color_evidence_title" />
+<p><T k="doc.charts_color_evidence_desc" /></p>
+
+<style>
+  {`
+  .wim-chart-swatch {
+    display: inline-block;
+    width: var(--wim-spacing-lg);
+    height: var(--wim-spacing-lg);
+    border-radius: var(--wim-radius-sm);
+    border: 1px solid var(--wim-color-border);
+    margin-right: var(--wim-spacing-sm);
+    vertical-align: baseline;
+  }
+  `}
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.charts_color_evidence_col_series" /></th>
+      <th><T k="doc.charts_color_evidence_col_light" /></th>
+      <th><T k="doc.charts_color_evidence_col_dark" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    {[...palette.modes.light.series, palette.modes.light.neutral].map((light, i) => {
+      const dark = [...palette.modes.dark.series, palette.modes.dark.neutral][i];
+      const cell = (c) => (
+        <>
+          <span className="wim-chart-swatch" style={{ background: c.hex }} />
+          <code>{c.pccs}</code> {c.hex} · {c.contrast.toFixed(2)}:1
+        </>
+      );
+      return (
+        <tr key={light.token}>
+          <td><code>{light.token}</code></td>
+          <td>{cell(light)}</td>
+          <td>{cell(dark)}</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.charts_color_evidence_col_metric" /></th>
+      <th><T k="doc.charts_color_evidence_col_light" /></th>
+      <th><T k="doc.charts_color_evidence_col_dark" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <T k="doc.charts_color_evidence_row_normal" /> (&ge; {palette.thresholds.normalDeltaEFloor})
+      </td>
+      {["light", "dark"].map((mode) => {
+        const s = palette.modes[mode].separation.normal;
+        return (
+          <td key={mode}>
+            {s.deltaE.toFixed(1)} — <code>{s.between[0]}</code> / <code>{s.between[1]}</code>
+          </td>
+        );
+      })}
+    </tr>
+    <tr>
+      <td>
+        <T k="doc.charts_color_evidence_row_cvd" /> (&ge; {palette.thresholds.cvdDeltaEFloor})
+      </td>
+      {["light", "dark"].map((mode) => {
+        const s = palette.modes[mode].separation.cvd;
+        return (
+          <td key={mode}>
+            {s.deltaE.toFixed(1)} — <code>{s.between[0]}</code> / <code>{s.between[1]}</code> ({s.kind})
+          </td>
+        );
+      })}
+    </tr>
+    <tr>
+      <td>
+        <T k="doc.charts_color_evidence_row_surface" />
+      </td>
+      {["light", "dark"].map((mode) => (
+        <td key={mode}>
+          <span
+            className="wim-chart-swatch"
+            style={{ background: palette.modes[mode].surface }}
+          />
+          {palette.modes[mode].surface}
+        </td>
+      ))}
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc.anatomy_title" />
 <table>
