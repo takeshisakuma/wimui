@@ -323,6 +323,7 @@
     "i18n:check": "node scripts/check-i18n.js",
     "i18n:props": "node scripts/backfill-prop-keys.js",
     "i18n:quality": "node scripts/check-i18n-quality.js",
+    "i18n:aliases": "node scripts/check-i18n-aliases.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",
     "i18n:check:mdx": "node scripts/check-mdx-hardcoded.js",
@@ -599,7 +600,8 @@
     "{stories,sandbox}/**/*.tsx": [
       "node scripts/check-slop.js",
       "node scripts/check-story-tokens.js",
-      "node scripts/check-sandbox-pin.js"
+      "node scripts/check-sandbox-pin.js",
+      "node scripts/check-i18n-aliases.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
@@ -613,6 +615,7 @@
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
       "node scripts/check-mdx-hardcoded.js",
       "node scripts/check-i18n-components.js",
+      "node scripts/check-i18n-aliases.js",
       "node scripts/check-mdx-links.js",
       "node scripts/audit-mdx.js",
       "node scripts/check-slop.js",
@@ -623,6 +626,7 @@
       "node scripts/stage-generated.js public/locales --",
       "node scripts/check-i18n.js",
       "node scripts/check-i18n-quality.js",
+      "node scripts/check-i18n-aliases.js",
       "node scripts/check-mdx-links.js",
       "node scripts/generate-i18n-resources.js",
       "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --"

@@ -368,6 +368,13 @@ const checks = [
   },
   {
     category: "docs",
+    // T157: 同じ列見出しに正本と別名がある。削除は出荷物を壊すので残し、
+    // 値が割れたときと、新しい資料が別名を増やしたときだけ落とす。
+    name: "Column-header i18n aliases stay identical (no new uses of the alias)",
+    command: "node scripts/check-i18n-aliases.js",
+  },
+  {
+    category: "docs",
     // `i18n-check.yml` では走るが `audit:docs` には無かった。そのため
     // `npm run audit:docs` を緑にしても、生の `**`・重複キー・PT-PT 語彙・
     // 指示形 placeholder は一切見られていなかった。

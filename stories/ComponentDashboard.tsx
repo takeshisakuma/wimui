@@ -101,7 +101,7 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
           <table>
             <thead>
               <tr>
-                <th><T k="table.header_component" /></th>
+                <th><T k="doc.std_column_component" /></th>
                 <th><T k="table.header_description" /></th>
                 <th><T k="table.header_platform" /></th>
               </tr>
