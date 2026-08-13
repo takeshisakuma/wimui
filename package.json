@@ -1,6 +1,6 @@
 {
   "name": "wimui",
-  "version": "0.23.1",
+  "version": "0.23.2",
   "type": "module",
   "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
   "main": "dist/index.cjs",
@@ -403,6 +403,7 @@
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js",
     "check:external-assets": "node scripts/check-external-assets.js",
     "check:ci-paths": "node scripts/check-ci-paths.js",
+    "check:release-workflow": "node scripts/check-release-workflow.js",
     "check:class-references": "node scripts/check-class-references.js"
   },
   "keywords": [

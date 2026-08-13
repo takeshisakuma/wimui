@@ -291,6 +291,22 @@ gh api "repos/takeshisakuma/wimui/actions/runs?status=waiting" \
 > 古いランをキャンセルするときは**承認しないこと**。承認するとその古いコミットに対して
 > changesets が走る。
 
+**失敗した Release ランも見る。** Version PR のマージと version ジョブがぶつかると
+`cannot lock ref refs/heads/changeset-release/main` で落ちる（T170）。`recover-version`
+ジョブが latest main を取り直して拾うが、ジョブ自体が消えている・checkout がトリガー SHA
+のまま、だと **changeset が main に残ったまま Version PR が無い**状態になる。
+`workflow_dispatch` で `release.yml` を流せば拾える。
+
+```bash
+gh run list --workflow=release.yml --limit 5
+```
+
+失敗のあとに open な「Version Packages」PR が無いかを見る:
+
+```bash
+gh pr list --head changeset-release/main
+```
+
 ### 9. README / llms.txt の主張と `package.json` の一致
 
 ガードがある。リリース前に手でも通す。
