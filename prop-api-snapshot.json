@@ -11784,6 +11784,10 @@
       "required": true,
       "type": "React.ReactNode"
     },
+    "VoiceVisualizer.ariaLabel": {
+      "required": false,
+      "type": "string"
+    },
     "VoiceVisualizer.barCount": {
       "required": false,
       "type": "number"

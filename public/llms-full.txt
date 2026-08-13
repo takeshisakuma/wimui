@@ -3141,6 +3141,8 @@ For bars: one value per bar. For waveform: time-domain samples.
     - `height: number` = 40 — Rendered height in pixels (default 40)
     - `className: string` — Additional CSS class
     - `sentiment: "neutral" | "positive" | "caution" | "negative" | "informative"` = "neutral" — Sentiment context for coloring (default 'neutral')
+    - `ariaLabel: string` — Accessible label describing the audio; when omitted the visualizer is
+hidden from assistive tech
 
 ## Not in scope — deliberately not provided
 

@@ -129,6 +129,7 @@
     "usageMeter_prop_size": "Size of the meter",
     "usageMeter_prop_used": "Number of tokens used so far",
     "usageMeter_prop_warnThreshold": "Fraction (0–1) at which the meter turns to the warning color",
+    "voiceVisualizer_prop_ariaLabel": "Accessible label describing the audio; when omitted the visualizer is hidden from assistive tech",
     "voiceVisualizer_prop_barCount": "Number of bars — bars mode only (default 24)",
     "voiceVisualizer_prop_className": "Additional CSS class",
     "voiceVisualizer_prop_data": "Normalized amplitude values (0–1) per slot.\nWhen omitted, a looping idle animation plays.\nFor bars: one value per bar. For waveform: time-domain samples.",
