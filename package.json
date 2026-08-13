@@ -344,6 +344,7 @@
     "check:token-types": "node scripts/check-token-types.js",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "check:imports": "node scripts/check-imports.js",
+    "vrt:diff-report": "node scripts/vrt-diff-report.js",
     "check:vrt-orphans": "node scripts/check-vrt-orphans.js",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
