@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.5
+
+### Patch Changes
+
+- f448569: Add `baseLevel` to MarkdownRenderer so embedded markdown headings can sit under a page or panel title without outgrowing it. The default stays `2xl`.
+
 ## 0.23.4
 
 ### Patch Changes
