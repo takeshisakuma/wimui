@@ -4,9 +4,42 @@
   height: 100%;
   min-height: 400px; /* Exception: Structural Logic — graph interaction viewport floor */
   overflow: hidden;
-  background: var(--wim-color-surface);
+
+  /* T167: キャンバスはアプリの地、節点は部品の面（DESIGN.md の「灰のキャンバス＋白のカード」）。
+     以前はキャンバスも節点も surface で、light では白の上に白だった。
+     InteractiveGraph は最初からこの組にしてある。 */
+  background: var(--wim-color-surface-app);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-container);
+
+  /* T167: 節点を**明示的に**塗る。以前は React Flow 既定（白背景・#1a192b の枠）に
+     任せており、**dark で白い箱になったうえ、文字色だけがテーマの text-primary（白）を
+     継いで白の上に白＝コントラスト 1:1 でラベルが消えていた**（実測）。
+     nodegraph-- は VRT から prefix ごと除外されているためスクショが一度も
+     レビューされておらず、axe も鳴っていなかった。T71 の IconGallery と同じ型。 */
+  :global(.react-flow__node) {
+    font-family: var(--wim-font-family-base);
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    box-shadow: var(--wim-shadow-sm);
+  }
+
+  :global(.react-flow__handle) {
+    background-color: var(--wim-color-primary);
+  }
+
+  /* T167: 辺のラベルも React Flow 既定（黒文字・白背景）がテーマを無視して
+     出ていた。SVG なので background ではなく fill。 */
+  :global(.react-flow__edge-text) {
+    fill: var(--wim-color-text-primary);
+  }
+
+  :global(.react-flow__edge-textbg) {
+    fill: var(--wim-color-surface);
+  }
+
 
   // Fix React Flow attribution contrast for accessibility (WCAG AA)
   // Specificity (0,2,0) beats React Flow's (0,1,0) — no !important needed
@@ -30,7 +63,8 @@
 }
 
 .background {
-  --xy-background-color: var(--wim-color-surface);
+  /* 地はキャンバスと同じ（T167 で surface → surface-app）。 */
+  --xy-background-color: var(--wim-color-surface-app);
   --xy-background-pattern-color: var(--wim-color-border);
 }
 
