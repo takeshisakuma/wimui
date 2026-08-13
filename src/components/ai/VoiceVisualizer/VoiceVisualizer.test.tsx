@@ -45,4 +45,22 @@ describe("VoiceVisualizer", () => {
     const { container } = render(<VoiceVisualizer isActive={false} />);
     expect(container.firstChild).toHaveClass("muted");
   });
+
+  it("exposes an accessible label when provided (T168)", () => {
+    const { getByRole } = render(<VoiceVisualizer ariaLabel="Recording in progress" />);
+    expect(getByRole("img")).toHaveAttribute("aria-label", "Recording in progress");
+    expect(getByRole("img")).not.toHaveAttribute("aria-hidden");
+  });
+
+  it("is hidden from assistive tech without a label (T168)", () => {
+    const { container } = render(<VoiceVisualizer />);
+    expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
+    expect(container.firstChild).not.toHaveAttribute("role");
+  });
+
+  it("does not leave a nameless img role when aria-hidden is overridden (T168)", () => {
+    const { container } = render(<VoiceVisualizer aria-hidden={false} />);
+    expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
+    expect(container.firstChild).not.toHaveAttribute("role");
+  });
 });

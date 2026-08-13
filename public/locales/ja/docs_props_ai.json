@@ -129,6 +129,7 @@
     "usageMeter_prop_size": "メーターのサイズ",
     "usageMeter_prop_used": "これまでに使用したトークン数",
     "usageMeter_prop_warnThreshold": "メーターが警告色に変わる割合（0〜1）",
+    "voiceVisualizer_prop_ariaLabel": "音声を説明するアクセシブルなラベル。省略するとビジュアライザは支援技術から隠されます",
     "voiceVisualizer_prop_barCount": "バーの数 — バーモードのみ（デフォルト 24）",
     "voiceVisualizer_prop_className": "追加の CSS クラス",
     "voiceVisualizer_prop_data": "スロットごとの正規化された振幅値（0〜1）。\n指定しない場合はループするアイドルアニメーションが再生されます。\nバーの場合: バーごとに1つの値。波形の場合: 時間領域のサンプル。",

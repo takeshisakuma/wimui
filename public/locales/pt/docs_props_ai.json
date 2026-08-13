@@ -129,6 +129,7 @@
     "usageMeter_prop_size": "Tamanho do medidor",
     "usageMeter_prop_used": "Número de tokens usados até agora",
     "usageMeter_prop_warnThreshold": "Fração (0–1) em que o medidor muda para a cor de aviso",
+    "voiceVisualizer_prop_ariaLabel": "Rótulo acessível que descreve o áudio; quando omitido, o visualizador fica oculto para tecnologias assistivas",
     "voiceVisualizer_prop_barCount": "Número de barras — apenas no modo de barras (padrão 24)",
     "voiceVisualizer_prop_className": "Classe CSS adicional",
     "voiceVisualizer_prop_data": "Valores de amplitude normalizados (0–1) por slot.\nQuando omitido, uma animação ociosa em loop é reproduzida.\nPara barras: um valor por barra. Para forma de onda: amostras no domínio do tempo.",

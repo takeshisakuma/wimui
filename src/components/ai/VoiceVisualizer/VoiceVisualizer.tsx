@@ -23,6 +23,11 @@ export interface VoiceVisualizerProps extends React.ComponentPropsWithoutRef<"sv
   className?: string;
   /** Sentiment context for coloring (default 'neutral') */
   sentiment?: "neutral" | "positive" | "caution" | "negative" | "informative";
+  /**
+   * Accessible label describing the audio; when omitted the visualizer is
+   * hidden from assistive tech
+   */
+  ariaLabel?: string;
 }
 
 /* SVG coordinate constants */
@@ -51,11 +56,14 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
       className,
       sentiment = "neutral",
       style,
+      ariaLabel,
+      "aria-label": ariaLabelAttr,
       ...props
     },
     ref
   ) => {
     const useIdle = isActive && !data;
+    const label = ariaLabel ?? (typeof ariaLabelAttr === "string" ? ariaLabelAttr : undefined);
 
     /* ── Bars geometry ── */
     const barW = useMemo(() => (VB_W / barCount) * 0.55, [barCount]);
@@ -96,8 +104,6 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
     return (
       <svg
         ref={ref}
-        role="img"
-        aria-hidden="true"
         viewBox={`0 0 ${VB_W} ${height}`}
         width="100%"
         height={height}
@@ -113,6 +119,12 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         /* グローバルリセット svg { height: auto } が height 属性を打ち消すため CSS でも指定する */
         style={{ height: `${height}px`, ...style }}
         {...props}
+        /* T168: `{...props}` の後に置く。以前は role="img" と aria-hidden を
+           同時にハードコードし、props で aria-hidden だけ上書きすると名前の無い
+           img ロールが残った。ラベルがあるときだけ意味を持つ（Sparkline と同じ）。 */
+        role={label ? "img" : undefined}
+        aria-label={label}
+        aria-hidden={label ? undefined : true}
       >
         {mode === "bars" &&
           bars.map(({ x, barH, norm }, i) => (
