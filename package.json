@@ -1,6 +1,6 @@
 {
   "name": "wimui",
-  "version": "0.23.2",
+  "version": "0.23.3",
   "type": "module",
   "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
   "main": "dist/index.cjs",
