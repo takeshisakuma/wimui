@@ -115,17 +115,22 @@
 
     flex: 1;
     padding: var(--wim-spacing-md);
-    overflow-y: auto;
+    overflow: auto;
     overscroll-behavior: contain;
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-primary);
   }
 
+  /* `width: max-content` が無いと、`.line` は親幅に固定され `.content` の
+     overflow が body's `scrollWidth` に乗らない（見えているのに横スクロール
+     できない）。短い行は `min-width: 100%` で窓いっぱいに残す。 */
   .line {
     display: flex;
     gap: var(--wim-spacing-sm);
     align-items: baseline;
+    width: max-content;
+    min-width: 100%;
     min-height: 1.6em;
   }
 
@@ -135,11 +140,15 @@
     user-select: none;
   }
 
+  /* T166: 実端末と同じく折り返さない。以前は `pre-wrap` + `word-break: break-all`
+     で `controlle` / `r` のようにトークンの途中で割れていた。桁揃えの出力
+     （`exhaust   214.6C   target 196.0C`）は割れた時点で読めない。
+     `CodeDiffViewer` の `.lineContent` と同じ `white-space: pre`。
+     CodeBlock が 480px 未満で `pre-wrap` するのはチャットのバブル向けで、
+     窓を持つ Terminal とは別の判断。 */
   .content {
     flex: 1;
-    min-width: 0;
-    word-break: break-all;
-    white-space: pre-wrap;
+    white-space: pre;
   }
 
   /* ── Line type colors ── */
