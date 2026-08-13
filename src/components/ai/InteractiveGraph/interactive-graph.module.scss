@@ -27,6 +27,17 @@
     background-color: var(--wim-color-primary);
   }
 
+  /* T167: 辺のラベルも React Flow 既定（黒文字・白背景）がテーマを無視して
+     出ていた。SVG なので background ではなく fill。 */
+  :global(.react-flow__edge-text) {
+    fill: var(--wim-color-text-primary);
+  }
+
+  :global(.react-flow__edge-textbg) {
+    fill: var(--wim-color-surface);
+  }
+
+
   /* T159: `border-secondary` は 10% alpha で、**面を仕切る線には足りても意味を運ぶ線には
      足りない** ── 実測で light 1.25:1 / dark 2.25:1。辺が読めなければグラフは絵でしかなく、
      WCAG 1.4.11（内容の理解に必要な図形）は 3:1 を要求する。
