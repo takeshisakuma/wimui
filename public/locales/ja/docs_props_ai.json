@@ -51,6 +51,7 @@
     "interactiveGraph_prop_showGrid": "背景グリッドを表示するかどうか",
     "interactiveGraph_prop_showMiniMap": "ミニマップを表示するかどうか",
     "interactiveGraph_prop_width": "コンテナの幅",
+    "markdownRenderer_prop_baseLevel": "markdown の `h1` の見た目サイズ。`h2`〜`h4` はここから Title の段を 1 つずつ下げ、`xs` で止める。HTML の見出しタグは変えない。既定は `2xl`。",
     "markdownRenderer_prop_className": "ルート要素用の追加の CSS クラス",
     "markdownRenderer_prop_content": "レンダリングする markdown 文字列",
     "markdownRenderer_prop_withAnchors": "タイトルをアンカーリンク付きでレンダリングするかどうか（デフォルト: false）",

@@ -51,6 +51,7 @@
     "interactiveGraph_prop_showGrid": "Whether to show the background grid",
     "interactiveGraph_prop_showMiniMap": "Whether to show the minimap",
     "interactiveGraph_prop_width": "Width of the container",
+    "markdownRenderer_prop_baseLevel": "Visual size of markdown `h1`. `h2`–`h4` step one Title size down from this, clamped at `xs`. Does not change the HTML heading tag. Default `2xl`.",
     "markdownRenderer_prop_className": "Additional CSS class for the root element",
     "markdownRenderer_prop_content": "The markdown string to render",
     "markdownRenderer_prop_withAnchors": "Whether to render titles with anchor links (default: false)",
