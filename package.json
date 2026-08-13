@@ -403,6 +403,7 @@
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js",
     "check:external-assets": "node scripts/check-external-assets.js",
     "check:ci-paths": "node scripts/check-ci-paths.js",
+    "check:release-workflow": "node scripts/check-release-workflow.js",
     "check:class-references": "node scripts/check-class-references.js"
   },
   "keywords": [
