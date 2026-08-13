@@ -218,6 +218,15 @@ const checks = [
   },
   {
     category: "lib",
+    // 上は**変化**しか見ないので、**最初から載っていない部品は永久に緑**になる。
+    // `ArtifactsOverlay` は components.json / MDX / Hierarchy.mdx / ストーリーに
+    // ありながら、どのバレルからも export されていなかった（0.22.0 の
+    // dist/ai.d.ts に名前が無い＝利用者は import できない）。
+    name: "Documented components reach a public barrel (docs claim vs npm surface)",
+    command: "node scripts/check-documented-exports.js",
+  },
+  {
+    category: "lib",
     // 上は「exports マップ + シンボル名」しか見ないので、**prop の型が狭まっても
     // 任意が必須になっても無風で通る**（T38 で実測）。こちらは prop シグネチャを
     // 凍結し、差分を破壊/加算に分類して**破壊だけで落とす**（T54）。

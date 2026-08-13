@@ -15,3 +15,8 @@ export * from "./components/ai/ModelSelector/ModelSelector";
 export * from "./components/ai/ThreadList/ThreadList";
 export * from "./components/ai/UsageMeter/UsageMeter";
 export * from "./components/ai/ChatUI/ChatUI";
+// Drawer の上に載るだけで optional peer は持たない（Drawer → OverlayBase）。
+// `components.json` に公開部品として載り MDX / Hierarchy.mdx からも参照されて
+// いながら、**どのバレルからも出ていなかった**（0.22.0 まで dist/ai.d.ts に
+// 名前が無い＝利用者が import できない）。10 枚目の合成画面を書こうとして発覚。
+export * from "./components/ai/ArtifactsOverlay/ArtifactsOverlay";
