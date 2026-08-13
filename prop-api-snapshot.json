@@ -5962,6 +5962,19 @@
       "required": false,
       "type": "boolean"
     },
+    "MarkdownRenderer.baseLevel": {
+      "required": false,
+      "values": [
+        "2xl",
+        "3xl",
+        "4xl",
+        "lg",
+        "md",
+        "sm",
+        "xl",
+        "xs"
+      ]
+    },
     "MarkdownRenderer.className": {
       "required": false,
       "type": "string"

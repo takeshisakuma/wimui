@@ -239,12 +239,10 @@ export const Procedure: Story = {
             </Group>
 
             {/*
-              本文に markdown の見出し（`##`）は**置かない**。`MarkdownRenderer` の
-              段は絶対値で、`h2` → `Title size="xl"`。上のページ見出し（`md`）より
-              大きく描かれて階層が逆転する（実測したので消した）。基準段を渡す prop は
-              無いので、見出しはページ側が持ち、本文は段落から始める。
+              ページ見出しは `md`。`baseLevel="md"` で markdown の `#` が同じ段、
+              `##` が `sm` になる。既定の `2xl` のままだと `##` がページ見出しを上回る（T160）。
             */}
-            <MarkdownRenderer content={t(ns("proc_body"))} />
+            <MarkdownRenderer content={t(ns("proc_body"))} baseLevel="md" />
 
             <ArtifactsOverlay
               open={open}
@@ -253,9 +251,9 @@ export const Procedure: Story = {
               subtitle={t(ns("record_subtitle"))}
               showFullscreenToggle
             >
-              {/* 同じ理由でパネル内の markdown も見出し無し（`###` が
-                  `Drawer.Title` より大きく出る）。 */}
-              <MarkdownRenderer content={t(ns("record_body"))} />
+              {/* パネル見出し（ArtifactsOverlay の title）は `font-size-lg`。
+                  `baseLevel="md"` なら `###` が `xs` で、パネル見出しを上回らない。 */}
+              <MarkdownRenderer content={t(ns("record_body"))} baseLevel="md" />
             </ArtifactsOverlay>
           </Stack>
         </Container>

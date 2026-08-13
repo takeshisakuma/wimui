@@ -1626,6 +1626,7 @@
       "StreamingTextProps (type)"
     ],
     "./ai/markdown-renderer": [
+      "MarkdownHeadingSize (type)",
       "MarkdownRenderer (value)",
       "MarkdownRendererProps (type)"
     ],

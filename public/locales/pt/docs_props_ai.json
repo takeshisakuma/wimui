@@ -51,6 +51,7 @@
     "interactiveGraph_prop_showGrid": "Se deve exibir a grade de fundo",
     "interactiveGraph_prop_showMiniMap": "Se deve exibir o minimapa",
     "interactiveGraph_prop_width": "Largura do contêiner",
+    "markdownRenderer_prop_baseLevel": "Tamanho visual do `h1` do markdown. `h2`–`h4` descem um passo de Title a partir daqui, com piso em `xs`. Não altera a tag HTML do título. Padrão: `2xl`.",
     "markdownRenderer_prop_className": "Classe CSS adicional para o elemento raiz",
     "markdownRenderer_prop_content": "A string markdown a renderizar",
     "markdownRenderer_prop_withAnchors": "Se deve renderizar os títulos com links de âncora (padrão: false)",
