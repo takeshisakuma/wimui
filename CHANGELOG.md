@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.4
+
+### Patch Changes
+
+- 97dc17a: `VoiceVisualizer` は既定で装飾（`aria-hidden`、role なし）になり、`ariaLabel` を渡したときだけ `role="img"` として名前を持ちます。
+
 ## 0.23.3
 
 ### Patch Changes
