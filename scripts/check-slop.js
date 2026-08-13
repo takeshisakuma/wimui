@@ -129,6 +129,48 @@ const bgValues = (line) =>
   [...line.matchAll(BG_DECL_VALUE)].map((m) => m[2] ?? m[3] ?? m[4] ?? '');
 
 /**
+ * 各行が**コメントの中か**を、ブロックコメントの開閉を跨いで判定する（T161）。
+ *
+ * 以前は判定側で行頭のマーカー（`//` / `*` / `/*`）だけを見ていたため、
+ * **ブロックコメントの 2 行目以降が素通り**していた。実測: 合成画面のコメントに
+ * 禁止例のインライン style を引用した瞬間、ラチェットが 47 → 48 になって赤くなった
+ * ＝**規則を実装の隣に書き残せない**。
+ *
+ * **重いのは逆向き** ── ラチェットは総数しか見ないので、
+ * **コメントに紛れた 1 件を消せば実コードを 1 件増やしても通ってしまう**。
+ * 数える対象を実コードだけに揃えないと、ラチェットの数字は信用できない。
+ *
+ * `//` は行頭のみをコメントとする。文字列中の `//`（`"https://…"`）をコメント開始と
+ * 読むと、その行の実コードを丸ごと見逃す＝**偽陰性**になるので、ここは広げない。
+ * ブロックコメントは、JSX の波括弧で包んだ形（`{` + `/*` … `*` + `/}`）も同じ経路で拾える。
+ */
+function commentMask(lines) {
+  const mask = new Array(lines.length).fill(false);
+  let inBlock = false;
+  lines.forEach((line, i) => {
+    if (inBlock) {
+      mask[i] = true;
+      if (line.includes('*/')) inBlock = false;
+      return;
+    }
+    if (/^\s*\/\//.test(line)) {
+      mask[i] = true;
+      return;
+    }
+    const open = line.indexOf('/*');
+    if (open !== -1 && !line.includes('*/', open + 2)) {
+      // 開いたまま終わる行。開始位置より前に実コードがあり得るので、その行自体は
+      // 行頭がマーカーのときだけコメント扱いにする（`foo(); /* 説明` を見逃さない）。
+      inBlock = true;
+      mask[i] = /^\s*(\/\*|\{\s*\/\*)/.test(line);
+    } else {
+      mask[i] = /^\s*(\/\/|\*|\/\*|\{\s*\/\*)/.test(line);
+    }
+  });
+  return mask;
+}
+
+/**
  * 逃がす注記を、その行と**直前の連続したコメント行**から探す。理由を 2 行以上で
  * 書いた瞬間に効かなくなる形（直前 1 行だけを見る）は避ける。逃がすこと自体より、
  * 逃がした理由がコードの隣に残ることのほうが目的なので、複数行を許す必要がある。
@@ -192,9 +234,10 @@ for (const file of composedFiles) {
   // インライン style であって、散文や設定オブジェクトではない（`description:
   // "One card, 380px..."` のような普通の文字列を px 直書きと誤検出しないため）。
   let styleDepth = 0;
+  const isComment = commentMask(lines);
 
   lines.forEach((line, i) => {
-    if (/^\s*(\/\/|\*|\/\*)/.test(line)) return; // コメント行
+    if (isComment[i]) return; // コメント行（ブロックの 2 行目以降を含む — T161）
     const loc = `${file}:${i + 1}`;
     if (GRADIENT_RE.test(line)) {
       gradientHits.push(`${loc}: ${line.trim().slice(0, 100)}`);
@@ -249,8 +292,10 @@ for (const file of mdxFiles) {
   const upto = (index) => source.slice(0, index).split('\n').length; // 1-origin
   for (const block of source.matchAll(STYLE_BLOCK_RE)) {
     const startLine = upto(block.index);
-    block[1].split('\n').forEach((line, i) => {
-      if (/^\s*(\/\*|\*)/.test(line)) return; // コメント行
+    const cssLines = block[1].split('\n');
+    const cssIsComment = commentMask(cssLines);
+    cssLines.forEach((line, i) => {
+      if (cssIsComment[i]) return; // コメント行（ブロックの 2 行目以降を含む — T161）
       // メディアクエリの px はトークン化できない（CSS 変数は @media で解決されない）
       if (/^\s*@media/.test(line)) return;
       const loc = `${file}:${startLine + i}`;
