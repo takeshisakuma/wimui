@@ -372,6 +372,7 @@
     "check:icons:mirror": "node scripts/check-icon-mirrors.js",
     "check:shrinkable": "node scripts/check-shrinkable-roots.js",
     "check:story-tokens": "node scripts/check-story-tokens.js",
+    "check:graph-edge": "node scripts/check-graph-edge-contrast.js",
     "check:contrast": "node scripts/check-contrast.js",
     "check:subtle-tokens": "node scripts/check-subtle-tokens.js",
     "check:contrast:scss": "node scripts/check-contrast-scss.js",

@@ -27,8 +27,12 @@
     background-color: var(--wim-color-primary);
   }
 
+  /* T159: `border-secondary` は 10% alpha で、**面を仕切る線には足りても意味を運ぶ線には
+     足りない** ── 実測で light 1.25:1 / dark 2.25:1。辺が読めなければグラフは絵でしかなく、
+     WCAG 1.4.11（内容の理解に必要な図形）は 3:1 を要求する。
+     axe は SVG の stroke 対 背景を評価しないので、a11y スイートは緑のままだった。 */
   :global(.react-flow__edge-path) {
-    stroke: var(--wim-color-border-secondary);
+    stroke: var(--wim-comp-graph-edge);
     stroke-width: 2;
   }
 
