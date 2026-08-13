@@ -3053,6 +3053,10 @@ When set, an expand/collapse toggle is shown.
     - `showControls: boolean` — Whether to show controls
 - **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
     - `content: string` (required) — The markdown string to render
+    - `baseLevel: (typeof TITLE_SIZE_STEPS)[number]` = "2xl" — Visual size of markdown `h1`. `h2`–`h4` step one Title size down from this,
+clamped at `xs`. Does not change the HTML heading tag — that stays as
+written in the markdown. Default `"2xl"` keeps the historical mapping
+(`h1` 2xl / `h2` xl / `h3` lg / `h4` md).
     - `className: string` — Additional CSS class for the root element
     - `withAnchors: boolean` — Whether to render titles with anchor links (default: false)
 - **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.

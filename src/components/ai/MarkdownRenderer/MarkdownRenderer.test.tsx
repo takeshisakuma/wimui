@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MarkdownRenderer } from "./MarkdownRenderer";
+import titleStyles from "../../typography/Title/title.module.scss";
 
 vi.mock("react-i18next", async () => ({
   // useWimTranslation（内蔵 i18next フォールバック）が参照する API
@@ -79,5 +80,36 @@ describe("MarkdownRenderer", () => {
       <MarkdownRenderer content="text" className="custom-md" />,
     );
     expect(container.firstChild).toHaveClass("custom-md");
+  });
+
+  // T160: 既定は従来の絶対写像。ここが動くと既存ストーリーの VRT が全部動く。
+  it("maps default headings to the Title size ladder starting at 2xl", () => {
+    const { rerender } = render(<MarkdownRenderer content="# One" />);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveClass(titleStyles.xl2);
+    rerender(<MarkdownRenderer content="## Two" />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveClass(titleStyles.xl);
+    rerender(<MarkdownRenderer content="### Three" />);
+    expect(screen.getByRole("heading", { level: 3 })).toHaveClass(titleStyles.lg);
+    rerender(<MarkdownRenderer content="#### Four" />);
+    expect(screen.getByRole("heading", { level: 4 })).toHaveClass(titleStyles.md);
+  });
+
+  it("steps heading sizes down from baseLevel without changing the HTML tag", () => {
+    render(
+      <MarkdownRenderer
+        content={"# One\n## Two\n### Three\n#### Four"}
+        baseLevel="md"
+      />,
+    );
+    expect(screen.getByRole("heading", { level: 1, name: "One" })).toHaveClass(titleStyles.md);
+    expect(screen.getByRole("heading", { level: 2, name: "Two" })).toHaveClass(titleStyles.sm);
+    expect(screen.getByRole("heading", { level: 3, name: "Three" })).toHaveClass(titleStyles.xs);
+    expect(screen.getByRole("heading", { level: 4, name: "Four" })).toHaveClass(titleStyles.xs);
+  });
+
+  it("clamps stepped sizes at xs", () => {
+    render(<MarkdownRenderer content={"# One\n## Two"} baseLevel="xs" />);
+    expect(screen.getByRole("heading", { level: 1, name: "One" })).toHaveClass(titleStyles.xs);
+    expect(screen.getByRole("heading", { level: 2, name: "Two" })).toHaveClass(titleStyles.xs);
   });
 });
