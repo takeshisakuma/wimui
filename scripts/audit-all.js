@@ -339,6 +339,14 @@ const checks = [
    */
   {
     category: "lib",
+    // T159: axe は SVG の stroke を評価せず、check:contrast はテキスト色が対象。
+    // NodeGraph は SCSS に色の記述が無かった（React Flow 既定がそのまま出ていた）ので、
+    // SCSS を走査する種類のガードでは原理的に見つからなかった。
+    name: "Graph edges meet 3:1 against every surface they can sit on",
+    command: "node scripts/check-graph-edge-contrast.js",
+  },
+  {
+    category: "lib",
     name: "Intent fill colours used as text colour (ratchet)",
     command: "node scripts/check-intent-text-color.js",
   },

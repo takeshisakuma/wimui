@@ -65,6 +65,14 @@
   --wim-comp-terminal-traffic-red: #ff5f57;
   --wim-comp-terminal-traffic-yellow: #febc2e;
   --wim-comp-terminal-traffic-green: #28c840;
+
+  /* T159: グラフの辺。地に対して 3:1（WCAG 1.4.11 の図形）を満たす最弱の値。
+     役割トークンでは表せない ── 全 4 通りの地（surface / surface-app × light / dark）で
+     3:1 を満たす既存トークンの最弱が text-tertiary の 6.50〜10.56:1 で、辺としては強すぎる。
+     3〜5.5:1 に収まるトークンは 1 つも無かったので専用値を置く。
+     以前は InteractiveGraph が border-secondary（10% alpha）で light 1.25 / dark 2.25、
+     NodeGraph は指定が無く React Flow 既定の #b1b1b7 で light 2.13（dark だけ偶然 5.41）。 */
+  --wim-comp-graph-edge: #767676; /* surface-app #e5e5e5 上で 3.61 / surface #fff 上で 4.54 */
   --wim-comp-control-default-fg: var(--wim-color-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface);
   --wim-comp-control-default-border: var(--wim-color-primary);
@@ -128,6 +136,7 @@
   --wim-comp-terminal-traffic-red: #ff5f57;
   --wim-comp-terminal-traffic-yellow: #febc2e;
   --wim-comp-terminal-traffic-green: #28c840;
+  --wim-comp-graph-edge: #929292; /* surface #393939 上で 3.71 / surface-app #262626 上で 4.86 */
   --wim-comp-control-default-fg: var(--wim-color-text-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface-variant);
   --wim-comp-control-default-border: var(--wim-color-border);
@@ -191,6 +200,7 @@
   --wim-comp-terminal-traffic-red: #ff5f57;
   --wim-comp-terminal-traffic-yellow: #febc2e;
   --wim-comp-terminal-traffic-green: #28c840;
+  --wim-comp-graph-edge: #929292; /* surface #393939 上で 3.71 / surface-app #262626 上で 4.86 */
   --wim-comp-control-default-fg: var(--wim-color-text-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface-variant);
   --wim-comp-control-default-border: var(--wim-color-border);

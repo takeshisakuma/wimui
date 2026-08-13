@@ -34,6 +34,15 @@
   --xy-background-pattern-color: var(--wim-color-border);
 }
 
+/* T159: 辺の色を**明示的に**置く。以前は指定が無く React Flow 既定の `#b1b1b7` が
+   そのまま出ていた ── 白地の前提で選ばれた色なので、`surface` #fff 上で 2.13:1 と
+   3:1 に届かない（dark #393939 上では 5.41:1 で偶然通っていた）。
+   上流の既定に任せている限り、こちらの意思と無関係に動く。
+   **SCSS に色の記述が無いため、SCSS を走査する種類のガードでは原理的に見つからない。** */
+.root :global(.react-flow__edge-path) {
+  stroke: var(--wim-comp-graph-edge);
+}
+
 .controls {
   --xy-controls-button-background-color: var(--wim-color-surface);
   --xy-controls-button-background-color-hover: var(--wim-color-ghost-bg-hover);
