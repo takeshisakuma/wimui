@@ -327,6 +327,36 @@ const checks = [
     name: "Monospace contract (token + descendant inheritance, always paired)",
     command: "node scripts/check-mono-family.js",
   },
+  /*
+   * T164（2026-08-13）: 以下の 3 本は **husky の hook（lint-staged）でしか走っていなかった**。
+   * `audit-all.js` にも CI のワークフローにも登録が無く、**クリーンチェックアウトの CI では
+   * 一度も実行されていない**。hook を飛ばした push、hook の入っていない環境、
+   * lint-staged の glob に当たらない変更のいずれでも素通りする。
+   *
+   * 見つけ方: lint-staged に登録された 34 本を `audit-all.js` と `.github/workflows/**` の
+   * 両方と突き合わせた（`check:i18n-quality` がコミット時に初めて落ちたのがきっかけ）。
+   * 「ローカルの検査一式 = audit:lib + audit:docs」という前提が事実と違っていた。
+   */
+  {
+    category: "lib",
+    name: "Intent fill colours used as text colour (ratchet)",
+    command: "node scripts/check-intent-text-color.js",
+  },
+  {
+    category: "lib",
+    // 大文字小文字だけが違うパスは、Windows / macOS では同一視され Linux では別物になる。
+    // CI（ubuntu）で見ていなかったのは、いちばん壊れる側を見ていなかったということ。
+    name: "Git casing consistency (case-only renames break on Linux)",
+    command: "node scripts/check-git-casing.cjs",
+  },
+  {
+    category: "docs",
+    // `i18n-check.yml` では走るが `audit:docs` には無かった。そのため
+    // `npm run audit:docs` を緑にしても、生の `**`・重複キー・PT-PT 語彙・
+    // 指示形 placeholder は一切見られていなかった。
+    name: "Translation quality (raw markup, duplicate keys, placeholder voice)",
+    command: "node scripts/check-i18n-quality.js",
+  },
 ];
 
 const wantLib = process.argv.includes("--lib");
