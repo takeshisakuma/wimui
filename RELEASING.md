@@ -73,6 +73,9 @@ npm に wimui が公開（provenance バッジ付き）
 
 > 「なぜ 2 回 PR が出るの？」= **バージョン確定を人間が最終承認する**ための仕組み。1 回目で「出したい変更」を宣言し、2 回目で「実際のバージョン/CHANGELOG」を確認してからマージ＝publish、という 2 段階。
 
+**Version PR がある間に、別の changeset PR をマージしないこと（T170）。**
+両方を短い間隔でマージすると、実行中の version ジョブが `changeset-release/main` へ force-push する瞬間に、Version PR のマージがそのブランチを消して `cannot lock ref` で落ちる。`release.yml` の `recover-version` ジョブが latest main を取り直して拾うが、**版が飛ぶ**副作用は残る（0.23.0 は package.json だけ上がって npm に無く、中身は 0.23.1 に入った）。拾い漏れが疑わしいときは `gh workflow run release.yml --ref main`（`workflow_dispatch`）。
+
 ## 3. 公開時の README 差し替え文面
 
 `README.md` の **Installation** セクションを置換:

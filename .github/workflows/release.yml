@@ -85,6 +85,81 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Version PR のマージと、別 changeset 起点の version ジョブがぶつかると、
+  # `changeset-release/main` が消された直後の force-push が
+  # `cannot lock ref` で落ちる（T170。run 31695108794、2026-08-13）。
+  #
+  # concurrency は別の workflow run 同士しか直列化しない。ぶつかる相手は
+  # **人間が Version PR をマージした操作**なので、ここでは効かない。
+  #
+  # 危ないのは「最後の run がこれで落ちた場合」。`on.push.paths` は
+  # `.changeset/**` しか見ないので、次に changeset が載るまで Version PR が
+  # 作られず、main に消化されない changeset が無音で残る。今回は直後の
+  # Version PR マージ起点 run が拾ったので偶然直った。
+  #
+  # このジョブは version が落ちたときだけ、**トリガーの SHA ではなく
+  # いまの main** を取り直す。トリガー SHA には、並行してマージされた
+  # Version PR が既に消化した changeset が残っているので、それを使うと
+  # 公開済みの版を Version PR に載せ直す。
+  #
+  # `environment: release` は付けない。NPM_TOKEN も渡さない。
+  # `publish:` も渡さない。取り残しを Version PR にするだけで、npm には触らない。
+  recover-version:
+    name: Recover Version PR after ref race
+    needs: [decide, version]
+    if: ${{ always() && needs.version.result == 'failure' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      # 並行マージが default branch に見えるまでの短い待ち。失敗の原因そのもの
+      # （ブランチ削除）は既に起きているので、長く待つ必要は無い。
+      - name: Wait for concurrent Version PR merge to land
+        run: sleep 15
+
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Count leftover changesets
+        id: leftover
+        run: |
+          count=$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | wc -l)
+          echo "changeset: $count 件"
+          if [ "$count" -gt 0 ]; then
+            echo "has_changesets=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changesets=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Nothing to recover
+        if: steps.leftover.outputs.has_changesets == 'false'
+        run: |
+          echo "latest main に changeset が残っていない。Version PR のマージが消費したので、この失敗は取り残しを作っていない。"
+
+      - name: Setup Node.js
+        if: steps.leftover.outputs.has_changesets == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        if: steps.leftover.outputs.has_changesets == 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Recreate Release Pull Request
+        if: steps.leftover.outputs.has_changesets == 'true'
+        uses: changesets/action@v1
+        with:
+          # version ジョブと同じ。`publish` は渡さない。
+          version: npm run version:packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # 実際に npm へ出す経路だけを `release` 環境で守る。NPM_TOKEN もここだけ。
   publish:
     name: Publish to npm

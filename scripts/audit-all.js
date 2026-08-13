@@ -310,6 +310,15 @@ const checks = [
   },
   {
     category: "lib",
+    // T170（2026-08-13）: Version PR のマージと version ジョブがぶつかると
+    // `cannot lock ref` で落ち、最後の run がそれだと Version PR が無音で
+    // 作られない。YAML の契約（recover ジョブが latest main を取り直す /
+    // environment は publish だけ）は目視されないので機械に置く。
+    name: "Release workflow contracts (Version PR recover / no env gate on version)",
+    command: "node scripts/check-release-workflow.js",
+  },
+  {
+    category: "lib",
     name: "Shrinkable roots (width:100% + min-width:0 collapse in a flex row)",
     command: "node scripts/check-shrinkable-roots.js",
   },
