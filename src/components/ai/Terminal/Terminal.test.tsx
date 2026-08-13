@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Terminal, type TerminalLine } from "./Terminal";
 
@@ -51,6 +52,16 @@ describe("Terminal", () => {
     expect(btn).toBeInTheDocument();
     fireEvent.click(btn);
     expect(onClear).toHaveBeenCalledOnce();
+  });
+
+  it("does not wrap CLI tokens mid-word (T166)", () => {
+    const scss = readFileSync("src/components/ai/Terminal/terminal.module.scss", "utf8");
+    const content = scss.match(/\.content\s*\{([^}]+)\}/);
+    expect(content?.[1]).toMatch(/white-space:\s*pre;/);
+    expect(content?.[1]).not.toMatch(/pre-wrap/);
+    expect(content?.[1]).not.toMatch(/word-break:\s*break-all/);
+    expect(scss).toMatch(/\.body\s*\{[^}]*overflow:\s*auto/);
+    expect(scss).toMatch(/\.line\s*\{[^}]*width:\s*max-content/);
   });
 
   it("renders ANSI-colored output without error", () => {
