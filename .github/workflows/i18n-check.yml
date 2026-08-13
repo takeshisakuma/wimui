@@ -12,6 +12,8 @@ on:
       - "scripts/check-i18n.js"
       - "scripts/check-i18n-components.js"
       - "scripts/check-i18n-quality.js"
+      - "scripts/check-i18n-aliases.js"
+      - "scripts/lib/i18n-aliases.js"
       - "scripts/check-i18n-ignore.js"
       - "scripts/check-mdx-hardcoded.js"
       - "scripts/check-stories-hardcoded.js"
@@ -27,6 +29,8 @@ on:
       - "scripts/check-i18n.js"
       - "scripts/check-i18n-components.js"
       - "scripts/check-i18n-quality.js"
+      - "scripts/check-i18n-aliases.js"
+      - "scripts/lib/i18n-aliases.js"
       - "scripts/check-i18n-ignore.js"
       - "scripts/check-mdx-hardcoded.js"
       - "scripts/check-stories-hardcoded.js"
@@ -64,6 +68,9 @@ jobs:
 
       - name: Check translation quality (duplicate keys / PT-PT vocabulary)
         run: npm run i18n:quality
+
+      - name: Column-header aliases stay identical (T157)
+        run: npm run i18n:aliases
 
       - name: Fail on untranslated placeholders
         run: |

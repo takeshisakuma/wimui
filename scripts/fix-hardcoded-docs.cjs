@@ -90,7 +90,7 @@ fix(path.join(docsDir, "LinkVsButton.mdx"), [
 
 // ─── InternalArchitecture.mdx ─────────────────────────────────────────────────
 fix(path.join(docsDir, "InternalArchitecture.mdx"), [
-  ['      <th>Component</th>', '      <th><T k="table.header_component" /></th>'],
+  ['      <th>Component</th>', '      <th><T k="doc.std_column_component" /></th>'],
   ['      <th>Role</th>', '      <th><T k="table.header_role" /></th>'],
 ]);
 
