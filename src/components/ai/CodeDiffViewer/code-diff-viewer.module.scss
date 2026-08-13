@@ -249,14 +249,23 @@
   }
 
   /* Shared cell parts */
+
+  /* `width` は下限ではない（T162）。390px では中身が 7.57px しか残らず、数字 1 文字
+     （7.59px）にも足りずに `10` が `1` と `0` へ割れ、その行だけ高さが 2 倍
+     （20.22 → 41.44px）になって差分の行揃えが崩れていた。10 行を超える差分すべてで起きる。
+     `flex-shrink: 0` は効かない ── 同じ規則が `display: table-cell` を指定しており、
+     table-cell に flex のプロパティは適用されない。下限は `min-width` で持たせ、
+     `white-space` は保険（桁が増えて幅が足りなくなっても数字を割らない）。 */
   .lineNum {
     display: table-cell;
     flex-shrink: 0;
     width: 3em;
+    min-width: 3em;
     padding: 0 var(--wim-spacing-sm);
     font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
     text-align: right;
+    white-space: nowrap;
     user-select: none;
 
     .splitCell & {

@@ -334,6 +334,7 @@
     "check:links": "node scripts/check-mdx-links.js",
     "check:aschild": "node scripts/check-aschild.js && vitest run scripts/check-aschild-render.test.tsx",
     "check:api": "node scripts/check-public-api.js",
+    "check:exports": "node scripts/check-documented-exports.js",
     "check:api:update": "node scripts/check-public-api.js --update",
     "check:prop-api": "node scripts/check-prop-api.js",
     "check:prop-api:update": "node scripts/check-prop-api.js --update",

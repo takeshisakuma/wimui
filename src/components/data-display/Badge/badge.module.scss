@@ -5,7 +5,14 @@
     @include token-base;
 
     gap: 0.5em;
-    font-weight: normal;
+
+    /* Tag / Chip と同じ `medium`（T163）。ここだけ生の `normal`（400）で、
+       同じ 12.64px・同じ文字色・同じ面なのに Badge だけ細く出ていた。
+       warning の solid は面が明るく文字が `#000` 固定（`text-on-warning`）なので、
+       細さがそのまま読みにくさになる ── コントラストは 8.29:1（light）/
+       13.89:1（dark）で足りており、効くレバーは色ではなく太さだった。
+       `.root` にあるので solid / outline / subtle の全 variant に一度に効く。 */
+    font-weight: var(--wim-font-weight-medium);
     line-height: 1;
     text-decoration: none;
     border-radius: var(--wim-radius-full);
