@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SpeedDial } from "./SpeedDial";
@@ -151,5 +152,18 @@ describe("SpeedDial", () => {
     );
     expect(screen.getByLabelText("Edit")).toBeInTheDocument();
     expect(screen.getByLabelText("Approve")).toBeInTheDocument();
+  });
+
+  it("pins up/down actions to inline-end so long labels grow toward start (T175)", () => {
+    const scss = readFileSync(
+      "src/components/navigation/SpeedDial/speed-dial.module.scss",
+      "utf8",
+    );
+    const up = scss.match(/\.up\s*&\s*\{([^}]+)\}/);
+    const down = scss.match(/\.down\s*&\s*\{([^}]+)\}/);
+    expect(up?.[1]).toMatch(/inset-inline-end:\s*0/);
+    expect(up?.[1]).toMatch(/align-items:\s*end/);
+    expect(down?.[1]).toMatch(/inset-inline-end:\s*0/);
+    expect(down?.[1]).toMatch(/align-items:\s*end/);
   });
 });

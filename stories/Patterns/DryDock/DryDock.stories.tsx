@@ -41,6 +41,8 @@ import {
  * **書いて分かった穴**:
  * ① **T173（済）** `SpeedDialAction.intent` は型にあるが `FloatButton` に渡していなかった。
  * ② **T174（済）** `aria-label` はラッパー `div` に落ち、トリガーにはアイコン名が残る。
+ * ③ **T175（済）** ラベル付きアクションはトリガーより長い。静的 left だと
+ *    言語によって右へはみ出す。縦展開は inline-end 揃え（コピーは短くしない）。
  */
 const meta = {
   title: "Patterns/DryDock",
@@ -189,6 +191,7 @@ export const Walk: Story = {
 /**
  * クレーン 2 の運転席。**主役は複数操作。** 止めるのが先で、巻くのは出さない。
  * 4 つ（3 つに揃えない）。開いたまま撮る。FloatButton はタグとして書かない。
+ * アクションは `SpeedDial` の縦展開既定（inline-end）で右揃え。短いラベルに逃げない。
  */
 export const Cab: Story = {
   render: function Render() {
