@@ -46,8 +46,8 @@ import {
  * 13 に追記した）。専門用語は状態や操作を運ぶ場所に置かない。
  *
  * ストーリー 3 本（仕事が違うので分ける）:
- * - Terms      長い規約を読みながら予約を確定する。`Affix` が予約の要約と
- *              確定ボタンを連れて回り、`BackTop` で先頭へ戻る
+ * - Terms      長い規約を読んで、末尾で予約を確定する。`Affix` が「何に同意
+ *              するのか」を連れて回り、`BackTop` で先頭へ戻る
  * - PreDrive   出発前の車体チェック。記録に無い傷が 1 件あり、
  *              唯一の操作＝`FloatButton`（サポートに電話）
  * - Return     返却の直前。給油が足りず返却が止まっている。複数操作＝`SpeedDial`
@@ -119,8 +119,14 @@ const CheckRow = ({
 );
 
 /**
- * **いつ使う画面か**: 予約を確定する前に規約を読んでいるところ。主役は規約で、
- * 読んでいるあいだ「何をいくらで借りるのか」と「確定」だけを手元に残す。
+ * **いつ使う画面か**: 予約を確定する前に規約を読んでいるところ。主役は規約。
+ *
+ * **貼るのは「何に同意するのか」だけで、同意のボタンは規約の末尾に置く。**
+ * 初版は帯の中に「同意して予約する」を入れていたが、**下まで来ていない人の手元に
+ * 確定ボタンがある**形になり、同意フローとしては見ない UI だった（ユーザー指摘、
+ * 2026-08-14）。同意の操作は読み終わりに置き、貼るのは対象（車・時間・料金）の
+ * 提示に限る。これは合成ルール 12（クロームは黙らせる ── クローム側に primary の
+ * 面を置かない）と同じ向きで、**この画面の primary は末尾のボタン 1 つだけ**になる。
  *
  * `Affix` / `BackTop` の既定ターゲットは `window`。`AppShell.Main` がスクロール
  * するので、ここは Main を渡す。渡さないと帯は貼らず、戻るも出ない。
@@ -129,34 +135,25 @@ export const Terms: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const mainRef = useRef<HTMLElement>(null);
-    const barRef = useRef<HTMLDivElement>(null);
-    const clausesRef = useRef<HTMLDivElement>(null);
     const getMain = useCallback(() => mainRef.current, []);
 
     /*
-     * 貼っている位相で撮る。**固定値の scrollTop では位相が保証できない**
-     * （言語で文の高さが変わるので、en / ja / pt で同じ定数は使えない）。
+     * **読み終わりの位相で撮る** ── 帯が貼っていて、末尾の同意ボタンに届いていて、
+     * `BackTop` が出ている状態。「下まで来て初めてボタンに届く」ことが 1 枚で分かる。
      *
-     * **測るのは条の一覧で、帯ではない。** `Affix` は貼ると中身を
-     * `position: fixed` に移し、流れには同じ寸法の placeholder を残す。つまり
-     * 貼ったあとの帯の rect.top は「main の上端」＝ scrollTop 相当になるので、
-     * 帯を基準にすると `scrollTop = scrollTop + 余白` を繰り返して下端まで流れる
-     * （2026-08-14 実測。clamp のおかげで結果だけは安定するので VRT では
-     * 気づけない。T176）。一覧は fixed にならないので、何回測っても同じ位置に着く。
+     * 下端は `scrollHeight` で置く（ブラウザが clamp する）。**要素を測って
+     * 位置を出すのは避ける** ── `Affix` は貼ると中身を `position: fixed` に移し、
+     * 流れには placeholder を残すので、貼ったあとの帯の rect.top は「main の上端」＝
+     * scrollTop 相当になる。帯を基準に置き直すと `scrollTop = scrollTop + 余白` を
+     * 繰り返して下へ流れる（2026-08-14 実測。clamp のおかげで結果だけは安定するので
+     * VRT では気づけない。T176）。下端指定ならその罠に入らない。
      */
     useEffect(() => {
       const main = mainRef.current;
-      const bar = barRef.current;
-      const clauses = clausesRef.current;
-      if (!main || !bar || !clauses) return;
+      if (!main) return;
 
       const place = () => {
-        const clausesTop =
-          clauses.getBoundingClientRect().top -
-          main.getBoundingClientRect().top +
-          main.scrollTop;
-        // 条の頭が、貼った帯のすぐ下に来る高さ。帯の高さは言語で変わるので測る。
-        main.scrollTop = clausesTop - bar.getBoundingClientRect().height - 24;
+        main.scrollTop = main.scrollHeight;
       };
 
       place();
@@ -195,23 +192,19 @@ export const Terms: Story = {
                     {t(ns("terms_meta"))}
                   </Text>
                 </Stack>
-                <Text size="sm">{t(ns("terms_lead"))}</Text>
-                {/* 貼るのは「予約の要約＋確定」。スクロールで見出しが流れても、
-                    何をいくらで借りるのかと操作は手元に残る。 */}
+                {/* 貼るのは同意の対象（何をいくらで借りるのか）。条を読み進めて
+                    見出しが流れても、何についての規約かが手元に残る。操作は入れない。 */}
                 <Affix offsetTop={0} target={getMain}>
-                  <Box ref={barRef} bg="surface-variant" p="sm" radius="md">
-                    <Flex justify="between" align="center" gap="md" wrap="wrap">
-                      <Stack gap="2xs">
-                        <Text size="xs" color="text-tertiary">
-                          {t(ns("terms_affix_label"))}
-                        </Text>
-                        <Text size="sm">{t(ns("terms_affix"))}</Text>
-                      </Stack>
-                      <Button size="sm">{t(ns("terms_affix_action"))}</Button>
-                    </Flex>
+                  <Box bg="surface-variant" p="sm" radius="md">
+                    <Stack gap="2xs">
+                      <Text size="xs" color="text-tertiary">
+                        {t(ns("terms_affix_label"))}
+                      </Text>
+                      <Text size="sm">{t(ns("terms_affix"))}</Text>
+                    </Stack>
                   </Box>
                 </Affix>
-                <Stack gap="lg" ref={clausesRef}>
+                <Stack gap="lg">
                   <Text size="sm">{t(ns("terms_p1"))}</Text>
                   <Text size="sm">{t(ns("terms_p2"))}</Text>
                   <Text size="sm">{t(ns("terms_p3"))}</Text>
@@ -234,6 +227,13 @@ export const Terms: Story = {
                     <Text size="sm">{t(ns("terms_cancel_2"))}</Text>
                     <Text size="sm">{t(ns("terms_cancel_3"))}</Text>
                   </Stack>
+                </Stack>
+                {/* 同意は読み終わりに置く。ここがこの画面の唯一の primary。 */}
+                <Stack gap="2xs" align="start">
+                  <Button>{t(ns("terms_agree"))}</Button>
+                  <Text size="xs" color="text-tertiary">
+                    {t(ns("terms_agree_note"))}
+                  </Text>
                 </Stack>
               </Stack>
             </Container>
