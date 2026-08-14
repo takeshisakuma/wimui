@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import classNames from "classnames";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./affix.module.scss";
 
 export interface AffixProps {
@@ -25,15 +26,25 @@ interface AffixState {
   isAffixed: boolean;
 }
 
-export const Affix = ({
-  offsetTop,
-  offsetBottom,
-  onChange,
-  target = () => window,
-  children,
-  className,
-  style,
-}: AffixProps) => {
+/**
+ * Pins children while scrolling.
+ *
+ * `ref` points at the in-flow placeholder (the outer element), not the
+ * `position: fixed` inner wrapper. After the inner content sticks, measure
+ * this node for document position — the children's rect is the viewport edge.
+ */
+export const Affix = React.forwardRef<HTMLDivElement, AffixProps>(function Affix(
+  {
+    offsetTop,
+    offsetBottom,
+    onChange,
+    target = () => window,
+    children,
+    className,
+    style,
+  },
+  ref,
+) {
   const [state, setState] = useState<AffixState>({
     isAffixed: false,
   });
@@ -138,7 +149,7 @@ export const Affix = ({
 
   return (
     <div
-      ref={placeholderRef}
+      ref={mergeRefs(placeholderRef, ref)}
       style={{ ...state.placeholderStyle, ...style }}
       className={classNames(className)}
     >
@@ -151,6 +162,8 @@ export const Affix = ({
       </div>
     </div>
   );
-};
+});
+
+Affix.displayName = "Affix";
 
 export default Affix;
