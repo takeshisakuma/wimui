@@ -338,13 +338,25 @@ export const LightboxContent = ({
 };
 
 // --- Lightbox Gallery ---
-// Helper component to collect items
 
 export interface LightboxGalleryProps {
+  /** Thumbnails for the strip (`Lightbox.Trigger`). Not a `Gallery` grid. */
   children: React.ReactNode;
+  /** Items registered on the Lightbox for the overlay. */
   items: LightboxItem[];
 }
 
+/**
+ * Thumbnail strip that registers `items` on the Lightbox context.
+ *
+ * Composition Contract:
+ * - Registers `items` for `Lightbox.Content`; does not render the overlay
+ * - Children are a centered wrapping flex row (column below `sm`)
+ * - Intended children: `Lightbox.Trigger` (and similar thumbnails)
+ * - Do not wrap `Gallery` here — the grid becomes one centered flex item and
+ *   stacks on small widths. Register items with `null` children and render
+ *   `Gallery` as a sibling
+ */
 export const LightboxGallery = ({ items, children }: LightboxGalleryProps) => {
   const { setItems } = useLightbox();
 

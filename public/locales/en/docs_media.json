@@ -366,9 +366,9 @@
     "a11y_spec_3": "Checkbox buttons have `aria-label` containing Select/Deselect and the item title.",
     "a11y_spec_4": "The toolbar has `role=\"toolbar\"` + `aria-label`.",
     "best_practice_1": "Provide bulk action buttons via `renderActions`; they only appear in the toolbar when items are selected.",
-    "best_practice_2": "Shift+click range selection matches file manager UX. Consider adding a brief usage hint near the toolbar.",
+    "best_practice_2": "Shift+click a checkbox to select a range — the same pattern as a file manager. Consider adding a brief usage hint near the toolbar.",
     "best_practice_3": "`background-color: var(--wim-color-surface-subtle)` serves as a placeholder during image loading. Combine with Skeleton if needed.",
-    "choice_gallery_selection": "Yes (Shift+click range select)",
+    "choice_gallery_selection": "Yes (checkbox; Shift+click a checkbox for a range)",
     "choice_gallery_usage": "Image selection and management",
     "choice_gallery_when": "When you need select, delete, share, or other operations",
     "choice_header_component": "Component",
@@ -387,7 +387,7 @@
     "content_guideline_3": "If the gallery may be empty, control the empty state in the parent component.",
     "design_intent": "Gallery is designed not merely as an image grid, but as an interactive media selection component with selection state. Enabling `selectable` switches to multi-select and bulk action mode, covering a \"manage and operate\" use case distinct from Masonry (layout-first) and Lightbox (browse-first).",
     "i18n_desc": "Uses `useTranslation(\"components\")`. Requires `gallery.*` namespace keys.",
-    "keyboard_desc": "Full keyboard navigation: Arrow keys to move focus, Space/Enter to toggle select or trigger `onItemClick`, Ctrl/Cmd+A to select all, Escape to clear selection, Home/End to jump to first/last.",
+    "keyboard_desc": "Full keyboard navigation: Arrow keys to move focus, Space to toggle select when selectable, Enter (or the photo click) to fire `onItemClick`, Ctrl/Cmd+A to select all, Escape to clear selection, Home/End to jump to first/last.",
     "motion_spec_1": "The selection toolbar animates in with `opacity` + `translateY` (`--wim-duration-fast`).",
     "motion_spec_2": "Images apply a `scale(1.04)` zoom transition on hover/selected state (`--wim-duration-base`).",
     "motion_spec_3": "The checkbox overlay fades in from `opacity: 0 → 1` on hover.",
@@ -400,7 +400,7 @@
     "variation_four_col": "Four Columns",
     "variation_landscape": "Landscape Aspect Ratio",
     "variation_selectable": "Selectable Mode",
-    "variation_selectable_desc": "Checkboxes appear and Shift+click enables range selection. A toolbar showing count and bulk actions appears when items are selected."
+    "variation_selectable_desc": "Checkboxes are visible on every item and are what selects. Shift+click a checkbox to select a range. Clicking the photo fires `onItemClick` and does not toggle selection. A toolbar showing count and bulk actions appears when items are selected."
   },
   "guide": {
     "media_title": "Media Component Selection Guide"

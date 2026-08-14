@@ -57,8 +57,9 @@
   --wim-comp-trend-up-fill: #306f42;
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
-  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
-  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-carousel-ring: oklch(from var(--wim-color-white) l c h / 0.85);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-chat-surface: #b3cee3; /* PCCS p18 — ChatUI 背景（淡い水色）。text-secondary ラベルが AA を満たす明度 */
   --wim-comp-chat-bubble-received: var(--wim-color-white); /* PCCS w（白） */
   --wim-comp-chat-bubble-sent: #9ad47f; /* PCCS lt11（淡緑） */
@@ -128,8 +129,9 @@
   --wim-comp-trend-up-fill: var(--wim-color-text-success);
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
-  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
-  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-carousel-ring: oklch(from var(--wim-color-white) l c h / 0.85);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-chat-surface: var(--wim-color-surface-variant); /* dark はライトの水色を適用せず据え置き */
   --wim-comp-chat-bubble-received: color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-surface-variant));
   --wim-comp-chat-bubble-sent: color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-surface-variant));
@@ -192,8 +194,9 @@
   --wim-comp-trend-up-fill: var(--wim-color-text-success);
   --wim-comp-carousel-control-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
   --wim-comp-carousel-control-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
-  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-white) l c h / 0.5);
-  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-white) l c h / 0.8);
+  --wim-comp-carousel-ring: oklch(from var(--wim-color-white) l c h / 0.85);
+  --wim-comp-carousel-indicator-bg: oklch(from var(--wim-color-surface-void) l c h / 0.3);
+  --wim-comp-carousel-indicator-hover-bg: oklch(from var(--wim-color-surface-void) l c h / 0.5);
   --wim-comp-chat-surface: var(--wim-color-surface-variant); /* dark はライトの水色を適用せず据え置き */
   --wim-comp-chat-bubble-received: color-mix(in oklch, var(--wim-color-warning) 10%, var(--wim-color-surface-variant));
   --wim-comp-chat-bubble-sent: color-mix(in oklch, var(--wim-color-primary) 10%, var(--wim-color-surface-variant));

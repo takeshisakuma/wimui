@@ -366,9 +366,9 @@
     "a11y_spec_3": "Botões de checkbox têm `aria-label` contendo Selecionar/Desmarcar e o título do item.",
     "a11y_spec_4": "A barra de ferramentas possui `role=\"toolbar\"` + `aria-label`.",
     "best_practice_1": "Forneça botões de ação em massa via `renderActions`; eles aparecem apenas na barra quando itens estão selecionados.",
-    "best_practice_2": "A seleção por intervalo com Shift+clique corresponde à UX de gerenciadores de arquivos. Considere adicionar uma dica de uso próxima à barra de ferramentas.",
+    "best_practice_2": "Shift+clique numa caixa de seleção para um intervalo — o mesmo padrão de um gerenciador de arquivos. Considere adicionar uma dica de uso próxima à barra de ferramentas.",
     "best_practice_3": "`background-color: var(--wim-color-surface-subtle)` serve como placeholder durante o carregamento de imagens. Combine com Skeleton se necessário.",
-    "choice_gallery_selection": "Sim (seleção por intervalo com Shift+clique)",
+    "choice_gallery_selection": "Sim (caixa de seleção; Shift+clique numa caixa para um intervalo)",
     "choice_gallery_usage": "Seleção e gerenciamento de imagens",
     "choice_gallery_when": "Quando operações como selecionar, excluir ou compartilhar são necessárias",
     "choice_header_component": "Componente",
@@ -387,7 +387,7 @@
     "content_guideline_3": "Se a galeria puder ficar vazia, controle o estado vazio no componente pai.",
     "design_intent": "O Gallery foi projetado não apenas como uma grade de imagens, mas como um componente interativo de seleção de mídia com estado de seleção. Ativar `selectable` muda para o modo de seleção múltipla e ações em massa, cobrindo o caso de uso de \"gerenciar e operar\", diferente do Masonry (foco em layout) e do Lightbox (foco em navegação).",
     "i18n_desc": "Usa `useTranslation(\"components\")`. Requer chaves do namespace `gallery.*`.",
-    "keyboard_desc": "Teclas de seta para mover o foco, Espaço/Enter para alternar seleção ou acionar `onItemClick`, Ctrl/Cmd+A para selecionar tudo, Escape para limpar a seleção, Home/End para ir ao primeiro/último.",
+    "keyboard_desc": "Teclas de seta para mover o foco, Espaço para alternar a seleção quando selecionável, Enter (ou o clique na foto) para disparar `onItemClick`, Ctrl/Cmd+A para selecionar tudo, Escape para limpar a seleção, Home/End para ir ao primeiro/último.",
     "motion_spec_1": "A barra de ações em massa anima com `opacity` + `translateY` (`--wim-duration-fast`).",
     "motion_spec_2": "As imagens aplicam uma transição de zoom `scale(1.04)` ao passar o mouse ou quando selecionadas (`--wim-duration-base`).",
     "motion_spec_3": "O overlay do checkbox aparece com fade de `opacity: 0 → 1` ao passar o mouse.",
@@ -400,7 +400,7 @@
     "variation_four_col": "Quatro Colunas",
     "variation_landscape": "Proporção Paisagem",
     "variation_selectable": "Modo de seleção",
-    "variation_selectable_desc": "Checkboxes aparecem e o Shift+clique ativa a seleção por intervalo. Uma barra com contagem e ações em massa é exibida quando itens estão selecionados."
+    "variation_selectable_desc": "As caixas de seleção ficam visíveis em todos os itens e são o que seleciona. Shift+clique numa caixa seleciona um intervalo. Clicar na foto dispara `onItemClick` e não alterna a seleção. Uma barra com contagem e ações em massa é exibida quando itens estão selecionados."
   },
   "guide": {
     "media_title": "Guia de Seleção de Componentes de Mídia"

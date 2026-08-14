@@ -2737,11 +2737,11 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `columns: number` = 3 — Number of grid columns. Default: 3.
     - `gap: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Gap between items. Default: "md".
     - `aspect: "square" | "landscape" | "portrait" | "auto"` = "square" — Aspect ratio for each image. Default: "square".
-    - `selectable: boolean` = false — Enable multi-select with checkboxes.
+    - `selectable: boolean` = false — Enable multi-select with checkboxes. The photo click is `onItemClick`, not select.
     - `selected: string[]` — Controlled selected IDs.
     - `defaultSelected: string[]` = [] — Uncontrolled initial selected IDs.
     - `onSelectionChange: (ids: string[]) => void` — Called when selection changes.
-    - `onItemClick: (item: GalleryItem, index: number) => void` — Called when an item is clicked (outside checkbox).
+    - `onItemClick: (item: GalleryItem, index: number) => void` — Called when the item (not the checkbox) is clicked. Fires even when `selectable`.
     - `renderActions: (params: { selectedIds: string[]; clearSelection: () => void; }) => React.ReactNode` — Render bulk-action toolbar when items are selected.
 - **Icon** — Visual symbols
     - `name: keyof typeof ALL_ICONS` — Icon name. Requires `import "wimui/icons"` once at the app entry to register icons.

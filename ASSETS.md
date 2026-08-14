@@ -19,6 +19,7 @@ Storybook / リポジトリで使うサンプル画像の出所・権利・目�
 | `public/demo/lightbox_3.png` | ハイビスカスの接写 | AI 生成（Gemini/Imagen） |
 | `src/media/imagesanple.webp` | 「now making」黒地プレースホルダ | 自作（テキストグラフィック） |
 | `src/media/gallery_{city,desert,forest,mountain,ocean,snow}.svg` | 風景シーン 6 枚（400×400・図形とグラデーション） | **自作 SVG**（ベクター。人物・ロゴ・実在地形なし） |
+| `src/media/gallery_mountain_faded.svg` | 上記 `gallery_mountain` の退色版（同じ輪郭・無彩色寄り） | **自作 SVG**（11 枚目の ImageCompare 用。人物・ロゴなし） |
 | `src/media/avatar_{1,2,3,4}.svg` | 抽象アバター 4 枚（120×120・円と肩のシルエット） | **自作 SVG**（T55。**実在人物を一切含まない**） |
 | `src/media/scene_{wide,card_1,card_2,card_3,landscape,portrait_tall}.svg` | 風景シーン 6 枚（各種アスペクト比） | **自作 SVG**（T55） |
 | `src/media/video_poster.webp` | 「now making」黒地プレースホルダ | 自作（テキストグラフィック） |
