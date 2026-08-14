@@ -3,6 +3,7 @@
     position: relative;
     display: inline-flex;
     flex-direction: column;
+    width: fit-content;
     max-width: 100%;
     padding: 0;
     margin: 0;
@@ -108,6 +109,10 @@
   }
 
   .caption {
+    /* 長いキャプションが figure をプレーヤーより広げない。幅 0 で固有サイズに
+       寄与せず、min-width 100% で inner の幅に折り返す。 */
+    width: 0;
+    min-width: 100%;
     padding-bottom: var(--wim-spacing-xs);
     margin-top: var(--wim-spacing-sm);
     font-size: var(--wim-font-size-sm);

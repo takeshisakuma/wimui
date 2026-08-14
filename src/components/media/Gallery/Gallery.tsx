@@ -54,7 +54,7 @@ export interface GalleryProps
   gap?: "xs" | "sm" | "md" | "lg" | "xl";
   /** Aspect ratio for each image. Default: "square". */
   aspect?: "square" | "landscape" | "portrait" | "auto";
-  /** Enable multi-select with checkboxes. */
+  /** Enable multi-select with checkboxes. The photo click is `onItemClick`, not select. */
   selectable?: boolean;
   /** Controlled selected IDs. */
   selected?: string[];
@@ -62,7 +62,7 @@ export interface GalleryProps
   defaultSelected?: string[];
   /** Called when selection changes. */
   onSelectionChange?: (ids: string[]) => void;
-  /** Called when an item is clicked (outside checkbox). */
+  /** Called when the item (not the checkbox) is clicked. Fires even when `selectable`. */
   onItemClick?: (item: GalleryItem, index: number) => void;
   /** Render bulk-action toolbar when items are selected. */
   renderActions?: (params: {
@@ -344,12 +344,8 @@ const GalleryItemInternal = ({ item, index }: GalleryItemInternalProps) => {
   const isSelected = selectedIds.has(item.id);
   const isFocused = focusedIndex === index;
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (selectable) {
-      toggleSelect(item.id, index, e.shiftKey);
-    } else {
-      onItemClick?.(item, index);
-    }
+  const handleClick = () => {
+    onItemClick?.(item, index);
     setFocusedIndex(index);
   };
 
@@ -361,8 +357,9 @@ const GalleryItemInternal = ({ item, index }: GalleryItemInternalProps) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
-      if (selectable) {
-        toggleSelect(item.id, index, false);
+      // Space はチェックのキーボード相当（チェックは tabIndex -1）。Enter は写真クリック。
+      if (selectable && e.key === " ") {
+        toggleSelect(item.id, index, e.shiftKey);
       } else {
         onItemClick?.(item, index);
       }
@@ -373,7 +370,6 @@ const GalleryItemInternal = ({ item, index }: GalleryItemInternalProps) => {
     <div
       className={classNames(styles.item, {
         [styles.selected]: isSelected,
-        [styles.selectable]: selectable,
       })}
       role="gridcell"
       aria-selected={selectable ? isSelected : undefined}

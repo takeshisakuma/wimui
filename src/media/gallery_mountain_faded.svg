@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="skyFaded" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9AA7B0"/>
+      <stop offset="100%" stop-color="#C5CBCE"/>
+    </linearGradient>
+    <linearGradient id="snowFaded" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8E8E4"/>
+      <stop offset="100%" stop-color="#C9CDD0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#skyFaded)"/>
+  <polygon points="0,400 160,100 320,400" fill="#8B9498"/>
+  <polygon points="80,400 240,80 400,400" fill="#9AA3A8"/>
+  <polygon points="160,400 280,140 400,350" fill="#A8B0B4" opacity="0.8"/>
+  <polygon points="80,400 160,200 240,400" fill="#7A8488"/>
+  <polygon points="140,140 160,100 180,140 175,135 165,125 155,135" fill="url(#snowFaded)"/>
+  <polygon points="210,105 240,80 270,105 260,98 240,82 220,98" fill="url(#snowFaded)"/>
+  <rect y="340" width="400" height="60" fill="#7A8078" opacity="0.6"/>
+</svg>

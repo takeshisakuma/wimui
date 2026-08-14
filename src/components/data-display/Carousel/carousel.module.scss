@@ -62,22 +62,27 @@
     background-color: var(--wim-comp-carousel-control-bg);
     border: none;
     border-radius: 50%;
+
+    /* 写真の上に乗る操作なので、塗りだけだと雪・夜景で溶ける。ドロップシャドウは
+       暗い絵で消える。白の輪郭は明暗どちらでも残る（インジケーターと同じトークン）。 */
+    box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-comp-carousel-ring);
     transform: translateY(-50%);
     transition: background-color var(--wim-transition-fast);
-  
+
     &:hover:not(:disabled) {
       background-color: var(--wim-comp-carousel-control-hover-bg);
     }
-  
+
+    /* 押せない側は出さない。opacity だけだと 30% 塗りがさらに薄くなり、
+       ホバーの not-allowed カーソルはタッチに無い。 */
     &:disabled {
-      cursor: not-allowed;
-      opacity: var(--wim-opacity-disabled);
+      visibility: hidden;
     }
-  
+
     &.prev {
       left: var(--wim-spacing-md);
     }
-  
+
     &.next {
       right: var(--wim-spacing-md);
     }
@@ -90,7 +95,7 @@
     left: 50%;
     z-index: 10;
     display: flex;
-    gap: var(--wim-spacing-xs);
+    gap: var(--wim-spacing-xl);
     transform: translateX(-50%);
   }
 
@@ -98,7 +103,8 @@
     /* 4.8px の円だったが、**見るのも押すのも小さすぎた**。WCAG 2.5.8（AA）の
        24×24 に合わせて上げる。ドットが目に見えて大きくなる ── 当たり判定だけ
        広げる手（疑似要素）も検討したが、隣との間隔が 4.8px しかなく重なるため、
-       ここは見た目ごと変える判断（T117）。 */
+       ここは見た目ごと変える判断（T117）。現在位置は横長にせず、同じ円のまま
+       塗りだけ変える（形が変わると「同じ操作の列」に見えなくなる）。 */
     width: var(--wim-tap-target-min);
     height: var(--wim-tap-target-min);
     padding: 0;
@@ -106,17 +112,13 @@
     background-color: var(--wim-comp-carousel-indicator-bg);
     border: none;
     border-radius: 50%;
-    transition:
-      background-color var(--wim-transition-fast),
-      width var(--wim-transition-fast);
-  
+    box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-comp-carousel-ring);
+    transition: background-color var(--wim-transition-fast);
+
     &.active {
-      /* 現在のスライドは横長で示す。高さが上がったぶん幅も上げて比率を保つ。 */
-      width: calc(var(--wim-tap-target-min) * 2);
       background-color: var(--wim-color-primary);
-      border-radius: var(--wim-radius-sm);
     }
-  
+
     &:hover:not(.active) {
       background-color: var(--wim-comp-carousel-indicator-hover-bg);
     }

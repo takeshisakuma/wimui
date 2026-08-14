@@ -42,6 +42,14 @@ describe("Gallery", () => {
     expect(screen.queryByRole("toolbar")).not.toBeInTheDocument();
   });
 
+  it("shows a checkbox on every item when selectable, including unchecked", () => {
+    render(<Gallery items={sampleItems} selectable />);
+    expect(screen.getAllByRole("checkbox")).toHaveLength(3);
+    expect(screen.getAllByRole("checkbox").every((el) => !(el as HTMLInputElement).checked)).toBe(
+      true,
+    );
+  });
+
   it("shows toolbar when an item is selected", () => {
     render(
       <Gallery
@@ -54,18 +62,37 @@ describe("Gallery", () => {
     expect(screen.getByRole("toolbar")).toBeInTheDocument();
   });
 
-  it("calls onSelectionChange when an item is clicked in selectable mode", () => {
+  it("does not select when the photo is clicked in selectable mode", () => {
     const onSelectionChange = vi.fn();
+    const onItemClick = vi.fn();
     render(
       <Gallery
         items={sampleItems}
         selectable
         onSelectionChange={onSelectionChange}
+        onItemClick={onItemClick}
       />,
     );
     const cells = screen.getAllByRole("gridcell");
     fireEvent.click(cells[0]);
+    expect(onItemClick).toHaveBeenCalledWith(sampleItems[0], 0);
+    expect(onSelectionChange).not.toHaveBeenCalled();
+  });
+
+  it("selects from the checkbox and does not fire onItemClick", () => {
+    const onSelectionChange = vi.fn();
+    const onItemClick = vi.fn();
+    render(
+      <Gallery
+        items={sampleItems}
+        selectable
+        onSelectionChange={onSelectionChange}
+        onItemClick={onItemClick}
+      />,
+    );
+    fireEvent.click(screen.getAllByRole("checkbox")[0]);
     expect(onSelectionChange).toHaveBeenCalledWith(["1"]);
+    expect(onItemClick).not.toHaveBeenCalled();
   });
 
   it("calls onItemClick when an item is clicked in non-selectable mode", () => {
@@ -152,7 +179,7 @@ describe("Gallery", () => {
     expect(document.activeElement).toBe(cells[0]);
   });
 
-  it("selects a range of items with Shift+Click", () => {
+  it("selects a range of items with Shift+Click on the checkbox", () => {
     const onSelectionChange = vi.fn();
     render(
       <Gallery
@@ -161,12 +188,32 @@ describe("Gallery", () => {
         onSelectionChange={onSelectionChange}
       />,
     );
-    const cells = screen.getAllByRole("gridcell");
+    const checkboxes = screen.getAllByRole("checkbox");
 
-    fireEvent.click(cells[0]);
+    fireEvent.click(checkboxes[0]);
     expect(onSelectionChange).toHaveBeenLastCalledWith(["1"]);
 
-    fireEvent.click(cells[2], { shiftKey: true });
+    fireEvent.click(checkboxes[2], { shiftKey: true });
     expect(onSelectionChange).toHaveBeenLastCalledWith(["1", "2", "3"]);
+  });
+
+  it("toggles selection with Space and fires onItemClick with Enter when selectable", () => {
+    const onSelectionChange = vi.fn();
+    const onItemClick = vi.fn();
+    render(
+      <Gallery
+        items={sampleItems}
+        selectable
+        onSelectionChange={onSelectionChange}
+        onItemClick={onItemClick}
+      />,
+    );
+    const cells = screen.getAllByRole("gridcell");
+    fireEvent.keyDown(cells[0], { key: " " });
+    expect(onSelectionChange).toHaveBeenCalledWith(["1"]);
+    expect(onItemClick).not.toHaveBeenCalled();
+
+    fireEvent.keyDown(cells[0], { key: "Enter" });
+    expect(onItemClick).toHaveBeenCalledWith(sampleItems[0], 0);
   });
 });
