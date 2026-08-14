@@ -62,6 +62,13 @@
       "designAnchor": "読み手が知っている世界"
     },
     {
+      "id": "reachable_state",
+      "ja": "画面に無い操作の結果を出さない",
+      "en": "Never show the result of an action the screen cannot perform. Coverage-driven composition puts the component first and invents a state that justifies it, so the reader sees outcomes (\"not in the record\", \"1 photo\") with no control that could have produced them. Reachable state is (1) what the controls on this screen can do, and (2) values the car/booking/sensor already holds. Use the component inside a reachable moment; don't invent an unreachable one to justify the component. The test: can you arrive at what is on screen using only the controls that are on screen?",
+      "judge": "画面に無い操作の結果が出ていないか（入力手段が無いのに結果だけがある＝fail）",
+      "designAnchor": "画面に無い操作の結果を出さない"
+    },
+    {
       "id": "one_elevation_stance",
       "ja": "エレベーションのスタンスも 1 画面 1 つ",
       "en": "Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant=\"outline\"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border. On admin/list screens, `Table`/`DataGrid` mobile cards must stay border-only like the toolbar and pagination — row cards with `shadow-sm` while chrome is flat outline is the same mixed stance.",

@@ -35,31 +35,18 @@ import {
  * `FloatButton` だが、タグ走査は外側しか数えないので、単一アクションの
  * 話では `<FloatButton>` を自分で書く。
  *
- * **題材は「借りて返すまで」。** カーシェアを 1 台借りて返す 1 日で、
- * ①予約を確定する前 ②出発前 ③返す直前 の 3 つの席を書く。スマホ 1 台で
- * 完結し、部品はどれも一度は触ったことのある位置に出る。
+ * **題材は「借りて返すまで」。** カーシェアを 1 台借りて返す 1 日。
  *
- * **初版（室蘭の乾ドックの当直）は 2 度差し戻された**（2026-08-14）。
- * 1 度目は「どういうときに使う画面か分からない」で、状態と次の操作を
- * 画面に出して直したが、2 度目は**題材そのもの**が通らなかった ── 当直規程・
- * キール歩行・ブロックの詰めを先に理解しないと、部品の話に届かない。
- * **実在感は「読み手が知っている世界」の中で作る**（`DESIGN.md` の合成ルール
- * 13 に追記した）。専門用語は状態や操作を運ぶ場所に置かない。
+ * **画面に無い操作の結果は出さない**（合成ルール 14）。カバレッジのために
+ * 「傷を報告したあと」「写真を上げたあと」を先に置くと、入力手段が無いのに
+ * 結果だけが見える。初版の PreDrive がそれで、ユーザーに 3 度差し戻された
+ * （2026-08-14）。届くのは ①この画面のコントロールを触った結果 ②車や予約が
+ * 最初から持っている値（残燃料、枠番号、予約の時間）だけ。
  *
- * ストーリー 3 本（仕事が違うので分ける）:
- * - Terms      長い規約を読んで、末尾で予約を確定する。`Affix` が「何に同意
- *              するのか」を連れて回り、`BackTop` で先頭へ戻る
- * - PreDrive   出発前の車体チェック。入力はチェックと写真。台帳に無い傷が
- *              1 件あり、唯一の操作＝`FloatButton`（サポートに電話）
- * - Return     返却の直前。給油が足りず返却が止まっている。複数操作＝`SpeedDial`
- *
- * **3 枚は規約で繋がる** ── 2 条（給油は半分より上）が Return を止め、
- * 3 条（傷は走り出す前に）が PreDrive の 1 件を説明する。読み手が
- * 「なぜこの画面でこれを押すのか」を、規約を覚えていなくても追える。
- *
- * **VRT を決める指定**: Terms は Main を途中までスクロールして撮る（帯が貼り、
- * 戻るが見える位相）。Return は `open` と `trigger="click"`（hover は位相が
- * 定まらない）。
+ * ストーリー 3 本:
+ * - Terms      規約を読んで末尾で予約する。`Affix` は予約の要約、`BackTop` は先頭へ
+ * - PreDrive   乗る前の項目を付けている途中。チェックが入力。`FloatButton` は常時の電話
+ * - Return     返す直前。残燃料は車の値。`SpeedDial` は今できる操作（開いたのは押した位相）
  */
 const meta = {
   title: "Patterns/CarShare",
@@ -92,41 +79,16 @@ const StationHeader = () => {
 };
 
 /**
- * チェックの 1 行。客の入力はチェックと写真だけ。行の下の文は客が打ったメモではない
- * （台帳の引用、撮った写真の枚数、予約に無い装備）。
+ * チェックの 1 行。客の入力はこのボックスだけ。
  */
 const CheckRow = ({
   name,
-  note,
   checked,
-  disabled,
-  error,
-  badge,
 }: {
   name: string;
-  note?: string;
   checked?: boolean;
-  disabled?: boolean;
-  error?: boolean;
-  badge?: { label: string; intent: "warning" };
 }) => (
-  <Stack gap="2xs">
-    <Flex align="center" gap="sm" wrap="wrap">
-      <Checkbox defaultChecked={checked} disabled={disabled} error={error}>
-        {name}
-      </Checkbox>
-      {badge ? (
-        <Badge intent={badge.intent} variant="subtle" size="sm">
-          {badge.label}
-        </Badge>
-      ) : null}
-    </Flex>
-    {note ? (
-      <Text size="xs" color="text-tertiary">
-        {note}
-      </Text>
-    ) : null}
-  </Stack>
+  <Checkbox defaultChecked={checked}>{name}</Checkbox>
 );
 
 /**
@@ -263,10 +225,9 @@ export const Terms: Story = {
 };
 
 /**
- * **いつ使う画面か**: 客が借りた車の横に立って、乗る前の項目を付けているところ。
- * 客の入力はチェック（問題なければ付ける）と写真（傷があれば撮る）。文章は打たない。
- * 行の下に出る文は台帳の引用か、撮った写真か、予約に無い装備。左後ろのドアは
- * 台帳に無いのでチェックできず、走り出す前に電話する（3 条）。
+ * **いつ使う画面か**: 客が借りた車の横で、乗る前の項目を付けている途中。
+ * 入力はチェックだけ。4 つ付いているのは、この画面で付けた結果。左後ろのドアは
+ * まだ見ていない。電話は貸出中いつでもできる操作で、傷の報告の結果ではない。
  * 押すものは電話 1 つなので `SpeedDial` ではなく `FloatButton`。
  */
 export const PreDrive: Story = {
@@ -292,37 +253,17 @@ export const PreDrive: Story = {
                 </Stack>
                 <Progress
                   value={4}
-                  max={6}
+                  max={5}
                   size="sm"
                   label={t(ns("check_progress"))}
                 />
                 <Stack gap="lg">
-                  <CheckRow
-                    name={t(ns("check_r1_name"))}
-                    note={t(ns("check_r1_note"))}
-                    checked
-                  />
+                  <CheckRow name={t(ns("check_r1_name"))} checked />
                   <CheckRow name={t(ns("check_r2_name"))} checked />
                   <CheckRow name={t(ns("check_r3_name"))} checked />
                   <CheckRow name={t(ns("check_r4_name"))} checked />
-                  <CheckRow
-                    name={t(ns("check_r5_name"))}
-                    note={t(ns("check_r5_note"))}
-                    error
-                    badge={{
-                      label: t(ns("check_r5_state")),
-                      intent: "warning",
-                    }}
-                  />
-                  <CheckRow
-                    name={t(ns("check_r6_name"))}
-                    note={t(ns("check_r6_note"))}
-                    disabled
-                  />
+                  <CheckRow name={t(ns("check_r5_name"))} />
                 </Stack>
-                <Text size="sm" color="text-secondary">
-                  {t(ns("check_note"))}
-                </Text>
               </Stack>
             </Container>
             <FloatButton
@@ -338,13 +279,13 @@ export const PreDrive: Story = {
 };
 
 /**
- * **いつ使う画面か**: 枠に停めて、返却を押す直前の車内。主役は返却の状態
- * （給油・走行・枠・忘れ物）。給油が 2 条の線に足りないので返却は止まっていて、
- * ここから先の道が複数ある＝`SpeedDial`。
+ * **いつ使う画面か**: 枠に停めて、返却を押す直前の車内。残燃料・走行・枠番号は
+ * 車と予約が持っている値で、この画面では打たない。半分より下なので返却は止まる。
+ * 今できる操作が複数ある＝`SpeedDial`。開いているのは押した位相（VRT 用。
+ * hover は定まらないので `trigger="click"` + `open`）。
  *
- * 主たる操作（返却する）は画面の中に置く。右下に出すのは「何かあったとき」の
- * 操作で、赤いものは押したくない 1 つだけ（`intent="danger"`）。
- * `FloatButton` はタグとして書かない。開いたまま撮る。
+ * 主たる操作（返却する）は画面の中。右下は「今できること」。
+ * `FloatButton` はタグとして書かない。
  */
 export const Return: Story = {
   render: function Render() {
@@ -396,14 +337,6 @@ export const Return: Story = {
                       </DescriptionListTerm>
                       <DescriptionListDetails>
                         {t(ns("return_dd_slot"))}
-                      </DescriptionListDetails>
-                    </DescriptionListItem>
-                    <DescriptionListItem>
-                      <DescriptionListTerm>
-                        {t(ns("return_dt_items"))}
-                      </DescriptionListTerm>
-                      <DescriptionListDetails>
-                        {t(ns("return_dd_items"))}
                       </DescriptionListDetails>
                     </DescriptionListItem>
                   </DescriptionList>
