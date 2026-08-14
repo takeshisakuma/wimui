@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SpeedDial } from "./SpeedDial";
@@ -108,6 +109,30 @@ describe("SpeedDial", () => {
     expect(screen.getByLabelText("PlusIcon")).toHaveAttribute("aria-expanded", "false");
   });
 
+  it("puts aria-label on the trigger, not the icon name", () => {
+    render(<SpeedDial actions={[]} aria-label="Crane actions" />);
+    expect(screen.getByLabelText("Crane actions")).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.queryByLabelText("PlusIcon")).not.toBeInTheDocument();
+  });
+
+  it("keeps the icon-name fallback when aria-label is omitted", () => {
+    render(<SpeedDial actions={[]} />);
+    expect(screen.getByLabelText("PlusIcon")).toBeInTheDocument();
+  });
+
+  it("passes action intent through to the action button", () => {
+    render(
+      <SpeedDial
+        actions={[{ icon: "SquareIcon", label: "Stop hoist", intent: "danger" }]}
+        open
+      />,
+    );
+    expect(screen.getByLabelText("Stop hoist").className).toMatch(/danger/);
+  });
+
   it("uses custom icon and activeIcon", () => {
     render(
       <SpeedDial actions={[]} icon="EditIcon" activeIcon="CheckIcon" open />
@@ -127,5 +152,18 @@ describe("SpeedDial", () => {
     );
     expect(screen.getByLabelText("Edit")).toBeInTheDocument();
     expect(screen.getByLabelText("Approve")).toBeInTheDocument();
+  });
+
+  it("pins up/down actions to inline-end so long labels grow toward start (T175)", () => {
+    const scss = readFileSync(
+      "src/components/navigation/SpeedDial/speed-dial.module.scss",
+      "utf8",
+    );
+    const up = scss.match(/\.up\s*&\s*\{([^}]+)\}/);
+    const down = scss.match(/\.down\s*&\s*\{([^}]+)\}/);
+    expect(up?.[1]).toMatch(/inset-inline-end:\s*0/);
+    expect(up?.[1]).toMatch(/align-items:\s*end/);
+    expect(down?.[1]).toMatch(/inset-inline-end:\s*0/);
+    expect(down?.[1]).toMatch(/align-items:\s*end/);
   });
 });

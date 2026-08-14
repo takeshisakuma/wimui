@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .root {
     position: relative;
     display: inline-flex;
@@ -22,15 +22,23 @@
     transition: all var(--wim-duration-base) var(--wim-easing-standard);
 
     .up & {
+      /* T175: ラベル付きアクションはトリガーより長い。静的 left だと
+         長いボタンが inline-end 側へはみ出す（言語でどれがはみ出すかが変わる）。
+         既定の置き場は trailing の隅（資料どおり）なので、end に揃えて
+         長さは inline-start 側へ伸ばす。 */
+      inset-inline-end: 0;
       bottom: 100%;
       flex-direction: column-reverse;
+      align-items: end;
       padding-bottom: var(--wim-spacing-md);
       transform: translateY(10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
 
     .down & {
+      inset-inline-end: 0;
       top: 100%;
       flex-direction: column;
+      align-items: end;
       padding-top: var(--wim-spacing-md);
       transform: translateY(-10px); /* Exception: Interaction Physics — 展開前のオフセット */
     }
