@@ -64,7 +64,7 @@
     {
       "id": "reachable_state",
       "ja": "画面に無い操作の結果を出さない",
-      "en": "Never show the result of an action the screen cannot perform. Coverage-driven composition puts the component first and invents a state that justifies it, so the reader sees outcomes (\"not in the record\", \"1 photo\") with no control that could have produced them. Reachable state is (1) what the controls on this screen can do, and (2) values the car/booking/sensor already holds. Use the component inside a reachable moment; don't invent an unreachable one to justify the component. The test: can you arrive at what is on screen using only the controls that are on screen?",
+      "en": "Never show the result of an action the screen cannot perform. Coverage-driven composition puts the component first and invents a state that justifies it, so the reader sees outcomes (\"not in the record\", \"1 photo\") with no control that could have produced them. Reachable state is (1) what the controls on this screen can do, and (2) values the subject already holds. Use the component inside a reachable moment; don't invent an unreachable one to justify the component. The test: can you arrive at what is on screen using only the controls that are on screen?",
       "judge": "画面に無い操作の結果が出ていないか（入力手段が無いのに結果だけがある＝fail）",
       "designAnchor": "画面に無い操作の結果を出さない"
     },
