@@ -55,6 +55,13 @@
       "designAnchor": "デモ内容に実在感を持たせる"
     },
     {
+      "id": "familiar_domain",
+      "ja": "実在感は「読み手が知っている世界」の中で作る",
+      "en": "Build realism inside a world the reader already knows. Chasing substance pushes toward niche expertise, and a screen set in one (a shipyard's watch orders, a trading desk, a clinical protocol) makes the reader decode the domain before they can see the components — the pattern stops teaching. Pick an everyday situation (renting a car and returning it, a delivery, a hospital appointment) and keep specialist vocabulary out of the places that carry state and actions. The test: can a reader say what the screen is for without a paragraph of explanation?",
+      "judge": "題材が説明なしで分かるか（用語の解読が先に立つ専門世界＝fail。何の画面かを 1 行で言えないなら warn）",
+      "designAnchor": "読み手が知っている世界"
+    },
+    {
       "id": "one_elevation_stance",
       "ja": "エレベーションのスタンスも 1 画面 1 つ",
       "en": "Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant=\"outline\"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border. On admin/list screens, `Table`/`DataGrid` mobile cards must stay border-only like the toolbar and pagination — row cards with `shadow-sm` while chrome is flat outline is the same mixed stance.",
