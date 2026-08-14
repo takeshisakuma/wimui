@@ -9694,6 +9694,7 @@
       "affix_best_practice_1": "Use for pinning vital interface elements like navigation bars, action buttons, or table of contents, ensuring they remain accessible during scrolling.",
       "affix_best_practice_2": "Avoid overusing Affix, as having too many fixed elements can clutter the viewport and diminish the space available for main content.",
       "affix_best_practice_3": "Ensure that the fixed element does not obscure other important information or overlap with interactive components like headers or footers.",
+      "affix_best_practice_4": "When you need the element's position in the document after it has stuck (scroll math, tests), measure the Affix root via `ref`. That node stays in flow. Do not measure the children — they become `position: fixed`, and their `getBoundingClientRect().top` is the viewport edge.",
       "affix_bottom": "Fixed to Bottom",
       "affix_bottom_desc": "Use the offsetBottom property to fix content relative to the bottom of the screen.",
       "affix_choice_affix_when": "When you want to temporarily fix part of the content and keep it accessible after scrolling.",

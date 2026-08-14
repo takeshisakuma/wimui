@@ -9,6 +9,7 @@
     "affix_best_practice_1": "Use para fixar elementos vitais da interface, como barras de navegação, botões de ação ou índices, garantindo que permaneçam acessíveis durante a rolagem.",
     "affix_best_practice_2": "Evite o uso excessivo do Affix, pois ter muitos elementos fixos pode poluir a área de visualização e diminuir o espaço disponível para o conteúdo principal.",
     "affix_best_practice_3": "Certifique-se de que o elemento fixo não obscureça outras informações importantes ou se sobreponha a componentes interativos, como cabeçalhos ou rodapés.",
+    "affix_best_practice_4": "Quando precisar da posição no documento depois que o elemento grudou (cálculo de scroll, testes), meça a raiz do Affix via `ref`. Esse nó permanece no fluxo. Não meça os filhos — eles viram `position: fixed`, e o `getBoundingClientRect().top` deles é a borda da viewport.",
     "affix_bottom": "Bottom",
     "affix_bottom_desc": "Bottom Desc",
     "affix_choice_affix_when": "Quando você deseja fixar temporariamente parte do conteúdo e mantê-lo acessível após a rolagem.",

@@ -9,6 +9,7 @@
     "affix_best_practice_1": "重要な操作ボタンやナビゲーション、目次（TOC）などを、常に画面内に表示しておきたい場合に使用してください。",
     "affix_best_practice_2": "固定される要素が多すぎると、メインコンテンツの表示領域を圧迫するため注意が必要です。",
     "affix_best_practice_3": "固定位置への切り替わりがユーザーを驚かせないよう、自然な文脈で使用してください。",
+    "affix_best_practice_4": "貼ったあとに文書上の位置が要るとき（スクロール計算・テスト）は、`ref` で Affix の根を測る。その節は流れに残る。子どもを測らないこと ── 子どもは `position: fixed` になり、`getBoundingClientRect().top` は画面の上端になる。",
     "affix_bottom": "下部への固定",
     "affix_bottom_desc": "offsetBottom プロパティを使用することで、コンテンツを画面下部を基準に固定できます。",
     "affix_choice_affix_when": "コンテンツの一部を一時的に固定し、スクロール後もアクセス可能にしたい場合。",

@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Affix from "./Affix";
@@ -161,6 +162,45 @@ describe("Affix", () => {
     });
 
     expect(screen.getByText("Resize Content")).toBeInTheDocument();
+  });
+
+  it("forwards ref to the in-flow placeholder, not the fixed inner", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        const stuck = this.classList.contains(styles.affixed);
+        return {
+          top: stuck ? 0 : -10,
+          bottom: stuck ? 50 : 40,
+          left: 0,
+          right: 200,
+          width: 200,
+          height: 50,
+          x: 0,
+          y: stuck ? 0 : -10,
+          toJSON: () => {},
+        } as DOMRect;
+      },
+    );
+
+    const { container } = render(
+      <Affix ref={ref} offsetTop={0}>
+        <div>Sticky Content</div>
+      </Affix>,
+    );
+
+    act(() => {
+      fireEvent.scroll(window);
+      vi.runAllTimers();
+    });
+
+    const placeholder = container.firstChild as HTMLElement;
+    const inner = placeholder.firstChild as HTMLElement;
+    expect(ref.current).toBe(placeholder);
+    expect(inner).toHaveClass(styles.affixed);
+    expect(placeholder).not.toHaveClass(styles.affixed);
+    expect(ref.current?.getBoundingClientRect().top).toBe(-10);
+    expect(inner.getBoundingClientRect().top).toBe(0);
   });
 
   it("does not affix when target returns null", () => {

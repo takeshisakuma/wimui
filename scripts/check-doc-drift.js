@@ -169,6 +169,10 @@ const NOT_A_PROP = new Set([
   "window", "document", "navigator", "requestAnimationFrame", "console", "localStorage", "sessionStorage", "null", "undefined",
   // CSS の単位・値
   "ch", "px", "rem", "em", "vh", "vw", "fr", "deg", "ms", "auto", "none", "inherit", "initial", "unset",
+  // React の組み込み。`forwardRef` 由来なので docgen の props に出ない。
+  // `onClick` は /^on[A-Z]/ で落とす。`ref` は 1 語の camelCase なのでここ。
+  // T176 の Affix が公開 API として `ref` を名指ししたときに、偽陽性で落ちた。
+  "ref",
 ]);
 
 const families = {};
