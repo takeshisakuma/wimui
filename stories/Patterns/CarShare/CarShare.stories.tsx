@@ -92,8 +92,8 @@ const StationHeader = () => {
 };
 
 /**
- * チェックの 1 行。入力はチェックボックス（見た項目に付ける）。文章は打たない。
- * 傷があれば写真を撮って、チェックは付けない。バッジは例外の行だけ。
+ * チェックの 1 行。客の入力はチェックと写真だけ。行の下の文は客が打ったメモではない
+ * （台帳の引用、撮った写真の枚数、予約に無い装備）。
  */
 const CheckRow = ({
   name,
@@ -104,7 +104,7 @@ const CheckRow = ({
   badge,
 }: {
   name: string;
-  note: string;
+  note?: string;
   checked?: boolean;
   disabled?: boolean;
   error?: boolean;
@@ -121,9 +121,11 @@ const CheckRow = ({
         </Badge>
       ) : null}
     </Flex>
-    <Text size="xs" color="text-tertiary">
-      {note}
-    </Text>
+    {note ? (
+      <Text size="xs" color="text-tertiary">
+        {note}
+      </Text>
+    ) : null}
   </Stack>
 );
 
@@ -262,8 +264,9 @@ export const Terms: Story = {
 
 /**
  * **いつ使う画面か**: 客が借りた車の横に立って、乗る前の項目を付けているところ。
- * 入力はチェック（問題なければ付ける）と写真（傷があれば撮る）。文章は打たない。
- * 左後ろのドアは台帳に無いのでチェックできず、走り出す前に電話する（3 条）。
+ * 客の入力はチェック（問題なければ付ける）と写真（傷があれば撮る）。文章は打たない。
+ * 行の下に出る文は台帳の引用か、撮った写真か、予約に無い装備。左後ろのドアは
+ * 台帳に無いのでチェックできず、走り出す前に電話する（3 条）。
  * 押すものは電話 1 つなので `SpeedDial` ではなく `FloatButton`。
  */
 export const PreDrive: Story = {
@@ -299,21 +302,9 @@ export const PreDrive: Story = {
                     note={t(ns("check_r1_note"))}
                     checked
                   />
-                  <CheckRow
-                    name={t(ns("check_r2_name"))}
-                    note={t(ns("check_r2_note"))}
-                    checked
-                  />
-                  <CheckRow
-                    name={t(ns("check_r3_name"))}
-                    note={t(ns("check_r3_note"))}
-                    checked
-                  />
-                  <CheckRow
-                    name={t(ns("check_r4_name"))}
-                    note={t(ns("check_r4_note"))}
-                    checked
-                  />
+                  <CheckRow name={t(ns("check_r2_name"))} checked />
+                  <CheckRow name={t(ns("check_r3_name"))} checked />
+                  <CheckRow name={t(ns("check_r4_name"))} checked />
                   <CheckRow
                     name={t(ns("check_r5_name"))}
                     note={t(ns("check_r5_note"))}
