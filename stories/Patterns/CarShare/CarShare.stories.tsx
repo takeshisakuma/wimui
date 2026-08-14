@@ -9,6 +9,7 @@ import {
   Badge,
   Box,
   Button,
+  Checkbox,
   Container,
   DescriptionList,
   DescriptionListDetails,
@@ -48,8 +49,8 @@ import {
  * ストーリー 3 本（仕事が違うので分ける）:
  * - Terms      長い規約を読んで、末尾で予約を確定する。`Affix` が「何に同意
  *              するのか」を連れて回り、`BackTop` で先頭へ戻る
- * - PreDrive   出発前の車体チェック。記録に無い傷が 1 件あり、
- *              唯一の操作＝`FloatButton`（サポートに電話）
+ * - PreDrive   出発前の車体チェック。入力はチェックと写真。台帳に無い傷が
+ *              1 件あり、唯一の操作＝`FloatButton`（サポートに電話）
  * - Return     返却の直前。給油が足りず返却が止まっている。複数操作＝`SpeedDial`
  *
  * **3 枚は規約で繋がる** ── 2 条（給油は半分より上）が Return を止め、
@@ -91,26 +92,34 @@ const StationHeader = () => {
 };
 
 /**
- * チェックの 1 行。状態はラベルの隣に置く（右端の列に揃えると、狭幅で
- * 名前の側が潰れるうえ、行が表のように均一になる）。
+ * チェックの 1 行。入力はチェックボックス（見た項目に付ける）。文章は打たない。
+ * 傷があれば写真を撮って、チェックは付けない。バッジは例外の行だけ。
  */
 const CheckRow = ({
   name,
   note,
-  state,
-  intent,
+  checked,
+  disabled,
+  error,
+  badge,
 }: {
   name: string;
   note: string;
-  state: string;
-  intent: "success" | "warning" | "neutral";
+  checked?: boolean;
+  disabled?: boolean;
+  error?: boolean;
+  badge?: { label: string; intent: "warning" };
 }) => (
   <Stack gap="2xs">
     <Flex align="center" gap="sm" wrap="wrap">
-      <Text size="sm">{name}</Text>
-      <Badge intent={intent} variant="subtle" size="sm">
-        {state}
-      </Badge>
+      <Checkbox defaultChecked={checked} disabled={disabled} error={error}>
+        {name}
+      </Checkbox>
+      {badge ? (
+        <Badge intent={badge.intent} variant="subtle" size="sm">
+          {badge.label}
+        </Badge>
+      ) : null}
     </Flex>
     <Text size="xs" color="text-tertiary">
       {note}
@@ -252,11 +261,10 @@ export const Terms: Story = {
 };
 
 /**
- * **いつ使う画面か**: 客が借りた車の横に立って、乗る前のチェックを付けている
- * ところ。店の画面ではない。一覧の状態は客が今つけたもの（確認した / 記録に無い
- * 傷 / 今日は不要）。「引き継ぎの記録」は前の貸出の傷の台帳で、客が見比べている。
- * 5 件目が台帳に無いので、走り出す前に電話する（3 条）。押すものは 1 つしかない
- * ので `SpeedDial` ではなく `FloatButton`。
+ * **いつ使う画面か**: 客が借りた車の横に立って、乗る前の項目を付けているところ。
+ * 入力はチェック（問題なければ付ける）と写真（傷があれば撮る）。文章は打たない。
+ * 左後ろのドアは台帳に無いのでチェックできず、走り出す前に電話する（3 条）。
+ * 押すものは電話 1 つなので `SpeedDial` ではなく `FloatButton`。
  */
 export const PreDrive: Story = {
   render: function Render() {
@@ -289,38 +297,36 @@ export const PreDrive: Story = {
                   <CheckRow
                     name={t(ns("check_r1_name"))}
                     note={t(ns("check_r1_note"))}
-                    state={t(ns("check_r1_state"))}
-                    intent="success"
+                    checked
                   />
                   <CheckRow
                     name={t(ns("check_r2_name"))}
                     note={t(ns("check_r2_note"))}
-                    state={t(ns("check_r2_state"))}
-                    intent="success"
+                    checked
                   />
                   <CheckRow
                     name={t(ns("check_r3_name"))}
                     note={t(ns("check_r3_note"))}
-                    state={t(ns("check_r3_state"))}
-                    intent="success"
+                    checked
                   />
                   <CheckRow
                     name={t(ns("check_r4_name"))}
                     note={t(ns("check_r4_note"))}
-                    state={t(ns("check_r4_state"))}
-                    intent="success"
+                    checked
                   />
                   <CheckRow
                     name={t(ns("check_r5_name"))}
                     note={t(ns("check_r5_note"))}
-                    state={t(ns("check_r5_state"))}
-                    intent="warning"
+                    error
+                    badge={{
+                      label: t(ns("check_r5_state")),
+                      intent: "warning",
+                    }}
                   />
                   <CheckRow
                     name={t(ns("check_r6_name"))}
                     note={t(ns("check_r6_note"))}
-                    state={t(ns("check_r6_state"))}
-                    intent="neutral"
+                    disabled
                   />
                 </Stack>
                 <Text size="sm" color="text-secondary">
