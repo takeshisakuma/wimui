@@ -108,6 +108,30 @@ describe("SpeedDial", () => {
     expect(screen.getByLabelText("PlusIcon")).toHaveAttribute("aria-expanded", "false");
   });
 
+  it("puts aria-label on the trigger, not the icon name", () => {
+    render(<SpeedDial actions={[]} aria-label="Crane actions" />);
+    expect(screen.getByLabelText("Crane actions")).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.queryByLabelText("PlusIcon")).not.toBeInTheDocument();
+  });
+
+  it("keeps the icon-name fallback when aria-label is omitted", () => {
+    render(<SpeedDial actions={[]} />);
+    expect(screen.getByLabelText("PlusIcon")).toBeInTheDocument();
+  });
+
+  it("passes action intent through to the action button", () => {
+    render(
+      <SpeedDial
+        actions={[{ icon: "SquareIcon", label: "Stop hoist", intent: "danger" }]}
+        open
+      />,
+    );
+    expect(screen.getByLabelText("Stop hoist").className).toMatch(/danger/);
+  });
+
   it("uses custom icon and activeIcon", () => {
     render(
       <SpeedDial actions={[]} icon="EditIcon" activeIcon="CheckIcon" open />

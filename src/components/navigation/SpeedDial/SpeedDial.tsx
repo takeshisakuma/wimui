@@ -27,6 +27,12 @@ export type SpeedDialProps = React.ComponentPropsWithoutRef<"div"> & {
   open?: boolean;
   /** Callback when open state changes */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Accessible name for the trigger button.
+   * Lands on the inner `FloatButton`, not on the wrapper `div`.
+   * Omit to keep the icon-name fallback (`PlusIcon` / `CloseIcon`).
+   */
+  "aria-label"?: string;
 };
 
 /**
@@ -47,6 +53,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       open: controlledOpen,
       onOpenChange,
       className,
+      "aria-label": ariaLabel,
       ...props
     },
     ref
@@ -97,6 +104,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
                 iconName={action.icon}
                 label={action.label}
                 size="sm"
+                intent={action.intent}
                 className={action.className}
                 onClick={() => {
                   action.onClick?.();
@@ -114,6 +122,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           position="inline"
           aria-expanded={open}
           aria-haspopup="true"
+          aria-label={ariaLabel}
         />
       </div>
     );

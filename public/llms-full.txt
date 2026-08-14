@@ -2055,6 +2055,9 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `trigger: "hover" | "click"` = "hover" — Trigger mode to open the SpeedDial
     - `open: boolean` — Controlled open state
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes
+    - `aria-label: string` — Accessible name for the trigger button.
+Lands on the inner `FloatButton`, not on the wrapper `div`.
+Omit to keep the icon-name fallback (`PlusIcon` / `CloseIcon`).
 - **Stepper** — Visual sequence steps
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
     - `steps: Step[]` = [] — Array of step configurations
