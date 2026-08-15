@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { Banner } from "./Banner";
 import React from "react";
 import styles from "./banner.module.scss";
@@ -47,5 +48,18 @@ describe("Banner", () => {
   it("renders with icon=false (no icon)", () => {
     const { container } = render(<Banner title="No icon" icon={false} />);
     expect(container.querySelector(`.${styles.icon}`)).not.toBeInTheDocument();
+  });
+
+  it("optically centers the icon on the first text line (T185)", () => {
+    const scss = readFileSync(
+      "src/components/feedback/Banner/banner.module.scss",
+      "utf8",
+    );
+    const icon = scss.match(/^\s+\.icon\s*\{([^}]+)\}/m);
+    expect(icon?.[1]).toMatch(/font-size:\s*var\(--wim-font-size-sm\)/);
+    expect(icon?.[1]).toMatch(
+      /padding-top:\s*calc\(\(var\(--wim-line-height-snug-jp\) - 1\) \* 1em \/ 2\)/,
+    );
+    expect(scss).toMatch(/align-items:\s*flex-start/);
   });
 });
