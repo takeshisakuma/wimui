@@ -32,6 +32,18 @@ export const Default: Story = {
   },
 };
 
+/** Wide: page numbers, not the mobile "1 / 2" (T188). */
+export const WidePages: Story = {
+  render: (args) => {
+    return <Pagination {...args} />;
+  },
+  args: {
+    total: 47,
+    current: 3,
+    pageSize: 8,
+  },
+};
+
 export const ManyPages: Story = {
   render: (args) => {
     return <Pagination {...args} />;

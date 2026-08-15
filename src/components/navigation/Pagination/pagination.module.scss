@@ -35,20 +35,6 @@
       }
     }
 
-    .mobileIndicator {
-      display: none;
-
-      @include breakpoints.container-down(md) {
-        display: inline-flex;
-        color: var(--wim-color-text-primary);
-        white-space: nowrap;
-        pointer-events: none;
-        cursor: default;
-        background: transparent;
-        border: none;
-      }
-    }
-
     .item {
       display: inline-flex;
       align-items: center;
@@ -103,6 +89,23 @@
         &:hover {
           color: var(--wim-color-text-secondary);
           background-color: transparent;
+        }
+      }
+
+      /* T188: `.item { display: inline-flex }` と同じ 2 クラスだと、後段の
+         `.item` が `.mobileIndicator { display: none }` に勝つ。番号隠しは
+         `.item.number`（3 クラス）なので狭幅では通っていた。 */
+      &.mobileIndicator {
+        display: none;
+
+        @include breakpoints.container-down(md) {
+          display: inline-flex;
+          color: var(--wim-color-text-primary);
+          white-space: nowrap;
+          pointer-events: none;
+          cursor: default;
+          background: transparent;
+          border: none;
         }
       }
 
