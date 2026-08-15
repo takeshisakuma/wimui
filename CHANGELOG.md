@@ -1,5 +1,12 @@
 # wimui
 
+## 0.23.11
+
+### Patch Changes
+
+- 40f2b2f: Align the Banner icon to the first line of text, not the top of the icon box.
+- 40f2b2f: Align the Notification icon to the first line of the title, independent of the page locale's body line-height.
+
 ## 0.23.10
 
 ### Patch Changes
