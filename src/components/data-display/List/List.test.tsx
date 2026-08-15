@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
 import { List, ListItem } from "./List";
 import styles from "./list.module.scss";
 
@@ -110,5 +111,30 @@ describe("List", () => {
     const element = screen.getByTestId("item-slot");
     expect(element.tagName).toBe("DIV");
     expect(element).toHaveClass(styles.item);
+  });
+
+  it("applies bordered class", () => {
+    const { container } = render(
+      <List bordered>
+        <ListItem>X</ListItem>
+      </List>,
+    );
+    expect(container.firstChild).toHaveClass(styles.bordered);
+  });
+
+  it("paints bordered markers with ::before so block children stay on the first line (T183)", () => {
+    const scss = readFileSync(
+      "src/components/data-display/List/list.module.scss",
+      "utf8",
+    );
+    expect(scss).not.toMatch(/list-style-position:\s*inside/);
+    expect(scss).not.toMatch(/text-indent:\s*-1rem/);
+    expect(scss).toMatch(/\.item:not\(\.withIcon\)::before/);
+    expect(scss).toMatch(
+      /inset-inline:\s*auto\s+calc\(100% - var\(--wim-spacing-5xl\) \+ var\(--wim-spacing-sm\)\)/,
+    );
+    expect(scss).not.toMatch(
+      /inset-inline-start:\s*var\(--wim-spacing-md\)/,
+    );
   });
 });

@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { List, ListItem } from "wimui";
+import { List, ListItem, Stack, Text } from "wimui";
 
 
 const meta: Meta<typeof List> = {
@@ -113,6 +113,36 @@ export const WithIcons: Story = {
         <ListItem iconName="PhoneIcon">{t("story.list_phone")}</ListItem>
         <ListItem iconName="ExternalLinkIcon" iconPosition="right">
           {t("story.list_view_details")}
+        </ListItem>
+      </List>
+    );
+  },
+};
+
+/**
+ * bordered の単体 Default はテキスト子だけ。実際の行はタイトル＋メタのブロック。
+ * inside マーカーだとブロックが次行へ落ちる（T183）。
+ */
+export const Bordered: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <List {...args} bordered fullWidth>
+        <ListItem>
+          <Stack gap="2xs">
+            <Text>{t("story.list_found_umbrella")}</Text>
+            <Text size="xs" color="text-tertiary">
+              {t("story.list_found_umbrella_meta")}
+            </Text>
+          </Stack>
+        </ListItem>
+        <ListItem>
+          <Stack gap="2xs">
+            <Text>{t("story.list_found_bottle")}</Text>
+            <Text size="xs" color="text-tertiary">
+              {t("story.list_found_bottle_meta")}
+            </Text>
+          </Stack>
         </ListItem>
       </List>
     );

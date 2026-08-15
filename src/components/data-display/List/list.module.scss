@@ -74,23 +74,57 @@
 
   &.bordered, &.hoverable {
     padding-left: 0;
+    list-style: none;
 
     .item {
+      position: relative;
       padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
-      padding-left: 2rem;
-      text-indent: -1rem;
-      list-style-position: inside;
+      padding-inline-start: var(--wim-spacing-5xl);
+      list-style: none;
+    }
+
+    /* overflow: hidden の bordered では outside マーカーが切れる。
+       inside + text-indent はブロック子をマーカーの次行へ落とす（T183）。 */
+    .item:not(.withIcon)::before {
+      position: absolute;
+
+      /* 本文の直前。start を spacing-md にすると枠の左に貼り付き、点が飛び出す */
+      inset-inline: auto calc(100% - var(--wim-spacing-5xl) + var(--wim-spacing-sm));
+
+      /* Exception: Geometric Harmony — 1 行目の光学中心。padding-y + 行の半分 − 円の半径 */
+      top: calc(var(--wim-list-item-padding-y) + 0.55em);
+      width: 0.35em; /* Exception: Structural Logic — disc は font-size に追従する */
+      height: 0.35em;
+      pointer-events: none;
+      content: "";
+      background-color: currentcolor;
+      border-radius: var(--wim-radius-full);
     }
 
     .item.withIcon {
-      padding-left: var(--wim-spacing-md);
-      text-indent: 0;
+      padding-inline-start: var(--wim-spacing-md);
     }
   }
 }
 
 :global(ol).root {
   list-style-type: decimal;
+
+  &.bordered,
+  &.hoverable {
+    counter-reset: wim-list-item;
+
+    .item:not(.withIcon)::before {
+      top: var(--wim-list-item-padding-y);
+      width: auto;
+      height: auto;
+      font-variant-numeric: tabular-nums;
+      content: counter(wim-list-item) ".";
+      counter-increment: wim-list-item;
+      background-color: transparent;
+      border-radius: 0;
+    }
+  }
 }
 
 .item {

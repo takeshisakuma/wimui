@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { FloatButton } from "./FloatButton";
 import styles from "./float-button.module.scss";
 
@@ -100,5 +101,17 @@ describe("FloatButton", () => {
   it("renders shrink class", () => {
     render(<FloatButton label="Create" shrink />);
     expect(screen.getByRole("button")).toHaveClass(styles.shrink);
+  });
+
+  it("ellipsis-clips long labels at the 200px cap (T181)", () => {
+    const scss = readFileSync(
+      "src/components/form/FloatButton/float-button.module.scss",
+      "utf8",
+    );
+    const label = scss.match(/^\s+\.label\s*\{([^}]+)\}/m);
+    expect(label?.[1]).toMatch(/text-overflow:\s*ellipsis/);
+    expect(label?.[1]).toMatch(/overflow:\s*hidden/);
+    expect(label?.[1]).toMatch(/white-space:\s*nowrap/);
+    expect(scss).toMatch(/max-width:\s*200px/);
   });
 });

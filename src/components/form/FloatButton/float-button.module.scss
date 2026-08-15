@@ -49,7 +49,10 @@
     }
 
     .label {
-      display: inline-block;
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-weight: var(--wim-font-weight-medium);
       line-height: var(--wim-line-height-normal);
       white-space: nowrap;

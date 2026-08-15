@@ -391,6 +391,8 @@
     "list_anatomy_root_label": "Root",
     "list_best_practice_1": "予測可能なユーザー体験を維持するため、アプリケーション全体でListを一貫して使用しましょう。",
     "list_best_practice_2": "アクセシビリティを確保するため、様々な画面サイズと入力方法でテストしましょう。",
+    "list_bordered": "枠線付き",
+    "list_bordered_desc": "1 行が記録であるときに bordered を使う。子が複数行のブロックでも、マーカーは 1 行目に残る。",
     "list_choice_alt_when": "Tableのようなシンプルな代替手段がユースケースに適している場合。",
     "list_choice_matrix_desc": "要件に基づいて最も適切なコンポーネントを選択してください。",
     "list_choice_self_when": "標準オプションのList機能が必要な場合。",

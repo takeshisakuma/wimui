@@ -1,0 +1,13 @@
+@layer component {
+  .page {
+    min-height: 100vh;
+    background: var(--wim-color-surface-app);
+  }
+
+  .fabDock {
+    position: fixed;
+    inset-block-end: var(--wim-spacing-2xl);
+    inset-inline-end: var(--wim-spacing-2xl);
+    z-index: var(--wim-z-overlay);
+  }
+}

@@ -41,7 +41,9 @@
   
     ul,
     ol {
-      padding-left: var(--wim-spacing-xl);
+      /* Exception: Structural Logic — outside マーカーは font-size に追従する溝が要る。
+         spacing-xl (12px) では本文より左へはみ出す。 */
+      padding-inline-start: 1.5em;
       margin-bottom: var(--wim-spacing-md);
       list-style: revert;
     }

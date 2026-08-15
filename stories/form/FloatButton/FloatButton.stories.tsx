@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { FloatButton, FloatButtonProps } from "wimui";
+import { Box, FloatButton, FloatButtonProps, Text } from "wimui";
+import styles from "./float-button-realistic.module.scss";
 
 const meta: Meta<typeof FloatButton> = {
   title: "Components/Navigation Utilities/FloatButton",
@@ -61,6 +62,18 @@ export const Extended: Story = {
     size: "md",
     position: "inline",
     shrink: false,
+  },
+};
+
+export const LongLabel: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FloatButton {...args} label={t("story.floatbutton_long_label")} />;
+  },
+  args: {
+    iconName: "AlertTriangleIcon",
+    size: "md",
+    position: "inline",
   },
 };
 
@@ -166,6 +179,28 @@ export const FixedPosition: Story = {
           size="md"
           position="bottom-right"
           description={t("story.floatbutton_click_me")}
+        />
+      </div>
+    );
+  },
+};
+
+export const CornerFab: Story = {
+  parameters: {
+    layout: "fullscreen",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div className={styles.page}>
+        <Box p="xl">
+          <Text>{t("story.floatbutton_corner_page")}</Text>
+        </Box>
+        <FloatButton
+          {...args}
+          iconName="PlusIcon"
+          position="bottom-right"
+          label={t("story.floatbutton_corner_label")}
         />
       </div>
     );

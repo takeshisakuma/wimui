@@ -24,6 +24,7 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
   - `AgentStatus`: ステータスドット直径（sm: 6px / md: 8px / lg: 10px）— サイズ段階の比率スケール。
   - `Lightbox` / `FloatButton`: 操作ボタン・バッジ内の正方形アイコン／ドット寸法。
   - `Video`: 音量サム直径（12px）— トラック高さに対する比率。
+  - `List`: bordered disc の `top: calc(padding-y + 0.55em)` — 1 行目の光学中心。
 
 ## 2. 描画補正 (Browser Rendering Fixes)
 ブラウザのレンダリング（アンチエイリアシング、サブピクセルレンダリング）による微妙なボケやズレを解消するための微細な値。
@@ -53,6 +54,8 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
   - `GanttChart`: タスク名列幅（160px / 狭幅 100px）とタイムラインスクロールバー（8px）。
   - `RichTextEditor`: セマンティック幅段階・ツールバー chrome 寸法。
   - `FloatButton`: 展開ラベル `max-width: 200px`。
+  - `Markdown`: `ul` / `ol` の `padding-inline-start: 1.5em` — outside マーカーは font-size に追従する溝が要る。`spacing-xl`（12px）では本文より左へはみ出す。
+  - `List`: bordered / hoverable の disc `0.35em` — マーカーは font-size に追従する。
   - `Video`: 音量スライダー展開幅・設定メニュー位置／最小幅／最大高さ。
 
 ## 4. インタラクションの物理挙動 (Interaction Physics)
