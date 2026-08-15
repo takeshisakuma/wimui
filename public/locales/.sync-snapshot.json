@@ -16293,15 +16293,5 @@
       "return_damage": "Report a scratch",
       "return_trouble": "Accident or breakdown"
     }
-  },
-  "docs_stories_probes": {
-    "sunrise": {
-      "shop": "Sunrise Laundry, Nakano",
-      "when": "Sat 21:14",
-      "machine": "Machine 4",
-      "remaining": "12 min left",
-      "qr_caption": "This machine",
-      "note": "Machine 3 drains slow. Leave it tonight."
-    }
   }
 }
