@@ -1,0 +1,24 @@
+{
+  "koenji": {
+    "center": "Centro cívico de Koenji",
+    "line": "Você está reservando uma sala. O quadro é a sala de reunião de hoje.",
+    "rooms": "Qual sala",
+    "tatami": "Sala de tatame",
+    "hall": "Sala de reunião",
+    "kitchen": "Cozinha de prática",
+    "tatami_mat": "Tatame",
+    "fits12": "Cabe 12",
+    "projector": "Projetor",
+    "tables": "Mesas",
+    "fits24": "Cabe 24",
+    "gas": "Quatro bocas a gás",
+    "board": "Reservas de hoje",
+    "dates": "Dias seguidos",
+    "dates_line": "Você tocou em hoje. O fim ainda não foi escolhido.",
+    "e_tea": "Reunião do chá",
+    "e_cook": "Aula da tarde de ameixa em conserva",
+    "e_circle": "Aviso do círculo",
+    "e_japanese": "Japonês para pais e filhos. Reserve por telefone; o balcão não aceita quem chega na hora",
+    "e_disaster": "Reunião do treino de desastre"
+  }
+}

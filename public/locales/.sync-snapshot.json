@@ -16293,5 +16293,29 @@
       "return_damage": "Report a scratch",
       "return_trouble": "Accident or breakdown"
     }
+  },
+  "docs_stories_probes": {
+    "koenji": {
+      "center": "Koenji Civic Center",
+      "line": "You are booking a room. The board is today's meeting room.",
+      "rooms": "Which room",
+      "tatami": "Tatami room",
+      "hall": "Meeting room",
+      "kitchen": "Cooking room",
+      "tatami_mat": "Tatami",
+      "fits12": "Fits 12",
+      "projector": "Projector",
+      "tables": "Tables",
+      "fits24": "Fits 24",
+      "gas": "Four gas rings",
+      "board": "Today's bookings",
+      "dates": "Days in a row",
+      "dates_line": "You tapped today. The end is not chosen yet.",
+      "e_tea": "Tea gathering",
+      "e_cook": "Preserving plums, afternoon class",
+      "e_circle": "Circle notice",
+      "e_japanese": "Japanese for parents and children. Book by phone; the desk does not take walk-ins that day",
+      "e_disaster": "Disaster drill meeting"
+    }
   }
 }

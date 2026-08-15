@@ -232,3 +232,23 @@ export const Interactive: Story = {
     selectable: true,
   },
 };
+
+/** T189: 親に px の高さを渡さない。流れに置く既定経路。 */
+export const InFlow: Story = {
+  render: function Render(args) {
+    const events = useSampleEvents();
+    const { i18n } = useTranslation(ALL_NAMESPACES);
+    return (
+      <ScheduleView
+        {...args}
+        events={events}
+        locale={i18n.language}
+      />
+    );
+  },
+  args: {
+    initialView: "timeGridDay",
+    editable: false,
+    selectable: false,
+  },
+};

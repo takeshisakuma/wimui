@@ -1,12 +1,16 @@
 .root {
   width: 100%;
-  height: 100%;
   min-height: 500px; /* Exception: Structural Logic — schedule timeline viewport floor */
 
   :global {
     .fc {
       // Override FullCalendar's CSS custom property — no !important needed
       --fc-today-bg-color: oklch(from var(--wim-color-primary) l c h / 0.05);
+
+      // sticky ヘッダの th は --fc-page-bg-color（既定 #fff）。dark の
+      // text-secondary を白の上に載せると 1.25（T189、catalog dark で CI が検出）。
+      --fc-page-bg-color: var(--wim-color-surface);
+      --fc-border-color: var(--wim-color-border);
 
       font-family: inherit;
       font-size: var(--wim-font-size-sm);
@@ -16,6 +20,35 @@
     .fc-toolbar-title {
       font-size: var(--wim-font-size-lg);
       font-weight: var(--wim-font-weight-bold);
+      white-space: nowrap;
+    }
+
+    // T190: チャンク（prev/next+today / 日付 / 月週日）は割らず、幅に入る数だけ並べる。
+    // FullCalendar 既定は left チャンク内で today だけ次行へ落ち、行間 gap が無い。
+    .fc-header-toolbar.fc-toolbar {
+      flex-wrap: wrap;
+      gap: var(--wim-spacing-xl) var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    .fc-toolbar-chunk {
+      display: flex;
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    .fc-button-group {
+      flex-wrap: nowrap;
+    }
+
+    .fc-direction-ltr .fc-toolbar-chunk > :not(:first-child) {
+      margin-left: 0;
+    }
+
+    .fc-direction-rtl .fc-toolbar-chunk > :not(:first-child) {
+      margin-right: 0;
     }
 
     .fc-button {
@@ -44,6 +77,12 @@
       color: var(--wim-color-text-secondary);
     }
 
+    // 今日列のヘッダは --fc-today-bg-color（primary 5%）の上に乗る。
+    // secondary だと dark で 4.5 を割る（T189）。
+    .fc-day-today .fc-col-header-cell-cushion {
+      color: var(--wim-color-text-primary);
+    }
+
     .fc-event {
       border-color: transparent;
       border-radius: var(--wim-radius-sm);
@@ -65,6 +104,5 @@
     th {
       border-color: var(--wim-color-border);
     }
-
   }
 }
