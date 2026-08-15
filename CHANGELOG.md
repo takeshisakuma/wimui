@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.12
+
+### Patch Changes
+
+- e2a8e38: Put `wim-pagination` on the default root, and hide the mobile page indicator when the container is wider than `md`.
+
 ## 0.23.11
 
 ### Patch Changes
