@@ -16293,5 +16293,18 @@
       "return_damage": "Report a scratch",
       "return_trouble": "Accident or breakdown"
     }
+  },
+  "docs_stories_probes": {
+    "komatsu": {
+      "shop": "Komatsu-yu · lock-up, Saturday",
+      "banner_title": "Boiler inspection. We close at 21:00 tonight.",
+      "banner_desc": "Last wash is 20:30. Don't hand out a new basket after that.",
+      "note_title": "Locker 3 key is still out",
+      "note_desc": "The 19:40 regular left it on the bench by the hair dryers. The tag is marker, 佐藤, not the printed card.",
+      "lockers_trigger": "Changing-room baskets",
+      "lockers_body": "48 out this evening, 42 back. Number 3 is the one on the bench by the dryers. 11 and 27 came back without the rubber band — stack those separately; they go to the mending box.",
+      "taps_trigger": "Taps in the washing area",
+      "taps_body": "Far-left hot tap still drips. Tuesday's note said leave it; a bucket underneath is enough tonight."
+    }
   }
 }
