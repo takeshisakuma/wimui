@@ -4,16 +4,6 @@
     background: var(--wim-color-surface-app);
   }
 
-  .chrome {
-    display: flex;
-    flex-direction: column;
-    gap: var(--wim-spacing-3xs);
-  }
-
-  .shop {
-    padding: var(--wim-spacing-md) var(--wim-spacing-xl) 0;
-  }
-
   .work {
     padding: var(--wim-spacing-xl);
   }

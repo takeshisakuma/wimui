@@ -27,7 +27,23 @@
   }
 
   .icon {
+    display: flex;
     flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    // T186: Banner / Alert / Snackbar と違い、ここは `display: flex` が無かった。
+    // 中の Icon は `inline-block; vertical-align: middle` なので、ラッパーが
+    // body の line-height の行ボックスになる。body は en で `normal`（1.4）、
+    // ja で `normal-jp`（1.6）。title は常に md + `normal-jp`（1.6）。
+    // 実測（`Probes/KomatsuYu`、SVG top − title 1 行目 top）:
+    // en **4.72px** / ja **6.66px**。ja は 1 行目中心より **1.86px 下**。
+    // 最初の着陸は T185 の半分（2.4px）。人間が見て **文字より上** だったので、
+    // Banner と同じ `((lh - 1) * 1em / 2)` ＝ 1 行目の中心へ戻す。
+    // `display: flex` は残す（ja が body の 1.6 を継承して 6.66px 落ちない）。
+    // `.content` の `flex-start` は残す（description で塊の中央へ落ちない）。
+    padding-top: calc((var(--wim-line-height-normal-jp) - 1) * 1em / 2);
+    font-size: var(--wim-font-size-md);
   }
 
   .messageContainer {

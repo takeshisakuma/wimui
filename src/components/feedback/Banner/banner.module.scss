@@ -52,6 +52,16 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
+
+    // T185: T90 の `flex-start` は**箱の上端**を 1 行目に揃える。アイコンは 1em、
+    // `.text` の 1 行は `line-height-snug-jp`（1.5）なので、中心が
+    // `(1.5em - 1em) / 2` 上へずれる。
+    // 実測（`Probes/KomatsuYu`、アイコン mid − title 1 行目 mid）: **−3.39px**。
+    // 1280 の 1 行も 390 の折り返しも同じ（1 行目の行高は折り返しで変わらない）。
+    // T90 が光学補正を採らなかったのは Alert で title と icon のサイズが違い、
+    // 行高が条件で変わるため。Banner は両方 `sm` + `snug-jp` で固定。
+    padding-top: calc((var(--wim-line-height-snug-jp) - 1) * 1em / 2);
+    font-size: var(--wim-font-size-sm);
   }
 
   .text {
