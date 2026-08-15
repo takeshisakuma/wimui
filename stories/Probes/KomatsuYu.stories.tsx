@@ -25,19 +25,15 @@ export const Lockup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div className={styles.page}>
-        <div className={styles.chrome}>
-          <div className={styles.shop}>
-            <Text size="sm" color="text-secondary">
-              {t(ns("shop"))}
-            </Text>
-          </div>
-          <Banner
-            intent="warning"
-            title={t(ns("banner_title"))}
-            description={t(ns("banner_desc"))}
-          />
-        </div>
+        <Banner
+          intent="warning"
+          title={t(ns("banner_title"))}
+          description={t(ns("banner_desc"))}
+        />
         <Stack gap="md" className={styles.work}>
+          <Text size="sm" color="text-secondary">
+            {t(ns("shop"))}
+          </Text>
           <Notification
             intent="danger"
             title={t(ns("note_title"))}
