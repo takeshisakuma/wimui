@@ -51,4 +51,15 @@ describe("ScheduleView", () => {
     );
     expect(scss).toContain(".fc-day-today .fc-col-header-cell-cushion");
   });
+
+  it("wraps the header toolbar by chunk, not inside prev/next (T190)", () => {
+    const scss = readFileSync(
+      "src/components/data-display/ScheduleView/schedule-view.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/\.fc-header-toolbar\.fc-toolbar\s*\{[\s\S]*?flex-wrap:\s*wrap/);
+    expect(scss).toMatch(/\.fc-toolbar-chunk\s*\{[\s\S]*?flex-wrap:\s*nowrap/);
+    expect(scss).toMatch(/nth-child\(n \+ 2\)\s*\{[\s\S]*?flex:\s*1 1 100%/);
+    expect(scss).not.toMatch(/\.fc-toolbar-chunk\s*\{[\s\S]*?flex-wrap:\s*wrap/);
+  });
 });

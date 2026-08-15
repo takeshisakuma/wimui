@@ -1,6 +1,14 @@
+@use "../../../tokens/breakpoints" as *;
+
 .root {
   width: 100%;
+
+  /* T61: container-type は内容の自動最小幅を 0 にする。T190 のツールバー折り返しは
+     コンテナ幅で見る（390px の枠が 1280 のページに乗っても発火する）。 */
+  min-width: var(--wim-width-sm);
+  max-width: 100%;
   min-height: 500px; /* Exception: Structural Logic — schedule timeline viewport floor */
+  container-type: inline-size;
 
   :global {
     .fc {
@@ -15,6 +23,34 @@
     .fc-toolbar-title {
       font-size: var(--wim-font-size-lg);
       font-weight: var(--wim-font-weight-bold);
+      white-space: nowrap;
+    }
+
+    // T190: 狭いときはチャンク（prev/next+today / 日付 / 月週日）ごと折り返す。
+    // FullCalendar 既定は left チャンク内で today だけ次行へ落ち、行間 gap が無い。
+    .fc-header-toolbar.fc-toolbar {
+      flex-wrap: wrap;
+      gap: var(--wim-spacing-xl) var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    .fc-toolbar-chunk {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    .fc-button-group {
+      flex-wrap: nowrap;
+    }
+
+    .fc-direction-ltr .fc-toolbar-chunk > :not(:first-child) {
+      margin-left: 0;
+    }
+
+    .fc-direction-rtl .fc-toolbar-chunk > :not(:first-child) {
+      margin-right: 0;
     }
 
     .fc-button {
@@ -70,6 +106,14 @@
     th {
       border-color: var(--wim-color-border);
     }
+  }
 
+  @include container-down(sm) {
+    :global {
+      .fc-toolbar-chunk:nth-child(n + 2) {
+        flex: 1 1 100%;
+        justify-content: flex-start;
+      }
+    }
   }
 }
