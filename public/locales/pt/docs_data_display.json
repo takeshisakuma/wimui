@@ -391,6 +391,8 @@
     "list_anatomy_root_label": "Root",
     "list_best_practice_1": "Use List consistentemente em toda a aplicação para manter uma experiência previsível.",
     "list_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
+    "list_bordered": "Com borda",
+    "list_bordered_desc": "Use bordered quando cada linha for um registro. O marcador permanece na primeira linha mesmo se o filho for um bloco de várias linhas.",
     "list_choice_alt_when": "Quando uma alternativa mais simples como Table se adequa melhor ao caso de uso.",
     "list_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "list_choice_self_when": "Quando a funcionalidade de List com opções padrão é necessária.",

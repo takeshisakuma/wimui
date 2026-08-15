@@ -391,6 +391,8 @@
     "list_anatomy_root_label": "Root",
     "list_best_practice_1": "Use List consistently across your application to maintain a predictable user experience.",
     "list_best_practice_2": "Test List behavior across different screen sizes and input methods to ensure accessibility.",
+    "list_bordered": "Bordered",
+    "list_bordered_desc": "Use bordered when each row is a record. The marker stays on the first line even if the child is a stack of lines.",
     "list_choice_alt_when": "When a simpler alternative like Table better suits the use case.",
     "list_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "list_choice_self_when": "When List functionality with standard options is required.",

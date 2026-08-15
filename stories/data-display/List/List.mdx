@@ -29,6 +29,10 @@ import { Docgen } from "../../Docgen";
 
 <Canvas of={ListStories.Unordered} />
 
+<h3><T k="doc.list_bordered" /></h3>
+<p><T k="doc.list_bordered_desc" /></p>
+<Canvas of={ListStories.Bordered} />
+
 <h3><T k="doc.list_ordered" /></h3>
 <Canvas of={ListStories.Ordered} />
 
@@ -117,8 +121,6 @@ import { Docgen } from "../../Docgen";
 
 > [!NOTE]
 > <T k="doc.polymorphism_note" />
-
-Both `List` and `ListItem` support `asChild`. For example, you can use `ListItem` with a navigation link from a library like `react-router-dom`.
 
 ```tsx
 <List>
