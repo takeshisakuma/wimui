@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { render, screen } from "@testing-library/react";
 import { ScheduleView } from "./ScheduleView";
 
@@ -31,5 +32,23 @@ describe("ScheduleView", () => {
   it("applies className to the root element", () => {
     const { container } = render(<ScheduleView className="custom" />);
     expect(container.firstChild).toHaveClass("custom");
+  });
+
+  it("marks overflowing FullCalendar scrollers as keyboard reachable (T189)", () => {
+    const src = readFileSync(
+      "src/components/data-display/ScheduleView/ScheduleView.tsx",
+      "utf8",
+    );
+    expect(src).toContain('node.setAttribute("tabindex", "0")');
+    expect(src).toContain('height="auto"');
+    expect(src).toContain('eventColor="var(--wim-color-primary)"');
+    expect(src).toContain('eventTextColor="var(--wim-color-text-on-primary)"');
+    expect(src).toContain('el.setAttribute("aria-hidden", "true")');
+    expect(src).toContain('el.setAttribute("role", "button")');
+    const scss = readFileSync(
+      "src/components/data-display/ScheduleView/schedule-view.module.scss",
+      "utf8",
+    );
+    expect(scss).toContain(".fc-day-today .fc-col-header-cell-cushion");
   });
 });

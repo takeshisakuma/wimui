@@ -115,6 +115,8 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
     //   aria-label があるため装飾として隠すのが正しい）→ aria-hidden
     // - 「+N more」リンクは href 無し <a> に aria-expanded が付き
     //   aria-allowed-attr 違反 → role="button" を付与
+    // - 時刻グリッドの .fc-scroller は overflow: scroll なのに tabindex が無い
+    //   → scrollable-region-focusable（T189。親が短いと格子が内側スクロールする）
     // ビュー切替やイベント再描画で再生成されるため MutationObserver で追従する。
     useEffect(() => {
       const root = rootRef.current;
@@ -126,11 +128,27 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
         root
           .querySelectorAll("a.fc-more-link:not([role])")
           .forEach((el) => el.setAttribute("role", "button"));
+        root.querySelectorAll(".fc-scroller").forEach((el) => {
+          const node = el as HTMLElement;
+          const overflows =
+            node.scrollHeight > node.clientHeight + 1 ||
+            node.scrollWidth > node.clientWidth + 1;
+          if (overflows) {
+            node.setAttribute("tabindex", "0");
+          } else if (node.getAttribute("tabindex") === "0") {
+            node.removeAttribute("tabindex");
+          }
+        });
       };
       patch();
       const observer = new MutationObserver(patch);
       observer.observe(root, { childList: true, subtree: true });
-      return () => observer.disconnect();
+      const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(patch);
+      ro?.observe(root);
+      return () => {
+        observer.disconnect();
+        ro?.disconnect();
+      };
     }, []);
 
     return (
@@ -158,11 +176,15 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
           slotDuration={slotDuration}
           locale={locale}
           locales={locales}
+          eventColor="var(--wim-color-primary)"
+          eventTextColor="var(--wim-color-text-on-primary)"
           eventClick={onEventClick}
           eventDrop={onEventDrop}
           eventChange={onEventChange}
           select={onDateSelect}
-          height="100%"
+          // 親が auto のとき height 100% は 0 になり、格子もイベントも描かれない。
+          // catalog は 600px の style で隠していた。min-height は wrapper にしか効かない（T189）。
+          height="auto"
         />
       </div>
     );
