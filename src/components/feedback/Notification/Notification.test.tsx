@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { Notification, NotificationProvider, useNotification } from "./Notification";
 import styles from "./notification.module.scss";
 
@@ -59,6 +60,20 @@ describe("Notification", () => {
       <Notification title="T" icon={<span data-testid="custom-icon">★</span>} />,
     );
     expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+  });
+
+  it("optically aligns the icon to the first title line (T186)", () => {
+    const scss = readFileSync(
+      "src/components/feedback/Notification/notification.module.scss",
+      "utf8",
+    );
+    const icon = scss.match(/^\s+\.icon\s*\{([^}]+)\}/m);
+    expect(icon?.[1]).toMatch(/display:\s*flex/);
+    expect(icon?.[1]).toMatch(/font-size:\s*var\(--wim-font-size-md\)/);
+    expect(icon?.[1]).toMatch(
+      /padding-top:\s*calc\(\(var\(--wim-line-height-normal-jp\) - 1\) \* 1em \/ 4\)/,
+    );
+    expect(scss).toMatch(/align-items:\s*flex-start/);
   });
 
   it("disappears after close click (isVisible becomes false)", () => {
