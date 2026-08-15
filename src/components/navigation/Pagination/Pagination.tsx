@@ -293,8 +293,8 @@ export const Pagination = ({
   }
 
   return (
-    <div className={styles.container}>
-      <div className={classNames(styles.wrapper, className)}>
+    <div className={classNames("wim-pagination", styles.container, className)}>
+      <div className={styles.wrapper}>
         {showTotal && (
           <div className={styles.total}>
             {showTotal(total, [startItem, endItem])}

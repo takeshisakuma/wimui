@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { Pagination, PaginationPage } from "./Pagination";
 
 describe("Pagination", () => {
@@ -136,6 +137,33 @@ describe("Pagination", () => {
     expect(nav.tagName).toBe("NAV");
     expect(nav).toHaveAttribute("aria-label");
     expect(screen.getByText("1 / 5")).toBeInTheDocument();
+  });
+
+  it("exposes wim-pagination on the default root (T187)", () => {
+    const { container } = render(<Pagination total={50} current={1} />);
+    expect(container.querySelector(".wim-pagination")).not.toBeNull();
+  });
+
+  it("exposes wim-pagination in simple mode (T187)", () => {
+    const { container } = render(<Pagination total={50} simple current={2} />);
+    expect(container.querySelector(".wim-pagination")).not.toBeNull();
+  });
+
+  it("does not render a root when hideOnSinglePage hides the control (T187)", () => {
+    const { container } = render(
+      <Pagination total={5} pageSize={10} hideOnSinglePage />,
+    );
+    expect(container.firstChild).toBeNull();
+    expect(container.querySelector(".wim-pagination")).toBeNull();
+  });
+
+  it("hides the mobile 1/2 with .item.mobileIndicator so .item display cannot override it (T188)", () => {
+    const scss = readFileSync(
+      "src/components/navigation/Pagination/pagination.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/&\.mobileIndicator\s*\{[\s\S]*?display:\s*none/);
+    expect(scss).toMatch(/&\.number[\s\S]*?container-down\(md\)[\s\S]*?display:\s*none/);
   });
 
   it("supports asChild on PaginationPage", () => {
