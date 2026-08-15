@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 import { StreamingText } from "./StreamingText";
 
 vi.mock("react-i18next", async () => ({
@@ -38,5 +39,16 @@ describe("StreamingText", () => {
   it("applies className to the root element", () => {
     const { container } = render(<StreamingText content="" className="custom" />);
     expect(container.firstChild).toHaveClass("custom");
+  });
+
+  it("gives outside list markers a font-relative gutter (T184)", () => {
+    const scss = readFileSync(
+      "src/components/ai/StreamingText/streaming-text.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/ul,\s*ol\s*\{[^}]*padding-inline-start:\s*1\.5em/s);
+    expect(scss).not.toMatch(
+      /ul,\s*ol\s*\{[^}]*padding-left:\s*var\(--wim-spacing-xl\)/s,
+    );
   });
 });
