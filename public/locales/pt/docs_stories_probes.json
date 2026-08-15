@@ -1,0 +1,14 @@
+{
+  "sakura": {
+    "board": "Mural Copo Sakura",
+    "title": "Bicicletário",
+    "desc": "Aviso de agosto. O rack do 2º andar está fechado.",
+    "q_bike": "Onde deixo a bicicleta?",
+    "a_bike_lead": "Térreo, debaixo do telhado. Trave a roda da frente.",
+    "a_bike_rest": "O rack do 2º andar está fechado desde agosto para reforma. Não deixe no corredor; na manhã seguinte vai para o depósito, sem o trava-roda. Para buscar, toque a campainha do zelador ao lado das caixas de correio. Bicicleta de visita usa as três vagas sem número no portão, não as numeradas.",
+    "q_guest": "Onde o visitante estaciona o carro?",
+    "a_guest": "Em lugar nenhum. Use o estacionamento pago do outro lado da rua.",
+    "cite": "Zelador, 12 ago",
+    "quote": "Rack do 2º andar parado até o mês que vem. Só o fundo do térreo."
+  }
+}
