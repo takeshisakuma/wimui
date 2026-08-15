@@ -59,7 +59,8 @@ describe("ScheduleView", () => {
     );
     expect(scss).toMatch(/\.fc-header-toolbar\.fc-toolbar\s*\{[\s\S]*?flex-wrap:\s*wrap/);
     expect(scss).toMatch(/\.fc-toolbar-chunk\s*\{[\s\S]*?flex-wrap:\s*nowrap/);
-    expect(scss).toMatch(/nth-child\(n \+ 2\)\s*\{[\s\S]*?flex:\s*1 1 100%/);
+    expect(scss).toMatch(/\.fc-toolbar-chunk\s*\{[\s\S]*?flex:\s*0 0 auto/);
+    expect(scss).not.toMatch(/flex:\s*1 1 100%/);
     expect(scss).not.toMatch(/\.fc-toolbar-chunk\s*\{[\s\S]*?flex-wrap:\s*wrap/);
   });
 });
