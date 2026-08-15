@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.10
+
+### Patch Changes
+
+- d9a8cb4: Give StreamingText and MarkdownRenderer lists the same font-relative marker gutter as Markdown.
+
 ## 0.23.9
 
 ### Patch Changes
