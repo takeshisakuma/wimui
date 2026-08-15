@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 import titleStyles from "../../typography/Title/title.module.scss";
 
@@ -111,5 +112,16 @@ describe("MarkdownRenderer", () => {
     render(<MarkdownRenderer content={"# One\n## Two"} baseLevel="xs" />);
     expect(screen.getByRole("heading", { level: 1, name: "One" })).toHaveClass(titleStyles.xs);
     expect(screen.getByRole("heading", { level: 2, name: "Two" })).toHaveClass(titleStyles.xs);
+  });
+
+  it("gives outside list markers a font-relative gutter (T184)", () => {
+    const scss = readFileSync(
+      "src/components/ai/MarkdownRenderer/markdown-renderer.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/\.list\s*\{[^}]*padding-inline-start:\s*1\.5em/s);
+    expect(scss).not.toMatch(
+      /\.list\s*\{[^}]*padding-left:\s*var\(--wim-spacing-xl\)/s,
+    );
   });
 });

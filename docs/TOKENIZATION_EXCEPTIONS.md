@@ -54,7 +54,7 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
   - `GanttChart`: タスク名列幅（160px / 狭幅 100px）とタイムラインスクロールバー（8px）。
   - `RichTextEditor`: セマンティック幅段階・ツールバー chrome 寸法。
   - `FloatButton`: 展開ラベル `max-width: 200px`。
-  - `Markdown`: `ul` / `ol` の `padding-inline-start: 1.5em` — outside マーカーは font-size に追従する溝が要る。`spacing-xl`（12px）では本文より左へはみ出す。
+  - `Markdown` / `StreamingText` / `MarkdownRenderer`: `ul` / `ol`（Renderer は `.list`）の `padding-inline-start: 1.5em` — outside マーカーは font-size に追従する溝が要る。`spacing-xl`（12px）では本文より左へはみ出す。
   - `List`: bordered / hoverable の disc `0.35em` — マーカーは font-size に追従する。
   - `Video`: 音量スライダー展開幅・設定メニュー位置／最小幅／最大高さ。
 
