@@ -1,0 +1,36 @@
+@layer component {
+  .page {
+    min-height: 100vh;
+    background: var(--wim-color-surface-app);
+  }
+
+  .work {
+    padding: var(--wim-spacing-xl);
+  }
+
+  .shop {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+  }
+
+  .now {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    align-items: flex-start;
+    margin-top: var(--wim-spacing-xl);
+  }
+
+  .sticker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    align-items: flex-start;
+    margin-top: var(--wim-spacing-2xl);
+  }
+
+  .note {
+    margin-top: var(--wim-spacing-xl);
+  }
+}
