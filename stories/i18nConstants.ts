@@ -74,7 +74,6 @@ export const ALL_NAMESPACES = [
   "docs_stories_media",
   "docs_stories_navigation",
   "docs_stories_overlay",
-  "docs_stories_probes",
   "docs_stories_recipes",
   "docs_stories_utility",
   "docs_typography",
