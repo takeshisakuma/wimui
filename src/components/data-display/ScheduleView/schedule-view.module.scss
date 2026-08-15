@@ -7,6 +7,11 @@
       // Override FullCalendar's CSS custom property — no !important needed
       --fc-today-bg-color: oklch(from var(--wim-color-primary) l c h / 0.05);
 
+      // sticky ヘッダの th は --fc-page-bg-color（既定 #fff）。dark の
+      // text-secondary を白の上に載せると 1.25（T189、catalog dark で CI が検出）。
+      --fc-page-bg-color: var(--wim-color-surface);
+      --fc-border-color: var(--wim-color-border);
+
       font-family: inherit;
       font-size: var(--wim-font-size-sm);
       color: var(--wim-color-text-primary);

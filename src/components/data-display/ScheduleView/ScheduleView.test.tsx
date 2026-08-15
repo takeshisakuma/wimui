@@ -50,6 +50,7 @@ describe("ScheduleView", () => {
       "utf8",
     );
     expect(scss).toContain(".fc-day-today .fc-col-header-cell-cushion");
+    expect(scss).toContain("--fc-page-bg-color: var(--wim-color-surface)");
   });
 
   it("wraps the header toolbar by chunk, not inside prev/next (T190)", () => {
