@@ -71,7 +71,7 @@ describe("Notification", () => {
     expect(icon?.[1]).toMatch(/display:\s*flex/);
     expect(icon?.[1]).toMatch(/font-size:\s*var\(--wim-font-size-md\)/);
     expect(icon?.[1]).toMatch(
-      /padding-top:\s*calc\(\(var\(--wim-line-height-normal-jp\) - 1\) \* 1em \/ 4\)/,
+      /padding-top:\s*calc\(\(var\(--wim-line-height-normal-jp\) - 1\) \* 1em \/ 2\)/,
     );
     expect(scss).toMatch(/align-items:\s*flex-start/);
   });
