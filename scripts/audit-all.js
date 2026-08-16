@@ -144,6 +144,23 @@ const checks = [
     command: "node scripts/check-aliases.js",
   },
   {
+    category: "docs",
+    // 下の lib 側と同じスクリプト。台帳に載っているのにストーリー / MDX が
+    // 無いものを見る（Storybook 側の欠落なので docs）。
+    name: "Catalogue entries have stories and MDX",
+    command: "node scripts/check_consistency.js --docs",
+  },
+  {
+    category: "lib",
+    // **2026-08-16 まで、このガードはどこからも呼ばれず、`process.exit` も
+    // 持っていなかった**（何を見つけても exit 0）。`MAINTENANCE.md`「4. ガードの
+    // 到達性」が 2026-08-08 に名指ししていた 1 件。台帳（components.json）は
+    // docs サイトの目次であると同時に公開カタログの数え上げにも使われるので、
+    // 実装と片方だけ存在する状態は「無い部品の頁」か「頁の無い部品」になる。
+    name: "Catalogue ledger matches src/components",
+    command: "node scripts/check_consistency.js --lib",
+  },
+  {
     category: "lib",
     // 単体では正しいトークンが、組み合わせたときだけ不可視になる事故を防ぐ。
     // axe も VRT も捕まえられない種類（T34）。

@@ -93,7 +93,13 @@ for (const n of Object.keys(pkg.scripts).filter(k=>/^(check|audit)/.test(k))) {
 }'
 ```
 
-**2026-08-08 時点の実測**: CI で走る 43 件 ／ lint-staged だけ 3 件（`check:casing` / `check:links` / `check:intent-text` ── いずれも全量で走らせても緑）／ どこからも呼ばれない 1 件（`check:consistency`。しかも `process.exit` を 1 つも持たず、**何を見つけても exit 0** で終わる）。
+**2026-08-16 時点の実測**: CI で走る **59 件** ／ lint-staged だけ **0 件** ／ どこからも呼ばれない **0 件**。
+
+`check:consistency` を塞いだ（**8 日間放置していた最後の 1 件**）。`--lib`（台帳 ↔ 実装）と `--docs`（実装 ↔ ストーリー / MDX）に分けて `audit-all.js` の両カテゴリへ登録し、欠落 1 件でも `process.exit(1)` するようにした。**lint-staged には入れていない** ── 台帳と全実装を突き合わせる種類のガードは、ステージされたファイルだけを見ると常に素通りする（`check:slop` のラチェットで実際に起きた型 2）。
+
+> 完成の判定は「4 セクションすべてに故意の違反を入れて落ちること」で行った: 台帳にあるのに実装が無い（`ZzzGhost`）／実装があるのに台帳に無い・ストーリーが無い・MDX が無い（`ZzzProbe`）。**同時に「鳴ってはいけない経路で鳴らないこと」も確認した** ── `ZzzGhost` は `--docs` を落とさず（docs 側は実装のある部品しか見ない）、ストーリー欠落は `--lib` を落とさない。
+
+**旧: 2026-08-08 時点**: CI で走る 43 件 ／ lint-staged だけ 3 件（`check:casing` / `check:links` / `check:intent-text` ── いずれも全量で走らせても緑）／ どこからも呼ばれない 1 件（`check:consistency`。しかも `process.exit` を 1 つも持たず、**何を見つけても exit 0** で終わる）。
 
 > このスニペット自体を一度間違えた。「1 で落ちる」を文字列で探していたため、`process.exit(results.length > 0 ? 1 : 0)` で落ちる `audit:stories-i18n` を「失敗できない」と誤報した。**検出器を書いたら、既知の正解で 1 度は突き合わせること。**
 
