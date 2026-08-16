@@ -1,5 +1,12 @@
 # wimui
 
+## 0.23.17
+
+### Patch Changes
+
+- 4d3c8e8: `ScheduleView` の月表示で、前後の月の日付（`fc-day-other`）が読めない濃さだったのを直した。FullCalendar 既定の `.fc-day-other .fc-daygrid-day-top { opacity: .3 }` が効いており、実測でコントラストは light 2.07:1 / dark 2.67:1（WCAG 2.1 AA の 4.5:1 に対して SERIOUS）。不透明度で薄くするのをやめ、`--wim-color-text-secondary` で「弱い文字」を表すようにした。見た目の弱さは保ったまま AA を満たす。
+- 4d3c8e8: `Video` の根要素（`figure`）から `role="region"` を外した。`figure` に許されるロールは `figure` / `group` / `none` / `presentation` だけで、`region` は ARIA in HTML 違反にあたる（axe-core 4.13 の `aria-allowed-role` が検出）。`aria-label` はそのまま figure ロールの名前として残るので、読み上げの手がかりは失われない。`Audio` / `Image` も `figure` だが、どちらも元からロールを付けていない。
+
 ## 0.23.16
 
 ### Patch Changes
