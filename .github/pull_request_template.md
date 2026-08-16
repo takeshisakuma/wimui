@@ -16,6 +16,7 @@
 - [ ] `npm run check:slop`（`stories/Patterns/**` を触ったとき。135deg グラデ・誇張形容詞・style 既定値上書き/px 直書きの増加を検出）
 - [ ] `npm run lint` / `npm run stylelint`（触った TS/SCSS）
 - [ ] 新規コンポーネントなら `npm run audit-mdx` と MDX 必須セクション
+- [ ] 新規公開コンポーネントならプローブ（合成）を一度通した（画面は捨てる。`stories/Patterns/` にカバー率のために書かない。`RULES.md`）
 
 まとめて流す場合: `npm run audit:lib` / `npm run audit:docs`（または `npm run audit:all`）。
 

@@ -116,7 +116,7 @@ const isSkipped = (entry: StoryEntry) =>
   NONDETERMINISTIC_STORY_IDS.has(entry.id) ||
   NONDETERMINISTIC_STORY_PREFIXES.some((p) => entry.id.startsWith(p)) ||
   entry.id.startsWith("audit-") ||
-  // T179: プローブ＝捨てる画面。破棄するときにこの行を戻す
+  // T179: プローブ＝捨てる画面。書くあいだはこの行が要る
   entry.id.startsWith("probes-");
 
 const stories = Object.values(index.entries).filter(

@@ -109,3 +109,4 @@ Vite プラグインが `.tsx` と `.module.scss` を解析し、Props / Tokens 
 5. `public/locales/en/` に翻訳キー追加 → `npm run i18n:sync`
 6. MDX の各セクションを記述
 7. 品質ゲート: `check:api` / `check:aschild` / `audit:hardcoded` / `i18n:check` / `check:imports` / `audit-mdx` / `lint`（PR テンプレと `RULES.md`「品質ゲート・チェックリスト」）
+8. **合成（必須）**: カタログの単体だけでは出荷しない。T179 のプローブで他部品と組み、確認後に画面は捨て、穴の修正と Realistic な単体ストーリーを残す。`stories/Patterns/` にカバー率のために書かない（`RULES.md`）

@@ -216,7 +216,7 @@
     "nodeGraph_prop_backgroundVariant": "背景グリッドのスタイル",
     "nodeGraph_prop_className": "追加の CSS クラス",
     "nodeGraph_prop_defaultEdgeOptions": "新しいエッジに適用されるデフォルトオプション",
-    "nodeGraph_prop_deleteKeyCode": "Backspace/Delete で要素を削除できるかどうか",
+    "nodeGraph_prop_deleteKeyCode": "選択を消すキーと、キャンバス上の追加・削除を出すか。null で両方オフ。省略時は Backspace と Delete。",
     "nodeGraph_prop_edgeTypes": "カスタムのエッジタイプレンダラー",
     "nodeGraph_prop_edges": "制御されたエッジ",
     "nodeGraph_prop_fitView": "マウント時のビューフィットオプション",

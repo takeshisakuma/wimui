@@ -216,7 +216,7 @@
     "nodeGraph_prop_backgroundVariant": "Background grid style",
     "nodeGraph_prop_className": "Additional CSS class",
     "nodeGraph_prop_defaultEdgeOptions": "Default options applied to new edges",
-    "nodeGraph_prop_deleteKeyCode": "Whether elements can be deleted with Backspace/Delete",
+    "nodeGraph_prop_deleteKeyCode": "Keys that delete the selection, and whether the on-canvas add/delete controls are shown. null disables both. When omitted, Backspace and Delete work.",
     "nodeGraph_prop_edgeTypes": "Custom edge type renderers",
     "nodeGraph_prop_edges": "Controlled edges",
     "nodeGraph_prop_fitView": "Fit view options on mount",

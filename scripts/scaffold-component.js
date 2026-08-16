@@ -306,4 +306,5 @@ console.log(`   npm run i18n:check`);
 console.log(`   npm run check:imports`);
 console.log(`   npm run lint && npm run stylelint`);
 console.log(`   (or npm run audit:lib)`);
+console.log(`6. Probe (compose) once with other components. Discard the probe screen. Keep the Realistic catalog story. Do not add a Patterns page for coverage. See RULES.md.`);
 console.log(`See .github/pull_request_template.md and RULES.md「品質ゲート・チェックリスト」。`);

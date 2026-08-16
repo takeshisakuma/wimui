@@ -24,6 +24,7 @@ const meta: Meta<typeof NodeGraph> = {
     showControls: { control: "boolean" },
     nodesDraggable: { control: "boolean" },
     nodesConnectable: { control: "boolean" },
+    deleteKeyCode: { control: false },
     backgroundVariant: {
       control: "radio",
       options: [BackgroundVariant.Dots, BackgroundVariant.Lines, BackgroundVariant.Cross],
@@ -156,5 +157,29 @@ export const ReadOnly: Story = {
     nodesConnectable: false,
     deleteKeyCode: null,
     showControls: true,
+  },
+};
+
+/** T199: キャンバス上の追加と、選択があると押せる削除。 */
+export const Selected: Story = {
+  render: function Render(args) {
+    const { nodes, edges, lang } = useInitialData();
+    const selectedNodes = nodes.map((node, index) =>
+      index === 1 ? { ...node, selected: true } : node,
+    );
+    return (
+      <div style={{ width: "100%", height: "500px" }}>
+        <NodeGraphWithState
+          key={lang}
+          initialNodes={selectedNodes}
+          initialEdges={edges}
+          {...args}
+        />
+      </div>
+    );
+  },
+  args: {
+    showControls: true,
+    showMiniMap: false,
   },
 };

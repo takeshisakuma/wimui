@@ -78,6 +78,7 @@ public/
     - `npm run audit-mdx` — MDX 必須セクション
     - `npm run lint` / `npm run stylelint`
     - チェックリスト本体: `.github/pull_request_template.md` と `RULES.md`「品質ゲート・チェックリスト」
+8.  **合成（必須）**: カタログの単体ストーリーだけでは出荷しない。T179 のプローブで他の部品と組み、置き方・a11y・狭幅を触る。確認が終わったらプローブ画面は捨て、直した部品と Realistic な単体ストーリーを残す。カバー率のために `stories/Patterns/` へ書かない。詳細は `RULES.md` と `DESIGN.md` のコンポジションガイドライン。
 
 ---
 

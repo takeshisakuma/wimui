@@ -1,0 +1,9 @@
+.frame {
+  width: 100%;
+  height: var(--wim-width-xl);
+}
+
+.body {
+  min-width: var(--wim-width-sm);
+  max-width: var(--wim-width-md);
+}

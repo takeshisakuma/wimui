@@ -506,6 +506,11 @@
     "expand": "Expandir tudo",
     "title": "Visualizador de JSON"
   },
+  "nodeGraph": {
+    "add_node": "Adicionar",
+    "new_node": "Nó",
+    "node_name": "Nome do nó"
+  },
   "language": {
     "en": "Inglês",
     "ja": "Japonês",
