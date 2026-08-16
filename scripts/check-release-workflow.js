@@ -22,7 +22,12 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "node:url";
-import { REQUIRED_JOBS, auditReleaseYaml, splitJobs } from "./lib/release-workflow.js";
+import {
+  REQUIRED_JOBS,
+  auditChangesetsPairing,
+  auditReleaseYaml,
+  splitJobs,
+} from "./lib/release-workflow.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RELEASE_YML = path.join(__dirname, "..", ".github", "workflows", "release.yml");
@@ -44,12 +49,22 @@ const jobs = (() => {
 // する（T84 / T89 と同じ）。
 console.log(`走査: ジョブ ${Object.keys(jobs).length} 件（必須 ${REQUIRED_JOBS.length}）`);
 
-const errors = auditReleaseYaml(yaml);
+const pkg = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"),
+);
+const cliRange =
+  pkg.devDependencies?.["@changesets/cli"] ?? pkg.dependencies?.["@changesets/cli"];
+console.log(
+  `走査: changesets/cli ${cliRange} と release.yml の action の組み合わせ（T201）`,
+);
+
+const errors = [...auditReleaseYaml(yaml), ...auditChangesetsPairing(yaml, cliRange)];
 if (errors.length) {
   console.error("\n✗ release.yml の契約が崩れている:\n");
   for (const e of errors) console.error(`  - ${e}`);
   process.exit(1);
 }
 console.log(
-  "✓ Version PR 経路に環境ゲートは無く、失敗した version は latest main から拾い直す。",
+  "✓ Version PR 経路に環境ゲートは無く、失敗した version は latest main から拾い直す。\n" +
+    "  changesets の CLI と action も組になっている。",
 );
