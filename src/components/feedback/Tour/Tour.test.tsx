@@ -15,6 +15,7 @@ describe("Tour", () => {
     document.body.innerHTML = `
             <div id="step1" style="width: 100px; height: 50px; position: absolute; top: 100px; left: 100px;">Step 1 Target</div>
             <div id="step2" style="width: 100px; height: 50px; position: absolute; top: 500px; left: 100px;">Step 2 Target</div>
+            <div id="step-off" style="width: 100px; height: 50px; position: absolute; top: 4000px; left: 100px;">Offscreen Target</div>
         `;
 
     // Mock getBoundingClientRect
@@ -38,6 +39,16 @@ describe("Tour", () => {
             width: 100,
             height: 50,
             bottom: 550,
+            right: 200,
+          } as DOMRect;
+        }
+        if (this.id === "step-off") {
+          return {
+            top: 4000,
+            left: 100,
+            width: 100,
+            height: 50,
+            bottom: 4050,
             right: 200,
           } as DOMRect;
         }
@@ -278,7 +289,6 @@ describe("Tour", () => {
     const scrollIntoView = window.HTMLElement.prototype
       .scrollIntoView as ReturnType<typeof vi.fn>;
     const calls = scrollIntoView.mock.calls.length;
-    expect(calls).toBeGreaterThan(0);
     expect(
       scrollIntoView.mock.calls.some((c) => c[0]?.behavior === "smooth"),
     ).toBe(false);
@@ -293,15 +303,59 @@ describe("Tour", () => {
     expect(scrollIntoView.mock.calls.length).toBe(calls);
   });
 
-  it("scrolls when the target selector changes (T193)", () => {
-    render(<Tour steps={steps} open onClose={() => {}} />);
+  it("does not scroll when the target is already on screen (T194)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#step1", title: "A", description: "a" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+    expect(screen.getByText("A")).toBeInTheDocument();
+  });
+
+  it("scrolls when moving to an off-screen step (T194)", () => {
+    render(
+      <Tour
+        steps={[
+          { target: "#step1", title: "Step 1", description: "First step" },
+          { target: "#step-off", title: "Off", description: "below" },
+        ]}
+        open
+        onClose={() => {}}
+      />,
+    );
     const scrollIntoView = window.HTMLElement.prototype
       .scrollIntoView as ReturnType<typeof vi.fn>;
-    const first = scrollIntoView.mock.calls.length;
-    expect(first).toBeGreaterThan(0);
+    expect(scrollIntoView).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByText("Next"));
-    expect(scrollIntoView.mock.calls.length).toBeGreaterThan(first);
+    expect(scrollIntoView).toHaveBeenCalled();
+  });
+
+  it("scrolls when the target is off screen (T194)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#step-off", title: "Off", description: "below" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    expect(
+      (window.HTMLElement.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mock.calls.some(
+        (c) => c[0]?.behavior === "smooth",
+      ),
+    ).toBe(false);
+  });
+
+  it("does not paint the bubble before the target is measured (T194)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    expect(tsx).toContain("if (!targetRect) return null");
+    expect(tsx).not.toMatch(/setTimeout\(\s*measure\s*,\s*100\s*\)/);
+    expect(tsx).toContain("waitForFonts");
+    expect(tsx).toContain("isFullyVisible");
   });
 
   it("does not animate the spotlight hole (T193)", () => {

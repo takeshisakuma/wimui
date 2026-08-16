@@ -31,6 +31,26 @@ type TourProps = {
   onFinish?: () => void;
 };
 
+const VIEW_MARGIN = 16;
+
+function rectsEqual(a: DOMRect, b: DOMRect) {
+  return (
+    Math.round(a.top) === Math.round(b.top) &&
+    Math.round(a.left) === Math.round(b.left) &&
+    Math.round(a.width) === Math.round(b.width) &&
+    Math.round(a.height) === Math.round(b.height)
+  );
+}
+
+function isFullyVisible(rect: DOMRect) {
+  return (
+    rect.top >= VIEW_MARGIN &&
+    rect.bottom <= window.innerHeight - VIEW_MARGIN &&
+    rect.left >= VIEW_MARGIN &&
+    rect.right <= window.innerWidth - VIEW_MARGIN
+  );
+}
+
 export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
   const { t } = useWimTranslation("common");
   const [currentStep, setCurrentStep] = useState(0);
@@ -46,57 +66,73 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     }
 
     let cancelled = false;
-    const measure = () => {
+    const apply = (next: DOMRect | null) => {
       if (cancelled) return;
-      const element = document.querySelector(target);
-      if (!element) {
-        setTargetRect(null);
-        return;
-      }
-      const next = element.getBoundingClientRect();
       setTargetRect((prev) => {
-        if (
-          prev &&
-          prev.top === next.top &&
-          prev.left === next.left &&
-          prev.width === next.width &&
-          prev.height === next.height
-        ) {
-          return prev;
-        }
+        if (!next) return null;
+        if (prev && rectsEqual(prev, next)) return prev;
         return next;
       });
     };
 
-    // コピーだけ変わった再生成ではスクロールしない。smooth は scroll イベントを
-    // 長く吐き、spotlight の transition と重なるとダイアログが消えて出直して見える。
-    document.querySelector(target)?.scrollIntoView({
-      block: "center",
-      inline: "nearest",
-    });
-    measure();
-    const timer = window.setTimeout(measure, 100);
+    const place = () => {
+      const element = document.querySelector(target);
+      if (!element) {
+        apply(null);
+        return;
+      }
+      // 画面内なら動かさない。center へ寄せると fixed のバブルが置いたあとに追従して見える。
+      if (!isFullyVisible(element.getBoundingClientRect())) {
+        element.scrollIntoView({
+          block: "center",
+          inline: "nearest",
+        });
+      }
+      apply(element.getBoundingClientRect());
+    };
 
-    window.addEventListener("resize", measure);
-    window.addEventListener("scroll", measure, true);
-
-    const ro =
-      typeof ResizeObserver === "undefined"
-        ? null
-        : new ResizeObserver(measure);
-    try {
-      ro?.observe(document.documentElement);
-    } catch {
-      // jsdom など observe できない環境
-    }
+    const measure = () => {
+      const element = document.querySelector(target);
+      apply(element ? element.getBoundingClientRect() : null);
+    };
 
     const fonts = document.fonts;
-    fonts?.addEventListener?.("loadingdone", measure);
-    void fonts?.ready?.then(measure);
+    const waitForFonts =
+      Boolean(fonts) &&
+      fonts.status === "loading" &&
+      typeof fonts.ready?.then === "function";
+
+    let ro: ResizeObserver | null = null;
+    const bind = () => {
+      window.addEventListener("resize", measure);
+      window.addEventListener("scroll", measure, true);
+      if (typeof ResizeObserver !== "undefined") {
+        ro = new ResizeObserver(measure);
+        try {
+          ro.observe(document.documentElement);
+          const element = document.querySelector(target);
+          if (element) ro.observe(element);
+        } catch {
+          // jsdom など observe できない環境
+        }
+      }
+      fonts?.addEventListener?.("loadingdone", measure);
+    };
+
+    if (waitForFonts) {
+      // 先に出してからフォントで測り直すと、英語でも数 px 動いて見える。
+      void fonts.ready.then(() => {
+        if (cancelled) return;
+        place();
+        bind();
+      });
+    } else {
+      place();
+      bind();
+    }
 
     return () => {
       cancelled = true;
-      window.clearTimeout(timer);
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", measure, true);
       ro?.disconnect();
@@ -125,51 +161,52 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     }
   };
 
+  // 未計測のバブルは top/left 無しの fixed になり、置いたあとに跳ねて見える。
+  if (!targetRect) return null;
+
   const bubbleStyle: React.CSSProperties = {};
   let effectivePlacement: NonNullable<TourStep["placement"]> = step.placement || "bottom";
-  if (targetRect) {
-    const margin = 16;
-    const gap = 12;
-    const screenWidth = window.innerWidth;
-    const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
+  const margin = 16;
+  const gap = 12;
+  const screenWidth = window.innerWidth;
+  const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
 
-    let placement = effectivePlacement;
+  let placement = effectivePlacement;
 
-    // Fallback for small screens or limited space
-    if (screenWidth < 640 && (placement === "left" || placement === "right")) {
-      placement = "bottom";
+  // Fallback for small screens or limited space
+  if (screenWidth < 640 && (placement === "left" || placement === "right")) {
+    placement = "bottom";
+  }
+  effectivePlacement = placement;
+
+  if (placement === "top" || placement === "bottom") {
+    let left = targetRect.left + targetRect.width / 2;
+    const minLeft = actualBubbleWidth / 2 + margin;
+    const maxLeft = screenWidth - actualBubbleWidth / 2 - margin;
+
+    // Adjust left if bubble is wider than min/max allows (very small screens)
+    if (minLeft > maxLeft) {
+      left = screenWidth / 2;
+    } else {
+      left = Math.max(minLeft, Math.min(maxLeft, left));
     }
-    effectivePlacement = placement;
 
-    if (placement === "top" || placement === "bottom") {
-      let left = targetRect.left + targetRect.width / 2;
-      const minLeft = actualBubbleWidth / 2 + margin;
-      const maxLeft = screenWidth - actualBubbleWidth / 2 - margin;
-
-      // Adjust left if bubble is wider than min/max allows (very small screens)
-      if (minLeft > maxLeft) {
-        left = screenWidth / 2;
-      } else {
-        left = Math.max(minLeft, Math.min(maxLeft, left));
-      }
-
-      bubbleStyle.left = left;
-      if (placement === "top") {
-        bubbleStyle.top = targetRect.top - gap;
-        bubbleStyle.transform = "translate(-50%, -100%)";
-      } else {
-        bubbleStyle.top = targetRect.bottom + gap;
-        bubbleStyle.transform = "translateX(-50%)";
-      }
-    } else if (placement === "left") {
-      bubbleStyle.left = targetRect.left - gap;
-      bubbleStyle.top = targetRect.top + targetRect.height / 2;
-      bubbleStyle.transform = "translate(-100%, -50%)";
-    } else if (placement === "right") {
-      bubbleStyle.left = targetRect.right + gap;
-      bubbleStyle.top = targetRect.top + targetRect.height / 2;
-      bubbleStyle.transform = "translateY(-50%)";
+    bubbleStyle.left = left;
+    if (placement === "top") {
+      bubbleStyle.top = targetRect.top - gap;
+      bubbleStyle.transform = "translate(-50%, -100%)";
+    } else {
+      bubbleStyle.top = targetRect.bottom + gap;
+      bubbleStyle.transform = "translateX(-50%)";
     }
+  } else if (placement === "left") {
+    bubbleStyle.left = targetRect.left - gap;
+    bubbleStyle.top = targetRect.top + targetRect.height / 2;
+    bubbleStyle.transform = "translate(-100%, -50%)";
+  } else if (placement === "right") {
+    bubbleStyle.left = targetRect.right + gap;
+    bubbleStyle.top = targetRect.top + targetRect.height / 2;
+    bubbleStyle.transform = "translateY(-50%)";
   }
 
   return (
@@ -184,17 +221,15 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
           if (e.key === "Enter" || e.key === " ") onClose();
         }}
       />
-      {targetRect && (
-        <div
-          className={styles.highlight}
-          style={{
-            top: targetRect.top - 4,
-            left: targetRect.left - 4,
-            width: targetRect.width + 8,
-            height: targetRect.height + 8,
-          }}
-        />
-      )}
+      <div
+        className={styles.highlight}
+        style={{
+          top: targetRect.top - 4,
+          left: targetRect.left - 4,
+          width: targetRect.width + 8,
+          height: targetRect.height + 8,
+        }}
+      />
       <div
         className={classNames("wim-tour", styles.bubble)}
         // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
