@@ -506,6 +506,11 @@
     "expand": "すべて展開",
     "title": "JSONビューアー"
   },
+  "nodeGraph": {
+    "add_node": "追加",
+    "new_node": "ノード",
+    "node_name": "ノード名"
+  },
   "language": {
     "en": "英語",
     "ja": "日本語",

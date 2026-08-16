@@ -2327,14 +2327,16 @@ drops secondary text below the AA contrast floor.
 - **NodeGraph** — Interactive node-based flowchart and pipeline editor
     - `nodes: Node[]` (required) — Controlled nodes
     - `edges: Edge[]` (required) — Controlled edges
-    - `onNodesChange: OnNodesChange` (required) — Called when nodes change (position, selection, removal)
+    - `onNodesChange: OnNodesChange` (required) — Called when nodes change (position, selection, add, removal)
     - `onEdgesChange: OnEdgesChange` (required) — Called when edges change
     - `onConnect: OnConnect` — Called when a new connection is made
     - `nodeTypes: NodeTypes` — Custom node type renderers
     - `edgeTypes: EdgeTypes` — Custom edge type renderers
     - `nodesDraggable: boolean` = true — Whether nodes can be dragged
     - `nodesConnectable: boolean` = true — Whether nodes can be connected
-    - `deleteKeyCode: string | null` = "Backspace" — Whether elements can be deleted with Backspace/Delete
+    - `deleteKeyCode: string | null` — Keys that delete the selection, and whether the on-canvas add/delete controls are shown.
+`null` hides the controls and disables key deletion (read-only).
+When omitted, both Backspace and Delete work.
     - `showMiniMap: boolean` = false — Show the minimap panel
     - `showControls: boolean` = true — Show zoom/fit controls
     - `backgroundVariant: BackgroundVariant` = BackgroundVariant.Dots — Background grid style

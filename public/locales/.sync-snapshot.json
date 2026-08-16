@@ -1302,6 +1302,11 @@
       "addItem": "Add item",
       "deleteItem": "Delete item"
     },
+    "nodeGraph": {
+      "add_node": "Add",
+      "new_node": "Node",
+      "node_name": "Node name"
+    },
     "reaction": {
       "aria_label": "Reactions",
       "react_with": "{{emoji}}, {{count}} reactions",
@@ -4268,12 +4273,18 @@
       "nodegraph_anatomy_node_label": "Node",
       "nodegraph_anatomy_edge": "Visual connections representing relationships or flow between nodes.",
       "nodegraph_anatomy_edge_label": "Edge",
+      "nodegraph_anatomy_tools": "Add and delete controls on the canvas. Hidden when deleteKeyCode is null.",
+      "nodegraph_anatomy_tools_label": "Edit",
+      "nodegraph_anatomy_tool": "Add a node, or delete the selection.",
+      "nodegraph_anatomy_tool_label": "Control",
+      "nodegraph_anatomy_name": "Name field shown after Add. Enter adds the node. Escape cancels.",
+      "nodegraph_anatomy_name_label": "Name",
       "nodegraph_choice_flow": "Approval flow editor",
       "nodegraph_choice_viz": "AI pipeline visualization (read-only)",
       "nodegraph_choice_stepper": "Simple linear flow",
       "nodegraph_choice_tree": "Hierarchical structure",
       "nodegraph_a11y_wrap": "The entire graph is wrapped in role=\"region\" with an aria-label.",
-      "nodegraph_a11y_keyboard": "Keyboard navigation for node selection and movement depends on React Flow's built-in support.",
+      "nodegraph_a11y_keyboard": "Add opens a name field. Enter adds the node; Escape cancels. Select a node or edge, then delete it with the on-canvas Delete control, Backspace, or Delete. Keyboard movement still uses React Flow's built-in support.",
       "nodegraph_a11y_live": "We recommend announcing important state changes via a separate aria-live region.",
       "nodegraph_scenario_flow": "Approval Flow Editor",
       "nodegraph_scenario_flow_desc": "Building workflows by connecting nodes for requests, approvals, and rejections.",
@@ -4285,7 +4296,7 @@
       "nodegraph_best_readonly": "Combine nodesDraggable={false}, nodesConnectable={false}, and deleteKeyCode={null} for a read-only view.",
       "nodegraph_best_height": "Always specify an explicit height for the container (e.g., 500px); the graph won't render if height is 0.",
       "nodegraph_keyboard_tab": "Move focus between nodes",
-      "nodegraph_keyboard_delete": "Delete selected nodes and edges",
+      "nodegraph_keyboard_delete": "Delete selected nodes and edges (Backspace or Delete). Same as the on-canvas Delete control.",
       "nodegraph_keyboard_undo": "Undo (requires custom implementation on the consumer side)",
       "scheduleview_desc": "A calendar (TimeGrid) component with a time axis. Built on FullCalendar, it supports switching between week, day, and month views, drag-and-drop events, and creating appointments by selecting time slots.",
       "scheduleview_design_intent": "Provides an intuitive schedule management UI like Google Calendar. Supports not only viewing but also moving/resizing events via drag-and-drop and creating new ones by clicking empty slots.",
@@ -11255,6 +11266,13 @@
       "list_step3": "Step 3",
       "list_task_completed": "Completed task",
       "list_view_details": "View Details",
+      "nodegraph_composed_badge": "Holding",
+      "nodegraph_composed_call": "Call",
+      "nodegraph_composed_counter": "Black umbrella, brought in 16:40",
+      "nodegraph_composed_desk": "The tag has a mobile number.",
+      "nodegraph_composed_edge_desk": "still here",
+      "nodegraph_composed_edge_note": "asked",
+      "nodegraph_composed_note": "The 16:12 inbound is in the book with no name.",
       "nodegraph_edge_error": "error",
       "nodegraph_edge_success": "success",
       "nodegraph_edge_trigger": "trigger",
@@ -14268,7 +14286,7 @@
       "nodeGraph_prop_backgroundVariant": "Background grid style",
       "nodeGraph_prop_className": "Additional CSS class",
       "nodeGraph_prop_defaultEdgeOptions": "Default options applied to new edges",
-      "nodeGraph_prop_deleteKeyCode": "Whether elements can be deleted with Backspace/Delete",
+      "nodeGraph_prop_deleteKeyCode": "Keys that delete the selection, and whether the on-canvas add/delete controls are shown. null disables both. When omitted, Backspace and Delete work.",
       "nodeGraph_prop_edgeTypes": "Custom edge type renderers",
       "nodeGraph_prop_edges": "Controlled edges",
       "nodeGraph_prop_fitView": "Fit view options on mount",
@@ -16296,5 +16314,6 @@
       "return_damage": "Report a scratch",
       "return_trouble": "Accident or breakdown"
     }
-  }
+  },
+  "docs_stories_probes": {}
 }

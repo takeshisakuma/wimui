@@ -68,6 +68,7 @@
 - 可能な限り既存コンポーネント（`src/components/_internal/` の内部コンポーネントを含む）を活用し、独自実装しないようにしてください。
   - 内部コンポーネントを設計・修正する際は、JSDoc に 「Composition Contract（合成契約）」 を明記してください。これにより、上位コンポーネントとの責任分界点（Portalの管理、スクロールロックの要否、イベントの伝搬制御など）を明確にし、暗黙的な挙動によるバグを防ぎます。
 - **複合 UI はレシピ優先。** 既存 primitives の組み合わせで足りる画面パターンは、薄いラッパコンポーネントを新規公開せず `stories/Patterns/` にレシピ（Stories）として書く。公開コンポーネント化するのは、再利用 API・アクセシビリティ・状態機械が primitives 合成だけでは保てないときに限る。例: Form + RHF は `wimui/rhf`（薄いアダプタ）+ Patterns → Form → React Hook Form。詳細は `SKILLS.md`「複合 UI / レシピ優先」。
+- **新規の公開コンポーネントは、カタログの単体ストーリーだけでは出荷しない。** 必ず一度合成する（T179 のプローブ）。他の部品と組んで置き方・a11y・狭幅を触り、確認が終わったらプローブ画面は捨てる。残すのは部品の修正と Realistic な単体ストーリー。カバー率のために `stories/Patterns/` へ書かない。単体で足りると既に決めてあるもの（`Portal` / `FocusTrap` / `Transition` / `VisuallyHidden`）と、内側でしか描かれない部品は除く。書き方は `DESIGN.md` のコンポジションガイドライン。
 - `any` の使用は禁止です。Props は `interface` または `type` で明示的に型定義してください。
 - HTML要素を拡張するコンポーネントでは `React.ComponentPropsWithoutRef<"element">` を使って HTML属性を継承してください。不要な属性は `Omit` で除外してください。
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。以下のルールに従ってください。
@@ -481,6 +482,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 | peer import 境界 | `npm run check:imports` | charts / ai / peer 依存をルート `wimui` から引いていないか |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | 構文・スタイル |
 | MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネントの必須セクション |
+| 合成（新規公開） | T179 のプローブ | カタログ単体では出荷しない。他部品と組んで置き方・a11y・狭幅を触り、確認後に画面は捨てる。`stories/Patterns/` にカバー率のために書かない |
 
 まとめて: `npm run audit:lib`（範囲が広いとき）。
 

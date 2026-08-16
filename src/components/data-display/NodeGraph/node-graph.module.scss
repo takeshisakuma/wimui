@@ -92,3 +92,71 @@
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }
+
+.tools {
+  position: absolute;
+  top: var(--wim-spacing-md);
+  right: var(--wim-spacing-md);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xs);
+  align-items: flex-end;
+  max-width: calc(100% - (2 * var(--wim-spacing-md)));
+}
+
+.toolRow {
+  display: flex;
+  gap: var(--wim-spacing-xs);
+}
+
+.name {
+  box-sizing: border-box;
+  width: var(--wim-width-sm);
+  max-width: 100%;
+  min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
+  padding-block: var(--wim-spacing-sm);
+  padding-inline: var(--wim-spacing-md);
+  font-family: var(--wim-font-family-base);
+  font-size: var(--wim-font-size-sm);
+  line-height: var(--wim-line-height-tight);
+  color: var(--wim-color-text-primary);
+  background: var(--wim-color-surface);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border-radius: var(--wim-radius-component);
+  box-shadow: var(--wim-shadow-sm);
+
+  &:focus {
+    outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+    outline-offset: var(--wim-focus-outline-offset);
+  }
+}
+
+.tool {
+  display: inline-flex;
+  gap: var(--wim-spacing-xs);
+  align-items: center;
+  min-width: var(--wim-tap-target-min);
+  min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
+  padding-block: var(--wim-spacing-sm);
+  padding-inline: var(--wim-spacing-md);
+  font-family: var(--wim-font-family-base);
+  font-size: var(--wim-font-size-sm);
+  line-height: var(--wim-line-height-tight);
+  color: var(--wim-color-text-primary);
+  cursor: pointer;
+  background: var(--wim-color-surface);
+  border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  border-radius: var(--wim-radius-component);
+  box-shadow: var(--wim-shadow-sm);
+
+  &:hover:not(:disabled) {
+    background: var(--wim-color-ghost-bg-hover);
+  }
+
+  &:disabled {
+    color: var(--wim-color-text-disabled);
+    cursor: default;
+    background: var(--wim-color-surface);
+  }
+}

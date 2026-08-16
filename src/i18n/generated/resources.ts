@@ -100,6 +100,11 @@ export const wimResources: WimResources = {
         "addItem": "Add item",
         "deleteItem": "Delete item"
       },
+      "nodeGraph": {
+        "add_node": "Add",
+        "new_node": "Node",
+        "node_name": "Node name"
+      },
       "reaction": {
         "aria_label": "Reactions",
         "react_with": "{{emoji}}, {{count}} reactions",
@@ -403,6 +408,11 @@ export const wimResources: WimResources = {
         "deleteItem": "項目の削除",
         "edit": "JSONを編集",
         "title": "JSONビューアー"
+      },
+      "nodeGraph": {
+        "add_node": "追加",
+        "new_node": "ノード",
+        "node_name": "ノード名"
       },
       "mon": "月",
       "pagination": {
@@ -716,6 +726,11 @@ export const wimResources: WimResources = {
         "deleteItem": "Excluir item",
         "edit": "Editar JSON",
         "title": "Visualizador de JSON"
+      },
+      "nodeGraph": {
+        "add_node": "Adicionar",
+        "new_node": "Nó",
+        "node_name": "Nome do nó"
       },
       "mon": "Seg",
       "pagination": {

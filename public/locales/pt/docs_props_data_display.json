@@ -216,7 +216,7 @@
     "nodeGraph_prop_backgroundVariant": "Estilo da grade de fundo",
     "nodeGraph_prop_className": "Classe CSS adicional",
     "nodeGraph_prop_defaultEdgeOptions": "Opções padrão aplicadas a novas arestas",
-    "nodeGraph_prop_deleteKeyCode": "Se os elementos podem ser excluídos com Backspace/Delete",
+    "nodeGraph_prop_deleteKeyCode": "Teclas que excluem a seleção, e se os controles de adicionar/excluir no canvas aparecem. null desativa os dois. Se omitido, Backspace e Delete funcionam.",
     "nodeGraph_prop_edgeTypes": "Renderizadores de tipo de aresta personalizados",
     "nodeGraph_prop_edges": "Arestas controladas",
     "nodeGraph_prop_fitView": "Opções de ajuste de view na montagem",
