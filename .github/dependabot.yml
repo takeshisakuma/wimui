@@ -42,6 +42,18 @@ updates:
       # （Vite / docgen / 型チェック周辺）が追随するまで保留（PR #14 は CI 全滅を確認済み）
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # @changesets/cli 3 は **単独で上げると赤を出さずにリリースを壊す**（2026-08-16 調査）。
+      # `changesets/action@v1` は `changeset publish` の標準出力を
+      # `/New tag:\s+…/` で読んで publish 済みを判定するが、cli 3.0.0 はその行を
+      # 出さなくなった（"Creating git tags..." に変わった）。結果として
+      # **npm publish は成功するのに published=false と判定され、git タグの push と
+      # GitHub Release の作成が黙って行われなくなる**。CI は緑のまま。
+      # action v2 は NDJSON の構造化出力（type: "git-tag"）で判定するので cli 3 と
+      # 組でしか動かず（v2 は cli 2 を検出して v1 へ誘導する）、さらに入力名が
+      # 総入れ替えになる（version → version-script / publish → publish-script ほか）。
+      # 上げるときは **cli 3 + action v2 + release.yml の入力名**を同時に変えること。
+      - dependency-name: "@changesets/cli"
+        update-types: ["version-update:semver-major"]
       # FullCalendar 7 は core / react のみ stable（7.0.1）で、ScheduleView が依存する
       # plugin（timegrid / daygrid / interaction）は 7.0.0-rc.0 までしか無い（latest は 6.1.21）。
       # core/react だけ 7 に上げると plugin 6 と型不整合で壊れる（#56/#58 で確認・クローズ）。
