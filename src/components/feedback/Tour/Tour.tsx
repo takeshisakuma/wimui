@@ -147,52 +147,52 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     }
   };
 
-  // 未計測のバブルは top/left 無しの fixed になり、置いたあとに跳ねて見える。
-  if (!targetRect) return null;
-
+  // マスクは先に出す。測ってからマスクを出すと、穴がオーバーレイ前の座標のまま固まる。
   const bubbleStyle: React.CSSProperties = {};
   let effectivePlacement: NonNullable<TourStep["placement"]> = step.placement || "bottom";
-  const margin = 16;
-  const gap = 12;
-  const screenWidth = window.innerWidth;
-  const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
+  if (targetRect) {
+    const margin = 16;
+    const gap = 12;
+    const screenWidth = window.innerWidth;
+    const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
 
-  let placement = effectivePlacement;
+    let placement = effectivePlacement;
 
-  // Fallback for small screens or limited space
-  if (screenWidth < 640 && (placement === "left" || placement === "right")) {
-    placement = "bottom";
-  }
-  effectivePlacement = placement;
-
-  if (placement === "top" || placement === "bottom") {
-    let left = targetRect.left + targetRect.width / 2;
-    const minLeft = actualBubbleWidth / 2 + margin;
-    const maxLeft = screenWidth - actualBubbleWidth / 2 - margin;
-
-    // Adjust left if bubble is wider than min/max allows (very small screens)
-    if (minLeft > maxLeft) {
-      left = screenWidth / 2;
-    } else {
-      left = Math.max(minLeft, Math.min(maxLeft, left));
+    // Fallback for small screens or limited space
+    if (screenWidth < 640 && (placement === "left" || placement === "right")) {
+      placement = "bottom";
     }
+    effectivePlacement = placement;
 
-    bubbleStyle.left = left;
-    if (placement === "top") {
-      bubbleStyle.top = targetRect.top - gap;
-      bubbleStyle.transform = "translate(-50%, -100%)";
-    } else {
-      bubbleStyle.top = targetRect.bottom + gap;
-      bubbleStyle.transform = "translateX(-50%)";
+    if (placement === "top" || placement === "bottom") {
+      let left = targetRect.left + targetRect.width / 2;
+      const minLeft = actualBubbleWidth / 2 + margin;
+      const maxLeft = screenWidth - actualBubbleWidth / 2 - margin;
+
+      // Adjust left if bubble is wider than min/max allows (very small screens)
+      if (minLeft > maxLeft) {
+        left = screenWidth / 2;
+      } else {
+        left = Math.max(minLeft, Math.min(maxLeft, left));
+      }
+
+      bubbleStyle.left = left;
+      if (placement === "top") {
+        bubbleStyle.top = targetRect.top - gap;
+        bubbleStyle.transform = "translate(-50%, -100%)";
+      } else {
+        bubbleStyle.top = targetRect.bottom + gap;
+        bubbleStyle.transform = "translateX(-50%)";
+      }
+    } else if (placement === "left") {
+      bubbleStyle.left = targetRect.left - gap;
+      bubbleStyle.top = targetRect.top + targetRect.height / 2;
+      bubbleStyle.transform = "translate(-100%, -50%)";
+    } else if (placement === "right") {
+      bubbleStyle.left = targetRect.right + gap;
+      bubbleStyle.top = targetRect.top + targetRect.height / 2;
+      bubbleStyle.transform = "translateY(-50%)";
     }
-  } else if (placement === "left") {
-    bubbleStyle.left = targetRect.left - gap;
-    bubbleStyle.top = targetRect.top + targetRect.height / 2;
-    bubbleStyle.transform = "translate(-100%, -50%)";
-  } else if (placement === "right") {
-    bubbleStyle.left = targetRect.right + gap;
-    bubbleStyle.top = targetRect.top + targetRect.height / 2;
-    bubbleStyle.transform = "translateY(-50%)";
   }
 
   return (
@@ -207,45 +207,50 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
           if (e.key === "Enter" || e.key === " ") onClose();
         }}
       />
-      <div
-        className={styles.highlight}
-        style={{
-          top: targetRect.top - 4,
-          left: targetRect.left - 4,
-          width: targetRect.width + 8,
-          height: targetRect.height + 8,
-        }}
-      />
-      <div
-        className={classNames("wim-tour", styles.bubble)}
-        // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
-        data-placement={effectivePlacement}
-        style={bubbleStyle}
-      >
-        <div className={styles.inner}>
-          <h3 className={styles.title}>{step.title}</h3>
-          <p className={styles.description}>{step.description}</p>
-          <div className={styles.footer}>
-            <span className={styles.progress}>
-              {currentStep + 1} / {steps.length}
-            </span>
-            <div className={styles.buttons}>
-              {currentStep > 0 && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleBack}
-                >{t("action.back")}</Button>
-              )}
-              <Button
-                size="sm"
-                variant="solid"
-                onClick={handleNext}
-              >{currentStep === steps.length - 1 ? t("action.finish") : t("action.next")}</Button>
+      {targetRect && (
+        <>
+          <div
+            className={styles.highlight}
+            style={{
+              top: targetRect.top - 4,
+              left: targetRect.left - 4,
+              width: targetRect.width + 8,
+              height: targetRect.height + 8,
+            }}
+          />
+          <div
+            className={classNames("wim-tour", styles.bubble)}
+            // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
+            data-placement={effectivePlacement}
+            style={bubbleStyle}
+          >
+            <div className={styles.inner}>
+              <h3 className={styles.title}>{step.title}</h3>
+              <p className={styles.description}>{step.description}</p>
+              <div className={styles.footer}>
+                <span className={styles.progress}>
+                  {currentStep + 1} / {steps.length}
+                </span>
+                <div className={styles.buttons}>
+                  {currentStep > 0 && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleBack}
+                    >{t("action.back")}</Button>
+                  )}
+                  <Button
+                    size="sm"
+                    variant="solid"
+                    onClick={handleNext}
+                  >{currentStep === steps.length - 1 ? t("action.finish") : t("action.next")}</Button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </Portal>
   );
 };
+

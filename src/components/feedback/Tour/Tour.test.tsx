@@ -352,7 +352,8 @@ describe("Tour", () => {
 
   it("does not paint the bubble before the target is measured (T194)", () => {
     const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
-    expect(tsx).toContain("if (!targetRect) return null");
+    expect(tsx).not.toMatch(/if \(!targetRect\) return null/);
+    expect(tsx).toContain("{targetRect && (");
     expect(tsx).not.toMatch(/setTimeout\(\s*measure\s*,\s*100\s*\)/);
     expect(tsx).toContain("waitForFonts");
     expect(tsx).toContain("isFullyVisible");
@@ -368,6 +369,19 @@ describe("Tour", () => {
     expect(scss).not.toMatch(/\.mask\s*\{[^}]*width:\s*100vw/s);
     expect(tsx).not.toContain("document.documentElement");
     expect(tsx).not.toContain("loadingdone");
+  });
+
+  it("shows the mask before the spotlight when the target is missing (T196)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#missing", title: "Gone", description: "x" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Dismiss tour" })).toBeInTheDocument();
+    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
+    expect(document.querySelector(`.${styles.highlight}`)).not.toBeInTheDocument();
   });
 
   it("does not animate the spotlight hole (T193)", () => {
