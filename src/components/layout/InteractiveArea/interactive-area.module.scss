@@ -105,12 +105,15 @@
 
 .icon {
   font-size: var(--ia-icon-size);
+  line-height: 1;
   color: var(--wim-color-text-secondary);
 
-  // Force Icon component to inherit font-size if it has the .root class (from icon.module.scss)
-  // Since we don't know the exact hashed class, we can try to target children
+  // Icon は 1em 箱。バレルの素の SVG は幅高さが無く、font-size だけでは 0 になる。
   & > * {
-    font-size: inherit !important;
+    display: block;
+    width: 1em;
+    height: 1em;
+    font-size: inherit;
   }
 }
 

@@ -1,0 +1,107 @@
+@layer component {
+  .page {
+    min-height: 100vh;
+    background: var(--wim-color-surface-app);
+  }
+
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xl);
+    padding: var(--wim-spacing-xl);
+  }
+
+  .chrome {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .print {
+    background: var(--wim-color-surface-variant);
+  }
+
+  .printPaper {
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
+  .caption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+  }
+
+  .book {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xl);
+    align-items: flex-start;
+  }
+
+  .slots {
+    display: flex;
+    flex: 1 1 var(--wim-width-md);
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    min-width: 0;
+  }
+
+  .slot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+    padding: var(--wim-spacing-md);
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+  }
+
+  .slotWait {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  .paperRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: baseline;
+  }
+
+  .hang {
+    height: var(--wim-width-lg);
+    overflow: hidden;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+  }
+
+  .queue {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    min-width: 0;
+    padding: var(--wim-spacing-md);
+  }
+
+  .drop {
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 0;
+    padding: var(--wim-spacing-md);
+  }
+
+  .dropFill {
+    height: 100%;
+  }
+}

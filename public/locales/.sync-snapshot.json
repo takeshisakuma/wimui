@@ -16296,5 +16296,41 @@
       "return_damage": "Report a scratch",
       "return_trouble": "Accident or breakdown"
     }
+  },
+  "docs_stories_probes": {
+    "numa": {
+      "club": "Numabukuro Photo Club",
+      "wall_line": "This month's hanging. The wall is in the community room.",
+      "wall": "Prints on the wall",
+      "p_endo": "West exit after rain",
+      "who_endo": "Endo",
+      "p_gill": "The bicycle that never moved",
+      "who_gill": "Gill",
+      "p_noguchi": "Platform 2",
+      "who_noguchi": "Noguchi",
+      "p_kinoshita": "Last bus, dripping awning, someone left a folding umbrella",
+      "who_kinoshita": "Kinoshita",
+      "p_sasaki": "Untitled. Still at the lab.",
+      "who_sasaki": "Sasaki",
+      "react_star": "Star",
+      "react_up": "Good",
+      "book_line": "Desk. You are picking a day to hang.",
+      "pegs": "Pegs for this day",
+      "empty": "No one booked this day yet.",
+      "paper_out": "2L paper is sold out at the desk.",
+      "size_6": "6-cut",
+      "size_4": "4-cut",
+      "size_a4": "A4",
+      "size_2l": "2L",
+      "writing": "The desk is writing the name",
+      "hang_line": "Community room. Peg 2 is free.",
+      "queue": "Waiting to hang",
+      "hung": "Hung",
+      "drop_title": "Hang it on peg 2",
+      "drop_body": "Pick a print from the list, then tap here.",
+      "drop_ready": "Tap to hang this print on peg 2.",
+      "drop_done": "Hung on peg 2.",
+      "reprint": "Reprint. The first sheet came back scratched."
+    }
   }
 }
