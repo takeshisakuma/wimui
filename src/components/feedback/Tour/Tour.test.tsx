@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { readFileSync } from "node:fs";
 import { Tour } from "./Tour";
 import styles from "./tour.module.scss";
 
@@ -14,6 +15,7 @@ describe("Tour", () => {
     document.body.innerHTML = `
             <div id="step1" style="width: 100px; height: 50px; position: absolute; top: 100px; left: 100px;">Step 1 Target</div>
             <div id="step2" style="width: 100px; height: 50px; position: absolute; top: 500px; left: 100px;">Step 2 Target</div>
+            <div id="step-off" style="width: 100px; height: 50px; position: absolute; top: 4000px; left: 100px;">Offscreen Target</div>
         `;
 
     // Mock getBoundingClientRect
@@ -40,6 +42,16 @@ describe("Tour", () => {
             right: 200,
           } as DOMRect;
         }
+        if (this.id === "step-off") {
+          return {
+            top: 4000,
+            left: 100,
+            width: 100,
+            height: 50,
+            bottom: 4050,
+            right: 200,
+          } as DOMRect;
+        }
         return {
           top: 0,
           left: 0,
@@ -50,10 +62,14 @@ describe("Tour", () => {
         } as DOMRect;
       });
 
-    // Mock scrollIntoView
-    Element.prototype.scrollIntoView = vi.fn();
+    // Mock scrollIntoView (jsdom は HTMLElement 側。Element.prototype を差しても届かない)
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
     vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("renders nothing when open is false", () => {
@@ -119,8 +135,8 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.click(mask);
+    const mask = screen.getByRole("button", { name: "Dismiss tour" });
+    fireEvent.click(mask);
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -129,8 +145,9 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.keyDown(mask, { key: "Enter" });
+    fireEvent.keyDown(screen.getByRole("button", { name: "Dismiss tour" }), {
+      key: "Enter",
+    });
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -139,8 +156,9 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.keyDown(mask, { key: " " });
+    fireEvent.keyDown(screen.getByRole("button", { name: "Dismiss tour" }), {
+      key: " ",
+    });
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -248,5 +266,209 @@ describe("Tour", () => {
     // Firing resize should not crash
     fireEvent(window, new Event("resize"));
     expect(screen.getByText("Step 1")).toBeInTheDocument();
+  });
+
+  it("names the dismiss mask and localizes chrome (T192)", () => {
+    const src = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    expect(src).toContain("a11y.close_tour");
+    expect(src).toContain("action.back");
+    expect(src).toContain("action.next");
+    expect(src).toContain("action.finish");
+    expect(src).not.toMatch(/>Back</);
+    expect(src).not.toMatch(/"Finish"|"Next"/);
+  });
+
+  it("does not scroll again when only step copy changes (T193)", () => {
+    const { rerender } = render(
+      <Tour
+        steps={[{ target: "#step1", title: "A", description: "a" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    const scrollIntoView = window.HTMLElement.prototype
+      .scrollIntoView as ReturnType<typeof vi.fn>;
+    const calls = scrollIntoView.mock.calls.length;
+    expect(
+      scrollIntoView.mock.calls.some((c) => c[0]?.behavior === "smooth"),
+    ).toBe(false);
+
+    rerender(
+      <Tour
+        steps={[{ target: "#step1", title: "B", description: "b" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(scrollIntoView.mock.calls.length).toBe(calls);
+  });
+
+  it("does not scroll when the target is already on screen (T194)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#step1", title: "A", description: "a" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+    expect(screen.getByText("A")).toBeInTheDocument();
+  });
+
+  it("scrolls when moving to an off-screen step (T194)", () => {
+    render(
+      <Tour
+        steps={[
+          { target: "#step1", title: "Step 1", description: "First step" },
+          { target: "#step-off", title: "Off", description: "below" },
+        ]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    const scrollIntoView = window.HTMLElement.prototype
+      .scrollIntoView as ReturnType<typeof vi.fn>;
+    expect(scrollIntoView).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByText("Next"));
+    expect(scrollIntoView).toHaveBeenCalled();
+  });
+
+  it("scrolls when the target is off screen (T194)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#step-off", title: "Off", description: "below" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+    expect(
+      (window.HTMLElement.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mock.calls.some(
+        (c) => c[0]?.behavior === "smooth",
+      ),
+    ).toBe(false);
+  });
+
+  it("does not paint the bubble before the target is measured (T194)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    expect(tsx).not.toMatch(/if \(!targetRect\) return null/);
+    expect(tsx).toContain("{targetRect && (");
+    expect(tsx).not.toMatch(/setTimeout\(\s*measure\s*,\s*100\s*\)/);
+    expect(tsx).toContain("waitForTargetFonts");
+    expect(tsx).toContain("fonts.load");
+    expect(tsx).toContain("fonts.check");
+    expect(tsx).toContain("isFullyVisible");
+  });
+
+  it("does not size the mask with 100vw or observe documentElement (T195)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    const scss = readFileSync(
+      "src/components/feedback/Tour/tour.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/\.mask\s*\{[^}]*inset:\s*0/s);
+    expect(scss).not.toMatch(/\.mask\s*\{[^}]*width:\s*100vw/s);
+    expect(tsx).not.toContain("document.documentElement");
+    expect(tsx).not.toMatch(/addEventListener\(\s*["']loadingdone["']\s*,\s*measure/);
+  });
+
+  it("shows the mask before the spotlight when the target is missing (T196)", () => {
+    render(
+      <Tour
+        steps={[{ target: "#missing", title: "Gone", description: "x" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Dismiss tour" })).toBeInTheDocument();
+    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
+    expect(document.querySelector(`.${styles.highlight}`)).not.toBeInTheDocument();
+  });
+
+  it("does not paint the spotlight until the target font has loaded (T197)", async () => {
+    const originalFonts = document.fonts;
+    let left = 100;
+    Element.prototype.getBoundingClientRect = vi.fn(function (this: HTMLElement) {
+      if (this.id === "step1") {
+        return {
+          top: 100,
+          left,
+          width: 100,
+          height: 50,
+          bottom: 150,
+          right: left + 100,
+        } as DOMRect;
+      }
+      return {
+        top: 0,
+        left: 0,
+        width: 0,
+        height: 0,
+        bottom: 0,
+        right: 0,
+      } as DOMRect;
+    });
+
+    let resolveLoad!: (value: FontFace[]) => void;
+    let status: FontFaceSet["status"] = "loaded";
+    const fonts = {
+      get status() {
+        return status;
+      },
+      check: () => false,
+      load: () => {
+        status = "loading";
+        return new Promise<FontFace[]>((resolve) => {
+          resolveLoad = resolve;
+        });
+      },
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    };
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: fonts,
+    });
+
+    try {
+      render(
+        <Tour
+          steps={[{ target: "#step1", title: "Step 1", description: "First step" }]}
+          open
+          onClose={() => {}}
+        />,
+      );
+
+      expect(screen.getByRole("button", { name: "Dismiss tour" })).toBeInTheDocument();
+      expect(document.querySelector(`.${styles.highlight}`)).not.toBeInTheDocument();
+
+      left = 150;
+      status = "loaded";
+      await act(async () => {
+        resolveLoad([]);
+      });
+
+      const highlight = document.querySelector(`.${styles.highlight}`) as HTMLElement;
+      expect(highlight).toBeInTheDocument();
+      expect(highlight.style.left).toBe("146px");
+      expect(screen.getByText("Step 1")).toBeInTheDocument();
+    } finally {
+      Object.defineProperty(document, "fonts", {
+        configurable: true,
+        value: originalFonts,
+      });
+    }
+  });
+
+  it("does not animate the spotlight hole (T193)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    const scss = readFileSync(
+      "src/components/feedback/Tour/tour.module.scss",
+      "utf8",
+    );
+    expect(tsx).not.toMatch(/behavior:\s*["']smooth["']/);
+    expect(scss).not.toMatch(/\.highlight\s*\{[^}]*transition:/s);
+    expect(scss).not.toMatch(/\.bubble\s*\{[^}]*transition:/s);
   });
 });

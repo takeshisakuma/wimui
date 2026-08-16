@@ -11,6 +11,7 @@
     "close": "Fechar",
     "close_dialog": "Fechar diálogo",
     "close_menu": "Fechar menu",
+    "close_tour": "Fechar o guia",
     "considerations": "Acessibilidade",
     "cover_art": "Capa",
     "crop_target": "Imagem sendo recortada",
@@ -72,6 +73,8 @@
     "copy": "Copiar",
     "delete": "Excluir",
     "edit": "Editar",
+    "finish": "Concluir",
+    "next": "Próximo",
     "save": "Salvar",
     "search": "Pesquisar",
     "submit": "Enviar"

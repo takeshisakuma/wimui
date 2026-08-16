@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Button } from "../../form/Button/Button";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./tour.module.scss";
 
 type TourStep = {
@@ -30,52 +31,129 @@ type TourProps = {
   onFinish?: () => void;
 };
 
+const VIEW_MARGIN = 16;
+
+function fontSpec(element: Element) {
+  const cs = getComputedStyle(element);
+  return `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+}
+
+async function waitForTargetFonts(element: Element) {
+  const fonts = document.fonts;
+  if (!fonts || typeof fonts.load !== "function") return;
+  try {
+    await fonts.load(fontSpec(element));
+  } catch {
+    // jsdom / 不正な spec。測る側でフォールバック字形になる。
+  }
+  // `.ready` はページ先頭の 1 回しか解決しない。未要求の面が後から
+  // loading に入っても待たない（Treemap と同じ。T44 / T197）。
+  while (fonts.status === "loading") {
+    await new Promise<void>((resolve) => {
+      fonts.addEventListener("loadingdone", () => resolve(), { once: true });
+    });
+  }
+}
+
+function shouldWaitForTargetFonts(element: Element) {
+  const fonts = document.fonts;
+  if (!fonts || typeof fonts.load !== "function") return false;
+  if (fonts.status === "loading") return true;
+  return typeof fonts.check === "function" && !fonts.check(fontSpec(element));
+}
+
+function rectsEqual(a: DOMRect, b: DOMRect) {
+  return (
+    Math.round(a.top) === Math.round(b.top) &&
+    Math.round(a.left) === Math.round(b.left) &&
+    Math.round(a.width) === Math.round(b.width) &&
+    Math.round(a.height) === Math.round(b.height)
+  );
+}
+
+function isFullyVisible(rect: DOMRect) {
+  return (
+    rect.top >= VIEW_MARGIN &&
+    rect.bottom <= window.innerHeight - VIEW_MARGIN &&
+    rect.left >= VIEW_MARGIN &&
+    rect.right <= window.innerWidth - VIEW_MARGIN
+  );
+}
+
 export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
+  const { t } = useWimTranslation("common");
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const step = steps[currentStep];
+  const target = step?.target;
 
-  useEffect(() => {
-    if (open && step) {
-      const updateRect = () => {
-        const element = document.querySelector(step.target);
-        if (element) {
-          setTargetRect(element.getBoundingClientRect());
-          element.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        } else {
-          setTargetRect(null);
-        }
-      };
-
-      updateRect();
-      // Delay slightly to account for scrolling finish or other transitions
-      const timer = setTimeout(updateRect, 100);
-      return () => clearTimeout(timer);
-    } else {
+  useLayoutEffect(() => {
+    if (!open || !target) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTargetRect(null);
+      return;
     }
-  }, [open, currentStep, step]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (open && step) {
-        const element = document.querySelector(step.target);
-        if (element) {
-          setTargetRect(element.getBoundingClientRect());
-        }
+    let cancelled = false;
+    const apply = (next: DOMRect | null) => {
+      if (cancelled) return;
+      setTargetRect((prev) => {
+        if (!next) return null;
+        if (prev && rectsEqual(prev, next)) return prev;
+        return next;
+      });
+    };
+
+    const place = () => {
+      const element = document.querySelector(target);
+      if (!element) {
+        apply(null);
+        return;
       }
+      // 画面内なら動かさない。center へ寄せると fixed のバブルが置いたあとに追従して見える。
+      if (!isFullyVisible(element.getBoundingClientRect())) {
+        element.scrollIntoView({
+          block: "center",
+          inline: "nearest",
+        });
+      }
+      apply(element.getBoundingClientRect());
     };
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleResize);
+
+    const measure = () => {
+      const element = document.querySelector(target);
+      apply(element ? element.getBoundingClientRect() : null);
+    };
+
+    const bind = () => {
+      window.addEventListener("resize", measure);
+      window.addEventListener("scroll", measure, true);
+    };
+
+    const start = async () => {
+      const element = document.querySelector(target);
+      if (element) {
+        await waitForTargetFonts(element);
+      }
+      if (cancelled) return;
+      place();
+      bind();
+    };
+
+    const element = document.querySelector(target);
+    if (element && shouldWaitForTargetFonts(element)) {
+      void start();
+    } else {
+      place();
+      bind();
+    }
+
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleResize);
+      cancelled = true;
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", measure, true);
     };
-  }, [open, step]);
+  }, [open, currentStep, target]);
 
   if (!open || !step) return null;
 
@@ -98,6 +176,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     }
   };
 
+  // マスクは先に出す。測ってからマスクを出すと、穴がオーバーレイ前の座標のまま固まる。
   const bubbleStyle: React.CSSProperties = {};
   let effectivePlacement: NonNullable<TourStep["placement"]> = step.placement || "bottom";
   if (targetRect) {
@@ -152,51 +231,55 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
         onClick={onClose}
         role="button"
         tabIndex={0}
+        aria-label={t("a11y.close_tour")}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") onClose();
         }}
       />
       {targetRect && (
-        <div
-          className={styles.highlight}
-          style={{
-            top: targetRect.top - 4,
-            left: targetRect.left - 4,
-            width: targetRect.width + 8,
-            height: targetRect.height + 8,
-          }}
-        />
-      )}
-      <div
-        className={classNames("wim-tour", styles.bubble)}
-        // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
-        data-placement={effectivePlacement}
-        style={bubbleStyle}
-      >
-        <div className={styles.inner}>
-          <h3 className={styles.title}>{step.title}</h3>
-          <p className={styles.description}>{step.description}</p>
-          <div className={styles.footer}>
-            <span className={styles.progress}>
-              {currentStep + 1} / {steps.length}
-            </span>
-            <div className={styles.buttons}>
-              {currentStep > 0 && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleBack}
-                >Back</Button>
-              )}
-              <Button
-                size="sm"
-                variant="solid"
-                onClick={handleNext}
-              >{currentStep === steps.length - 1 ? "Finish" : "Next"}</Button>
+        <>
+          <div
+            className={styles.highlight}
+            style={{
+              top: targetRect.top - 4,
+              left: targetRect.left - 4,
+              width: targetRect.width + 8,
+              height: targetRect.height + 8,
+            }}
+          />
+          <div
+            className={classNames("wim-tour", styles.bubble)}
+            // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
+            data-placement={effectivePlacement}
+            style={bubbleStyle}
+          >
+            <div className={styles.inner}>
+              <h3 className={styles.title}>{step.title}</h3>
+              <p className={styles.description}>{step.description}</p>
+              <div className={styles.footer}>
+                <span className={styles.progress}>
+                  {currentStep + 1} / {steps.length}
+                </span>
+                <div className={styles.buttons}>
+                  {currentStep > 0 && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleBack}
+                    >{t("action.back")}</Button>
+                  )}
+                  <Button
+                    size="sm"
+                    variant="solid"
+                    onClick={handleNext}
+                  >{currentStep === steps.length - 1 ? t("action.finish") : t("action.next")}</Button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </Portal>
   );
 };
+

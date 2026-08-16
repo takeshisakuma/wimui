@@ -11,6 +11,7 @@
     "close": "閉じる",
     "close_dialog": "ダイアログを閉じる",
     "close_menu": "メニューを閉じる",
+    "close_tour": "案内を閉じる",
     "considerations": "アクセシビリティ",
     "cover_art": "カバー画像",
     "crop_target": "切り抜き対象の画像",
@@ -72,6 +73,8 @@
     "copy": "コピー",
     "delete": "削除",
     "edit": "編集",
+    "finish": "完了",
+    "next": "次へ",
     "save": "保存",
     "search": "検索",
     "submit": "送信"

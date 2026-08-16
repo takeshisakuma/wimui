@@ -16,6 +16,7 @@ export const wimResources: WimResources = {
         "clear_input": "Clear input",
         "close": "Close",
         "close_menu": "Close menu",
+        "close_tour": "Dismiss tour",
         "cover_art": "Cover art",
         "crop_target": "Image being cropped",
         "data_grid": "Data Grid",
@@ -58,8 +59,11 @@ export const wimResources: WimResources = {
         "volume": "Volume"
       },
       "action": {
+        "back": "Back",
         "cancel": "Cancel",
         "edit": "Edit",
+        "finish": "Finish",
+        "next": "Next",
         "save": "Save"
       },
       "copied": "Copied",
@@ -325,6 +329,7 @@ export const wimResources: WimResources = {
         "clear_input": "入力をクリア",
         "close": "閉じる",
         "close_menu": "メニューを閉じる",
+        "close_tour": "案内を閉じる",
         "cover_art": "カバー画像",
         "crop_target": "切り抜き対象の画像",
         "data_grid": "データグリッド",
@@ -367,8 +372,11 @@ export const wimResources: WimResources = {
         "volume": "音量"
       },
       "action": {
+        "back": "戻る",
         "cancel": "キャンセル",
         "edit": "編集",
+        "finish": "完了",
+        "next": "次へ",
         "save": "保存"
       },
       "autosave": {
@@ -634,6 +642,7 @@ export const wimResources: WimResources = {
         "clear_input": "Limpar entrada",
         "close": "Fechar",
         "close_menu": "Fechar menu",
+        "close_tour": "Fechar o guia",
         "cover_art": "Capa",
         "crop_target": "Imagem sendo recortada",
         "data_grid": "Grade de Dados",
@@ -676,8 +685,11 @@ export const wimResources: WimResources = {
         "volume": "Volume"
       },
       "action": {
+        "back": "Voltar",
         "cancel": "Cancelar",
         "edit": "Editar",
+        "finish": "Concluir",
+        "next": "Próximo",
         "save": "Salvar"
       },
       "autosave": {

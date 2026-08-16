@@ -11,6 +11,7 @@
     "close": "Close",
     "close_dialog": "Close dialog",
     "close_menu": "Close menu",
+    "close_tour": "Dismiss tour",
     "considerations": "Accessibility",
     "cover_art": "Cover art",
     "crop_target": "Image being cropped",
@@ -72,6 +73,8 @@
     "copy": "Copy",
     "delete": "Delete",
     "edit": "Edit",
+    "finish": "Finish",
+    "next": "Next",
     "save": "Save",
     "search": "Search",
     "submit": "Submit"
