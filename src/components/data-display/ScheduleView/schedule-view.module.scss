@@ -83,6 +83,16 @@
       color: var(--wim-color-text-primary);
     }
 
+    // FullCalendar 既定の `.fc .fc-day-other .fc-daygrid-day-top { opacity: .3 }` は、
+    // 前後の月の日付を **light 2.07 / dark 2.67** まで落とす（実測。T203）。
+    // axe-core 4.13 が color-contrast の stacking context 取りこぼしを直して
+    // **初めて検出した** ── 4.12 では緑だったが、違反は最初から実在していた。
+    // 不透明度で薄くするのをやめ、「弱い文字」をトークンで表す（見出し列と同じ扱い）。
+    .fc-day-other .fc-daygrid-day-top {
+      color: var(--wim-color-text-secondary);
+      opacity: 1;
+    }
+
     .fc-event {
       border-color: transparent;
       border-radius: var(--wim-radius-sm);

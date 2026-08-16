@@ -147,10 +147,14 @@ export const Video = ({
   const radiusClass = radius !== "none" ? styles[`radius${radius.charAt(0).toUpperCase() + radius.slice(1)}`] : null;
 
   return (
+    // `role="region"` は付けない。`figure` に許されるロールは figure / group /
+    // none / presentation だけで、`region` は ARIA in HTML 違反になる
+    // （axe-core 4.13 の `aria-allowed-role` が検出。T202）。`aria-label` は
+    // figure ロールの名前として残るので、読み上げの手がかりは失われない。
+    // `Audio` / `Image` も figure だが、どちらも最初からロールを付けていない。
     <figure
       className={classNames("wim-video", styles.root, className)}
       style={{ width: "100%" }}
-      role="region"
       aria-label={videoAriaLabel}
       data-testid="video-root"
     >

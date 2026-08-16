@@ -130,7 +130,8 @@ describe("Video", () => {
 
   it("handles keyboard shortcuts", () => {
     render(<Video src={src} customControls />);
-    const container = screen.getByRole("region");
+    // `figure` に `role="region"` は付けられない（T202）。名前は figure ロールに残る
+    const container = screen.getByRole("figure", { name: "Video" });
     container.focus();
 
     act(() => {
@@ -170,5 +171,19 @@ describe("Video", () => {
     expect(inner).toHaveClass(styles.radiusLg);
     expect(inner).toHaveClass(styles.shadow);
     expect(inner).toHaveClass(styles.border);
+  });
+
+  // T202: `figure` に許されるロールは figure / group / none / presentation のみ。
+  // `role="region"` は ARIA in HTML 違反で、axe-core 4.13 の `aria-allowed-role`
+  // が検出する。**名前（aria-label）は残ること**まで見る ── ロールを外した拍子に
+  // 読み上げの手がかりごと落とすのが、この直し方の失敗の仕方なので。
+  it("labels the figure without an ARIA role that figure cannot take", () => {
+    render(<Video src={src} labels={{ videoAriaLabel: "Product tour" }} />);
+
+    const root = screen.getByTestId("video-root");
+    expect(root.tagName).toBe("FIGURE");
+    expect(root).not.toHaveAttribute("role");
+    expect(screen.getByRole("figure", { name: "Product tour" })).toBe(root);
+    expect(screen.queryByRole("region")).toBeNull();
   });
 });
