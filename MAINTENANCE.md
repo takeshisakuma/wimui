@@ -37,6 +37,8 @@ minor / patch はグループ PR をマージしてよい（`CLAUDE.md` の委�
 > **`@changesets/cli` 3 は「上げると赤が出ずにリリースが壊れる」型。** `changesets/action@v1` は publish の標準出力を正規表現で読んで publish 済みを判定している（`src/run.ts`: `let newTagRegex = /New tag:/`）。cli 3.0.0 の dist にはこの文字列が無く、代わりに `Creating git tags...` を出す。したがって **npm publish は成功したまま `published: false` と判定され、`git.pushTag` と GitHub Release の作成が丸ごとスキップされる**。ワークフローは緑で終わる。実際この 2 つは動いており（`v0.23.16` の Release と タグが存在する）、止まっても誰も気付かない。
 >
 > action v2 は NDJSON の構造化イベント（`type: "git-tag"`）で判定するため **cli 3 とセットでしか動かない**（v2 は cli 2 を検出して v1 へ誘導する）。片方だけ上げる道は無い。
+>
+> **鏡側も塞いだ（2026-08-16）。** npm 側の ignore を入れた直後、Dependabot が **github-actions 側から `changesets/action` v1 → v2 を出してきた**（#433。設定変更の push が即時チェックを走らせるため）。**エコシステムが 2 つある依存は、片方を塞いでも反対側から同じ結合が来る。** こちら向きは cli 2 を検出して落ちる＝赤が出るぶん silent ではないが、いずれにせよ単独では動かないので `github-actions` セクションにも major の ignore を足した。
 
 **版番号だけを見ると判定を誤る。** 2026-08-07 に `@storybook/addon-mcp` を再確認したとき、`latest` は 0.7.0 のままだったが `10.6.0-alpha.4` が出ていた ── これは Storybook 10.x に揃える**改番**であって、Dependabot には **major の PR として来る**。中身を見ると getter は閉じたままだった。**見るべきは版番号ではなく、止めている理由がまだ成立するか。**
 

@@ -65,3 +65,19 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # `changesets/action` v2 は **@changesets/cli 3 とセットでしか動かない**（T201）。
+      # v2 は publish 済みパッケージを NDJSON の構造化イベント（type: "git-tag"）で
+      # 受け取る仕組みに変わっており、cli 2 を検出すると v1 へ誘導して失敗する。
+      # さらに入力名が総入れ替えになる（version → version-script /
+      # publish → publish-script / commit → commit-message / title → pr-title、
+      # cwd は削除）ので、`release.yml` を書き換えないと動かない。
+      #
+      # 逆向き（cli 3 + action v1）は**赤を出さずに壊れる**: v1 は publish の
+      # 標準出力を `/New tag:/` で読むが cli 3 はその行を出さないため、
+      # npm publish は成功したままタグと GitHub Release だけが黙って作られなくなる。
+      #
+      # 上げるときは **cli 3 + action v2 + release.yml の入力名**を同時に。
+      # 片方だけの PR は受け取らない（2026-08-16 に #433 として実際に来た）。
+      - dependency-name: "changesets/action"
+        update-types: ["version-update:semver-major"]
