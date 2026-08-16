@@ -30,7 +30,7 @@ minor / patch はグループ PR をマージしてよい（`CLAUDE.md` の委�
 |---|---|---|
 | `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか |
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
-| `typescript` 7 | ネイティブコンパイラ化にビルドチェーンが未追随 | 依存側の対応状況 |
+| `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `i18next-http-backend` 4 | `storybook-react-i18next` の peer 宣言 | 同上 |
 | `@changesets/cli` 3 | `changesets/action@v1` が `changeset publish` の stdout を `/New tag:/` で読むが、cli 3 はその行を出さない（2026-08-16 調査） | **単独では判定しない。** cli 3 + `changesets/action@v2` + `release.yml` の入力名（`version` → `version-script` / `publish` → `publish-script`）を**同時に**変える覚悟があるか |
 
@@ -39,6 +39,10 @@ minor / patch はグループ PR をマージしてよい（`CLAUDE.md` の委�
 > action v2 は NDJSON の構造化イベント（`type: "git-tag"`）で判定するため **cli 3 とセットでしか動かない**（v2 は cli 2 を検出して v1 へ誘導する）。片方だけ上げる道は無い。
 >
 > **鏡側も塞いだ（2026-08-16）。** npm 側の ignore を入れた直後、Dependabot が **github-actions 側から `changesets/action` v1 → v2 を出してきた**（#433。設定変更の push が即時チェックを走らせるため）。**エコシステムが 2 つある依存は、片方を塞いでも反対側から同じ結合が来る。** こちら向きは cli 2 を検出して落ちる＝赤が出るぶん silent ではないが、いずれにせよ単独では動かないので `github-actions` セクションにも major の ignore を足した。
+
+> **`typescript` 7 の判定材料を差し替えた（2026-08-16）。** それまでの根拠は「#14 が CI 全滅」という**再現に CI 1 周が要り、何が直れば解けるのかを示さない**観測だった。いまは `typescript-eslint` の peer 上限 1 つで判定できる。**古い根拠を残すと、次に見る人が同じ 1 周を回す。**
+>
+> **`eslint` 10 は「宣言だけの壁」かどうかを一度試す価値がある（未実施・低優先）。** 止めているのは `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer 宣言だが、**宣言が古いだけで実際は動く**可能性がある。両プラグインは devDependency なので、`overrides` で peer を外して `npm run lint` を全量流せば 10 分で分かる（出荷物に入らないため利用者への影響は無い）。動けば override + 根拠つきで上げる道が開き、落ちれば「宣言だけでなく実体としても未対応」という**いまより強い根拠**が残る。どちらに転んでも収穫がある。
 
 **版番号だけを見ると判定を誤る。** 2026-08-07 に `@storybook/addon-mcp` を再確認したとき、`latest` は 0.7.0 のままだったが `10.6.0-alpha.4` が出ていた ── これは Storybook 10.x に揃える**改番**であって、Dependabot には **major の PR として来る**。中身を見ると getter は閉じたままだった。**見るべきは版番号ではなく、止めている理由がまだ成立するか。**
 
