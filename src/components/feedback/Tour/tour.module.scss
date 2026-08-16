@@ -1,11 +1,8 @@
 @layer component {
   .mask {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: var(--wim-z-overlay);
-    width: 100vw;
-    height: 100vh;
     background: var(--wim-color-overlay);
   }
 

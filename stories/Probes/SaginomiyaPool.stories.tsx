@@ -248,8 +248,13 @@ function DeskBody({
                 </Text>
               </div>
               {waiting === "mori" && (
-                <div className={styles.checkin} id="sagi-checkin">
-                  <Button size="md" variant="solid" onClick={checkInMori}>
+                <div className={styles.checkin}>
+                  <Button
+                    id="sagi-checkin"
+                    size="md"
+                    variant="solid"
+                    onClick={checkInMori}
+                  >
                     {t(ns("checkin"))}
                   </Button>
                   {showKeys && <Kbd>{t(ns("f2"))}</Kbd>}

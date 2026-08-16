@@ -358,6 +358,18 @@ describe("Tour", () => {
     expect(tsx).toContain("isFullyVisible");
   });
 
+  it("does not size the mask with 100vw or observe documentElement (T195)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    const scss = readFileSync(
+      "src/components/feedback/Tour/tour.module.scss",
+      "utf8",
+    );
+    expect(scss).toMatch(/\.mask\s*\{[^}]*inset:\s*0/s);
+    expect(scss).not.toMatch(/\.mask\s*\{[^}]*width:\s*100vw/s);
+    expect(tsx).not.toContain("document.documentElement");
+    expect(tsx).not.toContain("loadingdone");
+  });
+
   it("does not animate the spotlight hole (T193)", () => {
     const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
     const scss = readFileSync(

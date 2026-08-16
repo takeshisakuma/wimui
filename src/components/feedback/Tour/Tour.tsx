@@ -102,21 +102,9 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       fonts.status === "loading" &&
       typeof fonts.ready?.then === "function";
 
-    let ro: ResizeObserver | null = null;
     const bind = () => {
       window.addEventListener("resize", measure);
       window.addEventListener("scroll", measure, true);
-      if (typeof ResizeObserver !== "undefined") {
-        ro = new ResizeObserver(measure);
-        try {
-          ro.observe(document.documentElement);
-          const element = document.querySelector(target);
-          if (element) ro.observe(element);
-        } catch {
-          // jsdom など observe できない環境
-        }
-      }
-      fonts?.addEventListener?.("loadingdone", measure);
     };
 
     if (waitForFonts) {
@@ -135,8 +123,6 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       cancelled = true;
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", measure, true);
-      ro?.disconnect();
-      fonts?.removeEventListener?.("loadingdone", measure);
     };
   }, [open, currentStep, target]);
 
