@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.15
+
+### Patch Changes
+
+- bdb8454: InteractiveArea sizes a bare SVG in the icon slot. The barrel's SVG exports have no width, and font-size alone does not give them one.
+
 ## 0.23.14
 
 ### Patch Changes
