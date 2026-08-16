@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Button } from "../../form/Button/Button";
@@ -36,48 +36,73 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const step = steps[currentStep];
+  const target = step?.target;
 
-  useEffect(() => {
-    if (open && step) {
-      const updateRect = () => {
-        const element = document.querySelector(step.target);
-        if (element) {
-          setTargetRect(element.getBoundingClientRect());
-          element.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        } else {
-          setTargetRect(null);
-        }
-      };
-
-      updateRect();
-      // Delay slightly to account for scrolling finish or other transitions
-      const timer = setTimeout(updateRect, 100);
-      return () => clearTimeout(timer);
-    } else {
+  useLayoutEffect(() => {
+    if (!open || !target) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTargetRect(null);
+      return;
     }
-  }, [open, currentStep, step]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (open && step) {
-        const element = document.querySelector(step.target);
-        if (element) {
-          setTargetRect(element.getBoundingClientRect());
-        }
+    let cancelled = false;
+    const measure = () => {
+      if (cancelled) return;
+      const element = document.querySelector(target);
+      if (!element) {
+        setTargetRect(null);
+        return;
       }
+      const next = element.getBoundingClientRect();
+      setTargetRect((prev) => {
+        if (
+          prev &&
+          prev.top === next.top &&
+          prev.left === next.left &&
+          prev.width === next.width &&
+          prev.height === next.height
+        ) {
+          return prev;
+        }
+        return next;
+      });
     };
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleResize);
+
+    // コピーだけ変わった再生成ではスクロールしない。smooth は scroll イベントを
+    // 長く吐き、spotlight の transition と重なるとダイアログが消えて出直して見える。
+    document.querySelector(target)?.scrollIntoView({
+      block: "center",
+      inline: "nearest",
+    });
+    measure();
+    const timer = window.setTimeout(measure, 100);
+
+    window.addEventListener("resize", measure);
+    window.addEventListener("scroll", measure, true);
+
+    const ro =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    try {
+      ro?.observe(document.documentElement);
+    } catch {
+      // jsdom など observe できない環境
+    }
+
+    const fonts = document.fonts;
+    fonts?.addEventListener?.("loadingdone", measure);
+    void fonts?.ready?.then(measure);
+
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleResize);
+      cancelled = true;
+      window.clearTimeout(timer);
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", measure, true);
+      ro?.disconnect();
+      fonts?.removeEventListener?.("loadingdone", measure);
     };
-  }, [open, step]);
+  }, [open, currentStep, target]);
 
   if (!open || !step) return null;
 

@@ -15,7 +15,8 @@
     pointer-events: none;
     border-radius: var(--wim-radius-md, 4px);
     box-shadow: 0 0 0 9999px var(--wim-color-overlay); /* Exception: Structural Logic — viewport-covering spotlight mask */
-    transition: var(--wim-transition-base);
+
+    /* T193: 9999px の穴を transition すると、対象が動いたときに overlay が消えて出直して見える */
   }
 
   .bubble {
@@ -27,7 +28,6 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-modal);
-    transition: var(--wim-transition-base);
   }
 
   .inner {

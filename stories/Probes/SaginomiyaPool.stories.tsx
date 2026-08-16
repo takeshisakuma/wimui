@@ -175,6 +175,24 @@ function DeskBody({
     return () => window.removeEventListener("keydown", onKey);
   }, [checkInMori, showKeys]);
 
+  const tourSteps = React.useMemo(
+    () => [
+      {
+        target: "#sagi-checkin",
+        title: t(ns("tour_checkin_title")),
+        description: t(ns("tour_checkin_body")),
+        placement: "bottom" as const,
+      },
+      {
+        target: "#sagi-closed",
+        title: t(ns("tour_closed_title")),
+        description: t(ns("tour_closed_body")),
+        placement: "bottom" as const,
+      },
+    ],
+    [t],
+  );
+
   return (
     <div className={styles.page}>
       <div className={styles.work}>
@@ -264,20 +282,7 @@ function DeskBody({
         <Tour
           open={tourOpen}
           onClose={() => setTourOpen(false)}
-          steps={[
-            {
-              target: "#sagi-checkin",
-              title: t(ns("tour_checkin_title")),
-              description: t(ns("tour_checkin_body")),
-              placement: "bottom",
-            },
-            {
-              target: "#sagi-closed",
-              title: t(ns("tour_closed_title")),
-              description: t(ns("tour_closed_body")),
-              placement: "bottom",
-            },
-          ]}
+          steps={tourSteps}
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { Tour } from "./Tour";
 import styles from "./tour.module.scss";
@@ -51,10 +51,14 @@ describe("Tour", () => {
         } as DOMRect;
       });
 
-    // Mock scrollIntoView
-    Element.prototype.scrollIntoView = vi.fn();
+    // Mock scrollIntoView (jsdom は HTMLElement 側。Element.prototype を差しても届かない)
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
     vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("renders nothing when open is false", () => {
@@ -261,5 +265,53 @@ describe("Tour", () => {
     expect(src).toContain("action.finish");
     expect(src).not.toMatch(/>Back</);
     expect(src).not.toMatch(/"Finish"|"Next"/);
+  });
+
+  it("does not scroll again when only step copy changes (T193)", () => {
+    const { rerender } = render(
+      <Tour
+        steps={[{ target: "#step1", title: "A", description: "a" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    const scrollIntoView = window.HTMLElement.prototype
+      .scrollIntoView as ReturnType<typeof vi.fn>;
+    const calls = scrollIntoView.mock.calls.length;
+    expect(calls).toBeGreaterThan(0);
+    expect(
+      scrollIntoView.mock.calls.some((c) => c[0]?.behavior === "smooth"),
+    ).toBe(false);
+
+    rerender(
+      <Tour
+        steps={[{ target: "#step1", title: "B", description: "b" }]}
+        open
+        onClose={() => {}}
+      />,
+    );
+    expect(scrollIntoView.mock.calls.length).toBe(calls);
+  });
+
+  it("scrolls when the target selector changes (T193)", () => {
+    render(<Tour steps={steps} open onClose={() => {}} />);
+    const scrollIntoView = window.HTMLElement.prototype
+      .scrollIntoView as ReturnType<typeof vi.fn>;
+    const first = scrollIntoView.mock.calls.length;
+    expect(first).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getByText("Next"));
+    expect(scrollIntoView.mock.calls.length).toBeGreaterThan(first);
+  });
+
+  it("does not animate the spotlight hole (T193)", () => {
+    const tsx = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    const scss = readFileSync(
+      "src/components/feedback/Tour/tour.module.scss",
+      "utf8",
+    );
+    expect(tsx).not.toMatch(/behavior:\s*["']smooth["']/);
+    expect(scss).not.toMatch(/\.highlight\s*\{[^}]*transition:/s);
+    expect(scss).not.toMatch(/\.bubble\s*\{[^}]*transition:/s);
   });
 });
