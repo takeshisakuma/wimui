@@ -32,4 +32,79 @@
     flex-direction: column;
     gap: var(--wim-spacing-3xs);
   }
+
+  .status {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .toc {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+  }
+
+  .access {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+  }
+
+  .footerBits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+  }
+
+  .desk {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xl);
+    align-items: flex-start;
+  }
+
+  .rail {
+    flex: 0 1 auto;
+  }
+
+  .sheet {
+    display: flex;
+    flex: 1 1 var(--wim-width-md);
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm) var(--wim-spacing-xl);
+    align-items: baseline;
+  }
+
+  .who {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+  }
+
+  .checkin {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  .keys {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+  }
 }

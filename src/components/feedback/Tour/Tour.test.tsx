@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { readFileSync } from "node:fs";
 import { Tour } from "./Tour";
 import styles from "./tour.module.scss";
 
@@ -119,8 +120,8 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.click(mask);
+    const mask = screen.getByRole("button", { name: "Dismiss tour" });
+    fireEvent.click(mask);
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -129,8 +130,9 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.keyDown(mask, { key: "Enter" });
+    fireEvent.keyDown(screen.getByRole("button", { name: "Dismiss tour" }), {
+      key: "Enter",
+    });
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -139,8 +141,9 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(`.${styles.mask}`);
-    if (mask) fireEvent.keyDown(mask, { key: " " });
+    fireEvent.keyDown(screen.getByRole("button", { name: "Dismiss tour" }), {
+      key: " ",
+    });
 
     expect(handleClose).toHaveBeenCalled();
   });
@@ -248,5 +251,15 @@ describe("Tour", () => {
     // Firing resize should not crash
     fireEvent(window, new Event("resize"));
     expect(screen.getByText("Step 1")).toBeInTheDocument();
+  });
+
+  it("names the dismiss mask and localizes chrome (T192)", () => {
+    const src = readFileSync("src/components/feedback/Tour/Tour.tsx", "utf8");
+    expect(src).toContain("a11y.close_tour");
+    expect(src).toContain("action.back");
+    expect(src).toContain("action.next");
+    expect(src).toContain("action.finish");
+    expect(src).not.toMatch(/>Back</);
+    expect(src).not.toMatch(/"Finish"|"Next"/);
   });
 });

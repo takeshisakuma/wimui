@@ -52,7 +52,7 @@ export const FooterSection = React.forwardRef<
       className={classNames(styles.section, className)}
       {...props}
     >
-      {title && <h4 className={styles.sectionTitle}>{title}</h4>}
+      {title && <p className={styles.sectionTitle}>{title}</p>}
       <div className={styles.sectionContent}>{children}</div>
     </div>
   );

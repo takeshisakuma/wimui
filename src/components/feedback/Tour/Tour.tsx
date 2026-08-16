@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Button } from "../../form/Button/Button";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./tour.module.scss";
 
 type TourStep = {
@@ -31,6 +32,7 @@ type TourProps = {
 };
 
 export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
+  const { t } = useWimTranslation("common");
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const step = steps[currentStep];
@@ -152,6 +154,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
         onClick={onClose}
         role="button"
         tabIndex={0}
+        aria-label={t("a11y.close_tour")}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") onClose();
         }}
@@ -186,13 +189,13 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
                   size="sm"
                   variant="outline"
                   onClick={handleBack}
-                >Back</Button>
+                >{t("action.back")}</Button>
               )}
               <Button
                 size="sm"
                 variant="solid"
                 onClick={handleNext}
-              >{currentStep === steps.length - 1 ? "Finish" : "Next"}</Button>
+              >{currentStep === steps.length - 1 ? t("action.finish") : t("action.next")}</Button>
             </div>
           </div>
         </div>
