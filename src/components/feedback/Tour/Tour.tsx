@@ -33,6 +33,35 @@ type TourProps = {
 
 const VIEW_MARGIN = 16;
 
+function fontSpec(element: Element) {
+  const cs = getComputedStyle(element);
+  return `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+}
+
+async function waitForTargetFonts(element: Element) {
+  const fonts = document.fonts;
+  if (!fonts || typeof fonts.load !== "function") return;
+  try {
+    await fonts.load(fontSpec(element));
+  } catch {
+    // jsdom / 不正な spec。測る側でフォールバック字形になる。
+  }
+  // `.ready` はページ先頭の 1 回しか解決しない。未要求の面が後から
+  // loading に入っても待たない（Treemap と同じ。T44 / T197）。
+  while (fonts.status === "loading") {
+    await new Promise<void>((resolve) => {
+      fonts.addEventListener("loadingdone", () => resolve(), { once: true });
+    });
+  }
+}
+
+function shouldWaitForTargetFonts(element: Element) {
+  const fonts = document.fonts;
+  if (!fonts || typeof fonts.load !== "function") return false;
+  if (fonts.status === "loading") return true;
+  return typeof fonts.check === "function" && !fonts.check(fontSpec(element));
+}
+
 function rectsEqual(a: DOMRect, b: DOMRect) {
   return (
     Math.round(a.top) === Math.round(b.top) &&
@@ -96,24 +125,24 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       apply(element ? element.getBoundingClientRect() : null);
     };
 
-    const fonts = document.fonts;
-    const waitForFonts =
-      Boolean(fonts) &&
-      fonts.status === "loading" &&
-      typeof fonts.ready?.then === "function";
-
     const bind = () => {
       window.addEventListener("resize", measure);
       window.addEventListener("scroll", measure, true);
     };
 
-    if (waitForFonts) {
-      // 先に出してからフォントで測り直すと、英語でも数 px 動いて見える。
-      void fonts.ready.then(() => {
-        if (cancelled) return;
-        place();
-        bind();
-      });
+    const start = async () => {
+      const element = document.querySelector(target);
+      if (element) {
+        await waitForTargetFonts(element);
+      }
+      if (cancelled) return;
+      place();
+      bind();
+    };
+
+    const element = document.querySelector(target);
+    if (element && shouldWaitForTargetFonts(element)) {
+      void start();
     } else {
       place();
       bind();

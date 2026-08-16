@@ -355,7 +355,9 @@ describe("Tour", () => {
     expect(tsx).not.toMatch(/if \(!targetRect\) return null/);
     expect(tsx).toContain("{targetRect && (");
     expect(tsx).not.toMatch(/setTimeout\(\s*measure\s*,\s*100\s*\)/);
-    expect(tsx).toContain("waitForFonts");
+    expect(tsx).toContain("waitForTargetFonts");
+    expect(tsx).toContain("fonts.load");
+    expect(tsx).toContain("fonts.check");
     expect(tsx).toContain("isFullyVisible");
   });
 
@@ -368,7 +370,7 @@ describe("Tour", () => {
     expect(scss).toMatch(/\.mask\s*\{[^}]*inset:\s*0/s);
     expect(scss).not.toMatch(/\.mask\s*\{[^}]*width:\s*100vw/s);
     expect(tsx).not.toContain("document.documentElement");
-    expect(tsx).not.toContain("loadingdone");
+    expect(tsx).not.toMatch(/addEventListener\(\s*["']loadingdone["']\s*,\s*measure/);
   });
 
   it("shows the mask before the spotlight when the target is missing (T196)", () => {
@@ -382,6 +384,81 @@ describe("Tour", () => {
     expect(screen.getByRole("button", { name: "Dismiss tour" })).toBeInTheDocument();
     expect(screen.queryByText("Gone")).not.toBeInTheDocument();
     expect(document.querySelector(`.${styles.highlight}`)).not.toBeInTheDocument();
+  });
+
+  it("does not paint the spotlight until the target font has loaded (T197)", async () => {
+    const originalFonts = document.fonts;
+    let left = 100;
+    Element.prototype.getBoundingClientRect = vi.fn(function (this: HTMLElement) {
+      if (this.id === "step1") {
+        return {
+          top: 100,
+          left,
+          width: 100,
+          height: 50,
+          bottom: 150,
+          right: left + 100,
+        } as DOMRect;
+      }
+      return {
+        top: 0,
+        left: 0,
+        width: 0,
+        height: 0,
+        bottom: 0,
+        right: 0,
+      } as DOMRect;
+    });
+
+    let resolveLoad!: (value: FontFace[]) => void;
+    let status: FontFaceSet["status"] = "loaded";
+    const fonts = {
+      get status() {
+        return status;
+      },
+      check: () => false,
+      load: () => {
+        status = "loading";
+        return new Promise<FontFace[]>((resolve) => {
+          resolveLoad = resolve;
+        });
+      },
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    };
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: fonts,
+    });
+
+    try {
+      render(
+        <Tour
+          steps={[{ target: "#step1", title: "Step 1", description: "First step" }]}
+          open
+          onClose={() => {}}
+        />,
+      );
+
+      expect(screen.getByRole("button", { name: "Dismiss tour" })).toBeInTheDocument();
+      expect(document.querySelector(`.${styles.highlight}`)).not.toBeInTheDocument();
+
+      left = 150;
+      status = "loaded";
+      await act(async () => {
+        resolveLoad([]);
+      });
+
+      const highlight = document.querySelector(`.${styles.highlight}`) as HTMLElement;
+      expect(highlight).toBeInTheDocument();
+      expect(highlight.style.left).toBe("146px");
+      expect(screen.getByText("Step 1")).toBeInTheDocument();
+    } finally {
+      Object.defineProperty(document, "fonts", {
+        configurable: true,
+        value: originalFonts,
+      });
+    }
   });
 
   it("does not animate the spotlight hole (T193)", () => {
