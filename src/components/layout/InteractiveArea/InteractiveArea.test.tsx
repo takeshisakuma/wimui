@@ -1,6 +1,14 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { InteractiveArea } from "./InteractiveArea";
+
+const scss = fs.readFileSync(
+  path.join(path.dirname(fileURLToPath(import.meta.url)), "interactive-area.module.scss"),
+  "utf8",
+);
 
 describe("InteractiveArea", () => {
   it("renders title and description", () => {
@@ -75,5 +83,15 @@ describe("InteractiveArea", () => {
     const area = container.firstChild as HTMLElement;
     fireEvent.keyDown(area, { key: "Enter" });
     expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it("sizes a bare SVG in the icon slot (T198)", () => {
+    expect(scss).toMatch(/@layer component/);
+    expect(scss).toMatch(/\.icon[\s\S]*& > \*[\s\S]*width:\s*1em/);
+    expect(scss).toMatch(/\.icon[\s\S]*& > \*[\s\S]*height:\s*1em/);
+    const layer = scss.indexOf("@layer component");
+    const childWidth = scss.search(/& > \*[\s\S]*width:\s*1em/);
+    expect(layer).toBeGreaterThanOrEqual(0);
+    expect(childWidth).toBeGreaterThan(layer);
   });
 });
