@@ -17,6 +17,7 @@ import {
   StarIcon,
   Text,
   ThumbUpIcon,
+  Title,
   Watermark,
   type ReactionItem,
 } from "wimui";
@@ -51,16 +52,12 @@ function isSameDay(a: Date, b: Date) {
 
 type PrintId = "endo" | "gill" | "noguchi" | "kinoshita" | "sasaki";
 
-const PRINTS: {
-  id: PrintId;
-  ratio: number;
-  paper?: boolean;
-}[] = [
+const PRINTS: { id: PrintId; ratio: number; lab?: boolean }[] = [
   { id: "endo", ratio: 3 / 2 },
   { id: "gill", ratio: 2 / 3 },
-  { id: "noguchi", ratio: 1, paper: true },
+  { id: "noguchi", ratio: 1 },
   { id: "kinoshita", ratio: 4 / 5 },
-  { id: "sasaki", ratio: 3 / 2, paper: true },
+  { id: "sasaki", ratio: 3 / 2, lab: true },
 ];
 
 export const Wall: Story = {
@@ -90,9 +87,9 @@ export const Wall: Story = {
       <div className={styles.page}>
         <div className={styles.work}>
           <div className={styles.chrome}>
-            <Text size="sm" color="secondary">
-              {t(ns("club"))}
-            </Text>
+            <Title tag="h1" size="lg">
+              {t(ns("wall_title"))}
+            </Title>
             <Text size="sm" color="secondary">
               {t(ns("wall_line"))}
             </Text>
@@ -102,26 +99,37 @@ export const Wall: Story = {
             spacing="var(--wim-spacing-md)"
             aria-label={t(ns("wall"))}
           >
-              {PRINTS.map((print) => (
-                <div key={print.id} className={styles.tile}>
-                  <AspectRatio ratio={print.ratio}>
-                    <Watermark content={t(ns("club"))}>
+            {PRINTS.map((print) => (
+              <div key={print.id} className={styles.tile}>
+                <AspectRatio ratio={print.ratio}>
+                  <Watermark content={t(ns("club"))}>
+                    <div className={styles.sheet}>
                       <div
                         className={
-                          print.paper ? styles.printPaper : styles.print
+                          print.lab
+                            ? `${styles.emulsion} ${styles.emulsionLab}`
+                            : styles.emulsion
                         }
                       />
-                    </Watermark>
-                  </AspectRatio>
-                  <div className={styles.caption}>
-                    <Text truncate={print.id === "kinoshita"}>
-                      {t(ns(`p_${print.id}`))}
-                    </Text>
+                      <div className={styles.matte}>
+                        <Text
+                          size="sm"
+                          truncate={print.id === "kinoshita"}
+                        >
+                          {t(ns(`p_${print.id}`))}
+                        </Text>
+                        <Text size="xs" color="secondary">
+                          {t(ns(`who_${print.id}`))}
+                        </Text>
+                      </div>
+                    </div>
+                  </Watermark>
+                </AspectRatio>
+                {print.id === "endo" && (
+                  <>
                     <Text size="sm" color="secondary">
-                      {t(ns(`who_${print.id}`))}
+                      {t(ns("wall_vote"))}
                     </Text>
-                  </div>
-                  {print.id === "endo" && (
                     <Reaction
                       reactions={reactions}
                       onReact={(id, active) => {
@@ -129,10 +137,11 @@ export const Wall: Story = {
                         if (id === "up") setUpOn(active);
                       }}
                     />
-                  )}
-                </div>
-              ))}
-            </Masonry>
+                  </>
+                )}
+              </div>
+            ))}
+          </Masonry>
         </div>
       </div>
     );

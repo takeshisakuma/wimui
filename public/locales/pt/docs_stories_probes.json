@@ -1,8 +1,10 @@
 {
   "numa": {
     "club": "Clube Fotográfico de Numabukuro",
-    "wall_line": "Exposição deste mês. A parede fica na sala comunitária.",
+    "wall_title": "Neste mês na parede",
+    "wall_line": "Clube Fotográfico de Numabukuro, sala comunitária. Cinco cópias.",
     "wall": "Cópias na parede",
+    "wall_vote": "Voto deste mês",
     "p_endo": "Saída oeste depois da chuva",
     "who_endo": "Endo",
     "p_gill": "A bicicleta que nunca saiu do lugar",

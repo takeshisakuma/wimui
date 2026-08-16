@@ -23,20 +23,33 @@
     gap: var(--wim-spacing-xs);
   }
 
-  .print {
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+  }
+
+  .emulsion {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: var(--wim-spacing-sm) var(--wim-spacing-sm) 0;
+    background: var(--wim-color-surface-void);
+  }
+
+  .emulsionLab {
     background: var(--wim-color-surface-variant);
   }
 
-  .printPaper {
-    background: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  }
-
-  .caption {
+  .matte {
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-3xs);
     min-width: 0;
+    padding: var(--wim-spacing-sm);
   }
 
   .book {

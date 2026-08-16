@@ -16300,8 +16300,10 @@
   "docs_stories_probes": {
     "numa": {
       "club": "Numabukuro Photo Club",
-      "wall_line": "This month's hanging. The wall is in the community room.",
+      "wall_title": "This month on the wall",
+      "wall_line": "Numabukuro Photo Club, community room. Five prints.",
       "wall": "Prints on the wall",
+      "wall_vote": "This month's vote",
       "p_endo": "West exit after rain",
       "who_endo": "Endo",
       "p_gill": "The bicycle that never moved",
