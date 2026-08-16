@@ -1,5 +1,11 @@
 # wimui
 
+## 0.23.16
+
+### Patch Changes
+
+- aae8136: **T199** `NodeGraph`: キャンバス上でノードを足せる（名前を入れてから）。選択したノードと線は削除でも消せる。Delete キーも Backspace と同じ。
+
 ## 0.23.15
 
 ### Patch Changes
