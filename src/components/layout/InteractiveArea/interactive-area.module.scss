@@ -1,140 +1,143 @@
-.root {
-  --ia-padding: var(--wim-spacing-xl);
-  --ia-stack-gap: var(--wim-spacing-md);
-  --ia-title-gap: var(--wim-spacing-xs);
-  --ia-icon-size: var(--wim-font-size-4xl);
-  --ia-title-size: var(--wim-font-size-lg);
-  --_bg: transparent;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: var(--ia-padding);
-  background-color: var(--_bg);
-  border-radius: var(--wim-radius-container);
-  transition: all var(--wim-transition-fast);
-
-  &.dashed {
-    border: var(--wim-border-width-thick) dashed var(--wim-color-border);
-  }
-
-  &.solid {
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  }
-
-  &.none {
-    border: none;
-  }
-
-  &.default {
-    --_bg: var(--wim-color-surface);
-  }
-
-  &.transparent {
-    --_bg: transparent;
-  }
-
-  &.muted {
-    --_bg: var(--wim-color-surface-variant);
-  }
-
-  &.sm {
-    --ia-padding: var(--wim-spacing-md);
-    --ia-stack-gap: var(--wim-spacing-sm);
-    --ia-icon-size: var(--wim-font-size-2xl);
-    --ia-title-size: var(--wim-font-size-md);
-  }
-
-  &.md {
+@layer component {
+  .root {
     --ia-padding: var(--wim-spacing-xl);
     --ia-stack-gap: var(--wim-spacing-md);
+    --ia-title-gap: var(--wim-spacing-xs);
     --ia-icon-size: var(--wim-font-size-4xl);
     --ia-title-size: var(--wim-font-size-lg);
-  }
+    --_bg: transparent;
 
-  &.lg {
-    --ia-padding: var(--wim-spacing-3xl);
-    --ia-stack-gap: var(--wim-spacing-lg);
-    --ia-icon-size: var(--wim-font-size-5xl);
-    --ia-title-size: var(--wim-font-size-xl);
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--ia-padding);
+    background-color: var(--_bg);
+    border-radius: var(--wim-radius-container);
+    transition: all var(--wim-transition-fast);
 
-  &.dragging {
-    background-color: var(--wim-color-primary-muted);
-    border-color: var(--wim-color-primary);
-  }
+    &.dashed {
+      border: var(--wim-border-width-thick) dashed var(--wim-color-border);
+    }
 
-  &.clickable {
-    cursor: pointer;
+    &.solid {
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    }
 
-    &:hover {
-      background-color: oklch(from var(--_bg, var(--wim-color-surface)) calc(l * 0.95) c h);
+    &.none {
+      border: none;
+    }
+
+    &.default {
+      --_bg: var(--wim-color-surface);
+    }
+
+    &.transparent {
+      --_bg: transparent;
+    }
+
+    &.muted {
+      --_bg: var(--wim-color-surface-variant);
+    }
+
+    &.sm {
+      --ia-padding: var(--wim-spacing-md);
+      --ia-stack-gap: var(--wim-spacing-sm);
+      --ia-icon-size: var(--wim-font-size-2xl);
+      --ia-title-size: var(--wim-font-size-md);
+    }
+
+    &.md {
+      --ia-padding: var(--wim-spacing-xl);
+      --ia-stack-gap: var(--wim-spacing-md);
+      --ia-icon-size: var(--wim-font-size-4xl);
+      --ia-title-size: var(--wim-font-size-lg);
+    }
+
+    &.lg {
+      --ia-padding: var(--wim-spacing-3xl);
+      --ia-stack-gap: var(--wim-spacing-lg);
+      --ia-icon-size: var(--wim-font-size-5xl);
+      --ia-title-size: var(--wim-font-size-xl);
+    }
+
+    &.dragging {
+      background-color: var(--wim-color-primary-muted);
       border-color: var(--wim-color-primary);
-      transform: translateY(var(--wim-lift-sm));
     }
 
-    &:active {
-      transform: scale(var(--wim-scale-active));
+    &.clickable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: oklch(from var(--_bg, var(--wim-color-surface)) calc(l * 0.95) c h);
+        border-color: var(--wim-color-primary);
+        transform: translateY(var(--wim-lift-sm));
+      }
+
+      &:active {
+        transform: scale(var(--wim-scale-active));
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
     }
   }
 
-  &.disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-disabled);
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ia-stack-gap);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
   }
-}
 
-.inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ia-stack-gap);
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-}
-
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ia-title-gap);
-  align-items: center;
-}
-
-.icon {
-  font-size: var(--ia-icon-size);
-  line-height: 1;
-  color: var(--wim-color-text-secondary);
-
-  // Icon は 1em 箱。バレルの素の SVG は幅高さが無く、font-size だけでは 0 になる。
-  & > * {
-    display: block;
-    width: 1em;
-    height: 1em;
-    font-size: inherit;
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ia-title-gap);
+    align-items: center;
   }
-}
 
-.title {
-  font-size: var(--ia-title-size);
-  font-weight: var(--wim-font-weight-bold);
-  color: var(--wim-color-text-primary);
-}
+  .icon {
+    font-size: var(--ia-icon-size);
+    line-height: 1;
+    color: var(--wim-color-text-secondary);
 
-.description {
-  font-size: var(--wim-font-size-md);
-  color: var(--wim-color-text-secondary);
-}
+    // Icon は 1em 箱。バレルの素の SVG は幅高さが無く、font-size だけでは 0 になる。
+    // レイヤーの外に置くと Result の 80px を specificity に関係なく潰す。
+    & > * {
+      display: block;
+      width: 1em;
+      height: 1em;
+      font-size: inherit;
+    }
+  }
 
-.content {
-  width: 100%;
-}
+  .title {
+    font-size: var(--ia-title-size);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+  }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-sm);
-  justify-content: center;
+  .description {
+    font-size: var(--wim-font-size-md);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    justify-content: center;
+  }
 }

@@ -86,7 +86,12 @@ describe("InteractiveArea", () => {
   });
 
   it("sizes a bare SVG in the icon slot (T198)", () => {
+    expect(scss).toMatch(/@layer component/);
     expect(scss).toMatch(/\.icon[\s\S]*& > \*[\s\S]*width:\s*1em/);
     expect(scss).toMatch(/\.icon[\s\S]*& > \*[\s\S]*height:\s*1em/);
+    const layer = scss.indexOf("@layer component");
+    const childWidth = scss.search(/& > \*[\s\S]*width:\s*1em/);
+    expect(layer).toBeGreaterThanOrEqual(0);
+    expect(childWidth).toBeGreaterThan(layer);
   });
 });
