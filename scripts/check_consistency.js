@@ -1,5 +1,37 @@
+/**
+ * 台帳（src/data/components.json）と、実装・ストーリー・MDX の対応を見る。
+ *
+ * 2026-08-16 まで、このスクリプトは **どこからも呼ばれず、かつ `process.exit` を
+ * 1 つも持っていなかった**（何を見つけても exit 0）。`MAINTENANCE.md`「4. ガードの
+ * 到達性を数える」の 3 つの型のうち「どこからも呼ばれない」と「失敗できない」を
+ * 同時に満たしていた唯一のガードだった。落ちるようにして `audit-all` に載せた。
+ *
+ * 見るものが 2 種類あるので、`audit-all.js` の分類にあわせて絞れるようにしてある:
+ *   --lib   台帳 ↔ 実装（components.json と src/components の対応）
+ *   --docs  実装 ↔ ストーリー / MDX（Storybook 側の欠落）
+ *   （フラグ無し = 両方）
+ */
 import fs from 'fs';
 import path from 'path';
+
+const wantLib = process.argv.includes('--lib');
+const wantDocs = process.argv.includes('--docs');
+// どちらも指定が無い（または両方指定）なら全部走らせる。
+const runLib = wantLib === wantDocs || wantLib;
+const runDocs = wantLib === wantDocs || wantDocs;
+
+/** 見つかった欠落。1 件でもあれば exit 1 で落ちる。 */
+const problems = [];
+
+/** セクション見出しを出し、該当分を記録しながら並べる。 */
+function report(title, names) {
+  console.log(`--- ${title} ---`);
+  for (const name of names) {
+    console.log(name);
+    problems.push(`${title}: ${name}`);
+  }
+  console.log('');
+}
 
 const COMPONENTS_BASE = 'src/components';
 const INTERNAL_DIR = path.join(COMPONENTS_BASE, '_internal');
@@ -97,21 +129,21 @@ componentsJson.forEach(cat => {
 
 const componentsInDir = getComponentsFromDir();
 
-console.log('--- Components in src/components but missing from components.json ---');
-componentsInDir.forEach(comp => {
-  if (!componentsInJson.has(comp)) {
-    console.log(comp);
-  }
-});
+if (runLib) {
+  report(
+    'Components in src/components but missing from components.json',
+    [...componentsInDir].filter(comp => !componentsInJson.has(comp))
+  );
 
-console.log('\n--- Components in components.json but missing from src/components ---');
-componentsInJson.forEach(comp => {
-  if (DOCS_ONLY_COMPONENTS.has(comp)) return;
-  if (componentsInDir.has(comp)) return;
-  if (!findComponentAnywhere(comp)) {
-    console.log(comp);
-  }
-});
+  report(
+    'Components in components.json but missing from src/components',
+    [...componentsInJson].filter(comp => {
+      if (DOCS_ONLY_COMPONENTS.has(comp)) return false;
+      if (componentsInDir.has(comp)) return false;
+      return !findComponentAnywhere(comp);
+    })
+  );
+}
 
 /**
  * stories/ を2階層スキャンし、コンポーネント名 → ストーリーフォルダパスの
@@ -141,21 +173,33 @@ function buildStoriesMap() {
   return map;
 }
 
-const storiesMap = buildStoriesMap();
+if (runDocs) {
+  const storiesMap = buildStoriesMap();
 
-console.log('\n--- Components missing stories (.stories.[ts|tsx]) ---');
-componentsInDir.forEach(comp => {
-  const folder = storiesMap.get(comp);
-  const found = folder && (
-    fs.existsSync(path.join(folder, `${comp}.stories.tsx`)) ||
-    fs.existsSync(path.join(folder, `${comp}.stories.ts`))
+  report(
+    'Components missing stories (.stories.[ts|tsx])',
+    [...componentsInDir].filter(comp => {
+      const folder = storiesMap.get(comp);
+      return !(folder && (
+        fs.existsSync(path.join(folder, `${comp}.stories.tsx`)) ||
+        fs.existsSync(path.join(folder, `${comp}.stories.ts`))
+      ));
+    })
   );
-  if (!found) console.log(comp);
-});
 
-console.log('\n--- Components missing MDX documentation (.mdx) ---');
-componentsInDir.forEach(comp => {
-  const folder = storiesMap.get(comp);
-  const found = folder && fs.existsSync(path.join(folder, `${comp}.mdx`));
-  if (!found) console.log(comp);
-});
+  report(
+    'Components missing MDX documentation (.mdx)',
+    [...componentsInDir].filter(comp => {
+      const folder = storiesMap.get(comp);
+      return !(folder && fs.existsSync(path.join(folder, `${comp}.mdx`)));
+    })
+  );
+}
+
+if (problems.length > 0) {
+  console.error(`✗ 台帳と実装の対応が ${problems.length} 件欠けています。`);
+  console.error('  components.json の行・実装・ストーリー・MDX のどれかが片方だけ存在します。');
+  process.exit(1);
+}
+
+console.log('✓ 台帳・実装・ストーリー・MDX の対応に欠落はありません。');

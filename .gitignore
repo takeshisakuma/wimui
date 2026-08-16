@@ -160,8 +160,10 @@ missing_en_*.json
 missing_en_*.txt
 
 # Temporary work scripts and files
+# プローブの計測・スクショ置き場は `tmp-<名前>/` に作る（`tmp-charts` / `tmp-shots` の実績）。
+# 個別に足していると取りこぼすので、接頭辞ごと無視する。
 tmp/
-tmp-charts/
+tmp-*/
 scripts/tmp_*.cjs
 # Temporary scratch scripts
 scratch/
