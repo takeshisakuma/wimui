@@ -16,10 +16,26 @@
  * ストーリー）を見ると、VRT の除外リスト（`audit-` / 非決定ストーリー）を
  * `vrt.spec.ts` と二重管理することになる。そちらは compare 側が撮って落ちるので
  * 既に検出されている。
+ *
+ * **2 つ目の入口を足した（T204）: 除外されたストーリーのベースライン。**
+ * ストーリーが index に居るので上の孤児判定には掛からないが、
+ * **update は spec を走らせるので撮り直さず、compare は読まない**。
+ * つまり「もう誰も検証していない見た目」という害は孤児と同じで、
+ * しかも将来その除外を外したとき、腐ったベースラインと比較される。
+ * 実測（2026-08-16）: `nodegraph--` 4 枚 / `scheduleview--` 6 枚 /
+ * `video--default` `--premium-features` 4 枚 = 14 枚が凍結されていた。
+ *
+ * 除外リストは `vrt/nondeterministic-stories.js` に置いて**双方が同じ物を読む**。
+ * 二重管理を避けるという上の判断は変えていない ── 変えたのは「片方だけが知っている」
+ * 状態をやめたこと。
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+  NONDETERMINISTIC_STORY_IDS,
+  NONDETERMINISTIC_STORY_PREFIXES,
+} from '../vrt/nondeterministic-stories.js';
 
 const INDEX = 'storybook-static/index.json';
 const SNAPSHOT_DIR = 'vrt/vrt.spec.ts-snapshots';
@@ -47,8 +63,18 @@ if (storyIds.size === 0) {
   process.exit(1);
 }
 
+const excludedIds = new Set(NONDETERMINISTIC_STORY_IDS);
+// VRT が撮らないストーリーか。`vrt.spec.ts` の `isSkipped` と同じ条件を、
+// 同じ SSOT から組み立てる（`audit-` / `probes-` も撮らない側なので同様に扱う）。
+const isExcludedFromVrt = (id) =>
+  excludedIds.has(id) ||
+  NONDETERMINISTIC_STORY_PREFIXES.some((p) => id.startsWith(p)) ||
+  id.startsWith('audit-') ||
+  id.startsWith('probes-');
+
 const files = fs.readdirSync(SNAPSHOT_DIR).filter((f) => f.endsWith('.png'));
 const orphans = [];
+const frozen = [];
 const malformed = [];
 
 for (const file of files) {
@@ -57,7 +83,9 @@ for (const file of files) {
     malformed.push(file);
     continue;
   }
-  if (!storyIds.has(m[2])) orphans.push({ file, storyId: m[2] });
+  const storyId = m[2];
+  if (!storyIds.has(storyId)) orphans.push({ file, storyId });
+  else if (isExcludedFromVrt(storyId)) frozen.push({ file, storyId });
 }
 
 // `--list` のときは **stdout をパスだけにする**。人間向けの行まで stdout に出すと
@@ -87,11 +115,26 @@ if (orphans.length > 0) {
   );
 }
 
-if (listMode) {
-  // 削除に使うための素の一覧。ここだけが stdout。
-  for (const { file } of orphans) console.log(path.posix.join(SNAPSHOT_DIR, file));
+if (frozen.length > 0) {
+  const byStory = new Map();
+  for (const { storyId } of frozen) byStory.set(storyId, (byStory.get(storyId) ?? 0) + 1);
+  console.error(
+    `✗ VRT の対象外なのに残っているベースライン ${frozen.length} 枚（${byStory.size} ストーリー）:`,
+  );
+  for (const [id, n] of [...byStory].sort()) console.error(`  - ${id}（${n} 枚）`);
+  console.error(
+    '\n  除外したストーリーのベースラインは、update が撮り直さず compare も読まない。' +
+      '\n  そこに残るのは「もう誰も検証していない見た目」で、除外を外した日に' +
+      '\n  腐った相手と比較される。除外するときはベースラインも消すこと。' +
+      `\n\n  まとめて消す:\n    node scripts/check-vrt-orphans.js --list | xargs -r rm --`,
+  );
 }
 
-if (orphans.length > 0 || malformed.length > 0) process.exit(1);
+if (listMode) {
+  // 削除に使うための素の一覧。ここだけが stdout。
+  for (const { file } of [...orphans, ...frozen]) console.log(path.posix.join(SNAPSHOT_DIR, file));
+}
 
-say('✓ 孤児はありません。');
+if (orphans.length > 0 || frozen.length > 0 || malformed.length > 0) process.exit(1);
+
+say('✓ 孤児も、除外されたストーリーの置き去りもありません。');
