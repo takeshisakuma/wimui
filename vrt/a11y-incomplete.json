@@ -638,9 +638,6 @@
     "components-layout-aspectratio--embed": {
       "light": [
         "frame-tested"
-      ],
-      "dark": [
-        "frame-tested"
       ]
     },
     "components-layout-bentogrid--default": {
@@ -797,9 +794,6 @@
     },
     "components-media-audio--premium-features": {
       "light": [
-        "color-contrast"
-      ],
-      "dark": [
         "color-contrast"
       ]
     },
