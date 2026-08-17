@@ -86,7 +86,10 @@ export const SourceCitation = ({
   }
 
   return (
-    <div className={classNames("wim-source-citation", styles.root, className)} aria-label={ariaLabel}>
+    /* T205: リンクのとき（`<a href>`）と違い、素の `div` は generic ＝ 名前を
+       付けられないロールなので `aria-label` が読み上げられない可能性がある
+       （axe `aria-prohibited-attr`）。出典 1 件は「まとまり」なので `group`。 */
+    <div className={classNames("wim-source-citation", styles.root, className)} role="group" aria-label={ariaLabel}>
       {content}
     </div>
   );

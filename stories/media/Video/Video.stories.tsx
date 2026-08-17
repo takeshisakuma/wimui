@@ -1,17 +1,36 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import sampleVideo from "@/media/videosample.mp4";
+import sampleCaptions from "@/media/videosample.en.vtt?url";
 import videoPoster from "@/media/video_poster.webp";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Video } from "wimui";
 
 
+/**
+ * T205: 字幕トラックが 1 つも無い `<video>` は、axe が `video-caption`（critical）
+ * を「人が確かめろ」として出し続ける ── 音声があるかどうかは機械には分からない
+ * ため。**サンプル動画には実際に音声トラックがある**ので、見本のほうが正しい
+ * （＝ `tracks` を渡す）形にする。全ストーリーに効かせたいので meta の args に置く。
+ */
+const sampleTracks = [
+  {
+    kind: "captions",
+    src: sampleCaptions,
+    srcLang: "en",
+    label: "English",
+  },
+];
+
 const meta: Meta<typeof Video> = {
   title: "Components/Media/Video",
   component: Video,
   parameters: {
     layout: "centered",
+  },
+  args: {
+    tracks: sampleTracks,
   },
   // tags: ["autodocs"],
   argTypes: {

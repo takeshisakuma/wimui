@@ -29,6 +29,7 @@
     "items_per_page": "1ページあたりの件数",
     "jump_to_page": "特定のページへ移動",
     "kanban_board": "かんばんボード",
+    "kanban_column_count": "カード: {{count}}枚",
     "left_icon_action": "アクションを実行",
     "loading": "読み込み中",
     "move_card": "カードを移動",

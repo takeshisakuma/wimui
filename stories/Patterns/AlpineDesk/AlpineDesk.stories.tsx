@@ -34,6 +34,7 @@ import galleryDesert from "@/media/gallery_desert.svg";
 import sceneWide from "@/media/scene_wide.svg";
 import sceneLandscape from "@/media/scene_landscape.svg";
 import sampleVideo from "@/media/videosample.mp4";
+import sampleCaptions from "@/media/videosample.en.vtt?url";
 import videoPoster from "@/media/video_poster.webp";
 import audioSample from "@/media/audiosample.mp3";
 
@@ -291,6 +292,16 @@ export const Listen: Story = {
                   border
                   fit="contain"
                   caption={t(ns("video_caption"))}
+                  /* T205: 字幕トラックの無い <video> は axe の video-caption
+                     （critical）が「人が確かめろ」と言い続ける。 */
+                  tracks={[
+                    {
+                      kind: "captions",
+                      src: sampleCaptions,
+                      srcLang: "en",
+                      label: "English",
+                    },
+                  ]}
                   labels={{ videoAriaLabel: t(ns("video_label")) }}
                 />
               </Stack>

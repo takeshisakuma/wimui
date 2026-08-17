@@ -378,9 +378,13 @@ describe("Transfer edge cases", () => {
   });
 
   it("links the error message to the group via aria-describedby", () => {
-    render(<Transfer dataSource={dataSource} error="Required" />);
+    // 空のパネルも `role="group"`（名前を持つため。T205）なので、根は名前で引く。
+    render(<Transfer dataSource={dataSource} label="Members" error="Required" />);
     const message = screen.getByRole("alert");
     expect(message).toHaveTextContent("Required");
-    expect(screen.getByRole("group")).toHaveAttribute("aria-describedby", message.id);
+    expect(screen.getByRole("group", { name: "Members" })).toHaveAttribute(
+      "aria-describedby",
+      message.id,
+    );
   });
 });

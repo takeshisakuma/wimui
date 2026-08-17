@@ -347,6 +347,8 @@
     "check:imports": "node scripts/check-imports.js",
     "vrt:diff-report": "node scripts/vrt-diff-report.js",
     "check:vrt-orphans": "node scripts/check-vrt-orphans.js",
+    "check:a11y-incomplete": "node scripts/check-a11y-incomplete.js",
+    "a11y:incomplete:update": "node scripts/update-a11y-incomplete.js",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
     "smoke:pnpm": "npm run build && node scripts/smoke/run.mjs --pm pnpm",

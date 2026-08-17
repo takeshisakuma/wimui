@@ -134,6 +134,12 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
         <div
           ref={ref}
           className={classNames("wim-dashboard", styles.root, className)}
+          /* T205: 名前（`aria-label`）はロールを持つ要素にしか付けられない。
+             素の `div` は generic ＝ **命名が禁止されたロール**なので、axe は
+             `aria-prohibited-attr` で「その名前は読み上げられないかもしれない」と
+             警告する（violations ではなく incomplete なので CI は黙っていた）。
+             ダッシュボードは「関連するウィジェットのまとまり」なので `group`。 */
+          role="group"
           aria-label={label ?? t("dashboard_widget.label")}
           {...props}
         >

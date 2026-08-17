@@ -15,7 +15,6 @@ import {
   Divider,
   Group,
   Input,
-  Label,
   Link,
   PasswordInput,
   PasswordStrength,
@@ -25,7 +24,7 @@ import {
   Sidebar,
   Stack,
   Stepper,
-  Switch,
+  SwitchGroup,
   Text,
   Textarea,
   Title,
@@ -767,14 +766,22 @@ export const UserProfileForm: StoryObj = {
                           },
                         ]}
                       />
-                      <Label label={t("profile.notif_label")}>
-                        <Stack gap="sm">
-                          <Switch defaultChecked>
-                            {t("profile.notif_email")}
-                          </Switch>
-                          <Switch>{t("profile.notif_push")}</Switch>
-                        </Stack>
-                      </Label>
+                      {/* T205: 以前は `<Label>` でスイッチ 2 つを包んでいた。
+                          `<label>` は 1 コントロール専用なので、各スイッチが
+                          「自分のラベル」と「外側のラベル」を 2 つ持つ状態になり、
+                          axe が `form-field-multiple-labels` を出していた。
+                          上の `RadioGroup` と同じく、群には群の部品を使う。 */}
+                      <SwitchGroup
+                        label={t("profile.notif_label")}
+                        defaultValue={["email"]}
+                        options={[
+                          {
+                            label: t("profile.notif_email"),
+                            value: "email",
+                          },
+                          { label: t("profile.notif_push"), value: "push" },
+                        ]}
+                      />
                     </Stack>
                   </Stack>
 

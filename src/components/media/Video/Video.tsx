@@ -137,6 +137,18 @@ export const Video = ({
     setActiveMenu,
   } = player;
 
+  /* React は `muted` を**プロパティとしてしか書かない**（`<video muted>` は
+     DOM に属性として現れない）。マークアップだけを見る側 ── 検査ツールや
+     コピペされた HTML ── からは「音が出るまま自動再生する動画」に見え、
+     axe の `no-autoplay-audio` が鳴り続ける（T205。`Video/AutoPlay` で実測）。
+     実態（ミュート）と markup を一致させる。 */
+  React.useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (muted) el.setAttribute("muted", "");
+    else el.removeAttribute("muted");
+  }, [muted, videoRef, activeSrc, isIntersecting]);
+
   const videoStyles: React.CSSProperties = {
     width: "100%",
     height: height || "auto",

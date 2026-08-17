@@ -180,8 +180,14 @@ export const Overview: StoryObj = {
             }}>
               <Header glass fixed={false} style={{ position: "absolute", top: 0 }}>
                 <Flex align="center" justify="between" style={{ height: "100%", paddingLeft: "var(--wim-spacing-md)", paddingRight: "var(--wim-spacing-md)", width: "100%" }}>
+                   {/* T205: `text-on-primary`（白）を置いていたが、light の
+                       `--wim-color-glass-bg` は rgba(255,255,255,.7) ＝ **白の上に白**。
+                       axe は fg #ffffff / bg #ffffff / 1:1 と測ったうえで
+                       incomplete（＝要目視）に落としていたので、violations だけを
+                       見ていた CI では 4 か月見えないままだった。ガラスの面は
+                       テーマで明暗が反転するので、意味トークンに任せる。 */}
                    {/* i18n-ignore-next-line — ブランド名 */}
-                   <Title tag="h4" size="md" style={{ color: "var(--wim-color-text-on-primary)" }}>WIM UI</Title>
+                   <Title tag="h4" size="md">WIM UI</Title>
                    <Avatar size="sm" initials="WU" />
                 </Flex>
               </Header>

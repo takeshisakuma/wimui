@@ -279,7 +279,7 @@
     "lightbox_scenario_1": "Galeria de imagens de produtos em um aplicativo de comércio eletrônico.",
     "lightbox_scenario_2": "Expansão de um gráfico ou infográfico em um painel rico em dados.",
     "lightbox_with_captions": "Com legendas",
-    "video_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "video_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado. Quando o vídeo tem áudio, passe uma trilha de legendas por `tracks` — um vídeo sem `<track kind=\"captions\">` não cumpre a WCAG 1.2.2, e a verificação automática só consegue marcá-lo para revisão manual.",
     "video_adv_aspect_desc": "Os usuários podem escolher como o vídeo se ajusta à tela, como `contain` ou `cover`.",
     "video_adv_aspect_title": "Alteração da Proporção",
     "video_adv_desc": "Ao usar `advancedControls={true}`, você pode acessar várias funcionalidades necessárias para players de vídeo modernos.",
