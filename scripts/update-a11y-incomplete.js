@@ -80,11 +80,12 @@ if (missing.length > 0) {
 
 const previous = fs.existsSync(BASELINE_PATH)
   ? JSON.parse(fs.readFileSync(BASELINE_PATH, "utf-8"))
-  : { reasons: {}, unstable: {}, stories: {} };
+  : { reasons: {}, unstable: {}, unstableStories: {}, stories: {} };
 
 const next = {
   reasons: previous.reasons ?? {},
   unstable: previous.unstable ?? {},
+  unstableStories: previous.unstableStories ?? {},
   stories: {},
 };
 for (const f of fragments.sort((a, b) => a.story.localeCompare(b.story))) {
@@ -119,6 +120,9 @@ for (const r of Object.keys(next.reasons)) {
 }
 for (const r of Object.keys(next.unstable)) {
   if (!rulesInUse.has(r)) delete next.unstable[r];
+}
+for (const id of Object.keys(next.unstableStories)) {
+  if (!next.stories[id]) delete next.unstableStories[id];
 }
 
 /*

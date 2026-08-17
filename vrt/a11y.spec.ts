@@ -89,6 +89,12 @@ interface IncompleteBaseline {
    * VRT もこのストーリーを除外している（`vrt/nondeterministic-stories.js`）。
    */
   unstable: Record<string, string>;
+  /**
+   * **測るたびに結果が変わるストーリー。** 許可に載っているルールが出なくても
+   * 赤にしない（新しく出たほうは赤のまま）。ルール単位（`unstable`）と違い、
+   * 原因がストーリー側の作り（時間で中身が変わる等）にある場合はこちら。
+   */
+  unstableStories: Record<string, string>;
   stories: Record<string, Record<string, string[]>>;
 }
 
@@ -266,11 +272,29 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
             return;
           }
 
-          const allowed = [...(baseline.stories[story.id]?.[theme] ?? [])].sort();
-          // 出たり出なかったりするルールは「今回は出なかった」を赤にしない。
-          const expected = allowed.filter(
-            (id) => observed.includes(id) || !baseline.unstable[id],
-          );
+          const byTheme = baseline.stories[story.id] ?? {};
+          const allowed = [...(byTheme[theme] ?? [])].sort();
+
+          /*
+           * **揺れるものは両方向に揺れる。** 「今回は出なかった」だけを容赦すると、
+           * 反対に振れた回（light に出るはずが dark に出た）で赤になる ──
+           * `Audio/PremiumFeatures` は実際に CI の 2 ラン間で light ⇄ 消滅を
+           * 往復した。そこで揺れると分かっているものは、**そのストーリーで
+           * どちらかのテーマに載っているルールに限って**、出る / 出ないの
+           * どちらも許す。**どのテーマにも載っていないルールが出たら赤**なので、
+           * 「新しい指摘」を見落とす範囲は広がらない。
+           */
+          const storyIsUnstable = Boolean(baseline.unstableStories[story.id]);
+          const known = new Set(Object.values(byTheme).flat());
+          const forgiving = (id: string) =>
+            Boolean(baseline.unstable[id]) || storyIsUnstable;
+
+          const expected = [
+            ...allowed.filter((id) => observed.includes(id) || !forgiving(id)),
+            ...observed.filter(
+              (id) => !allowed.includes(id) && known.has(id) && forgiving(id),
+            ),
+          ].sort();
           const added = observed.filter((id) => !allowed.includes(id));
           const removed = expected.filter((id) => !observed.includes(id));
           expect(

@@ -8,6 +8,9 @@
   "unstable": {
     "frame-tested": "外部 iframe（Google Maps）が**読み込めた回にだけ**出る。全量 2130 通りを 2 回測ったところ、1 回目は light / dark とも出て、2 回目は 3 リトライしても両方消えた（2026-08-17 実測）。VRT も同じ理由でこのストーリーを除外している（`vrt/nondeterministic-stories.js` の `components-layout-aspectratio--embed`）。**消えても落とさない。新しく出たほうは落とす。**"
   },
+  "unstableStories": {
+    "components-media-audio--premium-features": "`demoDelay={2000}` + fadeIn の「遅い読み込み」デモなので、**2 秒で中身が入れ替わる** ── axe がどちら側を測るかは走行ごとに変わる。実測（2026-08-17）: ローカルは light / dark とも `color-contrast` が出て、CI の照合ランでは light が消え、CI の測り直しでは light だけ出た。**同じ Linux で結果が割れているので環境差ではない。** 双子の `Video/PremiumFeatures` は同じ作りのため VRT からも除外されている（`vrt/nondeterministic-stories.js`）。"
+  },
   "stories": {
     "audit-aestheticsfamily--overview": {
       "light": [

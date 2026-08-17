@@ -32,6 +32,7 @@ const baseline = JSON.parse(fs.readFileSync(BASELINE_PATH, "utf-8"));
 const stories = baseline.stories ?? {};
 const reasons = baseline.reasons ?? {};
 const unstable = baseline.unstable ?? {};
+const unstableStories = baseline.unstableStories ?? {};
 
 // 1. 形（ここが崩れるとスペック側は黙って全部を「許可なし」と読む）
 for (const [id, byTheme] of Object.entries(stories)) {
@@ -83,6 +84,15 @@ for (const [rule, why] of Object.entries(unstable)) {
   }
 }
 
+for (const [id, why] of Object.entries(unstableStories)) {
+  if (!why || String(why).trim().length < 10) {
+    problems.push(`unstableStories の "${id}" に理由が無い（何がどう揺れるのか書く）`);
+  }
+  if (!stories[id]) {
+    problems.push(`unstableStories の "${id}" は許可を 1 つも持っていない（消すこと）`);
+  }
+}
+
 // 4. 消えたストーリーの許可（孤児）
 if (fs.existsSync(INDEX_PATH)) {
   const index = JSON.parse(fs.readFileSync(INDEX_PATH, "utf-8"));
@@ -94,6 +104,11 @@ if (fs.existsSync(INDEX_PATH)) {
   for (const id of Object.keys(stories)) {
     if (!known.has(id)) {
       problems.push(`${id}: このストーリーはもう存在しない（許可が置き去り）`);
+    }
+  }
+  for (const id of Object.keys(unstableStories)) {
+    if (!known.has(id)) {
+      problems.push(`${id}: このストーリーはもう存在しない（unstableStories が置き去り）`);
     }
   }
 } else {
