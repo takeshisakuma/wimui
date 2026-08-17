@@ -1,0 +1,1569 @@
+{
+  "reasons": {
+    "color-contrast": "背景色を機械が決められず、コントラスト比を計算できない。実測 1393 ノードの内訳: 画像ノードを含む 542 / 背景がグラデーション 329 / 他要素と重なる 262 / 非テキスト文字だけ 112 / 文字が短すぎる 70 / 擬似要素 40 / 一部が隠れている 32 ほか。**「短すぎる」だけはスペック側が文字を伸ばして axe に測り直させ、本物なら violations に格上げする**（T108）。残りは人が見るしかない領域で、ここに凍結してある。",
+    "aria-prohibited-attr": "第三者ライブラリの内部マークアップ。react-flow の Controls（`Panel` に `aria-label` を直書きしており role を渡す口が無い）と FullCalendar の `fc-view-harness` / `fc-col-header-cell-cushion`。自前の分（Dashboard / JsonViewer / Kanban / SourceCitation / Stepper / Transfer / InteractiveArea / 見本の span）は T205 で直した。",
+    "th-has-data-cells": "データ行が 0 の空状態テーブル（`DataGrid/Empty` と `Patterns/Admin` の「該当なし」）。見出しに対応するセルが無いのは空だからで、実装の誤りではない。",
+    "frame-tested": "外部 iframe（Google Maps の埋め込み）。別オリジンなので axe が中に入れない ＝ 原理的に測れない。"
+  },
+  "unstable": {
+    "frame-tested": "外部 iframe（Google Maps）が**読み込めた回にだけ**出る。全量 2130 通りを 2 回測ったところ、1 回目は light / dark とも出て、2 回目は 3 リトライしても両方消えた（2026-08-17 実測）。VRT も同じ理由でこのストーリーを除外している（`vrt/nondeterministic-stories.js` の `components-layout-aspectratio--embed`）。**消えても落とさない。新しく出たほうは落とす。**"
+  },
+  "stories": {
+    "audit-aestheticsfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-aifamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-buttonfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-feedbackfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-interactionfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-mediafamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-patternfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-skeletonfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-statefamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "audit-visualizationfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-advanced-inputs-imagecropper--circular": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-advanced-inputs-imagecropper--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-advanced-inputs-imagecropper--landscape": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--applied": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--applying": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--large-diff": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--unified-view": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--with-actions": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-codediffviewer--with-filename": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-interactivegraph--default": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-ai-sourcecitation--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-sourcecitation--list": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-sourcecitation--no-link": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-sourcecitation--with-description": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-terminal--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-ai-terminal--grow-with-content": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-banner--with-close-and-action": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-popconfirm--danger": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-popconfirm--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--danger": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--icon-surface": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--info": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--status-403": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--status-404": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--status-500": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--success": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-result--warning": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-snackbar--interactive-demo": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-alerts-notifications-toast--interactive": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-application-shell-appshell--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-application-shell-appshell--modern-app": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-application-shell-header--sticky": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-application-shell-navbar--centered-links": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-application-shell-tabbar--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-button--large-primary-button": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-button--medium-primary-interactive-loading-button": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-button--with-children": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-buttongroup--joined-group-primary": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-buttongroup--large-group": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-buttongroup--medium-group": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-buttongroup--small-group": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-splitbutton--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-splitbutton--sizes": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-splitbutton--variants": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-containers-card--with-header-and-footer": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-emptystate--custom-action": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-emptystate--no-videos": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-jsondiffviewer--array-diff": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-jsondiffviewer--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-jsondiffviewer--null-to-object": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-jsondiffviewer--unified-view": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-jsondiffviewer--with-actions": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-watermark--text": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-structures-datagrid--empty": {
+      "light": [
+        "th-has-data-cells"
+      ],
+      "dark": [
+        "th-has-data-cells"
+      ]
+    },
+    "components-data-structures-datagrid--with-fixed-column": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-structures-datagrid--with-right-fixed-column": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-structures-virtuallist--with-overscan": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-form-layout-inputgroup--full-width": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-form-layout-inputgroup--with-button": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-focustrap--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-focustrap--initial-focus": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-portal--notification-center": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-portal--overflow-escape": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-statuscontent--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-transition--fade": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-internal-transition--slide": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-aspectratio--embed": {
+      "light": [
+        "frame-tested"
+      ],
+      "dark": [
+        "frame-tested"
+      ]
+    },
+    "components-layout-bentogrid--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-dashboard--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-dashboard--editable": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-dashboard--two-columns": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-group--basic": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-group--grow": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-layout-interactivearea--with-actions": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--backdrop-variants": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--basic": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--blur-effects": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--custom-loader": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--different-loader-types": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--inside-card": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-loadingoverlay--with-message": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-progressring--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-progressring--intents": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-loading-states-progressring--sizes": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-audio--custom-controls": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-audio--full-featured": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-audio--premium-features": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-audio--rounded": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-image--advanced-effects": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-image--blending-effects": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-image--glassmorphism": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-image--motion-effects": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-imagecompare--controlled": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-imagecompare--vertical": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-imagecompare--with-labels": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-media-video--premium-features": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-navigation-utilities-keyboardshortcuts--mac-style": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-bottomsheet--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-dialog--controlled": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-dialog--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-dialog--stacked": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-drawer--controlled": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-drawer--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-overlays-drawer--without-slide": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-typography-icons-kbd--combined": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-typography-icons-kbd--keyboard-symbols": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-typography-icons-kbd--primary": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-errorboundary--custom-fallback": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-errorboundary--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-swipeaction--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-swipeaction--exclusive-list": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-swipeaction--multiple-actions": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-areachart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-areachart--stacked": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-barchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-barchart--stacked": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-charts--dashboard": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-funnelchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-gaugechart--custom-color": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-gaugechart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-heatmap--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-linechart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-linechart--smooth": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-nodegraph--composed": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-visualization-nodegraph--default": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-visualization-nodegraph--read-only": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-visualization-nodegraph--selected": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-visualization-nodegraph--with-mini-map": {
+      "light": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    "components-visualization-piechart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-piechart--donut": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-radarchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-scatterchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-scheduleview--day-view": {
+      "light": [
+        "aria-prohibited-attr"
+      ],
+      "dark": [
+        "aria-prohibited-attr"
+      ]
+    },
+    "components-visualization-scheduleview--default": {
+      "light": [
+        "aria-prohibited-attr"
+      ],
+      "dark": [
+        "aria-prohibited-attr"
+      ]
+    },
+    "components-visualization-scheduleview--in-flow": {
+      "light": [
+        "aria-prohibited-attr"
+      ],
+      "dark": [
+        "aria-prohibited-attr"
+      ]
+    },
+    "components-visualization-scheduleview--interactive": {
+      "light": [
+        "aria-prohibited-attr"
+      ],
+      "dark": [
+        "aria-prohibited-attr"
+      ]
+    },
+    "components-visualization-scheduleview--month-view": {
+      "light": [
+        "aria-prohibited-attr"
+      ],
+      "dark": [
+        "aria-prohibited-attr"
+      ]
+    },
+    "components-visualization-treemap--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-treemap--narrow-tiles": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-admin--intake-queue-empty": {
+      "light": [
+        "th-has-data-cells"
+      ],
+      "dark": [
+        "th-has-data-cells"
+      ]
+    },
+    "patterns-ai--artifacts-canvas": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-alpinedesk--listen": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-alpinedesk--restore": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-captions--discard-take": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form--login-form": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form--multi-step-form": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form--signup-form": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form--user-profile-form": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form--welcome-screen": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-react-hook-form--native-fields": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-react-hook-form--with-pickers": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-react-hook-form--with-zod": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-wholesale-account--business": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-wholesale-account--business-invalid": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-wholesale-account--contact": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-wholesale-account--delivery": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-form-wholesale-account--documents": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-hiring--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-hiring--distribution": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-hiring--offer": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-hiring--page-style": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-importjob--bulk-upload": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-importjob--not-started": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-marketing--cta-section": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-marketing--feature-comparison": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-marketing--feature-section": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-marketing--hero-section": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-marketing--pricing-table": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-newsroom--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-newsroom--front-page-order": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-oncall--incident-triage": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-page--dashboard-header": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-page--error-page": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-page--maintenance-page": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-page--product-card": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-page--shopping-cart": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-playground--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-roastery--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-roastery--quality": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "patterns-roastery--supply": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "token-presets--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    }
+  }
+}

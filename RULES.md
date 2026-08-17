@@ -482,6 +482,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 | peer import 境界 | `npm run check:imports` | charts / ai / peer 依存をルート `wimui` から引いていないか |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | 構文・スタイル |
 | MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネントの必須セクション |
+| a11y の `incomplete` | `npm run check:a11y-incomplete` | 「axe が**人に確かめろ**と言った指摘」の許可リスト（`vrt/a11y-incomplete.json`）の形・理由・孤児。**新しいストーリーで増えても減っても a11y の CI が落ちる** ── 直すか、理由を書いて許す（更新手順は `MAINTENANCE.md` 12-2） |
 | 合成（新規公開） | T179 のプローブ | カタログ単体では出荷しない。他部品と組んで置き方・a11y・狭幅を触り、確認後に画面は捨てる。`stories/Patterns/` にカバー率のために書かない |
 
 まとめて: `npm run audit:lib`（範囲が広いとき）。

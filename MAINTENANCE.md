@@ -371,6 +371,28 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 同一コミットで複数回流し、赤の集合が一致するかを見る。**1 ラン 4 シャード × 約 9 分の CI 律速**なので、回数を増やす費用対効果は低い。2026-08-05 に 5 回流して 5 回とも緑だったが、**それは非決定性が消えた証明ではない**（起票時も赤は 1〜2 件で、緑を引くことはありうる）。
 
+### 12-2. a11y の `incomplete` ラチェットを更新する（T205）
+
+`vrt/a11y-incomplete.json` は「**axe が人に確かめろと言った指摘**（`incomplete`）のうち、見たうえで許しているもの」の一覧（rule × story × theme）。**増えても減っても CI が落ちる** ── 減ったときに落とすのは、直したのに許可が残り続ける状態（＝次に同じ指摘が出ても誰も気づかない）を防ぐため。
+
+**更新は CI の dispatch でやる**（`gh workflow run a11y.yml -f update_incomplete=true --ref <branch>`）。ローカル（Windows / macOS）と CI（Linux）ではフォントもレンダリングも違うので、`color-contrast` の「重なりで判定不能」のような**レイアウト依存の incomplete は環境をまたぐと一致しない** ── VRT のスナップショットを `chromium-linux` だけで持っているのと同じ理由。ワークフローが 4 シャードで測り、断片を集めて畳み、`vrt/a11y-incomplete.json` をコミットバックする。**VRT の update と同じく、そのブランチへの push が全部終わってから最後に 1 回**。
+
+ローカルで**中身を見る**とき（数え直し・仕分け）は同じ手順を手で踏める:
+
+```bash
+npm run build-storybook
+CI=1 A11Y_INCOMPLETE_UPDATE=1 npx playwright test vrt/a11y.spec.ts   # 全量 2130 通りで約 20 分
+npm run a11y:incomplete:update      # 断片 → ベースライン（増減を印字する）
+npm run check:a11y-incomplete       # 形・理由・孤児
+```
+
+**ただしローカルで作ったベースラインをそのままコミットしない**（CI で落ちる可能性がある）。
+
+- **部分実行（`--shard` / `--grep`）の断片から作らない。** 走らなかったストーリーの許可が丸ごと消え、次の CI が「消えた incomplete」で一斉に落ちる。`a11y:incomplete:update` は `storybook-static/index.json` の母数と突き合わせ、1 通りでも欠けていたら**書き込まずに落ちる**
+- **新しいルールを許すときは `reasons` に「なぜ機械には判定できないのか」を書く。** 空だと `check:a11y-incomplete` が落ちる（＝「見たうえで許す」を機械側に置いてある）
+- 直したときは、その許可を消して着地させる（update が減として印字する）
+- **出たり出なかったりするルールは `unstable` に理由つきで入れる**（「今回は出なかった」を赤にしない。新しく出たほうは赤のまま）。いまは `frame-tested` の 1 つ ── 外部 iframe（Google Maps）が読み込めた回にだけ出るので、全量 2 回の測定で結果が割れた。**この判断は 1 回の測定では決められないので、update は `unstable` を持ち越すだけで、消すのは人がやる**
+
 ### 13. VRT スナップショットの衛生
 
 ```bash

@@ -220,6 +220,15 @@ const checks = [
   // --- lib: structural guards on the shipped library surface ---
   {
     category: "lib",
+    // T205: a11y の `incomplete` ラチェットは、スペック側だけでは
+    // 「消えたストーリーの許可」と「理由の無い許可」を永久に見逃す
+    // （どのシャードにも当たらないため。VRT の置き去りベースライン＝T204 と同型）。
+    // ここでは形と理由を見る。孤児は storybook-static があるときだけ（a11y ワークフロー）。
+    name: "a11y incomplete ratchet (shape / reasons / orphans)",
+    command: "node scripts/check-a11y-incomplete.js",
+  },
+  {
+    category: "lib",
     name: "Polymorphic asChild Compliance",
     command: "node scripts/check-aschild.js",
   },

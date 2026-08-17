@@ -7,6 +7,9 @@ on:
       - "stories/**"
       - "public/locales/**"
       - "vrt/a11y.spec.ts"
+      # ラチェットの本体（許可リスト）とその構造検査。ここが変わったら走らせる。
+      - "vrt/a11y-incomplete.json"
+      - "scripts/check-a11y-incomplete.js"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
       # T92: `vrt.yml` と同じ穴（経緯はそちらのコメント）。**a11y のほうが悪い**
@@ -26,6 +29,9 @@ on:
       - "stories/**"
       - "public/locales/**"
       - "vrt/a11y.spec.ts"
+      # ラチェットの本体（許可リスト）とその構造検査。ここが変わったら走らせる。
+      - "vrt/a11y-incomplete.json"
+      - "scripts/check-a11y-incomplete.js"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
       # T92。**`pull_request` 側と必ず同じ内容にする**（#185 は `push` 側だけ漏れた）。
@@ -34,9 +40,18 @@ on:
       - ".github/workflows/a11y.yml"
   # T92: 手で起動する道を持たせる。`paths` をどれだけ揃えても「起動すべきなのに
   # 起動しない」は必ず残る（3 度出た）ので、**確かめたいときに確かめられる**
-  # 逃げ道を VRT と同じく用意する。VRT の dispatch と違い書き戻すものが無いため
-  # 入力は取らない。
+  # 逃げ道を VRT と同じく用意する。
   workflow_dispatch:
+    inputs:
+      update_incomplete:
+        # T205: incomplete のベースラインは**ここでしか測り直さない**。
+        # ローカル（Windows / macOS）と CI（Linux）ではフォントもレンダリングも
+        # 違うので、`color-contrast` の「重なりで判定不能」のような**レイアウト
+        # 依存の incomplete は環境をまたぐと一致しない**。VRT のスナップショットを
+        # `chromium-linux` だけで持っているのと同じ理由。
+        description: "incomplete ラチェットのベースラインを測り直してコミットバックする"
+        type: boolean
+        default: false
 
 # 同一ブランチの古いランを自動キャンセル
 concurrency:
@@ -81,8 +96,35 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      # incomplete ラチェットの**構造**（形・理由・孤児）。スペックは
+      # 「そのストーリーで見えるもの」しか照合しないので、消えたストーリーの
+      # 許可はどのシャードにも当たらない（T204 と同型の穴）。index.json が
+      # 出来た直後のここで見る。シャード 1 でだけ（4 回やっても同じ）。
+      - name: Check a11y incomplete baseline
+        if: ${{ matrix.shard == 1 && github.event.inputs.update_incomplete != 'true' }}
+        run: npm run check:a11y-incomplete
+
       - name: Run axe-core accessibility tests
+        if: ${{ github.event.inputs.update_incomplete != 'true' }}
         run: npx playwright test vrt/a11y.spec.ts --shard=${{ matrix.shard }}/4
+
+      # 測り直し。各シャードが自分の担当ぶんの断片を書き、下の commit-incomplete が
+      # 4 つ集めてから畳む。**母数が揃わなければ畳む側が落ちる**ので、シャードが
+      # 1 つ失敗したまま部分的なベースラインが commit されることは無い。
+      - name: Run axe-core (update incomplete baseline)
+        if: ${{ github.event.inputs.update_incomplete == 'true' }}
+        env:
+          A11Y_INCOMPLETE_UPDATE: "1"
+        run: npx playwright test vrt/a11y.spec.ts --shard=${{ matrix.shard }}/4
+
+      - name: Upload incomplete fragments
+        if: ${{ github.event.inputs.update_incomplete == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: a11y-incomplete-fragments-${{ matrix.shard }}
+          path: vrt/.a11y-incomplete
+          if-no-files-found: error
+          retention-days: 3
 
       - name: Upload Playwright report
         if: failure()
@@ -91,3 +133,57 @@ jobs:
           name: a11y-report-${{ matrix.shard }}
           path: playwright-report/
           retention-days: 7
+
+  commit-incomplete:
+    name: Commit updated incomplete baseline
+    if: ${{ github.event.inputs.update_incomplete == 'true' }}
+    needs: [a11y]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Download incomplete fragments
+        uses: actions/download-artifact@v8
+        with:
+          pattern: a11y-incomplete-fragments-*
+          merge-multiple: true
+          path: vrt/.a11y-incomplete
+
+      # 畳む側は「全ストーリー × 2 テーマ」が揃っているかを index.json と
+      # 突き合わせるので、ここでもビルドが要る。
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Merge fragments into the baseline
+        run: node scripts/update-a11y-incomplete.js --ci >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check the merged baseline
+        run: npm run check:a11y-incomplete
+
+      - name: Commit back
+        run: |
+          if git diff --quiet -- vrt/a11y-incomplete.json; then
+            echo "変化なし。コミットしない。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add vrt/a11y-incomplete.json
+          git commit -m "chore(a11y): incomplete ラチェットのベースラインを CI 実測で更新"
+          git push

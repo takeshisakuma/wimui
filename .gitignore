@@ -141,6 +141,9 @@ vite.config.ts.timestamp-*
 *storybook.log
 debug-storybook.log
 storybook-static
+
+# a11y incomplete ラチェットの断片（走行中の中間物。npm run a11y:incomplete:update が畳む）
+vrt/.a11y-incomplete/
 lint_unix.txt
 lint_utf8.txt
 lint_error.txt
