@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Label, Rating } from "wimui";
+/*
+ * T205: 以前はどのストーリーも `<Label>` で `Rating` を包んでいた。`<label>` は
+ * **1 つのコントロールにしか付けられない**のに、中身は星 5 個の `radiogroup`
+ * ── axe が `aria-toggle-field-name`（「その `<label>` は名前の一部か？」）を
+ * incomplete で出し続けていた。単体は `label` prop、複数並べるときは
+ * `Fieldset` + `Legend`（＝ `<fieldset><legend>`）が正しい形。
+ */
+import { Fieldset, Legend, Rating } from "wimui";
 
 
 const meta: Meta<typeof Rating> = {
@@ -32,9 +39,7 @@ export const Default: Story = {
       readonly: (count: number, max: number) => t("components:rating.readonly_label", { count, max }),
     };
     return (
-      <Label label={t("story.rating_default")}>
-        <Rating {...args} labels={labels} />
-      </Label>
+      <Rating {...args} label={t("story.rating_default")} labels={labels} />
     );
   },
   args: {
@@ -46,9 +51,7 @@ export const AllowHalf: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story.rating_half")}>
-        <Rating {...args} />
-      </Label>
+      <Rating {...args} label={t("story.rating_half")} />
     );
   },
   args: {
@@ -61,9 +64,7 @@ export const CustomCount: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story.rating_custom")}>
-        <Rating {...args} />
-      </Label>
+      <Rating {...args} label={t("story.rating_custom")} />
     );
   },
   args: {
@@ -76,15 +77,14 @@ export const Sizes: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <Label label={t("story.rating_sizes")}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <Rating {...args} size="sm" defaultValue={3} />
-            <Rating {...args} size="md" defaultValue={3} />
-            <Rating {...args} size="lg" defaultValue={3} />
-          </div>
-        </Label>
-      </div>
+      <Fieldset variant="plain">
+        <Legend label={t("story.rating_sizes")} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <Rating {...args} size="sm" defaultValue={3} />
+          <Rating {...args} size="md" defaultValue={3} />
+          <Rating {...args} size="lg" defaultValue={3} />
+        </div>
+      </Fieldset>
     );
   },
 };
@@ -93,9 +93,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story.rating_disabled")}>
-        <Rating {...args} disabled />
-      </Label>
+      <Rating {...args} label={t("story.rating_disabled")} disabled />
     );
   },
   args: {
@@ -107,17 +105,16 @@ export const ReadOnly: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <Label label={t("story.rating_readonly")}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <Rating {...args} value={5} readOnly />
-            <Rating {...args} value={4} readOnly />
-            <Rating {...args} value={3} readOnly />
-            <Rating {...args} value={2} readOnly />
-            <Rating {...args} value={1} readOnly />
-          </div>
-        </Label>
-      </div>
+      <Fieldset variant="plain">
+        <Legend label={t("story.rating_readonly")} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <Rating {...args} value={5} readOnly />
+          <Rating {...args} value={4} readOnly />
+          <Rating {...args} value={3} readOnly />
+          <Rating {...args} value={2} readOnly />
+          <Rating {...args} value={1} readOnly />
+        </div>
+      </Fieldset>
     );
   },
 };
@@ -137,9 +134,7 @@ export const Controlled: Story = {
     };
 
     return (
-      <Label label={t("story.rating_controlled")}>
-        <Rating {...args} value={value} onChange={handleChange} />
-      </Label>
+      <Rating {...args} label={t("story.rating_controlled")} value={value} onChange={handleChange} />
     );
   },
 };

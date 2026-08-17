@@ -279,7 +279,7 @@
     "lightbox_scenario_1": "ECサイトにおける商品画像ギャラリー。",
     "lightbox_scenario_2": "データ主体のダッシュボードにおけるチャートやインフォグラフィックの拡大表示。",
     "lightbox_with_captions": "キャプション付き",
-    "video_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "video_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。音声のある動画では `tracks` で字幕トラックを渡してください。`<track kind=\"captions\">` の無い動画は WCAG 1.2.2 を満たさず、自動検査は「人が確かめろ」と出すことしかできません。",
     "video_adv_aspect_desc": "`contain`, `cover` など、画面にどうフィットさせるかをユーザーが選択できます。",
     "video_adv_aspect_title": "アスペクト比の変更",
     "video_adv_desc": "`advancedControls={true}` を利用することで、モダンな動画プレイヤーに必要な様々な機能を利用できます。",

@@ -125,7 +125,11 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
           labelPlacement === "vertical" && styles.labelVertical,
           className,
         )}
-        role={onChange ? "tablist" : undefined}
+        /* 読み取り専用（`onChange` 無し）のときは `tablist` にしない。ただし
+           **ロールを外しても `aria-label` は残る** ── generic に名前を付けた
+           状態で、axe が `aria-prohibited-attr` で警告する（T205）。
+           名前があるときだけ `group` にして、名前を読める形にする。 */
+        role={onChange ? "tablist" : ariaLabel ? "group" : undefined}
         aria-label={ariaLabel}
         aria-orientation={onChange ? direction : undefined}
         onKeyDown={handleContainerKeyDown}

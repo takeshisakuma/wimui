@@ -64,8 +64,10 @@ describe("KanbanBoard", () => {
 
   it("renders card count badges", () => {
     render(<DefaultBoard />);
-    expect(screen.getByLabelText("2 cards")).toBeInTheDocument();
-    expect(screen.getByLabelText("1 cards")).toBeInTheDocument();
+    // 枚数は「見える数字（aria-hidden）」と「読み上げ用テキスト」に分かれている
+    // ── 素の div に aria-label を付けても読まれる保証が無いため（T205）。
+    expect(screen.getByText("Cards: 2")).toBeInTheDocument();
+    expect(screen.getByText("Cards: 1")).toBeInTheDocument();
   });
 
   it("calls onCardMove when card dropped on different column", () => {

@@ -392,7 +392,9 @@ export const Cascader = ({
             tabIndex={disabled ? -1 : 0}
             role="combobox"
             aria-expanded={isOpen}
-            aria-controls={popupId}
+            /* T205: ポップアップは開くまで DOM に無い。閉じた状態で存在しない
+               ID を指すと壊れた参照になる（axe `aria-valid-attr-value`・critical）。 */
+            aria-controls={isOpen ? popupId : undefined}
             aria-haspopup="listbox"
             aria-disabled={disabled}
             aria-labelledby={labelId}

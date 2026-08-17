@@ -197,7 +197,12 @@ const TransferList = ({
       <div
         ref={bodyRef}
         className={styles.body}
-        role={data.length > 0 ? "listbox" : undefined}
+        /* 空のときに `listbox` を外すのは `aria-required-children` を避けるため。
+           ただし**ロールを外しても `aria-label` は残っていた** ── generic に
+           名前を付けている状態で、axe が `aria-prohibited-attr` で警告する
+           （incomplete なので CI は黙っていた。T205）。空のパネルも「まとまり」
+           としては名前を持てるので `group` に落とす。 */
+        role={data.length > 0 ? "listbox" : "group"}
         aria-multiselectable={data.length > 0 ? "true" : undefined}
         aria-label={titleStr}
         aria-activedescendant={data.length > 0 ? activeDescendantId : undefined}

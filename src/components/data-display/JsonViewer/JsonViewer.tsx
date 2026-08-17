@@ -359,9 +359,12 @@ export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
     };
 
     return (
-      <div 
-        ref={ref} 
-        className={classNames("wim-json-viewer", localStyles.root, className)} 
+      <div
+        ref={ref}
+        className={classNames("wim-json-viewer", localStyles.root, className)}
+        /* T205: 名前を付けるならロールが要る（素の `div` は generic ＝ 命名禁止）。
+           ツールバーの見出しで名前を付けているときだけ `group` にする。 */
+        role={showToolbar ? "group" : undefined}
         aria-labelledby={showToolbar ? titleId : undefined}
         {...props}
       >

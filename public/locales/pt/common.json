@@ -29,6 +29,7 @@
     "items_per_page": "Itens por página",
     "jump_to_page": "Ir para a página",
     "kanban_board": "Quadro Kanban",
+    "kanban_column_count": "Cartões: {{count}}",
     "left_icon_action": "Executar ação",
     "loading": "Carregando",
     "move_card": "Mover cartão",

@@ -101,7 +101,18 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
         data-size={size}
         data-disabled={disabled}
         data-dragging={isDragging}
-        role={isClickable && !disabled ? "button" : undefined}
+        /* 無効時に `role="button"` を出さないのは意図（押せないものを押せる
+           ように読ませない）。ただし**呼び出し側の `aria-label` はそのまま残る**
+           ので、generic に名前が付いた状態になる ── axe の `aria-prohibited-attr`
+           （T205。`Dropzone/Disabled` で実測）。名前があるときだけ `group` に
+           落として、名前を読める形にする。 */
+        role={
+          isClickable && !disabled
+            ? "button"
+            : props["aria-label"] || props["aria-labelledby"]
+              ? "group"
+              : undefined
+        }
         tabIndex={isClickable && !disabled ? 0 : undefined}
         aria-disabled={disabled || undefined}
         onKeyDown={(e) => {

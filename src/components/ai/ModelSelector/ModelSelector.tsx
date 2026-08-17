@@ -259,7 +259,11 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
           className={styles.trigger}
           aria-haspopup="listbox"
           aria-expanded={open}
-          aria-controls={listboxId}
+          /* T205: リストは開くまで DOM に無い。閉じた状態で `aria-controls` が
+             存在しない ID を指すと、AT からは壊れた参照に見える（axe は
+             `aria-valid-attr-value` を **critical の incomplete** で出す）。
+             開いているあいだだけ指す。 */
+          aria-controls={open ? listboxId : undefined}
           aria-label={triggerAriaLabel}
           disabled={disabled}
           onClick={() => {

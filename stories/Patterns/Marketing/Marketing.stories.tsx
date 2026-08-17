@@ -23,6 +23,7 @@ import {
   Stats,
   Text,
   Title,
+  VisuallyHidden,
 } from "wimui";
 import { Sparkline } from "wimui/charts";
 import { CheckIcon, CloseIcon } from "@/icon";
@@ -671,12 +672,15 @@ export const ComparisonTable: StoryObj = {
     const Check = () => (
       <Icon name="CheckIcon" size="sm" color="success" aria-label={t("docs_stories_recipes:feature_comparison.included")} />
     );
+    // T205: 素の `<span>`（generic）に `aria-label` を付けても読まれる保証が
+    // 無い（axe `aria-prohibited-attr`）。ダッシュは見た目だけにして、
+    // 意味は読み上げ用テキストで渡す。
     const Dash = () => (
-      <span
-        style={{ color: "var(--wim-color-text-disabled)", fontWeight: 300 }}
-        aria-label={t("docs_stories_recipes:feature_comparison.not_included")}
-      >
-        —
+      <span style={{ color: "var(--wim-color-text-disabled)", fontWeight: 300 }}>
+        <span aria-hidden="true">—</span>
+        <VisuallyHidden>
+          {t("docs_stories_recipes:feature_comparison.not_included")}
+        </VisuallyHidden>
       </span>
     );
     const planCell = (included: boolean) => (included ? <Check /> : <Dash />);

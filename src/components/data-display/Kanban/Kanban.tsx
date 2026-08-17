@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./kanban.module.scss";
 import { MoreHorizontalIcon } from "@/icon";
 
@@ -227,6 +228,7 @@ export const KanbanColumn = ({
 }: KanbanColumnProps) => {
   const { dragOverColumn, handleDragOver, handleDrop, setDragOverColumn } =
     useKanban();
+  const { t } = useWimTranslation("common");
 
   return (
     <div
@@ -244,8 +246,14 @@ export const KanbanColumn = ({
       <div className={styles.columnHeader}>
         <div className={styles.columnTitle}>{title}</div>
         {cardCount !== undefined && (
-          <div className={styles.columnCount} aria-label={`${cardCount} cards`}>
-            {cardCount}
+          /* T205: 素の `div`（generic）に `aria-label` を付けても読まれる保証が
+             無い（axe `aria-prohibited-attr`）。しかも文言が英語の直書きだった。
+             数字は見た目、意味は読み上げ用テキストに分ける。 */
+          <div className={styles.columnCount}>
+            <span aria-hidden="true">{cardCount}</span>
+            <VisuallyHidden>
+              {t("a11y.kanban_column_count", { count: cardCount })}
+            </VisuallyHidden>
           </div>
         )}
       </div>
