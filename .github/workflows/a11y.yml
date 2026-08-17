@@ -123,6 +123,10 @@ jobs:
         with:
           name: a11y-incomplete-fragments-${{ matrix.shard }}
           path: vrt/.a11y-incomplete
+          # **`include-hidden-files` が要る。** 断片の置き場が `.` 始まりなので、
+          # 既定（隠しファイルは無視）だと**測定は全部成功しているのに 0 件**で
+          # 上がる。最初の dispatch はこれで 4 シャードとも落ちた（2026-08-17）。
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 3
 
