@@ -52,12 +52,19 @@
     justify-content: center;
   }
 
+  /* T208: 見出し役なので本文用の `normal` ではなく `snug` 系を使う。
+     `titleTag` は既定が `div` だが `h1`〜`h6` も取れる ── どちらの場合も
+     自前の宣言が `@layer base` の素の見出しの規則より強いので、ここで揃える。 */
   .title {
     margin: 0;
     font-size: 0.9375rem;
     font-weight: var(--wim-font-weight-semibold);
-    line-height: var(--wim-line-height-normal);
+    line-height: var(--wim-line-height-snug);
     overflow-wrap: break-word;
+
+    :global([lang="ja"]) & {
+      line-height: var(--wim-line-height-snug-jp);
+    }
   }
 
   .description {
