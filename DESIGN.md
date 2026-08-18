@@ -280,14 +280,16 @@ Major Second (1.125) に近い Type Scale を採用。
 
 日本語と欧文で異なる行高を提供。日本語は文字が正方形に近いため、欧文よりゆったりとした行高が必要。
 
-| トークン | 値 | 対象言語 |
-|----------|-----|---------|
-| `--wim-line-height-tight` | 1.2 | 欧文 |
-| `--wim-line-height-normal` | 1.4 | 欧文 |
-| `--wim-line-height-loose` | 1.6 | 欧文 |
-| `--wim-line-height-tight-jp` | 1.4 | 日本語 |
-| `--wim-line-height-normal-jp` | 1.6 | 日本語 |
-| `--wim-line-height-loose-jp` | 1.8 | 日本語 |
+| トークン | 値 | 対象言語 | 主な用途 |
+|----------|-----|---------|---------|
+| `--wim-line-height-tight` | 1.2 | 欧文 | ディスプレイ見出し（Title `xl`〜） |
+| `--wim-line-height-snug` | 1.33 | 欧文 | **見出しの既定**（Title・素の `h1`〜`h6`） |
+| `--wim-line-height-normal` | 1.4 | 欧文 | 本文 |
+| `--wim-line-height-loose` | 1.6 | 欧文 | 長文・入力欄の本文 |
+| `--wim-line-height-tight-jp` | 1.4 | 日本語 | ディスプレイ見出し |
+| `--wim-line-height-snug-jp` | 1.5 | 日本語 | **見出しの既定** |
+| `--wim-line-height-normal-jp` | 1.6 | 日本語 | 本文 |
+| `--wim-line-height-loose-jp` | 1.8 | 日本語 | 長文 |
 
 ### 字間（letter-spacing）
 
@@ -323,6 +325,24 @@ Major Second (1.125) に近い Type Scale を採用。
      }
    }
    ```
+
+### 見出しの行高はどの層で決まるか（T208・公開契約）
+
+`line-height` は単位なし＝比率なので、宣言が無ければ子孫が自分の font-size に掛ける。`lang.scss` は `body` に `--wim-line-height-normal`（1.4 / ja は 1.6）を配るため、**何もしない見出しは本文の比率のまま間延びする** ── 実測で素の `<h1>`（UA 既定 2em＝32px）は行送り 44.8px / ja 51.2px だった。
+
+解く層は要素で決まる。
+
+| 見出しの書き方 | 行高を決める場所 | コンポーネント側ですること |
+|---|---|---|
+| 素の `<h1>`〜`<h6>` | `@layer base`（`src/base.scss`）が `snug` / `[lang="ja"]` は `snug-jp` を当てる。**`reset.css` に入る＝利用者の素マークアップにも効く** | **何も宣言しない**（宣言すると `component` 層のクラスが base に勝ち、base が届かなくなる） |
+| `Title` コンポーネント | `title.module.scss` が `snug` / `snug-jp`、ディスプレイ段（`xl`〜）だけ `tight` / `tight-jp` | `Title` に任せる |
+| `role="heading"` を載せた `div` / `button` | **base のセレクタは要素名なので構造的に届かない** | 自分で `snug` / `snug-jp` を宣言する |
+
+`tight` 系を使う境目は `Title` の判断に合わせる ── ディスプレイ段（`.xl`＝max 2.6rem ≒ 41.6px）から。**素の見出しの UA 既定は h1 の 32px が最大で `Title` の `.lg`（2rem）と同じ帯**なので、素の h1 も `snug` 側に置く。
+
+和文の出し分けを `lang.scss` に書かないこと。**あのファイルはレイヤー外**で、レイヤー外の宣言は全レイヤーより強いため、`body[lang="ja"] h1` に行高を足すと `@layer component` の `Title` まで上書きしてしまう。base 層に置く。
+
+機械強制: `npm run check:heading-lh`（`audit:lib` と lint-staged に配線済み）。
 
 ### テキスト装飾
 
