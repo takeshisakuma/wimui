@@ -362,6 +362,15 @@ const checks = [
     name: "Monospace contract (token + descendant inheritance, always paired)",
     command: "node scripts/check-mono-family.js",
   },
+  {
+    category: "lib",
+    // T208（2026-08-18）: 素の見出しは `lang.scss` が body に配る本文比率
+    // （1.4 / ja 1.6）をそのまま継承していた。base 層に規則を置いて解いたが、
+    // ①クラスが自前で `line-height` を宣言すると base は届かず、
+    // ②`role="heading"` の div/button には構造的に届かない。両方をここで見る。
+    name: "Heading line-height uses heading tokens (not the body ratio)",
+    command: "node scripts/check-heading-line-height.js",
+  },
   /*
    * T164（2026-08-13）: 以下の 3 本は **husky の hook（lint-staged）でしか走っていなかった**。
    * `audit-all.js` にも CI のワークフローにも登録が無く、**クリーンチェックアウトの CI では

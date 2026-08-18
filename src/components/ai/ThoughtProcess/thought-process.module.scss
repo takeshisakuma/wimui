@@ -51,9 +51,18 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-medium);
+
+    /* T208: `role="heading"` を載せているが要素は `div` / `button` なので、
+       `@layer base` の素の見出しの規則は届かない。見出し役として自分で宣言する。 */
+    line-height: var(--wim-line-height-snug);
     color: var(--wim-color-text-secondary);
     text-align: left;
     cursor: default;
+
+    :global([lang="ja"]) & {
+      line-height: var(--wim-line-height-snug-jp);
+    }
+
     background: transparent;
     border: none;
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);

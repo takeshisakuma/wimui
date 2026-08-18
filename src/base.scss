@@ -92,6 +92,46 @@
     font-size: 1em;
   }
 
+  /* 素の見出し（T208）。
+   *
+   * `lang.scss` が `body` に `--wim-line-height-normal`（1.4 / ja は 1.6）を配り、
+   * `line-height` は単位なし＝比率なので子孫が自分の font-size に掛ける。素の `h1` は
+   * UA 既定が 2em＝32px なので **行送りが 45px（ja 51px）** になり、字の見た目の高さ
+   * 約 22px の 2 倍以上まで開く（実測: `Foundation/Voice & Tone` の h1・幅 760px で 2 行）。
+   *
+   * 値は `Title`（`title.module.scss`）の判断をそのまま借りる ── あちらは欧文 `snug`、
+   * 和文 `snug-jp` を既定にし、`tight` 系はディスプレイ段（`.xl`＝max 2.6rem ≒ 41.6px）
+   * から使う。**素の見出しの UA 既定は h1 の 32px が最大で、これは `Title` の `.lg`
+   * （2rem）と同じ帯＝`snug` の側**なので、h1 だけ `tight` にはしない。
+   *
+   * `@layer base` に置くのは、`component` 層のクラスが自前で `line-height` を宣言して
+   * いればそちらを勝たせるため。宣言が無いクラス（実測で `Dialog` / `Drawer` /
+   * `BottomSheet` / `Lightbox` / `Tour` / `Dashboard`）は継承しているだけなので、
+   * 要素側のこの宣言が効く ── 継承はその要素に宣言が無いときだけ働く。
+   *
+   * ja を `lang.scss` 側に置かないのは、**あのファイルがレイヤー外だから**。
+   * レイヤー外の宣言は全レイヤーより強いので、`body[lang="ja"] h1` に行間を足すと
+   * `@layer component` の `Title` まで上書きしてしまう。 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: var(--wim-line-height-snug);
+  }
+
+  [lang="ja"] {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: var(--wim-line-height-snug-jp);
+    }
+  }
+
   /* RubyチE��スト（ルビ）�E表示を老E�E */
   rt {
     font-feature-settings: "palt";
