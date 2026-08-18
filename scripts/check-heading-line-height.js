@@ -29,6 +29,12 @@
  * 和文 `snug-jp` を既定、`tight` 系はディスプレイ段。素の見出しの UA 既定は h1 の 32px が
  * 最大で `Title` の `.lg`（2rem）と同じ帯なので、`snug` 側が既定になる。
  *
+ * **見えない範囲（既知）**: 別コンポーネントが描く見出しへ `className` を渡す書き方
+ * （`<Drawer.Title className={styles.title}>` は `Drawer` 側で `<h2>` になる）は、
+ * 1 ファイルの走査では要素が分からないので追えていない。現状こういう外側のクラスは
+ * どれも `line-height` を宣言しておらず実害は無いが、**このガードが緑でも
+ * その経路は保証していない**。追うならコンポーネント間の解決が要る。
+ *
  * 引数は取らず常に全量を読む（lint-staged からファイル名を渡されても無視する）。
  * ── 部分集合だけを見るガードは、全体を突き合わせる種類だと常に素通りする（T164 / 型 2）。
  *
@@ -102,6 +108,24 @@ function lineHeightsFor(scssPath, cls) {
   return found;
 }
 
+/**
+ * TSX の中で「素の見出しになる動的タグ」の名前を集める。
+ *
+ * 2026-08-18 の調査で**このガード自身の穴**として出た経路 ── `Dashboard` は
+ * `const Heading = \`h${titleLevel}\`` を作って `<Heading className={styles.widgetTitle}>`
+ * と書く。DOM に出るのは素の `h2`〜`h6` なので `@layer base` の規則の対象だが、
+ * ソース上は `<h2>` という文字列がどこにも無いため、素朴な `<h[1-6]>` 走査では見えない。
+ * 実際 `.widgetTitle` に本文用トークンを入れても exit 0 のまま素通りした。
+ */
+function dynamicHeadingTags(src) {
+  const names = new Set();
+  // const Heading = `h${level}` as "h2" | …
+  const re = /const\s+([A-Z][A-Za-z0-9_]*)\s*=\s*`h\$\{/g;
+  let m;
+  while ((m = re.exec(src)) !== null) names.add(m[1]);
+  return names;
+}
+
 /** `className={styles.foo}` / `classNames(styles.foo, …)` から最初の styles.X を取る。 */
 function classFromTag(tagText) {
   const m = tagText.match(/styles\.([A-Za-z][A-Za-z0-9_]*)/);
@@ -160,10 +184,19 @@ function main() {
     const scss = scssSiblingFor(tsx);
     const scssRel = scss ? path.relative(root, scss).replace(/\\/g, "/") : "(なし)";
     const lines = src.split(/\r?\n/);
+    const dynTags = dynamicHeadingTags(src);
+    const dynRe = dynTags.size
+      ? new RegExp(`<(${[...dynTags].join("|")})[\\s>]`)
+      : null;
 
     lines.forEach((line, idx) => {
-      // A: 素の <h1>〜<h6>
-      const headingMatch = line.match(/<h[1-6](\s[^>]*)?>/);
+      // A: 素の <h1>〜<h6>。動的タグ（`const H = \`h${n}\``）と
+      //    `Title` 系に `tag="hN"` / `as="hN"` を渡す書き方も同じ扱いにする
+      //    ── どれも DOM に出るのは素の見出しなので base の規則の対象。
+      const headingMatch =
+        line.match(/<h[1-6](\s[^>]*)?>/) ||
+        (dynRe && dynRe.test(line)) ||
+        /\b(tag|as)=["']h[1-6]["']/.test(line);
       if (headingMatch) {
         headingElements++;
         const cls = classFromTag(line);
