@@ -311,6 +311,17 @@ sha256sum dist/styles.css dist/reset.css dist/index.js dist/llms.txt
 > 同じものであることまで確認できた。**この突き合わせをすると「実物にあるか」と「実物が最新か」を
 > 1 回で見られる。**
 
+> 実例（2026-08-18、0.24.0）: **欠落なし。** ルート同梱は `LICENSE` / `NOTICE` / `package.json` /
+> `README.md` / `README.ja.md`、`dist/locales/{en,ja,pt}` は各 4 本。`llms.txt` の版表記は `v0.24.0` で
+> `package.json` と一致（1490 ファイル / 1.04 MB）。`styles.css` / `reset.css` / `index.js` /
+> `llms.txt` / `llms-full.txt` の **5 本すべてがローカル build とバイト一致**。
+> **中身まで見た**: この版の主題である T208 の規則が、レジストリの `reset.css` に
+> `h1,h2,h3,h4,h5,h6{line-height:var(--wim-line-height-snug)}` と
+> `[lang=ja] h1,…{line-height:var(--wim-line-height-snug-jp)}` として実在する。
+> **ファイル名の一致だけでは「その版の変更が入っているか」は分からない**ので、
+> 版の主題にあたる 1 行を実物から grep するところまでやると 1 回で見終わる。
+> なお `CHANGELOG.md` は同梱されない（0.19.0 の記録と同じで、退行ではない）。
+
 ### 8.5. 詰まっている Release ランが無いか
 
 ```bash
