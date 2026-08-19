@@ -32,6 +32,22 @@ else
   CMD=(npx playwright install --with-deps chromium)
 fi
 
+# **timeout は直の子しか殺さない。** playwright は apt-get を root 側の別プロセスとして
+# 起こすので、1 回目を打ち切っても **apt-get が生き残って lock を握り続ける**
+# ── 実測（2026-08-19、#454 の tap-target）: 2 回目・3 回目が即座に
+# `E: Could not get lock /var/lib/apt/lists/lock. It is held by process 2074 (apt-get)`
+# で落ちた。再試行を意味のあるものにするには、握っている相手を落として lock を外す。
+# この runner は使い捨てで、握っているのは今こちらが打ち切った相手なので消してよい。
+recover_apt() {
+  command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null || return 0
+  sudo pkill -9 -x apt-get 2>/dev/null || true
+  sudo pkill -9 -x apt 2>/dev/null || true
+  sudo pkill -9 -x dpkg 2>/dev/null || true
+  sudo rm -f /var/lib/apt/lists/lock /var/lib/dpkg/lock /var/lib/dpkg/lock-frontend /var/cache/apt/archives/lock 2>/dev/null || true
+  sudo dpkg --configure -a 2>/dev/null || true
+  echo "apt の後始末をした（残っていた apt-get / dpkg を落として lock を外した）。"
+}
+
 warn() {
   # GitHub Actions では run のサマリに出る。ローカルではただの標準エラー。
   echo "::warning::$*" >&2
@@ -58,11 +74,7 @@ for attempt in $(seq 1 "$ATTEMPTS"); do
     exit "$status"
   fi
 
-  # 途中で殺した apt が dpkg を中途半端な状態にしていることがあるので、
-  # 再試行の前に均す。**失敗しても続ける**（ローカルや sudo 無しの環境もある）。
-  if command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
-    sudo dpkg --configure -a || true
-  fi
+  recover_apt
 
   sleep $((attempt * 10))
 done
