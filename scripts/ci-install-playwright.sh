@@ -30,12 +30,12 @@
 # 環境変数:
 #   PLAYWRIGHT_INSTALL_ATTEMPTS  試行回数（既定 3）
 #   PLAYWRIGHT_INSTALL_TIMEOUT   1 回あたりの秒数（既定 240 = 健全な実測 74 秒の 3 倍強）
-#   PLAYWRIGHT_DEPS_TIMEOUT      OS 依存側の 1 回あたりの秒数（既定 120）
+#   PLAYWRIGHT_DEPS_TIMEOUT      OS 依存側の 1 回あたりの秒数（既定 180）
 set -uo pipefail
 
 ATTEMPTS="${PLAYWRIGHT_INSTALL_ATTEMPTS:-3}"
 PER_ATTEMPT="${PLAYWRIGHT_INSTALL_TIMEOUT:-240}"
-DEPS_TIMEOUT="${PLAYWRIGHT_DEPS_TIMEOUT:-120}"
+DEPS_TIMEOUT="${PLAYWRIGHT_DEPS_TIMEOUT:-180}"
 
 warn() {
   # GitHub Actions では run のサマリに出る。ローカルではただの標準エラー。
@@ -56,6 +56,22 @@ recover_apt() {
   sudo rm -f /var/lib/apt/lists/lock /var/lib/dpkg/lock /var/lib/dpkg/lock-frontend /var/cache/apt/archives/lock 2>/dev/null || true
   sudo dpkg --configure -a 2>/dev/null || true
   echo "apt の後始末をした（残っていた apt-get / dpkg を落として lock を外した）。"
+}
+
+# **apt 自身にも待ち時間を持たせる。** 既定の `Acquire::http::Timeout` は長く、
+# 応答の無いミラーに当たると**こちらが打ち切るまで待ち続ける**。実測（2026-08-19）は
+# まだらで、同じ push でも VRT の 4 シャードは 74s〜1m39s で通るのに a11y の 2 つだけが
+# 固まる ── **runner ごとに引きが違う**ので、apt に早く諦めさせて自前で張り直させる。
+# ここを入れておくと、こちらの `timeout` に当たる前に apt が自力で回復する目が出る。
+configure_apt_timeouts() {
+  command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null || return 0
+  sudo tee /etc/apt/apt.conf.d/99-ci-timeouts >/dev/null <<'APTCONF'
+Acquire::http::Timeout "20";
+Acquire::https::Timeout "20";
+Acquire::ftp::Timeout "20";
+Acquire::Retries "3";
+APTCONF
+  echo "apt の待ち時間を縮めた（http/https 20s・retries 3）。"
 }
 
 # 1 回ぶんを時間で縛る。124 / 137 は「応答しなかった」＝ハング。
@@ -125,6 +141,7 @@ fi
 #
 # **つまり apt が落ちている間は緑にできない。** ここでできるのは「早く諦めて、
 # 何が起きたかを残す」ことまで。
+configure_apt_timeouts
 run_with_retry "playwright install-deps（OS 依存）" "$DEPS_TIMEOUT" npx playwright install-deps chromium
 deps_status=$?
 if [ "$deps_status" -ne 0 ]; then
