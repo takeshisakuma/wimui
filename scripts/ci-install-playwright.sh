@@ -11,27 +11,26 @@
 # ── ここでやること ────────────────────────────────────────────────────
 #   1. **ブラウザ本体**を入れる（`playwright install`）。**apt を触らない**ので、
 #      apt が死んでいる日でも通る。**これは必須** ── 失敗したら諦める。
-#   2. **OS 依存**を入れる（`playwright install-deps`）。ここが apt。**任意扱い**で、
-#      応答しなければ警告を出して先へ進む。
+#   2. **OS 依存**を入れる（`playwright install-deps`）。ここが apt。**飛ばせない**
+#      ── フォントを 9 つ入れるので、抜けると VRT のベースラインと字形が合わない。
 #
-# 2 段に割った理由: 最初は `--with-deps` のまま再試行だけを付けて CI に出したが、
-# **apt が落ちている間は 3 回とも同じように固まった**（実測 12m57s で失敗）。
-# 時間は縛れても、apt が死んでいる日は緑にできない。runner image は chromium が要る
-# 共有ライブラリをおおむね積んでいるので、**apt はあくまで保険**という置き方にする。
+# 2 段に割った理由は**切り分け**。ブラウザの取得（CDN）と OS 依存（apt）は壊れ方が
+# 違うのに、`--with-deps` ひとつだと**どちらで詰まったのか分からない**。分ければ
+# `::warning::` に「どちらが何秒で応答しなかったか」が残る（タイムアウトした job は
+# GitHub 上 `cancelled`＝灰色で目に入らないので、run のサマリに必ず残す方針）。
 #
-# 依存の導入を飛ばした日に image 側にも無いライブラリがあれば、**この後ブラウザの
-# 起動で落ちる**。そのときのために、飛ばしたことを `::warning::` で残す
-# （タイムアウトした job は GitHub 上 `cancelled`＝灰色で目に入らないため、
-#  何が起きたかを run のサマリに必ず残す方針）。
+# **再試行では apt の障害は越えられない。** 実測: `--with-deps` のまま 3 回試して
+# 3 回とも同じ 240s で固まった（12m57s で失敗）。**apt が落ちている間は緑にできない**
+# ので、ここでできるのは「早く諦めて、何が起きたかを残す」ことまで。
 #
 # 使い方:
-#   bash scripts/ci-install-playwright.sh              # 既定（ブラウザ必須 + 依存は任意）
+#   bash scripts/ci-install-playwright.sh              # 既定（ブラウザ → OS 依存の順に、どちらも必須）
 #   bash scripts/ci-install-playwright.sh sleep 999    # 任意のコマンド（試験用。必須扱い）
 #
 # 環境変数:
 #   PLAYWRIGHT_INSTALL_ATTEMPTS  試行回数（既定 3）
 #   PLAYWRIGHT_INSTALL_TIMEOUT   1 回あたりの秒数（既定 240 = 健全な実測 74 秒の 3 倍強）
-#   PLAYWRIGHT_DEPS_TIMEOUT      OS 依存側の秒数（既定 120。apt が死んでいる日の待ち代）
+#   PLAYWRIGHT_DEPS_TIMEOUT      OS 依存側の 1 回あたりの秒数（既定 120）
 set -uo pipefail
 
 ATTEMPTS="${PLAYWRIGHT_INSTALL_ATTEMPTS:-3}"
@@ -113,16 +112,26 @@ if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
 
-# 2) OS 依存 — apt。**落ちても止めない**（image が積んでいれば要らない）。
-run_once "$DEPS_TIMEOUT" npx playwright install-deps chromium
+# 2) OS 依存 — apt。**任意にはできない**（下のコメント）。
+#
+# 一度「apt が死んでいる日は飛ばして進む」形にして CI に出したが、**VRT が落ちた**
+# （実測 2026-08-19 / #454: shard 1 だけで 4 枚 ── `kbd--keyboard-symbols` /
+#  `code--long-content` / `countdown--locale-override` / `relativetime--locale-override`）。
+# `playwright install-deps` は共有ライブラリだけでなく**フォントを 9 つ**入れる
+# （fonts-liberation / fonts-noto-color-emoji / fonts-ipafont-gothic / fonts-wqy-zenhei /
+#  fonts-unifont / fonts-freefont-ttf / fonts-tlwg-loma-otf / fonts-cyrillic / fonts-scalable）。
+# 飛ばすと**字形の代替が変わる**ので、`chromium-linux` のベースラインと合わなくなる。
+# Playwright のコンテナを採らないのと同じ理由（CI-8 の案④）。
+#
+# **つまり apt が落ちている間は緑にできない。** ここでできるのは「早く諦めて、
+# 何が起きたかを残す」ことまで。
+run_with_retry "playwright install-deps（OS 依存）" "$DEPS_TIMEOUT" npx playwright install-deps chromium
 deps_status=$?
-if [ "$deps_status" -eq 0 ]; then
-  exit 0
-fi
-recover_apt
-if [ "$deps_status" -eq 124 ] || [ "$deps_status" -eq 137 ]; then
-  warn "OS 依存の導入が ${DEPS_TIMEOUT}s で応答しなかったので飛ばした（CI-8 の apt ハング）。runner image に必要な共有ライブラリが無ければ、この後ブラウザの起動で落ちる。"
-else
-  warn "OS 依存の導入が exit ${deps_status} で失敗したので飛ばした。runner image に必要な共有ライブラリが無ければ、この後ブラウザの起動で落ちる。"
+if [ "$deps_status" -ne 0 ]; then
+  recover_apt
+  echo "✗ OS 依存の導入が $ATTEMPTS 回とも失敗した（最後の exit=$deps_status）。" >&2
+  echo "  これは飛ばせない ── フォントが入らないと VRT のベースラインと字形が合わない。" >&2
+  echo "  apt 側の障害なら、収まってから再実行すること。" >&2
+  exit "$deps_status"
 fi
 exit 0
