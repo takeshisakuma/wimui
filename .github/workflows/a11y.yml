@@ -12,6 +12,7 @@ on:
       - "scripts/check-a11y-incomplete.js"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
       # T92: `vrt.yml` と同じ穴（経緯はそちらのコメント）。**a11y のほうが悪い**
       # ── VRT には `workflow_dispatch` があるので手で起動して逃げられるが、
       # a11y には逃げ道が無く、#272 では**ローカルで `npm ci` からやり直して
@@ -34,6 +35,7 @@ on:
       - "scripts/check-a11y-incomplete.js"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
       # T92。**`pull_request` 側と必ず同じ内容にする**（#185 は `push` 側だけ漏れた）。
       - "package.json"
       - "package-lock.json"
@@ -83,7 +85,10 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        # CI-8: apt が固まると job タイムアウト（30〜60 分）まで戻ってこない。
+        # 1 回あたりを縛って再試行する（中身と実測は scripts/ci-install-playwright.sh）。
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
 
       # 「名前どおりに読めるか」は契約検査・VRT・axe のどれも見ない層（T79）。
       # 対になっているべきアイコンが対かを、描画して確かめる。ブラウザが要るので

@@ -14,6 +14,7 @@ on:
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
       # T92: **撮る側の道具**も対象にする。撮られる中身（`src` / `stories`）と
       # スペックしか見ていなかったため、**スクリーンショットを撮る実装そのものを
       # 差し替える PR で VRT が 1 本も起動しなかった**。
@@ -47,6 +48,7 @@ on:
       - "vrt/vrt.spec.ts"
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
       # T92。**`pull_request` 側と必ず同じ内容にする** ── #185 は `push` 側だけ
       # 漏れていた事例で、2 ファイル × 2 トリガー = 4 箇所が独立に腐る。
       - "package.json"
@@ -93,7 +95,10 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        # CI-8: apt が固まると job タイムアウト（30〜60 分）まで戻ってこない。
+        # 1 回あたりを縛って再試行する（中身と実測は scripts/ci-install-playwright.sh）。
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
 
       - name: Build Storybook
         run: npm run build-storybook
