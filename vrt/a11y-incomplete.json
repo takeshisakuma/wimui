@@ -824,14 +824,6 @@
         "color-contrast"
       ]
     },
-    "components-media-image--glassmorphism": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
     "components-media-image--motion-effects": {
       "light": [
         "color-contrast"
