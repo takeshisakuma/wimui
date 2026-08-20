@@ -60,15 +60,16 @@ const NON_TEXT_MIN = 3;
 const TEXT_SURFACES = ["surface", "surface-subtle", "surface-app"];
 
 /**
- * 非テキスト（軸線・目盛り線）は**ページ地を含めない**。
+ * 非テキスト（軸線・目盛り線）も**同じ 3 つの地**で見る。
  *
- * **黙って甘くしているのではない。** このガードを書いた時点の実測で、
- * `axis.stroke` (= `text-disabled`) は `surface-app` の light で **2.74**（1.4.11 の要 3）
- * と足りていない。ただしこれは**軸の線の話で、T212（文字）とは別の欠陥**であり、
- * 直すと線の色そのものを変える設計判断になる。**T215 として起票してある。**
- * ここに `surface-app` を足すのは T215 を直すときで、そのとき同時にこの行を消すこと。
+ * このガードの最初の版はここから `surface-app` を外していた ── `axis.stroke`
+ * (= `text-disabled`) が light で **2.74**（1.4.11 の要 3）と足りず、それは T212（文字）
+ * とは別の欠陥だったため **T215** として起票して外した。**T215 は同じ PR で直したので
+ * 外す理由が無くなり、ここに戻した。** `text-disabled` と `text-tertiary` の間に
+ * 3:1 を通るトークンは無い（border 系はすべて届かない）ので、通るうちで一番軽い
+ * `text-tertiary` を採っている。
  */
-const NON_TEXT_SURFACES = ["surface", "surface-subtle"];
+const NON_TEXT_SURFACES = ["surface", "surface-subtle", "surface-app"];
 
 /** `var(--wim-color-foo)` → `foo`。それ以外（生の hex 等）は null。 */
 const tokenOf = (value) => {

@@ -33,9 +33,15 @@ export const CHART_TEXT_COLORS = [
 
 export const CHART_THEME = {
   axis: {
-    // 軸線と目盛り線は**非テキスト**（WCAG 1.4.11 の 3:1）。`text-disabled` は
-    // サーフェス上で 3.45 / 3.35 なのでここは足りている。
-    stroke: "var(--wim-color-text-disabled)",
+    // 軸線と目盛り線は**非テキスト**（WCAG 1.4.11 の 3:1）。
+    // **`text-disabled` はサーフェスの上でしか足りていなかった**（light 3.45 /
+    // dark 3.35）── チャートは自分の背景を塗らないので、Card に入れず
+    // ページ地（`surface-app` = `#e5e5e5`）に直接置くと **2.74** まで落ちる（T215）。
+    // `text-disabled` と `text-tertiary` の間に通るトークンは無い（border 系は
+    // すべて 3:1 に届かない）ので、通るうちで一番軽い `text-tertiary` を採る。
+    // 最小 6.50。**グリッド線（`grid.stroke`）は変えていない** ── あれは読み取りの
+    // 補助であって、無くてもデータは読める＝装飾なので 1.4.11 の対象外。
+    stroke: "var(--wim-color-text-tertiary)",
     fontSize: 12,
     // 目盛りの**文字**は本文と同じ 4.5 が要る（T212）。recharts は目盛りラベルを
     // `fill: stroke` で描くので（`CartesianAxis.js` / `PolarAngleAxis.js`）、
