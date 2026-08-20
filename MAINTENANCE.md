@@ -446,3 +446,51 @@ ls vrt/vrt.spec.ts-snapshots/ | grep -c '^light-'; ls vrt/vrt.spec.ts-snapshots/
 
 - **所有していない**（compare で「既存 0 枚が動く」と実証済み）→ main のベースラインを丸ごと採る。新規追加分だけ残す
 - **所有している**（意図した差分がある）→ main のベースラインに揃え直してから、**update をもう 1 回走らせて撮り直す**。146 枚のコミットバックから正しい 36 枚を手で選り分けようとしない
+
+## ベースラインのコミットバック後は、**head のチェックを数えてからマージする**
+
+VRT の `update` が撮り直した PNG をコミットバックすると、**PR の head は
+`github-actions[bot]` のコミットになる**。このとき、その head に対するワークフローが
+**`action_required`（承認待ち）で止まったまま**になることがある。
+
+**止まっている間、`gh pr checks` は何も出さず、`mergeStateStatus` は `CLEAN` を返す。**
+つまり画面上は「問題なし」に見えるのに、**その head では品質ゲートが 1 つも走っていない。**
+気づかずにマージすると、**誰も検証していないコミットが main に入る。**
+
+**毎回ではない。** 実測（どちらも同じ `actor` / `triggering_actor` / `event`）:
+
+| PR | コミットバック head | ワークフロー |
+|---|---|---|
+| #456（T212） | `e6476dadf` | **承認不要で全部 success** |
+| #461（T214） | `a80cf751a` | **8 本すべて `action_required`・head の check-runs は 0 件** |
+
+API のメタデータでは両者を区別できなかったので、**「起きるかもしれない」前提で毎回確かめる**。
+
+### 確かめ方（PR の表示を信じない）
+
+```bash
+SHA=$(gh pr view <PR番号> --json headRefOid --jq .headRefOid)
+
+# ① head に紐づくチェックの件数。**0 なら何も走っていない**
+gh api repos/takeshisakuma/wimui/commits/$SHA/check-runs --jq '.check_runs | length'
+
+# ② 承認待ちが無いか
+gh api "repos/takeshisakuma/wimui/actions/runs?head_sha=$SHA" \
+  --jq '.workflow_runs[] | "\(.conclusion // .status)\t\(.name)\t\(.id)"'
+```
+
+### 承認待ちだったときの戻し方
+
+```bash
+gh api "repos/takeshisakuma/wimui/actions/runs?head_sha=$SHA" \
+  --jq '.workflow_runs[] | select(.conclusion == "action_required") | .id' |
+while read -r id; do gh api -X POST "repos/takeshisakuma/wimui/actions/runs/$id/approve"; done
+```
+
+承認したら ① をもう一度数え、**全部が `success` になってからマージ可否を判断する。**
+（2026-08-20・#461 で実測。承認前 0 件 → 承認後 20 件。）
+
+> **なぜ `gh pr checks` では足りないのか。** あれは PR に紐づいた *statuses / checks* を
+> 見るが、**走っていないものは存在しない**ので「空」になる。空と全緑は画面上で紛らわしい。
+> **件数を数えれば区別がつく。** これは「タイムアウトした job の conclusion が
+> `cancelled`（灰色）で赤より目に入らない」（CI-8）のと同じ型 ── **無いものは赤くならない。**
