@@ -20,13 +20,13 @@ export type KeyboardShortcutsProps = React.ComponentPropsWithoutRef<"dl"> & {
   /** Section title */
   title?: string;
   /**
-   * `title` を見出しとして描くときの段（T211）。**既定は見出しにしない**（`p`）。
+   * `title` を見出しとして描くときの段（T211）。渡さなければ見出しにならず `p` のまま。
    *
-   * ショートカット一覧は「編集」「移動」のように**節ごとに積んで使う**ので、
-   * 段で辿れると効く。ただし**既定を見出しにはしない** ── 段を決め打つと
-   * ページに `h1` / `h2` がある場合に段が飛び、axe の `heading-order` が鳴る
-   * （T191 で `Footer` が実際に踏んだ）。段を決めるのは**ページ側の構造を
-   * 知っている呼び出し元**の仕事で、`Alert` の `titleTag`（既定 `div`）と同じ形。
+   * ショートカット一覧は「編集」「移動」のように節ごとに積んで使うので、段で辿れると
+   * 効く。ただし既定を見出しにはしない ── 段を決め打つとページに `h1` / `h2` がある
+   * 場合に段が飛び、axe の `heading-order` が鳴る（T191 で `Footer` が実際に踏んだ）。
+   * 段を決めるのはページ側の構造を知っている呼び出し元の仕事で、`Alert` の `titleTag`
+   * （既定 `div`）と同じ形。
    */
   titleLevel?: KeyboardShortcutsTitleLevel;
   /**
