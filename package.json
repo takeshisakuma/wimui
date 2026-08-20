@@ -382,6 +382,7 @@
     "check:contrast": "node scripts/check-contrast.js",
     "check:subtle-tokens": "node scripts/check-subtle-tokens.js",
     "check:contrast:scss": "node scripts/check-contrast-scss.js",
+    "check:contrast:scene": "node scripts/check-contrast-scene.js",
     "report:variant-distinctness": "node scripts/report-variant-distinctness.js",
     "check:prop-classes": "node scripts/check-prop-classes.js",
     "check:prop-vocabulary": "node scripts/check-prop-vocabulary.js",
@@ -692,6 +693,9 @@
     ],
     "src/components/{helpers.ts,charts/**/*.tsx}": [
       "node scripts/check-chart-text-color.js"
+    ],
+    "{tokens/**/*.json,src/tokens/_effects.scss,src/components/form/Button/*.scss}": [
+      "node scripts/check-contrast-scene.js"
     ]
   },
   "dependencies": {

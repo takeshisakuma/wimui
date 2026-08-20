@@ -100,7 +100,7 @@
         "value": "{pccs.lt2}"
       },
       "text-on-success": {
-        "$comment": "dark も success を s12 に揃え、白文字 4.65:1（AA）。旧 v12 は白 3.3:1 で不足",
+        "$comment": "dark も success を dp12 に揃え、白文字 6.04:1。旧 s12 は素 4.65 で AA を満たすが、solid Button のシーンが乗る上面で 4.04 に落ちていた（T214）。旧 v12 は素の時点で白 3.3:1 で不足",
         "value": "{pccs.w}"
       },
       "text-on-danger": {
@@ -108,8 +108,8 @@
         "value": "{pccs.bk}"
       },
       "success": {
-        "$comment": "light と同じ s12。Vivid(v12) だと白文字 AA 未満のため Strong に固定",
-        "value": "{pccs.s12}"
+        "$comment": "light と同じ dp12。Vivid(v12) だと白文字 3.29 で AA 未満、Strong(s12) は素 4.65 でも solid のシーン込みで 4.04 に落ちるため、Deep に固定（T214）",
+        "value": "{pccs.dp12}"
       },
       "warning": {
         "value": "{pccs.v7}"
