@@ -3887,6 +3887,10 @@
       "required": false,
       "type": "string"
     },
+    "Footer.Section.titleLevel": {
+      "required": false,
+      "type": "2 | 3 | 4 | 5 | 6"
+    },
     "Footer.background": {
       "required": false,
       "values": [
@@ -5533,6 +5537,10 @@
     "KeyboardShortcuts.title": {
       "required": false,
       "type": "string"
+    },
+    "KeyboardShortcuts.titleLevel": {
+      "required": false,
+      "type": "2 | 3 | 4 | 5 | 6"
     },
     "Label.asChild": {
       "required": false,
@@ -8762,6 +8770,9 @@
     "SpeedDial.activeIcon": {
       "required": false,
       "type": "keyof typeof ALL_ICONS"
+    },
+    "SpeedDial.aria-label": {
+      "type": "string"
     },
     "SpeedDial.direction": {
       "required": false,
