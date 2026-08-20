@@ -298,9 +298,29 @@ export const ContextMenuGroup = ({
   title,
   className,
 }: ContextMenuGroupProps) => {
+  // `role="group"` はあったが**名前が無かった**ので、支援技術からはグループの
+  // 区切りが分からず、項目が一続きに読まれていた（T211）。
+  // **見出しにはしない** ── メニューは文書の節ではないので、ARIA のパターンは
+  // 「グループに名前を付ける」。同じ形が `Menu` の `MenuItemGroup` に既にある。
+  // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
+  const labelId = React.useId();
   return (
-    <div role="group" className={className} data-testid="context-menu-group">
-      {title && <div className={styles.groupTitle} data-testid="context-menu-group-title">{title}</div>}
+    <div
+      role="group"
+      aria-labelledby={title ? labelId : undefined}
+      className={className}
+      data-testid="context-menu-group"
+    >
+      {title && (
+        <div
+          id={labelId}
+          className={styles.groupTitle}
+          data-testid="context-menu-group-title"
+          aria-hidden="true"
+        >
+          {title}
+        </div>
+      )}
       {children}
     </div>
   );
