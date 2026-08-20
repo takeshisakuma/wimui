@@ -271,6 +271,13 @@ const checks = [
   },
   {
     category: "lib",
+    // 上のパレットは**非テキスト前提**（contrastMin: 3）。その色や `text-disabled` が
+    // チャートの**文字**に回ると 4.5 に届かない（T212 の実測 473 ノード）。
+    name: "Chart text colour (axis ticks / legend labels must use text tokens)",
+    command: "node scripts/check-chart-text-color.js",
+  },
+  {
+    category: "lib",
     name: "Design token surface (theming freeze guard)",
     command: "node scripts/check-tokens.js",
   },

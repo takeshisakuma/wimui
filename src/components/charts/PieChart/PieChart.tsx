@@ -87,7 +87,7 @@ export const PieChart = ({
               ))}
             </Pie>
             <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
           </RechartsPieChart>
         </ResponsiveContainer>
       </div>

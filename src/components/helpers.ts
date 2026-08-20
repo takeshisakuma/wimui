@@ -33,8 +33,23 @@ export const CHART_TEXT_COLORS = [
 
 export const CHART_THEME = {
   axis: {
+    // 軸線と目盛り線は**非テキスト**（WCAG 1.4.11 の 3:1）。`text-disabled` は
+    // サーフェス上で 3.45 / 3.35 なのでここは足りている。
     stroke: "var(--wim-color-text-disabled)",
     fontSize: 12,
+    // 目盛りの**文字**は本文と同じ 4.5 が要る（T212）。recharts は目盛りラベルを
+    // `fill: stroke` で描くので（`CartesianAxis.js` / `PolarAngleAxis.js`）、
+    // 明示しないと**無効状態のための色が文字色になる** ── 実測 light 3.45 / dark 3.34。
+    // `tick` は `fill: stroke` の**後に** spread されるため、これで上書きできる。
+    tick: { fill: "var(--wim-color-text-secondary)" },
+  },
+  // recharts の `<Legend>` は既定でラベルの文字色に**系列色**を使う。系列パレットは
+  // `check-chart-palette.js` が `contrastMin: 3` ＝**非テキスト前提**で設計しているので、
+  // 文字に使うと構造的に 4.5 に届かない（実測: light の secondary で 2.02）。
+  // **色による識別は凡例のスウォッチが担う**ので、文字はテキスト用トークンに寄せる（T212）。
+  // `labelStyle.color` は `entry.color` に勝つ（`DefaultLegendContent.js`）。
+  legend: {
+    labelStyle: { color: "var(--wim-color-text-secondary)" },
   },
   grid: {
     stroke: "var(--wim-color-border-secondary)",
