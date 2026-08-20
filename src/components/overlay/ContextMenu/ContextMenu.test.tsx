@@ -374,6 +374,43 @@ describe("ContextMenuGroup", () => {
     expect(screen.getByText("Group Title")).toBeInTheDocument();
   });
 
+  // T211: `role="group"` はあったが名前が無く、支援技術からは区切りが分からなかった。
+  // **アクセシブル名で引く** ── クラス名や id を見ても「読み上げに出るか」の証拠に
+  // ならない（testing-library は dom-accessibility-api で実際に名前を計算する）。
+  it("グループにタイトルがアクセシブル名として付く", () => {
+    render(
+      <ContextMenu
+        menu={
+          <ContextMenuGroup title="Group Title">
+            <ContextMenuItem>Item</ContextMenuItem>
+          </ContextMenuGroup>
+        }
+      >
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    expect(screen.getByRole("group", { name: "Group Title" })).toBeInTheDocument();
+  });
+
+  it("タイトルが無いときはグループに名前を付けない（空の labelledby を残さない）", () => {
+    render(
+      <ContextMenu
+        menu={
+          <ContextMenuGroup>
+            <ContextMenuItem>Item</ContextMenuItem>
+          </ContextMenuGroup>
+        }
+      >
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    expect(screen.getByRole("group")).not.toHaveAttribute("aria-labelledby");
+  });
+
   it("does not render title element when title is not provided", () => {
     render(
       <ContextMenu

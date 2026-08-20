@@ -230,6 +230,13 @@ export const KanbanColumn = ({
     useKanban();
   const { t } = useWimTranslation("common");
 
+  // 列見出しは素の `div` で、列そのものにもロールと名前が無かったので、支援技術からは
+  // **どのカードがどの列のものか分からなかった**（T211）。
+  // **見出しにはしない** ── 列は文書の節ではないので、ARIA のパターンは
+  // 「グループに名前を付ける」。同じ形が `Menu` の `MenuItemGroup` に既にある。
+  // `region` ではなく `group` にするのは、列の数だけランドマークが増えるのを避けるため。
+  // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
+  const labelId = React.useId();
   return (
     <div
       className={classNames(
@@ -239,12 +246,16 @@ export const KanbanColumn = ({
         },
         className,
       )}
+      role="group"
+      aria-labelledby={title ? labelId : undefined}
       onDragOver={(e) => handleDragOver(e, id)}
       onDrop={(e) => handleDrop(e, id)}
       onDragLeave={() => setDragOverColumn(null)}
     >
       <div className={styles.columnHeader}>
-        <div className={styles.columnTitle}>{title}</div>
+        <div id={labelId} className={styles.columnTitle} aria-hidden="true">
+          {title}
+        </div>
         {cardCount !== undefined && (
           /* T205: 素の `div`（generic）に `aria-label` を付けても読まれる保証が
              無い（axe `aria-prohibited-attr`）。しかも文言が英語の直書きだった。

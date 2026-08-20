@@ -353,4 +353,38 @@ describe("CommandPalette", () => {
     );
     expect(screen.getByRole("dialog")).toHaveAccessibleName("Jump to a cue");
   });
+
+  // T211: 見出しに見えるが素の `div` で、**グループそのものが無かった**ため
+  // 候補が一続きに読まれていた。`listbox > group > option` が正しい形。
+  it("グループに heading がアクセシブル名として付く", () => {
+    render(
+      <CommandPalette open={true}>
+        <CommandPaletteContent>
+          <CommandPaletteInput placeholder="Search" />
+          <CommandPaletteList>
+            <CommandPaletteGroup heading="Recent">
+              <CommandPaletteItem>Item 1</CommandPaletteItem>
+            </CommandPaletteGroup>
+          </CommandPaletteList>
+        </CommandPaletteContent>
+      </CommandPalette>,
+    );
+    expect(screen.getByRole("group", { name: "Recent" })).toBeInTheDocument();
+  });
+
+  it("heading が無いときはグループに名前を付けない", () => {
+    render(
+      <CommandPalette open={true}>
+        <CommandPaletteContent>
+          <CommandPaletteInput placeholder="Search" />
+          <CommandPaletteList>
+            <CommandPaletteGroup>
+              <CommandPaletteItem>Item 1</CommandPaletteItem>
+            </CommandPaletteGroup>
+          </CommandPaletteList>
+        </CommandPaletteContent>
+      </CommandPalette>,
+    );
+    expect(screen.getByRole("group")).not.toHaveAttribute("aria-labelledby");
+  });
 });

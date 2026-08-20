@@ -384,10 +384,22 @@ export const CommandPaletteGroup = ({
   children: ReactNode;
   heading?: string;
 }) => {
+  // 見出しに見えるが素の `div` で、**グループそのものが無かった**ので、支援技術からは
+  // 区切りが分からず候補が一続きに読まれていた（T211）。
+  // **見出しにはしない** ── ここは `role="listbox"` の中で、ARIA 的に正しいのは
+  // `listbox > group > option`。同じ形が `Menu` の `MenuItemGroup` に既にある。
+  // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
+  const labelId = React.useId();
   return (
-    <div className={styles.group}>
+    <div
+      className={styles.group}
+      role="group"
+      aria-labelledby={heading ? labelId : undefined}
+    >
       {heading && (
-        <div className={styles.groupHeading}>{heading}</div>
+        <div id={labelId} className={styles.groupHeading} aria-hidden="true">
+          {heading}
+        </div>
       )}
       {children}
     </div>

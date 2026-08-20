@@ -49,6 +49,15 @@ describe("KanbanBoard", () => {
     expect(screen.getByRole("region")).toHaveAttribute("tabindex", "0");
   });
 
+  // T211: 列見出しは素の `div` で、列そのものにもロールと名前が無かったため、
+  // 支援技術からは**どのカードがどの列のものか分からなかった**。
+  // クラス名や id ではなく**アクセシブル名で引く**（読み上げに出ることの証拠になる）。
+  it("列がタイトルをアクセシブル名として持つ", () => {
+    render(<DefaultBoard />);
+    expect(screen.getByRole("group", { name: "To Do" })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Done" })).toBeInTheDocument();
+  });
+
   it("renders columns with titles", () => {
     render(<DefaultBoard />);
     expect(screen.getByText("To Do")).toBeInTheDocument();
