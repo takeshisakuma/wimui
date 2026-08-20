@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import vibrantLandscape from "@/media/vibrant_landscape.png";
+import galleryCity from "@/media/gallery_city.svg";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Image } from "wimui";
@@ -144,48 +145,54 @@ export const Glassmorphism: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div
-        style={{
-          position: "relative",
-          width: "600px",
-          height: "300px",
-          overflow: "hidden",
-          borderRadius: "12px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* 背景画像 */}
+      <div>
         <div
           style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${vibrantLandscape})`,
-            backgroundSize: "cover",
-            filter: "saturate(1.5) brightness(0.8)",
+            position: "relative",
+            width: "600px",
+            height: "300px",
+            overflow: "hidden",
+            borderRadius: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
-        {/* Backdrop Filterをかけた画像（透過素材を想定） */}
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
-          <Image
-            {...args}
-            alt={t("story.image_alt")}
-            backdropFilter={{ blur: "md" }}
-            hoverBackdropFilter={{ blur: "none" }}
+        >
+          {/* 背景画像 */}
+          <div
             style={{
-              backgroundColor: "var(--wim-color-glass-bg)",
-              padding: "20px",
-              color: "var(--wim-color-text-primary)",
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${vibrantLandscape})`,
+              backgroundSize: "cover",
+              filter: "saturate(1.5) brightness(0.8)",
             }}
-            width={300}
-            radius="lg"
-            border
           />
-          <p style={{ color: "var(--wim-color-text-on-primary)", marginTop: "1rem", fontWeight: "bold" }}>
-            {t("story.image_backdrop_hover_clear", { defaultValue: "Hover to clear backdrop blur" })}
-          </p>
+          {/* Backdrop Filterをかけた画像（透過素材を想定） */}
+          <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+            <Image
+              {...args}
+              alt={t("story.image_alt")}
+              backdropFilter={{ blur: "md" }}
+              hoverBackdropFilter={{ blur: "none" }}
+              style={{
+                backgroundColor: "var(--wim-color-glass-bg)",
+                padding: "20px",
+                color: "var(--wim-color-text-primary)",
+              }}
+              width={300}
+              radius="lg"
+              border
+            />
+          </div>
         </div>
+        {/* 説明文は枠の**外**（T213）。枠は `height: 300px` + `overflow: hidden` なので、
+            中に置くと 22px のうち 19px が切り落とされ、残りは白文字のままキャンバス地
+            （#e5e5e5）に乗って実測 1.25 だった。地は写真ではなくページなので、白ではなく
+            本文の色で書く。 */}
+        <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
+          {t("story.image_backdrop_hover_clear", { defaultValue: "Hover to clear backdrop blur" })}
+        </p>
       </div>
     );
   },
@@ -417,9 +424,20 @@ export const BlendingEffects: Story = {
 
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_difference", { defaultValue: "Creative: Difference Mode" })}</p>
+          {/* このブロックだけ地の画像を差し替えている（T213）。
+              `difference` は「地の反転」を描くので、**地が中間調だと原理的に
+              コントラストが出ない**（地 128 なら文字も 127）。`vibrant_landscape` は
+              色の粗いバケットが 265 ある豊かな写真で、まさに中間調が多く、
+              ラベルが乗る中央の帯では**画素の 43.6% が 3:1 を割っていた**
+              （実測の中央値 3.35 / 下位 5% は 1.15）。
+              候補を全部測って選んだのが `gallery_city` ── 中央値 11.27 /
+              下位 5% 8.47 / 3 未満は 1.7%。`imagesanple` は数値だけなら最良だが
+              色バケットが 8 しかない実質フラットな画像で、ブレンドのデモにならない。
+              **文言と blend の指定は変えていない。** */}
           <div style={{ position: "relative", width: "400px" }}>
             <Image
               {...args}
+              src={galleryCity}
               alt={t("story.image_alt_difference", { defaultValue: "Difference" })}
               overlay={{
                 color: "white",
