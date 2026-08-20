@@ -169,6 +169,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 上は**塗りとサーフェス**までしか見ない。solid の面にはさらにシーン
+    // （`--wim-glass-gradient` の白 0.08）が乗るので、**素では通るのに上側で落ちる**
+    // という形が素通りしていた（T214 で 2 件。素の値だけを根拠に色を選んだ帰結）。
+    name: "Contrast including the scene laid over solid fills",
+    command: "node scripts/check-contrast-scene.js",
+  },
+  {
+    category: "lib",
     // ある軸の語彙が別の軸の prop に漏れていないか（T114）。
     // **9 件あった検出が 0 になったので配線した**（T118 / T119 まで片付いた 2026-08-10）。
     // 「同じ prop 名で値の集合が違う」ではなく「軸の混線」を見る ── 前者は

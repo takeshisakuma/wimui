@@ -6,8 +6,8 @@
         "value": "{pccs.v1}"
       },
       "success": {
-        "$comment": "Strong(s12): Vivid(v12) は白文字 AA 未満のため一段暗い Strong。solid Button の on を primary/danger と同じ白に揃える",
-        "value": "{pccs.s12}"
+        "$comment": "Deep(dp12)。Vivid(v12) は白文字 3.29 で AA に届かないので緑は vivid を使えない（色相固有の性質）。**以前は Strong(s12) だったが、素の 4.65 だけを根拠にしていて、solid Button の上に乗るシーン（--wim-glass-gradient の白 0.08）を勘定に入れていなかった** ── 上面では 4.04 まで落ちる（T214。T206 の全量実測で判明）。dp12 なら素 6.04 / シーン込み 5.06 で、danger のシーン込み 5.08 とほぼ同位置に着く。**シーンを含めた検査は check:contrast-scene が持つ**ので、ここの値を動かすときはそちらを通すこと",
+        "value": "{pccs.dp12}"
       },
       "warning": {
         "value": "{pccs.v6}"
@@ -41,7 +41,7 @@
         "value": "{pccs.w}"
       },
       "text-on-success": {
-        "$comment": "success 塗り (s12 #28853f) 上で白文字 4.65:1（AA）。primary/danger の solid on と揃える",
+        "$comment": "success 塗り (dp12 #306f42) 上で白文字 6.04:1。primary/danger の solid on と揃える。**素の値だけを根拠にしないこと** ── 旧 s12 は素 4.65 で AA を満たしていたが、solid Button のシーンが乗る上面では 4.04 に落ちていた（T214）。シーン込みの値は check:contrast-scene が見る",
         "value": "{pccs.w}"
       },
       "text-on-warning": {
