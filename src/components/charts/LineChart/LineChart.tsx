@@ -108,7 +108,7 @@ export const LineChart = ({
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
             />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
             {keys.map((key, index) => (
               <Line
                 key={key}

@@ -114,7 +114,7 @@ export const ScatterChart = ({
               cursor={CHART_THEME.tooltip.cursor}
               contentStyle={CHART_THEME.tooltip.contentStyle}
             />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
             <Scatter name="Data Points" data={data} fill={CHART_COLORS[0]} isAnimationActive={animated} />
           </RechartsScatterChart>
         </ResponsiveContainer>

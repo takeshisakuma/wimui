@@ -400,6 +400,7 @@
     "check:chart-palette": "node scripts/check-chart-palette.js",
     "check:field-roots": "node scripts/check-field-roots.js",
     "check:chart-palette:update": "node scripts/check-chart-palette.js --update",
+    "check:chart-text-color": "node scripts/check-chart-text-color.js",
     "check:intent-text": "node scripts/check-intent-text-color.js",
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",
@@ -688,6 +689,9 @@
     ],
     "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt}": [
       "node scripts/check-code-examples.js"
+    ],
+    "src/components/{helpers.ts,charts/**/*.tsx}": [
+      "node scripts/check-chart-text-color.js"
     ]
   },
   "dependencies": {

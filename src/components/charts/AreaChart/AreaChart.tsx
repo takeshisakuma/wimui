@@ -113,7 +113,7 @@ export const AreaChart = ({
               contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
             />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
             {keys.map((key, index) => (
               <Area
                 key={key}
