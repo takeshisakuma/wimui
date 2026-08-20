@@ -29,4 +29,29 @@ describe("Footer", () => {
     expect(src).toMatch(/<p className=\{styles\.sectionTitle\}/);
     expect(src).not.toMatch(/<h4 className=\{styles\.sectionTitle\}/);
   });
+
+  // T211 ②: 「欄名を見出しとして辿らせたい」ページのための**オプトイン**。
+  // **既定を見出しにしない**のは T191 の判断（段を決め打つと利用者のページで
+  // `heading-order` が飛ぶ）。`Alert` の `titleTag`（既定 `div`）と同じ形。
+  it("titleLevel を渡したときだけ見出しになる", () => {
+    render(
+      <Footer>
+        <FooterSection title="Section 1" titleLevel={3}>
+          Content 1
+        </FooterSection>
+      </Footer>,
+    );
+    expect(screen.getByRole("heading", { level: 3, name: "Section 1" })).toBeInTheDocument();
+  });
+
+  it("titleLevel は呼び出し元が段を選べる", () => {
+    render(
+      <Footer>
+        <FooterSection title="Section 1" titleLevel={5}>
+          Content 1
+        </FooterSection>
+      </Footer>,
+    );
+    expect(screen.getByRole("heading", { level: 5, name: "Section 1" })).toBeInTheDocument();
+  });
 });

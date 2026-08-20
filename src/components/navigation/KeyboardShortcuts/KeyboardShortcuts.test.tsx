@@ -39,4 +39,19 @@ describe("KeyboardShortcuts", () => {
     render(<KeyboardShortcuts shortcuts={mockShortcuts} separator="then" />);
     expect(screen.getAllByText("then")).toHaveLength(2);
   });
+
+  // T211 ②: 既定は見出しにしない。段を決め打つとページに `h1` / `h2` がある場合に
+  // 段が飛び、axe の `heading-order` が鳴る（T191 で `Footer` が実際に踏んだ）。
+  it("既定では title を見出しにしない", () => {
+    render(<KeyboardShortcuts shortcuts={mockShortcuts} title="Shortcuts" />);
+    expect(screen.getByText("Shortcuts").tagName).toBe("P");
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+  });
+
+  it("titleLevel を渡したときだけ見出しになる", () => {
+    render(
+      <KeyboardShortcuts shortcuts={mockShortcuts} title="Shortcuts" titleLevel={3} />,
+    );
+    expect(screen.getByRole("heading", { level: 3, name: "Shortcuts" })).toBeInTheDocument();
+  });
 });
