@@ -61,12 +61,23 @@ const __dirname = path.dirname(__filename);
  * が、2 ラベルなら差分表を、`--scan <label>` なら走査の一覧を出す。
  */
 
-/** apt（`playwright install-deps`）を抜くと VRT が落ちた 4 枚。2026-08-19 実測。 */
+/**
+ * **apt 依存が実測されたストーリー。**
+ *
+ * 2026-08-19 に VRT が落ちたのは 4 枚だが、**それは shard 1 しか見ていなかったから**。
+ * 2026-08-21 の全ストーリー走査（run 32475747762）で **9 枚**と確定した ── 残り 5 枚は
+ * 日本語の人名・台詞を直書きしている合成画面。
+ */
 const FAILING_STORY_IDS = [
   "components-typography-icons-kbd--keyboard-symbols",
   "components-typography-icons-code--long-content",
   "components-data-indicators-countdown--locale-override",
   "components-data-indicators-relativetime--locale-override",
+  "patterns-captions--caption-review",
+  "patterns-captions--discard-take",
+  "patterns-captions--jump-palette",
+  "patterns-newsroom--default",
+  "patterns-newsroom--revision-log",
 ];
 
 /**

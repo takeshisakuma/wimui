@@ -15,6 +15,12 @@ on:
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
       - "scripts/ci-install-playwright.sh"
+      # **Storybook の設定も撮る側の道具**（CI-8 ②・2026-08-21 に発見）。
+      # `.storybook/preview.ts` は**全ストーリーが何のフォントで描かれるか**を決めるのに
+      # ここに無く、フォントを足す PR で VRT / a11y / tap-target が 1 本も起動しない
+      # 状態だった（この PR は `vrt/story-ready.ts` も触ったのでたまたま走っただけ）。
+      # T92 と同じ型で、影響は遅れて出る ── 次に走らせた無関係な PR が落ちる。
+      - ".storybook/**"
       # T92: **撮る側の道具**も対象にする。撮られる中身（`src` / `stories`）と
       # スペックしか見ていなかったため、**スクリーンショットを撮る実装そのものを
       # 差し替える PR で VRT が 1 本も起動しなかった**。
@@ -49,6 +55,12 @@ on:
       - "vrt/story-ready.ts"
       - "playwright.config.ts"
       - "scripts/ci-install-playwright.sh"
+      # **Storybook の設定も撮る側の道具**（CI-8 ②・2026-08-21 に発見）。
+      # `.storybook/preview.ts` は**全ストーリーが何のフォントで描かれるか**を決めるのに
+      # ここに無く、フォントを足す PR で VRT / a11y / tap-target が 1 本も起動しない
+      # 状態だった（この PR は `vrt/story-ready.ts` も触ったのでたまたま走っただけ）。
+      # T92 と同じ型で、影響は遅れて出る ── 次に走らせた無関係な PR が落ちる。
+      - ".storybook/**"
       # T92。**`pull_request` 側と必ず同じ内容にする** ── #185 は `push` 側だけ
       # 漏れていた事例で、2 ファイル × 2 トリガー = 4 箇所が独立に腐る。
       - "package.json"

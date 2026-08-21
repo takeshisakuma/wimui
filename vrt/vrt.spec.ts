@@ -95,8 +95,22 @@ test.describe("Visual Regression Testing", () => {
           // `TabNavigation - Pills` / `Cascader - Hover Expand`）も 6 秒待ち + 2 ラン
           // 連続で安定した。VRT はレイアウトと色の回帰を見る仕組みなので、アニメーションの
           // 途中のフレームは元から撮る対象ではない（`animations: "disabled"` の意図の徹底）。
+          // **`transition` も止める**（2026-08-21）。`animation` だけ止めていたため、
+          // 入場遷移を持つコンポーネントは**遷移の途中で撮られていた**。実測
+          // （`snackbar--warning`）: `waitForStoryReady` とこの注入の直後の時点で
+          // `transform: matrix(0.985, 0, 0, 0.985, 0, 5.89)` / `opacity: 0.705`
+          // ＝ 333ms の transition の途中。300ms 後には静止する。
+          //
+          // 途中で撮ると**その回ごとに違う絵**になる。実際に #474 で
+          // `dark/snackbar--warning` が **350px 差（文字が 1px 縦にずれる）** で
+          // 落ちた ── ベースライン側が遷移の途中、compare 側が静止だった
+          // （compare は 3 回とも同じ 350px なので、ぶれていたのはベースライン側）。
+          // `transition: none` を当てると**その場で目標値になる**ので、待たずに
+          // 静止状態を撮れる。Playwright の `animations: "disabled"` は
+          // これを取りこぼしていた。
           await page.addStyleTag({
-            content: "*, *::before, *::after { animation: none !important; }",
+            content:
+              "*, *::before, *::after { animation: none !important; transition: none !important; }",
           });
 
           // Compare screenshot
