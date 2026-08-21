@@ -244,17 +244,62 @@ test.describe("CI-8 font diagnosis", () => {
       );
       await waitForStoryReady(page);
 
+      // **描画されたことを確かめてから測る。**
+      //
+      // `waitForStoryReady` は `#storybook-root` に**子が付いたか**しか見ないので、
+      // 中身がまだ何も描かれていなくても先へ進む。その状態で測れば当然 0 件になり、
+      // **「apt 依存なし」と読み違える**。
+      //
+      // 判定は「**可視の要素が 1 つでもあるか**」。**文字の有無では判定しない** ──
+      // 文字を持たないストーリー（`VoiceVisualizer` の波形、空の `OTPInput` など）は
+      // 実測で 103 件あり、そこで 5 秒待つのは無駄でしかない。
+      //
+      // **ポータルも見る。** `assign-desk` は Dialog を `body` 直下に描くので、
+      // `#storybook-root` は子 1 つ・テキスト 0 のまま 10 秒経っても変わらない
+      // （`body` には 6997 文字ある）。最初これを「まだ描画されていない」と読んだが、
+      // **見ている場所が違っただけ**だった。
+      //
+      // 待ち切れなくても測る（ここで落とすと本題と無関係な赤が増える）。代わりに
+      // **判定結果を報告に残す**。
+      const rendered = await page
+        .waitForFunction(
+          () => {
+            const root = document.getElementById("storybook-root");
+            if (!root) return false;
+            if (
+              Array.from(root.querySelectorAll("*")).some(
+                (el) => el.getClientRects().length > 0,
+              )
+            )
+              return true;
+            return Array.from(document.body.querySelectorAll("*")).some(
+              (el) =>
+                el.getClientRects().length > 0 &&
+                !el.closest('[class*="sb-"]:not(body), #docs-root'),
+            );
+          },
+          undefined,
+          { timeout: 5_000 },
+        )
+        .then(() => true)
+        .catch(() => false);
+
       // ── 1. テキストを持つ要素に印を付けて、CSS 側の指定を採る ──────────
       // **`#storybook-root` の中だけ**を見る。`document.body` から歩くと
       // Storybook 自身の隠し UI（Controls の表など。UI フォントは `Nunito Sans`）を
       // 拾い、`relativetime--default` の実文字が 3 語なのに 196 文字を測っていた。
       // VRT が撮るのは描かれているストーリーなので、**測る対象も同じにする** ──
       // 描画されていない要素はフォントの選ばれ方も違いうる。
+      //
+      // **ポータルも見る**（`Drawer` / `Dialog` などは `document.body` 直下に出る）。
+      // `#storybook-root` の外は Storybook 自身の UI も居るが、そちらは**描画されて
+      // いない**（`getClientRects()` が空）ので、可視判定だけで分けられる ── 実測で
+      // 確認済み。
       const elements: TextElement[] = await page.evaluate(() => {
         const out: TextElement[] = [];
         const root = document.getElementById("storybook-root");
         if (!root) return out;
-        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
         const seen = new Set<Element>();
         let idx = 0;
         for (let node = walker.nextNode(); node; node = walker.nextNode()) {
@@ -266,6 +311,15 @@ test.describe("CI-8 font diagnosis", () => {
           if (["style", "script", "template"].includes(el.tagName.toLowerCase()))
             continue;
           if (!el.getClientRects().length) continue;
+          // Storybook 自身の UI（`sb-` 接頭辞）は撮影対象ではない。可視判定で
+          // ほぼ落ちるが、出てくる版もありうるので名前でも弾く。
+          // **`body` は除く** ── `body` 自身が `sb-main-fullscreen` などを持つので、
+          // 素の `closest` だと**ポータルの中身が全部 body に当たって消える**
+          // （実測: `assign-desk` の Dialog）。
+          if (!root.contains(el)) {
+            const chrome = el.closest('[class*="sb-"], #docs-root');
+            if (chrome && chrome !== document.body) continue;
+          }
           seen.add(el);
           el.setAttribute("data-font-diag", String(idx));
           const cs = getComputedStyle(el);
@@ -430,6 +484,10 @@ test.describe("CI-8 font diagnosis", () => {
         storyId,
         role,
         measuredAt: new Date().toISOString(),
+        // `false` なら**まだ描画されていないものを測った**＝この行の 0 件は
+        // 「無い」ではなく「間に合わなかった」。走査の合計を読むときはここを先に見る。
+        // 文字を持たないストーリーは `rendered: true` で `elements: 0` になる。
+        rendered,
         faces,
         elements: elements.map((el) => ({
           ...el,
@@ -445,8 +503,10 @@ test.describe("CI-8 font diagnosis", () => {
       };
 
       // 全ストーリー走査では**当たりだけ**を書く（993 ストーリーぶんの
-      // 「何も起きていない」JSON は読む相手がいない）。
-      if (!SCOPE_ALL || aptDependent.length) {
+      // 「何も起きていない」JSON は読む相手がいない）。**ただし文字が出なかった
+      // ものは必ず書く** ── そこが「測れていない」ことの記録で、これが無いと
+      // 合計だけ見て「0 件」と読んでしまう。
+      if (!SCOPE_ALL || aptDependent.length || !rendered) {
         fs.mkdirSync(OUT_DIR, { recursive: true });
         fs.writeFileSync(
           path.join(OUT_DIR, `${storyId}.json`),
@@ -466,8 +526,9 @@ test.describe("CI-8 font diagnosis", () => {
         .slice(0, 20)
         .join(", ");
       console.log(
-        `[font-diag:${LABEL}] ${storyId}: ${chars.length} chars, ` +
-          `${aptDependent.length} apt-dependent` +
+        `[font-diag:${LABEL}] ${storyId}: ${elements.length} elements, ` +
+          `${chars.length} chars, ${aptDependent.length} apt-dependent` +
+          (rendered ? "" : " [描画されていない＝測れていない]") +
           (summary ? ` — ${summary}` : ""),
       );
     });
