@@ -5,11 +5,32 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Snackbar } from "wimui";
 
 
+const isVrt = () =>
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  typeof window !== "undefined" && Boolean(window.__VRT__);
+
+/**
+ * VRT では自動で閉じないようにする。
+ *
+ * `autoHideDuration` の既定は **5 秒**なので、マウントから撮影までが 5 秒を跨ぐかで
+ * 「出ている絵」と「閉じ始めた絵」のどちらが撮れるかが変わる ── **実時間に依存する
+ * 非決定性**で、CI の混み具合で結果が変わる。実際に #474 で `Warning` / `Danger` /
+ * `Success` / `Long Content` の dark が回ごとに入れ替わりで落ちた。
+ *
+ * VRT が見たいのは「Snackbar が出ている状態」なので、タイマーを止める。
+ * Storybook の閲覧では従来どおり 5 秒で閉じる（`isVrt()` のときだけ 0）。
+ */
+const vrtStable = (): { autoHideDuration?: number } =>
+  isVrt() ? { autoHideDuration: 0 } : {};
+
 const meta: Meta<typeof Snackbar> = {
   title: "Components/Alerts & Notifications/Snackbar",
   component: Snackbar,
   parameters: {
     layout: "centered",
+  },
+  args: {
+    ...vrtStable(),
   },
   tags: ["!autodocs"],
   argTypes: {
