@@ -27,7 +27,7 @@
      作らず、ツールバーが 1px 大きく見えるだけ**だった。枠用のトークンへ寄せる。 */
   border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   border-radius: var(--wim-radius-component);
-  animation: toolbar-in var(--wim-duration-fast) var(--wim-easing-decelerate);
+  animation: toolbar-in var(--wim-duration-fast) var(--wim-easing-entrance);
 }
 
 @keyframes toolbar-in {

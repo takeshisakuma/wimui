@@ -18,7 +18,7 @@
      nodegraph-- は VRT から prefix ごと除外されているためスクショが一度も
      レビューされておらず、axe も鳴っていなかった。T71 の IconGallery と同じ型。 */
   :global(.react-flow__node) {
-    font-family: var(--wim-font-family-base);
+    font-family: var(--wim-font-family-default);
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
@@ -117,7 +117,7 @@
   min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
   padding-block: var(--wim-spacing-sm);
   padding-inline: var(--wim-spacing-md);
-  font-family: var(--wim-font-family-base);
+  font-family: var(--wim-font-family-default);
   font-size: var(--wim-font-size-sm);
   line-height: var(--wim-line-height-tight);
   color: var(--wim-color-text-primary);
@@ -140,7 +140,7 @@
   min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
   padding-block: var(--wim-spacing-sm);
   padding-inline: var(--wim-spacing-md);
-  font-family: var(--wim-font-family-base);
+  font-family: var(--wim-font-family-default);
   font-size: var(--wim-font-size-sm);
   line-height: var(--wim-line-height-tight);
   color: var(--wim-color-text-primary);

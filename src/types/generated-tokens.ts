@@ -274,7 +274,8 @@ export type WimLineHeightKey =
 export type WimLetterSpacingKey = 
   | "normal"
   | "tight"
-  | "tighter";
+  | "tighter"
+  | "wide";
 
 export type WimDecorationKey = 
   | "line-through"
