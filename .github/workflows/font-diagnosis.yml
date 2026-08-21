@@ -1,9 +1,14 @@
 # CI-8 ① — **apt を抜くと VRT が落ちる 4 枚が、実際にどのフォントで描かれているか**を
 # CI の実物で採る診断。**手で起動するときだけ走る**（`workflow_dispatch` のみ）。
 #
-# 同じコミットを 2 つの条件で測る:
+# `scope: stories`（既定）は同じコミットを 2 つの条件で測って突き合わせる:
 #   with-deps    … いまの CI と同じ（`scripts/ci-install-playwright.sh` ＝ apt を踏む）
 #   without-deps … `npx playwright install chromium` だけ（apt を踏まない）
+#
+# `scope: all` は**全ストーリーを 1 条件（apt あり）で走査**して、apt が落ちた日に
+# 化ける文字を持つストーリーを数える ── 対策 B の作業量＝動くベースラインの枚数は
+# ここで決まる。2 条件を突き合わせる必要が無いのは、**apt を抜いても残るファミリーを
+# 実測済み**だから（`vrt/font-diagnosis.spec.ts` の `SURVIVES_WITHOUT_APT`）。
 #
 # **スクリーンショットを撮らないので、ベースラインは 1 枚も動かない。** ローカルでは
 # 踏めない経路（sudo と apt が要る）なので CI で測るしかない。結果を見て対策を選ぶ
@@ -13,20 +18,29 @@ name: Font diagnosis (CI-8)
 
 on:
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "stories = 落ちた 4 枚 + 対照 4 枚を 2 条件で比較 / all = 全ストーリーを 1 条件で走査"
+        type: choice
+        options: [stories, all]
+        default: stories
 
 concurrency:
-  group: font-diagnosis-${{ github.ref_name }}
+  group: font-diagnosis-${{ github.ref_name }}-${{ inputs.scope }}
   cancel-in-progress: true
 
 jobs:
   measure:
     name: Measure (${{ matrix.label }})
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
-        label: [with-deps, without-deps]
+        # **走査は 1 条件で足りる。** apt を抜いても残るファミリーは実測済みなので、
+        # 「それ以外が供給していたら apt 依存」と 1 回の計測で判定できる
+        # （中身は vrt/font-diagnosis.spec.ts の SURVIVES_WITHOUT_APT）。
+        label: ${{ inputs.scope == 'all' && fromJSON('["with-deps"]') || fromJSON('["with-deps","without-deps"]') }}
     permissions:
       contents: read
 
@@ -71,6 +85,7 @@ jobs:
       - name: Measure fonts
         env:
           FONT_DIAG_LABEL: ${{ matrix.label }}
+          FONT_DIAG_SCOPE: ${{ inputs.scope }}
         run: npx playwright test vrt/font-diagnosis.spec.ts
 
       - name: Upload measurements
@@ -107,12 +122,22 @@ jobs:
       # 差分表は**ジョブサマリに出す**。タイムアウトした job が `cancelled`（灰色）で
       # 見落とされたのと同じ理由で、結果はアーティファクトを落とさずに読める場所に置く。
       - name: Diff with-deps vs without-deps
+        if: ${{ inputs.scope != 'all' }}
         run: |
           node scripts/font-diagnosis-report.mjs \
             --a with-deps --b without-deps >> "$GITHUB_STEP_SUMMARY"
 
+      # 走査は当たったストーリーしか JSON を書かない ＝ ここに出る枚数が
+      # そのまま「apt が落ちた日に動くベースラインの枚数」。
+      - name: Summarise all-stories scan
+        if: ${{ inputs.scope == 'all' }}
+        run: |
+          node scripts/font-diagnosis-report.mjs \
+            --scan with-deps >> "$GITHUB_STEP_SUMMARY"
+
       # `fc-list` の差（条件ごとに実在するファミリー）もサマリに出す。
       - name: Diff installed font families
+        if: ${{ inputs.scope != 'all' }}
         run: |
           {
             echo

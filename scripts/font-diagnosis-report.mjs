@@ -12,7 +12,8 @@
  * 違うということ ── 表の数字より先にそれを疑う。
  *
  * 使い方:
- *   node scripts/font-diagnosis-report.mjs --a with-deps --b without-deps
+ *   node scripts/font-diagnosis-report.mjs --a with-deps --b without-deps  # 2 条件の差
+ *   node scripts/font-diagnosis-report.mjs --scan all-stories             # 1 条件の走査
  *
  * 出力は Markdown（そのまま `$GITHUB_STEP_SUMMARY` に流せる）。
  */
@@ -32,9 +33,88 @@ const getArg = (name, fallback) => {
 const baseDir = path.resolve(__dirname, "..", getArg("dir", "font-diagnosis"));
 const labelA = getArg("a", "with-deps");
 const labelB = getArg("b", "without-deps");
+const scanLabel = getArg("scan", null);
 
 const dirA = path.join(baseDir, labelA);
 const dirB = path.join(baseDir, labelB);
+
+const readStories = (dir) =>
+  Object.fromEntries(
+    fs
+      .readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => [
+        f.replace(/\.json$/, ""),
+        JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")),
+      ]),
+  );
+
+/**
+ * **走査モード**（`--scan <label>`）— 1 条件だけの結果を、apt 依存の文字を持つ
+ * ストーリーの一覧にまとめる。走査は当たったストーリーしか JSON を書かないので、
+ * **ここに出る枚数がそのまま「apt が落ちた日に動くベースラインの枚数」**。
+ */
+if (scanLabel) {
+  const dir = path.join(baseDir, scanLabel);
+  if (!fs.existsSync(dir)) {
+    console.error(`走査結果が見つからない: ${scanLabel} (${dir})`);
+    process.exit(1);
+  }
+  const stories = readStories(dir);
+  const ids = Object.keys(stories).sort();
+  const lines = [];
+  lines.push(`# CI-8 全ストーリー走査 — \`${scanLabel}\``);
+  lines.push("");
+
+  if (!ids.length) {
+    lines.push(
+      "**apt 依存の文字を持つストーリーは 0 件。** 走査は当たりだけを書くので、" +
+        "ここが空なら塞ぐ穴が無いということ ── ただし**走査自体が走ったこと**を" +
+        "ラン側のログ（`[font-diag:...]` の行数）で先に確かめること。",
+    );
+    process.stdout.write(`${lines.join("\n")}\n`);
+    process.exit(0);
+  }
+
+  // どのファミリーが何文字ぶん効いているか（対策の優先順位はここで決まる）。
+  const byFamily = new Map();
+  for (const id of ids) {
+    for (const c of stories[id].aptDependent ?? []) {
+      for (const family of c.families) {
+        if (!byFamily.has(family)) byFamily.set(family, new Set());
+        byFamily.get(family).add(`${id}|${c.codePoint}`);
+      }
+    }
+  }
+
+  lines.push(`**当たったストーリー: ${ids.length} 枚**`);
+  lines.push("");
+  lines.push("## 供給しているファミリー別");
+  lines.push("");
+  lines.push("| ファミリー | 文字 × ストーリー |");
+  lines.push("| --- | --- |");
+  for (const [family, hits] of [...byFamily].sort(
+    (x, y) => y[1].size - x[1].size,
+  )) {
+    lines.push(`| ${family} | ${hits.size} |`);
+  }
+  lines.push("");
+  lines.push("## ストーリー別");
+  lines.push("");
+  lines.push("| ストーリー | 文字数 | 文字（先頭 12） |");
+  lines.push("| --- | --- | --- |");
+  for (const id of ids) {
+    const chars = stories[id].aptDependent ?? [];
+    lines.push(
+      `| ${id} | ${chars.length} | ${chars
+        .slice(0, 12)
+        .map((c) => `\`${c.char}\`(${c.codePoint})`)
+        .join(" ")} |`,
+    );
+  }
+  process.stdout.write(`${lines.join("\n")}\n`);
+  process.exit(0);
+}
 
 for (const [label, dir] of [
   [labelA, dirA],
@@ -48,17 +128,6 @@ for (const [label, dir] of [
     process.exit(1);
   }
 }
-
-const readStories = (dir) =>
-  Object.fromEntries(
-    fs
-      .readdirSync(dir)
-      .filter((f) => f.endsWith(".json"))
-      .map((f) => [
-        f.replace(/\.json$/, ""),
-        JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")),
-      ]),
-  );
 
 const a = readStories(dirA);
 const b = readStories(dirB);
