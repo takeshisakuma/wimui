@@ -73,6 +73,13 @@ jobs:
         timeout-minutes: 15
         run: npx playwright install chromium
 
+      # **本番と同じフォント環境にする。** ここを入れ忘れると 2 条件とも日本語が
+      # 豆腐のまま測れてしまい、**新しい仕組みを 1 度も通さずに「効いている」と
+      # 読み違える**（実測: run 32501439919 で 1 度やった。この 2 ジョブは共通の
+      # `ci-install-playwright.sh` を呼ばず playwright を直接入れているため）。
+      - name: Install Japanese fonts
+        run: node scripts/ci-install-fonts.mjs
+
       # **どのファミリーが実在するか**を条件ごとに残す。ブラウザ側の計測
       # （どれを使ったか）と突き合わせると、「無いから落ちた」のか
       # 「有るのに選ばれなかった」のかが分かれる。
