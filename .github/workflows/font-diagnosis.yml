@@ -1,0 +1,126 @@
+# CI-8 ① — **apt を抜くと VRT が落ちる 4 枚が、実際にどのフォントで描かれているか**を
+# CI の実物で採る診断。**手で起動するときだけ走る**（`workflow_dispatch` のみ）。
+#
+# 同じコミットを 2 つの条件で測る:
+#   with-deps    … いまの CI と同じ（`scripts/ci-install-playwright.sh` ＝ apt を踏む）
+#   without-deps … `npx playwright install chromium` だけ（apt を踏まない）
+#
+# **スクリーンショットを撮らないので、ベースラインは 1 枚も動かない。** ローカルでは
+# 踏めない経路（sudo と apt が要る）なので CI で測るしかない。結果を見て対策を選ぶ
+# ── A（フォントをキャッシュ）か B（フォールバックを自前化）。詳細は
+# `IMPROVEMENTS.md` の CI-8 と `vrt/font-diagnosis.spec.ts` の冒頭。
+name: Font diagnosis (CI-8)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: font-diagnosis-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  measure:
+    name: Measure (${{ matrix.label }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        label: [with-deps, without-deps]
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      # 対照条件。いまの CI と同じ経路を通す（apt が固まったら 15 分で諦める）。
+      - name: Install Playwright (browser + OS deps)
+        if: matrix.label == 'with-deps'
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
+
+      # 診断したい条件。`install-deps` を呼ばない＝**apt を 1 度も踏まない**。
+      - name: Install Playwright (browser only)
+        if: matrix.label == 'without-deps'
+        timeout-minutes: 15
+        run: npx playwright install chromium
+
+      # **どのファミリーが実在するか**を条件ごとに残す。ブラウザ側の計測
+      # （どれを使ったか）と突き合わせると、「無いから落ちた」のか
+      # 「有るのに選ばれなかった」のかが分かれる。
+      - name: Record installed font families
+        run: |
+          mkdir -p font-diagnosis/${{ matrix.label }}
+          fc-list : family file | sort -u \
+            > font-diagnosis/${{ matrix.label }}/fc-list.txt
+          echo "families: $(fc-list : family | sort -u | wc -l)"
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Measure fonts
+        env:
+          FONT_DIAG_LABEL: ${{ matrix.label }}
+        run: npx playwright test vrt/font-diagnosis.spec.ts
+
+      - name: Upload measurements
+        uses: actions/upload-artifact@v7
+        with:
+          name: font-diagnosis-${{ matrix.label }}
+          path: font-diagnosis/
+          retention-days: 14
+
+  report:
+    name: Report
+    needs: measure
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Download measurements
+        uses: actions/download-artifact@v8
+        with:
+          pattern: font-diagnosis-*
+          merge-multiple: true
+          path: font-diagnosis
+
+      # 差分表は**ジョブサマリに出す**。タイムアウトした job が `cancelled`（灰色）で
+      # 見落とされたのと同じ理由で、結果はアーティファクトを落とさずに読める場所に置く。
+      - name: Diff with-deps vs without-deps
+        run: |
+          node scripts/font-diagnosis-report.mjs \
+            --a with-deps --b without-deps >> "$GITHUB_STEP_SUMMARY"
+
+      # `fc-list` の差（条件ごとに実在するファミリー）もサマリに出す。
+      - name: Diff installed font families
+        run: |
+          {
+            echo
+            echo "## 実在するフォントファミリーの差（\`fc-list\`）"
+            echo
+            echo '```diff'
+            diff -u \
+              font-diagnosis/with-deps/fc-list.txt \
+              font-diagnosis/without-deps/fc-list.txt || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
