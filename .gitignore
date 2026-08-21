@@ -178,3 +178,5 @@ src/data/.docgen-cache.json
 # Test run output dumps
 test_output.txt
 test-output.txt
+# CI-8 のフォント診断の出力（CI のアーティファクトとして残すもの）
+font-diagnosis/
