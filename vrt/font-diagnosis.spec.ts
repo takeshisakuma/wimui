@@ -130,6 +130,14 @@ const SCOPE_ALL = process.env.FONT_DIAG_SCOPE === "all";
  * apt 依存側に数える**（見落として「0 件」と言うより、多めに拾って人が見る方が良い）。
  */
 const SURVIVES_WITHOUT_APT = new Set([
+  // **自前で入れているフォント**（CI-8 ②・`scripts/ci-install-fonts.mjs`）。
+  // apt からは来ないので、ここに無いと日本語のストーリーが永久に「apt 依存」と
+  // 報告され続ける。
+  // fontconfig にはサブセットの内部名で出る（実測: `Noto Sans JP Thin`）。
+  // 名前は fontsource 側の表記の問題で、OS/2 の usWeightClass は 400 / 500 / 700 と
+  // 正しい。**見えている名前で許可する**（推測した名前ではなく）。
+  "Noto Sans JP",
+  "Noto Sans JP Thin",
   "DejaVu Math TeX Gyre",
   "DejaVu Sans",
   "DejaVu Sans Condensed",

@@ -102,26 +102,13 @@ export async function waitForRenderSettled(page: Page) {
       // ＝この待ちがネットワークの機嫌に左右されない（Google Fonts から読んでいた
       // 頃は、2 ラン比較で片方だけ 25 ケースがフォールバック字形で撮れていた）。
       // 取れない環境でも進めるよう catch は残す。
-      // **`load(font)` の既定テキストは "BESbswy"（latin）**。CI-8 ② で足した
-      // CJK の面は `unicode-range` で latin を担当しないので、**この呼び方では
-      // 1 面も読み込まれない** ── `font-display: swap` と合わさって、日本語を描く
-      // ストーリーが**到着前のフォールバック字形で撮られる**。ここで直している
-      // 不具合そのものなので、CJK は文字を渡して明示的に読む。
       await Promise.all(
         [
-          ['400 16px "Noto Sans"', "BESbswy"],
-          ['500 16px "Noto Sans"', "BESbswy"],
-          ['700 16px "Noto Sans"', "BESbswy"],
-          ['400 16px "Noto Sans Mono"', "BESbswy"],
-          ['400 16px "Noto Sans"', "日"],
-          ['500 16px "Noto Sans"', "日"],
-          ['700 16px "Noto Sans"', "日"],
-          ['400 16px "Noto Sans Mono"', "日"],
-          ['500 16px "Noto Sans Mono"', "日"],
-          ['700 16px "Noto Sans Mono"', "日"],
-        ].map(([f, text]) =>
-          document.fonts.load(f, text).catch(() => undefined),
-        ),
+          '400 16px "Noto Sans"',
+          '500 16px "Noto Sans"',
+          '700 16px "Noto Sans"',
+          '400 16px "Noto Sans Mono"',
+        ].map((f) => document.fonts.load(f).catch(() => undefined)),
       );
 
       const settled = (img: HTMLImageElement) =>

@@ -90,7 +90,20 @@ if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
 
-# 2) OS 依存（apt）は **もう踏まない**（CI-8 ②・2026-08-21）。
+# 2) **日本語のフォントを OS のフォントとして入れる**（CI-8 ②）。
+#
+# apt の `fonts-wqy-zenhei` がやっていたことを apt 抜きで自前でやる。CSS
+# （`@font-face`）で配ると **latin の行ボックスまで動いて VRT がフレークになる**ので、
+# OS 側に置く。中身と実測は scripts/ci-install-fonts.mjs の冒頭。
+node scripts/ci-install-fonts.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  echo "✗ 日本語フォントの導入に失敗した（exit=$status）。" >&2
+  echo "  これを飛ばすと日本語のストーリーが豆腐で撮られる。" >&2
+  exit "$status"
+fi
+
+# 3) OS 依存（apt）は **もう踏まない**（CI-8 ②・2026-08-21）。
 #
 # ここには長らく `npx playwright install-deps chromium` があった。理由は
 # 「`install-deps` は共有ライブラリだけでなく**フォントを 9 つ**入れるので、
