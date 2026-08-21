@@ -96,3 +96,94 @@ if (newOrphans.length) {
 console.log(
   `✓ SCSS color-token references resolve (${colorKeys.size} keys). ${stillBroken.length} known pre-existing orphan(s) baselined.`
 );
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 2 つめの検査: **生成トークンの族に属する名前の誤記**（2026-08-21）。
+ *
+ * 上の検査は `--wim-color-*` だけを見て、**フォールバック付きの参照は素通り**させる
+ * （「フォールバックがあるなら決定的に解決するから」）。その隙間に実害が 3 件落ちていた:
+ *
+ *   `--wim-font-family-sans`  … 存在しない。`AgentStatus` / `CodeDiffViewer` は
+ *     フォールバックの `sans-serif` で描かれていた ＝ **デザインシステムの
+ *     フォントで描かれていない**（CI-8 の走査で偶然見つかった）
+ *   `--wim-font-family-base`  … 存在しない。`NodeGraph` / `InteractiveGraph` は
+ *     フォールバックも無いので **`font-family` の指定ごと無効**（継承任せ）
+ *   `--wim-easing-decelerate` … 存在しない。`Gallery` の
+ *     `animation: toolbar-in <duration> var(...)` は**まるごと無効**＝アニメーション
+ *     が動いていなかった
+ *
+ * **判定**: 参照名が生成トークン（`src/tokens/generated/`）に無く、かつ
+ * **同じ族（最後の 1 語を落とした接頭辞）に生成トークンが実在する**なら誤記。
+ *
+ * 族で絞るのが要点。単に「兄弟が居るか」で見ると**コンポーネント固有のフックまで
+ * 拾う** ── 実測では 15 件中 12 件が誤検出だった（`--wim-field-bg` /
+ * `--wim-snackbar-blur` / `--wim-glass-blur` など、意図的な拡張点）。生成トークンの
+ * 族に限ると **3 件ちょうど**＝上の実害だけが残る。
+ *
+ * **フォールバックの有無は問わない。** フォールバックは「意図的な拡張点」の印にも
+ * 「誤記に気づかないための蓋」にもなるので、それ自体は免罪符にならない。
+ * ────────────────────────────────────────────────────────────────────────── */
+
+const GENERATED = path.join(root, "src", "tokens", "generated");
+const STORIES = path.join(root, "stories");
+
+function readGeneratedTokens() {
+  const names = new Set();
+  for (const f of fs.readdirSync(GENERATED)) {
+    if (!/\.(scss|css)$/.test(f)) continue;
+    const src = fs.readFileSync(path.join(GENERATED, f), "utf8");
+    for (const m of src.matchAll(/(--wim-[a-z0-9-]+)\s*:/g)) names.add(m[1]);
+  }
+  if (!names.size) {
+    throw new Error(
+      "生成トークンが 1 つも読めなかった。`npm run tokens:build` を先に走らせること。",
+    );
+  }
+  return names;
+}
+
+const generated = readGeneratedTokens();
+const families = new Set(
+  [...generated].map((n) => n.slice(0, n.lastIndexOf("-") + 1)),
+);
+
+// `var(--wim-x)` / `var(--wim-x, fallback)` の両方。**SCSS 補間は除く** ──
+// `var(--wim-font-size-#{$size})` は名前が実行時に決まるので静的には判定できない
+// （`)` か `,` が続くものだけを名前として認める）。
+const ANY_REF = /var\(\s*(--wim-[a-z0-9-]+)\s*(?=[,)])/g;
+
+const typos = [];
+for (const file of [...walk(COMPONENTS), ...walk(STORIES)]) {
+  const src = fs.readFileSync(file, "utf8");
+  const rel = path.relative(root, file).split(path.sep).join("/");
+  src.split("\n").forEach((line, i) => {
+    for (const m of line.matchAll(ANY_REF)) {
+      const name = m[1];
+      if (generated.has(name)) continue;
+      const family = name.slice(0, name.lastIndexOf("-") + 1);
+      if (!families.has(family)) continue; // コンポーネント固有のフック
+      typos.push({ name, rel, line: i + 1, family });
+    }
+  });
+}
+
+if (typos.length) {
+  console.error(
+    `✗ ${typos.length} 件、生成トークンの族に無い名前を参照している（誤記の疑い）:`,
+  );
+  for (const t of typos) {
+    const siblings = [...generated]
+      .filter((n) => n.startsWith(t.family))
+      .slice(0, 4);
+    console.error(`  - ${t.name}  <-  ${t.rel}:${t.line}`);
+    console.error(`      実在する同族: ${siblings.join(", ")}`);
+  }
+  console.error(
+    "\n実在するトークンに直すか、族の外の名前（コンポーネント固有のフック）にすること。",
+  );
+  process.exit(1);
+}
+
+console.log(
+  `✓ 生成トークンの族に属する参照はすべて実在する（${generated.size} トークン / ${families.size} 族）。`,
+);
