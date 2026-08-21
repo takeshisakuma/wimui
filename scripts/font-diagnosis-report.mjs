@@ -61,16 +61,33 @@ if (scanLabel) {
     process.exit(1);
   }
   const stories = readStories(dir);
-  const ids = Object.keys(stories).sort();
+  const all = Object.keys(stories).sort();
+  // **「測れていない」を当たりと混ぜない。** 描画が間に合わなかったストーリーは
+  // 0 件になるが、それは「無い」ではない ── 分けて数えないと合計を読み違える。
+  const notMeasured = all.filter((id) => stories[id].rendered === false);
+  const ids = all.filter(
+    (id) => (stories[id].aptDependent ?? []).length > 0,
+  );
   const lines = [];
   lines.push(`# CI-8 全ストーリー走査 — \`${scanLabel}\``);
   lines.push("");
 
+  if (notMeasured.length) {
+    lines.push(
+      `> **${notMeasured.length} 件は測れていない**（5 秒待っても可視の要素が 1 つも` +
+        "出なかった）。**この件数ぶんは「apt 依存なし」の根拠にならない。**",
+    );
+    lines.push("");
+    lines.push(notMeasured.map((id) => `\`${id}\``).join(" ／ "));
+    lines.push("");
+  }
+
   if (!ids.length) {
     lines.push(
-      "**apt 依存の文字を持つストーリーは 0 件。** 走査は当たりだけを書くので、" +
-        "ここが空なら塞ぐ穴が無いということ ── ただし**走査自体が走ったこと**を" +
-        "ラン側のログ（`[font-diag:...]` の行数）で先に確かめること。",
+      "**apt 依存の文字を持つストーリーは 0 件。** ただし『0 件』は" +
+        "**走ったこと**と**測れたこと**の両方が言えて初めて意味を持つ ── " +
+        "ラン側のログ（`[font-diag:...]` の行数）で走査自体の実行を確かめ、" +
+        "上の「測れていない」件数も見ること。",
     );
     process.stdout.write(`${lines.join("\n")}\n`);
     process.exit(0);
