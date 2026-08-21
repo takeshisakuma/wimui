@@ -57,11 +57,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
-      # 対照条件。いまの CI と同じ経路を通す（apt が固まったら 15 分で諦める）。
+      # 対照条件。**`scripts/ci-install-playwright.sh` は呼ばない** ── CI-8 ② で
+      # あのスクリプトから apt を外したので、呼ぶと 2 条件が同じものになり、
+      # 「差 0 件」が**比較していないから 0 件**に化ける。ここは apt を明示的に踏む。
       - name: Install Playwright (browser + OS deps)
         if: matrix.label == 'with-deps'
         timeout-minutes: 15
-        run: bash scripts/ci-install-playwright.sh
+        run: |
+          npx playwright install chromium
+          npx playwright install-deps chromium
 
       # 診断したい条件。`install-deps` を呼ばない＝**apt を 1 度も踏まない**。
       - name: Install Playwright (browser only)

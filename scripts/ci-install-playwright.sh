@@ -9,69 +9,32 @@
 # ステップが 74 秒**なので、遅いのではなく止まっている。
 #
 # ── ここでやること ────────────────────────────────────────────────────
-#   1. **ブラウザ本体**を入れる（`playwright install`）。**apt を触らない**ので、
-#      apt が死んでいる日でも通る。**これは必須** ── 失敗したら諦める。
-#   2. **OS 依存**を入れる（`playwright install-deps`）。ここが apt。**飛ばせない**
-#      ── フォントを 9 つ入れるので、抜けると VRT のベースラインと字形が合わない。
+#   **ブラウザ本体を入れるだけ**（`playwright install`）。**apt を触らない**ので、
+#   apt が死んでいる日でも通る。失敗したら諦める（ブラウザが無ければ何も撮れない）。
 #
-# 2 段に割った理由は**切り分け**。ブラウザの取得（CDN）と OS 依存（apt）は壊れ方が
-# 違うのに、`--with-deps` ひとつだと**どちらで詰まったのか分からない**。分ければ
-# `::warning::` に「どちらが何秒で応答しなかったか」が残る（タイムアウトした job は
-# GitHub 上 `cancelled`＝灰色で目に入らないので、run のサマリに必ず残す方針）。
+# **2026-08-21（CI-8 ②）に `playwright install-deps` を外した。** ここには長らく
+# 「apt は飛ばせない（フォントが 9 つ入るので字形が変わる）」と書いてあったが、
+# **その依存を実測して自前配信に置き換えた**（末尾のコメントに内訳）。
 #
-# **再試行では apt の障害は越えられない。** 実測: `--with-deps` のまま 3 回試して
-# 3 回とも同じ 240s で固まった（12m57s で失敗）。**apt が落ちている間は緑にできない**
-# ので、ここでできるのは「早く諦めて、何が起きたかを残す」ことまで。
+# **再試行では apt の障害は越えられなかった。** 実測: `--with-deps` のまま 3 回試して
+# 3 回とも同じ 240s で固まった（12m57s で失敗）。だから「早く諦める」ではなく
+# 「そもそも触らない」へ進めた。
 #
 # 使い方:
-#   bash scripts/ci-install-playwright.sh              # 既定（ブラウザ → OS 依存の順に、どちらも必須）
-#   bash scripts/ci-install-playwright.sh sleep 999    # 任意のコマンド（試験用。必須扱い）
+#   bash scripts/ci-install-playwright.sh              # 既定（ブラウザ本体）
+#   bash scripts/ci-install-playwright.sh sleep 999    # 任意のコマンド（試験用）
 #
 # 環境変数:
 #   PLAYWRIGHT_INSTALL_ATTEMPTS  試行回数（既定 3）
 #   PLAYWRIGHT_INSTALL_TIMEOUT   1 回あたりの秒数（既定 240 = 健全な実測 74 秒の 3 倍強）
-#   PLAYWRIGHT_DEPS_TIMEOUT      OS 依存側の 1 回あたりの秒数（既定 180）
 set -uo pipefail
 
 ATTEMPTS="${PLAYWRIGHT_INSTALL_ATTEMPTS:-3}"
 PER_ATTEMPT="${PLAYWRIGHT_INSTALL_TIMEOUT:-240}"
-DEPS_TIMEOUT="${PLAYWRIGHT_DEPS_TIMEOUT:-180}"
 
 warn() {
   # GitHub Actions では run のサマリに出る。ローカルではただの標準エラー。
   echo "::warning::$*" >&2
-}
-
-# **timeout は直の子しか殺さない。** playwright は apt-get を root 側の別プロセスとして
-# 起こすので、打ち切っても **apt-get が生き残って lock を握り続ける** ── 実測
-# （2026-08-19、#454）: 2 回目・3 回目が即座に
-# `E: Could not get lock /var/lib/apt/lists/lock. It is held by process 2074 (apt-get)`
-# で落ちた。握っている相手を落として lock を外してから次に行く。
-# この runner は使い捨てで、握っているのは今こちらが打ち切った相手なので消してよい。
-recover_apt() {
-  command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null || return 0
-  sudo pkill -9 -x apt-get 2>/dev/null || true
-  sudo pkill -9 -x apt 2>/dev/null || true
-  sudo pkill -9 -x dpkg 2>/dev/null || true
-  sudo rm -f /var/lib/apt/lists/lock /var/lib/dpkg/lock /var/lib/dpkg/lock-frontend /var/cache/apt/archives/lock 2>/dev/null || true
-  sudo dpkg --configure -a 2>/dev/null || true
-  echo "apt の後始末をした（残っていた apt-get / dpkg を落として lock を外した）。"
-}
-
-# **apt 自身にも待ち時間を持たせる。** 既定の `Acquire::http::Timeout` は長く、
-# 応答の無いミラーに当たると**こちらが打ち切るまで待ち続ける**。実測（2026-08-19）は
-# まだらで、同じ push でも VRT の 4 シャードは 74s〜1m39s で通るのに a11y の 2 つだけが
-# 固まる ── **runner ごとに引きが違う**ので、apt に早く諦めさせて自前で張り直させる。
-# ここを入れておくと、こちらの `timeout` に当たる前に apt が自力で回復する目が出る。
-configure_apt_timeouts() {
-  command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null || return 0
-  sudo tee /etc/apt/apt.conf.d/99-ci-timeouts >/dev/null <<'APTCONF'
-Acquire::http::Timeout "20";
-Acquire::https::Timeout "20";
-Acquire::ftp::Timeout "20";
-Acquire::Retries "3";
-APTCONF
-  echo "apt の待ち時間を縮めた（http/https 20s・retries 3）。"
 }
 
 # 1 回ぶんを時間で縛る。124 / 137 は「応答しなかった」＝ハング。
@@ -105,7 +68,6 @@ run_with_retry() {
       return "$status"
     fi
 
-    recover_apt
     sleep $((attempt * 10))
   done
 }
@@ -128,27 +90,30 @@ if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
 
-# 2) OS 依存 — apt。**任意にはできない**（下のコメント）。
+# 2) OS 依存（apt）は **もう踏まない**（CI-8 ②・2026-08-21）。
 #
-# 一度「apt が死んでいる日は飛ばして進む」形にして CI に出したが、**VRT が落ちた**
-# （実測 2026-08-19 / #454: shard 1 だけで 4 枚 ── `kbd--keyboard-symbols` /
-#  `code--long-content` / `countdown--locale-override` / `relativetime--locale-override`）。
-# `playwright install-deps` は共有ライブラリだけでなく**フォントを 9 つ**入れる
-# （fonts-liberation / fonts-noto-color-emoji / fonts-ipafont-gothic / fonts-wqy-zenhei /
-#  fonts-unifont / fonts-freefont-ttf / fonts-tlwg-loma-otf / fonts-cyrillic / fonts-scalable）。
-# 飛ばすと**字形の代替が変わる**ので、`chromium-linux` のベースラインと合わなくなる。
-# Playwright のコンテナを採らないのと同じ理由（CI-8 の案④）。
+# ここには長らく `npx playwright install-deps chromium` があった。理由は
+# 「`install-deps` は共有ライブラリだけでなく**フォントを 9 つ**入れるので、
+# 飛ばすと字形の代替が変わってベースラインと合わない」── 実際 2026-08-19 に
+# 飛ばした回は VRT が落ちている。
 #
-# **つまり apt が落ちている間は緑にできない。** ここでできるのは「早く諦めて、
-# 何が起きたかを残す」ことまで。
-configure_apt_timeouts
-run_with_retry "playwright install-deps（OS 依存）" "$DEPS_TIMEOUT" npx playwright install-deps chromium
-deps_status=$?
-if [ "$deps_status" -ne 0 ]; then
-  recover_apt
-  echo "✗ OS 依存の導入が $ATTEMPTS 回とも失敗した（最後の exit=$deps_status）。" >&2
-  echo "  これは飛ばせない ── フォントが入らないと VRT のベースラインと字形が合わない。" >&2
-  echo "  apt 側の障害なら、収まってから再実行すること。" >&2
-  exit "$deps_status"
-fi
+# **その依存を測って、外した。**（dispatch run 32473587835 / 32475747762）
+#   - 全 1007 ストーリーのうち apt に依存していたのは **9 枚**だけ
+#   - 供給していたのは **2 ファミリー**: `WenQuanYi Zen Hei`（日本語 178 文字 ×
+#     ストーリー）と `FreeSerif`（`⎋` U+238B の 1 文字）
+#   - 日本語は `.storybook/fonts-cjk-fallback.ts` で**自前配信に置き換えた**
+#     （`Noto Sans` / `Noto Sans Mono` に `unicode-range` で CJK の面を足す）
+#   - `⎋` は apt を抜くと `DejaVu Sans Mono` になる。**DejaVu は runner image に
+#     最初から入っている**（apt で消えない 19 ファミリーの 1 つ）ので、apt には
+#     依存しない。`⌫`(U+232B) と `⌘`(U+2318) も同じく DejaVu で、こちらは apt の
+#     有無で 1 文字も変わらなかった
+#
+# **共有ライブラリは runner image に揃っている。** `install-deps` を飛ばした条件で
+# chromium は起動し、1007 ストーリーすべてを描画できている（上の 2 ラン）。
+# ただしこれは **image が変わると変わりうる前提** ── `MAINTENANCE.md` 11
+# （runner image の四半期点検）で見る。壊れ方は「ブラウザが起動しない」で派手なので、
+# 黙って腐る形ではない。
+#
+# 効果: apt が落ちている日でも **CI が緑になる**（従来は 30〜60 分ハング → ① の
+# 改修後で 13 分の明確なエラー → 今回で **そもそも触らない**）。
 exit 0

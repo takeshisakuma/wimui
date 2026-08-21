@@ -55,6 +55,14 @@ import "@fontsource/noto-sans-jp/japanese-700.css";
 import "@fontsource/noto-sans-mono/latin-400.css";
 import "@fontsource/noto-sans-mono/latin-500.css";
 import "@fontsource/noto-sans-mono/latin-700.css";
+// CI-8 ② — `Noto Sans` / `Noto Sans Mono` に **CJK だけを担当する面**を足す
+// （すぐ上の「必要になったら自前の @font-face に unicode-range を書いて追加する」）。
+// これが無いと、日本語を描く 9 ストーリーは apt が入れる WenQuanYi Zen Hei に
+// 依存し、apt が落ちた日は豆腐になる。詳細は fonts-cjk-fallback.ts の冒頭。
+// **副作用 import では消える**（sideEffects に .ts が無い ＝ tree-shaking の対象）。
+import { installCjkFallback } from "./fonts-cjk-fallback";
+
+installCjkFallback();
 // 配布と同じ分割エントリを読み込む（tokens = :root トークン, reset = リセット/base）。
 // base.scss 単体はトークンを出力しないため、必ず tokens.entry を併せて読み込むこと。
 import "../src/styles/tokens.entry.scss";
