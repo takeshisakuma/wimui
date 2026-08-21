@@ -16019,11 +16019,11 @@
       "files_desc": "Both are generated from the same sources of truth as this Storybook (catalog, docgen props, tokens, composition rules) and regenerated on every release.",
       "files_h_file": "File",
       "files_h_use": "When to use",
-      "concise_use": "Index + pointers. Small enough to paste whole or keep always-on in an agent's context. Start here.",
+      "concise_use": "Self-contained: setup contract, import paths, composition rules and the full component catalog. Small enough to paste whole or keep always-on in an agent's context. Start here.",
       "full_use": "Everything inlined: per-component props from docgen, ready-to-paste recipes (setup / composed screen / auth / settings), and the full composition rules. Use when the agent needs to write real code.",
       "urls_title": "Where to get them",
-      "urls_desc": "Hosted (always the latest published version) or resolved from the installed package:",
-      "urls_public_label": "Hosted (public URL)",
+      "urls_desc": "Hosted (tracks main — may include unreleased changes) or resolved from the installed package (the exact version you installed):",
+      "urls_public_label": "Hosted (public URL — tracks main)",
       "urls_npm_label": "From the installed package (subpath export)",
       "prompts_title": "Copy-paste prompts",
       "prompts_desc": "Give the agent the file, then ask for a screen. The prompt text below is intentionally in English — agents read it directly; the URLs and import paths are what matter.",
@@ -16031,7 +16031,7 @@
       "prompt_cursor_title": "Cursor",
       "prompt_cursor_desc": "Add the hosted llms.txt as a Doc (@Docs → Add new doc), or drop llms-full.txt into the repo and reference it with @. Then:",
       "prompt_claude_title": "Claude Code",
-      "prompt_claude_desc": "Reference the file directly (local path or URL). Claude Code fetches and follows it:",
+      "prompt_claude_desc": "Fetch it to a local file first, then point Claude Code at that file. Reading it straight from a URL goes through a summarising fetch, so a 3,000-line file may not land in context verbatim. If wimui is already installed, read node_modules/wimui/dist/llms-full.txt instead:",
       "prompt_v0_title": "v0 / ChatGPT / other chat UIs",
       "prompt_v0_desc": "Paste the concise llms.txt at the top of the conversation, then describe the screen. For real code, paste llms-full.txt instead.",
       "includes_title": "What the agent gets",
@@ -16040,7 +16040,7 @@
       "inc_imports": "The correct import paths — root barrel vs. category subpath vs. optional-peer subpaths (wimui/rhf, wimui/ai/streaming-text, …).",
       "inc_catalog": "The full component catalog with descriptions, and (in llms-full.txt) real props from docgen.",
       "inc_composition": "The anti-generic composition rules — the same ones this project follows to avoid AI-looking screens.",
-      "note_version": "The hosted files always match the latest published release. The package subpath matches the exact version you installed — pin to it for reproducible generations."
+      "note_version": "The hosted files are redeployed on every push to main, so they can be ahead of the latest npm release. The package subpath matches the exact version you installed — pin to it for reproducible generations."
     }
   },
   "docs_guide_playground": {
