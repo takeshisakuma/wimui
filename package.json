@@ -522,6 +522,7 @@
     "vite-plugin-image-optimizer": "2.0.3",
     "vite-plugin-svgr": "5.2.0",
     "vitest": "4.1.10",
+    "wawoff2": "2.0.1",
     "web-features": "3.34.3",
     "zod": "4.4.3"
   },

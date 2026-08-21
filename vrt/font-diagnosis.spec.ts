@@ -130,6 +130,10 @@ const SCOPE_ALL = process.env.FONT_DIAG_SCOPE === "all";
  * apt 依存側に数える**（見落として「0 件」と言うより、多めに拾って人が見る方が良い）。
  */
 const SURVIVES_WITHOUT_APT = new Set([
+  // **自前で入れているフォント**（CI-8 ②・`scripts/ci-install-fonts.mjs`）。
+  // apt からは来ないので、ここに無いと日本語のストーリーが永久に「apt 依存」と
+  // 報告され続ける。
+  "Noto Sans JP",
   "DejaVu Math TeX Gyre",
   "DejaVu Sans",
   "DejaVu Sans Condensed",
