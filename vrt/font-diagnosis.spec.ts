@@ -3,6 +3,10 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { waitForStoryReady } from "./story-ready";
+import {
+  NONDETERMINISTIC_STORY_IDS,
+  NONDETERMINISTIC_STORY_PREFIXES,
+} from "./nondeterministic-stories.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,10 +52,13 @@ const __dirname = path.dirname(__filename);
  * 見立て（フォント差が 4 枚の原因）自体が違う。**
  *
  * ── 使い方 ───────────────────────────────────────────────────────────
+ *   # 2 条件を比べる（落ちた 4 枚 + 対照 4 枚）
  *   FONT_DIAG_LABEL=with-deps npx playwright test vrt/font-diagnosis.spec.ts
+ *   # 全ストーリーを 1 条件で走査する（apt 依存を持つストーリーを数える）
+ *   FONT_DIAG_SCOPE=all FONT_DIAG_LABEL=with-deps npx playwright test vrt/font-diagnosis.spec.ts
  *
- * 結果は `font-diagnosis/<label>/<storyId>.json`。2 つのラベル（apt あり / なし）で
- * 走らせて `node scripts/font-diagnosis-report.mjs` に食わせると差分表が出る。
+ * 結果は `font-diagnosis/<label>/<storyId>.json`。`scripts/font-diagnosis-report.mjs`
+ * が、2 ラベルなら差分表を、`--scan <label>` なら走査の一覧を出す。
  */
 
 /** apt（`playwright install-deps`）を抜くと VRT が落ちた 4 枚。2026-08-19 実測。 */
@@ -88,6 +95,51 @@ const LABEL = process.env.FONT_DIAG_LABEL || "unlabeled";
 const BLOCK_WEBFONTS = process.env.FONT_DIAG_BLOCK_WEBFONTS === "1";
 const OUT_DIR = path.resolve(__dirname, "../font-diagnosis", LABEL);
 
+/**
+ * **`all` = 全ストーリー走査**（`FONT_DIAG_SCOPE=all`）。
+ *
+ * ① の比較で分かったのは「落ちた 4 枚が apt のフォントに依存している」ことだけで、
+ * **同じ依存を持つストーリーが他に何枚あるかは測っていない**。対策 B（自前化）の
+ * 作業量＝動くベースラインの枚数はそこで決まる。
+ *
+ * **走査は 1 条件で足りる**（apt あり＝いまの CI と同じ経路）。apt を抜いても残る
+ * ファミリーは実測で 19 だけ（`SURVIVES_WITHOUT_APT`）なので、**それ以外の
+ * プラットフォームフォントがグリフを供給していたら、その文字は apt 依存**。
+ * 2 条件を突き合わせる必要はない。
+ */
+const SCOPE_ALL = process.env.FONT_DIAG_SCOPE === "all";
+
+/**
+ * **apt を抜いても runner image に残るファミリー。** 2026-08-21 の実測
+ * （dispatch run 32473587835 の `fc-list`）。apt ありは 44、なしは 19。
+ *
+ * ここに**無い**プラットフォームフォントが選ばれていたら、apt が入らない日には
+ * 別のものに化ける ── 消える 25 には `WenQuanYi Zen Hei`（日本語がこれに落ちて
+ * いた）と `FreeSerif`（`⎋` がこれだった）が含まれる。**知らない名前が出たら
+ * apt 依存側に数える**（見落として「0 件」と言うより、多めに拾って人が見る方が良い）。
+ */
+const SURVIVES_WITHOUT_APT = new Set([
+  "DejaVu Math TeX Gyre",
+  "DejaVu Sans",
+  "DejaVu Sans Condensed",
+  "DejaVu Sans Light",
+  "DejaVu Sans Mono",
+  "DejaVu Serif",
+  "DejaVu Serif Condensed",
+  "Lato",
+  "Lato Black",
+  "Lato Hairline",
+  "Lato Heavy",
+  "Lato Light",
+  "Lato Medium",
+  "Lato Semibold",
+  "Lato Thin",
+  "Liberation Mono",
+  "Liberation Sans",
+  "Liberation Serif",
+  "Noto Color Emoji",
+]);
+
 interface TextElement {
   idx: number;
   tag: string;
@@ -121,10 +173,45 @@ interface LoadedFace {
   unicodeRange: string;
 }
 
-test.describe("CI-8 font diagnosis", () => {
-  for (const storyId of [...FAILING_STORY_IDS, ...CONTROL_STORY_IDS]) {
-    const role = FAILING_STORY_IDS.includes(storyId) ? "failing" : "control";
+/**
+ * 走査対象。**VRT が撮る範囲と揃える** ── 知りたいのは「apt が落ちた日に動く
+ * ベースラインが何枚あるか」なので、`vrt.spec.ts` と同じ除外を使う（除外リストは
+ * `vrt/nondeterministic-stories.js` が SSOT）。
+ */
+const allStoryIds = (): string[] => {
+  const indexPath = path.resolve(__dirname, "../storybook-static/index.json");
+  if (!fs.existsSync(indexPath)) {
+    throw new Error(
+      "storybook-static/index.json が無い。先に npm run build-storybook を走らせること。",
+    );
+  }
+  const index = JSON.parse(fs.readFileSync(indexPath, "utf-8")) as {
+    entries: Record<string, { id: string; type: string }>;
+  };
+  const skipped = new Set(NONDETERMINISTIC_STORY_IDS);
+  return Object.values(index.entries)
+    .filter(
+      (entry) =>
+        entry.type === "story" &&
+        !skipped.has(entry.id) &&
+        !NONDETERMINISTIC_STORY_PREFIXES.some((p: string) =>
+          entry.id.startsWith(p),
+        ) &&
+        !entry.id.startsWith("audit-") &&
+        !entry.id.startsWith("probes-"),
+    )
+    .map((entry) => entry.id);
+};
 
+const targets: { storyId: string; role: string }[] = SCOPE_ALL
+  ? allStoryIds().map((storyId) => ({ storyId, role: "scan" }))
+  : [
+      ...FAILING_STORY_IDS.map((storyId) => ({ storyId, role: "failing" })),
+      ...CONTROL_STORY_IDS.map((storyId) => ({ storyId, role: "control" })),
+    ];
+
+test.describe("CI-8 font diagnosis", () => {
+  for (const { storyId, role } of targets) {
     test(`${role} — ${storyId}`, async ({ page }) => {
       // VRT と同じ条件で開く（時刻固定・`__VRT__`・light・en）。**条件がずれると
       // 別のものを測ることになる** ── Countdown / RelativeTime は時刻で描画が変わる。
@@ -184,66 +271,7 @@ test.describe("CI-8 font diagnosis", () => {
         return out;
       });
 
-      // ── 2. 文字ごとのプローブを画面外に置く ────────────────────────────
-      // 同じ (font-family, weight, size, 文字) は 1 回だけ測る。
-      const probes: CharProbe[] = await page.evaluate(() => {
-        const host = document.createElement("div");
-        // 画面外・非表示だが**レイアウトは走る**位置に置く（`display:none` だと
-        // グリフが選ばれないので測れない）。
-        host.style.cssText =
-          "position:fixed;left:-99999px;top:0;white-space:pre;";
-        host.setAttribute("data-font-probe-host", "");
-        document.body.appendChild(host);
-
-        const out: CharProbe[] = [];
-        const seen = new Set<string>();
-        let idx = 0;
-
-        for (const src of Array.from(
-          document.querySelectorAll("[data-font-diag]"),
-        )) {
-          const cs = getComputedStyle(src);
-          const text = (src.textContent ?? "").trim().slice(0, 120);
-          // `Array.from` はコードポイント単位で回る（サロゲートペアを割らない）。
-          for (const ch of new Set(Array.from(text))) {
-            if (!ch.trim()) continue;
-            const key = `${cs.fontFamily}|${cs.fontWeight}|${cs.fontSize}|${ch}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-
-            const span = document.createElement("span");
-            span.setAttribute("data-font-probe", String(idx));
-            span.style.fontFamily = cs.fontFamily;
-            span.style.fontWeight = cs.fontWeight;
-            span.style.fontSize = cs.fontSize;
-            span.textContent = ch;
-            host.appendChild(span);
-
-            out.push({
-              idx,
-              char: ch,
-              codePoint: `U+${(ch.codePointAt(0) ?? 0)
-                .toString(16)
-                .toUpperCase()
-                .padStart(4, "0")}`,
-              fontFamily: cs.fontFamily,
-              fontSize: cs.fontSize,
-              fontWeight: cs.fontWeight,
-              width: 0,
-            });
-            idx += 1;
-          }
-        }
-
-        // 幅はレイアウト後にまとめて採る（1 文字ずつ読むと毎回同期レイアウトになる）。
-        for (const probe of out) {
-          const el = host.querySelector(`[data-font-probe="${probe.idx}"]`);
-          probe.width = el ? el.getBoundingClientRect().width : -1;
-        }
-        return out;
-      });
-
-      // ── 3. 読み込めた @font-face（自前配信ぶん）────────────────────────
+      // ── 2. 読み込めた @font-face（自前配信ぶん）────────────────────────
       const faces: LoadedFace[] = await page.evaluate(() =>
         Array.from(document.fonts).map((f) => ({
           family: f.family,
@@ -253,7 +281,7 @@ test.describe("CI-8 font diagnosis", () => {
         })),
       );
 
-      // ── 4. CDP で「実際に使われたファミリー」を採る ────────────────────
+      // ── 3. CDP で「実際に使われたファミリー」を採る ────────────────────
       const client = await page.context().newCDPSession(page);
       await client.send("DOM.enable");
       await client.send("CSS.enable");
@@ -294,9 +322,96 @@ test.describe("CI-8 font diagnosis", () => {
         "[data-font-diag]",
         "data-font-diag",
       );
-      const probeFonts = await platformFontsBy(
-        "[data-font-probe]",
-        "data-font-probe",
+
+      // ── 4. 文字ごとのプローブを画面外に置く ────────────────────────────
+      // 同じ (font-family, weight, size, 文字) は 1 回だけ測る。
+      //
+      // **要素単位の結果を見てから絞る。** 全ストーリー走査では、そもそも
+      // フォールバックが起きていない要素まで 1 文字ずつ測るのは無駄なので、
+      // **プラットフォームフォントが混じった要素だけ**を文字に割る。
+      const probeTargets = SCOPE_ALL
+        ? elements
+            .filter((el) =>
+              (elementFonts[String(el.idx)] ?? []).some((f) => !f.custom),
+            )
+            .map((el) => el.idx)
+        : elements.map((el) => el.idx);
+
+      const probes: CharProbe[] = await page.evaluate((targets) => {
+        const host = document.createElement("div");
+        // 画面外・非表示だが**レイアウトは走る**位置に置く（`display:none` だと
+        // グリフが選ばれないので測れない）。
+        host.style.cssText =
+          "position:fixed;left:-99999px;top:0;white-space:pre;";
+        host.setAttribute("data-font-probe-host", "");
+        document.body.appendChild(host);
+
+        const out: CharProbe[] = [];
+        const seen = new Set<string>();
+        let idx = 0;
+
+        for (const target of targets) {
+          const src = document.querySelector(`[data-font-diag="${target}"]`);
+          if (!src) continue;
+          const cs = getComputedStyle(src);
+          const text = (src.textContent ?? "").trim().slice(0, 120);
+          // `Array.from` はコードポイント単位で回る（サロゲートペアを割らない）。
+          for (const ch of new Set(Array.from(text))) {
+            if (!ch.trim()) continue;
+            const key = `${cs.fontFamily}|${cs.fontWeight}|${cs.fontSize}|${ch}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+
+            const span = document.createElement("span");
+            span.setAttribute("data-font-probe", String(idx));
+            span.style.fontFamily = cs.fontFamily;
+            span.style.fontWeight = cs.fontWeight;
+            span.style.fontSize = cs.fontSize;
+            span.textContent = ch;
+            host.appendChild(span);
+
+            out.push({
+              idx,
+              char: ch,
+              codePoint: `U+${(ch.codePointAt(0) ?? 0)
+                .toString(16)
+                .toUpperCase()
+                .padStart(4, "0")}`,
+              fontFamily: cs.fontFamily,
+              fontSize: cs.fontSize,
+              fontWeight: cs.fontWeight,
+              width: 0,
+            });
+            idx += 1;
+          }
+        }
+
+        // 幅はレイアウト後にまとめて採る（1 文字ずつ読むと毎回同期レイアウトになる）。
+        for (const probe of out) {
+          const el = host.querySelector(`[data-font-probe="${probe.idx}"]`);
+          probe.width = el ? el.getBoundingClientRect().width : -1;
+        }
+        return out;
+      }, probeTargets);
+
+      const probeFonts = probes.length
+        ? await platformFontsBy("[data-font-probe]", "data-font-probe")
+        : {};
+
+      const chars = probes.map((probe) => ({
+        ...probe,
+        platformFonts: probeFonts[String(probe.idx)] ?? [],
+      }));
+
+      /**
+       * **apt が入らない日に化ける文字。** 自前配信の webfont（`custom`）でも、
+       * apt なしでも残るファミリー（`SURVIVES_WITHOUT_APT`）でもないものが
+       * グリフを供給していたら該当。**知らない名前は該当側に数える。**
+       */
+      const aptDependent = chars.filter((c) =>
+        c.platformFonts.some(
+          (f) => !f.custom && !SURVIVES_WITHOUT_APT.has(f.family),
+        ),
       );
 
       const report = {
@@ -309,39 +424,40 @@ test.describe("CI-8 font diagnosis", () => {
           ...el,
           platformFonts: elementFonts[String(el.idx)] ?? [],
         })),
-        chars: probes.map((probe) => ({
-          ...probe,
-          platformFonts: probeFonts[String(probe.idx)] ?? [],
+        chars,
+        aptDependent: aptDependent.map((c) => ({
+          char: c.char,
+          codePoint: c.codePoint,
+          fontFamily: c.fontFamily,
+          families: c.platformFonts.map((f) => f.family),
         })),
       };
 
-      fs.mkdirSync(OUT_DIR, { recursive: true });
-      fs.writeFileSync(
-        path.join(OUT_DIR, `${storyId}.json`),
-        `${JSON.stringify(report, null, 2)}\n`,
-        "utf-8",
-      );
+      // 全ストーリー走査では**当たりだけ**を書く（993 ストーリーぶんの
+      // 「何も起きていない」JSON は読む相手がいない）。
+      if (!SCOPE_ALL || aptDependent.length) {
+        fs.mkdirSync(OUT_DIR, { recursive: true });
+        fs.writeFileSync(
+          path.join(OUT_DIR, `${storyId}.json`),
+          `${JSON.stringify(report, null, 2)}\n`,
+          "utf-8",
+        );
+      }
 
       // ラン中のログにも要点を残す（アーティファクトを落とさずに読めるように）。
-      const fallen = report.chars.filter(
-        (c) =>
-          c.platformFonts.length > 0 &&
-          !c.platformFonts.every((f) => f.custom),
-      );
+      const summary = aptDependent
+        .map(
+          (c) =>
+            `${c.codePoint}(${c.char})→${c.platformFonts
+              .map((f) => f.family)
+              .join("/")}`,
+        )
+        .slice(0, 20)
+        .join(", ");
       console.log(
-        `[font-diag:${LABEL}] ${storyId}: ${report.chars.length} chars, ` +
-          `${fallen.length} rendered by a platform (non-webfont) family` +
-          (fallen.length
-            ? ` — ${fallen
-                .map(
-                  (c) =>
-                    `${c.codePoint}(${c.char})→${c.platformFonts
-                      .map((f) => f.family)
-                      .join("/")}`,
-                )
-                .slice(0, 20)
-                .join(", ")}`
-            : ""),
+        `[font-diag:${LABEL}] ${storyId}: ${chars.length} chars, ` +
+          `${aptDependent.length} apt-dependent` +
+          (summary ? ` — ${summary}` : ""),
       );
     });
   }
