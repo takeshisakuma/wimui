@@ -5,10 +5,32 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Toast, ToastProvider, useToast } from "wimui";
 
 
+const isVrt = () =>
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  typeof window !== "undefined" && Boolean(window.__VRT__);
+
+/**
+ * VRT では自動で閉じないようにする（`Snackbar` と同じ形）。
+ *
+ * `duration` の既定は **3 秒**（実装はさらに 300ms のバッファを足す）なので、
+ * マウントから撮影までが 3.3 秒を跨ぐかで「出ている絵」と「閉じた絵」が入れ替わる
+ * ── **実時間に依存する非決定性**で、CI の混み具合で結果が変わる。
+ *
+ * `Snackbar` では実際にこれが表に出た（#474 で dark の 4 枚が回ごとに入れ替わりで
+ * 落ちた）。Toast はいまのところ中身が写った状態で撮れているだけで、**同じ coin flip**
+ * を回している。VRT が見たいのは「Toast が出ている状態」なのでタイマーを止める。
+ * Storybook の閲覧では従来どおり 3 秒で閉じる（`isVrt()` のときだけ 0）。
+ */
+const vrtStable = (): { duration?: number } =>
+  isVrt() ? { duration: 0 } : {};
+
 const meta: Meta<typeof Toast> = {
   title: "Components/Alerts & Notifications/Toast",
   component: Toast,
   tags: ["!autodocs"],
+  args: {
+    ...vrtStable(),
+  },
   argTypes: {
     intent: {
       control: "select",
