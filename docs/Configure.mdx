@@ -28,10 +28,10 @@ export const RightArrow = () => (
 <div className="config-container">
   <div className="logo-section">
     <img src={wimLogo} alt="WIM UI Logo" className="logo-img" />
-    <h2>WIM UI</h2>
+    <h1>WIM UI</h1>
   </div>
 
-  <h3><T k="config.install_title" /></h3>
+  <h2><T k="config.install_title" /></h2>
   <Command>{`npm install wimui
 # peers (React 19):
 npm install react@^19 react-dom@^19`}</Command>
@@ -40,7 +40,7 @@ npm install react@^19 react-dom@^19`}</Command>
     <a href="https://www.npmjs.com/package/wimui" target="_blank" rel="noreferrer"><T k="config.install_npm_link" /></a>
   </p>
 
-  <h3><T k="config.scope_title" /></h3>
+  <h2><T k="config.scope_title" /></h2>
   <p><T k="config.scope_desc" /></p>
   <table>
     <thead>
@@ -90,7 +90,7 @@ import { FormField } from "wimui/rhf";
 // ❌ Not on the root barrel
 // import { BarChart } from "wimui";`}</Command>
 
-  <h3><T k="config.features_title" /></h3>
+  <h2><T k="config.features_title" /></h2>
   <ul>
     <li><T k="config.features_a11y" /></li>
     <li><T k="config.features_responsive" /></li>
@@ -98,7 +98,7 @@ import { FormField } from "wimui/rhf";
     <li><T k="language.support" /></li>
   </ul>
 
-  <h3><T k="config.tech_stack_title" /></h3>
+  <h2><T k="config.tech_stack_title" /></h2>
   <ul>
     <li><T k="config.tech_stack_react" /></li>
     <li><T k="config.tech_stack_typescript" /></li>
@@ -106,7 +106,7 @@ import { FormField } from "wimui/rhf";
     <li><T k="config.tech_stack_scss" /></li>
   </ul>
 
-  <h3><T k="config.css_title" /></h3>
+  <h2><T k="config.css_title" /></h2>
   <p><T k="config.css_desc" /></p>
   <Command>{`import "wimui/styles.css"; // required
 import "wimui/reset.css";  // optional`}</Command>
@@ -130,7 +130,7 @@ import "wimui/reset.css";  // optional`}</Command>
   </table>
   <p><T k="config.css_umd_note" /></p>
 
-  <h3><T k="config.theme_title" /></h3>
+  <h2><T k="config.theme_title" /></h2>
   <p><T k="config.theme_desc" /></p>
   <Command>{`import { WimProvider } from "wimui";
 
@@ -141,7 +141,7 @@ import "wimui/reset.css";  // optional`}</Command>
 <html data-theme="light">
 <html> <!-- OS preference (system) -->`}</Command>
 
-  <h3><T k="config.brand_title" /></h3>
+  <h2><T k="config.brand_title" /></h2>
   <p><T k="config.brand_desc" /></p>
   <Command>{`/* After import "wimui/styles.css" — override role tokens only */
 :root {
@@ -157,14 +157,14 @@ import "wimui/reset.css";  // optional`}</Command>
 }`}</Command>
   <p><T k="config.brand_note" /></p>
 
-  <h3><T k="config.density_title" /></h3>
+  <h2><T k="config.density_title" /></h2>
   <p><T k="config.density_desc" /></p>
   <Command>{`// via WimProvider (recommended) or:
 import { setWimDensity } from "wimui";
 setWimDensity("compact");
 // <html data-density="compact">`}</Command>
 
-  <h3><T k="config.quality_title" /></h3>
+  <h2><T k="config.quality_title" /></h2>
   <table>
     <thead>
       <tr>
@@ -196,7 +196,7 @@ setWimDensity("compact");
     </tbody>
   </table>
 
-  <h3><T k="config.test_title" /></h3>
+  <h2><T k="config.test_title" /></h2>
   <table>
     <thead>
       <tr>
@@ -260,13 +260,13 @@ setWimDensity("compact");
     width: auto;
   }
 
-  .logo-section h2 {
+  .logo-section h1 {
     margin: 0;
     font-size: var(--wim-font-size-3xl);
     font-weight: 700;
   }
 
-  h3 {
+  .config-container h2 {
     margin-top: var(--wim-spacing-5xl);
     margin-bottom: var(--wim-spacing-2xl);
     font-size: var(--wim-font-size-xl);
