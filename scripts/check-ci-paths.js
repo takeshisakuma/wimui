@@ -34,7 +34,9 @@ const root = path.join(__dirname, "..");
 // 撮影・検査の道具が変われば結果が変わる。どちらのワークフローにも必須。
 const REQUIRED_PATHS = ["package.json", "package-lock.json"];
 
-const TARGETS = ["vrt.yml", "a11y.yml"];
+// 2026-08-22: `narrow-overflow.yml` と `tap-target.yml` も同じ形（全ストーリーを
+// ブラウザで測るゲート）なので、同じ規約で見張る。
+const TARGETS = ["vrt.yml", "a11y.yml", "tap-target.yml", "narrow-overflow.yml"];
 
 /**
  * `on:` 直下のトリガーごとに `paths:` の配列を拾う、用途を絞った読み取り。

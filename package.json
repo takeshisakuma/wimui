@@ -314,6 +314,8 @@
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
     "stylelint:fix": "stylelint \"{src,stories}/**/*.{css,scss}\" --fix --allow-empty-input",
     "test:vrt": "playwright test vrt/vrt.spec.ts",
+    "test:narrow": "npx playwright test vrt/narrow-overflow.spec.ts",
+    "narrow:update": "node scripts/update-narrow-overflow-baseline.mjs",
     "test:vrt:update": "playwright test vrt/vrt.spec.ts --update-snapshots",
     "vrt:report": "node scripts/vrt-color-shift-report.js",
     "test:vrt:report": "playwright show-report",

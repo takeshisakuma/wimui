@@ -1,0 +1,93 @@
+name: Narrow viewport overflow (390px)
+
+# **CI は 1280px でしか見ていなかった**（VRT も tap-target も `Desktop Chrome`）。
+# 狭幅の崩れは赤が出ないので、T216（`FeatureComparison` の表が 390px で潰れる）は
+# ユーザーの指摘で初めて出てきた。#493 で全 1065 ストーリーを測って 22 件見つけ、
+# 13 件を直した。残り 9 件を凍結して、**増えたときだけ落とす**。
+#
+# VRT に 390px のプロファイルを足すとベースラインが倍増するが、この検査は
+# **画像を持たない**（数値の比較だけ）ので、凍結するのは ID の一覧だけで済む。
+#
+# シャードは切らない ── 1 ジョブ 4 ワーカーで全量が 10〜15 分。分けると
+# Storybook のビルドがシャードの数だけ増えて、そちらのほうが高くつく。
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "vrt/narrow-overflow.spec.ts"
+      - "vrt/narrow-overflow.js"
+      - "vrt/narrow-overflow-baseline.json"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
+      # **Storybook の設定も測る側の道具**（CI-8 ② と同じ理由）。
+      - ".storybook/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/narrow-overflow.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "vrt/narrow-overflow.spec.ts"
+      - "vrt/narrow-overflow.js"
+      - "vrt/narrow-overflow-baseline.json"
+      - "vrt/story-ready.ts"
+      - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
+      - ".storybook/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/narrow-overflow.yml"
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: "ストーリータイトルの絞り込み（空なら全件）"
+        type: string
+        default: ""
+
+concurrency:
+  group: narrow-overflow-${{ github.ref_name }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  measure:
+    name: Narrow overflow (390px)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        # CI-8: apt が固まると job タイムアウトまで戻ってこない。1 回あたりを縛って再試行する。
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Measure narrow viewport overflow
+        env:
+          FILTER: ${{ inputs.filter }}
+        run: npx playwright test vrt/narrow-overflow.spec.ts
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: narrow-overflow-report
+          path: playwright-report/
+          retention-days: 7
