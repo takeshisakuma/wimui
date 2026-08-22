@@ -441,11 +441,18 @@ export const ProductCard: StoryObj = {
       readonly: (count: number, max: number) =>
         `Rating: ${count} out of ${max}`,
     };
+    // AI-slop 監査（2026-08-22）: 4 枚とも `no-image.png` を出していたため、
+    // **画面最大の要素が「No Image」のプレースホルダ**になっていた
+    // （DESIGN.md「置き換え待ちのプレースホルダに見えないか」）。
+    // 手持ちの写真は風景・建築・植物で、電子機器の商品写真にはならない。
+    // **写真そのものが商品になる題材**（プリント販売）にして、画像も alt も真にする。
     const products = [
       {
         name: t("product.item_1_name"),
         price: t("product.item_1_price"),
         category: t("product.item_1_category"),
+        image: "./demo/lightbox_1.png",
+        alt: t("product.item_1_alt"),
         rating: 4,
         count: 128,
       },
@@ -453,6 +460,8 @@ export const ProductCard: StoryObj = {
         name: t("product.item_2_name"),
         price: t("product.item_2_price"),
         category: t("product.item_2_category"),
+        image: "./demo/lightbox_2.png",
+        alt: t("product.item_2_alt"),
         rating: 5,
         count: 84,
       },
@@ -460,6 +469,8 @@ export const ProductCard: StoryObj = {
         name: t("product.item_3_name"),
         price: t("product.item_3_price"),
         category: t("product.item_3_category"),
+        image: "./demo/lightbox_3.png",
+        alt: t("product.item_3_alt"),
         rating: 4,
         count: 56,
       },
@@ -467,6 +478,8 @@ export const ProductCard: StoryObj = {
         name: t("product.item_4_name"),
         price: t("product.item_4_price"),
         category: t("product.item_4_category"),
+        image: "./images/sample-landscape.png",
+        alt: t("product.item_4_alt"),
         rating: 3,
         count: 210,
       },
@@ -493,8 +506,8 @@ export const ProductCard: StoryObj = {
               style={{ overflow: "hidden" }}
             >
               <Image
-                src={noImage}
-                alt={t("product.image_alt")}
+                src={p.image}
+                alt={p.alt}
                 height={180}
                 width="100%"
                 fit="cover"
