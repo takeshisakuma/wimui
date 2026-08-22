@@ -57,6 +57,7 @@
     "layout_header_content": "推奨項目: ロゴ, グローバル検索, 通知, ユーザープロフィール, トップレベルナビゲーション",
     "layout_header_desc": "アプリケーション全体へのコンテキスト提供と、グローバルアクションへのアクセスを提供します。どこからでもアクセス可能な機能を配置します。",
     "layout_header_title": "ヘッダー (Header)",
+    "layout_main_content": "推奨項目: データテーブルやリスト, フォーム, 詳細ビュー, ダッシュボードのウィジェット",
     "layout_main_desc": "ユーザーが作業を行う中心エリアです。データの表示や操作が行われます。",
     "layout_main_title": "メインコンテンツ (Main Content)",
     "layout_overlay_content": "推奨項目: Toast, Dialog (Modal), Tooltip",

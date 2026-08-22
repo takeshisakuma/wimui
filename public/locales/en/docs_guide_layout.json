@@ -57,6 +57,7 @@
     "layout_header_content": "Recommended: Logo, global search, notifications, user profile, top-level navigation",
     "layout_header_desc": "Provides context for the entire application and access to global actions. Should include features accessible from anywhere.",
     "layout_header_title": "Header",
+    "layout_main_content": "Recommended: Data tables and lists, forms, detail views, dashboard widgets",
     "layout_main_desc": "The central area where users perform tasks. Data display and operations happen here.",
     "layout_main_title": "Main Content",
     "layout_overlay_content": "Recommended: Toasts, Dialogs (Modals), Tooltips",
