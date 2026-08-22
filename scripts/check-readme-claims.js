@@ -156,6 +156,42 @@ if (matrixRows.length === 0 || optionalRows.length === 0) {
         );
       }
     }
+    // T207: **og:image は「存在しない画像を指しても赤が出ない」類の欠陥。**
+    // 共有カードが崩れても CI は緑のままなので、①実ファイルがあるか
+    // ②宣言した寸法が実物と合っているか を機械で見る。
+    const ogImage = head.match(/property=\s*"og:image"[\s\S]{0,300}?content=\s*"([^"]+)"/);
+    if (ogImage) {
+      const url = ogImage[1];
+      const home = String(pkg.homepage || "").replace(/\/?$/, "/");
+      if (!url.startsWith("http")) {
+        problems.push(`og:image が絶対 URL ではない（OGP は相対パスを解決しない）: ${url}`);
+      } else if (!url.startsWith(home)) {
+        problems.push(`og:image が homepage(${home}) の下を指していない: ${url}`);
+      } else {
+        const rel = url.slice(home.length);
+        const imgPath = path.join(root, "public", rel);
+        if (!fs.existsSync(imgPath)) {
+          problems.push(`og:image が指すファイルが無い: public/${rel}`);
+        } else {
+          // PNG の IHDR から実寸を読み、宣言と突き合わせる
+          const buf = fs.readFileSync(imgPath);
+          if (buf.slice(1, 4).toString() === "PNG") {
+            const realW = buf.readUInt32BE(16);
+            const realH = buf.readUInt32BE(20);
+            for (const [prop, actual] of [["og:image:width", realW], ["og:image:height", realH]]) {
+              const re = new RegExp('property=\\s*"' + prop + '"[\\s\\S]{0,150}?content=\\s*"([^"]+)"');
+              const m = head.match(re);
+              if (!m) {
+                problems.push(`${prop} が無い（クローラが読み込み前に大きさを知れない）`);
+              } else if (Number(m[1]) !== actual) {
+                problems.push(`${prop} が実物と違う: 宣言 ${m[1]} / 実測 ${actual}（public/${rel}）`);
+              }
+            }
+          }
+        }
+      }
+    }
+
     if (found.length === 0) {
       console.error("✗ manager-head.html から content 属性を 1 つも読めていない。読み取りが壊れている。");
       process.exit(1);
