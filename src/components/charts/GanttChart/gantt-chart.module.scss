@@ -62,6 +62,13 @@
   // only the body scrolled, so narrow viewports clipped the axis with no way
   // to reach it from the header hit-target (and sync JS was easy to miss).
   .timelineScroll {
+    // T218: **スクロール容器は包含ブロックを作ること。** `position: static` のままだと
+    // **`position: absolute` の子孫がこの clip をすり抜け**、包含ブロックが外側（多くは
+    // 初期包含ブロック）になるので `overflow` で切られない。すり抜けた分は
+    // **ページ自体の横スクロール**として出る。
+    // 実測（390px・2026-08-22）: `_bar_` が絶対配置で、`audit-viewportfamily` では **769px** 出ていた。
+    // `position: relative` を足すと **0** になる。
+    position: relative;
     flex: 1;
     min-width: 0;
     overflow: auto;

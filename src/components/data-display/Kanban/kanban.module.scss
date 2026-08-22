@@ -1,5 +1,12 @@
 @layer component {
   .root {
+    // T218: **スクロール容器は包含ブロックを作ること。** `position: static` のままだと
+    // **`position: absolute` の子孫がこの clip をすり抜け**、包含ブロックが外側（多くは
+    // 初期包含ブロック）になるので `overflow` で切られない。すり抜けた分は
+    // **ページ自体の横スクロール**として出る。
+    // 実測（390px・2026-08-22）: 列の中の `VisuallyHidden`（1px・絶対配置）が外へ出て、ページが **767px** 横スクロールしていた。
+    // `position: relative` を足すと **0** になる。
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: var(--wim-spacing-2xl);
