@@ -150,7 +150,7 @@ export const Overview: StoryObj = {
               </Box>
             </ComponentGroup>
             <ComponentGroup label={t("audit:label_carousel")} width="fit-content">
-              <Box style={{ width: "400px" }}>
+              <Box style={{ width: "min(400px, 100%)" }}>
                 <Carousel showIndicators showControls loop>
                   {sampleImages.map((src, i) => (
                     <Image key={i} src={src} alt={`Slide ${i}`} height={200} radius="md" />
@@ -164,7 +164,7 @@ export const Overview: StoryObj = {
         {/* Image Compare Check */}
         <ComparisonGrid title={t("audit:media_image_compare_check")}>
           <ComponentGroup label={t("audit:label_image_compare")} width="fit-content">
-            <Box style={{ width: "400px" }}>
+            <Box style={{ width: "min(400px, 100%)" }}>
               <ImageCompare
                 before={sampleImages[0]}
                 after={sampleImages[1]}
@@ -178,7 +178,7 @@ export const Overview: StoryObj = {
             </Box>
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_image_compare")} — ${t("audit:sfx_vertical")}`} width="fit-content">
-            <Box style={{ width: "400px" }}>
+            <Box style={{ width: "min(400px, 100%)" }}>
               <ImageCompare
                 before={sampleImages[0]}
                 after={sampleImages[2]}

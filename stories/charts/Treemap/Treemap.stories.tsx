@@ -54,7 +54,7 @@ export const NarrowTiles: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ width: "420px" }}>
+      <div style={{ width: "min(420px, 100%)" }}>
         <Treemap {...args} title={t("story.chart_narrow_tiles")} />
       </div>
     );

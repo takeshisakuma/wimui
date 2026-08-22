@@ -66,7 +66,7 @@ export const Scrolling: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Tabs defaultValue="1" style={{ width: "800px" }}>
+      <Tabs defaultValue="1" style={{ width: "min(800px, 100%)" }}>
         <Tabs.List>
           <Tabs.Trigger value="1">{t("story.tabs_long_tab")} 1</Tabs.Trigger>
           <Tabs.Trigger value="2">{t("story.tabs_long_tab")} 2</Tabs.Trigger>
