@@ -43,6 +43,18 @@ const NONDETERMINISTIC_IDS_SET = new Set(NONDETERMINISTIC_STORY_IDS);
 const isSkipped = (entry: StoryEntry) =>
   NONDETERMINISTIC_IDS_SET.has(entry.id) ||
   NONDETERMINISTIC_STORY_PREFIXES.some((p) => entry.id.startsWith(p)) ||
+  // T217: **意図的な除外**（59dae5e8a）。理由がコミットメッセージにしか無く、
+  // 2026-08-22 に「Audit が 1 枚も撮られていない」を欠陥として起票しかけたので、
+  // ここへ書き写す:
+  //   ① 家族ページは**内部 QA 用の巨大合成ページ**で、個別ストーリーと
+  //      カバレッジが重複する
+  //   ② **ページサイズに比例して AA ジッタが累積する** ── 当時「毎回別の
+  //      数ストーリーが数〜数百 px の差で落ちる」回転フレークを 2 回の compare で
+  //      確認し、`maxDiffPixels: 400` と併せて入れた対処。除外時に
+  //      ベースライン 46 枚を削除している
+  // **a11y は Audit を見ている**（`vrt/a11y-incomplete.json` に `audit-*` の行が
+  // ある）ので、抜けているのは視覚だけ。撮ることにするなら、`RelativeTime` /
+  // `Countdown` のような**時刻に依存する部品**の凍結が要る。
   entry.id.startsWith("audit-") ||
   // T179: プローブ＝捨てる画面。書くあいだはこの行が要る
   entry.id.startsWith("probes-");
