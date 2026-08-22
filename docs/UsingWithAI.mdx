@@ -8,7 +8,7 @@ import { T } from "../stories/T";
   <h1><T k="withai.title" /></h1>
   <p className="lead"><T k="withai.intro" /></p>
 
-  <h3><T k="withai.files_title" /></h3>
+  <h2><T k="withai.files_title" /></h2>
   <p><T k="withai.files_desc" /></p>
   <table>
     <thead>
@@ -29,7 +29,7 @@ import { T } from "../stories/T";
     </tbody>
   </table>
 
-  <h3><T k="withai.urls_title" /></h3>
+  <h2><T k="withai.urls_title" /></h2>
   <p><T k="withai.urls_desc" /></p>
   <p><strong><T k="withai.urls_public_label" /></strong></p>
   <Command>{`https://takeshisakuma.github.io/wimui/llms.txt
@@ -38,10 +38,10 @@ https://takeshisakuma.github.io/wimui/llms-full.txt`}</Command>
   <Command>{`node -e "console.log(require.resolve('wimui/llms.txt'))"
 # or reference the export directly: wimui/llms.txt  •  wimui/llms-full.txt`}</Command>
 
-  <h3><T k="withai.prompts_title" /></h3>
+  <h2><T k="withai.prompts_title" /></h2>
   <p><T k="withai.prompts_desc" /></p>
 
-  <h4><T k="withai.prompt_generic_title" /></h4>
+  <h3><T k="withai.prompt_generic_title" /></h3>
   <Command>{`You are building UI with "wimui" (a React 19 component library).
 Follow this file exactly — its import paths, its required CSS setup, and its
 composition rules. Do not invent components or props that are not listed.
@@ -50,12 +50,12 @@ composition rules. Do not invent components or props that are not listed.
 
 Now build: a settings page with a sidebar, a profile form, and a save action.`}</Command>
 
-  <h4><T k="withai.prompt_cursor_title" /></h4>
+  <h3><T k="withai.prompt_cursor_title" /></h3>
   <p><T k="withai.prompt_cursor_desc" /></p>
   <Command>{`@Docs wimui — build a dashboard screen. Use the import paths and CSS
 setup from the doc, and follow its composition rules.`}</Command>
 
-  <h4><T k="withai.prompt_claude_title" /></h4>
+  <h3><T k="withai.prompt_claude_title" /></h3>
   <p><T k="withai.prompt_claude_desc" /></p>
   <Command>{`curl -o llms-full.txt https://takeshisakuma.github.io/wimui/llms-full.txt
 # already installed? use node_modules/wimui/dist/llms-full.txt instead
@@ -64,10 +64,10 @@ Read llms-full.txt and use it to build a wimui screen: an auth page
 (sign in + sign up). Follow the CSS contract and composition rules
 from the file.`}</Command>
 
-  <h4><T k="withai.prompt_v0_title" /></h4>
+  <h3><T k="withai.prompt_v0_title" /></h3>
   <p><T k="withai.prompt_v0_desc" /></p>
 
-  <h3><T k="withai.includes_title" /></h3>
+  <h2><T k="withai.includes_title" /></h2>
   <p><T k="withai.includes_desc" /></p>
   <ul>
     <li><T k="withai.inc_setup" /></li>
@@ -101,16 +101,16 @@ from the file.`}</Command>
     margin-bottom: var(--wim-spacing-md);
   }
 
-  .withai-container h3 {
+  .withai-container h2 {
     margin-top: var(--wim-spacing-5xl);
     margin-bottom: var(--wim-spacing-2xl);
     font-size: var(--wim-font-size-xl);
   }
 
-  .withai-container h4 {
+  .withai-container h3 {
     margin-top: var(--wim-spacing-3xl);
     margin-bottom: var(--wim-spacing-md);
-    font-size: var(--wim-font-size-sm);
+    font-size: var(--wim-font-size-lg);
     font-weight: 600;
   }
 

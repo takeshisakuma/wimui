@@ -245,6 +245,92 @@ const scanTables = content => {
   });
 });
 
+console.log('\n--- Auditing Heading Hierarchy ---');
+// 見出しは「段を飛ばさない」「ページに h1 が 1 つある」を満たすこと。飛ばすと
+// 支援技術の見出しジャンプで節が消え、h1 が無いとページ全体の名前が読めない。
+//
+// MDX に書かれた見出しだけを見ても足りない。Storybook の <Title /> や自作の
+// <Docgen /> は**コンポーネントが見出しを描く**ので、静的走査からは見えない。
+// 実際 <Title /> を数えないと「component MDX 205 件に h1 が無い」という
+// 偽陽性が出る（コンポーネントが描いた h1 を見ていないだけ）。
+const HEADING_EMITTERS = {
+  Title: 1,             // @storybook/blocks — <h1>
+  Stories: 2,           // @storybook/blocks — <h2> "Stories"（各ストーリーは h3）
+  Docgen: 2,            // stories/Docgen.tsx — 各節の <h2>
+  ComponentDashboard: 1 // stories/ComponentDashboard.tsx — <h1> + カテゴリの <h2>
+};
+
+// コードブロックと <style> の中は見出しではない（`# comment` や `h3 { }` を拾わない）。
+const blankOut = m => m.replace(/[^\n]/g, ' ');
+const stripNonProse = src => src
+  .replace(/```[\s\S]*?```/g, blankOut)
+  .replace(/\{`[\s\S]*?`\}/g, blankOut)
+  .replace(/\{\/\*[\s\S]*?\*\/\}/g, blankOut)
+  .replace(/<style>[\s\S]*?<\/style>/g, blankOut);
+
+const emitterNames = Object.keys(HEADING_EMITTERS);
+const emitterRe = new RegExp('<(' + emitterNames.join('|') + ')[ \t\r\n/>]');
+
+[...componentFiles, ...guideFiles].forEach(file => {
+  const src = stripNonProse(fs.readFileSync(file, 'utf8'));
+  const heads = [];
+  const at = idx => src.slice(0, idx).split('\n').length;
+  for (const m of src.matchAll(/^(#{1,6})\s+/gm)) heads.push({ idx: m.index, lvl: m[1].length, how: 'md' });
+  for (const m of src.matchAll(/<h([1-6])[ \t\r\n>]/g)) heads.push({ idx: m.index, lvl: Number(m[1]), how: 'h' + m[1] });
+  for (const m of src.matchAll(new RegExp(emitterRe.source, 'g'))) {
+    heads.push({ idx: m.index, lvl: HEADING_EMITTERS[m[1]], how: '<' + m[1] + '/>' });
+  }
+  if (heads.length === 0) return;
+  heads.sort((a, b) => a.idx - b.idx);
+
+  if (heads[0].lvl !== 1) {
+    console.log(`[FAIL] ${file}:${at(heads[0].idx)} starts at h${heads[0].lvl} (${heads[0].how}) — the page has no h1.`);
+    allPass = false;
+  }
+  let prev = heads[0].lvl;
+  for (const h of heads.slice(1)) {
+    if (h.lvl > prev + 1) {
+      console.log(`[FAIL] ${file}:${at(h.idx)} skips a heading level: h${prev} -> h${h.lvl} (${h.how}).`);
+      allPass = false;
+    }
+    prev = h.lvl;
+  }
+});
+
+// 上の表が腐らないようにする。MDX で使われている自作コンポーネントが見出しを
+// 描くようになったら、この検査は**そのコンポーネントを無視したまま緑になる**ので、
+// 表に無い emitter が現れたらここで止める。
+{
+  const localComponents = new Map();
+  const walkTsx = dir => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkTsx(full);
+      else if (entry.name.endsWith('.tsx')) {
+        const body = fs.readFileSync(full, 'utf8');
+        if (/<h[1-6][ \t\r\n>]/.test(body)) localComponents.set(path.basename(entry.name, '.tsx'), full);
+      }
+    }
+  };
+  ['stories', 'src'].filter(d => fs.existsSync(d)).forEach(walkTsx);
+
+  const usedInMdx = new Map();
+  [...componentFiles, ...guideFiles].forEach(file => {
+    const src = stripNonProse(fs.readFileSync(file, 'utf8'));
+    for (const m of src.matchAll(/<([A-Z][A-Za-z0-9_]*)[ \t\r\n/>]/g)) {
+      if (!usedInMdx.has(m[1])) usedInMdx.set(m[1], file);
+    }
+  });
+
+  for (const [name, tsxPath] of localComponents) {
+    if (!usedInMdx.has(name) || HEADING_EMITTERS[name]) continue;
+    console.log(
+      `[FAIL] <${name}/> (${tsxPath}) renders a heading and is used in MDX (${usedInMdx.get(name)}), but HEADING_EMITTERS in this file does not list it — the hierarchy check would silently ignore it.`,
+    );
+    allPass = false;
+  }
+}
+
 console.log('\n--- Auditing I18n File Governance ---');
 const localeFiles = globSync('public/locales/en/*.json', { posix: true });
 localeFiles.forEach(file => {

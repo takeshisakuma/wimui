@@ -9,7 +9,7 @@ import { T } from "../stories/T";
   <h1><T k="presets.doc_title" /></h1>
   <p className="lead"><T k="presets.doc_intro" /></p>
 
-  <h3><T k="presets.usage_title" /></h3>
+  <h2><T k="presets.usage_title" /></h2>
   <p><T k="presets.usage_desc" /></p>
   <Command>{`import { WimProvider } from "wimui";
 
@@ -26,14 +26,14 @@ import { T } from "../stories/T";
 import { setWimPreset, WIM_PRESETS } from "wimui";
 setWimPreset("bold"); // "minimal" | "soft" | "bold" | "none"`}</Command>
 
-  <h3><T k="presets.list_title" /></h3>
+  <h2><T k="presets.list_title" /></h2>
   <p><T k="presets.list_desc" /></p>
 </div>
 
 <Canvas of={PresetStories.Overview} />
 
 <div className="presets-doc">
-  <h3><T k="presets.extend_title" /></h3>
+  <h2><T k="presets.extend_title" /></h2>
   <p><T k="presets.extend_desc" /></p>
   <Command>{`// tokens/presets/ocean.json
 {
@@ -56,6 +56,6 @@ setWimPreset("bold"); // "minimal" | "soft" | "bold" | "none"`}</Command>
   }
   .presets-doc h1 { font-size: var(--wim-font-size-3xl); font-weight: 700; margin: var(--wim-spacing-3xl) 0 var(--wim-spacing-2xl); }
   .presets-doc .lead { font-size: 16px; line-height: 1.7; color: var(--wim-color-text-secondary); }
-  .presets-doc h3 { margin-top: var(--wim-spacing-4xl); margin-bottom: var(--wim-spacing-xl); font-size: var(--wim-font-size-xl); }
+  .presets-doc h2 { margin-top: var(--wim-spacing-4xl); margin-bottom: var(--wim-spacing-xl); font-size: var(--wim-font-size-xl); }
   `}
 </style>
