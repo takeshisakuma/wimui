@@ -1,0 +1,27 @@
+<style>
+  /*
+    モバイルでサイドバーの末尾 2 項目に届かない件の修正。
+
+    Storybook の manager は `body { position: fixed; width: 100vw; height: 100vh }`
+    で、**モバイルのナビゲーションドロワーはこの body の下端に貼り付く**
+    （`position: absolute; bottom: 0`、高さ 624px 固定）。
+
+    Chrome Android の `100vh` は**大ビューポート**（URL バーが隠れている状態）なので、
+    URL バーが出ていると body の下端は可視領域より 56dp 下にある。ドロワーは
+    そこに貼り付いたまま、自分の下端までしかスクロールできないため、
+    **末尾 56px ＝ 行 28px × 2 項目が原理的に選べない**。
+
+    実測（`storybook-static` を 411×780 で配信し、body の高さだけ入れ替えた A/B）:
+      body 836px（＝ 100vh 相当）… ドロワー top=212 / bottom=836 → 56px が画面外
+      body 780px（＝ 100dvh）    … ドロワー top=156 / bottom=780 → 全部見える
+
+    Storybook 自身もモバイルの本体レイアウト（`.sb-mobile` 相当のコンテナ）には
+    すでに `height: 100dvh` を使っている。**body だけが `100vh` のまま**なので、
+    そこへ合わせる。`html body` にしているのは、emotion が実行時に流し込む
+    `body { … }` より詳細度を 1 つ上げて、挿入順に依存せず勝たせるため。
+    デスクトップでは `dvh` と `vh` が一致するので影響しない。
+  */
+  html body {
+    height: 100dvh;
+  }
+</style>
