@@ -118,8 +118,10 @@ export const Controlled: Story = {
           onChange={(e) => setPos(Number(e.target.value))}
           aria-label={t("story.imagecompare_position_label")}
           // `input[type=range]` は既定で `margin: 2px` を持つので、幅を目一杯に
-          // するとその 4px だけページがはみ出す（T218・実測 +4px）。margin を消す。
-          style={{ width: "min(480px, 100vw - 2rem)", margin: 0 }}
+          // するとその 4px だけページがはみ出す（T218・実測 +4px）。
+          // **margin を消すと 1280px の描画も変わる**（VRT が 2 枚落ちた）ので、
+          // 消さずに**その 4px を幅から引く**。1280px では 480px のまま。
+          style={{ width: "min(480px, 100vw - 2rem - 4px)" }}
         />
       </div>
     );
