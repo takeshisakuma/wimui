@@ -61,6 +61,14 @@ const checks = [
   },
   {
     category: "docs",
+    // 本文に素で書かれたトークン名は `check-scss-token-refs.js` の対象外
+    // （あれは `var(--wim-…)` という書き方を見る）。読み手がそのままコピーする
+    // 場所なので、実在しない名前は「効かない CSS」を配っているのと同じ。
+    name: "Doc token references resolve",
+    command: "node scripts/check-doc-token-refs.js",
+  },
+  {
+    category: "docs",
     name: "Storybook Hierarchy Depth",
     command: "node scripts/check_hierarchy.js",
   },

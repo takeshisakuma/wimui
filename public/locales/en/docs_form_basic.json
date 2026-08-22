@@ -266,7 +266,7 @@
     "passwordStrength_scenario_1_title": "User Registration",
     "passwordStrength_test_desc": "VRT covers color transitions for all 5 levels (0-4).",
     "passwordStrength_title": "Password security level visualization",
-    "passwordStrength_tokens_desc": "Uses semantic intent colors for different levels: --wim-color-intent-danger (weak) to --wim-color-intent-success (strong).",
+    "passwordStrength_tokens_desc": "Uses the semantic state colors: --wim-color-danger (weak), --wim-color-warning (fair), and --wim-color-success (strong).",
     "radio_a11y_group": "Wrap in role=\"radiogroup\" to tell assistive technologies that the choices are related.",
     "radio_a11y_keyboard": "Move between items using arrow keys; selection changes automatically.",
     "radio_anatomy_button": "The center dot indicating the selection state, mimicking traditional physical buttons.",

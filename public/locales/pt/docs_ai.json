@@ -76,7 +76,7 @@
   "doc.codeblock_kb_activate": "Ativar botões ou seletores.",
   "doc.codeblock_kb_arrows": "Rolar o conteúdo do código horizontalmente, se necessário.",
   "doc.codeblock_kb_tab": "Navegar entre o botão Copiar, o seletor Expandir/Recolher e a área de rolagem do conteúdo do código.",
-  "doc.codeblock_motion_desc": "As transições de expansão/recolhimento usam animações de grade CSS com o token --wim-duration-normal. O ícone de chevron gira 180 graus para indicar a mudança de estado.",
+  "doc.codeblock_motion_desc": "As transições de expansão/recolhimento usam animações de grade CSS com o token --wim-duration-fast. O ícone de chevron gira 180 graus para indicar a mudança de estado.",
   "doc.codeblock_practice_1": "Desative o botão de cópia se o código estiver vazio ou se o recurso não for aplicável ao contexto.",
   "doc.codeblock_practice_2": "Use o callback onCopy para disparar análises ou notificações de toast personalizadas.",
   "doc.codeblock_practice_3": "Certifique-se de que a cor de fundo do CodeBlock contraste bem com o fundo da aplicação ao redor.",
