@@ -36,7 +36,9 @@ export const Default: Story = {
   },
   args: {
     src: vibrantLandscape,
-    width: 400,
+    // 1280px では 400px のまま。390px では画面に収まる（T218）。
+    // `Image` は `maxWidth: width` + `width: 100%` で描くので、上限だけ絞ればよい。
+    width: "min(400px, 100vw - 2rem)",
   },
 };
 
@@ -434,7 +436,8 @@ export const BlendingEffects: Story = {
               下位 5% 8.47 / 3 未満は 1.7%。`imagesanple` は数値だけなら最良だが
               色バケットが 8 しかない実質フラットな画像で、ブレンドのデモにならない。
               **文言と blend の指定は変えていない。** */}
-          <div style={{ position: "relative", width: "400px" }}>
+          {/* T218: 390px で収まるように上限だけ絞る（1280px では 400px のまま）。 */}
+          <div style={{ position: "relative", width: "min(400px, 100vw - 2rem)" }}>
             <Image
               {...args}
               src={galleryCity}
