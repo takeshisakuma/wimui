@@ -31,7 +31,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     text-transform: uppercase;
     letter-spacing: -0.02em;
   }
-  .tone-header h3 {
+  .tone-header h2 {
     margin: 0;
     font-size: var(--wim-font-size-xl);
     font-weight: 600;
@@ -46,7 +46,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <div className="tone-section">
   <div className="tone-header">
     <span className="tone-symbol"><T k="tone.achromatic" /></span>
-    <h3><T k="tone.achromatic" /></h3>
+    <h2><T k="tone.achromatic" /></h2>
   </div>
 
   <ColorGrid variant="square">
@@ -91,7 +91,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <div className="tone-section" key={tone.symbol}>
 <div className="tone-header">
 <span className="tone-symbol">{tone.symbol}</span>
-<h3>{tone.name} Tone (<T k={tone.key} />)</h3>
+<h2>{tone.name} Tone (<T k={tone.key} />)</h2>
 </div>
 <ColorGrid variant="square">
 {tone.colors.map((hex, i) => (
