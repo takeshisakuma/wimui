@@ -942,10 +942,20 @@ export const FeatureComparison: StoryObj = {
     ];
 
     const Check = () => (
-      <Icon component={CheckIcon} color="success" size="sm" />
+      <Icon
+        component={CheckIcon}
+        color="success"
+        size="sm"
+        aria-label={t("docs_stories_recipes:feature_comparison.included")}
+      />
     );
     const Cross = () => (
-      <Icon component={CloseIcon} color="disabled" size="sm" />
+      <Icon
+        component={CloseIcon}
+        color="disabled"
+        size="sm"
+        aria-label={t("docs_stories_recipes:feature_comparison.not_included")}
+      />
     );
 
     const renderValue = (val: boolean | string) => {
@@ -962,16 +972,18 @@ export const FeatureComparison: StoryObj = {
     return (
       <Box py="3xl" px="xl" style={{ background: "var(--wim-color-surface-app)" }}>
         <style>{`
-          @media (max-width: 480px) {
-            .wim-feature-comparison-table td,
-            .wim-feature-comparison-table th {
-              padding: var(--wim-spacing-md) var(--wim-spacing-sm) !important;
-            }
-            .wim-feature-comparison-table button {
-              padding-left: var(--wim-spacing-sm) !important;
-              padding-right: var(--wim-spacing-sm) !important;
-              font-size: var(--wim-font-size-xs) !important;
-            }
+          /* T216: 4 列の表は 768px を下回ると列が潰れる（実測 390px で機能名の
+             列が 55.77px・1 行 116.53px。入れ子が深い Audit の一覧では
+             列 26.08px・行 375.31px）。角丸のために表を overflow: hidden の箱へ
+             直接入れているので横スクロールにも逃げられない。
+             同じファイルの ComparisonTable と同じ「狭幅はカード」へ切り替える
+             （DESIGN.md「テーブルは内部スクロールで済ませず狭幅モードを明示する」）。 */
+          .fc-cards { display: none; flex-direction: column; gap: var(--wim-spacing-2xl); }
+          .fc-card-group { display: flex; flex-direction: column; gap: var(--wim-spacing-sm); }
+          .fc-card-row { display: flex; justify-content: space-between; align-items: center; }
+          @media (max-width: 767px) {
+            .fc-matrix { display: none; }
+            .fc-cards { display: flex; }
           }
         `}</style>
         <Container style={{ maxWidth: "1000px" }}>
@@ -984,7 +996,76 @@ export const FeatureComparison: StoryObj = {
             </Text>
           </Stack>
 
+          {/* 狭幅: 機能 1 つ = カード 1 枚。4 列の表は 768px 未満で列が潰れる。 */}
+          <div className="fc-cards">
+            {features.map((cat, i) => (
+              <div className="fc-card-group" key={i}>
+                <Text size="xs" weight="bold" color="primary">
+                  {cat.category}
+                </Text>
+                {cat.items.map((item, j) => (
+                  <Card key={j} padding="md" variant="outline">
+                    <Stack gap="sm">
+                      <Text size="sm" weight="bold">
+                        {item.name}
+                      </Text>
+                      <div className="fc-card-row">
+                        <Text size="sm" color="secondary">
+                          {t("docs_stories_recipes:feature_comparison.col_starter")}
+                        </Text>
+                        {renderValue(item.starter)}
+                      </div>
+                      <div className="fc-card-row">
+                        <Text size="sm" color="secondary">
+                          {t("docs_stories_recipes:feature_comparison.col_pro")}
+                        </Text>
+                        {renderValue(item.pro)}
+                      </div>
+                      <div className="fc-card-row">
+                        <Text size="sm" color="secondary">
+                          {t("docs_stories_recipes:feature_comparison.col_enterprise")}
+                        </Text>
+                        {renderValue(item.enterprise)}
+                      </div>
+                    </Stack>
+                  </Card>
+                ))}
+              </div>
+            ))}
+
+            {/* 表の tfoot にある申し込み導線。狭幅でも落とさない。 */}
+            <Card padding="md" variant="outline">
+              <Stack gap="sm">
+                <div className="fc-card-row">
+                  <Text size="sm" weight="bold">
+                    {t("docs_stories_recipes:feature_comparison.col_starter")}
+                  </Text>
+                  <Button variant="outline" size="sm">
+                    {t("docs_stories_recipes:feature_comparison.btn_started")}
+                  </Button>
+                </div>
+                <div className="fc-card-row">
+                  <Text size="sm" weight="bold">
+                    {t("docs_stories_recipes:feature_comparison.col_pro")}
+                  </Text>
+                  <Button variant="solid" size="sm">
+                    {t("docs_stories_recipes:feature_comparison.btn_started")}
+                  </Button>
+                </div>
+                <div className="fc-card-row">
+                  <Text size="sm" weight="bold">
+                    {t("docs_stories_recipes:feature_comparison.col_enterprise")}
+                  </Text>
+                  <Button variant="outline" size="sm">
+                    {t("docs_stories_recipes:pricing.contact")}
+                  </Button>
+                </div>
+              </Stack>
+            </Card>
+          </div>
+
           <Box
+            className="fc-matrix"
             radius="container"
             shadow="sm"
             style={{
