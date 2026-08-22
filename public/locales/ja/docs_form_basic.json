@@ -251,7 +251,7 @@
     "passwordStrength_scenario_1_title": "ユーザー登録",
     "passwordStrength_test_desc": "VRT（画像比較テスト）により、全5レベル（0-4）の色の遷移をカバーしています。",
     "passwordStrength_title": "パスワード強度メーター",
-    "passwordStrength_tokens_desc": "各レベルにセマンティックなインテントカラーを使用します: --wim-color-intent-danger (弱い) から --wim-color-intent-success (強い) まで。",
+    "passwordStrength_tokens_desc": "状態を表すセマンティックカラーを使用します: --wim-color-danger（弱い）、--wim-color-warning（普通）、--wim-color-success（強い）。",
     "passwordinput_a11y_toggle": "トグルボタンには、その機能を示す明確な aria-label を設定する必要があります。",
     "passwordinput_anatomy_visibility": "パスワードモードとテキストモードを切り替えるための右側のトグルアイコン。",
     "passwordinput_anatomy_visibility_label": "visibility",

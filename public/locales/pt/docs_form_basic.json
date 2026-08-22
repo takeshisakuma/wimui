@@ -251,7 +251,7 @@
     "passwordStrength_scenario_1_title": "Registo de Usuário",
     "passwordStrength_test_desc": "O VRT cobre as transições de cor para todos os 5 níveis (0-4).",
     "passwordStrength_title": "Visualização do nível de segurança da senha",
-    "passwordStrength_tokens_desc": "Utiliza cores de intenção semântica para diferentes níveis: --wim-color-intent-danger (fraca) a --wim-color-intent-success (forte).",
+    "passwordStrength_tokens_desc": "Utiliza as cores semânticas de estado: --wim-color-danger (fraca), --wim-color-warning (razoável) e --wim-color-success (forte).",
     "passwordinput_a11y_toggle": "Indique explicitamente o estado do botão de alternância de visibilidade (mostrar/ocultar) utilizando aria-label para que o modo atual possa ser reconhecido pelas tecnologias de apoio.",
     "passwordinput_anatomy_visibility": "Botão de Alternância de Visibilidade: Alterna entre mascarar (●●●) o conteúdo da entrada e exibi-lo como texto simples.",
     "passwordinput_anatomy_visibility_label": "visibilidade",

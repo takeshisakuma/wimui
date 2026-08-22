@@ -344,6 +344,7 @@
     "check:tokens:update": "node scripts/check-tokens.js --update",
     "check:token-types": "node scripts/check-token-types.js",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
+    "check:doc-tokens": "node scripts/check-doc-token-refs.js",
     "check:imports": "node scripts/check-imports.js",
     "vrt:diff-report": "node scripts/vrt-diff-report.js",
     "check:vrt-orphans": "node scripts/check-vrt-orphans.js",
@@ -628,7 +629,8 @@
       "node scripts/check-mdx-links.js",
       "node scripts/audit-mdx.js",
       "node scripts/check-slop.js",
-      "node scripts/check-story-tokens.js"
+      "node scripts/check-story-tokens.js",
+      "node scripts/check-doc-token-refs.js"
     ],
     "public/locales/**/*.json": [
       "node scripts/sync-i18n.js",
@@ -638,7 +640,8 @@
       "node scripts/check-i18n-aliases.js",
       "node scripts/check-mdx-links.js",
       "node scripts/generate-i18n-resources.js",
-      "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --"
+      "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --",
+      "node scripts/check-doc-token-refs.js"
     ],
     "src/icon/*.svg": [
       "npm run generate:icons",

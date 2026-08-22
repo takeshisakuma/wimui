@@ -76,7 +76,7 @@
   "doc.codeblock_kb_activate": "ボタンまたは切り替えをアクティブにします。",
   "doc.codeblock_kb_arrows": "必要に応じてコードコンテンツを水平方向にスクロールします。",
   "doc.codeblock_kb_tab": "コピーボタン、展開/折りたたみ切り替え、およびコードコンテンツのスクロール領域の間を移動します。",
-  "doc.codeblock_motion_desc": "展開/折りたたみの遷移には、--wim-duration-normalトークンを使用したCSS Gridアニメーションを使用します。シェブロンアイコンは、状態の変化を示すために180度回転します。",
+  "doc.codeblock_motion_desc": "展開/折りたたみの遷移には、--wim-duration-fast トークンを使用した CSS Grid アニメーションを使用します。シェブロンアイコンは、状態の変化を示すために 180 度回転します。",
   "doc.codeblock_practice_1": "コードが空の場合、または機能がコンテキストに適用できない場合は、コピーボタンを無効にしてください。",
   "doc.codeblock_practice_2": "onCopyコールバックを使用して、分析やカスタムトースト通知をトリガーします。",
   "doc.codeblock_practice_3": "CodeBlockの背景色が周囲のアプリケーションの背景と十分にコントラストを保っていることを確認してください。",

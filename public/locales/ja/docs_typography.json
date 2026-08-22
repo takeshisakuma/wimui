@@ -129,7 +129,7 @@
     "span_size_desc": "`size` プロパティでテキストサイズを変更できます。",
     "span_strikethrough": "取り消し線",
     "span_title": "アイコンや短いラベルと組み合わせて使用される、インライン形式のテキストコンテナ",
-    "span_tokens_desc": "--wim-color-text-default, --wim-font-size-md などのタイポグラフィトークンを使用しています。",
+    "span_tokens_desc": "フォントサイズ・ウェイト・行間のタイポグラフィトークンと、文字とアイコンの色トークンを使用しています。",
     "span_with_icon": "アイコン付き",
     "span_with_icon_desc": "`iconName` プロパティでアイコンを表示できます。`iconPosition` で位置を指定します。",
     "spoiler_a11y_desc": "トグルはネイティブの <button> で、現在の状態を示す aria-expanded と、クランプ領域を指す aria-controls を持つため、支援技術は操作と対象の両方を認識できます。切り詰められたテキストは overflow で視覚的に隠れているだけでアクセシビリティツリーからは除去されないため、スクリーンリーダーは常に全文を読み上げられます。展開・折りたたみをまたいでフォーカスはトグル上に保たれ、キーボード位置が安定します。",
