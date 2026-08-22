@@ -12,6 +12,8 @@ import {
   Center,
   Container,
   AppShell,
+  IconButton,
+  Toolbar,
   Text,
 } from "../../src";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
@@ -114,6 +116,19 @@ export const Overview: StoryObj = {
             <Center style={{ height: "150px", background: "var(--wim-color-surface-subtle-alpha)", border: "1px solid var(--wim-color-border)" }}>
               <Placeholder label={t("audit:layout_centered_content")} />
             </Center>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Toolbar Grouping */}
+        <ComparisonGrid title={t("audit:layout_toolbar_check")}>
+          <ComponentGroup label={t("audit:label_toolbar")} align="stretch">
+            <Toolbar aria-label={t("audit:sample_toolbar_label")}>
+              <Toolbar.Group aria-label={t("audit:sample_toolbar_group")}>
+                <IconButton iconName="EditIcon" aria-label={t("action.edit")} variant="ghost" size="sm" />
+                <IconButton iconName="CopyIcon" aria-label={t("action.copy")} variant="ghost" size="sm" />
+                <IconButton iconName="TrashIcon" aria-label={t("action.delete")} variant="ghost" size="sm" />
+              </Toolbar.Group>
+            </Toolbar>
           </ComponentGroup>
         </ComparisonGrid>
 

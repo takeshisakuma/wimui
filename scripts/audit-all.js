@@ -69,6 +69,13 @@ const checks = [
   },
   {
     category: "docs",
+    // 後から入ったコンポーネントは、誰かが思い出して足さない限り Audit の
+    // 家族ページに永久に載らない。増やさないためのラチェット。
+    name: "Audit family coverage (ratchet)",
+    command: "node scripts/check-audit-coverage.js",
+  },
+  {
+    category: "docs",
     name: "Storybook Hierarchy Depth",
     command: "node scripts/check_hierarchy.js",
   },

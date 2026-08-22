@@ -6,6 +6,7 @@ import {
   Title,
   Text,
   Link,
+  Spoiler,
 } from "../../src";
 
 const meta: Meta = {
@@ -49,6 +50,13 @@ export const Overview: StoryObj = {
               </Text>
             </ComponentGroup>
           ))}
+        </ComparisonGrid>
+
+        {/* Spoiler */}
+        <ComparisonGrid title={t("audit:label_spoiler")}>
+          <ComponentGroup label={t("audit:label_spoiler")} align="stretch">
+            <Spoiler>{t("audit:sample_spoiler_body")}</Spoiler>
+          </ComponentGroup>
         </ComparisonGrid>
 
         {/* Link Consistency */}

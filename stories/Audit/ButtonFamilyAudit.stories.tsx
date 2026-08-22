@@ -8,6 +8,7 @@ import {
   LinkButton,
   CopyButton,
   FloatButton,
+  SplitButton,
   Stack,
   Box,
 } from "../../src";
@@ -85,6 +86,21 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_float_button")} direction="row" align="center" wrap>
             <FloatButton iconName="PlusIcon" position="inline" />
             <FloatButton iconName="ChevronUpIcon" variant="outline" position="inline" />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_split_button")} direction="row" align="center" wrap>
+            <SplitButton
+              toggleLabel={t("audit:sample_split_toggle")}
+              actions={[{ label: t("action.copy") }, { label: t("action.delete") }]}
+            >
+              {t("action.save")}
+            </SplitButton>
+            <SplitButton
+              variant="outline"
+              toggleLabel={t("audit:sample_split_toggle")}
+              actions={[{ label: t("action.copy") }, { label: t("action.delete") }]}
+            >
+              {t("action.save")}
+            </SplitButton>
           </ComponentGroup>
         </ComparisonGrid>
 

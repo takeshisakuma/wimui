@@ -345,6 +345,7 @@
     "check:token-types": "node scripts/check-token-types.js",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "check:doc-tokens": "node scripts/check-doc-token-refs.js",
+    "check:audit-coverage": "node scripts/check-audit-coverage.js",
     "check:imports": "node scripts/check-imports.js",
     "vrt:diff-report": "node scripts/vrt-diff-report.js",
     "check:vrt-orphans": "node scripts/check-vrt-orphans.js",
@@ -610,7 +611,8 @@
       "node scripts/check-slop.js",
       "node scripts/check-story-tokens.js",
       "node scripts/check-sandbox-pin.js",
-      "node scripts/check-i18n-aliases.js"
+      "node scripts/check-i18n-aliases.js",
+      "node scripts/check-audit-coverage.js"
     ],
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0 --cache",
@@ -700,6 +702,9 @@
     ],
     "{tokens/**/*.json,src/tokens/_effects.scss,src/components/form/Button/*.scss}": [
       "node scripts/check-contrast-scene.js"
+    ],
+    "src/data/components.json": [
+      "node scripts/check-audit-coverage.js"
     ]
   },
   "dependencies": {
