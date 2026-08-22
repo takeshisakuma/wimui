@@ -1,0 +1,14 @@
+{
+  "comment": "390px でページ自体が横スクロールするストーリー（値は documentElement.scrollWidth - clientWidth）。増やさないための凍結。更新は `npm run narrow:update`（先に build-storybook）。",
+  "known": {
+    "audit-viewportfamily--overview": 769,
+    "components-data-structures-kanban--default": 767,
+    "components-data-structures-kanban--mobile-ui": 471,
+    "components-data-structures-kanban--with-disabled-card": 175,
+    "components-form-layout-fieldtemplate--horizontal": 2,
+    "components-media-image--blending-effects": 42,
+    "components-media-imagecompare--controlled": 4,
+    "components-navigation-utilities-speeddial--right-direction": 134,
+    "components-selection-controls-segmentedcontrol--long-label": 9
+  }
+}
