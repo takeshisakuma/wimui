@@ -33,7 +33,7 @@ export const Small: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "100%", maxWidth: "600px" }}>
+      <div style={{ width: "100%", maxWidth: "min(600px, 100vw - 2rem)" }}>
         <Story />
       </div>
     ),
@@ -67,7 +67,7 @@ export const Medium: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "100%", maxWidth: "600px" }}>
+      <div style={{ width: "100%", maxWidth: "min(600px, 100vw - 2rem)" }}>
         <Story />
       </div>
     ),
@@ -101,7 +101,7 @@ export const Large: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "100%", maxWidth: "600px" }}>
+      <div style={{ width: "100%", maxWidth: "min(600px, 100vw - 2rem)" }}>
         <Story />
       </div>
     ),
@@ -224,7 +224,7 @@ export const LongLabel: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "100%", maxWidth: "600px" }}>
+      <div style={{ width: "100%", maxWidth: "min(600px, 100vw - 2rem)" }}>
         <Story />
       </div>
     ),

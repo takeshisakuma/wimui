@@ -19,7 +19,18 @@ export type SpeedDialProps = React.ComponentPropsWithoutRef<"div"> & {
   icon?: IconName;
   /** Icon name for the main button when open */
   activeIcon?: IconName;
-  /** Direction in which actions expand */
+  /**
+   * Direction in which actions expand.
+   *
+   * **The caller picks a direction that has room.** Actions are placed with
+   * plain CSS (`left: 100%` and friends) and are never measured, so this
+   * component does not flip when the viewport runs out — a `right` dial placed
+   * near the right edge pushes the page into a horizontal scroll. Anchor a
+   * `right` dial to the leading edge (and a `left` one to the trailing edge);
+   * `up` / `down` already grow inward from the trailing corner (T175).
+   *
+   * @default "up"
+   */
   direction?: "up" | "down" | "left" | "right";
   /** Trigger mode to open the SpeedDial */
   trigger?: "hover" | "click";
