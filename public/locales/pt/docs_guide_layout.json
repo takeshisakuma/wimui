@@ -57,6 +57,7 @@
     "layout_header_content": "Recomendado: Logotipo, busca global, notificações, perfil do usuário, navegação de alto nível",
     "layout_header_desc": "Fornece contexto para todo o aplicativo e acesso a ações globais. Deve incluir recursos acessíveis de qualquer lugar.",
     "layout_header_title": "Cabeçalho",
+    "layout_main_content": "Recomendado: Tabelas e listas de dados, formulários, visualizações de detalhes, widgets de painel",
     "layout_main_desc": "A área central onde os usuários realizam tarefas. A exibição de dados e as operações acontecem aqui.",
     "layout_main_title": "Conteúdo Principal",
     "layout_overlay_content": "Recomendado: Toasts, Diálogos (Modais), Tooltips",

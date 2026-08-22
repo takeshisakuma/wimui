@@ -69,14 +69,12 @@ from the file.`}</Command>
 
   <h3><T k="withai.includes_title" /></h3>
   <p><T k="withai.includes_desc" /></p>
-  <table>
-    <tbody>
-      <tr><td><T k="withai.inc_setup" /></td></tr>
-      <tr><td><T k="withai.inc_imports" /></td></tr>
-      <tr><td><T k="withai.inc_catalog" /></td></tr>
-      <tr><td><T k="withai.inc_composition" /></td></tr>
-    </tbody>
-  </table>
+  <ul>
+    <li><T k="withai.inc_setup" /></li>
+    <li><T k="withai.inc_imports" /></li>
+    <li><T k="withai.inc_catalog" /></li>
+    <li><T k="withai.inc_composition" /></li>
+  </ul>
   <p className="note"><T k="withai.note_version" /></p>
 </div>
 
@@ -122,6 +120,17 @@ from the file.`}</Command>
     border-left: 2px solid var(--wim-color-border-secondary);
     padding-left: var(--wim-spacing-xl);
     margin-top: var(--wim-spacing-3xl);
+  }
+
+  .withai-container ul {
+    padding-left: var(--wim-spacing-3xl);
+    margin-bottom: var(--wim-spacing-2xl);
+  }
+
+  .withai-container li {
+    margin-bottom: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    line-height: 1.6;
   }
 
   .withai-container table {

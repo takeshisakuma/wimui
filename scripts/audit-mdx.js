@@ -201,6 +201,50 @@ console.log('\n--- Auditing Markdown Format Rules ---');
   });
 });
 
+console.log('\n--- Auditing Table Structure ---');
+// 1 列しかない <table> は表ではない。列が 1 本ならセル同士を突き合わせる軸が無く、
+// 罫線で囲まれた箇条書きにしかならない（読み上げも「表」と宣言してから意味の無い
+// 行を読む）。列が 1 本なら <ul><li> に、見出し付きで 1 行しか無いなら隣の節と
+// 同じ列構成に揃えること。
+//
+// 入れ子の表が実在するので（docs/NumericInputStandardization.mdx）、深さを持って
+// 走査し、セルは「いま開いている一番内側の表」に数える。
+const scanTables = content => {
+  const found = [];
+  const stack = [];
+  for (const m of content.matchAll(/<table[\s>]|<\/table>|<tr[\s>]|<\/tr>|<t[dh][\s>]/g)) {
+    const tag = m[0];
+    if (tag.startsWith('<table')) {
+      stack.push({ line: content.slice(0, m.index).split('\n').length, rows: 0, cells: 0, maxCells: 0 });
+      continue;
+    }
+    const top = stack[stack.length - 1];
+    if (!top) continue;
+    if (tag === '</table>') {
+      found.push(stack.pop());
+    } else if (tag.startsWith('<tr')) {
+      top.rows += 1;
+      top.cells = 0;
+    } else if (tag === '</tr>') {
+      top.cells = 0;
+    } else {
+      top.cells += 1;
+      top.maxCells = Math.max(top.maxCells, top.cells);
+    }
+  }
+  return found;
+};
+
+[...componentFiles, ...guideFiles].forEach(file => {
+  const content = fs.readFileSync(file, 'utf8');
+  scanTables(content).forEach(t => {
+    if (t.maxCells <= 1) {
+      console.log(`[FAIL] ${file}:${t.line} has a single-column <table> (${t.rows} rows). A one-column table is a list — use <ul><li>, or give it the same columns as its sibling tables.`);
+      allPass = false;
+    }
+  });
+});
+
 console.log('\n--- Auditing I18n File Governance ---');
 const localeFiles = globSync('public/locales/en/*.json', { posix: true });
 localeFiles.forEach(file => {
