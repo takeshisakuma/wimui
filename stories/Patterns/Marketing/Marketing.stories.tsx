@@ -106,6 +106,20 @@ export const HeroSection: StoryObj = {
   },
 };
 
+// AI-slop 監査（2026-08-22）で直したのは**コピーだけ**。
+//
+// 最初は「中央揃えの多用」も指摘して全部を左へ倒したが、**それは規則の読み違い**
+// だった（ユーザー指摘）。DESIGN.md は「中央揃え**セクション**は 1 ページ 1 回まで」で、
+// **1 つのグリッドの中で繰り返される 3 枚は、セクション 1 つに対する 1 つの整列判断**。
+// カードごとに数えると「繰り返しの中では中央揃えを一切使えない」ことになり、
+// 四原則の「反復」と衝突する。marketing の他のパターン（hero / feature-section /
+// testimonial / cta-section）は全部左揃えなので、ここが中央でも 1 回に収まる。
+//
+// 実際に直したのは 2 つ:
+//   ① 汎用マーケ調の説明文（"Perfect for individuals just getting started." 等）
+//   ② 禁止表に名指しされている CTA "Get Started"
+//
+// 3 段という数と「推奨プランの強調」は**内容から来ている**ので据え置き。
 export const PricingTable: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -421,7 +435,16 @@ export const Testimonial: StoryObj = {
                   style={{ lineHeight: 1.6 }}
                 />
                 <Stack direction="row" align="center" gap="md">
-                  <Avatar size="md" />
+                  {/* 同じ灰色の人型アイコンを 3 枚並べると「置き換え待ち」に見える
+                      （DESIGN.md のセルフレビュー）。名前からイニシャルを出す。 */}
+                  <Avatar
+                    size="md"
+                    initials={p.name
+                      .split(" ")
+                      .map((w) => w[0])
+                      .join("")}
+                    alt={p.name}
+                  />
                   <Stack gap="none">
                     <Text
                       content={p.name}
