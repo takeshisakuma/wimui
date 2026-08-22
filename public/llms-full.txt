@@ -2060,7 +2060,16 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `actions: SpeedDialAction[]` (required) — Actions to display when SpeedDial is open
     - `icon: keyof typeof ALL_ICONS` = "PlusIcon" — Icon name for the main button when closed
     - `activeIcon: keyof typeof ALL_ICONS` = "CloseIcon" — Icon name for the main button when open
-    - `direction: "up" | "down" | "left" | "right"` = "up" — Direction in which actions expand
+    - `direction: "up" | "down" | "left" | "right"` = "up" — Direction in which actions expand.
+
+**The caller picks a direction that has room.** Actions are placed with
+plain CSS (`left: 100%` and friends) and are never measured, so this
+component does not flip when the viewport runs out — a `right` dial placed
+near the right edge pushes the page into a horizontal scroll. Anchor a
+`right` dial to the leading edge (and a `left` one to the trailing edge);
+`up` / `down` already grow inward from the trailing corner (T175).
+
+@default "up"
     - `trigger: "hover" | "click"` = "hover" — Trigger mode to open the SpeedDial
     - `open: boolean` — Controlled open state
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes

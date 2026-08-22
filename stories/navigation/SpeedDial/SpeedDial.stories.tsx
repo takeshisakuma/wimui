@@ -46,6 +46,17 @@ export const RightDirection: Story = {
     direction: "right",
     trigger: "hover",
   },
+  // T218: 右へ開くダイヤルは**先頭側に置くもの**。共通のデコレータ（中央寄せ）の
+  // ままだと、390px でアクションが画面の外へ出てページが 134px 横スクロールする
+  // （実測）。`SpeedDial` は配置を測らないので**フリップしない** ── 向きに見合う
+  // 場所へ置くのは呼ぶ側の責任で、それを見せる形にする（`direction` の JSDoc）。
+  decorators: [
+    (Story) => (
+      <Flex align="center" justify="start" style={{ minHeight: "300px", width: "100%" }}>
+        <Story />
+      </Flex>
+    ),
+  ],
 };
 
 export const CustomIcons: Story = {
