@@ -12,6 +12,7 @@ import {
   Box,
   Button,
   Progress,
+  ProgressRing,
   Spinner,
   Loader,
   LoadingOverlay,
@@ -82,6 +83,12 @@ export const Overview: StoryObj = {
               <Progress value={90} intent="danger" label={t("audit:sample_progress_error")} showValue />
               <Progress indeterminate label={t("audit:sample_progress_processing")} />
             </Stack>
+          </ComponentGroup>
+
+          <ComponentGroup label={t("audit:label_progress_ring")} direction="row" gap="xl" wrap>
+            <ProgressRing value={30} showValue label={t("audit:sample_progress_uploading")} />
+            <ProgressRing value={70} intent="success" showValue label={t("audit:sample_progress_success")} />
+            <ProgressRing indeterminate label={t("audit:sample_progress_processing")} />
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_loader")} direction="row" gap="xl" wrap>

@@ -5,10 +5,30 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Badge,
   Chip,
+  Countdown,
+  RelativeTime,
   Tag,
   Text,
 } from "../../src";
 import type { IndicatorIntent, IndicatorVariant } from "../../src/types/tokens";
+
+/** 撮影時の基準時刻（`vrt/vrt.spec.ts` の setFixedTime と同じ）。 */
+const VRT_NOW = new Date("2024-01-01T00:00:00Z");
+
+const isVrt = () =>
+  // @ts-expect-error: __VRT__ is a custom global flag for testing
+  typeof window !== "undefined" && Boolean(window.__VRT__);
+
+const minutesAgo = (m: number) =>
+  new Date((isVrt() ? VRT_NOW.getTime() : Date.now()) - m * 60_000);
+const secondsLater = (s: number) =>
+  new Date((isVrt() ? VRT_NOW.getTime() : Date.now()) + s * 1000);
+
+/** VRT では表現が塗り替わらないように止める。 */
+const vrtFreeze = (): { baseDate?: Date; live?: boolean } =>
+  isVrt() ? { baseDate: VRT_NOW, live: false } : {};
+const vrtBase = (): { baseDate?: Date; paused?: boolean } =>
+  isVrt() ? { baseDate: VRT_NOW, paused: true } : {};
 
 const meta: Meta = {
   title: "Audit/IndicatorFamily",
@@ -119,6 +139,17 @@ export const Overview: StoryObj = {
         </ComparisonGrid>
 
         {/* Special States */}
+        <ComparisonGrid title={t("audit:label_time_indicators")}>
+          <ComponentGroup label={t("audit:label_relative_time")} direction="row" gap="xl" wrap>
+            <RelativeTime date={minutesAgo(3)} {...vrtFreeze()} />
+            <RelativeTime date={minutesAgo(60 * 5)} {...vrtFreeze()} />
+            <RelativeTime date={minutesAgo(60 * 24 * 3)} {...vrtFreeze()} />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_countdown")} direction="row" gap="xl" wrap>
+            <Countdown target={secondsLater(4 * 3600 + 12 * 60 + 33)} {...vrtBase()} />
+          </ComponentGroup>
+        </ComparisonGrid>
+
         <ComparisonGrid title={t("audit:label_special_states_interactions")}>
           <ComponentGroup label={t("audit:label_interactive_chips_tags")} direction="row" wrap>
             <Chip onClick={() => alert("Clicked")}>{t("audit:label_clickable_chip")}</Chip>

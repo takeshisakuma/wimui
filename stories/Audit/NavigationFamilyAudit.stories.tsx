@@ -5,6 +5,7 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Breadcrumb,
   Stepper,
+  Menubar,
   Pagination,
   Tabs,
   TabsList,
@@ -82,6 +83,25 @@ export const Overview: StoryObj = {
               showQuickJumper
               showTotal={(total) => `Total ${total} items`}
             />
+          </ComponentGroup>
+
+          <ComponentGroup label={t("audit:label_menubar")} align="start">
+            <Menubar aria-label={t("audit:sample_menubar_label")}>
+              <Menubar.Menu value="file">
+                <Menubar.Trigger>{t("audit:sample_menubar_file")}</Menubar.Trigger>
+                <Menubar.Content>
+                  <Menubar.Item>{t("audit:sample_menubar_new")}</Menubar.Item>
+                  <Menubar.Item>{t("audit:sample_menubar_open")}</Menubar.Item>
+                </Menubar.Content>
+              </Menubar.Menu>
+              <Menubar.Menu value="edit">
+                <Menubar.Trigger>{t("action.edit")}</Menubar.Trigger>
+                <Menubar.Content>
+                  <Menubar.Item>{t("action.copy")}</Menubar.Item>
+                  <Menubar.Item>{t("action.delete")}</Menubar.Item>
+                </Menubar.Content>
+              </Menubar.Menu>
+            </Menubar>
           </ComponentGroup>
 
           <ComponentGroup label={t("audit:label_breadcrumbs")}>
