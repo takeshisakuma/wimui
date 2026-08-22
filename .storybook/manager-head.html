@@ -56,9 +56,19 @@
 />
 <meta property="og:url" content="https://takeshisakuma.github.io/wimui/" />
 <!--
-  `og:image` は**置いていない**。手元にあるのは `public/wimlogo.svg`（SVG は
-  主要な OGP 消費側が描かない）と `public/images/sample-landscape.png`（デモ用の
-  写真）だけで、**サイトの顔として正しい画像が無い**。無い画像を指すより、
-  無いままのほうが良い。作るなら別途（1200×630 の PNG）。
+  `og:image` は**絶対 URL でなければならない**（OGP は相対パスを解決しない）。
+  実体は `public/images/og-image.png` ── `public/images/` に置いてあるのは、
+  ライブラリのビルドが `public/` を丸ごと `dist/` へコピーし、
+  `scripts/prune-dist-assets.js` が `demo/` / `images/` / `wimlogo.svg` を
+  名指しで刈るため。**直下に置くと npm パッケージに同梱されてしまう。**
+
+  幅・高さは**実測値**（1200×630 ＝ 比率 1.905）で、OGP の推奨（1.91:1）と一致する。
+  `check:readme-claims` が**実ファイルの寸法と一致するか**を見張る ── 宣言と実物が
+  ずれても共有カードが崩れるだけで**赤は出ない**ため。
 -->
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://takeshisakuma.github.io/wimui/images/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="WIM UI — React component library" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://takeshisakuma.github.io/wimui/images/og-image.png" />
