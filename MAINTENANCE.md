@@ -32,8 +32,21 @@ minor / patch はグループ PR をマージしてよい（`CLAUDE.md` の委�
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `i18next-http-backend` 4 | `storybook-react-i18next` の peer 宣言 | 同上 |
+| `vitest` + `@vitest/*` 4.1.11 | **互換性ではなく npm の解決の問題。** `vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて、増分解決では置き換えられない（2026-08-22 実測） | **Dependabot のグループ PR を待つ**。手で上げようとしないこと |
 | `@changesets/cli` 3 | `changesets/action@v1` が `changeset publish` の stdout を `/New tag:/` で読むが、cli 3 はその行を出さない（2026-08-16 調査） | **単独では判定しない。** cli 3 + `changesets/action@v2` + `release.yml` の入力名（`version` → `version-script` / `publish` → `publish-script`）を**同時に**変える覚悟があるか |
 
+> **`vitest` 系は「手で上げようとして時間を溶かす」型。** 2026-08-22 に 3 通り試して全部だめだった:
+>
+> | やり方 | 結果 |
+> |---|---|
+> | 4 つまとめて `npm install` | **ERESOLVE**（`vitest@4.1.10` の peerOptional が `@vitest/browser-playwright@"4.1.10"` を厳密ピン） |
+> | `vitest` だけ 1 本で（storybook で効いた順番） | **5 分応答なし**（再現性あり） |
+> | `npm install --package-lock-only` | **ERESOLVE** |
+>
+> 残る道はロック全体の作り直し（`rm -rf node_modules package-lock.json`）だが、**patch 1 つのために全依存の解決をやり直す**ことになり、レビューできない差分が出る。
+> **Dependabot は自前の解決器でロックを作り直すので、グループ PR に任せる。**
+> なお **storybook で効いた「ピンの根元から 1 本ずつ」は、ここでは効かない** ── あちらは一方向の peer（addon → storybook）だったが、こちらは**相互に厳密ピンした輪**である。
+>
 > **`@changesets/cli` 3 は「上げると赤が出ずにリリースが壊れる」型。** `changesets/action@v1` は publish の標準出力を正規表現で読んで publish 済みを判定している（`src/run.ts`: `let newTagRegex = /New tag:/`）。cli 3.0.0 の dist にはこの文字列が無く、代わりに `Creating git tags...` を出す。したがって **npm publish は成功したまま `published: false` と判定され、`git.pushTag` と GitHub Release の作成が丸ごとスキップされる**。ワークフローは緑で終わる。実際この 2 つは動いており（`v0.23.16` の Release と タグが存在する）、止まっても誰も気付かない。
 >
 > action v2 は NDJSON の構造化イベント（`type: "git-tag"`）で判定するため **cli 3 とセットでしか動かない**（v2 は cli 2 を検出して v1 へ誘導する）。片方だけ上げる道は無い。
