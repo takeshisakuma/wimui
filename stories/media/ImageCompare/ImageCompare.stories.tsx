@@ -50,7 +50,7 @@ const meta: Meta<typeof ImageCompare> = {
   },
   args: {
     after: PHOTO,
-    width: "min(480px, 100%)",
+    width: "min(480px, 100vw - 2rem)",
     height: 300,
   },
 };
@@ -117,7 +117,7 @@ export const Controlled: Story = {
           value={pos}
           onChange={(e) => setPos(Number(e.target.value))}
           aria-label={t("story.imagecompare_position_label")}
-          style={{ width: "min(480px, 100%)" }}
+          style={{ width: "min(480px, 100vw - 2rem)" }}
         />
       </div>
     );

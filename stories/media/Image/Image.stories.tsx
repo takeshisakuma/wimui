@@ -149,7 +149,7 @@ export const Glassmorphism: Story = {
         <div
           style={{
             position: "relative",
-            width: "min(600px, 100%)",
+            width: "min(600px, 100vw - 2rem)",
             height: "300px",
             overflow: "hidden",
             borderRadius: "12px",

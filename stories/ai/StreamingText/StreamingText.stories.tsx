@@ -23,7 +23,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ width: "min(560px, 100%)" }}>
+      <div style={{ width: "min(560px, 100vw - 2rem)" }}>
         <StreamingText {...args} content={args.content ?? t("story.streamingtext_sample")} />
       </div>
     );
@@ -57,7 +57,7 @@ export const Streaming: Story = {
 
     const isStreaming = displayed.length < full.length;
     return (
-      <div style={{ width: "min(560px, 100%)" }}>
+      <div style={{ width: "min(560px, 100vw - 2rem)" }}>
         <StreamingText {...args} content={displayed} isStreaming={isStreaming} />
       </div>
     );
@@ -69,7 +69,7 @@ export const WithCursor: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ width: "min(560px, 100%)" }}>
+      <div style={{ width: "min(560px, 100vw - 2rem)" }}>
         <StreamingText {...args} content={args.content ?? t("story.streamingtext_thinking")} />
       </div>
     );
