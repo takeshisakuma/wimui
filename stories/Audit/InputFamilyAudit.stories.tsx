@@ -174,12 +174,12 @@ export const Overview: StoryObj = {
         {/* 5. Mixed Composition (Alignment Check) */}
         <ComparisonGrid title={t("audit:mixed_composition")}>
           <ComponentGroup label={t("audit:label_mix")}>
-            <Stack direction="row" gap="md" align="center" w="100%">
+            <Stack direction="row" gap="md" align="center" w="100%" wrap>
               <Input aria-label={t("audit:mix_input_1")} placeholder={t("audit:sample_name_placeholder")} style={{ flex: 1 }} />
               <Button>{t("audit:demo_action")}</Button>
               <SearchInput aria-label={t("audit:mix_search")} placeholder={t("audit:input_placeholder_report")} style={{ flex: 1 }} />
             </Stack>
-            <Stack direction="row" gap="md" align="center" w="100%">
+            <Stack direction="row" gap="md" align="center" w="100%" wrap>
               <Input aria-label={t("audit:mix_input_2")} placeholder={t("audit:input_placeholder_hello")} style={{ flex: 1 }} />
               <Button variant="ghost">{t("action.cancel")}</Button>
               <Button>Send</Button>

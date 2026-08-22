@@ -149,7 +149,7 @@ export const Glassmorphism: Story = {
         <div
           style={{
             position: "relative",
-            width: "600px",
+            width: "min(600px, 100%)",
             height: "300px",
             overflow: "hidden",
             borderRadius: "12px",
@@ -208,7 +208,7 @@ export const AdvancedEffects: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_noise")}</p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Image {...args} alt={t("story.image_alt_low_noise")} noise="sm" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: sm`} />
             <Image {...args} alt={t("story.image_alt_medium_noise")} noise="md" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: md`} />
             <Image {...args} alt={t("story.image_alt_high_noise")} noise="lg" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: lg`} />
@@ -217,7 +217,7 @@ export const AdvancedEffects: Story = {
 
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_duotone")}</p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Image
               {...args}
               alt={t("story.image_alt_duotone_gold")}
@@ -237,7 +237,7 @@ export const AdvancedEffects: Story = {
 
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_overlay_vignette")}</p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <div style={{ position: "relative" }}>
               <Image
                 {...args}
@@ -312,7 +312,7 @@ export const MotionEffects: Story = {
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_fade_in")}</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
               <Button
                 variant="solid"
                 onClick={() => setImageKey((prev) => prev + 1)}
@@ -371,7 +371,7 @@ export const BlendingEffects: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_overlay", { defaultValue: "Overlay Blending" })}</p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Image
               {...args}
               alt={t("story.image_alt_multiply", { defaultValue: "Multiply overlay" })}
@@ -399,7 +399,7 @@ export const BlendingEffects: Story = {
 
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_image", { defaultValue: "Image Blending with Background" })}</p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <div style={{ padding: "20px", background: "var(--wim-color-surface-variant)" }}>
               <Image
                 {...args}

@@ -112,7 +112,7 @@ export const SideBySide: StoryObj = {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
         gap: "var(--wim-spacing-2xl)",
       }}
     >

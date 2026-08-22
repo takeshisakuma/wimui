@@ -59,7 +59,7 @@ export const SmartSearchWithAI_Example: Story = {
     };
 
     return (
-      <div style={{ width: 400 }}>
+      <div style={{ width: "min(400px, 100%)" }}>
         <Label label={t("components:smart.search_ai_title")}>
           <div style={{ position: "relative" }}>
             <SearchInput
