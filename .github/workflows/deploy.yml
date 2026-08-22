@@ -33,6 +33,9 @@ jobs:
 
       - run: npm run build-storybook
 
+      # T207: タイトルと sitemap はビルド結果を後処理して作るので、ビルドの後。
+      - run: npm run seo:build
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
