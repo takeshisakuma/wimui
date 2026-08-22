@@ -305,6 +305,7 @@
     "prestorybook": "npx kill-port 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
+    "seo:build": "node scripts/generate-seo-artifacts.mjs",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
     "format": "prettier --write .",
     "lint": "eslint src stories --max-warnings=0",
@@ -692,9 +693,6 @@
     "{scripts/composition-rules.json,DESIGN.md}": [
       "node scripts/check-composition-rules.js"
     ],
-    "{README.md,package.json}": [
-      "node scripts/check-readme-claims.js"
-    ],
     "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt}": [
       "node scripts/check-code-examples.js"
     ],
@@ -706,6 +704,9 @@
     ],
     "src/data/components.json": [
       "node scripts/check-audit-coverage.js"
+    ],
+    "{README.md,package.json,.storybook/manager-head.html}": [
+      "node scripts/check-readme-claims.js"
     ]
   },
   "dependencies": {

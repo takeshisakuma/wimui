@@ -128,6 +128,41 @@ if (matrixRows.length === 0 || optionalRows.length === 0) {
   process.exit(1);
 }
 
+// T207: **公開 Storybook の `<meta name="description">` も同じ「主張」である。**
+// npm のページに出る `package.json` の description と、検索結果・共有カードに出る
+// メタの description が別々に育つと、**同じ製品が 2 つの説明を持つ**ことになる。
+// 文言を 2 か所に持つ以上、機械で突き合わせる。
+{
+  const headPath = path.join(root, ".storybook", "manager-head.html");
+  if (fs.existsSync(headPath)) {
+    const head = fs.readFileSync(headPath, "utf8");
+    const found = [...head.matchAll(/content=\s*"([^"]+)"/g)].map((m) => m[1]);
+    const desc = String(pkg.description || "").trim();
+    if (!desc) {
+      console.error("✗ package.json に description が無い。");
+      process.exit(1);
+    }
+    // description / og:description の両方がこの文言であること
+    const needed = ["name=\"description\"", "property=\"og:description\""];
+    for (const attr of needed) {
+      const re = new RegExp(attr + "[\\s\\S]{0,200}?content=\\s*\"([^\"]+)\"");
+      const m = head.match(re);
+      if (!m) {
+        problems.push(`manager-head.html に ${attr} が無い（検索結果と共有カードに説明が出ない）`);
+      } else if (m[1].replace(/\s+/g, " ").trim() !== desc) {
+        problems.push(
+          `manager-head.html の ${attr} が package.json の description と違う` +
+            `\n      head: ${m[1].slice(0, 60)}…\n      pkg : ${desc.slice(0, 60)}…`,
+        );
+      }
+    }
+    if (found.length === 0) {
+      console.error("✗ manager-head.html から content 属性を 1 つも読めていない。読み取りが壊れている。");
+      process.exit(1);
+    }
+  }
+}
+
 if (problems.length) {
   console.error("✗ README の主張が package.json と一致しない:");
   for (const p of [...new Set(problems)]) console.error(`  - ${p}`);

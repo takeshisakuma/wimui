@@ -25,3 +25,40 @@
     height: 100dvh;
   }
 </style>
+
+<!--
+  T207: **公開している Storybook は、検索エンジンから見ると中身が 1 文字も無い。**
+  実測（2026-08-22・https://takeshisakuma.github.io/wimui/index.html）:
+    `<title>` は `storybook - Storybook`／meta は charset と viewport だけ／
+    `<body>` は 1,849 バイトで**本文テキストは 0 文字**（中身は JS）。
+  JS を実行するクローラ（Googlebot）は本文まで辿れるが、**共有時・一覧時に
+  出るのはここのメタ情報**なので、まずそこを正しくする。
+
+  **本文が `iframe.html` という別ドキュメントにしか存在しない**という構造の
+  ほうは、この変更では解いていない（T207 の残り）。
+
+  description は `package.json` と同じ文言にしてある。二重に持つとずれるので、
+  `check:readme-claims` が一致を見張る。
+-->
+<!-- title 要素はここに書かない ── Storybook 側のものが先に出るので 2 つ目になって負ける。
+     ビルド後に scripts/generate-seo-artifacts.mjs が差し替える -->
+<meta
+  name="description"
+  content="React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook."
+/>
+<link rel="canonical" href="https://takeshisakuma.github.io/wimui/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="WIM UI" />
+<meta property="og:title" content="WIM UI — React component library" />
+<meta
+  property="og:description"
+  content="React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook."
+/>
+<meta property="og:url" content="https://takeshisakuma.github.io/wimui/" />
+<!--
+  `og:image` は**置いていない**。手元にあるのは `public/wimlogo.svg`（SVG は
+  主要な OGP 消費側が描かない）と `public/images/sample-landscape.png`（デモ用の
+  写真）だけで、**サイトの顔として正しい画像が無い**。無い画像を指すより、
+  無いままのほうが良い。作るなら別途（1200×630 の PNG）。
+-->
+<meta name="twitter:card" content="summary" />
