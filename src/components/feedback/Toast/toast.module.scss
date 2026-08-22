@@ -77,7 +77,28 @@
     // `Alert` では短い内容で 2px → 7px と少し悪くなる条件があったが、ここは
     // **どの条件でも 0px** になる（アイコンの箱と 1 行目の高さが揃っているため）。
     align-self: flex-start;
+
+    // T217: 上の実測は**箱の上端どうし**を比べていた。上端は 0px でそろうが、
+    // アイコン（`size="sm"`）は 1 行目の行ボックスより低いので、**中心どうしは
+    // ずれたまま**だった ── 実測 **−1.39px**（行ボックス基準では −2.35px）。
+    // Banner（T185）/ Alert（T217）と同じ光学補正を当てる。`align-self` は
+    // `flex-start` のままなので、上の「内容が伸びると沈む」は再発しない。
+    // 1 行目は title（`font-size-sm`。lang で行高が変わる）か
+    // description（`font-size-xs` / `snug-jp`）かで変わるので 3 通りに分ける。
+    padding-top: calc((var(--wim-line-height-snug) - 1) * var(--wim-font-size-sm) / 2);
     font-size: var(--wim-font-size-xl);
+
+    :global([lang="ja"]) & {
+      padding-top: calc((var(--wim-line-height-snug-jp) - 1) * var(--wim-font-size-sm) / 2);
+    }
+  }
+
+  // title が無いときの 1 行目は `.description`（`font-size-xs` / `snug-jp`）。
+  // `[lang="ja"]` の規則より詳細度が高いので、lang を問わずこちらが勝つ。
+  .root:not(:has(.title)) .icon {
+    padding-top: calc(
+      (var(--wim-font-size-xs) * var(--wim-line-height-snug-jp) - var(--wim-font-size-sm)) / 2
+    );
   }
 
   .content {

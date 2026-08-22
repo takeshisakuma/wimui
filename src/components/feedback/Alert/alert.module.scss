@@ -1,3 +1,6 @@
+// .title の実寸。.icon の光学補正（T217）が同じ値を要るので変数にしている。
+$title-font-size: 0.9375rem;
+
 @layer component {
   .root {
     position: relative;
@@ -42,7 +45,37 @@
     // 7px は行の中に収まる。行高から光学補正を足す案は 1280px で 0px になる一方
     // 390px では 9px 残り、**行高しだいで結果が変わる**ので採らない。
     align-self: flex-start;
+
+    // T217: `flex-start` は**箱の上端**を 1 行目の行ボックスの上端に合わせる。
+    // アイコン（`size="sm"` ＝ `font-size-sm`）は 1 行目の行ボックスより低いので、
+    // 中心どうしは (行ボックス − アイコン) / 2 だけ上にずれたままになる。
+    // Banner（T185）と同じ光学補正をここにも当てる ── **`align-self` は
+    // `flex-start` のまま**なので、T90 が避けた「内容が伸びるとアイコンが沈む」は
+    // 起きない（実測でも 1280px と 390px でずれが同値だった）。
+
+    // 実測（storybook-static を配信して 1 行目の行ボックス中心と SVG 中心を比較）:
+    //   title あり  行ボックス 19.95 / アイコン 14.22 → **−2.86px** → 0px
+    //   title なし  行ボックス 21.34 / アイコン 14.22 → **−3.56px** → 0px
+    // 1 行目は title か description かで行高が変わり、title は lang でさらに
+    // 変わるので 3 通りに分ける（description は lang によらず `snug-jp`）。
+    padding-top: calc(
+      (#{$title-font-size} * var(--wim-line-height-snug) - var(--wim-font-size-sm)) / 2
+    );
     font-size: var(--wim-font-size-xl);
+
+    :global([lang="ja"]) & {
+      padding-top: calc(
+        (#{$title-font-size} * var(--wim-line-height-snug-jp) - var(--wim-font-size-sm)) / 2
+      );
+    }
+  }
+
+  // title が無いときの 1 行目は `.description`（`font-size-sm` / `snug-jp`）。
+  // `[lang="ja"]` の規則より詳細度が高いので、lang を問わずこちらが勝つ。
+  .root:not(:has(.title)) .icon {
+    padding-top: calc(
+      (var(--wim-font-size-sm) * var(--wim-line-height-snug-jp) - var(--wim-font-size-sm)) / 2
+    );
   }
 
   .content {
@@ -57,7 +90,7 @@
      自前の宣言が `@layer base` の素の見出しの規則より強いので、ここで揃える。 */
   .title {
     margin: 0;
-    font-size: 0.9375rem;
+    font-size: $title-font-size;
     font-weight: var(--wim-font-weight-semibold);
     line-height: var(--wim-line-height-snug);
     overflow-wrap: break-word;
