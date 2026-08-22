@@ -1,7 +1,6 @@
 {
   "comment": "390px でページ自体が横スクロールするストーリー（値は documentElement.scrollWidth - clientWidth）。増やさないための凍結。更新は `npm run narrow:update`（先に build-storybook）。",
   "known": {
-    "components-form-layout-fieldtemplate--horizontal": 2,
     "components-navigation-utilities-speeddial--right-direction": 134,
     "components-selection-controls-segmentedcontrol--long-label": 9
   }
