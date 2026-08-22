@@ -1,0 +1,28 @@
+{
+  "doc": {
+    "comp_prompt_input": "PromptInput",
+    "comp_smart_search_input": "SmartSearchInput",
+    "comp_streaming_text": "StreamingText",
+    "comp_thought_process": "ThoughtProcess",
+    "ai_components_title": "AI Components",
+    "ai_table_component": "Component",
+    "ai_table_usage": "Usage",
+    "ai_table_props": "Key Props",
+    "prompt_input_usage": "Auto-resizing input for AI prompts. Includes send/attach buttons, handles Enter for send and Shift+Enter for newline.",
+    "smart_search_input_usage": "Input field that seamlessly expands from a standard search bar to an AI prompt. Supports transition from single-line search to multi-line dialogue.",
+    "streaming_text_usage": "Real-time Markdown rendering for LLM generated text. Includes a blinking cursor during streaming and aria-live notifications.",
+    "thought_process_usage": "Visualizes AI reasoning steps in a timeline. Features collapsible containers showing step status (running, completed, error).",
+    "ai_patterns_title": "Composition Patterns",
+    "ai_patterns_desc": "Combine `PromptInput` and `StreamingText` to build simple AI chat interfaces.",
+    "ai_patterns_table_usecase": "Use Case",
+    "ai_patterns_table_config": "Composition",
+    "ai_patterns_chat": "AI Chat",
+    "ai_patterns_search": "AI Search",
+    "ai_patterns_assistant": "Code Assistant",
+    "ai_patterns_doc_gen": "Document Generation",
+    "ai_best_practices_title": "Best Practices",
+    "ai_best_practices_loading": "Set `loading={true}` on `PromptInput` while AI is generating a response to prevent duplicate submissions.",
+    "ai_best_practices_streaming": "Switch `isStreaming={false}` on `StreamingText` after completion to hide the cursor and stop `aria-live` updates.",
+    "ai_best_practices_error": "Display error messages in `StreamingText` content or use a separate `Alert` component when errors occur."
+  }
+}

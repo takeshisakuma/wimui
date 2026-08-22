@@ -1,0 +1,2 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";var t,n=e((()=>{t=``+new URL(`gallery_city-QdWoN76u.svg`,import.meta.url).href}));export{n,t};

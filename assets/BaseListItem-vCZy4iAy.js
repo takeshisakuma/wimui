@@ -1,0 +1,14 @@
+"use client";
+import{i as e,s as t}from"./preload-helper-CT_b8DTk.js";import{t as n}from"./react-DmCNssFd.js";import{cr as r}from"./iframe-F5Up1IQq.js";import{t as i}from"./classnames-DyhsJ24V.js";import{n as a,r as o,t as s}from"./dist-DqbEDyc4.js";var c,l,u,d,f,p,m,h,g=e((()=>{c=`_root_1lyw2_2`,l=`_disabled_1lyw2_26`,u=`_danger_1lyw2_30`,d=`_active_1lyw2_33`,f=`_icon_1lyw2_48`,p=`_content_1lyw2_59`,m=`_rightSection_1lyw2_67`,h={root:c,disabled:l,danger:u,active:d,icon:f,content:p,rightSection:m}})),_,v,y,b,x=e((()=>{_=t(n(),1),v=t(i(),1),o(),g(),y=r(),b=_.forwardRef(({asChild:e=!1,children:t,icon:n,rightSection:r,active:i,disabled:o,danger:c,className:l,...u},d)=>(0,y.jsxs)(e?s:`div`,{ref:d,className:(0,v.default)(h.root,i&&h.active,o&&h.disabled,c&&h.danger,l),"aria-disabled":o,...u,children:[n&&(0,y.jsx)(`span`,{className:h.icon,children:n}),e?(0,y.jsx)(a,{children:t}):(0,y.jsx)(`span`,{className:h.content,children:t}),r&&(0,y.jsx)(`span`,{className:h.rightSection,children:r})]})),b.displayName=`BaseListItem`,b.__docgenInfo={description:`BaseListItem is an internal component that provides a consistent layout and styling
+for items used in lists, menus, and dropdowns.
+
+Composition Contract:
+- Supports polymorphic rendering via the \`asChild\` prop (Slot pattern).
+  When \`asChild\` is true, the child element becomes the root; BaseListItem's className,
+  aria-disabled, and event props are merged onto it via Slot. icon/rightSection slots
+  are rendered inside the child using Slottable.
+- Provides standardized slots for \`icon\` (start) and \`rightSection\` (end).
+- Implements hover, active, and disabled states consistently.
+- Handles basic accessibility (aria-disabled).
+
+This component is intended for internal use by components like Select, Menu, and Dropdown.`,methods:[],displayName:`BaseListItem`,props:{asChild:{required:!1,tsType:{name:`boolean`},description:"If true, the item will be rendered as its child, merging its props onto that child.\nUse when the list item must be a specific element (e.g. `<li>` inside `<ul>`).",defaultValue:{value:`false`,computed:!1}},icon:{required:!1,tsType:{name:`ReactReactNode`,raw:`React.ReactNode`},description:`Left icon or element to display before the children.`},rightSection:{required:!1,tsType:{name:`ReactReactNode`,raw:`React.ReactNode`},description:`Right section (e.g., shortcuts, arrows, status indicators) to display after the children.`},active:{required:!1,tsType:{name:`boolean`},description:`If true, the item will be rendered in an active/highlighted state.`},disabled:{required:!1,tsType:{name:`boolean`},description:`If true, the item will be rendered in a disabled state and become non-interactive.`},danger:{required:!1,tsType:{name:`boolean`},description:`If true, the item will be styled to indicate a dangerous or danger action.`},className:{required:!1,tsType:{name:`string`},description:`Additional CSS class name.`}}}})),S=e((()=>{x()}));export{b as n,x as r,S as t};

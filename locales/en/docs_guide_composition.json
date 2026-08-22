@@ -1,0 +1,33 @@
+{
+  "guide": {
+    "hierarchy_desc": "Visualizing the layers of components and how they are composed to maintain a healthy architecture.",
+    "hierarchy_rules_desc": "Design rules for maintaining healthy dependencies in WIM UI.",
+    "hierarchy_rules_title": "Design Rules",
+    "hierarchy_tiers_desc": "WIM UI is designed with four tiers based on component complexity and role. This keeps dependencies unidirectional (top-down) and improves maintainability.",
+    "hierarchy_tiers_title": "Component Tiers",
+    "hierarchy_title": "Hierarchy & Composition",
+    "composition_map_desc": "Mapping of which components major components use (wrap) internally. By combining lower-tier components, we provide consistent functionality.",
+    "composition_map_title": "Composition Map",
+    "principles_desc": "In WIM UI, we follow these principles to maintain consistency in DOM management and motion.",
+    "principles_title": "Principles of Portals and Animations",
+    "tier1_label": "Tier 1",
+    "tier2_label": "Tier 2",
+    "tier3_label": "Tier 3",
+    "tier4_label": "Tier 4",
+    "tier_foundations": "Foundations",
+    "tier_atoms": "Atoms",
+    "tier_molecules": "Molecules",
+    "tier_organisms": "Organisms",
+    "tier_internal_label": "Internal",
+    "composition_uses_internally": "Composition (Uses internally)",
+    "usage": "Usage Guide",
+    "input_std_title": "Input Area Standardization",
+    "input_std_desc": "Standardized behavior and layout rules for input areas to ensure consistency across form components.",
+    "internal_title": "Internal Core Components",
+    "external_react_flow": "React Flow (@xyflow/react)",
+    "external_full_calendar": "FullCalendar (@fullcalendar/react)"
+  },
+  "table": {
+    "header_role": "Role"
+  }
+}

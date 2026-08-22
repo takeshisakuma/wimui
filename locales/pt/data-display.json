@@ -1,0 +1,15 @@
+{
+  "calendar": {
+    "aria_date": "{{day}}/{{month}}/{{year}}",
+    "title": "{{month}}/{{year}}"
+  },
+  "countdown": {
+    "remaining": "{{time}} restantes"
+  },
+  "table": {
+    "header_component": "Componente",
+    "header_overview": "Visão Geral",
+    "header_usage": "Cenário de Uso",
+    "header_placement": "Posicionamento"
+  }
+}

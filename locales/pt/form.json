@@ -1,0 +1,139 @@
+{
+  "agent_status": {
+    "done": "Concluído",
+    "error": "Erro",
+    "idle": "Ocioso",
+    "running": "Executando…",
+    "thinking": "Pensando…",
+    "waiting": "Aguardando…"
+  },
+  "ai_feedback": {
+    "group_label": "Avaliação da resposta",
+    "negative_label": "Não foi útil",
+    "positive_label": "Útil",
+    "regenerate_label": "Regenerar resposta"
+  },
+  "artifact_overlay": {
+    "maximize": "Maximizar",
+    "minimize": "Minimizar"
+  },
+  "btn": {
+    "page_transition": "Transições de página padrão ou links de rodapé."
+  },
+  "button": {
+    "clear": "Limpar",
+    "close": "Fechar",
+    "consistency": "Consistência",
+    "consistency_desc": "Mantenha o mesmo uso de maiúsculas no rótulo (Frase) e o posicionamento do ícone em todos os botões.",
+    "copy_desc": "Um botão especializado para copiar texto para a área de transferência com feedback visual.",
+    "copy_usage": "Chaves de API, IDs de transação ou links de compartilhamento.",
+    "dismiss": "Descartar",
+    "group_desc": "Um contêiner que agrupa vários botões logicamente relacionados.",
+    "group_usage": "Barras de filtro, paginação ou ações de formulário de várias etapas.",
+    "guide_desc": "Diretrizes para escolher e implementar o tipo de botão correto para sua interface.",
+    "guide_title": "Visão Geral dos Botões",
+    "guideline_detail": "Detalhe",
+    "guideline_principle": "Princípio",
+    "icon_usage": "Barras de ferramentas densas, controles de mídia ou compartilhamento social.",
+    "label": "Botão",
+    "link_desc": "Um botão estilizado como um link de texto para ações de navegação secundárias.",
+    "placement_conflict": "Conflito de Posicionamento",
+    "placement_conflict_desc": "Evite colocar vários botões primários na mesma visualização.",
+    "placement_desc": "Os botões devem ser agrupados no canto inferior direito para modais ou inferior esquerdo para formulários.",
+    "priority_weighting": "Uma matriz descrevendo quando usar botões Primários, Secundários ou Terciários.",
+    "semantics_desc": "Botões acionam ações, enquanto Links alteram a localização da página ou a posição de rolagem.",
+    "semantics_guide_ref": "Consulte o guia Link vs Botão para informações mais detalhadas.",
+    "standard_desc": "Botão retangular padrão para ações gerais.",
+    "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item."
+  },
+  "code_block": {
+    "collapse_label": "Recolher",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar código",
+    "expand_label": "Expandir",
+    "lines": "{{count}} linhas"
+  },
+  "code_diff_viewer": {
+    "applied": "Aplicado",
+    "apply": "Aplicar",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar",
+    "reject": "Rejeitar",
+    "split_view": "Dividido",
+    "unified_view": "Unificado"
+  },
+  "combobox": {
+    "no_results": "Nenhum resultado encontrado"
+  },
+  "dropzone": {
+    "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
+  },
+  "fileupload": {
+    "button": "Selecionar arquivo",
+    "no_file": "Nenhum arquivo selecionado"
+  },
+  "form": {
+    "optional": "Opcional",
+    "required": "Obrigatório"
+  },
+  "image_cropper": {
+    "apply": "Aplicar recorte",
+    "cancel": "Cancelar",
+    "confirm": "Aplicar",
+    "confirm_message": "Deseja salvar a imagem com este recorte?",
+    "confirm_title": "Aplicar recorte",
+    "no_image": "Nenhuma imagem selecionada",
+    "rotate": "Rodar",
+    "zoom": "Zoom"
+  },
+  "otp": {
+    "digit": "Dígito {{index}}"
+  },
+  "password_strength": {
+    "fair": "Razoável",
+    "strong": "Forte",
+    "very_strong": "Muito forte",
+    "very_weak": "Muito fraca",
+    "weak": "Fraca"
+  },
+  "phone": {
+    "number": "Número de telefone"
+  },
+  "prompt_input": {
+    "aria_label": "Campo de prompt",
+    "attach_label": "Anexar arquivo",
+    "send_label": "Enviar"
+  },
+  "select": {
+    "no_options": "Nenhuma opção encontrada",
+    "option": "Opção 1"
+  },
+  "tag_input": {
+    "input_label": "Tags"
+  },
+  "smart_search": {
+    "input_label": "Pesquisar"
+  },
+  "markdown": {
+    "task_done": "Tarefa concluída",
+    "task_todo": "Tarefa pendente"
+  },
+  "source_citation": {
+    "open_source": "Abrir fonte",
+    "source_label": "Fonte {{index}}"
+  },
+  "terminal": {
+    "clear_label": "Limpar",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar saída"
+  },
+  "transfer": {
+    "move_to_source": "Mover para disponível",
+    "move_to_target": "Mover para selecionado",
+    "no_data": "Sem dados",
+    "source": "Disponível",
+    "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
+    "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+    "target": "Selecionado"
+  }
+}

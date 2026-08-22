@@ -1,0 +1,73 @@
+{
+  "guide": {
+    "colors_border": "Border & Divider",
+    "colors_border_desc": "Used to show element boundaries or separators.",
+    "colors_contrast_checker_desc": "You can check if background and text color combinations meet accessibility standards.",
+    "colors_contrast_text_desc": "Colors for text and icons on semantic fills (`text-on-*`). Use `text-on-disabled` only on `--wim-color-disabled` backgrounds.",
+    "colors_contrast_text_title": "Contrast Text Colors",
+    "colors_customization_desc": "If you want to change or add color schemes, edit the following files:",
+    "colors_customization_pccs_desc": "Defines specific color codes based on hue and tone (e.g., $pccs-v1).",
+    "colors_customization_pccs_title": "Changing PCCS Palette Variables:",
+    "colors_customization_semantic_desc": "Defines colors for specific purposes (Primary, Destructive, etc.) and dark mode color schemes.",
+    "colors_customization_semantic_title": "Changing Semantic Colors:",
+    "colors_desc": "A guide to the colors used in the WIM UI design system. This system is designed based on PCCS (Practical Color Co-ordinate System) for consistent color design.",
+    "colors_pccs": "About the PCCS Palette",
+    "colors_pccs_desc": "WIM UI internally maintains a PCCS color palette, allowing for intuitive color selection based on tones.",
+    "colors_pccs_file_link": "Refer to src/tokens/_pccs-colors.scss and _semantic-colors.scss for detailed color codes.",
+    "colors_pccs_mapping_desc": "WIM UI manages colors as SCSS variables using PCCS notation (e.g., $pccs-v1, $pccs-gy8-5) and assigns them to semantic CSS variables.",
+    "colors_scrollbar": "Scrollbar",
+    "colors_scrollbar_desc": "Colors used for scrollbars, such as in the ScrollArea component.",
+    "colors_semantic": "Semantic Colors",
+    "colors_semantic_desc": "Colors defined based on use or meaning, used to indicate state or role.",
+    "colors_surface": "Surface & Background",
+    "colors_surface_desc": "Colors used for application backgrounds and component surfaces, switching automatically in dark mode.",
+    "colors_text": "Text Colors",
+    "colors_text_desc": "Text on normal surfaces. `text-disabled` is for muted/disabled copy here — not for text on a disabled fill (use `text-on-disabled`).",
+    "colors_title": "Colors",
+    "pccs_contrast_desc": "You can check if PCCS color combinations meet accessibility standards.",
+    "pccs_customization_desc": "If you want to change specific color codes in the PCCS palette, edit the following file:",
+    "pccs_customization_file_path": "File Path:",
+    "pccs_customization_note": "* Changing this file will update semantic colors (Primary, Success, etc.) and component colors that reference these colors all at once.",
+    "pccs_customization_title": "Customization",
+    "pccs_desc": "A list of the PCCS color palette, which forms the basis of WIM UI's color design. Categorized by tone (combination of lightness and saturation) to support intuitive color design.",
+    "colors_special_styles_title": "Special Styles (Ghost, Glass, Skeleton)",
+    "colors_special_styles_desc": "Used for specialized visual effects such as semi-transparency and placeholder states.",
+    "colors_interaction_title": "Interaction & Overlays",
+    "colors_interaction_desc": "Colors for interactive states and overlay elements.",
+    "colors_component_specific_title": "Component Specific",
+    "colors_component_specific_desc": "Private component colors (`--wim-comp-*`). Shipped in `styles.css` but not part of the public theme API — do not override for branding; use role tokens (`primary`, `surface*`, …) instead.",
+    "pccs_page_title": "PCCS (Practical Color Co-ordinate System)"
+  },
+  "pccs": {
+    "tone_gy_desc": "Achromatic",
+    "tone_gy_usage": "Text, borders, backgrounds, etc.",
+    "tone_s_desc": "High saturation and powerful colors",
+    "tone_s_usage": "Errors and high-importance notifications, etc.",
+    "tone_v_desc": "Pure color",
+    "tone_v_usage": "Primary colors, etc."
+  },
+  "tone": {
+    "achromatic": "Achromatic",
+    "bright": "Bright",
+    "dark": "Dark",
+    "dark_grayish": "Dark Grayish",
+    "deep": "Deep",
+    "dull": "Dull",
+    "grayish": "Grayish",
+    "light": "Light",
+    "light_grayish": "Light Grayish",
+    "pale": "Pale",
+    "soft": "Soft",
+    "strong": "Strong",
+    "vivid": "Vivid"
+  },
+  "colors": {
+    "tone_mapping": "Main Tone Mapping:"
+  },
+  "ensure": {
+    "contrast": "Ensure sufficient contrast."
+  },
+  "visual": {
+    "accessibility": "Visual Accessibility"
+  }
+}

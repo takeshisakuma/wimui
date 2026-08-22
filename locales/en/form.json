@@ -1,0 +1,139 @@
+{
+  "prompt_input": {
+    "send_label": "Send",
+    "attach_label": "Attach file",
+    "aria_label": "Prompt input"
+  },
+  "ai_feedback": {
+    "positive_label": "Helpful",
+    "negative_label": "Not helpful",
+    "regenerate_label": "Regenerate response",
+    "group_label": "Response feedback"
+  },
+  "source_citation": {
+    "open_source": "Open source",
+    "source_label": "Source {{index}}"
+  },
+  "code_block": {
+    "copy_label": "Copy code",
+    "copied_label": "Copied!",
+    "expand_label": "Expand",
+    "collapse_label": "Collapse",
+    "lines": "{{count}} lines"
+  },
+  "button": {
+    "clear": "Clear",
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "label": "Button",
+    "guide_title": "Button Overview",
+    "guide_desc": "Guidelines for choosing and implementing the correct button type for your interface.",
+    "priority_weighting": "A matrix describing when to use Primary, Secondary, or Tertiary buttons.",
+    "semantics_desc": "Buttons trigger actions, while Links change page location or scroll position.",
+    "semantics_guide_ref": "Refer to the Link vs Button guide for more detailed information.",
+    "standard_desc": "Standard rectangular button for general actions.",
+    "standard_usage": "Main CTAs like Submit, Save, or Add Item.",
+    "icon_usage": "Dense toolbars, media controls, or social sharing.",
+    "link_desc": "A button styled like a text link for secondary navigating actions.",
+    "group_desc": "A container that groups multiple logically related buttons together.",
+    "group_usage": "Filter bars, pagination, or multi-step form actions.",
+    "copy_desc": "A specialized button for copying text to the clipboard with visual feedback.",
+    "copy_usage": "API keys, transaction IDs, or sharing links.",
+    "guideline_principle": "Principle",
+    "guideline_detail": "Detail",
+    "consistency": "Consistency",
+    "consistency_desc": "Maintain identical label casing (Sentence case) and icon placement across all buttons.",
+    "placement_desc": "Buttons should be grouped at the bottom-right for modals or bottom-left for forms.",
+    "placement_conflict": "Placement Conflict",
+    "placement_conflict_desc": "Avoid placing multiple primary buttons on the same view."
+  },
+  "btn": {
+    "page_transition": "Standard page transitions or footer links."
+  },
+  "dropzone": {
+    "description": "Drag and drop files here, or click to select"
+  },
+  "fileupload": {
+    "button": "Choose file",
+    "no_file": "No file selected"
+  },
+  "form": {
+    "optional": "Optional",
+    "required": "Required"
+  },
+  "phone": {
+    "number": "Phone number"
+  },
+  "select": {
+    "no_options": "No options found",
+    "option": "Option 1"
+  },
+  "tag_input": {
+    "input_label": "Tags"
+  },
+  "smart_search": {
+    "input_label": "Search"
+  },
+  "markdown": {
+    "task_done": "Completed task",
+    "task_todo": "Incomplete task"
+  },
+  "transfer": {
+    "no_data": "No Data",
+    "move_to_source": "Move to available",
+    "move_to_target": "Move to selected",
+    "source": "Available",
+    "status_moved_to_source": "{{count}} item(s) moved to available",
+    "status_moved_to_target": "{{count}} item(s) moved to selected",
+    "target": "Selected"
+  },
+  "password_strength": {
+    "very_weak": "Very weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "very_strong": "Very strong"
+  },
+  "image_cropper": {
+    "no_image": "No image selected",
+    "zoom": "Zoom",
+    "rotate": "Rotate",
+    "apply": "Apply Crop",
+    "confirm_title": "Apply Crop",
+    "confirm_message": "Do you want to save the image with this crop?",
+    "confirm": "Apply",
+    "cancel": "Cancel"
+  },
+  "combobox": {
+    "no_results": "No results found"
+  },
+  "otp": {
+    "digit": "Digit {{index}}"
+  },
+  "code_diff_viewer": {
+    "copy_label": "Copy",
+    "copied_label": "Copied!",
+    "apply": "Apply",
+    "applied": "Applied",
+    "reject": "Reject",
+    "split_view": "Split",
+    "unified_view": "Unified"
+  },
+  "terminal": {
+    "copy_label": "Copy output",
+    "copied_label": "Copied!",
+    "clear_label": "Clear"
+  },
+  "agent_status": {
+    "idle": "Idle",
+    "thinking": "Thinking…",
+    "running": "Running…",
+    "waiting": "Waiting…",
+    "done": "Done",
+    "error": "Error"
+  },
+  "artifact_overlay": {
+    "minimize": "Minimize",
+    "maximize": "Maximize"
+  }
+}

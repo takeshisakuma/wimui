@@ -1,0 +1,4 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{Cr as t,_r as n,br as r,cr as i,vr as a,xr as o,yr as s}from"./iframe-F5Up1IQq.js";var c,l,u=e((()=>{o(),a(),r(),c=i(),l=({k:e})=>{let{t:r}=t(s,{i18n:n});return(0,c.jsx)(`span`,{className:`wim-t`,dangerouslySetInnerHTML:{__html:(e=>{if(typeof e!=`string`)return e==null?``:String(e);let t=e=>e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`);return e.replace(/\\n/g,`
+`).replace(/\n\s+/g,`
+`).replace(/`([^`]+)`/g,(e,n)=>`<code>${t(n)}</code>`).replace(/\n/g,`<br />`)})(r(e))}})},l.__docgenInfo={description:``,methods:[],displayName:`T`,props:{k:{required:!0,tsType:{name:`string`},description:``}}}}));export{u as n,l as t};

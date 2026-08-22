@@ -1,0 +1,25 @@
+{
+  "guide": {
+    "title": "Sistema de Z-Index",
+    "desc": "O WIM UI gerencia contextos de empilhamento através de tokens globais para evitar problemas quando múltiplas sobreposições se sobrepõem.",
+    "layers_title": "Definições de Camada",
+    "layers_desc": "Use os tokens a seguir para obter uma ordem de empilhamento consistente.",
+    "guidelines_title": "Diretrizes de Uso",
+    "col_token": "Token",
+    "col_value": "Valor",
+    "col_usage": "Exemplo de Uso",
+    "z_sidebar_desc": "Barra lateral (modo não sobreposto)",
+    "z_overlay_desc": "Dialog, Drawer, Dropdown, Tooltip, Popover",
+    "z_overlay_panel_desc": "Subpainéis que se sobrepõem a outras sobreposições",
+    "z_overlay_step_desc": "Bolhas de etapa de tutorial (Tour)",
+    "z_toast_desc": "Toast, Snackbar, Notification (sempre no topo)",
+    "col_rule": "Regra",
+    "col_desc": "Descrição",
+    "guideline_no_raw_values_title": "Sem Valores Brutos",
+    "guideline_no_raw_values_desc": "Não use valores brutos como `z-index: 100` no elemento raiz de um componente. Sempre se refira aos tokens acima.",
+    "guideline_stacking_context_title": "Isolamento de Contexto de Empilhamento",
+    "guideline_stacking_context_desc": "Para sobreposições dentro de um componente (ex: trilha e controle deslizante), crie um contexto de empilhamento independente dentro do componente e use valores relativos.",
+    "guideline_portals_title": "Use Portais",
+    "guideline_portals_desc": " Muitos componentes de sobreposição usam `Portal` para renderizar diretamente sob o `body`, minimizando a interferência do `z-index` do pai ou `overflow: hidden`."
+  }
+}
