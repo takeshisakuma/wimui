@@ -13,6 +13,7 @@
  *   ② prop 説明キーの `@default X` が、docgen の `defaultValue` と一致するか
  *   ③ docs 本文の「defaults to `X`」が、docgen の `defaultValue` と一致するか
  *   ④ prop 説明キーが**実在する prop を指しているか**（T226。2026-08-23 に 13 件）
+ *   ⑤ props 表の**説明欄が空のまま**出る prop が無いか（T220。同日 8 件 → 0 件）
  *
  * **①③は書いた当日は 0 件だった。②が本命で、初回に 2 件の実害が出た:**
  *   - `Alert.titleTag` … docs は `h4`、実装は **`div`**。読んだ人は「見出しが出る」と
@@ -258,6 +259,51 @@ for (const key of Object.keys(locales)) {
 }
 
 // =====================================================================
+// ⑤ props 表で説明欄が空になる prop（T220）
+// =====================================================================
+/**
+ * `Docgen` の説明は `t("doc.<base>_prop_<name>", { defaultValue: JSDoc })` なので
+ * （`stories/Docgen.tsx`）、**locale キーが無く JSDoc も空のときだけ空欄**になる。
+ * 表の 1 列がまるごと白いまま出荷されるので、読む側には「説明が無い prop」と
+ * 「まだ書いていない prop」の区別が付かない。
+ *
+ * 2026-08-23 の初回は 8 件（`ProgressRing` の 6 件 ＝ T219 と同じ `WithAccessibleName`
+ * が description ごと落としていた分、`IconButton` / `LinkButton` の `asChild` 各 1 件）。
+ * **ベースラインは置かない。** T219 で 6 件が消え、残り 2 件もこの回で埋めて 0 になった
+ * ので、**0 のまま維持する**のが正しい状態。
+ *
+ * **`MDX で props 表を出しているものだけ**を見る。表に出ないコンポーネントの
+ * 空欄は誰の目にも触れないので、直す動機が無いものを赤くしない。
+ */
+const mdxFiles = [
+  ...walk(path.join(root, "stories"), /\.mdx$/),
+  ...walk(path.join(root, "docs"), /\.mdx$/),
+];
+const renderedProps = new Set();
+for (const f of mdxFiles) {
+  const src = fs.readFileSync(f, "utf8");
+  for (const m of src.matchAll(/<Docgen[^>]*\/>/g)) {
+    if (!/section="props"/.test(m[0])) continue;
+    const name = m[0].match(/componentName="([^"]+)"/);
+    if (name) renderedProps.add(name[1]);
+  }
+}
+const localeLeaves = new Set(Object.keys(locales).map(leafOf));
+const blankDescriptions = [];
+let describedChecked = 0;
+for (const comp of renderedProps) {
+  const entry = docgen[comp];
+  if (!entry) continue;
+  const base = toDocBase(comp);
+  for (const [name, p] of Object.entries(entry.props ?? {})) {
+    describedChecked += 1;
+    if ((p.description || "").trim()) continue;
+    if (localeLeaves.has(`${base}_prop_${name}`)) continue;
+    blankDescriptions.push([comp, name]);
+  }
+}
+
+// =====================================================================
 // ③ docs 本文の「defaults to `X`」
 // =====================================================================
 let proseDefaultsChecked = 0;
@@ -301,7 +347,7 @@ console.log(
 console.log(
   `照合した数 — 値の記述 ${valueRefsChecked} 件（prop ではない語だったもの ${valueRefsNotAProp}・型を解決できず判定不能 ${valueRefsSkipped}）/ ` +
     `@default ${defaultsChecked} 件（式のため対象外 ${defaultsComputed}・実装に既定値の記録が無く比較不能 ${defaultsNoImpl}）/ ` +
-    `本文の既定値 ${proseDefaultsChecked} 件 / prop 説明キー ${propKeysChecked} 件`,
+    `本文の既定値 ${proseDefaultsChecked} 件 / prop 説明キー ${propKeysChecked} 件 / 表に出る prop の説明 ${describedChecked} 件`,
 );
 
 let failed = false;
@@ -336,6 +382,17 @@ if (deadPropKeys.length) {
       "  `bentoGridItem`）なら rename、消えた prop なら 3 言語とも削除してください。\n" +
       "  消す前に、静的な参照（リポジトリ全体の grep）と動的な組み立て（`t()` の\n" +
       "  テンプレート）の両方で未参照を確かめること。",
+  );
+}
+
+if (blankDescriptions.length) {
+  failed = true;
+  console.error(`\n✗ props 表の説明欄が空のまま出る prop（${blankDescriptions.length} 件）:`);
+  for (const [comp, name] of blankDescriptions) console.error(`  - ${comp}.${name}`);
+  console.error(
+    "\n  ソースに JSDoc を書くか、`doc.<component>_prop_<prop>` のキーを 3 言語で\n" +
+      "  足してください。**locale キーがあると JSDoc は表に出ない**ので、キーを持つ\n" +
+      "  コンポーネントでは JSDoc だけ直しても表示は変わりません。",
   );
 }
 
