@@ -66,7 +66,7 @@
     "bentogrid_scenario_1": "Vitrine de Recursos: Destacando os principais recursos da aplicação com tamanhos de cartões variados para alto impacto visual.",
     "bentogrid_scenario_2": "Galeria de Portfólio: Exibindo projetos ou trabalhos criativos em uma disposição de grade dinâmica e moderna.",
     "bentogrid_subtitle": "O componente BentoGrid é usado para criar layouts de grade estilo \"bento box\" modernos e visualmente atraentes.",
-    "masonry_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "masonry_a11y_desc": "Este é um contêiner estrutural: renderiza um elemento simples, não acrescenta role, nome acessível nem tratamento de teclado e, portanto, não contribui em nada para a árvore de acessibilidade. Isso é intencional — layout não deve ser anunciado. Duas coisas ainda importam: a ordem do DOM é a ordem de leitura, então organize os filhos na ordem em que devem ser ouvidos em vez de depender do posicionamento visual, e qualquer significado sugerido pelo arranjo precisa existir no próprio conteúdo.",
     "masonry_anatomy_content": "Cartões ou imagens individuais de dimensões variadas sendo organizados no fluxo de cascata.",
     "masonry_anatomy_content_label": "Itens Masonry",
     "masonry_anatomy_root": "Sistema de layout que calcula o posicionamento ideal da coluna para conteúdo de tamanhos desiguais.",

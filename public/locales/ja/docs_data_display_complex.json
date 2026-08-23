@@ -121,7 +121,6 @@
     "mentions_long_desc": "テキスト入力中に特定の文字（@など）をトリガーにして候補を表示し、選択できるようにするコンポーネントです。",
     "mentions_title": "入力中にユーザーや項目を指定・参照できる機能",
     "nodeGraph_desc": "インタラクティブなノードベースのフローチャート・パイプラインエディタ",
-    "patterns_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
     "patterns_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "patterns_anatomy_content_label": "Content",
     "patterns_anatomy_root": "ルート：状態とレイアウトを管理する最外部のコンテナ。",
