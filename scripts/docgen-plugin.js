@@ -128,6 +128,45 @@ function detectInheritance(tsxContent) {
   return map;
 }
 
+/**
+ * **`ComponentProps<typeof X>["prop"]` を、X のその prop の型で置き換える。**
+ *
+ * `classNames` / `labels` / `styles` のような**キーを知らないと渡せない prop** は、
+ * 型が解決できていれば props 表の Type 列にキー一覧がそのまま出る
+ * （`Select.styles` なら `{ root?: string; trigger?: string; … }`）。ところが
+ * **別コンポーネントの prop を指す添字アクセスで書かれたものは型名のまま残り、
+ * キーが 1 つも出ない。**
+ *
+ * 2026-08-23（T221）の実測では、この形の prop 45 件のうち **13 件でキーが消えて**
+ * いた。うち 10 件は `React.ComponentProps<typeof InputBase>["styles"]` /
+ * `React.ComponentPropsWithoutRef<typeof FieldTemplate>["styles"]` で、
+ * **指し先の型は同じ docgen 出力の中に完全な形で存在している**（`InputBase.styles`
+ * は 6 キー、`FieldTemplate.styles` は 5 キー）。参照を辿るだけで埋まる。
+ *
+ * 指し先が見つからないときは**黙って元のまま**にする（型名が出るだけで、
+ * 嘘は出ない）。残る 3 件は `Record<string, string>` で、これは実際に
+ * 開いた型なので出しようがない ── 直せないものと直っていないものを混ぜない。
+ */
+const INDEXED_ACCESS = /^(?:React\.)?ComponentProps(?:WithoutRef)?<typeof\s+(\w+)>\["(\w+)"\]$/;
+
+function resolveIndexedAccessTypes(entry, lookup) {
+  const props = entry.props ?? {};
+  let resolved = null;
+  for (const [propName, def] of Object.entries(props)) {
+    const m = INDEXED_ACCESS.exec((def?.tsType?.raw ?? '').trim());
+    if (!m) continue;
+    const target = lookup[m[1]]?.props?.[m[2]]?.tsType;
+    // **キーを持つオブジェクト型のときだけ置き換える。**
+    // 最初の版は指し先を無条件に採り、`iconName` / `iconColor` まで 39 件を
+    // 書き換えた。`ComponentProps<typeof Icon>["color"]` → **`T | (string & {})`**
+    // ── 解決されていない型引数 `T` が表に出るだけで、置き換え前より情報が減る。
+    // **直したい欠陥は「キーが見えないこと」**なので、キーがあるものだけを対象にする。
+    if (!target?.signature?.properties?.length) continue;
+    (resolved ??= { ...props })[propName] = { ...def, tsType: target };
+  }
+  return resolved ? { ...entry, props: resolved } : entry;
+}
+
 function applyCrossFileProps(categoryData, lookup) {
   const out = {};
   for (const [name, entry] of Object.entries(categoryData)) {
@@ -139,11 +178,11 @@ function applyCrossFileProps(categoryData, lookup) {
       for (const omitted of alias.omit ?? []) delete inherited[omitted];
       const own = entry.props ?? {};
       // 自前 props を先頭・優先にしつつ継承分を追加する
-      out[name] = { ...entry, props: { ...own, ...inherited, ...own } };
+      out[name] = resolveIndexedAccessTypes({ ...entry, props: { ...own, ...inherited, ...own } }, lookup);
     } else {
       // 自動検出の継承元が lookup にない場合は黙ってスキップする
       // （UseCalendarProps のようなコンポーネント以外の型が正当に該当するため）
-      out[name] = entry;
+      out[name] = resolveIndexedAccessTypes(entry, lookup);
     }
   }
   return out;

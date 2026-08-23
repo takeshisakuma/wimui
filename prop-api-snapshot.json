@@ -2165,7 +2165,33 @@
       "type": "boolean"
     },
     "ColorInput.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ColorInput.suffix": {
       "type": "React.ReactNode"
@@ -2248,7 +2274,33 @@
       "type": "boolean"
     },
     "ColorPicker.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "ColorPicker.suffix": {
       "type": "React.ReactNode"
@@ -2804,7 +2856,33 @@
       "type": "boolean"
     },
     "CreditCardInput.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "CreditCardInput.suffix": {
       "type": "React.ReactNode"
@@ -4980,7 +5058,33 @@
     },
     "Input.styles": {
       "required": false,
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Input.suffix": {
       "required": false,
@@ -5220,7 +5324,33 @@
       "type": "boolean"
     },
     "InputMask.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "InputMask.suffix": {
       "type": "React.ReactNode"
@@ -6801,7 +6931,33 @@
       "type": "string"
     },
     "PasswordInput.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "PasswordInput.suffix": {
       "type": "React.ReactNode"
@@ -8026,7 +8182,33 @@
       "type": "boolean"
     },
     "SearchInput.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "SearchInput.suffix": {
       "type": "React.ReactNode"
@@ -8496,7 +8678,29 @@
     },
     "Slider.styles": {
       "required": false,
-      "type": "React.ComponentPropsWithoutRef<typeof FieldTemplate>[\"styles\"]"
+      "type": "{ root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }",
+      "shape": {
+        "content": {
+          "required": false,
+          "type": "string"
+        },
+        "error": {
+          "required": false,
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "labelWrapper": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "Slider.value": {
       "required": false,
@@ -10091,7 +10295,33 @@
       "type": "boolean"
     },
     "TimePicker.styles": {
-      "type": "React.ComponentProps<typeof InputBase>[\"styles\"]"
+      "type": "{ root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "iconButton": {
+          "required": false,
+          "type": "string"
+        },
+        "iconItem": {
+          "required": false,
+          "type": "string"
+        },
+        "icons": {
+          "required": false,
+          "type": "string"
+        },
+        "inner": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
     },
     "TimePicker.suffix": {
       "type": "React.ReactNode"
