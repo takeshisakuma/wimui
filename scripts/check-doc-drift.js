@@ -78,13 +78,27 @@ const mdxFiles = [
 
 // --- ① <Canvas of={…}> が指すストーリー ---
 const missingStories = [];
+let canvasChecked = 0;
 for (const f of mdxFiles) {
   const src = fs.readFileSync(f, "utf8");
   const imports = {};
-  for (const m of src.matchAll(/import\s+\*\s+as\s+(\w+)\s+from\s+"([^"]+)"/g)) imports[m[1]] = m[2];
+  // **クォートは両方受ける。** ダブルクォートだけを見ていたせいで、シングルクォートで
+  // 書かれた 5 ファイル・6 件の `<Canvas>` が**丸ごと検査対象外**になっていた
+  // （2026-08-23 / CI-9）。`Code.mdx` の Canvas を実在しないストーリーに書き換えても
+  // 緑のままだったのに対し、`Badge.mdx`（ダブルクォート）では正しく落ちた。
+  // それでいて報告は「MDX 287」と出すので、**見ていない分も件数に入っていた**。
+  for (const m of src.matchAll(/import\s+\*\s+as\s+(\w+)\s+from\s+["']([^"']+)["']/g)) {
+    imports[m[1]] = m[2];
+  }
   for (const m of src.matchAll(/<Canvas\s+of=\{(\w+)\.(\w+)\}/g)) {
     const [, ns, story] = m;
-    if (!imports[ns]) continue;
+    canvasChecked += 1;
+    // **解決できない名前空間は黙って飛ばさない。** 飛ばした瞬間に「検査した」と
+    // 「検査していない」の区別が消え、上のバグがまさにその形で 6 件を隠していた。
+    if (!imports[ns]) {
+      missingStories.push([rel(f), `${ns}.${story}`, `名前空間 ${ns} の import が見つからない`]);
+      continue;
+    }
     const target = path.resolve(path.dirname(f), `${imports[ns]}.tsx`);
     if (!fs.existsSync(target)) {
       missingStories.push([rel(f), `${ns}.${story}`, "ストーリーファイルが無い"]);
@@ -255,7 +269,7 @@ const uniqueStale = staleProps;
 // --- 報告 ---
 console.log("--- check:doc-drift（docs の本文が実装と一致しているか）---\n");
 console.log(
-  `MDX ${mdxFiles.length} / en の文言 ${Object.keys(locales).length} / props を持つコンポーネント ` +
+  `MDX ${mdxFiles.length}（検査した <Canvas> ${canvasChecked} 件） / en の文言 ${Object.keys(locales).length} / props を持つコンポーネント ` +
     `${Object.values(families).filter((f) => f.props.size).length} / 出荷アイコン ${shipped.length}`,
 );
 
