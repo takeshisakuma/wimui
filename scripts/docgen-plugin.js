@@ -98,6 +98,15 @@ const CROSS_FILE_PROPS = {
     from: 'Input',
     omit: ['type', 'rightIcon', 'onRightIconClick', 'showPasswordToggle', 'placeholder'],
   },
+  // T227（2026-08-23）: `type IconButtonProps = Omit<React.ComponentProps<typeof Button>, …>`。
+  // detectInheritance() が拾うのは `Omit<YProps, …>` の書式なので、この形は素通りする。
+  // 拾えないと props 型ごと諦めて**分割代入の引数リスト**へ退避するため、
+  // **表に出るのは `iconName` / `aria-label` / `asChild` の 3 件だけ**だった
+  // （`asChild` に説明が無かったのも同じ理由 ＝ T220 の残り 2 件のうち 1 件）。
+  // 実際には `intent` / `size` / `loading` などが効くのに、docs のどこにも無い状態。
+  // omit はソースの型引数と一致させること（`label` は Button の props に無いが、
+  // 型どおりに書いておく ── ズレたときにここを読んで気づけるようにする）。
+  IconButton: { from: 'Button', omit: ['label', 'iconPosition'] },
 };
 
 // ソースコードから props 型の継承関係を自動検出する。

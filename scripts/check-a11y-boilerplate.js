@@ -33,7 +33,14 @@
  * `Transfer` / `CommandPalette` / `TreeSelect` / `ToggleGroup` / `ContextMenu` /
  * `DataGrid` の 8 件を選び、実装を読んで書いた）。痕跡が 0 のものは後回しでよい。
  *
- * Usage: node scripts/check-a11y-boilerplate.js
+ * **その走査をここに同梱してある（`--triage`）。** 初回は使い捨てのスクリプトで
+ * 数えたが、**信号の取り方を少し変えるだけで件数が変わる**（`VisuallyHidden` と
+ * live region と id 結線を落とすと 34 → 31 になった）。**手元でしか再現できない数字は
+ * 引き継げない**ので、数え方ごとリポジトリに置く。
+ *
+ * Usage:
+ *   node scripts/check-a11y-boilerplate.js            # ラチェット（CI で走る）
+ *   node scripts/check-a11y-boilerplate.js --triage   # 残りを着手順に並べる
  */
 import fs from "fs";
 import path from "path";
@@ -84,6 +91,57 @@ for (const [key, text] of Object.entries(locales)) {
   if (!m) continue;
   total += 1;
   if (BOILERPLATE.includes(text.trim())) current.add(m[1]);
+}
+
+/**
+ * `--triage`: 残りを「実装に a11y の判断が入っている順」に並べる。
+ * **信号の集合をここに固定しておくのが要点** ── 集合が変われば件数が変わるので、
+ * 数字だけを引き継ぐと次に数えた人と食い違う。
+ */
+if (process.argv.includes("--triage")) {
+  const SIGNALS = [
+    ["role", /\brole=["'{]/g],
+    ["aria-*", /\baria-[a-z]+=/g],
+    ["focus", /\.focus\(\)|tabIndex|FocusTrap|autoFocus/g],
+    ["VisuallyHidden", /VisuallyHidden/g],
+    ["live", /aria-live|role="status"|role="alert"/g],
+    ["key", /onKeyDown|onKeyUp|KeyboardEvent/g],
+    ["id 結線", /aria-labelledby|aria-describedby|htmlFor/g],
+  ];
+  const byName = {};
+  for (const f of walk(path.join(root, "src", "components"), /\.tsx$/)) {
+    if (/\.test\./.test(f)) continue;
+    byName[path.basename(f, ".tsx").toLowerCase()] = f;
+  }
+  const rows = [];
+  for (const base of current) {
+    const f = byName[base.toLowerCase()];
+    if (!f) {
+      rows.push({ base, score: 0, hits: ["ソース不明"] });
+      continue;
+    }
+    const src = fs.readFileSync(f, "utf8");
+    let score = 0;
+    const hits = [];
+    for (const [label, re] of SIGNALS) {
+      const n = (src.match(re) || []).length;
+      if (n) {
+        hits.push(`${label}:${n}`);
+        score += n;
+      }
+    }
+    rows.push({ base, score, hits });
+  }
+  rows.sort((a, b) => b.score - a.score);
+  const withSignals = rows.filter((r) => r.score > 0);
+  console.log(`定型文が残っているもの ${rows.length} 件`);
+  console.log(`  実装に a11y の痕跡があるもの: ${withSignals.length}（ここから着手する）`);
+  console.log(`  痕跡が無いもの: ${rows.length - withSignals.length}（無理に書かせない）\n`);
+  for (const r of withSignals) {
+    console.log(`  ${String(r.score).padStart(3)}  ${r.base.padEnd(20)} ${r.hits.join(" ")}`);
+  }
+  console.log(`\n痕跡なし: ${rows.filter((r) => !r.score).map((r) => r.base).join(", ")}`);
+  process.exit(0);
 }
 
 const baseline = JSON.parse(fs.readFileSync(BASELINE, "utf8"));
