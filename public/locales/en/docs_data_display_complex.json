@@ -142,7 +142,6 @@
     "mentions_keyboard_escape_desc": "Close the dropdown.",
     "mentions_long_desc": "A component that displays suggestions when a specific character (like @) is typed, allowing selection from a list.",
     "mentions_title": "Feature to specify or reference users and items during input",
-    "patterns_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
     "patterns_anatomy_content": "The primary area where main content or children are rendered.",
     "patterns_anatomy_content_label": "Content",
     "patterns_anatomy_root": "The outermost container managing state and layout.",

@@ -244,7 +244,7 @@
     "hamburgermenu_scenario_2": "Apps Responsivos: Alternando de uma barra lateral para um menu hambúrguer em visualizações de tablet.",
     "iconButton_desc": "Botão apenas de ícone",
     "icon_keyboard_desc": "Este componente não requer interação de teclado específica. Ícones decorativos devem ter aria-hidden=\"true\". Ícones significativos devem ter um rótulo acessível.",
-    "iconbutton_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "iconbutton_a11y_desc": "Este é um invólucro fino em torno de Button: acrescenta layout e estilo e nenhum ARIA próprio, então os papéis, o nome acessível e o comportamento de teclado vêm todos de Button. Leia as notas de acessibilidade daquele componente — o que é obrigatório lá é obrigatório aqui, e as props que você repassa chegam inalteradas.",
     "iconbutton_anatomy_content": "O ícone SVG central que comunica visualmente a ação do botão.",
     "iconbutton_anatomy_content_label": "Ícone",
     "iconbutton_anatomy_root": "O contêiner compacto que gerencia os estados de interação e garante uma área de clique consistente.",

@@ -121,7 +121,6 @@
     "mentions_long_desc": "Um componente que exibe sugestões quando um caractere específico (como @) é digitado, permitindo a seleção de uma lista.",
     "mentions_title": "Recurso para especificar ou referenciar usuários e itens durante a entrada",
     "nodeGraph_desc": "Editor interativo de fluxogramas e pipelines baseado em nós",
-    "patterns_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
     "patterns_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "patterns_anatomy_content_label": "Conteúdo",
     "patterns_anatomy_root": "O contêiner externo que gerencia estado e layout.",

@@ -66,7 +66,7 @@
     "bentogrid_scenario_1": "Feature Showcase: Highlighting key application features with varied card sizes for high visual impact.",
     "bentogrid_scenario_2": "Portfolio Gallery: Displaying projects or creative works in a dynamic, modern grid arrangement.",
     "bentogrid_subtitle": "The BentoGrid component is used to create a modern, visually appealing \"bento box\" style grid layout.",
-    "masonry_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "masonry_a11y_desc": "This is a structural container: it renders a plain element, adds no role, no accessible name and no keyboard handling, and therefore contributes nothing to the accessibility tree. That is intentional — layout should not be announced. Two things still matter: the DOM order is the reading order, so arrange children in the order they should be heard rather than relying on visual positioning, and any meaning implied by the arrangement has to exist in the content itself.",
     "masonry_anatomy_content": "The individual cards or images of varying dimensions being arranged into the waterfall flow.",
     "masonry_anatomy_content_label": "Masonry Items",
     "masonry_anatomy_root": "The layout system that calculates the optimal column placement for unevenly sized content.",

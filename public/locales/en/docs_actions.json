@@ -235,7 +235,7 @@
     "hamburgermenu_scenario_1": "Mobile Headers: Consolidating secondary links on small screens to keep the UI clean.",
     "hamburgermenu_scenario_2": "Responsive Apps: Switching from a sidebar to a hamburger menu on tablet viewpoints.",
     "iconButton_desc": "Icon-only button",
-    "iconbutton_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "iconbutton_a11y_desc": "This is a thin wrapper around Button: it adds layout and styling and no ARIA of its own, so the roles, the accessible name and the keyboard behaviour all come from Button. Read that component's accessibility notes — anything required there is required here, and props you pass through reach it unchanged.",
     "iconbutton_anatomy_content": "The central SVG icon that visually communicates the button's action.",
     "iconbutton_anatomy_content_label": "Icon",
     "iconbutton_anatomy_root": "The compact container that manages interaction states and ensures a consistent hit area.",
