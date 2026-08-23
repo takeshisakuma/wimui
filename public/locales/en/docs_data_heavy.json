@@ -110,7 +110,7 @@
     "kanban_token_radius": "Border radius of cards and columns.",
     "kanban_token_shadow": "Shadow applied to cards during drag.",
     "table": "Table",
-    "table_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "table_a11y_desc": "The markup stays a real table, so rows, cells and headers keep their native semantics without any ARIA. Two things are added. A sortable header becomes focusable and carries aria-sort with ascending, descending or none, and it responds to Enter and Space as well as click. When height or maxHeight makes the table scroll, the wrapper is given tabIndex 0 so the region can be reached and scrolled by keyboard; it is marked role=\"none\" so that wrapper does not add a layer of its own between the table and the reader.",
     "table_anatomy_content": "The primary area where main content or children are rendered.",
     "table_anatomy_content_label": "Content",
     "table_anatomy_root": "The outermost container managing state and layout.",

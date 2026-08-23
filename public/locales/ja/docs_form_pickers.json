@@ -180,7 +180,7 @@
     "otpinput_choice_self_when": "SMS、メール、認証アプリのワンタイムパスコードで身元を確認する場合。",
     "otpinput_content_auto": "モバイル端末での利便性を高めるため、SMSからの自動補完（autocomplete=\"one-time-code\"）をサポートします。",
     "otpinput_design_intent": "OtpInput は、2要素認証などで使用される短い認証コード（通常は4〜6桁の数字）を入力するための専用コンポーネントです。1文字ごとに区切られたフィールドを提供することで、現在の入力位置を明確にし、視覚的なガイドとして機能することで入力ミスを低減します。",
-    "segmentedcontrol_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "segmentedcontrol_a11y_desc": "グループは role=\"radiogroup\" で、可視ラベルから aria-labelledby で名前を取り、フィールドの状態に応じて aria-required / aria-invalid / aria-describedby を付けます。各選択肢は role=\"radio\" と aria-checked を持ち、roving tabindex なのでグループ全体がタブ 1 停止分です。矢印キーは前後の選択肢へ移動し、両端で折り返します。radiogroup なので、矢印キーはフォーカスだけでなく選択そのものを変えます。選択肢の背後を滑るインジケーターは aria-hidden です。",
     "segmentedcontrol_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "segmentedcontrol_anatomy_content_label": "Content",
     "segmentedcontrol_anatomy_root": "ルート：状態とレイアウトを管理する最外部のコンテナ。",

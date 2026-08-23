@@ -93,7 +93,7 @@
     "masonry_spacing_adj": "スペーシングの調整",
     "masonry_spacing_adj_desc": "spacing プロパティを使用して、要素間の距離を調整できます。",
     "masonry_title": "要素を効率的に配置するメイソンリーレイアウト",
-    "splitter_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "splitter_a11y_desc": "ドラッグ用のハンドルは role=\"separator\" で、aria-orientation と名前を持ち、フォーカス可能です。そのためペインの大きさはドラッグだけでなく矢印キーでも変えられます。この組み合わせ（tabIndex と aria-value 系を持つ separator）は ARIA 1.2 ではフォーカス可能なウィジェットとして正しいのですが、jsx-a11y はこの形を認識せず誤検出します。リンタに合わせて意味論を変えるのではなく、その要素でだけ規則を無効化し、理由をコメントで残しています。",
     "splitter_anatomy_content": "サイズ変更されるアプリケーションのインタラクティブなデータやビューを保持する個別のパネル（ペイン）。",
     "splitter_anatomy_content_label": "リサイズ可能なパネル",
     "splitter_anatomy_root": "パネルの比率を計算し、すべての子セグメントにわたるリサイズ操作を調整するメインコンテナ。",

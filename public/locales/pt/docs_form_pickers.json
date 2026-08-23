@@ -232,7 +232,7 @@
     "rangeslider_keyboard_desc": "O Tab foca cada manípulo do cursor. As teclas de seta ajustam o valor. Home e End movem para os valores mín e máx, respetivamente.",
     "rangeslider_long_desc": "Um componente de cursor para selecionar um intervalo (início e fim).",
     "rangeslider_title": "Seleção de intervalo",
-    "segmentedcontrol_a11y_desc": "Segue as diretrizes WAI-ARIA com funções, rótulos e suporte de navegação por teclado adequados.",
+    "segmentedcontrol_a11y_desc": "O grupo é role=\"radiogroup\" nomeado pelo rótulo visível via aria-labelledby, com aria-required, aria-invalid e aria-describedby definidos pelo estado do campo. Cada opção é role=\"radio\" com aria-checked e um roving tabindex, então o grupo é uma única parada de tabulação. As setas movem para a opção anterior ou seguinte e dão a volta nas extremidades e, por ser um grupo de rádio, também alteram a seleção, não apenas o foco. O indicador deslizante atrás das opções fica aria-hidden.",
     "segmentedcontrol_anatomy_content": "A área primária onde o conteúdo principal ou os filhos são renderizados.",
     "segmentedcontrol_anatomy_content_label": "Conteúdo",
     "segmentedcontrol_anatomy_root": "O contêiner mais externo que gere o estado e o esquema.",

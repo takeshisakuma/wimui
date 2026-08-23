@@ -78,7 +78,7 @@
     "fieldset_design_intent": "Fieldset is used to group related fields in a form, providing both a visual boundary and semantic structure. This is critical for complex forms, as it helps users (and screen readers) understand the context of a set of inputs (e.g., 'Shipping Address').",
     "fieldset_scenario_1": "Grouping radio buttons or checkboxes that belong to the same configuration category.",
     "fieldset_scenario_2": "Nesting address fields (Street, City, Zip) within a larger checkout form.",
-    "focustrap_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "focustrap_a11y_desc": "Tab and Shift+Tab are intercepted at the document level and wrapped around the first and last focusable descendants, so focus cannot leave the trapped subtree while it is mounted. The focusable set is recomputed on every keypress rather than cached, so elements that appear, disappear or become disabled while the trap is open are handled correctly. With initialFocus the first focusable element receives focus on mount, and on unmount focus is restored to whatever held it before, so dismissing the surface returns the keyboard to where it came from.",
     "focustrap_anatomy_content": "The container for interactive elements (such as buttons or inputs) that the user should be able to tab through.",
     "focustrap_anatomy_content_label": "Content",
     "focustrap_anatomy_root": "The wrapper component that monitors focus events and prevents the focus from leaving the defined boundary.",

@@ -184,7 +184,7 @@
     "scheduleview_scenario_tv": "番組表",
     "scheduleview_scenario_tv_desc": "複数のチャンネルと時間枠にまたがる放送スケジュールを可視化する。",
     "table": "テーブル",
-    "table_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "table_a11y_desc": "markup は本物の table のままなので、行・セル・見出しはネイティブの意味を保ち、ARIA を足していません。加えているのは 2 つです。並べ替え可能な見出しはフォーカス可能になり、aria-sort に ascending / descending / none を持ち、クリックだけでなく Enter と Space にも応答します。height や maxHeight でスクロールする場合は、外側の要素に tabIndex 0 を与えてキーボードで到達・スクロールできるようにし、role=\"none\" を付けます ── 読み上げ側から見て、その外側が table との間に余計な層を作らないようにするためです。",
     "table_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "table_anatomy_content_label": "Content",
     "table_anatomy_root": "ルート：状態とレイアウトを管理する最外部のコンテナ。",

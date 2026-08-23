@@ -80,7 +80,7 @@
     "fieldset_design_intent": "Fieldset é usado para agrupar campos relacionados em um formulário, fornecendo tanto um limite visual quanto uma estrutura semântica. Isso é crítico para formulários complexos, pois ajuda os usuários (e leitores de tela) a entender o contexto de um conjunto de entradas (ex: 'Endereço de Entrega').",
     "fieldset_scenario_1": "Agrupamento de botões de rádio ou checkboxes que pertencem à mesma categoria de configuração.",
     "fieldset_scenario_2": "Aninhamento de campos de endereço (rua, cidade, CEP) dentro de um formulário de checkout maior.",
-    "focustrap_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "focustrap_a11y_desc": "Tab e Shift+Tab são interceptados no nível do documento e circulam entre o primeiro e o último descendente focalizável, de modo que o foco não pode sair da subárvore capturada enquanto ela estiver montada. O conjunto focalizável é recalculado a cada tecla, e não armazenado em cache, para que elementos que aparecem, desaparecem ou ficam desabilitados com a armadilha aberta sejam tratados corretamente. Com initialFocus, o primeiro elemento focalizável recebe o foco na montagem, e na desmontagem o foco é restaurado para quem o detinha antes, de modo que fechar a superfície devolve o teclado ao ponto de origem.",
     "focustrap_anatomy_content": "O contêiner para elementos interativos (como botões ou entradas) pelos quais o usuário deve ser capaz de navegar usando a tecla Tab.",
     "focustrap_anatomy_content_label": "Conteúdo",
     "focustrap_anatomy_root": "O componente wrapper que monitora eventos de foco e evita que o foco saia do limite definido.",
