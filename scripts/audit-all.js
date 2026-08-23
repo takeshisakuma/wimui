@@ -49,6 +49,13 @@ const checks = [
   },
   {
     category: "docs",
+    // T222（2026-08-23）。a11y 節の 60% が中身の無い定型文だった。
+    // `audit-mdx` は節が**在るか**しか見ないので、ここが唯一の歯止めになる。
+    name: "A11y sections that say nothing (ratchet)",
+    command: "node scripts/check-a11y-boilerplate.js",
+  },
+  {
+    category: "docs",
     name: "I18n Consistency and File Size",
     command: "node scripts/check-i18n.js",
   },

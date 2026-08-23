@@ -134,7 +134,7 @@
     "ks_scenario_help": "Help dialog: A keyboard shortcuts reference panel opened with '?' or from the Help menu.",
     "ks_scenario_onboarding": "Onboarding overlay: Highlight a few key shortcuts to help new users work efficiently from day one.",
     "ks_scenario_settings": "Settings page: A dedicated 'Keyboard Shortcuts' section where users can view and optionally customize shortcuts.",
-    "menu_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "menu_a11y_desc": "The list is role=\"menu\" and each command is role=\"menuitem\", wrapped in <li role=\"none\"> so the markup stays valid when items render as arbitrary elements. Groups are role=\"group\" labelled by their title, and the title itself is aria-hidden because the group name is already exposed through aria-labelledby. Arrow keys move between items and wrap around at both ends, Home and End jump to the first and last, and disabled items are skipped by querying only [role=\"menuitem\"]:not([aria-disabled=\"true\"]). Focus is a roving tabindex, and a submenu trigger is a menuitem with aria-haspopup=\"true\" and aria-expanded reflecting its state.",
     "menu_anatomy_content": "The collection of menu items, groups, and submenus that form the navigation hierarchy.",
     "menu_anatomy_content_label": "Menu List",
     "menu_anatomy_root": "The container that manages the structural hierarchy and the selection state of the menu items.",
