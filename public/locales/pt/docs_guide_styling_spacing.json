@@ -60,21 +60,14 @@
     "spacings_thick": "Grosso (Thick)",
     "spacings_thin": "Fino (Thin)",
     "spacings_title": "Espaçamentos e Raio",
-    "tokens_title": "Tokens de Design",
-    "usage": "Guia de Uso"
+    "tokens_title": "Tokens de Design"
   },
   "perf": {
-    "animation_desc": "Para componentes que envolvem animações contínuas ou complexas, usamos a propriedade CSS `will-change` para dar uma dica ao navegador para otimização.",
-    "animation_micro_interactions": "Micro-interações",
-    "animation_micro_interactions_desc": "Aplicado a interações pequenas, mas frequentes, como alternâncias de `Switch` e expansões de `Accordion` para garantir feedback sem atraso.",
-    "animation_note": "Nota",
-    "animation_note_desc": "Use com moderação, pois consome memória e recursos da GPU. Evite usar em muitos elementos pequenos simultaneamente.",
     "animation_title": "Otimização de Animação (`will-change`)",
     "animation_used_in": "Usado em",
     "resource_benefit_desc": "Informa ao navegador para priorizar esta imagem em relação a outros recursos não críticos.",
     "resource_desc": "No componente `Image`, introduzimos uma prop `priority`. Quando definida como `true`, ela aplica `fetchpriority=\"high\"` à tag `img` subjacente.",
     "resource_title": "Carregamento de Recursos Críticos (`priority`)",
-    "resource_usage_desc": "Para a maior imagem acima da dobra (LCP - Largest Contentful Paint).",
-    "tips_title": "Dicas de Performance"
+    "resource_usage_desc": "Para a maior imagem acima da dobra (LCP - Largest Contentful Paint)."
   }
 }

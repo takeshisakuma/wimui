@@ -52,7 +52,6 @@
   },
   "doc": {
     "design_tokens": "Design Tokens",
-    "overview_title": "Overview",
     "best_practices_title": "Best Practices",
     "usage_guidelines_title": "Usage Guidelines",
     "accessibility_spec_title": "Accessibility Spec",
@@ -71,7 +70,6 @@
     "state": "State",
     "design_tokens_title": "Design Tokens",
     "tokens_title": "Design Tokens",
-    "tokens_desc": "The component uses predefined design tokens for colors, spacing, and typography to ensure visual consistency.",
     "token": "Token",
     "keyboard_nav_title": "Keyboard Navigation",
     "visual_guideline_title": "Visual Guidelines",
@@ -88,7 +86,6 @@
     "choice_alt_desc": "Use a simpler native element or a different component when the full feature set is not needed.",
     "accessibility_title": "Accessibility",
     "examples_title": "Examples",
-    "guidelines_title": "Guidelines",
     "guideline_best_practices": "Best Practices",
     "global_standards_title": "Global Standards",
     "global_standards_desc": "For core principles, design philosophy, and base accessibility specs, refer to <a href=\"./?path=/docs/foundation-philosophy--docs\" target=\"_top\">Philosophy</a>."

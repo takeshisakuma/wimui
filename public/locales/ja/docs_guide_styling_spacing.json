@@ -60,21 +60,14 @@
     "spacings_thick": "太 (Thick)",
     "spacings_thin": "細 (Thin)",
     "spacings_title": "余白と角丸 (Spacings & Radius)",
-    "tokens_title": "デザイントークン",
-    "usage": "使い分けの基準"
+    "tokens_title": "デザイントークン"
   },
   "perf": {
-    "animation_desc": "連続的なアニメーションや複雑なアニメーションを伴うコンポーネントでは、CSS の `will-change` プロパティを使用して、ブラウザに最適化のヒントを与えています。",
-    "animation_micro_interactions": "マイクロインタラクション",
-    "animation_micro_interactions_desc": "`Switch` の切り替えや `Accordion` の開閉など、小さく頻繁なインタラクションに適用し、遅延のないフィードバックを保証します。",
-    "animation_note": "注意",
-    "animation_note_desc": "メモリやGPUリソースを消費するため、乱用は避けてください。多くの小さい要素に同時に適用することは避けます。",
     "animation_title": "アニメーションの最適化 (`will-change`)",
     "animation_used_in": "使用箇所",
     "resource_benefit_desc": "ブラウザに、他の非クリティカルなリソースよりもこの画像の読み込みを優先するよう伝えます。",
     "resource_desc": "`Image` コンポーネントでは、`priority` プロパティを導入しています。これを `true` に設定すると、内部の `img` タグに `fetchpriority=\"high\"` が適用されます。",
     "resource_title": "クリティカルリソースの読み込み (`priority`)",
-    "resource_usage_desc": "ファーストビュー（LCP - Largest Contentful Paint）に含まれる最大の画像に使用します。",
-    "tips_title": "パフォーマンスのヒント"
+    "resource_usage_desc": "ファーストビュー（LCP - Largest Contentful Paint）に含まれる最大の画像に使用します。"
   }
 }

@@ -97,8 +97,6 @@
     "badge_anatomy_icon_label": "アイコン",
     "badge_anatomy_label": "数字やステータス名を表示します。極力短く保ちます。",
     "badge_anatomy_label_label": "ラベル",
-    "badge_best_practice_1": "バッジ内のテキストは短く簡潔にし、一目で意味が伝わるようにしてください。",
-    "badge_best_practice_2": "色（セマンティックカラー）に意味を持たせ、成功なら緑、エラーなら赤といった一貫したルールで運用してください。",
     "badge_choice_alert_when": "「エラーが発生しました」など、ユーザーに明示的な確認や対処を求める重要な情報を表示する場合。",
     "badge_choice_badge_when": "「新着1件」や「完了」など、既存のUI要素に付随する短い状態情報を表示する場合。",
     "badge_choice_matrix_desc": "伝えたい情報の性質と、ユーザーへの干渉度合いで選択します。",

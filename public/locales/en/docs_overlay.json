@@ -145,8 +145,6 @@
     "dialog_api_trigger": "Api Trigger",
     "dialog_basic_desc": "Detailed information and usage instructions for the Dialog component.",
     "dialog_basic_usage_desc": "Standard implementation of the Dialog component, triggered by a button or other interaction.",
-    "dialog_best_practice_1": "Keep actions within the dialog clear and use predictable labels (e.g., Save/Discard instead of OK/Cancel).",
-    "dialog_best_practice_2": "Avoid displaying another dialog inside a dialog (nesting), as it confuses users.",
     "dialog_choice_dialog_when": "For critical confirmations (e.g., deletion) or focused form inputs where a clear decision is required.",
     "dialog_choice_drawer_when": "For browsing rich content or complex settings that require more vertical screen space.",
     "dialog_choice_matrix_desc": "Choose based on the complexity of the information and the degree of interruption required.",

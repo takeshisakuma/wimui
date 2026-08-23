@@ -484,7 +484,6 @@
     "simplegrid_subtitle": "Grade fixa responsiva",
     "skeleton_animation": "Animação",
     "skeleton_animation_desc": "Você pode selecionar nenhuma animação, pulsar (piscar) ou onda (wave).",
-    "skeleton_design_intent": "O Skeleton fornece um espaço reservado para reduzir os tempos de carregamento percebidos. Ao imitar a estrutura do conteúdo final (como avatares, linhas de texto ou cartões), ele prepara o usuário para os dados que virão e evita mudanças de layout (CLS).",
     "skeleton_title": "Formas de espaço reservado que imitam o layout e as dimensões do conteúdo durante seu estado de carregamento.",
     "skeleton_usage_example": "Exemplo de Uso",
     "skeleton_usage_example_desc": "Você pode combinar vários skeletons para criar espaços reservados, como layouts de cartão reais.",

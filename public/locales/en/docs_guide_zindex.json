@@ -1,9 +1,5 @@
 {
   "guide": {
-    "title": "Z-Index System",
-    "desc": "WIM UI manages stacking contexts through global tokens to prevent issues when multiple overlays overlap.",
-    "layers_title": "Layer Definitions",
-    "layers_desc": "Use the following tokens to achieve a consistent stacking order.",
     "guidelines_title": "Usage Guidelines",
     "col_token": "Token",
     "col_value": "Value",
@@ -14,7 +10,6 @@
     "z_overlay_step_desc": "Tutorial (Tour) step bubbles",
     "z_toast_desc": "Toast, Snackbar, Notification (always on top)",
     "col_rule": "Rule",
-    "col_desc": "Description",
     "guideline_no_raw_values_title": "No Raw Values",
     "guideline_no_raw_values_desc": "Do not use raw values like `z-index: 100` on a component's root element. Always refer to the tokens above.",
     "guideline_stacking_context_title": "Isolation of Stacking Context",
