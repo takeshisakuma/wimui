@@ -10,8 +10,15 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_THEME,
+  type ChartDataPoint,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { type ChartAxisDomain } from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { seriesTable } from "../../_internal/chartTableData";
 
 import styles from "./line-chart.module.scss";
 
@@ -59,6 +66,12 @@ export type LineChartProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 export const LineChart = ({
@@ -71,17 +84,31 @@ export const LineChart = ({
   smooth = false,
   yDomain = [0, "auto"],
   animated = false,
+  "aria-label": ariaLabel,
 }: LineChartProps) => {
+  const name = ariaLabel ?? title;
+  const table = seriesTable(data, xAxisKey, keys);
   return (
-    <div className={`wim-line-chart ${styles.root}`} style={{ width }}>
+    <div
+      className={`wim-line-chart ${styles.root}`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
-      <div className={styles.container} style={{ height }}>
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+      <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           <RechartsLineChart
+            {...CHART_HIDDEN_A11Y_PROPS}
             data={data}
             /* 左の余白は `YAxis` が自分の幅で確保する。ここに 20px を足すと
                目盛りのぶんだけ図が右へ寄る（実測: 描画域の左端がカードから
@@ -116,7 +143,11 @@ export const LineChart = ({
                 dataKey={key}
                 stroke={CHART_COLORS[index % CHART_COLORS.length]}
                 strokeWidth={2}
-                dot={{ r: 4, strokeWidth: 2, fill: "var(--wim-color-primary-fill)" }}
+                dot={{
+                  r: 4,
+                  strokeWidth: 2,
+                  fill: "var(--wim-color-primary-fill)",
+                }}
                 activeDot={{ r: 6 }}
                 isAnimationActive={animated}
               />
@@ -124,6 +155,11 @@ export const LineChart = ({
           </RechartsLineChart>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

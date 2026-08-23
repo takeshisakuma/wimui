@@ -44,6 +44,12 @@ export type GaugeChartProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 import { Title } from "../../typography/Title/Title";
@@ -61,7 +67,9 @@ export const GaugeChart = ({
   label,
   color,
   animated = false,
+  "aria-label": ariaLabel,
 }: GaugeChartProps) => {
+  const name = ariaLabel ?? title;
   // Ensure value is within bounds
   const normalizedValue = Math.max(min, Math.min(max, value));
 
@@ -72,9 +80,26 @@ export const GaugeChart = ({
   const fill = color || CHART_COLORS[0];
 
   return (
-    <div className={classNames("wim-gauge-chart", styles.root)} style={{ width }}>
+    /* T230: ここだけ他のチャートと扱いが違う。
+       ①**値は既に可視テキスト**（`gaugeLabel`）として描かれているので、
+         併記の表を足すと同じ数字が DOM に 2 つ並び、使う側の
+         `getByText(value)` を多重一致で壊す。テキスト代替は既にある。
+       ②図の SVG には**テキストが 1 つも無い**（Tooltip も Legend も置いて
+         いない＝ただの弧）ので、`aria-hidden` で隠す必要も無い。隠すと
+         むしろ `gaugeLabel` まで巻き込む。
+       足りていなかったのは**名前だけ**なので、名前だけを足す。 */
+    <div
+      className={classNames("wim-gauge-chart", styles.root)}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -99,9 +124,7 @@ export const GaugeChart = ({
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div className={styles.gaugeLabel}>
-          {label || value}
-        </div>
+        <div className={styles.gaugeLabel}>{label || value}</div>
       </div>
     </div>
   );

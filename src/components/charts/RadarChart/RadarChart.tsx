@@ -10,7 +10,14 @@ import {
   Legend,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_THEME,
+  type ChartDataPoint,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { seriesTable } from "../../_internal/chartTableData";
 import styles from "./radar-chart.module.scss";
 
 export type RadarChartProps = {
@@ -45,6 +52,12 @@ export type RadarChartProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 export const RadarChart = ({
@@ -55,24 +68,43 @@ export const RadarChart = ({
   width = "100%",
   title,
   animated = false,
+  "aria-label": ariaLabel,
 }: RadarChartProps) => {
+  const name = ariaLabel ?? title;
+  const table = seriesTable(data, indexKey, keys);
   return (
-    <div className={`wim-radar-chart ${styles.root}`} style={{ width }}>
+    <div
+      className={`wim-radar-chart ${styles.root}`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
-      <div className={styles.container} style={{ height }}>
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+      <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsRadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+          <RechartsRadarChart
+            {...CHART_HIDDEN_A11Y_PROPS}
+            cx="50%"
+            cy="50%"
+            outerRadius="80%"
+            data={data}
+          >
             <PolarGrid stroke={CHART_THEME.grid.stroke} />
             <PolarAngleAxis dataKey={indexKey} {...CHART_THEME.axis} />
             {/* T135: 半径の目盛りは中央付近で回転して重なり、読めなかった。
                 レーダーは**軸ごとの形**を比べる図で、絶対値は Tooltip が出す。 */}
             <PolarRadiusAxis tick={false} axisLine={false} />
-            <Tooltip 
-              contentStyle={CHART_THEME.tooltip.contentStyle} 
+            <Tooltip
+              contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
             />
             <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
@@ -93,6 +125,11 @@ export const RadarChart = ({
           </RechartsRadarChart>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

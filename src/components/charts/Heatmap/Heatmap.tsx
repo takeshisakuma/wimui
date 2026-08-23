@@ -10,7 +10,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_THEME } from "../../helpers";
+import { CHART_THEME, CHART_HIDDEN_A11Y_PROPS } from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { matrixTable } from "../../_internal/chartTableData";
 
 import styles from "./heatmap.module.scss";
 
@@ -51,6 +53,12 @@ export type HeatmapProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 export const Heatmap = ({
@@ -60,9 +68,15 @@ export const Heatmap = ({
   height = 300,
   width = "100%",
   title,
+  // prettier-ignore — 1 行に保つ。`check:prop-values` は docs の `@default` と
+  // この既定値を字面で突き合わせるので、折り返すと同じ値なのに不一致になる。
   colorRange = ["var(--wim-color-surface-variant)", "var(--wim-color-chart-primary)"],
   animated = false,
+  "aria-label": ariaLabel,
 }: HeatmapProps) => {
+  const name = ariaLabel ?? title;
+  // 行が y、列が x。交点に値が無いセルは空欄のままにする（0 と混ぜない）。
+  const table = matrixTable(data, xAxisKey, yAxisKey);
   // Convert x/y labels to numeric indexes for ScatterChart
   const formattedData = data.map((d) => ({
     x: xAxisKey.indexOf(d.x),
@@ -92,18 +106,31 @@ export const Heatmap = ({
   };
 
   return (
-    <div className={`wim-heatmap ${styles.root}`} style={{ width }}>
+    <div
+      className={`wim-heatmap ${styles.root}`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
-      <div className={styles.container} style={{ height }}>
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+      <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           {/* 実測（410px 幅のカード）: 左端のセルが Y 軸のラベルに接し（508 と 510）、
               右には 34px が空いて**左に寄って見えた**。軸の内側に余白を取り、
               右の余白は詰めて左右を揃える。 */}
-          <ScatterChart margin={{ top: 20, right: 4, left: 8, bottom: 20 }}>
+          <ScatterChart
+            {...CHART_HIDDEN_A11Y_PROPS}
+            margin={{ top: 20, right: 4, left: 8, bottom: 20 }}
+          >
             <XAxis
               type="number"
               dataKey="x"
@@ -144,7 +171,11 @@ export const Heatmap = ({
             />
             {/* 既定でアニメーション無効（他チャートの animated 規約と統一。
                 有効のままだと VRT update がセル描画前の空フレームを掴み得る） */}
-            <Scatter data={formattedData} shape="square" isAnimationActive={animated}>
+            <Scatter
+              data={formattedData}
+              shape="square"
+              isAnimationActive={animated}
+            >
               {formattedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={getColor(entry.value)} />
               ))}
@@ -152,6 +183,11 @@ export const Heatmap = ({
           </ScatterChart>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

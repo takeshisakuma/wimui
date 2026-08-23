@@ -2920,6 +2920,9 @@ the value, so cutting the axis lies about the ratio between them.
 @default true
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **BarChart** — Bar charts
     - `data: ChartDataPoint[]` (required) — Data to display in the chart.
     - `keys: string[]` (required) — Keys in the data objects to render as bars (series).
@@ -2937,6 +2940,9 @@ the value, so cutting the axis lies about the ratio between them.
     - `title: string` — Optional title displayed above the chart.
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **FunnelChart** — Process stage abandonment chart
     - `data: ChartDataPoint[]` (required) — Data to display in the chart. Each entry represents one funnel stage.
     - `dataKey: string` (required) — The key in the data objects that represents the value of each stage.
@@ -2948,6 +2954,9 @@ the value, so cutting the axis lies about the ratio between them.
     - `title: string` — Optional title displayed above the chart.
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **GanttChart** — Project schedule and timeline visualization
     - `tasks: GanttTask[]` (required) — Tasks to render as bars in the chart.
     - `startDate: Date` — Start of the visible date range. Defaults to the earliest task start date.
@@ -2975,6 +2984,9 @@ the value, so cutting the axis lies about the ratio between them.
     - `color: string` — Color of the gauge arc. Defaults to the first chart color.
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **Heatmap** — Graphical representation of data where individual values are contained in a matrix as colors.
     - `data: { x: string; y: string; value: number }[]` (required) — Cells to display. Each entry maps an x/y category pair to a value.
     - `xAxisKey: string[]` (required) — Ordered list of X axis category labels.
@@ -2988,6 +3000,9 @@ the value, so cutting the axis lies about the ratio between them.
 @default ["var(--wim-color-surface-variant)", "var(--wim-color-chart-primary)"]
     - `animated: boolean` = false — Whether to animate the cells on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **LineChart** — Line charts
     - `data: ChartDataPoint[]` (required) — Data to display in the chart.
     - `keys: string[]` (required) — Keys in the data objects to render as lines (series).
@@ -3005,6 +3020,9 @@ line on a 0–100 axis).
 @default [0, "auto"]
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **PieChart** — Proportional parts of a whole chart
     - `data: { name: string; value: number }[]` (required) — Slices to display. Each entry has a name (label) and a value.
     - `height: number` = 300 — The height of the chart in pixels.
@@ -3016,6 +3034,9 @@ line on a 0–100 axis).
 @default false
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **RadarChart** — Multivariate data on concentric axes chart
     - `data: ChartDataPoint[]` (required) — Data to display in the chart.
     - `keys: string[]` (required) — Keys in the data objects to render as radar areas (series).
@@ -3027,6 +3048,9 @@ line on a 0–100 axis).
     - `title: string` — Optional title displayed above the chart.
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **ScatterChart** — Scatter plots
     - `data: { x: number; y: number; z?: number; name: string }[]` (required) — Points to plot. `z` optionally controls the point size.
     - `xAxisName: string` = "X" — Name of the X axis, shown in the tooltip.
@@ -3044,6 +3068,9 @@ line on a 0–100 axis).
     - `title: string` — Optional title displayed above the chart.
     - `animated: boolean` = false — If true, animates the chart on mount.
 @default false
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **Sparkline** — Tiny inline trend chart
     - `data: number[]` (required) — Sequence of values to plot, in order
     - `type: "line" | "area" | "bar"` = "line" — Visual form of the sparkline
@@ -3066,6 +3093,9 @@ line on a 0–100 axis).
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
 @default "100%"
     - `title: string` — Optional title displayed above the chart.
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 
 ### ai — `import { … } from "wimui/ai"`
 
