@@ -373,6 +373,7 @@
     "check:doc-drift": "node scripts/check-doc-drift.js",
     "check:prop-values": "node scripts/check-prop-values.js",
     "check:a11y-boilerplate": "node scripts/check-a11y-boilerplate.js",
+    "check:locale-duplicates": "node scripts/check-locale-duplicates.js",
     "check:llms": "node scripts/generate-llms.js --check",
     "tokens:build": "node style-dictionary.config.js && node scripts/generate-intents.js && node scripts/generate-presets.js",
     "intents:build": "node scripts/generate-intents.js",
