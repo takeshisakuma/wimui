@@ -1,9 +1,5 @@
 {
   "guide": {
-    "title": "Z-Index システム",
-    "desc": "WIM UIでは、スタッキングコンテキスト（重なり順）をグローバルなトークンで管理し、複数のオーバーレイが重なった際のトラブルを防いでいます。",
-    "layers_title": "レイヤー定義",
-    "layers_desc": "以下のトークンを使用して、一貫した重なり順を実現します。",
     "guidelines_title": "利用ガイドライン",
     "col_token": "トークン",
     "col_value": "値",
@@ -14,7 +10,6 @@
     "z_overlay_step_desc": "チュートリアル（Tour）のステップバブル",
     "z_toast_desc": "Toast, Snackbar, Notification（常に最前面）",
     "col_rule": "ルール",
-    "col_desc": "内容",
     "guideline_no_raw_values_title": "生数値の使用禁止",
     "guideline_no_raw_values_desc": "コンポーネントのルート要素で `z-index: 100` のような生数値を使用しないでください。必ず上記のトークンを参照してください。",
     "guideline_stacking_context_title": "スタッキングコンテキストの分離",

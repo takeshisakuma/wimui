@@ -146,8 +146,6 @@
     "dialog_api_trigger": "Api Trigger",
     "dialog_basic_desc": "Informações detalhadas e instruções de uso para o componente Diálogo.",
     "dialog_basic_usage_desc": "Implementação padrão do componente Dialog, acionada por um botão ou outra interação.",
-    "dialog_best_practice_1": "Mantenha as ações dentro do diálogo claras e use rótulos previsíveis (ex: Salvar/Descartar em vez de OK/Cancelar).",
-    "dialog_best_practice_2": "Evite exibir outro diálogo dentro de um diálogo (aninhamento), pois isso confunde os usuários.",
     "dialog_choice_dialog_when": "Para confirmações críticas (ex: exclusão) ou entradas de formulário focadas onde uma decisão clara é necessária.",
     "dialog_choice_drawer_when": "Para navegar em conteúdo rico ou configurações complexas que exigem mais espaço vertical na tela.",
     "dialog_choice_matrix_desc": "Escolha com base na complexidade da informação e no grau de interrupção necessário.",

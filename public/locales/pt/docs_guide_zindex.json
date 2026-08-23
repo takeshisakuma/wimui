@@ -1,9 +1,5 @@
 {
   "guide": {
-    "title": "Sistema de Z-Index",
-    "desc": "O WIM UI gerencia contextos de empilhamento através de tokens globais para evitar problemas quando múltiplas sobreposições se sobrepõem.",
-    "layers_title": "Definições de Camada",
-    "layers_desc": "Use os tokens a seguir para obter uma ordem de empilhamento consistente.",
     "guidelines_title": "Diretrizes de Uso",
     "col_token": "Token",
     "col_value": "Valor",
@@ -14,7 +10,6 @@
     "z_overlay_step_desc": "Bolhas de etapa de tutorial (Tour)",
     "z_toast_desc": "Toast, Snackbar, Notification (sempre no topo)",
     "col_rule": "Regra",
-    "col_desc": "Descrição",
     "guideline_no_raw_values_title": "Sem Valores Brutos",
     "guideline_no_raw_values_desc": "Não use valores brutos como `z-index: 100` no elemento raiz de um componente. Sempre se refira aos tokens acima.",
     "guideline_stacking_context_title": "Isolamento de Contexto de Empilhamento",
