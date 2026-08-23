@@ -45,6 +45,43 @@ function createResolver() {
   );
 }
 
+/**
+ * **react-docgen が解けない型ラッパーを、パースの直前だけ剥がす。**
+ *
+ * react-docgen は**別ファイルで定義されたジェネリックの型エイリアス**を解決できない。
+ * 解決に失敗すると props 型そのものを諦め、**分割代入の引数リストへ黙って退避する** ──
+ * つまり「既定値のある prop だけが、説明文なしで並ぶ」出力になる。エラーは出ない。
+ *
+ * 実際に出ていた被害（2026-08-23 に MDX と実装の乖離を全量で見て発覚。T219 / T220）:
+ *   `Progress` / `ProgressRing` は `WithAccessibleName<XProps>` で props を宣言している。
+ *   docgen の出力は両方とも `value, max, intent, size, showValue, indeterminate` の
+ *   **6 つだけ・説明はすべて空**だった。既定値を持たない `label` は落ち、
+ *   **`label` / `aria-label` / `aria-labelledby` のいずれか 1 つが型で必須**という
+ *   T53（#200）の中心的な取り決めが、**props 表にもドキュメント本文にも出ていなかった**。
+ *   docs どおりに書いた呼び出しは必ずコンパイルエラーになる状態。
+ *
+ * **型引数だけを残して包みを捨てる**（`WithAccessibleName<Foo>` → `Foo`）。展開後の
+ * 中身をここに書き写さないのが要点で、書き写すと `accessibleName.ts` と二重定義になり
+ * 黙って食い違う。**ここが知っているのは包みの名前だけ。**
+ *
+ * 捨ててよい理由: 包みが足しているのは「3 つのうち 1 つは必須」という**規則**であって
+ * prop の一覧ではない。規則は props 表では表現できない形なので、**MDX の a11y 節に
+ * 書くのが正しい置き場所**（T219 でそうした）。`label` 自体は型引数側が持っている。
+ *
+ * **ソースは書き換えない。** `parse()` へ渡す文字列だけを差し替える。
+ * 型引数が単純な識別子のときだけ剥がし、入れ子のジェネリックには触らない
+ * （現に使われているのはこの形だけで、広げると別の誤りを持ち込む）。
+ */
+const DOC_ONLY_TYPE_WRAPPERS = ['WithAccessibleName'];
+
+function unwrapDocOnlyTypeWrappers(source) {
+  let out = source;
+  for (const wrapper of DOC_ONLY_TYPE_WRAPPERS) {
+    out = out.replace(new RegExp(`\\b${wrapper}<\\s*(\\w+)\\s*>`, 'g'), '$1');
+  }
+  return out;
+}
+
 // react-docgen はファイルを跨いだ型参照（React.ComponentProps<typeof Input> や
 // Omit<BoxProps, "as"> & {...} の交差型）を解決できないことがあるため、
 // 継承元コンポーネントの props をマージする。継承関係は原則 detectInheritance() が
@@ -91,6 +128,45 @@ function detectInheritance(tsxContent) {
   return map;
 }
 
+/**
+ * **`ComponentProps<typeof X>["prop"]` を、X のその prop の型で置き換える。**
+ *
+ * `classNames` / `labels` / `styles` のような**キーを知らないと渡せない prop** は、
+ * 型が解決できていれば props 表の Type 列にキー一覧がそのまま出る
+ * （`Select.styles` なら `{ root?: string; trigger?: string; … }`）。ところが
+ * **別コンポーネントの prop を指す添字アクセスで書かれたものは型名のまま残り、
+ * キーが 1 つも出ない。**
+ *
+ * 2026-08-23（T221）の実測では、この形の prop 45 件のうち **13 件でキーが消えて**
+ * いた。うち 10 件は `React.ComponentProps<typeof InputBase>["styles"]` /
+ * `React.ComponentPropsWithoutRef<typeof FieldTemplate>["styles"]` で、
+ * **指し先の型は同じ docgen 出力の中に完全な形で存在している**（`InputBase.styles`
+ * は 6 キー、`FieldTemplate.styles` は 5 キー）。参照を辿るだけで埋まる。
+ *
+ * 指し先が見つからないときは**黙って元のまま**にする（型名が出るだけで、
+ * 嘘は出ない）。残る 3 件は `Record<string, string>` で、これは実際に
+ * 開いた型なので出しようがない ── 直せないものと直っていないものを混ぜない。
+ */
+const INDEXED_ACCESS = /^(?:React\.)?ComponentProps(?:WithoutRef)?<typeof\s+(\w+)>\["(\w+)"\]$/;
+
+function resolveIndexedAccessTypes(entry, lookup) {
+  const props = entry.props ?? {};
+  let resolved = null;
+  for (const [propName, def] of Object.entries(props)) {
+    const m = INDEXED_ACCESS.exec((def?.tsType?.raw ?? '').trim());
+    if (!m) continue;
+    const target = lookup[m[1]]?.props?.[m[2]]?.tsType;
+    // **キーを持つオブジェクト型のときだけ置き換える。**
+    // 最初の版は指し先を無条件に採り、`iconName` / `iconColor` まで 39 件を
+    // 書き換えた。`ComponentProps<typeof Icon>["color"]` → **`T | (string & {})`**
+    // ── 解決されていない型引数 `T` が表に出るだけで、置き換え前より情報が減る。
+    // **直したい欠陥は「キーが見えないこと」**なので、キーがあるものだけを対象にする。
+    if (!target?.signature?.properties?.length) continue;
+    (resolved ??= { ...props })[propName] = { ...def, tsType: target };
+  }
+  return resolved ? { ...entry, props: resolved } : entry;
+}
+
 function applyCrossFileProps(categoryData, lookup) {
   const out = {};
   for (const [name, entry] of Object.entries(categoryData)) {
@@ -102,11 +178,11 @@ function applyCrossFileProps(categoryData, lookup) {
       for (const omitted of alias.omit ?? []) delete inherited[omitted];
       const own = entry.props ?? {};
       // 自前 props を先頭・優先にしつつ継承分を追加する
-      out[name] = { ...entry, props: { ...own, ...inherited, ...own } };
+      out[name] = resolveIndexedAccessTypes({ ...entry, props: { ...own, ...inherited, ...own } }, lookup);
     } else {
       // 自動検出の継承元が lookup にない場合は黙ってスキップする
       // （UseCalendarProps のようなコンポーネント以外の型が正当に該当するため）
-      out[name] = entry;
+      out[name] = resolveIndexedAccessTypes(entry, lookup);
     }
   }
   return out;
@@ -310,7 +386,7 @@ function processComponent(rootDir, componentRelPath) {
 
   let parsedComponents;
   try {
-    const docgen = parse(tsxContent, {
+    const docgen = parse(unwrapDocOnlyTypeWrappers(tsxContent), {
       filename: componentPath,
       resolver: createResolver(),
     });
@@ -388,7 +464,7 @@ export async function generateDocgenData() {
 
     let parsedComponents;
     try {
-      const docgen = parse(tsxContent, {
+      const docgen = parse(unwrapDocOnlyTypeWrappers(tsxContent), {
         filename: componentPath,
         resolver: createResolver(),
       });
@@ -508,7 +584,7 @@ async function handleHotFile(file) {
 
     let parsedComponents;
     try {
-      const docgen = parse(tsxContent, {
+      const docgen = parse(unwrapDocOnlyTypeWrappers(tsxContent), {
         filename: componentPath,
         resolver: createResolver(),
       });
