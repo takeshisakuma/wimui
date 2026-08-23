@@ -42,7 +42,7 @@
     "gaugeChart_prop_title": "Título opcional exibido acima do gráfico.",
     "gaugeChart_prop_value": "Valor atual exibido pelo medidor. Limitado entre min e max.",
     "gaugeChart_prop_width": "A largura do gráfico (ex.: \"100%\", 500).\n@default \"100%\"",
-    "heatmap_prop_colorRange": "Cores usadas para os valores mais baixo e mais alto.\n@default [\"var(--wim-color-surface-variant)\", \"var(--wim-color-primary)\"]",
+    "heatmap_prop_colorRange": "Cores inicial e final da escala. As células intermediárias são combinadas com color-mix.\n@default [\"var(--wim-color-surface-variant)\", \"var(--wim-color-chart-primary)\"]",
     "heatmap_prop_data": "Células a exibir. Cada entrada mapeia um par de categorias x/y para um valor.",
     "heatmap_prop_height": "A altura do gráfico em pixels.\n@default 300",
     "heatmap_prop_title": "Título opcional exibido acima do gráfico.",

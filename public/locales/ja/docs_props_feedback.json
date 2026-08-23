@@ -7,7 +7,7 @@
     "alert_prop_intent": "アラートのインテント（意味的状態）。\n@default \"default\"",
     "alert_prop_onClose": "閉じるボタンをクリックした時に呼び出されます。指定すると閉じるボタンが表示されます。",
     "alert_prop_title": "アラートのタイトル。",
-    "alert_prop_titleTag": "アラートのタイトルに使用する HTML タグ。\n@default \"h4\"",
+    "alert_prop_titleTag": "アラートのタイトルに使用する HTML タグ。既定は div です ── アラートは文書の節ではないのでタイトルを見出しのアウトラインに入れるべきではなく、見出しにすると h3 以外の下に置いた時点で heading-order が壊れます。そのアラートが本当にページの節の見出しになっている場合だけ見出しを渡してください。\n@default \"div\"",
     "autosave_prop_errorMessage": "エラーメッセージ（省略時はデフォルトメッセージを使用）。",
     "autosave_prop_savedAt": "最終保存日時。",
     "autosave_prop_status": "保存状態。",
