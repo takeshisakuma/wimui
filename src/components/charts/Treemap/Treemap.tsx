@@ -7,6 +7,8 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_THEME, type ChartDataPoint } from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { flattenLeaves, pairTable } from "../../_internal/chartTableData";
 import styles from "./treemap.module.scss";
 
 /** タイルどうしを触れさせないための隙間（左右・上下に半分ずつ）。 */
@@ -50,6 +52,12 @@ export type TreemapProps = {
    * Optional title displayed above the chart.
    */
   title?: string;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 /**
@@ -226,7 +234,12 @@ export const Treemap = ({
   height = 300,
   width = "100%",
   title,
+  "aria-label": ariaLabel,
 }: TreemapProps) => {
+  const name = ariaLabel ?? title;
+  // 描かれているのは葉のタイルだけなので、表も葉だけを並べる（入れ子で渡される
+  // 形も受けるため）。
+  const table = pairTable(flattenLeaves(data), "name", dataKey);
   // 濃淡の両端は**データ**が決める（index ではない）。recharts が内部で
   // 並べ替えても、値から引く限り同じタイルは同じ濃さになる。
   const range = useMemo(() => {
@@ -249,15 +262,22 @@ export const Treemap = ({
 
   return (
     <TileRangeContext.Provider value={range}>
-    <div className={`wim-treemap ${styles.root} wim-treemap__root`} style={{ width }}>
+    <div
+      className={`wim-treemap ${styles.root} wim-treemap__root`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}
         </Title>
       )}
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
       <div
         className={`${styles.container} wim-treemap__container`}
         style={{ height, minWidth: 0, minHeight: 0 }}
+        aria-hidden="true"
       >
         {/* Provider は `ResponsiveContainer` の**外**に置く。中に挟むと、
             単一の子をクローンして幅と高さを流す仕組みが挟んだ要素に当たる。 */}
@@ -277,6 +297,7 @@ export const Treemap = ({
           </RechartsTreemap>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
     </div>
     </TileRangeContext.Provider>
   );

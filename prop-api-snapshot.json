@@ -283,6 +283,9 @@
       "required": false,
       "type": "boolean"
     },
+    "AreaChart.aria-label": {
+      "type": "string"
+    },
     "AreaChart.data": {
       "required": true,
       "type": "ChartDataPoint[]",
@@ -879,6 +882,9 @@
     "BarChart.animated": {
       "required": false,
       "type": "boolean"
+    },
+    "BarChart.aria-label": {
+      "type": "string"
     },
     "BarChart.data": {
       "required": true,
@@ -3989,6 +3995,9 @@
       "required": false,
       "type": "boolean"
     },
+    "FunnelChart.aria-label": {
+      "type": "string"
+    },
     "FunnelChart.data": {
       "required": true,
       "type": "ChartDataPoint[]",
@@ -4149,6 +4158,9 @@
     "GaugeChart.animated": {
       "required": false,
       "type": "boolean"
+    },
+    "GaugeChart.aria-label": {
+      "type": "string"
     },
     "GaugeChart.color": {
       "required": false,
@@ -4442,6 +4454,9 @@
     "Heatmap.animated": {
       "required": false,
       "type": "boolean"
+    },
+    "Heatmap.aria-label": {
+      "type": "string"
     },
     "Heatmap.colorRange": {
       "required": false,
@@ -5880,6 +5895,9 @@
       "required": false,
       "type": "boolean"
     },
+    "LineChart.aria-label": {
+      "type": "string"
+    },
     "LineChart.data": {
       "required": true,
       "type": "ChartDataPoint[]",
@@ -7098,6 +7116,9 @@
       "required": false,
       "type": "boolean"
     },
+    "PieChart.aria-label": {
+      "type": "string"
+    },
     "PieChart.data": {
       "type": "{ name: string; value: number }[]",
       "shape": {
@@ -7469,6 +7490,9 @@
     "RadarChart.animated": {
       "required": false,
       "type": "boolean"
+    },
+    "RadarChart.aria-label": {
+      "type": "string"
     },
     "RadarChart.data": {
       "required": true,
@@ -8029,6 +8053,9 @@
     "ScatterChart.animated": {
       "required": false,
       "type": "boolean"
+    },
+    "ScatterChart.aria-label": {
+      "type": "string"
     },
     "ScatterChart.data": {
       "type": "{ x: number; y: number; z?: number; name: string }[]",
@@ -11308,6 +11335,9 @@
     "TreeView.width": {
       "required": false,
       "type": "string | number"
+    },
+    "Treemap.aria-label": {
+      "type": "string"
     },
     "Treemap.aspectRatio": {
       "required": false,

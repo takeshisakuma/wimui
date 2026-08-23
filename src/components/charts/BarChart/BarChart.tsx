@@ -12,6 +12,8 @@ import {
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
 import { type ChartAxisDomain } from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { seriesTable } from "../../_internal/chartTableData";
 
 import styles from "./bar-chart.module.scss";
 
@@ -59,6 +61,12 @@ export type BarChartProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 export const BarChart = ({
@@ -71,15 +79,24 @@ export const BarChart = ({
   width = "100%",
   title,
   animated = false,
+  "aria-label": ariaLabel,
 }: BarChartProps) => {
+  const name = ariaLabel ?? title;
+  const table = seriesTable(data, xAxisKey, keys);
   return (
-    <div className={`wim-bar-chart ${styles.root}`} style={{ width }}>
+    <div
+      className={`wim-bar-chart ${styles.root}`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}
         </Title>
       )}
-      <div className={styles.container} style={{ height }}>
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+      <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           <RechartsBarChart
             data={data}
@@ -131,6 +148,7 @@ export const BarChart = ({
           </RechartsBarChart>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
     </div>
   );
 };

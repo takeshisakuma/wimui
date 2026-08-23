@@ -326,35 +326,98 @@ const observe = (element: React.ReactElement): Observed => {
 };
 
 /**
- * 現状の凍結（2026-08-23 実測）。
+ * 台帳（2026-08-23 実測 → 同日 T230 の修正後に更新）。
  *
  * - `defaultName`: 何も渡さずに描いたとき、支援技術が名前を読むか
  * - `callerCanName`: 呼び出し側が名前を渡したとき、それが DOM に届くか
  *
- * **10 件が両方 false** ＝ 名前が無く、付けることもできない。これが T230 の本体。
+ * **凍結時は 10 件が両方 false** ＝ 名前が無く、付けることもできなかった。
+ * T230 でその 10 件を潰したので、いまは全件 true。**false に戻ったら落ちる。**
  */
 const EXPECTED: Record<
   string,
   { defaultName: boolean; callerCanName: boolean }
 > = {
-  AreaChart: { defaultName: false, callerCanName: false },
-  BarChart: { defaultName: false, callerCanName: false },
-  LineChart: { defaultName: false, callerCanName: false },
-  FunnelChart: { defaultName: false, callerCanName: false },
-  GaugeChart: { defaultName: false, callerCanName: false },
-  Heatmap: { defaultName: false, callerCanName: false },
-  PieChart: { defaultName: false, callerCanName: false },
-  RadarChart: { defaultName: false, callerCanName: false },
-  ScatterChart: { defaultName: false, callerCanName: false },
-  Treemap: { defaultName: false, callerCanName: false },
+  AreaChart: { defaultName: true, callerCanName: true },
+  BarChart: { defaultName: true, callerCanName: true },
+  LineChart: { defaultName: true, callerCanName: true },
+  FunnelChart: { defaultName: true, callerCanName: true },
+  GaugeChart: { defaultName: true, callerCanName: true },
+  Heatmap: { defaultName: true, callerCanName: true },
+  PieChart: { defaultName: true, callerCanName: true },
+  RadarChart: { defaultName: true, callerCanName: true },
+  ScatterChart: { defaultName: true, callerCanName: true },
+  Treemap: { defaultName: true, callerCanName: true },
   // 既定で `role="grid"` と "Gantt Chart" を持ち、`labels.ariaChart` で差し替えられる。
   GanttChart: { defaultName: true, callerCanName: true },
-  // 名前が無いときは `aria-hidden` で明示的に隠す（装飾として正しい形）。
+  // 名前が無いときは `aria-hidden` で明示的に隠す（装飾として正しい形）ので、
+  // 既定で名前が無いのは欠陥ではない。
   Sparkline: { defaultName: false, callerCanName: true },
 };
 
-/** 名前を持てないチャートの数。**減ったときも落ちる**（直した事実を差分に出すため）。 */
-const UNNAMEABLE_COUNT = 10;
+/**
+ * 名前を持てないチャートの数。**増えても減っても落ちる**（動いた事実を差分に出す）。
+ * 凍結時 10 → T230 の修正で 0。
+ */
+const UNNAMEABLE_COUNT = 0;
+
+/**
+ * 併記される表の中身（T230 の本体）。**期待値は手で書く。**
+ *
+ * ここで `seriesTable()` などの抽出器を呼んで突き合わせると、**生成と検証が
+ * 同じコードを通る**ので、抽出器が間違っていても一致してしまう（T54 で実際に
+ * やった失敗）。だから上の `CASES` に渡した固定データから**目で起こした値**を
+ * 置く。抽出器を書き換えたらここが落ちる、が正しい振る舞い。
+ *
+ * `null` は「表を持たない」。持たない理由は 1 件ずつ書く ── 黙って除外しない。
+ */
+const EXPECTED_TABLE: Record<
+  string,
+  { columns: string[]; rows: string[][] } | null
+> = {
+  AreaChart: {
+    columns: ["name", "visitors"],
+    rows: [
+      ["Mon", "4000"],
+      ["Tue", "3000"],
+    ],
+  },
+  BarChart: {
+    columns: ["name", "visitors"],
+    rows: [
+      ["Mon", "4000"],
+      ["Tue", "3000"],
+    ],
+  },
+  LineChart: {
+    columns: ["name", "visitors"],
+    rows: [
+      ["Mon", "4000"],
+      ["Tue", "3000"],
+    ],
+  },
+  RadarChart: {
+    columns: ["name", "visitors"],
+    rows: [
+      ["Mon", "4000"],
+      ["Tue", "3000"],
+    ],
+  },
+  FunnelChart: { columns: ["name", "value"], rows: [["Visit", "100"]] },
+  PieChart: { columns: ["name", "value"], rows: [["A", "1"]] },
+  Treemap: { columns: ["name", "value"], rows: [["A", "10"]] },
+  // 1 列目は行見出し（y のラベル）なので、列見出しの先頭は空。
+  Heatmap: { columns: ["", "Mon"], rows: [["AM", "3"]] },
+  // `xAxisName` / `yAxisName` の既定は "X" / "Y"。`z` を持つ点が無いので 3 列。
+  ScatterChart: { columns: ["Name", "X", "Y"], rows: [["A", "1", "2"]] },
+  // 値が既に可視テキストなので表を足さない。同じ数字を DOM に 2 つ置くと
+  // 使う側の `getByText(value)` を壊す。読めることは別のテストで見る。
+  GaugeChart: null,
+  // 自前で `role="grid"` の表を描いており、この仕組みには乗っていない。
+  GanttChart: null,
+  // 装飾。値を読ませる部品ではない（名前が無ければ `aria-hidden`）。
+  Sparkline: null,
+};
 
 describe("charts: アクセシブル名（T230 の台帳）", () => {
   it("走査対象が src/components/charts のディレクトリと一致する", () => {
@@ -373,6 +436,7 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
     expect(dirs.length).toBeGreaterThan(0);
     expect(CASES.map((c) => c.name).sort()).toEqual(dirs);
     expect(Object.keys(EXPECTED).sort()).toEqual(dirs);
+    expect(Object.keys(EXPECTED_TABLE).sort()).toEqual(dirs);
   });
 
   it.each(CASES)(
@@ -401,10 +465,10 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
     expect(unnameable).toHaveLength(UNNAMEABLE_COUNT);
   });
 
-  it("aria-label は型を通るのに DOM へ届かない（この欠陥の形）", () => {
-    // T230 の中身。`AreaChartProps` に `aria-label` は無いが、TypeScript は
-    // ハイフンを含む JSX 属性を突き合わせないので**書ける**。実装は rest を
-    // 受け取らないので**消える**。この非対称が直ったらこのテストが落ちる。
+  it("aria-label が DOM へ届く（凍結時はここが逆だった）", () => {
+    // 凍結時の観測: `AreaChartProps` に `aria-label` が無くても TypeScript は
+    // ハイフンを含む JSX 属性を突き合わせないので**書けてしまい**、実装が rest を
+    // 受け取らないので**消えて**いた。いまは prop として受け取る。
     const { container } = render(
       <AreaChart
         data={lineData}
@@ -414,7 +478,59 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
       />,
     );
     const root = container.firstElementChild as HTMLElement;
-    expect(root.getAttribute("aria-label")).toBeNull();
-    expect(root.getAttribute("role")).toBeNull();
+    expect(root.getAttribute("aria-label")).toBe(CALLER_LABEL);
+    expect(root.getAttribute("role")).toBe("figure");
+  });
+
+  it.each(CASES)("$name の値がテキストとして読める", ({ name, bare }) => {
+    const expected = EXPECTED_TABLE[name];
+    const { container } = render(bare());
+    const table = container.querySelector("table");
+
+    if (expected === null) {
+      expect(
+        table,
+        `${name}: 表を持たない扱いなのに表が描かれた。EXPECTED_TABLE を見直すこと。`,
+      ).toBeNull();
+      return;
+    }
+
+    expect(table, `${name}: 併記の表が描かれていない`).not.toBeNull();
+
+    const readCells = (row: Element) =>
+      Array.from(row.children).map((cell) => cell.textContent ?? "");
+    const rows = Array.from(table!.querySelectorAll("tr"));
+
+    expect(readCells(rows[0])).toEqual(expected.columns);
+    expect(rows.slice(1).map(readCells)).toEqual(expected.rows);
+    // 表は図と同じ名前で引ける（表の一覧から辿れる）。
+    expect(table!.getAttribute("aria-label")).toBe(VISIBLE_TITLE);
+  });
+
+  it("表は aria-hidden の内側に入っていない", () => {
+    // ここが今回いちばん壊しやすい。`role="img"` は children presentational
+    // なので図の中に表を置くと読まれないし、図を包む `aria-hidden` の内側に
+    // 入れても同じく消える。**描いたのに読まれない**は緑のまま起きるので、
+    // 位置関係そのものを検査する。
+    const { container } = render(
+      <AreaChart
+        data={lineData}
+        keys={["visitors"]}
+        xAxisKey="name"
+        title={VISIBLE_TITLE}
+      />,
+    );
+    const table = container.querySelector("table");
+    expect(table).not.toBeNull();
+    expect(table!.closest("[aria-hidden='true']")).toBeNull();
+
+    // 対照: recharts の描画のほうは隠れていること（隠していなければ、この
+    // テストは「隠す仕組みが無くても通る」ことになる）。
+    const drawing = container.querySelector('[class*="recharts"]');
+    expect(
+      drawing,
+      "recharts の描画が見つからない（走査が成立していない）",
+    ).not.toBeNull();
+    expect(drawing!.closest("[aria-hidden='true']")).not.toBeNull();
   });
 });

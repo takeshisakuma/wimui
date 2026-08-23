@@ -9,6 +9,8 @@ import {
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import { ChartDataTable } from "../../_internal/ChartDataTable";
+import { pairTable } from "../../_internal/chartTableData";
 
 import styles from "./pie-chart.module.scss";
 
@@ -41,6 +43,12 @@ export type PieChartProps = {
    * @default false
    */
   animated?: boolean;
+  /**
+   * Accessible name for the chart. Defaults to `title` when omitted; pass this
+   * when the chart has no visible title, or when the title is not descriptive
+   * enough on its own.
+   */
+  "aria-label"?: string;
 };
 
 export const PieChart = ({
@@ -50,15 +58,24 @@ export const PieChart = ({
   title,
   donut = false,
   animated = false,
+  "aria-label": ariaLabel,
 }: PieChartProps) => {
+  const name = ariaLabel ?? title;
+  const table = pairTable(data, "name", "value");
   return (
-    <div className={`wim-pie-chart ${styles.root}`} style={{ width }}>
+    <div
+      className={`wim-pie-chart ${styles.root}`}
+      style={{ width }}
+      role={name ? "figure" : undefined}
+      aria-label={name}
+    >
       {title && (
         <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}
         </Title>
       )}
-      <div className={styles.container} style={{ height }}>
+      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+      <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           <RechartsPieChart>
             <Pie
@@ -91,6 +108,7 @@ export const PieChart = ({
           </RechartsPieChart>
         </ResponsiveContainer>
       </div>
+      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
     </div>
   );
 };
