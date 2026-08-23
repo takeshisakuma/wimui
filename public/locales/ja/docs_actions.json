@@ -227,7 +227,7 @@
     "floatbutton_tooltip": "ツールチップ付き",
     "floatbutton_tooltip_desc": "フロートボタンの上にホバーした際、役立つ説明を表示します。",
     "floatbutton_with_badge": "バッジ付き",
-    "hamburgermenu_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "hamburgermenu_a11y_desc": "トリガは開閉状態を表す aria-expanded を持ち、アクセシブル名も状態に応じて変わります ── 閉じているときは「メニューを開く」、開いているときは「メニューを閉じる」を翻訳から取ります（aria-label を渡した場合はそちらが優先）。名前が状態で変わるのは意図的です。アイコンは両方の状態で同一なので、名前を固定すると、押すと何が起きるのかがスクリーンリーダー利用者に伝わりません。",
     "hamburgermenu_anatomy_content": "トグルがアクティブなときに表示される、隠れたナビゲーションリンクやメニュー項目。",
     "hamburgermenu_anatomy_content_label": "ナビゲーションリスト",
     "hamburgermenu_anatomy_root": "折りたたみメニューのトグルとして機能する、インタラクティブな「3本線」のアイコン。",

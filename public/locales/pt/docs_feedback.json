@@ -327,7 +327,7 @@
     "result_scenario_payment": "Pagamento Concluído: Indica que o pagamento foi finalizado com sucesso e apresenta um link para Minha Página.",
     "result_title": "Resultado da Tarefa",
     "result_usage_desc": "Use quando operações importantes precisarem informar aos usuários sobre o resultado, ou quando você precisar exibir uma página de status como 404.",
-    "skeleton_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "skeleton_a11y_desc": "O espaço reservado tem aria-hidden=\"true\", então é removido inteiramente da árvore de acessibilidade — um leitor de tela nunca encontra as caixas cintilantes. Ele também tem aria-busy=\"true\", mas esse atributo não tem efeito em um elemento oculto; o estado de carregamento precisa ser anunciado por quem possui a região, não pelo skeleton. Coloque aria-busy no contêiner que receberá o conteúdo, ou anuncie a espera por uma região viva que você controle.",
     "skeleton_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "skeleton_anatomy_content_label": "Conteúdo",
     "skeleton_anatomy_root": "O contêiner externo que gerencia estado e layout.",

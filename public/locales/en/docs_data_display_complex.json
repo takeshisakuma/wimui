@@ -187,7 +187,7 @@
     "sortable_list_scenario_2_desc": "Reordering navigation links for a website footer or sidebar.",
     "sortable_list_scenario_2_title": "Menu Editor",
     "statistic_long_desc": "Detailed information and usage instructions for the statistical numeric display component.",
-    "stats_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "stats_a11y_desc": "The trend arrow is aria-hidden, because it repeats visually what the delta text already says. That means the direction has to be present in the text itself: a value of \"12%\" with only an upward arrow is announced as \"12%\" with no indication of which way it moved. Write the change into the label or the value, and remember that the trend colour is likewise unavailable to a screen reader.",
     "stats_anatomy_content": "The primary area where main content or children are rendered.",
     "stats_anatomy_content_label": "Content",
     "stats_anatomy_root": "The outermost container managing state and layout.",

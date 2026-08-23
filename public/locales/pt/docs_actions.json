@@ -228,7 +228,7 @@
     "floatbutton_tooltip": "Com Tooltip",
     "floatbutton_tooltip_desc": "Exibe uma descrição útil ao passar o mouse sobre o botão flutuante.",
     "floatbutton_with_badge": "With Badge",
-    "hamburgermenu_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "hamburgermenu_a11y_desc": "O gatilho tem aria-expanded refletindo o estado aberto, e seu nome acessível muda com esse estado: é anunciado como \"abrir menu\" quando fechado e \"fechar menu\" quando aberto, vindo das traduções salvo se aria-label for informado. Um nome que muda com o estado é deliberado aqui — o ícone sozinho é idêntico nos dois estados, então um nome fixo deixaria a pessoa sem saber o que o botão fará.",
     "hamburgermenu_anatomy_content": "Os links de navegação ou itens de menu ocultos que são revelados quando o menu está ativo.",
     "hamburgermenu_anatomy_content_label": "Lista de Navegação",
     "hamburgermenu_anatomy_root": "O ícone interativo de 'três barras' que serve como o gatilho para o menu colapsável.",

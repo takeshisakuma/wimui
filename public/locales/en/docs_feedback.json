@@ -327,7 +327,7 @@
     "result_scenario_payment": "Payment Complete: Indicates that payment has finished successfully and presents a link to My Page.",
     "result_title": "Task status indicator",
     "result_usage_desc": "Use when important operations need to inform users of the result, or when you need to show a status page like 404.",
-    "skeleton_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "skeleton_a11y_desc": "The placeholder is aria-hidden=\"true\", so it is removed from the accessibility tree entirely — a screen reader never encounters the shimmering boxes. It also carries aria-busy=\"true\", but that attribute has no effect on a hidden element; the loading state has to be announced by whatever owns the region, not by the skeleton. Put aria-busy on the container that will receive the content, or announce the wait through a live region you control.",
     "skeleton_anatomy_content": "The primary area where main content or children are rendered.",
     "skeleton_anatomy_content_label": "Content",
     "skeleton_anatomy_root": "The outermost container managing state and layout.",

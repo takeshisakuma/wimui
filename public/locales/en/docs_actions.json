@@ -221,7 +221,7 @@
     "floatbutton_tooltip": "With Tooltip",
     "floatbutton_tooltip_desc": "Display a helpful description when hovering over the floating button.",
     "floatbutton_with_badge": "With Badge",
-    "hamburgermenu_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "hamburgermenu_a11y_desc": "The trigger carries aria-expanded reflecting the open state, and its accessible name changes with that state: it is announced as \"open menu\" when closed and \"close menu\" when open, taken from the translations unless aria-label is supplied. A name that changes with state is deliberate here — the icon alone is identical in both states, so a fixed name would leave a screen reader user unable to tell what pressing it will do.",
     "hamburgermenu_anatomy_content": "The hidden navigation links or menu items that are revealed when the toggle is active.",
     "hamburgermenu_anatomy_content_label": "Navigation List",
     "hamburgermenu_anatomy_root": "The interactive 'three-bar' icon that serves as the toggle for the collapsible menu.",

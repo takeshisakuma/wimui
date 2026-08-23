@@ -186,7 +186,7 @@
     "sortable_list_scenario_2_title": "Editor de Menu",
     "sortable_list_title": "Lista Ordenável",
     "statistic_long_desc": "Fornece informações detalhadas e instruções de uso para o componente de exibição de valores estatísticos.",
-    "stats_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "stats_a11y_desc": "A seta de tendência fica aria-hidden, porque repete visualmente o que o texto de variação já diz. Isso significa que a direção precisa estar no próprio texto: um valor de \"12%\" com apenas uma seta para cima é anunciado como \"12%\", sem indicação de para onde se moveu. Escreva a variação no rótulo ou no valor, e lembre-se de que a cor da tendência também não chega ao leitor de tela.",
     "stats_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "stats_anatomy_content_label": "Conteúdo",
     "stats_anatomy_root": "O contêiner externo que gerencia estado e layout.",
