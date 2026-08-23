@@ -75,7 +75,6 @@
     "result_prop_intent": "意味的インテント — アイコンと色を決定します。\n@default \"default\"",
     "result_prop_status": "HTTP エラーステータス — ステータス固有の CSS クラスを追加し、ニュートラルなアイコンを表示します。\nエラーページ（404、403、500）に使用します。",
     "result_prop_title": "タイトル",
-    "scrollProgress_prop_color": "進捗バーの色。\n@default \"primary\"",
     "scrollProgress_prop_target": "スクロール位置を検知する対象の要素。デフォルトは `window`。",
     "skeleton_prop_animation": "アニメーションの種類（`pulse`: ゆっくりとした明滅、`wave`: 左から右への波、`none`: なし）。\n@default \"pulse\"",
     "skeleton_prop_height": "高さ。CSS の単位（px, %, rem など）を含めて指定します。",

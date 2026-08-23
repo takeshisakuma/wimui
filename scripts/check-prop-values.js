@@ -12,6 +12,7 @@
  *   ① docs 本文の `prop="value"` の **value** が、その prop の取りうる値に在るか
  *   ② prop 説明キーの `@default X` が、docgen の `defaultValue` と一致するか
  *   ③ docs 本文の「defaults to `X`」が、docgen の `defaultValue` と一致するか
+ *   ④ prop 説明キーが**実在する prop を指しているか**（T226。2026-08-23 に 13 件）
  *
  * **①③は書いた当日は 0 件だった。②が本命で、初回に 2 件の実害が出た:**
  *   - `Alert.titleTag` … docs は `h4`、実装は **`div`**。読んだ人は「見出しが出る」と
@@ -40,8 +41,8 @@
  * 混ぜると、「ズレなし」が「見ていない」の意味になる（`check:doc-drift` が
  * ロケール JSON の入れ子で一度踏んだのと同じ穴）。
  *
- * **ここで見ないもの**: prop 名そのものの誤り（`check:doc-drift` の担当）と、
- * 実在しない prop を指す説明キー（2026-08-23 の実測で 13 件。T226 として起票済み）。
+ * **ここで見ないもの**: docs 本文が名指しする prop 名そのものの誤り
+ * （`check:doc-drift` の判定 A/B の担当）。
  *
  * Usage: node scripts/check-prop-values.js
  */
@@ -205,7 +206,8 @@ for (const [key, text] of Object.entries(locales)) {
   if (!dm) continue;
   const props = propsByDocBase[m[1]];
   const def = props?.[m[2]]?.defaultValue;
-  // 実在しない prop を指すキーは T226 の担当。ここでは黙って対象外にする。
+  // 実在しない prop を指すキーは ④ が落とす。ここは「prop はあるが docgen に
+  // 既定値の記録が無い」もの（分割代入以外で既定を与えている等）で、比較しようがない。
   if (!def) {
     defaultsNoImpl += 1;
     continue;
@@ -218,6 +220,40 @@ for (const [key, text] of Object.entries(locales)) {
   defaultsChecked += 1;
   if (norm(dm[1]) !== norm(def.value)) {
     badDefaults.push([m[1], m[2], dm[1].trim(), String(def.value), key, "@default"]);
+  }
+}
+
+// =====================================================================
+// ④ 実在しない prop を指す説明キー（T226）
+// =====================================================================
+/**
+ * `doc.<component>_prop_<name>` は `stories/Docgen.tsx` が props 表の説明として引く。
+ * **指し先の prop が無いキーは、どこにも描画されない。** それでいて `i18n:sync` は
+ * 3 言語に同期し続け、`i18n:check` は件数に数える ── **翻訳コストだけ払って
+ * 出力が 0 の文字列**が溜まる。
+ *
+ * 2026-08-23 に 13 件（3 言語で 39 個）あった。内訳と、そこから分かったこと:
+ *   - `bentogrid_prop_*` 4 件 … 正しくは `bentoGridItem_prop_*`。**キー名の綴りが
+ *     1 か所違うだけで黙って死ぬ**（`desc` は実際の prop 名 `description` とも違った）。
+ *     その結果 `BentoGridItem` の 4 prop は説明が空欄のまま出荷され、正しい文言は
+ *     死んだキーの中にあった。**`BentoGrid.mdx` はその props 表すら出していなかった。**
+ *   - `contextmenu_prop_{1..5}_desc` 5 件 … 手書きの表を作りかけた残骸
+ *   - 消えた prop 4 件 … `ScrollProgress.color` は JSDoc に改名の記録が残っていた
+ *
+ * **消す前に「参照されていない」を静的・動的の両方で確かめること。** 実行時に
+ * このキーを組み立てるのは `Docgen` だけで、docgen に在る prop からしか作らない。
+ */
+const deadPropKeys = [];
+let propKeysChecked = 0;
+for (const key of Object.keys(locales)) {
+  const m = /^([A-Za-z0-9]+)_prop_([A-Za-z_]\w*)$/.exec(leafOf(key));
+  if (!m) continue;
+  propKeysChecked += 1;
+  const props = propsByDocBase[m[1]];
+  if (!props) {
+    deadPropKeys.push([key, `コンポーネント \`${m[1]}\` が docgen に無い`]);
+  } else if (!(m[2] in props)) {
+    deadPropKeys.push([key, `\`${m[1]}\` に \`${m[2]}\` という prop が無い`]);
   }
 }
 
@@ -264,8 +300,8 @@ console.log(
 );
 console.log(
   `照合した数 — 値の記述 ${valueRefsChecked} 件（prop ではない語だったもの ${valueRefsNotAProp}・型を解決できず判定不能 ${valueRefsSkipped}）/ ` +
-    `@default ${defaultsChecked} 件（式のため対象外 ${defaultsComputed}・実在しない prop を指すキー ${defaultsNoImpl}）/ ` +
-    `本文の既定値 ${proseDefaultsChecked} 件`,
+    `@default ${defaultsChecked} 件（式のため対象外 ${defaultsComputed}・実装に既定値の記録が無く比較不能 ${defaultsNoImpl}）/ ` +
+    `本文の既定値 ${proseDefaultsChecked} 件 / prop 説明キー ${propKeysChecked} 件`,
 );
 
 let failed = false;
@@ -288,6 +324,18 @@ if (badDefaults.length) {
     "\n  実装を読んで docs 側を直すこと。**実装のほうが間違っている場合もある**ので、\n" +
       "  どちらを直すかは値の意味から決める（`Alert.titleTag` は docs が `h4` と書き、\n" +
       "  実装は `div` だった ── 直したのは docs 側ではなく、どちらが正しいかを見てから）。",
+  );
+}
+
+if (deadPropKeys.length) {
+  failed = true;
+  console.error(`\n✗ 実在しない prop を指す説明キー（${deadPropKeys.length} 件・3 言語で ${deadPropKeys.length * 3} 個の文字列）:`);
+  for (const [key, why] of deadPropKeys) console.error(`  - ${key} — ${why}`);
+  console.error(
+    "\n  **どこにも描画されないまま翻訳され続けます。** キー名の綴り違い（`bentogrid` と\n" +
+      "  `bentoGridItem`）なら rename、消えた prop なら 3 言語とも削除してください。\n" +
+      "  消す前に、静的な参照（リポジトリ全体の grep）と動的な組み立て（`t()` の\n" +
+      "  テンプレート）の両方で未参照を確かめること。",
   );
 }
 

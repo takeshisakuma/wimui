@@ -13,7 +13,6 @@
     "feedbackCloseButton_prop_onClose": "Callback fired when the close button is clicked.\nIf not provided, the button will not be rendered (returns null).",
     "feedbackCloseButton_prop_size": "Size of the close icon.\n@default \"sm\"",
     "feedbackIcon_prop_className": "Additional CSS class name.",
-    "feedbackIcon_prop_color": "Explicit color for the icon.",
     "feedbackIcon_prop_icon": "Custom icon node. If false, no icon will be rendered.",
     "feedbackIcon_prop_intent": "Semantic intent of the feedback.\r\n@default \"info\"",
     "feedbackIcon_prop_size": "Size of the icon.\r\n@default \"sm\"",
