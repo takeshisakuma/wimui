@@ -520,7 +520,7 @@
     "table_sticky_header": "ヘッダーの固定 (Sticky Header)",
     "table_sticky_header_desc": "`stickyHeader` プロップと `maxHeight` プロップを組み合わせることで、テーブルをスクロールした際にヘッダーを上部に固定できます。",
     "toggleGroup_desc": "切り替え可能なボタン群",
-    "togglegroup_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "togglegroup_a11y_desc": "選択モードによってロールが変わります。2 つは別種のコントロールだからです ── 単一選択は role=\"radiogroup\" の中に role=\"radio\" と aria-checked、複数選択は role=\"toolbar\" の中に role=\"button\" と aria-pressed を出します。グループは aria-orientation=\"horizontal\" を持ち、名前は可視ラベルから aria-labelledby で取ります。エラー表示時は aria-invalid と aria-describedby を付けます。フォーカスは選択肢を巡る roving tabindex 方式で、装飾のスライダーは aria-hidden にします。",
     "togglegroup_anatomy_content": "ユーザー選択のための排他的または追加的なオプションとして機能する、関連するボタンのコレクション。",
     "togglegroup_anatomy_content_label": "切り替えアイテム",
     "togglegroup_anatomy_root": "内部状態を管理し、切り替えボタンのコレクション全体にわたるフォーカスナビゲーションを制御するコンテナ。",

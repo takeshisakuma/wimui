@@ -455,7 +455,7 @@
     "table_header_description": "Description",
     "table_sticky_header": "Sticky Header",
     "table_sticky_header_desc": "By combining the `stickyHeader` and `maxHeight` props, the header can be fixed at the top when scrolling.",
-    "togglegroup_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "togglegroup_a11y_desc": "The role changes with the selection mode, because the two modes are different controls: single selection renders role=\"radiogroup\" with role=\"radio\" and aria-checked on each option, while multiple selection renders role=\"toolbar\" with role=\"button\" and aria-pressed. The group carries aria-orientation=\"horizontal\" and takes its name from the visible label through aria-labelledby, and aria-invalid with aria-describedby are set when an error is shown. Focus is a roving tabindex over the options, with the decorative sliding indicator hidden by aria-hidden.",
     "togglegroup_anatomy_content": "The collection of related buttons that act as mutually exclusive or additive options for user selection.",
     "togglegroup_anatomy_content_label": "Toggle Items",
     "togglegroup_anatomy_root": "The container that manages the internal state and manages focus navigation across its collection of toggle buttons.",

@@ -134,7 +134,7 @@
     "ks_scenario_help": "Diálogo de ajuda: Um painel de referência de atalhos de teclado aberto com '?' ou pelo menu de Ajuda.",
     "ks_scenario_onboarding": "Sobreposição de integração: Destaque alguns atalhos principais para ajudar novos usuários a trabalhar eficientemente desde o primeiro dia.",
     "ks_scenario_settings": "Página de configurações: Uma seção dedicada de 'Atalhos de Teclado' onde os usuários podem visualizar e opcionalmente personalizar atalhos.",
-    "menu_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "menu_a11y_desc": "A lista é role=\"menu\" e cada comando é role=\"menuitem\", envolvido em <li role=\"none\"> para que a marcação continue válida quando os itens são renderizados como elementos arbitrários. Grupos são role=\"group\" rotulados pelo título, e o próprio título fica aria-hidden porque o nome do grupo já é exposto via aria-labelledby. As setas movem entre itens e dão a volta nas extremidades, Home e End vão para o primeiro e o último, e itens desabilitados são ignorados porque a consulta usa [role=\"menuitem\"]:not([aria-disabled=\"true\"]). O foco usa roving tabindex, e o gatilho de submenu é um menuitem com aria-haspopup=\"true\" e aria-expanded refletindo seu estado.",
     "menu_anatomy_content": "A coleção de itens de menu, grupos e submenus que formam a hierarquia de navegação.",
     "menu_anatomy_content_label": "Lista de Menu",
     "menu_anatomy_root": "O contêiner que gerencia a hierarquia estrutural e o estado de seleção dos itens do menu.",

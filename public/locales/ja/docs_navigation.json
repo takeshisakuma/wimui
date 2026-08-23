@@ -134,7 +134,7 @@
     "ks_scenario_help": "ヘルプダイアログ：'?'キーまたはヘルプメニューから開くキーボードショートカット参照パネル。",
     "ks_scenario_onboarding": "オンボーディングオーバーレイ：新規ユーザーが初日から効率的に操作できるよう、主要なショートカットを紹介します。",
     "ks_scenario_settings": "設定ページ：ショートカットを確認（または任意でカスタマイズ）できる専用の'キーボードショートカット'セクション。",
-    "menu_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "menu_a11y_desc": "リストが role=\"menu\"、各コマンドが role=\"menuitem\" で、項目が任意の要素として描画されても markup が壊れないよう <li role=\"none\"> で包みます。グループは role=\"group\" でタイトルに紐づけ、タイトル自身は aria-hidden にします（グループ名は aria-labelledby で既に伝わるため二重に読ませない）。矢印キーは項目間を移動し両端で折り返し、Home / End で先頭と末尾へ飛びます。無効な項目は [role=\"menuitem\"]:not([aria-disabled=\"true\"]) で引くので飛ばされます。フォーカスは roving tabindex 方式で、サブメニューのトリガは aria-haspopup=\"true\" と開閉状態を表す aria-expanded を持つ menuitem です。",
     "menu_anatomy_content": "ナビゲーション階層を構成するメニュー項目、グループ、およびサブメニューの集合。",
     "menu_anatomy_content_label": "メニューリスト",
     "menu_anatomy_root": "メニュー項目の階層構造と選択状態を管理し、構造的な一貫性を維持する親コンテナ。",

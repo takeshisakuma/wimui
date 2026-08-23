@@ -520,7 +520,7 @@
     "table_sticky_header": "Cabeçalho Fixo (Sticky Header)",
     "table_sticky_header_desc": "Ao combinar as propriedades `stickyHeader` e `maxHeight`, o cabeçalho pode ser fixado no topo quando a tabela rola.",
     "toggleGroup_desc": "Grupo de botões para seleção única ou múltipla de estados",
-    "togglegroup_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "togglegroup_a11y_desc": "O role muda conforme o modo de seleção, porque os dois modos são controles diferentes: seleção única renderiza role=\"radiogroup\" com role=\"radio\" e aria-checked em cada opção, enquanto a seleção múltipla renderiza role=\"toolbar\" com role=\"button\" e aria-pressed. O grupo tem aria-orientation=\"horizontal\" e recebe seu nome do rótulo visível via aria-labelledby, e aria-invalid com aria-describedby são definidos quando há erro. O foco usa roving tabindex sobre as opções, com o indicador deslizante decorativo oculto por aria-hidden.",
     "togglegroup_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "togglegroup_anatomy_content_label": "Conteúdo",
     "togglegroup_anatomy_root": "O contêiner externo que gerencia estado e layout.",
