@@ -48,7 +48,7 @@
     "chatui_a11y_3": "Estrutura HTML semântica adequada",
     "chatui_a11y_4": "Imagens de avatar incluem texto alternativo",
     "chatui_a11y_5": "O contraste de cores atende aos padrões WCAG",
-    "chatui_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "chatui_a11y_desc": "O compositor envia com Enter e insere uma quebra de linha com Shift+Enter, que é a convenção esperada em um campo de chat, mas não é algo que um leitor de tela consiga descobrir, então informe isso no texto ao redor se a superfície for pouco familiar. Os controles apenas com ícone para anexar arquivo e enviar recebem seus nomes das traduções, e não do glifo. Os balões de mensagem são conteúdo comum: dê um nome à região do histórico e, quando as mensagens chegarem sem ação da pessoa, anuncie-as por uma região viva que você controle.",
     "chatui_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "chatui_anatomy_content_label": "Conteúdo",
     "chatui_anatomy_root": "O contêiner externo que gerencia estado e layout.",

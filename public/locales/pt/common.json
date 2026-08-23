@@ -272,7 +272,7 @@
     "json_viewer_scenario_2": "Editar arquivos de configuração em um painel de administração do sistema.",
     "keyboard_nav_title": "Navegação por Teclado",
     "label": "Rótulo",
-    "label_a11y_desc": "Certifique-se de que o Label esteja associado a uma entrada via htmlFor/id.",
+    "label_a11y_desc": "Isto renderiza um <label> real, então passar htmlFor é o que o conecta ao seu controle — essa associação é o que permite que um clique no texto foque o campo e o que dá ao campo seu nome acessível. Ao usar asChild o elemento é substituído, mas os mesmos atributos são mesclados no filho, então a associação continua sendo responsabilidade de quem chama. Os marcadores de obrigatório e opcional são desenhados pelo FieldLabelContent e ficam aria-hidden, porque a obrigatoriedade pertence ao próprio controle (aria-required) e não deve ser lida como parte do texto do rótulo.",
     "label_anatomy_content": "O texto descritivo real para o elemento de formulário.",
     "label_anatomy_content_label": "Texto do Rótulo",
     "label_anatomy_root": "O elemento raiz que envolve o texto e os indicadores.",

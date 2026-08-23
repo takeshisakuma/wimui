@@ -286,7 +286,7 @@
     "richTextEditor_toolbar_desc": "The toolbar prop accepts an array of item keys and 'separator' strings, allowing full customization of which buttons appear and in what order.",
     "richTextEditor_variant_desc": "RichTextEditor supports the same variant and status props as other form inputs for visual consistency.",
     "signaturePad_desc": "Handwritten signature input",
-    "signaturepad_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "signaturepad_a11y_desc": "The drawing surface is a canvas, which has no readable content of its own, so it is given role=\"img\" and a name: aria-labelledby pointing at the field label when there is one, and aria-label from the canvas label otherwise. Validation messages are wired with aria-describedby. role=\"img\" is deliberate — it tells assistive technology that this is a picture with a description rather than a control it should try to operate, since the signature itself cannot be entered from the keyboard.",
     "signaturepad_anatomy_content": "The primary area where main content or children are rendered.",
     "signaturepad_anatomy_content_label": "Content",
     "signaturepad_anatomy_root": "The outermost container managing state and layout.",
