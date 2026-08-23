@@ -13,7 +13,6 @@
     "feedbackCloseButton_prop_onClose": "閉じるボタンがクリックされた時に呼び出されるコールバック。\n指定しない場合、ボタンはレンダリングされません（null を返します）。",
     "feedbackCloseButton_prop_size": "閉じるアイコンのサイズ。\n@default \"sm\"",
     "feedbackIcon_prop_className": "追加の CSS クラス名。",
-    "feedbackIcon_prop_color": "アイコンの明示的な色。",
     "feedbackIcon_prop_icon": "カスタムアイコンノード。false の場合、アイコンはレンダリングされません。",
     "feedbackIcon_prop_intent": "フィードバックの意味的インテント。\r\n@default \"info\"",
     "feedbackIcon_prop_size": "アイコンのサイズ。\r\n@default \"sm\"",

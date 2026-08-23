@@ -13,7 +13,6 @@
     "feedbackCloseButton_prop_onClose": "Callback disparado quando o botão de fechar é clicado.\nSe não for fornecido, o botão não será renderizado (retorna null).",
     "feedbackCloseButton_prop_size": "Tamanho do ícone de fechar.\n@default \"sm\"",
     "feedbackIcon_prop_className": "Nome de classe CSS adicional.",
-    "feedbackIcon_prop_color": "Cor explícita para o ícone.",
     "feedbackIcon_prop_icon": "Nó de ícone personalizado. Se falso, nenhum ícone será renderizado.",
     "feedbackIcon_prop_intent": "Intenção semântica do feedback.\r\n@default \"info\"",
     "feedbackIcon_prop_size": "Tamanho do ícone.\r\n@default \"sm\"",

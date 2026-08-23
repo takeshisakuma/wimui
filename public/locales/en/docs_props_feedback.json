@@ -75,7 +75,6 @@
     "result_prop_intent": "Semantic intent — determines the icon and color.\n@default \"default\"",
     "result_prop_status": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500).",
     "result_prop_title": "The title",
-    "scrollProgress_prop_color": "Color of the progress bar.\n@default \"primary\"",
     "scrollProgress_prop_target": "Element whose scroll position is tracked. Defaults to `window`.",
     "skeleton_prop_animation": "Type of animation (`pulse`: slow fade, `wave`: left-to-right wave, `none`: no animation).\n@default \"pulse\"",
     "skeleton_prop_height": "Height, including a CSS unit (px, %, rem, etc.).",
