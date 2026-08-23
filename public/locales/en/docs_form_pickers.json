@@ -173,7 +173,7 @@
     "otpinput_choice_self_when": "When verifying identity with a one-time passcode (SMS, email, or authenticator app).",
     "otpinput_content_auto": "To enhance convenience on mobile devices, it supports automatic completion from SMS (autocomplete=\"one-time-code\").",
     "otpinput_design_intent": "OtpInput is a specialized component for entering short authentication codes (usually 4 to 6 digits) used in two-factor authentication, etc. By providing fields categorized for each character, it clarifies the current entry position and reduces entry errors by functioning as a visual guide.",
-    "segmentedcontrol_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "segmentedcontrol_a11y_desc": "The group is role=\"radiogroup\" named by the visible label through aria-labelledby, with aria-required, aria-invalid and aria-describedby set from the field state. Each option is role=\"radio\" with aria-checked and a roving tabindex, so the group is one tab stop. Arrow keys move to the next or previous option and wrap around at both ends, and because this is a radio group they also change the selection, not just the focus. The sliding indicator behind the options is aria-hidden.",
     "segmentedcontrol_anatomy_content": "The primary area where main content or children are rendered.",
     "segmentedcontrol_anatomy_content_label": "Content",
     "segmentedcontrol_anatomy_root": "The outermost container managing state and layout.",

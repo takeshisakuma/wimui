@@ -93,7 +93,7 @@
     "masonry_spacing_adj": "Ajuste de Espaçamento",
     "masonry_spacing_adj_desc": "Ajuste a distância entre elementos com a propriedade spacing.",
     "masonry_title": "Layout Masonry para posicionamento eficiente de elementos",
-    "splitter_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "splitter_a11y_desc": "A alça de arraste é role=\"separator\" com aria-orientation e um nome, e é focalizável, de modo que os painéis podem ser redimensionados com as setas e não apenas arrastando. Essa combinação — um separator com tabIndex e atributos aria-value — é um widget focalizável segundo a ARIA 1.2, mas o jsx-a11y não reconhece o padrão e o sinaliza, então a regra é desativada naquele elemento com um comentário, em vez de alterar a semântica para satisfazer o linter.",
     "splitter_anatomy_content": "Os painéis individuais (panes) que contêm os dados interativos ou visualizações da aplicação sendo redimensionados.",
     "splitter_anatomy_content_label": "Painel Redimensionável",
     "splitter_anatomy_root": "O contêiner principal que calcula as proporções do painel e coordena as operações de redimensionamento em todos os segmentos filhos.",

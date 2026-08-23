@@ -93,7 +93,7 @@
     "masonry_spacing_adj": "Adjusting Spacing",
     "masonry_spacing_adj_desc": "Adjust distance between elements with the spacing property.",
     "masonry_title": "Masonry layout for efficient element placement",
-    "splitter_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "splitter_a11y_desc": "The drag handle is role=\"separator\" with aria-orientation and a name, and it is focusable, so the panes can be resized with the arrow keys and not only by dragging. That combination — a separator with tabIndex and aria-value attributes — is a focusable widget under ARIA 1.2, but jsx-a11y does not recognise the pattern and flags it, so the rule is disabled at that element with a comment rather than the semantics being changed to satisfy the linter.",
     "splitter_anatomy_content": "The individual panels (panes) that contain the application's interactive data or views being resized.",
     "splitter_anatomy_content_label": "Resizable Panel",
     "splitter_anatomy_root": "The main container that calculates panel ratios and coordinates the resize operations across all child segments.",

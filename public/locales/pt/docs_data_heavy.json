@@ -184,7 +184,7 @@
     "scheduleview_scenario_tv": "Programação de TV",
     "scheduleview_scenario_tv_desc": "Visualização de grelhas de programação em vários canais e horários.",
     "table": "Tabela",
-    "table_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "table_a11y_desc": "A marcação continua sendo uma tabela real, então linhas, células e cabeçalhos mantêm sua semântica nativa sem nenhum ARIA. Duas coisas são acrescentadas. Um cabeçalho ordenável torna-se focalizável e recebe aria-sort com ascending, descending ou none, respondendo a Enter e Espaço além do clique. Quando height ou maxHeight faz a tabela rolar, o invólucro recebe tabIndex 0 para que a região possa ser alcançada e rolada pelo teclado; ele é marcado como role=\"none\" para que esse invólucro não acrescente uma camada própria entre a tabela e o leitor.",
     "table_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "table_anatomy_content_label": "Conteúdo",
     "table_anatomy_root": "O contêiner externo que gerencia estado e layout.",
