@@ -8,7 +8,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_THEME,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { pairTable } from "../../_internal/chartTableData";
 
@@ -70,14 +74,18 @@ export const PieChart = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
       {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
       <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsPieChart>
+          <RechartsPieChart {...CHART_HIDDEN_A11Y_PROPS}>
             <Pie
               data={data}
               cx="50%"
@@ -108,7 +116,11 @@ export const PieChart = ({
           </RechartsPieChart>
         </ResponsiveContainer>
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

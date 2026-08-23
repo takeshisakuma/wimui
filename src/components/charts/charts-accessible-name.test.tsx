@@ -507,6 +507,46 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
     expect(table!.getAttribute("aria-label")).toBe(VISIBLE_TITLE);
   });
 
+  it.each(CASES)(
+    "$name が図を隠すなら recharts のアクセシビリティレイヤーも切っている",
+    ({ name }) => {
+      // **これは CI の axe まで出た欠陥**（`aria-hidden-focus`・serious）。
+      // recharts はラッパーに `tabindex=0` を付けるので、`aria-hidden` の内側に
+      // 残るとフォーカスは届くのに読み上げられない要素になる。
+      //
+      // **ここはソースを読む。DOM では測れない** ── jsdom は寸法を持たないため
+      // recharts はアクセシビリティレイヤーを描かず、`tabindex` を持つ要素が
+      // 1 つも出ない（実測して確認した）。描画結果で検査すると、対処を外しても
+      // 緑のまま＝**絶対に落ちない検査**になる。守りたい不変条件は
+      // 「隠すなら切る」なので、そちらを直接見る。
+      // **コメントは落としてから読む。** 最初の版は `GaugeChart` の
+      // 「`aria-hidden` で隠す必要も無い」という**説明文**に反応して落ちた。
+      // 字面を見る検査は、字面が出てくる場所を絞らないと嘘をつく。
+      const source = fs
+        .readFileSync(`src/components/charts/${name}/${name}.tsx`, "utf8")
+        .replace(/\/\*[\s\S]*?\*\//g, "")
+        .replace(/\/\/.*$/gm, "");
+      // 対象は「recharts を描き、かつ図を隠している」もの。
+      // `GanttChart` は `aria-hidden` を使うが recharts を描かない（自前の
+      // `role="grid"`）ので対象外 ── 最初の版はここで誤検知した。
+      // `aria-hidden` は素の属性のときも式のときもある（`Sparkline` は
+      // `aria-hidden={ariaLabel ? undefined : true}`）ので、値まで見ない。
+      const usesRecharts = /from "recharts"/.test(source);
+      if (!usesRecharts || !source.includes("aria-hidden")) {
+        return;
+      }
+      // **spread されていることを見る。** `includes("CHART_HIDDEN_A11Y_PROPS")`
+      // だけだと **import 行だけでも通る** ── 実際、対処を外して実証したとき
+      // import が残っていて素通りした。
+      expect(
+        source.includes("{...CHART_HIDDEN_A11Y_PROPS}"),
+        `${name}: 図を aria-hidden で隠しているのに、recharts の ` +
+          `accessibilityLayer を切っていない（axe: aria-hidden-focus / serious）。` +
+          `helpers の CHART_HIDDEN_A11Y_PROPS を recharts のルートへ渡すこと。`,
+      ).toBe(true);
+    },
+  );
+
   it("表は aria-hidden の内側に入っていない", () => {
     // ここが今回いちばん壊しやすい。`role="img"` は children presentational
     // なので図の中に表を置くと読まれないし、図を包む `aria-hidden` の内側に

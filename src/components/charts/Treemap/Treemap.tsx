@@ -6,7 +6,11 @@ import {
   type TreemapNode,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_THEME,
+  type ChartDataPoint,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { flattenLeaves, pairTable } from "../../_internal/chartTableData";
 import styles from "./treemap.module.scss";
@@ -183,7 +187,8 @@ const TreemapTile = ({
         if (node.isConnected) fit();
       };
       document.fonts?.addEventListener?.("loadingdone", remeasure);
-      return () => document.fonts?.removeEventListener?.("loadingdone", remeasure);
+      return () =>
+        document.fonts?.removeEventListener?.("loadingdone", remeasure);
     },
     [width, full],
   );
@@ -248,7 +253,9 @@ export const Treemap = ({
        葉まで降りてから拾う。 */
     const leaves = (nodes: ChartDataPoint[]): ChartDataPoint[] =>
       nodes.flatMap((n) =>
-        Array.isArray(n.children) ? leaves(n.children as ChartDataPoint[]) : [n],
+        Array.isArray(n.children)
+          ? leaves(n.children as ChartDataPoint[])
+          : [n],
       );
     const values = leaves(data ?? []).map((d) => Number(d[dataKey]) || 0);
     return values.length
@@ -262,43 +269,52 @@ export const Treemap = ({
 
   return (
     <TileRangeContext.Provider value={range}>
-    <div
-      className={`wim-treemap ${styles.root} wim-treemap__root`}
-      style={{ width }}
-      role={name ? "figure" : undefined}
-      aria-label={name}
-    >
-      {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
-          {title}
-        </Title>
-      )}
-      {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
       <div
-        className={`${styles.container} wim-treemap__container`}
-        style={{ height, minWidth: 0, minHeight: 0 }}
-        aria-hidden="true"
+        className={`wim-treemap ${styles.root} wim-treemap__root`}
+        style={{ width }}
+        role={name ? "figure" : undefined}
+        aria-label={name}
       >
-        {/* Provider は `ResponsiveContainer` の**外**に置く。中に挟むと、
-            単一の子をクローンして幅と高さを流す仕組みが挟んだ要素に当たる。 */}
-        <ResponsiveContainer width="100%" height="100%">
-          <RechartsTreemap
-            data={data}
-            dataKey={dataKey}
-            aspectRatio={aspectRatio}
-            stroke="none"
-            content={TreemapTile as unknown as React.ReactElement}
-            isAnimationActive={false}
+        {title && (
+          <Title
+            tag="h3"
+            size="md"
+            style={{ marginBottom: "var(--wim-spacing-md)" }}
           >
-            <Tooltip
-              contentStyle={CHART_THEME.tooltip.contentStyle}
-              formatter={(value, name) => [value, name]}
-            />
-          </RechartsTreemap>
-        </ResponsiveContainer>
+            {title}
+          </Title>
+        )}
+        {/* 描画そのものは支援技術から隠し、同じ値を下の表で渡す（T230）。 */}
+        <div
+          className={`${styles.container} wim-treemap__container`}
+          style={{ height, minWidth: 0, minHeight: 0 }}
+          aria-hidden="true"
+        >
+          {/* Provider は `ResponsiveContainer` の**外**に置く。中に挟むと、
+            単一の子をクローンして幅と高さを流す仕組みが挟んだ要素に当たる。 */}
+          <ResponsiveContainer width="100%" height="100%">
+            <RechartsTreemap
+              {...CHART_HIDDEN_A11Y_PROPS}
+              data={data}
+              dataKey={dataKey}
+              aspectRatio={aspectRatio}
+              stroke="none"
+              content={TreemapTile as unknown as React.ReactElement}
+              isAnimationActive={false}
+            >
+              <Tooltip
+                contentStyle={CHART_THEME.tooltip.contentStyle}
+                formatter={(value, name) => [value, name]}
+              />
+            </RechartsTreemap>
+          </ResponsiveContainer>
+        </div>
+        <ChartDataTable
+          caption={name}
+          columns={table.columns}
+          rows={table.rows}
+        />
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
-    </div>
     </TileRangeContext.Provider>
   );
 };

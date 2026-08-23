@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import classNames from "classnames";
+import { CHART_HIDDEN_A11Y_PROPS } from "../../helpers";
 import styles from "./sparkline.module.scss";
 
 /** Visual form of the sparkline. */
@@ -67,7 +68,10 @@ export const Sparkline = ({
   className,
 }: SparklineProps) => {
   const chartData = data.map((value, index) => ({ index, value }));
-  const domain: [number | "auto", number | "auto"] = [min ?? "auto", max ?? "auto"];
+  const domain: [number | "auto", number | "auto"] = [
+    min ?? "auto",
+    max ?? "auto",
+  ];
   const lastIndex = data.length - 1;
   // VRT: skip ResponsiveContainer — its ResizeObserver first paint is often an
   // empty SVG on CI. Fixed pixel size matches the outer wrapper dimensions.
@@ -80,32 +84,44 @@ export const Sparkline = ({
   const chartWidth = typeof width === "number" ? width : null;
   const chartHeight = height ?? 24;
 
-  const renderLastDot = (props: { cx?: number; cy?: number; index?: number }) => {
+  const renderLastDot = (props: {
+    cx?: number;
+    cy?: number;
+    index?: number;
+  }) => {
     const { cx, cy, index } = props;
     if (!showLastDot || index !== lastIndex || cx == null || cy == null) {
       return <g key={index} />;
     }
-    return <circle key={index} cx={cx} cy={cy} r={strokeWidth + 1} fill={color} />;
+    return (
+      <circle key={index} cx={cx} cy={cy} r={strokeWidth + 1} fill={color} />
+    );
   };
 
   const sizeProps =
-    isVrt && chartWidth !== null ? { width: chartWidth, height: chartHeight } : {};
+    isVrt && chartWidth !== null
+      ? { width: chartWidth, height: chartHeight }
+      : {};
   // ラベルはルート要素の role="img" / aria-hidden が担うため、Recharts 側の
   // アクセシビリティレイヤー（ラッパーの tabindex=0）は常に無効化する。
   // aria-hidden 内にフォーカス可能要素が残ると axe: aria-hidden-focus 違反になる。
-  const a11yProps = { accessibilityLayer: false, tabIndex: -1 };
 
   const renderChart = () => {
     if (type === "bar") {
       return (
         <RechartsBarChart
           {...sizeProps}
-          {...a11yProps}
+          {...CHART_HIDDEN_A11Y_PROPS}
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
           <YAxis hide domain={domain} />
-          <Bar dataKey="value" fill={color} radius={[2, 2, 0, 0]} isAnimationActive={false} />
+          <Bar
+            dataKey="value"
+            fill={color}
+            radius={[2, 2, 0, 0]}
+            isAnimationActive={false}
+          />
         </RechartsBarChart>
       );
     }
@@ -113,7 +129,7 @@ export const Sparkline = ({
       return (
         <RechartsAreaChart
           {...sizeProps}
-          {...a11yProps}
+          {...CHART_HIDDEN_A11Y_PROPS}
           data={chartData}
           margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
         >
@@ -135,7 +151,7 @@ export const Sparkline = ({
     return (
       <RechartsLineChart
         {...sizeProps}
-        {...a11yProps}
+        {...CHART_HIDDEN_A11Y_PROPS}
         data={chartData}
         margin={{ top: 2, right: 2, bottom: 2, left: 2 }}
       >

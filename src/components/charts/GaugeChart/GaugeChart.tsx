@@ -95,7 +95,11 @@ export const GaugeChart = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -120,9 +124,7 @@ export const GaugeChart = ({
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div className={styles.gaugeLabel}>
-          {label || value}
-        </div>
+        <div className={styles.gaugeLabel}>{label || value}</div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_THEME } from "../../helpers";
+import { CHART_THEME, CHART_HIDDEN_A11Y_PROPS } from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { matrixTable } from "../../_internal/chartTableData";
 
@@ -68,6 +68,8 @@ export const Heatmap = ({
   height = 300,
   width = "100%",
   title,
+  // prettier-ignore — 1 行に保つ。`check:prop-values` は docs の `@default` と
+  // この既定値を字面で突き合わせるので、折り返すと同じ値なのに不一致になる。
   colorRange = ["var(--wim-color-surface-variant)", "var(--wim-color-chart-primary)"],
   animated = false,
   "aria-label": ariaLabel,
@@ -111,7 +113,11 @@ export const Heatmap = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -121,7 +127,10 @@ export const Heatmap = ({
           {/* 実測（410px 幅のカード）: 左端のセルが Y 軸のラベルに接し（508 と 510）、
               右には 34px が空いて**左に寄って見えた**。軸の内側に余白を取り、
               右の余白は詰めて左右を揃える。 */}
-          <ScatterChart margin={{ top: 20, right: 4, left: 8, bottom: 20 }}>
+          <ScatterChart
+            {...CHART_HIDDEN_A11Y_PROPS}
+            margin={{ top: 20, right: 4, left: 8, bottom: 20 }}
+          >
             <XAxis
               type="number"
               dataKey="x"
@@ -162,7 +171,11 @@ export const Heatmap = ({
             />
             {/* 既定でアニメーション無効（他チャートの animated 規約と統一。
                 有効のままだと VRT update がセル描画前の空フレームを掴み得る） */}
-            <Scatter data={formattedData} shape="square" isAnimationActive={animated}>
+            <Scatter
+              data={formattedData}
+              shape="square"
+              isAnimationActive={animated}
+            >
               {formattedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={getColor(entry.value)} />
               ))}
@@ -170,7 +183,11 @@ export const Heatmap = ({
           </ScatterChart>
         </ResponsiveContainer>
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

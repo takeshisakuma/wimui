@@ -30,7 +30,6 @@ export const CHART_TEXT_COLORS = [
   "var(--wim-color-text-primary)",
 ];
 
-
 export const CHART_THEME = {
   axis: {
     // 軸線と目盛り線は**非テキスト**（WCAG 1.4.11 の 3:1）。
@@ -62,23 +61,23 @@ export const CHART_THEME = {
     strokeDasharray: "3 3",
   },
   // tooltip.contentStyle は div へのインラインスタイルのため CSS カスタムプロパティが使用可能。
-    tooltip: {
-      contentStyle: {
-        backgroundColor: "var(--wim-color-glass-bg)",
-        border: "1px solid var(--wim-color-glass-border)",
-        borderRadius: "var(--wim-radius-md)",
-        fontSize: "var(--wim-font-size-sm)",
-        backdropFilter: "blur(8px)",
-        color: "var(--wim-color-text-primary)",
-      },
-      cursor: {
-        fill: "var(--wim-color-text-primary)",
-        stroke: "var(--wim-color-border)",
-        strokeWidth: 1,
-        fillOpacity: 0.05,
-        strokeOpacity: 0.5,
-      },
+  tooltip: {
+    contentStyle: {
+      backgroundColor: "var(--wim-color-glass-bg)",
+      border: "1px solid var(--wim-color-glass-border)",
+      borderRadius: "var(--wim-radius-md)",
+      fontSize: "var(--wim-font-size-sm)",
+      backdropFilter: "blur(8px)",
+      color: "var(--wim-color-text-primary)",
     },
+    cursor: {
+      fill: "var(--wim-color-text-primary)",
+      stroke: "var(--wim-color-border)",
+      strokeWidth: 1,
+      fillOpacity: 0.05,
+      strokeOpacity: 0.5,
+    },
+  },
 };
 
 /**
@@ -90,3 +89,22 @@ export type ChartAxisDomain = [
   number | "auto" | "dataMin" | (string & {}),
   number | "auto" | "dataMax" | (string & {}),
 ];
+
+/**
+ * `aria-hidden` の内側に置く recharts へ必ず渡す props（T230）。
+ *
+ * recharts はアクセシビリティレイヤーとしてラッパーに `tabindex=0` を付ける。
+ * **`aria-hidden` の内側にフォーカス可能な要素が残ると axe の
+ * `aria-hidden-focus`（serious）になる**ので、隠す図では常に無効化する。
+ *
+ * `Sparkline` が先に同じ問題を踏んで同じ対処をしていた。T230 で 9 チャートが
+ * 同型になったため、各所に散らさずここへ集めた ── 片方だけ直して片方が腐る
+ * のを避ける。
+ *
+ * **これは「隠した図」専用。** 図を隠していない `GaugeChart` には渡さない
+ * （隠していないなら、フォーカスできること自体は違反ではない）。
+ */
+export const CHART_HIDDEN_A11Y_PROPS = {
+  accessibilityLayer: false,
+  tabIndex: -1,
+} as const;

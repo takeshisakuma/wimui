@@ -11,7 +11,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_THEME,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { type ChartAxisDomain } from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { pointTable } from "../../_internal/chartTableData";
@@ -95,7 +99,11 @@ export const ScatterChart = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -103,6 +111,7 @@ export const ScatterChart = ({
       <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           <RechartsScatterChart
+            {...CHART_HIDDEN_A11Y_PROPS}
             /* 左の余白は軸が自分で持つ（AreaChart / BarChart / LineChart と同じ）。 */
             margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
           >
@@ -132,11 +141,20 @@ export const ScatterChart = ({
               contentStyle={CHART_THEME.tooltip.contentStyle}
             />
             <Legend verticalAlign="top" height={36} {...CHART_THEME.legend} />
-            <Scatter name="Data Points" data={data} fill={CHART_COLORS[0]} isAnimationActive={animated} />
+            <Scatter
+              name="Data Points"
+              data={data}
+              fill={CHART_COLORS[0]}
+              isAnimationActive={animated}
+            />
           </RechartsScatterChart>
         </ResponsiveContainer>
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

@@ -10,7 +10,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_COLORS,
+  CHART_THEME,
+  type ChartDataPoint,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { type ChartAxisDomain } from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { seriesTable } from "../../_internal/chartTableData";
@@ -91,7 +96,11 @@ export const BarChart = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -99,6 +108,7 @@ export const BarChart = ({
       <div className={styles.container} style={{ height }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           <RechartsBarChart
+            {...CHART_HIDDEN_A11Y_PROPS}
             data={data}
             /* 左の余白は `YAxis` が自分の幅で確保する。ここに 20px を足すと
                目盛りのぶんだけ図が右へ寄る（実測: 描画域の左端がカードから
@@ -148,7 +158,11 @@ export const BarChart = ({
           </RechartsBarChart>
         </ResponsiveContainer>
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };

@@ -8,7 +8,11 @@ import {
   Cell,
 } from "recharts";
 import { Title } from "../../typography/Title/Title";
-import { CHART_THEME, type ChartDataPoint } from "../../helpers";
+import {
+  CHART_THEME,
+  type ChartDataPoint,
+  CHART_HIDDEN_A11Y_PROPS,
+} from "../../helpers";
 import { ChartDataTable } from "../../_internal/ChartDataTable";
 import { pairTable } from "../../_internal/chartTableData";
 import styles from "./funnel-chart.module.scss";
@@ -73,7 +77,11 @@ export const FunnelChart = ({
       aria-label={name}
     >
       {title && (
-        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title
+          tag="h3"
+          size="md"
+          style={{ marginBottom: "var(--wim-spacing-md)" }}
+        >
           {title}
         </Title>
       )}
@@ -84,9 +92,12 @@ export const FunnelChart = ({
               狭い枠では切れていた（実測: カード右端 1251 に対しラベル右端 1282）。
               いちばん長いラベル（実測 61px）が収まる余白を右に取る。**左にも同じだけ**
               取るのは、右だけ空けると図が左へ寄って見えるため（ユーザー報告）。 */}
-          <RechartsFunnelChart margin={{ top: 8, right: 88, bottom: 8, left: 88 }}>
-            <Tooltip 
-              contentStyle={CHART_THEME.tooltip.contentStyle} 
+          <RechartsFunnelChart
+            {...CHART_HIDDEN_A11Y_PROPS}
+            margin={{ top: 8, right: 88, bottom: 8, left: 88 }}
+          >
+            <Tooltip
+              contentStyle={CHART_THEME.tooltip.contentStyle}
               cursor={CHART_THEME.tooltip.cursor}
             />
             <Funnel dataKey={dataKey} data={data} isAnimationActive={animated}>
@@ -102,7 +113,8 @@ export const FunnelChart = ({
                 <Cell
                   key={`cell-${index}`}
                   fill={`color-mix(in oklch, var(--wim-color-chart-primary) ${
-                    100 - Math.round((index / Math.max(data.length - 1, 1)) * 55)
+                    100 -
+                    Math.round((index / Math.max(data.length - 1, 1)) * 55)
                   }%, var(--wim-color-surface))`}
                 />
               ))}
@@ -110,7 +122,11 @@ export const FunnelChart = ({
           </RechartsFunnelChart>
         </ResponsiveContainer>
       </div>
-      <ChartDataTable caption={name} columns={table.columns} rows={table.rows} />
+      <ChartDataTable
+        caption={name}
+        columns={table.columns}
+        rows={table.rows}
+      />
     </div>
   );
 };
