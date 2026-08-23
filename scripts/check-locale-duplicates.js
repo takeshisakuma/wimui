@@ -29,12 +29,25 @@
  * `stories/**` に実在する。その形で負けている側を直接引いている箇所があれば、
  * 消すと表示が壊れる。
  *
+ * **直し方の方針（2026-08-23・ユーザー判断）: キーごとに最終更新を見て、
+ * 手入れされているほうを残す。** クラスタで束ねると外す ── `docs_form_basic` は
+ * カテゴリ側が新しかったが `docs_guide_common` は逆で、58 件のうち 2 件だけ
+ * カテゴリ側が新しかった。束で消していたらその 2 件を壊していた。
+ *
+ * **ただし最終更新は万能ではない。** `--plan` はそれを隠さずに出す ──
+ * `common ← docs_guide_standardization` の 31 件は **27 件が「両側とも同じ日」**で、
+ * 秒差で勝敗を付けても根拠にならない（実際、値の差は表記ゆれではなく
+ * **別々の主張**だった。片方は「Intl.NumberFormat を使え」、もう片方は
+ * 「区切り文字を扱う」）。**決められないものは「決められない」と出す。**
+ *
  * Usage:
- *   node scripts/check-locale-duplicates.js          # ラチェット（CI で走る）
- *   node scripts/check-locale-duplicates.js --list   # 食い違っている組を出す
+ *   node scripts/check-locale-duplicates.js               # ラチェット（CI で走る）
+ *   node scripts/check-locale-duplicates.js --list        # 食い違っている組を出す
+ *   node scripts/check-locale-duplicates.js --plan <ns>   # common ← <ns> をキーごとに判定
  */
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { readNamespaceOrder } from "./lib/locale-keys.js";
 
@@ -95,6 +108,60 @@ if (process.argv.includes("--list")) {
     for (const k of keys.slice(0, 4)) console.log(`        ${k}`);
     if (keys.length > 4) console.log(`        … 他 ${keys.length - 4} 件`);
   }
+  process.exit(0);
+}
+
+/**
+ * `--plan <ns>`: `common ← <ns>` の食い違いを**キーごとに**判定する。
+ *
+ * **判定できるのは「最終更新がはっきり離れている」ときだけ。** 両側が同じ日に
+ * 触られている場合、秒差で勝敗を付けても意味がないので `判定できない` に倒す。
+ * ここを黙って勝者にすると、**根拠の無い削除**になる。
+ */
+const planAt = process.argv.indexOf("--plan");
+if (planAt !== -1) {
+  const pair = process.argv[planAt + 1];
+  if (!pair) {
+    console.error("✗ 対象の名前空間を指定してください: --plan docs_guide_standardization");
+    process.exit(1);
+  }
+  /** これ以上離れていれば「後から手が入った」と見なす。同日内の差は根拠にしない。 */
+  const CLEAR_GAP_SECONDS = 24 * 60 * 60;
+  const lastTouched = (file, key) => {
+    try {
+      const out = execFileSync("git", ["log", "-1", "--format=%at", "-S", key, "--", file], {
+        cwd: root,
+        encoding: "utf8",
+      }).trim();
+      return out ? Number(out) : 0;
+    } catch {
+      return 0;
+    }
+  };
+  const targets = current.filter((key) => {
+    const any = Object.values(drifted[key])[0];
+    return any.winner === "common" ? any.losers.includes(pair) : any.losers.includes("common") || any.winner === pair;
+  });
+  const rows = [];
+  for (const key of targets) {
+    const leaf = key.slice(key.lastIndexOf(".") + 1);
+    const a = lastTouched(`public/locales/en/common.json`, leaf);
+    const b = lastTouched(`public/locales/en/${pair}.json`, leaf);
+    const gap = Math.abs(a - b);
+    rows.push({ key, a, b, verdict: gap >= CLEAR_GAP_SECONDS ? (a > b ? "common" : pair) : "判定できない" });
+  }
+  const d = (t) => (t ? new Date(t * 1000).toISOString().slice(0, 10) : "不明");
+  const tally = {};
+  for (const r of rows) tally[r.verdict] = (tally[r.verdict] || 0) + 1;
+  console.log(`common ← ${pair} で値が食い違うキー: ${rows.length} 件\n`);
+  for (const [k, v] of Object.entries(tally)) console.log(`  ${k}: ${v} 件`);
+  console.log("\n--- 内訳 ---");
+  for (const r of rows) {
+    console.log(`  ${r.key.padEnd(44)} common=${d(r.a)} ${pair}=${d(r.b)}  → ${r.verdict}`);
+  }
+  console.log(
+    "\n**「判定できない」は最終更新が同じ日のもの。** 秒差で決めず、値を読んで人が選ぶこと。",
+  );
   process.exit(0);
 }
 
