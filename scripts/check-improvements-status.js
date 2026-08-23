@@ -33,8 +33,21 @@ const DONE_IN_BODY = /\*\*済\*\*|済（20\d\d-\d\d-\d\d|済（#|済（PR #/;
 const DONE_STATUS = /^\*\*済|^済/;
 const EVIDENCE = /20\d\d-\d\d-\d\d|#\d{2,}/;
 
-/** 表の列数。`\|`（エスケープ済み）は区切りに数えない。 */
-const cellCount = (line) => line.split("\\|").join("§").split("|").length;
+/**
+ * 行をセルに割る。**`\|`（エスケープ済み）は区切りに数えない。**
+ *
+ * 列数の検査だけがこの規則を守っていて、**状態列の取り出しは素の `split("|")` の
+ * ままだった**（2026-08-23 に発覚）。`\|` を含む行では添字がずれ、`CI-10` の状態列は
+ * **`"danger \"` として読まれていた** ── `**未着手**` に一致しないので**未完了に
+ * 数えられず**、`**済**` にも一致しないので根拠の検査も素通りしていた。
+ *
+ * つまり**このガードの「未完了 N 件」は、本文に縦棒を書いた行を黙って落としていた。**
+ * 残件の数を出すことがこのガードの仕事なので、これは数え方そのものの誤り。
+ * 実測では 2 行が該当し、うち 1 行（`CI-10`）が実際に隠れていた（7 → 6 と出ていた）。
+ */
+const splitCells = (line) => line.split("\\|").join("§").split("|");
+/** 表の列数。 */
+const cellCount = (line) => splitCells(line).length;
 
 function main() {
   if (!fs.existsSync(FILE)) {
@@ -72,7 +85,7 @@ function main() {
       malformed.push({ line: i + 1, id: m[1], cols, headerCols, headerLine });
     }
 
-    const status = (line.split("|")[statusIdx] ?? "").trim();
+    const status = (splitCells(line)[statusIdx] ?? "").trim();
     if (!status) return;
     checked += 1;
 
