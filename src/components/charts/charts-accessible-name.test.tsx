@@ -544,6 +544,18 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
           `accessibilityLayer を切っていない（axe: aria-hidden-focus / serious）。` +
           `helpers の CHART_HIDDEN_A11Y_PROPS を recharts のルートへ渡すこと。`,
       ).toBe(true);
+
+      // **チャート根の設定だけでは足りない。** `Pie` は自分の `rootTabIndex`
+      // （既定 0）で `<g>` に `tabindex="0"` を付けるので、根を切っても残る
+      // （`PieChart` がこれで 2 度目の axe 落ちをした）。recharts で
+      // `rootTabIndex` を持つのは `Pie` だけであることは型定義で確認済み。
+      if (/<Pie[\s>]/.test(source)) {
+        expect(
+          /rootTabIndex=\{-1\}/.test(source),
+          `${name}: 隠した図の中の <Pie> が rootTabIndex={-1} を持っていない ` +
+            `（既定 0 のまま <g tabindex="0"> が残る）。`,
+        ).toBe(true);
+      }
     },
   );
 

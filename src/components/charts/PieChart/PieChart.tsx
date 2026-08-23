@@ -87,6 +87,12 @@ export const PieChart = ({
         <ResponsiveContainer width="100%" height="100%">
           <RechartsPieChart {...CHART_HIDDEN_A11Y_PROPS}>
             <Pie
+              /* `Pie` は**自分の** `rootTabIndex`（既定 0）で `<g>` に
+                 `tabindex="0"` を付ける。チャート根の `accessibilityLayer:
+                 false` / `tabIndex: -1` では消えないので、ここで別途切る。
+                 recharts で `rootTabIndex` を持つのは `Pie` だけ（型定義で確認）。
+                 隠した中に残ると axe: aria-hidden-focus（serious）になる。 */
+              rootTabIndex={-1}
               data={data}
               cx="50%"
               cy="50%"
