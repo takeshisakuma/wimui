@@ -30,7 +30,12 @@ type ProgressRingOwnProps = Omit<
    */
   size?: ComponentSizeBasic;
   /**
-   * Text label displayed below the ring. Also used as the accessible name.
+   * Text label displayed below the ring. Also used as the accessible name unless
+   * `aria-label` / `aria-labelledby` is given.
+   *
+   * A progress ring always carries `role="progressbar"`, and a progressbar with no
+   * accessible name is a WCAG failure (axe `aria-progressbar-name`, serious). The
+   * type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
    */
   label?: string;
   /**
