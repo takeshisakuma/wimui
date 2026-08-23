@@ -15,7 +15,7 @@
     "calendar_scenario_2": "Booking Systems: Selecting a check-in date for a hotel or resource reservation.",
     "colorInput_desc": "Input with color preview",
     "colorPicker_desc": "Color selection picker",
-    "colorinput_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "colorinput_a11y_desc": "The colour swatch is given a translated accessible name but is tabIndex -1, so it does not add a second tab stop next to the field it belongs to. The text input remains the control: it is what receives focus, what carries the field's name and validation wiring, and what a screen reader reads the value from. Because the swatch conveys the current colour visually and nothing else, the value has to remain readable as text in the input.",
     "colorinput_anatomy_content": "The text field for entering precise color values (Hex, RGB, etc.).",
     "colorinput_anatomy_content_label": "Text Field",
     "colorinput_anatomy_root": "The container that harmonizes the text input with a live color swatch preview.",

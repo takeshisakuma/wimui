@@ -15,7 +15,7 @@
     "calendar_scenario_2": "Sistemas de Reserva: Selecionar uma data de check-in para um hotel ou reserva de recursos.",
     "colorInput_desc": "Entrada com pré-visualização de cor",
     "colorPicker_desc": "Selecionador de cor",
-    "colorinput_a11y_desc": "Segue as diretrizes WAI-ARIA com funções, rótulos e suporte de navegação por teclado adequados.",
+    "colorinput_a11y_desc": "A amostra de cor recebe um nome acessível traduzido, mas tem tabIndex -1, de modo que não acrescenta uma segunda parada de tabulação ao lado do campo a que pertence. O controle continua sendo o campo de texto: é ele que recebe foco, que carrega o nome do campo e a ligação de validação, e de onde o leitor de tela lê o valor. Como a amostra transmite a cor atual apenas visualmente, o valor precisa permanecer legível como texto no campo.",
     "colorinput_anatomy_content": "O campo de texto para introduzir valores de cor precisos (Hex, RGB, etc.).",
     "colorinput_anatomy_content_label": "Campo de Texto",
     "colorinput_anatomy_root": "O contêiner que harmoniza a entrada de texto com uma pré-visualização da amostra de cor ao vivo.",

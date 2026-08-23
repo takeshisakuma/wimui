@@ -368,7 +368,7 @@
     "hamburgermenu_mobile_only_desc": "This component is primarily designed for mobile devices (narrow screen widths). For desktop environments, consider using Navbar or Sidebar.",
     "hamburgermenu_title": "Collapsible navigation menu for mobile devices",
     "hoverCard_desc": "Rich content on hover",
-    "hovercard_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "hovercard_a11y_desc": "The card opens on keyboard focus as well as on hover — the trigger is a tab stop and both interactions are wired, so the content is not reachable by pointer only. Keep the card's content non-essential and non-interactive: it is tied to the trigger's hover and focus, so anything a person must read carefully or click belongs in a popover or dialog they can dismiss deliberately.",
     "hovercard_anatomy_content": "The primary area where main content or children are rendered.",
     "hovercard_anatomy_content_label": "Content",
     "hovercard_anatomy_root": "The outermost container managing state and layout.",
