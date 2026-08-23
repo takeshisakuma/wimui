@@ -4604,15 +4604,71 @@
       "required": false,
       "type": "boolean"
     },
+    "IconButton.animateWidth": {
+      "type": "boolean"
+    },
     "IconButton.aria-label": {
       "type": "string"
     },
     "IconButton.asChild": {
       "type": "unknown"
     },
+    "IconButton.backgroundColor": {
+      "type": "T | (string & {})"
+    },
+    "IconButton.className": {
+      "type": "string"
+    },
+    "IconButton.fullWidth": {
+      "type": "boolean"
+    },
+    "IconButton.icon": {
+      "type": "React.ComponentProps<typeof Icon>[\"name\"] | React.ReactNode"
+    },
     "IconButton.iconName": {
       "required": true,
       "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+    },
+    "IconButton.intent": {
+      "type": "ButtonIntent"
+    },
+    "IconButton.justify": {
+      "values": [
+        "between",
+        "center",
+        "end",
+        "start"
+      ]
+    },
+    "IconButton.loading": {
+      "type": "boolean"
+    },
+    "IconButton.size": {
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "IconButton.styles": {
+      "type": "{ root?: string; loader?: string; icon?: string; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "string"
+        },
+        "loader": {
+          "required": false,
+          "type": "string"
+        },
+        "root": {
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "IconButton.variant": {
+      "values": [
+        "ghost",
+        "outline",
+        "solid"
+      ]
     },
     "Image.alt": {
       "required": true,

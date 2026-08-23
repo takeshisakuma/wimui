@@ -1200,6 +1200,17 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
 - **IconButton** — Icon-only button
     - `iconName: React.ComponentProps<typeof Icon>["name"]` (required) — Icon name to display
     - `aria-label: string` (required) — Accessible label for the icon-only button
+    - `backgroundColor: T | (string & {})` — Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
+    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element
+    - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
+    - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
+    - `animateWidth: boolean` = false — Whether to animate the width change when label changes
+    - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
+    - `styles: { root?: string; loader?: string; icon?: string; }` — Custom styles for internal parts
+    - `className: string` — Additional class names
 - **ImageCropper** — Front-end image crop and rotate tool
     - `src: string` — URL or data URL of the image to crop
     - `aspectRatio: number` = 1 — Aspect ratio (width / height); 1 produces a square
