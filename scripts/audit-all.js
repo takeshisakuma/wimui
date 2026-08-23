@@ -56,6 +56,14 @@ const checks = [
   },
   {
     category: "docs",
+    // T229（2026-08-23）。同じキーが複数のロケールファイルに在ると、i18next は
+    // 先の名前空間だけを返すので**負けている複製は一度も表示されない**。
+    // `check-i18n-quality` の重複検出は 1 ファイルの中しか見ないため構造的に見えない。
+    name: "Locale keys duplicated across files with drifted values (ratchet)",
+    command: "node scripts/check-locale-duplicates.js",
+  },
+  {
+    category: "docs",
     name: "I18n Consistency and File Size",
     command: "node scripts/check-i18n.js",
   },
