@@ -369,7 +369,7 @@
     "hamburgermenu_mobile_only_desc": "Este componente foi projetado principalmente para dispositivos móveis (larguras de tela estreitas). Para ambientes de desktop, considere usar Navbar ou Sidebar.",
     "hamburgermenu_title": "Menu de navegação colapsável para dispositivos móveis",
     "hoverCard_desc": "Conteúdo rico ao passar o mouse",
-    "hovercard_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "hovercard_a11y_desc": "O cartão abre tanto no foco pelo teclado quanto no hover — o gatilho é uma parada de tabulação e ambas as interações estão ligadas, então o conteúdo não fica acessível apenas pelo ponteiro. Mantenha o conteúdo do cartão não essencial e não interativo: ele está atrelado ao hover e ao foco do gatilho, então qualquer coisa que precise ser lida com atenção ou clicada pertence a um popover ou diálogo que a pessoa possa dispensar deliberadamente.",
     "hovercard_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "hovercard_anatomy_content_label": "Conteúdo",
     "hovercard_anatomy_root": "O contêiner externo que gerencia estado e layout.",
