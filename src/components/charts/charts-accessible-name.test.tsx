@@ -501,6 +501,16 @@ describe("charts: アクセシブル名（T230 の台帳）", () => {
       Array.from(row.children).map((cell) => cell.textContent ?? "");
     const rows = Array.from(table!.querySelectorAll("tr"));
 
+    // 中身の無い `<th>` は axe の `empty-table-header`。行列型（`Heatmap`）の
+    // 左上の角は見出しではないので `<td>` で置く ── ここは CI の axe まで出た。
+    const emptyHeaders = Array.from(table!.querySelectorAll("th")).filter(
+      (th) => (th.textContent ?? "").trim() === "",
+    );
+    expect(
+      emptyHeaders.length,
+      `${name}: 中身の無い <th> が ${emptyHeaders.length} 個ある（axe: empty-table-header）`,
+    ).toBe(0);
+
     expect(readCells(rows[0])).toEqual(expected.columns);
     expect(rows.slice(1).map(readCells)).toEqual(expected.rows);
     // 表は図と同じ名前で引ける（表の一覧から辿れる）。

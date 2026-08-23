@@ -58,11 +58,18 @@ export const ChartDataTable = ({
       <table aria-label={caption}>
         <thead>
           <tr>
-            {columns.map((column, index) => (
-              <th key={`${column}-${index}`} scope="col">
-                {column}
-              </th>
-            ))}
+            {columns.map((column, index) =>
+              /* 行列型（`Heatmap`）の**左上の角**は列見出しを持たない。空の
+                 `<th>` は axe の `empty-table-header` になるうえ、意味としても
+                 見出しではないので `<td>` で置く（行列表の角の正しい形）。 */
+              column === "" ? (
+                <td key={`corner-${index}`} />
+              ) : (
+                <th key={`${column}-${index}`} scope="col">
+                  {column}
+                </th>
+              ),
+            )}
           </tr>
         </thead>
         <tbody>
