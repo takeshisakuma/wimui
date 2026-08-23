@@ -249,7 +249,7 @@
     "richTextEditor_variant_desc": "RichTextEditorは、他のフォーム入力と視覚的な一貫性を保つため、同じvariantとstatusプロップをサポートします。",
     "richtexteditor_keyboard_desc": "Tab キーでエディターエリアにフォーカスします。編集には標準キーボードショートカットが使えます（Ctrl+B 太字、Ctrl+I 斜体など）。エディター内で Tab キーを押すとツールバーにフォーカスが移動します。矢印キーでツールバーボタンをナビゲートします。",
     "signaturePad_desc": "手書き署名入力",
-    "signaturepad_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
+    "signaturepad_a11y_desc": "描画面は canvas で、それ自体には読める内容がありません。そこで role=\"img\" と名前を与えます ── フィールドのラベルがあれば aria-labelledby でそれを指し、無ければ canvas 用のラベルから aria-label を付けます。エラー文言は aria-describedby で結線します。role=\"img\" は意図的な選択です。署名そのものはキーボードから入力できないため、支援技術に対して「操作する部品」ではなく「説明のついた絵」であることを伝えます。",
     "signaturepad_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "signaturepad_anatomy_content_label": "Content",
     "signaturepad_anatomy_root": "ルート：状態とレイアウトを管理する最外部のコンテナ。",

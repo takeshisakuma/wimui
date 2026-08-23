@@ -50,6 +50,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { resolveLocale } from "./lib/locale-keys.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -138,17 +139,13 @@ for (const [comp, entry] of Object.entries(docgen)) {
   }
 }
 
-// --- en の文言（**入れ子なので必ず再帰で潰す**） ---
-const locales = {};
-const flatten = (obj, prefix = "") => {
-  for (const [k, v] of Object.entries(obj)) {
-    if (typeof v === "string") locales[prefix + k] = v;
-    else if (v && typeof v === "object") flatten(v, `${prefix}${k}.`);
-  }
-};
-for (const f of walk(path.join(root, "public/locales/en"), /\.json$/)) {
-  flatten(JSON.parse(fs.readFileSync(f, "utf8")));
-}
+// --- en の文言 ---
+// **画面に出るほうの値を読む。** 全ファイルを 1 つの表に潰すと `readdir` の
+// アルファベット順で後勝ちになり、i18next（`ALL_NAMESPACES` の順で先勝ち）とは
+// **逆の複製**を読む。en の 15195 キーのうち 379 キーが複数ファイルにあり、
+// `check-i18n-quality` の重複検出は 1 ファイルの中しか見ないので誰も気づけない。
+// 詳細と実害は `lib/locale-keys.js` に書いた。
+const { values: locales } = resolveLocale(root, "en");
 /** 自己テスト用。実運用では未設定。 */
 if (process.env.WIM_INJECT_LOCALES) {
   Object.assign(locales, JSON.parse(fs.readFileSync(process.env.WIM_INJECT_LOCALES, "utf8")));

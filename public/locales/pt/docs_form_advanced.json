@@ -249,7 +249,7 @@
     "richTextEditor_variant_desc": "O RichTextEditor suporta as mesmas props de variante e estado que outras entradas de formulário para consistência visual.",
     "richtexteditor_keyboard_desc": "O Tab foca a área do editor. Aplicam-se os atalhos de teclado padrão para edição (Ctrl+B negrito, Ctrl+I itálico, etc.). Tab move o foco para a barra de ferramentas quando se está dentro do editor. As teclas de seta navegam pelos botões da barra de ferramentas.",
     "signaturePad_desc": "Entrada de assinatura manuscrita",
-    "signaturepad_a11y_desc": "Segue as diretrizes WAI-ARIA com funções, rótulos e suporte de navegação por teclado adequados.",
+    "signaturepad_a11y_desc": "A superfície de desenho é um canvas, que não tem conteúdo legível próprio, então recebe role=\"img\" e um nome: aria-labelledby apontando para o rótulo do campo quando existe, e aria-label vindo do rótulo do canvas caso contrário. As mensagens de validação são ligadas por aria-describedby. O role=\"img\" é deliberado — informa à tecnologia assistiva que isto é uma imagem com descrição, e não um controle que ela deva tentar operar, já que a assinatura não pode ser inserida pelo teclado.",
     "signaturepad_anatomy_content": "A área primária onde o conteúdo principal ou os filhos são renderizados.",
     "signaturepad_anatomy_content_label": "Conteúdo",
     "signaturepad_anatomy_root": "O contêiner mais externo que gere o estado e o esquema.",

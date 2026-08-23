@@ -45,6 +45,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { resolveLocale } from "./lib/locale-keys.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -70,18 +71,12 @@ const walk = (dir, re, acc = []) => {
   return acc;
 };
 
-// **入れ子のロケール JSON を再帰で潰す。** 最上位だけ見ると走査対象がほぼ空になり、
-// 「0 件」が「計測不成立」の意味になる（`check-doc-drift` が一度踏んだ穴）。
-const locales = {};
-const flatten = (obj, prefix = "") => {
-  for (const [k, v] of Object.entries(obj)) {
-    if (typeof v === "string") locales[prefix + k] = v;
-    else if (v && typeof v === "object") flatten(v, `${prefix}${k}.`);
-  }
-};
-for (const f of walk(path.join(root, "public/locales/en"), /\.json$/)) {
-  flatten(JSON.parse(fs.readFileSync(f, "utf8")));
-}
+// **画面に出るほうの値を読む。** 最初の版は `public/locales/en` を歩いて 1 つの表に
+// 潰していたが、`readdir` はアルファベット順なので**後のファイルが前を上書き**し、
+// i18next（`ALL_NAMESPACES` の順で**先勝ち**）とは逆の勝者を読んでいた。
+// それで `label` と `visuallyhidden` を「定型文のまま」と 2 件数え間違えていた
+// （どちらも実際には中身のある文が出ていた）。詳細は `lib/locale-keys.js`。
+const { values: locales } = resolveLocale(root, "en");
 
 let total = 0;
 const current = new Set();

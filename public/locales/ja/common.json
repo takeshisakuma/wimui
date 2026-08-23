@@ -273,7 +273,7 @@
     "json_viewer_scenario_2": "システム管理パネルでの設定ファイルの編集。",
     "keyboard_nav_title": "キーボードナビゲーション",
     "label": "ラベル",
-    "label_a11y_desc": "htmlFor/id を使用して Label が入力に関連付けられていることを確認してください。",
+    "label_a11y_desc": "描画されるのは本物の <label> なので、コントロールとの結びつきは htmlFor を渡すことで成立します。この関連付けがあるからこそ、テキストのクリックでフィールドにフォーカスが移り、フィールドがアクセシブル名を得ます。asChild を使うと要素は差し替わりますが同じ属性は子へマージされるため、関連付けの維持は呼び出し側の責任のままです。必須・任意の印は FieldLabelContent が描き、aria-hidden にしています ── 必須であることはラベル文の一部として読ませるのではなく、コントロール側（aria-required）が持つべき情報だからです。",
     "label_anatomy_content": "フォーム要素の実際の説明テキスト。",
     "label_anatomy_content_label": "ラベルテキスト",
     "label_anatomy_root": "テキストとインジケーターをラップするルート要素。",

@@ -240,7 +240,7 @@
     "label_anatomy_content": "The actual descriptive text for the form element.",
     "label_content_guideline": "Keep labels short, descriptive, and avoid using them for help text.",
     "label_motion_desc": "No specific interactions or animations.",
-    "label_a11y_desc": "Ensure the Label is associated with an input via htmlFor/id.",
+    "label_a11y_desc": "This renders a real <label>, so passing htmlFor is what connects it to its control — that association is what lets a click on the text focus the field and what gives the field its accessible name. When asChild is used the element is replaced but the same attributes are merged onto the child, so the association must still be maintained by the caller. The required and optional markers are drawn by FieldLabelContent and are aria-hidden, because the requirement belongs on the control itself (aria-required) rather than being read as part of the label text.",
     "label_scenario_1": "A standard contact form.",
     "label_scenario_2": "An admin dashboard settings panel.",
     "label_best_practice_1": "Keep labels visible at all times.",

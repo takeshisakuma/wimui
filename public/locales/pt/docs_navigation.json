@@ -453,7 +453,7 @@
     "tabs_vertical_alignment_desc": "Vertical Alignment Desc",
     "tabs_with_icons": "Com Ícones",
     "tabs_with_icons_desc": "Combine texto com ícones para melhor identificação visual e uma UI mais limpa.",
-    "tour_a11y_desc": "Segue as diretrizes WAI-ARIA com roles adequados, labels e suporte a navegação por teclado.",
+    "tour_a11y_desc": "O elemento de fechar não é um botão nativo: é um elemento com role=\"button\", um aria-label vindo das traduções e o próprio tratamento de Enter e Espaço, de modo que se comporta como um botão tanto para o ponteiro quanto para o teclado. Os controles de etapa são botões comuns e não precisam de ligação extra. Como o tour aponta para elementos em outras partes da página, mantenha o alvo destacado alcançável — o componente não move o foco até ele por você.",
     "tour_anatomy_content": "Os popovers de etapa individuais contendo instruções, dicas e botões de navegação direcional.",
     "tour_anatomy_content_label": "Etapas do Guia",
     "tour_anatomy_root": "O sistema de sobreposição que gerencia a sequência e o posicionamento preciso das etapas de orientação em relação aos elementos alvo.",

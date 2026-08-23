@@ -453,7 +453,7 @@
     "tabs_vertical_alignment_desc": "How to align tab triggers vertically within side panels.",
     "tabs_with_icons": "With Icons",
     "tabs_with_icons_desc": "Combine text with icons for improved visual identification and cleaner UI.",
-    "tour_a11y_desc": "Follows WAI-ARIA guidelines with proper roles, labels, and keyboard navigation support.",
+    "tour_a11y_desc": "The close affordance is not a native button: it is an element given role=\"button\", an aria-label from the translations and its own Enter and Space handling, so it behaves like a button for both the pointer and the keyboard. The step controls are ordinary buttons and need no extra wiring. Because the tour points at elements elsewhere on the page, keep the highlighted target reachable — the component does not move focus into it for you.",
     "tour_anatomy_content": "The individual step popovers containing instructions, tips, and directional navigation buttons.",
     "tour_anatomy_content_label": "Guide Steps",
     "tour_anatomy_root": "The overlay system that manages the sequence and precise positioning of the guidance steps relative to target elements.",
