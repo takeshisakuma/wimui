@@ -137,7 +137,6 @@
     "marquee_choice_alt_when": "When the user needs to interact with specific items frequently (use a Carousel or Grid instead).",
     "marquee_choice_matrix_desc": "Select based on the desired level of energy and visual movement in the header or footer section.",
     "marquee_choice_self_when": "For displaying continuous loops of logos, headlines, or brand messages.",
-    "marquee_design_intent": "Marquee provides an eye-catching loop animation for content. It's ideal for news tickers, logo scrolls, or highlighting sponsors in a way that encourages passive scanning by the user.",
     "marquee_scenario_1": "A scrolling list of brand logos at the bottom of a landing page.",
     "marquee_scenario_2": "Real-time news or stock price ticker at the top of a financial dashboard.",
     "qrCode_desc": "QR generator",

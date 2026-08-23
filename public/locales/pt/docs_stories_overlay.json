@@ -54,7 +54,6 @@
     "contextmenu_with_icons": "Menu com ícones. Clique com o botão direito.",
     "dialog_cancel": "Cancelar",
     "dialog_closed_state": "Closed",
-    "dialog_confirm": "Confirmar Ação",
     "dialog_confirmed_msg": "Confirmado!",
     "dialog_controlled_body": "Clique fora ou pressione Escape para fechar, criando um callback para setOpen(false).",
     "dialog_controlled_desc": "Este diálogo é controlado por estado externo.",

@@ -484,7 +484,6 @@
     "simplegrid_subtitle": "レスポンシブな固定グリッド",
     "skeleton_animation": "アニメーション (Animation)",
     "skeleton_animation_desc": "アニメーションなし、パルス（明滅）、ウェーブ（波）を選択できます。",
-    "skeleton_design_intent": "Skeletonは、体感的な待ち時間を短縮するためのプレースホルダーを提供します。最終的なコンテンツ（アバター、テキスト、カードなど）の構造を模倣することで、ユーザーに今後のデータの準備をさせ、レイアウトシフト（CLS）を防止します。",
     "skeleton_title": "コンテンツのロード中にレイアウトと寸法を模倣するプレースホルダー形状。",
     "skeleton_usage_example": "使用例",
     "skeleton_usage_example_desc": "複数のスケルトンを組み合わせて、実際のカードレイアウトなどのプレースホルダーを作成できます。",

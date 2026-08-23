@@ -141,7 +141,6 @@
     "marquee_choice_alt_when": "Quando o usuário precisa interagir com itens específicos com frequência (use Carousel ou Grid em vez disso).",
     "marquee_choice_matrix_desc": "Escolha com base no nível de energia e movimento visual desejado para uma seção de cabeçalho ou rodapé.",
     "marquee_choice_self_when": "Para exibição em loop contínuo de logotipos, manchetes ou mensagens de marca.",
-    "marquee_design_intent": "Marquee fornece uma animação em loop atraente para o conteúdo. É ideal para tickers de notícias, scrolls de logotipos ou destaque de patrocinadores de uma forma que incentiva o escaneamento passivo pelo usuário, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
     "marquee_scenario_1": "Lista rolante de logotipos de marcas na parte inferior de uma landing page.",
     "marquee_scenario_2": "Ticker de notícias ou preços de ações em tempo real no topo de um dashboard financeiro.",
     "qrCode_desc": "Gerador de QR Code",

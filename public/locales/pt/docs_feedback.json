@@ -97,8 +97,6 @@
     "badge_anatomy_icon_label": "Ícone",
     "badge_anatomy_label": "Exibe números ou nomes de status. Mantenha o mais curto possível.",
     "badge_anatomy_label_label": "Rótulo",
-    "badge_best_practice_1": "Mantenha o texto do emblema curto e conciso para que o significado seja transmitido rapidamente.",
-    "badge_best_practice_2": "Atribua significado às cores (cores semânticas) e opere com regras consistentes, como verde para sucesso e vermelho para erro.",
     "badge_choice_alert_when": "Para informações importantes que exigem reconhecimento explícito do usuário, como 'Ocorreu um erro'.",
     "badge_choice_badge_when": "Para informações breves de status como 'Novo' ou '1' que acompanham um elemento de UI existente.",
     "badge_choice_matrix_desc": "Selecione com base na natureza da informação e no nível de interrupção do usuário necessário.",

@@ -420,7 +420,6 @@
     "simplegrid_subtitle": "Responsive fixed grid",
     "skeleton_animation": "Animation",
     "skeleton_animation_desc": "You can select no animation, pulse (blinking), or wave.",
-    "skeleton_design_intent": "Skeleton provides a placeholder to reduce perceived loading times. By mimicking the structure of the final content (such as avatars, text lines, or cards), it prepares the user for the upcoming data and prevents layout shifts (CLS).",
     "skeleton_title": "Placeholder shapes that mimic the layout and dimensions of content during its loading state.",
     "skeleton_usage_example": "Usage Example",
     "skeleton_usage_example_desc": "You can combine multiple skeletons to create placeholders such as actual card layouts.",

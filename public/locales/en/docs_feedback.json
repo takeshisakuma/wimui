@@ -97,8 +97,6 @@
     "badge_anatomy_icon_label": "Icon",
     "badge_anatomy_label": "Displays numbers or status names. Keep as short as possible.",
     "badge_anatomy_label_label": "Label",
-    "badge_best_practice_1": "Keep badge text short and concise so the meaning is conveyed at a glance.",
-    "badge_best_practice_2": "Assign meaning to colors (semantic colors) and operate with consistent rules, like green for success and red for error.",
     "badge_choice_alert_when": "For important information requiring explicit user acknowledgement, like 'Error occurred'.",
     "badge_choice_badge_when": "For brief status information like 'New' or '1' that accompanies an existing UI element.",
     "badge_choice_matrix_desc": "Select based on the nature of information and the level of user interruption required.",
