@@ -40,6 +40,15 @@ const checks = [
   },
   {
     category: "docs",
+    // CI-10（2026-08-23）。**`package.json` に足すだけでは CI で一度も走らない**
+    // ── T154 で `check:links` が実際にその状態だった（lint-staged 経由でしか
+    // 走っておらず、MDX を触らない変更は誰にも見られていなかった）ので、
+    // 新しいガードは必ずここへ登録し、`audit:docs` で走ることを確かめる。
+    name: "Prop values and defaults claimed by docs",
+    command: "node scripts/check-prop-values.js",
+  },
+  {
+    category: "docs",
     name: "I18n Consistency and File Size",
     command: "node scripts/check-i18n.js",
   },

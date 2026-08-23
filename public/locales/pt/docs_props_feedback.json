@@ -7,7 +7,7 @@
     "alert_prop_intent": "Intenção (estado semântico) do alerta.\n@default \"default\"",
     "alert_prop_onClose": "Chamado quando o botão de fechar é clicado. Fornecê-lo exibe o botão de fechar.",
     "alert_prop_title": "Título do alerta.",
-    "alert_prop_titleTag": "Tag HTML usada para o título do alerta.\n@default \"h4\"",
+    "alert_prop_titleTag": "Tag HTML usada para o título do alerta. O padrão é div: um alerta é um aviso, não uma seção do documento, então seu título não pertence à estrutura de títulos, e transformá-lo em título quebra heading-order assim que o alerta fica sob algo que não seja um h3. Passe um título apenas quando o alerta realmente encabeçar uma seção da página.\n@default \"div\"",
     "autosave_prop_errorMessage": "Mensagem de erro (uma mensagem padrão é usada quando omitida).",
     "autosave_prop_savedAt": "Hora do último salvamento.",
     "autosave_prop_status": "Status do salvamento.",
