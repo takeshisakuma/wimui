@@ -17,9 +17,6 @@
     "maximize": "Maximizar",
     "minimize": "Minimizar"
   },
-  "btn": {
-    "page_transition": "Transições de página padrão ou links de rodapé."
-  },
   "button": {
     "clear": "Limpar",
     "close": "Fechar",
@@ -66,9 +63,6 @@
     "no_image": "Nenhuma imagem selecionada",
     "rotate": "Rodar",
     "zoom": "Zoom"
-  },
-  "otp": {
-    "digit": "Dígito {{index}}"
   },
   "password_strength": {
     "fair": "Razoável",

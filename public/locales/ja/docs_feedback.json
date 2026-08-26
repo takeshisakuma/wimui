@@ -407,7 +407,6 @@
     "spinner_title": "バックグラウンドで処理が進行中であることを示す回転アニメーション",
     "spinner_with_label": "ラベル付き",
     "spinner_with_label_desc": "必要に応じて読み込み中のメッセージを表示できます。",
-    "story_with_badge": "バッジあり",
     "toast_a11y_status": "通常は role='status' を使用して、スクリーンリーダーに控えめに通知します。エラーなどの緊急時は role='alert' の使用を検討してください。",
     "toast_anatomy_close": "ユーザーが手動で即座に消したい場合に提供します。",
     "toast_anatomy_close_label": "閉じるボタン",

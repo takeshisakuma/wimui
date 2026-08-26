@@ -73,12 +73,6 @@
     "op_space": "Selecionar ou alternar o item focado",
     "op_tab": "Mover o foco para o próximo / anterior elemento interativo"
   },
-  "ensure": {
-    "contrast": "Garanta contraste suficiente."
-  },
-  "visual": {
-    "accessibility": "Acessibilidade Visual"
-  },
   "foundation": {
     "a11y_desc": "O WIM UI coloca a acessibilidade no centro de seu design para fornecer uma interface fácil de usar para todos.",
     "standards_title": "Padrões de Conformidade",

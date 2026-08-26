@@ -63,11 +63,5 @@
   },
   "colors": {
     "tone_mapping": "Main Tone Mapping:"
-  },
-  "ensure": {
-    "contrast": "Ensure sufficient contrast."
-  },
-  "visual": {
-    "accessibility": "Visual Accessibility"
   }
 }

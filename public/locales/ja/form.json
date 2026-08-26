@@ -17,9 +17,6 @@
     "maximize": "最大化",
     "minimize": "最小化"
   },
-  "btn": {
-    "page_transition": "標準的なページ遷移またはフッターリンク。"
-  },
   "button": {
     "clear": "クリア",
     "close": "閉じる",
@@ -66,9 +63,6 @@
     "no_image": "画像が選択されていません",
     "rotate": "回転",
     "zoom": "ズーム"
-  },
-  "otp": {
-    "digit": "{{index}}番目の桁"
   },
   "password_strength": {
     "fair": "普通",
