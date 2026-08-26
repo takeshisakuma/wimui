@@ -64,6 +64,9 @@
     "rotate": "Rodar",
     "zoom": "Zoom"
   },
+  "otp": {
+    "digit": "Dígito {{index}}"
+  },
   "password_strength": {
     "fair": "Razoável",
     "strong": "Forte",

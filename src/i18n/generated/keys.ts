@@ -1790,6 +1790,7 @@ export type WimI18nKey =
   | "form:image_cropper.zoom"
   | "form:markdown.task_done"
   | "form:markdown.task_todo"
+  | "form:otp.digit"
   | "form:password_strength.fair"
   | "form:password_strength.strong"
   | "form:password_strength.very_strong"

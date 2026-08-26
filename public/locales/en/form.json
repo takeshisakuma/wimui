@@ -85,6 +85,9 @@
   "combobox": {
     "no_results": "No results found"
   },
+  "otp": {
+    "digit": "Digit {{index}}"
+  },
   "code_diff_viewer": {
     "copy_label": "Copy",
     "copied_label": "Copied!",
