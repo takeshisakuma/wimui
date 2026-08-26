@@ -210,7 +210,6 @@
     "required": "Obrigatório",
     "role": "Papel",
     "scenario": "Cenário",
-    "scenario_404_title": "404 Não Encontrado",
     "scenario_fail_title": "Falha no Processamento",
     "scenario_payment_title": "Pagamento com Sucesso",
     "section": "Seção",

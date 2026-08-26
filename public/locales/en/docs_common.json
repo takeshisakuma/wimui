@@ -125,7 +125,6 @@
     "required": "Required",
     "role": "Role",
     "scenario": "Scenario",
-    "scenario_404_title": "404 Not Found",
     "scenario_fail_title": "Processing Failure",
     "scenario_payment_title": "Payment complete",
     "section": "Section",
