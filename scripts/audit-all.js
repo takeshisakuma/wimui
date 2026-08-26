@@ -64,6 +64,14 @@ const checks = [
   },
   {
     category: "docs",
+    // T229 の 5 回目（2026-08-26）。名前空間を名指しした参照は並び順で負けていても
+    // 表示されるので、複製を消すときの判断材料になる。fallbackNS があるため
+    // 名指し先にキーが無くてもエラーにならず、黙って別の値が出る。
+    name: "Explicit ns:key references point at a namespace that holds the key (ratchet)",
+    command: "node scripts/check-i18n-explicit-ns.js",
+  },
+  {
+    category: "docs",
     name: "I18n Consistency and File Size",
     command: "node scripts/check-i18n.js",
   },

@@ -73,12 +73,6 @@
     "op_space": "Select or toggle the focused item",
     "op_tab": "Move focus to the next / previous interactive element"
   },
-  "ensure": {
-    "contrast": "Ensure sufficient contrast."
-  },
-  "visual": {
-    "accessibility": "Visual Accessibility"
-  },
   "foundation": {
     "a11y_desc": "WIM UI puts accessibility at the core of its design to provide an interface that is easy for everyone to use.",
     "standards_title": "Compliance Standards",

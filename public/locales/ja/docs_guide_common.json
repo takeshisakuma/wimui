@@ -2,9 +2,6 @@
   "a11y": {
     "guideline_desc": "すべてのユーザーが快適に利用できるように、支援技術や多様な閲覧環境に配慮した設計を行います。"
   },
-  "annotation": {
-    "outside_field": "注釈はプレースホルダーではなく欄外に記載"
-  },
   "cat": {
     "advanced_inputs": "高度な入力",
     "advanced_inputs_desc": "複雑なデータ形式や特殊なインタラクションを伴う入力コンポーネント群です。",
@@ -56,9 +53,6 @@
     "visualization": "可視化",
     "visualization_desc": "複雑なデータセットを直感的でインタラクティブなグラフやチャートに変換するためのコンポーネント群です。"
   },
-  "critical": {
-    "info_only_in_p_desc": "重要な情報をプレースホルダーのみで提供する"
-  },
   "doc": {
     "a11y_title": "アクセシビリティ (Accessibility)",
     "accessibility_spec_title": "アクセシビリティ仕様",
@@ -96,27 +90,16 @@
     "usage_context": "利用シーン",
     "usage_guidelines_title": "利用ガイドライン",
     "usage_scenarios_title": "利用シーン (Usage Scenarios)",
-    "variant": "バリエーション (Variant)",
-    "visual_guideline_title": "ビジュアル・ガイドライン"
+    "variant": "バリエーション (Variant)"
   },
   "guide": {
     "do": "よい例 (Do)",
     "dont": "悪い例 (Don't)",
     "refer_to_component_pages": "詳細は各コンポーネントのページを参照してください。"
   },
-  "important": {
-    "rule": "重要ルール"
-  },
-  "rule": {
-    "overload_dont_desc": "「8文字以上、記号含む」等のルールを詰め込む"
-  },
-  "screen": {
-    "reader": "スクリーンリーダー対応"
-  },
   "table": {
     "header_component": "コンポーネント",
     "header_item": "項目",
-    "header_tier": "ティア",
-    "header_usage": "利用シーン / 推奨される用途"
+    "header_tier": "ティア"
   }
 }

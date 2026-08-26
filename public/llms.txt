@@ -204,7 +204,7 @@ export function BillingOverview() {
 - **Grid** — Flexbox or CSS Grid system
 - **Group** — Flexible grouping
 - **Header** — Upper navigation
-- **InteractiveArea** — Interactive empty/drop zone area
+- **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
 - **Masonry** — Waterfall grid
 - **Navbar** — Primary navigation
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
@@ -238,8 +238,8 @@ export function BillingOverview() {
 - **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
 - **FileUpload** — File selection
 - **FloatButton** — Floating action buttons
-- **IconButton** — Icon-only button
-- **ImageCropper** — Front-end image crop and rotate tool
+- **IconButton** — A square button containing only an icon without a text label.
+- **ImageCropper** — Front-end image cropping and rotation tool.
 - **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text)
 - **Input** — Single-line input fields for text, numbers, or emails
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
@@ -251,7 +251,7 @@ export function BillingOverview() {
 - **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper)
 - **OtpInput** — One-time password fields
 - **PasswordInput** — Password with toggle
-- **PasswordStrength** — Visual meter to indicate password security level (aka Strength Meter)
+- **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
 - **PhoneInput** — International phone number input
 - **QueryBuilder** — Visual builder for constructing complex search queries.
 - **Radio** — Single choice
@@ -268,7 +268,7 @@ export function BillingOverview() {
 - **SplitButton** — SplitButton description.
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
 - **SwitchGroup** — Shared state switches
-- **TagInput** — Field for entering free-form text as tags (aka Token Field, Chips Input)
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
 - **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
 - **ThemeToggle** — Light / dark / system theme switcher
 - **TimePicker** — Time selection
@@ -340,13 +340,13 @@ export function BillingOverview() {
 - **List** — Structurally organized items in bullet points or numbered formats
 - **Markdown** — A component for safely rendering text in Markdown format.
 - **Marquee** — Scrolling text animation (aka Ticker)
-- **NodeGraph** — Interactive node-based flowchart and pipeline editor
+- **NodeGraph** — Visualizes complex networks and relationships between nodes.
 - **PullToRefresh** — Pull-to-refresh utility for enhancing mobile user experience.
 - **QRCode** — QR generator
 - **RangeCalendar** — Range calendar view
 - **Reaction** — Display emoji reaction buttons with toggleable state and counts
 - **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
-- **ScheduleView** — Time-grid calendar with drag-and-drop scheduling
+- **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
 - **SortableList** — Item rearrangement and reordering
 - **Stats** — A component to highlight key performance indicators and metrics
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
@@ -421,9 +421,9 @@ export function BillingOverview() {
 - **InteractiveGraph** — InteractiveGraph provides a canvas for visualizing node-based data. Ideal for RAG knowledge bases, agent workflows, or state machines.
 - **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
 - **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.
-- **PromptInput** — Auto-resizing prompt input with send and attachment actions
+- **PromptInput** — Interactive input optimized for AI prompt engineering with multi-line support and action triggers.
 - **SourceCitation** — Displays cited sources with title, domain, and external link for AI-generated content.
-- **StreamingText** — Streaming Markdown renderer for AI-generated responses
+- **StreamingText** — Renders text with a typewriter-like animation, ideal for AI chat responses.
 - **Terminal** — Renders terminal-style output with ANSI color support, prompt prefixes, and copy/clear controls.
 - **ThoughtProcess** — Visualizes AI reasoning steps and execution states in a timeline format.
 - **ThreadList** — ThreadList renders a conversation-history sidebar for AI chat apps — a scrollable list of past threads with an optional new-conversation action and per-thread deletion.

@@ -12,9 +12,10 @@
 //   - public/locales/en/**.json          … English descriptions (descKey resolution)
 //   - DESIGN.md (composition section)     … anti-generic rules (condensed inline below)
 
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { resolveLocale } from './lib/locale-keys.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -55,19 +56,15 @@ for (const cat of EXPORT_CATS) {
   }
 }
 
-// Flatten every en locale file into one dotted-key lookup for descKey resolution.
-const i18n = {};
-const localesDir = join(ROOT, 'public/locales/en');
-const flatten = (obj, prefix = '') => {
-  for (const [k, v] of Object.entries(obj)) {
-    const key = prefix ? `${prefix}.${k}` : k;
-    if (v && typeof v === 'object' && !Array.isArray(v)) flatten(v, key);
-    else if (typeof v === 'string') i18n[key] = v;
-  }
-};
-for (const file of readdirSync(localesDir)) {
-  if (file.endsWith('.json')) flatten(readJSON(`public/locales/en/${file}`));
-}
+// descKey の解決は **i18next と同じ先勝ち**で行う（scripts/lib/locale-keys.js）。
+//
+// ここは以前 `readdirSync` の順に flatten して **後から来たファイルで上書き**していた。
+// readdir はアルファベット順、`ALL_NAMESPACES` もアルファベット順なので、i18next が
+// 「先に見つけたほう」を返すのに対しこちらは「最後に見つけたほう」を返す ──
+// **複製されたキーでは必ず逆の値が勝つ。** その結果、出荷している llms.txt は
+// docs サイトと違う説明文を載せていた（IconButton / NodeGraph / ScheduleView /
+// PromptInput / StreamingText の 5 件で実測）。T229 の複製を消す過程で発覚。
+const { values: i18n } = resolveLocale(ROOT, 'en');
 const resolve = (key) => i18n[key] || '';
 
 // --- helpers --------------------------------------------------------------

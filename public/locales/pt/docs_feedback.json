@@ -407,7 +407,6 @@
     "spinner_title": "Spinner de Carregamento",
     "spinner_with_label": "Com Rótulo",
     "spinner_with_label_desc": "Você pode exibir uma mensagem de carregamento, se necessário.",
-    "story_with_badge": "Com emblema",
     "toast_a11y_status": "Normalmente usa role='status' para anúncios polidos. Considere role='alert' apenas para erros críticos sensíveis ao tempo.",
     "toast_anatomy_close": "Fornece uma saída imediata para usuários que desejam descartar o toast antecipadamente.",
     "toast_anatomy_close_label": "Botão de Fechar",

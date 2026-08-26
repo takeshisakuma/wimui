@@ -756,7 +756,7 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `glass: boolean` — Glassmorphism effect
     - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
     - `background: "surface" | "surface-variant" | "transparent"` = "surface" — Background color
-- **InteractiveArea** — Interactive empty/drop zone area
+- **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
     - `title: ReactNode` — Area title
     - `description: ReactNode` — Area description
     - `icon: ReactNode` — Icon to display
@@ -1197,7 +1197,7 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
     - `aria-label: string` — Aria label for accessibility
-- **IconButton** — Icon-only button
+- **IconButton** — A square button containing only an icon without a text label.
     - `iconName: React.ComponentProps<typeof Icon>["name"]` (required) — Icon name to display
     - `aria-label: string` (required) — Accessible label for the icon-only button
     - `backgroundColor: T | (string & {})` — Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.
@@ -1211,7 +1211,7 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
     - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
     - `styles: { root?: string; loader?: string; icon?: string; }` — Custom styles for internal parts
     - `className: string` — Additional class names
-- **ImageCropper** — Front-end image crop and rotate tool
+- **ImageCropper** — Front-end image cropping and rotation tool.
     - `src: string` — URL or data URL of the image to crop
     - `aspectRatio: number` = 1 — Aspect ratio (width / height); 1 produces a square
     - `circular: boolean` = false — Whether to display a circular crop area (for profile images)
@@ -1392,7 +1392,7 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **PasswordStrength** — Visual meter to indicate password security level (aka Strength Meter)
+- **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
     - `password: string` = "" — Password string to evaluate
     - `score: 0 | 1 | 2 | 3 | 4` — Strength score (the default calculation is used when omitted)
 0: very weak, 1: weak, 2: fair, 3: strong, 4: very strong
@@ -1662,7 +1662,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `disabled: boolean` — Whether the whole group is disabled
-- **TagInput** — Field for entering free-form text as tags (aka Token Field, Chips Input)
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
     - `value: string[]` — List of tags (controlled)
     - `defaultValue: string[]` = [] — Initial list of tags (uncontrolled)
     - `onChange: (tags: string[]) => void` — Callback when the tags change
@@ -2387,7 +2387,7 @@ drops secondary text below the AA contrast floor.
     - `pauseOnHover: boolean` = true — Whether to pause the animation on hover.
     - `vertical: boolean` = false — Whether to scroll vertically.
     - `repeat: number` = 2 — Number of times the content is repeated. May need adjusting for a seamless loop. Defaults to `2`.
-- **NodeGraph** — Interactive node-based flowchart and pipeline editor
+- **NodeGraph** — Visualizes complex networks and relationships between nodes.
     - `nodes: Node[]` (required) — Controlled nodes
     - `edges: Edge[]` (required) — Controlled edges
     - `onNodesChange: OnNodesChange` (required) — Called when nodes change (position, selection, add, removal)
@@ -2458,7 +2458,7 @@ When omitted, both Backspace and Delete work.
 @default true
     - `fallback: React.ReactNode` — Content shown when the date cannot be parsed.
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-- **ScheduleView** — Time-grid calendar with drag-and-drop scheduling
+- **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
     - `events: ScheduleViewEvent[]` = [] — List of calendar events
     - `initialView: "timeGridWeek" | "timeGridDay" | "dayGridMonth"` = "timeGridWeek" — Initial view mode
     - `editable: boolean` = true — Whether events can be dragged to new times
@@ -3171,7 +3171,7 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `showContext: boolean` = true — Whether to show the context-length metadata in the dropdown
     - `labels: { /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default "Context") */ contextLabel?: string; /** Prefix for the input price meta (default "In") */ inputLabel?: string; /** Prefix for the output price meta (default "Out") */ outputLabel?: string; /** Suffix appended to prices (default "/1M") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }` — Labels for internationalization
     - `className: string` — Additional class names
-- **PromptInput** — Auto-resizing prompt input with send and attachment actions
+- **PromptInput** — Interactive input optimized for AI prompt engineering with multi-line support and action triggers.
     - `value: string` — Current text value (controlled)
     - `defaultValue: string` = "" — Default value (uncontrolled)
     - `onChange: (value: string) => void` — Callback when value changes
@@ -3196,7 +3196,7 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `index: number` — Numeric citation index shown as a badge (e.g. 1, 2, 3)
     - `domain: string` — Domain label shown below the title (auto-derived from url when omitted)
     - `className: string` — Additional CSS class
-- **StreamingText** — Streaming Markdown renderer for AI-generated responses
+- **StreamingText** — Renders text with a typewriter-like animation, ideal for AI chat responses.
     - `content: string` (required) — The markdown text content to render
     - `isStreaming: boolean` = false — When true, a blinking cursor is shown at the end of the content
     - `components: Components` — Override the default markdown component renderers

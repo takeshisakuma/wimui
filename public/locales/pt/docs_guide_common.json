@@ -2,9 +2,6 @@
   "a11y": {
     "guideline_desc": "Projete pensando na acessibilidade para garantir que todos os usuários possam usar a interface de forma eficaz."
   },
-  "annotation": {
-    "outside_field": "Mantenha as anotações fora do campo"
-  },
   "cat": {
     "advanced_inputs": "Entradas Avançadas",
     "advanced_inputs_desc": "Componentes de entrada para formatos de dados complexos ou interações especiais.",
@@ -56,9 +53,6 @@
     "visualization": "Visualização",
     "visualization_desc": "Componentes para traduzir conjuntos de dados complexos em gráficos intuitivos e interativos."
   },
-  "critical": {
-    "info_only_in_p_desc": "Fornecer informações críticas apenas no placeholder"
-  },
   "doc": {
     "a11y_title": "Acessibilidade",
     "accessibility_spec_title": "Especificação de Acessibilidade",
@@ -96,27 +90,16 @@
     "usage_context": "Contexto de Uso",
     "usage_guidelines_title": "Diretrizes de Uso",
     "usage_scenarios_title": "Cenários de Uso",
-    "variant": "Variante",
-    "visual_guideline_title": "Diretrizes Visuais"
+    "variant": "Variante"
   },
   "guide": {
     "do": "Fazer (Do)",
     "dont": "Não Fazer (Don't)",
     "refer_to_component_pages": "Consulte as páginas específicas de cada componente para detalhes."
   },
-  "important": {
-    "rule": "Regra Importante"
-  },
-  "rule": {
-    "overload_dont_desc": "Sobrecarga de regras complexas (ex: '8+ caracteres, com símbolos')"
-  },
-  "screen": {
-    "reader": "Suporte a Leitor de Tela"
-  },
   "table": {
     "header_component": "Componente",
     "header_item": "Item",
-    "header_tier": "Nível",
-    "header_usage": "Uso / Cenas Recomendadas"
+    "header_tier": "Nível"
   }
 }

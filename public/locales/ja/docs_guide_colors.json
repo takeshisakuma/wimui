@@ -63,11 +63,5 @@
   },
   "colors": {
     "tone_mapping": "主要トーンマッピング:"
-  },
-  "ensure": {
-    "contrast": "十分なコントラスト比を確保してください。"
-  },
-  "visual": {
-    "accessibility": "視覚的アクセシビリティ"
   }
 }

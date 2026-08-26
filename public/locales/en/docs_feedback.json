@@ -407,7 +407,6 @@
     "spinner_title": "A rotating icon indicating background activity or data fetching",
     "spinner_with_label": "With Label",
     "spinner_with_label_desc": "You can display a loading message if needed.",
-    "story_with_badge": "With Badge",
     "toast_a11y_status": "Typically uses role='status' for polite announcements. Consider role='alert' only for critical time-sensitive errors.",
     "toast_anatomy_close": "Provides an immediate exit for users who wish to dismiss the toast early.",
     "toast_anatomy_close_label": "Close Button",

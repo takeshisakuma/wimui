@@ -17,9 +17,6 @@
     "maximize": "最大化",
     "minimize": "最小化"
   },
-  "btn": {
-    "page_transition": "標準的なページ遷移またはフッターリンク。"
-  },
   "button": {
     "clear": "クリア",
     "close": "閉じる",

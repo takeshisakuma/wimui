@@ -72,7 +72,6 @@
     "tokens_title": "Design Tokens",
     "token": "Token",
     "keyboard_nav_title": "Keyboard Navigation",
-    "visual_guideline_title": "Visual Guidelines",
     "std_summary_title": "Standardization Summary",
     "std_summary_item": "Item",
     "std_summary_desc": "Specification / Reference",
@@ -97,26 +96,10 @@
   },
   "table": {
     "header_component": "Component",
-    "header_usage": "Usage / Recommended Scene",
     "header_item": "Item",
     "header_tier": "Tier"
   },
-  "important": {
-    "rule": "Important Rule"
-  },
-  "annotation": {
-    "outside_field": "Keep annotations outside the field"
-  },
-  "rule": {
-    "overload_dont_desc": "Overloading with many complex rules (e.g., '8+ chars, with symbols')"
-  },
   "a11y": {
     "guideline_desc": "Design for accessibility to ensure all users can effectively use the interface."
-  },
-  "screen": {
-    "reader": "Screen Reader Support"
-  },
-  "critical": {
-    "info_only_in_p_desc": "Providing critical information only in the placeholder"
   }
 }

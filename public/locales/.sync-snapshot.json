@@ -1963,7 +1963,6 @@
     "table": {
       "header_component": "Component",
       "header_overview": "Overview",
-      "header_usage": "Usage Scenario",
       "header_placement": "Placement"
     }
   },
@@ -2203,7 +2202,6 @@
       "hamburgermenu_design_intent": "HamburgerMenu is the industry-standard pattern for mobile navigation. It saves valuable screen real estate by tucking navigation links into a collapsible drawer or overlay, ensuring that the main content remains the focus on small devices.",
       "hamburgermenu_scenario_1": "Mobile Headers: Consolidating secondary links on small screens to keep the UI clean.",
       "hamburgermenu_scenario_2": "Responsive Apps: Switching from a sidebar to a hamburger menu on tablet viewpoints.",
-      "iconButton_desc": "Icon-only button",
       "iconbutton_a11y_desc": "This is a thin wrapper around Button: it adds layout and styling and no ARIA of its own, so the roles, the accessible name and the keyboard behaviour all come from Button. Read that component's accessibility notes — anything required there is required here, and props you pass through reach it unchanged.",
       "iconbutton_anatomy_content": "The central SVG icon that visually communicates the button's action.",
       "iconbutton_anatomy_content_label": "Icon",
@@ -2456,8 +2454,6 @@
     "doc.promptinput_a11y_3": "Character count and error messages are announced via aria-live.",
     "doc.promptinput_choice_search": "Short, single-line queries.",
     "doc.promptinput_choice_self": "Single-turn or multi-turn chat interfaces where users input instructions.",
-    "doc.promptinput_choice_textarea": "Simple multi-line text entry without AI-specific needs (attach, auto-resize).",
-    "doc.promptinput_design_intent": "Traditional inputs are often too small for complex AI prompts. PromptInput uses a multi-line auto-resizing area that maintains context while typing long instructions. It visually distinguishes between the text entry and action buttons (like attach or send) to ensure a high-efficiency user experience.",
     "doc.promptinput_guideline_1": "Use the placeholder to give examples of effective prompts.",
     "doc.promptinput_guideline_2": "Enable showAttach if the model supports file or image grounding.",
     "doc.promptinput_guideline_3": "Use fullWidth when the input is the primary action at the bottom of the screen.",
@@ -2501,7 +2497,6 @@
     "doc.streamingtext_choice_loader": "While waiting for the first chunk of data (before streaming begins).",
     "doc.streamingtext_choice_markdown": "Static content that doesn't need to be streamed.",
     "doc.streamingtext_choice_self": "Real-time AI chat responses or live text updates.",
-    "doc.streamingtext_design_intent": "Showing text as it's generated reduces perceived latency and mimics human-like communication. StreamingText ensures that Markdown formatting is applied incrementally and that the scroll position remains stable during the stream.",
     "doc.streamingtext_guideline_1": "Ensure isStreaming is true while data is still being received.",
     "doc.streamingtext_guideline_2": "Use showThinking while waiting for the model to start responding.",
     "doc.streamingtext_guideline_3": "Avoid very high streaming speeds that may overwhelm the user's ability to read.",
@@ -2931,12 +2926,10 @@
       "props": "Properties",
       "props_title": "Props",
       "reason": "Reason",
-      "recommendation": "Recommendation",
       "related_docs": "Related Documents",
       "required": "Required",
       "role": "Role",
       "scenario": "Scenario",
-      "scenario_404_title": "404 Not Found",
       "scenario_fail_title": "Processing Failure",
       "scenario_payment_title": "Payment complete",
       "section": "Section",
@@ -3730,10 +3723,6 @@
       "calendarHeatmap_keyboard_desc": "Users can navigate through activity cells using Tab. Focused cells display a tooltip with details.",
       "calendarHeatmap_scenario_github": "Activity Tracking: Visualizing coding contributions or exercise streaks over the past year.",
       "calendarHeatmap_scenario_density": "Data Density: Representing system load or error rates across different days of the week.",
-      "nodeGraph_desc": "Interactive node-based flowchart and pipeline editor",
-      "scheduleView_desc": "Time-grid calendar with drag-and-drop scheduling",
-      "promptInput_desc": "Auto-resizing prompt input with send and attachment actions",
-      "streamingText_desc": "Streaming Markdown renderer for AI-generated responses",
       "charts_design_intent": "Charts provide visual representations of complex datasets to help users identify patterns, trends, and outliers at a glance. They aim to make data understandable through clear, accessible, and theme-compliant visualizations.",
       "charts_funnelchart_desc": "Shows the progression of data through a process.",
       "charts_gauge_desc": "Visualizes a single value within a range (e.g., progress toward goal).",
@@ -4718,7 +4707,6 @@
       "spinner_title": "A rotating icon indicating background activity or data fetching",
       "spinner_with_label": "With Label",
       "spinner_with_label_desc": "You can display a loading message if needed.",
-      "story_with_badge": "With Badge",
       "toast_a11y_status": "Typically uses role='status' for polite announcements. Consider role='alert' only for critical time-sensitive errors.",
       "toast_anatomy_close": "Provides an immediate exit for users who wish to dismiss the toast early.",
       "toast_anatomy_close_label": "Close Button",
@@ -6129,12 +6117,6 @@
       "op_space": "Select or toggle the focused item",
       "op_tab": "Move focus to the next / previous interactive element"
     },
-    "ensure": {
-      "contrast": "Ensure sufficient contrast."
-    },
-    "visual": {
-      "accessibility": "Visual Accessibility"
-    },
     "foundation": {
       "a11y_desc": "WIM UI puts accessibility at the core of its design to provide an interface that is easy for everyone to use.",
       "standards_title": "Compliance Standards",
@@ -6258,12 +6240,6 @@
     },
     "colors": {
       "tone_mapping": "Main Tone Mapping:"
-    },
-    "ensure": {
-      "contrast": "Ensure sufficient contrast."
-    },
-    "visual": {
-      "accessibility": "Visual Accessibility"
     }
   },
   "docs_guide_common": {
@@ -6340,7 +6316,6 @@
       "tokens_title": "Design Tokens",
       "token": "Token",
       "keyboard_nav_title": "Keyboard Navigation",
-      "visual_guideline_title": "Visual Guidelines",
       "std_summary_title": "Standardization Summary",
       "std_summary_item": "Item",
       "std_summary_desc": "Specification / Reference",
@@ -6365,27 +6340,11 @@
     },
     "table": {
       "header_component": "Component",
-      "header_usage": "Usage / Recommended Scene",
       "header_item": "Item",
       "header_tier": "Tier"
     },
-    "important": {
-      "rule": "Important Rule"
-    },
-    "annotation": {
-      "outside_field": "Keep annotations outside the field"
-    },
-    "rule": {
-      "overload_dont_desc": "Overloading with many complex rules (e.g., '8+ chars, with symbols')"
-    },
     "a11y": {
       "guideline_desc": "Design for accessibility to ensure all users can effectively use the interface."
-    },
-    "screen": {
-      "reader": "Screen Reader Support"
-    },
-    "critical": {
-      "info_only_in_p_desc": "Providing critical information only in the placeholder"
     }
   },
   "docs_guide_components": {
@@ -10755,12 +10714,7 @@
       "buttongroup_secondary": "Secondary Button",
       "buttongroup_tertiary": "Tertiary Button",
       "buttongroup_warn": "[Note] From a UX perspective, placing multiple primary buttons side-by-side is not recommended. Please refer to this as a demonstration of technical unification functionality.",
-      "chip_clickable": "Clickable Chip",
-      "chip_default": "Chip Content",
-      "chip_deletable": "Deletable Chip",
       "chip_outline": "Outline",
-      "chip_selected": "Selected Chip",
-      "chip_selected_label": "Selected",
       "chip_solid": "Solid",
       "common_alerts": "Alerts",
       "common_home": "Home",
@@ -10895,20 +10849,7 @@
       "tabnav_settings": "Settings",
       "tabnav_unread": "Unread",
       "tabnav_weekly": "Weekly",
-      "tag_content": "Tag Content",
-      "tag_error": "Error",
-      "tag_info": "Info",
-      "tag_medium": "Medium Tag",
-      "tag_neutral": "Neutral",
-      "tag_outline": "Outline",
-      "tag_primary": "Primary",
       "tag_secondary": "Secondary",
-      "tag_small": "Small Tag",
-      "tag_solid": "Solid",
-      "tag_subtle": "Subtle",
-      "tag_success": "Success",
-      "tag_warning": "Warning",
-      "tag_with_icon": "Tag with Icon",
       "toggle_available": "Available",
       "toggle_center": "Center",
       "toggle_disabled": "Disabled",
@@ -13595,9 +13536,6 @@
       "dismiss": "Dismiss",
       "label": "Button",
       "consistency": "Consistency"
-    },
-    "btn": {
-      "page_transition": "Standard page transitions or footer links."
     },
     "dropzone": {
       "description": "Drag and drop files here, or click to select"

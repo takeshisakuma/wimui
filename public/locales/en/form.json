@@ -28,9 +28,6 @@
     "label": "Button",
     "consistency": "Consistency"
   },
-  "btn": {
-    "page_transition": "Standard page transitions or footer links."
-  },
   "dropzone": {
     "description": "Drag and drop files here, or click to select"
   },

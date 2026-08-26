@@ -1,0 +1,10 @@
+{
+  "comment": "`ns:key` と名前空間を名指ししているのに、その名前空間にキーが無い参照（scripts/check-i18n-explicit-ns.js）。fallbackNS: ALL_NAMESPACES があるのでエラーにはならず、黙って別の名前空間の値が出る ── 壊れないぶん気付けない。ここが増えるのは「複製を消したせいで名指しが宙に浮いた」ときなので落とす。直したら known から外すこと。起源は T229 の 5 回目（2026-08-26）で otp.digit を form.json から消しかけたこと。",
+  "known": [
+    "common:doc.example",
+    "common:doc.key",
+    "common:doc.variations",
+    "docs_stories_common:story.rte_label_content",
+    "docs_stories_common:story.rte_placeholder_default"
+  ]
+}
