@@ -1595,9 +1595,6 @@
       "paragraph": "Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph",
       "span": "Medium Text"
     },
-    "otp": {
-      "digit": "Digit {{index}}"
-    },
     "planned": {
       "for_implementation": "Planned for implementation"
     },

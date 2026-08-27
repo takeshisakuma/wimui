@@ -355,9 +355,6 @@
     "not_equal": "と等しくない (!=)",
     "starts_with": "で始まる"
   },
-  "otp": {
-    "digit": "{{index}}番目の数字"
-  },
   "planned": {
     "for_implementation": "実装する予定"
   },

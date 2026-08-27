@@ -1109,7 +1109,6 @@ export type WimI18nKey =
   | "components:operators.less_than_or_equal"
   | "components:operators.not_equal"
   | "components:operators.starts_with"
-  | "components:otp.digit"
   | "components:planned.for_implementation"
   | "components:query.builder.add_group"
   | "components:query.builder.add_rule"

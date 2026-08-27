@@ -355,9 +355,6 @@
     "not_equal": "Diferente de (!=)",
     "starts_with": "Começa com"
   },
-  "otp": {
-    "digit": "Dígito {{index}}"
-  },
   "planned": {
     "for_implementation": "Planejado para implementação"
   },
