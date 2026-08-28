@@ -201,7 +201,8 @@
     "togglegroup_choice_self_when": "Quando os botões carregam um valor: formatação, uma configuração, um filtro que entra na consulta. A escolha faz parte do resultado, não troca o que você está vendo.",
     "togglegroup_choice_alt_when": "Quando escolher um troca o que aparece abaixo — isso é SegmentedControl.",
     "segmentedcontrol_choice_self_when": "Quando escolher um troca a visão: qual recorte dos dados, qual período, qual etapa. O que vem depois muda.",
-    "segmentedcontrol_choice_alt_when": "Quando a escolha é um valor que você mantém (formatação, configuração, filtro) — isso é ToggleGroup. Para navegar entre páginas, Tabs."
+    "segmentedcontrol_choice_alt_when": "Quando a escolha é um valor que você mantém (formatação, configuração, filtro) — isso é ToggleGroup. Para navegar entre páginas, Tabs.",
+    "presence_desc": "Mostra se uma pessoa está online, ausente, ocupada ou offline."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

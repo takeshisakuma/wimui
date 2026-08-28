@@ -273,6 +273,9 @@
     "label_pie_chart": "PieChart",
     "label_popconfirm": "Popconfirm",
     "label_popover": "Popover",
+    "label_presence": "Presence",
+    "label_presence_on_avatar": "On an avatar",
+    "label_presence_statuses": "States (with label)",
     "label_priority_high": "High Priority",
     "label_priority_low": "Low Priority",
     "label_product": "Product",
@@ -1276,6 +1279,12 @@
       "displaying": "Showing {{shown}} of {{total}}",
       "loading_more": "Loading more…",
       "rows_selected": "({{selected}} selected)"
+    },
+    "presence": {
+      "online": "Online",
+      "away": "Away",
+      "busy": "Busy",
+      "offline": "Offline"
     }
   },
   "components": {
@@ -1409,7 +1418,8 @@
       "togglegroup_choice_self_when": "When the buttons carry a value: formatting, a setting, a filter that goes into the query. The selection is part of the result, not a change of what you are looking at.",
       "togglegroup_choice_alt_when": "When picking one changes what is shown below it — that is SegmentedControl.",
       "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
-      "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs."
+      "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
+      "presence_desc": "Shows whether a person is online, away, busy, or offline."
     },
     "cat": {
       "ai": "AI"
@@ -3660,7 +3670,19 @@
       "visuallyhidden_long_desc": "`VisuallyHidden` is a utility component used when you want to hide content visually while still conveying that information to assistive technologies like screen readers.",
       "visuallyhidden_title": "Visually Hidden",
       "visuallyhidden_usage_desc": "Content wrapped in this component will not be displayed on the screen but will still exist in the HTML structure.",
-      "table_aschild_desc": "`Table` and all its sub-components (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) support `asChild`. This is particularly useful for integrating with animation libraries like Framer Motion."
+      "table_aschild_desc": "`Table` and all its sub-components (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) support `asChild`. This is particularly useful for integrating with animation libraries like Framer Motion.",
+      "presence_long_desc": "Presence draws the same dot as `Indicator`, and adds the two things a bare dot cannot carry: which state maps to which color, and a name for that state. Wrap an `Avatar` to pin the dot to a corner, or use it on its own next to a name.",
+      "presence_design_intent": "Availability is a small vocabulary that every product spells differently. Fixing it to four states — online, away, busy, offline — keeps the color mapping in one place, so a green dot means the same thing on every screen. The component deliberately does not model `last seen` timestamps or custom states: those belong to the text next to the dot, where they can be read.",
+      "presence_choice_self_when": "Showing whether a person is reachable right now, usually on their avatar.",
+      "presence_choice_alt_when": "When the dot marks something other than a person's availability — unread, error, a count — and you choose the color yourself.",
+      "presence_a11y_desc": "A colored dot carries its meaning by color alone, so the state name is always rendered as text. With `showLabel` it is visible; without it the name is still there for assistive technology (visually hidden). Wrapping an `Avatar` reads as the avatar's name followed by the state, e.g. `Aya Fujimori, Busy`. The dot itself is decorative and is not announced twice.",
+      "presence_scenario_1": "A shared document lists who is in it right now, with the dot on each avatar.",
+      "presence_scenario_2": "A support queue shows which agents are available before a chat is assigned.",
+      "presence_scenario_3": "A profile header states availability in words, using the visible label.",
+      "presence_best_practice_1": "Put the state next to what it describes. A dot floating in a toolbar has nothing to attach to; wrap the avatar or place it beside the name.",
+      "presence_best_practice_2": "Say what `busy` means for your product in the text next to the dot (in a meeting, on a call). The four states are a shared vocabulary, not an explanation.",
+      "presence_best_practice_3": "Do not derive the color yourself. Passing `status` keeps online green on every screen; hand-picking `Indicator` colors is how the mapping drifts.",
+      "presence_keyboard_desc": "Presence is non-interactive static content and receives no keyboard focus. When the surrounding row is focusable, the state name is read as part of that row."
     }
   },
   "docs_data_display_complex": {
@@ -10847,6 +10869,7 @@
       "chart_daily_users_smooth": "Daily Users (Smooth)",
       "chart_monthly_sales": "Monthly Sales",
       "chart_monthly_sales_stacked": "Monthly Sales (Stacked)",
+      "chart_narrow_tiles": "Green stock by origin (narrow tiles)",
       "chart_performance_trends": "Performance Trends",
       "chart_price_vs_quantity": "Price vs Quantity",
       "chart_sales_funnel": "Sales Funnel",
@@ -11021,6 +11044,15 @@
       "paragraph_medium": "medium paragraph",
       "paragraph_small": "small paragraph",
       "paragraph_strikethrough": "Strikethrough Paragraph",
+      "presence_last_seen": "last here on Tuesday",
+      "presence_name_1": "Aya Fujimori",
+      "presence_name_2": "Tomás Berenguer",
+      "presence_name_3": "Ngozi Okonkwo-Whitfield",
+      "presence_name_4": "Kenji Vargas",
+      "presence_panel_title": "In this document",
+      "presence_role_comment": "left 3 comments",
+      "presence_role_editing": "editing the budget sheet",
+      "presence_role_viewing": "viewing",
       "pull_initial_item": "Initial Item {{n}}",
       "quote_black": "Black Quote",
       "quote_deepgray": "Deep Gray Quote",
@@ -11137,8 +11169,7 @@
       "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
       "watermark_team": "WIM UI Team",
       "watermark_text": "wimui watermark",
-      "watermark_wimui": "wimui",
-      "chart_narrow_tiles": "Green stock by origin (narrow tiles)"
+      "watermark_wimui": "wimui"
     }
   },
   "docs_stories_feedback": {

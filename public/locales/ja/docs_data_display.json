@@ -577,6 +577,18 @@
     "visuallyhidden_long_desc": "`VisuallyHidden` は、視覚的にはコンテンツを非表示にしつつ、スクリーンリーダーなどの補助技術にはその情報を伝えたい場合に使用するユーティリティコンポーネントです。",
     "visuallyhidden_title": "視覚的非表示",
     "visuallyhidden_usage_desc": "このコンポーネントで囲まれた内容は、画面上には表示されませんが、HTML構造としては存在し続けます。",
-    "table_aschild_desc": "`Table` とその下位コンポーネント（`Table.Header` / `Table.Body` / `Table.Footer` / `Table.Row` / `Table.Head` / `Table.Cell`）はすべて `asChild` に対応しています。Framer Motion のようなアニメーションライブラリと組み合わせるときに使えます。"
+    "table_aschild_desc": "`Table` とその下位コンポーネント（`Table.Header` / `Table.Body` / `Table.Footer` / `Table.Row` / `Table.Head` / `Table.Cell`）はすべて `asChild` に対応しています。Framer Motion のようなアニメーションライブラリと組み合わせるときに使えます。",
+    "presence_long_desc": "Presence が描くドットは `Indicator` と同じものです。足しているのは、素のドットが運べない 2 つ ── どの状態がどの色かと、その状態の名前です。`Avatar` を囲めば角にドットが付き、囲まなければ名前の隣にそのまま置けます。",
+    "presence_design_intent": "在席はどの製品にもある小さな語彙ですが、呼び名は製品ごとに違います。オンライン・離席中・取り込み中・オフラインの 4 つに固定すると、色の対応が 1 か所にまとまり、緑のドットがどの画面でも同じ意味になります。「最終アクセス」や独自の状態はあえて持ちません ── それらは読める場所、つまりドットの隣のテキストに置くものです。",
+    "presence_choice_self_when": "いま連絡が取れるかどうかを、多くはアバターの上に示すとき。",
+    "presence_choice_alt_when": "ドットが在席以外（未読・エラー・件数）を指し、色を自分で決めるとき。",
+    "presence_a11y_desc": "色付きのドットは色だけで意味を運ぶので、状態名を必ずテキストとして描画します。`showLabel` を付ければ見え、付けなくても支援技術には読めます（視覚的に隠すだけ）。`Avatar` を囲んだ場合はアバターの名前 → 状態名の順に読まれます（例: `Aya Fujimori, 取り込み中`）。ドット自体は装飾なので二重には読まれません。",
+    "presence_scenario_1": "共同編集中のドキュメントで、いま入っている人をアバターのドット付きで並べる。",
+    "presence_scenario_2": "サポートの待ち行列で、担当を割り当てる前に対応可能なエージェントを示す。",
+    "presence_scenario_3": "プロフィールの見出しで、在席を言葉として出す（ラベルを見せる）。",
+    "presence_best_practice_1": "状態は、それが説明している対象の隣に置くこと。ツールバーに浮いたドットには付く先がありません。アバターを囲むか、名前の横に置きます。",
+    "presence_best_practice_2": "`busy` が自分の製品で何を意味するかは、ドットの隣のテキストで言うこと（会議中・通話中）。4 つの状態は共通の語彙であって、説明ではありません。",
+    "presence_best_practice_3": "色を自分で導かないこと。`status` を渡せばオンラインはどの画面でも緑のままですが、`Indicator` の色を手で選ぶと対応がずれていきます。",
+    "presence_keyboard_desc": "Presence は操作を持たない静的な表示で、キーボードフォーカスを受け取りません。周りの行がフォーカス可能な場合、状態名はその行の一部として読まれます。"
   }
 }

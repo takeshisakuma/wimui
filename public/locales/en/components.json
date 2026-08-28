@@ -129,7 +129,8 @@
     "togglegroup_choice_self_when": "When the buttons carry a value: formatting, a setting, a filter that goes into the query. The selection is part of the result, not a change of what you are looking at.",
     "togglegroup_choice_alt_when": "When picking one changes what is shown below it — that is SegmentedControl.",
     "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
-    "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs."
+    "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
+    "presence_desc": "Shows whether a person is online, away, busy, or offline."
   },
   "cat": {
     "ai": "AI"

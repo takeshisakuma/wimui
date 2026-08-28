@@ -37,6 +37,7 @@
     "chart_daily_users_smooth": "Daily Users (Smooth)",
     "chart_monthly_sales": "Monthly Sales",
     "chart_monthly_sales_stacked": "Monthly Sales (Stacked)",
+    "chart_narrow_tiles": "Green stock by origin (narrow tiles)",
     "chart_performance_trends": "Performance Trends",
     "chart_price_vs_quantity": "Price vs Quantity",
     "chart_sales_funnel": "Sales Funnel",
@@ -211,6 +212,15 @@
     "paragraph_medium": "medium paragraph",
     "paragraph_small": "small paragraph",
     "paragraph_strikethrough": "Strikethrough Paragraph",
+    "presence_last_seen": "last here on Tuesday",
+    "presence_name_1": "Aya Fujimori",
+    "presence_name_2": "Tomás Berenguer",
+    "presence_name_3": "Ngozi Okonkwo-Whitfield",
+    "presence_name_4": "Kenji Vargas",
+    "presence_panel_title": "In this document",
+    "presence_role_comment": "left 3 comments",
+    "presence_role_editing": "editing the budget sheet",
+    "presence_role_viewing": "viewing",
     "pull_initial_item": "Initial Item {{n}}",
     "quote_black": "Black Quote",
     "quote_deepgray": "Deep Gray Quote",
@@ -327,7 +337,6 @@
     "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
     "watermark_team": "WIM UI Team",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui",
-    "chart_narrow_tiles": "Green stock by origin (narrow tiles)"
+    "watermark_wimui": "wimui"
   }
 }

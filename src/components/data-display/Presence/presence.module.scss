@@ -1,0 +1,17 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  /* 見えるラベル。ドットの色ではなく本文色で読ませる（色だけで意味を伝えない）。 */
+  .label {
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    line-height: 1;
+    color: var(--wim-color-text-secondary);
+  }
+}

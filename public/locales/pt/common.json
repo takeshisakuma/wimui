@@ -644,5 +644,11 @@
     "displaying": "Exibindo {{shown}} de {{total}}",
     "loading_more": "Carregando mais…",
     "rows_selected": "({{selected}} selecionados)"
+  },
+  "presence": {
+    "online": "Online",
+    "away": "Ausente",
+    "busy": "Ocupado",
+    "offline": "Offline"
   }
 }

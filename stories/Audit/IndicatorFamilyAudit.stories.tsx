@@ -3,9 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
+  Avatar,
   Badge,
   Chip,
   Countdown,
+  Presence,
   RelativeTime,
   Tag,
   Text,
@@ -150,6 +152,22 @@ export const Overview: StoryObj = {
           </ComponentGroup>
         </ComparisonGrid>
 
+        {/* Presence: 状態 → 色の対応と、アバターに重ねたときの位置を並べて見る */}
+        <ComparisonGrid title={t("audit:label_presence")}>
+          <ComponentGroup label={t("audit:label_presence_statuses")} direction="row" gap="xl" wrap>
+            <Presence status="online" showLabel />
+            <Presence status="away" showLabel />
+            <Presence status="busy" showLabel />
+            <Presence status="offline" showLabel />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_presence_on_avatar")} direction="row" gap="xl" wrap>
+            {sizes.map((size) => (
+              <Presence key={size} status="online" size={size}>
+                <Avatar initials="AF" size={size} intent="neutral" />
+              </Presence>
+            ))}
+          </ComponentGroup>
+        </ComparisonGrid>
         <ComparisonGrid title={t("audit:label_special_states_interactions")}>
           <ComponentGroup label={t("audit:label_interactive_chips_tags")} direction="row" wrap>
             <Chip onClick={() => alert("Clicked")}>{t("audit:label_clickable_chip")}</Chip>

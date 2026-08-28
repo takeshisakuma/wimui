@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.26.1 — a React 19 component library: 218 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.26.1 — a React 19 component library: 219 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2408,6 +2408,18 @@ When omitted, both Backspace and Delete work.
     - `defaultEdgeOptions: DefaultEdgeOptions` — Default options applied to new edges
     - `className: string` — Additional CSS class
     - `aria-label: string` = "Node graph" — Accessible label for the graph region
+- **Presence** — Shows whether a person is online, away, busy, or offline.
+    - `status: "online" | "away" | "busy" | "offline"` (required) — Availability of the person or resource.
+    - `label: string` — Text for the status. Defaults to the localized name of `status`.
+    - `showLabel: boolean` = false — Whether the label is shown next to the dot. The label is always exposed to
+assistive technology; this only controls whether it is also visible.
+@default false
+    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the dot.
+@default "md"
+    - `position: "top-right" | "top-left" | "bottom-right" | "bottom-left"` = "bottom-right" — Corner the dot is placed at. Only applies when `children` is given.
+@default "bottom-right"
+    - `children: React.ReactNode` — Element the dot is attached to, typically an `Avatar`. Without it the dot
+renders inline, next to whatever follows it.
 - **PullToRefresh** — Pull-to-refresh utility for enhancing mobile user experience.
     - `onRefresh: () => Promise<void> | void` (required) — Callback when refresh is triggered. Should return a promise.
     - `refreshing: boolean` — Whether the refreshing is currently in progress (controlled)

@@ -201,7 +201,8 @@
     "togglegroup_choice_self_when": "ボタンが値を持つとき。書式・設定・条件に混ざる絞り込みなど、選んだものが結果の一部になる場合。見ている対象は変わらない。",
     "togglegroup_choice_alt_when": "選ぶと下の内容が入れ替わるなら SegmentedControl。",
     "segmentedcontrol_choice_self_when": "選ぶとビューが切り替わるとき。データのどの断面か、どの期間か、どの段階か。後ろの内容が入れ替わる場合。",
-    "segmentedcontrol_choice_alt_when": "選んだものが持ち続ける値（書式・設定・絞り込み）なら ToggleGroup。ページ間の移動なら Tabs。"
+    "segmentedcontrol_choice_alt_when": "選んだものが持ち続ける値（書式・設定・絞り込み）なら ToggleGroup。ページ間の移動なら Tabs。",
+    "presence_desc": "その人がオンラインか、離席中か、取り込み中か、オフラインかを示します。"
   },
   "effects": {
     "common_vars": "共通変数"
