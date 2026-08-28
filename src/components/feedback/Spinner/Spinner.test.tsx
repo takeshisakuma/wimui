@@ -31,6 +31,18 @@ describe("Spinner", () => {
     expect(wrapper.style.color).toBeTruthy();
   });
 
+  // T228: ラベルがあるときだけ live region にする（読み上げる内容があるのは
+  // その場合だけ）。
+  it("is a live region only when a label is rendered", () => {
+    const { rerender } = render(<Spinner />);
+    expect(screen.queryByRole("status")).toBeNull();
+
+    rerender(<Spinner label="Loading..." />);
+    const status = screen.getByRole("status");
+    expect(status).toHaveAttribute("aria-live", "polite");
+    expect(status).toHaveTextContent("Loading...");
+  });
+
   it("applies labelPosition bottom", () => {
     render(<Spinner label="Loading" labelPosition="bottom" />);
     expect(screen.getByText("Loading")).toBeInTheDocument();

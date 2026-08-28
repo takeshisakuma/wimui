@@ -97,4 +97,14 @@ describe("LoadingOverlay", () => {
     expect(overlay).toHaveAttribute("aria-live", "polite");
     expect(overlay).toHaveAttribute("aria-busy", "true");
   });
+
+  // T228: 自身が live region なので、中の `Spinner` / `Loader` が持っていた
+  // role="status" と二重になっていた。読み上げる領域はここ 1 つに保つ。
+  it("holds the only live region, whatever the indicator is", () => {
+    const { rerender } = render(<LoadingOverlay visible={true} message="Loading" />);
+    expect(screen.getAllByRole("status")).toHaveLength(1);
+
+    rerender(<LoadingOverlay visible={true} loaderType="dots" message="Loading" />);
+    expect(screen.getAllByRole("status")).toHaveLength(1);
+  });
 });

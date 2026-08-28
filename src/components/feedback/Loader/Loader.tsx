@@ -51,8 +51,11 @@ export const Loader = ({
         color: !useClassNameForColor ? getColorValue(color) : undefined,
         ...(style as React.CSSProperties),
       }}
-      role="status"
-      aria-live="polite"
+      // T228: live region が読み上げるのは内容の変化。この 3 つの span は空の
+      // まま変化しないので、role="status" は何も伝えないまま「付いているよう
+      // に見える」だけだった。素の装飾として置き、待機を伝えたい呼び出し側は
+      // 読み込み中の領域そのものを live region で囲む（`Spinner` は `label` を
+      // 渡したときだけ live region になる）。
       {...props}
     >
       <span className={styles.item}></span>

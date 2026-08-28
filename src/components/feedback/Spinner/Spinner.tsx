@@ -48,8 +48,12 @@ export const Spinner = ({
         label && styles[`label-${labelPosition}`],
         className,
       )}
-      role="status"
-      aria-live="polite"
+      // T228: `label` を描画するときだけ live region にする。ラベルが無い場合
+      // の中身は回る図形だけで、読み上げる内容の変化が起きない ──「ARIA は
+      // 付いているのに機能していない」状態になり、`LoadingOverlay` のように
+      // 自前の live region を持つ親の中では領域が二重になっていた。
+      role={label ? "status" : undefined}
+      aria-live={label ? "polite" : undefined}
       style={{
         color: !useClassNameForColor ? getColorValue(color) : undefined,
         ...(style as React.CSSProperties),
