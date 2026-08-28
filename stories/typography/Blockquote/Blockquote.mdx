@@ -13,6 +13,8 @@ import { Docgen } from "../../Docgen";
 
 <Title />
 
+<Primary />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.quote_design_intent" /></p>
 
@@ -75,5 +77,13 @@ import { Docgen } from "../../Docgen";
 <Docgen componentName="Blockquote" section="test" />
 
 <Docgen componentName="Blockquote" section="i18n" />
+
+## <T k="common:doc.variations" />
+
+<Canvas of={BlockquoteStories.WithCite} />
+<Canvas of={BlockquoteStories.Large} />
+<Canvas of={BlockquoteStories.NoBorder} />
+<Canvas of={BlockquoteStories.VariousColors} />
+<Canvas of={BlockquoteStories.AsChild} />
 
 <Docgen componentName="Blockquote" section="props" />
