@@ -38,6 +38,12 @@
  * `Image` の 5 件が「自動 docs ページに出ている」ことにされて消える
  * （最初の版が実際にそうなっていた）。**書いてあることと効いていることは別。**
  *
+ * **lint-staged には登録しない。** このガードは木全体を数えて凍結一覧と突き合わせる
+ * ので、**変更されたファイルだけを渡されると「載っているのに載っていない」「凍結
+ * されているのに消えた」を大量に出す**（`check:slop` のラチェットが部分集合を全体
+ * 基準と比べて常に素通りしていたのと同じ形の誤り）。走るのは `audit:docs`（CI の
+ * Lint & Type Check ジョブ）と手元の `npm run check:story-docs` だけでよい。
+ *
  * Usage:
  *   node scripts/check-story-docs.js          # ラチェット（CI で走る）
  *   node scripts/check-story-docs.js --list   # 掲載漏れをファイル別に並べる
