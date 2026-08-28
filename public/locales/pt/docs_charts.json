@@ -25,7 +25,6 @@
     "barchart_best_practice_1": "Use BarChart consistentemente em toda a aplicação para manter uma experiência previsível.",
     "barchart_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
     "barchart_choice_alt_when": "Quando uma alternativa mais simples como Table se adequa melhor ao caso de uso.",
-    "barchart_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "barchart_choice_self_when": "Quando a funcionalidade de BarChart com opções padrão é necessária.",
     "barchart_desc": "Gráficos de barras",
     "barchart_design_intent": "BarChart fornece um padrão consistente e reutilizável para visualização de gráfico de barras para comparar dados categóricos, reduzindo o esforço de implementação e garantindo conformidade com o design system.",

@@ -180,7 +180,6 @@
     "descriptionlist_best_practice_1": "Use DescriptionList consistently across your application to maintain a predictable user experience.",
     "descriptionlist_best_practice_2": "Test DescriptionList behavior across different screen sizes and input methods to ensure accessibility.",
     "descriptionlist_choice_alt_when": "When a simpler alternative like Table better suits the use case.",
-    "descriptionlist_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "descriptionlist_choice_self_when": "When DescriptionList functionality with standard options is required.",
     "descriptionlist_design_intent": "DescriptionList provides a consistent, reusable pattern for key-value pair display in definition list format, reducing implementation effort and ensuring design system compliance.",
     "descriptionlist_item_props": "DescriptionListItem Props",
@@ -295,7 +294,6 @@
     "indicator_best_practice_1": "Use Indicator consistently across your application to maintain a predictable user experience.",
     "indicator_best_practice_2": "Test Indicator behavior across different screen sizes and input methods to ensure accessibility.",
     "indicator_choice_alt_when": "When a simpler alternative like Badge better suits the use case.",
-    "indicator_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "indicator_choice_self_when": "When Indicator functionality with standard options is required.",
     "indicator_colors": "Color Variations",
     "indicator_colors_desc": "Change colors depending on the status.",
@@ -377,7 +375,6 @@
     "legend_best_practice_1": "Use Legend consistently across your application to maintain a predictable user experience.",
     "legend_best_practice_2": "Test Legend behavior across different screen sizes and input methods to ensure accessibility.",
     "legend_choice_alt_when": "When a simpler alternative like Label better suits the use case.",
-    "legend_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "legend_choice_self_when": "When Legend functionality with standard options is required.",
     "legend_design_intent": "Legend provides a consistent, reusable pattern for providing a caption for a group of form fields within a fieldset, reducing implementation effort and ensuring design system compliance.",
     "legend_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
@@ -393,7 +390,6 @@
     "list_bordered": "Bordered",
     "list_bordered_desc": "Use bordered when each row is a record. The marker stays on the first line even if the child is a stack of lines.",
     "list_choice_alt_when": "When a simpler alternative like Table better suits the use case.",
-    "list_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "list_choice_self_when": "When List functionality with standard options is required.",
     "list_desc": "Structurally organized items in bullet points or numbered formats",
     "list_design_intent": "List provides a consistent, reusable pattern for ordered or unordered list display with consistent styling, reducing implementation effort and ensuring design system compliance.",
@@ -547,7 +543,6 @@
     "timeline_best_practice_2": "Test Timeline behavior across different screen sizes and input methods to ensure accessibility.",
     "timeline_change": "Change",
     "timeline_choice_alt_when": "When a simpler alternative like Stepper better suits the use case.",
-    "timeline_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "timeline_choice_self_when": "When Timeline functionality with standard options is required.",
     "timeline_desc": "A vertical list mapping events or history in chronological order",
     "timeline_design_intent": "Timeline provides a consistent, reusable pattern for chronological event display in vertical sequence, reducing implementation effort and ensuring design system compliance.",
@@ -581,6 +576,7 @@
     "visuallyhidden_keyboard_desc": "This component does not require specific keyboard interaction. It hides content visually while keeping it accessible to screen readers.",
     "visuallyhidden_long_desc": "`VisuallyHidden` is a utility component used when you want to hide content visually while still conveying that information to assistive technologies like screen readers.",
     "visuallyhidden_title": "Visually Hidden",
-    "visuallyhidden_usage_desc": "Content wrapped in this component will not be displayed on the screen but will still exist in the HTML structure."
+    "visuallyhidden_usage_desc": "Content wrapped in this component will not be displayed on the screen but will still exist in the HTML structure.",
+    "table_aschild_desc": "`Table` and all its sub-components (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) support `asChild`. This is particularly useful for integrating with animation libraries like Framer Motion."
   }
 }

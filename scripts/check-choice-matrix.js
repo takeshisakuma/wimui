@@ -22,9 +22,33 @@
  */
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+import { resolveLocale } from "./lib/locale-keys.js";
 
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOCALE_DIR = "public/locales/en";
 const BASELINE = 146; // 2026-08-11 実測（self 73 + alt 73）。減らすのは歓迎、増やすのは不可。
+
+/**
+ * 軸 4（T223・2026-08-28）: **表の直前に置く導入文が定型文になっていないか。**
+ *
+ * `doc.<component>_choice_matrix_desc` は 190 件のうち **74 件**が
+ * 「Select the most appropriate component based on your requirements.」だった。
+ * **マトリクスの直前で「要件に応じて適切なものを選べ」と書くのは節の題そのもの**で、
+ * 情報が 1 つも増えない。74 件は MDX の `<p>` ごと消して 0 件にしたので、
+ * ここは**復活しないこと**だけを見る。
+ *
+ * **導入文は `audit-mdx` の必須ではない**（必須なのは `doc.choice_matrix_title` ＝
+ * 節の見出しのみ）。表本体は `choice_self` / `choice_alt` が持っているので、
+ * 消しても節は成立する。**「必ず何か書く」という要求が定型文を生む**という
+ * T223 の見立てのとおり、要求されていないところに定型文が溜まっていた。
+ *
+ * 数えるのは **`resolveLocale` で解決した後の値**（＝画面に出るほう）。生の
+ * ファイル走査だと、複数ファイルに在るキーで負け側を読む（T222 の 3 回目で
+ * 実際に起きた誤り。ここも生で数えると 191 件・74 件が 75 件に化ける）。
+ */
+const DESC_BOILERPLATE = "Select the most appropriate component based on your requirements.";
+const DESC_BASELINE = 0; // 2026-08-28 に 74 → 0。増やすのは不可。
 
 /**
  * 軸 2・3 を足した理由（T153・2026-08-12）
@@ -202,6 +226,17 @@ function main() {
     console.log(`  ✗ docs/${doc.file}（${doc.links} 件のコンポーネントを挙げているのに使用場面の表が無い）`);
   }
 
+  // --- 軸 4: 表の直前の導入文が定型文になっていないか ---
+  const { values } = resolveLocale(ROOT, "en");
+  const descKeys = Object.keys(values).filter((k) => /_choice_matrix_desc$/.test(k));
+  const descBoilerplate = descKeys.filter((k) => values[k] === DESC_BOILERPLATE);
+  console.log(
+    `導入文が定型文: ${descBoilerplate.length} 件（導入文 ${descKeys.length} 件中・baseline ${DESC_BASELINE}）`,
+  );
+  if (process.argv.includes("--list")) {
+    for (const k of descBoilerplate) console.log(`  ${k}`);
+  }
+
   // --- 軸 3: 相乗り行 ---
   const riders = collectRiderRows();
   const unlisted = riders.filter((row) => !RIDER_ALLOWLIST.has(row.key));
@@ -210,6 +245,29 @@ function main() {
   );
   for (const row of unlisted) {
     console.log(`  ✗ ${row.file}:${row.line} — "${row.text}" が 1 セルに同居していて、分岐の条件が消えている`);
+  }
+
+  if (descBoilerplate.length > DESC_BASELINE) {
+    console.error(
+      `\n✗ 表の直前の導入文が定型文になっています（${descBoilerplate.length - DESC_BASELINE} 件増）:`,
+    );
+    for (const k of descBoilerplate) console.error(`  - ${k}`);
+    console.error(
+      "\n  「要件に応じて適切なものを選べ」は節の題そのもので、情報が増えません。\n" +
+        "  **書くことが無いなら導入文ごと消すこと**（`audit-mdx` の必須は\n" +
+        "  `doc.choice_matrix_title` ＝ 見出しだけで、導入文は要りません）。\n" +
+        "  MDX の `<p><T k=\"doc.<name>_choice_matrix_desc\" /></p>` と、en/ja/pt の\n" +
+        "  キーを 3 言語とも消します（2026-08-28 に 74 件をそうしました）。",
+    );
+    process.exit(1);
+  }
+
+  if (descBoilerplate.length < DESC_BASELINE) {
+    console.error(
+      `\n✗ 定型文が ${DESC_BASELINE - descBoilerplate.length} 件減っています。` +
+        " scripts/check-choice-matrix.js の DESC_BASELINE を下げてください。",
+    );
+    process.exit(1);
   }
 
   if (missingAnswer.length > 0 || unlisted.length > 0) {
