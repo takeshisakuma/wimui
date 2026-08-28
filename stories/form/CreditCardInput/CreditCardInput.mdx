@@ -12,6 +12,8 @@ import { Docgen } from "../../Docgen";
 
 <p><T k="doc.creditCardInput_long_desc" /></p>
 
+<Primary />
+
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.creditCardInput_design_intent" /></p>
 
@@ -76,5 +78,10 @@ import { Docgen } from "../../Docgen";
 <Docgen componentName="CreditCardInput" section="test" />
 
 <Docgen componentName="CreditCardInput" section="i18n" />
+
+## <T k="common:doc.variations" />
+
+<Canvas of={CreditCardInputStories.Visa} />
+<Canvas of={CreditCardInputStories.Amex} />
 
 <Docgen componentName="CreditCardInput" section="props" />
