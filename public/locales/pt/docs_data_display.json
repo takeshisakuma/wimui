@@ -180,7 +180,6 @@
     "descriptionlist_best_practice_1": "Use DescriptionList consistentemente em toda a aplicação para manter uma experiência previsível.",
     "descriptionlist_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
     "descriptionlist_choice_alt_when": "Quando uma alternativa mais simples como Table se adequa melhor ao caso de uso.",
-    "descriptionlist_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "descriptionlist_choice_self_when": "Quando a funcionalidade de DescriptionList com opções padrão é necessária.",
     "descriptionlist_design_intent": "DescriptionList fornece um padrão consistente e reutilizável para exibição de pares chave-valor em formato de lista de definição, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
     "descriptionlist_item_props": "Propriedades de DescriptionListItem",
@@ -295,7 +294,6 @@
     "indicator_best_practice_1": "Use Indicator consistentemente em toda a aplicação para manter uma experiência previsível.",
     "indicator_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
     "indicator_choice_alt_when": "Quando uma alternativa mais simples como Badge se adequa melhor ao caso de uso.",
-    "indicator_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "indicator_choice_self_when": "Quando a funcionalidade de Indicator com opções padrão é necessária.",
     "indicator_colors": "Variações de Cor",
     "indicator_colors_desc": "Altere as cores dependendo do status.",
@@ -377,7 +375,6 @@
     "legend_best_practice_1": "Use Legend consistentemente em toda a aplicação para manter uma experiência previsível.",
     "legend_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
     "legend_choice_alt_when": "Quando uma alternativa mais simples como Label se adequa melhor ao caso de uso.",
-    "legend_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "legend_choice_self_when": "Quando a funcionalidade de Legend com opções padrão é necessária.",
     "legend_design_intent": "Legend fornece um padrão consistente e reutilizável para fornecer uma legenda para um grupo de campos de formulário em um fieldset, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
     "legend_keyboard_desc": "Este componente não requer interação de teclado específica além do foco Tab padrão.",
@@ -393,7 +390,6 @@
     "list_bordered": "Com borda",
     "list_bordered_desc": "Use bordered quando cada linha for um registro. O marcador permanece na primeira linha mesmo se o filho for um bloco de várias linhas.",
     "list_choice_alt_when": "Quando uma alternativa mais simples como Table se adequa melhor ao caso de uso.",
-    "list_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "list_choice_self_when": "Quando a funcionalidade de List com opções padrão é necessária.",
     "list_desc": "Coleção estruturada de itens relacionados",
     "list_design_intent": "List fornece um padrão consistente e reutilizável para exibição de lista ordenada ou não ordenada com estilo consistente, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
@@ -547,7 +543,6 @@
     "timeline_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
     "timeline_change": "Change",
     "timeline_choice_alt_when": "Quando uma alternativa mais simples como Stepper se adequa melhor ao caso de uso.",
-    "timeline_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "timeline_choice_self_when": "Quando a funcionalidade de Timeline com opções padrão é necessária.",
     "timeline_desc": "Exibição vertical de acontecimentos em ordem de tempo",
     "timeline_design_intent": "Timeline fornece um padrão consistente e reutilizável para exibição cronológica de eventos em sequência vertical, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
@@ -581,6 +576,7 @@
     "visuallyhidden_keyboard_desc": "Este componente não requer interação de teclado específica. Oculta conteúdo visualmente enquanto o mantém acessível aos leitores de tela.",
     "visuallyhidden_long_desc": "`VisuallyHidden` é um componente utilitário usado quando você deseja ocultar conteúdo visualmente, mas ainda transmitir essa informação para tecnologias assistivas, como leitores de tela.",
     "visuallyhidden_title": "Visualmente Oculto",
-    "visuallyhidden_usage_desc": "O conteúdo envolvido neste componente não será exibido na tela, mas ainda existirá na estrutura HTML."
+    "visuallyhidden_usage_desc": "O conteúdo envolvido neste componente não será exibido na tela, mas ainda existirá na estrutura HTML.",
+    "table_aschild_desc": "`Table` e todos os seus subcomponentes (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) suportam `asChild`. Isso é especialmente útil para integrar com bibliotecas de animação como o Framer Motion."
   }
 }

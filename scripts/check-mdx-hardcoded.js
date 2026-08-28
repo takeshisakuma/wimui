@@ -182,7 +182,13 @@ mdxFiles.forEach(file => {
 // 落とした。生英語であると同時に**存在しないコンポーネントを勧めていた**
 // （`Tile` は `components.json` に無い＝だから除外語に入らず鳴った）。
 // 説明文に合う実在のもの＝`BentoGrid` に直した。
-const HARDCODED_FILE_BASELINE = 50;
+// 2026-08-28: 50 → 43。T223 で導入文を消すために 73 ファイルを触ったところ、
+// 引数モードが 6 ファイルの既存の生英語を落とした。部品名は <code> に、サイズ
+// 見出しは既存キーに、cascade は prop の値なので <code> に直し、Table の散文は
+// doc.table_aschild_desc にした。**Span / Heading / Blockquote の「代替は
+// Paragraph」は実在しない部品を勧めていた**（Card.mdx の Tile と同じ形）ので、
+// 3 言語とも Text に直した。
+const HARDCODED_FILE_BASELINE = 43;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

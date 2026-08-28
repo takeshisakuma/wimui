@@ -25,7 +25,6 @@
     "barchart_best_practice_1": "Use BarChart consistently across your application to maintain a predictable user experience.",
     "barchart_best_practice_2": "Test BarChart behavior across different screen sizes and input methods to ensure accessibility.",
     "barchart_choice_alt_when": "When a simpler alternative like Table better suits the use case.",
-    "barchart_choice_matrix_desc": "Select the most appropriate component based on your requirements.",
     "barchart_choice_self_when": "When BarChart functionality with standard options is required.",
     "barchart_desc": "Bar charts",
     "barchart_design_intent": "BarChart provides a consistent, reusable pattern for bar chart visualization for comparing categorical data, reducing implementation effort and ensuring design system compliance.",
