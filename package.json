@@ -352,6 +352,7 @@
     "check:imports": "node scripts/check-imports.js",
     "vrt:diff-report": "node scripts/vrt-diff-report.js",
     "check:vrt-orphans": "node scripts/check-vrt-orphans.js",
+    "check:story-docs": "node scripts/check-story-docs.js",
     "check:a11y-incomplete": "node scripts/check-a11y-incomplete.js",
     "a11y:incomplete:update": "node scripts/update-a11y-incomplete.js",
     "a11y:incomplete:measure": "node scripts/measure-a11y-incomplete.mjs",
