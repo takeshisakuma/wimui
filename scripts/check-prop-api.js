@@ -369,10 +369,27 @@ for (const [key, was] of Object.entries(before)) {
   }
 }
 
+/**
+ * スナップショットに prop が 1 つも無いコンポーネント ＝ **この版で新しく公開された
+ * もの**。必須 prop を持っていても、落ちる既存の呼び出しは存在しない。
+ *
+ * T225 で `Presence`（`status` が必須）を足したときに、このガードが
+ * **「必須の prop が増えました（既存の呼び出しが落ちます）」と報告した**ので分かった。
+ * 言われたとおり changeset に破壊として書くと、**嘘の破壊的変更**が CHANGELOG に載る。
+ * 新規部品は必ず必須 prop を持ちうるので、これは新しい部品を出すたびに出る誤報だった。
+ */
+const componentOf = (key) => key.split(".")[0];
+const knownComponents = new Set(Object.keys(before).map(componentOf));
+
 for (const [key, now] of Object.entries(current)) {
   if (key in before) continue;
-  if (now.required === true) breaking.push(`${key}: 必須の prop が増えました（既存の呼び出しが落ちます）`);
-  else additive.push(`${key}: prop が増えました`);
+  if (!knownComponents.has(componentOf(key))) {
+    additive.push(`${key}: 新しいコンポーネントの prop です`);
+  } else if (now.required === true) {
+    breaking.push(`${key}: 必須の prop が増えました（既存の呼び出しが落ちます）`);
+  } else {
+    additive.push(`${key}: prop が増えました`);
+  }
 }
 
 console.log('--- check:prop-api (prop シグネチャの破壊的変更) ---');

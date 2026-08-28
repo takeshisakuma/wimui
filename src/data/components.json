@@ -459,6 +459,12 @@
         "descKey": "doc.countdown_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Presence",
+        "descKey": "doc.presence_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

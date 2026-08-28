@@ -37,6 +37,7 @@
     "chart_daily_users_smooth": "Usuários Diários (Suave)",
     "chart_monthly_sales": "Vendas Mensais",
     "chart_monthly_sales_stacked": "Vendas Mensais (Empilhado)",
+    "chart_narrow_tiles": "Estoque verde por origem (blocos estreitos)",
     "chart_performance_trends": "Tendências de Desempenho",
     "chart_price_vs_quantity": "Preço vs Quantidade",
     "chart_sales_funnel": "Funil de Vendas",
@@ -211,6 +212,15 @@
     "paragraph_medium": "medium paragraph",
     "paragraph_small": "small paragraph",
     "paragraph_strikethrough": "Strikethrough Paragraph",
+    "presence_last_seen": "esteve aqui na terça",
+    "presence_name_1": "Aya Fujimori",
+    "presence_name_2": "Tomás Berenguer",
+    "presence_name_3": "Ngozi Okonkwo-Whitfield",
+    "presence_name_4": "Kenji Vargas",
+    "presence_panel_title": "Neste documento",
+    "presence_role_comment": "deixou 3 comentários",
+    "presence_role_editing": "editando a planilha de orçamento",
+    "presence_role_viewing": "visualizando",
     "pull_initial_item": "Item Inicial {{n}}",
     "quote_black": "Black Quote",
     "quote_deepgray": "Citação em Cinza Escuro",
@@ -327,7 +337,6 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui",
-    "chart_narrow_tiles": "Estoque verde por origem (blocos estreitos)"
+    "watermark_wimui": "wimui"
   }
 }

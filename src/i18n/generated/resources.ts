@@ -122,6 +122,12 @@ export const wimResources: WimResources = {
         "displaying": "Showing {{shown}} of {{total}}",
         "loading_more": "Loading more…",
         "rows_selected": "({{selected}} selected)"
+      },
+      "presence": {
+        "online": "Online",
+        "away": "Away",
+        "busy": "Busy",
+        "offline": "Offline"
       }
     },
     "components": {
@@ -441,6 +447,12 @@ export const wimResources: WimResources = {
         "displaying": "{{total}} 件中 {{shown}} 件を表示",
         "loading_more": "さらに読み込み中…",
         "rows_selected": "（{{selected}} 件を選択中）"
+      },
+      "presence": {
+        "online": "オンライン",
+        "away": "離席中",
+        "busy": "取り込み中",
+        "offline": "オフライン"
       }
     },
     "components": {
@@ -760,6 +772,12 @@ export const wimResources: WimResources = {
         "displaying": "Exibindo {{shown}} de {{total}}",
         "loading_more": "Carregando mais…",
         "rows_selected": "({{selected}} selecionados)"
+      },
+      "presence": {
+        "online": "Online",
+        "away": "Ausente",
+        "busy": "Ocupado",
+        "offline": "Offline"
       }
     },
     "components": {

@@ -37,6 +37,7 @@
     "chart_daily_users_smooth": "日次ユーザー数（スムーズ）",
     "chart_monthly_sales": "月間売上",
     "chart_monthly_sales_stacked": "月間売上（積み上げ）",
+    "chart_narrow_tiles": "産地別の生豆在庫（タイルが狭い場合）",
     "chart_performance_trends": "パフォーマンス推移",
     "chart_price_vs_quantity": "価格と数量",
     "chart_sales_funnel": "販売ファネル",
@@ -211,6 +212,15 @@
     "paragraph_medium": "中くらいの段落",
     "paragraph_small": "小さな段落",
     "paragraph_strikethrough": "取り消し線の段落",
+    "presence_last_seen": "最終アクセスは火曜",
+    "presence_name_1": "Aya Fujimori",
+    "presence_name_2": "Tomás Berenguer",
+    "presence_name_3": "Ngozi Okonkwo-Whitfield",
+    "presence_name_4": "Kenji Vargas",
+    "presence_panel_title": "このドキュメントの参加者",
+    "presence_role_comment": "コメントを 3 件",
+    "presence_role_editing": "予算シートを編集中",
+    "presence_role_viewing": "閲覧中",
     "pull_initial_item": "初期アイテム{{n}}",
     "quote_black": "ブラックの引用",
     "quote_deepgray": "ディープグレーの引用",
@@ -327,7 +337,6 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui",
-    "chart_narrow_tiles": "産地別の生豆在庫（タイルが狭い場合）"
+    "watermark_wimui": "wimui"
   }
 }

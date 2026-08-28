@@ -1,0 +1,90 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as PresenceStories from "./Presence.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={PresenceStories} />
+
+<Title />
+
+<p><T k="doc.presence_long_desc" /></p>
+
+<Canvas of={PresenceStories.Default} />
+<Controls of={PresenceStories.Default} />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.presence_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Presence</code></td>
+      <td><T k="doc.presence_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><code>Indicator</code></td>
+      <td><T k="doc.presence_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Presence" section="anatomy" />
+
+## <T k="common:doc.variations" />
+
+<Canvas of={PresenceStories.OnAvatar} />
+<Canvas of={PresenceStories.Statuses} />
+<Canvas of={PresenceStories.Sizes} />
+<Canvas of={PresenceStories.Realistic} />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.presence_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_collab_title" /></strong></td>
+      <td><T k="doc.presence_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_chat_title" /></strong></td>
+      <td><T k="doc.presence_scenario_2" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_profile_title" /></strong></td>
+      <td><T k="doc.presence_scenario_3" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.presence_best_practice_1" /></li>
+  <li><T k="doc.presence_best_practice_2" /></li>
+  <li><T k="doc.presence_best_practice_3" /></li>
+</ul>
+
+<Docgen componentName="Presence" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.presence_keyboard_desc" /></p>
+
+<Docgen componentName="Presence" section="test" />
+
+<Docgen componentName="Presence" section="i18n" />
+
+<Docgen componentName="Presence" section="props" />

@@ -7257,6 +7257,40 @@
       "required": false,
       "type": "HTMLElement | null"
     },
+    "Presence.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Presence.label": {
+      "required": false,
+      "type": "string"
+    },
+    "Presence.position": {
+      "required": false,
+      "values": [
+        "bottom-left",
+        "bottom-right",
+        "top-left",
+        "top-right"
+      ]
+    },
+    "Presence.showLabel": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Presence.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Presence.status": {
+      "required": true,
+      "values": [
+        "away",
+        "busy",
+        "offline",
+        "online"
+      ]
+    },
     "Progress.indeterminate": {
       "required": false,
       "type": "boolean"

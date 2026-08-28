@@ -577,6 +577,18 @@
     "visuallyhidden_long_desc": "`VisuallyHidden` é um componente utilitário usado quando você deseja ocultar conteúdo visualmente, mas ainda transmitir essa informação para tecnologias assistivas, como leitores de tela.",
     "visuallyhidden_title": "Visualmente Oculto",
     "visuallyhidden_usage_desc": "O conteúdo envolvido neste componente não será exibido na tela, mas ainda existirá na estrutura HTML.",
-    "table_aschild_desc": "`Table` e todos os seus subcomponentes (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) suportam `asChild`. Isso é especialmente útil para integrar com bibliotecas de animação como o Framer Motion."
+    "table_aschild_desc": "`Table` e todos os seus subcomponentes (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) suportam `asChild`. Isso é especialmente útil para integrar com bibliotecas de animação como o Framer Motion.",
+    "presence_long_desc": "O Presence desenha o mesmo ponto que o `Indicator` e acrescenta as duas coisas que um ponto sozinho não carrega: qual estado corresponde a qual cor e um nome para esse estado. Envolva um `Avatar` para fixar o ponto em um canto, ou use-o sozinho ao lado de um nome.",
+    "presence_design_intent": "Disponibilidade é um vocabulário pequeno que cada produto escreve de um jeito. Fixá-lo em quatro estados — online, ausente, ocupado, offline — mantém o mapeamento de cores em um só lugar, então um ponto verde significa o mesmo em todas as telas. O componente deliberadamente não modela `visto por último` nem estados personalizados: isso pertence ao texto ao lado do ponto, onde pode ser lido.",
+    "presence_choice_self_when": "Para mostrar se a pessoa está acessível agora, normalmente sobre o avatar dela.",
+    "presence_choice_alt_when": "Quando o ponto marca algo além da disponibilidade — não lido, erro, uma contagem — e você escolhe a cor.",
+    "presence_a11y_desc": "Um ponto colorido carrega significado apenas pela cor, então o nome do estado é sempre renderizado como texto. Com `showLabel` ele fica visível; sem ele, o nome continua disponível para tecnologia assistiva (visualmente oculto). Ao envolver um `Avatar`, a leitura é o nome do avatar seguido do estado, por exemplo `Aya Fujimori, Ocupado`. O ponto em si é decorativo e não é anunciado duas vezes.",
+    "presence_scenario_1": "Um documento compartilhado lista quem está nele agora, com o ponto em cada avatar.",
+    "presence_scenario_2": "Uma fila de atendimento mostra quais agentes estão disponíveis antes de atribuir um chat.",
+    "presence_scenario_3": "O cabeçalho de um perfil informa a disponibilidade em palavras, com o rótulo visível.",
+    "presence_best_practice_1": "Coloque o estado ao lado daquilo que ele descreve. Um ponto solto em uma barra de ferramentas não tem a que se prender; envolva o avatar ou fique ao lado do nome.",
+    "presence_best_practice_2": "Diga o que `busy` significa no seu produto no texto ao lado do ponto (em reunião, em ligação). Os quatro estados são um vocabulário comum, não uma explicação.",
+    "presence_best_practice_3": "Não derive a cor por conta própria. Passar `status` mantém online verde em todas as telas; escolher cores do `Indicator` na mão é como o mapeamento se perde.",
+    "presence_keyboard_desc": "O Presence é conteúdo estático não interativo e não recebe foco do teclado. Quando a linha ao redor é focalizável, o nome do estado é lido como parte dessa linha."
   }
 }
