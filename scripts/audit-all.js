@@ -56,6 +56,15 @@ const checks = [
   },
   {
     category: "docs",
+    // T224（2026-08-28）。サイドバーには出るが docs ページには出ないストーリーが
+    // 188 件。`audit-mdx` は節の有無しか見ず、`check:vrt-orphans` は撮影対象しか
+    // 見ないので、掲載漏れはどのガードにも映らなかった。載せる/載せないの方針が
+    // 決まるまで、意図せず増えないことだけを見る。
+    name: "Stories that never appear on their docs page (ratchet)",
+    command: "node scripts/check-story-docs.js",
+  },
+  {
+    category: "docs",
     // T229（2026-08-23）。同じキーが複数のロケールファイルに在ると、i18next は
     // 先の名前空間だけを返すので**負けている複製は一度も表示されない**。
     // `check-i18n-quality` の重複検出は 1 ファイルの中しか見ないため構造的に見えない。
