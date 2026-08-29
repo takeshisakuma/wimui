@@ -1,5 +1,87 @@
 # wimui
 
+## 0.29.0
+
+### Minor Changes
+
+- 7feeb31: チャートを 4 種追加した（`wimui/charts`）。**新しい依存は増えていない** ── いずれも既存の peer である recharts の範囲で描いている。
+
+  既存 16 種では描けなかった 4 つの形を埋める。
+
+  - **`SankeyChart`** ── 量が段を移りながら分かれ・合流する図。**帯の太さがそのまま流れた量**で、これは `NodeGraph` では表せない（辺が流量の幅を持たない）。
+  - **`WaterfallChart`** ── ある数が別の数になるまでの増減の内訳。各段の棒はその段の前後の running total の間に浮く。
+  - **`BoxPlot`** ── 群ごとの分布（五数要約）。平均が同じでも散らばりが違えば違って見える。
+  - **`CandlestickChart`** ── 期間ごとの四本値。1 本が 4 つの数を運ぶので、終値だけの折れ線では落ちる「どこまで動いたか」が残る。
+
+  ```tsx
+  import { SankeyChart, WaterfallChart, BoxPlot, CandlestickChart } from "wimui/charts";
+
+  <SankeyChart
+    title="Where sign-up traffic comes from"
+    nodes={["Search", "Direct", "Pricing page", "Left", "Signed up"]}
+    links={[{ source: "Search", target: "Pricing page", value: 2840 }]}
+  />
+
+  <WaterfallChart
+    data={[
+      { name: "Revenue", value: 1840 },
+      { name: "Cost of sales", value: -620 },
+      { name: "Profit", value: 0, total: true },
+    ]}
+  />
+  ```
+
+  **色が唯一の手がかりにならないようにしてある。** `SankeyChart` は印そのものにノード名を描き、`WaterfallChart` は符号つきの値を棒ごとに描き、`CandlestickChart` は上げを中を抜いた枠・下げを塗りつぶしと**形**で分ける。グレースケールでも色覚の違いでも区別が残る。
+
+  分布と四本値の軸は **0 起点にしない**（0 を入れると図の大半が空白になり形が潰れる）。軸の端は切りのいい数へ丸める。
+
+  4 種とも、描画は支援技術から隠して**同じ値をデータ表で併記**する（`SankeyChart` は 1 行が 1 本の流れ、`BoxPlot` は五数要約、`CandlestickChart` は OHLC）。
+
+- 7feeb31: 議論の 1 件を描く `Comment` を追加した（`wimui` / `wimui/data-display`）。返信を入れ子で持てる。optional peer には依存しない。
+
+  ```tsx
+  import { Comment, RelativeTime, Tag } from "wimui";
+
+  <Comment
+    id="c1"
+    author={{ name: "Ngozi", initials: "NO", badge: <Tag size="sm">Author</Tag> }}
+    timestamp={<RelativeTime date={postedAt} />}
+    replyingTo={openId}
+    onReply={(id) => setOpenId(id)}
+    composer={<ReplyForm onSubmit={…} />}
+    replies={[
+      <Comment key="c2" id="c2" author={{ name: "Bruno" }}>Agreed.</Comment>,
+    ]}
+  >
+    本文（任意のノード ── Markdown でもメンションでも添付でも）
+  </Comment>
+  ```
+
+  **返信欄と編集欄は状態ではなく差し込み口。** どれが開いているかを外から渡し（`replyingTo` / `editingId`）、欄そのものも外から渡す（`composer` / `editor`）。下書き・検証・送信は製品ごとに違うのでアプリに残り、この部品が引き受けるのは**どの製品でも同じで、しかも間違えやすい部分**だけ ── 見出しの構造、入れ子の意味づけ、編集されたコメントがそう名乗ること。
+
+  a11y は 4 点:
+
+  - 1 件ずつが**著者名で名づけられた `article`**。読み上げは入った時点で「誰のコメントか」を言う
+  - 返信は**入れ子のリスト**。字下げは目にしか届かないので、深さを渡すには構造が要る
+  - 組み込みの操作ボタンには著者名を目に見えない形で足す ──「返信」とだけ読めるボタンが並ぶと声では区別が付かない
+  - アバターは装飾扱い（名前は既に見出しに出ているため、`alt` を付けると同じ名前を 2 回読む）
+
+  `edited` を立てると「編集済み」を表示する。黙って書き換わったコメントは、最初からそう書いてあったように読まれる。
+
+- 7feeb31: `Barcode` の EAN-13 を、規格どおりの印字レイアウトで描くようにした。
+
+  これまでは 13 桁をバーの下に中央でまとめて印字していた。読み取りには影響しないが、店頭の商品と見比べると別の物に見える。これからは:
+
+  - **ガードバーが数字の帯の底まで伸びる**（左・中央・右の 3 組）
+  - **先頭桁がシンボルの左外**に出る
+  - 残り 12 桁が**左右半分の下に 6 桁ずつ**、各桁が自分の 7 モジュールの真下に付く
+
+  **モジュール列は 1 文字も変わっていない**ので、スキャナが読む値も読み取りやすさも同一。凍結してあるテストでそれを確かめてから描画だけを変えた。Code 128 は従来どおり（割り付けを持たない体系なので、値はバーの下に 1 本で置く）。
+
+  > **見た目は変わる。** API は変わらないので minor だが、**EAN-13 の視覚スナップショット（VRT など）を持っている場合は差分が出る。** `showValue={false}` にしている場合は変化しない。
+
+  印字の色はバーと同じ固定色で塗る（この部品はテーマに追随せず、常に明るい地に暗い印字 ── 反転はレーザー式・CCD 式のスキャナが安定して読めない）。1 文字の SVG テキストは axe がコントラストを測れないため、色が揃っていることを別の検査で縛ってある。
+
 ## 0.28.0
 
 ### Minor Changes
