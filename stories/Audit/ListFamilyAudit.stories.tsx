@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
+  Comment,
   List,
   ListItem,
   VirtualList,
@@ -163,6 +164,42 @@ export const Overview: StoryObj = {
                 <DescriptionListDetails>Value 2</DescriptionListDetails>
               </DescriptionListItem>
             </DescriptionList>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Comment: 入れ子の深さが字下げと縦線で読めるか */}
+        <ComparisonGrid title={t("audit:label_comment")}>
+          <ComponentGroup label={t("audit:label_comment_thread")} align="stretch">
+            <Comment
+              id="a1"
+              author={{ name: "Ngozi Okonkwo-Whitfield", initials: "NO" }}
+              timestamp="5h"
+              onReply={() => {}}
+              replies={[
+                <Comment
+                  key="a2"
+                  id="a2"
+                  author={{ name: "Bruno Salgado", initials: "BS" }}
+                  timestamp="4h"
+                  onReply={() => {}}
+                  replies={[
+                    <Comment
+                      key="a3"
+                      id="a3"
+                      author={{ name: "Mei Tanaka", initials: "MT" }}
+                      timestamp="2h"
+                      edited
+                    >
+                      {t("audit:label_comment")} 3
+                    </Comment>,
+                  ]}
+                >
+                  {t("audit:label_comment")} 2
+                </Comment>,
+              ]}
+            >
+              {t("audit:label_comment")} 1
+            </Comment>
           </ComponentGroup>
         </ComparisonGrid>
 

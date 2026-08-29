@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.28.0 — a React 19 component library: 224 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.28.0 — a React 19 component library: 225 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2281,6 +2281,30 @@ Cannot be combined with `onDelete` (T99).
     - `variant: "solid" | "outline" | "subtle"` = "solid" — Visual style variant
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
     - `deleteAriaLabel: string` — Accessible label for the delete button
+    - `className: string` — Additional class names
+- **Comment** — Shows one comment in a discussion, with its actions and nested replies.
+    - `id: string` (required) — Identifies this comment. The `replyingTo` / `editingId` props are compared
+against it, and the callbacks pass it back.
+    - `author: { /** Display name. Also names the comment for assistive tech. */ name: string; /** Avatar image URL. */ avatarSrc?: string; /** Initials shown when there is no avatar image. */ initials?: string; /** Optional marker next to the name — "Author", "Moderator", a `Tag`, etc. */ badge?: React.ReactNode; }` (required) — Who wrote it.
+    - `timestamp: React.ReactNode` — When it was written. Pass a `RelativeTime`, or any node — this component
+does not format dates, because the surrounding page decides whether
+"3 hours ago" or an absolute date is the useful thing to read.
+    - `children: React.ReactNode` — The comment itself. Any node — Markdown, mentions, attachments.
+    - `replies: React.ReactNode` — Nested replies: `Comment` elements. The nesting is drawn as a list, so
+assistive tech reads the depth rather than inferring it from indentation.
+    - `edited: boolean` = false — Marks the comment as changed since it was posted. A comment that was
+silently rewritten reads as if it always said the new thing.
+@default false
+    - `replyingTo: string` — Id of the comment whose reply box is open. When it equals `id`, `composer`
+is rendered below this comment.
+    - `editingId: string` — Id of the comment being edited. When it equals `id`, `editor` replaces the
+body rather than appearing alongside it.
+    - `composer: React.ReactNode` — The reply box. Rendered only while `replyingTo` equals `id`.
+    - `editor: React.ReactNode` — The edit form. Rendered only while `editingId` equals `id`.
+    - `onReply: (id: string) => void` — Shows a Reply button when set.
+    - `onEdit: (id: string) => void` — Shows an Edit button when set.
+    - `onDelete: (id: string) => void` — Shows a Delete button when set.
+    - `actions: React.ReactNode` — Extra actions, placed after the built-in ones.
     - `className: string` — Additional class names
 - **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
     - `target: Date | string | number` (required) — The moment the countdown ends, as a Date object, ISO 8601 string,

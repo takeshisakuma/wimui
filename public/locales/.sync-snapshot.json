@@ -638,7 +638,9 @@
     "visualization_oklch_palette_check": "OKLCH Palette Consistency",
     "visualization_responsive_check": "Responsive Behavior & Specialized Charts",
     "viz_sparkline_check": "Sparkline Check",
-    "viz_system_load": "System Load"
+    "viz_system_load": "System Load",
+    "label_comment": "Comment",
+    "label_comment_thread": "Comment — nested replies"
   },
   "common": {
     "a11y": {
@@ -1298,6 +1300,13 @@
     "barcode": {
       "aria_label": "Barcode {{value}}",
       "invalid": "This value cannot be encoded as {{format}}."
+    },
+    "comment": {
+      "reply": "Reply",
+      "edit": "Edit",
+      "delete": "Delete",
+      "edited": "Edited",
+      "action_context": "on {{name}}'s comment"
     }
   },
   "components": {
@@ -1433,7 +1442,8 @@
       "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
       "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
       "presence_desc": "Shows whether a person is online, away, busy, or offline.",
-      "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode."
+      "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode.",
+      "comment_desc": "Shows one comment in a discussion, with its actions and nested replies."
     },
     "cat": {
       "ai": "AI"
@@ -3756,7 +3766,20 @@
       "barcode_best_practice_1": "Keep the printed value under the bars. When a scan fails — a scratched label, a camera at a bad angle — someone reads the digits out loud, and that only works if they are there.",
       "barcode_best_practice_2": "Do not take `moduleWidth` below 2 on screen, and give the symbol the width it asks for. The narrowest bar is the unit a scanner measures every other bar against, so the component never scales the symbol down to fit — a squeezed symbol looks identical and stops being read. A container that is too narrow scrolls instead, which is visible.",
       "barcode_best_practice_3": "Pass 12 digits for EAN-13 and let the check digit be calculated. A 13-digit value copied out of a spreadsheet is how a transposed pair reaches production; the component verifies it, but only the calculated form cannot be wrong.",
-      "barcode_keyboard_desc": "Barcode is non-interactive static content and receives no keyboard focus. When the row or card around it is focusable, the accessible name is read as part of that row."
+      "barcode_keyboard_desc": "Barcode is non-interactive static content and receives no keyboard focus. When the row or card around it is focusable, the accessible name is read as part of that row.",
+      "comment_desc": "One comment in a discussion, with nested replies",
+      "comment_long_desc": "Comment renders one comment in a discussion — the author, when it was written, the text, the actions on it, and any replies nested underneath. It carries the parts that are the same in every product and easy to get wrong: the heading structure, the nesting semantics, and the fact that an edited comment says so.",
+      "comment_design_intent": "The reply box and the edit form are slots, not state. Which one is open is passed in (replyingTo / editingId) and the form itself is passed in (composer / editor), so drafts, validation, and submission stay with the app that owns them. Nesting is drawn as a list rather than as indentation alone, because indentation reaches only the eye — a screen reader needs the structure to say how deep a reply sits.",
+      "comment_choice_matrix_desc": "Reach for Comment when people are talking to each other about something, and for a simpler component when they are not.",
+      "comment_choice_self_when": "People post, reply to each other, and edit what they wrote, and the replies form a tree.",
+      "comment_choice_thread_when": "You need a sidebar of past AI conversations to switch between, not a discussion.",
+      "comment_choice_timeline_when": "Entries are a record of what happened, in order, with no one replying to anyone.",
+      "comment_a11y_desc": "Each comment is an article named after its author, so a screen reader announces whose comment it is on entry. Replies are nested lists, which is how depth reaches assistive tech. Built-in action buttons carry the author's name in a visually hidden suffix — a list of buttons all reading \"Reply\" cannot be told apart by voice. The avatar is decorative, because the name is already in the heading.",
+      "comment_scenario_1": "A pull request review where a maintainer answers a reviewer and the thread branches twice.",
+      "comment_scenario_2": "A support ticket where the customer, the agent, and an escalation engineer each add to the same discussion.",
+      "comment_best_practice_1": "Keep replyingTo and editingId to a single value each. Two open reply boxes give the reader two places to type and no way to tell which one their draft belongs to.",
+      "comment_best_practice_2": "Set edited when a comment has changed since it was posted. A comment that was silently rewritten reads as if it always said the new thing, which is the one thing a discussion cannot recover from.",
+      "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have."
     }
   },
   "docs_data_display_complex": {
@@ -11297,7 +11320,20 @@
       "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
       "watermark_team": "WIM UI Team",
       "watermark_text": "wimui watermark",
-      "watermark_wimui": "wimui"
+      "watermark_wimui": "wimui",
+      "comment_author_lead": "Ngozi Okonkwo-Whitfield",
+      "comment_author_reviewer": "Bruno Salgado",
+      "comment_author_ops": "Mei Tanaka",
+      "comment_badge_author": "Author",
+      "comment_body_lead": "The retry backoff is capped at 30s, so a queue that drains slowly never catches up. I'd rather raise the cap than add a second worker.",
+      "comment_body_reviewer": "Raising the cap moves the failure later rather than removing it. Do we have the numbers for how long the queue actually sits above the cap?",
+      "comment_body_nested": "Yesterday it sat above 30s for 41 minutes, twice. I'll attach the graph to the ticket.",
+      "comment_body_ops": "Whatever we pick, please land it before Friday's freeze — the on-call rotation changes hands that evening.",
+      "comment_composer_label": "Your reply",
+      "comment_composer_placeholder": "Add to the discussion",
+      "comment_composer_submit": "Post reply",
+      "comment_editor_label": "Edit your comment",
+      "comment_editor_submit": "Save changes"
     }
   },
   "docs_stories_feedback": {

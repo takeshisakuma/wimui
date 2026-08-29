@@ -637,5 +637,7 @@
   "visualization_oklch_palette_check": "OKLCH Palette Consistency",
   "visualization_responsive_check": "Responsive Behavior & Specialized Charts",
   "viz_sparkline_check": "Sparkline Check",
-  "viz_system_load": "System Load"
+  "viz_system_load": "System Load",
+  "label_comment": "Comment",
+  "label_comment_thread": "Comment — nested replies"
 }

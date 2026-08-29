@@ -391,6 +391,19 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "comment_author_lead": "Ngozi Okonkwo-Whitfield",
+    "comment_author_reviewer": "Bruno Salgado",
+    "comment_author_ops": "田中 芽衣",
+    "comment_badge_author": "投稿者",
+    "comment_body_lead": "再試行の待ち時間が 30 秒で頭打ちなので、掃けの遅いキューはいつまでも追いつきません。ワーカーを増やすより上限を上げたい。",
+    "comment_body_reviewer": "上限を上げても、壊れる時点が後ろにずれるだけで無くなりはしません。実際に上限を超えている時間の数字はありますか。",
+    "comment_body_nested": "昨日は 30 秒を超えた状態が 41 分、それが 2 回ありました。グラフはチケットに貼っておきます。",
+    "comment_body_ops": "どちらを採るにせよ、金曜のフリーズ前に入れてください。その晩にオンコールの担当が替わります。",
+    "comment_composer_label": "返信",
+    "comment_composer_placeholder": "議論に加わる",
+    "comment_composer_submit": "返信を投稿",
+    "comment_editor_label": "コメントを編集",
+    "comment_editor_submit": "変更を保存"
   }
 }

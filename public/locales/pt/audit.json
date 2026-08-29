@@ -637,5 +637,7 @@
   "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
   "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
   "viz_sparkline_check": "Verificação de Sparkline",
-  "viz_system_load": "Carga do Sistema"
+  "viz_system_load": "Carga do Sistema",
+  "label_comment": "Comment",
+  "label_comment_thread": "Comment — respostas aninhadas"
 }

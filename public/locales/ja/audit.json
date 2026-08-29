@@ -637,5 +637,7 @@
   "visualization_oklch_palette_check": "OKLCHカラーパレットの適用確認",
   "visualization_responsive_check": "レスポンシブ挙動と特殊チャート",
   "viz_sparkline_check": "スパークラインチェック",
-  "viz_system_load": "システム負荷"
+  "viz_system_load": "システム負荷",
+  "label_comment": "Comment (コメント)",
+  "label_comment_thread": "Comment — 返信の入れ子"
 }

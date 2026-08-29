@@ -656,5 +656,12 @@
   "barcode": {
     "aria_label": "Barcode {{value}}",
     "invalid": "This value cannot be encoded as {{format}}."
+  },
+  "comment": {
+    "reply": "Reply",
+    "edit": "Edit",
+    "delete": "Delete",
+    "edited": "Edited",
+    "action_context": "on {{name}}'s comment"
   }
 }
