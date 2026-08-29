@@ -20,6 +20,22 @@ const FORMAT_NAMES: Record<BarcodeFormat, string> = {
  */
 const QUIET_ZONE_MODULES = 11;
 
+/**
+ * EAN-13 の印字の帯（T233）。**ガードバーはこの帯の底まで伸び**、数字はこの中に置く。
+ * 高さを X 寸法（モジュール幅）に比例させるのは、規格の寸法が X で決まるため
+ * ── 器の高さに比例させると、細いシンボルで数字だけが不自然に大きくなる。
+ */
+const PRINT_BAND_MODULES = 8;
+
+/**
+ * ただし低い器では帯が図を食い潰すので、全体高さに対する上限も持つ。
+ * これが効くのは `moduleWidth` に対して `height` が小さいときだけ。
+ */
+const PRINT_BAND_MAX_RATIO = 0.35;
+
+/** 1 桁が占めるモジュール数。数字を自分のバーの真下に置くために要る。 */
+const EAN_DIGIT_MODULES = 7;
+
 export type { BarcodeFormat };
 
 export type BarcodeProps = Omit<React.ComponentPropsWithoutRef<"div">, "children"> & {
@@ -135,8 +151,45 @@ export const Barcode = React.forwardRef<HTMLDivElement, BarcodeProps>(
     const bars = toRuns(encoded.modules).map(([isBar, runWidth]) => {
       const start = x;
       x += runWidth;
-      return isBar ? { x: start, width: runWidth } : null;
+      return isBar ? { x: start, width: runWidth, module: start - QUIET_ZONE_MODULES } : null;
     });
+
+    /*
+     * 正規の印字を持つ体系だけ、数字を SVG の中へ入れる（T233）。Code 128 は
+     * 割り付けを持たないので、これまでどおりバーの下に 1 本の文字列で置く。
+     *
+     * **座標系を分ける必要がある。** 既定の `viewBox` は x がモジュール・y が画素の
+     * 混ざった空間で、`preserveAspectRatio="none"` で横に引き伸ばしている。そこへ
+     * `<text>` を置くと**文字まで横に伸びる**ので、印字する版は画素座標で描く
+     * （幾何は同じなのでバーの見え方は変わらない）。
+     */
+    const print = format === "ean13" && showValue ? encoded.print : undefined;
+    const band = print
+      ? Math.min(PRINT_BAND_MODULES * moduleWidth, height * PRINT_BAND_MAX_RATIO)
+      : 0;
+    const dataBottom = height - band;
+    const isGuard = (bar: { module: number; width: number }) =>
+      print
+        ? print.guards.some(
+            ([from, to]) => bar.module >= from && bar.module + bar.width <= to,
+          )
+        : false;
+
+    /** 1 桁ずつ、自分のバーの真下へ置く（まとめて字送りで散らすと 1 桁ずれる）。 */
+    const digitMarks = print
+      ? [
+          ...[...print.left.text].map((digit, index) => ({
+            key: `l${index}`,
+            digit,
+            module: print.left.from + index * EAN_DIGIT_MODULES + EAN_DIGIT_MODULES / 2,
+          })),
+          ...[...print.right.text].map((digit, index) => ({
+            key: `r${index}`,
+            digit,
+            module: print.right.from + index * EAN_DIGIT_MODULES + EAN_DIGIT_MODULES / 2,
+          })),
+        ]
+      : [];
 
     return (
       <div
@@ -151,23 +204,73 @@ export const Barcode = React.forwardRef<HTMLDivElement, BarcodeProps>(
         className={classNames("wim-barcode", localStyles.root, className)}
         {...props}
       >
-        <svg
-          className={localStyles.symbol}
-          width={width}
-          height={height}
-          viewBox={`0 0 ${totalModules} ${height}`}
-          preserveAspectRatio="none"
-          // バーの縁をぼかさない。アンチエイリアスは細いバーの幅を狂わせる。
-          shapeRendering="crispEdges"
-          aria-hidden="true"
-        >
-          {bars.map((bar) =>
-            bar ? (
-              <rect key={bar.x} x={bar.x} y={0} width={bar.width} height={height} />
-            ) : null,
-          )}
-        </svg>
-        {showValue ? <span className={localStyles.value}>{encoded.text}</span> : null}
+        {print ? (
+          <svg
+            className={localStyles.symbol}
+            width={width}
+            height={height}
+            // 画素座標。文字を入れるので x と y の尺度を揃える。
+            viewBox={`0 0 ${width} ${height}`}
+            shapeRendering="crispEdges"
+            aria-hidden="true"
+          >
+            {bars.map((bar) =>
+              bar ? (
+                <rect
+                  key={bar.x}
+                  x={bar.x * moduleWidth}
+                  y={0}
+                  width={bar.width * moduleWidth}
+                  // ガードだけ数字の帯の底まで伸ばす ── これが正規の印字の目印。
+                  height={isGuard(bar) ? height : dataBottom}
+                  data-guard={isGuard(bar) ? "true" : undefined}
+                />
+              ) : null,
+            )}
+            {/* 先頭桁はシンボルの左外（静止空白の中）。 */}
+            <text
+              className={localStyles.printedDigit}
+              x={(QUIET_ZONE_MODULES - 1) * moduleWidth}
+              y={height}
+              textAnchor="end"
+              fontSize={band * 0.86}
+            >
+              {print.lead}
+            </text>
+            {digitMarks.map((mark) => (
+              <text
+                key={mark.key}
+                className={localStyles.printedDigit}
+                x={(QUIET_ZONE_MODULES + mark.module) * moduleWidth}
+                y={height}
+                textAnchor="middle"
+                fontSize={band * 0.86}
+              >
+                {mark.digit}
+              </text>
+            ))}
+          </svg>
+        ) : (
+          <svg
+            className={localStyles.symbol}
+            width={width}
+            height={height}
+            viewBox={`0 0 ${totalModules} ${height}`}
+            preserveAspectRatio="none"
+            // バーの縁をぼかさない。アンチエイリアスは細いバーの幅を狂わせる。
+            shapeRendering="crispEdges"
+            aria-hidden="true"
+          >
+            {bars.map((bar) =>
+              bar ? (
+                <rect key={bar.x} x={bar.x} y={0} width={bar.width} height={height} />
+              ) : null,
+            )}
+          </svg>
+        )}
+        {showValue && !print ? (
+          <span className={localStyles.value}>{encoded.text}</span>
+        ) : null}
       </div>
     );
   },

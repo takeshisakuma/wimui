@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Barcode } from "./Barcode";
@@ -123,9 +124,185 @@ describe("Barcode", () => {
     expect(screen.getByRole("img")).toHaveAttribute("aria-label", "Barcode WIMUI");
   });
 
+  describe("EAN-13 の正規の印字レイアウト（T233）", () => {
+    // **仕様の数値をそのまま書く。** 実装の定数から計算して突き合わせると、
+    // 数え方ごと間違えていても一致してしまう（生成と検証が同じ道を通る）。
+    // EAN-13 は 95 モジュール: ガード 0-2 / 左 6 桁 3-44 / 中央 45-49 /
+    // 右 6 桁 50-91 / ガード 92-94。
+    const layout = encodeBarcode("4901777018686", "ean13")!.print!;
+
+    it("puts the guard bars where the symbology says", () => {
+      expect(layout.guards).toEqual([
+        [0, 3],
+        [45, 50],
+        [92, 95],
+      ]);
+    });
+
+    it("splits the digits into 1 + 6 + 6", () => {
+      expect(layout.lead).toBe("4");
+      expect(layout.left.text).toBe("901777");
+      expect(layout.right.text).toBe("018686");
+      expect(layout.lead + layout.left.text + layout.right.text).toBe("4901777018686");
+    });
+
+    it("lays each group over its own half", () => {
+      expect(layout.left).toMatchObject({ from: 3, to: 45 });
+      expect(layout.right).toMatchObject({ from: 50, to: 92 });
+    });
+
+    it("covers the whole symbol without gaps or overlaps", () => {
+      const spans = [
+        [layout.guards[0][0], layout.guards[0][1]],
+        [layout.left.from, layout.left.to],
+        [layout.guards[1][0], layout.guards[1][1]],
+        [layout.right.from, layout.right.to],
+        [layout.guards[2][0], layout.guards[2][1]],
+      ];
+      for (let i = 1; i < spans.length; i += 1) {
+        expect(spans[i][0]).toBe(spans[i - 1][1]);
+      }
+      expect(spans[0][0]).toBe(0);
+      expect(spans[spans.length - 1][1]).toBe(
+        encodeBarcode("4901777018686", "ean13")!.modules.length,
+      );
+    });
+
+    // Code 128 は印字の割り付けを持たない体系。持っているふりをしない。
+    it("is absent for Code 128", () => {
+      expect(encodeBarcode("WIMUI", "code128")!.print).toBeUndefined();
+    });
+  });
+
+  /** 印字された数字を、描かれている順に読み取る。 */
+  const printedDigits = (container: HTMLElement) =>
+    Array.from(container.querySelectorAll("svg text"))
+      .map((t) => t.textContent ?? "")
+      .join("");
+
   it("prints the calculated check digit for a 12-digit EAN-13", () => {
-    render(<Barcode value="490177701868" format="ean13" />);
-    expect(screen.getByText("4901777018686")).toBeInTheDocument();
+    const { container } = render(<Barcode value="490177701868" format="ean13" />);
+    // 1 桁ずつ別の <text> に分かれる（T233）ので、描画順に繋いで確かめる。
+    // **順序ごと見る**ことになるので、以前の「1 本の文字列」より強い検査になる。
+    expect(printedDigits(container)).toBe("4901777018686");
+  });
+
+  /**
+   * **印字の色は axe では守れない。実測で確かめた（T233）。**
+   *
+   * 印字は `aria-hidden` の SVG の中にある 1 文字の `<text>` で、axe は
+   * `Element content is too short to determine if it is actual text content` として
+   * **incomplete** に落とす。スペックには「短い文字を伸ばして測り直し、本物なら
+   * violations へ格上げする」仕組み（T108）があるが、**この形には効かない** ──
+   * `fill` を `#e8e8e8`（白地に対して約 1.1:1）にして a11y スイートを回しても
+   * **10 件すべて緑**のままだった。凍結してあれば読めない印字が素通りする。
+   *
+   * そこで色そのものを縛る: **印字はバーと同じ固定色**で塗られていること。
+   * バーの色は「暗いバー・明るい地」というスキャナ側の前提そのものなので、
+   * そこに揃っている限り印字も読める。ソースの字面を見るのは、実行時には
+   * CSS Modules がプロキシされて実際の色が取れないため（測れない道具で
+   * 測ったふりをしない）。
+   */
+  describe("印字の色（axe が測れない分をここで縛る）", () => {
+    const scss = fs.readFileSync(
+      "src/components/data-display/Barcode/barcode.module.scss",
+      "utf8",
+    );
+
+    /** `selector` のブロックの中で最初に現れる `fill` / `color` の値。 */
+    const paintOf = (selector: string): string => {
+      const at = scss.indexOf(selector);
+      expect(at, `${selector} が SCSS に無い`).toBeGreaterThan(-1);
+      const block = scss.slice(at, at + 400);
+      const match = block.match(/(?:fill|color):\s*([^;]+);/);
+      expect(match, `${selector} に fill / color が無い`).not.toBeNull();
+      return match![1].trim();
+    };
+
+    it("paints the printed digits with the same fixed colour as the bars", () => {
+      expect(paintOf(".printedDigit")).toBe(paintOf(".symbol"));
+    });
+
+    it("paints the Code 128 value with that colour too", () => {
+      expect(paintOf(".value")).toBe(paintOf(".symbol"));
+    });
+
+    // 「暗いバー・明るい地」はスキャナ側の前提。テーマで反転する色を使わない。
+    it("uses a colour that does not follow the theme", () => {
+      expect(paintOf(".symbol")).toBe("var(--wim-color-surface-void)");
+    });
+  });
+
+  describe("EAN-13 を正規の印字レイアウトで描く（T233）", () => {
+    const setup = (props = {}) =>
+      render(
+        <Barcode value="4901777018686" format="ean13" moduleWidth={2} height={64} {...props} />,
+      );
+
+    it("extends the guard bars below the data bars", () => {
+      const { container } = setup();
+      const rects = Array.from(container.querySelectorAll("rect"));
+      const guards = rects.filter((r) => r.getAttribute("data-guard") === "true");
+      const data = rects.filter((r) => r.getAttribute("data-guard") !== "true");
+
+      // ガードは左・中央・右で、バーの本数は 2 + 2 + 2 = 6。
+      expect(guards).toHaveLength(6);
+      const guardHeight = Number(guards[0].getAttribute("height"));
+      const dataHeight = Number(data[0].getAttribute("height"));
+      expect(guardHeight).toBe(64);
+      expect(dataHeight).toBeLessThan(guardHeight);
+      // すべてのガードが同じ高さ、すべてのデータバーも同じ高さ。
+      expect(new Set(guards.map((r) => r.getAttribute("height"))).size).toBe(1);
+      expect(new Set(data.map((r) => r.getAttribute("height"))).size).toBe(1);
+    });
+
+    it("puts the lead digit outside the symbol, in the quiet zone", () => {
+      const { container } = setup();
+      const texts = Array.from(container.querySelectorAll("svg text"));
+      const lead = texts[0];
+      expect(lead.textContent).toBe("4");
+      // 静止空白は 11 モジュール ＝ 22px。シンボルの先頭より左に収まる。
+      expect(Number(lead.getAttribute("x"))).toBeLessThan(11 * 2);
+      expect(lead.getAttribute("text-anchor")).toBe("end");
+    });
+
+    // 数字は自分のバーの真下に来る。まとめて字送りで散らすと 1 桁ずれる。
+    it("centres each digit under its own seven modules", () => {
+      const { container } = setup();
+      const texts = Array.from(container.querySelectorAll("svg text")).slice(1);
+      expect(texts).toHaveLength(12);
+
+      const xs = texts.map((t) => Number(t.getAttribute("x")));
+      // 左半分は モジュール 3 から、1 桁 7 モジュール、中心は +3.5。静止空白 11 を足す。
+      const expectedLeft = [0, 1, 2, 3, 4, 5].map((i) => (11 + 3 + i * 7 + 3.5) * 2);
+      // 右半分は モジュール 50 から。
+      const expectedRight = [0, 1, 2, 3, 4, 5].map((i) => (11 + 50 + i * 7 + 3.5) * 2);
+      expect(xs).toEqual([...expectedLeft, ...expectedRight]);
+    });
+
+    it("uses a square coordinate space so the digits are not stretched", () => {
+      const { container } = setup();
+      const svg = container.querySelector("svg")!;
+      // 95 モジュール + 静止空白 22 = 117、× moduleWidth 2 = 234。
+      expect(svg.getAttribute("viewBox")).toBe("0 0 234 64");
+      expect(svg.getAttribute("preserveAspectRatio")).toBeNull();
+    });
+
+    it("prints nothing and keeps every bar full height when showValue is off", () => {
+      const { container } = setup({ showValue: false });
+      expect(container.querySelectorAll("svg text")).toHaveLength(0);
+      const heights = new Set(
+        Array.from(container.querySelectorAll("rect")).map((r) => r.getAttribute("height")),
+      );
+      expect(heights).toEqual(new Set(["64"]));
+    });
+
+    // Code 128 は割り付けを持たない体系なので、これまでどおり下に 1 本で置く。
+    it("leaves Code 128 printing the value under the bars", () => {
+      const { container } = render(<Barcode value="WIMUI" format="code128" />);
+      expect(container.querySelectorAll("svg text")).toHaveLength(0);
+      expect(screen.getByText("WIMUI")).toBeInTheDocument();
+    });
   });
 
   // 「暗いバー・明るい地」はスキャナ側の前提なので、テーマではなく構造で保つ。

@@ -44,6 +44,14 @@
         "color-contrast"
       ]
     },
+    "audit-indicatorfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "audit-interactionfamily--overview": {
       "light": [
         "color-contrast"
@@ -463,6 +471,14 @@
       ]
     },
     "components-data-containers-card--with-header-and-footer": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-data-indicators-barcode--formats": {
       "light": [
         "color-contrast"
       ],
