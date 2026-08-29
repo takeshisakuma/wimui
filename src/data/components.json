@@ -559,6 +559,12 @@
         "descKey": "doc.json_viewer_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Comment",
+        "descKey": "doc.comment_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

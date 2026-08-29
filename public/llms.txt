@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.28.0 — a React 19 component library: 224 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.28.0 — a React 19 component library: 225 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -328,6 +328,7 @@ export function BillingOverview() {
 - **Card** — Information containers
 - **Carousel** — Content slideshow
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
+- **Comment** — Shows one comment in a discussion, with its actions and nested replies.
 - **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
 - **DataGrid** — Advanced data table and manipulation
 - **DescriptionList** — Key-value pairs

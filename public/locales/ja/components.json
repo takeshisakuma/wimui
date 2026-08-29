@@ -203,7 +203,8 @@
     "segmentedcontrol_choice_self_when": "選ぶとビューが切り替わるとき。データのどの断面か、どの期間か、どの段階か。後ろの内容が入れ替わる場合。",
     "segmentedcontrol_choice_alt_when": "選んだものが持ち続ける値（書式・設定・絞り込み）なら ToggleGroup。ページ間の移動なら Tabs。",
     "presence_desc": "その人がオンラインか、離席中か、取り込み中か、オフラインかを示します。",
-    "barcode_desc": "読み取り可能な Code 128 / EAN-13 のバーコードを描画します。"
+    "barcode_desc": "読み取り可能な Code 128 / EAN-13 のバーコードを描画します。",
+    "comment_desc": "議論の 1 件のコメントを、操作と返信の入れ子つきで表示します。"
   },
   "effects": {
     "common_vars": "共通変数"

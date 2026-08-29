@@ -391,6 +391,19 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "comment_author_lead": "Ngozi Okonkwo-Whitfield",
+    "comment_author_reviewer": "Bruno Salgado",
+    "comment_author_ops": "Mei Tanaka",
+    "comment_badge_author": "Autor",
+    "comment_body_lead": "O backoff de retentativa é limitado a 30s, então uma fila que drena devagar nunca se recupera. Prefiro aumentar o limite a adicionar um segundo worker.",
+    "comment_body_reviewer": "Aumentar o limite adia a falha em vez de removê-la. Temos os números de quanto tempo a fila fica acima do limite?",
+    "comment_body_nested": "Ontem ficou acima de 30s por 41 minutos, duas vezes. Vou anexar o gráfico ao chamado.",
+    "comment_body_ops": "Seja qual for a escolha, entregue antes do congelamento de sexta — o plantão troca de mãos naquela noite.",
+    "comment_composer_label": "Sua resposta",
+    "comment_composer_placeholder": "Participe da discussão",
+    "comment_composer_submit": "Publicar resposta",
+    "comment_editor_label": "Editar seu comentário",
+    "comment_editor_submit": "Salvar alterações"
   }
 }

@@ -391,6 +391,19 @@
     "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
     "watermark_team": "WIM UI Team",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "comment_author_lead": "Ngozi Okonkwo-Whitfield",
+    "comment_author_reviewer": "Bruno Salgado",
+    "comment_author_ops": "Mei Tanaka",
+    "comment_badge_author": "Author",
+    "comment_body_lead": "The retry backoff is capped at 30s, so a queue that drains slowly never catches up. I'd rather raise the cap than add a second worker.",
+    "comment_body_reviewer": "Raising the cap moves the failure later rather than removing it. Do we have the numbers for how long the queue actually sits above the cap?",
+    "comment_body_nested": "Yesterday it sat above 30s for 41 minutes, twice. I'll attach the graph to the ticket.",
+    "comment_body_ops": "Whatever we pick, please land it before Friday's freeze — the on-call rotation changes hands that evening.",
+    "comment_composer_label": "Your reply",
+    "comment_composer_placeholder": "Add to the discussion",
+    "comment_composer_submit": "Post reply",
+    "comment_editor_label": "Edit your comment",
+    "comment_editor_submit": "Save changes"
   }
 }

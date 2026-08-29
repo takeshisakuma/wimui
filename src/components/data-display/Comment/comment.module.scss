@@ -1,0 +1,119 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    color: var(--wim-color-text-primary);
+  }
+
+  .head {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  /*
+   * 名前・肩書き・時刻・「編集済み」の 1 行。**折り返せるようにする** ──
+   * 名前が長い言語や狭い器で、時刻だけが器の外へ出るのを防ぐ。
+   */
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    align-items: baseline;
+    min-width: 0;
+  }
+
+  .author {
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+  }
+
+  .badge {
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .timestamp,
+  .edited {
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-secondary);
+  }
+
+  /*
+   * 本文はアバターの幅ぶん字下げして、名前の下に揃える。入れ子の返信も
+   * 同じ規則で下がるので、深さが視覚的に一貫する。
+   */
+  .body {
+    padding-left: calc(var(--wim-spacing-lg) + var(--wim-spacing-sm));
+    font-size: var(--wim-font-size-sm);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    padding-left: calc(var(--wim-spacing-lg) + var(--wim-spacing-sm));
+  }
+
+  /*
+   * 操作は**文字**で出す（アイコンだけにしない）。コメント欄の操作は
+   * 「返信」「編集」「削除」と語が短く、アイコンにすると意味が痩せる。
+   */
+  .action {
+    /*
+     * 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。**文字だけのボタンは、
+     * 文字の高さがそのまま当たり判定になる** ── 既定のままだと 32×17.7、短い語では幅も 22.6 になり、
+     * density=compact の CI（tap-target）が実測して落とした。
+     * 塗りは足さず、箱だけを広げて文字を中央に置く。
+     */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
+    padding: 0;
+    font-family: inherit;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+      text-decoration: underline;
+    }
+
+    /* キーボードの居場所を消さない。地の色を塗らないので輪郭で示す。 */
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: var(--wim-focus-outline-offset);
+    }
+  }
+
+  .composer {
+    padding-left: calc(var(--wim-spacing-lg) + var(--wim-spacing-sm));
+    margin-top: var(--wim-spacing-xs);
+  }
+
+  /*
+   * 返信の入れ子。**縦線で親子を示す** ── 字下げだけだと、深いところで
+   * どの親に属するかが読み取れなくなる。
+   */
+  .replies {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    padding-left: var(--wim-spacing-lg);
+    margin: var(--wim-spacing-sm) 0 0;
+    margin-left: var(--wim-spacing-md);
+    list-style: none;
+    border-left: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
+  .reply {
+    min-width: 0;
+  }
+}

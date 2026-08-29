@@ -132,6 +132,13 @@ export const wimResources: WimResources = {
       "barcode": {
         "aria_label": "Barcode {{value}}",
         "invalid": "This value cannot be encoded as {{format}}."
+      },
+      "comment": {
+        "reply": "Reply",
+        "edit": "Edit",
+        "delete": "Delete",
+        "edited": "Edited",
+        "action_context": "on {{name}}'s comment"
       }
     },
     "components": {
@@ -461,6 +468,13 @@ export const wimResources: WimResources = {
       "barcode": {
         "aria_label": "バーコード {{value}}",
         "invalid": "この値は {{format}} では表現できません。"
+      },
+      "comment": {
+        "reply": "返信",
+        "edit": "編集",
+        "delete": "削除",
+        "edited": "編集済み",
+        "action_context": "{{name}} のコメントに対して"
       }
     },
     "components": {
@@ -790,6 +804,13 @@ export const wimResources: WimResources = {
       "barcode": {
         "aria_label": "Código de barras {{value}}",
         "invalid": "Este valor não pode ser codificado como {{format}}."
+      },
+      "comment": {
+        "reply": "Responder",
+        "edit": "Editar",
+        "delete": "Excluir",
+        "edited": "Editado",
+        "action_context": "no comentário de {{name}}"
       }
     },
     "components": {

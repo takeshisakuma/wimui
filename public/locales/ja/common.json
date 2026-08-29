@@ -656,5 +656,12 @@
   "barcode": {
     "aria_label": "バーコード {{value}}",
     "invalid": "この値は {{format}} では表現できません。"
+  },
+  "comment": {
+    "reply": "返信",
+    "edit": "編集",
+    "delete": "削除",
+    "edited": "編集済み",
+    "action_context": "{{name}} のコメントに対して"
   }
 }
