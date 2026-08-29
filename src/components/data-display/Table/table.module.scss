@@ -80,6 +80,25 @@
                 content: attr(data-label);
               }
 
+              /* T234 の隙間埋めは、カード表示では**害にしかならない**。
+                 横スクロールしないので塞ぐ隙間が無く、しかも**見出しラベルと同じ
+                 `::before`** を使うため、幅 1px が勝ってラベルが 1 文字ずつ縦積みに
+                 なる（実測: 「ID」が 1px × 41px。公開中の main では 17.9px × 22.4px）。
+                 sticky 自体もカードでは効かないので、まとめて解除する。 */
+              &.stickyLeft,
+              &.stickyRight {
+                position: static;
+
+                &::before {
+                  position: static;
+                  width: auto;
+                }
+
+                &::after {
+                  content: none;
+                }
+              }
+
               /* 選択列はデスクトップ用に固定幅 60px・中央寄せ・sticky の枠線を持つ。
                  カード表示では「行の先頭にある 1 個のチェックボックス」なので、それらを
                  解除しないと 60px の島の右端にチェックが寄り、左に空白が残る
@@ -334,6 +353,38 @@
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                   2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
                   -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
+
+    /*
+     * **境界の 1 画素に背面が透けるのを塞ぐ（T234）。**
+     *
+     * `bordered` は `border-collapse: collapse` で描くので、1px の外枠が境界線の
+     * 中心に置かれ、行の box が **0.5px 内側**から始まる（実測: `table` は 17 なのに
+     * `tr` / `td` は 17.5）。境界の 1 画素が「半分は sticky セル・半分は背面」に
+     * なるため、横スクロールするとその画素に背面の内容が出る。
+     *
+     * **box-shadow では塞げない。** 上の `2px 0 0 0` は同じ目的で置かれていたが、
+     * 実測では覆えていなかった（spread を足しても変化なし ＝ 隣のセルの collapsed
+     * border に上書きされている）。擬似要素なら塞げる。
+     *
+     * **セル全体を覆わないこと。** 一度 `inset: 0 -1px` で覆ったところ、axe が
+     * 文字の背景を決められなくなり **`color-contrast` の incomplete が新しく出た**。
+     * 塞ぐのは境界の 1 画素だけでよい。
+     */
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 1px; /* Exception: Browser Rendering Fixes — 塞ぐのは境界の 1 画素だけ */
+        pointer-events: none;
+        content: "";
+        background: var(--wim-table-row-bg, var(--wim-color-surface));
+      }
+
+      &::before { left: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
+
+      &::after { right: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
     }
   
     &.stickyRight {
@@ -344,6 +395,23 @@
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                   2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
                   -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
+
+    /* 境界の 1 画素を塞ぐ（T234）。理由は上の説明を見ること。 */
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 1px; /* Exception: Browser Rendering Fixes — 塞ぐのは境界の 1 画素だけ */
+        pointer-events: none;
+        content: "";
+        background: var(--wim-table-row-bg, var(--wim-color-surface));
+      }
+
+      &::before { left: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
+
+      &::after { right: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
     }
   }
 
@@ -375,6 +443,23 @@
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                   2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
                   -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
+
+    /* 境界の 1 画素を塞ぐ（T234）。理由は上の説明を見ること。 */
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 1px; /* Exception: Browser Rendering Fixes — 塞ぐのは境界の 1 画素だけ */
+        pointer-events: none;
+        content: "";
+        background: var(--wim-table-row-bg, var(--wim-color-surface));
+      }
+
+      &::before { left: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
+
+      &::after { right: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
     }
   
     &.stickyRight {
@@ -385,6 +470,23 @@
                   inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                   2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface)),
                   -2px 0 0 0 var(--wim-table-row-bg, var(--wim-color-surface));
+
+    /* 境界の 1 画素を塞ぐ（T234）。理由は上の説明を見ること。 */
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 1px; /* Exception: Browser Rendering Fixes — 塞ぐのは境界の 1 画素だけ */
+        pointer-events: none;
+        content: "";
+        background: var(--wim-table-row-bg, var(--wim-color-surface));
+      }
+
+      &::before { left: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
+
+      &::after { right: -1px; /* Exception: Browser Rendering Fixes — collapsed border の半画素ぶん外へ出す */ }
     }
   }
 
