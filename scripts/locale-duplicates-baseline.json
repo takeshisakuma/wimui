@@ -1,20 +1,4 @@
 {
   "comment": "複数のロケールファイルに在り、値が食い違っているキー（scripts/check-locale-duplicates.js / T229）。i18next は ALL_NAMESPACES の順で先勝ちなので、負けている複製は表示されないまま腐る。直したらここから外すこと ── 増えても、直したのに残っていても落ちる。由来は 2026-04-15 の「devide i18b json」で common.json の旧コピーを消し忘れたこと。",
-  "known": [
-    "doc.ganttchart_visual_guideline_progress",
-    "doc.imageCropper_desc",
-    "doc.interactiveArea_desc",
-    "doc.passwordStrength_desc",
-    "doc.segmentedcontrol_choice_alt_when",
-    "doc.segmentedcontrol_choice_self_when",
-    "doc.tagInput_desc",
-    "doc.tag_deletable",
-    "doc.tag_deletable_desc",
-    "doc.togglegroup_choice_alt_when",
-    "doc.togglegroup_choice_self_when",
-    "guide.action_std_title",
-    "story.thoughtprocess_title_streaming",
-    "table.header_conditions",
-    "table.header_recommended"
-  ]
+  "known": []
 }

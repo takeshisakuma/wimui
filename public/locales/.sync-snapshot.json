@@ -3469,7 +3469,6 @@
       "interactiveArea_choice_alt_when": "When you need a more specific component like `Dropzone` or `EmptyState` which uses this internally.",
       "interactiveArea_choice_matrix_desc": "Use when creating custom interactive surfaces requiring consistent design system states.",
       "interactiveArea_choice_self_when": "When you're building a new component and want to reuse the standard interactive border and background styles.",
-      "interactiveArea_desc": "Interactive empty/drop zone area",
       "interactiveArea_design_intent": "To provide a foundational interactive surface with consistent visual states (hover, drag, focus) for components like drop zones and empty states.",
       "interactiveArea_keyboard_desc": "When `isClickable` is `true`, the component receives `role=\"button\"` and `tabIndex={0}`. Pressing Enter or Space triggers the click handler, matching native button behavior.",
       "interactiveArea_long_desc": "InteractiveArea is a styled container component providing consistent borders, backgrounds, padding, and hover/drag state interactions. It serves as the visual foundation for Dropzone and EmptyState.",
@@ -3661,8 +3660,6 @@
       "tag_choice_alt_when": "When avatar display, selection state retention, or advanced click actions are required (Chip is more suitable).",
       "tag_choice_matrix_desc": "Select based on the nature of information and required interactions:",
       "tag_choice_self_when": "When displaying information classification or attributes as static or removable labels (e.g., TagInput).",
-      "tag_deletable": "Deletable Tag",
-      "tag_deletable_desc": "By providing the onDelete property, a delete button is displayed. Suitable for removing individual elements in TagInput, etc.",
       "tag_desc": "Compact visual descriptors used for labeling or categorizing content",
       "tag_design_intent": "Tag provides a consistent, reusable pattern for categorization labels that can be added or removed, reducing implementation effort and ensuring design system compliance.",
       "tag_keyboard_desc": "Tab focuses the tag. Delete or Backspace removes removable tags. Enter or Space activates clickable tags.",
@@ -4134,7 +4131,6 @@
       "ganttchart_token_font": "Smaller font size for timeline labels to save space.",
       "ganttchart_token_primary": "Used for the task bar and progress indicator.",
       "ganttchart_token_text": "The color of task labels and header dates.",
-      "ganttchart_visual_guideline_progress": "The progress bar should have enough contrast against the background task bar. Usually, a darker shade of the primary color is used for the completed portion.",
       "ganttchart_week_view": "Week View",
       "ganttchart_with_click": "With Click Handler",
       "kanban_a11y_desc": "KanbanBoard uses role=\"region\". Cards use role=\"listitem\" with aria-disabled for disabled state. Column titles serve as accessible labels for each drop zone.",
@@ -5267,9 +5263,7 @@
       "fileupload_keyboard_desc": "Tab focuses the upload area. Enter or Space opens the file picker. Keyboard activation is supported as an alternative to drag-and-drop.",
       "rating_keyboard_desc": "Tab focuses the rating component. Arrow Left decreases the rating; Arrow Right increases it. Home sets the minimum; End sets the maximum. Enter or Space confirms the selection.",
       "richtexteditor_keyboard_desc": "Tab focuses the editor area. Standard keyboard shortcuts apply for editing (Ctrl+B bold, Ctrl+I italic, etc.). Tab moves focus to the toolbar when inside the editor. Arrow keys navigate toolbar buttons.",
-      "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space.",
-      "imageCropper_desc": "Front-end image crop and rotate tool",
-      "tagInput_desc": "Field for entering free-form text as tags"
+      "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space."
     }
   },
   "docs_form_basic": {
@@ -5524,7 +5518,6 @@
       "passwordStrength_choice_matrix_desc": "Use to guide users in creating secure passwords.",
       "passwordStrength_choice_passwordinput_when": "When only hidden input is required without visual feedback.",
       "passwordStrength_choice_passwordstrength_when": "When password security is a priority for the application.",
-      "passwordStrength_desc": "Visual meter to indicate password security level",
       "passwordStrength_design_intent": "To encourage users to create stronger passwords by providing immediate visual feedback during the registration or password change process.",
       "passwordstrength_interactive_example": "Interactive Example",
       "passwordStrength_keyboard_desc": "As a purely visual indicator, it does not have its own keyboard focus but updates based on the linked input.",
@@ -5931,8 +5924,6 @@
       "segmentedcontrol_basic_desc": "A set of buttons primarily used to toggle between different views or layout options.",
       "segmentedcontrol_best_practice_1": "Use SegmentedControl consistently across your application to maintain a predictable user experience.",
       "segmentedcontrol_best_practice_2": "Test SegmentedControl behavior across different screen sizes and input methods to ensure accessibility.",
-      "segmentedcontrol_choice_alt_when": "When a simpler alternative like Tabs better suits the use case.",
-      "segmentedcontrol_choice_self_when": "When SegmentedControl functionality with standard options is required.",
       "segmentedcontrol_compare_desc": "For detailed differentiation, refer to the <a href=\"./?path=/docs/components-selection-controls-overview--docs\" target=\"_top\">Selection Controls Guide</a>.\n\nIt summarizes differences between SegmentedControl, Dropdown, Tabs, and Button Group, and provides criteria for choosing between them.",
       "segmentedcontrol_count": "Number of Items and Layout",
       "segmentedcontrol_count_desc": "- Recommended: Keep to 2–5 items.\n- Reason: To maintain a design where each item has sufficient width and is easy to tap even on mobile screens.\n- If there are too many: For 6 or more items, or if labels have many characters (5+), consider the following:\n- Dropdown\n- Tab bar (scrollable tabs)",
@@ -7863,7 +7854,6 @@
       "numeric_std_test_desc": "Verified across major browsers (Chrome, Safari, Firefox) to ensure consistent value parsing and validation behavior.",
       "numeric_std_scenarios_desc": "Useful when standardizing large-scale data entry forms where numeric precision and cross-browser consistency are critical.",
       "numeric_std_usage_desc": "Refer to the standard when implementing or choosing components for numeric data entry.",
-      "action_std_title": "Action Standardization",
       "action_std_concept_title": "Concept",
       "action_std_rules_title": "Standardization Rules",
       "action_std_rule_header_title": "Rule",
@@ -8663,8 +8653,6 @@
       "togglegroup_anatomy_root_label": "Toggle Root",
       "togglegroup_best_practice_1": "Use ToggleGroup consistently across your application to maintain a predictable user experience.",
       "togglegroup_best_practice_2": "Test ToggleGroup behavior across different screen sizes and input methods to ensure accessibility.",
-      "togglegroup_choice_alt_when": "When a simpler alternative like SegmentedControl better suits the use case.",
-      "togglegroup_choice_self_when": "When ToggleGroup functionality with standard options is required.",
       "toggleGroup_desc": "Toggleable buttons",
       "togglegroup_design_intent": "ToggleGroup provides a button-based alternative to checkboxes or radio groups. It is designed for compact toolbars or settings where a clear, tactile 'active' state is preferred for selection.",
       "togglegroup_disabled_options": "Disabled State",
@@ -8731,10 +8719,6 @@
       "toolbar_scenario_2": "Delete / download / share actions that appear when gallery items are selected.",
       "toolbar_scenario_2_title": "Bulk selection actions",
       "toolbar_title": "Action strip for clustered controls"
-    },
-    "table": {
-      "header_conditions": "Conditions / Scenarios",
-      "header_recommended": "Recommended Placement"
     },
     "faq": {
       "section_default_title": "Frequently Asked Questions",
@@ -10621,7 +10605,6 @@
       "thoughtprocess_title_basic": "Analyzing your request...",
       "thoughtprocess_title_complex": "Deep Reasoner v2.1",
       "thoughtprocess_title_static": "Processing Log",
-      "thoughtprocess_title_streaming": "Streaming State",
       "threadlist_t1_preview": "Let's extract the token logic…",
       "threadlist_t1_title": "Refactor the auth module",
       "threadlist_t2_preview": "Three days in autumn",

@@ -80,7 +80,6 @@
     "ganttchart_token_font": "Tamanho de fonte menor para etiquetas de linha do tempo para economizar espaço.",
     "ganttchart_token_primary": "Usado para a barra de tarefas e indicador de progresso.",
     "ganttchart_token_text": "A cor das etiquetas das tarefas e das datas do cabeçalho.",
-    "ganttchart_visual_guideline_progress": "A barra de progresso deve ter contraste suficiente com a barra de tarefas de fundo. Geralmente, uma tonalidade mais escura da cor primária é usada para a parte concluída.",
     "ganttchart_week_view": "Visualização Semanal",
     "ganttchart_with_click": "Com Manipulador de Clique",
     "kanban_a11y_desc": "KanbanBoard usa role=\"region\". Os cartões usam role=\"listitem\" com aria-disabled para o estado desabilitado. Os títulos das colunas servem como labels acessíveis para cada zona de drop.",

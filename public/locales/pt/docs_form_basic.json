@@ -236,7 +236,6 @@
     "passwordStrength_choice_matrix_desc": "Utilize para orientar os usuários na criação de senhas seguras.",
     "passwordStrength_choice_passwordinput_when": "Quando é necessária apenas a entrada oculta sem feedback visual.",
     "passwordStrength_choice_passwordstrength_when": "Quando a segurança da senha é uma prioridade para a aplicação.",
-    "passwordStrength_desc": "Medidor visual para indicar o nível de segurança da senha",
     "passwordStrength_design_intent": "Para encorajar os usuários a criar senhas mais fortes, fornecendo feedback visual imediato durante o processo de registo ou alteração de senha.",
     "passwordStrength_keyboard_desc": "Como um indicador puramente visual, não possui foco de teclado próprio, mas atualiza-se com base na entrada vinculada.",
     "passwordStrength_level_0_desc": "Muito vulnerável. Extremamente curta ou simples.",

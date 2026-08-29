@@ -516,8 +516,6 @@
     "togglegroup_anatomy_root_label": "切り替えルート",
     "togglegroup_best_practice_1": "予測可能なユーザー体験を維持するため、アプリケーション全体でToggleGroupを一貫して使用しましょう。",
     "togglegroup_best_practice_2": "アクセシビリティを確保するため、様々な画面サイズと入力方法でテストしましょう。",
-    "togglegroup_choice_alt_when": "SegmentedControlのようなシンプルな代替手段がユースケースに適している場合。",
-    "togglegroup_choice_self_when": "標準オプションのToggleGroup機能が必要な場合。",
     "togglegroup_design_intent": "ToggleGroupは、チェックボックスやラジオグループに代わるボタンベースのインターフェースを提供します。選択のために明確で触覚的な『アクティブ』状態が好まれる、コンパクトなツールバーや設定画面向けに設計されています。",
     "togglegroup_disabled_options": "無効状態",
     "togglegroup_disabled_options_desc": "オプションは個別に無効にすることができます。",
@@ -595,9 +593,5 @@
     "q4": "カスタマイズは可能ですか？",
     "section_default_desc": "WIM UIに関する一般的な質問にお答えします。",
     "section_default_title": "よくある質問"
-  },
-  "table": {
-    "header_conditions": "利用条件 / シナリオ",
-    "header_recommended": "推奨される配置"
   }
 }

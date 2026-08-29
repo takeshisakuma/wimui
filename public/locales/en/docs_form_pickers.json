@@ -178,8 +178,6 @@
     "segmentedcontrol_basic_desc": "A set of buttons primarily used to toggle between different views or layout options.",
     "segmentedcontrol_best_practice_1": "Use SegmentedControl consistently across your application to maintain a predictable user experience.",
     "segmentedcontrol_best_practice_2": "Test SegmentedControl behavior across different screen sizes and input methods to ensure accessibility.",
-    "segmentedcontrol_choice_alt_when": "When a simpler alternative like Tabs better suits the use case.",
-    "segmentedcontrol_choice_self_when": "When SegmentedControl functionality with standard options is required.",
     "segmentedcontrol_compare_desc": "For detailed differentiation, refer to the <a href=\"./?path=/docs/components-selection-controls-overview--docs\" target=\"_top\">Selection Controls Guide</a>.\n\nIt summarizes differences between SegmentedControl, Dropdown, Tabs, and Button Group, and provides criteria for choosing between them.",
     "segmentedcontrol_count": "Number of Items and Layout",
     "segmentedcontrol_count_desc": "- Recommended: Keep to 2–5 items.\n- Reason: To maintain a design where each item has sufficient width and is easy to tap even on mobile screens.\n- If there are too many: For 6 or more items, or if labels have many characters (5+), consider the following:\n- Dropdown\n- Tab bar (scrollable tabs)",

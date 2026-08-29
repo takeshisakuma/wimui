@@ -80,7 +80,6 @@
     "ganttchart_token_font": "Smaller font size for timeline labels to save space.",
     "ganttchart_token_primary": "Used for the task bar and progress indicator.",
     "ganttchart_token_text": "The color of task labels and header dates.",
-    "ganttchart_visual_guideline_progress": "The progress bar should have enough contrast against the background task bar. Usually, a darker shade of the primary color is used for the completed portion.",
     "ganttchart_week_view": "Week View",
     "ganttchart_with_click": "With Click Handler",
     "kanban_a11y_desc": "KanbanBoard uses role=\"region\". Cards use role=\"listitem\" with aria-disabled for disabled state. Column titles serve as accessible labels for each drop zone.",
