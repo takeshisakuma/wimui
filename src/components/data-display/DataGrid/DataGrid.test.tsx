@@ -513,6 +513,50 @@ describe("DataGrid", () => {
     expect(container.querySelector(`.${tableStyles.mobileCard}`)).toBeInTheDocument();
   });
 
+  describe("並べ替えの見せ方は、並べ替えられるかで決まる", () => {
+    /**
+     * `col.sortable` だけで判定していたため、`onSortChange` を渡していない画面でも
+     * 記号・`aria-sort`・フォーカスが付き、**押しても何も起きなかった**。
+     * 見た目だけの話ではない ── 読み上げには「並べ替え可能」と伝わる。
+     */
+    it("does not advertise sorting when there is no handler", () => {
+      render(<DataGrid columns={mockColumns} data={mockRows} />);
+      expect(
+        screen.queryAllByRole("columnheader").filter((h) => h.hasAttribute("aria-sort")),
+      ).toHaveLength(0);
+    });
+
+    it("advertises sorting when a handler is wired up", () => {
+      render(
+        <DataGrid
+          columns={mockColumns}
+          data={mockRows}
+          sortConfig={{ key: "id", direction: "none" }}
+          onSortChange={() => {}}
+        />,
+      );
+      // mockColumns は id / name が sortable、age はそうでない
+      const sortable = screen
+        .getAllByRole("columnheader")
+        .filter((h) => h.hasAttribute("aria-sort"));
+      expect(sortable).toHaveLength(2);
+    });
+
+    // 並べ替えできない列は、ハンドラがあっても名乗らない
+    it("leaves non-sortable columns alone even with a handler", () => {
+      render(
+        <DataGrid
+          columns={mockColumns}
+          data={mockRows}
+          sortConfig={{ key: "id", direction: "none" }}
+          onSortChange={() => {}}
+        />,
+      );
+      const age = screen.getByRole("columnheader", { name: /Age/ });
+      expect(age).not.toHaveAttribute("aria-sort");
+    });
+  });
+
   it("empty state live region has role=status", () => {
     render(<DataGrid columns={mockColumns} data={[]} emptyMessage="Empty" />);
     const statusEl = document.querySelector('[role="status"]');

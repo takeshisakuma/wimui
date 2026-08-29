@@ -301,7 +301,12 @@ export function DataGrid<T extends Record<string, unknown>>({
                     role="columnheader"
                     key={col.key}
                     style={{ width: col.width, minWidth: col.width }}
-                    sortable={col.sortable}
+                    // **並べ替えられるときだけ、並べ替えられると見せる。**
+                    // `col.sortable` だけで判定していたため、`onSortChange` を渡して
+                    // いない画面でも記号・`aria-sort`・フォーカスが付き、**押しても
+                    // 何も起きなかった**（実測: 押しても aria-sort は none のまま）。
+                    // 見た目だけでなく、読み上げに「並べ替え可能」と伝わる分だけ悪い。
+                    sortable={Boolean(col.sortable && onSortChange)}
                     sortDirection={sortConfig?.key === col.key ? sortConfig.direction : "none"}
                     onSort={() => {
                       if (!col.sortable || !onSortChange) return;
