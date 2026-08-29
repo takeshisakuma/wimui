@@ -209,7 +209,6 @@
     "numeric_std_test_desc": "Verified across major browsers (Chrome, Safari, Firefox) to ensure consistent value parsing and validation behavior.",
     "numeric_std_scenarios_desc": "Useful when standardizing large-scale data entry forms where numeric precision and cross-browser consistency are critical.",
     "numeric_std_usage_desc": "Refer to the standard when implementing or choosing components for numeric data entry.",
-    "action_std_title": "Action Standardization",
     "action_std_concept_title": "Concept",
     "action_std_rules_title": "Standardization Rules",
     "action_std_rule_header_title": "Rule",

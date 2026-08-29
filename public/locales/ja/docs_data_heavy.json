@@ -80,7 +80,6 @@
     "ganttchart_token_font": "スペースを節約するため、タイムラインラベルには小さめのフォントサイズを使用します。",
     "ganttchart_token_primary": "タスクバーと進捗インジケーターに使用されます。",
     "ganttchart_token_text": "タスクラベルとヘッダーの日付の色。",
-    "ganttchart_visual_guideline_progress": "進捗バーは、背景のタスクバーに対して十分なコントラストを持つ必要があります。通常、完了した部分にはプライマリーカラーのより濃いシェードが使用されます。",
     "ganttchart_week_view": "週表示",
     "ganttchart_with_click": "クリックハンドラーあり",
     "kanban_a11y_desc": "KanbanBoard は role=\"region\" を使用。カードは role=\"listitem\" と aria-disabled で無効状態を伝えます。列タイトルは各ドロップゾーンのアクセシブルラベルとして機能します。",

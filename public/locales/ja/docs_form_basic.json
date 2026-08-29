@@ -236,7 +236,6 @@
     "passwordStrength_choice_matrix_desc": "安全なパスワード作成をユーザーに促すために使用します。",
     "passwordStrength_choice_passwordinput_when": "視覚的なフィードバックが不要で、隠し入力のみが必要な場合。",
     "passwordStrength_choice_passwordstrength_when": "アプリケーションにとってパスワードのセキュリティが優先事項である場合。",
-    "passwordStrength_desc": "パスワードの安全性を視覚的に示すメーター",
     "passwordStrength_design_intent": "登録やパスワード変更のプロセスで即座に視覚的なフィードバックを提供し、より強力なパスワードの作成を促します。",
     "passwordStrength_keyboard_desc": "純粋に視覚的なインジケーターであるため、独自のキーボードフォーカスは持ちませんが、紐付けられた入力に基づいて更新されます。",
     "passwordStrength_level_0_desc": "非常に脆弱。文字数が極端に短い、または単純すぎる。",

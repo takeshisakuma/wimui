@@ -236,8 +236,6 @@
     "segmentedcontrol_basic_desc": "Um conjunto de botões utilizados principalmente para alternar entre diferentes vistas ou opções de esquema.",
     "segmentedcontrol_best_practice_1": "Utilize o SegmentedControl de forma consistente em toda a sua aplicação para manter uma experiência de usuário previsível.",
     "segmentedcontrol_best_practice_2": "Teste o comportamento do SegmentedControl em diferentes tamanhos de tela e métodos de entrada para garantir a acessibilidade.",
-    "segmentedcontrol_choice_alt_when": "Quando uma alternativa mais simples como os Tabs se adequa melhor ao caso de uso.",
-    "segmentedcontrol_choice_self_when": "Quando a funcionalidade SegmentedControl com opções padrão é necessária.",
     "segmentedcontrol_compare_desc": "Para uma diferenciação detalhada, consulte o <a href=\"./?path=/docs/components-selection-controls-overview--docs\" target=\"_top\">Guia de Controlos de Seleção</a>.\n\nResume as diferenças entre SegmentedControl, Dropdown, Tabs e Button Group, e fornece critérios para escolher entre eles.",
     "segmentedcontrol_count": "Número de Itens e Esquema",
     "segmentedcontrol_count_desc": "- Recomendado: Manter entre 2 e 5 itens.\n- Razão: Para manter um design onde cada item tem largura suficiente e é fácil de tocar, mesmo em telas móveis.\n- Se houver demasiados: Para 6 ou mais itens, ou se os rótulos tiverem muitos caracteres (5+), considere o seguinte:\n- Dropdown\n- Barra de separadores (separadores deslocáveis)",

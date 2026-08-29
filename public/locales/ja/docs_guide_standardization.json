@@ -69,7 +69,6 @@
     "action_std_rule_header_desc": "仕様",
     "action_std_rule_header_title": "ルール",
     "action_std_rules_title": "標準化ルール",
-    "action_std_title": "アクションの標準化",
     "label_std_affected_components": "対象コンポーネント",
     "label_std_concept_desc": "情報の種類やインタラクションの有無に応じて適切なコンポーネントを選択し、ユーザーが視覚的に情報を整理できるようにします。",
     "label_std_concept_title": "標準化のコンセプト",

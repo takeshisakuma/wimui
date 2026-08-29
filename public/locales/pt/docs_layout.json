@@ -516,8 +516,6 @@
     "togglegroup_anatomy_root_label": "Raiz",
     "togglegroup_best_practice_1": "Use ToggleGroup consistentemente em toda a aplicação para manter uma experiência previsível.",
     "togglegroup_best_practice_2": "Teste o comportamento em diferentes tamanhos de tela e métodos de entrada para garantir acessibilidade.",
-    "togglegroup_choice_alt_when": "Quando uma alternativa mais simples como SegmentedControl se adequa melhor ao caso de uso.",
-    "togglegroup_choice_self_when": "Quando a funcionalidade de ToggleGroup com opções padrão é necessária.",
     "togglegroup_design_intent": "O ToggleGroup fornece uma alternativa baseada em botões para checkboxes ou grupos de botões de rádio. Ele foi projetado para barras de ferramentas compactas ou configurações onde um estado 'ativo' claro e tátil é preferido para seleção.",
     "togglegroup_disabled_options": "Estado desativado",
     "togglegroup_disabled_options_desc": "As opções podem ser desativadas individualmente.",
@@ -595,9 +593,5 @@
     "q4": "É customizável?",
     "section_default_desc": "Respondendo a perguntas comuns sobre o WIM UI.",
     "section_default_title": "Perguntas Frequentes"
-  },
-  "table": {
-    "header_conditions": "Condições / Cenários",
-    "header_recommended": "Colocação Recomendada"
   }
 }

@@ -345,8 +345,6 @@
     "fileupload_keyboard_desc": "Tab focuses the upload area. Enter or Space opens the file picker. Keyboard activation is supported as an alternative to drag-and-drop.",
     "rating_keyboard_desc": "Tab focuses the rating component. Arrow Left decreases the rating; Arrow Right increases it. Home sets the minimum; End sets the maximum. Enter or Space confirms the selection.",
     "richtexteditor_keyboard_desc": "Tab focuses the editor area. Standard keyboard shortcuts apply for editing (Ctrl+B bold, Ctrl+I italic, etc.). Tab moves focus to the toolbar when inside the editor. Arrow keys navigate toolbar buttons.",
-    "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space.",
-    "imageCropper_desc": "Front-end image crop and rotate tool",
-    "tagInput_desc": "Field for entering free-form text as tags"
+    "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space."
   }
 }

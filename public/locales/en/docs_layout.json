@@ -451,8 +451,6 @@
     "togglegroup_anatomy_root_label": "Toggle Root",
     "togglegroup_best_practice_1": "Use ToggleGroup consistently across your application to maintain a predictable user experience.",
     "togglegroup_best_practice_2": "Test ToggleGroup behavior across different screen sizes and input methods to ensure accessibility.",
-    "togglegroup_choice_alt_when": "When a simpler alternative like SegmentedControl better suits the use case.",
-    "togglegroup_choice_self_when": "When ToggleGroup functionality with standard options is required.",
     "toggleGroup_desc": "Toggleable buttons",
     "togglegroup_design_intent": "ToggleGroup provides a button-based alternative to checkboxes or radio groups. It is designed for compact toolbars or settings where a clear, tactile 'active' state is preferred for selection.",
     "togglegroup_disabled_options": "Disabled State",
@@ -519,10 +517,6 @@
     "toolbar_scenario_2": "Delete / download / share actions that appear when gallery items are selected.",
     "toolbar_scenario_2_title": "Bulk selection actions",
     "toolbar_title": "Action strip for clustered controls"
-  },
-  "table": {
-    "header_conditions": "Conditions / Scenarios",
-    "header_recommended": "Recommended Placement"
   },
   "faq": {
     "section_default_title": "Frequently Asked Questions",

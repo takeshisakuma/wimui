@@ -250,7 +250,6 @@
     "passwordStrength_choice_matrix_desc": "Use to guide users in creating secure passwords.",
     "passwordStrength_choice_passwordinput_when": "When only hidden input is required without visual feedback.",
     "passwordStrength_choice_passwordstrength_when": "When password security is a priority for the application.",
-    "passwordStrength_desc": "Visual meter to indicate password security level",
     "passwordStrength_design_intent": "To encourage users to create stronger passwords by providing immediate visual feedback during the registration or password change process.",
     "passwordstrength_interactive_example": "Interactive Example",
     "passwordStrength_keyboard_desc": "As a purely visual indicator, it does not have its own keyboard focus but updates based on the linked input.",
