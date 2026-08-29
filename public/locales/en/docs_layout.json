@@ -522,8 +522,7 @@
   },
   "table": {
     "header_conditions": "Conditions / Scenarios",
-    "header_recommended": "Recommended Placement",
-    "header_placement": "Placement"
+    "header_recommended": "Recommended Placement"
   },
   "faq": {
     "section_default_title": "Frequently Asked Questions",

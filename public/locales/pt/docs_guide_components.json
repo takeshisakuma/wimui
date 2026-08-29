@@ -1,13 +1,11 @@
 {
   "guide": {
-    "action_std_affected_components": "Componentes Afetados",
     "action_std_concept_desc": "Garante feedback visual consistente e convenções de nomenclatura de propriedades em diferentes componentes para melhorar a eficiência do desenvolvimento e a usabilidade.",
     "action_std_concept_title": "Conceito de Padronização",
     "action_std_desc": "Define regras comuns para componentes que acionam ações do usuário, como botões e links.",
     "action_std_note_desc": "Em contextos específicos (por exemplo, Botões de Ação Flutuante), tamanhos fixos diferentes dos padrões podem ser usados.",
     "action_std_note_title": "Nota",
     "action_std_rule_1_desc": "Gerencie dimensões usando `sm`, `md` e `lg` (o nome da propriedade é `size`).",
-    "action_std_rule_1_title": "Dimensionamento Unificado",
     "action_std_rule_2_desc": "Use Primário (Alta), Secundário (Média) e Terciário/Ghost (Baixa) para peso visual.",
     "action_std_rule_2_title": "Definição de Prioridade",
     "action_std_rule_3_desc": "Exiba um spinner durante o processamento e desative a interação para evitar envios duplos.",

@@ -60,8 +60,5 @@
     "soft": "Soft",
     "strong": "Strong",
     "vivid": "Vivid"
-  },
-  "colors": {
-    "tone_mapping": "Main Tone Mapping:"
   }
 }

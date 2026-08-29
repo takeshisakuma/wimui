@@ -55,7 +55,6 @@
   "table": {
     "header_key": "Tecla",
     "header_operation": "Operação",
-    "header_guideline": "Diretriz",
     "header_description": "Descrição",
     "key_arrow": "Teclas de Seta",
     "key_enter": "Enter",

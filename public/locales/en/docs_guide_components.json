@@ -1,13 +1,11 @@
 {
   "guide": {
-    "action_std_affected_components": "Affected Components",
     "action_std_concept_desc": "Ensures consistent visual feedback and property naming conventions across different components to improve development efficiency and usability.",
     "action_std_concept_title": "Standardization Concept",
     "action_std_desc": "Defines common rules for components that trigger user actions, such as buttons and links.",
     "action_std_note_desc": "In specific contexts (e.g., Floating Action Buttons), fixed sizes other than the standard ones may be used.",
     "action_std_note_title": "Note",
     "action_std_rule_1_desc": "Manage dimensions using `sm`, `md`, and `lg` (prop name is `size`).",
-    "action_std_rule_1_title": "Unified Sizing",
     "action_std_rule_2_desc": "Use Primary (High), Secondary (Medium), and Tertiary/Ghost (Low) for visual weight.",
     "action_std_rule_2_title": "Priority Definition",
     "action_std_rule_3_desc": "Display a spinner during processing and disable interaction to prevent double submissions.",

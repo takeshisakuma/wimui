@@ -19,7 +19,6 @@
     "inline_desc": "Emphasizes parts of text or applies specific styles.",
     "inline_usage": "Inline Text",
     "kbd_desc": "Uses monospace font to clearly indicate keyboard operations or shortcuts.",
-    "link_desc": "Navigation to other pages or resources. Use `Link` for navigation and `Button` for execution.",
     "mark_desc": "Emphasizes hit portions of search results or critical parts with background colors.",
     "mark_usage": "Attention Drawing",
     "outline_style": "Outline (Line Drawing)",

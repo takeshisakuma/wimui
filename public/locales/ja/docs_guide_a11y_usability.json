@@ -55,7 +55,6 @@
   "table": {
     "header_key": "キー",
     "header_operation": "動作",
-    "header_guideline": "ガイドライン",
     "header_description": "説明",
     "key_arrow": "矢印キー (Arrow Keys)",
     "key_enter": "Enter",

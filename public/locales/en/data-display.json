@@ -8,7 +8,6 @@
   },
   "table": {
     "header_component": "Component",
-    "header_overview": "Overview",
-    "header_placement": "Placement"
+    "header_overview": "Overview"
   }
 }

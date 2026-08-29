@@ -8,7 +8,6 @@
   },
   "table": {
     "header_component": "コンポーネント",
-    "header_overview": "概要",
-    "header_placement": "配置"
+    "header_overview": "概要"
   }
 }

@@ -273,7 +273,6 @@
     "richTextEditor_choice_matrix_desc": "Select the appropriate component based on the expected content type and formatting needs.",
     "richTextEditor_choice_rte_when": "When users need to format text (bold, italic, headings, lists, links) and the output is rendered as HTML.",
     "richTextEditor_choice_textarea_when": "When only plain text is needed (comments, short descriptions) and formatting is irrelevant.",
-    "richTextEditor_desc": "WYSIWYG rich text editor",
     "richTextEditor_design_intent": "RichTextEditor bridges the gap between plain Textarea and complex document editors. It is suited to situations where users need to structure text with headings, lists, bold/italic emphasis, or hyperlinks — without needing to write HTML themselves.",
     "richTextEditor_long_desc": "RichTextEditor is a WYSIWYG (What You See Is What You Get) editor that provides a familiar word-processor-like experience for entering and formatting rich text content.",
     "richTextEditor_scenario_article": "Composing articles with headings, paragraphs, and embedded links.",

@@ -26,8 +26,5 @@
     "internal_title": "Internal Core Components",
     "external_react_flow": "React Flow (@xyflow/react)",
     "external_full_calendar": "FullCalendar (@fullcalendar/react)"
-  },
-  "table": {
-    "header_role": "Role"
   }
 }

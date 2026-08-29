@@ -235,7 +235,6 @@
     "richTextEditor_choice_matrix_desc": "期待されるコンテンツの種類と書式ニーズに応じてコンポーネントを選択してください。",
     "richTextEditor_choice_rte_when": "ユーザーがテキストを書式設定（太字・斜体・見出し・リスト・リンク）する必要があり、出力をHTMLとして描画する場合。",
     "richTextEditor_choice_textarea_when": "プレーンテキストのみ必要（コメント・短い説明）で、書式設定が不要な場合。",
-    "richTextEditor_desc": "WYSIWYGリッチテキストエディタ",
     "richTextEditor_design_intent": "RichTextEditorは、シンプルなTextareaと複雑なドキュメントエディタの中間に位置します。見出し・リスト・太字/斜体・ハイパーリンクなどを使った構造化されたテキストが必要な場面に適しており、ユーザーがHTMLを書かずに書式を設定できます。",
     "richTextEditor_long_desc": "RichTextEditorは、書式付きリッチテキストコンテンツを入力・編集するためのWYSIWYG（What You See Is What You Get）エディタです。",
     "richTextEditor_scenario_article": "見出し・段落・埋め込みリンクを持つ記事の作成。",

@@ -60,8 +60,5 @@
     "soft": "Suave",
     "strong": "Forte",
     "vivid": "Vívido"
-  },
-  "colors": {
-    "tone_mapping": "Mapeamento dos Principais Tons:"
   }
 }
