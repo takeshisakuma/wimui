@@ -22,7 +22,7 @@
  */
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import { resolveLocale } from "./lib/locale-keys.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -112,7 +112,7 @@ const TAUTOLOGIES = [
   /^a\s+simpler\s+alternative\s+like\s+better\s+suits\s+the\s+use\s+case\.?$/,
 ];
 
-const normalize = (value) =>
+export const normalize = (value) =>
   value
     // **小文字化より先に**コンポーネント名（大文字始まりの語）を落とす。
     // 逆順にすると名前が消えず、こちらも 1 件も鳴らなかった。
@@ -302,4 +302,8 @@ function main() {
   console.log("✓ 増えていません。");
 }
 
-main();
+// 直接実行のときだけ走らせる。**import しただけで走ると、この検査を再利用できない**
+// （`normalize` を他から使うために export したので、副作用を切っておく）。
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
