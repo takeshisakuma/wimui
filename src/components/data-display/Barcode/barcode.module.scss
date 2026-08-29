@@ -17,6 +17,7 @@
      * 収まっているあいだは中央、はみ出したら先頭から。
      */
     align-items: safe center;
+    width: fit-content;
     max-width: 100%;
     padding: var(--wim-spacing-sm);
 
