@@ -1,0 +1,92 @@
+import {
+  Canvas,
+  Meta,
+  Title,
+  Primary,
+  Stories,
+} from "@storybook/addon-docs/blocks";
+import * as SankeyChartStories from "./SankeyChart.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={SankeyChartStories} />
+
+<Title />
+
+<p><T k="doc.sankeychart_long_desc" /></p>
+
+<Docgen componentName="SankeyChart" section="import" />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.sankeychart_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.sankeychart_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>SankeyChart</b></td>
+      <td><T k="doc.sankeychart_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>NodeGraph</b></td>
+      <td><T k="doc.sankeychart_choice_alt_when" /></td>
+    </tr>
+    <tr>
+      <td><b>FunnelChart</b></td>
+      <td><T k="doc.sankeychart_choice_funnel_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="SankeyChart" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.sankeychart_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.sankeychart_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_ec_title" /></strong></td>
+      <td><T k="doc.sankeychart_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.sankeychart_best_practice_1" /></li>
+  <li><T k="doc.sankeychart_best_practice_2" /></li>
+</ul>
+
+<Primary />
+
+<Docgen componentName="SankeyChart" section="props" />
+
+<Stories />
+
+<Docgen componentName="SankeyChart" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.charts_keyboard_desc" /></p>
+
+<Docgen componentName="SankeyChart" section="i18n" />
+
+<Docgen componentName="SankeyChart" section="test" />

@@ -1,0 +1,20 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  /*
+   * 棒の上に出す値ラベル。**軸の文字と同じ扱い**（`check:chart-text-color` が
+   * 見るのはテキストがテキスト用のトークンで描かれているか）。段の色で描くと、
+   * 増減の色をそのまま文字に使うことになり、淡い側が読めなくなる。
+   */
+  .value {
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-xs);
+    fill: var(--wim-color-text-secondary);
+  }
+}

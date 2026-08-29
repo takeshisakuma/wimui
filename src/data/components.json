@@ -1498,6 +1498,30 @@
         "descKey": "doc.sparkline_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "SankeyChart",
+        "descKey": "doc.sankeychart_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "WaterfallChart",
+        "descKey": "doc.waterfallchart_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "BoxPlot",
+        "descKey": "doc.boxplot_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "CandlestickChart",
+        "descKey": "doc.candlestickchart_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

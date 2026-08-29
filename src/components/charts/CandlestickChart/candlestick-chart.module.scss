@@ -1,0 +1,41 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  /*
+   * 足の色。**上げ / 下げは色だけで分けない** ── 上げは中を抜いた枠、下げは
+   * 塗りつぶしで、形が先に区別を運ぶ（`.hollowBody` / `.filledBody`）。
+   * 色は非テキスト（WCAG 1.4.11 の 3:1）なのでチャート用トークンから採る。
+   */
+  .rising {
+    --candle-tone: var(--wim-color-chart-success);
+  }
+
+  .falling {
+    --candle-tone: var(--wim-color-chart-danger);
+  }
+
+  .wick {
+    stroke: var(--candle-tone);
+    stroke-width: 1.5;
+  }
+
+  /* 中を抜く＝**地を塗らない**。サーフェス色で塗ると、チャートがページ地に
+     直接置かれたときに白い箱として浮く（チャートは自分の背景を持たない）。 */
+  .hollowBody {
+    fill: none;
+    stroke: var(--candle-tone);
+    stroke-width: 1.5;
+  }
+
+  .filledBody {
+    fill: var(--candle-tone);
+    stroke: var(--candle-tone);
+    stroke-width: 1.5;
+  }
+}

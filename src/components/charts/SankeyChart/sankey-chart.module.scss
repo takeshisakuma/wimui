@@ -1,0 +1,20 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  /*
+   * ノードのラベル。**軸の文字と同じ扱い**（`check:chart-text-color` が見るのは
+   * テキストがテキスト用のトークンで描かれているか）。系列色で描くと、
+   * 淡い系列のときに読めなくなる。
+   */
+  .label {
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-xs);
+    fill: var(--wim-color-text-secondary);
+  }
+}

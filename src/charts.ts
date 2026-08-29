@@ -11,3 +11,7 @@ export * from "./components/charts/RadarChart/RadarChart";
 export * from "./components/charts/ScatterChart/ScatterChart";
 export * from "./components/charts/Treemap/Treemap";
 export * from "./components/charts/Sparkline/Sparkline";
+export * from "./components/charts/SankeyChart/SankeyChart";
+export * from "./components/charts/WaterfallChart/WaterfallChart";
+export * from "./components/charts/BoxPlot/BoxPlot";
+export * from "./components/charts/CandlestickChart/CandlestickChart";

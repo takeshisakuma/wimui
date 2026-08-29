@@ -1024,6 +1024,62 @@
         "color-contrast"
       ]
     },
+    "components-visualization-boxplot--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-boxplot--orders-of-magnitude": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-boxplot--single-value-group": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-boxplot--skewed-distributions": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-candlestickchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-candlestickchart--flat-period": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-candlestickchart--temperature-range": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-visualization-charts--dashboard": {
       "light": [
         "color-contrast"
@@ -1154,6 +1210,30 @@
         "color-contrast"
       ]
     },
+    "components-visualization-sankeychart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-sankeychart--multiple-stages": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-sankeychart--without-title": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-visualization-scatterchart--default": {
       "light": [
         "color-contrast"
@@ -1211,6 +1291,30 @@
       ]
     },
     "components-visualization-treemap--narrow-tiles": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-waterfallchart--default": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-waterfallchart--goes-negative": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-visualization-waterfallchart--with-subtotal": {
       "light": [
         "color-contrast"
       ],

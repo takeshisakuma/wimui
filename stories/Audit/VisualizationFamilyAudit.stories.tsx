@@ -7,7 +7,7 @@ import {
   Box,
   Stack,
 } from "../../src";
-import { AreaChart, BarChart, LineChart, PieChart, RadarChart, ScatterChart, Treemap, GaugeChart, FunnelChart, Heatmap, Sparkline } from "../../src/charts";
+import { AreaChart, BarChart, BoxPlot, CandlestickChart, LineChart, PieChart, RadarChart, ScatterChart, SankeyChart, Treemap, GaugeChart, FunnelChart, Heatmap, Sparkline, WaterfallChart } from "../../src/charts";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 const meta: Meta = {
@@ -64,6 +64,38 @@ const funnelData = [
   { value: 50, name: "Order" },
   { value: 40, name: "Payment" },
   { value: 26, name: "Success" },
+];
+
+// 出ていく量と入ってくる量を合わせる（Pricing: 2840+910 = 1490+2260）。
+// 合わないサンキー図は、その差が最初から無かったかのように読める。
+// ウォーターフォールは段が足し合わさって合計になる。合わない見本を置くと
+// 監査ページ自体が「合わなくてよい」と言うことになる（100 - 30 - 18 = 52）。
+const waterfallSteps = [
+  { name: "Revenue", value: 100 },
+  { name: "Costs", value: -30 },
+  { name: "Tax", value: -18 },
+  { name: "Profit", value: 0, total: true },
+];
+
+const boxGroups = [
+  { name: "A", min: 12, q1: 24, median: 33, q3: 48, max: 71 },
+  { name: "B", min: 20, q1: 31, median: 38, q3: 44, max: 58 },
+  { name: "C", min: 8, q1: 14, median: 22, q3: 39, max: 66 },
+];
+
+const candles = [
+  { name: "Mon", open: 32, high: 38, low: 31, close: 37 },
+  { name: "Tue", open: 37, high: 39, low: 33, close: 34 },
+  { name: "Wed", open: 34, high: 41, low: 34, close: 40 },
+];
+
+const sankeyNodes = ["Search", "Direct", "Pricing", "Left", "Signed up"];
+const sankeyLinks = [
+  { source: "Search", target: "Pricing", value: 2840 },
+  { source: "Search", target: "Left", value: 1160 },
+  { source: "Direct", target: "Pricing", value: 910 },
+  { source: "Pricing", target: "Signed up", value: 1490 },
+  { source: "Pricing", target: "Left", value: 2260 },
 ];
 
 const heatmapData = [
@@ -156,6 +188,20 @@ export const Overview: StoryObj = {
               height={250}
             />
           </ComponentGroup>
+          <ComponentGroup label={t("audit:label_sankey_chart")} align="stretch">
+            <SankeyChart nodes={sankeyNodes} links={sankeyLinks} height={240} />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_waterfall_chart")} align="stretch">
+            <WaterfallChart data={waterfallSteps} height={240} />
+          </ComponentGroup>
+          <Stack direction="row" gap="lg" wrap>
+            <ComponentGroup label={t("audit:label_box_plot")} width="380px">
+              <BoxPlot data={boxGroups} height={240} />
+            </ComponentGroup>
+            <ComponentGroup label={t("audit:label_candlestick_chart")} width="380px">
+              <CandlestickChart data={candles} height={240} />
+            </ComponentGroup>
+          </Stack>
           <Stack direction="row" gap="lg" wrap>
             <ComponentGroup label={t("audit:label_gauge_chart")} width="300px">
               <GaugeChart value={75} height={200} title={t("audit:viz_system_load")} />

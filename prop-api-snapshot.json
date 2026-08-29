@@ -1212,6 +1212,66 @@
         }
       }
     },
+    "BoxAndWhisker.height": {
+      "type": "number"
+    },
+    "BoxAndWhisker.payload": {
+      "type": "BoxPlotItem & { /** 昇順の [min, max]。recharts はこれを画素の矩形に写す。 */ span: BarSpan; }"
+    },
+    "BoxAndWhisker.width": {
+      "type": "number"
+    },
+    "BoxAndWhisker.x": {
+      "type": "number"
+    },
+    "BoxAndWhisker.y": {
+      "type": "number"
+    },
+    "BoxPlot.aria-label": {
+      "type": "string"
+    },
+    "BoxPlot.data": {
+      "required": true,
+      "type": "BoxPlotItem[]",
+      "shape": {
+        "max": {
+          "required": true,
+          "type": "number"
+        },
+        "median": {
+          "required": true,
+          "type": "number"
+        },
+        "min": {
+          "required": true,
+          "type": "number"
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "q1": {
+          "required": true,
+          "type": "number"
+        },
+        "q3": {
+          "required": true,
+          "type": "number"
+        }
+      }
+    },
+    "BoxPlot.height": {
+      "required": false,
+      "type": "number"
+    },
+    "BoxPlot.title": {
+      "required": false,
+      "type": "string"
+    },
+    "BoxPlot.width": {
+      "required": false,
+      "type": "string | number"
+    },
     "Breadcrumb.ariaLabel": {
       "required": false,
       "type": "string"
@@ -1462,6 +1522,62 @@
     "CalendarHeatmap.year": {
       "required": false,
       "type": "number"
+    },
+    "CandleMark.height": {
+      "type": "number"
+    },
+    "CandleMark.payload": {
+      "type": "Candle & { /** 昇順の [low, high]。recharts はこれを画素の矩形に写す。 */ span: BarSpan; /** 終値が始値以上か。塗りつぶしの有無と色の両方がこれで決まる。 */ rising: boolean; }"
+    },
+    "CandleMark.width": {
+      "type": "number"
+    },
+    "CandleMark.x": {
+      "type": "number"
+    },
+    "CandleMark.y": {
+      "type": "number"
+    },
+    "CandlestickChart.aria-label": {
+      "type": "string"
+    },
+    "CandlestickChart.data": {
+      "required": true,
+      "type": "Candle[]",
+      "shape": {
+        "close": {
+          "required": true,
+          "type": "number"
+        },
+        "high": {
+          "required": true,
+          "type": "number"
+        },
+        "low": {
+          "required": true,
+          "type": "number"
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "open": {
+          "required": true,
+          "type": "number"
+        }
+      }
+    },
+    "CandlestickChart.height": {
+      "required": false,
+      "type": "number"
+    },
+    "CandlestickChart.title": {
+      "required": false,
+      "type": "string"
+    },
+    "CandlestickChart.width": {
+      "required": false,
+      "type": "string | number"
     },
     "Card.asChild": {
       "required": false,
@@ -8111,6 +8227,107 @@
       "required": false,
       "type": "FieldWidth | string | number"
     },
+    "SankeyChart.aria-label": {
+      "type": "string"
+    },
+    "SankeyChart.height": {
+      "required": false,
+      "type": "number"
+    },
+    "SankeyChart.links": {
+      "required": true,
+      "type": "SankeyLink[]",
+      "shape": {
+        "source": {
+          "required": true,
+          "type": "string"
+        },
+        "target": {
+          "required": true,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "number"
+        }
+      }
+    },
+    "SankeyChart.nodes": {
+      "required": true,
+      "type": "string[]"
+    },
+    "SankeyChart.title": {
+      "required": false,
+      "type": "string"
+    },
+    "SankeyChart.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "SankeyLinkBand.colorIndexOf": {
+      "type": "Map<string, number>"
+    },
+    "SankeyLinkBand.index": {
+      "type": "number"
+    },
+    "SankeyLinkBand.linkWidth": {
+      "type": "number"
+    },
+    "SankeyLinkBand.payload": {
+      "type": "{ source?: { name?: string } }",
+      "shape": {
+        "source": {
+          "required": false,
+          "type": "{ name?: string }"
+        }
+      }
+    },
+    "SankeyLinkBand.sourceControlX": {
+      "type": "number"
+    },
+    "SankeyLinkBand.sourceX": {
+      "type": "number"
+    },
+    "SankeyLinkBand.sourceY": {
+      "type": "number"
+    },
+    "SankeyLinkBand.targetControlX": {
+      "type": "number"
+    },
+    "SankeyLinkBand.targetX": {
+      "type": "number"
+    },
+    "SankeyLinkBand.targetY": {
+      "type": "number"
+    },
+    "SankeyNode.height": {
+      "type": "number"
+    },
+    "SankeyNode.index": {
+      "type": "number"
+    },
+    "SankeyNode.payload": {
+      "type": "{ name?: string; targetNodes?: number[] }",
+      "shape": {
+        "name": {
+          "required": false,
+          "type": "string"
+        },
+        "targetNodes": {
+          "required": false,
+          "type": "number[]"
+        }
+      }
+    },
+    "SankeyNode.width": {
+      "type": "number"
+    },
+    "SankeyNode.x": {
+      "type": "number"
+    },
+    "SankeyNode.y": {
+      "type": "number"
+    },
     "ScatterChart.animated": {
       "required": false,
       "type": "boolean"
@@ -12233,6 +12450,76 @@
         "neutral",
         "positive"
       ]
+    },
+    "WaterfallChart.aria-label": {
+      "type": "string"
+    },
+    "WaterfallChart.data": {
+      "required": true,
+      "type": "WaterfallItem[]",
+      "shape": {
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "total": {
+          "required": false,
+          "type": "boolean"
+        },
+        "value": {
+          "required": true,
+          "type": "number"
+        }
+      }
+    },
+    "WaterfallChart.height": {
+      "required": false,
+      "type": "number"
+    },
+    "WaterfallChart.title": {
+      "required": false,
+      "type": "string"
+    },
+    "WaterfallChart.width": {
+      "required": false,
+      "type": "string | number"
+    },
+    "WaterfallStep.height": {
+      "type": "number"
+    },
+    "WaterfallStep.payload": {
+      "type": "{ name: string; /** 昇順の [下端, 上端]。recharts はこれを画素の矩形に写す。 */ span: BarSpan; kind: StepKind; /** 値ラベルに出す数。`total` は running total、それ以外は増減。 */ amount: number; /** その段を終えた時点の running total。表の 3 列目。 */ running: number; }",
+      "shape": {
+        "amount": {
+          "required": true,
+          "type": "number"
+        },
+        "kind": {
+          "required": true,
+          "type": "\"increase\" | \"decrease\" | \"total\""
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        },
+        "running": {
+          "required": true,
+          "type": "number"
+        },
+        "span": {
+          "required": true,
+          "type": "[low: number, high: number]"
+        }
+      }
+    },
+    "WaterfallStep.width": {
+      "type": "number"
+    },
+    "WaterfallStep.x": {
+      "type": "number"
+    },
+    "WaterfallStep.y": {
+      "type": "number"
     },
     "Watermark.children": {
       "required": false,
