@@ -598,7 +598,6 @@
   },
   "table": {
     "header_conditions": "Condições / Cenários",
-    "header_placement": "Colocação",
     "header_recommended": "Colocação Recomendada"
   }
 }

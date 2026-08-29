@@ -235,7 +235,6 @@
     "richTextEditor_choice_matrix_desc": "Selecione o componente apropriado com base no tipo de conteúdo esperado e nas necessidades de formatação.",
     "richTextEditor_choice_rte_when": "Quando os usuários precisam de formatar texto (negrito, itálico, cabeçalhos, listas, links) e a saída é renderizada como HTML.",
     "richTextEditor_choice_textarea_when": "Quando apenas é necessário texto simples (comentários, descrições curtas) e a formatação é irrelevante.",
-    "richTextEditor_desc": "Editor de texto enriquecido WYSIWYG",
     "richTextEditor_design_intent": "O RichTextEditor preenche a lacuna entre o Textarea simples e os editores de documentos complexos. É adequado para situações em que os usuários precisam de estruturar texto com cabeçalhos, listas, ênfase em negrito/itálico ou links — sem precisarem de escrever eles próprios o HTML.",
     "richTextEditor_long_desc": "O RichTextEditor é um editor WYSIWYG (What You See Is What You Get) que proporciona uma experiência familiar tipo processador de texto para introduzir e formatar conteúdo de texto enriquecido.",
     "richTextEditor_scenario_article": "Redigir artigos com cabeçalhos, parágrafos e links incorporados.",

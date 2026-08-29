@@ -598,7 +598,6 @@
   },
   "table": {
     "header_conditions": "利用条件 / シナリオ",
-    "header_placement": "配置 (Placement)",
     "header_recommended": "推奨される配置"
   }
 }

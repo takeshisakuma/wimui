@@ -26,8 +26,5 @@
     "tier_molecules": "Moléculas",
     "tier_organisms": "Organismos",
     "usage": "Guia de Uso"
-  },
-  "table": {
-    "header_role": "Papel"
   }
 }

@@ -1385,7 +1385,6 @@ export type WimI18nKey =
   | "data-display:countdown.remaining"
   | "data-display:table.header_component"
   | "data-display:table.header_overview"
-  | "data-display:table.header_placement"
   | "dataGrid.displaying"
   | "dataGrid.loading_more"
   | "dataGrid.rows_selected"

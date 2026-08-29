@@ -55,7 +55,6 @@
   "table": {
     "header_key": "Key",
     "header_operation": "Operation",
-    "header_guideline": "Guideline",
     "header_description": "Description",
     "key_arrow": "Arrow Keys",
     "key_enter": "Enter",
