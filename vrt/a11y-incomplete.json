@@ -470,6 +470,14 @@
         "color-contrast"
       ]
     },
+    "components-data-indicators-barcode--formats": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-data-indicators-emptystate--custom-action": {
       "light": [
         "color-contrast"

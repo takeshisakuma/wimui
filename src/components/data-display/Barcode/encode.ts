@@ -10,11 +10,40 @@
 
 export type BarcodeFormat = "code128" | "ean13";
 
+/**
+ * EAN-13 の正規の印字レイアウト（T233）。
+ *
+ * 数字をバーの下へまとめて置くのは**近いけれど別の物**で、店頭の商品と見比べると
+ * 違って見える。正規の印字では **ガードバーが数字の帯の底まで伸び**、**先頭桁が
+ * シンボルの左外**に出て、残りが左右半分それぞれの下に 6 桁ずつ付く。
+ *
+ * **スキャナが読むのはバーだけなので、モジュール列は 1 文字も変えない。**
+ * ここに出すのは「どこに何を印字するか」だけで、位置はすべてモジュール座標
+ * （シンボルの先頭を 0 とする添字）で返す ── 画素は器の幅で変わるが、
+ * モジュールの割り付けは体系が決めていて変わらないため。
+ */
+export type Ean13PrintLayout = {
+  /** 下へ伸ばすガードバーのモジュール範囲 `[開始, 終了)`。左・中央・右の 3 組。 */
+  guards: ReadonlyArray<readonly [number, number]>;
+  /** シンボルの左外に置く 1 桁目。 */
+  lead: string;
+  /** 左半分の 6 桁と、その下に敷くモジュール範囲。 */
+  left: { text: string; from: number; to: number };
+  /** 右半分の 6 桁と、その下に敷くモジュール範囲。 */
+  right: { text: string; from: number; to: number };
+};
+
 export type EncodedBarcode = {
   /** 1 = bar, 0 = space. One character per module. */
   modules: string;
   /** Human-readable interpretation printed under the bars. */
   text: string;
+  /**
+   * How the digits are printed, for the formats that specify it. Code 128 does
+   * not, so it stays undefined and the value is printed under the bars as one
+   * run of text.
+   */
+  print?: Ean13PrintLayout;
 };
 
 /**
@@ -111,6 +140,8 @@ const EAN13_PARITY = [
   "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL",
 ];
 
+/** EAN-13 は 1 桁を 7 モジュールで表す（L / G / R のどの表でも同じ）。 */
+const EAN_DIGIT_MODULES = 7;
 const EAN_GUARD = "101";
 const EAN_CENTER = "01010";
 
@@ -146,9 +177,29 @@ const encodeEan13 = (value: string): EncodedBarcode | null => {
     right += EAN_R[Number(digits[i])];
   }
 
+  // 印字の位置は体系が決めた割り付けから引く（数え間違いを持ち込まないよう、
+  // 3 / 45 / 50 / 92 と書かずに guard と 1 桁 7 モジュールから組み立てる）。
+  const guard = EAN_GUARD.length;
+  const center = EAN_CENTER.length;
+  const half = 6 * EAN_DIGIT_MODULES;
+  const leftFrom = guard;
+  const leftTo = leftFrom + half;
+  const rightFrom = leftTo + center;
+  const rightTo = rightFrom + half;
+
   return {
     modules: `${EAN_GUARD}${left}${EAN_CENTER}${right}${EAN_GUARD}`,
     text: digits,
+    print: {
+      guards: [
+        [0, guard],
+        [leftTo, rightFrom],
+        [rightTo, rightTo + guard],
+      ],
+      lead: digits[0],
+      left: { text: digits.slice(1, 7), from: leftFrom, to: leftTo },
+      right: { text: digits.slice(7), from: rightFrom, to: rightTo },
+    },
   };
 };
 

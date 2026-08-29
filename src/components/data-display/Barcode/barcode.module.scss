@@ -56,6 +56,17 @@
     }
   }
 
+  /*
+   * EAN-13 の正規の印字（T233）。SVG の中に置くので `fill` で塗る。
+   * **バーと同じ固定色**にする ── この部品はテーマに追随せず、常に明るい地に
+   * 暗い印字（反転はレーザー式・CCD 式のスキャナが安定して読めない）。
+   */
+  .printedDigit {
+    @include font.mono-family;
+
+    fill: var(--wim-color-surface-void);
+  }
+
   /* 印字と同じく、バーの下に等幅で置く。地が常に白なので文字も固定色にする。 */
   .value {
     @include font.mono-family;
