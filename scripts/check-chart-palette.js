@@ -313,11 +313,31 @@ const serialize = (doc) => `${JSON.stringify(doc, null, 2)}\n`;
  *   `FunnelChart`（T137）と `Treemap`（T148）は 1 色相の濃淡へ移した。
  */
 const CATEGORICAL_CHARTS = [];
+const DIRECT_LABEL_CHARTS = [];
+
+/**
+ * **直接ラベル方式** ── 凡例の代わりに、色が付く印そのものに名前を描くチャート。
+ *
+ * 案①が要求しているのは「**色が唯一の手がかりでないこと**」であって
+ * `<Legend />` という部品そのものではない。凡例は「色 → 名前」を図から離れた
+ * 場所で引かせるが、印の上に名前が乗っているならそれより手数が少ない。
+ * `SankeyChart` は **recharts が Sankey の凡例を組み立てられない**（`payload` を
+ * 明示的に渡しても項目 0 件で描かれる。実測 2026-08-29）ため、そもそも凡例では
+ * この条件を満たせない。
+ *
+ * **名前を並べただけの免除リストにはしない。** 値は「その仕組みがソースに在ること」
+ * を確かめる正規表現で、**ラベルを描く行が消えればこの検査はまた落ちる**。
+ */
+const DIRECT_LABEL_MECHANISM = {
+  // ノードの矩形に、そのノード名を <text> で無条件に描いている
+  SankeyChart: /<text[\s\S]{0,400}\{payload\?\.name\}[\s\S]{0,80}<\/text>/,
+};
 
 function checkCategoricalLegends() {
   const dir = path.join(root, "src/components/charts");
   const problems = [];
   CATEGORICAL_CHARTS.length = 0;
+  DIRECT_LABEL_CHARTS.length = 0;
 
   for (const name of fs.readdirSync(dir)) {
     const file = path.join(dir, name, `${name}.tsx`);
@@ -333,6 +353,18 @@ function checkCategoricalLegends() {
     // 変数 index で引いている＝系列ごとに色相を変えている
     if (!/CHART_COLORS\[\s*(?!\d)[A-Za-z_$]/.test(code)) continue;
     CATEGORICAL_CHARTS.push(name);
+
+    const mechanism = DIRECT_LABEL_MECHANISM[name];
+    if (mechanism) {
+      if (!mechanism.test(code)) {
+        problems.push(
+          `${name}: 直接ラベルで免除されているのに、印に名前を描く箇所が見つからない`,
+        );
+      } else {
+        DIRECT_LABEL_CHARTS.push(name);
+      }
+      continue;
+    }
 
     if (!/<Legend[\s/>]/.test(code)) {
       problems.push(`${name}: カテゴリ配色を使っているのに <Legend /> が無い`);
@@ -385,14 +417,18 @@ function main() {
       "\n✗ **色が唯一の手がかりになっている。**\n" +
         "  dark の `chart-info` / `chart-success` / `chart-danger` は地に対して 3:1 に届かず、\n" +
         "  それを**承知で受け入れる**と決めた（T152・案①）。成り立つ条件は\n" +
-        "  「**色を系列の区別に使うチャートは、必ず凡例を出す**」ことだけなので、\n" +
-        "  ここが崩れると受け入れの根拠ごと無くなる。`<Legend />` を消すか、\n" +
-        "  prop で消せるようにするなら、**先に T152 の判断をやり直すこと**。",
+        "  「**色を系列の区別に使うチャートは、色以外の手がかりを無条件で出す**」ことだけ ──\n" +
+        "  凡例（`<Legend />`）か、印そのものに名前を描く**直接ラベル方式**のどちらかで満たす。\n" +
+        "  ここが崩れると受け入れの根拠ごと無くなる。手がかりを消すか、prop で消せる\n" +
+        "  ようにするなら、**先に T152 の判断をやり直すこと**。",
     );
     process.exit(1);
   }
   console.log(
-    `✓ カテゴリ配色を使う ${CATEGORICAL_CHARTS.length} 件は、いずれも凡例を無条件で出しています（T152・案①の前提）。`,
+    `✓ カテゴリ配色を使う ${CATEGORICAL_CHARTS.length} 件は、色以外の手がかりを無条件で出しています` +
+      `（凡例 ${CATEGORICAL_CHARTS.length - DIRECT_LABEL_CHARTS.length} 件 / 直接ラベル ${DIRECT_LABEL_CHARTS.length} 件` +
+      (DIRECT_LABEL_CHARTS.length ? `: ${DIRECT_LABEL_CHARTS.join(", ")}` : "") +
+      `。T152・案①の前提）。`,
   );
 
   // ── 数値の SSOT（T151）。MDX はここを読むので、色を変えたら資料も同時に動く ──

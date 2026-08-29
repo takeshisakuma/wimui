@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.28.0 — a React 19 component library: 220 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.28.0 — a React 19 component library: 224 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -401,6 +401,8 @@ export function BillingOverview() {
 
 - **AreaChart** — Area charts
 - **BarChart** — Bar charts
+- **BoxPlot** — Five-number summary of a distribution per group
+- **CandlestickChart** — Open, high, low and close per period
 - **FunnelChart** — Process stage abandonment chart
 - **GanttChart** — Project schedule and timeline visualization
 - **GaugeChart** — KPI goal achievement chart
@@ -408,9 +410,11 @@ export function BillingOverview() {
 - **LineChart** — Line charts
 - **PieChart** — Proportional parts of a whole chart
 - **RadarChart** — Multivariate data on concentric axes chart
+- **SankeyChart** — Flow chart where band width is the amount
 - **ScatterChart** — Scatter plots
 - **Sparkline** — Tiny inline trend chart
 - **Treemap** — Hierarchical data area-based display
+- **WaterfallChart** — Running total broken into its contributions
 
 ### ai — `import { … } from "wimui/ai"`
 

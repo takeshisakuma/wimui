@@ -14,6 +14,10 @@ import { PieChart } from "./PieChart/PieChart";
 import { RadarChart } from "./RadarChart/RadarChart";
 import { ScatterChart } from "./ScatterChart/ScatterChart";
 import { Treemap } from "./Treemap/Treemap";
+import { BoxPlot } from "./BoxPlot/BoxPlot";
+import { CandlestickChart } from "./CandlestickChart/CandlestickChart";
+import { SankeyChart } from "./SankeyChart/SankeyChart";
+import { WaterfallChart } from "./WaterfallChart/WaterfallChart";
 import { Sparkline } from "./Sparkline/Sparkline";
 
 /**
@@ -78,6 +82,25 @@ type Case = {
 const lineData = [
   { name: "Mon", visitors: 4000 },
   { name: "Tue", visitors: 3000 },
+];
+
+/** `SankeyChart` は名前で流れを指す。`Left` は `nodes` にあって流れの端点にもなる。 */
+/** `WaterfallChart` は増減の列。`total` の段は running total まで引く。 */
+const waterfallSteps = [
+  { name: "Opening", value: 100 },
+  { name: "Spend", value: -40 },
+];
+
+/** `BoxPlot` は五数要約。`CandlestickChart` は四本値。 */
+const boxGroups = [{ name: "A", min: 1, q1: 2, median: 3, q3: 4, max: 5 }];
+const candles = [
+  { name: "Mon", open: 10, high: 14, low: 9, close: 12 },
+];
+
+const sankeyNodes = ["Search", "Pricing", "Signed up"];
+const sankeyLinks = [
+  { source: "Search", target: "Pricing", value: 40 },
+  { source: "Pricing", target: "Signed up", value: 40 },
 ];
 
 const CASES: Case[] = [
@@ -253,6 +276,53 @@ const CASES: Case[] = [
     ),
   },
   {
+    name: "SankeyChart",
+    bare: () => (
+      <SankeyChart
+        nodes={sankeyNodes}
+        links={sankeyLinks}
+        title={VISIBLE_TITLE}
+      />
+    ),
+    labelled: () => (
+      <SankeyChart
+        nodes={sankeyNodes}
+        links={sankeyLinks}
+        title={VISIBLE_TITLE}
+        aria-label={CALLER_LABEL}
+      />
+    ),
+  },
+  {
+    name: "WaterfallChart",
+    bare: () => <WaterfallChart data={waterfallSteps} title={VISIBLE_TITLE} />,
+    labelled: () => (
+      <WaterfallChart
+        data={waterfallSteps}
+        title={VISIBLE_TITLE}
+        aria-label={CALLER_LABEL}
+      />
+    ),
+  },
+  {
+    name: "BoxPlot",
+    bare: () => <BoxPlot data={boxGroups} title={VISIBLE_TITLE} />,
+    labelled: () => (
+      <BoxPlot data={boxGroups} title={VISIBLE_TITLE} aria-label={CALLER_LABEL} />
+    ),
+  },
+  {
+    name: "CandlestickChart",
+    bare: () => <CandlestickChart data={candles} title={VISIBLE_TITLE} />,
+    labelled: () => (
+      <CandlestickChart
+        data={candles}
+        title={VISIBLE_TITLE}
+        aria-label={CALLER_LABEL}
+      />
+    ),
+  },
+  {
     name: "GanttChart",
     bare: () => (
       <GanttChart
@@ -348,6 +418,10 @@ const EXPECTED: Record<
   RadarChart: { defaultName: true, callerCanName: true },
   ScatterChart: { defaultName: true, callerCanName: true },
   Treemap: { defaultName: true, callerCanName: true },
+  SankeyChart: { defaultName: true, callerCanName: true },
+  WaterfallChart: { defaultName: true, callerCanName: true },
+  BoxPlot: { defaultName: true, callerCanName: true },
+  CandlestickChart: { defaultName: true, callerCanName: true },
   // 既定で `role="grid"` と "Gantt Chart" を持ち、`labels.ariaChart` で差し替えられる。
   GanttChart: { defaultName: true, callerCanName: true },
   // 名前が無いときは `aria-hidden` で明示的に隠す（装飾として正しい形）ので、
@@ -406,6 +480,30 @@ const EXPECTED_TABLE: Record<
   FunnelChart: { columns: ["name", "value"], rows: [["Visit", "100"]] },
   PieChart: { columns: ["name", "value"], rows: [["A", "1"]] },
   Treemap: { columns: ["name", "value"], rows: [["A", "10"]] },
+  // 流れ型: 1 行が 1 本の流れ。ノードの一覧は出さない（端点は from / to に出る）。
+  // 増減型: 変化は符号つきの文字、running total は数。`total` の段は足し直さない。
+  WaterfallChart: {
+    columns: ["Step", "Change", "Running total"],
+    rows: [
+      ["Opening", "+100", "100"],
+      ["Spend", "-40", "60"],
+    ],
+  },
+  BoxPlot: {
+    columns: ["Group", "Min", "Q1", "Median", "Q3", "Max"],
+    rows: [["A", "1", "2", "3", "4", "5"]],
+  },
+  CandlestickChart: {
+    columns: ["Period", "Open", "High", "Low", "Close"],
+    rows: [["Mon", "10", "14", "9", "12"]],
+  },
+  SankeyChart: {
+    columns: ["From", "To", "Value"],
+    rows: [
+      ["Search", "Pricing", "40"],
+      ["Pricing", "Signed up", "40"],
+    ],
+  },
   // 1 列目は行見出し（y のラベル）なので、列見出しの先頭は空。
   Heatmap: { columns: ["", "Mon"], rows: [["AM", "3"]] },
   // `xAxisName` / `yAxisName` の既定は "X" / "Y"。`z` を持つ点が無いので 3 列。

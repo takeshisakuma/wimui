@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.28.0 — a React 19 component library: 220 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.28.0 — a React 19 component library: 224 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2969,6 +2969,26 @@ the value, so cutting the axis lies about the ratio between them.
     - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
 when the chart has no visible title, or when the title is not descriptive
 enough on its own.
+- **BoxPlot** — Five-number summary of a distribution per group
+    - `data: BoxPlotItem[]` (required) — One entry per group. Each is a five-number summary, already computed.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
+- **CandlestickChart** — Open, high, low and close per period
+    - `data: Candle[]` (required) — One entry per period, oldest first.
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **FunnelChart** — Process stage abandonment chart
     - `data: ChartDataPoint[]` (required) — Data to display in the chart. Each entry represents one funnel stage.
     - `dataKey: string` (required) — The key in the data objects that represents the value of each stage.
@@ -3077,6 +3097,19 @@ enough on its own.
     - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
 when the chart has no visible title, or when the title is not descriptive
 enough on its own.
+- **SankeyChart** — Flow chart where band width is the amount
+    - `nodes: string[]` (required) — Every node in the diagram, in the order their colors are assigned. Names
+are what `links` refers to, so they have to be unique.
+    - `links: SankeyLink[]` (required) — Flows between nodes, by node name. A link naming a node that is not in
+`nodes` is dropped (and reported in the console during development).
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
 - **ScatterChart** — Scatter plots
     - `data: { x: number; y: number; z?: number; name: string }[]` (required) — Points to plot. `z` optionally controls the point size.
     - `xAxisName: string` = "X" — Name of the X axis, shown in the tooltip.
@@ -3114,6 +3147,16 @@ enough on its own.
     - `dataKey: string` (required) — The key in the data objects that represents the size of the rectangle.
     - `aspectRatio: number` = 4 / 3 — The aspect ratio of the rectangles.
 @default 4/3
+    - `height: number` = 300 — The height of the chart in pixels.
+@default 300
+    - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).
+@default "100%"
+    - `title: string` — Optional title displayed above the chart.
+    - `aria-label: string` — Accessible name for the chart. Defaults to `title` when omitted; pass this
+when the chart has no visible title, or when the title is not descriptive
+enough on its own.
+- **WaterfallChart** — Running total broken into its contributions
+    - `data: WaterfallItem[]` (required) — The steps, in the order they are applied.
     - `height: number` = 300 — The height of the chart in pixels.
 @default 300
     - `width: string | number` = "100%" — The width of the chart (e.g., "100%", 500).

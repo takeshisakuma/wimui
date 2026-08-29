@@ -1,0 +1,32 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  /*
+   * 箱・ヒゲ・中央値は**非テキスト**（WCAG 1.4.11 の 3:1）。群ごとに色相を変えず
+   * 1 色相で描く ── 分けているのは「どの群か」で、それは X 軸の名前が運ぶ。
+   * 色相を変えると別々のものに見えるうえ、`CHART_COLORS` を index で引く形に
+   * なるので凡例が要る（T152）。
+   */
+  .box {
+    fill: color-mix(in oklch, var(--wim-color-chart-primary) 38%, transparent);
+    stroke: var(--wim-color-chart-primary);
+    stroke-width: 1.5;
+  }
+
+  .whisker {
+    stroke: var(--wim-color-chart-primary);
+    stroke-width: 1.5;
+  }
+
+  /* 中央値だけ濃い ── 箱の中のどこにあるかが分布の歪みそのもの。 */
+  .median {
+    stroke: var(--wim-color-text-primary);
+    stroke-width: 2;
+  }
+}
