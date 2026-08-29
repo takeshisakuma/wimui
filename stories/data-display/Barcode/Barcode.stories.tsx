@@ -9,7 +9,7 @@ const meta: Meta<typeof Barcode> = {
   title: "Components/Data Indicators/Barcode",
   component: Barcode,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   argTypes: {
     format: {

@@ -18,6 +18,14 @@
      */
     align-items: safe center;
     width: fit-content;
+
+    /*
+     * `max-width: 100%` が効くのは**親が確定した幅を持つとき**だけ。カタログの
+     * ストーリーを layout: "centered" にしていたときは親が shrink-to-fit で、
+     * 390px のビューポートで根が 401px になりページが横スクロールした
+     * （CI の narrow-overflow が検出。min-width: 0 を足しても変わらなかった）。
+     * 実アプリの器は幅を持つのでここで収まり、収まらない分は上のスクロールへ回る。
+     */
     max-width: 100%;
     padding: var(--wim-spacing-sm);
 
