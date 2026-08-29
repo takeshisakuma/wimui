@@ -5,6 +5,7 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Avatar,
   Badge,
+  Barcode,
   Chip,
   Countdown,
   Presence,
@@ -168,6 +169,18 @@ export const Overview: StoryObj = {
             ))}
           </ComponentGroup>
         </ComparisonGrid>
+
+        {/* Barcode: テーマに追随しない面と、描かない状態を並べて見る */}
+        <ComparisonGrid title={t("audit:label_barcode")}>
+          <ComponentGroup label={t("audit:label_barcode_formats")} direction="row" gap="xl" wrap>
+            <Barcode value="WIM-4829-KT" format="code128" height={48} />
+            <Barcode value="490177701868" format="ean13" height={48} />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_barcode_unencodable")} direction="row" gap="xl" wrap>
+            <Barcode value="4901777018680" format="ean13" />
+          </ComponentGroup>
+        </ComparisonGrid>
+
         <ComparisonGrid title={t("audit:label_special_states_interactions")}>
           <ComponentGroup label={t("audit:label_interactive_chips_tags")} direction="row" wrap>
             <Chip onClick={() => alert("Clicked")}>{t("audit:label_clickable_chip")}</Chip>

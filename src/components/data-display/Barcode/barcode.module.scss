@@ -1,0 +1,86 @@
+@use "../../../styles/font-mixins" as font;
+
+@layer component {
+  /*
+   * 面と塗りだけがテーマに追随しない。--wim-color-white / --wim-color-surface-void は
+   * light / dark のどちらでも同じ値を持つ数少ないトークンで、
+   * 「暗いバー・明るい地」というスキャナ側の前提をテーマ越しに保つために使う。
+   */
+  .root {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+
+    /*
+     * `safe center` にしているのは、はみ出したときに中央揃えだと**先頭側が
+     * 掴めなくなる**ため（overflow したフレックス項目の既知の挙動）。
+     * 収まっているあいだは中央、はみ出したら先頭から。
+     */
+    align-items: safe center;
+    max-width: 100%;
+    padding: var(--wim-spacing-sm);
+
+    /*
+     * **バーは縮めない。** `max-width: 100%` を svg 側に置くと、狭い器に入れた
+     * ときにモジュール幅が黙って細くなる（実測: 幅 273px の器で 2px → 1.75px）。
+     * 見た目は同じまま読めなくなる種類の壊れ方なので、収まらないときは
+     * 縮めずにここでスクロールさせ、収まっていないことを見せる。
+     */
+    overflow-x: auto;
+    background-color: var(--wim-color-white);
+    border-radius: var(--wim-radius-component);
+  }
+
+  .symbol {
+    display: block;
+    flex: none;
+
+    /*
+     * `base.scss` のグローバルリセットが `svg { max-width: 100% }` を当てるので、
+     * ここで戻す（`.react-flow` の svg と同じ理由）。これを外さないと、上の
+     * 「縮めない」がグローバル側の 1 行で黙って無効化される ── 実際に一度そうなった。
+     */
+    max-width: none;
+
+    rect {
+      fill: var(--wim-color-surface-void);
+    }
+  }
+
+  /* 印字と同じく、バーの下に等幅で置く。地が常に白なので文字も固定色にする。 */
+  .value {
+    @include font.mono-family;
+
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-surface-void);
+    letter-spacing: var(--wim-letter-spacing-wide);
+  }
+
+  /*
+   * 描けなかったとき。**バーコードに見えてはいけない**ので白い面をやめ、
+   * 面と枠で「これは出力ではなく報せ」だと分かる形にする。
+   */
+  .invalid {
+    gap: var(--wim-spacing-3xs);
+    align-items: flex-start;
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) dashed var(--wim-color-text-danger);
+  }
+
+  .invalidMessage {
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-danger);
+  }
+
+  .invalidValue {
+    @include font.mono-family;
+
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-secondary);
+    word-break: break-all;
+  }
+}

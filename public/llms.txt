@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.27.0 — a React 19 component library: 219 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.27.0 — a React 19 component library: 220 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -322,6 +322,7 @@ export function BillingOverview() {
 - **Avatar** — Profile initials/pics
 - **AvatarGroup** — Stacked avatars (aka Face Pile)
 - **Badge** — Indicators or counts
+- **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
 - **Calendar** — Calendar view
 - **CalendarHeatmap** — GitHub-style activity graph for visualizing continuity
 - **Card** — Information containers

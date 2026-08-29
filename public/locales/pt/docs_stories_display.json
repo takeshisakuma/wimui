@@ -337,6 +337,16 @@
     "watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
     "watermark_team": "Equipe WIM UI",
     "watermark_text": "wimui watermark",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "barcode_caption_code128": "Code 128 — números de rastreio, bilhetes, SKUs internos",
+    "barcode_caption_ean13": "EAN-13 — códigos de produto do varejo",
+    "barcode_caption_bare": "Sem o valor impresso, para uma célula de tabela",
+    "barcode_caption_invalid": "Um dígito verificador que não confere não é desenhado",
+    "barcode_receipt_service": "Refrigerado — manter em pé",
+    "barcode_receipt_to": "Destinatário",
+    "barcode_receipt_recipient": "Ngozi Okonkwo-Whitfield",
+    "barcode_receipt_address": "Nishiazabu 4-2-8, ap. 1203, Minato-ku, Tóquio 106-0031",
+    "barcode_receipt_dropped": "Postado em 26/08, 19h12 · Nishiazabu 2-chome",
+    "barcode_receipt_tracking": "Número de rastreio"
   }
 }

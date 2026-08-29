@@ -919,6 +919,33 @@
       "required": false,
       "type": "[ number | \"auto\" | \"dataMin\" | (string & {}), number | \"auto\" | \"dataMax\" | (string & {}), ]"
     },
+    "Barcode.format": {
+      "required": false,
+      "values": [
+        "code128",
+        "ean13"
+      ]
+    },
+    "Barcode.height": {
+      "required": false,
+      "type": "number"
+    },
+    "Barcode.label": {
+      "required": false,
+      "type": "string"
+    },
+    "Barcode.moduleWidth": {
+      "required": false,
+      "type": "number"
+    },
+    "Barcode.showValue": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Barcode.value": {
+      "required": true,
+      "type": "string"
+    },
     "BentoGrid.children": {
       "required": false,
       "type": "React.ReactNode"

@@ -141,6 +141,9 @@
     "label_badge_variations": "Badge Variations",
     "label_banner": "Banner",
     "label_bar_chart": "BarChart",
+    "label_barcode": "Barcode",
+    "label_barcode_formats": "Formats (the surface does not follow the theme)",
+    "label_barcode_unencodable": "A value that cannot be encoded",
     "label_border_style_check": "Border Style Check",
     "label_bottom_sheet": "BottomSheet",
     "label_box": "Box",
@@ -908,6 +911,7 @@
       "scenario_save_title": "Save",
       "scenario_search_title": "Search",
       "scenario_settings_title": "Settings",
+      "scenario_shipping_title": "Shipping",
       "scenario_sns_title": "Social Media",
       "scenario_stats_title": "Statistics",
       "scenario_status_title": "Status",
@@ -918,6 +922,7 @@
       "scenario_trial_title": "Free Trial",
       "scenario_undo_title": "Undo",
       "scenario_user_title": "User",
+      "scenario_warehouse_title": "Warehouse",
       "scenario_warning_title": "Warning",
       "see_more": "See also:",
       "stories": "Stories",
@@ -1285,6 +1290,10 @@
       "away": "Away",
       "busy": "Busy",
       "offline": "Offline"
+    },
+    "barcode": {
+      "aria_label": "Barcode {{value}}",
+      "invalid": "This value cannot be encoded as {{format}}."
     }
   },
   "components": {
@@ -1419,7 +1428,8 @@
       "togglegroup_choice_alt_when": "When picking one changes what is shown below it — that is SegmentedControl.",
       "segmentedcontrol_choice_self_when": "When picking one switches the view: which slice of the data, which period, which stage. What follows it changes.",
       "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
-      "presence_desc": "Shows whether a person is online, away, busy, or offline."
+      "presence_desc": "Shows whether a person is online, away, busy, or offline.",
+      "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode."
     },
     "cat": {
       "ai": "AI"
@@ -3682,7 +3692,19 @@
       "presence_best_practice_1": "Put the state next to what it describes. A dot floating in a toolbar has nothing to attach to; wrap the avatar or place it beside the name.",
       "presence_best_practice_2": "Say what `busy` means for your product in the text next to the dot (in a meeting, on a call). The four states are a shared vocabulary, not an explanation.",
       "presence_best_practice_3": "Do not derive the color yourself. Passing `status` keeps online green on every screen; hand-picking `Indicator` colors is how the mapping drifts.",
-      "presence_keyboard_desc": "Presence is non-interactive static content and receives no keyboard focus. When the surrounding row is focusable, the state name is read as part of that row."
+      "presence_keyboard_desc": "Presence is non-interactive static content and receives no keyboard focus. When the surrounding row is focusable, the state name is read as part of that row.",
+      "barcode_long_desc": "Barcode encodes a value as a 1D symbol — Code 128 for tracking numbers, tickets and internal SKUs, EAN-13 for retail product codes. The bars stay dark on a light surface in both themes, because that is the polarity scanners are built for.",
+      "barcode_design_intent": "Two decisions shape this component. It does not follow the theme: a symbol inverted for dark mode still looks like a barcode, but laser and CCD scanners read it unreliably or not at all, so the bars keep their own light surface everywhere. And it refuses to draw a value it cannot encode instead of approximating one — a symbol that scans to the wrong number is worse than a missing one, because nothing on the screen says it is wrong. That is also why a 13-digit EAN-13 is verified rather than trusted: the check digit exists to catch a transposed pair, and accepting it unchecked throws that away.",
+      "barcode_choice_self_when": "The reader is a handheld or fixed scanner and the payload is one short line — a tracking number, a shelf label, a ticket. Read from a distance, often off a printed label.",
+      "barcode_choice_alt_when": "The reader is a phone camera, or the payload is a URL, a contact card, or more than about 30 characters — that is QRCode. A 2D code holds more and survives being read at an angle.",
+      "barcode_a11y_desc": "The symbol is an image with a name: the container is `role=\"img\"` and its accessible name is the encoded value, so a screen reader can read out what a scanner would read. Pass `label` when the number needs context. The bars are `aria-hidden` and the digits printed under them sit inside the named image, so the value is announced once rather than twice. When a value cannot be encoded, nothing that resembles a barcode is drawn — the component says so in text, and explains why in a console warning during development.",
+      "barcode_scenario_1": "A shipping label prints the carrier's tracking number as Code 128 under the address.",
+      "barcode_scenario_2": "A warehouse pick list puts a small symbol on each row so the picker scans instead of typing.",
+      "barcode_scenario_3": "A product page shows the EAN-13 of the item so store staff can check it against the shelf.",
+      "barcode_best_practice_1": "Keep the printed value under the bars. When a scan fails — a scratched label, a camera at a bad angle — someone reads the digits out loud, and that only works if they are there.",
+      "barcode_best_practice_2": "Do not take `moduleWidth` below 2 on screen, and give the symbol the width it asks for. The narrowest bar is the unit a scanner measures every other bar against, so the component never scales the symbol down to fit — a squeezed symbol looks identical and stops being read. A container that is too narrow scrolls instead, which is visible.",
+      "barcode_best_practice_3": "Pass 12 digits for EAN-13 and let the check digit be calculated. A 13-digit value copied out of a spreadsheet is how a transposed pair reaches production; the component verifies it, but only the calculated form cannot be wrong.",
+      "barcode_keyboard_desc": "Barcode is non-interactive static content and receives no keyboard focus. When the row or card around it is focusable, the accessible name is read as part of that row."
     }
   },
   "docs_data_display_complex": {
@@ -11169,7 +11191,17 @@
       "watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
       "watermark_team": "WIM UI Team",
       "watermark_text": "wimui watermark",
-      "watermark_wimui": "wimui"
+      "watermark_wimui": "wimui",
+      "barcode_caption_code128": "Code 128 — tracking numbers, tickets, internal SKUs",
+      "barcode_caption_ean13": "EAN-13 — retail product codes",
+      "barcode_caption_bare": "Without the printed value, for a table cell",
+      "barcode_caption_invalid": "A check digit that does not match is not drawn",
+      "barcode_receipt_service": "Chilled — keep upright",
+      "barcode_receipt_to": "To",
+      "barcode_receipt_recipient": "Ngozi Okonkwo-Whitfield",
+      "barcode_receipt_address": "Nishiazabu 4-2-8, Apt 1203, Minato-ku, Tokyo 106-0031",
+      "barcode_receipt_dropped": "Dropped off 26 Aug, 7:12 p.m. · Nishiazabu 2-chome",
+      "barcode_receipt_tracking": "Tracking number"
     }
   },
   "docs_stories_feedback": {
