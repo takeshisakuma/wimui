@@ -80,6 +80,25 @@
                 content: attr(data-label);
               }
 
+              /* T234 の隙間埋めは、カード表示では**害にしかならない**。
+                 横スクロールしないので塞ぐ隙間が無く、しかも**見出しラベルと同じ
+                 `::before`** を使うため、幅 1px が勝ってラベルが 1 文字ずつ縦積みに
+                 なる（実測: 「ID」が 1px × 41px。公開中の main では 17.9px × 22.4px）。
+                 sticky 自体もカードでは効かないので、まとめて解除する。 */
+              &.stickyLeft,
+              &.stickyRight {
+                position: static;
+
+                &::before {
+                  position: static;
+                  width: auto;
+                }
+
+                &::after {
+                  content: none;
+                }
+              }
+
               /* 選択列はデスクトップ用に固定幅 60px・中央寄せ・sticky の枠線を持つ。
                  カード表示では「行の先頭にある 1 個のチェックボックス」なので、それらを
                  解除しないと 60px の島の右端にチェックが寄り、左に空白が残る
