@@ -164,12 +164,21 @@
          radius 12px のクリップは保ったまま横スクロールが戻る（実測）。 */
       overflow: auto hidden;
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
-      border-radius: var(--wim-radius-container);
+
+      /* **DataGrid と同じ角丸にする（T236）。** 同じページに Table と DataGrid が
+         並ぶと、12px と 4px の器が交互に出て別部品に見えていた（Audit/TableFamily）。
+         表は「面」ではなく「格子」なので、器の丸みは部品の丸み（4px）で足りる。 */
+      border-radius: var(--wim-radius-component);
 
       .root {
         margin-bottom: 0;
-        border-spacing: 0;
-        border-collapse: separate;
+
+        /* **collapse にする（T236）。** `separate` は隣り合うセルが互いに罫線を
+           描いて重ならないので、**実測で線が 2px になっていた**（DataGrid は
+           collapse で 1px）。同じ `bordered` を指定した表の線幅が器によって
+           変わるのは筋が通らない。カード表示（`card-layout`）の `separate` は
+           行の角丸を描くために要るので、そちらは触らない。 */
+        border-collapse: collapse;
         border: none;
       }
 
