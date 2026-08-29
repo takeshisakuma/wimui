@@ -465,6 +465,12 @@
         "descKey": "doc.presence_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Barcode",
+        "descKey": "doc.barcode_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.27.0 — a React 19 component library: 219 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.27.0 — a React 19 component library: 220 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2194,6 +2194,20 @@ scans stay green while the bar hangs outside its parent.
     - `variant: "solid" | "outline" | "subtle"` — Visual style variant
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
     - `interactive: boolean` = false — Whether to enable the interactive state
+- **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
+    - `value: string` (required) — Value to encode. For `ean13`, 12 digits (the check digit is calculated) or
+13 digits (the check digit is verified).
+    - `format: "code128" | "ean13"` = "code128" — Symbology to encode `value` in.
+@default "code128"
+    - `height: number` = 64 — Height of the bars, in px.
+@default 64
+    - `moduleWidth: number` = 2 — Width of the narrowest bar, in px. Below 2 most phone cameras stop reading
+the symbol on screen.
+@default 2
+    - `showValue: boolean` = true — Whether the value is printed under the bars.
+@default true
+    - `label: string` — Accessible name. Defaults to the value, so that a screen reader can read out
+what a scanner would read.
 - **Calendar** — Calendar view
     - `defaultValue: Date` — Default selected date (uncontrolled)
     - `value: Date` — Selected date (controlled)

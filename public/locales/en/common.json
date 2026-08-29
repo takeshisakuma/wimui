@@ -273,6 +273,7 @@
     "scenario_save_title": "Save",
     "scenario_search_title": "Search",
     "scenario_settings_title": "Settings",
+    "scenario_shipping_title": "Shipping",
     "scenario_sns_title": "Social Media",
     "scenario_stats_title": "Statistics",
     "scenario_status_title": "Status",
@@ -283,6 +284,7 @@
     "scenario_trial_title": "Free Trial",
     "scenario_undo_title": "Undo",
     "scenario_user_title": "User",
+    "scenario_warehouse_title": "Warehouse",
     "scenario_warning_title": "Warning",
     "see_more": "See also:",
     "stories": "Stories",
@@ -650,5 +652,9 @@
     "away": "Away",
     "busy": "Busy",
     "offline": "Offline"
+  },
+  "barcode": {
+    "aria_label": "Barcode {{value}}",
+    "invalid": "This value cannot be encoded as {{format}}."
   }
 }

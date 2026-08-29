@@ -1,0 +1,90 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as BarcodeStories from "./Barcode.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={BarcodeStories} />
+
+<Title />
+
+<p><T k="doc.barcode_long_desc" /></p>
+
+<Canvas of={BarcodeStories.Default} />
+<Controls of={BarcodeStories.Default} />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.barcode_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Barcode</code></td>
+      <td><T k="doc.barcode_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><code>QRCode</code></td>
+      <td><T k="doc.barcode_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Barcode" section="anatomy" />
+
+## <T k="common:doc.variations" />
+
+<Canvas of={BarcodeStories.Formats} />
+<Canvas of={BarcodeStories.WithoutPrintedValue} />
+<Canvas of={BarcodeStories.Unencodable} />
+<Canvas of={BarcodeStories.Realistic} />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.barcode_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_shipping_title" /></strong></td>
+      <td><T k="doc.barcode_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_warehouse_title" /></strong></td>
+      <td><T k="doc.barcode_scenario_2" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_product_title" /></strong></td>
+      <td><T k="doc.barcode_scenario_3" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.barcode_best_practice_1" /></li>
+  <li><T k="doc.barcode_best_practice_2" /></li>
+  <li><T k="doc.barcode_best_practice_3" /></li>
+</ul>
+
+<Docgen componentName="Barcode" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.barcode_keyboard_desc" /></p>
+
+<Docgen componentName="Barcode" section="test" />
+
+<Docgen componentName="Barcode" section="i18n" />
+
+<Docgen componentName="Barcode" section="props" />

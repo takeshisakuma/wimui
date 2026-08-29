@@ -308,6 +308,7 @@
     "scenario_save_title": "Salvar",
     "scenario_search_title": "Pesquisa",
     "scenario_settings_title": "Configurações",
+    "scenario_shipping_title": "Envio",
     "scenario_sns_title": "Redes Sociais",
     "scenario_stats_title": "Estatísticas",
     "scenario_status_title": "Status",
@@ -318,6 +319,7 @@
     "scenario_trial_title": "Período de Teste",
     "scenario_undo_title": "Desfazer",
     "scenario_user_title": "Usuário",
+    "scenario_warehouse_title": "Depósito",
     "scenario_warning_title": "Aviso",
     "see_more": "Veja mais: ",
     "speed_dial_a11y_desc": "Oferece suporte a aria-expanded e navegação por teclado. O botão de acionamento deve ter um aria-label.",
@@ -650,5 +652,9 @@
     "away": "Ausente",
     "busy": "Ocupado",
     "offline": "Offline"
+  },
+  "barcode": {
+    "aria_label": "Código de barras {{value}}",
+    "invalid": "Este valor não pode ser codificado como {{format}}."
   }
 }

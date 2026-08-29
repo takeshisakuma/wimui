@@ -202,7 +202,8 @@
     "togglegroup_choice_alt_when": "Quando escolher um troca o que aparece abaixo — isso é SegmentedControl.",
     "segmentedcontrol_choice_self_when": "Quando escolher um troca a visão: qual recorte dos dados, qual período, qual etapa. O que vem depois muda.",
     "segmentedcontrol_choice_alt_when": "Quando a escolha é um valor que você mantém (formatação, configuração, filtro) — isso é ToggleGroup. Para navegar entre páginas, Tabs.",
-    "presence_desc": "Mostra se uma pessoa está online, ausente, ocupada ou offline."
+    "presence_desc": "Mostra se uma pessoa está online, ausente, ocupada ou offline.",
+    "barcode_desc": "Desenha um código de barras Code 128 ou EAN-13 legível por leitores."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

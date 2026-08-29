@@ -128,6 +128,10 @@ export const wimResources: WimResources = {
         "away": "Away",
         "busy": "Busy",
         "offline": "Offline"
+      },
+      "barcode": {
+        "aria_label": "Barcode {{value}}",
+        "invalid": "This value cannot be encoded as {{format}}."
       }
     },
     "components": {
@@ -453,6 +457,10 @@ export const wimResources: WimResources = {
         "away": "離席中",
         "busy": "取り込み中",
         "offline": "オフライン"
+      },
+      "barcode": {
+        "aria_label": "バーコード {{value}}",
+        "invalid": "この値は {{format}} では表現できません。"
       }
     },
     "components": {
@@ -778,6 +786,10 @@ export const wimResources: WimResources = {
         "away": "Ausente",
         "busy": "Ocupado",
         "offline": "Offline"
+      },
+      "barcode": {
+        "aria_label": "Código de barras {{value}}",
+        "invalid": "Este valor não pode ser codificado como {{format}}."
       }
     },
     "components": {

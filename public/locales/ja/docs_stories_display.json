@@ -337,6 +337,16 @@
     "watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
     "watermark_team": "WIM UI チーム",
     "watermark_text": "wimui ウォーターマーク",
-    "watermark_wimui": "wimui"
+    "watermark_wimui": "wimui",
+    "barcode_caption_code128": "Code 128 ── 追跡番号・チケット・社内 SKU",
+    "barcode_caption_ean13": "EAN-13 ── 小売の商品コード",
+    "barcode_caption_bare": "数字を印字しない形（表のセル向け）",
+    "barcode_caption_invalid": "チェックディジットが合わない値は描かない",
+    "barcode_receipt_service": "クール便 ── 天地無用",
+    "barcode_receipt_to": "お届け先",
+    "barcode_receipt_recipient": "Ngozi Okonkwo-Whitfield",
+    "barcode_receipt_address": "〒106-0031 東京都港区西麻布 4-2-8 グランドメゾン西麻布 1203",
+    "barcode_receipt_dropped": "8/26 19:12 受付 ・ 西麻布二丁目店",
+    "barcode_receipt_tracking": "お問い合わせ番号"
   }
 }

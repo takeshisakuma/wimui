@@ -309,6 +309,7 @@
     "scenario_save_title": "保存",
     "scenario_search_title": "検索",
     "scenario_settings_title": "設定",
+    "scenario_shipping_title": "配送",
     "scenario_sns_title": "SNS",
     "scenario_stats_title": "統計",
     "scenario_status_title": "ステータス",
@@ -319,6 +320,7 @@
     "scenario_trial_title": "無料トライアル",
     "scenario_undo_title": "元に戻す",
     "scenario_user_title": "ユーザー",
+    "scenario_warehouse_title": "倉庫",
     "scenario_warning_title": "警告",
     "see_more": "詳細を見る：",
     "speed_dial_a11y_desc": "aria-expanded およびキーボードナビゲーションをサポートします。トリガーボタンには明確な aria-label を付与してください。",
@@ -650,5 +652,9 @@
     "away": "離席中",
     "busy": "取り込み中",
     "offline": "オフライン"
+  },
+  "barcode": {
+    "aria_label": "バーコード {{value}}",
+    "invalid": "この値は {{format}} では表現できません。"
   }
 }
