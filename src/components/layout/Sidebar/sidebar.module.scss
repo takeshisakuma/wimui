@@ -1,139 +1,142 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: var(--wim-z-mask);
-  background-color: var(--wim-color-overlay-sidebar);
-  backdrop-filter: blur(var(--wim-radius-sm));
-}
-
-.root {
-  display: flex;
-  flex-direction: column;
-  width: var(--wim-sidebar-width);
-  height: 100%;
-  background-color: var(--wim-color-surface);
-  transition: all var(--wim-transition-base);
-
-  &.fixed {
+@layer component {
+  .overlay {
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: var(--wim-z-sidebar);
+    inset: 0;
+    z-index: var(--wim-z-mask);
+    background-color: var(--wim-color-overlay-sidebar);
+    backdrop-filter: blur(var(--wim-radius-sm));
   }
 
-  &.collapsed {
-    width: var(--wim-height-xl);
+  .root {
+    display: flex;
+    flex-direction: column;
+    width: var(--wim-sidebar-width);
+    height: 100%;
+    background-color: var(--wim-color-surface);
+    transition: all var(--wim-transition-base);
 
-    .itemText {
-      display: none;
-    }
-
-    // Collapsed rail: hide opt-in labels and center the remaining icons.
-    :global(.wim-sidebar__hide-collapsed) {
-      display: none;
-    }
-
-    .header,
-    .footer {
-      justify-content: center;
-    }
-
-    .item {
-      // Icon-only rail: match vertical padding to horizontal so the hover
-      // highlight reads as a balanced square rather than a thin bar.
-      justify-content: center;
-      padding-block: var(--wim-spacing-md);
-    }
-
-    .itemIcon {
-      margin-right: 0;
-    }
-  }
-
-  &.bordered {
-    border-right: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-  }
-
-  &.responsive {
-    @include breakpoints.down(md) {
+    &.fixed {
       position: fixed;
       top: 0;
       bottom: 0;
-      left: calc(-1 * var(--wim-sidebar-width));
-      z-index: var(--wim-z-drawer);
+      left: 0;
+      z-index: var(--wim-z-sidebar);
+    }
 
-      &.mobile-open {
-        left: 0;
+    &.collapsed {
+      width: var(--wim-height-xl);
+
+      .itemText {
+        display: none;
+      }
+
+      // Collapsed rail: hide opt-in labels and center the remaining icons.
+      :global(.wim-sidebar__hide-collapsed) {
+        display: none;
+      }
+
+      .header,
+      .footer {
+        justify-content: center;
+      }
+
+      .item {
+        // Icon-only rail: match vertical padding to horizontal so the hover
+        // highlight reads as a balanced square rather than a thin bar.
+        justify-content: center;
+        padding-block: var(--wim-spacing-md);
+      }
+
+      .itemIcon {
+        margin-right: 0;
+      }
+    }
+
+    &.bordered {
+      border-right: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    }
+
+    &.responsive {
+      @include breakpoints.down(md) {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: calc(-1 * var(--wim-sidebar-width));
+        z-index: var(--wim-z-drawer);
+
+        &.mobile-open {
+          left: 0;
+        }
       }
     }
   }
-}
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.header {
-  padding: var(--wim-spacing-md);
-  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-}
-
-.content {
-  flex: 1;
-  padding: var(--wim-spacing-sm) 0;
-  overflow-y: auto;
-}
-
-.footer {
-  padding: var(--wim-spacing-md);
-  border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  color: var(--wim-color-text-primary);
-  cursor: pointer;
-  transition: background-color var(--wim-transition-fast);
-
-  &:hover {
-    background-color: var(--wim-color-surface-hover);
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
-  &.active {
-    font-weight: var(--wim-font-weight-bold);
-    color: var(--wim-color-text-accent);
-    background-color: var(--wim-color-primary-muted);
+  .header {
+    padding: var(--wim-spacing-md);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 
-  &.disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-disabled);
+  .content {
+    flex: 1;
+    padding: var(--wim-spacing-sm) 0;
+    overflow-y: auto;
+  }
+
+  .footer {
+    padding: var(--wim-spacing-md);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    transition: background-color var(--wim-transition-fast);
 
     &:hover {
-      background-color: transparent;
+      background-color: var(--wim-color-surface-hover);
+    }
+
+    &.active {
+      font-weight: var(--wim-font-weight-bold);
+      color: var(--wim-color-text-accent);
+      background-color: var(--wim-color-primary-muted);
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &Icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--wim-height-sm);
+      margin-right: var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-xl);
+    }
+
+    &Text {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
-  &Icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: var(--wim-height-sm);
-    margin-right: var(--wim-spacing-sm);
-    font-size: var(--wim-font-size-xl);
-  }
-
-  &Text {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }

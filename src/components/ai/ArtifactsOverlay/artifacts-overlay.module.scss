@@ -1,68 +1,72 @@
-.content {
-  width: min(600px, 90vw); /* Exception: Structural Logic — artifact panel readability ceiling */
-  max-width: none;
-  background-color: var(--wim-color-surface-app);
-  box-shadow: var(--wim-shadow-modal);
-  transition: width var(--wim-duration-slow) var(--wim-easing-standard);
 
-  &.fullscreen {
-    width: 100vw;
+@layer component {
+  .content {
+    width: min(600px, 90vw); /* Exception: Structural Logic — artifact panel readability ceiling */
+    max-width: none;
+    background-color: var(--wim-color-surface-app);
+    box-shadow: var(--wim-shadow-modal);
+    transition: width var(--wim-duration-slow) var(--wim-easing-standard);
+
+    &.fullscreen {
+      width: 100vw;
+    }
   }
-}
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--wim-spacing-md) var(--wim-spacing-lg);
-  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
-}
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
 
-.titleArea {
-  display: flex;
-  flex-direction: column;
-}
+  .titleArea {
+    display: flex;
+    flex-direction: column;
+  }
 
-.title {
-  margin: 0;
-  font-size: var(--wim-font-size-lg);
-  font-weight: var(--wim-font-weight-bold);
-  color: var(--wim-color-text-primary);
-}
-
-.subtitle {
-  margin: 0;
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-}
-
-.actions {
-  display: flex;
-  gap: var(--wim-spacing-xs);
-}
-
-.actionButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px; /* Exception: Structural Logic — overlay action touch target */
-  height: var(--wim-height-sm);
-  color: var(--wim-color-text-secondary);
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  border-radius: var(--wim-radius-sm);
-  transition: background-color var(--wim-duration-fast);
-
-  &:hover {
+  .title {
+    margin: 0;
+    font-size: var(--wim-font-size-lg);
+    font-weight: var(--wim-font-weight-bold);
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-surface-hover);
   }
-}
 
-.body {
-  flex: 1;
-  padding: var(--wim-spacing-lg);
-  overflow-y: auto;
-  background-color: var(--wim-color-surface-app);
+  .subtitle {
+    margin: 0;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; /* Exception: Structural Logic — overlay action touch target */
+    height: var(--wim-height-sm);
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition: background-color var(--wim-duration-fast);
+
+    &:hover {
+      color: var(--wim-color-text-primary);
+      background-color: var(--wim-color-surface-hover);
+    }
+  }
+
+  .body {
+    flex: 1;
+    padding: var(--wim-spacing-lg);
+    overflow-y: auto;
+    background-color: var(--wim-color-surface-app);
+  }
+
 }

@@ -1,45 +1,48 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  display: inline-flex;
-  gap: var(--wim-spacing-xs);
-  align-items: center;
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-}
-
-.icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-
-  svg {
-    width: 1em;
-    height: 1em;
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
   }
-}
 
-.label {
-  line-height: 1;
-}
+  .icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
 
-.spinner {
-  animation: spin var(--wim-duration-slow, 1s) linear infinite;
-}
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
 
-.saving {
-  color: var(--wim-color-text-secondary);
-}
+  .label {
+    line-height: 1;
+  }
 
-.saved {
-  color: var(--wim-color-text-success);
-}
+  .spinner {
+    animation: spin var(--wim-duration-slow, 1s) linear infinite;
+  }
 
-.danger {
-  color: var(--wim-color-text-danger);
-}
+  .saving {
+    color: var(--wim-color-text-secondary);
+  }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  .saved {
+    color: var(--wim-color-text-success);
+  }
+
+  .danger {
+    color: var(--wim-color-text-danger);
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
 }

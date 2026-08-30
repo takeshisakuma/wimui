@@ -1,10 +1,14 @@
-.root {
-  box-sizing: border-box;
-  width: 100%;
-}
 
-.item {
-  display: inline-block;
-  width: 100%;
-  break-inside: avoid;
+@layer component {
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .item {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+  }
+
 }

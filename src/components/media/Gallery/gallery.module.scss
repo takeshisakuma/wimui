@@ -1,209 +1,212 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
 
-  /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
-     flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 0px**（余った幅すら取らずに消える）。
-     **containment は外せない**（`container-name` を使っていないため、中に置かれた
-     子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
-     使えない**（containment 下では 0 に潰れる）。T61 */
-  min-width: var(--wim-width-sm);
-  container-type: inline-size;
-}
-
-// --- Toolbar ---
-
-.toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  background-color: var(--wim-color-primary-subtle);
-
-  /* T102: 以前は枠にも `primary-subtle` を使っており、**塗りと同色＝枠が輪郭を
-     作らず、ツールバーが 1px 大きく見えるだけ**だった。枠用のトークンへ寄せる。 */
-  border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-  border-radius: var(--wim-radius-component);
-  animation: toolbar-in var(--wim-duration-fast) var(--wim-easing-entrance);
-}
-
-@keyframes toolbar-in {
-  from {
-    opacity: 0;
-    transform: translateY(calc(var(--wim-spacing-sm) * -1));
+    /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
+       flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 0px**（余った幅すら取らずに消える）。
+       **containment は外せない**（`container-name` を使っていないため、中に置かれた
+       子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
+       使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
+    container-type: inline-size;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+  // --- Toolbar ---
 
-.toolbarCount {
-  font-size: var(--wim-font-size-sm);
-  font-weight: var(--wim-font-weight-medium);
-  color: var(--wim-color-text-accent);
-}
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    background-color: var(--wim-color-primary-subtle);
 
-.toolbarActions {
-  display: flex;
-  gap: var(--wim-spacing-sm);
-  align-items: center;
-}
-
-.toolbarClear {
-  flex-shrink: 0;
-}
-
-// --- Grid ---
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(var(--gallery-columns, 3), minmax(0, 1fr));
-
-  @include breakpoints.container-down(sm) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* T102: 以前は枠にも `primary-subtle` を使っており、**塗りと同色＝枠が輪郭を
+       作らず、ツールバーが 1px 大きく見えるだけ**だった。枠用のトークンへ寄せる。 */
+    border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    border-radius: var(--wim-radius-component);
+    animation: toolbar-in var(--wim-duration-fast) var(--wim-easing-entrance);
   }
 
-  @include breakpoints.container-down(xs) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
+  @keyframes toolbar-in {
+    from {
+      opacity: 0;
+      transform: translateY(calc(var(--wim-spacing-sm) * -1));
+    }
 
-// Gap variants
-.gap-xs { gap: var(--wim-spacing-xs); }
-.gap-sm { gap: var(--wim-spacing-sm); }
-.gap-md { gap: var(--wim-spacing-md); }
-.gap-lg { gap: var(--wim-spacing-lg); }
-.gap-xl { gap: var(--wim-spacing-xl); }
-
-// --- Item ---
-
-.item {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  outline: none;
-  border-radius: var(--wim-radius-component);
-  transition: box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
-
-  &:focus-visible {
-    box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  &.selected .imageWrapper {
+  .toolbarCount {
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-accent);
+  }
+
+  .toolbarActions {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  .toolbarClear {
+    flex-shrink: 0;
+  }
+
+  // --- Grid ---
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--gallery-columns, 3), minmax(0, 1fr));
+
+    @include breakpoints.container-down(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include breakpoints.container-down(xs) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  // Gap variants
+  .gap-xs { gap: var(--wim-spacing-xs); }
+  .gap-sm { gap: var(--wim-spacing-sm); }
+  .gap-md { gap: var(--wim-spacing-md); }
+  .gap-lg { gap: var(--wim-spacing-lg); }
+  .gap-xl { gap: var(--wim-spacing-xl); }
+
+  // --- Item ---
+
+  .item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+    border-radius: var(--wim-radius-component);
+    transition: box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:focus-visible {
+      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
+    }
+
+    &.selected .imageWrapper {
+      border-radius: var(--wim-radius-component);
+    }
+  }
+
+  // --- Image wrapper ---
+
+  .imageWrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--wim-color-surface-subtle);
     border-radius: var(--wim-radius-component);
   }
-}
 
-// --- Image wrapper ---
-
-.imageWrapper {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--wim-color-surface-subtle);
-  border-radius: var(--wim-radius-component);
-}
-
-// Aspect ratio variants applied on imageWrapper via grid class
-.aspect-square .imageWrapper {
-  aspect-ratio: 1 / 1;
-}
-
-.aspect-landscape .imageWrapper {
-  // 幾何学的整合性: 標準的な映像比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
-  aspect-ratio: 16 / 9;
-}
-
-.aspect-portrait .imageWrapper {
-  // 幾何学的整合性: 標準的なポートレート比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
-  aspect-ratio: 3 / 4;
-}
-
-.aspect-auto .imageWrapper {
-  aspect-ratio: auto;
-}
-
-.image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--wim-duration-base) var(--wim-easing-standard);
-
-  .item:hover & {
-    transform: scale(1.04);
+  // Aspect ratio variants applied on imageWrapper via grid class
+  .aspect-square .imageWrapper {
+    aspect-ratio: 1 / 1;
   }
 
-  .item.selected & {
-    transform: scale(1.04);
+  .aspect-landscape .imageWrapper {
+    // 幾何学的整合性: 標準的な映像比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
+    aspect-ratio: 16 / 9;
   }
-}
 
-// --- Checkbox overlay ---
-// 選択が仕事なのでホバー待ちにしない（T62 はタッチだけ常時、T70 と同型で
-// ポインタでも存在が見えない）。オーバーレイは JSX が `selectable` のときだけ出す。
-
-.checkboxOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  /* 以前は xs。箱が 18px でラベル 24px に縦中央だったため、上だけ
-     （24-18)/2 分広く見えていた。箱を tap 下限まで上げたうえで、
-     その上側に合わせて四辺を md にする。 */
-  padding: var(--wim-spacing-md);
-}
-
-.checkbox {
-  /* フォームの Checkbox に size は無い。写真の上の発見しやすさだけ上げる。 */
-  --wim-checkbox-size: var(--wim-tap-target-min);
-
-  align-items: flex-start;
-  line-height: 1;
-
-  input {
-    margin: 0;
+  .aspect-portrait .imageWrapper {
+    // 幾何学的整合性: 標準的なポートレート比率のため意図的なハードコード（TOKENIZATION_EXCEPTIONS: geometric）
+    aspect-ratio: 3 / 4;
   }
-}
 
-// --- Selection ring ---
+  .aspect-auto .imageWrapper {
+    aspect-ratio: auto;
+  }
 
-.selectedRing {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: var(--wim-border-width-thick) solid var(--wim-color-primary);
-  border-radius: var(--wim-radius-component);
-}
+  .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--wim-duration-base) var(--wim-easing-standard);
 
-// --- Caption ---
+    .item:hover & {
+      transform: scale(1.04);
+    }
 
-.caption {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-2xs);
-  padding: var(--wim-spacing-xs) 0;
-}
+    .item.selected & {
+      transform: scale(1.04);
+    }
+  }
 
-.captionTitle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: var(--wim-font-size-sm);
-  font-weight: var(--wim-font-weight-medium);
-  color: var(--wim-color-text-primary);
-  white-space: nowrap;
-}
+  // --- Checkbox overlay ---
+  // 選択が仕事なのでホバー待ちにしない（T62 はタッチだけ常時、T70 と同型で
+  // ポインタでも存在が見えない）。オーバーレイは JSX が `selectable` のときだけ出す。
 
-.captionText {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: var(--wim-font-size-xs);
-  color: var(--wim-color-text-secondary);
-  white-space: nowrap;
+  .checkboxOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    /* 以前は xs。箱が 18px でラベル 24px に縦中央だったため、上だけ
+       （24-18)/2 分広く見えていた。箱を tap 下限まで上げたうえで、
+       その上側に合わせて四辺を md にする。 */
+    padding: var(--wim-spacing-md);
+  }
+
+  .checkbox {
+    /* フォームの Checkbox に size は無い。写真の上の発見しやすさだけ上げる。 */
+    --wim-checkbox-size: var(--wim-tap-target-min);
+
+    align-items: flex-start;
+    line-height: 1;
+
+    input {
+      margin: 0;
+    }
+  }
+
+  // --- Selection ring ---
+
+  .selectedRing {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: var(--wim-border-width-thick) solid var(--wim-color-primary);
+    border-radius: var(--wim-radius-component);
+  }
+
+  // --- Caption ---
+
+  .caption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    padding: var(--wim-spacing-xs) 0;
+  }
+
+  .captionTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+  }
+
+  .captionText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-secondary);
+    white-space: nowrap;
+  }
+
 }

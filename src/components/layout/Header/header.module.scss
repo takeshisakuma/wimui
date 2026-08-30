@@ -1,85 +1,89 @@
-.root {
-  display: flex;
-  width: 100%;
 
-  /* T128: 以前は `height` 固定で、収まらない中身は折り返しも切り詰めもせず
-     **上下にはみ出していた**（実測: 768px で 19px、390px で 55px。1280px では 0）。
-     クロームは高さで語る要素なので既定の見え方は変えず、**収まらないときだけ伸びる**
-     ように下限へ変える。狭い幅で中身を畳むのは利用者側の設計判断（DESIGN.md
-     必須ルール 12「クロームは黙らせる」）。 */
-  min-height: var(--wim-header-height, 64px);
-  padding: 0;
-  transition: all var(--wim-transition-base);
+@layer component {
+  .root {
+    display: flex;
+    width: 100%;
 
-  &.fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: var(--wim-z-header);
+    /* T128: 以前は `height` 固定で、収まらない中身は折り返しも切り詰めもせず
+       **上下にはみ出していた**（実測: 768px で 19px、390px で 55px。1280px では 0）。
+       クロームは高さで語る要素なので既定の見え方は変えず、**収まらないときだけ伸びる**
+       ように下限へ変える。狭い幅で中身を畳むのは利用者側の設計判断（DESIGN.md
+       必須ルール 12「クロームは黙らせる」）。 */
+    min-height: var(--wim-header-height, 64px);
+    padding: 0;
+    transition: all var(--wim-transition-base);
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: var(--wim-z-header);
+    }
+
+    &.sticky {
+      position: sticky;
+      top: 0;
+      z-index: var(--wim-z-header);
+    }
+
+    &.bordered {
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    }
+
+    &.glass {
+      background: var(--wim-color-glass-bg);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
+      backdrop-filter: blur(var(--wim-color-glass-blur));
+    }
+
+    &.bg-surface {
+      background-color: var(--wim-color-surface);
+    }
+
+    &.bg-surface-variant {
+      background-color: var(--wim-color-surface-variant);
+    }
+
+    &.bg-transparent {
+      background-color: transparent;
+    }
   }
 
-  &.sticky {
-    position: sticky;
-    top: 0;
-    z-index: var(--wim-z-header);
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
+
+    /* `height: 100%` は親が min-height だけのとき解決せず、中身がヘッダー上端に
+       貼り付く。下限を同じトークンにして、64px のクローム内で縦中央に置く。 */
+    min-height: var(--wim-header-height, 64px);
+    padding: 0 var(--wim-spacing-xl);
+    margin: 0 auto;
+
+    /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
+    &.fluid {
+      max-width: none;
+    }
   }
 
-  &.bordered {
-    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+  .section {
+    display: flex;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+
+    &.start {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.end {
+      justify-content: flex-end;
+    }
   }
 
-  &.glass {
-    background: var(--wim-color-glass-bg);
-    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
-    backdrop-filter: blur(var(--wim-color-glass-blur));
-  }
-
-  &.bg-surface {
-    background-color: var(--wim-color-surface);
-  }
-
-  &.bg-surface-variant {
-    background-color: var(--wim-color-surface-variant);
-  }
-
-  &.bg-transparent {
-    background-color: transparent;
-  }
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
-
-  /* `height: 100%` は親が min-height だけのとき解決せず、中身がヘッダー上端に
-     貼り付く。下限を同じトークンにして、64px のクローム内で縦中央に置く。 */
-  min-height: var(--wim-header-height, 64px);
-  padding: 0 var(--wim-spacing-xl);
-  margin: 0 auto;
-
-  /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
-  &.fluid {
-    max-width: none;
-  }
-}
-
-.section {
-  display: flex;
-  gap: var(--wim-spacing-md);
-  align-items: center;
-
-  &.start {
-    justify-content: flex-start;
-  }
-
-  &.center {
-    justify-content: center;
-  }
-
-  &.end {
-    justify-content: flex-end;
-  }
 }
