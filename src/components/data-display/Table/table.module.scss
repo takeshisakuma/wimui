@@ -91,7 +91,16 @@
 
                 &::before {
                   position: static;
+
+                  /* **重ね順と背景も戻すこと（T240）。**
+                     T234 の隙間埋めは `z-index: -1` と不透明な背景を持つ。セルが
+                     `sticky` の間は**セル自身が重ね合わせ文脈を作る**のでラベルは
+                     見えていたが、カード表示で `position: static` に戻した瞬間、
+                     `z-index: -1` の `::before` は**行の背景の裏へ回って消えた**
+                     （実測: 位置は直ったのに「ID」だけ描かれない）。 */
+                  z-index: auto;
                   width: auto;
+                  background: none;
                 }
 
                 &::after {
@@ -146,7 +155,8 @@
 
     /* カード表示になりうる表を包むときは面を持たない。行がカードになった幅では、
        この白がカードとカードの隙間に出てキャンバスを隠す（表として描かれる幅では
-       ヘッダ（.header）と本体（.body）が各自塗るので、透明でも見た目は変わらない）。 */
+       見出しの `.row` と本体（`.body`）が各自塗るので、透明でも見た目は変わらない。
+       `.header` は T242 で消した ── 地色は `.row` に隠れて見えていなかった）。 */
     &:has(> .mobileCard, > .mobileCardMd) {
       background-color: transparent;
     }
@@ -227,10 +237,17 @@
   
     &.bordered {
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  
+
       th,
       td {
         border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      }
+
+      /* 見出しの下辺だけは帯が描く（T241）。ここで色を消さないと、上の
+         `th, td` が `.head` を詳細度で上書きして 1px の線が戻る
+         （**これが「`bordered` の表だけ 1px だった」原因そのもの**）。 */
+      thead th {
+        border-bottom-color: transparent;
       }
     }
   
@@ -305,11 +322,19 @@
   }
 
   /* Internal elements */
-  .header {
-    background-color: var(--wim-color-surface-subtle);
 
-    --wim-table-row-bg: var(--wim-color-surface-subtle);
-  }
+  /* **見出し行に地色は付けない（T242）。**
+     ここには `.header`（`thead`）に `surface-subtle` の背景と `--wim-table-row-bg` が
+     書かれていたが、**中の `.row`（`Table.Header` の中の `Table.Row`）が白を塗るので
+     一度も見えていなかった**（実測: computed は 250,250,250 なのに、画素を読むと
+     255,255,255）。生き返らせても効かない ──
+     ①light は `#fff` 対 `#fafafa` で **1.044**（ほぼ判別できない）
+     ②**`striped` の奇数行と同じトークン**なので、地色だけで区切ると
+       `striped` の表で見出しと 1 行目が**完全に同じ色**になる
+       （実測: light 250,250,250 / dark 38,38,38 が一致）。
+     見出しと本文の区切りは `.head` の帯（T241）が持つ。
+     **死んだ宣言は残さない** ── クラスごと消し、`Table.Header` 側の参照も外した
+     （残すと「CSS に無いクラスを参照している」状態になる。T121 と同じ形）。 */
 
   .body {
     background-color: var(--wim-color-surface);
@@ -334,8 +359,21 @@
     font-weight: var(--wim-font-weight-semibold);
     text-align: left;
     white-space: nowrap;
-    border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border);
-  
+
+    /* **見出しと本文の境界は「帯」（inset の box-shadow）で描く。border では描かない（T241）。**
+       画素で測ると、同じ表の家族で線が **1px / 2px / 3px / 4px の 4 通り**あった。
+       理由は 2 つで、どちらも border 側にある:
+       ①`bordered` の `th, td { border: thin }` は `.head` より詳細度が高いので、
+         **`bordered` を付けた瞬間にここの 2px が 1px に落ちていた**。
+       ②`stickyHeader` は別に `inset 0 -2px` の帯を描くので border と足し算になり、
+         3px / 4px になっていた。しかも **border はスクロール中に細る**
+         （実測: 帯を外して border だけにすると 2px → 1px）。帯はスクロール位置に
+         よらず一定（`scrollTop` を 0〜60px 掃いて確認）。
+       border は**幅だけ残して色を透明にする** ── `none` にすると
+       `border-collapse: collapse` の共有辺を本文側の 1px が描いてしまう。 */
+    border-bottom: var(--wim-border-width-thick) solid transparent;
+    box-shadow: inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border);
+
     &.sortable {
       cursor: pointer;
       user-select: none;
