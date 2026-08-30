@@ -1,19 +1,58 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  /* Align xyflow defaults with WIM tokens (color uses currentColor on SVGs). */
-  --xy-controls-button-background-color-default: var(--wim-color-surface);
-  --xy-controls-button-background-color-hover-default: var(--wim-color-surface-hover);
-  --xy-controls-button-color-default: var(--wim-color-text-primary);
-  --xy-controls-button-color-hover-default: var(--wim-color-text-primary);
-  --xy-controls-button-border-color-default: var(--wim-color-border);
+@layer component {
+  .root {
+    /* Align xyflow defaults with WIM tokens (color uses currentColor on SVGs). */
+    --xy-controls-button-background-color-default: var(--wim-color-surface);
+    --xy-controls-button-background-color-hover-default: var(--wim-color-surface-hover);
+    --xy-controls-button-color-default: var(--wim-color-text-primary);
+    --xy-controls-button-color-hover-default: var(--wim-color-text-primary);
+    --xy-controls-button-border-color-default: var(--wim-color-border);
 
-  position: relative;
-  overflow: hidden;
-  background-color: var(--wim-color-surface-app);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--wim-color-surface-app);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+  }
+
+
+
+}
+
+
+/* `MiniMap` / `Controls` は React Flow の部品で、ここで渡すクラスは
+   あちらの要素に乗る。上と同じ理由で層の外に置く（実測: 層の中に残すと
+   コントロールの影が React Flow 既定に戻り 160 画素動いた）。 */
+
+.minimap {
+  background-color: var(--wim-color-surface);
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container);
+  border-radius: var(--wim-radius-component);
 
+  /* Narrow viewports: overview overlaps the canvas and blocks pan/zoom. */
+  @include breakpoints.down(md) {
+    display: none;
+  }
+}
+
+.controls {
+  box-shadow: var(--wim-shadow-overlay);
+}
+
+/* **React Flow の上書きだけは `@layer` の外に置く（T243）。**
+ *
+ * `reactflow` が配る CSS は**どのレイヤーにも属さない**。レイヤーの外の宣言は
+ * レイヤーの中より常に強いので、**層の中から上書きすると詳細度に関わらず負ける**。
+ * 実測（この file を丸ごと層へ入れた版・9,831 画素）: ズームボタンが 44px の箱から
+ * React Flow 既定の小箱に縮み、ノードのハンドルが primary から既定の黒へ戻り、
+ * attribution が 2.7:1 の #999 に戻った ── **T159 / T167 とタップ領域の対策が
+ * まとめて外れる**。
+ *
+ * **当てる相手が層の外にいるので、こちらも外に置くのが正しい。** `.root` を
+ * 前置してあるので効く範囲は InteractiveGraph の中だけ。
+ */
+.root {
   :global(.react-flow__node) {
     font-family: var(--wim-font-family-default);
     color: var(--wim-color-text-primary);
@@ -87,19 +126,4 @@
       color: var(--wim-color-text-secondary);
     }
   }
-}
-
-.minimap {
-  background-color: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
-
-  /* Narrow viewports: overview overlaps the canvas and blocks pan/zoom. */
-  @include breakpoints.down(md) {
-    display: none;
-  }
-}
-
-.controls {
-  box-shadow: var(--wim-shadow-overlay);
 }
