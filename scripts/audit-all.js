@@ -376,6 +376,14 @@ const checks = [
   },
   {
     category: "lib",
+    // レイヤーの外の宣言はレイヤーの中のどんな詳細度にも勝つ。1 file 外にあるだけで
+    // 他の部品から上書きできなくなる（T240 が実際にそれで出た）。2026-08-30 に
+    // 212/212 へ揃えたので、この検査はその状態を保つためだけにある（T243）。
+    name: "Cascade layer on every module.scss (keeps overrides reachable)",
+    command: "node scripts/check-scss-layer.js",
+  },
+  {
+    category: "lib",
     name: "Intent → SCSS class coverage (no silently-unstyled intents)",
     command: "node scripts/check-intents-scss.js",
   },
