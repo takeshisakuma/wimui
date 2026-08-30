@@ -1,7 +1,25 @@
-.root {
-  width: 100%;
-  min-height: 500px; /* Exception: Structural Logic — schedule timeline viewport floor */
+@layer component {
+  .root {
+    width: 100%;
+    min-height: 500px; /* Exception: Structural Logic — schedule timeline viewport floor */
+  }
+}
 
+/* **FullCalendar の上書きは `@layer` の外に置く（T243）。**
+ *
+ * `@fullcalendar/*` が配る CSS は**どのレイヤーにも属さない**。レイヤーの外の宣言は
+ * レイヤーの中より常に強いので、**層の中から上書きすると詳細度に関わらず負ける**。
+ * 実測（この file を丸ごと層へ入れた版）: 4 ストーリーで**画像の寸法ごと変わり**
+ * （＝レイアウトが崩れ）、month-view は 70,407 画素動いた。ツールバーのボタンが
+ * FullCalendar 既定の紺色に戻り、文字も 1em に戻って全体が一回り大きくなる。
+ * ブラウザで確認した勝ち負け: `.fc .fc-button`（層なし・クラス 2）が
+ * `.root .fc-button`（層の中）に勝っていた。
+ *
+ * **当てる相手が層の外にいるので、こちらも外に置くのが正しい。** InteractiveGraph /
+ * NodeGraph（React Flow）と同じ形。`.root` を前置してあるので効く範囲は
+ * ScheduleView の中だけ。
+ */
+.root {
   :global {
     .fc {
       // Override FullCalendar's CSS custom property — no !important needed
