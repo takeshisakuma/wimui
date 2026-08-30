@@ -1,188 +1,198 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  --wim-dashboard-widget-min: 7.5rem; // 120px — overridable by consumers
+@layer component {
+  .root {
+    --wim-dashboard-widget-min: 7.5rem; // 120px — overridable by consumers
 
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
 
-  /* `container-type: inline-size` は `contain: layout style inline-size` なので、
-     **内容の寸法が 0 として扱われ** flex の自動最小サイズの保護が消える。
-     無いと 610px の row（残り 24px）で **幅 0px・高さ 717→1987px**。containment は内容の寸法を 0 にするので、余った幅すら取らずに消える。
-     **containment 自体は外せない** — `container-name` を使っていないため、
-     中に置かれた子コンポーネントの `@container` がここを最も近い祖先として
-     参照している（`Dashboard` で外して実測したらカラムの高さが 717→538px に
-     変わった）。**`min-content` も使えない**（containment 下では 0 に潰れる）。T61 */
-  min-width: var(--wim-width-sm);
-  container-type: inline-size;
-}
+    /* `container-type: inline-size` は `contain: layout style inline-size` なので、
+       **内容の寸法が 0 として扱われ** flex の自動最小サイズの保護が消える。
+       無いと 610px の row（残り 24px）で **幅 0px・高さ 717→1987px**。containment は内容の寸法を 0 にするので、余った幅すら取らずに消える。
+       **containment 自体は外せない** — `container-name` を使っていないため、
+       中に置かれた子コンポーネントの `@container` がここを最も近い祖先として
+       参照している（`Dashboard` で外して実測したらカラムの高さが 717→538px に
+       変わった）。**`min-content` も使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
+    container-type: inline-size;
+  }
 
-// --- Header ---
+  // --- Header ---
 
-.header {
-  display: flex;
-  gap: var(--wim-spacing-md);
-  align-items: center;
-  justify-content: flex-end;
-}
+  .header {
+    display: flex;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    justify-content: flex-end;
+  }
 
-.heading {
-  flex: 1;
-  margin: 0;
-  font-size: var(--wim-font-size-lg);
-  font-weight: var(--wim-font-weight-bold);
-  color: var(--wim-color-text-primary);
-}
+  .heading {
+    flex: 1;
+    margin: 0;
+    font-size: var(--wim-font-size-lg);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+  }
 
 
-// --- Grid ---
+  // --- Grid ---
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(var(--dashboard-columns, 3), minmax(0, 1fr));
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--dashboard-columns, 3), minmax(0, 1fr));
 
+    @include breakpoints.container-down(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include breakpoints.container-down(sm) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  // Gap variants
+  .gap-xs { gap: var(--wim-spacing-xs); }
+  .gap-sm { gap: var(--wim-spacing-sm); }
+  .gap-md { gap: var(--wim-spacing-md); }
+  .gap-lg { gap: var(--wim-spacing-lg); }
+  .gap-xl { gap: var(--wim-spacing-xl); }
+
+  // --- Widget ---
+
+  .widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      box-shadow: var(--wim-shadow-xs);
+    }
+
+    &.editMode {
+      /* T102: 以前は塗り用の `primary-subtle`（4%）。編集モードに入ったことを示す
+         破線が dark で 0.0063 しか無く、ほぼ見えていなかった。モードの表示なので
+         primary そのものを使う（dark 0.1482）。 */
+      border-color: var(--wim-color-primary);
+      border-style: dashed;
+    }
+  }
+
+  // Column span
+  .span-1 { grid-column: span 1; }
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+  .span-4 { grid-column: span 4; }
+
+  // Row span
+  .row-1 { grid-row: span 1; }
+  .row-2 { grid-row: span 2; }
+  .row-3 { grid-row: span 3; }
+
+  /* 狭い幅では列数を減らすのに **span はそのまま**だったため、列数を超える span が
+     暗黙の列を作って грид を壊していた。実測（390px・4 列指定・span 3 のウィジェット）:
+     `grid-template-columns` が `0px 186.188px 151.812px` になり、幅 30px の
+     カードに文字が 1 文字ずつ縦に折れた。**列を減らすときは span も同じだけ畳む。** */
   @include breakpoints.container-down(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    .span-3,
+    .span-4 {
+      grid-column: span 2;
+    }
   }
 
   @include breakpoints.container-down(sm) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-
-// Gap variants
-.gap-xs { gap: var(--wim-spacing-xs); }
-.gap-sm { gap: var(--wim-spacing-sm); }
-.gap-md { gap: var(--wim-spacing-md); }
-.gap-lg { gap: var(--wim-spacing-lg); }
-.gap-xl { gap: var(--wim-spacing-xl); }
-
-// --- Widget ---
-
-.widget {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    box-shadow: var(--wim-shadow-xs);
+    .span-2,
+    .span-3,
+    .span-4 {
+      grid-column: span 1;
+    }
   }
 
-  &.editMode {
-    /* T102: 以前は塗り用の `primary-subtle`（4%）。編集モードに入ったことを示す
-       破線が dark で 0.0063 しか無く、ほぼ見えていなかった。モードの表示なので
-       primary そのものを使う（dark 0.1482）。 */
-    border-color: var(--wim-color-primary);
-    border-style: dashed;
+  // --- Widget Header ---
+
+  .widgetHeader {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: var(--wim-height-sm);
+    margin-bottom: var(--wim-spacing-sm);
   }
-}
 
-// Column span
-.span-1 { grid-column: span 1; }
-.span-2 { grid-column: span 2; }
-.span-3 { grid-column: span 3; }
-.span-4 { grid-column: span 4; }
-
-// Row span
-.row-1 { grid-row: span 1; }
-.row-2 { grid-row: span 2; }
-.row-3 { grid-row: span 3; }
-
-/* 狭い幅では列数を減らすのに **span はそのまま**だったため、列数を超える span が
-   暗黙の列を作って грид を壊していた。実測（390px・4 列指定・span 3 のウィジェット）:
-   `grid-template-columns` が `0px 186.188px 151.812px` になり、幅 30px の
-   カードに文字が 1 文字ずつ縦に折れた。**列を減らすときは span も同じだけ畳む。** */
-@include breakpoints.container-down(md) {
-  .span-3,
-  .span-4 {
-    grid-column: span 2;
+  .widgetMeta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    min-width: 0;
   }
-}
 
-@include breakpoints.container-down(sm) {
-  .span-2,
-  .span-3,
-  .span-4 {
-    grid-column: span 1;
+  .widgetTitle {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-md);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
   }
-}
 
-// --- Widget Header ---
-
-.widgetHeader {
-  display: flex;
-  gap: var(--wim-spacing-sm);
-  align-items: flex-start;
-  justify-content: space-between;
-  min-height: var(--wim-height-sm);
-  margin-bottom: var(--wim-spacing-sm);
-}
-
-.widgetMeta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-2xs);
-  min-width: 0;
-}
-
-.widgetTitle {
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: var(--wim-font-size-md);
-  font-weight: var(--wim-font-weight-bold);
-  color: var(--wim-color-text-primary);
-  white-space: nowrap;
-}
-
-.widgetDescription {
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-  white-space: nowrap;
-}
-
-.removeButton {
-  flex-shrink: 0;
-}
-
-// --- Widget Content ---
-
-.widgetContent {
-  flex: 1;
-  min-height: 0;
-}
-
-// --- Add Button ---
-
-.addButton {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-xs);
-  align-items: center;
-  justify-content: center;
-  min-height: var(--wim-dashboard-widget-min);
-  padding: var(--wim-spacing-md);
-  font-size: var(--wim-font-size-sm);
-  font-weight: var(--wim-font-weight-medium);
-  color: var(--wim-color-text-secondary);
-  cursor: pointer;
-  background: transparent;
-  border: var(--wim-border-width-thin) dashed var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
-  transition: var(--wim-transition-base);
-
-  &:hover {
-    color: var(--wim-color-text-accent);
-    background: var(--wim-color-primary-subtle);
-
-    /* T102: 以前は枠にも `primary-subtle` を使っており、**基底の見える破線
-       （`border` トークン）を hover で消していた** ── 塗りと同色なので枠は
-       輪郭を作らず、ホバーすると逆に境界が曖昧になる。文字が `text-accent` へ
-       上がるのに合わせて枠も primary にする。 */
-    border-color: var(--wim-color-primary);
+  .widgetDescription {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+    white-space: nowrap;
   }
+
+  .removeButton {
+    flex-shrink: 0;
+  }
+
+  // --- Widget Content ---
+
+  .widgetContent {
+    flex: 1;
+    min-height: 0;
+  }
+
+  // --- Add Button ---
+
+  /* **Button が所有する要素に当てるので、詳細度を上げる（T243）。**
+     この file が `@layer` の外にあったあいだは、クラス 1 つでも `button.module.scss`
+     のどんな指定にも勝っていた（レイヤー外はレイヤー内より常に強い）。層へ入れた
+     以上、同じ土俵で詳細度が要る。実測（層に入れただけの版・49,249 画素）: 灰色の
+     点線プレースホルダが **Button 既定の青い点線ボタン**に戻っていた。
+     `.root .grid` を前置してクラス 3 つにする。**2 つでは足りない** ── Button 側も
+     `.root.outline` の形で 2 つあり、タイになると file の読み込み順で決まる。 */
+  .root .grid .addButton {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    justify-content: center;
+    min-height: var(--wim-dashboard-widget-min);
+    padding: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: var(--wim-border-width-thin) dashed var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    transition: var(--wim-transition-base);
+
+    &:hover {
+      color: var(--wim-color-text-accent);
+      background: var(--wim-color-primary-subtle);
+
+      /* T102: 以前は枠にも `primary-subtle` を使っており、**基底の見える破線
+         （`border` トークン）を hover で消していた** ── 塗りと同色なので枠は
+         輪郭を作らず、ホバーすると逆に境界が曖昧になる。文字が `text-accent` へ
+         上がるのに合わせて枠も primary にする。 */
+      border-color: var(--wim-color-primary);
+    }
+  }
+
 }
