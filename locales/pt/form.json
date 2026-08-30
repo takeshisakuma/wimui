@@ -1,0 +1,117 @@
+{
+  "agent_status": {
+    "done": "Concluído",
+    "error": "Erro",
+    "idle": "Ocioso",
+    "running": "Executando…",
+    "thinking": "Pensando…",
+    "waiting": "Aguardando…"
+  },
+  "ai_feedback": {
+    "group_label": "Avaliação da resposta",
+    "negative_label": "Não foi útil",
+    "positive_label": "Útil",
+    "regenerate_label": "Regenerar resposta"
+  },
+  "artifact_overlay": {
+    "maximize": "Maximizar",
+    "minimize": "Minimizar"
+  },
+  "button": {
+    "clear": "Limpar",
+    "close": "Fechar",
+    "consistency": "Consistência",
+    "dismiss": "Descartar",
+    "label": "Botão"
+  },
+  "code_block": {
+    "collapse_label": "Recolher",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar código",
+    "expand_label": "Expandir",
+    "lines": "{{count}} linhas"
+  },
+  "code_diff_viewer": {
+    "applied": "Aplicado",
+    "apply": "Aplicar",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar",
+    "reject": "Rejeitar",
+    "split_view": "Dividido",
+    "unified_view": "Unificado"
+  },
+  "combobox": {
+    "no_results": "Nenhum resultado encontrado"
+  },
+  "dropzone": {
+    "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
+  },
+  "fileupload": {
+    "button": "Selecionar arquivo",
+    "no_file": "Nenhum arquivo selecionado"
+  },
+  "form": {
+    "optional": "Opcional",
+    "required": "Obrigatório"
+  },
+  "image_cropper": {
+    "apply": "Aplicar recorte",
+    "cancel": "Cancelar",
+    "confirm": "Aplicar",
+    "confirm_message": "Deseja salvar a imagem com este recorte?",
+    "confirm_title": "Aplicar recorte",
+    "no_image": "Nenhuma imagem selecionada",
+    "rotate": "Rodar",
+    "zoom": "Zoom"
+  },
+  "otp": {
+    "digit": "Dígito {{index}}"
+  },
+  "password_strength": {
+    "fair": "Razoável",
+    "strong": "Forte",
+    "very_strong": "Muito forte",
+    "very_weak": "Muito fraca",
+    "weak": "Fraca"
+  },
+  "phone": {
+    "number": "Número de telefone"
+  },
+  "prompt_input": {
+    "aria_label": "Campo de prompt",
+    "attach_label": "Anexar arquivo",
+    "send_label": "Enviar"
+  },
+  "select": {
+    "no_options": "Nenhuma opção encontrada",
+    "option": "Opção 1"
+  },
+  "tag_input": {
+    "input_label": "Tags"
+  },
+  "smart_search": {
+    "input_label": "Pesquisar"
+  },
+  "markdown": {
+    "task_done": "Tarefa concluída",
+    "task_todo": "Tarefa pendente"
+  },
+  "source_citation": {
+    "open_source": "Abrir fonte",
+    "source_label": "Fonte {{index}}"
+  },
+  "terminal": {
+    "clear_label": "Limpar",
+    "copied_label": "Copiado!",
+    "copy_label": "Copiar saída"
+  },
+  "transfer": {
+    "move_to_source": "Mover para disponível",
+    "move_to_target": "Mover para selecionado",
+    "no_data": "Sem dados",
+    "source": "Disponível",
+    "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
+    "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+    "target": "Selecionado"
+  }
+}

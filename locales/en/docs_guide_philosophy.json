@@ -1,0 +1,38 @@
+{
+  "philosophy": {
+    "title": "Philosophy",
+    "a11y": "Accessibility",
+    "aria_support": "Leverages WAI-ARIA to enhance support for assistive technologies.",
+    "feedback_desc": "Provides rapid and natural feedback for user operations, offering a comfortable \"tangible\" experience.",
+    "focus_areas": "We focus on the following points for design and development:",
+    "interaction": "Interaction",
+    "kb_a11y": "Supports keyboard operations so all users can use it.",
+    "tangible_ui": "Pursuing a Tangible UI",
+    "standard_overview_title": "Standard Overview",
+    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"./?path=/docs/standardization-overview--docs\" target=\"_top\">Standardization Overview</a>.",
+    "choice_matrix_desc": "Foundation for all WIM UI components and design systems.",
+    "anatomy_desc": "Core principles: A11y, Interaction, Feedback.",
+    "scenarios_desc": "Providing a tangible UI for all applications.",
+    "best_practices_desc": "Consistency, Accessibility, and Predictability.",
+    "tokens_desc": "Foundation for all WIM UI components and design systems.",
+    "responsive_desc": "Standard responsive behavior follows the global breakpoint specifications.",
+    "keyboard_nav_desc": "Focus management and keyboard shortcuts across all interactive elements.",
+    "i18n_desc": "Multi-language support for global accessibility.",
+    "principles_title": "Design Principles",
+    "principles_desc": "All design decisions in WIM UI are based on the following five principles.",
+    "principle_1_title": "Consistency",
+    "principle_1_desc": "All UI elements share a unified visual language through design tokens.",
+    "principle_2_title": "Accessibility",
+    "principle_2_desc": "Assumes WCAG AA compliant contrast ratios and WAI-ARIA patterns.",
+    "principle_3_title": "Theme Adaptability",
+    "principle_3_desc": "Switching between light and dark modes is handled entirely by semantic tokens.",
+    "principle_4_title": "Internationalization (i18n)",
+    "principle_4_desc": "Supports Japanese, English, and Portuguese, considering the typographic characteristics of each language.",
+    "principle_5_title": "Responsive",
+    "principle_5_desc": "Provides an optimal experience on both desktop and mobile."
+  },
+  "internal": {
+    "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending WIM UI or adding new components.",
+    "philosophy_title": "Internal Design Philosophy"
+  }
+}

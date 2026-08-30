@@ -1,0 +1,13 @@
+{
+  "calendar": {
+    "aria_date": "{{year}}年{{month}}月{{day}}日",
+    "title": "{{year}}年 {{month}}月"
+  },
+  "countdown": {
+    "remaining": "残り{{time}}"
+  },
+  "table": {
+    "header_component": "コンポーネント",
+    "header_overview": "概要"
+  }
+}

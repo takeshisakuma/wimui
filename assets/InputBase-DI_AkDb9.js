@@ -1,0 +1,42 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{cr as t}from"./iframe-splidnB2.js";import{D as n,h as r,m as i,n as a,u as o}from"./blocks-qGTaibzD.js";import{t as s}from"./mdx-react-shim-CsIlWI2E.js";import{n as c,t as l}from"./T-D8-Z5cHp.js";import{n as u,t as d}from"./Docgen-BscC-bD0.js";import{Default as f,Disabled as p,Error as m,Ghost as h,MultipleRightIcons as g,WithIcons as _,n as v,t as y}from"./InputBase.stories-wuqUDt6f.js";function b(e){let t={h2:`h2`,h3:`h3`,hr:`hr`,...n(),...e.components};return(0,S.jsxs)(S.Fragment,{children:[(0,S.jsx)(o,{of:y}),`
+`,(0,S.jsx)(i,{}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_long_desc`})}),`
+`,(0,S.jsx)(t.hr,{}),`
+`,(0,S.jsx)(t.h2,{id:``,children:(0,S.jsx)(l,{k:`doc.design_intent_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_design_intent`})}),`
+`,(0,S.jsx)(t.h2,{id:`-1`,children:(0,S.jsx)(l,{k:`doc.choice_matrix_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_choice_matrix_desc`})}),`
+`,(0,S.jsxs)(`table`,{children:[(0,S.jsx)(`thead`,{children:(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.component`})}),(0,S.jsx)(`th`,{children:(0,S.jsx)(l,{k:`doc.usage_scenario`})})]})}),(0,S.jsxs)(`tbody`,{children:[(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`b`,{children:`InputBase`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.inputBase_choice_use_when`})})]}),(0,S.jsxs)(`tr`,{children:[(0,S.jsx)(`td`,{children:(0,S.jsx)(`b`,{children:`FieldTemplate`})}),(0,S.jsx)(`td`,{children:(0,S.jsx)(l,{k:`doc.inputBase_choice_alt_when`})})]})]})]}),`
+`,(0,S.jsx)(d,{componentName:`InputBase`,section:`anatomy`}),`
+`,(0,S.jsx)(t.h2,{id:`-2`,children:(0,S.jsx)(l,{k:`doc.a11y_spec_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_a11y_desc`})}),`
+`,(0,S.jsx)(t.h2,{id:`-3`,children:(0,S.jsx)(l,{k:`doc.real_world_scenarios_title`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsxs)(`li`,{children:[(0,S.jsxs)(`strong`,{children:[(0,S.jsx)(l,{k:`doc.scenario_dashboard_title`}),`:`]}),(0,S.jsx)(l,{k:`doc.inputBase_scenario_1`})]}),(0,S.jsxs)(`li`,{children:[(0,S.jsxs)(`strong`,{children:[(0,S.jsx)(l,{k:`doc.scenario_stats_title`}),`:`]}),(0,S.jsx)(l,{k:`doc.inputBase_scenario_2`})]})]}),`
+`,(0,S.jsx)(t.h2,{id:`-4`,children:(0,S.jsx)(l,{k:`doc.best_practices_title`})}),`
+`,(0,S.jsxs)(`ul`,{children:[(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.inputBase_best_practice_1`})}),(0,S.jsx)(`li`,{children:(0,S.jsx)(l,{k:`doc.inputBase_best_practice_2`})})]}),`
+`,(0,S.jsx)(d,{componentName:`InputBase`,section:`tokens`}),`
+`,(0,S.jsx)(t.h2,{id:`-5`,children:(0,S.jsx)(l,{k:`doc.keyboard_nav_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_keyboard_desc`})}),`
+`,(0,S.jsx)(d,{componentName:`InputBase`,section:`i18n`}),`
+`,(0,S.jsx)(d,{componentName:`InputBase`,section:`test`}),`
+`,(0,S.jsx)(t.hr,{}),`
+`,(0,S.jsx)(t.h2,{id:`-6`,children:(0,S.jsx)(l,{k:`doc.usage`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(l,{k:`doc.inputBase_usage_desc`})}),`
+`,(0,S.jsx)(a,{of:f}),`
+`,(0,S.jsx)(d,{componentName:`InputBase`,section:`props`}),`
+`,(0,S.jsx)(t.hr,{}),`
+`,(0,S.jsx)(t.h2,{id:`-7`,children:(0,S.jsx)(l,{k:`doc.stories`})}),`
+`,(0,S.jsx)(t.h3,{id:`-8`,children:(0,S.jsx)(l,{k:`doc.story_default`})}),`
+`,(0,S.jsx)(a,{of:f}),`
+`,(0,S.jsx)(t.h3,{id:`-9`,children:(0,S.jsx)(l,{k:`doc.story_with_icons`})}),`
+`,(0,S.jsx)(a,{of:_}),`
+`,(0,S.jsx)(t.h3,{id:`-10`,children:(0,S.jsx)(l,{k:`doc.story_error`})}),`
+`,(0,S.jsx)(a,{of:m}),`
+`,(0,S.jsx)(t.h3,{id:`-11`,children:(0,S.jsx)(l,{k:`doc.story_disabled`})}),`
+`,(0,S.jsx)(a,{of:p}),`
+`,(0,S.jsx)(t.h3,{id:`-12`,children:(0,S.jsx)(l,{k:`doc.story_ghost`})}),`
+`,(0,S.jsx)(a,{of:h}),`
+`,(0,S.jsx)(t.h3,{id:`-13`,children:(0,S.jsx)(l,{k:`doc.story_multiple_icons`})}),`
+`,(0,S.jsx)(a,{of:g}),`
+`,(0,S.jsx)(t.hr,{})]})}function x(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,S.jsx)(t,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;e((()=>{S=t(),s(),r(),c(),v(),u()}))();export{x as default};

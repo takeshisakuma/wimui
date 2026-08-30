@@ -1,0 +1,2 @@
+"use client";
+import{i as e,s as t}from"./preload-helper-CT_b8DTk.js";import{t as n}from"./react-DmCNssFd.js";function r(...e){let t=i.useRef(e);return i.useLayoutEffect(()=>{t.current=e}),i.useCallback(e=>{t.current.forEach(t=>{if(t)if(typeof t==`function`)t(e);else try{t.current=e}catch(e){console.error(`Failed to assign ref: ${e}`)}})},[])}var i,a=e((()=>{i=t(n(),1)}));export{r as n,a as t};

@@ -1,0 +1,449 @@
+# WIM UI — LLM guide (llms.txt)
+
+> Machine-readable map of the wimui React component library for coding agents. Read this before generating any UI with wimui: it defines the required CSS/setup, the correct import paths, the full component list, and the composition rules that keep screens from looking AI-generated.
+
+## What this is
+
+**wimui** v0.29.9 — a React 19 component library: 225 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+
+## Install & required setup
+
+```bash
+npm i wimui
+```
+
+```ts
+// 1. CSS contract — styles.css is REQUIRED (design tokens + component styles).
+import "wimui/styles.css";
+import "wimui/reset.css"; // optional base reset
+
+// 2. Components — import from the root barrel or a category subpath (tree-shakeable).
+import { Button, Card } from "wimui";
+import { Stack, Grid } from "wimui/layout";
+```
+
+- **Theme**: wrap the app in `WimProvider` (recommended) or set `data-theme="light|dark"` on `<html>` (omit to follow OS).
+- **Density**: `data-density="comfortable|compact"`, or `WimProvider` / `setWimDensity()`.
+- **Never hardcode** colors / spacing / sizes in consumer code — use the `--wim-*` CSS custom properties (tokens) that styles.css defines.
+- **Form + RHF** helpers live in `wimui/rhf` (react-hook-form + zod), not the root barrel.
+- **Fonts are NOT bundled** and styles.css requests none. The tokens name `"Noto Sans"` (default/en/pt), `"Noto Sans JP"` (ja) and `"Noto Sans Mono"` (mono) first, then fall back to system faces — so omitting fonts is valid and renders fine. To match the documentation site, have the app load those families itself (weights 400/500/700), e.g. `npm i @fontsource/noto-sans @fontsource/noto-sans-mono` then `import "@fontsource/noto-sans/latin-400.css"` before styles.css. Do not invent a `wimui/fonts.css` — it does not exist. To use different fonts, override `--wim-font-family-*` instead.
+
+## Import paths
+
+Every component works from the root barrel `"wimui"`. For smaller bundles, import from its category subpath instead:
+
+- `wimui/layout`
+- `wimui/form`
+- `wimui/feedback`
+- `wimui/navigation`
+- `wimui/data-display`
+- `wimui/overlay`
+- `wimui/typography`
+- `wimui/media`
+- `wimui/charts`
+- `wimui/ai`
+
+## Composition rules — build screens that don't look AI-generated
+
+Single components are judged by state/a11y/token compliance. **Composed screens** are judged by hierarchy, rhythm, asymmetry and real-feeling content. Apply these whenever combining components into a screen, page, pattern or demo.
+
+**Before laying out**: pick exactly ONE visual protagonist for the screen. If every element has the same volume, it reads as AI-generated.
+
+**Banned patterns (the "AI signature" — do not emit):**
+- `linear-gradient(135deg, …)` hero backgrounds → use surface-hierarchy tokens (`surface` / `surface-raised`) to separate planes.
+- The stock hero (badge → big heading → subtext → two solid/outline buttons) → asymmetric composition led by one protagonist.
+- "Rule of three" equal feature cards (icon + short heading + one line, ×3) → let the count follow content (2 or 5 is fine); vary card size and copy length.
+- Emoji used as UI icons (☰ ★ ✓) → use `src/icon/` components. (Emoji as functional markers in docs/README is fine; as UI icons it is not.)
+- Skeleton used as anything but loading (fake screenshots) → real-looking content or an actual mini UI.
+- Every section center-aligned → default to left-aligned; at most one centered section per page.
+- Round numbers ("1000+", "99%") + generic copy ("Get started") → jagged realistic numbers (4,281) and product-specific voice.
+- Sequential/alphabetical dummy names (Alice/Bob/Charlie, User 1/2) → culturally diverse, unordered, real-feeling names.
+- Rainbow color-per-category → color carries state only (success/warning/danger); everything else neutral.
+- Perfectly even grids (2×2, 3×3 all same size) → break the grid (span the protagonist cell, size differences, hero+sidebar asymmetry).
+- Filling every slot / uniform gaps everywhere → leave whitespace; group by proximity (tight within a group, loose between groups).
+
+**Machine-enforced banned vocabulary** (a linter, `check:slop`, fails builds that use these in demo copy — say concrete actions/numbers instead):
+- Hype adjectives/verbs: seamless, powerful, effortless, cutting-edge, next-gen, next-generation, revolutionary, game-changing, state-of-the-art, world-class, best-in-class, unparalleled, lightning-fast, blazing-fast, supercharge, innovative, disruptive, harness, leverage, elevate, empower, reimagine, unleash, delight, magical, 圧倒的, 革新的, 次世代, 究極, 最先端.
+- Hype phrases: "in today's digital landscape", "built for the modern team", "supercharge your", "unleash your", "reimagine the way", "experience the power of", "innovative solutions".
+- Stock placeholder names: John Doe, Jane Doe, John Smith, Jane Smith, Lorem Ipsum, Example User, Acme (a realistic example name in an input placeholder is fine).
+
+**Must rules:**
+1. One visual protagonist per screen (jump in size/weight/color creates the entry point).
+2. Contrast density: hero/showcase sparse, data regions (tables/lists) dense. Uniform "medium density" reads as AI.
+3. Never override a component's defaults via inline `style` (`padding:0`, `borderRadius:0`). Add a prop/token instead.
+4. Never hardcode gap/padding/size — use `--wim-spacing-*` tokens.
+5. Keep one radius stance per screen (`radius.component` / `radius.container` / `radius.overlay`); don't mix 0 and lg arbitrarily. Narrow table cards must share the same radius token as the adjacent toolbar/pagination chrome — not jump to `radius.container` while chrome stays on `radius.component`.
+6. Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.
+7. Give demo content real substance (product-context copy, internally consistent numbers/dates/names — active ≤ total, dates not evenly spaced).
+8. Build realism inside a world the reader already knows. Chasing substance pushes toward niche expertise, and a screen set in one (a shipyard's watch orders, a trading desk, a clinical protocol) makes the reader decode the domain before they can see the components — the pattern stops teaching. Pick an everyday situation (renting a car and returning it, a delivery, a hospital appointment) and keep specialist vocabulary out of the places that carry state and actions. The test: can a reader say what the screen is for without a paragraph of explanation?
+9. Never show the result of an action the screen cannot perform. Coverage-driven composition puts the component first and invents a state that justifies it, so the reader sees outcomes ("not in the record", "1 photo") with no control that could have produced them. Reachable state is (1) what the controls on this screen can do, and (2) values the subject already holds. Use the component inside a reachable moment; don't invent an unreachable one to justify the component. The test: can you arrive at what is on screen using only the controls that are on screen?
+10. Keep one elevation stance per screen: don't mix surfaces raised by shadow with surfaces cut by borders. `Card` and `Stats` default to `elevated`, so pass `variant="outline"` when the screen is border-led. If the outer container already casts a shadow, its contents need only a border. On admin/list screens, `Table`/`DataGrid` mobile cards must stay border-only like the toolbar and pagination — row cards with `shadow-sm` while chrome is flat outline is the same mixed stance.
+11. Never wrap a component that already draws its own frame. `<Card><Table card /></Card>` doubles the border and nests radii (12px inside 4px). `Table` takes a `card` prop and `Stats` is already a Card — place them directly.
+12. Always pass `intent` on `Badge` / `Tag` / `Chip`. Their default is `primary` (the accent), so an ordinary value like `pending` or `member` gets painted as loudly as an exception and the colour stops carrying information. Use `intent="neutral"` for ordinary values.
+13. Pick colour by good/bad, not by direction. `Stats.Trend` ties the arrow and the colour together, so `up` is always the success colour — using it for a metric where up is bad (failures, error rate) renders the bad news as good. Use a colourless form such as `Stats.Description` instead. Don't approximate a meaning the API cannot express.
+14. Keep the chrome quiet. Breadcrumb, page title, summary line, toolbar and filter bar frame the content; they must not compete with the protagonist. Don't promote a one-line summary to an `Alert`/`Banner`, don't wrap the filter bar in a `Card` (its border doubles up with the data region's), keep primary surfaces out of the chrome, and don't stack a KPI tile row above a table screen. Corollary of protagonist and accent limits, but it is the rule most often broken on admin/list screens — the test is whether the eye lands on the data first.
+15. Add intentional "wobble": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).
+16. Check the screen at 390px and 768px before calling it done. The page itself must never scroll sideways (`document.scrollWidth > document.documentElement.clientWidth` is a bug — the usual cause is a group of controls that cannot wrap, e.g. several buttons packed into one `Toolbar.Group`; split them into separate groups). Data tables need their narrow mode turned on (`<DataGrid mobileCard>` / `<Table mobileCard>`) rather than an inner scrollbar: without it columns collapse and a short string like a `Code` lot number breaks one character per line. The default card switch is `container-down(sm)` (576px). Wide grids that still overflow at tablet should pass `mobileCard="md"` so cards continue through 768px.
+
+## Recipes — copy-paste starting points
+
+### 1. Required setup (the contract)
+
+Without `styles.css` nothing is styled — this is the one step Storybook hides from you. Import it once at the app entry, wrap the tree in `WimProvider`, then build screens inside.
+
+```tsx
+// main.tsx — app entry
+import { createRoot } from "react-dom/client";
+import "wimui/styles.css"; // REQUIRED: design tokens + component styles
+import "wimui/reset.css";  // optional base reset
+import { WimProvider } from "wimui";
+import { App } from "./App";
+
+// theme: "light" | "dark" | "system" (default). density: "comfortable" | "compact".
+createRoot(document.getElementById("root")!).render(
+  <WimProvider theme="system" density="comfortable">
+    <App />
+  </WimProvider>,
+);
+```
+
+```tsx
+// App.tsx — app frame. AppShell wires header/sidebar; page content is children.
+import { AppShell, Header, Sidebar, Stack, Title, Text, Button } from "wimui";
+
+export function App() {
+  return (
+    <AppShell
+      header={<Header sticky bordered><Title tag="h1" size="md">Larkfield</Title></Header>}
+      sidebar={
+        <Sidebar width={240}>
+          <Stack gap="2xs" p="md">
+            <Button variant="ghost" justify="start" fullWidth>Overview</Button>
+            <Button variant="ghost" justify="start" fullWidth>Customers</Button>
+            <Button variant="ghost" justify="start" fullWidth>Settings</Button>
+          </Stack>
+        </Sidebar>
+      }
+    >
+      <Stack gap="lg">
+        <Title tag="h2" size="lg">Overview</Title>
+        <Text color="secondary">Spacing/size/color come from --wim-* tokens via props — never hardcode px/hex.</Text>
+      </Stack>
+    </AppShell>
+  );
+}
+```
+
+### 2. A composed content screen
+
+One protagonist (the KPI row), a dense table below, tokens via props, jagged real data, and one deliberately incomplete row. Note the compound components (`Stats.Value`, `Table.Head`) and that `Grid` uses `cols` (not `columns`).
+
+```tsx
+import { Stack, Grid, Card, Stats, Table, Badge, Title, Text } from "wimui";
+
+const rows = [
+  { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610.50", status: "paid" },
+  { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199.00", status: "failed" },
+  { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
+] as const;
+const intent = { paid: "success", failed: "danger", pending: undefined } as const;
+
+export function BillingOverview() {
+  return (
+    <Stack gap="lg">
+      <Title tag="h2" size="lg">Billing</Title>
+
+      {/* Protagonist: KPI row. Uneven content per tile — not three clones. */}
+      <Grid cols={{ base: 1, sm: 2, lg: 3 }} gap="md">
+        <Stats><Stats.Label>MRR</Stats.Label><Stats.Value>$48,210</Stats.Value><Stats.Trend>+6.4%</Stats.Trend></Stats>
+        <Stats><Stats.Label>Active workspaces</Stats.Label><Stats.Value>1,204</Stats.Value><Stats.Description>176 idle over 30 days</Stats.Description></Stats>
+        <Stats><Stats.Label>Failed webhooks</Stats.Label><Stats.Value>137</Stats.Value><Stats.Trend>+23 today</Stats.Trend></Stats>
+      </Grid>
+
+      {/* Dense data region */}
+      <Card padding="none">
+        <Table hoverable fullWidth>
+          <Table.Header>
+            <Table.Row>
+              <Table.Head>Customer</Table.Head><Table.Head>Plan</Table.Head>
+              <Table.Head>Amount</Table.Head><Table.Head>Status</Table.Head>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {rows.map((r) => (
+              <Table.Row key={r.id}>
+                <Table.Cell>{r.name}</Table.Cell>
+                <Table.Cell>{r.plan ?? <Text color="tertiary">—</Text>}</Table.Cell>
+                <Table.Cell>{r.amount}</Table.Cell>
+                <Table.Cell><Badge variant="subtle" intent={intent[r.status]}>{r.status}</Badge></Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </Card>
+    </Stack>
+  );
+}
+```
+
+> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in `llms-full.txt`.
+## Components
+
+### layout — `import { … } from "wimui/layout"`
+
+- **AppShell** — Basic application shell layout
+- **AspectRatio** — Fixed ratio container
+- **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
+- **Box** — Polymorphic box
+- **Center** — Radial centering
+- **Container** — Layout wrapper
+- **Dashboard** — Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.
+- **Divider** — Content separator (aka Separator, Horizontal Rule)
+- **Flex** — Flexible layout
+- **Footer** — Lower navigation
+- **Grid** — Flexbox or CSS Grid system
+- **Group** — Flexible grouping
+- **Header** — Upper navigation
+- **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
+- **Masonry** — Waterfall grid
+- **Navbar** — Primary navigation
+- **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
+- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector)
+- **SimpleGrid** — Responsive fixed grid
+- **Splitter** — Split and resize panels
+- **Stack** — Vertical/Horizontal alignment
+- **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
+- **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
+- **VisuallyHidden** — Hide content visually while keeping it accessible to screen readers (aka Screen Reader Only, SR Only)
+- **Watermark** — Translucent text or images overlaid on content to indicate ownership or status
+
+### form — `import { … } from "wimui/form"`
+
+- **Button** — Action triggers
+- **ButtonGroup** — Group of buttons
+- **Cascader** — Hierarchical selection (aka Column View, Miller Columns)
+- **Checkbox** — Multiple choice
+- **CheckboxGroup** — Shared state checkboxes
+- **ColorInput** — Input with color preview (aka Color Well, Color Field)
+- **ColorPicker** — Color selection picker
+- **Combobox** — Select with search
+- **CopyButton** — Copy to clipboard
+- **CounterTextarea** — Textarea with character count display
+- **CreditCardInput** — Payment card input with brand detection
+- **DatePicker** — Date selection
+- **DateRangePicker** — Date range selection
+- **Dropzone** — Drag & drop files
+- **FieldError** — Validation messages
+- **Fieldset** — Form grouping
+- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
+- **FileUpload** — File selection
+- **FloatButton** — Floating action buttons
+- **IconButton** — A square button containing only an icon without a text label.
+- **ImageCropper** — Front-end image cropping and rotation tool.
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text)
+- **Input** — Single-line input fields for text, numbers, or emails
+- **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
+- **InputGroup** — Inputs with icons/labels
+- **InputMask** — Formatted inputs
+- **LinkButton** — Anchor styled as button
+- **Mentions** — @ / # suggestions
+- **MultiSelect** — Multiple selection
+- **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper)
+- **OtpInput** — One-time password fields
+- **PasswordInput** — Password with toggle
+- **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
+- **PhoneInput** — International phone number input
+- **QueryBuilder** — Visual builder for constructing complex search queries.
+- **Radio** — Single choice
+- **RadioGroup** — Shared state radio buttons
+- **RangeSlider** — Range selection
+- **Rating** — Star rating (aka Star Rating, Rating Indicator)
+- **RichTextEditor** — WYSIWYG rich text editor
+- **SearchInput** — Search with clear button (aka Search Field, Search Bar)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker)
+- **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu)
+- **SignaturePad** — Handwritten signature input
+- **Slider** — An input to capture a numeric value from a specified range by dragging a knob
+- **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
+- **SplitButton** — SplitButton description.
+- **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
+- **SwitchGroup** — Shared state switches
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
+- **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
+- **ThemeToggle** — Light / dark / system theme switcher
+- **TimePicker** — Time selection
+- **ToggleGroup** — Toggleable buttons
+- **Transfer** — Move items between lists
+- **TreeSelect** — Select from tree structure
+
+### feedback — `import { … } from "wimui/feedback"`
+
+- **Alert** — Important messages
+- **Autosave** — Inline status indicator for automatic save state
+- **Banner** — Top prominent messages
+- **ErrorBoundary** — Runtime error fallback
+- **Indicator** — Small status dots
+- **Loader** — Animated indicators to show that data is loading or processing
+- **LoadingOverlay** — Overlay with loading indicator
+- **Notification** — Rich notification card
+- **Progress** — Progress bar
+  - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
+- **ProgressRing** — ProgressRing description.
+- **Result** — Task status indicator
+- **ScrollProgress** — Reading progress indicator
+- **Skeleton** — Placeholder for content loading states. (aka Shimmer)
+- **Snackbar** — Bottom notifications
+- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator)
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations
+- **Tour** — Sequential guided walkthroughs to onboard users or highlight features
+
+### navigation — `import { … } from "wimui/navigation"`
+
+- **Affix** — Sticky elements (aka Sticky)
+- **Anchor** — Smooth scroll links (aka Scrollspy)
+- **BackTop** — Back to top button (aka Back to Top)
+- **Breadcrumb** — Location trace (aka Path Bar, Path Control)
+- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open)
+- **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー)
+- **KeyboardShortcuts** — Display a structured list of keyboard shortcuts
+- **Link** — Hyperlinks
+- **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
+- **Pagination** — Multi-page navigation
+- **SpeedDial** — Floating action button that expands sub-actions on hover or click.
+- **Stepper** — Visual sequence steps
+  - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
+- **TabBar** — Mobile bottom navigation
+- **TabNavigation** — Tab-based navigation
+- **Tabs** — A container to organize related content into switchable view panels
+
+### data-display — `import { … } from "wimui/data-display"`
+
+- **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander)
+- **Avatar** — Profile initials/pics
+- **AvatarGroup** — Stacked avatars (aka Face Pile)
+- **Badge** — Indicators or counts
+- **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
+- **Calendar** — Calendar view
+- **CalendarHeatmap** — GitHub-style activity graph for visualizing continuity
+- **Card** — Information containers
+- **Carousel** — Content slideshow
+- **Chip** — Filter/Selection tokens (aka Pill, Token)
+- **Comment** — Shows one comment in a discussion, with its actions and nested replies.
+- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
+- **DataGrid** — Advanced data table and manipulation
+- **DescriptionList** — Key-value pairs
+- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State)
+- **FAQSection** — Frequently Asked Questions section
+- **InfiniteScroll** — Infinite scroll control
+- **JsonDiffViewer** — Compares two JSON values as a formatted side-by-side or unified diff, built on top of CodeDiffViewer.
+- **JsonViewer** — Recursive tree viewer and editor for JSON data.
+- **Kanban** — Drag-and-drop board for visualizing workflow stages
+- **Leaderboard** — Display a ranked list of entries with scores and medal highlights for the top three positions.
+- **List** — Structurally organized items in bullet points or numbered formats
+- **Markdown** — A component for safely rendering text in Markdown format.
+- **Marquee** — Scrolling text animation (aka Ticker)
+- **NodeGraph** — Visualizes complex networks and relationships between nodes.
+- **Presence** — Shows whether a person is online, away, busy, or offline.
+- **PullToRefresh** — Pull-to-refresh utility for enhancing mobile user experience.
+- **QRCode** — QR generator
+- **RangeCalendar** — Range calendar view
+- **Reaction** — Display emoji reaction buttons with toggleable state and counts
+- **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
+- **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
+- **SortableList** — Item rearrangement and reordering
+- **Stats** — A component to highlight key performance indicators and metrics
+- **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
+- **Table** — Rows and columns for displaying structured data efficiently
+- **Tag** — Compact visual descriptors used for labeling or categorizing content
+- **Timeline** — A vertical list mapping events or history in chronological order
+- **TreeView** — Hierarchical data (aka Outline View)
+- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
+
+### overlay — `import { … } from "wimui/overlay"`
+
+- **BottomSheet** — Mobile bottom overlay (aka Sheet, Action Sheet)
+- **ContextMenu** — Right-click menus
+- **Dialog** — Focused task windows (aka Modal, Modal Dialog)
+- **Drawer** — Slide-out detail panels (aka Navigation Drawer)
+- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー)
+- **FocusTrap** — Focus management
+- **HoverCard** — Rich content on hover
+- **Menu** — General menus
+  - ⚠️ Not the same as elsewhere: In macOS, a "Menu" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`.
+- **Popconfirm** — Confirmation overlay
+- **Popover** — Contextual overlay
+- **Portal** — Out-of-hierarchy render
+- **Tooltip** — Information on hover (aka Help Tag)
+
+### typography — `import { … } from "wimui/typography"`
+
+- **Blockquote** — Visually separates external quotes or text to be emphasized.
+- **Code** — Code snippets
+- **Highlight** — Text highlighting
+- **Kbd** — Keyboard shortcuts
+- **Label** — Descriptive text for input fields, including required/optional marks
+- **Legend** — Group title
+- **Span** — Lightweight wrapper for inline text or short labels with icon support
+- **Spoiler** — Collapse long text such as reviews and comments to a fixed number of lines, with an accessible "show more" toggle that appears only when the text overflows.
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text.
+- **Title** — Possesses visual weight (boldness/size) to indicate page structure.
+
+### media — `import { … } from "wimui/media"`
+
+- **Audio** — Audio playback
+- **Gallery** — Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.
+- **Icon** — Visual symbols
+- **Image** — Image content
+- **ImageCompare** — ImageCompare overlays two images and reveals them with a draggable divider — a before/after slider for comparing edits, restorations, or AI-generated results against their source.
+- **Lightbox** — A high-quality overlay component for displaying images and media with gallery and zoom functionality. (aka Image Viewer)
+- **Video** — A component for embedding and controlling local or remote video content
+
+### charts — `import { … } from "wimui/charts"`
+
+- **AreaChart** — Area charts
+- **BarChart** — Bar charts
+- **BoxPlot** — Five-number summary of a distribution per group
+- **CandlestickChart** — Open, high, low and close per period
+- **FunnelChart** — Process stage abandonment chart
+- **GanttChart** — Project schedule and timeline visualization
+- **GaugeChart** — KPI goal achievement chart
+- **Heatmap** — Graphical representation of data where individual values are contained in a matrix as colors.
+- **LineChart** — Line charts
+- **PieChart** — Proportional parts of a whole chart
+- **RadarChart** — Multivariate data on concentric axes chart
+- **SankeyChart** — Flow chart where band width is the amount
+- **ScatterChart** — Scatter plots
+- **Sparkline** — Tiny inline trend chart
+- **Treemap** — Hierarchical data area-based display
+- **WaterfallChart** — Running total broken into its contributions
+
+### ai — `import { … } from "wimui/ai"`
+
+- **AgentStatus** — Real-time agent state indicator (thinking / running / waiting)
+- **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
+- **ArtifactsOverlay** — ArtifactsOverlay is a specialized side-panel for displaying large AI-generated content (Artifacts) without interrupting the main chat context.
+- **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
+- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow.
+- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions.
+- **InteractiveGraph** — InteractiveGraph provides a canvas for visualizing node-based data. Ideal for RAG knowledge bases, agent workflows, or state machines.
+- **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
+- **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.
+- **PromptInput** — Interactive input optimized for AI prompt engineering with multi-line support and action triggers.
+- **SourceCitation** — Displays cited sources with title, domain, and external link for AI-generated content.
+- **StreamingText** — Renders text with a typewriter-like animation, ideal for AI chat responses.
+- **Terminal** — Renders terminal-style output with ANSI color support, prompt prefixes, and copy/clear controls.
+- **ThoughtProcess** — Visualizes AI reasoning steps and execution states in a timeline format.
+- **ThreadList** — ThreadList renders a conversation-history sidebar for AI chat apps — a scrollable list of past threads with an optional new-conversation action and per-thread deletion.
+- **UsageMeter** — UsageMeter (also exported as TokenCounter) visualizes token consumption against a budget such as a model's context window — a labeled bar plus a numeric readout that shifts to warning and danger colors near the limit. (aka Level Indicator, Capacity Indicator, Meter)
+- **VoiceVisualizer** — Animated voice-level indicator (bars / waveform)
+
+## Not in scope — deliberately not provided
+
+These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
+
+- **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.
+
+---
+For per-component props, types and defaults, see `llms-full.txt`.

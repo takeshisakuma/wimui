@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>WIM UI — React component library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
+    <style>
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
+      }
+    </style>
+
+    <link href="./sb-manager/runtime.js" rel="modulepreload" />
+
+    
+    <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/docs-1/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/a11y-2/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/vitest-3/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-react-i18next-4/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/themes-5/manager-bundle.js" rel="modulepreload" />
+      <style>
+  /*
+    モバイルでサイドバーの末尾 2 項目に届かない件の修正。
+
+    Storybook の manager は `body { position: fixed; width: 100vw; height: 100vh }`
+    で、**モバイルのナビゲーションドロワーはこの body の下端に貼り付く**
+    （`position: absolute; bottom: 0`、高さ 624px 固定）。
+
+    Chrome Android の `100vh` は**大ビューポート**（URL バーが隠れている状態）なので、
+    URL バーが出ていると body の下端は可視領域より 56dp 下にある。ドロワーは
+    そこに貼り付いたまま、自分の下端までしかスクロールできないため、
+    **末尾 56px ＝ 行 28px × 2 項目が原理的に選べない**。
+
+    実測（`storybook-static` を 411×780 で配信し、body の高さだけ入れ替えた A/B）:
+      body 836px（＝ 100vh 相当）… ドロワー top=212 / bottom=836 → 56px が画面外
+      body 780px（＝ 100dvh）    … ドロワー top=156 / bottom=780 → 全部見える
+
+    Storybook 自身もモバイルの本体レイアウト（`.sb-mobile` 相当のコンテナ）には
+    すでに `height: 100dvh` を使っている。**body だけが `100vh` のまま**なので、
+    そこへ合わせる。`html body` にしているのは、emotion が実行時に流し込む
+    `body { … }` より詳細度を 1 つ上げて、挿入順に依存せず勝たせるため。
+    デスクトップでは `dvh` と `vh` が一致するので影響しない。
+  */
+  html body {
+    height: 100dvh;
+  }
+</style>
+
+<!--
+  T207: **公開している Storybook は、検索エンジンから見ると中身が 1 文字も無い。**
+  実測（2026-08-22・https://takeshisakuma.github.io/wimui/index.html）:
+    `<title>` は `storybook - Storybook`／meta は charset と viewport だけ／
+    `<body>` は 1,849 バイトで**本文テキストは 0 文字**（中身は JS）。
+  JS を実行するクローラ（Googlebot）は本文まで辿れるが、**共有時・一覧時に
+  出るのはここのメタ情報**なので、まずそこを正しくする。
+
+  **本文が `iframe.html` という別ドキュメントにしか存在しない**という構造の
+  ほうは、この変更では解いていない（T207 の残り）。
+
+  description は `package.json` と同じ文言にしてある。二重に持つとずれるので、
+  `check:readme-claims` が一致を見張る。
+-->
+<!-- title 要素はここに書かない ── Storybook 側のものが先に出るので 2 つ目になって負ける。
+     ビルド後に scripts/generate-seo-artifacts.mjs が差し替える -->
+<meta
+  name="description"
+  content="React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook."
+/>
+<link rel="canonical" href="https://takeshisakuma.github.io/wimui/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="WIM UI" />
+<meta property="og:title" content="WIM UI — React component library" />
+<meta
+  property="og:description"
+  content="React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook."
+/>
+<meta property="og:url" content="https://takeshisakuma.github.io/wimui/" />
+<!--
+  `og:image` は**絶対 URL でなければならない**（OGP は相対パスを解決しない）。
+  実体は `public/images/og-image.png` ── `public/images/` に置いてあるのは、
+  ライブラリのビルドが `public/` を丸ごと `dist/` へコピーし、
+  `scripts/prune-dist-assets.js` が `demo/` / `images/` / `wimlogo.svg` を
+  名指しで刈るため。**直下に置くと npm パッケージに同梱されてしまう。**
+
+  幅・高さは**実測値**（1200×630 ＝ 比率 1.905）で、OGP の推奨（1.91:1）と一致する。
+  `check:readme-claims` が**実ファイルの寸法と一致するか**を見張る ── 宣言と実物が
+  ずれても共有カードが崩れるだけで**赤は出ない**ため。
+-->
+<meta property="og:image" content="https://takeshisakuma.github.io/wimui/images/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="WIM UI — React component library" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://takeshisakuma.github.io/wimui/images/og-image.png" />
+ 
+
+    <style>
+      #storybook-root[hidden] {
+        display: none !important;
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    <div id="root"></div>
+
+    
+    <script>
+      
+        
+          window['FEATURES'] = {
+  "actions": true,
+  "argTypeTargetsV7": true,
+  "babelRemoveBugfixes": false,
+  "backgrounds": true,
+  "changeDetection": true,
+  "componentsManifest": true,
+  "controls": true,
+  "disallowImplicitActionsInRenderV8": true,
+  "highlight": true,
+  "interactions": true,
+  "legacyDecoratorFileOrder": false,
+  "measure": true,
+  "outline": true,
+  "menuOnboardingChecklist": true,
+  "sidebarOnboardingChecklist": true,
+  "viewport": true
+};
+        
+      
+        
+          window['REFS'] = {};
+        
+      
+        
+          window['LOGLEVEL'] = "info";
+        
+      
+        
+          window['DOCS_OPTIONS'] = {
+  "defaultName": "Docs"
+};
+        
+      
+        
+          window['CONFIG_TYPE'] = "PRODUCTION";
+        
+      
+        
+          window['DOCGEN_STORY_PREPARED'] = false;
+        
+      
+        
+      
+        
+      
+        
+          window['TAGS_OPTIONS'] = {};
+        
+      
+        
+          window['STORYBOOK_BUILDER'] = "vite";
+        
+      
+        
+          window['STORYBOOK_FRAMEWORK'] = "react-vite";
+        
+      
+        
+          window['STORYBOOK_RENDERER'] = "react";
+        
+      
+        
+      
+    </script>
+    
+
+    <script type="module">
+      import './sb-manager/globals-runtime.js';
+
+      
+        import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
+      
+        import './sb-addons/docs-1/manager-bundle.js';
+      
+        import './sb-addons/a11y-2/manager-bundle.js';
+      
+        import './sb-addons/vitest-3/manager-bundle.js';
+      
+        import './sb-addons/storybook-react-i18next-4/manager-bundle.js';
+      
+        import './sb-addons/themes-5/manager-bundle.js';
+      
+
+      import './sb-manager/runtime.js';
+    </script>
+  </body>
+</html>
