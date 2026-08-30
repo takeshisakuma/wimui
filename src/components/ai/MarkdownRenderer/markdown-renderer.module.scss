@@ -1,91 +1,94 @@
 @use "../../../styles/font-mixins" as font;
 
-.root {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
-  width: 100%;
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    width: 100%;
 
-  /* 縮んで内部スクロールする面ではない（スクロールするのは `.tableWrapper` だけで、
-     `.root` は overflow を持たない flex column）。`width: 100%` + `min-width: 0` の
-     まま横並びに置くと下限が消えて、実測（610px の flex row・残り 24px）で
-     幅 24px・高さ 1160→6950px・テキスト幅 4px＝**1 文字ずつの折り返し**になった。
-     **`min-content` は使えない** — 中身に表とコードブロックが入るので最小幅が
-     479px になり、243px のカラムに置いただけで外へはみ出した（実測。`Label` は
-     同じ `min-content` で 180px に収まるが、それは中身が入力欄 1 つだから）。
-     固定の下限を置く（T59）。 */
-  min-width: var(--wim-width-sm);
-  max-width: 100%;
-  line-height: var(--wim-line-height-normal);
-  color: var(--wim-color-text-primary);
-  overflow-wrap: break-word;
-}
-
-.heading {
-  margin-top: var(--wim-spacing-lg);
-  margin-bottom: var(--wim-spacing-xs);
-
-  &:first-child {
-    margin-top: 0;
+    /* 縮んで内部スクロールする面ではない（スクロールするのは `.tableWrapper` だけで、
+       `.root` は overflow を持たない flex column）。`width: 100%` + `min-width: 0` の
+       まま横並びに置くと下限が消えて、実測（610px の flex row・残り 24px）で
+       幅 24px・高さ 1160→6950px・テキスト幅 4px＝**1 文字ずつの折り返し**になった。
+       **`min-content` は使えない** — 中身に表とコードブロックが入るので最小幅が
+       479px になり、243px のカラムに置いただけで外へはみ出した（実測。`Label` は
+       同じ `min-content` で 180px に収まるが、それは中身が入力欄 1 つだから）。
+       固定の下限を置く（T59）。 */
+    min-width: var(--wim-width-sm);
+    max-width: 100%;
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+    overflow-wrap: break-word;
   }
-}
 
-.paragraph {
-  margin-bottom: var(--wim-spacing-sm);
+  .heading {
+    margin-top: var(--wim-spacing-lg);
+    margin-bottom: var(--wim-spacing-xs);
 
-  &:last-child {
-    margin-bottom: 0;
+    &:first-child {
+      margin-top: 0;
+    }
   }
-}
 
-.list {
-  /* Exception: Structural Logic — outside マーカーは font-size に追従する溝が要る。
-     spacing-xl (12px) では本文より左へはみ出す（T182 と同じ。T184）。 */
-  padding-inline-start: 1.5em;
-  margin-bottom: var(--wim-spacing-md);
-  list-style: revert;
-}
+  .paragraph {
+    margin-bottom: var(--wim-spacing-sm);
 
-.listItem {
-  margin-bottom: var(--wim-spacing-xs);
-}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-.inlineCode {
-  @include font.mono-family;
+  .list {
+    /* Exception: Structural Logic — outside マーカーは font-size に追従する溝が要る。
+       spacing-xl (12px) では本文より左へはみ出す（T182 と同じ。T184）。 */
+    padding-inline-start: 1.5em;
+    margin-bottom: var(--wim-spacing-md);
+    list-style: revert;
+  }
 
-  padding: 0.2em 0.4em;
-  font-size: 0.9em;
-  color: var(--wim-color-text-accent);
-  background-color: var(--wim-color-surface-variant-alpha);
-  border-radius: var(--wim-radius-sm);
-}
+  .listItem {
+    margin-bottom: var(--wim-spacing-xs);
+  }
 
-.codeBlock {
-  margin: var(--wim-spacing-md) 0;
-}
+  .inlineCode {
+    @include font.mono-family;
 
-.tableWrapper {
-  margin: var(--wim-spacing-md) 0;
-  overflow-x: auto;
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
-}
+    padding: 0.2em 0.4em;
+    font-size: 0.9em;
+    color: var(--wim-color-text-accent);
+    background-color: var(--wim-color-surface-variant-alpha);
+    border-radius: var(--wim-radius-sm);
+  }
 
-.table {
-  width: 100%;
-  min-width: 400px; /* Exception: Structural Logic — table readability floor inside scroll wrapper */
-  border-collapse: collapse;
-}
+  .codeBlock {
+    margin: var(--wim-spacing-md) 0;
+  }
 
-.th {
-  padding: var(--wim-spacing-sm);
-  font-weight: var(--wim-font-weight-bold);
-  text-align: left;
-  background-color: var(--wim-color-surface-variant-alpha);
-  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
-}
+  .tableWrapper {
+    margin: var(--wim-spacing-md) 0;
+    overflow-x: auto;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+  }
 
-.td {
-  padding: var(--wim-spacing-sm);
-  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+  .table {
+    width: 100%;
+    min-width: 400px; /* Exception: Structural Logic — table readability floor inside scroll wrapper */
+    border-collapse: collapse;
+  }
+
+  .th {
+    padding: var(--wim-spacing-sm);
+    font-weight: var(--wim-font-weight-bold);
+    text-align: left;
+    background-color: var(--wim-color-surface-variant-alpha);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
+  .td {
+    padding: var(--wim-spacing-sm);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
 }

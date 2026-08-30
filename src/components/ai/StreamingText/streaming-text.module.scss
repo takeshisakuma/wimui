@@ -1,123 +1,126 @@
 @use "../../../styles/font-mixins" as font;
 
-.root {
-  font-size: var(--wim-font-size-md);
-  line-height: var(--wim-line-height-loose);
-  color: var(--wim-color-text-primary);
+@layer component {
+  .root {
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-loose);
+    color: var(--wim-color-text-primary);
 
-  p {
-    margin: 0 0 var(--wim-spacing-sm);
+    p {
+      margin: 0 0 var(--wim-spacing-sm);
 
-    &:last-child {
-      margin-bottom: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
-  }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: var(--wim-spacing-md) 0 var(--wim-spacing-xs);
-    font-weight: var(--wim-font-weight-bold);
-    line-height: var(--wim-line-height-tight);
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: var(--wim-spacing-md) 0 var(--wim-spacing-xs);
+      font-weight: var(--wim-font-weight-bold);
+      line-height: var(--wim-line-height-tight);
+    }
 
-  ul,
-  ol {
-    /* Exception: Structural Logic — outside マーカーは font-size に追従する溝が要る。
-       spacing-xl (12px) では本文より左へはみ出す（T182 と同じ。T184）。 */
-    padding-inline-start: 1.5em;
-    margin: 0 0 var(--wim-spacing-sm);
-    list-style: revert;
-  }
+    ul,
+    ol {
+      /* Exception: Structural Logic — outside マーカーは font-size に追従する溝が要る。
+         spacing-xl (12px) では本文より左へはみ出す（T182 と同じ。T184）。 */
+      padding-inline-start: 1.5em;
+      margin: 0 0 var(--wim-spacing-sm);
+      list-style: revert;
+    }
 
-  li {
-    margin-bottom: var(--wim-spacing-xs);
-  }
-
-  code {
-    @include font.mono-family;
-
-    padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
-    font-size: 0.875em;
-    background: var(--wim-color-ghost-bg);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-sm);
-  }
-
-  pre {
-    padding: var(--wim-spacing-md);
-    margin: 0 0 var(--wim-spacing-sm);
-    overflow-x: auto;
-    background: var(--wim-color-ghost-bg);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-component);
+    li {
+      margin-bottom: var(--wim-spacing-xs);
+    }
 
     code {
-      padding: 0;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-    }
-  }
+      @include font.mono-family;
 
-  blockquote {
-    padding: var(--wim-spacing-xs) var(--wim-spacing-md);
-    margin: 0 0 var(--wim-spacing-sm);
-    color: var(--wim-color-text-secondary);
-    border-left: 3px solid var(--wim-color-primary); /* Exception: Geometric Harmony — streaming cursor visual weight */
-  }
-
-  table {
-    width: 100%;
-    margin-bottom: var(--wim-spacing-sm);
-    border-collapse: collapse;
-
-    th,
-    td {
-      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-      text-align: left;
-      border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    }
-
-    th {
-      font-weight: var(--wim-font-weight-bold);
+      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      font-size: 0.875em;
       background: var(--wim-color-ghost-bg);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      border-radius: var(--wim-radius-sm);
+    }
+
+    pre {
+      padding: var(--wim-spacing-md);
+      margin: 0 0 var(--wim-spacing-sm);
+      overflow-x: auto;
+      background: var(--wim-color-ghost-bg);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      border-radius: var(--wim-radius-component);
+
+      code {
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+      }
+    }
+
+    blockquote {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+      margin: 0 0 var(--wim-spacing-sm);
+      color: var(--wim-color-text-secondary);
+      border-left: 3px solid var(--wim-color-primary); /* Exception: Geometric Harmony — streaming cursor visual weight */
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: var(--wim-spacing-sm);
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+        text-align: left;
+        border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      }
+
+      th {
+        font-weight: var(--wim-font-weight-bold);
+        background: var(--wim-color-ghost-bg);
+      }
+    }
+
+    a {
+      color: var(--wim-color-text-accent);
+      text-decoration: underline;
+
+      &:hover {
+        opacity: var(--wim-opacity-subtle);
+      }
+    }
+
+    hr {
+      margin: var(--wim-spacing-md) 0;
+      border: none;
+      border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
   }
 
-  a {
-    color: var(--wim-color-text-accent);
-    text-decoration: underline;
-
-    &:hover {
-      opacity: var(--wim-opacity-subtle);
-    }
+  .cursor {
+    display: inline-block;
+    width: var(--wim-border-width-thick);
+    height: 1.1em;
+    margin-left: var(--wim-spacing-3xs);
+    vertical-align: text-bottom;
+    background: var(--wim-color-text-primary);
+    border-radius: 1px; /* Exception: Browser Rendering Fixes — thin cursor edge smoothing */
+    animation: blink 1s step-end infinite;
   }
 
-  hr {
-    margin: var(--wim-spacing-md) 0;
-    border: none;
-    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+  @keyframes blink {
+    0%,
+    100% { opacity: 1; }
+
+    50% { opacity: 0; }
   }
-}
 
-.cursor {
-  display: inline-block;
-  width: var(--wim-border-width-thick);
-  height: 1.1em;
-  margin-left: var(--wim-spacing-3xs);
-  vertical-align: text-bottom;
-  background: var(--wim-color-text-primary);
-  border-radius: 1px; /* Exception: Browser Rendering Fixes — thin cursor edge smoothing */
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%,
-  100% { opacity: 1; }
-
-  50% { opacity: 0; }
 }
