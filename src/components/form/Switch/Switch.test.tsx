@@ -34,6 +34,15 @@ describe("Switch", () => {
     expect(input).toHaveClass(styles.danger);
   });
 
+  /** T239。理由と対照の意図は Checkbox 側のテストの注記を見ること。 */
+  it("marks the label as bare only when there is no text label", () => {
+    const { container, rerender } = render(<Switch aria-label="Notifications" />);
+    expect(container.querySelector("label")).toHaveClass(styles.bare);
+
+    rerender(<Switch>Notifications</Switch>);
+    expect(container.querySelector("label")).not.toHaveClass(styles.bare);
+  });
+
   it("supports asChild prop", () => {
     render(
       <Switch asChild>

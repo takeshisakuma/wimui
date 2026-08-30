@@ -38,6 +38,20 @@ describe("Checkbox", () => {
     expect(screen.getByLabelText("No error")).not.toHaveAttribute("aria-invalid");
   });
 
+  /**
+   * T239。**印は「ラベルが無い」ときだけ付くこと**を対照で確かめる。
+   * CSS 側の効き（3.2px の寄りが消えること）はブラウザでしか測れないので、
+   * ここで押さえるのは分岐だけ。`:only-child` で見分けられないのが起点なので、
+   * **文字ラベルがある側で付かないこと**が本体の対照になる。
+   */
+  it("marks the label as bare only when there is no text label", () => {
+    const { container, rerender } = render(<Checkbox aria-label="Select row" />);
+    expect(container.querySelector("label")).toHaveClass(styles.bare);
+
+    rerender(<Checkbox>Accept terms</Checkbox>);
+    expect(container.querySelector("label")).not.toHaveClass(styles.bare);
+  });
+
   it("supports asChild prop", () => {
     render(
       <Checkbox asChild>

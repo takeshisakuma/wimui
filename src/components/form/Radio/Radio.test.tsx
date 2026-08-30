@@ -25,4 +25,13 @@ describe("Radio", () => {
     render(<Radio error>With error</Radio>);
     expect(screen.getByLabelText("With error")).toHaveClass(styles.danger);
   });
+
+  /** T239。理由と対照の意図は Checkbox 側のテストの注記を見ること。 */
+  it("marks the label as bare only when there is no text label", () => {
+    const { container, rerender } = render(<Radio aria-label="Select row" />);
+    expect(container.querySelector("label")).toHaveClass(styles.bare);
+
+    rerender(<Radio>Option 1</Radio>);
+    expect(container.querySelector("label")).not.toHaveClass(styles.bare);
+  });
 });

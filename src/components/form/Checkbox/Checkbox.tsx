@@ -31,9 +31,22 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const Component = asChild ? Slot : "label";
 
+    /**
+     * ラベルの文字が無い形（表の行選択など）を CSS から見分けるための印（T239）。
+     * `:only-child` では見分けられない ── **文字ラベルは text node なので
+     * 要素の数に入らず、`input:only-child` はラベルがあっても真になる**（実測で確認）。
+     */
+    const bare = React.Children.count(children) === 0;
+
     return (
       <Component
-        className={classNames("wim-checkbox", styles.root, disabled && styles.disabled, className)}
+        className={classNames(
+          "wim-checkbox",
+          styles.root,
+          bare && styles.bare,
+          disabled && styles.disabled,
+          className,
+        )}
       >
         <input
           type="checkbox"

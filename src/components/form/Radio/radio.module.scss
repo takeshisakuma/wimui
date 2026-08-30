@@ -20,6 +20,16 @@
     cursor: pointer;
     user-select: none;
 
+    /* ラベルの文字が無いとき（T239）。当たり判定 24px の中で箱を中央に置き、
+       文字との間隔を落とす。理由と実測は Checkbox 側の注記を見ること。 */
+    &.bare {
+      justify-content: center;
+
+      .input {
+        margin-right: 0;
+      }
+    }
+
     &.disabled {
       cursor: not-allowed;
       opacity: var(--wim-opacity-disabled);

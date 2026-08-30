@@ -23,9 +23,18 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
     const Component = asChild ? Slot : "label";
 
+    /** ラベルの文字が無い形を CSS から見分ける印（T239）。理由は Checkbox 側の注記。 */
+    const bare = React.Children.count(children) === 0;
+
     return (
       <Component
-        className={classNames("wim-radio", styles.root, disabled && styles.disabled, className)}
+        className={classNames(
+          "wim-radio",
+          styles.root,
+          bare && styles.bare,
+          disabled && styles.disabled,
+          className,
+        )}
       >
         <input
           type="radio"
