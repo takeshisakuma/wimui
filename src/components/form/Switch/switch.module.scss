@@ -12,6 +12,13 @@
     cursor: pointer;
     user-select: none;
 
+    /* ラベルの文字が無いとき（T239）。Switch のトラックは 44px で当たり判定
+       24px を超えているので、寄りの原因は間隔のぶんだけ ── `margin-right` を落とす。
+       理由と実測は Checkbox 側の注記を見ること。 */
+    &.bare .input {
+      margin-right: 0;
+    }
+
     &.disabled {
       cursor: not-allowed;
       opacity: var(--wim-opacity-ghost);

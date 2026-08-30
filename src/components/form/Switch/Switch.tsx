@@ -44,12 +44,16 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
 
     const Component = asChild ? Slot : "label";
 
+    /** ラベルの文字が無い形を CSS から見分ける印（T239）。理由は Checkbox 側の注記。 */
+    const bare = React.Children.count(children) === 0;
+
     return (
       <Component
         htmlFor={asChild ? undefined : id}
         className={classNames(
           "wim-switch",
           styles.root,
+          bare && styles.bare,
           disabled && styles.disabled,
           className,
         )}

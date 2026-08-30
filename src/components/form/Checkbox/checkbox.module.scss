@@ -20,6 +20,25 @@
     cursor: pointer;
     user-select: none;
 
+    /* **ラベルの文字が無いとき（T239）。**
+       上の当たり判定は「箱は中央に置かれる」と書いてあるが、実際には
+       `justify-content` が無いので 18px の箱が 24px の左端に寄っていた。さらに
+       `.input` の `margin-right`（文字との間隔）がラベルの有無に関わらず残るため、
+       ラベル幅が 18 + 6.4 = 24.4px になり、**箱の中心が親の中心より 3.2px 左**へ出る
+       （実測: 公開中の `audit-tablefamily--overview`・DataGrid の選択列。セル幅 60px・
+       `text-align: center` で、label は中央 49.49 なのに箱の中心は 46.3）。
+       **両方を消さないと直らない** ── margin だけ落としても 24px の左端に寄って
+       −3px 残る（対照で確認）。
+       印は CSS では作れない（**文字ラベルは text node なので `:only-child` は
+       ラベルがあっても真になる**）ので、`children` の有無から `.tsx` が付ける。 */
+    &.bare {
+      justify-content: center;
+
+      .input {
+        margin-right: 0;
+      }
+    }
+
     &.disabled {
       cursor: not-allowed;
       opacity: var(--wim-opacity-disabled);
