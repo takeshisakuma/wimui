@@ -120,7 +120,9 @@ export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeader
     const Component = asChild ? Slot : "thead";
     return (
       <Component
-        className={classNames(styles.header, className)}
+        // thead 自身のクラスは持たない（T242）。地色は `.row` の白に隠れて一度も
+        // 見えていなかったので消した。区切りは `.head` の帯（T241）が描く。
+        className={className}
         ref={ref}
         data-testid="table-header"
         {...(props as React.HTMLAttributes<HTMLTableSectionElement>)}

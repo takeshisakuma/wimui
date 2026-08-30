@@ -62,6 +62,38 @@
 }
 
 /* 閾値は Table 側と一致させること（既定 sm / mobileCard="md" のときだけ md）。 */
+
+/* **カード表示では固定列を解除する（T240）。**
+   Table 側の `card-layout` は `td.stickyLeft { position: static }` で既に解除して
+   いるのに効いていなかった ── **あちらは `@layer component` の中、この file は
+   layer の外**にあり、**レイヤー外の宣言はレイヤー内より常に強い**ので、
+   詳細度（`.scope .root.mobileCard tbody tr td.stickyLeft` 対 `.cellFixed`）に
+   関わらず `.cellFixed { position: sticky }` が勝っていた。
+   実測（`datagrid--mobile-card` の 1 枚目）: 他のセルが x=17・右端 395 なのに
+   **`ID` のセルだけ x=27・右端 405** ＝ 左へ 10px 入り込み、右はカードの外へ 9px。
+   スクロール影（`.cellFixedLeftLast::after`）も同じ理由で生きており、
+   カードの中に 10px のグラデーションが出ていた。
+   **解除もこの file から書く**（layer をまたがずに同じ土俵で上書きする）。 */
+@mixin fixed-off {
+  position: static;
+  box-shadow: none;
+
+  /* 横スクロールしないのでスクロール影は要らない（左固定列の影）。 */
+  &::after {
+    content: none;
+  }
+
+  /* **`::before` は消さないこと。** 右固定列の影は `::before` を使うが、
+     カード表示ではその `::before` が**見出しラベルを描く枠**でもある
+     （Table 側 `card-layout` の `content: attr(data-label)`）。`content: none` に
+     すると右固定列だけラベルが消える。影の指定だけ打ち消してラベルへ戻す。 */
+  &::before {
+    position: static;
+    width: auto;
+    content: attr(data-label);
+  }
+}
+
 .mobileCard {
   .container {
     @include breakpoints.container-down(sm) {
@@ -72,6 +104,12 @@
   .footer {
     @include breakpoints.container-down(sm) {
       border-radius: var(--wim-radius-component);
+    }
+  }
+
+  .cellFixed {
+    @include breakpoints.container-down(sm) {
+      @include fixed-off;
     }
   }
 }
@@ -86,6 +124,13 @@
   .footer {
     @include breakpoints.container-down(md) {
       border-radius: var(--wim-radius-component);
+    }
+  }
+
+  /* 閾値だけ違う同じ解除（T240）。 */
+  .cellFixed {
+    @include breakpoints.container-down(md) {
+      @include fixed-off;
     }
   }
 }
