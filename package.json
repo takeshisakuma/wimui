@@ -349,6 +349,7 @@
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "check:doc-tokens": "node scripts/check-doc-token-refs.js",
     "check:audit-coverage": "node scripts/check-audit-coverage.js",
+    "check:scss-layer": "node scripts/check-scss-layer.js",
     "check:licenses": "node scripts/check-bundled-licenses.js",
     "check:imports": "node scripts/check-imports.js",
     "vrt:diff-report": "node scripts/vrt-diff-report.js",
