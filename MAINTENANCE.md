@@ -391,6 +391,21 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 `ubuntu-24.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
 
+### 11-2. Playwright の major を上げたら、VRT の比較器がまだ生きているか確かめる（T238）
+
+`vrt/vrt.spec.ts` は `_comparator: "ssim-cie94"` を指定している。**アンダースコア始まり＝非公開オプション**なので、Playwright を上げると**黙って無視され、既定の pixelmatch に戻る可能性がある**。戻ると `includeAA: false` の盲点も戻り、**細い記号やアイコンの消失が再び緑で通る**（#564 がそうだった）。
+
+**「指定が残っている」ことでは確かめられない。** 効いているかは対照でしか分からない。
+
+確かめ方（30 分ほど）:
+
+1. 使い捨てブランチで `DataGrid.tsx` の `sortable={Boolean(col.sortable && onSortChange)}` を `sortable={col.sortable}` に戻す（#564 の 1 行）
+2. `npm run build-storybook`
+3. Windows なら `CI=1 npx playwright test vrt/vrt.spec.ts -g "DataGrid" --update-snapshots` を**先に main で**回して `-chromium-win32.png` を作り、両端を揃える（終わったら消す）
+4. `CI=1 npx playwright test vrt/vrt.spec.ts -g "DataGrid"`
+
+**期待: 20 件が落ちる**（変化した 10 ストーリー × 2 テーマ）。**32/32 緑なら比較器が効いていない。**
+
 ### 12. a11y 全量の再測定（T68）
 
 同一コミットで複数回流し、赤の集合が一致するかを見る。**1 ラン 4 シャード × 約 9 分の CI 律速**なので、回数を増やす費用対効果は低い。2026-08-05 に 5 回流して 5 回とも緑だったが、**それは非決定性が消えた証明ではない**（起票時も赤は 1〜2 件で、緑を引くことはありうる）。
