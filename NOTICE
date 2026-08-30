@@ -83,3 +83,94 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+Bundled third-party code
+========================
+
+The published package externalises almost every dependency, so consumers get
+those libraries — and their licences — from their own `node_modules`. The
+packages below are the exception: the build copies their source into `dist/`,
+so this package redistributes them and reproduces their notices here.
+
+The list is checked on every build — see `npm run check:licenses`. It fails in
+both directions: a package that appears in `dist/node_modules/` without being
+listed here, and an entry here that is no longer bundled.
+
+  - @radix-ui/react-slot 1.3.3 — MIT — dist/node_modules/@radix-ui/react-slot/
+  - @radix-ui/react-compose-refs 1.1.5 — MIT — dist/node_modules/@radix-ui/react-compose-refs/
+  - @fullcalendar/core 6.1.21 — MIT — dist/node_modules/@fullcalendar/core/locales/
+    (only the ja, pt and pt-br locale files; the library itself is a peer
+    dependency and is not bundled)
+
+MIT License
+
+Copyright (c) 2022 WorkOS
+
+  (applies to @radix-ui/react-slot and @radix-ui/react-compose-refs)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+MIT License
+
+Copyright (c) 2021 Adam Shaw
+
+  (applies to @fullcalendar/core)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Peer dependencies with conditions beyond attribution
+====================================================
+
+Nothing below is bundled — these libraries reach the consumer through their own
+`node_modules`, with their own licence files. No copyright notice is owed here.
+They are listed because they carry a condition a consumer can breach without
+noticing, and because this package's own behaviour with respect to that
+condition is worth stating.
+
+React Flow (`@xyflow/react`) — used by `NodeGraph` and `InteractiveGraph`
+  React Flow renders an attribution link in the corner of the canvas. Removing
+  it requires a React Flow Pro subscription. **This package does not remove
+  it.** `hideAttribution` and `proOptions` appear nowhere in this repository;
+  the only styling applied to `.react-flow__attribution` is colour and
+  background, because the upstream default (#999) falls below WCAG AA on the
+  canvas (2.7:1 measured). A consumer who hides the attribution takes on that
+  obligation themselves.
+
+FullCalendar (`@fullcalendar/*`) — used by `ScheduleView`
+  Only the standard packages are used (`core`, `daygrid`, `timegrid`,
+  `interaction`), all MIT. FullCalendar's premium plugins are under a separate
+  licence and require a key; this package does not use or require them.

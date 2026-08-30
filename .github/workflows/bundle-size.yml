@@ -6,6 +6,10 @@ on:
       - "src/**"
       - "vite.config.ts"
       - "package.json"
+      # NOTICE と検査自身の変更でも走らせる（片方だけ直して気づかない事故を防ぐ）
+      - "NOTICE"
+      - "scripts/check-bundled-licenses.js"
+      - ".github/workflows/bundle-size.yml"
 
 jobs:
   size:
@@ -27,6 +31,12 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # ビルド直後に置く。この検査は dist/node_modules/ を見るので、ビルド前だと
+      # 「dist が無い」で落ちる（素通りはしない）。lint.yml の audit:lib はビルドを
+      # しないため、そちらには置けない。
+      - name: Bundled third-party licences
+        run: npm run check:licenses
 
       - name: Check bundle size
         run: npm run size
