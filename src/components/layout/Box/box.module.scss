@@ -1,56 +1,59 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  box-sizing: border-box;
+@layer component {
+  .root {
+    box-sizing: border-box;
 
-  // Reset inherited layout variables to prevent unintended responsive overrides
-  --wim-box-w: initial;
-  --wim-box-w-sm: initial;
-  --wim-box-w-md: initial;
-  --wim-box-w-lg: initial;
-  --wim-box-w-xl: initial;
-  --wim-box-h: initial;
-  --wim-box-h-sm: initial;
-  --wim-box-h-md: initial;
-  --wim-box-h-lg: initial;
-  --wim-box-h-xl: initial;
-}
-
-// w / h がレスポンシブオブジェクトのときのみ適用する。
-// .root 全体に適用すると、変数未設定の Box で宣言が invalid-at-computed-value-time となり、
-// !important が inline style の width/height を打ち消して auto にしてしまう。
-.responsiveW {
-  @include breakpoints.up(sm) {
-    width: var(--wim-box-w-sm, var(--wim-box-w)) !important;
+    // Reset inherited layout variables to prevent unintended responsive overrides
+    --wim-box-w: initial;
+    --wim-box-w-sm: initial;
+    --wim-box-w-md: initial;
+    --wim-box-w-lg: initial;
+    --wim-box-w-xl: initial;
+    --wim-box-h: initial;
+    --wim-box-h-sm: initial;
+    --wim-box-h-md: initial;
+    --wim-box-h-lg: initial;
+    --wim-box-h-xl: initial;
   }
 
-  @include breakpoints.up(md) {
-    width: var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w))) !important;
+  // w / h がレスポンシブオブジェクトのときのみ適用する。
+  // .root 全体に適用すると、変数未設定の Box で宣言が invalid-at-computed-value-time となり、
+  // !important が inline style の width/height を打ち消して auto にしてしまう。
+  .responsiveW {
+    @include breakpoints.up(sm) {
+      width: var(--wim-box-w-sm, var(--wim-box-w)) !important;
+    }
+
+    @include breakpoints.up(md) {
+      width: var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w))) !important;
+    }
+
+    @include breakpoints.up(lg) {
+      width: var(--wim-box-w-lg, var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w)))) !important;
+    }
+
+    @include breakpoints.up(xl) {
+      width: var(--wim-box-w-xl, var(--wim-box-w-lg, var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w))))) !important;
+    }
   }
 
-  @include breakpoints.up(lg) {
-    width: var(--wim-box-w-lg, var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w)))) !important;
+  .responsiveH {
+    @include breakpoints.up(sm) {
+      height: var(--wim-box-h-sm, var(--wim-box-h)) !important;
+    }
+
+    @include breakpoints.up(md) {
+      height: var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h))) !important;
+    }
+
+    @include breakpoints.up(lg) {
+      height: var(--wim-box-h-lg, var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h)))) !important;
+    }
+
+    @include breakpoints.up(xl) {
+      height: var(--wim-box-h-xl, var(--wim-box-h-lg, var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h))))) !important;
+    }
   }
 
-  @include breakpoints.up(xl) {
-    width: var(--wim-box-w-xl, var(--wim-box-w-lg, var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w))))) !important;
-  }
-}
-
-.responsiveH {
-  @include breakpoints.up(sm) {
-    height: var(--wim-box-h-sm, var(--wim-box-h)) !important;
-  }
-
-  @include breakpoints.up(md) {
-    height: var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h))) !important;
-  }
-
-  @include breakpoints.up(lg) {
-    height: var(--wim-box-h-lg, var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h)))) !important;
-  }
-
-  @include breakpoints.up(xl) {
-    height: var(--wim-box-h-xl, var(--wim-box-h-lg, var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h))))) !important;
-  }
 }

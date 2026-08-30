@@ -1,17 +1,21 @@
-/* 視覚隠蔽の規則は `layout/VisuallyHidden/visuallyHidden.module.scss` と同一。
-   あちらは `<span>` を描くため `<table>` を入れられない（span は phrasing
-   content）ので、同じ規則を持つ `<div>` をここに置いている。
-   `position: absolute` なので、併記しても図のレイアウトは動かない。 */
-.root {
-  position: absolute;
-  width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
-  height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
-  padding: 0;
-  margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
-  overflow: hidden;
-  white-space: nowrap;
-  border: 0;
-  /* stylelint-disable-next-line property-no-deprecated */
-  clip: rect(0, 0, 0, 0);
-  clip-path: inset(50%);
+
+@layer component {
+  /* 視覚隠蔽の規則は `layout/VisuallyHidden/visuallyHidden.module.scss` と同一。
+     あちらは `<span>` を描くため `<table>` を入れられない（span は phrasing
+     content）ので、同じ規則を持つ `<div>` をここに置いている。
+     `position: absolute` なので、併記しても図のレイアウトは動かない。 */
+  .root {
+    position: absolute;
+    width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+    height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+    padding: 0;
+    margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+  }
+
 }

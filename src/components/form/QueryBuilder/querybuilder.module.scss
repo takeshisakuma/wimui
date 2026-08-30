@@ -1,290 +1,293 @@
 @use "../../../tokens/breakpoints" as *;
 
-.root {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-lg);
-  width: 100%;
-
-  /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
-     flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 24px・高さ 346→430px**。T59 で 15 件を直したあと**この 1 件だけ残った**のが T61 の発端。
-     **containment は外せない**（`container-name` を使っていないため、中に置かれた
-     子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
-     使えない**（containment 下では 0 に潰れる）。T61 */
-  min-width: var(--wim-width-sm);
-  container-type: inline-size;
-
-  .removeRule,
-  .removeGroup {
+@layer component {
+  .root {
     display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    width: var(--wim-height-md);
-    min-width: var(--wim-height-md);
-    height: var(--wim-height-md);
-    min-height: var(--wim-height-md);
-    padding: 0;
-    margin-left: auto;
+    flex-direction: column;
+    gap: var(--wim-spacing-lg);
+    width: 100%;
 
-    /* 色と hover は Button の `intent="danger"` + ghost が持つ（T132）。
-       ここで面だけ手作りすると、枠は primary 基準のまま残る。 */
-    transition: var(--wim-transition-fast);
+    /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
+       flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 24px・高さ 346→430px**。T59 で 15 件を直したあと**この 1 件だけ残った**のが T61 の発端。
+       **containment は外せない**（`container-name` を使っていないため、中に置かれた
+       子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
+       使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
+    container-type: inline-size;
 
-    svg {
-      color: inherit;
-      fill: currentcolor;
+    .removeRule,
+    .removeGroup {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      width: var(--wim-height-md);
+      min-width: var(--wim-height-md);
+      height: var(--wim-height-md);
+      min-height: var(--wim-height-md);
+      padding: 0;
+      margin-left: auto;
+
+      /* 色と hover は Button の `intent="danger"` + ghost が持つ（T132）。
+         ここで面だけ手作りすると、枠は primary 基準のまま残る。 */
+      transition: var(--wim-transition-fast);
+
+      svg {
+        color: inherit;
+        fill: currentcolor;
+      }
     }
-  }
 
-  .removeRule {
-    align-self: center;
-    margin-left: auto;
-
-    @include container-down(md) {
+    .removeRule {
       align-self: center;
+      margin-left: auto;
+
+      @include container-down(md) {
+        align-self: center;
+        margin-left: 0;
+      }
+    }
+
+    .removeGroup {
+      align-self: flex-start;
       margin-left: 0;
     }
   }
 
-  .removeGroup {
-    align-self: flex-start;
-    margin-left: 0;
-  }
-}
-
-.group {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--wim-color-surface-variant);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container);
-  transition: var(--wim-transition-fast);
-
-  &:hover {
-    border-color: var(--wim-color-primary);
-  }
-}
-
-.excluded {
-  border-color: color-mix(in oklch, var(--wim-color-danger) 20%, var(--wim-color-border-secondary));
-
-  > .ruleList {
-    background-color: color-mix(in oklch, var(--wim-color-danger) 6%, var(--wim-color-surface));
-  }
-}
-
-.nested {
-  margin-top: var(--wim-spacing-sm);
-  margin-bottom: var(--wim-spacing-sm);
-  background-color: var(--wim-color-surface-variant);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-}
-
-.groupHeader {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-md);
-  align-items: center;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  background-color: var(--wim-color-surface);
-  border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
-}
-
-.groupHeaderLeft {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-sm);
-  align-items: center;
-  min-width: 0;
-
-  .segmentedControl {
-    align-items: stretch;
-    height: var(--wim-height-md);
-    padding: var(--wim-spacing-3xs);
-
-    .segmentedControlItem {
-      height: calc(var(--wim-height-md) - var(--wim-spacing-2xs));
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    .segmentedControlSlider {
-      top: var(--wim-focus-outline-offset);
-      bottom: var(--wim-focus-outline-offset);
-    }
-  }
-
-  > * {
-    flex-shrink: 0;
-  }
-}
-
-.ruleList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-sm);
-  min-height: 20px; /* Exception: Structural Logic — 空のルールリストでもドロップ領域が見える最小高さ */
-  padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-primary-soft);
-}
-
-.rule {
-  position: relative;
-  display: flex;
-  gap: var(--wim-spacing-sm);
-  align-items: flex-start;
-  padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container);
-  animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
-
-  &:hover {
-    background-color: var(--wim-color-surface-hover);
-    border-color: var(--wim-color-primary);
-  }
-
-  @include container-down(sm) {
-    align-items: stretch;
-    width: 100%;
-  }
-}
-
-.groupActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-sm);
-  align-items: center;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  margin-top: auto;
-  background-color: var(--wim-color-surface);
-  border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: 0 0 var(--wim-radius-container) var(--wim-radius-container);
-
-  @include container-down(sm) {
+  .group {
+    position: relative;
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-}
+    background-color: var(--wim-color-surface-variant);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+    transition: var(--wim-transition-fast);
 
-.ruleFields {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-xl);
-  align-items: stretch;
-  min-width: 0;
-
-  --wim-input-width: 100%;
-
-  > * {
-    display: flex;
-    flex: 1 1 240px; /* Exception: Structural Logic — フィールド列の折り返し基準幅 */
-    align-items: stretch;
-    min-width: 0;
-    height: var(--wim-height-md);
-
-    &.operator {
-      flex: 1 1 180px; /* Exception: Structural Logic — 演算子列の折り返し基準幅 */
-    }
-
-    .select {
-      width: 100%;
-
-      /* **現状ここは根に守られていない** — QueryBuilder の `.root` は
-         `container-type: inline-size` を持つため、`min-width: 0` が無くても
-         内容の寸法が 0 として扱われて潰れる（実測: 610px の flex row・残り 24px
-         で幅 24px のまま。T59 の修正後もここだけ残った）。**根の下限は T61 で
-         入れる**。そのときこの逃がしの前提が初めて成立する。 */
-
-      /* shrinkable-ok: `Select` の `.root` が持つ下限を、ここでは意図して外す。
-         列は `flex: 1 1 240px` で折り返す設計なので、下限を残すと折り返す前に
-         行がはみ出す。 */
-      min-width: 0;
-    }
-
-    .inputBase,
-    .selectTrigger {
-      width: 100%;
-      height: var(--wim-height-md);
-      padding-top: 0;
-      padding-bottom: 0;
-      line-height: var(--wim-height-md);
-      transition: background-color var(--wim-duration-base) var(--wim-easing-standard);
+    &:hover {
+      border-color: var(--wim-color-primary);
     }
   }
 
-  .value {
+  .excluded {
+    border-color: color-mix(in oklch, var(--wim-color-danger) 20%, var(--wim-color-border-secondary));
+
+    > .ruleList {
+      background-color: color-mix(in oklch, var(--wim-color-danger) 6%, var(--wim-color-surface));
+    }
+  }
+
+  .nested {
+    margin-top: var(--wim-spacing-sm);
+    margin-bottom: var(--wim-spacing-sm);
+    background-color: var(--wim-color-surface-variant);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+  }
+
+  .groupHeader {
     display: flex;
-    flex: 1 1 240px; /* Exception: Structural Logic — 値列の折り返し基準幅 */
-    align-items: stretch;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    background-color: var(--wim-color-surface);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container) var(--wim-radius-container) 0 0;
+  }
+
+  .groupHeaderLeft {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
     min-width: 0;
 
-    & > * {
-      width: 100%;
+    .segmentedControl {
+      align-items: stretch;
       height: var(--wim-height-md);
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
+      padding: var(--wim-spacing-3xs);
 
-  @include container-down(md) {
+      .segmentedControlItem {
+        height: calc(var(--wim-height-md) - var(--wim-spacing-2xs));
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .segmentedControlSlider {
+        top: var(--wim-focus-outline-offset);
+        bottom: var(--wim-focus-outline-offset);
+      }
+    }
+
     > * {
-      flex: 1 1 100%;
-      max-width: none;
+      flex-shrink: 0;
+    }
+  }
+
+  .ruleList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    min-height: 20px; /* Exception: Structural Logic — 空のルールリストでもドロップ領域が見える最小高さ */
+    padding: var(--wim-spacing-md);
+    background-color: var(--wim-color-primary-soft);
+  }
+
+  .rule {
+    position: relative;
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: flex-start;
+    padding: var(--wim-spacing-md);
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+    animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
+
+    &:hover {
+      background-color: var(--wim-color-surface-hover);
+      border-color: var(--wim-color-primary);
     }
 
-    .field {
-      flex: 0 0 calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅(--wim-height-md)を除いた残り */
-      order: 1;
-      width: calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅を除いた残り */
+    @include container-down(sm) {
+      align-items: stretch;
+      width: 100%;
     }
+  }
 
-    .removeRule {
-      flex: 0 0 auto;
-      order: 2;
-      width: var(--wim-height-md);
+  .groupActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    margin-top: auto;
+    background-color: var(--wim-color-surface);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: 0 0 var(--wim-radius-container) var(--wim-radius-container);
+
+    @include container-down(sm) {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
     }
+  }
 
-    .operator {
-      flex: 1 1 100%;
-      order: 3;
+  .ruleFields {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xl);
+    align-items: stretch;
+    min-width: 0;
+
+    --wim-input-width: 100%;
+
+    > * {
+      display: flex;
+      flex: 1 1 240px; /* Exception: Structural Logic — フィールド列の折り返し基準幅 */
+      align-items: stretch;
+      min-width: 0;
+      height: var(--wim-height-md);
+
+      &.operator {
+        flex: 1 1 180px; /* Exception: Structural Logic — 演算子列の折り返し基準幅 */
+      }
+
+      .select {
+        width: 100%;
+
+        /* **現状ここは根に守られていない** — QueryBuilder の `.root` は
+           `container-type: inline-size` を持つため、`min-width: 0` が無くても
+           内容の寸法が 0 として扱われて潰れる（実測: 610px の flex row・残り 24px
+           で幅 24px のまま。T59 の修正後もここだけ残った）。**根の下限は T61 で
+           入れる**。そのときこの逃がしの前提が初めて成立する。 */
+
+        /* shrinkable-ok: `Select` の `.root` が持つ下限を、ここでは意図して外す。
+           列は `flex: 1 1 240px` で折り返す設計なので、下限を残すと折り返す前に
+           行がはみ出す。 */
+        min-width: 0;
+      }
+
+      .inputBase,
+      .selectTrigger {
+        width: 100%;
+        height: var(--wim-height-md);
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: var(--wim-height-md);
+        transition: background-color var(--wim-duration-base) var(--wim-easing-standard);
+      }
     }
 
     .value {
-      flex: 1 1 100%;
-      order: 4;
+      display: flex;
+      flex: 1 1 240px; /* Exception: Structural Logic — 値列の折り返し基準幅 */
+      align-items: stretch;
+      min-width: 0;
+
+      & > * {
+        width: 100%;
+        height: var(--wim-height-md);
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    @include container-down(md) {
+      > * {
+        flex: 1 1 100%;
+        max-width: none;
+      }
+
+      .field {
+        flex: 0 0 calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅(--wim-height-md)を除いた残り */
+        order: 1;
+        width: calc(100% - 54px); /* Exception: Geometric Harmony — 削除ボタン幅を除いた残り */
+      }
+
+      .removeRule {
+        flex: 0 0 auto;
+        order: 2;
+        width: var(--wim-height-md);
+      }
+
+      .operator {
+        flex: 1 1 100%;
+        order: 3;
+      }
+
+      .value {
+        flex: 1 1 100%;
+        order: 4;
+      }
     }
   }
-}
 
 
-// Visually-hidden utility for screen reader live regions (WAI-ARIA pattern)
-.srOnly {
-  position: absolute;
-  width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
-  height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
-  padding: 0;
-  margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
-  overflow: hidden;
-  white-space: nowrap;
-  border: 0;
-  clip-path: inset(50%);
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px); /* Exception: Interaction Physics — ルール追加時の入場オフセット */
+  // Visually-hidden utility for screen reader live regions (WAI-ARIA pattern)
+  .srOnly {
+    position: absolute;
+    width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+    height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+    padding: 0;
+    margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px); /* Exception: Interaction Physics — ルール追加時の入場オフセット */
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
 }

@@ -1,79 +1,82 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.container {
-  width: 100%;
-
-  /* `container-type: inline-size` は `contain: layout style inline-size` なので、
-     **内容の寸法が 0 として扱われ** flex の自動最小サイズの保護が消える。
-     無いと 610px の row（残り 24px）で **幅 24px**、テキストが 7px まで痩せる。
-     **containment 自体は外せない** — `container-name` を使っていないため、
-     中に置かれた子コンポーネントの `@container` がここを最も近い祖先として
-     参照している（`Dashboard` で外して実測したらカラムの高さが 717→538px に
-     変わった）。**`min-content` も使えない**（containment 下では 0 に潰れる）。T61 */
-  min-width: var(--wim-width-sm);
-  container-type: inline-size;
-}
-
-.root {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-auto-rows: var(--wim-bento-row-height, 18rem);
-  gap: var(--wim-spacing-md);
-  max-width: 1200px; /* Exception: Structural Logic — grid content measure ceiling */
-  margin: 0 auto;
-
-  @include breakpoints.container-up(md) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container);
-  transition: all var(--wim-transition-fast);
-
-  &:hover {
-    box-shadow: var(--wim-shadow-md);
-  }
-
-  &Header {
+@layer component {
+  .container {
     width: 100%;
-    height: 100%;
-    min-height: 5rem;
-    overflow: hidden;
-    background: linear-gradient(to bottom right, var(--wim-color-primary-muted), transparent);
-    border-radius: var(--wim-radius-component);
+
+    /* `container-type: inline-size` は `contain: layout style inline-size` なので、
+       **内容の寸法が 0 として扱われ** flex の自動最小サイズの保護が消える。
+       無いと 610px の row（残り 24px）で **幅 24px**、テキストが 7px まで痩せる。
+       **containment 自体は外せない** — `container-name` を使っていないため、
+       中に置かれた子コンポーネントの `@container` がここを最も近い祖先として
+       参照している（`Dashboard` で外して実測したらカラムの高さが 717→538px に
+       変わった）。**`min-content` も使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
+    container-type: inline-size;
   }
 
-  &Content {
-    display: flex;
-    gap: var(--wim-spacing-sm);
-    margin-top: var(--wim-spacing-sm);
+  .root {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-auto-rows: var(--wim-bento-row-height, 18rem);
+    gap: var(--wim-spacing-md);
+    max-width: 1200px; /* Exception: Structural Logic — grid content measure ceiling */
+    margin: 0 auto;
+
+    @include breakpoints.container-up(md) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 
-  &Icon {
-    flex-shrink: 0;
-  }
-
-  &Text {
+  .item {
+    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: var(--wim-spacing-md);
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+    transition: all var(--wim-transition-fast);
+
+    &:hover {
+      box-shadow: var(--wim-shadow-md);
+    }
+
+    &Header {
+      width: 100%;
+      height: 100%;
+      min-height: 5rem;
+      overflow: hidden;
+      background: linear-gradient(to bottom right, var(--wim-color-primary-muted), transparent);
+      border-radius: var(--wim-radius-component);
+    }
+
+    &Content {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+      margin-top: var(--wim-spacing-sm);
+    }
+
+    &Icon {
+      flex-shrink: 0;
+    }
+
+    &Text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &Title {
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-bold);
+      color: var(--wim-color-text-primary);
+    }
+
+    &Description {
+      font-size: var(--wim-font-size-sm);
+      color: var(--wim-color-text-secondary);
+    }
   }
 
-  &Title {
-    font-size: var(--wim-font-size-md);
-    font-weight: var(--wim-font-weight-bold);
-    color: var(--wim-color-text-primary);
-  }
-
-  &Description {
-    font-size: var(--wim-font-size-sm);
-    color: var(--wim-color-text-secondary);
-  }
 }

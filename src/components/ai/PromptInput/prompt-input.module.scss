@@ -1,147 +1,150 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/field-mixins" as field;
 
-.root {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-xs);
-  width: 100%;
-
-  /* 横並びで潰れないための下限（T59）。理由は ModelSelector と同じ。 */
-  min-width: var(--wim-width-sm);
-  max-width: var(--wim-width-md);
-  min-height: var(--wim-height-md);
-  container-type: inline-size;
-  background: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-line);
-  border-radius: var(--wim-field-radius, var(--wim-radius-component));
-  transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
-    box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
-
-  &.fullWidth {
+@layer component {
+  .root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
     width: 100%;
-    max-width: none;
-  }
 
-  &:focus-within:not(.disabled) {
-    border-color: var(--wim-color-primary);
-    box-shadow: var(--wim-shadow-focus-ring);
+    /* 横並びで潰れないための下限（T59）。理由は ModelSelector と同じ。 */
+    min-width: var(--wim-width-sm);
+    max-width: var(--wim-width-md);
+    min-height: var(--wim-height-md);
+    container-type: inline-size;
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-line);
+    border-radius: var(--wim-field-radius, var(--wim-radius-component));
+    transition: border-color var(--wim-duration-fast) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &.fullWidth {
+      width: 100%;
+      max-width: none;
+    }
+
+    &:focus-within:not(.disabled) {
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
+
+      &.danger {
+        @include field.error-border;
+
+        box-shadow: var(--wim-shadow-error-ring);
+      }
+    }
 
     &.danger {
       @include field.error-border;
+    }
 
-      box-shadow: var(--wim-shadow-error-ring);
+    &.disabled {
+      color: var(--wim-color-text-on-disabled);
+      cursor: not-allowed;
+      background: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+
+      .textarea,
+      .textarea::placeholder,
+      .actionButton,
+      .actionButton:disabled {
+        color: inherit;
+      }
+
+      .actionButton:disabled {
+        opacity: 1;
+      }
+    }
+
+    &.loading {
+      cursor: wait;
     }
   }
 
-  &.danger {
-    @include field.error-border;
-  }
+  .inputArea {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    min-height: calc(var(--wim-height-md) - var(--wim-border-width-thick)); // Ensure consistent height
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
 
-  &.disabled {
-    color: var(--wim-color-text-on-disabled);
-    cursor: not-allowed;
-    background: var(--wim-color-disabled);
-    border-color: var(--wim-color-disabled);
-
-    .textarea,
-    .textarea::placeholder,
-    .actionButton,
-    .actionButton:disabled {
-      color: inherit;
-    }
-
-    .actionButton:disabled {
-      opacity: 1;
+    &.noAttach {
+      padding-left: var(--wim-spacing-md);
     }
   }
 
-  &.loading {
-    cursor: wait;
-  }
-}
-
-.inputArea {
-  display: flex;
-  gap: var(--wim-spacing-xs);
-  align-items: center;
-  min-height: calc(var(--wim-height-md) - var(--wim-border-width-thick)); // Ensure consistent height
-  padding: var(--wim-spacing-xs) var(--wim-spacing-sm) var(--wim-spacing-xs) var(--wim-spacing-md);
-
-  &.noAttach {
-    padding-left: var(--wim-spacing-md);
-  }
-}
-
-.textarea {
-  display: block;
-  flex: 1;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  font-family: inherit;
-  font-size: var(--wim-font-size-md);
-  line-height: var(--wim-line-height-normal);
-  vertical-align: middle;
-  color: var(--wim-color-text-primary);
-  resize: none;
-  outline: none !important;
-  background: transparent;
-  border: none;
-  box-shadow: none !important;
-
-  &::placeholder {
-    color: var(--wim-color-text-tertiary);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-}
-
-.actionButton {
-  display: grid;
-  flex-shrink: 0;
-  place-items: center;
-  padding: var(--wim-spacing-2xs);
-  line-height: 1;
-  color: var(--wim-color-text-secondary);
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  border-radius: var(--wim-radius-component);
-  transition: background var(--wim-duration-fast) var(--wim-easing-standard),
-    color var(--wim-duration-fast) var(--wim-easing-standard);
-
-  &:hover:not(:disabled) {
+  .textarea {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: inherit;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-normal);
+    vertical-align: middle;
     color: var(--wim-color-text-primary);
-    background: var(--wim-color-ghost-bg-hover);
-  }
+    resize: none;
+    outline: none !important;
+    background: transparent;
+    border: none;
+    box-shadow: none !important;
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-disabled);
-  }
-}
+    &::placeholder {
+      color: var(--wim-color-text-tertiary);
+    }
 
-.sendButton {
-  &:not(:disabled) {
-    color: var(--wim-color-text-accent);
-
-    &:hover {
-      background: oklch(from var(--wim-color-primary) l c h / 0.1);
+    &:disabled {
+      cursor: not-allowed;
     }
   }
-}
 
-.charCount {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
+  .actionButton {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    padding: var(--wim-spacing-2xs);
+    line-height: 1;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-component);
+    transition: background var(--wim-duration-fast) var(--wim-easing-standard),
+      color var(--wim-duration-fast) var(--wim-easing-standard);
 
-  @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
-    padding: 0 var(--wim-spacing-sm) var(--wim-spacing-xs);
+    &:hover:not(:disabled) {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
   }
+
+  .sendButton {
+    &:not(:disabled) {
+      color: var(--wim-color-text-accent);
+
+      &:hover {
+        background: oklch(from var(--wim-color-primary) l c h / 0.1);
+      }
+    }
+  }
+
+  .charCount {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 var(--wim-spacing-md) var(--wim-spacing-xs);
+
+    @container (max-width: 480px) { /* Exception: Structural Logic — fixed compact-layout switch */
+      padding: 0 var(--wim-spacing-sm) var(--wim-spacing-xs);
+    }
+  }
+
 }

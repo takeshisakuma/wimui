@@ -1,3 +1,7 @@
-.root {
-  box-sizing: border-box;
+
+@layer component {
+  .root {
+    box-sizing: border-box;
+  }
+
 }

@@ -1,75 +1,78 @@
 @use "../../../tokens/breakpoints" as *;
 
-.root {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: var(--wim-spacing-sm);
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+@layer component {
+  .root {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--wim-spacing-sm);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 
-  &.joined {
-    gap: 0;
+    &.joined {
+      gap: 0;
 
-    & > * {
-      flex: 1 1 auto;
-
-      --wim-field-radius-tl: 0;
-      --wim-field-radius-tr: 0;
-      --wim-field-radius-bl: 0;
-      --wim-field-radius-br: 0;
-
-      &:not(:first-child) {
-        margin-left: calc(var(--wim-border-width-thick, 2px) * -1);
-      }
-
-      &:first-child {
-        --wim-field-radius-tl: var(--wim-radius-component);
-        --wim-field-radius-bl: var(--wim-radius-component);
-      }
-
-      &:last-child {
-        --wim-field-radius-tr: var(--wim-radius-component);
-        --wim-field-radius-br: var(--wim-radius-component);
-      }
-
-      &:hover,
-      &:focus-visible {
-        z-index: 1;
-  
-        --wim-button-transform: none;
-      }
-
-      &:active {
-        --wim-button-transform-active: none;
-      }
-    }
-
-    @include down(sm) {
       & > * {
-        flex: 1 1 100%;
+        flex: 1 1 auto;
 
-        &:not(:first-child) {
-          margin-top: calc(var(--wim-border-width-thick, 2px) * -1);
-          margin-left: 0;
-        }
-
-        --wim-field-radius-tl: var(--wim-radius-component);
-        --wim-field-radius-tr: var(--wim-radius-component);
+        --wim-field-radius-tl: 0;
+        --wim-field-radius-tr: 0;
         --wim-field-radius-bl: 0;
         --wim-field-radius-br: 0;
 
-        &:last-child {
-          --wim-field-radius-tl: 0;
-          --wim-field-radius-tr: 0;
+        &:not(:first-child) {
+          margin-left: calc(var(--wim-border-width-thick, 2px) * -1);
+        }
+
+        &:first-child {
+          --wim-field-radius-tl: var(--wim-radius-component);
           --wim-field-radius-bl: var(--wim-radius-component);
+        }
+
+        &:last-child {
+          --wim-field-radius-tr: var(--wim-radius-component);
           --wim-field-radius-br: var(--wim-radius-component);
         }
 
-        &:first-child:last-child {
-          --wim-field-radius: var(--wim-radius-component);
+        &:hover,
+        &:focus-visible {
+          z-index: 1;
+  
+          --wim-button-transform: none;
+        }
+
+        &:active {
+          --wim-button-transform-active: none;
+        }
+      }
+
+      @include down(sm) {
+        & > * {
+          flex: 1 1 100%;
+
+          &:not(:first-child) {
+            margin-top: calc(var(--wim-border-width-thick, 2px) * -1);
+            margin-left: 0;
+          }
+
+          --wim-field-radius-tl: var(--wim-radius-component);
+          --wim-field-radius-tr: var(--wim-radius-component);
+          --wim-field-radius-bl: 0;
+          --wim-field-radius-br: 0;
+
+          &:last-child {
+            --wim-field-radius-tl: 0;
+            --wim-field-radius-tr: 0;
+            --wim-field-radius-bl: var(--wim-radius-component);
+            --wim-field-radius-br: var(--wim-radius-component);
+          }
+
+          &:first-child:last-child {
+            --wim-field-radius: var(--wim-radius-component);
+          }
         }
       }
     }
   }
+
 }

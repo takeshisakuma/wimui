@@ -1,90 +1,93 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-.root {
-  width: 100%;
-  padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl);
-  transition: all var(--wim-transition-base);
+@layer component {
+  .root {
+    width: 100%;
+    padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl);
+    transition: all var(--wim-transition-base);
 
-  &.bg-surface {
-    color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-surface);
-  }
+    &.bg-surface {
+      color: var(--wim-color-text-primary);
+      background-color: var(--wim-color-surface);
+    }
 
-  &.bg-surface-variant {
-    color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-surface-variant);
-  }
+    &.bg-surface-variant {
+      color: var(--wim-color-text-primary);
+      background-color: var(--wim-color-surface-variant);
+    }
 
-  &.bg-inverse {
-    color: var(--wim-color-text-on-inverse);
-    background-color: var(--wim-color-surface-inverse);
-
-    .sectionTitle {
+    &.bg-inverse {
       color: var(--wim-color-text-on-inverse);
+      background-color: var(--wim-color-surface-inverse);
+
+      .sectionTitle {
+        color: var(--wim-color-text-on-inverse);
+      }
+
+      .bottom {
+        color: var(--wim-color-text-muted-on-inverse);
+        border-top-color: var(--wim-color-border-inverse);
+      }
+
+      .sectionContent {
+        color: var(--wim-color-text-on-inverse);
+      }
     }
 
-    .bottom {
-      color: var(--wim-color-text-muted-on-inverse);
-      border-top-color: var(--wim-color-border-inverse);
-    }
-
-    .sectionContent {
-      color: var(--wim-color-text-on-inverse);
+    &.bordered {
+      border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
     }
   }
 
-  &.bordered {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-2xl);
+    max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
+    padding: 0 var(--wim-spacing-xl);
+    margin: 0 auto;
+
+    /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
+    &.fluid {
+      max-width: none;
+    }
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+  }
+
+  .sectionTitle {
+    margin: 0;
+    font-size: var(--wim-font-size-md);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+  }
+
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    padding-top: var(--wim-spacing-xl);
+    margin-top: var(--wim-spacing-xl);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
     border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+
+    @include breakpoints.up(sm) {
+      flex-direction: row;
+      gap: 0;
+      justify-content: space-between;
+    }
   }
-}
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-2xl);
-  max-width: 1200px; /* Exception: Structural Logic — page content measure ceiling */
-  padding: 0 var(--wim-spacing-xl);
-  margin: 0 auto;
-
-  /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
-  &.fluid {
-    max-width: none;
-  }
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
-}
-
-.sectionTitle {
-  margin: 0;
-  font-size: var(--wim-font-size-md);
-  font-weight: var(--wim-font-weight-bold);
-  color: var(--wim-color-text-primary);
-}
-
-.sectionContent {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-xs);
-}
-
-.bottom {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--wim-spacing-md);
-  align-items: center;
-  padding-top: var(--wim-spacing-xl);
-  margin-top: var(--wim-spacing-xl);
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-  border-top: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-
-  @include breakpoints.up(sm) {
-    flex-direction: row;
-    gap: 0;
-    justify-content: space-between;
-  }
 }

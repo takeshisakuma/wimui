@@ -1,27 +1,31 @@
-.root {
-  display: block;
-  width: 100%;
-  scrollbar-color: var(--wim-color-border-secondary) transparent;
 
-  /* Firefox */
-  scrollbar-width: thin;
+@layer component {
+  .root {
+    display: block;
+    width: 100%;
+    scrollbar-color: var(--wim-color-border-secondary) transparent;
 
-  /* Scrollbar styles */
-  &::-webkit-scrollbar {
-    width: var(--wim-scroll-thickness, 6px);
-    height: var(--wim-scroll-thickness, 6px);
-  }
+    /* Firefox */
+    scrollbar-width: thin;
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    /* Scrollbar styles */
+    &::-webkit-scrollbar {
+      width: var(--wim-scroll-thickness, 6px);
+      height: var(--wim-scroll-thickness, 6px);
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-full);
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-    &:hover {
-      background: var(--wim-color-border);
+    &::-webkit-scrollbar-thumb {
+      background: var(--wim-color-border-secondary);
+      border-radius: var(--wim-radius-full);
+
+      &:hover {
+        background: var(--wim-color-border);
+      }
     }
   }
+
 }
