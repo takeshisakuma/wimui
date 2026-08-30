@@ -1,184 +1,188 @@
-.root {
-  padding: 0;
-  margin: 0;
-  list-style-position: outside;
 
-  /* `fullWidth` はこのクラスで効く。無いあいだ prop は黙って無視されていた（T58）。 */
-  &.fullWidth {
-    width: 100%;
-  }
+@layer component {
+  .root {
+    padding: 0;
+    margin: 0;
+    list-style-position: outside;
 
-  &.spacing-tight {
-    .item {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &.spacing-normal {
-    .item {
-      margin-bottom: 0.75rem;
-    }
-  }
-
-  &.spacing-loose {
-    .item {
-      margin-bottom: 1rem;
-    }
-  }
-
-  &.bordered {
-    overflow: hidden;
-    background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-component);
-
-    .item {
-      margin-bottom: 0;
-      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-  }
-
-  &.hoverable {
-    .item {
-      cursor: pointer;
-      transition: all var(--wim-transition-fast);
-
-      &:hover {
-        background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
-      }
-
-      &:active {
-        background-color: oklch(from var(--wim-color-surface) calc(l * 0.92) c h);
-        transform: scale(var(--wim-scale-active));
-      }
-    }
-  }
-
-  // Sizes
-  &.sm { font-size: var(--wim-font-size-sm); }
-  &.md { font-size: var(--wim-font-size-md); }
-  &.lg { font-size: var(--wim-font-size-lg); }
-}
-
-:global(ul).root, :global(ol).root {
-  padding-left: 2rem;
-  list-style-type: disc;
-
-  &:has(.withIcon) {
-    padding-left: 0;
-  }
-
-  &.bordered, &.hoverable {
-    padding-left: 0;
-    list-style: none;
-
-    .item {
-      position: relative;
-      padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
-      padding-inline-start: var(--wim-spacing-5xl);
-      list-style: none;
-    }
-
-    /* overflow: hidden の bordered では outside マーカーが切れる。
-       inside + text-indent はブロック子をマーカーの次行へ落とす（T183）。 */
-    .item:not(.withIcon)::before {
-      position: absolute;
-
-      /* 本文の直前。start を spacing-md にすると枠の左に貼り付き、点が飛び出す */
-      inset-inline: auto calc(100% - var(--wim-spacing-5xl) + var(--wim-spacing-sm));
-
-      /* Exception: Geometric Harmony — 1 行目の光学中心。padding-y + 行の半分 − 円の半径 */
-      top: calc(var(--wim-list-item-padding-y) + 0.55em);
-      width: 0.35em; /* Exception: Structural Logic — disc は font-size に追従する */
-      height: 0.35em;
-      pointer-events: none;
-      content: "";
-      background-color: currentcolor;
-      border-radius: var(--wim-radius-full);
-    }
-
-    .item.withIcon {
-      padding-inline-start: var(--wim-spacing-md);
-    }
-  }
-}
-
-:global(ol).root {
-  list-style-type: decimal;
-
-  &.bordered,
-  &.hoverable {
-    counter-reset: wim-list-item;
-
-    .item:not(.withIcon)::before {
-      top: var(--wim-list-item-padding-y);
-      width: auto;
-      height: auto;
-      font-variant-numeric: tabular-nums;
-      content: counter(wim-list-item) ".";
-      counter-increment: wim-list-item;
-      background-color: transparent;
-      border-radius: 0;
-    }
-  }
-}
-
-.item {
-  line-height: var(--wim-line-height-normal-jp);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &.selected {
-    background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
-  }
-
-  &.withIcon {
-    padding-left: var(--wim-spacing-md);
-    margin-left: 0;
-    text-indent: 0;
-    list-style: none;
-
-    .itemContent {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
+    /* `fullWidth` はこのクラスで効く。無いあいだ prop は黙って無視されていた（T58）。 */
+    &.fullWidth {
       width: 100%;
     }
+
+    &.spacing-tight {
+      .item {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &.spacing-normal {
+      .item {
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    &.spacing-loose {
+      .item {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &.bordered {
+      overflow: hidden;
+      background-color: var(--wim-color-surface);
+      border: var(--wim-border-width-thin) solid var(--wim-color-border);
+      border-radius: var(--wim-radius-component);
+
+      .item {
+        margin-bottom: 0;
+        border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    &.hoverable {
+      .item {
+        cursor: pointer;
+        transition: all var(--wim-transition-fast);
+
+        &:hover {
+          background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
+        }
+
+        &:active {
+          background-color: oklch(from var(--wim-color-surface) calc(l * 0.92) c h);
+          transform: scale(var(--wim-scale-active));
+        }
+      }
+    }
+
+    // Sizes
+    &.sm { font-size: var(--wim-font-size-sm); }
+    &.md { font-size: var(--wim-font-size-md); }
+    &.lg { font-size: var(--wim-font-size-lg); }
   }
-}
 
-.itemContent {
-  display: block;
-}
+  :global(ul).root, :global(ol).root {
+    padding-left: 2rem;
+    list-style-type: disc;
 
-.iconContainer {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 1rem;
-  min-width: 0;
-  height: 1.6em;
-  overflow: visible;
-}
+    &:has(.withIcon) {
+      padding-left: 0;
+    }
 
-.icon {
-  display: block;
-  visibility: visible;
-  width: 1em;
-  height: 1em;
-  margin: 0;
-  opacity: 1;
-}
+    &.bordered, &.hoverable {
+      padding-left: 0;
+      list-style: none;
 
-.text {
-  min-width: 0;
-  line-height: inherit;
-  word-break: break-all;
+      .item {
+        position: relative;
+        padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
+        padding-inline-start: var(--wim-spacing-5xl);
+        list-style: none;
+      }
+
+      /* overflow: hidden の bordered では outside マーカーが切れる。
+         inside + text-indent はブロック子をマーカーの次行へ落とす（T183）。 */
+      .item:not(.withIcon)::before {
+        position: absolute;
+
+        /* 本文の直前。start を spacing-md にすると枠の左に貼り付き、点が飛び出す */
+        inset-inline: auto calc(100% - var(--wim-spacing-5xl) + var(--wim-spacing-sm));
+
+        /* Exception: Geometric Harmony — 1 行目の光学中心。padding-y + 行の半分 − 円の半径 */
+        top: calc(var(--wim-list-item-padding-y) + 0.55em);
+        width: 0.35em; /* Exception: Structural Logic — disc は font-size に追従する */
+        height: 0.35em;
+        pointer-events: none;
+        content: "";
+        background-color: currentcolor;
+        border-radius: var(--wim-radius-full);
+      }
+
+      .item.withIcon {
+        padding-inline-start: var(--wim-spacing-md);
+      }
+    }
+  }
+
+  :global(ol).root {
+    list-style-type: decimal;
+
+    &.bordered,
+    &.hoverable {
+      counter-reset: wim-list-item;
+
+      .item:not(.withIcon)::before {
+        top: var(--wim-list-item-padding-y);
+        width: auto;
+        height: auto;
+        font-variant-numeric: tabular-nums;
+        content: counter(wim-list-item) ".";
+        counter-increment: wim-list-item;
+        background-color: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+
+  .item {
+    line-height: var(--wim-line-height-normal-jp);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.selected {
+      background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
+    }
+
+    &.withIcon {
+      padding-left: var(--wim-spacing-md);
+      margin-left: 0;
+      text-indent: 0;
+      list-style: none;
+
+      .itemContent {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        width: 100%;
+      }
+    }
+  }
+
+  .itemContent {
+    display: block;
+  }
+
+  .iconContainer {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    min-width: 0;
+    height: 1.6em;
+    overflow: visible;
+  }
+
+  .icon {
+    display: block;
+    visibility: visible;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    opacity: 1;
+  }
+
+  .text {
+    min-width: 0;
+    line-height: inherit;
+    word-break: break-all;
+  }
+
 }

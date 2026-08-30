@@ -130,7 +130,11 @@ export const PricingTable: StoryObj = {
         <style>{`
           .pricing-list {
             align-self: stretch;
-            padding-left: 3.5rem;
+            /* padding-left は置かない。3.5rem と書いてあったが List の
+               ul.root { padding-left: 2rem } に詳細度で負けて**一度も効いていなかった**
+               （List が @layer component の外にあったため）。T243 で List を層へ入れると
+               初めて効くようになるが、実際に当てると「Dedicated account manager」が
+               2 行に折り返してチェック記号とずれる。出荷され続けてきた 2rem を採る。 */
           }
           @media (max-width: 767px) {
             .pricing-list {
