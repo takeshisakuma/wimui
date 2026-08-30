@@ -1,233 +1,248 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
-/* 枠・背景・角丸は .root ではなく内側（.container / .footer）が持つ。
-   .root は container-type: inline-size の起点なので、コンテナクエリからは
-   自分自身を参照できず、カード表示で外枠だけを外すことができないため。
-   デスクトップの見た目は同一（.root に padding が無く、境界の位置が変わらない）。 */
-.root {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+@layer component {
+  /* 枠・背景・角丸は .root ではなく内側（.container / .footer）が持つ。
+     .root は container-type: inline-size の起点なので、コンテナクエリからは
+     自分自身を参照できず、カード表示で外枠だけを外すことができないため。
+     デスクトップの見た目は同一（.root に padding が無く、境界の位置が変わらない）。 */
+  .root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-  /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
-     flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 24px**。
-     **containment は外せない**（`container-name` を使っていないため、中に置かれた
-     子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
-     使えない**（containment 下では 0 に潰れる）。T61 */
-  min-width: var(--wim-width-sm);
-  height: 100%;
-  container-type: inline-size;
-}
-
-.container {
-  position: relative;
-  flex: 1;
-  overflow: auto;
-  overscroll-behavior-x: contain;
-  background-color: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component) var(--wim-radius-component) 0 0;
-
-  /* ページャが無いときは単独のパネル。 */
-  &:last-child {
-    border-radius: var(--wim-radius-component);
+    /* `container-type: inline-size` は内容の寸法を 0 として扱うので、
+       flex の自動最小サイズの保護が消える。無いと 610px の row（残り 24px）で **幅 24px**。
+       **containment は外せない**（`container-name` を使っていないため、中に置かれた
+       子の `@container` がここを最も近い祖先として参照している）。**`min-content` も
+       使えない**（containment 下では 0 に潰れる）。T61 */
+    min-width: var(--wim-width-sm);
+    height: 100%;
+    container-type: inline-size;
   }
 
-  /* ページャがあるときは .footer の border-top が継ぎ目を担う（二重線を避ける）。 */
-  &:not(:last-child) {
-    border-bottom: none;
-  }
-}
+  .container {
+    position: relative;
+    flex: 1;
+    overflow: auto;
+    overscroll-behavior-x: contain;
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component) var(--wim-radius-component) 0 0;
 
-.footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--wim-spacing-md);
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-surface-subtle);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
-}
+    /* ページャが無いときは単独のパネル。 */
+    &:last-child {
+      border-radius: var(--wim-radius-component);
+    }
 
-/* カード表示（Table の mobileCard が効く幅）では、行そのものが枠と影を持つカードになる。
-   その外側にパネルの枠と白背景が残ると二重フレームになり、カードの隙間から
-   外側の白が見える（DESIGN.md 必須ルール 8・9 に反する）。パネルをやめてキャンバスを見せる。 */
-@mixin panel-off {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-}
-
-/* 閾値は Table 側と一致させること（既定 sm / mobileCard="md" のときだけ md）。 */
-
-/* **カード表示では固定列を解除する（T240）。**
-   Table 側の `card-layout` は `td.stickyLeft { position: static }` で既に解除して
-   いるのに効いていなかった ── **あちらは `@layer component` の中、この file は
-   layer の外**にあり、**レイヤー外の宣言はレイヤー内より常に強い**ので、
-   詳細度（`.scope .root.mobileCard tbody tr td.stickyLeft` 対 `.cellFixed`）に
-   関わらず `.cellFixed { position: sticky }` が勝っていた。
-   実測（`datagrid--mobile-card` の 1 枚目）: 他のセルが x=17・右端 395 なのに
-   **`ID` のセルだけ x=27・右端 405** ＝ 左へ 10px 入り込み、右はカードの外へ 9px。
-   スクロール影（`.cellFixedLeftLast::after`）も同じ理由で生きており、
-   カードの中に 10px のグラデーションが出ていた。
-   **解除もこの file から書く**（layer をまたがずに同じ土俵で上書きする）。 */
-@mixin fixed-off {
-  position: static;
-  box-shadow: none;
-
-  /* 横スクロールしないのでスクロール影は要らない（左固定列の影）。 */
-  &::after {
-    content: none;
+    /* ページャがあるときは .footer の border-top が継ぎ目を担う（二重線を避ける）。 */
+    &:not(:last-child) {
+      border-bottom: none;
+    }
   }
 
-  /* **`::before` は消さないこと。** 右固定列の影は `::before` を使うが、
-     カード表示ではその `::before` が**見出しラベルを描く枠**でもある
-     （Table 側 `card-layout` の `content: attr(data-label)`）。`content: none` に
-     すると右固定列だけラベルが消える。影の指定だけ打ち消してラベルへ戻す。 */
-  &::before {
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-md);
+    background-color: var(--wim-color-surface-subtle);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
+  }
+
+  /* カード表示（Table の mobileCard が効く幅）では、行そのものが枠と影を持つカードになる。
+     その外側にパネルの枠と白背景が残ると二重フレームになり、カードの隙間から
+     外側の白が見える（DESIGN.md 必須ルール 8・9 に反する）。パネルをやめてキャンバスを見せる。 */
+  @mixin panel-off {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  /* 閾値は Table 側と一致させること（既定 sm / mobileCard="md" のときだけ md）。 */
+
+  /* **カード表示では固定列を解除する（T240）。**
+     Table 側の `card-layout` は `td.stickyLeft { position: static }` で既に解除して
+     いるのに効いていなかった ── **あちらは `@layer component` の中、この file は
+     layer の外**にあり、**レイヤー外の宣言はレイヤー内より常に強い**ので、
+     詳細度（`.scope .root.mobileCard tbody tr td.stickyLeft` 対 `.cellFixed`）に
+     関わらず `.cellFixed { position: sticky }` が勝っていた。
+     実測（`datagrid--mobile-card` の 1 枚目）: 他のセルが x=17・右端 395 なのに
+     **`ID` のセルだけ x=27・右端 405** ＝ 左へ 10px 入り込み、右はカードの外へ 9px。
+     スクロール影（`.cellFixedLeftLast::after`）も同じ理由で生きており、
+     カードの中に 10px のグラデーションが出ていた。
+     **解除もこの file から書く**（layer をまたがずに同じ土俵で上書きする）。 */
+  @mixin fixed-off {
     position: static;
-    width: auto;
-    content: attr(data-label);
-  }
-}
+    box-shadow: none;
 
-.mobileCard {
-  .container {
+    /* 横スクロールしないのでスクロール影は要らない（左固定列の影）。 */
+    &::after {
+      content: none;
+    }
+
+    /* **`::before` は消さないこと。** 右固定列の影は `::before` を使うが、
+       カード表示ではその `::before` が**見出しラベルを描く枠**でもある
+       （Table 側 `card-layout` の `content: attr(data-label)`）。`content: none` に
+       すると右固定列だけラベルが消える。影の指定だけ打ち消してラベルへ戻す。 */
+    &::before {
+      position: static;
+      width: auto;
+      content: attr(data-label);
+    }
+  }
+
+  .mobileCard {
+    .container {
+      @include breakpoints.container-down(sm) {
+        @include panel-off;
+      }
+    }
+
+    .footer {
+      @include breakpoints.container-down(sm) {
+        border-radius: var(--wim-radius-component);
+      }
+    }
+
+    .cellFixed {
+      @include breakpoints.container-down(sm) {
+        @include fixed-off;
+      }
+    }
+  }
+
+  .mobileCardMd {
+    .container {
+      @include breakpoints.container-down(md) {
+        @include panel-off;
+      }
+    }
+
+    .footer {
+      @include breakpoints.container-down(md) {
+        border-radius: var(--wim-radius-component);
+      }
+    }
+
+    /* 閾値だけ違う同じ解除（T240）。 */
+    .cellFixed {
+      @include breakpoints.container-down(md) {
+        @include fixed-off;
+      }
+    }
+  }
+
+  .info {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+
     @include breakpoints.container-down(sm) {
-      @include panel-off;
+      flex-basis: 100%;
+      text-align: left;
     }
   }
 
-  .footer {
+  .pagination {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
     @include breakpoints.container-down(sm) {
-      border-radius: var(--wim-radius-component);
+      flex-basis: 100%;
     }
   }
 
-  .cellFixed {
-    @include breakpoints.container-down(sm) {
-      @include fixed-off;
-    }
-  }
-}
-
-.mobileCardMd {
-  .container {
-    @include breakpoints.container-down(md) {
-      @include panel-off;
-    }
+  .paginationContent {
+    justify-content: flex-end;
   }
 
-  .footer {
-    @include breakpoints.container-down(md) {
-      border-radius: var(--wim-radius-component);
-    }
-  }
-
-  /* 閾値だけ違う同じ解除（T240）。 */
-  .cellFixed {
-    @include breakpoints.container-down(md) {
-      @include fixed-off;
-    }
-  }
-}
-
-.info {
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-
-  @include breakpoints.container-down(sm) {
-    flex-basis: 100%;
-    text-align: left;
-  }
-}
-
-.pagination {
-  display: flex;
-  flex: 1;
-  align-items: center;
-
-  @include breakpoints.container-down(sm) {
-    flex-basis: 100%;
-  }
-}
-
-.paginationContent {
-  justify-content: flex-end;
-}
-
-.loading {
-  pointer-events: none;
-  opacity: var(--wim-opacity-disabled);
-}
-
-.loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--wim-spacing-md);
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-}
-
-.table {
-  margin: 0;
-  border: none;
-}
-
-.tableContainer {
-  overflow: visible;
-}
-
-.cellFixed {
-  position: sticky;
-  background-color: var(--wim-table-row-bg, var(--wim-color-surface));
-}
-
-.cellFixedLeftLast {
-  &::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 10px; /* Exception: Structural Logic — column resize hit target */
+  .loading {
     pointer-events: none;
-    content: "";
-    background: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
-    transform: translateX(100%);
+    opacity: var(--wim-opacity-disabled);
   }
-}
 
-.cellFixedRightFirst {
-  &::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 10px; /* Exception: Structural Logic — column resize hit target */
-    pointer-events: none;
-    content: "";
-    background: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
-    transform: translateX(-100%);
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-md);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
   }
-}
 
-.selectionInfo {
-  margin-left: var(--wim-spacing-sm);
-  font-weight: var(--wim-font-weight-medium);
-  color: var(--wim-color-text-accent);
-}
+  /* **Table が所有する要素に当てる宣言は、ここでまとめて詳細度を上げる（T243）。**
+     この file が `@layer` の外にあったあいだは、クラス 1 つでも `table.module.scss` の
+     どんな指定にも勝っていた（レイヤー外はレイヤー内より常に強い）。層へ入れた以上、
+     **同じ土俵で詳細度が要る**。実測で負けていたのは:
+       `.cellFixedLeftLast::after`（クラス 1）が
+       `.cell.stickyLeft::after`（クラス 2・T234 の隙間埋め）に負け、
+       **10px のスクロール影が 1px の隙間埋めに置き換わっていた**。
+     `.root .container` を前置してクラス 3 つにする（`.container` は DataGrid が必ず
+     描く内側の器なので、経路は常に成立する）。**2 つでは足りない** ── 相手も 2 つで、
+     タイになると file の読み込み順で決まる＝バンドルの都合で変わる。 */
+  .root .container {
+    .table {
+      margin: 0;
+      border: none;
+    }
 
-/* 空状態。クラスは参照されていたが実体が無く、素のテキストが左端に出ていた（T58）。 */
-.empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--wim-spacing-4xl) var(--wim-spacing-2xl);
-  font-size: var(--wim-font-size-sm);
-  color: var(--wim-color-text-secondary);
-  text-align: center;
+    .tableContainer {
+      overflow: visible;
+    }
+
+    .cellFixed {
+      position: sticky;
+      background-color: var(--wim-table-row-bg, var(--wim-color-surface));
+    }
+  }
+
+  .root .container .cellFixedLeftLast {
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px; /* Exception: Structural Logic — column resize hit target */
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+      transform: translateX(100%);
+    }
+  }
+
+  .root .container .cellFixedRightFirst {
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 10px; /* Exception: Structural Logic — column resize hit target */
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+      transform: translateX(-100%);
+    }
+  }
+
+  .selectionInfo {
+    margin-left: var(--wim-spacing-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-accent);
+  }
+
+  /* 空状態。クラスは参照されていたが実体が無く、素のテキストが左端に出ていた（T58）。 */
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-4xl) var(--wim-spacing-2xl);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+    text-align: center;
+  }
+
 }
