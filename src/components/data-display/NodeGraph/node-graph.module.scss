@@ -1,22 +1,109 @@
+@layer component {
+  .root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px; /* Exception: Structural Logic — graph interaction viewport floor */
+    overflow: hidden;
+
+    /* T167: キャンバスはアプリの地、節点は部品の面（DESIGN.md の「灰のキャンバス＋白のカード」）。
+       以前はキャンバスも節点も surface で、light では白の上に白だった。
+       InteractiveGraph は最初からこの組にしてある。 */
+    background: var(--wim-color-surface-app);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-container);
+
+    /* T167: 節点を**明示的に**塗る。以前は React Flow 既定（白背景・#1a192b の枠）に
+       任せており、**dark で白い箱になったうえ、文字色だけがテーマの text-primary（白）を
+       継いで白の上に白＝コントラスト 1:1 でラベルが消えていた**（実測）。
+       nodegraph-- は VRT から prefix ごと除外されているためスクショが一度も
+       レビューされておらず、axe も鳴っていなかった。T71 の IconGallery と同じ型。 */
+  }
+
+  .tools {
+    position: absolute;
+    top: var(--wim-spacing-md);
+    right: var(--wim-spacing-md);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    align-items: flex-end;
+    max-width: calc(100% - (2 * var(--wim-spacing-md)));
+  }
+
+  .toolRow {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .name {
+    box-sizing: border-box;
+    width: var(--wim-width-sm);
+    max-width: 100%;
+    min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
+    padding-block: var(--wim-spacing-sm);
+    padding-inline: var(--wim-spacing-md);
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-primary);
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    box-shadow: var(--wim-shadow-sm);
+
+    &:focus {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline-offset: var(--wim-focus-outline-offset);
+    }
+  }
+
+  .tool {
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    min-width: var(--wim-tap-target-min);
+    min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
+    padding-block: var(--wim-spacing-sm);
+    padding-inline: var(--wim-spacing-md);
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    box-shadow: var(--wim-shadow-sm);
+
+    &:hover:not(:disabled) {
+      background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: default;
+      background: var(--wim-color-surface);
+    }
+  }
+
+}
+
+/* **React Flow に当てる宣言は `@layer` の外に置く（T243）。**
+ *
+ * `reactflow` が配る CSS は**どのレイヤーにも属さない**。レイヤーの外の宣言は
+ * レイヤーの中より常に強いので、**層の中から上書きすると詳細度に関わらず負ける**
+ * （InteractiveGraph で実測: ズームボタンが縮み、ハンドルの色と帰属表示の
+ * コントラスト対策がまとめて外れた）。
+ *
+ * **見分け方は「その className を React Flow の部品に渡しているか」。**
+ * ここでは `.flow`（`<ReactFlow>`）/ `.background`（`<Background>`）/
+ * `.controls`（`<Controls>`）/ `.miniMap`（`<MiniMap>`）と、
+ * `:global(.react-flow__*)` の上書きが該当する。
+ * `.root` / `.tools` / `.toolRow` / `.name` / `.tool` は自前の要素なので層の中。
+ */
 .root {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 400px; /* Exception: Structural Logic — graph interaction viewport floor */
-  overflow: hidden;
-
-  /* T167: キャンバスはアプリの地、節点は部品の面（DESIGN.md の「灰のキャンバス＋白のカード」）。
-     以前はキャンバスも節点も surface で、light では白の上に白だった。
-     InteractiveGraph は最初からこの組にしてある。 */
-  background: var(--wim-color-surface-app);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-container);
-
-  /* T167: 節点を**明示的に**塗る。以前は React Flow 既定（白背景・#1a192b の枠）に
-     任せており、**dark で白い箱になったうえ、文字色だけがテーマの text-primary（白）を
-     継いで白の上に白＝コントラスト 1:1 でラベルが消えていた**（実測）。
-     nodegraph-- は VRT から prefix ごと除外されているためスクショが一度も
-     レビューされておらず、axe も鳴っていなかった。T71 の IconGallery と同じ型。 */
   :global(.react-flow__node) {
     font-family: var(--wim-font-family-default);
     color: var(--wim-color-text-primary);
@@ -91,72 +178,4 @@
 .miniMap {
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
-}
-
-.tools {
-  position: absolute;
-  top: var(--wim-spacing-md);
-  right: var(--wim-spacing-md);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-xs);
-  align-items: flex-end;
-  max-width: calc(100% - (2 * var(--wim-spacing-md)));
-}
-
-.toolRow {
-  display: flex;
-  gap: var(--wim-spacing-xs);
-}
-
-.name {
-  box-sizing: border-box;
-  width: var(--wim-width-sm);
-  max-width: 100%;
-  min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
-  padding-block: var(--wim-spacing-sm);
-  padding-inline: var(--wim-spacing-md);
-  font-family: var(--wim-font-family-default);
-  font-size: var(--wim-font-size-sm);
-  line-height: var(--wim-line-height-tight);
-  color: var(--wim-color-text-primary);
-  background: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
-  box-shadow: var(--wim-shadow-sm);
-
-  &:focus {
-    outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
-    outline-offset: var(--wim-focus-outline-offset);
-  }
-}
-
-.tool {
-  display: inline-flex;
-  gap: var(--wim-spacing-xs);
-  align-items: center;
-  min-width: var(--wim-tap-target-min);
-  min-height: max(var(--wim-height-sm), var(--wim-tap-target-min));
-  padding-block: var(--wim-spacing-sm);
-  padding-inline: var(--wim-spacing-md);
-  font-family: var(--wim-font-family-default);
-  font-size: var(--wim-font-size-sm);
-  line-height: var(--wim-line-height-tight);
-  color: var(--wim-color-text-primary);
-  cursor: pointer;
-  background: var(--wim-color-surface);
-  border: var(--wim-border-width-thin) solid var(--wim-color-border);
-  border-radius: var(--wim-radius-component);
-  box-shadow: var(--wim-shadow-sm);
-
-  &:hover:not(:disabled) {
-    background: var(--wim-color-ghost-bg-hover);
-  }
-
-  &:disabled {
-    color: var(--wim-color-text-disabled);
-    cursor: default;
-    background: var(--wim-color-surface);
-  }
 }
