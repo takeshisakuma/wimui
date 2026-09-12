@@ -1,0 +1,20 @@
+{
+  "guide": {
+    "guidelines_title": "Usage Guidelines",
+    "col_token": "Token",
+    "col_value": "Value",
+    "col_usage": "Usage Example",
+    "z_sidebar_desc": "Sidebar (non-overlay mode)",
+    "z_overlay_desc": "Dialog, Drawer, Dropdown, Tooltip, Popover",
+    "z_overlay_panel_desc": "Sub-panels that overlap other overlays",
+    "z_overlay_step_desc": "Tutorial (Tour) step bubbles",
+    "z_toast_desc": "Toast, Snackbar, Notification (always on top)",
+    "col_rule": "Rule",
+    "guideline_no_raw_values_title": "No Raw Values",
+    "guideline_no_raw_values_desc": "Do not use raw values like `z-index: 100` on a component's root element. Always refer to the tokens above.",
+    "guideline_stacking_context_title": "Isolation of Stacking Context",
+    "guideline_stacking_context_desc": "For overlaps within a component (e.g., slider track and thumb), create an independent stacking context within the component and use relative values.",
+    "guideline_portals_title": "Use Portals",
+    "guideline_portals_desc": "Many overlay components use `Portal` to render directly under `body`, minimizing interference from parent `z-index` or `overflow: hidden`."
+  }
+}

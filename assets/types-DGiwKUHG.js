@@ -1,0 +1,2 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";var t,n,r,i=e((()=>{t={10:`shot`,20:`scene`,30:`track`,40:`part`,50:`album`,60:`edition`,70:`collection`},n={video:1,audio:2,complex:3,logo:4,subtitle:17,button:18,control:32},r={[n.video]:`video`,[n.audio]:`audio`,[n.complex]:`complex`,[n.logo]:`logo`,[n.subtitle]:`subtitle`,[n.button]:`button`,[n.control]:`control`}}));export{i,n,r,t};

@@ -1,0 +1,26 @@
+import { default as React } from '../../../../node_modules/react';
+import { SelectOption, SelectProps } from './Select';
+type UseSelectParams = Pick<SelectProps, "options" | "value" | "onChange" | "defaultValue" | "searchable" | "grouped" | "disabled" | "filterOption">;
+export declare function useSelect({ options, value, onChange, defaultValue, searchable, grouped, disabled, filterOption, }: UseSelectParams): {
+    isOpen: boolean;
+    searchValue: string;
+    setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+    focusedIndex: number;
+    setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
+    isKeyboardNavigating: boolean;
+    setIsKeyboardNavigating: React.Dispatch<React.SetStateAction<boolean>>;
+    containerRef: React.RefObject<HTMLDivElement | null>;
+    triggerRef: React.RefObject<HTMLDivElement | null>;
+    searchInputRef: React.RefObject<HTMLInputElement | null>;
+    listItemsRef: React.RefObject<(HTMLElement | null)[]>;
+    currentValue: string;
+    flatOptions: SelectOption[];
+    filteredOptions: SelectOption[];
+    selectedOption: SelectOption | undefined;
+    focusedOption: SelectOption | null;
+    handleToggle: () => void;
+    handleSelect: (option: SelectOption) => void;
+    handleClear: () => void;
+    handleKeyDown: (e: React.KeyboardEvent) => void;
+};
+export {};
