@@ -423,6 +423,7 @@
     "check:external-assets": "node scripts/check-external-assets.js",
     "check:ci-paths": "node scripts/check-ci-paths.js",
     "check:release-workflow": "node scripts/check-release-workflow.js",
+    "check:peer-majors": "node scripts/check-peer-majors.js",
     "check:class-references": "node scripts/check-class-references.js"
   },
   "keywords": [
