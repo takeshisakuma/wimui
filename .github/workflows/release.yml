@@ -70,7 +70,7 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Create Release Pull Request
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           # `publish` を渡さない ＝ この経路は publish しない。
           #
@@ -81,7 +81,7 @@ jobs:
           # 公開される dist/llms.txt はビルド時生成なので常に正しいが、
           # GitHub Pages が配信するのはコミット済みの public/llms.txt なので、
           # ここで再生成しておかないと Pages 側の版数が古いまま残る。
-          version: npm run version:packages
+          version-script: npm run version:packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -153,10 +153,10 @@ jobs:
 
       - name: Recreate Release Pull Request
         if: steps.leftover.outputs.has_changesets == 'true'
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           # version ジョブと同じ。`publish` は渡さない。
-          version: npm run version:packages
+          version-script: npm run version:packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -189,9 +189,9 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Publish
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          publish: npm run release
+          publish-script: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

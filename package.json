@@ -451,7 +451,7 @@
   "homepage": "https://takeshisakuma.github.io/wimui/",
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@changesets/cli": "2.31.1",
+    "@changesets/cli": "3.0.2",
     "@eslint/js": "9.39.5",
     "@fontsource/noto-sans": "5.3.0",
     "@fontsource/noto-sans-jp": "5.3.0",
