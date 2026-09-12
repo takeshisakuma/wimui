@@ -391,7 +391,9 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 `ubuntu-24.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
 
-### 11-2. Playwright の major を上げたら、VRT の比較器がまだ生きているか確かめる（T238）
+### 11-2. Playwright を上げたら、VRT の比較器がまだ生きているか確かめる（T238）
+
+**発動条件は major ではなく「Playwright の版が動いたこと」。** minor でも同梱 Chromium はまたぐ ── #594（`1.62.1` → `1.63.0`）で **Chromium は `151.0.7922` → `153.0.8010`** と 2 版動き、textarea のリサイズグリップ（UA が描く部品）の描画が変わって dark のベースラインが 2 枚落ちた。**同梱ブラウザが変わる更新は、比較器の入口でもある。**
 
 `vrt/vrt.spec.ts` は `_comparator: "ssim-cie94"` を指定している。**アンダースコア始まり＝非公開オプション**なので、Playwright を上げると**黙って無視され、既定の pixelmatch に戻る可能性がある**。戻ると `includeAA: false` の盲点も戻り、**細い記号やアイコンの消失が再び緑で通る**（#564 がそうだった）。
 
@@ -405,6 +407,22 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 4. `CI=1 npx playwright test vrt/vrt.spec.ts -g "DataGrid"`
 
 **期待: 20 件が落ちる**（変化した 10 ストーリー × 2 テーマ）。**32/32 緑なら比較器が効いていない。**
+
+**実測の記録**（この対照を通した版だけを書く。通していない版は「不明」であって「大丈夫」ではない）:
+
+| Playwright | 同梱 Chromium | 結果 |
+|---|---|---|
+| 1.62.1 | 151.0.7922.34 | 20 failed / 12 passed（T238 の起票時） |
+| 1.63.0 | 153.0.8010.12 | **20 failed / 12 passed**（2026-09-12・#594 で実測。落ちた 10 ストーリーの内訳も一致） |
+
+**先に静的確認をしておくと、対照が空振りしたときの切り分けが早い**（ただし**これで代用はしない**）:
+
+```bash
+npm pack playwright@<版> --silent && tar xzf playwright-<版>.tgz --one-top-level=pwtest
+grep -rn "_comparator" pwtest/package/lib/matchers/expect.js   # comparator への写し替えが残っているか
+npm pack playwright-core@<版> --silent && tar xzf playwright-core-<版>.tgz
+grep -rl "ssim-cie94" package/lib                              # 比較器そのものが同梱されているか
+```
 
 ### 12. a11y 全量の再測定（T68）
 
