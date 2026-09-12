@@ -118,8 +118,39 @@ function hasEnvironment(body) {
   return uncommentedLines(body).some((l) => /^\s+environment:\s+\S/.test(l));
 }
 
-function hasPublishInput(body) {
-  return uncommentedLines(body).some((l) => /^\s+publish:\s+\S/.test(l));
+/**
+ * `changesets/action` の入力名は major で変わる。**v2 で v1 の名前を渡しても
+ * action はエラーにせず黙って無視する** ── version 経路なら「Version PR が
+ * 素の `changeset version` で作られる」（＝`llms:build` が走らず `check:llms` で
+ * リリース PR が詰まる）、publish 経路なら「npm に何も出ないまま緑」になる。
+ * どちらも赤が出ないので、**名前まで major と突き合わせる**。
+ *
+ * v1: `version:` / `publish:` ── v2: `version-script:` / `publish-script:`
+ *
+ * @param {number} actionMajor
+ */
+function inputNamesFor(actionMajor) {
+  return actionMajor >= 2
+    ? { version: "version-script", publish: "publish-script" }
+    : { version: "version", publish: "publish" };
+}
+
+/** `release.yml` が使っている `changesets/action` の major。混在・不明なら null。 */
+function actionMajorOf(yaml) {
+  const majors = [
+    ...new Set(
+      uncommentedLines(yaml)
+        .map((l) => l.match(/uses:\s*changesets\/action@v(\d+)/))
+        .filter(Boolean)
+        .map((m) => Number(m[1])),
+    ),
+  ];
+  return majors.length === 1 ? majors[0] : null;
+}
+
+function hasPublishInput(body, publishInput) {
+  const re = new RegExp(`^\\s+${publishInput}:\\s+\\S`);
+  return uncommentedLines(body).some((l) => re.test(l));
 }
 
 /**
@@ -129,6 +160,10 @@ function hasPublishInput(body) {
 export function auditReleaseYaml(yaml) {
   const errors = [];
   const uncommented = uncommentedLines(yaml).join("\n");
+  // 入力名は action の major で決まる。読めないときは v1 の名前で見る
+  // （`auditChangesetsPairing` が別途「読めない / 混在」を落とすので、ここで
+  // 二重に落とさない）。
+  const inputNames = inputNamesFor(actionMajorOf(yaml) ?? 1);
 
   if (!/^\s+workflow_dispatch:\s*$/m.test(yaml) && !uncommented.includes("workflow_dispatch:")) {
     errors.push(
@@ -191,17 +226,20 @@ export function auditReleaseYaml(yaml) {
           "トリガー SHA を使うと、並行マージが消化済みの changeset を Version PR に載せ直す（T170）",
       );
     }
-    if (hasPublishInput(recover)) {
+    if (hasPublishInput(recover, inputNames.publish)) {
       errors.push(
-        "`recover-version` が changesets/action に `publish:` を渡している ── " +
+        `\`recover-version\` が changesets/action に \`${inputNames.publish}:\` を渡している ── ` +
           "このジョブは Version PR を作り直すだけで、npm には触らない",
       );
     }
     if (!/changesets\/action/.test(body)) {
       errors.push("`recover-version` が `changesets/action` を呼んでいない");
     }
-    if (!/version:\s+npm run version:packages/.test(body)) {
-      errors.push("`recover-version` が `version: npm run version:packages` を渡していない");
+    if (!new RegExp(`${inputNames.version}:\\s+npm run version:packages`).test(body)) {
+      errors.push(
+        `\`recover-version\` が \`${inputNames.version}: npm run version:packages\` を渡していない` +
+          "（入力名は changesets/action の major で変わる。v2 で v1 の名前を渡すと黙って無視される）",
+      );
     }
   }
 
