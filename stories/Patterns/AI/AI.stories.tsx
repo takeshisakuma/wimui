@@ -280,8 +280,16 @@ export default function WelcomeCard() {
                 </Box>
               </Box>
             ) : (
-              <Box style={{ maxWidth: "800px", margin: "0 auto" }}>
-                <CodeBlock 
+              /* `width: 100%` が要る。この Box は `display: flex` の子で、`maxWidth` は
+                  上限を決めるだけで幅を作らない。中身の `CodeBlock` は
+                  `container-type: inline-size`（＝ containment）を持つため**内容の寸法が
+                  0 として扱われ**、flex の自動最小サイズの保護が効かない。結果この列は
+                  `CodeBlock` の `min-width: var(--wim-width-sm)` ＝ **180px の床まで潰れ**、
+                  `pre` が横スクロールになっていた（実測 1920px ビューポートで幅 180px /
+                  `scrollWidth` 620px。`width: 100%` を足すと 800px / 798px で解消）。
+                  Preview 側には最初から `width: "100%"` があり、Code 側だけ抜けていた。 */
+              <Box style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}>
+                <CodeBlock
                   code={SAMPLE_REACT_CODE} 
                   language="tsx" 
                   showLineNumbers 
