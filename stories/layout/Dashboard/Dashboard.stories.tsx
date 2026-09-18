@@ -62,7 +62,7 @@ const DefaultDashboard = (args: DashboardProps) => {
       color: "var(--wim-color-text-secondary)",
       fontSize: "var(--wim-font-size-sm)",
     }}>
-      {t("story.dashboard_chart_placeholder")}
+      {t("story.dashboard_chart_caption")}
     </div>
   );
 
@@ -116,7 +116,7 @@ const EditableDashboard = (args: DashboardProps) => {
       color: "var(--wim-color-text-secondary)",
       fontSize: "var(--wim-font-size-sm)",
     }}>
-      {t("story.dashboard_chart_placeholder")}
+      {t("story.dashboard_chart_caption")}
     </div>
   );
 
@@ -202,7 +202,7 @@ const TwoColumnsDashboard = (args: DashboardProps) => {
       color: "var(--wim-color-text-secondary)",
       fontSize: "var(--wim-font-size-sm)",
     }}>
-      {t("story.dashboard_chart_placeholder")}
+      {t("story.dashboard_chart_caption")}
     </div>
   );
 

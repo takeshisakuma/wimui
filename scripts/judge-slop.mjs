@@ -58,7 +58,11 @@ function buildPrompt(storyName) {
   const rubric = Object.entries(RULES).map(([k, v]) => `- ${k}: ${v}`).join('\n');
   return `これは WIM UI デザインシステムの合成パターン「${storyName}」のスクリーンショットです。
 「AI が生成した画面」に見えるかを、以下の各観点で pass / warn / fail の3段階で採点してください。
-craft（単体品質）ではなく composition（階層・リズム・非対称・実在感）だけを見ます。判定は厳しめに。
+craft（単体品質＝状態・a11y・トークン準拠）ではなく composition（階層・リズム・非対称・実在感）を見ます。
+ただし **craft / composition は「何を採点するか」の区別であって「slop がどこに棲むか」の区別ではありません**。
+部品を props なしで置いた姿やカタログの Default ストーリーを見ているときは、それも composition として採点します
+（既定が定型ヒーロー・3 列均等・斜めグラデ・虹色カテゴリ・空の定型コピーなら、画面ではなく既定の失敗＝default_anatomy）。
+判定は厳しめに。
 
 観点:
 ${rubric}

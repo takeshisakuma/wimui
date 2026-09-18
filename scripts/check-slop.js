@@ -63,17 +63,30 @@ const DICT = JSON.parse(fs.readFileSync(new URL('./slop-dictionary.json', import
 const HYPE_WORDS = DICT.hypeWords;
 const HYPE_PHRASES = DICT.hypePhrases;
 const PLACEHOLDER_NAMES = DICT.placeholderNames;
+// EMPTY_COPY: 中身の無い定型コピー。hype（誇張）とは別の欠陥で、hype が「言い過ぎ」なら
+// こちらは「何も言っていない」。同じ配列に混ぜると、どちらの辞書も育てにくくなる。
+const EMPTY_COPY = DICT.emptyCopy ?? [];
 /** 部分一致が正当語を踏むときの除外（elevate ⊂ elevated 等）。辞書 SSOT。 */
 const HYPE_FALSE_POSITIVES = new Set(
   (DICT.hypeFalsePositives ?? []).map((w) => String(w).toLowerCase()),
 );
 
-// ストーリーデモコピーが実在する locale ファイル（en/ja/pt の docs_stories_*）。
-// ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）はドキュメント散文であり
-// 禁止語を正当に引用しうるため対象外。入力欄 placeholder の氏名例はスキャン時に除外。
-const HYPE_SCAN_FILES = ['en', 'ja', 'pt'].flatMap((locale) =>
-  globSync(`public/locales/${locale}/docs_stories_*.json`, { posix: true }),
-);
+// ストーリーデモコピーが実在する locale ファイル（en/ja/pt の docs_stories_*）と、
+// **カタログのストーリー本体**（`stories/**/*.stories.tsx`）。
+//
+// ストーリー本体を足した理由: locale だけを見ていると、`t()` を通さず TSX に直書きされた
+// 英語がまるごと素通りする。カタログの Default ストーリーは「その部品の使い方の見本」
+// として読まれるので、Pattern デモと同じ基準で見る（DESIGN.md `default_anatomy`）。
+//
+// `stories/*.tsx`（Docgen.tsx など）は**ドキュメントの土台**でありデモコピーではないので
+// 入れない。ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）も、
+// 禁止語を正当に引用しうるドキュメント散文なので対象外。
+const COPY_SCAN_FILES = [
+  ...['en', 'ja', 'pt'].flatMap((locale) =>
+    globSync(`public/locales/${locale}/docs_stories_*.json`, { posix: true }),
+  ),
+  ...globSync('stories/**/*.stories.tsx', { posix: true }),
+];
 
 // 対象は常に全量。lint-staged は staged ファイルだけを渡してくるが、それで絞ると
 // styleHits の合計がベースラインを必ず下回り、ラチェットが素通りしてしまう
@@ -206,7 +219,18 @@ const PROP_BACKED = {
 const PROP_BACKED_TAGS = Object.keys(PROP_BACKED).join('|');
 const OPEN_TAG_RE = new RegExp(`<(${PROP_BACKED_TAGS})\\b`);
 
-const GRADIENT_RE = /linear-gradient\s*\([^)]*135deg/i;
+/**
+ * 量産型の**斜め**グラデーション。以前は `135deg` だけを見ていたが、同じ絵になる
+ * 書き方を 1 つも見ていなかった: `to bottom right` は 135deg とまったく同じ向きで、
+ * 実際 `BentoGrid` の `itemHeader` がこの書き方で素通りしていた（2026-09-19）。
+ *
+ * **軸に平行なグラデ（90deg / 180deg / to right / to bottom）は対象外**にする。
+ * Skeleton・Audio・Image・Video のローディング shimmer はすべて `90deg` で、
+ * これは装飾ではなく**動きの実装**（背景を横に流す）。角度で切ると除外リストが
+ * 要らない — 斜めかどうかだけが「量産型グラデに逃げた」の判定になる。
+ */
+const GRADIENT_RE =
+  /linear-gradient\s*\([^)]*(?:(?<![\d.])(?:45|135|225|315)deg|to\s+(?:bottom|top)\s+(?:right|left))/i;
 // 既定値上書き: padding / margin / borderRadius を 0（数値 or "0"）へリセット。
 // 位置指定の top/right/bottom/left: 0 は正当（絶対配置）なので対象外。
 const DEFAULT_OVERRIDE_RE = /\b(padding|margin|border[Rr]adius)([A-Z][A-Za-z]*)?\s*:\s*(0|["']0["'])\s*[,}]/;
@@ -311,10 +335,42 @@ for (const file of mdxFiles) {
   }
 }
 
+// --- 部品本体の SCSS: 斜めグラデだけを見る ---
+// **合成画面だけを見ていたのがこのガードの穴だった**（2026-09-19）。禁止表の
+// 「量産型グラデーション」は画面を書く人の癖として書かれていたが、実際には
+// **部品の既定レンダー**に埋まっていて、その部品を素で置いた画面すべてに出ていた
+// （`BentoGrid` の `itemHeader`）。既定が禁止パターンなら、画面ではなく既定が悪い
+// （DESIGN.md `default_anatomy`）。
+//
+// px 直書き・既定値上書きはここでは見ない。SCSS 側のハードコードは
+// `audit:hardcoded` / `check:scss-refs` の担当で、二重に数えるとラチェットが壊れる。
+const SCSS_GLOBS = ['src/components/**/*.scss', 'src/styles/**/*.scss'];
+const scssFiles = SCSS_GLOBS.flatMap((g) => globSync(g, { posix: true })).filter((f) =>
+  fs.existsSync(f),
+);
+
+for (const file of scssFiles) {
+  const lines = fs.readFileSync(file, 'utf8').split('\n');
+  const isComment = commentMask(lines);
+  lines.forEach((line, i) => {
+    if (isComment[i]) return;
+    if (GRADIENT_RE.test(line)) {
+      gradientHits.push(`${file}:${i + 1}: ${line.trim().slice(0, 100)}`);
+    }
+  });
+}
+
 // --- コピースキャン（locale JSON）: hype 語・hype フレーズ・プレースホルダ名 ---
 const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const hypeRe = new RegExp([...HYPE_WORDS, ...HYPE_PHRASES].map(esc).join('|'), 'i');
-const nameRe = new RegExp(PLACEHOLDER_NAMES.map(esc).join('|'), 'i');
+// 名前は**語境界つき**で照合する。裸の交替だと `Bob` が `Bobby` に、`Alice` が
+// pt の `alicerce` に刺さる。hype と違い名前は派生形を拾う必要がないので境界を付けられる。
+const nameRe = new RegExp(`\\b(?:${PLACEHOLDER_NAMES.map(esc).join('|')})\\b`, 'i');
+const emptyCopyRe = new RegExp(EMPTY_COPY.map(esc).join('|'), 'i');
+// 入力欄 placeholder の**氏名例**（"John Doe" 等）は正当な UX なので名前スキャンから外す。
+// **emptyCopy には適用しない** — 適用すると `"dashboard_chart_placeholder": "Chart placeholder"`
+// のように**キー名に placeholder を含むだけ**の行が丸ごと素通りする（実測で 1 件）。
+// この除外は「氏名フォーマットの例示」のためのもので、キー名の綴りのためではない。
 const isPlaceholderKey = (line) => /"[^"]*placeholder[^"]*"\s*:/i.test(line);
 
 /** 部分一致ヒットをラテン語トークン全体に広げ、偽陽性語なら捨てる。 */
@@ -328,12 +384,20 @@ const hypeHitOnLine = (line) => {
 
 const hypeHits = [];
 const nameHits = [];
-for (const file of HYPE_SCAN_FILES) {
+const emptyCopyHits = [];
+for (const file of COPY_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
+  // ストーリー側は**コメントに禁止例を引用できる**必要がある（T161 と同じ理由）。
+  // 実際 Marketing.stories.tsx は禁止表の CTA "Get Started" を、なぜ使わないかの
+  // 説明として引用している。ここでマスクしないと、規則を実装の隣に書けなくなる。
+  const isComment = commentMask(lines);
   lines.forEach((line, i) => {
+    if (isComment[i]) return;
     const hit = hypeHitOnLine(line);
     if (hit) hypeHits.push(`${file}:${i + 1}: 「${hit}」 ${line.trim().slice(0, 80)}`);
+    const ec = line.match(emptyCopyRe);
+    if (ec) emptyCopyHits.push(`${file}:${i + 1}: 「${ec[0]}」 ${line.trim().slice(0, 80)}`);
     // 入力欄プレースホルダの氏名例は正当（スコープ外）
     if (!isPlaceholderKey(line)) {
       const nm = line.match(nameRe);
@@ -346,14 +410,25 @@ console.log('--- check:slop (DESIGN.md 禁止パターンの機械ガード) ---
 let failed = false;
 
 if (gradientHits.length > 0) {
-  console.log(`\n[FAIL] 135deg グラデヒーローは禁止（面はサーフェス階層トークンで切る）:`);
+  console.log(`\n[FAIL] 斜めグラデ（135deg / to bottom right 等）は禁止（面はサーフェス階層トークンで切る）:`);
   for (const h of gradientHits) console.log(`  ${h}`);
+  console.log(`       部品の SCSS で出た場合は、その部品を素で置いた画面すべてに出ています。`);
+  console.log(`       画面ではなく既定を直すこと（DESIGN.md \`default_anatomy\`）。`);
+  console.log(`       軸に平行なグラデ（90deg の shimmer 等）は動きの実装なので対象外です。`);
   failed = true;
 }
 
 if (hypeHits.length > 0) {
   console.log(`\n[FAIL] 誇張形容詞・定型フレーズは禁止（具体的な動作・数値で言う。DESIGN.md 禁止パターン参照）:`);
   for (const h of hypeHits) console.log(`  ${h}`);
+  failed = true;
+}
+
+if (emptyCopyHits.length > 0) {
+  console.log(`\n[FAIL] 中身の無い定型コピーは禁止（何の画面かが分かる具体へ。DESIGN.md 禁止パターン参照）:`);
+  for (const h of emptyCopyHits) console.log(`  ${h}`);
+  console.log(`       「No data found」「Get started」「This is a description」は、置いた人が`);
+  console.log(`       まだ内容を決めていないことを表示しているだけで、読み手には何も伝わりません。`);
   failed = true;
 }
 
@@ -416,4 +491,11 @@ if (failed) {
   console.log('\n✗ check:slop failed.');
   process.exit(1);
 }
-console.log('\n✓ AI-slop の禁止パターンは検出されませんでした。');
+// 成功メッセージで「禁止パターンは検出されませんでした」と言わないこと。このガードが
+// 見ているのは**機械層だけ**で、禁止表の大半（1 主役・中央揃え・rule of three・実在感・
+// 届かない状態）は 1 行も見ていない。「検出されませんでした」は、見ていない項目まで
+// 通ったかのように読める＝**このガードが最も事故を起こした読み方**（合成画面を
+// 「問題なし」と自己申告した 2026-07-26 の件と同じ構造）。
+console.log('\n✓ 機械層（斜めグラデ / hype / 空コピー / 定型名 / style / intent 面）は基準内です。');
+console.log('  判断依存のルール（1 画面 1 主役・中央揃え・rule of three・実在感・届かない状態）は');
+console.log('  ここでは 1 件も見ていません。DESIGN.md のセルフレビューと judge:slop で別途確認すること。');

@@ -76,7 +76,6 @@
     "sidebar_user_email": "user@example.com",
     "sidebar_user_name": "User Name",
     "sidebar_wimui": "WIM UI",
-    "stepper_desc": "This is a description",
     "stepper_done": "Done",
     "stepper_finished": "Finished",
     "stepper_in_progress": "In Progress",
@@ -124,6 +123,9 @@
     "menubar_paste": "Paste",
     "menubar_save_as": "Save as…",
     "menubar_zoom_in": "Zoom in",
-    "menubar_zoom_out": "Zoom out"
+    "menubar_zoom_out": "Zoom out",
+    "stepper_desc_finished": "Signed off on 12 Mar",
+    "stepper_desc_progress": "Waiting on the finance review",
+    "stepper_desc_waiting": "Starts once the review clears"
   }
 }

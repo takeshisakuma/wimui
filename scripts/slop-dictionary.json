@@ -1,5 +1,5 @@
 {
-  "$comment": "AI-slop 機械強制辞書の単一ソース（SSOT）。check-slop.js（ガード）と generate-llms.js（llms.txt 生成）の両方がここを読む。DESIGN.md はこのファイルを指し、例示のみ載せる。辞書を増やすときはここだけを編集し、`npm run llms:build` で llms.txt を再生成する。一部は反 AI-slop skill Nutlope/hallmark（references/copy.md・anti-patterns.md）から採掘。hypeFalsePositives は部分一致が正当語に刺さるとき用（例: elevate ⊂ elevated＝Card/Stats の variant）。",
+  "$comment": "AI-slop 機械強制辞書の単一ソース（SSOT）。check-slop.js（ガード）と generate-llms.js（llms.txt 生成）の両方がここを読む。DESIGN.md はこのファイルを指し、例示のみ載せる。辞書を増やすときはここだけを編集し、`npm run llms:build` で llms.txt を再生成する。一部は反 AI-slop skill Nutlope/hallmark（references/copy.md・anti-patterns.md）から採掘。emptyCopy は「中身の無い定型コピー」（hype＝誇張とは別物。誇張は言い過ぎ、こちらは何も言っていない）。placeholderNames は語境界つきで照合する。hypeFalsePositives は部分一致が正当語に刺さるとき用（例: elevate ⊂ elevated＝Card/Stats の variant）。",
   "hypeFalsePositives": [
     "elevated"
   ],
@@ -44,6 +44,18 @@
     "experience the power of",
     "innovative solutions"
   ],
+  "emptyCopy": [
+    "No data found",
+    "Get started",
+    "How do I get started",
+    "This is a description",
+    "Ready to start",
+    "Your operation has been executed",
+    "Chart placeholder",
+    "Welcome to WIM UI",
+    "Is it customizable",
+    "Analytics Dashboard"
+  ],
   "placeholderNames": [
     "John Doe",
     "Jane Doe",
@@ -51,6 +63,15 @@
     "Jane Smith",
     "Lorem Ipsum",
     "Example User",
-    "Acme"
+    "Acme",
+    "Alice",
+    "Bob",
+    "Charlie",
+    "User 1",
+    "User 2",
+    "User 3",
+    "Step 1",
+    "Step 2",
+    "Step 3"
   ]
 }

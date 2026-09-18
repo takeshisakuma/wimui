@@ -48,7 +48,12 @@
       height: 100%;
       min-height: 5rem;
       overflow: hidden;
-      background: linear-gradient(to bottom right, var(--wim-color-primary-muted), transparent);
+
+      /* `to bottom right` の primary グラデ＝135deg と同じ絵。禁止表の「量産型グラデーション」
+         そのものが**部品の既定**に入っており、`BentoGrid` を素で置いた画面すべてに出ていた
+         （機械ガードは `135deg` という綴りだけを見ていたので届かなかった。2026-09-19）。
+         header は「中身を置くスロット」なので、面はサーフェス階層トークンで切る。 */
+      background-color: var(--wim-color-surface-subtle);
       border-radius: var(--wim-radius-component);
     }
 

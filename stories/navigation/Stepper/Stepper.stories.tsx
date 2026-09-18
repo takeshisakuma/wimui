@@ -37,15 +37,15 @@ const useDefaultSteps = () => {
   return [
     {
       title: t("story.stepper_finished"),
-      description: t("story.stepper_desc"),
+      description: t("story.stepper_desc_finished"),
     },
     {
       title: t("story.stepper_in_progress"),
-      description: t("story.stepper_desc"),
+      description: t("story.stepper_desc_progress"),
     },
     {
       title: t("story.stepper_waiting"),
-      description: t("story.stepper_desc"),
+      description: t("story.stepper_desc_waiting"),
     },
   ];
 };

@@ -10,9 +10,9 @@
     "chat": "Chat",
     "chat_placeholder": "Crie uma landing page para uma cafeteria",
     "device_desktop": "Desktop",
-    "get_started": "Começar",
-    "hello_desc": "Esta é uma prévia ao vivo gerada por IA.",
-    "hello_title": "Olá, Artifacts!",
+    "get_started": "Ver o cardápio",
+    "hello_desc": "Aberto das 7h às 19h, a dois quarteirões da estação Sakae.",
+    "hello_title": "Nishiki Coffee",
     "published": "Publicado",
     "react_component": "Componente React",
     "status_generating": "Gerando artefato...",
@@ -160,7 +160,7 @@
   },
   "feature_comparison": {
     "badge_popular": "MAIS POPULAR",
-    "btn_started": "Começar",
+    "btn_started": "Iniciar teste de 14 dias",
     "cat_advanced": "Capacidades Avançadas",
     "cat_core": "Recursos Principais",
     "cat_security": "Segurança e Admin",
@@ -545,8 +545,8 @@
     "step_2_title": "Instale via npm",
     "step_3_desc": "Obtenha ajuda e compartilhe o que você constrói.",
     "step_3_title": "Participe da comunidade",
-    "subtitle": "Sua conta está pronta. Veja como começar.",
-    "title": "Bem-vindo ao WIM UI!"
+    "subtitle": "Importe a folha de estilo uma vez e depois use os componentes conforme precisar.",
+    "title": "wimui está instalado"
   },
   "wholesale": {
     "agree": "Li os termos de atacado e a tabela de preços.",

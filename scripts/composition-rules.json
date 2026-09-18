@@ -45,7 +45,8 @@
       "id": "limit_accent",
       "ja": "アクセントカラーは 1 ビューで限定的に",
       "en": "Limit accent color: primary surfaces (solid buttons, emphasis backgrounds) 1–2 per view.",
-      "designAnchor": "アクセントカラーは 1 ビューで限定的に"
+      "designAnchor": "アクセントカラーは 1 ビューで限定的に",
+      "judge": "primary の面（solid ボタン・強調背景）が 1 ビューで 1〜2 箇所までか（3 箇所以上＝fail。視線の起点が消える）"
     },
     {
       "id": "realism",
@@ -58,7 +59,7 @@
       "id": "familiar_domain",
       "ja": "実在感は「読み手が知っている世界」の中で作る",
       "en": "Build realism inside a world the reader already knows. Chasing substance pushes toward niche expertise, and a screen set in one (a shipyard's watch orders, a trading desk, a clinical protocol) makes the reader decode the domain before they can see the components — the pattern stops teaching. Pick an everyday situation (renting a car and returning it, a delivery, a hospital appointment) and keep specialist vocabulary out of the places that carry state and actions. The test: can a reader say what the screen is for without a paragraph of explanation?",
-      "judge": "題材が説明なしで分かるか（用語の解読が先に立つ専門世界＝fail。何の画面かを 1 行で言えないなら warn）",
+      "judge": "題材が説明なしで分かるか（用語の解読が先に立つ専門世界＝fail。何の画面かを 1 行で言えないなら warn）。**適用先はライブラリのデモ・パターン・プローブに限る** — 実際の製品画面はその製品の専門世界で書かれて当然なので、このルールでは採点しない",
       "designAnchor": "読み手が知っている世界"
     },
     {
@@ -85,13 +86,15 @@
       "id": "explicit_intent",
       "ja": "intent は省略せず明示する（Badge / Tag / Chip）",
       "en": "Always pass `intent` on `Badge` / `Tag` / `Chip`. Their default is `primary` (the accent), so an ordinary value like `pending` or `member` gets painted as loudly as an exception and the colour stops carrying information. Use `intent=\"neutral\"` for ordinary values.",
-      "designAnchor": "intent` は省略せず明示する"
+      "designAnchor": "intent` は省略せず明示する",
+      "judge": "普通の値（pending / member のような例外でない値）がアクセント色で塗られていないか。塗られていれば fail（intent 未指定の既定が primary なので、既定に任せた時点でこうなる）"
     },
     {
       "id": "colour_means_good_or_bad",
       "ja": "色は「方向」ではなく「良し悪し」で選ぶ",
       "en": "Pick colour by good/bad, not by direction. `Stats.Trend` ties the arrow and the colour together, so `up` is always the success colour — using it for a metric where up is bad (failures, error rate) renders the bad news as good. Use a colourless form such as `Stats.Description` instead. Don't approximate a meaning the API cannot express.",
-      "designAnchor": "色は「方向」ではなく「良し悪し」で選ぶ"
+      "designAnchor": "色は「方向」ではなく「良し悪し」で選ぶ",
+      "judge": "色の意味が実態と合っているか（増えると悪い指標が上昇＝成功色で描かれていたら fail）"
     },
     {
       "id": "quiet_chrome",
@@ -104,7 +107,8 @@
       "id": "wobble",
       "ja": "意図的な不揃いを混ぜる",
       "en": "Add intentional \"wobble\": mix in 1–2 incomplete rows (a truncated long name, a missing optional field, an extreme value, an error/unread state) and show non-happy-path states (hover/focus/disabled/error/empty/loading).",
-      "designAnchor": "不完全な行"
+      "designAnchor": "不完全な行",
+      "judge": "不完全な行（truncate する長い名前・欠けた任意項目・極端値・エラー/未読）が最低 1 つあるか。全行が幸せパスで揃っていたら fail"
     },
     {
       "id": "narrow_widths",
@@ -115,32 +119,79 @@
     {
       "id": "centered_overuse",
       "ja": "中央揃えを多用しない",
-      "judge": "中央揃えセクションが 1 ページ 1 回以内か（多用＝fail）。**数えるのはセクション単位**で、1 つのグリッドの中で繰り返されるカードは何枚あっても 1 回（繰り返しの中の中央揃えを禁じるものではない）",
-      "designAnchor": "中央揃え"
+      "judge": "中央揃えセクションが 1 ページ 1 回以内か（多用＝fail）。**数えるのはセクション単位**で、1 つのグリッドの中で繰り返されるカードは何枚あっても 1 回。ただしこれは**中央揃えの数え方**の話であり、均等グリッドの反復そのものは rule_of_three / default_anatomy で落とす（この例外で rule of three を無効化しない）",
+      "designAnchor": "中央揃え",
+      "en": "Left-align by default. At most one centred section per page, counted per section — cards repeated inside one grid count as one, and this exemption is about how to count centring only: the repetition of a uniform grid is still caught by the rule-of-three rule."
     },
     {
       "id": "rule_of_three",
       "ja": "3 つ均等の並列に逃げない",
       "judge": "3 つ均等の機能カード／\"Fast. Secure. Reliable.\" 型の並列に陥っていないか",
-      "designAnchor": "3 つ均等"
+      "designAnchor": "3 つ均等",
+      "en": "Never fall back to three equal parallel items (three feature cards with icon + short heading + one line, or \"Fast. Secure. Reliable.\"). Let the count come from the content — two or five is fine — and vary card grain and body length."
     },
     {
       "id": "gratuitous_decoration",
       "ja": "意図の無い装飾を足さない",
       "judge": "操作/理解を助けない装飾（過剰な影・枠・グラデ・絵文字）が無いか",
-      "designAnchor": "装飾は引き算で検証する"
+      "designAnchor": "装飾は引き算で検証する",
+      "en": "Subtract every decoration that does not help the reader act or understand (excess shadow, border, gradient, emoji). AI fills empty space by habit, so decoration accumulates without intent."
     },
     {
       "id": "fake_chrome",
       "ja": "偽のスクリーンショット・クロームを手描きしない",
       "judge": "偽のブラウザバー/フォンフレーム/IDE 枠を手描きしていないか",
-      "designAnchor": "偽スクリーンショット"
+      "designAnchor": "偽スクリーンショット",
+      "en": "Never hand-draw fake chrome (browser bars, phone frames, IDE windows) to make a demo look like a screenshot."
     },
     {
       "id": "generic_gradient",
       "ja": "量産型グラデーションに逃げない",
-      "judge": "量産型グラデ blob／135deg ヒーロー背景に逃げていないか",
-      "designAnchor": "グラデ"
+      "judge": "量産型グラデ blob／斜めグラデ（135deg・to bottom right など）の面に逃げていないか。軸に平行なグラデ（90deg の shimmer）は動きの実装なので対象外",
+      "designAnchor": "グラデ",
+      "en": "Never fall back to a stock diagonal gradient (a 135deg hero background, a `to bottom right` panel, a gradient blob). Split surfaces with the surface tokens instead. Gradients parallel to an axis are fine when they implement motion (a 90deg shimmer)."
+    },
+    {
+      "id": "default_anatomy",
+      "ja": "部品を props なしで置いた姿も、画面と同じ基準で見る",
+      "en": "Judge a component the way it renders with no props. If placing it bare produces something on the banned list — a stock hero, three equal feature cards, a diagonal gradient panel, rainbow categories, empty placeholder copy — the default is the defect, not the screen that used it. Catalogue \"Default\" stories teach the component, so they are read as composition, not as craft.",
+      "judge": "部品の既定レンダー／カタログの Default ストーリーが、それ自体で禁止パターンになっていないか（定型ヒーロー・3 列均等の機能カード・斜めグラデの面・虹色カテゴリ・空の定型コピー＝fail）",
+      "designAnchor": "props なしで置いたとき"
+    },
+    {
+      "id": "empty_copy",
+      "ja": "中身の無い定型コピーを置かない",
+      "en": "Never ship hollow boilerplate copy (\"No data found\", \"Get started\", \"This is a description\", \"Ready to start?\", \"Your operation has been executed\"). It displays the fact that nobody decided what to say yet. Name the thing that is missing and the one action that changes it. This is a different defect from hype: hype overclaims, hollow copy says nothing.",
+      "judge": "空の定型コピー（No data found / Get started / This is a description 型）が無いか。何が無いのか・次に何をすると変わるのかが書かれていなければ fail",
+      "designAnchor": "中身の無い定型コピー"
+    },
+    {
+      "id": "stock_hero",
+      "ja": "定型ヒーロー構成に落とさない",
+      "en": "Avoid the stock hero anatomy: icon or badge, big heading, one line of subtext, two buttons (one solid, one outline), all centred. It is the single most recognisable AI screen. Decide one protagonist and build asymmetrically around it; one primary action plus a text link beats two equal buttons.",
+      "judge": "定型ヒーロー（アイコン/バッジ → 大見出し → サブ 1 行 → solid/outline ボタン 2 個、中央揃え）になっていないか",
+      "designAnchor": "定型ヒーロー構成"
+    },
+    {
+      "id": "rainbow_category",
+      "ja": "カテゴリごとに色を振らない",
+      "en": "Never assign a different colour per tag, per person or per KPI. Colour carries good/bad (success / warning / danger) and nothing else; everything else stays neutral. A rainbow of categories makes every value look like an exception, which means none of them do.",
+      "judge": "タグ／人／KPI がカテゴリごとに色分けされていないか（色が良し悪し以外を運んでいたら fail）",
+      "designAnchor": "カテゴリごとに色を振らない"
+    },
+    {
+      "id": "fake_placeholder_ui",
+      "ja": "中身の代わりに偽の UI を描かない",
+      "en": "Never draw a stand-in for content you did not build: a Skeleton used as a fake screenshot, a grey box or gradient panel captioned \"Chart placeholder\". Either put the real component in (a Sparkline, a table) or leave the region out. A labelled empty box teaches readers that the library cannot fill it.",
+      "judge": "中身の代わりに偽の UI（ローディング以外の Skeleton・\"Chart placeholder\" 的な灰色/グラデの箱）を置いていないか",
+      "designAnchor": "中身の代わりに偽の UI"
+    },
+    {
+      "id": "glass_default",
+      "ja": "量産グラスを既定や第一の見本にしない",
+      "en": "Glass / neumorphic \"futuristic tech\" surfaces may exist as an opt-in variant, but never as a default or as the first example in the docs. Shown first, it becomes what the library looks like, and that look is the most generic one available.",
+      "judge": "量産型グラスモーフィズム／近未来テック調が、既定またはカタログの主たる見本になっていないか",
+      "designAnchor": "量産グラスを既定や第一の見本にしない"
     }
   ]
 }
