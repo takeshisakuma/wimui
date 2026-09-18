@@ -32,7 +32,7 @@ minor / patch はグループ PR をマージしてよい（`CLAUDE.md` の委�
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `i18next-http-backend` 4 | `storybook-react-i18next` の peer 宣言 | 同上 |
-| `vitest` + `@vitest/*` 4.1.11 | **互換性ではなく npm の解決の問題。** `vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて、増分解決では置き換えられない（2026-08-22 実測） | **Dependabot のグループ PR を待つ**。手で上げようとしないこと |
+| `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
 | `@changesets/cli` 3 | `changesets/action@v1` が `changeset publish` の stdout を `/New tag:/` で読むが、cli 3 はその行を出さない（2026-08-16 調査） | **単独では判定しない。** cli 3 + `changesets/action@v2` + `release.yml` の入力名（`version` → `version-script` / `publish` → `publish-script`）を**同時に**変える覚悟があるか |
 
 > **`vitest` 系は「手で上げようとして時間を溶かす」型。** 2026-08-22 に 3 通り試して全部だめだった:
