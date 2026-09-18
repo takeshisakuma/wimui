@@ -60,6 +60,22 @@ updates:
       # plugin ラインが stable 化したら本 ignore を外し、5パッケージ一括で v7 へ移行する。
       - dependency-name: "@fullcalendar/*"
         update-types: ["version-update:semver-major"]
+      # Vitest 5 は **@storybook/addon-vitest が追随するまで上げられない**（2026-09-18・#605/#606/#607）。
+      # addon-vitest@10.6.0（現行 latest）の peer は
+      #   vitest / @vitest/browser: "^3.0.0 || ^4.0.0"、@vitest/browser-playwright: "^4.0.0"
+      # で、5 を入れると `npm ci` が ERESOLVE で落ちる（全ジョブが install 段階で赤・10〜20 秒）。
+      # vitest 5 を受けるのは 11.0.0-alpha.0 のみで stable が無い。
+      #
+      # さらに @vitest/* は互いを**完全一致**で peer 宣言する
+      # （@vitest/coverage-v8@5.0.0 → peerOptional @vitest/browser@"5.0.0"）ため、
+      # 1 本ずつ上げる PR は size-limit と同じく構造的に必ず落ちる。
+      # addon-vitest が stable で vitest 5 を受けたら本 ignore を外し、
+      # **vitest / @vitest/browser / @vitest/browser-playwright / @vitest/coverage-v8 の
+      # 4 パッケージ + @storybook/addon-vitest を 1 PR で**上げること。
+      - dependency-name: "vitest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vitest/*"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
