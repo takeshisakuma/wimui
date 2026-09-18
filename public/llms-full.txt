@@ -45,7 +45,7 @@ Every component works from the root barrel `"wimui"`. For smaller bundles, impor
 
 ## Composition rules — build screens that don't look AI-generated
 
-Single components are judged by state/a11y/token compliance. **Composed screens** are judged by hierarchy, rhythm, asymmetry and real-feeling content. Apply these whenever combining components into a screen, page, pattern or demo.
+Single components are judged by state/a11y/token compliance. **Composed screens** are judged by hierarchy, rhythm, asymmetry and real-feeling content. Apply these whenever combining components into a screen, page, pattern or demo — **and also when you write a single component on its own**, because the way it renders with no props is judged by the same rules (rule 22). That split is about what is being judged, not about where the problem lives: a default that emits a banned pattern emits it into every screen that uses the component.
 
 **Before laying out**: pick exactly ONE visual protagonist for the screen. If every element has the same volume, it reads as AI-generated.
 
