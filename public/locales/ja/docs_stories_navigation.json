@@ -76,7 +76,6 @@
     "sidebar_user_email": "user@example.com",
     "sidebar_user_name": "ユーザー名",
     "sidebar_wimui": "WIM UI",
-    "stepper_desc": "これは説明です",
     "stepper_done": "完了",
     "stepper_finished": "完了済み",
     "stepper_in_progress": "進行中",
@@ -124,6 +123,9 @@
     "menubar_paste": "貼り付け",
     "menubar_save_as": "名前を付けて保存…",
     "menubar_zoom_in": "拡大",
-    "menubar_zoom_out": "縮小"
+    "menubar_zoom_out": "縮小",
+    "stepper_desc_finished": "3/12 に承認済み",
+    "stepper_desc_progress": "経理の確認待ち",
+    "stepper_desc_waiting": "確認が通り次第に開始"
   }
 }

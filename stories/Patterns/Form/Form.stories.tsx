@@ -245,10 +245,10 @@ export const MultiStepForm: StoryObj = {
     ];
 
     const formData = {
-      email: "john@example.com",
+      email: "p.nair@shorelinelabs.jp",
       name: "Priya Nair",
-      company: "Acme Inc.",
-      role: "Developer",
+      company: "Shoreline Labs",
+      role: "Frontend developer",
     };
 
     return (

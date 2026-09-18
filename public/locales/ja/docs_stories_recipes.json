@@ -10,9 +10,9 @@
     "chat": "チャット",
     "chat_placeholder": "カフェのランディングページを作って",
     "device_desktop": "デスクトップ",
-    "get_started": "はじめる",
-    "hello_desc": "これは AI が生成したライブプレビューです。",
-    "hello_title": "こんにちは、Artifacts！",
+    "get_started": "メニューを見る",
+    "hello_desc": "7:00〜19:00 営業。栄駅から徒歩 2 分。",
+    "hello_title": "Nishiki Coffee",
     "published": "公開済み",
     "react_component": "React コンポーネント",
     "status_generating": "アーティファクトを生成中...",
@@ -160,7 +160,7 @@
   },
   "feature_comparison": {
     "badge_popular": "一番人気",
-    "btn_started": "今すぐ始める",
+    "btn_started": "14 日間の無料トライアルを開始",
     "cat_advanced": "高度な機能",
     "cat_core": "コア機能",
     "cat_security": "セキュリティ & 管理",
@@ -545,8 +545,8 @@
     "step_2_title": "npmでインストール",
     "step_3_desc": "サポートを受け、作ったものを共有しましょう。",
     "step_3_title": "コミュニティに参加する",
-    "subtitle": "アカウントの準備ができました。始め方をご確認ください。",
-    "title": "WIM UIへようこそ！"
+    "subtitle": "スタイルシートを一度読み込めば、あとは必要なコンポーネントを呼び出すだけです。",
+    "title": "wimui をインストールしました"
   },
   "wholesale": {
     "agree": "卸売取引の規約と価格表を確認しました。",

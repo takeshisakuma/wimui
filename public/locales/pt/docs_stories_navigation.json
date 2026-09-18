@@ -76,7 +76,6 @@
     "sidebar_user_email": "user@example.com",
     "sidebar_user_name": "Nome de Usuário",
     "sidebar_wimui": "WIM UI",
-    "stepper_desc": "Esta é uma descrição",
     "stepper_done": "Feito",
     "stepper_finished": "Concluído",
     "stepper_in_progress": "Em progresso",
@@ -124,6 +123,9 @@
     "menubar_paste": "Colar",
     "menubar_save_as": "Salvar como…",
     "menubar_zoom_in": "Ampliar",
-    "menubar_zoom_out": "Reduzir"
+    "menubar_zoom_out": "Reduzir",
+    "stepper_desc_finished": "Aprovado em 12 de março",
+    "stepper_desc_progress": "Aguardando a revisão financeira",
+    "stepper_desc_waiting": "Começa assim que a revisão for concluída"
   }
 }

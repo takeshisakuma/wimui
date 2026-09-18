@@ -132,7 +132,12 @@
     gap: var(--wim-spacing-lg); // Adjusted for 3 rows
     padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl); // More generous padding
     color: var(--wim-color-white);
-    background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
+
+    /* 2 つの停止点は同じトークンを指していたので、この 135deg は**絵として単色**だった
+       （`--wim-audio-bg-start` / `-end` とも `surface-inverse`）。グラデの形だけが残って
+       いた状態なので、単色へ畳んでも描画は 1 画素も変わらない。T39 の禁止表「量産型
+       グラデーション」に機械ガードが届くようにしたときに出てきた（2026-09-19）。 */
+    background: var(--wim-audio-bg-start);
     mask-image: none;
 
   }
