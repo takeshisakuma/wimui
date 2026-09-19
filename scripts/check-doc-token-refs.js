@@ -63,7 +63,15 @@ for (const known of ["--wim-color-surface", "--wim-spacing-md", "--wim-font-size
   }
 }
 
-/** 対象: MDX の本文とロケール JSON の文言。生成物のスナップショットは除く。 */
+/**
+ * 対象: MDX の本文とロケール JSON の文言、**および設計文書**。
+ * 生成物のスナップショットは除く。
+ *
+ * 設計文書（`DESIGN.md` と `docs/design/**.md`）を足したのは T252（2026-09-20）で
+ * カラー / タイポグラフィ節を切り出したとき。**あの 2 節はトークン名の一覧そのもの**
+ * なのに、ここは MDX とロケールしか見ていなかった。足した時点の実測は 0 件なので、
+ * 以後は「設計文書に書いたのに実在しない名前」が入った日に鳴る。
+ */
 function targets() {
   const out = [];
   const walk = (dir, re) => {
@@ -74,7 +82,8 @@ function targets() {
       else if (re.test(e.name) && !e.name.startsWith(".")) out.push(p);
     }
   };
-  walk(path.join(root, "docs"), /\.mdx$/);
+  walk(path.join(root, "docs"), /\.(mdx|md)$/);
+  if (fs.existsSync(path.join(root, "DESIGN.md"))) out.push(path.join(root, "DESIGN.md"));
   walk(path.join(root, "stories"), /\.mdx$/);
   walk(path.join(root, "public", "locales"), /\.json$/);
   return out;

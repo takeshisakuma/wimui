@@ -16,173 +16,11 @@
 
 ## カラーシステム
 
-### PCCS カラーパレット
+**本文は [`docs/design/color.md`](./docs/design/color.md) に移した**（T252・2026-09-20）。
 
-WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基づいています。24 色相を軸に 12 トーン（明度・彩度の組み合わせ）を展開し、合計 約 300 色 のパレットを保持しています。
+PCCS パレット・セマンティックカラー・不透明度（RGB トークン）・特殊なカラーカテゴリはすべて移動先にある。色を足すとき、`intent` を足すとき、コントラストの赤を直すときに読むこと。
 
-| トーン | 略称 | 特徴 | 用途例 |
-|--------|------|------|--------|
-| Vivid | `v` | 最高彩度、鮮やか | ライトの primary / danger / warning / info 塗り、ダークの primary など |
-| Bright | `b` | 明るく鮮やか | ダークモード Accent、Avatar |
-| Strong | `s` | やや暗く力強い | success 塗り（白文字 AA 用）。テキスト用の一段暗いトーンにも使う |
-| Deep | `dp` | 深く落ち着いた色 | 強調背景 |
-| Light | `lt` | 明るく柔らか | ホバー状態、淡いアクセント |
-| Soft | `sf` | くすんだ柔らかさ | 控えめな装飾 |
-| Dull | `d` | 渋い落ち着き | 重厚な UI |
-| Dark | `dk` | 暗いトーン | ダークモード背景 |
-| Pale | `p` | パステル調 | チャットバブル、薄い背景 |
-| Light Grayish | `ltg` | 明るいグレー寄り | 微細な差別化 |
-| Grayish | `g` | グレー寄り | ニュートラル要素 |
-| Achromatic | `w`, `gy*`, `bk` | 無彩色 | テキスト、背景、ボーダー |
-
-### セマンティックカラー
-
-生色（Palette）をそのまま使用せず、意味に基づくセマンティックトークンに変換して使用します。
-
-#### インテントカラー
-
-| 意味 | トークン | ライトモード | ダークモード |
-|------|----------|-------------|-------------|
-| Primary | `--wim-color-primary` | `v16` (#055d87) | `v16` (#055d87) |
-| Danger | `--wim-color-danger` | `v1` (#d40045) | `lt2` (#fb7482) |
-| Success | `--wim-color-success` | `s12` (#28853f) | `s12` (#28853f) |
-| Warning | `--wim-color-warning` | `v6` (#ff7f00) | `v7` (#ffcc00) |
-| Info | `--wim-color-info` | `v18` (#0f218b) | `v17` (#093f86) |
-
-ライトの intent 塗りは原則 Vivid。success だけ Strong（`s12`）で、solid 上の白文字 AA を確保する。ダークは背景との差のため Light / Vivid へ切り替える（danger は `lt2`、warning は `v7`）。
-
-**インテント色は塗り専用。** テキストに使うと WCAG AA を満たさない組合せが多い
-（例: warning `#ff7f00` は白背景でも約 2.5:1）。テキストには次の `text-*` トークンを使う。
-outline/subtle バリアントの文字色も intents SSOT の `text` ロール経由でこれらに解決される。
-
-| 用途 | トークン | ライト | ダーク |
-|------|----------|--------|--------|
-| アクセントテキスト（primary 系） | `--wim-color-text-accent` | = primary | #97cbe0 |
-| 成功テキスト | `--wim-color-text-success` | `dp12` (#306f42) | `lt12` (#7fc97e) |
-| 警告テキスト | `--wim-color-text-warning` | `dk8` (#6a5b18) | `lt7` (#fcd474) |
-| 情報テキスト | `--wim-color-text-info` | = info | `p18` (#b3cee3) |
-
-#### テキストカラー
-
-| 用途 | トークン | ライト | ダーク |
-|------|----------|--------|--------|
-| 主要テキスト | `--wim-color-text-primary` | `bk` (#000) | `w` (#fff) |
-| 補助テキスト | `--wim-color-text-secondary` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
-| 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | #c4c4c4 |
-| 無効テキスト（通常面） | `--wim-color-text-disabled` | `gy6-5` (#8a8a8a) | `gy6-5` (#8a8a8a) |
-| 無効フィル上の文字 | `--wim-color-text-on-disabled` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
-| エラーテキスト | `--wim-color-text-danger` | `dp2` (#9d002b) | #ff8c8c |
-| プレースホルダー | `--wim-color-text-placeholder` | = text-tertiary | = text-tertiary |
-
-**disabled テキストの使い分け（公開契約）**
-
-| トークン | いつ使うか |
-|----------|------------|
-| `--wim-color-text-on-disabled` | 背景が `--wim-color-disabled` のとき（solid Button / Input 系の disabled フィル上）。`text-on-*` ファミリー |
-| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト（outline/ghost Button、Chip/Tag、Tabs、Pagination、Icon `color="disabled"` など） |
-
-`--wim-color-disabled` 自体は**塗り**用。テキスト色に使わない。
-
-Avatar の default は意図的に disabled フィル＋`text-on-disabled` を流用（中立クローム）。新規の「ニュートラル」トークンは増やさない。
-
-#### サーフェスカラー
-
-| 用途 | トークン | ライト | ダーク |
-|------|----------|--------|--------|
-| アプリ背景 | `--wim-color-surface-app` | `gy9-5` (#f5f5f5) | `gy2-5` (#262626) |
-| コンポーネント背景 | `--wim-color-surface` | `w` (#fff) | `gy3-5` (#393939) |
-| セカンダリ背景 | `--wim-color-surface-variant` | `gy8-5` (#e5e5e5) | `gy4-5` (#4f4f4f) |
-| ホバー背景 | `--wim-color-surface-hover` | primary 8% | primary 12% |
-| ボーダー | `--wim-color-border` | `gy7-5` (#b6b6b6) | `gy5-5` (#646464) |
-
-ライトテーマは「灰のキャンバス（`surface-app`）+ 白のカード（`surface`）」で階層を作る。かつては両者とも `#fff` で階層が視覚的に存在せず、パターン側がグラデーション等を即興する原因になっていた（2026-07-16 に `surface-app` を `w` → `gy9-5` へ変更。ダークは従来から `#262626` / `#393939` で階層あり）。
-
-#### サーフェス語彙（正規名）
-
-公開サーフェスは `surface*` に統一（旧 `bg-app` / `bg-subtle` / `bg-void` / `bg-inverted` 等は廃止）。
-
-| 用途 | トークン |
-|------|----------|
-| アプリ面 | `--wim-color-surface-app` |
-| コンポーネント面 | `--wim-color-surface` |
-| セカンダリ面 | `--wim-color-surface-variant` |
-| 三次面 | `--wim-color-surface-tertiary` |
-| ホバー面 | `--wim-color-surface-hover` |
-| 薄いソリッド面 | `--wim-color-surface-subtle` |
-| 薄い半透明面 | `--wim-color-surface-subtle-alpha` |
-| 反転面 | `--wim-color-surface-inverse` |
-| ヴォイド（黒アンカー） | `--wim-color-surface-void` |
-| インセット面 | `--wim-color-surface-inset` |
-| ガラス面 | `--wim-color-glass-bg` |
-| 絶対白 | `--wim-color-white` |
-| 反転面上の文字 | `--wim-color-text-on-inverse` / `--wim-color-text-muted-on-inverse` |
-
-Intent 状態: `primary-hover` / `primary-active` / `primary-muted` / `primary-soft` / `primary-subtle` / `primary-fill`（ダークで面寄りに変わる塗り）。  
-Overlay: `overlay` / `overlay-soft` / `overlay-strong` / `overlay-medium` / `overlay-sidebar`。
-
-### 不透明度の扱い（RGB トークン）
-
-上記のセマンティックカラーは HEX で定義されていますが、**不透明度（アルファ）を伴う色を作る場合は HEX をハードコードせず、自動生成される RGB トークンを使用すること。** `tokens:build` は各色について `R, G, B` のカンマ区切り値を持つ `*-rgb` トークン（`src/tokens/generated/_css-vars-rgb.scss`）を生成します。
-
-```scss
-// ✅ rgba() で不透明度を付与する場合は RGB トークンを使う
-background: rgba(var(--wim-color-primary-rgb), 0.12);
-
-// ✅ color-mix() で透明・他色と混ぜる場合はセマンティックトークンをそのまま渡す
-background: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
-
-// ❌ HEX をハードコードしない（テーマ切替・トークン変更に追従できない）
-background: rgba(32, 91, 133, 0.12);
-```
-
-`*-rgb` トークンはライト/ダーク双方（`_css-vars-rgb.scss` / `_css-vars-rgb-dark.scss`）で生成されるため、`rgba(var(--wim-color-primary-rgb), …)` だけでテーマ追従も自動的に成立します。
-
-### 特殊なカラーカテゴリ
-
-#### Ghost（ゴースト）
-
-透明に近い背景とボーダーで控えめな存在感を示すスタイル。
-
-| トークン | ライト | ダーク |
-|----------|--------|--------|
-| `--wim-color-ghost-bg` | rgba(0,0,0, 0.03) | rgba(255,255,255, 0.06) |
-| `--wim-color-ghost-border` | rgba(0,0,0, 0.08) | rgba(255,255,255, 0.15) |
-| `--wim-color-ghost-bg-hover` | rgba(0,0,0, 0.05) | rgba(255,255,255, 0.08) |
-| `--wim-color-ghost-bg-active` | rgba(0,0,0, 0.12) | rgba(255,255,255, 0.12) |
-
-#### Glass（ガラス）
-
-半透明のすりガラス効果。`backdrop-filter: blur()` と組み合わせて使用。
-
-| トークン | ライト | ダーク |
-|----------|--------|--------|
-| `--wim-color-glass-bg` | rgba(255,255,255, 0.7) | rgba(20,20,20, 0.75) |
-| `--wim-color-glass-border` | rgba(0,0,0, 0.12) | rgba(255,255,255, 0.15) |
-| `--wim-color-shadow-glass` | `--wim-shadow-md` | 独自の深い影 |
-
-#### Skeleton
-
-ローディング中のスケルトン表示用。
-
-| トークン | ライト | ダーク |
-|----------|--------|--------|
-| `--wim-color-skeleton-shine` | rgba(255,255,255, 0.3) | rgba(255,255,255, 0.08) |
-
-#### Overlay
-
-モーダルやドロワーの背景オーバーレイ。
-
-| トークン | ライト | ダーク |
-|----------|--------|--------|
-| `--wim-color-overlay` | rgba(0,0,0, 0.5) | rgba(0,0,0, 0.7) |
-| `--wim-color-overlay-soft` | rgba(255,255,255, 0.8) | rgba(255,255,255, 0.2) |
-| `--wim-color-frosted-bg` | overlay-soft | surface 60% |
-
-#### Feedback / コンポーネント固有色
-
-Alert / Banner / Toast 等のバリアント色は、公開 role トークン（`info` / `success` / `danger` 等）と `color-mix()` で組み立てる。avatar / heatmap / carousel / chat-bubble / terminal / overlay-control などコンポーネント固有色は公開契約外（`--wim-comp-*`、テーマ上書き対象外）。
-
----
+切り出した理由は、この文書が 719 行あり、**自分たちが公開した基準（200〜500 行）を超えていた**こと。色は「色を触る作業」でだけ要る節で、実務の見張りは移動先の冒頭に挙げた機械ガード（`check:contrast` ほか）が持っている。
 
 ## テーマシステム
 
@@ -237,121 +75,11 @@ Alert / Banner / Toast 等のバリアント色は、公開 role トークン（
 
 ## タイポグラフィ
 
-### フォントファミリー
+**本文は [`docs/design/typography.md`](./docs/design/typography.md) に移した**（T252・2026-09-20）。
 
-言語ごとに最適なフォントスタックを定義。
+フォントファミリー・サイズ・ウェイト・行高・字間・言語による出し分け・**見出しの行高はどの層で決まるか（T208・公開契約）**・テキスト装飾はすべて移動先にある。
 
-| 言語 | トークン | フォントスタック |
-|------|----------|----------------|
-| デフォルト / EN / PT | `--wim-font-family-default` | Noto Sans, Segoe UI, Roboto, Helvetica Neue, arial, sans-serif |
-| 日本語 | `--wim-font-family-ja` | Noto Sans JP, 游ゴシック体, YuGothic, Hiragino Kaku Gothic ProN, メイリオ, sans-serif |
-
-すべてのフォントスタックに絵文字フォント（Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji）を含む。
-
-### フォントサイズ
-
-Major Second (1.125) に近い Type Scale を採用。
-
-| トークン | 値 | 用途 |
-|----------|-----|------|
-| `--wim-font-size-3xs` | 0.625rem | 極小注釈 |
-| `--wim-font-size-2xs` | 0.702rem | 最小注釈、バッジ内テキスト |
-| `--wim-font-size-xs` | 0.79rem | キャプション、ヒント |
-| `--wim-font-size-sm` | 0.889rem | 小さめの本文、ラベル |
-| `--wim-font-size-md` | 1rem (16px) | 本文テキスト |
-| `--wim-font-size-lg` | 1.125rem | やや強調されたテキスト |
-| `--wim-font-size-xl` | 1.266rem | サブ見出し |
-| `--wim-font-size-2xl` | 1.602rem | セクション見出し |
-| `--wim-font-size-3xl` | 2.027rem | ページ見出し |
-| `--wim-font-size-4xl` | 2.566rem | ヒーロー見出し |
-| `--wim-font-size-5xl` | 3.247rem | ディスプレイ |
-| `--wim-font-size-6xl` | 4.11rem | 大型ディスプレイ |
-| `--wim-font-size-7xl` | 5.202rem | 特大ディスプレイ |
-
-### フォントウェイト
-
-| トークン | 値 | 用途 |
-|----------|-----|------|
-| `--wim-font-weight-normal` | 400 | 本文 |
-| `--wim-font-weight-medium` | 500 | ラベル、強調 |
-| `--wim-font-weight-bold` | 700 | 見出し、ボタン |
-
-### 行高
-
-日本語と欧文で異なる行高を提供。日本語は文字が正方形に近いため、欧文よりゆったりとした行高が必要。
-
-| トークン | 値 | 対象言語 | 主な用途 |
-|----------|-----|---------|---------|
-| `--wim-line-height-tight` | 1.2 | 欧文 | ディスプレイ見出し（Title `xl`〜） |
-| `--wim-line-height-snug` | 1.33 | 欧文 | **見出しの既定**（Title・素の `h1`〜`h6`） |
-| `--wim-line-height-normal` | 1.4 | 欧文 | 本文 |
-| `--wim-line-height-loose` | 1.6 | 欧文 | 長文・入力欄の本文 |
-| `--wim-line-height-tight-jp` | 1.4 | 日本語 | ディスプレイ見出し |
-| `--wim-line-height-snug-jp` | 1.5 | 日本語 | **見出しの既定** |
-| `--wim-line-height-normal-jp` | 1.6 | 日本語 | 本文 |
-| `--wim-line-height-loose-jp` | 1.8 | 日本語 | 長文 |
-
-### 字間（letter-spacing）
-
-見出しの主張を強めるためのトラッキング。**欧文は大きいサイズほど字面が空いて間延びするため負トラッキングで締める**。一方、**和文（かな・漢字）は仮想ボディが詰まって見えるため詰めない**（`normal` = 0）。行高と同じく `[lang="ja"]` で出し分ける（規約3）。本文サイズ相当の小見出し（Title `xs`/`sm`）は詰めると可読性が落ちるため `normal`。
-
-| トークン | 値 | 用途 |
-|----------|-----|------|
-| `--wim-letter-spacing-normal` | 0 | 本文・小見出し・和文すべて |
-| `--wim-letter-spacing-tight` | -0.01em | 欧文の中〜大見出し（Title 既定） |
-| `--wim-letter-spacing-tighter` | -0.02em | 欧文のディスプレイ見出し（Title `xl`〜`xl4`） |
-
-### 言語による行高・フォントファミリーの出し分け規約
-
-「いつ欧文用トークン（`--wim-line-height-normal`）を使い、いつ日本語用（`-jp`）を使うか」は次の優先順位で判断する。**コンポーネント SCSS 内に `i18next` の言語判定ロジックを書かないこと。**
-
-1. **コンポーネントが行高を選べる API を持つ場合は prop に委ねる。**
-   例: `Text` は `lineHeight` prop（`normal` / `normal-jp` など）を受け取り、`getLineHeightValue()` が対応するトークンへ解決する。利用側が言語に応じて値を指定する。
-
-2. **本文・複数行テキストを内包するコンポーネントは、既定で `-jp`（広いほう）を採用する。**
-   日本語は字形が正方形に近く詰まって見えるため、CJK・欧文混在のテキストでは広い行高のほうが安全。`List`, `status-content` の `.description` 等はこの方針で `--wim-line-height-normal-jp` を直接使用している。
-
-3. **`lang` 属性に連動して自動で切り替えたい場合**は、最上層の `<html lang="…">` から伝播する `lang` 属性をセレクタで拾う。グローバルな `:root[lang="ja"]` ではなく、コンポーネントのルートに付く `lang` を起点にする。
-
-   ```scss
-   .text {
-     font-family: var(--wim-font-family-default);
-     line-height: var(--wim-line-height-normal);
-
-     &:global([lang="ja"]),
-     :global([lang="ja"]) & {
-       font-family: var(--wim-font-family-ja);
-       line-height: var(--wim-line-height-normal-jp);
-     }
-   }
-   ```
-
-### 見出しの行高はどの層で決まるか（T208・公開契約）
-
-`line-height` は単位なし＝比率なので、宣言が無ければ子孫が自分の font-size に掛ける。`lang.scss` は `body` に `--wim-line-height-normal`（1.4 / ja は 1.6）を配るため、**何もしない見出しは本文の比率のまま間延びする** ── 実測で素の `<h1>`（UA 既定 2em＝32px）は行送り 44.8px / ja 51.2px だった。
-
-解く層は要素で決まる。
-
-| 見出しの書き方 | 行高を決める場所 | コンポーネント側ですること |
-|---|---|---|
-| 素の `<h1>`〜`<h6>` | `@layer base`（`src/base.scss`）が `snug` / `[lang="ja"]` は `snug-jp` を当てる。**`reset.css` に入る＝利用者の素マークアップにも効く** | **何も宣言しない**（宣言すると `component` 層のクラスが base に勝ち、base が届かなくなる） |
-| `Title` コンポーネント | `title.module.scss` が `snug` / `snug-jp`、ディスプレイ段（`xl`〜）だけ `tight` / `tight-jp` | `Title` に任せる |
-| `role="heading"` を載せた `div` / `button` | **base のセレクタは要素名なので構造的に届かない** | 自分で `snug` / `snug-jp` を宣言する |
-
-`tight` 系を使う境目は `Title` の判断に合わせる ── ディスプレイ段（`.xl`＝max 2.6rem ≒ 41.6px）から。**素の見出しの UA 既定は h1 の 32px が最大で `Title` の `.lg`（2rem）と同じ帯**なので、素の h1 も `snug` 側に置く。
-
-和文の出し分けを `lang.scss` に書かないこと。**あのファイルはレイヤー外**で、レイヤー外の宣言は全レイヤーより強いため、`body[lang="ja"] h1` に行高を足すと `@layer component` の `Title` まで上書きしてしまう。base 層に置く。
-
-機械強制: `npm run check:heading-lh`（`audit:lib` と lint-staged に配線済み）。
-
-### テキスト装飾
-
-| トークン | 値 |
-|----------|-----|
-| `--wim-decoration-underline` | underline |
-| `--wim-decoration-line-through` | line-through |
-
----
+切り出した理由はカラー節と同じで、タイポグラフィは「文字を触る作業」でだけ要るため。
 
 ## スペーシングシステム
 
@@ -418,12 +146,12 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-shadow-none` | none | フラット |
-| `--wim-shadow-xs` | 0 1px 2px rgba(0,0,0,0.05) | 微小な浮き（Badge, Chip） |
-| `--wim-shadow-sm` | 0 2px 4px rgba(0,0,0,0.08) | カード、ドロップダウン |
-| `--wim-shadow-md` | 0 4px 12px rgba(0,0,0,0.12) | モーダル、ポップオーバー |
-| `--wim-shadow-lg` | 0 12px 24px rgba(0,0,0,0.16) | ドロワー、全画面オーバーレイ |
-| `--wim-shadow-inset` | inset 0 2px 4px rgba(0,0,0,0.06) | 押し込み効果 |
-| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px var(--wim-color-primary-alpha) | フォーカス外枠 |
+| `--wim-shadow-xs` | 0 1px 2px oklch(0 0 0 / 0.08), 0 1px 1px oklch(0 0 0 / 0.05) | 微小な浮き（Badge, Chip） |
+| `--wim-shadow-sm` | 0 2px 4px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.12) | カード、ドロップダウン |
+| `--wim-shadow-md` | 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12) | モーダル、ポップオーバー |
+| `--wim-shadow-lg` | 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18) | ドロワー、全画面オーバーレイ |
+| `--wim-shadow-inset` | inset 0 2px 4px oklch(0 0 0 / 0.1) | 押し込み効果 |
+| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px oklch(from var(--wim-color-primary) l c h / 0.5) | フォーカス外枠 |
 
 ### 透明度
 
@@ -450,9 +178,9 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-easing-standard` | cubic-bezier(0.55, 0, 0.1, 1) | 汎用トランジション |
-| `--wim-easing-entrance` | cubic-bezier(0, 0, 0, 1) | 画面に入る |
-| `--wim-easing-exit` | cubic-bezier(1, 0, 1, 1) | 画面から出る |
+| `--wim-easing-standard` | cubic-bezier(0.4, 0, 0.2, 1) | 汎用トランジション |
+| `--wim-easing-entrance` | cubic-bezier(0, 0, 0.2, 1) | 画面に入る |
+| `--wim-easing-exit` | cubic-bezier(0.4, 0, 1, 1) | 画面から出る |
 | `--wim-easing-spring` | cubic-bezier(0.34, 1.56, 0.64, 1) | バウンス効果 |
 
 ### Lift（浮き上がり）

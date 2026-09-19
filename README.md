@@ -243,7 +243,7 @@ Many derivatives (`primary-hover` / `primary-active` / `primary-muted` / `primar
 
 - Do not wrap `primary-rgb` in `rgb(...)` (use the `11, 110, 79` form).
 - If you customize `primary-fill` (e.g. for dark-mode fills), override it too if needed.
-- For the full token list, see Storybook **Token → Colors** / `DESIGN.md`.
+- For the full token list, see Storybook **Token → Colors** / `docs/design/color.md`.
 
 ## UI density
 
