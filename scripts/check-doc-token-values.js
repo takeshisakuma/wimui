@@ -169,7 +169,9 @@ for (const rel of files) {
     for (const { idx, table } of head.valueCols) {
       const cell = row[idx];
       if (cell === undefined || cell === "" || cell === "-") continue;
-      const impl = table.get(name) ?? (table === dark ? undefined : undefined);
+      // ダークに上書きが無いトークンは、ダークでもライトの値がそのまま効く。
+      // 飛ばさずライトと比べる（飛ばすと、その行は永久に検査されない）。
+      const impl = table.get(name) ?? (table === dark ? light.get(name) : undefined);
       if (impl === undefined) continue; // 上書きの無いダーク値・未知の名前は対象外
       const docValue = docValueOf(cell);
       if (docValue === null) {

@@ -14,6 +14,7 @@
  *   6. 参照表記（`--wim-radius-md`）は解決して比べるので鳴らない
  *   7. 2 層の box-shadow や `rgba(…)` を「値 + 併記」と読み違えない
  *   8. 説明文のセル（`= primary`）は対象外＝鳴らない（**このガードの死角**）
+ *   9. ダークに上書きの無いトークンは、飛ばさずライトの値と比べる
  *
  * Usage: npm run prove:doc-token-values
  */
@@ -95,10 +96,21 @@ try {
   restore();
   patch('docs/design/color.md', '| `--wim-color-text-accent` | = primary', '| `--wim-color-text-accent` | = secondary');
   check('8. 説明文のセルは対象外（死角。ここは鳴らない）', run() === 0);
+
+  // 9 / 9-2: ダークに上書きが無いトークンを 3 列表に置いたとき、**飛ばさずライトと比べる**。
+  // 飛ばす実装でもこの行は緑になるので、**誤った値で赤くなること**まで見ないと実証にならない。
+  const ghostRow = '| `--wim-color-ghost-bg` | oklch(from var(--wim-color-surface-void) l c h / 0.03) |';
+  restore();
+  patch('docs/design/color.md', ghostRow, `| \`--wim-spacing-md\` | 0.5rem | 9rem |\n${ghostRow}`);
+  check('9. ダーク未上書きのトークンは、ダーク列が違えば鳴る', run() !== 0);
+
+  restore();
+  patch('docs/design/color.md', ghostRow, `| \`--wim-spacing-md\` | 0.5rem | 0.5rem |\n${ghostRow}`);
+  check('9-2. 同じ値なら鳴らない', run() === 0);
 } finally {
   restore();
 }
 
-check('9. 後始末で元どおり（3 ファイル一致・緑）', FILES.every((f) => fs.readFileSync(abs(f), 'utf8') === backup[f]) && run() === 0);
+check("10. 後始末で元どおり（3 ファイル一致・緑）", FILES.every((f) => fs.readFileSync(abs(f), 'utf8') === backup[f]) && run() === 0);
 
 process.exit(results.every(Boolean) ? 0 : 1);
