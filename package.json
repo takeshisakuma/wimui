@@ -405,6 +405,9 @@
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
     "prove:skills": "node scripts/prove-skills-mirror.mjs",
+    "instructions:sync": "node scripts/instruction-files.mjs",
+    "check:instructions": "node scripts/instruction-files.mjs --check",
+    "prove:instructions": "node scripts/prove-instruction-files.mjs",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish",
@@ -609,6 +612,9 @@
     }
   },
   "lint-staged": {
+    "{AGENTS,CLAUDE,GEMINI}.md": [
+      "node scripts/instruction-files.mjs --check"
+    ],
     "{src,stories}/**/*.{ts,tsx}": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
       "node scripts/check-i18n-components.js",

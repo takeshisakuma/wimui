@@ -10,7 +10,7 @@
  * 次の CI が「消えた incomplete」で一斉に落ちる。ここでは
  * `storybook-static/index.json` の母数と突き合わせ、**1 通りでも欠けていたら
  * 書き込まずに落とす**（`check:slop` のラチェットが部分集合を全体と比べて
- * 素通りしていた件と同じ穴。CLAUDE.md「委任時の 2 つの約束」1）。
+ * 素通りしていた件と同じ穴。AGENTS.md「委任時の 2 つの約束」1）。
  */
 import fs from "node:fs";
 import path from "node:path";
