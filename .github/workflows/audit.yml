@@ -39,7 +39,7 @@ jobs:
       # 公開契約で許容していた（#598）。
       #
       # **PR では走らせない。** 鳴る条件は「上流が major を出した」であって、その PR とは
-      # 無関係だから（CLAUDE.md の「変更と無関係に見える赤」）。週次と手動起動のときだけ動かす。
+      # 無関係だから（AGENTS.md の「変更と無関係に見える赤」）。週次と手動起動のときだけ動かす。
       - name: 検証していない peer major が出ていないか（週次のみ）
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: npm run check:peer-majors

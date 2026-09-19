@@ -152,6 +152,15 @@ const checks = [
   },
   {
     category: "docs",
+    // T259（2026-09-19）。AGENTS.md / CLAUDE.md / GEMINI.md を見張るガードは
+    // 1 つも無く、AGENTS.md と GEMINI.md が同一なのは偶然だった。片方だけ直すと
+    // **そのツールだけが古い指示を読む**という、赤の出ない壊れ方をする。
+    // 実証は `npm run prove:instructions`（10 通り）。
+    name: "Agent instruction files (AGENTS.md is the source; CLAUDE.md imports it, GEMINI.md mirrors it)",
+    command: "node scripts/instruction-files.mjs --check",
+  },
+  {
+    category: "docs",
     // README は npm のパッケージページにそのまま出る。peer 範囲や import 経路が
     // package.json とずれていると、利用者は install 前に間違った情報を読む（T37）。
     name: "README claims match package.json (peers / export paths)",

@@ -426,7 +426,7 @@ npm run scaffold -- <Name> <category> [categoryId]
 # 例: npm run scaffold -- MyInput form basic-inputs
 ```
 
-`src/components/<category>/<Name>/` と `stories/<category>/<Name>/` のボイラープレートを生成します。続けて `src/<category>.ts` への export 追加、翻訳キー、MDX 記述が必要です（詳細は `CLAUDE.md` / `SKILLS.md`）。
+`src/components/<category>/<Name>/` と `stories/<category>/<Name>/` のボイラープレートを生成します。続けて `src/<category>.ts` への export 追加、翻訳キー、MDX 記述が必要です（詳細は `AGENTS.md` / `SKILLS.md`）。
 
 ### パッケージバージョン確認
 

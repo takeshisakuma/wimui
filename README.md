@@ -424,7 +424,7 @@ npm run scaffold -- <Name> <category> [categoryId]
 # e.g. npm run scaffold -- MyInput form basic-inputs
 ```
 
-Generates boilerplate under `src/components/<category>/<Name>/` and `stories/<category>/<Name>/`. You then need to add the export to `src/<category>.ts`, add translation keys, and write the MDX (see `CLAUDE.md` / `SKILLS.md`).
+Generates boilerplate under `src/components/<category>/<Name>/` and `stories/<category>/<Name>/`. You then need to add the export to `src/<category>.ts`, add translation keys, and write the MDX (see `AGENTS.md` / `SKILLS.md`).
 
 ### Check package versions
 
