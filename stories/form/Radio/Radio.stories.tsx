@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Radio>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Radio {...args} value="option1">{t("story.radio_option1")}</Radio>;
+    return <Radio {...args} value="standard">{t("story.radio_ship_standard")}</Radio>;
   },
 };
 
