@@ -348,6 +348,8 @@
     "check:token-types": "node scripts/check-token-types.js",
     "check:scss-refs": "node scripts/check-scss-token-refs.js",
     "check:doc-tokens": "node scripts/check-doc-token-refs.js",
+    "check:doc-token-values": "node scripts/check-doc-token-values.js",
+    "prove:doc-token-values": "node scripts/prove-doc-token-values.mjs",
     "check:audit-coverage": "node scripts/check-audit-coverage.js",
     "check:scss-layer": "node scripts/check-scss-layer.js",
     "check:licenses": "node scripts/check-bundled-licenses.js",
@@ -614,6 +616,10 @@
   "lint-staged": {
     "{AGENTS,CLAUDE,GEMINI}.md": [
       "node scripts/instruction-files.mjs --check"
+    ],
+    "{DESIGN.md,docs/design/*.md}": [
+      "node scripts/check-doc-token-refs.js",
+      "node scripts/check-doc-token-values.js"
     ],
     "{src,stories}/**/*.{ts,tsx}": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",

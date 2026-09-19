@@ -51,8 +51,8 @@ outline/subtle バリアントの文字色も intents SSOT の `text` ロール�
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
 | アクセントテキスト（primary 系） | `--wim-color-text-accent` | = primary | #97cbe0 |
-| 成功テキスト | `--wim-color-text-success` | `dp12` (#306f42) | `lt12` (#7fc97e) |
-| 警告テキスト | `--wim-color-text-warning` | `dk8` (#6a5b18) | `lt7` (#fcd474) |
+| 成功テキスト | `--wim-color-text-success` | `dk12` (#355935) | #b7e3b6 |
+| 警告テキスト | `--wim-color-text-warning` | `dk6` (#6b4919) | #ffda7a |
 | 情報テキスト | `--wim-color-text-info` | = info | `p18` (#b3cee3) |
 
 #### テキストカラー
@@ -61,10 +61,10 @@ outline/subtle バリアントの文字色も intents SSOT の `text` ロール�
 |------|----------|--------|--------|
 | 主要テキスト | `--wim-color-text-primary` | `bk` (#000) | `w` (#fff) |
 | 補助テキスト | `--wim-color-text-secondary` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
-| 三次テキスト | `--wim-color-text-tertiary` | `gy5-5` (#646464) | #c4c4c4 |
+| 三次テキスト | `--wim-color-text-tertiary` | `gy4-5` (#4f4f4f) | #c4c4c4 |
 | 無効テキスト（通常面） | `--wim-color-text-disabled` | `gy6-5` (#8a8a8a) | `gy6-5` (#8a8a8a) |
 | 無効フィル上の文字 | `--wim-color-text-on-disabled` | `gy3-5` (#393939) | `gy8-5` (#e5e5e5) |
-| エラーテキスト | `--wim-color-text-danger` | `dp2` (#9d002b) | #ff8c8c |
+| エラーテキスト | `--wim-color-text-danger` | `dp2` (#9d002b) | #ffc1c1 |
 | プレースホルダー | `--wim-color-text-placeholder` | = text-tertiary | = text-tertiary |
 
 **disabled テキストの使い分け（公開契約）**
@@ -82,9 +82,9 @@ Avatar の default は意図的に disabled フィル＋`text-on-disabled` を�
 
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
-| アプリ背景 | `--wim-color-surface-app` | `gy9-5` (#f5f5f5) | `gy2-5` (#262626) |
+| アプリ背景 | `--wim-color-surface-app` | `gy8-5` (#e5e5e5) | `gy2-5` (#262626) |
 | コンポーネント背景 | `--wim-color-surface` | `w` (#fff) | `gy3-5` (#393939) |
-| セカンダリ背景 | `--wim-color-surface-variant` | `gy8-5` (#e5e5e5) | `gy4-5` (#4f4f4f) |
+| セカンダリ背景 | `--wim-color-surface-variant` | `gy9-5` (#f5f5f5) | `gy4-5` (#4f4f4f) |
 | ホバー背景 | `--wim-color-surface-hover` | primary 8% | primary 12% |
 | ボーダー | `--wim-color-border` | `gy7-5` (#b6b6b6) | `gy5-5` (#646464) |
 
@@ -138,10 +138,10 @@ background: rgba(32, 91, 133, 0.12);
 
 | トークン | ライト | ダーク |
 |----------|--------|--------|
-| `--wim-color-ghost-bg` | oklch(from var(--wim-color-surface-void) l c h / 0.03) | rgba(255,255,255, 0.06) |
-| `--wim-color-ghost-border` | oklch(from var(--wim-color-surface-void) l c h / 0.08) | rgba(255,255,255, 0.15) |
-| `--wim-color-ghost-bg-hover` | oklch(from var(--wim-color-surface-void) l c h / 0.05) | rgba(255,255,255, 0.08) |
-| `--wim-color-ghost-bg-active` | oklch(from var(--wim-color-surface-void) l c h / 0.12) | rgba(255,255,255, 0.12) |
+| `--wim-color-ghost-bg` | oklch(from var(--wim-color-surface-void) l c h / 0.03) | oklch(from var(--wim-color-white) l c h / 0.06) |
+| `--wim-color-ghost-border` | oklch(from var(--wim-color-surface-void) l c h / 0.08) | oklch(from var(--wim-color-white) l c h / 0.15) |
+| `--wim-color-ghost-bg-hover` | oklch(from var(--wim-color-surface-void) l c h / 0.05) | oklch(from var(--wim-color-white) l c h / 0.08) |
+| `--wim-color-ghost-bg-active` | oklch(from var(--wim-color-surface-void) l c h / 0.12) | oklch(from var(--wim-color-white) l c h / 0.12) |
 
 #### Glass（ガラス）
 
@@ -159,7 +159,7 @@ background: rgba(32, 91, 133, 0.12);
 
 | トークン | ライト | ダーク |
 |----------|--------|--------|
-| `--wim-color-skeleton-shine` | rgba(255, 255, 255, 0.4) | rgba(255,255,255, 0.08) |
+| `--wim-color-skeleton-shine` | rgba(255, 255, 255, 0.4) | rgba(255, 255, 255, 0.06) |
 
 #### Overlay
 
