@@ -33,7 +33,7 @@
     "indicatorBase_prop_className": "Additional CSS class name.",
     "indicatorBase_prop_content": "Content to be rendered inside the indicator (alternative to children).",
     "indicatorBase_prop_icon": "Optional icon to display before the children.",
-    "indicatorBase_prop_intent": "Semantic intent for color coding.\n@default \"primary\"",
+    "indicatorBase_prop_intent": "Semantic intent for color coding. The default is neutral: an indicator placed without saying anything should not paint itself in an accent colour.\n@default \"neutral\"",
     "indicatorBase_prop_interactive": "Whether the indicator is interactive (shows hover/active states).\n@default false",
     "indicatorBase_prop_size": "Size of the indicator.\n@default \"md\"",
     "indicatorBase_prop_styles": "Mapping of class names from a CSS module to apply theme-specific styling.",

@@ -33,7 +33,7 @@
     "indicatorBase_prop_className": "Nome de classe CSS adicional.",
     "indicatorBase_prop_content": "Conteúdo a ser renderizado dentro do indicador (alternativa a children).",
     "indicatorBase_prop_icon": "Ícone opcional a exibir antes dos filhos.",
-    "indicatorBase_prop_intent": "Intenção semântica para codificação de cores.\n@default \"primary\"",
+    "indicatorBase_prop_intent": "Intenção semântica para codificação de cores. O padrão é neutral: um indicador colocado sem dizer nada não deve se pintar com uma cor de destaque.\n@default \"neutral\"",
     "indicatorBase_prop_interactive": "Se o indicador é interativo (exibe estados de hover/ativo).\n@default false",
     "indicatorBase_prop_size": "Tamanho do indicador.\n@default \"md\"",
     "indicatorBase_prop_styles": "Mapeamento de nomes de classe de um módulo CSS para aplicar estilização específica do tema.",

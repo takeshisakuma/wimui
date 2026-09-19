@@ -118,7 +118,7 @@
     "chip_prop_deleteAriaLabel": "Rótulo acessível para o botão de exclusão",
     "chip_prop_disabled": "Se o chip está desabilitado",
     "chip_prop_icon": "Ícone",
-    "chip_prop_intent": "Intenção (estado semântico)",
+    "chip_prop_intent": "Intenção (estado semântico). O padrão é neutral: um chip colocado sem dizer nada não deve se pintar com uma cor de destaque.\n@default \"neutral\"",
     "chip_prop_onClick": "Evento de clique. Quando fornecido, o chip se comporta como um botão.",
     "chip_prop_onDelete": "Evento de exclusão. Quando fornecido, um botão × é exibido.",
     "chip_prop_selected": "Se o chip está selecionado",
