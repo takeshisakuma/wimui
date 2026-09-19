@@ -48,9 +48,9 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <DemoCell intent="primary" style={{ minWidth: 60 }}>{t("story.flex_item_1", "1")}</DemoCell>
-        <DemoCell intent="success" style={{ minWidth: 60 }}>{t("story.flex_item_2", "2")}</DemoCell>
-        <DemoCell intent="warning" style={{ minWidth: 60 }}>{t("story.flex_item_3", "3")}</DemoCell>
+        <DemoCell intent="primary" style={{ minWidth: 60 }}>{t("story.flex_item_1", "Unassigned")}</DemoCell>
+        <DemoCell intent="success" style={{ minWidth: 60 }}>{t("story.flex_item_2", "In review")}</DemoCell>
+        <DemoCell intent="warning" style={{ minWidth: 60 }}>{t("story.flex_item_3", "Blocked")}</DemoCell>
       </Flex>
     );
   },
@@ -65,9 +65,9 @@ export const Column: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <DemoCell intent="primary">{t("story.flex_item_1", "Item 1")}</DemoCell>
-        <DemoCell intent="success">{t("story.flex_item_2", "Item 2")}</DemoCell>
-        <DemoCell intent="danger">{t("story.flex_item_3", "Item 3")}</DemoCell>
+        <DemoCell intent="primary">{t("story.flex_item_1", "Unassigned")}</DemoCell>
+        <DemoCell intent="success">{t("story.flex_item_2", "In review")}</DemoCell>
+        <DemoCell intent="danger">{t("story.flex_item_3", "Blocked")}</DemoCell>
       </Flex>
     );
   },
@@ -100,11 +100,11 @@ export const Wrapped: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <DemoCell intent="primary">{t("story.flex_item_1", "1")}</DemoCell>
-        <DemoCell intent="success">{t("story.flex_item_2", "2")}</DemoCell>
-        <DemoCell intent="warning">{t("story.flex_item_3", "3")}</DemoCell>
-        <DemoCell intent="danger">{t("story.flex_item_4", "4")}</DemoCell>
-        <DemoCell intent="neutral">{t("story.flex_item_5", "5")}</DemoCell>
+        <DemoCell intent="primary">{t("story.flex_item_1", "Unassigned")}</DemoCell>
+        <DemoCell intent="success">{t("story.flex_item_2", "In review")}</DemoCell>
+        <DemoCell intent="warning">{t("story.flex_item_3", "Blocked")}</DemoCell>
+        <DemoCell intent="danger">{t("story.flex_item_4", "Shipped")}</DemoCell>
+        <DemoCell intent="neutral">{t("story.flex_item_5", "Archived")}</DemoCell>
       </Flex>
     );
   },

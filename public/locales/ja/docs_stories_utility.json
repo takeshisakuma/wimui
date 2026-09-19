@@ -28,6 +28,7 @@
     "scrollprogress_inside": "このコンテナ内をスクロール",
     "scrollprogress_middle": "中間に到達",
     "visuallyhidden_accessible": "このテキストは視覚的に隠されていますが、スクリーンリーダーでは読み上げられます。",
-    "visuallyhidden_close": "閉じる"
+    "visuallyhidden_close": "閉じる",
+    "scrollarea_wide_content_2": "表示領域の右端を越えて、まだ続きます。"
   }
 }

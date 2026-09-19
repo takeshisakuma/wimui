@@ -28,6 +28,7 @@
     "scrollprogress_inside": "Role dentro deste contêiner",
     "scrollprogress_middle": "Alcançou o meio",
     "visuallyhidden_accessible": "Este texto está oculto visualmente, mas será lido por leitores de tela.",
-    "visuallyhidden_close": "Fechar"
+    "visuallyhidden_close": "Fechar",
+    "scrollarea_wide_content_2": "Ele continua além da borda direita da área visível. "
   }
 }

@@ -30,9 +30,9 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
-        <DemoCell intent="primary">{t("story.stack_item_1", "Item 1")}</DemoCell>
-        <DemoCell intent="success">{t("story.stack_item_2", "Item 2")}</DemoCell>
-        <DemoCell intent="warning">{t("story.stack_item_3", "Item 3")}</DemoCell>
+        <DemoCell intent="primary">{t("story.stack_item_1", "Build")}</DemoCell>
+        <DemoCell intent="success">{t("story.stack_item_2", "Tests")}</DemoCell>
+        <DemoCell intent="warning">{t("story.stack_item_3", "Publish")}</DemoCell>
       </Stack>
     );
   },
@@ -47,9 +47,9 @@ export const Row: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
-        <DemoCell intent="primary">{t("story.stack_item_1", "Item 1")}</DemoCell>
-        <DemoCell intent="success">{t("story.stack_item_2", "Item 2")}</DemoCell>
-        <DemoCell intent="warning">{t("story.stack_item_3", "Item 3")}</DemoCell>
+        <DemoCell intent="primary">{t("story.stack_item_1", "Build")}</DemoCell>
+        <DemoCell intent="success">{t("story.stack_item_2", "Tests")}</DemoCell>
+        <DemoCell intent="warning">{t("story.stack_item_3", "Publish")}</DemoCell>
       </Stack>
     );
   },
