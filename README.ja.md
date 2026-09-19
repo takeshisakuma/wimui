@@ -245,7 +245,7 @@ import { WimProvider } from "wimui";
 
 - `primary-rgb` は `rgb(...)` で包まない（`11, 110, 79` の形）。
 - ダークの塗り面などで `primary-fill` を独自にしている場合は、必要ならそれも上書きする。
-- トークン一覧は Storybook **Token → Colors** / `DESIGN.md` を参照。
+- トークン一覧は Storybook **Token → Colors** / `docs/design/color.md` を参照。
 
 ## UI 密度（Density）
 

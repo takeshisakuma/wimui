@@ -3100,7 +3100,7 @@
       "theme_desc": "Prefer `WimProvider` (`theme` / `density` / `locale`). It writes `data-theme` on `<html>`. Use `system` (default) to follow OS `prefers-color-scheme`. Do not rename the attribute.",
       "brand_title": "Brand color (primary)",
       "brand_desc": "Override public role tokens after `wimui/styles.css`. Start with `primary`, `primary-rgb`, and `text-on-primary`. Derived tokens (`primary-hover`, `primary-muted`, …) usually follow automatically. Do not override `--wim-comp-*` or palette raw colors.",
-      "brand_note": "`primary-rgb` must be comma-separated channels (not `rgb(...)`). Optional: override `primary-fill` for dark fill surfaces. Full list: Token → Colors / `DESIGN.md`.",
+      "brand_note": "`primary-rgb` must be comma-separated channels (not `rgb(...)`). Optional: override `primary-fill` for dark fill surfaces. Full list: Token → Colors / `docs/design/color.md`.",
       "density_title": "Density (`data-density`)",
       "density_desc": "Set via `WimProvider` `density`, `setWimDensity`, or the attribute on `<html>` (or any ancestor). Values: `comfortable` (default) | `compact`. See Token → Density.",
       "features_a11y": "Accessibility",
