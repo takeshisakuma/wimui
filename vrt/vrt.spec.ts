@@ -120,9 +120,23 @@ test.describe("Visual Regression Testing", () => {
           // `transition: none` を当てると**その場で目標値になる**ので、待たずに
           // 静止状態を撮れる。Playwright の `animations: "disabled"` は
           // これを取りこぼしていた。
+          // **`will-change` も戻す（T258 の実験・2026-09-19）。**
+          // `animation` を止めても `will-change: transform` は残り、その要素は
+          // 合成レイヤーに載ったままになる。合成レイヤーのラスタライズは実行ごとに
+          // 微差が出うるので、**アニメーションを止めた意味が最後のところで消える**。
+          //
+          // きっかけは `skeleton--wave-animation`: `.wave::after` が
+          // `will-change: transform` を持つ全面グラデで、**update が撮った 1 枚を
+          // 同じ head の compare が 64 画素で拒否し、再実行しても同じ 64 画素**だった
+          // （値が動かない＝ジッタではない。update 側の撮影だけが再現性のある外れ値）。
+          //
+          // **これは仮説であって結論ではない。** repo 全体で照合すると `will-change` を
+          // 使う部品は 13 個あるのに、非決定ストーリーの除外リスト 14 件との重なりは
+          // `media/Image` の 1 件だけで、Button / Switch / Tooltip は安定して撮れている。
+          // 効くかどうかは update → compare を 1 往復させて測る。
           await page.addStyleTag({
             content:
-              "*, *::before, *::after { animation: none !important; transition: none !important; }",
+              "*, *::before, *::after { animation: none !important; transition: none !important; will-change: auto !important; }",
           });
 
           // Compare screenshot
