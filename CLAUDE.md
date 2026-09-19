@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 構築に必要な実践知識は `SKILLS.md` を参照してください。
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。
-複数コンポーネントを組み合わせて画面・パターン・デモを作るとき、**および部品の既定値（props の既定・`.module.scss` の既定の面）やカタログの `Default` ストーリーを書くとき**は、必ず `DESIGN.md` の「コンポジションガイドライン（AI 的な画面を避ける）」に従ってください。部品を素で置いた姿は、その部品を使う画面すべてに出るため、既定が禁止パターンなら画面ではなく既定の失敗です（必須ルール 15 `default_anatomy`）。
+複数コンポーネントを組み合わせて画面・パターン・デモを作るとき、**および部品の既定値（props の既定・`.module.scss` の既定の面）やカタログの `Default` ストーリーを書くとき**は、必ず `docs/design/composition.md`（コンポジションガイドライン）に従ってください。部品を素で置いた姿は、その部品を使う画面すべてに出るため、既定が禁止パターンなら画面ではなく既定の失敗です（必須ルール 15 `default_anatomy`）。
 
 ---
 

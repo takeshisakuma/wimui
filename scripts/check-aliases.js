@@ -27,6 +27,7 @@
  * 使い方: node scripts/check-aliases.js
  */
 import fs from 'node:fs';
+import { globSync } from 'glob';
 
 const SRC = 'src/data/components.json';
 const NOT_PLANNED_SRC = 'src/data/not-planned.json';
@@ -108,7 +109,13 @@ for (const [key, owners] of seen) {
 // 何度でも起票され、後者は放っておくとエージェントが自作して埋めてしまう。
 // ここで見るのは**その答えが 1 つに定まっているか**だけ。
 const notPlanned = JSON.parse(fs.readFileSync(NOT_PLANNED_SRC, 'utf8')).notPlanned;
-const designMd = fs.readFileSync('DESIGN.md', 'utf8');
+// 人が読む規範は **`DESIGN.md` + `docs/design/**`**（T252・2026-09-19）。
+// いまの notPlanned 3 件はモーション節＝DESIGN.md 側に在るので広げなくても通るが、
+// **次に別の節を切り出したときに静かに壊れる**（「DESIGN.md に出てきません」と言って
+// 落ちる）。`check-composition-rules.js` は切り出した当日に実際にそれで落ちた。
+const designMd = ['DESIGN.md', ...globSync('docs/design/*.md', { posix: true })]
+  .map((f) => fs.readFileSync(f, 'utf8'))
+  .join('\n');
 let notPlannedWords = 0;
 
 if (!Array.isArray(notPlanned)) {
