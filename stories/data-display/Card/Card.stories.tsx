@@ -50,6 +50,11 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
+// `Default` は **variant を渡さない**。ここが `variant: "elevated"` を明示して
+// いたため、**既定を変えてもカタログの「Default」は何も変わらない**状態だった
+// （T250 ② の判断材料が、その部品のページに 1 つも出ない）。必須ルール 15
+// `default_anatomy` は既定レンダーを画面と同じ基準で見ると言っているので、
+// Default はまず素の姿であること。影付きは `Elevated` に分けて残す。
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -63,11 +68,31 @@ export const Default: Story = {
     );
   },
   args: {
+    style: { width: "300px" },
+  },
+};
+
+export const Elevated: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Card {...args}>
+        <Card.Body>
+          <h3>{t("story.card_elevated_title")}</h3>
+          <p>{t("story.card_elevated_desc")}</p>
+        </Card.Body>
+      </Card>
+    );
+  },
+  args: {
     variant: "elevated",
     style: { width: "300px" },
   },
 };
 
+// 既定が `outline` になったので、この絵は `Default` と同じ面になる。それでも
+// 残すのは、variant を名前で引く人がここに来るためと、既定が将来また動いたときに
+// 「outline とはこれ」が独立して残っている必要があるため。
 export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

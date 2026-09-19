@@ -81,6 +81,7 @@
     "card_scenario_widget": "Widget de Análise: Uma peça do dashboard que combina um gráfico com métricas atuais e um link para visualização detalhada.",
     "card_subcomponent_desc": "O componente Card consiste em vários subcomponentes, cada um com uma função específica.",
     "card_title": "Contêineres de informação",
+    "card_variant_elevated": "Variante Elevada (Elevated)",
     "card_variant_flat": "Variante Plana (Flat)",
     "card_variant_outline": "Variante de Contorno (Outline)",
     "carousel_keyboard_desc": "As teclas de seta navegam entre os slides. Tab move o foco para os botões de navegação e indicadores.",

@@ -81,6 +81,7 @@
     "card_scenario_widget": "分析ウィジェット: グラフと現在の指標、詳細表示へのリンクをまとめたダッシュボードパーツ。",
     "card_subcomponent_desc": "Card はサブコンポーネントで構成されており、それぞれ役割が分かれています。",
     "card_title": "情報集約コンテナ",
+    "card_variant_elevated": "影付き（エレベーション）",
     "card_variant_flat": "フラット（背景なし）",
     "card_variant_outline": "アウトライン（枠線）",
     "carousel_keyboard_desc": "矢印キーでスライドを移動します。Tab キーでナビゲーションボタンやインジケーターにフォーカスします。",
