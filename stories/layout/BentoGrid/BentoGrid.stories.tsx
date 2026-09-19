@@ -44,7 +44,7 @@ export const Default: Story = {
             <Badge intent="neutral" variant="subtle">{t("story.bento_ai_cap_translate")}</Badge>
           </div>
         ),
-        className: "wim-bento-grid-item--col-span-2",
+        span: 2 as const,
         icon: <Icon name="CircleIcon" />,
       },
       {
@@ -68,7 +68,7 @@ export const Default: Story = {
             </span>
           </div>
         ),
-        className: "wim-bento-grid-item--col-span-1",
+        span: 1 as const,
         icon: <Icon name="SquareIcon" />,
       },
       {
@@ -92,7 +92,7 @@ export const Default: Story = {
             />
           </div>
         ),
-        className: "wim-bento-grid-item--col-span-1",
+        span: 1 as const,
         icon: <Icon name="ChevronDownIcon" />,
       },
       {
@@ -108,7 +108,7 @@ export const Default: Story = {
             <Progress value={41} label={t("story.bento_cloud_bandwidth")} showValue size="sm" />
           </div>
         ),
-        className: "wim-bento-grid-item--col-span-2",
+        span: 2 as const,
         icon: <Icon name="ExternalLinkIcon" />,
       },
     ];
@@ -120,7 +120,7 @@ export const Default: Story = {
             title={item.title}
             description={item.description}
             header={item.header}
-            className={item.className}
+            span={item.span}
             icon={item.icon}
           />
         ))}

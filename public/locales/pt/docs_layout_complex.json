@@ -55,7 +55,7 @@
     "bentogrid_choice_self_when": "Quando a funcionalidade de BentoGrid com opções padrão é necessária.",
     "bentogrid_design_intent": "O BentoGrid organiza o conteúdo em um arranjo de estilo 'bento box' moderno e visualmente dinâmico. Ele usa tamanhos e posicionamentos de cartões variados para criar uma hierarquia visual forte, tornando-o ideal para vitrines de recursos ou páginas de visão geral do painel.",
     "bentogrid_flexible_span": "Expansão Flexível",
-    "bentogrid_flexible_span_desc": "Você pode usar classes como wim-bento-grid-item--col-span-2 para fazer itens específicos ocuparem várias linhas ou colunas.",
+    "bentogrid_flexible_span_desc": "Passe span={2} ou rowSpan={2} para um tile ocupar várias colunas ou linhas. Os spans valem onde a grade tem três colunas; abaixo disso a grade tem uma única coluna e todos os tiles a preenchem.",
     "bentogrid_item_props": "Propriedades de BentoGridItem",
     "bentogrid_keyboard_desc": "Este componente é um primitivo de layout sem interação de teclado própria. Aplique navegação por teclado ao conteúdo interativo colocado dentro de cada item.",
     "bentogrid_modern_design": "Design Moderno",

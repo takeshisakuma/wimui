@@ -50,4 +50,20 @@ describe("BentoGridItem", () => {
     const { container } = render(<BentoGridItem className="custom-item" />);
     expect(container.firstChild).toHaveClass("custom-item");
   });
+
+  // T249。span / rowSpan は**渡せるのに何も起きない**状態だった（生の文字列
+  // クラスを className で渡しており、それを定義する CSS が repo に 1 行も無い）。
+  // ここはクラス名が載ることまでしか見られない ── その名前の CSS が実在するかは
+  // `check:prop-classes` が docgen の値 union と *.module.scss を突き合わせて見る。
+  it("maps span and rowSpan onto the grid classes", () => {
+    const { container } = render(<BentoGridItem span={2} rowSpan={2} />);
+    expect(container.firstChild).toHaveClass("span-2");
+    expect(container.firstChild).toHaveClass("row-2");
+  });
+
+  it("defaults to a single column and a single row", () => {
+    const { container } = render(<BentoGridItem />);
+    expect(container.firstChild).toHaveClass("span-1");
+    expect(container.firstChild).toHaveClass("row-1");
+  });
 });
