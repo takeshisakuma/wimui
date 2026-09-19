@@ -57,7 +57,11 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
       icon,
       selected = false,
       disabled = false,
-      intent = "primary",
+      // 既定は `neutral`（T250 ①）。Chip は IndicatorBase を通らず自前で
+      // styles[intent] を引くので、既定値もここに独立して書かれている。
+      // 理由を JSDoc ではなくここに置くのは、prop の説明が llms-full.txt へ
+      // そのまま流れる＝外部 AI に届く英語の規範文だから（日本語の経緯が混ざる）。
+      intent = "neutral",
       variant = "solid",
       size = "md",
       deleteAriaLabel,

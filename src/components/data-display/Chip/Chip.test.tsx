@@ -66,4 +66,13 @@ describe("Chip", () => {
       ),
     ).toThrow(/asChild.*onDelete/);
   });
+
+  // T250 ①。Chip は IndicatorBase を通らず自前で styles[intent] を引くので、
+  // Badge / Tag が直っても Chip だけ取り残される形になりうる（実際 primary は
+  // ここに独立して書かれていた）。
+  it("defaults to the neutral intent, not primary", () => {
+    const { container } = render(<Chip>filter</Chip>);
+    expect(container.firstChild).toHaveClass("neutral");
+    expect(container.firstChild).not.toHaveClass("primary");
+  });
 });

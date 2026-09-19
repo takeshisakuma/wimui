@@ -118,7 +118,7 @@
     "chip_prop_deleteAriaLabel": "削除ボタンのアクセシビリティラベル",
     "chip_prop_disabled": "無効状態",
     "chip_prop_icon": "アイコン",
-    "chip_prop_intent": "インテント（意味的状態）",
+    "chip_prop_intent": "インテント（意味的状態）。既定は neutral ── 何も言わずに置いたチップがアクセント色に塗られないようにするため。\n@default \"neutral\"",
     "chip_prop_onClick": "クリック時のイベント。提供されるとボタンとして動作します。",
     "chip_prop_onDelete": "削除時のイベント。提供されると×ボタンが表示されます。",
     "chip_prop_selected": "選択状態",
