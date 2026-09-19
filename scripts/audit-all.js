@@ -110,6 +110,14 @@ const checks = [
   },
   {
     category: "docs",
+    // T260（2026-09-20）。上は**名前が実在するか**しか見ない。値は誰も見ておらず、
+    // 初めて突き合わせたら **27 行がずれていた**（シャドウ・イージング・色）。
+    // どれも読み手がそのままコピーする値。実証は `npm run prove:doc-token-values`。
+    name: "Design doc token values match the generated tokens",
+    command: "node scripts/check-doc-token-values.js",
+  },
+  {
+    category: "docs",
     // 後から入ったコンポーネントは、誰かが思い出して足さない限り Audit の
     // 家族ページに永久に載らない。増やさないためのラチェット。
     name: "Audit family coverage (ratchet)",
