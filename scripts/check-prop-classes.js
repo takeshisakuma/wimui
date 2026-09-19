@@ -59,18 +59,30 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
   const hits = [...src.matchAll(TEMPLATE_RE)];
   if (hits.length === 0) continue;
 
-  const component = path.basename(tsx, '.tsx');
+  const fileName = path.basename(tsx, '.tsx');
   const scssFiles = globSync(`${path.posix.dirname(tsx)}/*.module.scss`, { posix: true });
   if (scssFiles.length === 0) continue;
   const scss = scssFiles.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
 
+  // **1 ファイル 1 コンポーネントではない。** `BentoGrid.tsx` は `BentoGrid` と
+  // `BentoGridItem` を出しており、`styles[`span-${span}`]` を書いているのは後者。
+  // ファイル名だけで docgen を引いていたので「docgen に prop が無い」と言って
+  // **黙って飛ばしていた** ── T249 でこの綴りに寄せた直後に気づいた（2026-09-19）。
+  // docgen のエントリは出どころのファイルを持たないので、ファイルが export して
+  // いる名前を拾って候補にする。ファイル名の同名を先に見る。
+  const exported = [...src.matchAll(/export\s+(?:const|function)\s+(\w+)/g)].map((m) => m[1]);
+  const candidates = [fileName, ...exported].filter(
+    (name, i, all) => docgen[name] && all.indexOf(name) === i,
+  );
+
   for (const [, prefix, prop] of hits) {
-    const entry = docgen[component];
-    const propDef = entry && entry.props && entry.props[prop];
-    if (!propDef) {
-      skipped.push(`${component}.${prop}: docgen に prop が無い`);
+    const owner = candidates.find((name) => docgen[name]?.props?.[prop]);
+    if (!owner) {
+      skipped.push(`${fileName}.${prop}: docgen に prop が無い`);
       continue;
     }
+    const component = owner;
+    const propDef = docgen[owner].props[prop];
     const values = enumerableValues(propDef.tsType, tsx);
     if (!values) {
       skipped.push(`${component}.${prop}: 値を列挙できない型（${propDef.tsType?.raw ?? '?'}）`);

@@ -13,12 +13,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-/** tsType から文字列リテラルを再帰的に集める。リテラル以外が混ざる型は null。 */
+/**
+ * tsType からリテラル値を再帰的に集める。リテラル以外が混ざる型は null。
+ *
+ * **数値リテラルも集める**（2026-09-19・T249）。以前は文字列リテラルだけを見ており、
+ * `span?: 1 | 2 | 3` は「値を列挙できない型」として **`check:prop-classes` の対象外**に
+ * 落ちていた。ヘッダーが言う「`number` は全値に対応するクラスという概念が成り立たない」
+ * は**上限の無い `number`** の話であって、閉じた数値リテラルの union には当てはまらない。
+ * `true` / `false` は集めない ── `.foo-true` というクラスを書く習慣がこの repo に無く、
+ * 「クラスが無い」と言われても直しようがないため。
+ */
 export function literalValues(tsType) {
   if (!tsType) return null;
   if (tsType.name === 'literal') {
-    const m = String(tsType.value).match(/^"(.*)"$/);
-    return m ? [m[1]] : null;
+    const raw = String(tsType.value);
+    const quoted = raw.match(/^"(.*)"$/);
+    if (quoted) return [quoted[1]];
+    return /^-?\d+(\.\d+)?$/.test(raw) ? [raw] : null;
   }
   if (tsType.name === 'union' && Array.isArray(tsType.elements)) {
     const out = [];

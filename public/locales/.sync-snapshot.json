@@ -8854,7 +8854,7 @@
       "bentogrid_choice_self_when": "When BentoGrid functionality with standard options is required.",
       "bentogrid_design_intent": "BentoGrid organizes content into a modern, visually dynamic 'bento box' style arrangement. It uses varying card sizes and placements to create a strong visual hierarchy, making it ideal for feature showcases or dashboard overview pages.",
       "bentogrid_flexible_span": "Flexible Span",
-      "bentogrid_flexible_span_desc": "You can use classes like wim-bento-grid-item--col-span-2 to make specific items span multiple rows or columns.",
+      "bentogrid_flexible_span_desc": "Give a tile span={2} or rowSpan={2} to make it occupy several columns or rows. The spans apply where the grid is three columns wide; below that the grid is a single column and every tile fills it.",
       "bentogrid_item_props": "BentoGridItem Props",
       "bentogrid_keyboard_desc": "This component is a layout primitive with no keyboard interaction of its own. Apply keyboard navigation to interactive content placed inside each item.",
       "bentogrid_modern_design": "Modern Design",
