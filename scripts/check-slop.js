@@ -63,6 +63,11 @@ const DICT = JSON.parse(fs.readFileSync(new URL('./slop-dictionary.json', import
 const HYPE_WORDS = DICT.hypeWords;
 const HYPE_PHRASES = DICT.hypePhrases;
 const PLACEHOLDER_NAMES = DICT.placeholderNames;
+// NUMBERED_PLACEHOLDER_ALLOW: **番号が意味を持つ語**。`Heading 1` は HTML の見出し
+// レベルの名前そのものだし、`Tier 1` は設計ガイドの階層の呼称、`Week 1` はチャートの
+// 時系列の軸、`Track 2` はアルバムのトラック番号。ここを除かないと、下の連番規則は
+// 種で数えて 3 割強が偽陽性になる（T255 の実測: 48 種のうち 17 種が正当だった）。
+const NUMBERED_PLACEHOLDER_ALLOW = new Set(DICT.numberedPlaceholderAllow ?? []);
 // EMPTY_COPY: 中身の無い定型コピー。hype（誇張）とは別の欠陥で、hype が「言い過ぎ」なら
 // こちらは「何も言っていない」。同じ配列に混ぜると、どちらの辞書も育てにくくなる。
 const EMPTY_COPY = DICT.emptyCopy ?? [];
@@ -373,6 +378,39 @@ const emptyCopyRe = new RegExp(EMPTY_COPY.map(esc).join('|'), 'i');
 // この除外は「氏名フォーマットの例示」のためのもので、キー名の綴りのためではない。
 const isPlaceholderKey = (line) => /"[^"]*placeholder[^"]*"\s*:/i.test(line);
 
+// --- 連番プレースホルダ（`Item 1` / `Option 2` / `Knowledge Node 3`）-------------
+//
+// `PLACEHOLDER_NAMES` は**実例の列挙**なので、誰かが気づいた綴りしか拾えない。
+// T255（2026-09-19）の実測では、辞書に `User 1` / `Step 1` が載っているのに
+// `Item 1` / `Option 1` / `Panel 1` / `Accordion 1` / `Knowledge Node 1` は
+// **1 つも載っておらず**、48 種すべてが素通りしていた。列挙ではなく形で捕まえる。
+//
+// **en だけを見る。** この正規表現はラテン文字なら何語でも当たるので、pt の
+// `Faixa 2`（= `Track 2` の訳）や `Painel 1`（= `Panel 1`）まで拾ってしまい、
+// 除外リストを言語ごとに持つ羽目になる。コピーは en が正本で ja / pt はその訳
+// なので、**en を直して sync すれば訳も直る**。ja は字種が違うので元から当たらない。
+const NUMBERED_PLACEHOLDER_RE = /^(?:[A-Z][a-z]+ ){1,3}\d{1,2}$/;
+
+/** 行の中の文字列リテラル（JSON の値・TSX の 3 種のクォート）を取り出す。 */
+const stringLiterals = (line) =>
+  [...line.matchAll(/"([^"\\\n]*)"|'([^'\\\n]*)'|`([^`\\\n]*)`/g)].map(
+    (m) => m[1] ?? m[2] ?? m[3],
+  );
+
+const numberedPlaceholderHit = (line) => {
+  for (const lit of stringLiterals(line)) {
+    const s = (lit ?? '').trim();
+    if (!NUMBERED_PLACEHOLDER_RE.test(s)) continue;
+    if (NUMBERED_PLACEHOLDER_ALLOW.has(s.replace(/\s+\d{1,2}$/, ''))) continue;
+    return s;
+  }
+  return null;
+};
+
+/** この行が en 側か（連番規則は en 限定）。 */
+const isEnglishSource = (file) =>
+  !file.includes('/locales/') || file.includes('/locales/en/');
+
 /** 部分一致ヒットをラテン語トークン全体に広げ、偽陽性語なら捨てる。 */
 const hypeHitOnLine = (line) => {
   const hm = line.match(hypeRe);
@@ -385,6 +423,7 @@ const hypeHitOnLine = (line) => {
 const hypeHits = [];
 const nameHits = [];
 const emptyCopyHits = [];
+const numberedHits = [];
 for (const file of COPY_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
@@ -402,6 +441,10 @@ for (const file of COPY_SCAN_FILES) {
     if (!isPlaceholderKey(line)) {
       const nm = line.match(nameRe);
       if (nm) nameHits.push(`${file}:${i + 1}: 「${nm[0]}」 ${line.trim().slice(0, 80)}`);
+    }
+    if (isEnglishSource(file)) {
+      const num = numberedPlaceholderHit(line);
+      if (num) numberedHits.push(`${file}:${i + 1}: 「${num}」 ${line.trim().slice(0, 80)}`);
     }
   });
 }
@@ -436,6 +479,40 @@ if (nameHits.length > 0) {
   console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。DESIGN.md 規約13）:`);
   for (const h of nameHits) console.log(`  ${h}`);
   failed = true;
+}
+
+/**
+ * 連番プレースホルダのラチェット。2026-09-19（T255）に **このガード自身で**測った値。
+ *
+ * 手元の使い捨てスクリプトでは 52 だったが、ガードはコメント行をマスクするので 50。
+ * ラチェットの基準は必ず**それを判定する道具**で測ること（別の走査で数えると、
+ * 部分集合と全体を比べたときと同じ「静かにずれた基準」になる）。
+ *
+ * **0 から始められない。** カタログのストーリーには `Item 1` / `Option 1` /
+ * `Panel 1` / `Accordion 1` が広く残っていて、直すには 1 件ずつ「その画面で何を
+ * 並べているのか」を決める必要がある（T256 の RadioGroup を配送手段にしたのと同じ作業）。
+ * **増やさないことにだけ意味がある** ── 実際 T256 は、翻訳済みの文字列に番号を
+ * 継ぎ足して `Option 1 2` を作っており、このガードがあれば入った日に鳴っていた。
+ *
+ * 減らしたらこの値を実測値まで下げてコミットすること。
+ */
+const NUMBERED_PLACEHOLDER_BASELINE = 50;
+
+if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {
+  console.log(
+    `\n[FAIL] 連番プレースホルダが増えています（${numberedHits.length} 箇所 / baseline: ${NUMBERED_PLACEHOLDER_BASELINE}）:`,
+  );
+  for (const h of numberedHits) console.log(`  ${h}`);
+  console.log(`       \`Item 1\` \`Option 2\` の類は「何を並べているか」を言っていません。`);
+  console.log(`       その画面で実際に並ぶものの名前にしてください（DESIGN.md \`realism\`）。`);
+  console.log(`       番号が意味を持つ語（Heading / Tier / Week 等）は`);
+  console.log(`       scripts/slop-dictionary.json の numberedPlaceholderAllow に足します。`);
+  failed = true;
+} else if (numberedHits.length < NUMBERED_PLACEHOLDER_BASELINE) {
+  console.log(
+    `\n連番プレースホルダ: ${numberedHits.length} 箇所（baseline: ${NUMBERED_PLACEHOLDER_BASELINE}）。` +
+      `\n  減ったので scripts/check-slop.js の NUMBERED_PLACEHOLDER_BASELINE を下げてください。`,
+  );
 }
 
 // ハードゲート（baseline 0）。intent の面を素の要素で敷くのは、既にある

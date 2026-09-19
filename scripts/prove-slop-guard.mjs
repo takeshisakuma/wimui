@@ -94,6 +94,35 @@ const CASES = [
     expect: false,
   },
   {
+    // T255（2026-09-19）で足した連番規則。辞書の実例列挙では `User 1` / `Step 1` しか
+    // 拾えず、`Item 1` / `Option 1` / `Knowledge Node 1` は 48 種すべて素通りしていた。
+    name: 'I. 連番プレースホルダ（Widget 7）を en のコピーへ足すと鳴る',
+    file: 'public/locales/en/docs_stories_display.json',
+    find: '    "list_step1": "Soak the beans overnight",',
+    put: '    "list_probe_numbered": "Widget 7",\n    "list_step1": "Soak the beans overnight",',
+    expect: true,
+    match: /連番プレースホルダが増えています/,
+  },
+  {
+    // **番号が意味を持つ語**。`Heading 4` は HTML の見出しレベルの名前そのもの。
+    // ここが鳴ると、正当な語彙まで書き換えさせる辞書になる。
+    name: 'J. 除外語（Heading 4）は鳴らない',
+    file: 'public/locales/en/docs_stories_display.json',
+    find: '    "list_step1": "Soak the beans overnight",',
+    put: '    "list_probe_allow": "Heading 4",\n    "list_step1": "Soak the beans overnight",',
+    expect: false,
+  },
+  {
+    // 連番規則は **en 限定**。この正規表現はラテン文字なら何語でも当たるので、
+    // pt の `Painel 1`（= `Panel 1`）や `Faixa 2`（= `Track 2`）まで拾ってしまい、
+    // 除外リストを言語ごとに持つことになる。en を直して sync すれば訳も直る。
+    name: 'K. pt の訳（Painel 9）は鳴らない（連番規則は en 限定）',
+    file: 'public/locales/pt/docs_stories_display.json',
+    find: '  "story": {',
+    put: '  "story": {\n    "list_probe_pt": "Painel 9",',
+    expect: false,
+  },
+  {
     name: 'H. px 直書きを合成画面に 1 件足すとラチェットが鳴る',
     file: 'stories/Patterns/Form/Form.stories.tsx',
     find: '          padding: "var(--wim-spacing-2xl)",',
