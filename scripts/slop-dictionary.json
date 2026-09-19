@@ -73,5 +73,12 @@
     "Step 1",
     "Step 2",
     "Step 3"
+  ],
+  "numberedPlaceholderAllow": [
+    "Heading",
+    "Tier",
+    "Week",
+    "Track",
+    "Camera"
   ]
 }
