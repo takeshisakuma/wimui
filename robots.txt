@@ -1,0 +1,5 @@
+# T207: 2026-08-22 まで robots.txt も sitemap.xml も 404 だった。
+User-agent: *
+Allow: /
+
+Sitemap: https://takeshisakuma.github.io/wimui/sitemap.xml

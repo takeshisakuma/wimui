@@ -1,0 +1,10 @@
+"use client";
+import{a as e,i as t,s as n}from"./preload-helper-CT_b8DTk.js";import{t as r}from"./react-DmCNssFd.js";import{Cr as i,Sr as a,Tr as o,ur as s,xr as c}from"./iframe-wf1-Tomv.js";import{n as l,t as u}from"./Stack-CSVZoS0F.js";import{n as d,t as f}from"./Text-BWjUyV9U.js";import{n as p,r as m,t as h}from"./List-BJD9wtc1.js";import{n as g,t as _}from"./PullToRefresh-B7j8LX3B.js";var v=e({CustomThreshold:()=>w,Default:()=>C,__namedExportsOrder:()=>T,default:()=>x}),y,b,x,S,C,w,T,E=t((()=>{y=n(r(),1),i(),a(),g(),m(),l(),d(),b=s(),x={title:`Components/Utilities/PullToRefresh`,component:_},S=e=>{let{t}=o(c),[n,r]=(0,y.useState)([{id:1,text:t(`story.pull_initial_item`,{n:1}),count:0},{id:2,text:t(`story.pull_initial_item`,{n:2}),count:0},{id:3,text:t(`story.pull_initial_item`,{n:3}),count:0}]),i=async()=>{await new Promise(e=>setTimeout(e,800)),r(e=>{let t=(e[0]?.count??0)+1;return[{id:Date.now(),text:`Refreshed Item`,count:t},...e].slice(0,10)})};return(0,b.jsx)(`div`,{style:{height:`400px`,border:`1px solid var(--wim-color-border)`,overflow:`auto`},children:(0,b.jsx)(_,{...e,onRefresh:i,children:(0,b.jsx)(`div`,{style:{padding:`16px`,background:`var(--wim-color-surface)`,minHeight:`100%`},children:(0,b.jsx)(h,{children:n.map(e=>(0,b.jsx)(p,{children:(0,b.jsxs)(u,{gap:`xs`,children:[(0,b.jsx)(f,{weight:`bold`,children:e.text}),(0,b.jsxs)(f,{size:`sm`,color:`text-tertiary`,children:[`Count: `,e.count,` | `,new Date(e.id).toLocaleTimeString()]})]})},e.id))})})})})},C={render:e=>(0,b.jsx)(S,{...e})},w={args:{threshold:100,maxDistance:200},render:e=>(0,b.jsx)(S,{...e})},T=[`Default`,`CustomThreshold`],C.parameters={...C.parameters,docs:{...C.parameters?.docs,source:{originalSource:`{
+  render: args => <PullToRefreshWrapper {...args} />
+}`,...C.parameters?.docs?.source}}},w.parameters={...w.parameters,docs:{...w.parameters?.docs,source:{originalSource:`{
+  args: {
+    threshold: 100,
+    maxDistance: 200
+  },
+  render: args => <PullToRefreshWrapper {...args} />
+}`,...w.parameters?.docs?.source}}}}));E();export{w as CustomThreshold,C as Default,T as __namedExportsOrder,x as default,E as n,v as t};

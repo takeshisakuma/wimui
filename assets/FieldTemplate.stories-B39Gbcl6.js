@@ -1,0 +1,48 @@
+"use client";
+import{a as e,i as t}from"./preload-helper-CT_b8DTk.js";import{t as n}from"./react-DmCNssFd.js";import{Cr as r,Sr as i,Tr as a,ur as o,xr as s}from"./iframe-wf1-Tomv.js";import{t as c}from"./src--JUR9phw.js";import{t as l}from"./FieldTemplate-BlJuZxyc.js";import{t as u}from"./Input-Dl7Tj7nN.js";var d=e({Default:()=>m,Horizontal:()=>h,NoLabel:()=>_,WithError:()=>g,__namedExportsOrder:()=>v,default:()=>p}),f,p,m,h,g,_,v,y=t((()=>{n(),r(),i(),c(),f=o(),p={title:`Components/Form Layout/FieldTemplate`,component:l},m={render:function(e){let{t}=a(s);return(0,f.jsx)(l,{...e,label:e.label||t(`doc.ft_email_label`),children:(0,f.jsx)(u,{placeholder:`example@example.com`,fullWidth:!0})})},args:{required:!0}},h={render:function(e){let{t}=a(s);return(0,f.jsx)(l,{...e,label:t(`doc.ft_email_label`),layout:`horizontal`,children:(0,f.jsx)(u,{placeholder:`example@example.com`,fullWidth:!0})})},args:{...m.args}},g={render:function(e){let{t}=a(s);return(0,f.jsx)(l,{...e,label:t(`doc.ft_email_label`),error:t(`doc.ft_email_error`),children:(0,f.jsx)(u,{placeholder:`example@example.com`,fullWidth:!0})})},args:{...m.args}},_={render:function(e){let{t}=a(s);return(0,f.jsx)(l,{...e,children:(0,f.jsx)(u,{placeholder:t(`doc.ft_no_label`),fullWidth:!0})})},args:{}},v=[`Default`,`Horizontal`,`WithError`,`NoLabel`],m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <FieldTemplate {...args} label={args.label || t("doc.ft_email_label")}>
+        <Input placeholder="example@example.com" fullWidth />
+      </FieldTemplate>;
+  },
+  args: {
+    required: true
+  }
+}`,...m.parameters?.docs?.source}}},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <FieldTemplate {...args} label={t("doc.ft_email_label")} layout="horizontal">
+        <Input placeholder="example@example.com" fullWidth />
+      </FieldTemplate>;
+  },
+  args: {
+    ...Default.args
+  }
+}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <FieldTemplate {...args} label={t("doc.ft_email_label")} error={t("doc.ft_email_error")}>
+        <Input placeholder="example@example.com" fullWidth />
+      </FieldTemplate>;
+  },
+  args: {
+    ...Default.args
+  }
+}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <FieldTemplate {...args}>
+        <Input placeholder={t("doc.ft_no_label")} fullWidth />
+      </FieldTemplate>;
+  },
+  args: {}
+}`,..._.parameters?.docs?.source}}}}));y();export{m as Default,h as Horizontal,_ as NoLabel,g as WithError,v as __namedExportsOrder,p as default,y as n,d as t};

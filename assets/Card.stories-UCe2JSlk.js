@@ -1,0 +1,104 @@
+"use client";
+import{a as e,i as t}from"./preload-helper-CT_b8DTk.js";import{t as n}from"./react-DmCNssFd.js";import{Cr as r,Sr as i,Tr as a,ur as o,xr as s}from"./iframe-wf1-Tomv.js";import{t as c}from"./src--JUR9phw.js";import{a as l,i as u,r as d,t as f}from"./Card-B_e_84jO.js";import{t as p}from"./Button-BgC4JuQN.js";var m=e({Default:()=>_,Elevated:()=>v,Flat:()=>b,Outline:()=>y,WithHeaderAndFooter:()=>x,__namedExportsOrder:()=>S,default:()=>g}),h,g,_,v,y,b,x,S,C=t((()=>{n(),r(),i(),c(),l(),h=o(),g={title:`Components/Data Containers/Card`,component:f,tags:[],parameters:{layout:`padded`},decorators:[e=>(0,h.jsx)(`div`,{style:{display:`flex`,justifyContent:`center`,padding:`32px`},children:(0,h.jsx)(e,{})})],argTypes:{variant:{control:`select`,options:[`elevated`,`outline`,`flat`]},padding:{control:`select`,options:[...d]},radius:{control:`select`,options:[...u]}}},_={render:function(e){let{t}=a(s);return(0,h.jsx)(f,{...e,children:(0,h.jsxs)(f.Body,{children:[(0,h.jsx)(`h3`,{children:t(`story.card_default_title`)}),(0,h.jsx)(`p`,{children:t(`story.card_default_desc`)})]})})},args:{style:{width:`300px`}}},v={render:function(e){let{t}=a(s);return(0,h.jsx)(f,{...e,children:(0,h.jsxs)(f.Body,{children:[(0,h.jsx)(`h3`,{children:t(`story.card_elevated_title`)}),(0,h.jsx)(`p`,{children:t(`story.card_elevated_desc`)})]})})},args:{variant:`elevated`,style:{width:`300px`}}},y={render:function(e){let{t}=a(s);return(0,h.jsx)(f,{...e,children:(0,h.jsxs)(f.Body,{children:[(0,h.jsx)(`h3`,{children:t(`story.card_outline_title`)}),(0,h.jsx)(`p`,{children:t(`story.card_outline_desc`)})]})})},args:{variant:`outline`,style:{width:`300px`}}},b={render:function(e){let{t}=a(s);return(0,h.jsx)(f,{...e,children:(0,h.jsxs)(f.Body,{children:[(0,h.jsx)(`h3`,{children:t(`story.card_flat_title`)}),(0,h.jsx)(`p`,{children:t(`story.card_flat_desc`)})]})})},args:{variant:`flat`,style:{width:`300px`}}},x={render:function(e){let{t}=a(s);return(0,h.jsxs)(f,{...e,style:{width:`400px`},children:[(0,h.jsx)(f.Header,{children:(0,h.jsx)(`h4`,{style:{margin:0},children:t(`story.card_header_title`)})}),(0,h.jsx)(f.Body,{children:(0,h.jsx)(`p`,{children:t(`story.card_body_text`)})}),(0,h.jsx)(f.Footer,{children:(0,h.jsxs)(`div`,{style:{display:`flex`,justifyContent:`flex-end`,gap:`8px`},children:[(0,h.jsx)(p,{variant:`outline`,size:`sm`,children:t(`story.card_cancel`)}),(0,h.jsx)(p,{variant:`solid`,size:`sm`,children:t(`story.card_save`)})]})})]})},args:{variant:`elevated`}},S=[`Default`,`Elevated`,`Outline`,`Flat`,`WithHeaderAndFooter`],_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Card {...args}>
+        <Card.Body>
+          <h3>{t("story.card_default_title")}</h3>
+          <p>{t("story.card_default_desc")}</p>
+        </Card.Body>
+      </Card>;
+  },
+  args: {
+    style: {
+      width: "300px"
+    }
+  }
+}`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Card {...args}>
+        <Card.Body>
+          <h3>{t("story.card_elevated_title")}</h3>
+          <p>{t("story.card_elevated_desc")}</p>
+        </Card.Body>
+      </Card>;
+  },
+  args: {
+    variant: "elevated",
+    style: {
+      width: "300px"
+    }
+  }
+}`,...v.parameters?.docs?.source}}},y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Card {...args}>
+        <Card.Body>
+          <h3>{t("story.card_outline_title")}</h3>
+          <p>{t("story.card_outline_desc")}</p>
+        </Card.Body>
+      </Card>;
+  },
+  args: {
+    variant: "outline",
+    style: {
+      width: "300px"
+    }
+  }
+}`,...y.parameters?.docs?.source}}},b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Card {...args}>
+        <Card.Body>
+          <h3>{t("story.card_flat_title")}</h3>
+          <p>{t("story.card_flat_desc")}</p>
+        </Card.Body>
+      </Card>;
+  },
+  args: {
+    variant: "flat",
+    style: {
+      width: "300px"
+    }
+  }
+}`,...b.parameters?.docs?.source}}},x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Card {...args} style={{
+      width: "400px"
+    }}>
+        <Card.Header>
+          <h4 style={{
+          margin: 0
+        }}>{t("story.card_header_title")}</h4>
+        </Card.Header>
+        <Card.Body>
+          <p>{t("story.card_body_text")}</p>
+        </Card.Body>
+        <Card.Footer>
+          <div style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "8px"
+        }}>
+            <Button variant="outline" size="sm">{t("story.card_cancel")}</Button>
+            <Button variant="solid" size="sm">{t("story.card_save")}</Button>
+          </div>
+        </Card.Footer>
+      </Card>;
+  },
+  args: {
+    variant: "elevated"
+  }
+}`,...x.parameters?.docs?.source}}}}));C();export{_ as Default,v as Elevated,b as Flat,y as Outline,x as WithHeaderAndFooter,S as __namedExportsOrder,g as default,C as n,m as t};
