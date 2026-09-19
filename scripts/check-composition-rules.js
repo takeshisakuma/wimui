@@ -33,7 +33,25 @@ const root = path.resolve(__dirname, "..");
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
 
 const ssot = JSON.parse(read("scripts/composition-rules.json"));
-const design = read("DESIGN.md");
+
+/**
+ * 人が読む規範は **`DESIGN.md` + `docs/design/**`** に散る（T252・2026-09-19）。
+ *
+ * `DESIGN.md` が 832 行あり、部品 1 つを直す作業でも無関係な長文が毎回
+ * コンテキストに混ざっていたので、コンポジション節（121 行）を
+ * `docs/design/composition.md` へ切り出した。**`designAnchor` 27 件のうち 26 件が
+ * この節に集中していた**ので、探索先を 1 ファイルから「DESIGN.md と docs/design 配下の
+ * すべて」へ広げる。ここを広げ忘れると、切り出した瞬間に 26 件が「DESIGN.md に
+ * 見当たらない」で落ちる（実際そうなることを確認してから広げた）。
+ */
+const designFiles = ["DESIGN.md"];
+const designDir = path.join(root, "docs/design");
+if (fs.existsSync(designDir)) {
+  for (const f of fs.readdirSync(designDir)) {
+    if (f.endsWith(".md")) designFiles.push(path.posix.join("docs/design", f));
+  }
+}
+const design = designFiles.map(read).join("\n");
 const llms = fs.existsSync(path.join(root, "public/llms.txt"))
   ? read("public/llms.txt")
   : null;
