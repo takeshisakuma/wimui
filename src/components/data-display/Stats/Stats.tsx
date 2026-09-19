@@ -20,7 +20,10 @@ export type StatsProps = React.ComponentPropsWithoutRef<typeof Card> & {
  * `Stats` is a component for displaying statistics and metrics.
  */
 export const Stats = ({
-  variant = "elevated",
+  // `Card` と同じく既定は `outline`（T250 ②）。ここは Card へ委譲しているが
+  // **既定値は自前で持っている**ので、Card だけ直しても Stats は elevated を
+  // 明示的に渡し続ける。既定を変えるときは 2 か所を必ず一緒に見ること。
+  variant = "outline",
   className,
   children,
   ...props

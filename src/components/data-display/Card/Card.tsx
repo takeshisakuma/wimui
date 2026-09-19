@@ -45,7 +45,13 @@ interface CardComponent {
 const CardInner = (
   {
     asChild = false,
-    variant = "elevated",
+    // 既定は `outline`（T250 ②）。素の `<Card>` が影を持つと、1 画面に影が
+    // いくつも並んで「1 画面 1 エレベーション」（DESIGN.md）が既定から破れる。
+    // 影は「他より手前にある」ことの表現なので、全部が持つと何も意味しない。
+    // 実測では `<Card>` 89 箇所のうち `variant` を明示しているのは 21 箇所で、
+    // 残り 68 箇所はこの 1 行の見た目で出ていた。
+    // 必須ルール 15 `default_anatomy`（既定レンダーも画面と同じ基準で見る）。
+    variant = "outline",
     padding = "md",
     radius = "lg",
     interactive = false,
