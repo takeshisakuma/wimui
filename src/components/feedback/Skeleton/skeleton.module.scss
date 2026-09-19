@@ -51,8 +51,19 @@
         oklch(from var(--wim-color-skeleton-shine) l c h / 0.15) 80%,
         transparent 100%
       );
+
+      /* `will-change: transform` を外した（T258・2026-09-19）。
+         装飾の無限アニメーションのために合成レイヤーを常駐させるのは、
+         得られる滑らかさに対してコストが見合わない（この面は画面に出ている
+         あいだずっと存在する）。
+
+         **VRT の再現性の問題でもある。** 撮影時は `animation: none` を注入して
+         止めているのに `will-change` は残るため、この `::after` は合成レイヤーに
+         載ったままになる。`skeleton--wave-animation` は **update が撮った 1 枚を
+         同じ head の compare が 64 画素で拒否し、再実行しても同じ 64 画素**だった
+         （値が動かないのでジッタではない）。根の原因は Playwright の安定化判定が
+         `maxDiffPixels` を継いでいることだが、帯を狭める側からも触れる。 */
       animation: skeleton-wave 2s var(--wim-easing-emphasized) infinite;
-      will-change: transform;
     }
   }
 }
