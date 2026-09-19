@@ -26,4 +26,12 @@ describe("Stats", () => {
     );
     expect(container.firstChild).toHaveClass(styles.down);
   });
+
+  // T250 ②。Stats は Card へ委譲しているが**既定値は自前で持っている**ので、
+  // Card だけ直しても Stats は elevated を明示的に渡し続ける。両方を固定する。
+  it("defaults to the outline variant, not elevated", () => {
+    const { container } = render(<Stats>plain</Stats>);
+    expect(container.firstChild).toHaveClass("outline");
+    expect(container.firstChild).not.toHaveClass("elevated");
+  });
 });

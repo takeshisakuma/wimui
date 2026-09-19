@@ -81,6 +81,7 @@
     "card_scenario_widget": "Analytics Widget: A dashboard part that combines a graph with current metrics and a link to detailed view.",
     "card_subcomponent_desc": "The Card component consists of several subcomponents, each with a specific role.",
     "card_title": "Information containers",
+    "card_variant_elevated": "Elevated Variant",
     "card_variant_flat": "Flat Variant",
     "card_variant_outline": "Outline Variant",
     "carousel_keyboard_desc": "Arrow keys navigate between slides. Tab moves focus to navigation buttons and indicators.",

@@ -41,4 +41,14 @@ describe("Card", () => {
     );
     expect(container.querySelector("section")).toBeInTheDocument();
   });
+
+  // T250 ②。素で置いた Card が影を持たないことを固定する。クラス名を直書きする
+  // のは、`styles.outline` が CSS Modules のプロキシで必ずキー名を返すため
+  // （実在の証拠にならない）。面そのものは card.module.scss の `.outline` が
+  // 実装している。
+  it("defaults to the outline variant, not elevated", () => {
+    const { container } = render(<Card>plain</Card>);
+    expect(container.firstChild).toHaveClass("outline");
+    expect(container.firstChild).not.toHaveClass("elevated");
+  });
 });
