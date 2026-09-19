@@ -20,12 +20,18 @@ const meta: Meta<typeof RadioGroup> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
+// ラベルは **翻訳済みの文字列へ番号を継ぎ足して**作られていた（1 つのキーを引いて
+// その後ろに " 2" / " 3" を足す形）。元の値が "Option 1" なので 2 つ目が
+// "Option 1 2"、ja では "オプション 1 2" になっていた（3 言語とも壊れていた）。
+// 連番の定型名そのものが DESIGN.md の realism 違反でもあるので、選択肢としての
+// 意味を持つ実在の配送手段に置き換える。長さが揃っていないのも意図的
+// （全行が同じ長さで並ぶのは wobble の欠如）。
 const useDefaultOptions = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
-    { label: t("story.radio_option1"), value: "opt1" },
-    { label: `${t("story.radio_option1")} 2`, value: "opt2" },
-    { label: `${t("story.radio_option1")} 3`, value: "opt3" },
+    { label: t("story.radio_ship_standard"), value: "standard" },
+    { label: t("story.radio_ship_express"), value: "express" },
+    { label: t("story.radio_ship_pickup"), value: "pickup" },
   ];
 };
 
@@ -37,7 +43,7 @@ export const Default: Story = {
         {...args}
         options={options}
         name="default-group"
-        defaultValue="opt1"
+        defaultValue="standard"
       />
     );
   },
@@ -52,7 +58,7 @@ export const Horizontal: Story = {
         options={options}
         direction="horizontal"
         name="horizontal-group"
-        defaultValue="opt1"
+        defaultValue="standard"
       />
     );
   },
@@ -65,16 +71,17 @@ export const WithDisabledOption: Story = {
       <RadioGroup
         {...args}
         options={[
-          { label: t("story.radio_option1"), value: "opt1" },
+          { label: t("story.radio_ship_standard"), value: "standard" },
+          { label: t("story.radio_ship_express"), value: "express" },
           {
-            label: `${t("story.radio_option1")} 2 ${t("story.option_disabled")}`,
-            value: "opt2",
+            // 受け取り店舗が選べない、は無効状態の理由として実在する。
+            label: `${t("story.radio_ship_pickup")} ${t("story.option_disabled")}`,
+            value: "pickup",
             disabled: true,
           },
-          { label: `${t("story.radio_option1")} 3`, value: "opt3" },
         ]}
         name="disabled-option-group"
-        defaultValue="opt1"
+        defaultValue="standard"
       />
     );
   },
@@ -84,7 +91,7 @@ export const Controlled: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = useDefaultOptions();
-    const [value, setValue] = useState("opt1");
+    const [value, setValue] = useState("standard");
     return (
       <div>
         <div style={{ marginBottom: "1rem" }}>
