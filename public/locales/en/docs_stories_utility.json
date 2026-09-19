@@ -28,6 +28,7 @@
     "scrollprogress_inside": "Scroll inside this container",
     "scrollprogress_middle": "Reached the middle",
     "visuallyhidden_accessible": "This text is visually hidden but will be read by screen readers.",
-    "visuallyhidden_close": "Close"
+    "visuallyhidden_close": "Close",
+    "scrollarea_wide_content_2": "It keeps going past the right edge of the viewport. "
   }
 }

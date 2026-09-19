@@ -66,8 +66,12 @@ export const HorizontalScroll: Story = {
             color: "var(--wim-color-text-on-primary)",
           }}
         >
-          {t("story.scrollarea_wide_content")} {t("story.select_opt4")} {t("story.scrollarea_wide_content")}{" "}
-          {t("story.select_opt4")} {t("story.scrollarea_wide_content")} {t("story.select_opt4")}
+          {/* 埋め草は Select の選択肢を借りていた（T255 でその文言が
+              「週 1 回（Business プラン）」に変わり、ここだけ意味が通らなくなった）。
+              画面に属する文として、この story 専用のキーを 2 つ交互に置く。 */}
+          {t("story.scrollarea_wide_content")} {t("story.scrollarea_wide_content_2")}{" "}
+          {t("story.scrollarea_wide_content")} {t("story.scrollarea_wide_content_2")}{" "}
+          {t("story.scrollarea_wide_content")} {t("story.scrollarea_wide_content_2")}
         </div>
       </ScrollArea>
     );
