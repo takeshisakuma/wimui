@@ -2251,7 +2251,7 @@ what a scanner would read.
     - `children: React.ReactNode` — Content to render inside.
 - **Card** — Information containers
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
-    - `variant: "elevated" | "outline" | "flat" | "glass"` = "elevated" — Visual style variant of the card
+    - `variant: "elevated" | "outline" | "flat" | "glass"` = "outline" — Visual style variant of the card
     - `interactive: boolean` = false — Whether to enable hover animation and click effects
     - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
 
@@ -2540,7 +2540,7 @@ renders inline, next to whatever follows it.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.
     - `disabled: boolean` = false — Whether the entire list is disabled.
 - **Stats** — A component to highlight key performance indicators and metrics
-    - `variant: React.ComponentProps<typeof Card>["variant"]` = "elevated" — Visual style variant of the card
+    - `variant: React.ComponentProps<typeof Card>["variant"]` = "outline" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `interactive: boolean` = false — Whether to enable hover animation and click effects
     - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
