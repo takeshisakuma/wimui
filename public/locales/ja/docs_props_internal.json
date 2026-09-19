@@ -33,7 +33,7 @@
     "indicatorBase_prop_className": "追加の CSS クラス名。",
     "indicatorBase_prop_content": "インジケーター内にレンダリングされるコンテンツ（children の代替）。",
     "indicatorBase_prop_icon": "子要素の前に表示する任意のアイコン。",
-    "indicatorBase_prop_intent": "色分け用の意味的インテント。\n@default \"primary\"",
+    "indicatorBase_prop_intent": "色分け用の意味的インテント。既定は neutral ── 何も言わずに置いた指標がアクセント色に塗られないようにするため。\n@default \"neutral\"",
     "indicatorBase_prop_interactive": "インジケーターがインタラクティブかどうか（ホバー/アクティブ状態を表示）。\n@default false",
     "indicatorBase_prop_size": "インジケーターのサイズ。\n@default \"md\"",
     "indicatorBase_prop_styles": "テーマ固有のスタイリングを適用するための CSS モジュールのクラス名マッピング。",

@@ -54,4 +54,11 @@ describe("Tag", () => {
       ),
     ).toThrow(/asChild.*onDelete/);
   });
+
+  // T250 ①。クラス名を直書きする理由は Badge.test.tsx の同名テストに書いた。
+  it("defaults to the neutral intent, not primary", () => {
+    const { container } = render(<Tag>draft</Tag>);
+    expect(container.firstChild).toHaveClass("neutral");
+    expect(container.firstChild).not.toHaveClass("primary");
+  });
 });

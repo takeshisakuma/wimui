@@ -26,7 +26,7 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   icon?: React.ReactNode;
   /**
    * Semantic intent for color coding.
-   * @default "primary"
+   * @default "neutral"
    */
   intent?: IndicatorIntent;
   /**
@@ -82,7 +82,12 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     children,
     content,
     icon,
-    intent = "primary",
+    // 既定は `neutral`（T250 ①）。普通の値が既定でアクセント色に塗られると、
+    // 意味を持たない色が画面じゅうに散る ── DESIGN.md 必須ルール 8 / 10 と、
+    // 既定レンダーも画面と同じ基準で見る必須ルール 15 `default_anatomy`。
+    // 色は意味があるときに明示するもので、何も言わずに置いた指標は主張しない。
+    // Badge / Tag はここを通るので、この 1 行が 2 部品の既定になる。
+    intent = "neutral",
     variant = "solid",
     size = "md",
     styles,

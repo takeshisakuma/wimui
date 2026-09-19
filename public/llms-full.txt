@@ -2288,7 +2288,7 @@ Cannot be combined with `onDelete` (T99).
     - `icon: React.ReactNode` — Icon
     - `selected: boolean` = false — Whether the chip is selected
     - `disabled: boolean` = false — Whether the chip is disabled
-    - `intent: IndicatorIntent` = "primary" — Intent (semantic state)
+    - `intent: IndicatorIntent` = "neutral" — Intent (semantic state)
     - `variant: "solid" | "outline" | "subtle"` = "solid" — Visual style variant
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
     - `deleteAriaLabel: string` — Accessible label for the delete button

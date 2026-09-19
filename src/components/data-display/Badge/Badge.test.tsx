@@ -60,6 +60,18 @@ describe("Badge", () => {
     expect(container.firstChild).toHaveAttribute("role", "status");
   });
 
+  // T250 ①。素で置いた Badge が primary 面になるのを止めた変更を固定する。
+  // クラス名は直書きする（`styles.neutral` は CSS Modules のプロキシが必ず
+  // キー名を返すので、実在の証拠にならない）。面そのものは
+  // `module-token-variants` が $token-colors = tokens/intents.json から
+  // 全 intent ぶん出しており、コンパイル結果に `.neutral` が 3 つ（solid /
+  // outline / subtle）出ることを実測済み。
+  it("defaults to the neutral intent, not primary", () => {
+    const { container } = render(<Badge>pending</Badge>);
+    expect(container.firstChild).toHaveClass("neutral");
+    expect(container.firstChild).not.toHaveClass("primary");
+  });
+
   it("applies iconOnly class only when no content and no icon (dot mode)", () => {
     const { container: dotContainer } = render(<Badge />);
     expect(dotContainer.firstChild).toHaveClass(styles.iconOnly);
