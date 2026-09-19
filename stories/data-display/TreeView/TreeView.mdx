@@ -118,11 +118,11 @@ const MyTree = () => (
 const [checked, setChecked] = useState([]);
 
 <TreeView checkable defaultCheckedValues={checked} onCheckedChange={setChecked}>
-  <TreeView.Item value="1" label="Item 1">
-    <TreeView.Item value="1-1" label="Item 1-1" />
-    <TreeView.Item value="1-2" label="Item 1-2" />
+  <TreeView.Item value="1" label="System">
+    <TreeView.Item value="1-1" label="Logs" />
+    <TreeView.Item value="1-2" label="Configuration" />
   </TreeView.Item>
-  <TreeView.Item value="2" label="Item 2" />
+  <TreeView.Item value="2" label="Users" />
 </TreeView>;
 ```
 

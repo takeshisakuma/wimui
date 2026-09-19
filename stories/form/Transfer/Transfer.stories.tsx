@@ -16,13 +16,45 @@ const meta: Meta<typeof Transfer> = {
 export default meta;
 type Story = StoryObj<typeof Transfer>;
 
+/**
+ * 注文 CSV に含める列を選ぶ、という Transfer の典型的な使い方。
+ *
+ * もとは `Item 1`〜`Item 20` を番号で作っていた（翻訳済みの文字列に番号を継ぎ足す
+ * 書き方で、T256 の `Option 1 2` と同じ形）。並んでいるものの名前を出さないと、
+ * 左右に動かす操作が何を意味するのかが読めない（DESIGN.md `realism` / T255）。
+ *
+ * `locked` は「必ず書き出される列」＝利用者が外せない列で、disabled の見え方を
+ * 左右どちらのパネルでも見せるために先頭 3 つに置いてある。
+ */
 const useDataSource = () => {
   const { t } = useTranslation("docs_stories_common");
-  return Array.from({ length: 20 }).map((_, i) => ({
+  const columns = [
+    { title: t("story.transfer_col_order_id"), type: t("story.transfer_type_text"), locked: true },
+    { title: t("story.transfer_col_placed_at"), type: t("story.transfer_type_timestamp"), locked: true },
+    { title: t("story.transfer_col_customer"), type: t("story.transfer_type_text"), locked: true },
+    { title: t("story.transfer_col_tracking"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_total"), type: t("story.transfer_type_money") },
+    { title: t("story.transfer_col_email"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_payment_method"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_phone"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_ship_city"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_postcode"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_carrier"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_weight"), type: t("story.transfer_type_number") },
+    { title: t("story.transfer_col_items"), type: t("story.transfer_type_number") },
+    { title: t("story.transfer_col_subtotal"), type: t("story.transfer_type_money") },
+    { title: t("story.transfer_col_discount"), type: t("story.transfer_type_money") },
+    { title: t("story.transfer_col_tax"), type: t("story.transfer_type_money") },
+    { title: t("story.transfer_col_shipping_fee"), type: t("story.transfer_type_money") },
+    { title: t("story.transfer_col_refunded"), type: t("story.transfer_type_flag") },
+    { title: t("story.transfer_col_channel"), type: t("story.transfer_type_text") },
+    { title: t("story.transfer_col_warehouse"), type: t("story.transfer_type_text") },
+  ];
+  return columns.map((column, i) => ({
     key: i.toString(),
-    title: `${t("story.transfer_item")} ${i + 1}`,
-    description: `${t("story.transfer_desc")} ${i + 1}`,
-    disabled: i % 5 === 0,
+    title: column.title,
+    description: column.type,
+    disabled: column.locked === true,
   }));
 };
 
@@ -80,18 +112,18 @@ export const Controlled: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Find "Item 4" in the left panel (dataSource keys: 0-19)
-    // Keys 1, 2 are in target by default in TransferWrapper
-    const item4 = canvas.getByText("Item 4");
-    await userEvent.click(item4);
+    // 左パネルに残っている最初の「外せる列」（dataSource の index 3）。
+    // キー 1・2 は TransferWrapper の既定で target 側にある。
+    const trackingColumn = canvas.getByText("Tracking number");
+    await userEvent.click(trackingColumn);
 
     // Move to right
     const moveToRightButton = canvas.getByRole("button", { name: "Move to Target" });
     await userEvent.click(moveToRightButton);
 
-    // Check if Item 4 is now in the right panel
-    // We can't easily get by name "Target" if translated, so we use the wrapper class if available or just check existence
-    await expect(canvas.getByText("Item 4")).toBeInTheDocument();
+    // 右パネルへ移ったことの確認（"Target" という見出しは翻訳されるため、
+    // パネル名ではなく列名の存在で見る）。
+    await expect(canvas.getByText("Tracking number")).toBeInTheDocument();
   },
 };
 

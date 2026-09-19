@@ -100,15 +100,15 @@ export const MultiplePanels: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={20}>
-            <PanelContent intent="primary">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
+            <PanelContent intent="primary">{t("story.splitter_panel_1", "Files")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent intent="neutral">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_panel_2", "Editor")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={20}>
-            <PanelContent intent="neutral">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
+            <PanelContent intent="neutral">{t("story.splitter_panel_3", "Preview")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
