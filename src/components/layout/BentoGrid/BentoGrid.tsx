@@ -36,6 +36,17 @@ export type BentoGridItemProps = React.ComponentPropsWithoutRef<"div"> & {
   description?: React.ReactNode;
   header?: React.ReactNode;
   icon?: React.ReactNode;
+  /**
+   * How many columns the tile occupies where the grid is 3 columns wide.
+   * Below that width the grid is a single column and every tile spans it.
+   * @default 1
+   */
+  span?: 1 | 2 | 3;
+  /**
+   * How many rows the tile occupies where the grid is 3 columns wide.
+   * @default 1
+   */
+  rowSpan?: 1 | 2;
 };
 
 export const BentoGridItem = ({
@@ -44,10 +55,21 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
+  span = 1,
+  rowSpan = 1,
   ...props
 }: BentoGridItemProps) => {
   return (
-    <div className={classNames(styles.item, className)} {...props}>
+    <div
+      // `styles[`span-${span}`]` の形にしているのは、`check:prop-classes` が
+      // この綴りだけを見て「型が受け取るのにクラスが無い値」を検出するため。
+      // T249 以前はここが生の文字列クラス（`wim-bento-grid-item--col-span-2`）で、
+      // **定義する CSS が 1 行も無いまま 8 箇所から渡されていた**。`classNames` は
+      // 解決しない文字列をそのまま出すので DOM にはクラスが載り、型も lint も
+      // VRT も鳴らなかった（T121 と同じ族）。
+      className={classNames(styles.item, styles[`span-${span}`], styles[`row-${rowSpan}`], className)}
+      {...props}
+    >
       {header && <div className={styles.itemHeader}>{header}</div>}
       <div className={styles.itemContent}>
         {icon && <div className={styles.itemIcon}>{icon}</div>}

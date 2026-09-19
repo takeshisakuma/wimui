@@ -28,6 +28,21 @@
     }
   }
 
+  /* span は **3 列になる幅の中だけ**で効かせる。既定（1 列）のまま
+     `grid-column: span 2` を当てると、列数を超えた span が**暗黙の列を作って
+     グリッドを壊す** ── `Dashboard` が 390px・4 列指定・span 3 で実測した形
+     （`grid-template-columns` が `0px 186px 152px` になり、幅 30px のカードに
+     文字が 1 文字ずつ縦に折れた）。ここは 1 列か 3 列かの 2 状態しかないので、
+     3 列側にだけ書けば「列を減らすときに span も畳む」規則を別に持たなくてよい。 */
+  @include breakpoints.container-up(md) {
+    .span-1 { grid-column: span 1; }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+
+    .row-1 { grid-row: span 1; }
+    .row-2 { grid-row: span 2; }
+  }
+
   .item {
     position: relative;
     display: flex;

@@ -55,7 +55,7 @@
     "bentogrid_choice_self_when": "標準オプションのBentoGrid機能が必要な場合。",
     "bentogrid_design_intent": "BentoGridは、コンテンツをモダンで視覚的な「弁当箱」スタイルの配置に整理します。カードのサイズや配置を変化させることで強力な視覚的階層を作り出し、機能紹介やダッシュボードの概要ページに最適です。",
     "bentogrid_flexible_span": "柔軟なスパン",
-    "bentogrid_flexible_span_desc": "wim-bento-grid-item--col-span-2などのクラスを使用して、特定のアイテムを複数の列や行にまたがせることができます。",
+    "bentogrid_flexible_span_desc": "タイルに span={2} や rowSpan={2} を渡すと、複数の列や行にまたがります。span が効くのは 3 列になる幅の中だけで、それより狭いとグリッドは 1 列になり、すべてのタイルが幅いっぱいになります。",
     "bentogrid_item_props": "BentoGridItem プロパティ",
     "bentogrid_keyboard_desc": "このコンポーネントは独自のキーボードインタラクションを持たないレイアウトプリミティブです。各アイテム内に配置されたインタラクティブコンテンツにキーボードナビゲーションを適用してください。",
     "bentogrid_modern_design": "モダンなデザイン",

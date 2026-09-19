@@ -497,7 +497,7 @@ export const FeatureSection: StoryObj = {
             <Icon name="ChartIcon" />
           </span>
         ),
-        span: "wim-bento-grid-item--col-span-2",
+        span: 2 as const,
         header: (
           <div style={demoWrap}>
             <Sparkline
@@ -519,7 +519,7 @@ export const FeatureSection: StoryObj = {
             <Icon name="LoadingIcon" />
           </span>
         ),
-        span: "wim-bento-grid-item--col-span-1",
+        span: 1 as const,
         header: (
           <div style={demoWrap}>
             <Progress value={72} label={t("feature.item_2_demo_label")} />
@@ -534,7 +534,7 @@ export const FeatureSection: StoryObj = {
             <Icon name="CheckIcon" />
           </span>
         ),
-        span: "wim-bento-grid-item--col-span-1",
+        span: 1 as const,
         header: (
           <div style={demoWrap}>
             <Group gap="sm" wrap="wrap" justify="center">
@@ -565,7 +565,7 @@ export const FeatureSection: StoryObj = {
             <Icon name="UserIcon" />
           </span>
         ),
-        span: "wim-bento-grid-item--col-span-2",
+        span: 2 as const,
         header: (
           <div style={demoWrap}>
             <AvatarGroup size="md" max={4}>
@@ -595,7 +595,7 @@ export const FeatureSection: StoryObj = {
               title={item.title}
               description={item.desc}
               header={item.header}
-              className={item.span}
+              span={item.span}
               icon={item.icon}
             />
           ))}
