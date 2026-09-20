@@ -237,6 +237,28 @@ describe("Carousel", () => {
     // Actually, Carousel sets isTransitioning(false) in handleTransitionEnd
   });
 
+  // T263: 操作の置き場。**jsdom で確かめられるのはクラスが付くところまで**で、
+  // 「矢印が文字に乗らない」ことは CSS でしか起きないので VRT 側（CustomContent）で見る。
+  // vitest は CSS Modules をプロキシしていて styles.x は常に "x" を返すため、
+  // このアサーションは「prop がクラス名まで届いた」ことの証拠であって、見た目の証拠ではない。
+  it("moves the controls out of the slide when controlsPlacement is outside", () => {
+    const { rerender } = render(
+      <Carousel>
+        <div>A</div>
+        <div>B</div>
+      </Carousel>,
+    );
+    expect(screen.getByRole("region").className).not.toContain(styles.controlsOutside);
+
+    rerender(
+      <Carousel controlsPlacement="outside">
+        <div>A</div>
+        <div>B</div>
+      </Carousel>,
+    );
+    expect(screen.getByRole("region").className).toContain(styles.controlsOutside);
+  });
+
   it("returns null when no children provided", () => {
     const { container } = render(<Carousel />);
     expect(container.firstChild).toBeNull();

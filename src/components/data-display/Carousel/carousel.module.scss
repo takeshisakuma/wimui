@@ -10,6 +10,64 @@
     }
   }
 
+  /* 操作をスライドの外へ出す（T263）。overlay の矢印は `top: 50%` の絶対配置なので、
+     文字だけのスライドでは**箱を高くしても中央の行に乗る**。位置ではなく置き場を変える。
+     既定は overlay のままなので、写真のカルーセルの見え方は 1 枚も変わらない。 */
+  .root.controlsOutside {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: var(--wim-spacing-md);
+    align-items: center;
+
+    .viewport {
+      grid-row: 1;
+      grid-column: 2;
+    }
+
+    .control {
+      position: static;
+      grid-row: 1;
+      color: var(--wim-color-text-secondary);
+      background-color: var(--wim-color-surface);
+
+      /* 白の輪郭は写真の上で消えないための造作。地の上に出すと浮いて見えるので、
+         外に出したときだけ通常の枠に戻す。 */
+      box-shadow: 0 0 0 var(--wim-border-width-thin) var(--wim-color-border);
+      transform: none;
+
+      &:hover:not(:disabled) {
+        background-color: var(--wim-color-surface-subtle);
+      }
+
+      /* 外に出すと、押せない側が消えると**列がずれて中身が動く**（overlay では
+         スライドの上なので動かなかった）。場所は取ったまま見えなくする。 */
+      &:disabled {
+        visibility: hidden;
+      }
+
+      &.prev {
+        grid-column: 1;
+      }
+
+      &.next {
+        grid-column: 3;
+      }
+    }
+
+    .indicators {
+      position: static;
+      grid-row: 2;
+      grid-column: 2;
+      justify-self: center;
+      margin-top: var(--wim-spacing-md);
+      transform: none;
+    }
+
+    .indicator {
+      box-shadow: 0 0 0 var(--wim-border-width-thin) var(--wim-color-border);
+    }
+  }
+
   .viewport {
     width: 100%;
     overflow: hidden;

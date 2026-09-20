@@ -38,6 +38,12 @@ export type CarouselProps = {
   showIndicators?: boolean;
   /** Whether to show the previous/next buttons */
   showControls?: boolean;
+  /**
+   * Where the arrows and indicators sit. `overlay` (default) places them on top of the
+   * slide, which suits full-bleed images. `outside` moves the arrows beside the viewport
+   * and the indicators below it, so they never cover a slide made of text.
+   */
+  controlsPlacement?: "overlay" | "outside";
   /** Whether to loop infinitely (seamless transitions) */
   loop?: boolean;
   /** Number of slides to show at once. A number or an object per breakpoint. */
@@ -86,6 +92,10 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   interval = 5000,
   showIndicators = true,
   showControls = true,
+  // 既定は overlay のまま。写真のカルーセルは全面で見せるのが普通で、そこを動かすと
+  // 使っている画面すべての見え方が変わる。文字だけのスライドは高さが操作の径（42px）に
+  // 満たないことがあり、そのとき矢印とドットが文字の上に乗る（T263）。
+  controlsPlacement = "overlay",
   loop = true,
   slidesToShow = 1,
   aspectRatio,
@@ -234,7 +244,12 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   return (
     <Component
       ref={ref}
-      className={classNames("wim-carousel", styles.root, className)}
+      className={classNames(
+        "wim-carousel",
+        styles.root,
+        controlsPlacement === "outside" && styles.controlsOutside,
+        className,
+      )}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
