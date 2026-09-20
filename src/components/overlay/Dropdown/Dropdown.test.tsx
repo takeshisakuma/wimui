@@ -148,4 +148,62 @@ describe("Dropdown", () => {
     fireEvent.keyDown(screen.getByText("Item 1"), { key: " " });
     expect(onClick).toHaveBeenCalledTimes(2);
   });
+
+  // T264: 開く手段が公開されていなかったので、VRT はメニューを一度も撮れず、
+  // 使う側も行の操作から開けなかった。契約は Popover / HoverCard に合わせてある。
+  it("starts open with defaultOpen and still closes from the trigger", async () => {
+    render(
+      <Dropdown defaultOpen>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>Rename</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    expect(screen.getByText("Rename")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Toggle"));
+
+    await waitFor(() => {
+      expect(screen.queryByText("Rename")).not.toBeInTheDocument();
+    });
+  });
+
+  it("lets the caller own the open state with open + onOpenChange", async () => {
+    const onOpenChange = vi.fn();
+    const { rerender } = render(
+      <Dropdown open={false} onOpenChange={onOpenChange}>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>Rename</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    expect(screen.queryByText("Rename")).not.toBeInTheDocument();
+
+    // 制御下ではクリックは**要求を伝えるだけ**で、自分では開かない。
+    fireEvent.click(screen.getByText("Toggle"));
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+    expect(screen.queryByText("Rename")).not.toBeInTheDocument();
+
+    rerender(
+      <Dropdown open onOpenChange={onOpenChange}>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>Rename</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    expect(screen.getByText("Rename")).toBeInTheDocument();
+
+    // 外側クリックの dismiss も、閉じる代わりに false を伝える。
+    fireEvent.mouseDown(document.body);
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
+    expect(screen.getByText("Rename")).toBeInTheDocument();
+  });
 });
