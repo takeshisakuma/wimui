@@ -1,13 +1,13 @@
 /**
  * check:slop — AI-slop（AI 的な画面）の機械ガード。
  *
- * DESIGN.md「コンポジションガイドライン（AI 的な画面を避ける）」の禁止パターンのうち、
+ * docs/design/composition.md「コンポジションガイドライン（AI 的な画面を避ける）」の禁止パターンのうち、
  * 決定的に検出できる部分集合だけを、合成画面を書く 3 か所に対して機械強制する:
  *   - `stories/Patterns/**`  Pattern デモ
  *   - `sandbox/**`           Playground のギャラリーと StackBlitz へ出るレシピ
  *   - `docs/*.mdx` の <style> ドキュメントページ自身のレイアウト CSS
- * 判断依存のルール（1 画面 1 主役・中央揃え多用・実在感など）は DESIGN.md の
- * セルフレビュー／composition-guidelines skill に委ね、ここでは扱わない。
+ * 判断依存のルール（1 画面 1 主役・中央揃え多用・実在感など）は
+ * docs/design/composition.md のセルフレビュー／composition-guidelines skill に委ね、ここでは扱わない。
  *
  * 検出（この初回カット＝ユーザー選択の 3 種）:
  *   1. gradient135  — `linear-gradient(... 135deg ...)` のヒーロー背景（ハードゲート、baseline 0）
@@ -81,7 +81,7 @@ const HYPE_FALSE_POSITIVES = new Set(
 //
 // ストーリー本体を足した理由: locale だけを見ていると、`t()` を通さず TSX に直書きされた
 // 英語がまるごと素通りする。カタログの Default ストーリーは「その部品の使い方の見本」
-// として読まれるので、Pattern デモと同じ基準で見る（DESIGN.md `default_anatomy`）。
+// として読まれるので、Pattern デモと同じ基準で見る（composition.md `default_anatomy`）。
 //
 // `stories/*.tsx`（Docgen.tsx など）は**ドキュメントの土台**でありデモコピーではないので
 // 入れない。ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）も、
@@ -205,7 +205,7 @@ function excused(lines, i) {
 }
 
 /**
- * prop があるのに style で書いている箇所。DESIGN.md 必須ルール 3 の本体だが、
+ * prop があるのに style で書いている箇所。composition.md 必須ルール 3 の本体だが、
  * styleOverride（px 直書き＋0 リセット）はこれを取りこぼす: `padding:
  * "var(--wim-spacing-3xl)"` はトークンを使っているので px 直書きに当たらず、
  * 0 リセットでもないため、どちらの網にもかからない。実際 2026-07-26 の監査で
@@ -345,7 +345,7 @@ for (const file of mdxFiles) {
 // 「量産型グラデーション」は画面を書く人の癖として書かれていたが、実際には
 // **部品の既定レンダー**に埋まっていて、その部品を素で置いた画面すべてに出ていた
 // （`BentoGrid` の `itemHeader`）。既定が禁止パターンなら、画面ではなく既定が悪い
-// （DESIGN.md `default_anatomy`）。
+// （composition.md `default_anatomy`）。
 //
 // px 直書き・既定値上書きはここでは見ない。SCSS 側のハードコードは
 // `audit:hardcoded` / `check:scss-refs` の担当で、二重に数えるとラチェットが壊れる。
@@ -449,26 +449,26 @@ for (const file of COPY_SCAN_FILES) {
   });
 }
 
-console.log('--- check:slop (DESIGN.md 禁止パターンの機械ガード) ---');
+console.log('--- check:slop (docs/design/composition.md 禁止パターンの機械ガード) ---');
 let failed = false;
 
 if (gradientHits.length > 0) {
   console.log(`\n[FAIL] 斜めグラデ（135deg / to bottom right 等）は禁止（面はサーフェス階層トークンで切る）:`);
   for (const h of gradientHits) console.log(`  ${h}`);
   console.log(`       部品の SCSS で出た場合は、その部品を素で置いた画面すべてに出ています。`);
-  console.log(`       画面ではなく既定を直すこと（DESIGN.md \`default_anatomy\`）。`);
+  console.log(`       画面ではなく既定を直すこと（composition.md \`default_anatomy\`）。`);
   console.log(`       軸に平行なグラデ（90deg の shimmer 等）は動きの実装なので対象外です。`);
   failed = true;
 }
 
 if (hypeHits.length > 0) {
-  console.log(`\n[FAIL] 誇張形容詞・定型フレーズは禁止（具体的な動作・数値で言う。DESIGN.md 禁止パターン参照）:`);
+  console.log(`\n[FAIL] 誇張形容詞・定型フレーズは禁止（具体的な動作・数値で言う。composition.md 禁止パターン参照）:`);
   for (const h of hypeHits) console.log(`  ${h}`);
   failed = true;
 }
 
 if (emptyCopyHits.length > 0) {
-  console.log(`\n[FAIL] 中身の無い定型コピーは禁止（何の画面かが分かる具体へ。DESIGN.md 禁止パターン参照）:`);
+  console.log(`\n[FAIL] 中身の無い定型コピーは禁止（何の画面かが分かる具体へ。composition.md 禁止パターン参照）:`);
   for (const h of emptyCopyHits) console.log(`  ${h}`);
   console.log(`       「No data found」「Get started」「This is a description」は、置いた人が`);
   console.log(`       まだ内容を決めていないことを表示しているだけで、読み手には何も伝わりません。`);
@@ -476,7 +476,7 @@ if (emptyCopyHits.length > 0) {
 }
 
 if (nameHits.length > 0) {
-  console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。DESIGN.md 規約13）:`);
+  console.log(`\n[FAIL] 定型プレースホルダ名は禁止（実在感ある多様な名前にする。composition.md 禁止パターン）:`);
   for (const h of nameHits) console.log(`  ${h}`);
   failed = true;
 }
@@ -508,7 +508,7 @@ if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {
   );
   for (const h of numberedHits) console.log(`  ${h}`);
   console.log(`       \`Item 1\` \`Option 2\` の類は「何を並べているか」を言っていません。`);
-  console.log(`       その画面で実際に並ぶものの名前にしてください（DESIGN.md \`realism\`）。`);
+  console.log(`       その画面で実際に並ぶものの名前にしてください（composition.md \`realism\`）。`);
   console.log(`       番号が意味を持つ語（Heading / Tier / Week 等）は`);
   console.log(`       scripts/slop-dictionary.json の numberedPlaceholderAllow に足します。`);
   failed = true;
@@ -539,7 +539,7 @@ if (probeFiles.length > 0) {
 
 // ハードゲート（baseline 0）。2026-07-26 の T15 で全件解消済みなのでラチェットにしない。
 if (propBackedHits.length > 0) {
-  console.log(`\n[FAIL] prop があるのに style で指定している（DESIGN.md 必須ルール 3）:`);
+  console.log(`\n[FAIL] prop があるのに style で指定している（composition.md 必須ルール 3）:`);
   for (const h of propBackedHits) console.log(`  ${h}`);
   console.log(`       余白や枠はコンポーネントの prop で表現する。prop の刻みが足りない場合は`);
   console.log(`       style で回避せず、コンポーネント側に段を足すこと（T15 で Card の padding に`);

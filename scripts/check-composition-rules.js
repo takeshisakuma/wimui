@@ -3,21 +3,22 @@
  * Guard: 合成ルールの 3 つの出力が単一ソースから外れていないか（T39）。
  *
  * 合成ルールは 3 箇所で使われる:
- *   - `DESIGN.md`            … 人間と `composition-guidelines` skill が読む規範（日本語・根拠つき）
+ *   - `docs/design/composition.md` … 人間と `composition-guidelines` skill が読む規範（日本語・根拠つき）
+ *                              （T252 で `DESIGN.md` から切り出した。探索は DESIGN.md も含む）
  *   - `public/llms*.txt`     … 外部 AI への主配信（英語・そのまま従える粒度）
  *   - `scripts/judge-slop.mjs` … LLM 採点のルーブリック
  *
  * 以前は 3 箇所に本文を手で書き写しており、**同期が破れていた**。2026-08-01 の実測:
- * DESIGN.md の「エレベーションのスタンスも 1 画面 1 つ」と
+ * 設計文書の「エレベーションのスタンスも 1 画面 1 つ」と
  * 「`intent` は省略せず明示する」は **llms.txt に 1 度も届いていなかった**
- * （llms 側の Must rules は 10 件、DESIGN.md の必須ルールは 12 件）。
+ * （llms 側の Must rules は 10 件、設計文書の必須ルールは 12 件）。
  *
  * いまは `scripts/composition-rules.json` が単一ソースで、llms.txt と judge-slop は
- * そこから生成される。**残るのは DESIGN.md** ── こちらは根拠と実例を含む散文なので
- * 生成せず、**「SSOT の全ルールが DESIGN.md にも書かれている」ことを検証する**。
+ * そこから生成される。**残るのは人が読む規範** ── こちらは根拠と実例を含む散文なので
+ * 生成せず、**「SSOT の全ルールが規範にも書かれている」ことを検証する**。
  *
  * 見るもの:
- *   1. SSOT の各ルールの `designAnchor` が DESIGN.md に存在する
+ *   1. SSOT の各ルールの `designAnchor` が規範（DESIGN.md + docs/design/**）に存在する
  *   2. `judge` を持つルールが judge-slop のルーブリックに出る（生成物の健全性）
  *   3. `en` を持つルールが llms.txt に出る（生成物の健全性）
  *
@@ -78,13 +79,13 @@ let failed = false;
 
 if (missingInDesign.length) {
   failed = true;
-  console.error("✗ SSOT にあるが DESIGN.md に見当たらないルール:");
+  console.error("✗ SSOT にあるが規範（DESIGN.md / docs/design/**.md）に見当たらないルール:");
   for (const r of missingInDesign) {
     console.error(`  - ${r.id}  （探した語: "${r.designAnchor}"）`);
   }
   console.error(
-    "\n  DESIGN.md は根拠と実例を含む規範なので生成しない。SSOT にルールを足したら\n" +
-      "  DESIGN.md 側にも本文を書き、`designAnchor` がその本文に含まれるようにすること。",
+    "\n  規範は根拠と実例を含む散文なので生成しない。SSOT にルールを足したら\n" +
+      "  docs/design/composition.md 側にも本文を書き、`designAnchor` がその本文に含まれるようにすること。",
   );
 }
 

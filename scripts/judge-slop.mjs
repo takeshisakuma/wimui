@@ -4,7 +4,7 @@
  * `check:slop`（A 層）は決定的に検出できる部分だけを機械強制する。ここでは正規表現で
  * 無理な視覚判断（1 画面 1 主役・中央揃え多用・rule of three・実在感・偽 chrome など）を、
  * VRT が既に撮っている Pattern スクリーンショットを `claude-opus-4-8` に採点させて拾う。
- * ルーブリックは DESIGN.md 「コンポジションガイドライン」の必須ルール／セルフレビューと
+ * ルーブリックは docs/design/composition.md の必須ルール／セルフレビューと
  * Nutlope/hallmark の視覚ゲートから作成。
  *
  * **非ブロッキング（既定 exit 0）**: 確率的なので CI を止めない。`--strict` で fail 検出時 exit 1。
@@ -31,9 +31,9 @@ const MODEL = 'claude-opus-4-8';
 const CONCURRENCY = 4;
 const SNAPSHOT_DIR = 'vrt/vrt.spec.ts-snapshots';
 
-// 判断依存ルール（A 層で機械化できない視覚判断）。DESIGN.md 必須ルール＋hallmark 視覚ゲート由来。
+// 判断依存ルール（A 層で機械化できない視覚判断）。composition.md 必須ルール＋hallmark 視覚ゲート由来。
 // ルーブリックは合成ルールの SSOT から引く（T39）。以前はここに本文を書き写しており、
-// DESIGN.md / llms.txt と手で同期していたため、既にドリフトが起きていた。
+// 規範 / llms.txt と手で同期していたため、既にドリフトが起きていた。
 const COMPOSITION = JSON.parse(
   fs.readFileSync(new URL('./composition-rules.json', import.meta.url), 'utf8'),
 );
@@ -153,7 +153,7 @@ async function main() {
     const flags = cols.filter((c) => r.verdict[c] !== 'pass').map((c) => `${MARK[r.verdict[c]]}${c}`).join(', ');
     console.log(`- **${r.story}** — ${flags}\n  - ${r.verdict.notes}`);
   }
-  console.log('\n> 助言ツールです。合成ルールは DESIGN.md「コンポジションガイドライン」が正。決定的な検出は `check:slop`（A 層）が担当。');
+  console.log('\n> 助言ツールです。合成ルールは docs/design/composition.md が正。決定的な検出は `check:slop`（A 層）が担当。');
 
   process.exit(strict && failed ? 1 : 0);
 }

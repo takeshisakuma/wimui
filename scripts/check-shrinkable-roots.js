@@ -13,8 +13,8 @@
  * 起こさず、ただ細くなるだけ。
  *
  * **どのガードも見ていなかった**: tsc / lint / check:slop / axe / 横スクロール測定
- * （`scrollWidth === clientWidth`）すべて緑のまま出荷されていた。DESIGN.md の
- * チェックリストは「1 文字ずつ折り返る」を名指ししているのに、検出する仕組みが無い。
+ * （`scrollWidth === clientWidth`）すべて緑のまま出荷されていた。docs/design/composition.md
+ * のチェックリストは「1 文字ずつ折り返る」を名指ししているのに、検出する仕組みが無い。
  *
  * **正当な `min-width: 0` は「下限を持つ根の内側」だけ。** `Select` の `.trigger` の
  * ように、根が下限を持ったうえで中身を省略させる縮みは正しいので、`shrinkable-ok`

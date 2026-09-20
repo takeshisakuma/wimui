@@ -10,7 +10,7 @@
 //   - src/data/docgen_index.json         … component name -> export category (import subpath)
 //   - src/data/docgen_<category>.json    … props / tokens / anatomy per component
 //   - public/locales/en/**.json          … English descriptions (descKey resolution)
-//   - DESIGN.md (composition section)     … anti-generic rules (condensed inline below)
+//   - docs/design/composition.md          … anti-generic rules (condensed inline below)
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -156,7 +156,7 @@ ${[...EXPORT_CATS].map((c) => `- \`${pkg.name}/${c}\``).join('\n')}
 `;
 
 // 合成ルールは SSOT から引く（T39）。以前はここに本文を書き写しており、
-// DESIGN.md / judge-slop.mjs と手で同期していたため、既にドリフトが起きていた
+// 規範 / judge-slop.mjs と手で同期していたため、既にドリフトが起きていた
 // （「エレベーションのスタンス」「intent を省略しない」は llms.txt に 1 度も届いていなかった）。
 const compositionRules = readJSON('scripts/composition-rules.json');
 const mustRules = compositionRules.rules
@@ -164,8 +164,8 @@ const mustRules = compositionRules.rules
   .map((r, i) => `${i + 1}. ${r.en}`)
   .join("\n");
 
-// Condensed, agent-actionable version of DESIGN.md's composition guidelines.
-// The full authored source is DESIGN.md → "コンポジションガイドライン".
+// Condensed, agent-actionable version of docs/design/composition.md.
+// The full authored source is docs/design/composition.md.
 const composition = `## Composition rules — build screens that don't look AI-generated
 
 Single components are judged by state/a11y/token compliance. **Composed screens** are judged by hierarchy, rhythm, asymmetry and real-feeling content. Apply these whenever combining components into a screen, page, pattern or demo — **and also when you write a single component on its own**, because the way it renders with no props is judged by the same rules (rule 22). That split is about what is being judged, not about where the problem lives: a default that emits a banned pattern emits it into every screen that uses the component.
