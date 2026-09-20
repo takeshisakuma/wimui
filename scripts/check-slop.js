@@ -86,6 +86,25 @@ const HYPE_FALSE_POSITIVES = new Set(
 // `stories/*.tsx`（Docgen.tsx など）は**ドキュメントの土台**でありデモコピーではないので
 // 入れない。ガイド docs（docs_guide_*）や props 説明（docs_* の非 stories）も、
 // 禁止語を正当に引用しうるドキュメント散文なので対象外。
+//
+// **`audit.json` は意図的に入れない（2026-09-20 に測って決めた）。**
+// `stories/Audit/*.stories.tsx` のほうは**既に対象**なので、外れているのは locale だけ。
+//
+// 入れたら何が鳴るかを、このガード自身で測った:
+//   hype 0 / 定型名 0 / emptyCopy 1 / 連番（リテラル）7 / 連番（補間）7
+//   内訳は `Option 1` `Option 2` `Option 3` / `Toggle 1` `Toggle 2` /
+//   `Mix Input 1` `Mix Input 2` / `No data found`。**8 件はハードゲートなので即座に赤**になる。
+//
+// **入れない理由は「直すのが面倒だから」ではなく、ページの目的が違うから。**
+// `Audit/*Family` は**内部 QA 用の見比べる道具**で（VRT からも意図的に外している。
+// 理由は `vrt/vrt.spec.ts` と T217）、`RadioGroup` に 3 つ選択肢が並んだ姿を
+// 家族どうしで比べるのが仕事。そこで選択肢の中身に意味を持たせると、
+// **読み手の視線が内容へ行って比較の邪魔になる**。
+// カタログの Default ストーリーが「使い方の見本」として実在感を要求されるのとは、
+// 見る人も目的も違う（`composition.md` の `realism` / `default_anatomy` はカタログの話）。
+//
+// **判断が変わる条件**: Audit ページを外部に見せる（公開 docs に載せる・スクショを配る）
+// ようになったとき。そのときは「見比べる道具」ではなくなるので、この例外は無効になる。
 const COPY_SCAN_FILES = [
   ...['en', 'ja', 'pt'].flatMap((locale) =>
     globSync(`public/locales/${locale}/docs_stories_*.json`, { posix: true }),
