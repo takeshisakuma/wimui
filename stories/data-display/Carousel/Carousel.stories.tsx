@@ -151,10 +151,8 @@ export const CustomContent: Story = {
               background: "var(--wim-color-surface-variant)",
             }}
           >
-            <h3>
-              {t("story.carousel_card")} 1
-            </h3>
-            <p>{t("story.carousel_msg_loop")}</p>
+            <h3>{t("story.carousel_bread_rye")}</h3>
+            <p>{t("story.carousel_bread_rye_desc")}</p>
           </div>
         </div>
         <div style={{ padding: "0 10px", width: "100%" }}>
@@ -166,10 +164,8 @@ export const CustomContent: Story = {
               background: "var(--wim-color-surface-variant)",
             }}
           >
-            <h3>
-              {t("story.carousel_card")} 2
-            </h3>
-            <p>{t("story.carousel_msg_multiple")}</p>
+            <h3>{t("story.carousel_bread_rolls")}</h3>
+            <p>{t("story.carousel_bread_rolls_desc")}</p>
           </div>
         </div>
         <div style={{ padding: "0 10px", width: "100%" }}>
@@ -181,10 +177,8 @@ export const CustomContent: Story = {
               background: "var(--wim-color-surface-variant)",
             }}
           >
-            <h3>
-              {t("story.carousel_card")} 3
-            </h3>
-            <p>{t("story.carousel_msg_smooth")}</p>
+            <h3>{t("story.carousel_bread_dayold")}</h3>
+            <p>{t("story.carousel_bread_dayold_desc")}</p>
           </div>
         </div>
       </Carousel>
