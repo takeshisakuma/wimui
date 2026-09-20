@@ -89,6 +89,29 @@ try {
 
   place(VALID);
   check("9. 正しく書いた一時 skill では鳴らない", run() === 0);
+
+  // --- 受け入れルール（2026-09-21）。仕様ではなくリポジトリ側の取り決め。 ---
+  place(VALID.replace("---\n\n# 実証用", "allowed-tools: Bash\n---\n\n# 実証用"));
+  check("11. allowed-tools を理由なしで持つと鳴る", run() !== 0);
+
+  place(
+    VALID.replace(
+      "---\n\n# 実証用",
+      "allowed-tools: Bash\nmetadata:\n  allowed_tools_reason: 実証用の一時 skill。実作業では読み込まれない。\n---\n\n# 実証用",
+    ),
+  );
+  check("12. 理由を書けば allowed-tools でも鳴らない", run() === 0);
+
+  place(VALID.replace("---\n\n# 実証用", "metadata:\n  origin: vendor\n---\n\n# 実証用"));
+  check("13. 外来 skill で source / reviewed が無いと鳴る", run() !== 0);
+
+  place(
+    VALID.replace(
+      "---\n\n# 実証用",
+      "metadata:\n  origin: vendor\n  source: https://example.com/skills/temp\n  reviewed: 2026-09-21\n---\n\n# 実証用",
+    ),
+  );
+  check("14. 出所と読んだ日を書けば鳴らない", run() === 0);
 } finally {
   fs.rmSync(TMP, { recursive: true, force: true });
 }

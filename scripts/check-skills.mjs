@@ -58,6 +58,8 @@ function parseFrontmatter(text) {
 }
 
 const problems = [];
+/** リポジトリの受け入れルール違反（仕様の逸脱とは分けて出す）。 */
+const policy = [];
 
 if (!fs.existsSync(SKILLS_DIR)) {
   console.log("✓ `.agents/skills/` が無い（skill 未使用）。");
@@ -111,12 +113,50 @@ for (const dir of dirs) {
     problems.push(`${rel}/SKILL.md: \`description\` が 1024 文字を超えている（${description.length}）。`);
   }
 
+  /**
+   * --- ここから下は**仕様ではなく、このリポジトリの受け入れルール**（2026-09-21）---
+   *
+   * 他所で作られた skill を取り込む前提で足した。**skill はエージェントが従う指示**で、
+   * `allowed-tools` まで書けるので、取り込みは依存を 1 つ増やすのと同じ。仕様の検査
+   * （`name` / `description` / 行数）は**形式しか見ない**ため、中身が「テストを消してよい」
+   * と書いてあっても通る。せめて**出所と、読んだ日と、ツール権限の理由**は機械で要求する。
+   *
+   * **`.agents/skills/vendor/` のようなサブディレクトリでは分けられない** ── skill の探索は
+   * `.agents/skills` の**直下のディレクトリ**を見る作りで（このスクリプトも各ツールも）、
+   * 中間ディレクトリは「SKILL.md が無い skill」として落ちる。だから出所は**置き場ではなく
+   * `metadata`** で表す。
+   */
+  const meta = fm.metadata ?? "";
+  const allowedTools = (fm["allowed-tools"] ?? "").trim();
+  if (allowedTools !== "" && !/allowed_tools_reason\s*:\s*\S/.test(meta)) {
+    policy.push(
+      `${rel}/SKILL.md: \`allowed-tools\` を持つなら \`metadata.allowed_tools_reason\` に理由を書くこと（ツール権限を持ち込む形なので、黙って入れない）。`,
+    );
+  }
+  if (/origin\s*:\s*vendor\b/.test(meta)) {
+    if (!/source\s*:\s*\S/.test(meta)) {
+      policy.push(`${rel}/SKILL.md: 外来 skill（\`metadata.origin: vendor\`）は \`metadata.source\` に取得元を書くこと。`);
+    }
+    if (!/reviewed\s*:\s*\d{4}-\d{2}-\d{2}/.test(meta)) {
+      policy.push(
+        `${rel}/SKILL.md: 外来 skill は \`metadata.reviewed\` に**中身を読んだ日**（YYYY-MM-DD）を書くこと。`,
+      );
+    }
+  }
+
   const lineCount = text.split("\n").length;
   if (lineCount > 500) {
     problems.push(
       `${rel}/SKILL.md: ${lineCount} 行（仕様の推奨は 500 行以内）。詳細は \`references/\` へ出して、本体は入口に保つこと。`,
     );
   }
+}
+
+if (policy.length > 0) {
+  console.error("✗ 外来 skill の受け入れルール（AGENTS.md）から外れています:");
+  for (const p of policy) console.error(`  - ${p}`);
+  console.error("  skill はエージェントが従う指示です。出所・読んだ日・ツール権限の理由を書くこと。");
+  process.exit(1);
 }
 
 if (problems.length > 0) {
