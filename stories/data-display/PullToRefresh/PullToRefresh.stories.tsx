@@ -18,9 +18,9 @@ type Story = StoryObj<typeof PullToRefresh>;
 const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const [items, setItems] = useState([
-    { id: 1, text: t("story.pull_initial_item", { n: 1 }), count: 0 },
-    { id: 2, text: t("story.pull_initial_item", { n: 2 }), count: 0 },
-    { id: 3, text: t("story.pull_initial_item", { n: 3 }), count: 0 },
+    { id: 1, text: t("story.pull_item_slip"), count: 0 },
+    { id: 2, text: t("story.pull_item_locker"), count: 0 },
+    { id: 3, text: t("story.pull_item_pickup"), count: 0 },
   ]);
 
   const handleRefresh = async () => {
@@ -29,7 +29,7 @@ const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) =
       const nextCount = (prev[0]?.count ?? 0) + 1;
       const newItem = {
         id: Date.now(),
-        text: `Refreshed Item`,
+        text: t("story.pull_refreshed"),
         count: nextCount,
       };
       return [newItem, ...prev].slice(0, 10);
@@ -46,7 +46,10 @@ const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) =
                 <Stack gap="xs">
                   <Text weight="bold">{item.text}</Text>
                   <Text size="sm" color="text-tertiary">
-                    Count: {item.count} | {new Date(item.id).toLocaleTimeString()}
+                    {t("story.pull_meta", {
+                      times: item.count,
+                      time: new Date(item.id).toLocaleTimeString(),
+                    })}
                   </Text>
                 </Stack>
               </ListItem>

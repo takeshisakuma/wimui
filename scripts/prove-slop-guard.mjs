@@ -46,23 +46,33 @@ const CASES = [
   {
     name: 'T3. i18n 補間で番号を足す形が鳴る（Item {{n}}）',
     file: 'public/locales/en/docs_stories_utility.json',
-    find: '    "infscroll_item":',
-    put: '    "prove_temp_item": "Widget {{n}}",\n    "story.infscroll_item":',
+    find: '    "infscroll_episode":',
+    put: '    "prove_temp_item": "Widget {{n}}",\n    "story.infscroll_episode":',
     expect: true,
     match: /i18n 補間で番号を足している en キーが増えています/,
   },
   {
     name: 'T4. 実体を差し込む補間は鳴らない（Delete {{name}}）',
     file: 'public/locales/en/docs_stories_utility.json',
-    find: '    "infscroll_item":',
-    put: '    "prove_temp_del": "Delete {{name}}",\n    "story.infscroll_item":',
+    find: '    "infscroll_episode":',
+    put: '    "prove_temp_del": "Delete {{name}}",\n    "story.infscroll_episode":',
     expect: false,
   },
   {
     name: 'T5. 番号が意味を持つ語は allow で逃げる（Week {{n}}）',
     file: 'public/locales/en/docs_stories_utility.json',
-    find: '    "infscroll_item":',
-    put: '    "prove_temp_week": "Week {{n}}",\n    "story.infscroll_item":',
+    find: '    "infscroll_episode":',
+    put: '    "prove_temp_week": "Week {{n}}",\n    "story.infscroll_episode":',
+    expect: false,
+  },
+  {
+    // T261 ② を 0 にした日（2026-09-20）に足した 5 語（Episode / Print / Row / Seat / Ticket）。
+    // **現実に番号で呼ぶもの**だけを逃がす辞書なので、その語が実際に逃げることを見る。
+    // 逃げすぎていないことは T3（`Widget {{n}}` は鳴る）が反対側から押さえている。
+    name: 'T8. allow に足した識別子は鳴らない（Ticket {{id}}）',
+    file: 'public/locales/en/docs_stories_utility.json',
+    find: '    "infscroll_episode":',
+    put: '    "prove_temp_ticket": "Ticket {{id}}",\n    "story.infscroll_episode":',
     expect: false,
   },
   // T6 / T7（2026-09-20）: ① を `stories/Audit/**` で外した件。**外れていること**と、

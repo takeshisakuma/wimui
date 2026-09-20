@@ -619,10 +619,25 @@ const NUMBERED_PLACEHOLDER_BASELINE = 0;
  * 除外の実体と「判断が変わる条件」は `isAuditComparison` の隣に書いた。
  *
  * **これで ① は 0 になったので、ラチェット特有の穴（lint-staged が部分集合しか渡さない）の
- * 形そのものが消えた。** 残るラチェットは ②（補間 7 件）と px 直書きの 2 本。
+ * 形そのものが消えた。** 残るラチェットは px 直書きの 1 本。
+ *
+ * **② も 7 → 0 になり、ハードゲートへ移した**（2026-09-20）。7 件は**同じ処方では直らなかった**ので、
+ * **件数で分けた**（ユーザー判断）:
+ *   - **固定の少数（3 件並ぶだけ）は名前にした** ── `Marquee`（掲示 3 本）/ `PullToRefresh`（配達の 3 件）。
+ *     数が決まっているなら、番号を振る理由がそもそも無い。
+ *   - **生成される長い列は「番号が意味を持つ語」にした** ── `InfiniteScroll` は `Episode {{index}}`、
+ *     `ScrollArea` は `Row {{count}}` / `Seat {{count}}`、`VirtualList`（1,000 行）は `Ticket {{id}}`。
+ *     1,000 件に手で名前は付けられないが、**回・列・席・チケットは現実に番号で呼ぶもの**なので、
+ *     番号が「何番目か」ではなく**識別子**を運ぶ。語は `numberedPlaceholderAllow` に足した。
+ *   - **a11y の位置ラベルはそのまま許した** ── `AlpineDesk` の `Print {{number}}` は
+ *     `Carousel` の `slideLabel(n)`（「3 枚目のプリント」）で、番号で数えるのが正しい用法。
+ *
+ * **`numberedPlaceholderAllow` に足した 5 語の理由**: `Episode` / `Row` / `Seat` / `Ticket` は
+ * **現実に番号で呼ぶもの**、`Print` は**位置を指す a11y ラベル**。逃がすのは辞書に書いた語だけなので、
+ * `Item` / `Box` の類は今までどおり鳴る。
  */
 const JSX_NUMBER_BASELINE = 0;
-const INTERPOLATED_NUMBER_BASELINE = 7;
+const INTERPOLATED_NUMBER_BASELINE = 0;
 
 if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {
   console.log(
