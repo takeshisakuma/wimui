@@ -420,7 +420,27 @@ if (breaking.length > 0) {
   process.exit(1);
 }
 
+/**
+ * **加算でも落とす**（2026-09-21）。
+ *
+ * それまでは「`--update` してください」と**助言を出して exit 0** だった。助言は
+ * 効かなかった ── main で測ったら**スナップショットは 2026-08-29（#551）で止まり、
+ * 18 prop 遅れていた**。中身は `Comment` が**丸ごと未収録**、`BentoGridItem.span` /
+ * `rowSpan`、型が細かくなった 7 件。
+ *
+ * **遅れの実害は「破壊を見逃す」ほうに出る。** このガードは**スナップショットに在る
+ * prop の変化**しか見ないので、未収録の部品は prop を消しても
+ * 「新しいコンポーネントの prop です」と言われ続け、**永久に緑**になる
+ * （`check-documented-exports.js` の隣のコメントが書いているのと同じ形の穴）。
+ *
+ * 公開シンボルの `check:api` は差分があれば必ず落ちて `check:api:update` を要求する。
+ * prop も公開契約なので、同じ強さに揃える。
+ */
 if (additive.length > 0) {
-  console.log(`\n  加算のみです。\`node scripts/check-prop-api.js --update\` でスナップショットを更新してください。`);
+  console.log(`\n[FAIL] スナップショットに無い prop が ${additive.length} 件あります（破壊ではありません）。`);
+  console.log(`  \`npm run check:prop-api:update\` を実行し、差分をコミットしてください。`);
+  console.log(`  放置すると、その prop は**消しても気づけません**（比較相手が居ないため）。`);
+  console.log('\n✗ check:prop-api failed.');
+  process.exit(1);
 }
-console.log('\n✓ 破壊的な prop の変更はありません。');
+console.log('\n✓ prop シグネチャはスナップショットどおりです。');
