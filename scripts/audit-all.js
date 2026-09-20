@@ -164,7 +164,9 @@ const checks = [
     // 1 つも無く、AGENTS.md と GEMINI.md が同一なのは偶然だった。片方だけ直すと
     // **そのツールだけが古い指示を読む**という、赤の出ない壊れ方をする。
     // 実証は `npm run prove:instructions`（10 通り）。
-    name: "Agent instruction files (AGENTS.md is the source; CLAUDE.md imports it, GEMINI.md mirrors it)",
+    // 2026-09-20 に GEMINI.md（写し）を廃止し、Gemini CLI は .gemini/settings.json の
+    // context.fileName で AGENTS.md を直接読むようにした。写しが無ければ腐らない。
+    name: "Agent instruction entrypoints (AGENTS.md is the source; CLAUDE.md imports it, .gemini/settings.json points at it)",
     command: "node scripts/instruction-files.mjs --check",
   },
   {

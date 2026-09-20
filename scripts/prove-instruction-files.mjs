@@ -3,10 +3,11 @@
  * prove:instructions — `check:instructions` を故意に壊して実証する（T259）。
  *
  * AGENTS.md の約束「未実証のガード、および『0 件』という結果は信用しない」。
- * 見るのは 12 通り（実ファイルを一時的に壊し、最後に必ず戻す）:
+ * 見るのは 14 通り（実ファイルを一時的に壊し、最後に必ず戻す）:
  *   1. 揃っているときは鳴らない
- *   2. GEMINI.md が 1 文字ずれたら鳴る
- *   3. GEMINI.md が消えたら鳴る
+ *   2. `.gemini/settings.json` が AGENTS.md を指さなくなったら鳴る
+ *   3. `.gemini/settings.json` が消えたら鳴る
+ *        ── これが無いと Gemini CLI は既定の `GEMINI.md` を探し、**指示が 1 行も届かない**。
  *   4. CLAUDE.md が散文の案内（import 行なし）になったら鳴る
  *        ── これが T259 でいちばん危ない壊れ方。実測では散文だと中身が届かない。
  *   5. CLAUDE.md に指示が書き足されたら鳴る（正本が 2 つになる）
@@ -18,7 +19,10 @@
  *  11. `docs/rules/` に置いたのに AGENTS.md の索引に無いファイルで鳴る（2026-09-20）
  *        ── RULES.md を 7 ファイルへ割ったので、「置いたのに誰も辿れない規則」が作れる。
  *  12. 索引が実在しない `docs/rules/*.md` を指したら鳴る（死んだ参照）
- *  10. 後始末で 3 ファイルが元どおりになる
+ *  13. `GEMINI.md`（写し）が戻ってきたら鳴る（2026-09-20）
+ *        ── 戻った瞬間から Gemini CLI はそちらを読み、AGENTS.md の更新が届かなくなる。
+ *  14. 中身の違う `GEMINI.md` が置かれたら、**消さずに**鳴る（書いた内容を失わせない）
+ *  10. 後始末で元どおりになる
  *
  * Usage: npm run prove:instructions
  */
@@ -28,12 +32,16 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const NAMES = ['AGENTS.md', 'CLAUDE.md', 'GEMINI.md'];
+const NAMES = ['AGENTS.md', 'CLAUDE.md', '.gemini/settings.json'];
 const file = (name) => path.join(ROOT, name);
 
 const backup = Object.fromEntries(NAMES.map((n) => [n, fs.readFileSync(file(n), 'utf8')]));
 const restore = () => {
-  for (const n of NAMES) fs.writeFileSync(file(n), backup[n], 'utf8');
+  for (const n of NAMES) {
+    fs.mkdirSync(path.dirname(file(n)), { recursive: true });
+    fs.writeFileSync(file(n), backup[n], 'utf8');
+  }
+  fs.rmSync(file('GEMINI.md'), { force: true });
 };
 
 const run = (args = []) => {
@@ -54,12 +62,12 @@ const check = (name, ok, detail = '') => {
 try {
   check('1. 揃っているとき --check は鳴らない', run(['--check']) === 0);
 
-  fs.writeFileSync(file('GEMINI.md'), backup['GEMINI.md'] + '故意にずらした\n', 'utf8');
-  check('2. GEMINI.md のずれで鳴る', run(['--check']) !== 0);
+  fs.writeFileSync(file('.gemini/settings.json'), JSON.stringify({ context: { fileName: ['NOTES.md'] } }, null, 2), 'utf8');
+  check('2. .gemini/settings.json が AGENTS.md を指さないと鳴る', run(['--check']) !== 0);
 
   restore();
-  fs.rmSync(file('GEMINI.md'));
-  check('3. GEMINI.md の欠落で鳴る', run(['--check']) !== 0);
+  fs.rmSync(file('.gemini/settings.json'));
+  check('3. .gemini/settings.json の欠落で鳴る', run(['--check']) !== 0);
 
   restore();
   fs.writeFileSync(file('CLAUDE.md'), '# CLAUDE.md\n\n指示は `AGENTS.md` を参照してください。\n', 'utf8');
@@ -82,13 +90,16 @@ try {
   restore();
   const staged = ['--check', 'CLAUDE.md'];
   const greenViaStaged = run(staged) === 0;
-  fs.writeFileSync(file('GEMINI.md'), backup['GEMINI.md'] + '故意にずらした\n', 'utf8');
+  fs.writeFileSync(file('CLAUDE.md'), backup['CLAUDE.md'] + '書き足した\n', 'utf8');
   check('8. lint-staged 経由（引数つき）でも鳴る／鳴らないが変わらない', greenViaStaged && run(staged) !== 0);
 
   restore();
-  fs.writeFileSync(file('GEMINI.md'), '空にした\n', 'utf8');
+  fs.writeFileSync(file('.gemini/settings.json'), '{}\n', 'utf8');
   const synced = run([]) === 0;
-  check('9. sync が直し、直した後は鳴らない', synced && run(['--check']) === 0 && fs.readFileSync(file('GEMINI.md'), 'utf8') === backup['GEMINI.md']);
+  check(
+    '9. sync が直し、直した後は鳴らない',
+    synced && run(['--check']) === 0 && JSON.parse(fs.readFileSync(file('.gemini/settings.json'), 'utf8')).context.fileName[0] === 'AGENTS.md',
+  );
 
   // 11-12: 規則の置き場を割った分だけ、「置いたのに辿れない」「指しているのに無い」が
   //        作れるようになった。両方向とも鳴ることを見る。
@@ -108,10 +119,29 @@ try {
     'utf8',
   );
   check('12. 索引が実在しないファイルを指したら鳴る', run(['--check']) !== 0);
+
+  // 13-14: 廃止した写しが戻ってくる経路。`--check` は必ず鳴り、`sync` は
+  //        **写しのときだけ**消す（人が書いた中身を黙って捨てない）。
+  restore();
+  fs.writeFileSync(file('GEMINI.md'), backup['AGENTS.md'], 'utf8');
+  const copyFires = run(['--check']) !== 0;
+  const copyRemoved = run([]) === 0 && !fs.existsSync(file('GEMINI.md'));
+  check('13. 写しの GEMINI.md が戻ったら鳴り、sync が消す', copyFires && copyRemoved);
+
+  fs.writeFileSync(file('GEMINI.md'), '# GEMINI.md\n\n手で書いた別の指示。\n', 'utf8');
+  const otherFires = run(['--check']) !== 0;
+  run([]);
+  const kept = fs.existsSync(file('GEMINI.md'));
+  check('14. 中身の違う GEMINI.md は鳴るが、sync は消さない', otherFires && kept);
 } finally {
   restore();
 }
 
-check('10. 後始末で元どおり（3 ファイルとも一致し、--check が緑）', NAMES.every((n) => fs.readFileSync(file(n), 'utf8') === backup[n]) && run(['--check']) === 0);
+check(
+  '10. 後始末で元どおり（3 つの入口が一致し、GEMINI.md が無く、--check が緑）',
+  NAMES.every((n) => fs.readFileSync(file(n), 'utf8') === backup[n]) &&
+    !fs.existsSync(file('GEMINI.md')) &&
+    run(['--check']) === 0,
+);
 
 process.exit(results.every(Boolean) ? 0 : 1);

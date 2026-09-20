@@ -616,9 +616,6 @@
     }
   },
   "lint-staged": {
-    "{AGENTS,CLAUDE,GEMINI}.md": [
-      "node scripts/instruction-files.mjs --check"
-    ],
     "{DESIGN.md,docs/design/*.md}": [
       "node scripts/check-doc-token-refs.js",
       "node scripts/check-doc-token-values.js"
@@ -736,7 +733,12 @@
     ],
     ".agents/skills/**/SKILL.md": [
       "node scripts/check-skills.mjs"
-    ]
+    ],
+    "{AGENTS,CLAUDE}.md": [
+      "node scripts/instruction-files.mjs --check"
+    ],
+    ".gemini/settings.json": [
+      "node scripts/instruction-files.mjs --check"    ]
   },
   "dependencies": {
     "@floating-ui/react": "0.27.20",
