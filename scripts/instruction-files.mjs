@@ -1,15 +1,27 @@
 #!/usr/bin/env node
 /**
- * AGENTS.md を正本として `CLAUDE.md` / `GEMINI.md` を生成・検証する（T259）。
+ * AGENTS.md を正本として、各ツールの入口を生成・検証する（T259 / 2026-09-20）。
  *
  * この 3 ファイルは 2026-09-19 まで**どのガードも見ていなかった**。AGENTS.md と
  * GEMINI.md がバイト単位で同一だったのは仕組みではなく偶然で、片方だけ直せば
  * 片方のツールだけが古い指示を読む、という壊れ方をする。
  *
+ * **2026-09-20 に GEMINI.md を廃止した。** 写しを持つ限り「腐りうる」状態は消えない。
+ * Gemini CLI は既定の探索先こそ `GEMINI.md` だが、**プロジェクト直下の
+ * `.gemini/settings.json`** を読み、`context.fileName` で読む先を変えられる
+ * （https://geminicli.com/docs/reference/configuration）。**Claude Code とはここが非対称** ──
+ * あちらの切り替え設定は user / flag / policy settings からしか読まれず repo に置けないので、
+ * `CLAUDE.md` は import 1 行として残す。Gemini は repo に置けるので、写しは要らない。
+ *
+ * **この経路はこの環境では実行して確かめられない**（gemini CLI 未インストール）。
+ * `CLAUDE.md` の import は `claude -p` で実測したが、こちらは公式ドキュメントが根拠。
+ * 戻すのは簡単で、`GEMINI.md` を AGENTS.md の写しとして置き直せばよい。
+ *
  * 配置:
  *   - `AGENTS.md`  … 正本。Codex / Cursor などはこれを直接読む。
  *   - `CLAUDE.md`  … `@AGENTS.md` の 1 行（Claude Code の import 構文）。
- *   - `GEMINI.md`  … AGENTS.md の写し。
+ *   - `.gemini/settings.json` … Gemini CLI の `context.fileName` を AGENTS.md に向ける。
+ *                    **GEMINI.md は置かない**（写しは必ず腐る）。
  *
  * なぜ CLAUDE.md を消さず、散文の案内にもしないか（実測・2026-09-19、cc 2.1.278）:
  *   - `claude -p` で確かめたところ、`@AGENTS.md` と書いた回は AGENTS.md の中身が
@@ -106,8 +118,68 @@ function checkRulesIndex(source) {
 
 if (source !== null) problems.push(...checkRulesIndex(source));
 
-const expected = source === null ? null : { 'CLAUDE.md': FORWARDER, 'GEMINI.md': source };
+/** Gemini CLI の入口。プロジェクト直下の設定で読む先を AGENTS.md に向ける。 */
+const GEMINI_SETTINGS = '.gemini/settings.json';
+const GEMINI_SETTINGS_BODY = JSON.stringify({ context: { fileName: [SOURCE] } }, null, 2) + '\n';
+
+/**
+ * `GEMINI.md` が戻ってきていないかを見る。
+ *
+ * 戻ってくること自体は起こりうる（他のツールが作る・過去の手順書をなぞる）。
+ * **問題は、戻ってきた瞬間から Gemini CLI がそちらを読み、AGENTS.md の更新が届かなくなること。**
+ * 2026-09-19 まで写しがずれても誰も気づかなかったのと同じ形なので、存在自体を赤にする。
+ */
+function checkGeminiEntrypoint(isCheck) {
+  const found = [];
+  const stale = read('GEMINI.md');
+  if (stale !== null) {
+    if (!isCheck && stale === source) {
+      fs.rmSync(path.join(ROOT, 'GEMINI.md'));
+      console.log('削除した: GEMINI.md（AGENTS.md の写しだった）');
+    } else {
+      found.push(
+        stale === source
+          ? 'GEMINI.md が戻っている（AGENTS.md の写し）。`npm run instructions:sync` で消すこと。'
+          : 'GEMINI.md が戻っていて、しかも AGENTS.md と中身が違う。書いた内容を AGENTS.md へ移してから消すこと。',
+      );
+    }
+  }
+
+  const settingsPath = path.join(ROOT, GEMINI_SETTINGS);
+  const raw = fs.existsSync(settingsPath) ? fs.readFileSync(settingsPath, 'utf8') : null;
+  let parsed = null;
+  if (raw !== null) {
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      found.push(`${GEMINI_SETTINGS} が JSON として壊れている。`);
+      return found;
+    }
+  }
+  const names = [parsed?.context?.fileName ?? []].flat();
+  if (!names.includes(SOURCE)) {
+    if (!isCheck) {
+      fs.mkdirSync(path.dirname(settingsPath), { recursive: true });
+      fs.writeFileSync(settingsPath, GEMINI_SETTINGS_BODY, 'utf8');
+      console.log(`書き換えた: ${GEMINI_SETTINGS}`);
+    } else {
+      found.push(
+        raw === null
+          ? `${GEMINI_SETTINGS} が無い。これが無いと Gemini CLI は既定の GEMINI.md を探し、**指示が 1 行も届かない**。\`npm run instructions:sync\` で生成すること。`
+          : `${GEMINI_SETTINGS} の context.fileName が ${SOURCE} を含んでいない（いま: ${JSON.stringify(names)}）。`,
+      );
+    }
+  }
+  if (names.includes('GEMINI.md')) {
+    found.push(`${GEMINI_SETTINGS} が GEMINI.md を読む先に残している。写しを復活させることになるので外すこと。`);
+  }
+  return found;
+}
+
+const expected = source === null ? null : { 'CLAUDE.md': FORWARDER };
 const isCheck = process.argv.includes('--check');
+
+if (source !== null) problems.push(...checkGeminiEntrypoint(isCheck));
 
 if (expected !== null) {
   for (const [name, want] of Object.entries(expected)) {
@@ -121,17 +193,19 @@ if (expected !== null) {
     problems.push(
       got === null
         ? `${name} が無い。\`npm run instructions:sync\` で生成すること。`
-        : name === 'GEMINI.md'
-          ? `GEMINI.md が ${SOURCE} の写しになっていない（${Buffer.byteLength(got)} / ${Buffer.byteLength(want)} バイト）。\`npm run instructions:sync\` で揃えること。`
-          : `CLAUDE.md が \`${IMPORT_LINE}\` だけの転送になっていない。中身は ${SOURCE} に書き、\`npm run instructions:sync\` で戻すこと。`,
+        : `CLAUDE.md が \`${IMPORT_LINE}\` だけの転送になっていない。中身は ${SOURCE} に書き、\`npm run instructions:sync\` で戻すこと。`,
     );
   }
 }
 
 if (problems.length > 0) {
-  console.error('指示ファイル（AGENTS.md / CLAUDE.md / GEMINI.md）がずれている:');
+  console.error('指示の入口（AGENTS.md / CLAUDE.md / .gemini/settings.json）がずれている:');
   for (const p of problems) console.error(`  - ${p}`);
   process.exit(1);
 }
 
-console.log(isCheck ? 'OK: AGENTS.md / CLAUDE.md / GEMINI.md は揃っている' : 'OK: AGENTS.md から 2 ファイルを揃えた');
+console.log(
+  isCheck
+    ? 'OK: AGENTS.md / CLAUDE.md / .gemini/settings.json は揃っている（GEMINI.md は置かない）'
+    : 'OK: AGENTS.md から各ツールの入口を揃えた',
+);

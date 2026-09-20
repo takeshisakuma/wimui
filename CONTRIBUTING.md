@@ -4,7 +4,7 @@
 
 - **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー）。作業ごとの詳細規則は `docs/rules/`（トークン・CSS・i18n・MDX・Storybook・アイコン・実装）
 - **`SKILLS.md`** — 構築に必要な実践知識
-- **`AGENTS.md`** — よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成手順（AI エージェント向け指示の正本。`CLAUDE.md` は `@AGENTS.md` の転送、`GEMINI.md` は写し）
+- **`AGENTS.md`** — よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成手順（AI エージェント向け指示の正本。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む）
 - **`.github/pull_request_template.md`** — PR 時の品質ゲートチェックリスト
 
 ## 動作要件
