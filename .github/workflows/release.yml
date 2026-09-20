@@ -81,6 +81,12 @@ jobs:
           # 公開される dist/llms.txt はビルド時生成なので常に正しいが、
           # GitHub Pages が配信するのはコミット済みの public/llms.txt なので、
           # ここで再生成しておかないと Pages 側の版数が古いまま残る。
+          #
+          # version:packages には `npm install --package-lock-only` も入っている。
+          # `changeset version` は package.json だけを上げて lockfile を触らないため、
+          # これが無いと Version PR のあと **package.json と lock の version がずれた**
+          # 状態で main に残り、次に誰かが npm install を走らせた PR で黙って揃う
+          # （＝いつ揃うかが PR 任せ）。T245・2026-09-20。
           version-script: npm run version:packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
