@@ -70,7 +70,9 @@ export const AlignmentRight: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ paddingLeft: "200px" }}>
-        <Dropdown {...args}>
+        {/* 見せ場は右端そろえなので、開いた状態で置く。閉じたままだと VRT も
+            ドキュメントの読み手も、この配置を一度も見ないことになる（T264）。 */}
+        <Dropdown {...args} defaultOpen>
           <DropdownTrigger asChild>
             <Button >{t("story.dropdown_right_aligned")}</Button>
           </DropdownTrigger>

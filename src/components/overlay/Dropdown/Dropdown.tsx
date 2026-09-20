@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactNode, useId, forwardRef } from "react";
+import React, { useState, useRef, useEffect, useCallback, ReactNode, useId, forwardRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useFloating, autoUpdate, offset, flip, shift, FloatingPortal } from "@floating-ui/react";
@@ -49,11 +49,53 @@ export interface DropdownProps extends React.ComponentPropsWithoutRef<"div"> {
    * If true, the dropdown will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
+  /**
+   * Whether the menu starts open. Use it for a screenshot, a test, or a menu that should
+   * already be showing. Ignored once `open` is provided.
+   */
+  defaultOpen?: boolean;
+  /**
+   * Controls the open state from the outside. Pass it together with `onOpenChange`.
+   */
+  open?: boolean;
+  /**
+   * Called with the next open state, both when the trigger is used and when the menu is
+   * dismissed by an outside click or Escape.
+   */
+  onOpenChange?: (open: boolean) => void;
 }
 
 const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ children, className, asChild = false, ...props }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
+  (
+    {
+      children,
+      className,
+      asChild = false,
+      defaultOpen = false,
+      open: controlledOpen,
+      onOpenChange,
+      ...props
+    },
+    ref,
+  ) => {
+    // 開閉の契約は `Popover` / `HoverCard`（`useFloatingElement`）に合わせる ──
+    // `open` が来ていれば外が持ち主、来ていなければ自分で持つ。T264 まで内部状態しか
+    // 無かったので、**メニューが開いた姿を VRT が一度も撮れていなかった**（撮れないものは
+    // 壊れても差分にならない）し、使う側も行の操作から開くことができなかった。
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
+    const isOpen = controlledOpen ?? uncontrolledOpen;
+    // `close` は外側クリックと Escape の effect から呼ぶので、**識別子が毎描画で変わると
+    // リスナーを張り直し続ける**。開閉が内部 state だけだったころは `setIsOpen` が
+    // useState の setter（安定）だったため素の関数で済んでいた。
+    const setIsOpen = useCallback(
+      (nextOpen: boolean) => {
+        if (controlledOpen === undefined) {
+          setUncontrolledOpen(nextOpen);
+        }
+        onOpenChange?.(nextOpen);
+      },
+      [controlledOpen, onOpenChange],
+    );
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
     const itemCountRef = useRef(0);
@@ -96,10 +138,10 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         setFocusedIndex(-1);
       }
     };
-    const close = () => {
+    const close = useCallback(() => {
       setIsOpen(false);
       setFocusedIndex(-1);
-    };
+    }, [setIsOpen]);
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -131,7 +173,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         document.removeEventListener("mousedown", handleClickOutside);
         document.removeEventListener("keydown", handleKeyDownGlobal);
       };
-    }, [isOpen, refs.floating]);
+    }, [isOpen, refs.floating, close]);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (!isOpen) return;

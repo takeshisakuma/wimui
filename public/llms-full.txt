@@ -2667,6 +2667,11 @@ Cannot be combined with `onDelete` — the delete control is a second element, a
 - **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー)
     - `children: ReactNode` (required) — Dropdown parts (Dropdown.Trigger and Dropdown.Menu).
     - `asChild: boolean` = false — If true, the dropdown will be rendered as its child, merging its props onto that child.
+    - `defaultOpen: boolean` = false — Whether the menu starts open. Use it for a screenshot, a test, or a menu that should
+already be showing. Ignored once `open` is provided.
+    - `open: boolean` — Controls the open state from the outside. Pass it together with `onOpenChange`.
+    - `onOpenChange: (open: boolean) => void` — Called with the next open state, both when the trigger is used and when the menu is
+dismissed by an outside click or Escape.
 - **FocusTrap** — Focus management
     - `children: React.ReactNode` (required) — Content to trap focus within.
     - `active: boolean` = true — Whether the trap is active.
