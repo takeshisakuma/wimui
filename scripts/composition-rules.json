@@ -1,11 +1,11 @@
 {
-  "$comment": "合成ルールの単一ソース（T39）。DESIGN.md の必須ルール本文・llms.txt の Must rules・judge-slop.mjs のルーブリックは、いずれもここから導く。3 箇所を手で同期していた結果、既にドリフトが起きていた: DESIGN.md の『エレベーションのスタンスも 1 画面 1 つ』と『intent は省略せず明示する』は llms.txt に 1 度も届いていなかった（2026-08-01 実測）。ルールを増やすときはこのファイルだけを編集し、`npm run llms:build`（llms.txt）を再生成する。judge-slop はこのファイルを直接読む。`npm run check:composition-rules` が DESIGN.md との対応を検証する。",
+  "$comment": "合成ルールの単一ソース（T39）。docs/design/composition.md の必須ルール本文・llms.txt の Must rules・judge-slop.mjs のルーブリックは、いずれもここから導く。3 箇所を手で同期していた結果、既にドリフトが起きていた: DESIGN.md の『エレベーションのスタンスも 1 画面 1 つ』と『intent は省略せず明示する』は llms.txt に 1 度も届いていなかった（2026-08-01 実測）。ルールを増やすときはこのファイルだけを編集し、`npm run llms:build`（llms.txt）を再生成する。judge-slop はこのファイルを直接読む。`npm run check:composition-rules` が DESIGN.md との対応を検証する。",
   "$fields": {
     "id": "機械可読な識別子。judge-slop の判定キーになる",
-    "ja": "DESIGN.md 用の見出し（規範の短い言い切り）",
+    "ja": "規範（docs/design/composition.md）用の見出し（短い言い切り）",
     "en": "llms.txt 用。外部 AI がそのまま従える粒度の英語",
     "judge": "judge-slop のルーブリック。LLM が pass/warn/fail を付けられる問いの形。省略すると採点対象にならない",
-    "designAnchor": "DESIGN.md 側で対応する本文を探すための語。check-composition-rules.js が使う"
+    "designAnchor": "規範（DESIGN.md + docs/design/**）で対応する本文を探すための語。check-composition-rules.js が使う"
   },
   "rules": [
     {

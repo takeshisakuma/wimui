@@ -111,7 +111,7 @@ for (const [key, owners] of seen) {
 const notPlanned = JSON.parse(fs.readFileSync(NOT_PLANNED_SRC, 'utf8')).notPlanned;
 // 人が読む規範は **`DESIGN.md` + `docs/design/**`**（T252・2026-09-19）。
 // いまの notPlanned 3 件はモーション節＝DESIGN.md 側に在るので広げなくても通るが、
-// **次に別の節を切り出したときに静かに壊れる**（「DESIGN.md に出てきません」と言って
+// **次に別の節を切り出したときに静かに壊れる**（「どこにも出てきません」と言って
 // 落ちる）。`check-composition-rules.js` は切り出した当日に実際にそれで落ちた。
 const designMd = ['DESIGN.md', ...globSync('docs/design/*.md', { posix: true })]
   .map((f) => fs.readFileSync(f, 'utf8'))
@@ -148,12 +148,12 @@ if (!Array.isArray(notPlanned)) {
         );
       }
     }
-    // DESIGN.md に載っていない「採らない」は、設計判断としては存在しないのと同じ。
+    // 設計文書に載っていない「採らない」は、設計判断としては存在しないのと同じ。
     // llms.txt 側は生成なので放っておいても追随するが、人間が読む側は追随しない
     // （T39 で「3 箇所に手で複製したらドリフトしていた」を実測済み）。
     if (typeof entry.name === 'string' && !designMd.includes(entry.name)) {
       failures.push(
-        `not-planned "${entry.name}" が DESIGN.md に出てきません`
+        `not-planned "${entry.name}" が DESIGN.md / docs/design/**.md のどこにも出てきません`
           + `（「採らない演出」節に理由を書いてください。llms.txt だけに書くと人間の側が追随しません）`,
       );
     }

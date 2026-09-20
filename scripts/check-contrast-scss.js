@@ -94,7 +94,7 @@ function resolveValue(vars, raw, depth = 0) {
     return fallback ? resolveValue(vars, fallback, depth + 1) : null;
   }
 
-  // rgba(var(--x-rgb), a) — 不透明度の扱い（DESIGN.md の RGB トークン）
+  // rgba(var(--x-rgb), a) — 不透明度の扱い（docs/design/color.md の RGB トークン）
   const rgbaVar = value.match(/^rgba?\(\s*var\(\s*(--[a-z0-9-]+)\s*\)\s*,\s*([0-9.]+)\s*\)$/i);
   if (rgbaVar) {
     const triple = vars[rgbaVar[1]];

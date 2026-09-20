@@ -204,9 +204,9 @@ const checks = [
   },
   {
     category: "docs",
-    // 合成ルールは DESIGN.md / llms.txt / judge-slop の 3 箇所で使われる。
+    // 合成ルールは docs/design/composition.md / llms.txt / judge-slop の 3 箇所で使われる。
     // 手で同期していた頃は既にドリフトしていた（T39）。
-    name: "Composition rules single source (DESIGN.md / llms.txt / judge-slop)",
+    name: "Composition rules single source (docs/design/composition.md / llms.txt / judge-slop)",
     command: "node scripts/check-composition-rules.js",
   },
   {
