@@ -113,6 +113,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 | チェック項目 | コマンド | 目的 |
 |---|---|---|
 | 公開 API 表面 | `npm run check:api` | `exports` + バレルシンボル（`api-snapshot.json` v2）。意図的変更時のみ `check:api:update` |
+| prop シグネチャ | `npm run check:prop-api` | シンボル名では見えない prop の破壊（消えた・必須になった・型が狭まった）。**prop を足したときも落ちる**ので `check:prop-api:update` で `prop-api-snapshot.json` を更新してコミットする（2026-09-21 に強化。助言のままだと 18 prop 遅れて `Comment` が丸ごと未収録になり、**未収録の部品は prop を消しても永久に緑**だった）。鳴ることの実証は `npm run prove:prop-api` |
 | ポリモーフィック監査 | `npm run check:aschild` | `asChild` 実装と `docs/rules/implementation.md` の必須リスト同期 |
 | トークン漏れ（PX） | `npm run audit:hardcoded` | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
 | i18n 整合性 | `npm run i18n:check` | en / ja / pt のキー一致 |

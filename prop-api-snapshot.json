@@ -666,7 +666,11 @@
     },
     "AudioCustomControls.repeatMode": {
       "required": true,
-      "type": "0 | 1 | 2"
+      "values": [
+        "0",
+        "1",
+        "2"
+      ]
     },
     "AudioCustomControls.setCurrentPlaybackRate": {
       "required": true,
@@ -962,6 +966,12 @@
     },
     "BentoGridItem.icon": {
       "type": "React.ReactNode"
+    },
+    "BentoGridItem.rowSpan": {
+      "type": "1 | 2"
+    },
+    "BentoGridItem.span": {
+      "type": "1 | 2 | 3"
     },
     "BentoGridItem.title": {
       "type": "React.ReactNode"
@@ -1483,7 +1493,10 @@
       "type": "Date"
     },
     "Calendar.weekStartsOn": {
-      "type": "0 | 1"
+      "values": [
+        "0",
+        "1"
+      ]
     },
     "CalendarHeatmap.asChild": {
       "required": false,
@@ -1639,6 +1652,13 @@
     "Carousel.className": {
       "required": false,
       "type": "string"
+    },
+    "Carousel.controlsPlacement": {
+      "required": false,
+      "values": [
+        "outside",
+        "overlay"
+      ]
     },
     "Carousel.interval": {
       "required": false,
@@ -2615,6 +2635,84 @@
     "CommandPaletteTrigger.className": {
       "type": "string"
     },
+    "Comment.actions": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Comment.author": {
+      "required": true,
+      "type": "{ /** Display name. Also names the comment for assistive tech. */ name: string; /** Avatar image URL. */ avatarSrc?: string; /** Initials shown when there is no avatar image. */ initials?: string; /** Optional marker next to the name — \"Author\", \"Moderator\", a `Tag`, etc. */ badge?: React.ReactNode; }",
+      "shape": {
+        "avatarSrc": {
+          "required": false,
+          "type": "string"
+        },
+        "badge": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "initials": {
+          "required": false,
+          "type": "string"
+        },
+        "name": {
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "Comment.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Comment.className": {
+      "required": false,
+      "type": "string"
+    },
+    "Comment.composer": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Comment.edited": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Comment.editingId": {
+      "required": false,
+      "type": "string"
+    },
+    "Comment.editor": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Comment.id": {
+      "required": true,
+      "type": "string"
+    },
+    "Comment.onDelete": {
+      "required": false,
+      "type": "(id: string) => void"
+    },
+    "Comment.onEdit": {
+      "required": false,
+      "type": "(id: string) => void"
+    },
+    "Comment.onReply": {
+      "required": false,
+      "type": "(id: string) => void"
+    },
+    "Comment.replies": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Comment.replyingTo": {
+      "required": false,
+      "type": "string"
+    },
+    "Comment.timestamp": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
     "Container.asChild": {
       "type": "boolean"
     },
@@ -3089,7 +3187,13 @@
     },
     "Dashboard.titleLevel": {
       "required": true,
-      "type": "2 | 3 | 4 | 5 | 6"
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
     },
     "Dashboard.widgets": {
       "required": false,
@@ -3663,6 +3767,18 @@
       "required": true,
       "type": "ReactNode"
     },
+    "Dropdown.defaultOpen": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Dropdown.onOpenChange": {
+      "required": false,
+      "type": "(open: boolean) => void"
+    },
+    "Dropdown.open": {
+      "required": false,
+      "type": "boolean"
+    },
     "Dropzone.accept": {
       "required": false,
       "type": "string"
@@ -4116,7 +4232,13 @@
     },
     "Footer.Section.titleLevel": {
       "required": false,
-      "type": "2 | 3 | 4 | 5 | 6"
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
     },
     "Footer.background": {
       "required": false,
@@ -5884,7 +6006,13 @@
     },
     "KeyboardShortcuts.titleLevel": {
       "required": false,
-      "type": "2 | 3 | 4 | 5 | 6"
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
     },
     "Label.asChild": {
       "required": false,
@@ -7198,7 +7326,13 @@
     },
     "PasswordStrength.score": {
       "required": false,
-      "type": "0 | 1 | 2 | 3 | 4"
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
     },
     "PasswordStrength.showLabel": {
       "required": false,
@@ -7807,7 +7941,10 @@
     },
     "RangeCalendar.weekStartsOn": {
       "required": false,
-      "type": "0 | 1"
+      "values": [
+        "0",
+        "1"
+      ]
     },
     "RangeSlider.allowCross": {
       "required": false,
