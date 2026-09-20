@@ -17,20 +17,24 @@ type Story = StoryObj<typeof PullToRefresh>;
 
 const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) => {
   const { t } = useTranslation(ALL_NAMESPACES);
+  // 初期の 3 行は**配達側が持っている履歴**なので、メタは行ごとの実文にする。
+  // 以前は `new Date(item.id)` を出しており、id が 1 / 2 / 3（= 1970-01-01）なので
+  // 3 行とも「0:00:00」が並んでいた。引っ張って更新した行だけが「今」を持つ。
   const [items, setItems] = useState([
-    { id: 1, text: t("story.pull_item_slip"), count: 0 },
-    { id: 2, text: t("story.pull_item_locker"), count: 0 },
-    { id: 3, text: t("story.pull_item_pickup"), count: 0 },
+    { id: 1, text: t("story.pull_item_slip"), meta: t("story.pull_meta_slip") },
+    { id: 2, text: t("story.pull_item_locker"), meta: t("story.pull_meta_locker") },
+    { id: 3, text: t("story.pull_item_pickup"), meta: t("story.pull_meta_pickup") },
   ]);
 
   const handleRefresh = async () => {
     await new Promise((resolve) => setTimeout(resolve, 800));
     setItems((prev) => {
-      const nextCount = (prev[0]?.count ?? 0) + 1;
       const newItem = {
         id: Date.now(),
         text: t("story.pull_refreshed"),
-        count: nextCount,
+        meta: t("story.pull_meta_now", {
+          time: new Date().toLocaleTimeString(),
+        }),
       };
       return [newItem, ...prev].slice(0, 10);
     });
@@ -46,10 +50,7 @@ const PullToRefreshWrapper = (args: { onRefresh: () => Promise<void> | void }) =
                 <Stack gap="xs">
                   <Text weight="bold">{item.text}</Text>
                   <Text size="sm" color="text-tertiary">
-                    {t("story.pull_meta", {
-                      times: item.count,
-                      time: new Date(item.id).toLocaleTimeString(),
-                    })}
+                    {item.meta}
                   </Text>
                 </Stack>
               </ListItem>
