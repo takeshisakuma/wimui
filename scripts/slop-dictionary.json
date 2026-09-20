@@ -75,10 +75,12 @@
     "Step 3"
   ],
   "numberedPlaceholderAllow": [
+    "Camera",
+    "Digit",
     "Heading",
+    "Source",
     "Tier",
-    "Week",
     "Track",
-    "Camera"
+    "Week"
   ]
 }

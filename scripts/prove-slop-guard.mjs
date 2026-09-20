@@ -26,6 +26,45 @@ const run = () => {
 };
 
 const CASES = [
+  // --- T261（2026-09-20）: 番号がリテラルの外にある 2 経路。ラチェットなので
+  //     「1 件足したら baseline を超えて鳴る」ことと、**正当な形では鳴らない**ことを見る。
+  {
+    name: 'T1. JSX で番号を足す形が鳴る（{t(...)} 1）',
+    file: 'stories/data-display/List/List.stories.tsx',
+    find: '          {t("story.list_item_small")}',
+    put: '          {t("story.list_item_small")} 9\n          {t("story.list_item_small")}',
+    expect: true,
+    match: /JSX で番号を足している箇所が増えています/,
+  },
+  {
+    name: 'T2. t() を通さない素の数字は鳴らない（{count} 2 のような算用）',
+    file: 'stories/data-display/List/List.stories.tsx',
+    find: '          {t("story.list_item_small")}',
+    put: '          {items.length} 9\n          {t("story.list_item_small")}',
+    expect: false,
+  },
+  {
+    name: 'T3. i18n 補間で番号を足す形が鳴る（Item {{n}}）',
+    file: 'public/locales/en/docs_stories_utility.json',
+    find: '    "infscroll_item":',
+    put: '    "prove_temp_item": "Widget {{n}}",\n    "story.infscroll_item":',
+    expect: true,
+    match: /i18n 補間で番号を足している en キーが増えています/,
+  },
+  {
+    name: 'T4. 実体を差し込む補間は鳴らない（Delete {{name}}）',
+    file: 'public/locales/en/docs_stories_utility.json',
+    find: '    "infscroll_item":',
+    put: '    "prove_temp_del": "Delete {{name}}",\n    "story.infscroll_item":',
+    expect: false,
+  },
+  {
+    name: 'T5. 番号が意味を持つ語は allow で逃げる（Week {{n}}）',
+    file: 'public/locales/en/docs_stories_utility.json',
+    find: '    "infscroll_item":',
+    put: '    "prove_temp_week": "Week {{n}}",\n    "story.infscroll_item":',
+    expect: false,
+  },
   {
     name: 'A. 斜めグラデを部品 SCSS に差し込む（to top left）',
     file: 'src/components/layout/BentoGrid/bento-grid.module.scss',
