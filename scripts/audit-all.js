@@ -169,6 +169,17 @@ const checks = [
   },
   {
     category: "docs",
+    // Agent Skills は 1 ベンダーの設定ではなく開いた標準（https://agentskills.io/specification）。
+    // 仕様が決めるのは **形式**（SKILL.md + frontmatter）だけで、**置き場は決めていない**ので、
+    // .agents/skills を実体にして .claude/skills へ繋ぐ二重化は仕様の側では解けない
+    // （そちらは check:skills-mirror が見る）。ここは形式の側 ── name が親ディレクトリ名と
+    // 食い違う、description が無い、といった **他のエージェントでだけ読めなくなる**ずれを止める。
+    // 実証は `npm run prove:skills-spec`（10 通り）。
+    name: "Agent Skills spec (SKILL.md frontmatter / name matches directory)",
+    command: "node scripts/check-skills.mjs",
+  },
+  {
+    category: "docs",
     // README は npm のパッケージページにそのまま出る。peer 範囲や import 経路が
     // package.json とずれていると、利用者は install 前に間違った情報を読む（T37）。
     name: "README claims match package.json (peers / export paths)",

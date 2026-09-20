@@ -2,7 +2,7 @@
 
 このファイルは、このリポジトリで作業する AI エージェント（Claude Code / Codex / Cursor / Gemini CLI ほか）への指示の**正本**です。`CLAUDE.md` は `@AGENTS.md` の 1 行（Claude Code の import 構文）で、`GEMINI.md` はこのファイルの写しです。3 ファイルの対応は `npm run check:instructions` が見張ります。
 
-AI エージェント向けの skill は `.agents/skills/` が実体です（Codex / Cursor などはここを直接読みます）。Claude Code は `.claude/skills/` しか見ないため、`npm install` 時に `prepare` が自動で繋ぎます（`npm run skills:link` / 検証は `npm run check:skills-mirror`）。
+AI エージェント向けの skill は `.agents/skills/` が実体です（Codex / Cursor などはここを直接読みます）。Claude Code は `.claude/skills/` しか見ないため、`npm install` 時に `prepare` が自動で繋ぎます（`npm run skills:link` / 検証は `npm run check:skills-mirror`）。skill の**形式**は 1 ベンダーの設定ではなく開いた標準（Agent Skills）なので、`npm run check:skills` が `SKILL.md` の frontmatter と `name` がディレクトリ名と一致するかを見ます（実証は `npm run prove:skills-spec`）。
 
 作業ごとの**詳細規則**は `docs/rules/` にあります（このファイルは毎セッション丸ごと読み込まれるので、**必要なときだけ読む規則はここに置きません**）。
 

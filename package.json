@@ -433,7 +433,9 @@
     "check:ci-paths": "node scripts/check-ci-paths.js",
     "check:release-workflow": "node scripts/check-release-workflow.js",
     "check:peer-majors": "node scripts/check-peer-majors.js",
-    "check:class-references": "node scripts/check-class-references.js"
+    "check:class-references": "node scripts/check-class-references.js",
+    "check:skills": "node scripts/check-skills.mjs",
+    "prove:skills-spec": "node scripts/prove-skills-spec.mjs"
   },
   "keywords": [
     "react",
@@ -731,6 +733,9 @@
     ],
     "{README.md,package.json,.storybook/manager-head.html}": [
       "node scripts/check-readme-claims.js"
+    ],
+    ".agents/skills/**/SKILL.md": [
+      "node scripts/check-skills.mjs"
     ]
   },
   "dependencies": {
