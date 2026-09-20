@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { globSync } from 'glob';
 
-// RULES.md「実装済み」リスト — ここに載っているコンポーネントは asChild 必須。
-// リストを更新した場合は RULES.md 側も同期させること。
+// docs/rules/implementation.md「実装済み」リスト — ここに載っているコンポーネントは asChild 必須。
+// リストを更新した場合は docs/rules/implementation.md 側も同期させること。
 const requiredComponents = [
   // Typography
   'Title', 'Text', 'Span', 'Legend', 'Label', 'Highlight', 'Kbd', 'Code', 'Blockquote',
@@ -75,7 +75,7 @@ for (const e of entries) {
   }
 }
 
-// --list: asChild 対応コンポーネントをカテゴリ別に出力する（RULES.md 同期用）。
+// --list: asChild 対応コンポーネントをカテゴリ別に出力する（docs/rules/implementation.md 同期用）。
 // メインコンポーネントファイル（ディレクトリ名 == ファイル名）のみ表示する。
 if (process.argv.includes('--list')) {
   const byCategory = new Map();
@@ -94,13 +94,13 @@ if (process.argv.includes('--list')) {
   process.exit(0);
 }
 
-// 3rd pass: RULES.md の必須リストに漏れがないか
+// 3rd pass: docs/rules/implementation.md の必須リストに漏れがないか
 const allNames = new Set(entries.map((e) => e.name));
 for (const name of requiredComponents) {
   if (!allNames.has(name)) {
-    failures.push(`[FAIL] Required component "${name}" (RULES.md) was not found under src/components/.`);
+    failures.push(`[FAIL] Required component "${name}" (docs/rules/implementation.md) was not found under src/components/.`);
   } else if (!capableNames.has(name)) {
-    failures.push(`[FAIL] ${name} is listed as asChild-implemented in RULES.md but has no working implementation.`);
+    failures.push(`[FAIL] ${name} is listed as asChild-implemented in docs/rules/implementation.md but has no working implementation.`);
   }
 }
 
@@ -113,7 +113,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('\n✓ All asChild implementations are correctly wired and RULES.md requirements are met.');
+console.log('\n✓ All asChild implementations are correctly wired and docs/rules/implementation.md requirements are met.');
 console.log(
   '  (Static wiring only — render smoke is `scripts/check-aschild-render.test.tsx`, run via `npm run check:aschild`.)',
 );

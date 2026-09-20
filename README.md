@@ -615,7 +615,7 @@ git commit -m "commit message" --no-verify
 ## Coding rules
 
 - Styling: new components should use CSS Modules (`*.module.scss`)
-- CSS class names: legacy global classes use the `wim-` prefix (see `RULES.md` for details)
+- CSS class names: legacy global classes use the `wim-` prefix (see `docs/rules/tokens.md` for details)
 
 ## Automatic documentation extraction (Docgen)
 

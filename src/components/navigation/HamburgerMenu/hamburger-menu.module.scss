@@ -180,7 +180,7 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony �
 
         &::before {
           top: 0;
-          opacity: 0; // show/hide — permitted use of opacity per RULES.md
+          opacity: 0; // show/hide — permitted use of opacity per docs/rules/css.md
           transition:
             top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
             opacity var(--wim-duration-extra-fast) var(--wim-duration-fast) var(--wim-easing-entrance),

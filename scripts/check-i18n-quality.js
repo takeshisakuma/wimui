@@ -1,9 +1,9 @@
 // 翻訳品質チェック
 //
 // 1. duplicate    — 同一オブジェクト内のキー重複（JSON.parse では後勝ちで静かに握り潰される）→ エラー
-// 2. pt-pt        — pt ロケールへの欧州ポルトガル語（PT-PT）語彙の混入（RULES.md の禁止表）→ エラー
+// 2. pt-pt        — pt ロケールへの欧州ポルトガル語（PT-PT）語彙の混入（docs/rules/i18n.md の禁止表）→ エラー
 // 3. identical    — ja / pt の値が en と完全一致する複数語の文（翻訳漏れの疑い）→ 警告
-// 4. placeholder  — placeholder 値が指示形（RULES.md: 実際の入力例にすべき）→ 警告
+// 4. placeholder  — placeholder 値が指示形（docs/rules/implementation.md: 実際の入力例にすべき）→ 警告
 //
 // 使い方: node scripts/check-i18n-quality.js
 // 終了コード: duplicate / pt-pt が1件でもあれば 1、identical / placeholder のみなら 0（警告表示）
@@ -82,7 +82,7 @@ const IDENTICAL_ALLOWLIST = new Set([
   'doc.token_density_desc',
 ]);
 
-// RULES.md「PT-PT（禁止）」の表 + 明確な PT-PT 語彙
+// docs/rules/i18n.md「PT-PT（禁止）」の表 + 明確な PT-PT 語彙
 const PT_PT_FORBIDDEN = [
   /\butilizador(es)?\b/i,
   /\bficheiros?\b/i,
@@ -176,7 +176,7 @@ for (const lang of langs) {
         for (const re of PT_PT_FORBIDDEN) {
           const m = value.match(re);
           if (m) {
-            console.log(`[FAIL] ${p} > ${key}: PT-PT 語彙 "${m[0]}"（RULES.md の対訳表を参照）`);
+            console.log(`[FAIL] ${p} > ${key}: PT-PT 語彙 "${m[0]}"（docs/rules/i18n.md の対訳表を参照）`);
             ptPtErrors++;
           }
         }
@@ -205,7 +205,7 @@ for (const lang of ['ja', 'pt']) {
 }
 
 // 4. placeholder の指示形チェック
-// RULES.md: 「placeholder は説明・指示・制限事項ではなく、実際にユーザーが入力する
+// docs/rules/implementation.md: 「placeholder は説明・指示・制限事項ではなく、実際にユーザーが入力する
 // ような内容にしてください」— 命令形で始まる値を警告する
 const INSTRUCTION_PATTERNS = {
   en: /^(enter|type|select|search|choose|add|write|click|input|pick|ask|use)\b/i,
@@ -241,7 +241,7 @@ for (const lang of langs) {
 // 5. stories の placeholder 配線チェック
 // - placeholder={t("...")} に placeholder/sample 系でないキー（label 等）を流用していないか
 // - ハードコードの placeholder="..." が指示形になっていないか
-// どちらも「説明・指示ではなく実際の入力例にする」ルール（RULES.md）の担保
+// どちらも「説明・指示ではなく実際の入力例にする」ルール（docs/rules/implementation.md）の担保
 // キー名は placeholder/sample 系でないが、値が入力例として適正なレビュー済みキー
 const WIRING_ALLOWLIST = new Set([
   'story.multiselect_fruits', // "Grapes"（果物の例示）

@@ -379,7 +379,7 @@ const checks = [
   },
   {
     category: "lib",
-    // 線幅が揃っていても塗りが混ざれば重さは揃わない。契約は RULES.md
+    // 線幅が揃っていても塗りが混ざれば重さは揃わない。契約は docs/rules/icons.md
     // 「SVG の描き方」に数値で書いてあり、既知の逸脱はファイル名で列挙している（T77）。
     name: "Icon family contract (line-art, 24×24, stroke 2)",
     command: "node scripts/check-icons.js",

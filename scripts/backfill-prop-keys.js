@@ -4,7 +4,7 @@
  * docgen JSON（src/data/docgen_*.json）から JSDoc 付きの props を抽出し、
  * public/locales/<lang>/docs_props_<category>.json に翻訳キーを生成する。
  * <Docgen section="props" /> はこのキーを優先表示し、無ければ JSDoc に
- * フォールバックする（stories/Docgen.tsx / RULES.md 参照）。
+ * フォールバックする（stories/Docgen.tsx / docs/rules/i18n.md 参照）。
  *
  * JSDoc の言語を自動判定して振り分ける:
  *   - 英語 JSDoc → en ファイルへ（ja/pt は `npm run i18n:sync` で自動翻訳）

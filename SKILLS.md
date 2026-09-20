@@ -1,6 +1,6 @@
 # WIM UI 構築スキルガイド
 
-コーディングルールは `RULES.md` を参照してください。このファイルは「何を・どの順番で・どこに作るか」の実践知識をまとめています。
+コーディングルールは `AGENTS.md`（正本）と `docs/rules/` を参照してください。このファイルは「何を・どの順番で・どこに作るか」の実践知識をまとめています。
 
 ---
 
@@ -77,8 +77,8 @@ public/
     - `npm run check:imports` — peer コンポーネントの import 境界
     - `npm run audit-mdx` — MDX 必須セクション
     - `npm run lint` / `npm run stylelint`
-    - チェックリスト本体: `.github/pull_request_template.md` と `RULES.md`「品質ゲート・チェックリスト」
-8.  **合成（必須）**: カタログの単体ストーリーだけでは出荷しない。T179 のプローブで他の部品と組み、置き方・a11y・狭幅を触る。確認が終わったらプローブ画面は捨て、直した部品と Realistic な単体ストーリーを残す。カバー率のために `stories/Patterns/` へ書かない。詳細は `RULES.md` と `DESIGN.md` のコンポジションガイドライン。
+    - チェックリスト本体: `.github/pull_request_template.md` と `AGENTS.md`「品質ゲート・チェックリスト」
+8.  **合成（必須）**: カタログの単体ストーリーだけでは出荷しない。T179 のプローブで他の部品と組み、置き方・a11y・狭幅を触る。確認が終わったらプローブ画面は捨て、直した部品と Realistic な単体ストーリーを残す。カバー率のために `stories/Patterns/` へ書かない。詳細は `docs/rules/implementation.md` と `DESIGN.md` のコンポジションガイドライン。
 
 ---
 
@@ -144,7 +144,7 @@ subtle のアルファ値はスクリプトに直書きせず `_token-common.scs
 
 ## 既存トークンが不足している場合のフロー
 
-**先に既存で足りるか確認**（`RULES.md`「新規トークン追加ルール」）。近傍別名の追加は禁止に近い。
+**先に既存で足りるか確認**（`docs/rules/tokens.md`「新規トークン追加ルール」）。近傍別名の追加は禁止に近い。
 
 1. 既存 role / spacing / radius を `token-snapshot.json`・Colors ガイド・`DESIGN.md` で探す。
 2. 足りない場合だけ層を選ぶ:
@@ -193,7 +193,7 @@ subtle のアルファ値はスクリプトに直書きせず `_token-common.scs
 
 ### 新しいカテゴリ自体が必要な場合
 
-既存カテゴリに収まらない場合は `RULES.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。
+既存カテゴリに収まらない場合は `docs/rules/tokens.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。
 
 ---
 
