@@ -24,6 +24,16 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
+**最後に実体で確認した日: 2026-09-20**（下の 5 件すべて）。**確認は `npm view <ブロッカー> peerDependencies` で、
+宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
+実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
+`^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
+
+> **`node_modules` ではなく lockfile を読むこと。** 手元の `node_modules` は `npm install` を挟まないと
+> lockfile より古いままで、2026-09-20 の実測では `storybook-react-i18next` が lock 10.1.4 / 手元 10.1.2 と
+> ずれており、**手元だけを見ると「まだ `^3` まで」と読めてしまった**。CI は lock から入れるので、
+> 判定材料は lock（か `npm view`）。
+
 いま止めているもの:
 
 | 依存 | 止めている理由 | 再開の判定材料 |
@@ -33,7 +43,12 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `i18next-http-backend` 4 | `storybook-react-i18next` の peer 宣言 | 同上 |
 | `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
-| `@changesets/cli` 3 | `changesets/action@v1` が `changeset publish` の stdout を `/New tag:/` で読むが、cli 3 はその行を出さない（2026-08-16 調査） | **単独では判定しない。** cli 3 + `changesets/action@v2` + `release.yml` の入力名（`version` → `version-script` / `publish` → `publish-script`）を**同時に**変える覚悟があるか |
+
+**解除したもの**:
+
+| 依存 | 解除した日 | 何を確かめたか |
+|---|---|---|
+| `@changesets/cli` 3 | **2026-09-20**（T247 で cli 3.0.2 + `changesets/action@v2` を 1 PR で入れ、0.30.0 を新経路で公開した） | **本番でしか検証できない経路なので、実物まで見た** ── ①Version PR が `version-script` を経由している（`public/llms.txt` が 0.29.10 → 0.30.0 に再生成された。v1 の入力名なら黙って無視されてこのファイルは差分に出ない）②npm の `latest` = 0.30.0（provenance の attestations つき）③タグ `v0.30.0` ④GitHub Release。**「publish 成功のままタグと Release だけ静かに消える」という非対称な壊れ方は起きなかった。** 判定は引き続き `check:release-workflow` が持つ（CLI と action の組を見張る）。 |
 
 > **`vitest` 系は「手で上げようとして時間を溶かす」型。** 2026-08-22 に 3 通り試して全部だめだった:
 >
@@ -47,11 +62,11 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 > **Dependabot は自前の解決器でロックを作り直すので、グループ PR に任せる。**
 > なお **storybook で効いた「ピンの根元から 1 本ずつ」は、ここでは効かない** ── あちらは一方向の peer（addon → storybook）だったが、こちらは**相互に厳密ピンした輪**である。
 >
-> **`@changesets/cli` 3 は「上げると赤が出ずにリリースが壊れる」型。** `changesets/action@v1` は publish の標準出力を正規表現で読んで publish 済みを判定している（`src/run.ts`: `let newTagRegex = /New tag:/`）。cli 3.0.0 の dist にはこの文字列が無く、代わりに `Creating git tags...` を出す。したがって **npm publish は成功したまま `published: false` と判定され、`git.pushTag` と GitHub Release の作成が丸ごとスキップされる**。ワークフローは緑で終わる。実際この 2 つは動いており（`v0.23.16` の Release と タグが存在する）、止まっても誰も気付かない。
+> **（2026-09-20 に解除済み。以下は「なぜ組でしか上げられないか」の記録で、`check:release-workflow` が見張っている内容そのもの。）** **`@changesets/cli` 3 は「上げると赤が出ずにリリースが壊れる」型だった。** `changesets/action@v1` は publish の標準出力を正規表現で読んで publish 済みを判定している（`src/run.ts`: `let newTagRegex = /New tag:/`）。cli 3.0.0 の dist にはこの文字列が無く、代わりに `Creating git tags...` を出す。したがって **npm publish は成功したまま `published: false` と判定され、`git.pushTag` と GitHub Release の作成が丸ごとスキップされる**。ワークフローは緑で終わる。実際この 2 つは動いており（`v0.23.16` の Release と タグが存在する）、止まっても誰も気付かない。
 >
 > action v2 は NDJSON の構造化イベント（`type: "git-tag"`）で判定するため **cli 3 とセットでしか動かない**（v2 は cli 2 を検出して v1 へ誘導する）。片方だけ上げる道は無い。
 >
-> **2026-08-16: 据え置きで確定。判定は `check:release-workflow` が持つ。** 「いつ上げるか」を期日で決めるのはやめた ── 外から強制する時計が無いため（action v1 / v2 とも runtime は `node24`）。代わりに **CLI と action の組**（v1 ⇔ cli 2 / v2 ⇔ cli 3）をガードの契約にした。片方だけ動かした変更は CI で止まるので、**この行を毎週見る必要は無い**。
+> **2026-08-16: 据え置きで確定（→ 2026-09-20 に解除）。判定は `check:release-workflow` が持つ。** 「いつ上げるか」を期日で決めるのはやめた ── 外から強制する時計が無いため（action v1 / v2 とも runtime は `node24`）。代わりに **CLI と action の組**（v1 ⇔ cli 2 / v2 ⇔ cli 3）をガードの契約にした。片方だけ動かした変更は CI で止まるので、**この行を毎週見る必要は無い**。
 >
 > **上げる日を選ぶときの条件**: この変更の本丸（publish 経路のタグと GitHub Release）は**本番でしか検証できない**。だから「リリース予定が無い日」に上げない。手順は ①CLI + action + `release.yml` の入力名を 1 PR で ②直後に捨て changeset で patch を 1 本切る ③タグと Release が実際に作られたか確認 ④作られなければ即 revert。
 >
