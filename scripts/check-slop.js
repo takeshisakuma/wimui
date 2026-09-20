@@ -579,4 +579,5 @@ if (failed) {
 // 「問題なし」と自己申告した 2026-07-26 の件と同じ構造）。
 console.log('\n✓ 機械層（斜めグラデ / hype / 空コピー / 定型名 / style / intent 面）は基準内です。');
 console.log('  判断依存のルール（1 画面 1 主役・中央揃え・rule of three・実在感・届かない状態）は');
-console.log('  ここでは 1 件も見ていません。DESIGN.md のセルフレビューと judge:slop で別途確認すること。');
+console.log('  ここでは 1 件も見ていません。docs/design/composition.md のセルフレビューと judge:slop で');
+console.log('  別途確認すること（連番プレースホルダに映らない 2 経路も同じ節に書いてある。T261）。');
