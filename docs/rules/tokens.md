@@ -30,7 +30,7 @@
 3. 複数コンポーネント・アプリテーマで本当に必要か → 必要なら role。1 コンポーネントだけなら `--wim-comp-*`
 4. 足りないときだけ `tokens/` を編集 → `npm run tokens:build` → 公開面が変わるなら `check:tokens:update` / 必要なら `check:api` 周りも確認
 
-手順の詳細は `SKILLS.md`「既存トークンが不足している場合のフロー」。
+手順の詳細はこのファイル末尾の「既存トークンが不足している場合のフロー」。
 
 - グローバルデザイントークンはすべて `--wim-[カテゴリ]-[意味]-[修飾]` の構造で命名してください。
   - カテゴリは下表の既存カテゴリから選択してください。新しいカテゴリを追加する場合は下表に追記してください。
@@ -109,3 +109,44 @@ R_outer ≈ R_inner + S
   - カラー: `tokens/color/base.json` (生色), `tokens/color/semantic.json` (意味的定義)
   - サイズ・間隔: `tokens/spacing.json`
   - 効果（影・透明度・Z-Index・モーション）: `tokens/effects.json`
+
+---
+
+## 既存トークンが不足している場合のフロー
+
+**先に既存で足りるか確認**（`docs/rules/tokens.md`「新規トークン追加ルール」）。近傍別名の追加は禁止に近い。
+
+1. 既存 role / spacing / radius を `token-snapshot.json`・Colors ガイド・`DESIGN.md` で探す。
+2. 足りない場合だけ層を選ぶ:
+   - 生色 → `tokens/color/base.json`（palette）
+   - 意味色（公開） → `tokens/color/semantic.json` + 必要なら `tokens/themes/dark.json`（role）
+   - 1 コンポーネント専用色 → `src/styles/_component-colors.scss` の `--wim-comp-*`（公開 semantic に載せない）
+   - Spacing / Radius → `tokens/spacing.json`
+   - Shadow / Opacity / Z-Index / Motion → `tokens/effects.json`
+3. `npm run tokens:build`（JSON を触った場合）。
+4. 公開トークン面が変わったら `npm run check:tokens:update` をコミットに含める。
+5. コンポーネントでは `var(--wim-color-*)` または `var(--wim-comp-*)` を参照する。
+
+---
+
+## z-index トークンの使い分け基準
+
+スタッキングコンテキストをまたいで競合しうる要素には、必ず以下の `--wim-z-*` トークンを使用してください。
+
+| トークン | 値 | 主な用途 |
+|---|---|---|
+| `--wim-z-sidebar` | 900 | 非オーバーレイ時のサイドバー。メインコンテンツより上に表示。 |
+| `--wim-z-header` | 1000 | 固定ヘッダー。 |
+| `--wim-z-overlay` | 1000 | Dialog, Dropdown, Popover, Tooltip 等の一般的なオーバーレイ。 |
+| `--wim-z-overlay-panel` | 1001 | オーバーレイの上にさらに重なるパネル類。 |
+| `--wim-z-overlay-step` | 1002 | Tour（ガイド）のステップバブル。 |
+| `--wim-z-navbar` | 1020 | モバイル用ボトムナビゲーション等。 |
+| `--wim-z-mask` | 1500 | ローディングマスク、背景のクリック遮断用。 |
+| `--wim-z-drawer` | 2000 | Drawer（サイドからスライドするパネル）。Dialog より優先される場合に使用。 |
+| `--wim-z-toast` | 9999 | Toast, Notification など、常に最前面に表示すべき通知。 |
+
+注意： コンポーネント内部（Slider のサムブ、Table の固定列など）での相対的な順序指定には、生値（`z-index: 10` 等）を使用して構いません。
+
+### 新しいカテゴリ自体が必要な場合
+
+既存カテゴリに収まらない場合は `docs/rules/tokens.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。

@@ -118,3 +118,33 @@
 - コンポーネントSCSSではトークン（生成された変数）を参照するだけでダークモード対応は完了します。
 - 新しいダークモード固有の値が必要な場合は、`tokens/color/semantic.json` や `tokens/themes/dark.json` を編集し、`npm run tokens:build` を実行してください。
 - 利用可能なトークンカテゴリ: Ghost/Subtle Surface、Glass/Frosted Surface、Skeleton、Control、Feedback variant、Utility（詳細は `_semantic-colors.scss` を参照）。
+
+---
+
+## ダークモード対応
+
+セマンティックカラートークンを使っていれば自動対応されるため、コンポーネントSCSSに `[data-theme="dark"]` や `@media (prefers-color-scheme: dark)` を書く必要はありません。
+
+```scss
+// トークンを使うだけでライト/ダーク両対応（個別のダークモード記述は不要）
+.wim-component {
+  color: var(--wim-color-text-primary);
+  background: var(--wim-color-glass-bg);     // 半透明ガラス効果
+  border-color: var(--wim-color-glass-border);     // ガラスボーダー
+}
+
+// ゴーストスタイルのコントロール
+.wim-component--ghost {
+  background: var(--wim-color-ghost-bg);
+  border-color: var(--wim-color-ghost-border);
+}
+
+// フィードバックコンポーネントのバリアント色（OKLCHによる知覚的な明度調整）
+.wim-component--info {
+  color: oklch(from var(--wim-color-info) calc(l * 0.7) c h);
+  background: oklch(from var(--wim-color-info) l c h / 0.1);
+  border-color: oklch(from var(--wim-color-info) l c h / 0.2);
+}
+```
+
+新しい暗色/明色切替が必要な場合は、`src/tokens/_semantic-colors.scss` の `:root` と `@mixin dark-theme` の両方にトークンを追加してください。
