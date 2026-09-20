@@ -20,6 +20,10 @@ const meta: Meta<typeof Carousel> = {
     interval: { control: "number" },
     showIndicators: { control: "boolean" },
     showControls: { control: "boolean" },
+    controlsPlacement: {
+      control: "radio",
+      options: ["overlay", "outside"],
+    },
     loop: { control: "boolean" },
     slidesToShow: { control: "number" },
     aspectRatio: { control: "text" },
@@ -141,7 +145,7 @@ export const CustomContent: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Carousel {...args}>
+      <Carousel {...args} controlsPlacement="outside">
         <div style={{ padding: "0 10px", width: "100%" }}>
           <div
             style={{

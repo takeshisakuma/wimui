@@ -2270,6 +2270,9 @@ Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
     - `interval: number` = 5000 — Auto-play interval (in milliseconds)
     - `showIndicators: boolean` = true — Whether to show the indicators
     - `showControls: boolean` = true — Whether to show the previous/next buttons
+    - `controlsPlacement: "overlay" | "outside"` = "overlay" — Where the arrows and indicators sit. `overlay` (default) places them on top of the
+slide, which suits full-bleed images. `outside` moves the arrows beside the viewport
+and the indicators below it, so they never cover a slide made of text.
     - `loop: boolean` = true — Whether to loop infinitely (seamless transitions)
     - `slidesToShow: number | Breakpoints` = 1 — Number of slides to show at once. A number or an object per breakpoint.
     - `aspectRatio: string` — Aspect ratio (e.g. '16/9', '4/3', '1/1').
