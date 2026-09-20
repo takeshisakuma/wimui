@@ -13,7 +13,11 @@
  *   5. 併記の**注記のほう**だけ変えても鳴らない（`(8px)` は読み手向けの補助）
  *   6. 参照表記（`--wim-radius-md`）は解決して比べるので鳴らない
  *   7. 2 層の box-shadow や `rgba(…)` を「値 + 併記」と読み違えない
- *   8. 説明文のセル（`= primary`）は対象外＝鳴らない（**このガードの死角**）
+ *   8. **別トークンへの参照**（`= text-tertiary`）を別の実在トークンに変えたら鳴る
+ *        ── 2026-09-20（T262ⓑ）まではここが死角で、**変えても鳴らなかった**。
+ *   8-2. 族に実在しない名前（`= nope`）は説明文として扱い、鳴らない（解決できないものは比べない）
+ *   8-3. CSS のキーワード値（`underline`）を変えたら鳴る
+ *        ── T262ⓐ まで `LITERAL` の語彙が 4 語しか無く、**値そのものなのに説明文扱い**だった。
  *   9. ダークに上書きの無いトークンは、飛ばさずライトの値と比べる
  *
  * Usage: npm run prove:doc-token-values
@@ -93,9 +97,19 @@ try {
   patch('DESIGN.md', '| `--wim-shadow-md` | 0 4px 12px', '| `--wim-shadow-md` | 0 5px 12px');
   check('7. 2 層の box-shadow を読み違えず、変えれば鳴る', run() !== 0);
 
+  // 8 系: 参照とキーワード値。T262 でここを死角から外した。**鳴ることと、
+  // 鳴ってはいけないところで鳴らないことの両方**を見る。
   restore();
-  patch('docs/design/color.md', '| `--wim-color-text-accent` | = primary', '| `--wim-color-text-accent` | = secondary');
-  check('8. 説明文のセルは対象外（死角。ここは鳴らない）', run() === 0);
+  patch('docs/design/color.md', '| `--wim-color-text-placeholder` | = text-tertiary', '| `--wim-color-text-placeholder` | = text-secondary');
+  check('8. 参照表記を別の実在トークンに変えたら鳴る', run() !== 0);
+
+  restore();
+  patch('docs/design/color.md', '| `--wim-color-text-placeholder` | = text-tertiary', '| `--wim-color-text-placeholder` | = nope');
+  check('8-2. 族に実在しない名前は説明文扱いで鳴らない', run() === 0);
+
+  restore();
+  patch('docs/design/typography.md', '| `--wim-decoration-underline` | underline |', '| `--wim-decoration-underline` | overline |');
+  check('8-3. キーワード値を変えたら鳴る', run() !== 0);
 
   // 9 / 9-2: ダークに上書きが無いトークンを 3 列表に置いたとき、**飛ばさずライトと比べる**。
   // 飛ばす実装でもこの行は緑になるので、**誤った値で赤くなること**まで見ないと実証にならない。

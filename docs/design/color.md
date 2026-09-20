@@ -50,7 +50,7 @@ outline/subtle バリアントの文字色も intents SSOT の `text` ロール�
 
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
-| アクセントテキスト（primary 系） | `--wim-color-text-accent` | = primary | #97cbe0 |
+| アクセントテキスト（primary 系） | `--wim-color-text-accent` | `dp16` (#04436e) | #97cbe0 |
 | 成功テキスト | `--wim-color-text-success` | `dk12` (#355935) | #b7e3b6 |
 | 警告テキスト | `--wim-color-text-warning` | `dk6` (#6b4919) | #ffda7a |
 | 情報テキスト | `--wim-color-text-info` | = info | `p18` (#b3cee3) |

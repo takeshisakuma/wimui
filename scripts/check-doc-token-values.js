@@ -74,7 +74,7 @@ function resolve(value, table) {
 }
 
 /** 値として比べられる形か（#hex / 数値+単位 / 関数 / 参照）。 */
-const LITERAL = /^(#[0-9a-fA-F]{3,8}|-?[\d.]+[a-z%]*|[a-z-]+\(.*\)|var\(--wim-[a-zA-Z0-9-]+\)|--wim-[a-zA-Z0-9-]+|none|inherit|auto|transparent)$/i;
+const LITERAL = /^(#[0-9a-fA-F]{3,8}|-?[\d.]+[a-z%]*|[a-z-]+\(.*\)|var\(--wim-[a-zA-Z0-9-]+\)|--wim-[a-zA-Z0-9-]+|none|inherit|auto|transparent|underline|line-through|overline|uppercase|lowercase|capitalize|nowrap|ellipsis|hidden|visible)$/i;
 const isLiteral = (v) => LITERAL.test(v.trim()) || /^(inset\s|0 |-?\d)/.test(v.trim());
 
 /** 秒とミリ秒を同じ土俵に乗せる（`83ms` と `0.083s`）。 */
@@ -92,11 +92,31 @@ function normalizeTime(v) {
  * 文書には 3 つの書き方が混ざっている:
  *   1. 値そのもの          `0.5rem` / `#fff` / `cubic-bezier(0.4, 0, 0.2, 1)`
  *   2. 値 + 併記           `0.0625rem (1px)` / `` `gy3-5` (#393939) ``（PCCS 記号が先）
- *   3. 説明                `= primary` / `primary 8%` / `独自の深い影`
- * 3 は値ではないので見ない（**ここはこのガードの死角**。数えて出す）。
+ *   3. 別トークンへの参照    `= primary` / `= text-tertiary` / `overlay-soft`
+ *   4. 説明                `primary 8%` / `独自の深い影`
+ *
+ * **3 は 2026-09-20（T262ⓑ）から比べている。** 同じ族（`--wim-color-` 等）にその名前の
+ * トークンが実在すれば `var(--wim-<族>-<名前>)` と読み替える。広げた初日に**実在の 1 件**を
+ * 拾った ── `--wim-color-text-accent` の説明が `= primary` のままだったが、実装は T45 で
+ * `dp16`（#04436e）へ移っている（primary をそのまま使うと subtle 塗りの上で 4.38 と AA を割るため）。
+ * **文書だけが T45 以前の状態で残っていた。**
+ *
+ * 4 は値ではないので見ない（**ここはこのガードの死角**。数えて出す）。
  */
-function docValueOf(cell) {
+function docValueOf(cell, name, table) {
   const raw = cell.replace(/`/g, "").trim();
+
+  // **別トークンへの参照**（`= primary` / `overlay-soft`）。行のトークンと同じ族の中に
+  // その名前が実在するときだけ読み替える。族を跨がせない（`--wim-color-` の行で
+  // `--wim-spacing-md` を指す書き方は実際に無く、広げると誤検出の面が増える）。
+  const reference = raw.match(/^=?\s*([a-z][a-z0-9-]*)$/i);
+  if (reference) {
+    const family = name.match(/^(--wim-[a-z]+)-/);
+    if (family) {
+      const target = `${family[1]}-${reference[1]}`;
+      if (table.has(target)) return `var(${target})`;
+    }
+  }
   // 併記は**括弧の前に空白がある**形だけを見る。空白を要求しないと
   // `rgba(255,255,255, 0.4)` や 2 層の `box-shadow` を「値 + 併記」と読み違え、
   // 関数名だけを値として比べてしまう（最初の版がこれで 9 件を誤検出した）。
@@ -173,9 +193,9 @@ for (const rel of files) {
       // 飛ばさずライトと比べる（飛ばすと、その行は永久に検査されない）。
       const impl = table.get(name) ?? (table === dark ? light.get(name) : undefined);
       if (impl === undefined) continue; // 上書きの無いダーク値・未知の名前は対象外
-      const docValue = docValueOf(cell);
+      const docValue = docValueOf(cell, name, table);
       if (docValue === null) {
-        prose += 1; // 「= primary」「primary 8%」のような説明。値ではないので見ない
+        prose += 1; // 「primary 8%」「独自の深い影」のような説明。値ではないので見ない
         continue;
       }
       checked += 1;
