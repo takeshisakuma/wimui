@@ -41,7 +41,6 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか |
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
-| `i18next-http-backend` 4 | `storybook-react-i18next` の peer 宣言 | 同上 |
 | `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
 
 **解除したもの**:
@@ -49,6 +48,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | 依存 | 解除した日 | 何を確かめたか |
 |---|---|---|
 | `@changesets/cli` 3 | **2026-09-20**（T247 で cli 3.0.2 + `changesets/action@v2` を 1 PR で入れ、0.30.0 を新経路で公開した） | **本番でしか検証できない経路なので、実物まで見た** ── ①Version PR が `version-script` を経由している（`public/llms.txt` が 0.29.10 → 0.30.0 に再生成された。v1 の入力名なら黙って無視されてこのファイルは差分に出ない）②npm の `latest` = 0.30.0（provenance の attestations つき）③タグ `v0.30.0` ④GitHub Release。**「publish 成功のままタグと Release だけ静かに消える」という非対称な壊れ方は起きなかった。** 判定は引き続き `check:release-workflow` が持つ（CLI と action の組を見張る）。 |
+| `i18next-http-backend` 4 | **2026-09-20**（3.0.6 → 4.0.2） | **ブロッカーの peer が動いていた** ── `storybook-react-i18next` の `i18next-http-backend` peer が `^2 || ^3` から `^2 || ^3 || ^4` へ（lock の 10.1.4）。v4 の破壊的変更は **Node 18+ と native `fetch` の要求**（`cross-fetch` を落とした）だけで、この repo は `engines.node >=22`・使用先は Storybook（ブラウザ）なので当たらない。**確かめたこと**: `npm ls` で `storybook-react-i18next@10.1.4` が 4.0.2 を deduped で受けること、`npm run build-storybook` が通ること（`.storybook/i18n.ts` が `Backend` を import している実体）、CI の VRT / a11y。使い方は `.use(Backend)` + `backend.loadPath` だけで、v4 で変わった面に触れていない。 |
 
 > **`vitest` 系は「手で上げようとして時間を溶かす」型。** 2026-08-22 に 3 通り試して全部だめだった:
 >

@@ -514,7 +514,7 @@
     "husky": "^9.1.7",
     "i18next": "26.4.2",
     "i18next-browser-languagedetector": "^8.2.1",
-    "i18next-http-backend": "3.0.6",
+    "i18next-http-backend": "4.0.2",
     "jsdom": "^30.0.0",
     "lint-staged": "17.5.1",
     "music-metadata": "^11.14.0",
@@ -738,7 +738,8 @@
       "node scripts/instruction-files.mjs --check"
     ],
     ".gemini/settings.json": [
-      "node scripts/instruction-files.mjs --check"    ]
+      "node scripts/instruction-files.mjs --check"
+    ]
   },
   "dependencies": {
     "@floating-ui/react": "0.27.20",
