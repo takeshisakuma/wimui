@@ -407,6 +407,46 @@ const numberedPlaceholderHit = (line) => {
   return null;
 };
 
+/**
+ * **番号がリテラルの外にある書き方**（T261・2026-09-20）。
+ *
+ * 上の `numberedPlaceholderHit` は**1 行の中の文字列リテラル**しか見ないので、
+ * 番号をリテラルの外に置くと永久に映らない。T255 で 50 → 0 にした直後に実測したら、
+ * 同じ欠陥が **2 経路**で残っていた。
+ *
+ * **① JSX で番号を足す形**: `{t("story.list_item_small")} 1`。
+ * リテラルはキー名なので規則に当たらない。**T256（RadioGroup が `Option 1 2` を
+ * 表示していた）はこの形の事故**で、実害の前例がある。
+ */
+const JSX_NUMBER_SUFFIX = /\{\s*t\(\s*["'][^"']+["'][^)]*\)\s*\}\s*(\d{1,2})\b/;
+const jsxNumberHit = (line) => {
+  const m = line.match(JSX_NUMBER_SUFFIX);
+  return m ? m[0].trim() : null;
+};
+
+/**
+ * **② i18n 補間で番号を足す形**: en の値が `Item {{count}}`。
+ * `\d{1,2}$` に当たらないので素通りする。
+ *
+ * **同じ形の中に正しい用法と欠陥が混ざっている**のが難しいところで、
+ * `Delete {{name}}` / `Expand {{label}}` / `Barcode {{value}}` は**実体を差し込む
+ * aria-label** なので正しい。分ける手がかりは**名詞ではなく、差し込む変数のほう** ──
+ * `n` / `index` / `count` / `number` / `id` は「何番目か」しか運ばない。
+ * 実測（2026-09-20）: 同じ形の en キーは 30 件あり、この規則で拾うと 16 件。
+ *
+ * 番号が意味を持つ語（`Source 1` の引用番号、`Digit 1` の桁）は、リテラル版と同じ
+ * `numberedPlaceholderAllow` で逃がす（辞書を 2 つに割らない）。
+ */
+const INDEX_VARIABLE = /^(n|i|idx|num|index|count|number|id)$/i;
+const INTERPOLATED_NUMBER = /^((?:[A-Z][a-z]+ ){1,3})\{\{\s*(\w+)\s*\}\}$/;
+const interpolatedNumberHit = (value) => {
+  const m = String(value ?? '').trim().match(INTERPOLATED_NUMBER);
+  if (!m) return null;
+  if (!INDEX_VARIABLE.test(m[2])) return null;
+  if (NUMBERED_PLACEHOLDER_ALLOW.has(m[1].trim())) return null;
+  return m[0];
+};
+
 /** この行が en 側か（連番規則は en 限定）。 */
 const isEnglishSource = (file) =>
   !file.includes('/locales/') || file.includes('/locales/en/');
@@ -424,6 +464,8 @@ const hypeHits = [];
 const nameHits = [];
 const emptyCopyHits = [];
 const numberedHits = [];
+const jsxNumberHits = [];
+const interpolatedNumberHits = [];
 for (const file of COPY_SCAN_FILES) {
   if (!fs.existsSync(file)) continue;
   const lines = fs.readFileSync(file, 'utf8').split('\n');
@@ -445,6 +487,15 @@ for (const file of COPY_SCAN_FILES) {
     if (isEnglishSource(file)) {
       const num = numberedPlaceholderHit(line);
       if (num) numberedHits.push(`${file}:${i + 1}: 「${num}」 ${line.trim().slice(0, 80)}`);
+      // ① 番号がリテラルの外（JSX の隣）にある形。TSX にしか出ない。
+      const jsxNum = jsxNumberHit(line);
+      if (jsxNum) jsxNumberHits.push(`${file}:${i + 1}: 「${jsxNum}」`);
+      // ② 番号が i18n の補間にある形。en の locale 値だけを見る。
+      const interp = line.match(/"([^"\\\n]*)"\s*:\s*"([^"\\\n]*)"/);
+      if (interp) {
+        const hit = interpolatedNumberHit(interp[2]);
+        if (hit) interpolatedNumberHits.push(`${file}:${i + 1}: 「${hit}」`);
+      }
     }
   });
 }
@@ -502,6 +553,29 @@ if (nameHits.length > 0) {
  */
 const NUMBERED_PLACEHOLDER_BASELINE = 0;
 
+/**
+ * **番号がリテラルの外にある 2 経路のラチェット**（T261・2026-09-20）。
+ *
+ * 上のリテラル版は 50 → 0 まで潰してからハードゲートにしたが、**こちらは現状を凍結して
+ * 増加だけ止める**（ユーザー判断）。先にガードを置くのは、**T256 のような新規の事故を
+ * 今日から止めるため** ── RadioGroup が `Option 1 2` を表示していたのは ① の形で、
+ * このゲートがあれば入った日に鳴っていた。
+ *
+ * **ラチェットには固有の穴がある。** lint-staged は変更されたファイルだけを渡すので、
+ * 部分集合の件数を全体の基準と比べると常に素通りする（`check:slop` が実際にそうだった）。
+ * このスクリプトは**引数を無視して常に全量を数える**のでその穴は塞がっているが、
+ * **0 にするまでは穴の形そのものは残る**（T255 で 0 にして消したのと同じ話）。
+ *
+ * **数はこのガード自身で測った**（2026-09-20）。手元の走査と数が違って当然で、
+ * ② は `COPY_SCAN_FILES`（docs_stories_ の locale と stories 配下の .stories.tsx）の中だけを見る。
+ * `audit.json` の 8 件（`Item {{n}}` / `Card {{n}}` ほか）は**走査対象の外なので入っていない** ──
+ * 走査を広げるかどうかは別の判断なので、ここでは広げない。
+ *
+ * 減らしたらこの値を下げること。0 にできたらハードゲートへ移す。
+ */
+const JSX_NUMBER_BASELINE = 37;
+const INTERPOLATED_NUMBER_BASELINE = 7;
+
 if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {
   console.log(
     `\n[FAIL] 連番プレースホルダが増えています（${numberedHits.length} 箇所 / baseline: ${NUMBERED_PLACEHOLDER_BASELINE}）:`,
@@ -518,6 +592,39 @@ if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {
       `\n  減ったので scripts/check-slop.js の NUMBERED_PLACEHOLDER_BASELINE を下げてください。`,
   );
 }
+
+/** 番号がリテラルの外にある 2 経路（T261）。ラチェットなので、増えたときだけ落とす。 */
+for (const [hits, baseline, label, howto] of [
+  [
+    jsxNumberHits,
+    JSX_NUMBER_BASELINE,
+    'JSX で番号を足している箇所',
+    '`{t("story.list_item")} 1` の形です。翻訳された語の隣に番号を置くと、' +
+      '辞書にも連番規則にも映りません（T256 の `Option 1 2` はこの形の事故）。' +
+      'その画面で実際に並ぶものの名前をキーごと用意してください。',
+  ],
+  [
+    interpolatedNumberHits,
+    INTERPOLATED_NUMBER_BASELINE,
+    'i18n 補間で番号を足している en キー',
+    '`Item {{count}}` の形です。差し込む変数が「何番目か」しか運んでいません。' +
+      '`Delete {{name}}` のように**実体**を差し込むのは正当なので、' +
+      '番号が意味を持つ語は scripts/slop-dictionary.json の numberedPlaceholderAllow に足してください。',
+  ],
+]) {
+  if (hits.length > baseline) {
+    console.log(`\n[FAIL] ${label}が増えています（${hits.length} 箇所 / baseline: ${baseline}）:`);
+    for (const h of hits) console.log(`  ${h}`);
+    console.log(`       ${howto}`);
+    failed = true;
+  } else if (hits.length < baseline) {
+    console.log(
+      `\n${label}: ${hits.length} 箇所（baseline: ${baseline}）。` +
+        `\n  減ったので scripts/check-slop.js の baseline を下げてください。`,
+    );
+  }
+}
+
 
 // ハードゲート（baseline 0）。intent の面を素の要素で敷くのは、既にある
 // `Badge` / `Tag` / `Chip` / `Alert` の subtle を手で書き直しているのと同じ。
@@ -577,7 +684,7 @@ if (failed) {
 // 届かない状態）は 1 行も見ていない。「検出されませんでした」は、見ていない項目まで
 // 通ったかのように読める＝**このガードが最も事故を起こした読み方**（合成画面を
 // 「問題なし」と自己申告した 2026-07-26 の件と同じ構造）。
-console.log('\n✓ 機械層（斜めグラデ / hype / 空コピー / 定型名 / style / intent 面）は基準内です。');
+console.log('\n✓ 機械層（斜めグラデ / hype / 空コピー / 定型名 / 連番 / style / intent 面）は基準内です。');
 console.log('  判断依存のルール（1 画面 1 主役・中央揃え・rule of three・実在感・届かない状態）は');
 console.log('  ここでは 1 件も見ていません。docs/design/composition.md のセルフレビューと judge:slop で');
-console.log('  別途確認すること（連番プレースホルダに映らない 2 経路も同じ節に書いてある。T261）。');
+console.log('  別途確認すること。');
