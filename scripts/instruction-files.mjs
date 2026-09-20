@@ -75,6 +75,37 @@ if (source === null) {
   }
 }
 
+/**
+ * `docs/rules/**.md` が AGENTS.md の索引から漏れていないかを見る（2026-09-20・RULES.md 廃止）。
+ *
+ * 規則の置き場を 1 ファイルから 7 ファイルへ割ったので、**足したのに誰も辿れない規則**が
+ * 作れるようになった。正本が索引を持っている限り、エージェントは "何をするとき何を読むか"
+ * を 1 度の読み込みで知れる。索引に無いファイルは、置いた本人以外には存在しないのと同じ。
+ *
+ * 逆向き（索引にあるのにファイルが無い）も見る。切り出し元の `RULES.md` を消したので、
+ * 同じ形の死んだ参照がまた生まれうる。
+ */
+function checkRulesIndex(source) {
+  const dir = path.join(ROOT, 'docs', 'rules');
+  if (!fs.existsSync(dir)) return [];
+  const found = [];
+  for (const name of fs.readdirSync(dir)) {
+    if (!name.endsWith('.md')) continue;
+    const rel = `docs/rules/${name}`;
+    if (!source.includes(rel)) {
+      found.push(`${rel} が ${SOURCE} の索引に無い（置いても誰も辿れない）。表に 1 行足すこと。`);
+    }
+  }
+  for (const m of source.matchAll(/docs\/rules\/[A-Za-z0-9._-]+\.md/g)) {
+    if (!fs.existsSync(path.join(ROOT, m[0]))) {
+      found.push(`${SOURCE} が ${m[0]} を指しているが、そのファイルが無い。`);
+    }
+  }
+  return found;
+}
+
+if (source !== null) problems.push(...checkRulesIndex(source));
+
 const expected = source === null ? null : { 'CLAUDE.md': FORWARDER, 'GEMINI.md': source };
 const isCheck = process.argv.includes('--check');
 

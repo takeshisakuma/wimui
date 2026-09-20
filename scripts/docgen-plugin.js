@@ -279,7 +279,7 @@ function toDocgenEntries(found, componentName, tokens, anatomy, tsxContent) {
 }
 
 // SCSS ファイルはコンポーネント名の小文字連結（button.scss）と
-// kebab-case（date-picker.module.scss、RULES.md の規約）の両方が存在するため、
+// kebab-case（date-picker.module.scss、docs/rules/tokens.md の規約）の両方が存在するため、
 // 候補をすべて探索する。見つからなければ null
 function resolveScssPath(componentDir, componentName) {
   const lower = componentName.toLowerCase();
@@ -299,7 +299,7 @@ function extractTokens(scssContent) {
   return [...new Set(matches)].sort();
 }
 
-// Anatomy 抽出から除外する共通修飾子クラス（RULES.md の Anatomy 仕様）。
+// Anatomy 抽出から除外する共通修飾子クラス（docs/rules/tokens.md の Anatomy 仕様）。
 // 構成要素（構造パーツ）ではなく、props の値に対応する見た目・状態の切り替えクラス
 const ANATOMY_MODIFIER_CLASSES = new Set([
   'root',

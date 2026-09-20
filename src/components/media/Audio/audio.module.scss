@@ -31,7 +31,7 @@
     }
 
     &.radiusLg {
-      // radius="lg" prop の値スケール指定に対応（役割エイリアス対象外: RULES.md 参照）
+      // radius="lg" prop の値スケール指定に対応（役割エイリアス対象外: docs/rules/tokens.md 参照）
       overflow: hidden;
       border-radius: var(--wim-radius-lg);
     }

@@ -617,7 +617,7 @@ git commit -m "commit message" --no-verify
 ## コーディングルール
 
 - スタイリング：新規コンポーネントは CSS Modules（`*.module.scss`）を推奨
-- CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `RULES.md` を参照）
+- CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `docs/rules/tokens.md` を参照）
 
 
 ## ドキュメントの自動抽出 (Docgen)

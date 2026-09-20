@@ -14,7 +14,7 @@
  * 8.5〜24px とばらつくのは**欠陥ではない**（chevron が小さいのは Feather の流儀）。
  * だからこのガードは寸法の均一性を測らず、「線画ファミリーの契約」だけを見る。
  *
- * 見るもの（契約は RULES.md「SVG の描き方」に数値で書いてある）:
+ * 見るもの（契約は docs/rules/icons.md「SVG の描き方」に数値で書いてある）:
  *   1. viewBox が `0 0 24 24`
  *   2. `stroke-width` が単一値で `2`
  *   3. `stroke-linecap` / `stroke-linejoin` が `round`
@@ -38,7 +38,7 @@ const ICON_DIR = path.join(root, "src", "icon");
 
 /**
  * **決着した例外。** 線画にすると意味か慣用が壊れるもので、直す対象ではない。
- * 理由は SVG ファイルの冒頭にもコメントで書いてある（RULES.md の指示）。
+ * 理由は SVG ファイルの冒頭にもコメントで書いてある（docs/rules/icons.md の指示）。
  */
 const INTENTIONAL = {
   "circle.svg":
@@ -120,7 +120,7 @@ for (const file of files) {
   else if (KNOWN[file]) fixed.push(file);
 }
 
-console.log("--- check:icons（線画ファミリーの契約。RULES.md「SVG の描き方」）---\n");
+console.log("--- check:icons（線画ファミリーの契約。docs/rules/icons.md「SVG の描き方」）---\n");
 console.log(`アイコン ${files.length} 個 / 契約どおり ${files.length - stillKnown.length - unexpected.length} 個`);
 console.log(`既知の逸脱 ${stillKnown.length} 件（許可リストに理由つきで記載）`);
 

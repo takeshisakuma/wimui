@@ -3,7 +3,7 @@
  * prove:instructions — `check:instructions` を故意に壊して実証する（T259）。
  *
  * AGENTS.md の約束「未実証のガード、および『0 件』という結果は信用しない」。
- * 見るのは 10 通り（実ファイルを一時的に壊し、最後に必ず戻す）:
+ * 見るのは 12 通り（実ファイルを一時的に壊し、最後に必ず戻す）:
  *   1. 揃っているときは鳴らない
  *   2. GEMINI.md が 1 文字ずれたら鳴る
  *   3. GEMINI.md が消えたら鳴る
@@ -15,6 +15,9 @@
  *   8. lint-staged 経由（末尾にファイル名が付く呼ばれ方）でも同じ判定になる
  *        ── `check:slop` のラチェットは、ここを試していなかったので常に素通りしていた。
  *   9. `instructions:sync` がずれを直し、直した後は鳴らない
+ *  11. `docs/rules/` に置いたのに AGENTS.md の索引に無いファイルで鳴る（2026-09-20）
+ *        ── RULES.md を 7 ファイルへ割ったので、「置いたのに誰も辿れない規則」が作れる。
+ *  12. 索引が実在しない `docs/rules/*.md` を指したら鳴る（死んだ参照）
  *  10. 後始末で 3 ファイルが元どおりになる
  *
  * Usage: npm run prove:instructions
@@ -86,6 +89,25 @@ try {
   fs.writeFileSync(file('GEMINI.md'), '空にした\n', 'utf8');
   const synced = run([]) === 0;
   check('9. sync が直し、直した後は鳴らない', synced && run(['--check']) === 0 && fs.readFileSync(file('GEMINI.md'), 'utf8') === backup['GEMINI.md']);
+
+  // 11-12: 規則の置き場を割った分だけ、「置いたのに辿れない」「指しているのに無い」が
+  //        作れるようになった。両方向とも鳴ることを見る。
+  restore();
+  const stray = path.join(ROOT, 'docs', 'rules', '__prove-stray.md');
+  try {
+    fs.writeFileSync(stray, '# 実証用の捨てファイル\n', 'utf8');
+    check('11. 索引に無い docs/rules ファイルで鳴る', run(['--check']) !== 0);
+  } finally {
+    fs.rmSync(stray, { force: true });
+  }
+  check('11b. 捨てファイルを消したら鳴らない', run(['--check']) === 0);
+
+  fs.writeFileSync(
+    file('AGENTS.md'),
+    backup['AGENTS.md'].replace('docs/rules/icons.md', 'docs/rules/__does-not-exist.md'),
+    'utf8',
+  );
+  check('12. 索引が実在しないファイルを指したら鳴る', run(['--check']) !== 0);
 } finally {
   restore();
 }

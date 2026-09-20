@@ -4,11 +4,38 @@
 
 AI エージェント向けの skill は `.agents/skills/` が実体です（Codex / Cursor などはここを直接読みます）。Claude Code は `.claude/skills/` しか見ないため、`npm install` 時に `prepare` が自動で繋ぎます（`npm run skills:link` / 検証は `npm run check:skills-mirror`）。
 
-プロジェクトの基本ルールは `RULES.md` を参照してください。
+作業ごとの**詳細規則**は `docs/rules/` にあります（このファイルは毎セッション丸ごと読み込まれるので、**必要なときだけ読む規則はここに置きません**）。
+
+| 何をするとき | 読む文書 |
+|---|---|
+| コンポーネントの実装・API・レスポンシブ・a11y | `docs/rules/implementation.md` |
+| トークン追加・CSS クラス名・角丸・シャドウ | `docs/rules/tokens.md` |
+| hover / active・`!important`・`@layer`・ダークモード | `docs/rules/css.md` |
+| 翻訳キーの追加・PT-BR 語彙・ロケール分割 | `docs/rules/i18n.md` |
+| MDX を書く | `docs/rules/mdx.md` |
+| ストーリーの階層・サイドバー | `docs/rules/storybook.md` |
+| アイコンを足す | `docs/rules/icons.md` |
+| 複数部品を組む・部品の既定を決める | `docs/design/composition.md` |
+
 構築に必要な実践知識は `SKILLS.md` を参照してください。
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。
 複数コンポーネントを組み合わせて画面・パターン・デモを作るとき、**および部品の既定値（props の既定・`.module.scss` の既定の面）やカタログの `Default` ストーリーを書くとき**は、必ず `docs/design/composition.md`（コンポジションガイドライン）に従ってください。部品を素で置いた姿は、その部品を使う画面すべてに出るため、既定が禁止パターンなら画面ではなく既定の失敗です（必須ルール 15 `default_anatomy`）。
+
+---
+
+## 基本ルール
+
+- 回答は日本語で行ってください。
+- 絵文字を使わないでください。
+
+### ドキュメント管理
+
+コンポーネントを新規作成・削除した場合は、以下をすべて更新してください。
+
+- `docs/componentList.mdx`（データ実体は `src/data/components.json`）
+- コンポーネント個別のmdx
+- カテゴリーのmdx
 
 ---
 
@@ -72,6 +99,42 @@ npm run test -- src/components/form/Button/Button.test.tsx
 
 ---
 
+## 品質ゲート・チェックリスト
+
+PR 作成時は `.github/pull_request_template.md` の Quality gates に沿ってチェックする。  
+`npm run scaffold` 完了時にも同じゲート一覧がコンソールに出る。
+
+### 1. 必須ゲート（新規コンポーネント / 公開面変更）
+
+コミット・PR 前に、変更に該当するものをパスすること。
+
+| チェック項目 | コマンド | 目的 |
+|---|---|---|
+| 公開 API 表面 | `npm run check:api` | `exports` + バレルシンボル（`api-snapshot.json` v2）。意図的変更時のみ `check:api:update` |
+| ポリモーフィック監査 | `npm run check:aschild` | `asChild` 実装と `docs/rules/implementation.md` の必須リスト同期 |
+| トークン漏れ（PX） | `npm run audit:hardcoded` | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
+| i18n 整合性 | `npm run i18n:check` | en / ja / pt のキー一致 |
+| peer import 境界 | `npm run check:imports` | charts / ai / peer 依存をルート `wimui` から引いていないか |
+| 型・スタイル | `npm run lint` / `npm run stylelint` | 構文・スタイル |
+| MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネントの必須セクション |
+| a11y の `incomplete` | `npm run check:a11y-incomplete` | 「axe が**人に確かめろ**と言った指摘」の許可リスト（`vrt/a11y-incomplete.json`）の形・理由・孤児。**新しいストーリーで増えても減っても a11y の CI が落ちる** ── 直すか、理由を書いて許す（更新手順は `MAINTENANCE.md` 12-2） |
+| 合成（新規公開） | T179 のプローブ | カタログ単体では出荷しない。他部品と組んで置き方・a11y・狭幅を触り、確認後に画面は捨てる。`stories/Patterns/` にカバー率のために書かない |
+
+まとめて: `npm run audit:lib`（範囲が広いとき）。
+
+短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合も、上表をすべてパスすること。
+
+### 2. 自動化スクリプトの活用
+
+手動でファイルを作成ぜず、必ず `npm run scaffold -- <Name> <Category>` を使用してください。
+これにより以下のボイラープレートが自動適用されます：
+- `forwardRef` + `asChild` (Radix Slot)
+- `@layer component` による SCSS ラップ
+- 15 セクション構成の MDX テンプレート
+- `vi.mock("react-i18next")` 済みのテストファイル
+
+---
+
 ## アーキテクチャ概要
 
 ### ディレクトリ配置
@@ -110,5 +173,48 @@ Vite プラグインが `.tsx` と `.module.scss` を解析し、Props / Tokens 
 4. `src/data/components.json` にエントリ追加
 5. `public/locales/en/` に翻訳キー追加 → `npm run i18n:sync`
 6. MDX の各セクションを記述
-7. 品質ゲート: `check:api` / `check:aschild` / `audit:hardcoded` / `i18n:check` / `check:imports` / `audit-mdx` / `lint`（PR テンプレと `RULES.md`「品質ゲート・チェックリスト」）
-8. **合成（必須）**: カタログの単体だけでは出荷しない。T179 のプローブで他部品と組み、確認後に画面は捨て、穴の修正と Realistic な単体ストーリーを残す。`stories/Patterns/` にカバー率のために書かない（`RULES.md`）
+7. 品質ゲート: `check:api` / `check:aschild` / `audit:hardcoded` / `i18n:check` / `check:imports` / `audit-mdx` / `lint`（PR テンプレとこのファイルの「品質ゲート・チェックリスト」）
+8. **合成（必須）**: カタログの単体だけでは出荷しない。T179 のプローブで他部品と組み、確認後に画面は捨て、穴の修正と Realistic な単体ストーリーを残す。`stories/Patterns/` にカバー率のために書かない（`docs/rules/implementation.md`）
+
+---
+
+## ファイル・エクスポート
+
+- コンポーネントは `src/components/<カテゴリ>/<コンポーネント名>/` ディレクトリに配置してください（例: `src/components/form/Button/`）。カテゴリは `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` のいずれかです。
+- ディレクトリ名・コンポーネントファイル名はPascalCaseにしてください（例: `Button/Button.tsx`）。
+- SCSSファイルはkebab-caseの CSS Modules にしてください（例: `button.module.scss`）。
+- SCSSファイルは必ずコンポーネントのTSXファイル内でインポートしてください（例: `import styles from "./button.module.scss"`）。インポートがないとブラウザでスタイルが一切適用されません。テストやlintでは検出できないため注意してください。
+- 新規コンポーネントは `src/<カテゴリ>.ts`（例: `src/form.ts`）にexportを追加してください。`src/index.ts` は各カテゴリファイルを re-export しているため、直接編集は不要です。
+
+## テスト
+
+- `describe` / `it` パターンで記述してください。
+- `useTranslation` は必ず `vi.mock("react-i18next", ...)` でモックしてください。
+- テストを作成し、通過することを確認してください（`npm run test`）。
+- UIに影響する変更を行った場合は、VRTも実行してください（`npm run test:vrt`）。
+
+## 品質チェック
+
+- ESLintおよびStylelintで問題がないか確認してください（`npm run lint` / `npm run stylelint`）。
+- pre-commitフックでは警告も0でないとコミットできません（`--max-warnings=0`）。
+- 多言語化の対応をしてください。
+
+---
+
+## 多言語化（i18n）の境界（ランタイム vs ドキュメント）
+
+`public/locales/` は置き場が共通だが、**利用者アプリに同梱される文字列**と **Storybook / ガイド専用の文言**は別物として扱う。
+
+| 層 | 対象 | 置き場の目安 | 同梱 | 言語 |
+|---|---|---|---|---|
+| **ランタイム** | コンポーネント UI（aria-label、空状態、ボタン文言など） | `docs_` / `audit` **以外**の namespace（`form.json`, `components.json` 等）。`src/components` から `t(...)` / `useWimTranslation` で参照 | `npm run i18n:bundle` → `src/i18n/generated/` に**使用キーのみ**抽出して npm パッケージへ | **en / ja / pt 必須** |
+| **ドキュメント** | Storybook MDX・ガイド長文・Props 説明・ストーリー文言 | `docs_*.json`（および `audit`）。`<T k="..." />` 等 | **ライブラリ利用側には同梱しない**（Storybook / 開発ドキュメント用） | キー集合は en / ja / pt で揃える（`i18n:check`）。**長文ガイドは en を正本**として書き、`npm run i18n:sync` で ja / pt へ展開 |
+
+方針:
+
+- ランタイムキーは短く・UI 向けに保つ。ガイドの長文や設計論をコンポーネント用 namespaceへ入れない。
+- 新規の長いガイド（`docs_guide_*` 等）は **まず `public/locales/en/` に書く**。ja / pt は sync 後に必要なら人手で整える。en だけ先行コミットして他言語を空けたままにしない（`i18n:check` が落ちる）。
+- ソースの JSDoc（IDE ホバー）は英語。Storybook Props 表の多言語は `doc.*_prop_*` キー側で行う（`docs/rules/i18n.md`）。
+- ライブラリ利用者は i18next 不要。表示言語は `setWimLocale` / `WimProvider` の `locale`。
+
+キーの命名・分割・PT-BR 語彙などの細則は `docs/rules/i18n.md`。
