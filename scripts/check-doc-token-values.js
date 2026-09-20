@@ -101,7 +101,10 @@ function normalizeTime(v) {
  * `dp16`（#04436e）へ移っている（primary をそのまま使うと subtle 塗りの上で 4.38 と AA を割るため）。
  * **文書だけが T45 以前の状態で残っていた。**
  *
- * 4 は値ではないので見ない（**ここはこのガードの死角**。数えて出す）。
+ * **4 のうちアルファ派生は 2026-09-20（T262ⓒ）から比べている。** `primary 8%` は
+ * `oklch(from var(--wim-color-primary) l c h / 0.08)` の人間向けの書き方で、
+ * **式が 1 つに決まる**（この repo のアルファ派生はすべてこの形）。残る死角は
+ * `独自の深い影` のような自然文だけで、そこは原理的に値として比べられない。
  */
 function docValueOf(cell, name, table) {
   const raw = cell.replace(/`/g, "").trim();
@@ -117,6 +120,19 @@ function docValueOf(cell, name, table) {
       if (table.has(target)) return `var(${target})`;
     }
   }
+  // **アルファ派生**（`primary 8%` / `surface 60%`）。この repo の派生は
+  // `oklch(from var(--wim-color-<名前>) l c h / <比率>)` の 1 形しか無いので、
+  // 文書の書き方から式を組み立てて比べられる。`8%` → `0.08`、`60%` → `0.6`
+  // （`0.60` にすると文字列比較で外れる。数値に通してから文字列へ戻す）。
+  const alpha = raw.match(/^([a-z][a-z0-9-]*)\s+([\d.]+)%$/i);
+  if (alpha) {
+    const family = name.match(/^(--wim-[a-z]+)-/);
+    const target = family ? `${family[1]}-${alpha[1]}` : null;
+    if (target && table.has(target)) {
+      return `oklch(from var(${target}) l c h / ${Number(alpha[2]) / 100})`;
+    }
+  }
+
   // 併記は**括弧の前に空白がある**形だけを見る。空白を要求しないと
   // `rgba(255,255,255, 0.4)` や 2 層の `box-shadow` を「値 + 併記」と読み違え、
   // 関数名だけを値として比べてしまう（最初の版がこれで 9 件を誤検出した）。
@@ -155,6 +171,7 @@ const bad = [];
 let checked = 0;
 let skippedTables = 0;
 let prose = 0;
+const proseCells = [];
 
 for (const rel of files) {
   const full = path.join(root, rel);
@@ -195,7 +212,10 @@ for (const rel of files) {
       if (impl === undefined) continue; // 上書きの無いダーク値・未知の名前は対象外
       const docValue = docValueOf(cell, name, table);
       if (docValue === null) {
-        prose += 1; // 「primary 8%」「独自の深い影」のような説明。値ではないので見ない
+        // 残る死角は**自然文だけ**（T262ⓒ のあと 1 件）。件数だけ出すと誰も中身を見ないので、
+        // **どのトークンのどのセルか**を必ず名前で出す。新しい散文セルが増えたらここに現れる。
+        prose += 1;
+        proseCells.push(`${name}  <${cell.replace(/`/g, "").trim()}>  ${rel}`);
         continue;
       }
       checked += 1;
@@ -221,3 +241,10 @@ if (bad.length) {
 console.log(
   `✓ 設計文書のトークンの値は実装と一致（${checked} セルを照合 / 説明文のセル ${prose} 件と、値の列を持たない表 ${skippedTables} 個は対象外）。`,
 );
+
+// 死角の中身を必ず出す。T262 の前は 11 件あり、**中身を見るまで N の意味が分からなかった**
+// （実際、11 件のうち 2 件は「説明」ではなく値そのもので、語彙が足りないだけだった）。
+if (proseCells.length > 0) {
+  console.log("  値として比べていないセル（自然文。人が読むしかない）:");
+  for (const p of proseCells) console.log(`    ${p}`);
+}

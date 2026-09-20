@@ -17,6 +17,8 @@
  *        ── 2026-09-20（T262ⓑ）まではここが死角で、**変えても鳴らなかった**。
  *   8-2. 族に実在しない名前（`= nope`）は説明文として扱い、鳴らない（解決できないものは比べない）
  *   8-3. CSS のキーワード値（`underline`）を変えたら鳴る
+ *   8-4. **アルファ派生**（`primary 8%`）の比率を変えたら鳴る（T262ⓒ・2026-09-20）
+ *   8-5. `60%` と `60.0%` は同じ `0.6` に解決する（表記ゆれで誤検出しない）
  *        ── T262ⓐ まで `LITERAL` の語彙が 4 語しか無く、**値そのものなのに説明文扱い**だった。
  *   9. ダークに上書きの無いトークンは、飛ばさずライトの値と比べる
  *
@@ -121,6 +123,15 @@ try {
   restore();
   patch('docs/design/color.md', ghostRow, `| \`--wim-spacing-md\` | 0.5rem | 0.5rem |\n${ghostRow}`);
   check('9-2. 同じ値なら鳴らない', run() === 0);
+  // 8-4 / 8-5: アルファ派生。`primary 8%` は
+  // `oklch(from var(--wim-color-primary) l c h / 0.08)` の人間向けの書き方。
+  restore();
+  patch('docs/design/color.md', '| `--wim-color-surface-hover` | primary 8% |', '| `--wim-color-surface-hover` | primary 9% |');
+  check("8-4. アルファ派生の比率を変えたら鳴る", run() !== 0);
+
+  restore();
+  patch('docs/design/color.md', '| `--wim-color-frosted-bg` | overlay-soft | surface 60% |', '| `--wim-color-frosted-bg` | overlay-soft | surface 60.0% |');
+  check("8-5. 60% と 60.0% は同じ 0.6 に解決する（表記ゆれで鳴らない）", run() === 0);
 } finally {
   restore();
 }
