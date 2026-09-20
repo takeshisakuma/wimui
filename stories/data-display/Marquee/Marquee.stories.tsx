@@ -111,17 +111,17 @@ export const Vertical: Story = {
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story.marquee_item", { count: 1 })}
+            {t("story.marquee_notice_lift")}
           </div>
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story.marquee_item", { count: 2 })}
+            {t("story.marquee_notice_recycling")}
           </div>
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story.marquee_item", { count: 3 })}
+            {t("story.marquee_notice_door")}
           </div>
         </Marquee>
       </div>

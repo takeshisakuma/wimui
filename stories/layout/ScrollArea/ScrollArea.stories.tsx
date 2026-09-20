@@ -39,7 +39,7 @@ export const Default: Story = {
           <p>{t("story.scrollarea_custom_desc")}</p>
           <ul>
             {[...Array(10)].map((_, i) => (
-              <li key={i}>{t("story.scrollarea_item", { count: i + 1 })}</li>
+              <li key={i}>{t("story.scrollarea_row", { count: i + 1 })}</li>
             ))}
           </ul>
           <p>{t("story.scrollarea_scrolling_works")}</p>
@@ -91,11 +91,11 @@ export const WithChildren: Story = {
           <h4 style={{ margin: "0 0 1rem 0" }}>{t("story.scrollarea_custom_title")}</h4>
           <p>{t("story.scrollarea_custom_desc")}</p>
           <ul>
-            <li>{t("story.scrollarea_item", { count: 1 })}</li>
-            <li>{t("story.scrollarea_item", { count: 2 })}</li>
-            <li>{t("story.scrollarea_item", { count: 3 })}</li>
-            <li>{t("story.scrollarea_item", { count: 4 })}</li>
-            <li>{t("story.scrollarea_item", { count: 5 })}</li>
+            <li>{t("story.scrollarea_row", { count: 1 })}</li>
+            <li>{t("story.scrollarea_row", { count: 2 })}</li>
+            <li>{t("story.scrollarea_row", { count: 3 })}</li>
+            <li>{t("story.scrollarea_row", { count: 4 })}</li>
+            <li>{t("story.scrollarea_row", { count: 5 })}</li>
           </ul>
           <p>{t("story.scrollarea_scrolling_works")}</p>
         </div>
@@ -143,7 +143,7 @@ export const Both: Story = {
                   borderRadius: "var(--wim-radius-md)",
                 }}
               >
-                {t("story.scrollarea_box", { count: i + 1 })}
+                {t("story.scrollarea_seat", { count: i + 1 })}
               </div>
             ))}
           </div>
