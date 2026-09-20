@@ -621,7 +621,7 @@ git commit -m "commit message" --no-verify
 
 WIM UI extracts component specs (Props, design tokens, anatomy) automatically and embeds them into MDX.
 `src/data/docgen_*.json` is refreshed automatically when the Vite dev server starts or on file save, so you don't need to run a script manually (the output is gitignored and produced by Storybook's Vite plugin).
-For details on writing MDX, see `SKILLS.md`.
+For details on writing MDX, see `docs/rules/mdx.md`.
 
 ## Design tokens
 

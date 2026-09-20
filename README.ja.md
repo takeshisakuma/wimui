@@ -624,7 +624,7 @@ git commit -m "commit message" --no-verify
 
 WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
 Vite の開発サーバー起動時やファイル保存時に `src/data/docgen_*.json` が自動更新されるため、手動でスクリプトを実行する必要はありません（生成物は gitignore され、Storybook の Vite プラグインが出力します）。
-MDX の記述方法の詳細は `SKILLS.md` を参照してください。
+MDX の記述方法の詳細は `docs/rules/mdx.md` を参照してください。
 
 ## デザイントークン
 
