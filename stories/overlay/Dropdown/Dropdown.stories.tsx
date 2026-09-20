@@ -75,15 +75,9 @@ export const AlignmentRight: Story = {
             <Button >{t("story.dropdown_right_aligned")}</Button>
           </DropdownTrigger>
           <DropdownMenu align="right">
-            <DropdownItem>
-              {t("story.dropdown_item")} 1
-            </DropdownItem>
-            <DropdownItem>
-              {t("story.dropdown_item")} 2
-            </DropdownItem>
-            <DropdownItem>
-              {t("story.dropdown_item")} 3
-            </DropdownItem>
+            <DropdownItem>{t("story.dropdown_rename")}</DropdownItem>
+            <DropdownItem>{t("story.dropdown_copy_link")}</DropdownItem>
+            <DropdownItem>{t("story.dropdown_archive")}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>

@@ -63,17 +63,17 @@ export const WithSubMenu: Story = {
           title={t("story.menu_products")}
           icon={<Icon name="CopyIcon" size="sm" />}
         >
-          <MenuItem>{t("story.menu_product")} 1</MenuItem>
-          <MenuItem>{t("story.menu_product")} 2</MenuItem>
-          <MenuItem>{t("story.menu_product")} 3</MenuItem>
+          <MenuItem>{t("story.menu_product_cards")}</MenuItem>
+          <MenuItem>{t("story.menu_product_posters")}</MenuItem>
+          <MenuItem>{t("story.menu_product_stickers")}</MenuItem>
         </SubMenu>
         <SubMenu
           itemKey="sub2"
           title={t("story.menu_services")}
           icon={<Icon name="CloseIcon" size="sm" />}
         >
-          <MenuItem>{t("story.menu_service")} A</MenuItem>
-          <MenuItem>{t("story.menu_service")} B</MenuItem>
+          <MenuItem>{t("story.menu_service_same_day")}</MenuItem>
+          <MenuItem>{t("story.menu_service_file_check")}</MenuItem>
         </SubMenu>
         <MenuItem>{t("story.menu_contact")}</MenuItem>
       </Menu>

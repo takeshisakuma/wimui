@@ -68,17 +68,17 @@ export const Scrolling: Story = {
     return (
       <Tabs defaultValue="1" style={{ width: "min(800px, 100%)" }}>
         <Tabs.List>
-          <Tabs.Trigger value="1">{t("story.tabs_long_tab")} 1</Tabs.Trigger>
-          <Tabs.Trigger value="2">{t("story.tabs_long_tab")} 2</Tabs.Trigger>
-          <Tabs.Trigger value="3">{t("story.tabs_long_tab")} 3</Tabs.Trigger>
-          <Tabs.Trigger value="4">{t("story.tabs_long_tab")} 4</Tabs.Trigger>
-          <Tabs.Trigger value="5">{t("story.tabs_long_tab")} 5</Tabs.Trigger>
+          <Tabs.Trigger value="1">{t("story.tabs_scroll_profile")}</Tabs.Trigger>
+          <Tabs.Trigger value="2">{t("story.tabs_scroll_notifications")}</Tabs.Trigger>
+          <Tabs.Trigger value="3">{t("story.tabs_scroll_security")}</Tabs.Trigger>
+          <Tabs.Trigger value="4">{t("story.tabs_scroll_apps")}</Tabs.Trigger>
+          <Tabs.Trigger value="5">{t("story.tabs_scroll_billing")}</Tabs.Trigger>
         </Tabs.List>
-        <Tabs.Content value="1">Content 1</Tabs.Content>
-        <Tabs.Content value="2">Content 2</Tabs.Content>
-        <Tabs.Content value="3">Content 3</Tabs.Content>
-        <Tabs.Content value="4">Content 4</Tabs.Content>
-        <Tabs.Content value="5">Content 5</Tabs.Content>
+        <Tabs.Content value="1">{t("story.tabs_scroll_profile_desc")}</Tabs.Content>
+        <Tabs.Content value="2">{t("story.tabs_scroll_notifications_desc")}</Tabs.Content>
+        <Tabs.Content value="3">{t("story.tabs_scroll_security_desc")}</Tabs.Content>
+        <Tabs.Content value="4">{t("story.tabs_scroll_apps_desc")}</Tabs.Content>
+        <Tabs.Content value="5">{t("story.tabs_scroll_billing_desc")}</Tabs.Content>
       </Tabs>
     );
   },

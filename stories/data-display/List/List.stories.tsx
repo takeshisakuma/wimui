@@ -58,12 +58,8 @@ export const Small: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} size="sm">
-        <ListItem>
-          {t("story.list_item_small")} 1
-        </ListItem>
-        <ListItem>
-          {t("story.list_item_small")} 2
-        </ListItem>
+        <ListItem>{t("story.list_small_yogurt")}</ListItem>
+        <ListItem>{t("story.list_small_bread")}</ListItem>
       </List>
     );
   },
@@ -74,12 +70,8 @@ export const Large: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} size="lg">
-        <ListItem>
-          {t("story.list_item_large")} 1
-        </ListItem>
-        <ListItem>
-          {t("story.list_item_large")} 2
-        </ListItem>
+        <ListItem>{t("story.list_large_dentist")}</ListItem>
+        <ListItem>{t("story.list_large_bike")}</ListItem>
       </List>
     );
   },
@@ -90,12 +82,8 @@ export const LooseSpacing: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} spacing="loose">
-        <ListItem>
-          {t("story.list_loose")} 1
-        </ListItem>
-        <ListItem>
-          {t("story.list_loose")} 2
-        </ListItem>
+        <ListItem>{t("story.list_loose_recycle")}</ListItem>
+        <ListItem>{t("story.list_loose_plants")}</ListItem>
       </List>
     );
   },

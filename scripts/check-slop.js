@@ -112,6 +112,19 @@ const COPY_SCAN_FILES = [
   ...globSync('stories/**/*.stories.tsx', { posix: true }),
 ];
 
+// **`stories/Audit/**` は ①（JSX で番号を足す形）の判定だけ対象外**（2026-09-20・T261）。
+// 理由は 1 つ上の `audit.json` とまったく同じで、**外す単位が locale かストーリーかの違いだけ**。
+// `Audit/*Family` は部品を**見比べる**内部 QA 用のページなので、並ぶ項目に意味を持たせると
+// 比較の邪魔になる（`{t("audit:label_list")} 1` が 3 つ並ぶのは、その 3 行が**同じ長さ・同じ中身**
+// であることに意味がある）。`ListFamilyAudit` の 17 箇所がこれに当たり、外した結果 ① は
+// **baseline 0 のハードゲート**になった。
+//
+// **外すのは ① だけ。** hype / 空コピー / 定型名 / 連番（リテラル）は、これまでどおり
+// `stories/Audit/*.stories.tsx` も見る（実測で 0 件なので、ここを外す理由が無い）。
+//
+// **判断が変わる条件も同じ**: Audit ページを外部に見せるようになったとき。
+const isAuditComparison = (file) => file.startsWith('stories/Audit/');
+
 // 対象は常に全量。lint-staged は staged ファイルだけを渡してくるが、それで絞ると
 // styleHits の合計がベースラインを必ず下回り、ラチェットが素通りしてしまう
 // （合計を凍結する方式なので、部分集合と全体の基準を比べても意味がない）。
@@ -433,7 +446,7 @@ const numberedPlaceholderHit = (line) => {
  * 番号をリテラルの外に置くと永久に映らない。T255 で 50 → 0 にした直後に実測したら、
  * 同じ欠陥が **2 経路**で残っていた。
  *
- * **① JSX で番号を足す形**: `{t("story.list_item_small")} 1`。
+ * **① JSX で番号を足す形**: `{t("story.list_item")} 1`。
  * リテラルはキー名なので規則に当たらない。**T256（RadioGroup が `Option 1 2` を
  * 表示していた）はこの形の事故**で、実害の前例がある。
  */
@@ -507,7 +520,8 @@ for (const file of COPY_SCAN_FILES) {
       const num = numberedPlaceholderHit(line);
       if (num) numberedHits.push(`${file}:${i + 1}: 「${num}」 ${line.trim().slice(0, 80)}`);
       // ① 番号がリテラルの外（JSX の隣）にある形。TSX にしか出ない。
-      const jsxNum = jsxNumberHit(line);
+      // 見比べるための Audit ページは対象外（`isAuditComparison` の隣に理由がある）。
+      const jsxNum = isAuditComparison(file) ? null : jsxNumberHit(line);
       if (jsxNum) jsxNumberHits.push(`${file}:${i + 1}: 「${jsxNum}」`);
       // ② 番号が i18n の補間にある形。en の locale 値だけを見る。
       const interp = line.match(/"([^"\\\n]*)"\s*:\s*"([^"\\\n]*)"/);
@@ -591,8 +605,23 @@ const NUMBERED_PLACEHOLDER_BASELINE = 0;
  * 走査を広げるかどうかは別の判断なので、ここでは広げない。
  *
  * 減らしたらこの値を下げること。0 にできたらハードゲートへ移す。
+ *
+ * **① は 37 → 0 になり、ハードゲートへ移した**（2026-09-20）。潰したのは**カタログのストーリー 20 箇所**
+ * （`Menu` 3 / `Dropdown` 3 / `Tabs` 5 / `List` 6 / `Carousel` 3）で、番号の代わりに
+ * その画面で実際に並ぶものの名前を en / ja / pt のキーで用意した。ついでに、同じ画面の
+ * **規則に当たらない同型**も直した ── `{t("story.menu_service")} A` のアルファベット連番と、
+ * `Tabs` の `Content 1`（`t()` を通さない素の数字なので規則の対象外）。
+ *
+ * **残っていた 17 箇所はすべて `stories/Audit/ListFamilyAudit.stories.tsx`** で、
+ * **これは中身を実在化する話ではない**（ユーザー判断で走査から外した）。`Audit/*Family` は部品を
+ * **見比べる**内部 QA 用のページなので、並ぶ項目に意味を持たせると比較の邪魔になる ──
+ * `audit.json` を走査に入れないと決めた #650 と同じ理由で、外す単位が locale かストーリーかの違い。
+ * 除外の実体と「判断が変わる条件」は `isAuditComparison` の隣に書いた。
+ *
+ * **これで ① は 0 になったので、ラチェット特有の穴（lint-staged が部分集合しか渡さない）の
+ * 形そのものが消えた。** 残るラチェットは ②（補間 7 件）と px 直書きの 2 本。
  */
-const JSX_NUMBER_BASELINE = 37;
+const JSX_NUMBER_BASELINE = 0;
 const INTERPOLATED_NUMBER_BASELINE = 7;
 
 if (numberedHits.length > NUMBERED_PLACEHOLDER_BASELINE) {

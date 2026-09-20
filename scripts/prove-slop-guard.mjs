@@ -31,16 +31,16 @@ const CASES = [
   {
     name: 'T1. JSX で番号を足す形が鳴る（{t(...)} 1）',
     file: 'stories/data-display/List/List.stories.tsx',
-    find: '          {t("story.list_item_small")}',
-    put: '          {t("story.list_item_small")} 9\n          {t("story.list_item_small")}',
+    find: '        <ListItem>{t("story.list_small_yogurt")}</ListItem>',
+    put: '        <ListItem>{t("story.list_small_yogurt")} 9</ListItem>\n        <ListItem>{t("story.list_small_yogurt")}</ListItem>',
     expect: true,
     match: /JSX で番号を足している箇所が増えています/,
   },
   {
     name: 'T2. t() を通さない素の数字は鳴らない（{count} 2 のような算用）',
     file: 'stories/data-display/List/List.stories.tsx',
-    find: '          {t("story.list_item_small")}',
-    put: '          {items.length} 9\n          {t("story.list_item_small")}',
+    find: '        <ListItem>{t("story.list_small_yogurt")}</ListItem>',
+    put: '        <ListItem>{items.length} 9</ListItem>\n        <ListItem>{t("story.list_small_yogurt")}</ListItem>',
     expect: false,
   },
   {
@@ -64,6 +64,23 @@ const CASES = [
     find: '    "infscroll_item":',
     put: '    "prove_temp_week": "Week {{n}}",\n    "story.infscroll_item":',
     expect: false,
+  },
+  // T6 / T7（2026-09-20）: ① を `stories/Audit/**` で外した件。**外れていること**と、
+  // **外れているのが ① だけであること**の両方を見る（除外は広がりやすい）。
+  {
+    name: 'T6. 見比べる Audit ページでは ① が鳴らない（除外が効いている）',
+    file: 'stories/Audit/ListFamilyAudit.stories.tsx',
+    find: '                <ListItem>{t("audit:label_list")} 1</ListItem>',
+    put: '                <ListItem>{t("audit:label_list")} 9</ListItem>\n                <ListItem>{t("audit:label_list")} 1</ListItem>',
+    expect: false,
+  },
+  {
+    name: 'T7. 同じ Audit ページでも空コピーは鳴る（外したのは ① だけ）',
+    file: 'stories/Audit/ListFamilyAudit.stories.tsx',
+    find: '                <ListItem>{t("audit:label_list")} 1</ListItem>',
+    put: '                <ListItem>No data found</ListItem>\n                <ListItem>{t("audit:label_list")} 1</ListItem>',
+    expect: true,
+    match: /中身の無い定型コピー/,
   },
   {
     name: 'A. 斜めグラデを部品 SCSS に差し込む（to top left）',
