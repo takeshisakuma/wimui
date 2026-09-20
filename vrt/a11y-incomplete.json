@@ -656,7 +656,7 @@
       ]
     },
     "components-layout-aspectratio--embed": {
-      "light": [
+      "dark": [
         "frame-tested"
       ]
     },
@@ -807,6 +807,9 @@
     "components-media-audio--premium-features": {
       "light": [
         "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
       ]
     },
     "components-media-audio--rounded": {
@@ -935,6 +938,14 @@
       ],
       "dark": [
         "color-contrast"
+      ]
+    },
+    "components-overlays-dropdown--alignment-right": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
       ]
     },
     "components-typography-icons-kbd--combined": {
