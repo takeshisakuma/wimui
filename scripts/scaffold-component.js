@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { readGateCommands, SOURCE as GATES_SOURCE } from './check-quality-gates.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -298,13 +299,12 @@ console.log(`1. Implement the component logic and styles (tokens only; no bare p
 console.log(`2. Add/update public/locales/en keys → npm run i18n:sync → npm run i18n:check`);
 console.log(`3. Complete MDX (required sections) → npm run audit-mdx`);
 console.log(`4. If asChild is required for this component: implement it, update docs/rules/implementation.md list, npm run check:aschild`);
-console.log(`5. Quality gates before PR:`);
-console.log(`   npm run check:api`);
-console.log(`   npm run check:aschild`);
-console.log(`   npm run audit:hardcoded`);
-console.log(`   npm run i18n:check`);
-console.log(`   npm run check:imports`);
-console.log(`   npm run lint && npm run stylelint`);
+// ゲートの一覧は写しを持たず正本から読む（2026-09-21）。以前はここに 6 本を直書き
+// していて、AGENTS.md の表とも PR テンプレートとも中身が違っていた。
+console.log(`5. Quality gates before PR (${GATES_SOURCE}):`);
+for (const g of readGateCommands(fs.readFileSync(path.join(__dirname, '..', GATES_SOURCE), 'utf8'))) {
+  console.log(`   npm run ${g}`);
+}
 console.log(`   (or npm run audit:lib)`);
 console.log(`6. Probe (compose) once with other components. Discard the probe screen. Keep the Realistic catalog story. Do not add a Patterns page for coverage. See docs/rules/implementation.md.`);
-console.log(`See .github/pull_request_template.md and AGENTS.md「品質ゲート・チェックリスト」。`);
+console.log(`See ${GATES_SOURCE} (what each gate is for) and .github/pull_request_template.md.`);

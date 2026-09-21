@@ -431,6 +431,7 @@
     "check:composition-rules": "node scripts/check-composition-rules.js",
     "check:readme": "node scripts/check-readme-claims.js",
     "check:readme-parity": "node scripts/check-readme-parity.mjs",
+    "check:quality-gates": "node scripts/check-quality-gates.mjs",
     "check:examples": "node scripts/check-code-examples.js",
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js",
     "check:external-assets": "node scripts/check-external-assets.js",
@@ -725,6 +726,9 @@
     ],
     "{README.md,README.ja.md,scripts/check-readme-parity.mjs}": [
       "node scripts/check-readme-parity.mjs"
+    ],
+    "{docs/rules/quality-gates.md,.github/pull_request_template.md,scripts/check-quality-gates.mjs}": [
+      "node scripts/check-quality-gates.mjs"
     ],
     "src/components/{helpers.ts,charts/**/*.tsx}": [
       "node scripts/check-chart-text-color.js"
