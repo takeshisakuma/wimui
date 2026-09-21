@@ -419,6 +419,7 @@
     "prepare": "husky && node scripts/link-skills.mjs",
     "check:aliases": "node scripts/check-aliases.js",
     "check:improvements": "node scripts/check-improvements-status.js",
+    "maintenance:preview": "node scripts/maintenance-issue.mjs --dry-run",
     "improvements:archive": "node scripts/archive-improvements-done.mjs",
     "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:chart-palette": "node scripts/check-chart-palette.js",
@@ -429,6 +430,7 @@
     "audit:src-i18n": "node scripts/check-src-hardcoded.js",
     "check:composition-rules": "node scripts/check-composition-rules.js",
     "check:readme": "node scripts/check-readme-claims.js",
+    "check:readme-parity": "node scripts/check-readme-parity.mjs",
     "check:examples": "node scripts/check-code-examples.js",
     "check:sandbox-pin": "node scripts/check-sandbox-pin.js",
     "check:external-assets": "node scripts/check-external-assets.js",
@@ -720,6 +722,9 @@
     ],
     "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt}": [
       "node scripts/check-code-examples.js"
+    ],
+    "{README.md,README.ja.md,scripts/check-readme-parity.mjs}": [
+      "node scripts/check-readme-parity.mjs"
     ],
     "src/components/{helpers.ts,charts/**/*.tsx}": [
       "node scripts/check-chart-text-color.js"

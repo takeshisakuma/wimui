@@ -1,6 +1,6 @@
 # wimui
 
-[English](./README.md) · [日本語](./README.ja.md)
+**English** · [日本語](./README.ja.md)
 
 [![npm version](https://img.shields.io/npm/v/wimui.svg)](https://www.npmjs.com/package/wimui) [![license](https://img.shields.io/npm/l/wimui.svg)](./LICENSE)
 
@@ -646,9 +646,12 @@ This makes the latest tokens available as type completions during component deve
 
 ## Workflow
 
+`main` is protected: changes land through a branch and a pull request (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
+
 ```bash
+git switch -c feat/my-change
 git add .
 git commit -m "..."
-git pull --rebase origin main
-git push origin main
+git push -u origin feat/my-change
+gh pr create
 ```
