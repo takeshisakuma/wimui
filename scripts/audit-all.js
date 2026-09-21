@@ -197,6 +197,13 @@ const checks = [
   },
   {
     category: "docs",
+    // 品質ゲートの一覧は 3 か所（AGENTS.md の表・PR テンプレート・scaffold の出力）で
+    // 中身が違っていた（2026-09-21）。正本は docs/rules/quality-gates.md。
+    name: "Quality gates: docs/rules/quality-gates.md matches the PR template",
+    command: "node scripts/check-quality-gates.mjs",
+  },
+  {
+    category: "docs",
     // 上が README の「表」の主張を見るのに対し、こちらは**コード例そのもの**を
     // コンパイルする（T37 の残り）。llms.txt のレシピは generate-llms.js の中に
     // 手書きで存在し、「実 API に対して検証済み」とコメントされているだけだった。

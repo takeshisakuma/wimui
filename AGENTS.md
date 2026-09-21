@@ -26,6 +26,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | テストの書き方 | `docs/rules/testing.md` |
 | サイズ予算・CJS / peer / 公開 API / 密度 / Form の契約 | `docs/rules/build.md` |
 | pre-commit で何が走るか | `docs/rules/pre-commit.md` |
+| **PR を出す前に通すゲート**（どのコマンドを・いつ・何のために） | `docs/rules/quality-gates.md` |
 | **VRT / a11y のベースラインを触る PR をマージする**（直列の着地・コミットバック後の head の数え方） | `docs/rules/vrt-baseline-prs.md` |
 | CI・VRT・ガードを触る（潰れの測り方・VRT の除外と起動条件のずれ・スナップショット方式の罠・CI の Lint ジョブ・CI スキップ指示の誤発火） | `docs/rules/ci-and-guards.md` |
 
@@ -112,29 +113,14 @@ npm run test -- src/components/form/Button/Button.test.tsx
 
 ## 品質ゲート・チェックリスト
 
-PR 作成時は `.github/pull_request_template.md` の Quality gates に沿ってチェックする。  
-`npm run scaffold` 完了時にも同じゲート一覧がコンソールに出る。
+PR 作成時は `.github/pull_request_template.md` の Quality gates に沿ってチェックする（一覧の正本は `docs/rules/quality-gates.md`）。  
+`npm run scaffold` 完了時にも、正本から読んだゲート一覧がコンソールに出る。
 
 ### 1. 必須ゲート（新規コンポーネント / 公開面変更）
 
-コミット・PR 前に、変更に該当するものをパスすること。
+**一覧と各ゲートの目的は `docs/rules/quality-gates.md` が正本**（2026-09-21 に移した）。同じ一覧はこのファイル・PR テンプレート・`scaffold` の出力の 3 か所にあって中身が違っていた。PR テンプレートとのずれは `npm run check:quality-gates` が落とし、`scaffold` は正本から読んで出す。
 
-| チェック項目 | コマンド | 目的 |
-|---|---|---|
-| 公開 API 表面 | `npm run check:api` | `exports` + バレルシンボル（`api-snapshot.json` v2）。意図的変更時のみ `check:api:update` |
-| prop シグネチャ | `npm run check:prop-api` | シンボル名では見えない prop の破壊（消えた・必須になった・型が狭まった）。**prop を足したときも落ちる**ので `check:prop-api:update` で `prop-api-snapshot.json` を更新してコミットする（2026-09-21 に強化。助言のままだと 18 prop 遅れて `Comment` が丸ごと未収録になり、**未収録の部品は prop を消しても永久に緑**だった）。鳴ることの実証は `npm run prove:prop-api` |
-| ポリモーフィック監査 | `npm run check:aschild` | `asChild` 実装と `docs/rules/implementation.md` の必須リスト同期 |
-| トークン漏れ（PX） | `npm run audit:hardcoded` | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
-| i18n 整合性 | `npm run i18n:check` | en / ja / pt のキー一致 |
-| peer import 境界 | `npm run check:imports` | charts / ai / peer 依存をルート `wimui` から引いていないか |
-| 型・スタイル | `npm run lint` / `npm run stylelint` | 構文・スタイル |
-| MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネントの必須セクション |
-| a11y の `incomplete` | `npm run check:a11y-incomplete` | 「axe が**人に確かめろ**と言った指摘」の許可リスト（`vrt/a11y-incomplete.json`）の形・理由・孤児。**新しいストーリーで増えても減っても a11y の CI が落ちる** ── 直すか、理由を書いて許す（更新手順は `MAINTENANCE.md` 12-2） |
-| 合成（新規公開） | T179 のプローブ | カタログ単体では出荷しない。他部品と組んで置き方・a11y・狭幅を触り、確認後に画面は捨てる。`stories/Patterns/` にカバー率のために書かない |
-
-まとめて: `npm run audit:lib`（範囲が広いとき）。
-
-短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合も、上表をすべてパスすること。
+まとめて: `npm run audit:lib`（範囲が広いとき）。短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合も、すべてパスすること。
 
 ### 2. 自動化スクリプトの活用
 
