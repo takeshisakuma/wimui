@@ -179,10 +179,11 @@ padding: var(--wim-spacing-md);
 | パス / 属性 | 役割 |
 |---|---|
 | `wimui/styles.css` | **必須** — `:root` `--wim-*`（ダーク・密度含む）+ コンポーネント CSS |
-| `wimui/reset.css` | **任意** — 意見の強いリセット/base |
+| `wimui/reset.css` | **任意** — 意見の強いリセット/base。**素の `h1`〜`h6` の `line-height` を含む**（T208。`snug` / `[lang="ja"]` は `snug-jp`。入れなければ見出しは本文の比率＝間延びしたまま） |
 | `WimProvider` | **推奨** — `theme` / `density` / `locale` を React から設定（内部で属性を書く） |
 | `data-theme` | CSS 契約。`<html>` に載せる。値 `light` \| `dark`。省略で OS 追従 |
 | `data-density` | CSS 契約。`<html>`（または祖先）。`comfortable` \| `compact` |
+| UMD | `wimui.umd.css` に styles（トークン+コンポーネント）と reset を同梱 |
 
 `setWimTheme` / `setWimDensity` / `setWimLocale` は属性・ロケールの命令型 API。コンポーネント SCSS に `[data-theme="dark"]` を書かない。詳細は `DESIGN.md` / Token → Theme・Density。
 
@@ -195,6 +196,15 @@ padding: var(--wim-spacing-md);
 | `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト |
 
 `surface-subtle` と `surface-subtle-alpha` は別物。サーフェスは `surface*`、反転面は `surface-inverse` / `text-on-inverse`。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
+
+公開 role の一覧（名前は `--wim-color-` を省いて書く）:
+
+- サーフェス: `surface-app` / `surface` / `surface-variant` / `surface-hover` / `surface-subtle` / `surface-subtle-alpha` / `surface-void` / `surface-inverse`
+- 反転: `text-on-inverse` / `text-muted-on-inverse` / `border-inverse`
+- Overlay: `overlay` / `overlay-soft` / `overlay-strong` / `overlay-medium` / `overlay-sidebar`
+- Intent 状態: `primary-muted` / `primary-soft` / `primary-subtle` / `primary-fill`
+- 絶対白: `white`（旧 `text-white` / `bg-white`）
+- Avatar の default が disabled のパレットを流用しているのは**意図的**（ニュートラル用の新規トークンは増やさない）
 
 ### intent の `subtle` 変種は「base を 15% で敷く」が既定
 

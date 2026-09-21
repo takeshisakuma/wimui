@@ -71,6 +71,11 @@ for (const known of ["--wim-color-surface", "--wim-spacing-md", "--wim-font-size
  * カラー / タイポグラフィ節を切り出したとき。**あの 2 節はトークン名の一覧そのもの**
  * なのに、ここは MDX とロケールしか見ていなかった。足した時点の実測は 0 件なので、
  * 以後は「設計文書に書いたのに実在しない名前」が入った日に鳴る。
+ *
+ * **`docs/history/` は見ない**（2026-09-21）。ここは `IMPROVEMENTS.md` の過去分を
+ * 1 文字も書き換えずに退避した場所で、「架空のトークン名を見つけて直した」という
+ * 経緯そのものを記録している ── 実在しない名前が書いてあるのが正しい状態。
+ * 退避前の `IMPROVEMENTS.md`（リポジトリ直下）も走査対象外だった。
  */
 function targets() {
   const out = [];
@@ -78,7 +83,10 @@ function targets() {
     if (!fs.existsSync(dir)) return;
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, e.name);
-      if (e.isDirectory()) walk(p, re);
+      if (e.isDirectory()) {
+        if (path.relative(root, p).split(path.sep).join("/") === "docs/history") continue;
+        walk(p, re);
+      }
       else if (re.test(e.name) && !e.name.startsWith(".")) out.push(p);
     }
   };
