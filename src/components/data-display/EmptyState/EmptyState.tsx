@@ -11,6 +11,12 @@ type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
   icon?: React.ReactNode;
   /** Element shown as an action (e.g. a button). */
   extra?: React.ReactNode;
+  /**
+   * Horizontal alignment. Start-aligned reads as part of the card or table it sits
+   * in; use `"center"` only when the empty state is the only thing in its region.
+   * @default "start"
+   */
+  align?: "start" | "center";
 };
 
 /**
@@ -21,6 +27,7 @@ export const EmptyState = ({
   description,
   icon,
   extra,
+  align = "start",
   className,
   ...props
 }: EmptyStateProps) => {
@@ -30,6 +37,7 @@ export const EmptyState = ({
       description={description}
       icon={icon}
       actions={extra}
+      align={align}
       className={classNames("wim-empty-state", 
         className,
       )}

@@ -206,6 +206,8 @@
     "stats_title": "Indicador de Métricas",
     "stats_trend": "Exibição de Tendência",
     "stats_trend_desc": "Exiba taxas de mudança, como mês a mês, usando `Stats.Trend`.",
+    "stats_trend_intent": "Cor pelo bom ou ruim",
+    "stats_trend_intent_desc": "`direction` define a seta; `intent` define a cor. Em métricas em que a alta é má notícia (custos, taxa de erros), escreva `direction=\"up\" intent=\"danger\"`. Sem `intent`, a cor segue a direção (alta = sucesso).",
     "stats_trend_props": "Propriedades de StatsTrend",
     "stats_usage_desc": "Combine rótulos, valores e informações suplementares.",
     "stats_value_props": "Propriedades de StatsValue",

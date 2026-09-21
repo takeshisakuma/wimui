@@ -20,11 +20,33 @@ describe("Stats", () => {
     expect(screen.getByText("+12%")).toBeInTheDocument();
   });
 
-  it("applies trend direction classes", () => {
+  it("derives the color from the direction when intent is not given", () => {
     const { container } = render(
       <Stats.Trend direction="down">-5%</Stats.Trend>,
     );
-    expect(container.firstChild).toHaveClass(styles.down);
+    expect(container.firstChild).toHaveAttribute("data-direction", "down");
+    expect(container.firstChild).toHaveAttribute("data-intent", "danger");
+    expect(container.firstChild).toHaveClass(styles.danger);
+  });
+
+  // T250 ④。以前は direction が矢印と色を同時に決め、「増えると悪い指標」の上昇が
+  // 成功色で描かれた。intent は色だけを決め、矢印は direction のまま。
+  it("lets intent set the color independently of the arrow", () => {
+    const { container } = render(
+      <Stats.Trend direction="up" intent="danger">+8% errors</Stats.Trend>,
+    );
+    expect(container.firstChild).toHaveAttribute("data-direction", "up");
+    expect(container.firstChild).toHaveAttribute("data-intent", "danger");
+    expect(container.firstChild).not.toHaveClass(styles.success);
+  });
+
+  it.each([
+    ["up", "success"],
+    ["down", "danger"],
+    ["neutral", "neutral"],
+  ] as const)("keeps the old color for direction=%s (%s)", (direction, intent) => {
+    const { container } = render(<Stats.Trend direction={direction}>x</Stats.Trend>);
+    expect(container.firstChild).toHaveAttribute("data-intent", intent);
   });
 
   // T250 ②。Stats は Card へ委譲しているが**既定値は自前で持っている**ので、

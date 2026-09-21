@@ -73,23 +73,40 @@ export const StatsDescription = ({
 );
 
 export type StatsTrendProps = React.ComponentPropsWithoutRef<"div"> & {
-  /** Trend direction, which controls the icon and color */
+  /**
+   * Trend direction, which controls the arrow icon. When `intent` is not given it
+   * also sets the color (`up` = success, `down` = danger, `neutral` = neutral).
+   * @default "up"
+   */
   direction?: "up" | "down" | "neutral";
+  /**
+   * Whether the change is good or bad, which controls the color independently of
+   * the arrow. Set it for metrics where a rise is bad news, such as costs or error
+   * rates: `direction="up" intent="danger"`. Defaults to the color implied by
+   * `direction`.
+   */
+  intent?: "success" | "danger" | "neutral";
 };
+
+/** `intent` を省いたときの色。以前はこれが唯一の規則だった（向き＝良し悪し）。 */
+const TREND_INTENT = { up: "success", down: "danger", neutral: "neutral" } as const;
 
 export const StatsTrend = ({
   direction = "up",
+  // 色は向きではなく良し悪しで決める（T250 ④・2026-09-21）。以前は `direction` が
+  // 矢印と色を同時に決めていたので、「増えると悪い指標」（コスト・エラー率）の上昇が
+  // 成功色で描かれた。合成ルール `colour_means_good_or_bad` が「Trend を使うな」と
+  // 回避を指示していたのは、API がこの意味を表せなかったため。
+  intent = TREND_INTENT[direction],
   className,
   children,
   ...props
 }: StatsTrendProps) => {
   return (
     <div
-      className={classNames(
-        styles.trend,
-        styles[direction],
-        className,
-      )}
+      className={classNames(styles.trend, styles[intent], className)}
+      data-direction={direction}
+      data-intent={intent}
       {...props}
     >
       {/* **記号ではなくアイコンで描く。** ここは `"↑"` `"↓"` `"→"` の直書きだった

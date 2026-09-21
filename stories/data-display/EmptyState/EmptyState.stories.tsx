@@ -32,6 +32,24 @@ export const Default: Story = {
   },
 };
 
+// 既定は左揃え（カードや表の中に置かれるため）。その領域に空状態しか無いとき
+// だけ中央に寄せる（T250 ③）。
+export const Centered: Story = {
+  args: { align: "center" },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <EmptyState
+        {...args}
+        title={t("story.emptystate_nodata_title")}
+        description={t("story.emptystate_nodata_desc")}
+        icon={<Icon name="SearchIcon" size="lg" />}
+        extra={<Button>{t("story.emptystate_clear_search")}</Button>}
+      />
+    );
+  },
+};
+
 export const WithoutDescription: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

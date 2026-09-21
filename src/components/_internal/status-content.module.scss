@@ -3,42 +3,67 @@
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-4xl);
-    align-items: center;
     padding: var(--wim-spacing-4xl) var(--wim-spacing-md);
-    text-align: center;
-  
+
+    /* 揃えは `align` で決める（T250 ③・2026-09-21）。既定は start。以前は md / lg を
+       中央揃えに固定していたので、カードや表の中に置いた空状態だけが中央に寄った。 */
+    &.alignStart {
+      align-items: flex-start;
+      text-align: left;
+
+      .container {
+        align-items: flex-start;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+    }
+
+    &.alignCenter {
+      align-items: center;
+      text-align: center;
+
+      .container {
+        align-items: center;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+    }
+
+    /* sm はアイコンと文字を横に並べる。横並びでは align-items が縦方向になるので、
+       揃え（上の 2 つ）より後ろに置いて、アイコンを文字の縦中央に合わせる。 */
     &.sm {
       gap: var(--wim-spacing-md);
-      align-items: flex-start;
       padding: var(--wim-spacing-lg) var(--wim-spacing-md);
-      text-align: left;
-  
+
       .container {
         flex-direction: row;
         gap: var(--wim-spacing-md);
         align-items: center;
       }
-  
+
       .icon {
         margin-bottom: 0;
-  
+
         svg {
           width: var(--wim-status-icon-size-sm);
           height: var(--wim-status-icon-size-sm);
           font-size: var(--wim-status-icon-size-sm);
         }
       }
-  
+
       .title {
         font-size: var(--wim-font-size-md);
       }
-  
+
       .description {
         font-size: var(--wim-font-size-sm);
       }
-  
+
       .actions {
-        justify-content: flex-start;
         margin-top: var(--wim-spacing-md);
       }
     }
@@ -48,7 +73,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-sm);
-    align-items: center;
   }
 
   .content {
@@ -92,7 +116,6 @@
   .actions {
     display: flex;
     gap: var(--wim-spacing-sm);
-    justify-content: center;
     margin-top: var(--wim-spacing-lg);
   }
 

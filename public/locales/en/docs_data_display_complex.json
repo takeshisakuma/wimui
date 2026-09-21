@@ -206,6 +206,8 @@
     "stats_title": "A component to highlight key performance indicators and metrics",
     "stats_trend": "Trend Display",
     "stats_trend_desc": "Display rates of change, such as month-over-month, using `Stats.Trend`.",
+    "stats_trend_intent": "Color by good or bad",
+    "stats_trend_intent_desc": "`direction` sets the arrow; `intent` sets the color. For metrics where a rise is bad news (costs, error rates), write `direction=\"up\" intent=\"danger\"`. Without `intent`, the color follows the direction (up = success).",
     "stats_trend_props": "StatsTrend Props",
     "stats_usage_desc": "Combine labels, values, and supplementary information.",
     "stats_value_props": "StatsValue Props",
