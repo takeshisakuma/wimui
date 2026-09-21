@@ -1,3 +1,4 @@
+// changeset-reminder の検証用（この PR はマージしない）
 import React from "react";
 import classNames from "classnames";
 import styles from "./marquee.module.scss";
