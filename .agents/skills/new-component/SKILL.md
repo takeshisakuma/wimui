@@ -10,7 +10,7 @@ description: Use BEFORE creating, adding, or scaffolding a new WIM UI component 
 手順:
 
 1. `docs/rules/new-component.md` を読む。**ファイルは手で作らず `npm run scaffold -- <Name> <category>` で作る**（`forwardRef` + `asChild`・`@layer component`・MDX 雛形・`react-i18next` のモック・`wim-<kebab名>` フックが入る。手で作ると `check:hooks` / `audit-mdx` などで落ちる）。
-2. 配置・バレル・peer 依存の置き場は `AGENTS.md`「ファイル・エクスポート」と、`docs/rules/new-component.md` の手順 1。**peer を eager に import する部品は `*-core.ts` やルートに載せない。**
+2. 配置・命名・バレル・peer 依存の置き場は `docs/rules/new-component.md` の手順 1 と「置き場と命名」。**peer を eager に import する部品は `*-core.ts` やルートに載せない。**
 3. API・レスポンシブ・a11y・`asChild` の要否は `docs/rules/implementation.md`。**複合 UI なら、公開せずレシピにできないか**を先に同じ文書で判断する。
 4. 既定値（props の既定・`.module.scss` の既定の面）と `Default` ストーリーは `composition-guidelines` skill の対象。素で置いた姿が禁止パターンなら既定の失敗。
 5. 文字列は `docs/rules/i18n.md`（`public/locales/en/` に足して `npm run i18n:sync`）。ストーリーは `docs/rules/storybook.md`、MDX は `docs/rules/mdx.md`。
