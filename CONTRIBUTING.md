@@ -2,8 +2,8 @@
 
 コントリビュートに興味を持っていただきありがとうございます。このドキュメントは開発参加の最短経路をまとめたものです。詳細な規約は各ドキュメントを参照してください。
 
-- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー）。作業ごとの詳細規則は `docs/rules/`（新規部品・テスト・ビルドと出荷・pre-commit・トークン・CSS・i18n・MDX・Storybook・アイコン・実装）
-- **`AGENTS.md`** — よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成手順（AI エージェント向け指示の正本。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む）
+- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー・よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成の最短手順）。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む
+- **`docs/rules/`** — 作業ごとの詳細規則（新規部品・テスト・ビルドと出荷・pre-commit・トークン・CSS・i18n・MDX・Storybook・アイコン・実装・ベースライン PR の着地）。どの作業でどれを読むかは `AGENTS.md` の索引にある
 - **`.github/pull_request_template.md`** — PR 時の品質ゲートチェックリスト
 
 ## テックスタック
