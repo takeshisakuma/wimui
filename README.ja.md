@@ -647,13 +647,14 @@ npm run tokens:build   # Style Dictionary + intent 生成（SCSS / TypeScript）
 
 このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。
 
-
-
-
-
 ## ワークフロー
 
+`main` は保護されているので、変更はブランチと PR 経由で入れます（[CONTRIBUTING.md](./CONTRIBUTING.md)）。
+
+```bash
+git switch -c feat/my-change
 git add .
 git commit -m "..."
-git pull --rebase origin main
-git push origin main
+git push -u origin feat/my-change
+gh pr create
+```
