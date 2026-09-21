@@ -8397,6 +8397,7 @@
       "faq_section_choice_2": "When you want to utilize white space and make the title stand out on desktop screens",
       "faq_section_choice_3": "When you want to place it as part of a page (such as a widget)",
       "faq_section_design_intent": "FAQ sections are crucial for quickly resolving user queries on websites or applications. This component goes beyond just listing Accordions by acting as a 'section' with appropriate headings and descriptions.",
+      "faq_section_scope": "Use it on marketing and help pages, where visitors arrive with questions. Inside product screens (settings, forms, dashboards), put the answer next to the control it explains — a description, a tooltip, or a help link — instead of a block of questions the user has to scan.",
       "faq_section_keyboard_desc": "All keyboard interactions (open/close with Enter or Space, navigate items with arrow keys) are delegated to the internal Accordion component and require no additional implementation.",
       "faq_section_layout_left_desc": "On desktop and larger screens, the title and accordion are lined up side-by-side. On mobile, they are automatically stacked vertically.",
       "faq_section_long_desc": "FAQSection is a component for listing frequently asked questions (FAQs) and laying them out as a section. It internaly uses Accordion component to provide a consistent user experience.",
@@ -8514,6 +8515,7 @@
       "interactivearea_small_and_large": "Small and Large",
       "marquee_desc": "Scrolling text animation",
       "marquee_design_intent": "Marquee provides an eye-catching, looping animation for content. It is ideal for news tickers, logo scrolls, or highlighting sponsors in a way that encourages passive scanning by the user.",
+      "marquee_scope": "For marketing pages only, such as logo walls and sponsor strips. Do not put it in product screens: content that keeps moving competes with the task, cannot be read at the user's own pace, and hides items until they scroll back into view.",
       "marquee_feat_custom_desc": "Control duration, reverse direction, vertical orientation, and pausing on hover.",
       "marquee_feat_loop": "Seamless Loop",
       "marquee_feat_loop_desc": "Automatically duplicates content for seamless scrolling.",
@@ -8764,6 +8766,7 @@
     "dashboard_doc": {
       "subtitle": "A dashboard component for managing widgets with add and remove support. Provides widget layout on a CSS grid based on BentoGrid, and a management UI for dynamic changes via edit mode.",
       "design_intent": "Dashboard has two modes: a display mode for viewing widgets side by side, and a management mode for adding and removing widgets. By keeping the scope to add/remove without dnd-kit, dependencies are minimized while realizing a dynamic management UI that BentoGrid alone cannot provide.",
+      "columns_guidance": "Choose `columns` from the content rather than keeping the default of 3. Three equal columns is the most generic dashboard shape: use 2 when one chart leads and the rest supports it, 4 for a row of small KPI tiles, and a single column when the widgets are read top to bottom.",
       "choice_matrix_desc": "Select the most appropriate component based on your requirements.",
       "choice_header_component": "Component",
       "choice_header_usage": "Main Use",
