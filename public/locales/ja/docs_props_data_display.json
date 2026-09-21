@@ -206,7 +206,7 @@
     "markdown_prop_content": "レンダリングするMarkdown文字列。`content` または `children` のどちらかで指定できます。",
     "markdown_prop_gfm": "GitHub Flavored Markdown を有効にするかどうか（デフォルト: true）。",
     "marquee_prop_duration": "アニメーションの速度（秒）。デフォルトは `20`。",
-    "marquee_prop_pauseOnHover": "ホバー時にアニメーションを一時停止するかどうか。",
+    "marquee_prop_pauseOnHover": "ホバー時にアニメーションを一時停止するかどうか。キーボードのフォーカスが中にあるときは、この設定に関係なく常に止まる（WCAG 2.2.2）。",
     "marquee_prop_repeat": "コンテンツの繰り返し回数。シームレスなループのために調整が必要な場合があります。デフォルトは `2`。",
     "marquee_prop_reverse": "アニメーションを逆方向にするかどうか。",
     "marquee_prop_vertical": "垂直方向に流すかどうか。",

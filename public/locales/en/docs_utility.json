@@ -127,7 +127,7 @@
     "kbd_size_desc": "You can adjust the size using the `size` property.",
     "kbd_symbols": "Common Keyboard Symbols",
     "kbd_title": "Keyboard shortcuts",
-    "marquee_a11y_desc": "This is a structural container: it renders a plain element, adds no role, no accessible name and no keyboard handling, and therefore contributes nothing to the accessibility tree. That is intentional — layout should not be announced. Two things still matter: the DOM order is the reading order, so arrange children in the order they should be heard rather than relying on visual positioning, and any meaning implied by the arrangement has to exist in the content itself.",
+    "marquee_a11y_desc": "Moving content needs a way to stop it (WCAG 2.2.2). The marquee pauses on hover (`pauseOnHover`) and always pauses while keyboard focus is inside it; with `prefers-reduced-motion: reduce` the global styles stop the animation after one pass. To loop seamlessly the content is drawn `repeat` times — only the first copy is exposed to assistive technology; the others are `aria-hidden` and `inert`, so the content is read once and its links are reached by Tab once. If the content has nothing focusable (images only), keyboard users cannot pause it, so keep such marquees on marketing pages and make sure nothing in them is needed to complete a task.",
     "marquee_anatomy_content": "The collection of content items (text, logos, icons) being animated in a loop.",
     "marquee_anatomy_content_label": "Animated Items",
     "marquee_anatomy_root": "The overflow-hidden container that defines the scroll window and manages the animation timing.",

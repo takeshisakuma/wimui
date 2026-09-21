@@ -378,7 +378,7 @@
     "marquee_feat_custom_desc": "Controle a duração, direção reversa, orientação vertical e pausa ao passar o mouse.",
     "marquee_feat_loop": "Loop Sem Emendas",
     "marquee_feat_loop_desc": "Duplica automaticamente o conteúdo para uma rolagem contínua.",
-    "marquee_keyboard_desc": "Este componente não requer interação de teclado específica além do foco Tab padrão através de qualquer conteúdo interativo colocado dentro dele.",
+    "marquee_keyboard_desc": "O Tab entra nos links ou botões da primeira cópia do conteúdo, e a animação pausa enquanto o foco estiver dentro. As cópias do laço são ignoradas.",
     "marquee_long_desc": "O componente Marquee é usado para exibir conteúdo (texto, imagens, ícones, etc.) em uma animação de loop horizontal ou verticalmente. Adequado para notícias, listas de logos, destaque de informações promocionais, etc.",
     "marquee_title": "Um componente que rola o conteúdo horizontalmente, usado para anúncios ou letreiros de notícias.",
     "marquee_usage_1": "Exibição de avisos ou notícias em letreiro",

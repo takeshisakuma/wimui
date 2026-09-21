@@ -312,7 +312,7 @@
     "marquee_feat_custom_desc": "Control duration, reverse direction, vertical orientation, and pausing on hover.",
     "marquee_feat_loop": "Seamless Loop",
     "marquee_feat_loop_desc": "Automatically duplicates content for seamless scrolling.",
-    "marquee_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus through any interactive content placed inside it.",
+    "marquee_keyboard_desc": "Tab moves into links or buttons inside the first copy of the content, and the animation pauses while focus is inside. The looping copies are skipped.",
     "marquee_long_desc": "The Marquee component is used to display content (text, images, icons, etc.) in a looping animation horizontally or vertically. Suitable for news tickers, logo scrolls, highlighting call-to-actions, etc.",
     "marquee_title": "A component that scrolls content horizontally, often used for announcements or news tickers.",
     "marquee_usage_1": "Announcements or news ticker displays",
