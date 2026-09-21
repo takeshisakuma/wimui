@@ -26,6 +26,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | テストの書き方 | `docs/rules/testing.md` |
 | サイズ予算・CJS / peer / 公開 API / 密度 / Form の契約 | `docs/rules/build.md` |
 | pre-commit で何が走るか | `docs/rules/pre-commit.md` |
+| **VRT / a11y のベースラインを触る PR をマージする**（直列の着地・コミットバック後の head の数え方） | `docs/rules/vrt-baseline-prs.md` |
 
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。

@@ -53,6 +53,8 @@ React 18 / zod 3 は非対応。詳細は README。
 - 公開 import: `wimui` または `wimui/<category>`（バレル）、`wimui/rhf` / `wimui/tokens` / `wimui/icons`
 - **deep path は廃止**（`wimui/form/Button` 等は `exports` に無い。フォルダ移動を破壊的変更にしない）
 - `_internal` や hooks 単体も `exports` に無い（非公開）
+- CSS / locales も公開面: `styles.css` / `reset.css` / `locales/*`
+- **やらないこと**: コンポーネントの deep path（`./form/*` 等）を `exports` に再追加しない
 - `npm run check:api` が `exports` マップ + バレルシンボルを `api-snapshot.json` で検証。変更時は `check:api:update`
 
 ### UI 密度（`data-density`）
@@ -65,7 +67,7 @@ React 18 / zod 3 は非対応。詳細は README。
 
 ### Form 値・エラー契約（公開）
 
-コア form の値／エラーの約束。RHF 利用時も同じ。詳細の作業メモは `IMPROVEMENTS.md` と同内容。
+コア form の値／エラーの約束。RHF 利用時も同じ。
 
 | 項目 | 契約 |
 |---|---|
