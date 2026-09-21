@@ -29,4 +29,17 @@ describe("EmptyState", () => {
     );
     expect(screen.getByText("Extra content")).toBeInTheDocument();
   });
+
+  // T250 ③。素の EmptyState はカードや表の中に置かれるので、既定は左揃え。
+  it("is start-aligned by default and centers on request", () => {
+    const { container, rerender } = render(<EmptyState title="Empty" />);
+    expect(container.firstChild).toHaveAttribute("data-align", "start");
+    rerender(<EmptyState title="Empty" align="center" />);
+    expect(container.firstChild).toHaveAttribute("data-align", "center");
+  });
+
+  it("passes div attributes through to the root", () => {
+    render(<EmptyState title="Empty" id="no-orders" data-testid="empty" />);
+    expect(screen.getByTestId("empty")).toHaveAttribute("id", "no-orders");
+  });
 });

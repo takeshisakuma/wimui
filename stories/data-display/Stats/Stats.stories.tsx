@@ -42,9 +42,9 @@ export const WithTrend: Story = {
   }
 };
 
-// `direction` は矢印と色をまとめて決める（down = danger）。指標は「下がると悪い」
-// ものを選ぶこと。アラート件数のように「下がると良い」指標に down を使うと、
-// 改善を悪いニュースの色で描画してしまう。
+// `intent` を省くと `direction` が色も決める（down = danger）。ここは「下がると悪い」
+// 指標なので省いてよい。「下がると良い」指標（アラート件数など）なら
+// `direction="down" intent="success"` と書く（T250 ④）。
 export const NegativeTrend: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -56,6 +56,21 @@ export const NegativeTrend: Story = {
       </Stats>
     );
   }
+};
+
+// 「増えると悪い」指標。矢印は上、色は危険（T250 ④）。以前の API は矢印と色を
+// 分けられず、これを描くと悪化が成功色になった。
+export const RisingCost: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Stats {...args}>
+        <Stats.Label>{t("story.stats_cloud_cost")}</Stats.Label>
+        <Stats.Value>$12,480</Stats.Value>
+        <Stats.Trend direction="up" intent="danger">+18%</Stats.Trend>
+      </Stats>
+    );
+  },
 };
 
 export const Outline: Story = {
