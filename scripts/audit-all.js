@@ -189,6 +189,14 @@ const checks = [
   },
   {
     category: "docs",
+    // README.md と README.ja.md は対訳の写し。見出し・コードブロック・表・リンクの
+    // 形がずれたら鳴る（地の文の訳は比べない）。入れた日に日本語版だけ `## ワークフロー`
+    // のコードブロックの囲みが抜けていた（2026-09-21）。
+    name: "README.md / README.ja.md structure parity",
+    command: "node scripts/check-readme-parity.mjs",
+  },
+  {
+    category: "docs",
     // 上が README の「表」の主張を見るのに対し、こちらは**コード例そのもの**を
     // コンパイルする（T37 の残り）。llms.txt のレシピは generate-llms.js の中に
     // 手書きで存在し、「実 API に対して検証済み」とコメントされているだけだった。
