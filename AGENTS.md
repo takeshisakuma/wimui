@@ -17,13 +17,13 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | コンポーネントの実装・API・レスポンシブ・a11y・**複合 UI をレシピにするか公開するか** | `docs/rules/implementation.md` |
 | トークン追加・CSS クラス名・角丸・シャドウ・**足りないときのフロー**・**z-index の選び方**・**近い名前のトークン（disabled / subtle）と公開テーマ契約** | `docs/rules/tokens.md` |
 | hover / active・`!important`・`@layer`・**ダークモードの作り方** | `docs/rules/css.md` |
-| 翻訳キーの追加・PT-BR 語彙・ロケール分割・**キー追加の手順** | `docs/rules/i18n.md` |
+| 翻訳キーの追加・PT-BR 語彙・ロケール分割・**キー追加の手順**・**ランタイムとドキュメントの境界（どの namespace に置くか・同梱されるか）** | `docs/rules/i18n.md` |
 | MDX を書く・**docs ページの構成**・**Docgen の差し込み** | `docs/rules/mdx.md` |
 | ストーリーの階層・サイドバー・**ストーリーと argTypes の書き方** | `docs/rules/storybook.md` |
 | アイコンを足す（**SVGR パイプラインの使い方**を含む） | `docs/rules/icons.md` |
 | 複数部品を組む・部品の既定を決める | `docs/design/composition.md` |
-| 部品を新規に作る・ディレクトリとバレルの配置 | `docs/rules/new-component.md` |
-| テストの書き方 | `docs/rules/testing.md` |
+| 部品を新規に作る・ディレクトリとバレルの配置・**命名（PascalCase / kebab-case）**・**SCSS の import 必須（無いとスタイルが一切当たらず、テストでも lint でも検出できない）** | `docs/rules/new-component.md` |
+| テストの書き方（`describe` / `it`・`react-i18next` のモック・UI を変えたら VRT） | `docs/rules/testing.md` |
 | サイズ予算・CJS / peer / 公開 API / 密度 / Form の契約 | `docs/rules/build.md` |
 | pre-commit で何が走るか | `docs/rules/pre-commit.md` |
 | **VRT / a11y のベースラインを触る PR をマージする**（直列の着地・コミットバック後の head の数え方） | `docs/rules/vrt-baseline-prs.md` |
@@ -39,6 +39,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 
 - 回答は日本語で行ってください。
 - 絵文字を使わないでください。
+- UI の文字列は多言語化する（en / ja / pt。ランタイムとドキュメントの置き場の違いは `docs/rules/i18n.md`）。
 
 ### ドキュメント管理
 
@@ -149,15 +150,6 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 
 ## アーキテクチャ概要
 
-### ディレクトリ配置
-
-- **`src/components/<category>/<Name>/`** — コンポーネント本体（`.tsx` + `.module.scss` + `.test.tsx`）
-- **`src/components/_internal/`** — 複数コンポーネントが共用する内部パーツ
-- **`stories/<Name>/`** — Storybook ドキュメント（`.mdx`）+ ストーリー（`.stories.tsx`）
-- **`src/tokens/generated/`** — `tokens/*.json` から自動生成された SCSS/CSS 変数（手動編集禁止）
-- **`src/icon/`** — SVG アイコン（保存時に `index.ts` へ自動エクスポート）
-- **`public/locales/<en|ja|pt>/`** — i18next 翻訳 JSON
-
 ### エクスポート構成
 
 `src/index.ts` は各カテゴリの `src/<category>.ts` を re-export する。新規コンポーネントは `src/<category>.ts` に追加する。
@@ -176,57 +168,3 @@ UI 密度: `data-density="comfortable|compact"` / `setWimDensity` / `WimProvider
 ### Docgen 自動化
 
 Vite プラグインが `.tsx` と `.module.scss` を解析し、Props / Tokens / Anatomy / テストコマンドを `src/data/docgen_*.json` に抽出。MDX 内で `<Docgen componentName="Foo" section="props" />` などで参照できる。
-
-### コンポーネント新規作成の最短手順
-
-1. `npm run scaffold -- <Name> <category>` でボイラープレート生成
-2. `.tsx` にロジック実装、`.module.scss` にスタイル実装
-3. `src/<category>.ts` にエクスポート追加
-4. `src/data/components.json` にエントリ追加
-5. `public/locales/en/` に翻訳キー追加 → `npm run i18n:sync`
-6. MDX の各セクションを記述
-7. 品質ゲート: `check:api` / `check:aschild` / `audit:hardcoded` / `i18n:check` / `check:imports` / `audit-mdx` / `lint`（PR テンプレとこのファイルの「品質ゲート・チェックリスト」）
-8. **合成（必須）**: カタログの単体だけでは出荷しない。T179 のプローブで他部品と組み、確認後に画面は捨て、穴の修正と Realistic な単体ストーリーを残す。`stories/Patterns/` にカバー率のために書かない（`docs/rules/implementation.md`）
-
----
-
-## ファイル・エクスポート
-
-- コンポーネントは `src/components/<カテゴリ>/<コンポーネント名>/` ディレクトリに配置してください（例: `src/components/form/Button/`）。カテゴリは `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` のいずれかです。
-- ディレクトリ名・コンポーネントファイル名はPascalCaseにしてください（例: `Button/Button.tsx`）。
-- SCSSファイルはkebab-caseの CSS Modules にしてください（例: `button.module.scss`）。
-- SCSSファイルは必ずコンポーネントのTSXファイル内でインポートしてください（例: `import styles from "./button.module.scss"`）。インポートがないとブラウザでスタイルが一切適用されません。テストやlintでは検出できないため注意してください。
-- 新規コンポーネントは `src/<カテゴリ>.ts`（例: `src/form.ts`）にexportを追加してください。`src/index.ts` は各カテゴリファイルを re-export しているため、直接編集は不要です。
-
-## テスト
-
-- `describe` / `it` パターンで記述してください。
-- `useTranslation` は必ず `vi.mock("react-i18next", ...)` でモックしてください。
-- テストを作成し、通過することを確認してください（`npm run test`）。
-- UIに影響する変更を行った場合は、VRTも実行してください（`npm run test:vrt`）。
-
-## 品質チェック
-
-- ESLintおよびStylelintで問題がないか確認してください（`npm run lint` / `npm run stylelint`）。
-- pre-commitフックでは警告も0でないとコミットできません（`--max-warnings=0`）。
-- 多言語化の対応をしてください。
-
----
-
-## 多言語化（i18n）の境界（ランタイム vs ドキュメント）
-
-`public/locales/` は置き場が共通だが、**利用者アプリに同梱される文字列**と **Storybook / ガイド専用の文言**は別物として扱う。
-
-| 層 | 対象 | 置き場の目安 | 同梱 | 言語 |
-|---|---|---|---|---|
-| **ランタイム** | コンポーネント UI（aria-label、空状態、ボタン文言など） | `docs_` / `audit` **以外**の namespace（`form.json`, `components.json` 等）。`src/components` から `t(...)` / `useWimTranslation` で参照 | `npm run i18n:bundle` → `src/i18n/generated/` に**使用キーのみ**抽出して npm パッケージへ | **en / ja / pt 必須** |
-| **ドキュメント** | Storybook MDX・ガイド長文・Props 説明・ストーリー文言 | `docs_*.json`（および `audit`）。`<T k="..." />` 等 | **ライブラリ利用側には同梱しない**（Storybook / 開発ドキュメント用） | キー集合は en / ja / pt で揃える（`i18n:check`）。**長文ガイドは en を正本**として書き、`npm run i18n:sync` で ja / pt へ展開 |
-
-方針:
-
-- ランタイムキーは短く・UI 向けに保つ。ガイドの長文や設計論をコンポーネント用 namespaceへ入れない。
-- 新規の長いガイド（`docs_guide_*` 等）は **まず `public/locales/en/` に書く**。ja / pt は sync 後に必要なら人手で整える。en だけ先行コミットして他言語を空けたままにしない（`i18n:check` が落ちる）。
-- ソースの JSDoc（IDE ホバー）は英語。Storybook Props 表の多言語は `doc.*_prop_*` キー側で行う（`docs/rules/i18n.md`）。
-- ライブラリ利用者は i18next 不要。表示言語は `setWimLocale` / `WimProvider` の `locale`。
-
-キーの命名・分割・PT-BR 語彙などの細則は `docs/rules/i18n.md`。
