@@ -214,7 +214,7 @@ EOF
 
 **2026-08-08 時点**: 362 件中 使用済み 136 / 未合成 226（合成に使える単位では 158）。`AppShell` / `Navbar` / `Footer` が未合成＝**既存 5 枚はどれも「画面の中身」だけを作っていた**。
 
-**2026-08-09 時点**: **371 件中 未合成 144**（6 枚目 `Patterns/Captions/CaptionReview` が `AppShell` / `Navbar` / `Footer` とオーバーレイ層を埋めた）。カテゴリ別の残りは form 28 / data-display 28 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / media 8 / feedback 11 / typography 5。次の 3 枚は `IMPROVEMENTS.md` の T95（7 枚目）/ T109（8 枚目）/ T110（9 枚目）。
+**2026-08-09 時点**: **371 件中 未合成 144**（6 枚目 `Patterns/Captions/CaptionReview` が `AppShell` / `Navbar` / `Footer` とオーバーレイ層を埋めた）。カテゴリ別の残りは form 28 / data-display 28 / overlay 15 / ai 14 / layout 13 / charts 12 / navigation 10 / media 8 / feedback 11 / typography 5。次の 3 枚は `docs/history/improvements-ledger.md` の T95（7 枚目）/ T109（8 枚目）/ T110（9 枚目）。
 
 **2026-08-11（9 枚目のあと）**: **372 件中 未合成 107**（`Patterns/Roastery` が charts を 13 → 2 に）。カテゴリ別は data-display 24 / overlay 15 / ai 14 / layout 12 / feedback 11 / navigation 10 / media 8 / form 6 / typography 5 / charts 2。**charts の残り 2 件は `PieChart`（`Treemap` と仕事が重なるので置かない）と `CustomizedContent`（`Treemap` の内側の描画部品）** ── どちらも「使えない」ではなく「JSX タグとして書かない」もの。次に未踏なのは overlay 15 / ai 14 / feedback 11。
 

@@ -420,6 +420,7 @@
     "check:aliases": "node scripts/check-aliases.js",
     "check:improvements": "node scripts/check-improvements-status.js",
     "maintenance:preview": "node scripts/maintenance-issue.mjs --dry-run",
+    "improvements:archive": "node scripts/archive-improvements-done.mjs",
     "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:chart-palette": "node scripts/check-chart-palette.js",
     "check:field-roots": "node scripts/check-field-roots.js",
@@ -708,7 +709,7 @@
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
-    "IMPROVEMENTS.md": [
+    "{IMPROVEMENTS.md,docs/history/improvements-ledger.md,scripts/check-improvements-status.js,scripts/archive-improvements-done.mjs}": [
       "node scripts/check-improvements-status.js"
     ],
     "src/components/**/*.tsx": [
