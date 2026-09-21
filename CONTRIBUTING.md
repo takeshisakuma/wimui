@@ -2,10 +2,31 @@
 
 コントリビュートに興味を持っていただきありがとうございます。このドキュメントは開発参加の最短経路をまとめたものです。詳細な規約は各ドキュメントを参照してください。
 
-- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー）。作業ごとの詳細規則は `docs/rules/`（トークン・CSS・i18n・MDX・Storybook・アイコン・実装）
-- **`SKILLS.md`** — 新規部品の作り方・テスト・ビルドと出荷の契約（作業ごとの手順は `docs/rules/`）
+- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー）。作業ごとの詳細規則は `docs/rules/`（新規部品・テスト・ビルドと出荷・pre-commit・トークン・CSS・i18n・MDX・Storybook・アイコン・実装）
 - **`AGENTS.md`** — よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成手順（AI エージェント向け指示の正本。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む）
 - **`.github/pull_request_template.md`** — PR 時の品質ゲートチェックリスト
+
+## テックスタック
+
+| 役割 | ツール |
+|---|---|
+| UIフレームワーク | React 19 + TypeScript |
+| スタイル | SCSS (Sass) |
+| ビルド | Vite |
+| ドキュメント | Storybook 10 (MDX) |
+| テスト (単体) | Vitest + Testing Library |
+| テスト (VRT) | Playwright |
+| a11y チェック | axe-core (Playwright) + eslint-plugin-jsx-a11y |
+| 国際化 | i18next + react-i18next (en / ja / pt) |
+| ポジショニング | @floating-ui/react |
+| チャート | Recharts |
+| リント | ESLint + Stylelint |
+| フォーマット | Prettier |
+| Git フック | Husky + lint-staged |
+| デプロイ | GitHub Pages (gh-pages) |
+
+---
+
 
 ## 動作要件
 
