@@ -905,3 +905,40 @@ provenance（SLSA v1 attestation）も付与を確認。**懸念していた 2 �
 
 - ローカル VRT は `CI=1 npx playwright test vrt/vrt.spec.ts -g "<title>"`。**ポート 6006 に古いサーバーが残っていると起動できずエラーで終わる**（今日 1 回踏んだ）。`netstat -ano | grep :6006` → `taskkill //F //PID <pid>`
 - 撮影で生まれる `*win32*` スナップショットは実験用の未追跡ファイル。**絶対にコミットに混ぜない**
+
+## 6. 運用メモから退避した分（2026-09-21）
+
+> 残り 6 節は `docs/rules/ci-and-guards.md` へ移した。ここにあるのは、写し（コマンド一覧＝`AGENTS.md` の品質ゲート表 / コミットバックの節＝`docs/rules/vrt-baseline-prs.md` の要約）と、`RELEASING.md` より古い観察（リリース手順の節）。
+
+
+```bash
+npm run audit:hardcoded   # PX ベースライン
+npm run check:api         # 公開 API スナップショット（exports + symbols）
+npm run check:imports     # peer のルート import 禁止
+npm run i18n:check        # 3言語キー整合
+npm run check:aschild     # asChild 必須リスト
+```
+
+- Docgen: `src/data/docgen_*.json` は gitignore
+- peer マップ: `src/data/peer-imports.json`
+
+### ベースラインのコミットバックは、**チェックが 1 つも走っていない head** を作ることがある（2026-08-20・#461 で実測）
+
+VRT の `update` が撮り直した PNG をコミットバックすると PR の head は `github-actions[bot]` のコミットになる。**そのときワークフローが `action_required`（承認待ち）で止まったままになることがある。**
+
+止まっている間、**`gh pr checks` は何も出さず、`mergeStateStatus` は `CLEAN` を返す** ── 画面上は「問題なし」に見えるのに、その head では品質ゲートが 1 つも走っていない。**気づかずにマージすると誰も検証していないコミットが main に入る。**
+
+**毎回ではない。** #456（T212）のコミットバック head は承認不要で全部 success だったが、#461（T214）は **8 本すべてが `action_required`・head の check-runs は 0 件**だった。`actor` / `triggering_actor` / `event` はどちらも同一で、**API のメタデータでは区別できない** ── だから原因を当てにせず、**毎回 head の件数を数える**。
+
+**「無いものは赤くならない」という同じ型が 3 回目**（VRT の 6 時間タイムアウト全滅 → CI-8 の `cancelled`（灰色）→ これ）。緑に見えることと、測ったことは別。
+
+手順（検出コマンドと、承認待ち／ラン 0 件それぞれの戻し方）は `docs/rules/vrt-baseline-prs.md`。**そこに書いたコマンドは #461 の実物に対してそのまま実行して確認してある。**
+
+### リリース手順で毎回引っかかる 2 点（2026-08-02・0.12.0 で実測）
+
+1. **bot が push した head はチェックが「無い」のではなく `action_required`（承認待ち）で止まっている。** `gh pr checks` は「no checks reported」と返し、PR は緑にも赤にもならないまま**マージ可能に見える**。0.12.0 では 2 回起きた: ①機能ブランチの VRT コミットバックで **8 本**、②`changeset-release/main`（Version Packages PR）で **5 本**。②は changesets が毎回ブランチを作り直すので**リリースのたびに必ず起きる**。承認は `gh api -X POST repos/<owner>/<repo>/actions/runs/<id>/approve` を対象ぶん。<br>なお `changeset-release/main` では VRT と a11y は起動しない（Lint / Unit Test / Tarball Smoke / Dependency Audit / Bundle Size の 5 本のみ）。中身がバージョンと CHANGELOG だけなので、実質の担保は直前に main で走ったぶんになる。
+2. **`release` Environment の承認は 2 回要る。** 1 回目（changeset を含む main への push）は **publish しない** — 未消化の changeset があるので changesets action は「Version Packages PR を開く」分岐に入る。実際に npm へ出るのは 2 回目（Version Packages PR をマージした後）。承認前にどちらなのかは `.changeset/*.md` が残っているかで判別できる。
+
+**解消が確認できた 2 件**（当座の回避策はもう要らない可能性が高いが、毎回確認はする）: ①VRT コミットバックへの `[` skip ci `]` 混入は起きず、Deploy は機能マージ・リリースの両コミットで成功した ②`check:llms` がリリース PR を構造的にマージ不能にする件は `version:packages` が `changeset version && npm run llms:build` になっているため再発しない（0.12.0 の `llms.txt` が v0.12.0 で出ていることを公開 tarball で確認済み）。
+
+**公開後はパイプラインの緑ではなく tarball を見る。** 0.12.0 では `npm pack wimui@0.12.0` を展開して、バッジの `text-on-danger`・`Timeline` の `text-*`・`reset.css` 側のリンク色・`llms.txt` のバージョンと "Not in scope" 節・レシピの `as const`・README のアイコン例を実物で確認した（`src/base.scss` は `styles.css` ではなく **`reset.css`** に入る点に注意）。
