@@ -2439,7 +2439,8 @@ in; use `"center"` only when the empty state is the only thing in its region.
 - **Marquee** — Scrolling text animation (aka Ticker)
     - `duration: number` = 20 — Animation speed (in seconds). Defaults to `20`.
     - `reverse: boolean` = false — Whether to run the animation in reverse.
-    - `pauseOnHover: boolean` = true — Whether to pause the animation on hover.
+    - `pauseOnHover: boolean` = true — Whether to pause the animation on hover. Keyboard focus inside the marquee
+always pauses it, regardless of this option (WCAG 2.2.2).
     - `vertical: boolean` = false — Whether to scroll vertically.
     - `repeat: number` = 2 — Number of times the content is repeated. May need adjusting for a seamless loop. Defaults to `2`.
 - **NodeGraph** — Visualizes complex networks and relationships between nodes.

@@ -9,6 +9,13 @@
     &:hover .content {
       animation-play-state: var(--pause-on-hover, running);
     }
+
+    /* フォーカスが中にあるときは `pauseOnHover` に関係なく止める（T265・WCAG 2.2.2）。
+       以前はホバーだけが止める手段で、キーボードでは中のリンクへ Tab で移っても流れ
+       続けた。中にフォーカスできる要素が無い（画像だけ等）ときは、この規則も届かない。 */
+    &:focus-within .content {
+      animation-play-state: paused;
+    }
   }
 
   .content {

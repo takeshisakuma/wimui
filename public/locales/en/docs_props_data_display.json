@@ -207,7 +207,7 @@
     "markdown_prop_content": "Markdown string to render. Provide either `content` or `children`.",
     "markdown_prop_gfm": "Whether to enable GitHub Flavored Markdown (default: true).",
     "marquee_prop_duration": "Animation speed (in seconds). Defaults to `20`.",
-    "marquee_prop_pauseOnHover": "Whether to pause the animation on hover.",
+    "marquee_prop_pauseOnHover": "Whether to pause the animation on hover. Keyboard focus inside the marquee always pauses it, regardless of this option (WCAG 2.2.2).",
     "marquee_prop_repeat": "Number of times the content is repeated. May need adjusting for a seamless loop. Defaults to `2`.",
     "marquee_prop_reverse": "Whether to run the animation in reverse.",
     "marquee_prop_vertical": "Whether to scroll vertically.",

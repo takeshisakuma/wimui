@@ -207,7 +207,7 @@
     "markdown_prop_content": "String de Markdown a renderizar. Forneça `content` ou `children`.",
     "markdown_prop_gfm": "Se deve ativar o GitHub Flavored Markdown (padrão: true).",
     "marquee_prop_duration": "Velocidade da animação (em segundos). Padrão `20`.",
-    "marquee_prop_pauseOnHover": "Se deve pausar a animação ao passar o mouse.",
+    "marquee_prop_pauseOnHover": "Se deve pausar a animação ao passar o mouse. O foco do teclado dentro do marquee sempre o pausa, independentemente desta opção (WCAG 2.2.2).",
     "marquee_prop_repeat": "Número de vezes que o conteúdo é repetido. Pode precisar de ajuste para um loop contínuo. Padrão `2`.",
     "marquee_prop_reverse": "Se deve executar a animação em sentido inverso.",
     "marquee_prop_vertical": "Se deve rolar verticalmente.",

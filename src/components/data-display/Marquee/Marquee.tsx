@@ -7,7 +7,10 @@ export type MarqueeProps = React.ComponentPropsWithoutRef<"div"> & {
   duration?: number;
   /** Whether to run the animation in reverse. */
   reverse?: boolean;
-  /** Whether to pause the animation on hover. */
+  /**
+   * Whether to pause the animation on hover. Keyboard focus inside the marquee
+   * always pauses it, regardless of this option (WCAG 2.2.2).
+   */
   pauseOnHover?: boolean;
   /** Whether to scroll vertically. */
   vertical?: boolean;
@@ -29,12 +32,18 @@ export const Marquee = ({
   style,
   ...props
 }: MarqueeProps) => {
-  const content = (
+  // 途切れずに流すため同じ中身を repeat 回描く。**2 枚目以降は見た目のための複製**
+  // なので、支援技術と Tab 順から外す（T265・2026-09-21）。以前は複製にも何も付けて
+  // おらず、スクリーンリーダーは同じ内容を repeat 回読み、中のリンクには Tab で
+  // repeat 回止まっていた。
+  const content = (copy: boolean) => (
     <div
       className={classNames(styles.content, {
         [styles.reverse]: reverse,
         [styles.vertical]: vertical,
       })}
+      aria-hidden={copy || undefined}
+      inert={copy || undefined}
     >
       {children}
     </div>
@@ -53,7 +62,7 @@ export const Marquee = ({
       {...props}
     >
       {Array.from({ length: repeat }).map((_, i) => (
-        <React.Fragment key={i}>{content}</React.Fragment>
+        <React.Fragment key={i}>{content(i > 0)}</React.Fragment>
       ))}
     </div>
   );

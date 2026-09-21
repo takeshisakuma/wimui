@@ -131,7 +131,7 @@
     "kbd_size_desc": "Você pode ajustar o tamanho usando a propriedade `size`.",
     "kbd_symbols": "Símbolos Comuns de Teclado",
     "kbd_title": "Atalhos de teclado",
-    "marquee_a11y_desc": "Este é um contêiner estrutural: renderiza um elemento simples, não acrescenta role, nome acessível nem tratamento de teclado e, portanto, não contribui em nada para a árvore de acessibilidade. Isso é intencional — layout não deve ser anunciado. Duas coisas ainda importam: a ordem do DOM é a ordem de leitura, então organize os filhos na ordem em que devem ser ouvidos em vez de depender do posicionamento visual, e qualquer significado sugerido pelo arranjo precisa existir no próprio conteúdo.",
+    "marquee_a11y_desc": "Conteúdo em movimento precisa de uma forma de ser parado (WCAG 2.2.2). O marquee pausa ao passar o mouse (`pauseOnHover`) e sempre pausa enquanto o foco do teclado estiver dentro dele; com `prefers-reduced-motion: reduce`, os estilos globais param a animação após uma volta. Para o laço ficar contínuo, o conteúdo é desenhado `repeat` vezes — só a primeira cópia é exposta às tecnologias assistivas; as outras recebem aria-hidden e inert, então o conteúdo é lido uma vez e seus links recebem o Tab uma vez. Se o conteúdo não tiver nada focável (só imagens), usuários de teclado não conseguem pausá-lo; mantenha esses marquees em páginas de marketing e não coloque neles nada necessário para concluir uma tarefa.",
     "marquee_anatomy_content": "A coleção de itens de conteúdo (texto, logos, ícones) sendo animados em um loop.",
     "marquee_anatomy_content_label": "Itens Animados",
     "marquee_anatomy_root": "O contêiner com overflow-hidden que define a janela de rolagem e gerencia o tempo da animação.",
