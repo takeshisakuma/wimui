@@ -18,6 +18,7 @@
 - [ ] `npm run lint` / `npm run stylelint`（触った TS/SCSS）
 - [ ] 新規コンポーネントなら `npm run audit-mdx` と MDX 必須セクション
 - [ ] ストーリーを足した・変えたなら `npm run check:a11y-incomplete`（axe の「人に確かめろ」の許可リスト。増えても減っても a11y の CI が落ちる）
+- [ ] 出荷物（`src/` / `tokens/`）を変えたなら changeset を同梱した（`npx changeset`。版を上げない変更なら `npx changeset --empty`。無いと `changeset-reminder` がコメントする）
 - [ ] 新規公開コンポーネントならプローブ（合成）を一度通した（画面は捨てる。`stories/Patterns/` にカバー率のために書かない。`docs/rules/implementation.md`）
 
 まとめて流す場合: `npm run audit:lib` / `npm run audit:docs`（または `npm run audit:all`）。

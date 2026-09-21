@@ -116,7 +116,8 @@ optional 機能は対応する peer が必要（「オプショナルな peerDep
 
 ## 5. 2 回目以降
 
-- 変更ごとに `npm run changeset`（patch/minor/major を選ぶ）→ 通常の PR に含めてマージ。
+- 変更ごとに `npm run changeset`（patch/minor/major を選ぶ）→ 通常の PR に含めてマージ。**版を上げない変更（コメントの張り替え等）で出荷物（`src/` / `tokens/`）に触れたなら `npx changeset --empty`。**
+- **付け忘れは `changeset-reminder`（`.github/workflows/changeset-reminder.yml`）が PR にコメントする。** いまは警告だけで、マージは止めない（2026-09-21 から。数週間様子を見て、誤検出が空の changeset でさばけると分かったら落とす形に上げる）。**以前はリリース直前にまとめて書く運用が実態になっていて**、0.31.0 では #657 / #659 が漏れた（過去 1 か月の main では、出荷物に触れた 44 コミット中 29 本が PR の時点で changeset を持っていなかった）。
 - あとは §2 と同じ（「Version Packages」PR が出る → マージで publish）。
 - **1.0 以降は semver 厳守**（破壊的変更＝major）。今は 0.x で柔軟。
 

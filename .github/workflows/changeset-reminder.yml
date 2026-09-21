@@ -1,0 +1,83 @@
+name: Changeset Reminder
+
+# 出荷物（src/ / tokens/）を変えた PR に changeset が無ければ、PR にコメントで知らせる。
+# **いまは警告だけで、ジョブは落とさない**（2026-09-21・ユーザー判断）。数週間様子を見て、
+# 誤検出が空の changeset（npx changeset --empty）でさばけると分かったら落とす形に上げる。
+#
+# 運用は「changeset は PR ごとに同梱する」（2026-09-21 に切り替え。以前はリリース直前に
+# まとめて書いていて、0.31.0 では #657 / #659 を取りこぼした）。判定は
+# scripts/check-changeset-needed.mjs（changesets の status --since はルート 1 パッケージの
+# この repo では docs だけの PR でも鳴るので使わない）。
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  remind:
+    name: Changeset reminder (warning only)
+    # Version PR（changesets が作る）と Dependabot は対象外
+    if: ${{ !startsWith(github.head_ref, 'changeset-release/') && github.actor != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # 依存は要らない（node の標準モジュールと git だけ）
+      - name: Check
+        id: check
+        run: |
+          if node scripts/check-changeset-needed.mjs "origin/${{ github.base_ref }}" 2> reminder.txt; then
+            echo "missing=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "missing=true" >> "$GITHUB_OUTPUT"
+            echo "::warning title=changeset が無い::出荷物（src/ / tokens/）を変えているのに .changeset/*.md がありません。版を上げない変更なら npx changeset --empty"
+            { echo "### changeset が無い"; echo; echo '```'; cat reminder.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # PR に 1 つだけコメントを置き、push のたびに書き換える（増やさない）
+      - name: Comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          MISSING: ${{ steps.check.outputs.missing }}
+        run: |
+          MARKER='<!-- changeset-reminder -->'
+          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" --paginate \
+            --jq ".[] | select(.body | startswith(\"$MARKER\")) | .id" | head -n 1)
+          if [ "$MISSING" = "true" ]; then
+            {
+              echo "$MARKER"
+              echo "**changeset がありません（警告のみ・マージは止めません）**"
+              echo
+              echo "この PR は出荷物（\`src/\` / \`tokens/\`）を変えています。"
+              echo
+              echo '```'
+              cat reminder.txt
+              echo '```'
+              echo
+              echo "- 利用者に見える変更なら \`npx changeset\` で足してください"
+              echo "- 版を上げない変更（コメントだけ等）なら \`npx changeset --empty\`"
+            } > body.md
+          elif [ -n "$existing" ]; then
+            printf '%s\n%s\n' "$MARKER" "changeset が足されたので解消しました。" > body.md
+          else
+            exit 0
+          fi
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -F body=@body.md > /dev/null
+          else
+            gh pr comment "$PR" --body-file body.md
+          fi
