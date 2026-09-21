@@ -27,6 +27,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | サイズ予算・CJS / peer / 公開 API / 密度 / Form の契約 | `docs/rules/build.md` |
 | pre-commit で何が走るか | `docs/rules/pre-commit.md` |
 | **VRT / a11y のベースラインを触る PR をマージする**（直列の着地・コミットバック後の head の数え方） | `docs/rules/vrt-baseline-prs.md` |
+| CI・VRT・ガードを触る（潰れの測り方・VRT の除外と起動条件のずれ・スナップショット方式の罠・CI の Lint ジョブ・CI スキップ指示の誤発火） | `docs/rules/ci-and-guards.md` |
 
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください（済んだ行は `docs/history/improvements-ledger.md` へ移す＝`npm run improvements:archive`。新しい番号は `npm run check:improvements` が出す）。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。
