@@ -13,7 +13,7 @@
 # **スクリーンショットを撮らないので、ベースラインは 1 枚も動かない。** ローカルでは
 # 踏めない経路（sudo と apt が要る）なので CI で測るしかない。結果を見て対策を選ぶ
 # ── A（フォントをキャッシュ）か B（フォールバックを自前化）。詳細は
-# `IMPROVEMENTS.md` の CI-8 と `vrt/font-diagnosis.spec.ts` の冒頭。
+# `docs/history/improvements-ledger.md` の CI-8 と `vrt/font-diagnosis.spec.ts` の冒頭。
 name: Font diagnosis (CI-8)
 
 on:

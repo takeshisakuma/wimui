@@ -2,7 +2,7 @@
  * RichTextEditor のコマンド層（純 DOM、React 非依存）。
  *
  * 旧実装は非推奨の document.execCommand / queryCommandState に依存していた
- * （IMPROVEMENTS.md T15）。ここでは Selection / Range API で同等のコマンドを
+ * （docs/history/improvements-ledger.md の T15）。ここでは Selection / Range API で同等のコマンドを
  * 実装する。部分選択時の書式分割は Range.extractContents() の仕様
  * （partial containment chain を複製してフラグメント側に書式ラッパーを残す）
  * を利用する。

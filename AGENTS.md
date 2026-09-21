@@ -28,7 +28,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | pre-commit で何が走るか | `docs/rules/pre-commit.md` |
 | **VRT / a11y のベースラインを触る PR をマージする**（直列の着地・コミットバック後の head の数え方） | `docs/rules/vrt-baseline-prs.md` |
 
-未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
+未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください（済んだ行は `docs/history/improvements-ledger.md` へ移す＝`npm run improvements:archive`。新しい番号は `npm run check:improvements` が出す）。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。
 複数コンポーネントを組み合わせて画面・パターン・デモを作るとき、**および部品の既定値（props の既定・`.module.scss` の既定の面）やカタログの `Default` ストーリーを書くとき**は、必ず `docs/design/composition.md`（コンポジションガイドライン）に従ってください。部品を素で置いた姿は、その部品を使う画面すべてに出るため、既定が禁止パターンなら画面ではなく既定の失敗です（必須ルール 15 `default_anatomy`）。
 

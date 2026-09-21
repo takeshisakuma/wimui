@@ -22,11 +22,19 @@
  * どこにもそう書かれていない」（T50 がこれだった）。ファイル内の矛盾は見えるが、
  * ファイルと現実のズレは見えない。そこは人間かレビューが埋めるしかない。
  *
+ *   3. **「済」の行が台帳に残っていない**（2026-09-21）── 済んだ行は
+ *      `docs/history/improvements-ledger.md` へ移す（`npm run improvements:archive`）。
+ *      残っていた頃は容量の 9 割以上が済んだ行で、残件を見るための台帳が埋もれていた
+ *   4. **番号が重複していない**（台帳と退避先を合わせて）。退避先へ移した番号を
+ *      知らずに振り直す事故を防ぐため、**次に振る番号**も出す
+ *
  * Usage: node scripts/check-improvements-status.js
  */
 import fs from "fs";
+import { findDone } from "./archive-improvements-done.mjs";
 
 const FILE = "IMPROVEMENTS.md";
+const LEDGER = "docs/history/improvements-ledger.md";
 const ID = /^\|\s*(T\d+|CI-\d+|SMOKE)\s*\|/;
 const OPEN = /^\*\*(P\d|未着手)|^未着手/;
 const DONE_IN_BODY = /\*\*済\*\*|済（20\d\d-\d\d-\d\d|済（#|済（PR #/;
@@ -142,11 +150,42 @@ function main() {
     );
   }
 
+  // 3. 済の行が残っていないか
+  const done = findDone(lines);
+  if (done.length) {
+    failed = true;
+    console.error(`\n✗ 「済」の行が ${done.length} 件、台帳に残っている:`);
+    for (const d of done) console.error(`  - ${FILE}:${d.i + 1}  ${d.line.match(ID)[1]}`);
+    console.error(`\n  \`npm run improvements:archive\` で ${LEDGER} へ移すこと（行は書き換えずに運ぶ）。`);
+  }
+
+  // 4. 番号の重複（台帳 + 退避先）と、次の番号
+  const ledger = fs.existsSync(LEDGER) ? fs.readFileSync(LEDGER, "utf8").split(/\r?\n/) : [];
+  const seen = new Map();
+  const dup = [];
+  for (const [file, ls] of [[FILE, lines], [LEDGER, ledger]]) {
+    ls.forEach((line, i) => {
+      const m = line.match(ID);
+      if (!m || m[1] === "SMOKE") return;
+      const where = `${file}:${i + 1}`;
+      if (seen.has(m[1])) dup.push(`${m[1]}  ${seen.get(m[1])} と ${where}`);
+      else seen.set(m[1], where);
+    });
+  }
+  if (dup.length) {
+    failed = true;
+    console.error("\n✗ 番号が重複している（台帳と退避先を合わせて数える）:");
+    for (const d of dup) console.error(`  - ${d}`);
+  }
+  const max = (prefix) =>
+    Math.max(0, ...[...seen.keys()].filter((k) => new RegExp(`^${prefix}\\d+$`).test(k)).map((k) => Number(k.slice(prefix.length))));
+
   if (failed) process.exit(1);
 
   console.log(
     `✓ IMPROVEMENTS.md の状態列は本文と整合（${checked} 行を照合、未完了 ${open} 件）。`,
   );
+  console.log(`  次に振る番号: T${max("T") + 1} / CI-${max("CI-") + 1}（退避先 ${LEDGER} の番号も数えている）`);
 }
 
 main();
