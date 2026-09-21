@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * docs/feature-watchlist.json の各機能について、web-features パッケージの
- * Baseline ステータスを判定する（IMPROVEMENTS.md T14）。
+ * Baseline ステータスを判定する（docs/history/improvements-ledger.md の T14）。
  *
  * - 各 watch 項目の `target`（"low" = Newly Available / "high" = Widely Available、
  *   既定 "high"）へ到達した項目を「昇格」として報告する

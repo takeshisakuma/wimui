@@ -1,10 +1,10 @@
 {
-  "$comment": "新しい Web 機能の採用ウォッチリスト（IMPROVEMENTS.md T14）。id は web-features パッケージの feature id。scripts/check-feature-watchlist.mjs が週次 CI（.github/workflows/feature-watchlist.yml）で Baseline 昇格を判定し、target（既定 high = Widely Available）へ到達した項目の Issue を自動起票する。起票後に対応が完了したら項目を削除する。",
+  "$comment": "新しい Web 機能の採用ウォッチリスト（docs/history/improvements-ledger.md の T14）。id は web-features パッケージの feature id。scripts/check-feature-watchlist.mjs が週次 CI（.github/workflows/feature-watchlist.yml）で Baseline 昇格を判定し、target（既定 high = Widely Available）へ到達した項目の Issue を自動起票する。起票後に対応が完了したら項目を削除する。",
   "watch": [
     {
       "id": "temporal",
       "target": "high",
-      "action": "v2 の breaking として DatePicker / Calendar / Countdown / RelativeTime 等の Date API を Temporal へ移行設計する（ポリフィルは同梱しない）。IMPROVEMENTS.md T14 起票時の合意事項。"
+      "action": "v2 の breaking として DatePicker / Calendar / Countdown / RelativeTime 等の Date API を Temporal へ移行設計する（ポリフィルは同梱しない）。docs/history/improvements-ledger.md の T14 起票時の合意事項。"
     },
     {
       "id": "anchor-positioning",
