@@ -15,16 +15,17 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | 何をするとき | 読む文書 |
 |---|---|
 | コンポーネントの実装・API・レスポンシブ・a11y・**複合 UI をレシピにするか公開するか** | `docs/rules/implementation.md` |
-| トークン追加・CSS クラス名・角丸・シャドウ・**足りないときのフロー**・**z-index の選び方** | `docs/rules/tokens.md` |
+| トークン追加・CSS クラス名・角丸・シャドウ・**足りないときのフロー**・**z-index の選び方**・**近い名前のトークン（disabled / subtle）と公開テーマ契約** | `docs/rules/tokens.md` |
 | hover / active・`!important`・`@layer`・**ダークモードの作り方** | `docs/rules/css.md` |
 | 翻訳キーの追加・PT-BR 語彙・ロケール分割・**キー追加の手順** | `docs/rules/i18n.md` |
 | MDX を書く・**docs ページの構成**・**Docgen の差し込み** | `docs/rules/mdx.md` |
 | ストーリーの階層・サイドバー・**ストーリーと argTypes の書き方** | `docs/rules/storybook.md` |
 | アイコンを足す（**SVGR パイプラインの使い方**を含む） | `docs/rules/icons.md` |
 | 複数部品を組む・部品の既定を決める | `docs/design/composition.md` |
-| 部品を新規に作る・ディレクトリとバレルの配置 | `SKILLS.md`「コンポーネント新規作成の手順」 |
-| テストの書き方・サイズ予算・CJS / peer / 密度 / Form の契約 | `SKILLS.md`（ビルドと出荷の契約） |
-| pre-commit で何が走るか | `SKILLS.md`「pre-commit フックで自動チェックされる内容」 |
+| 部品を新規に作る・ディレクトリとバレルの配置 | `docs/rules/new-component.md` |
+| テストの書き方 | `docs/rules/testing.md` |
+| サイズ予算・CJS / peer / 公開 API / 密度 / Form の契約 | `docs/rules/build.md` |
+| pre-commit で何が走るか | `docs/rules/pre-commit.md` |
 
 未着手の改善・再開ポイントは `IMPROVEMENTS.md` を参照してください。
 定期点検（CI が見ていない＝壊れても赤が出ないもの）は `MAINTENANCE.md` を参照してください。

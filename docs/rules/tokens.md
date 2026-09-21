@@ -150,3 +150,67 @@ R_outer ≈ R_inner + S
 ### 新しいカテゴリ自体が必要な場合
 
 既存カテゴリに収まらない場合は `docs/rules/tokens.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。
+
+---
+
+## コンポーネントからの参照と、近い名前のトークン
+
+> この節は `SKILLS.md`（2026-09-21 に廃止）から移したものです。
+
+`src/tokens/generated/_tokens.scss` または `_css-vars.scss` の変数を使用します。
+
+```scss
+// 色はセマンティックカラートークンを使う（ダークモード自動対応）
+color: var(--wim-color-text-primary);
+background: var(--wim-color-surface);
+border-color: var(--wim-color-border);
+
+// 間隔・サイズはスペーシングトークンを使う
+padding: var(--wim-spacing-md);
+```
+
+### 重要なルール
+- ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。
+- 色以外の CSS 値（`padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `z-index`, `motion` 等）もすべてトークンを使用してください。
+- `stories/` 配下の TSX では `--wim-color-*` プレフィックス付きトークンを推奨します。
+
+### 公開 CSS / テーマ契約（改名禁止）
+
+| パス / 属性 | 役割 |
+|---|---|
+| `wimui/styles.css` | **必須** — `:root` `--wim-*`（ダーク・密度含む）+ コンポーネント CSS |
+| `wimui/reset.css` | **任意** — 意見の強いリセット/base |
+| `WimProvider` | **推奨** — `theme` / `density` / `locale` を React から設定（内部で属性を書く） |
+| `data-theme` | CSS 契約。`<html>` に載せる。値 `light` \| `dark`。省略で OS 追従 |
+| `data-density` | CSS 契約。`<html>`（または祖先）。`comfortable` \| `compact` |
+
+`setWimTheme` / `setWimDensity` / `setWimLocale` は属性・ロケールの命令型 API。コンポーネント SCSS に `[data-theme="dark"]` を書かない。詳細は `DESIGN.md` / Token → Theme・Density。
+
+### disabled / 近い名前のトークン
+
+| トークン | 用途 |
+|---|---|
+| `--wim-color-disabled` | 無効時の**塗り**のみ。文字色に使わない |
+| `--wim-color-text-on-disabled` | その塗り（disabled フィル）の上の文字・アイコン |
+| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト |
+
+`surface-subtle` と `surface-subtle-alpha` は別物。サーフェスは `surface*`、反転面は `surface-inverse` / `text-on-inverse`。詳細は `DESIGN.md`。新規トークンを増やさず、既存の意味に合わせて選ぶ。
+
+### intent の `subtle` 変種は「base を 15% で敷く」が既定
+
+`Badge` / `Tag` / `Chip` の `variant="subtle"` は `_token-common.scss` が `oklch(from <base> l c h / 0.15)` を敷きます。**base 自体がサーフェス寄りの淡色だと 15% では消えます** — `neutral` の base は `--wim-color-disabled`（light `#e5e5e5`）で、15% を白背景に敷くと `#fbfbfb` 相当になり、見えませんでした。
+
+そのため `tokens/intents.json` の `surface` は **`subtle` ロール（任意）** を持ちます。指定するとその色をそのまま subtle の背景に使い、未指定なら従来どおり 15% を導出します。淡色 base の intent を足すときは `subtle` も併せて指定すること。
+
+> この種の「薄すぎて見えない」は **VRT では捕まりません**。`vrt.spec.ts` の `threshold: 0.1` はピクセル単位の色差の許容値で、`#fbfbfb` → `#e5e5e5`（差 ≈ 0.086）はしきい値を下回るため差分ゼロ扱いになります。実際 neutral の修正で更新されたベースラインは dark 側だけでした。
+
+**`npm run check:contrast` がこれを機械強制します**（`audit:lib` / CI / lint-staged で自動実行）。intent × variant × サーフェスの全組み合わせ（現在 126 組）について、`_token-common.scss` の導出規則を再現した実効色で 2 つを見ます:
+
+| 観点 | 基準 | 根拠 |
+|---|---|---|
+| 文字の可読性 | WCAG コントラスト比 ≥ 4.5 | Badge 等は小さい文字なので large text の 3:1 ではなく通常テキスト基準 |
+| 塗りの可視性 | サーフェスとの OKLab 距離 ≥ 0.015 | **WCAG 由来ではなく実測から決めた値**。壊れていた neutral × subtle が 0.0072〜0.0116、現存する最小の正常値（dark info × subtle）が 0.0217 で、その間 |
+
+コントラスト比は明度差しか見ないため「色相だけ違う面」を区別できず、塗りの可視性判定には使えません。**`outline` の枠線は意図的に対象外**です（WCAG 1.4.11 の 3:1 を当てると `neutral`/`secondary` の枠が軒並み落ち、システム全体の枠色見直しになるため）。
+
+subtle のアルファ値はスクリプトに直書きせず `_token-common.scss` の `subtle-bg()` から読みます。読めなければ「導出規則が変わった」とみなして落とすので、SCSS 側だけ変えて検査が黙ってズレることはありません。

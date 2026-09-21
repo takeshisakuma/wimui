@@ -1,6 +1,6 @@
 # WIM UI デザインガイド
 
-このドキュメントは WIM UI のデザインに関する意思決定と仕様をまとめたものです。コーディングルールは `AGENTS.md` と `docs/rules/`、実装手順は `SKILLS.md` を参照してください。
+このドキュメントは WIM UI のデザインに関する意思決定と仕様をまとめたものです。コーディングルールは `AGENTS.md` と `docs/rules/`、実装手順は `docs/rules/new-component.md` を参照してください。
 
 ---
 

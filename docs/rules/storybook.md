@@ -104,3 +104,10 @@ intent: {
 <Canvas of={MyComponentStories.Default} />   // ← エクスポート名と一致させる
 <Controls of={MyComponentStories.Default} />
 ```
+
+## よくあるミスと対策
+
+| ミス | 対策 |
+|---|---|
+| MDX でストーリー名が一致しない | ストーリーのエクスポート名（PascalCase）と `<Canvas of={...}>` の参照名を一致させる |
+| `--wim-color-*` 以外の色変数を stories/ で使う | `--wim-color-*` プレフィックス付きトークンに統一 |

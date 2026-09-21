@@ -10,7 +10,7 @@ description: Use in WIM UI when no existing --wim-* design token seems to fit �
 手順:
 
 1. `docs/rules/tokens.md` の「新規トークン追加ルール」と「既存トークンが不足している場合のフロー」を読む。**まず既存で足りるかを探す**（`token-snapshot.json`・`docs/design/color.md`・`docs/design/typography.md`）。近い別名を足すのは禁止に近い。
-2. 名前が近くて迷う色は `SKILLS.md` の「disabled / 近い名前のトークン」と「intent の `subtle` 変種」を見る。
+2. 名前が近くて迷う色は 同じ `docs/rules/tokens.md` の「disabled / 近い名前のトークン」と「intent の `subtle` 変種」を見る。
 3. 足りないときだけ層を選ぶ（palette / role / `--wim-comp-*`、spacing・radius・effects の置き場）── 表は同じ `docs/rules/tokens.md`。**1 つの部品でしか使わない色は公開 role にしない。** z-index は同じ文書の「z-index トークンの使い分け基準」、角丸・シャドウは各「設計指針」。
 4. JSON を触ったら `npm run tokens:build`。公開面が変わったら `npm run check:tokens:update` をコミットに含める。`src/tokens/generated/` は手で編集しない。
 5. **どうしても直書きが要る値**（トークンにすべきでない px など）は、`docs/TOKENIZATION_EXCEPTIONS.md` の除外区分に当たるかを確かめ、当たるならその行に `/* Exception: <理由> */` を書く（区分に当たらないなら、それは直書きではなくトークンの不足）。未注記の px は `npm run audit:hardcoded` が落とす（`PX_BASELINE = 0`）。
