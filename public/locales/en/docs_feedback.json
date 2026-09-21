@@ -154,6 +154,8 @@
     "emptystate_design_intent": "EmptyState functions as a 'signpost' to prevent users from getting lost when there is no data to display or no items match the criteria. Rather than just coldly stating 'no data', its purpose is to kindly guide the user on how to make data appear or what to do next.",
     "emptystate_icons_actions": "Icons and Actions",
     "emptystate_icons_actions_desc": "It is also possible to combine only icons or multiple action buttons.",
+    "emptystate_alignment": "Alignment",
+    "emptystate_alignment_desc": "Empty states are start-aligned by default so they read as part of the card or table they sit in. Use `align=\"center\"` only when the empty state is the only thing in its region, such as a full-page search result.",
     "emptystate_keyboard_desc": "Tab moves focus through action buttons within the empty state. Enter or Space activates them.",
     "emptystate_long_desc": "A component used as a placeholder in the initial state when data is empty or there are no search results. It informs the user of the current situation and prompts them for the next action.",
     "emptystate_scenario_inbox": "Empty Inbox: Celebrates that all tasks or emails have been cleared, allowing the user to feel a sense of accomplishment (Inbox Zero).",

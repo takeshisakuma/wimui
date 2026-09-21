@@ -2,7 +2,7 @@
 
 コントリビュートに興味を持っていただきありがとうございます。このドキュメントは開発参加の最短経路をまとめたものです。詳細な規約は各ドキュメントを参照してください。
 
-- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー・よく使うコマンド・アーキテクチャ概要・コンポーネント新規作成の最短手順）。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む
+- **`AGENTS.md`** — AI エージェントへの指示の正本（基本ルール・品質ゲート・委任ポリシー・よく使うコマンド・アーキテクチャ概要）。`CLAUDE.md` は `@AGENTS.md` の転送、Gemini CLI は `.gemini/settings.json` 経由で直接読む
 - **`docs/rules/`** — 作業ごとの詳細規則（新規部品・テスト・ビルドと出荷・pre-commit・トークン・CSS・i18n・MDX・Storybook・アイコン・実装・ベースライン PR の着地）。どの作業でどれを読むかは `AGENTS.md` の索引にある
 - **`.github/pull_request_template.md`** — PR 時の品質ゲートチェックリスト
 
@@ -46,7 +46,7 @@ npm run storybook   # ドキュメント + 開発環境（port 6006）
 
 1. Issue を立てる（またはコメントで着手を宣言）
 2. `main` からブランチを切る
-3. 変更を実装（コンポーネント新規作成は `AGENTS.md` の「最短手順」に従う）
+3. 変更を実装（コンポーネント新規作成は `docs/rules/new-component.md` の手順に従う）
 4. 品質ゲートをローカルで通す（下記）
 5. ライブラリ本体に影響する変更は changeset を追加: `npx changeset`
 6. PR を作成（テンプレートのチェックリストを埋める）

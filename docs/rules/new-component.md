@@ -62,3 +62,24 @@ public/
 |---|---|
 | SCSS をインポートしていない | `ComponentName.tsx` で `import styles from "./component-name.module.scss"` を記述 |
 | カテゴリバレルへのエクスポート漏れ | 通常は `src/<category>.ts` に追加（scaffold が実施）。ルート `src/index.ts` はカテゴリ / `*-core` を re-export するだけ。peer 依存コンポーネントは `*-core.ts`・ルートではなくフルバレル（`src/charts.ts` 等）へ追加し、利用側は `wimui/charts` / `wimui/data-display` / `wimui/ai` から import |
+
+## 置き場と命名
+
+> この節は `AGENTS.md` から 2026-09-21 に移したものです（本文は書き換えていません）。`AGENTS.md` は毎セッション丸ごと読み込まれるので、作業のときだけ要る規則はこちらに置きます。
+
+### ディレクトリ配置
+
+- **`src/components/<category>/<Name>/`** — コンポーネント本体（`.tsx` + `.module.scss` + `.test.tsx`）
+- **`src/components/_internal/`** — 複数コンポーネントが共用する内部パーツ
+- **`stories/<Name>/`** — Storybook ドキュメント（`.mdx`）+ ストーリー（`.stories.tsx`）
+- **`src/tokens/generated/`** — `tokens/*.json` から自動生成された SCSS/CSS 変数（手動編集禁止）
+- **`src/icon/`** — SVG アイコン（保存時に `index.ts` へ自動エクスポート）
+- **`public/locales/<en|ja|pt>/`** — i18next 翻訳 JSON
+
+### ファイル・エクスポート
+
+- コンポーネントは `src/components/<カテゴリ>/<コンポーネント名>/` ディレクトリに配置してください（例: `src/components/form/Button/`）。カテゴリは `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai` のいずれかです。
+- ディレクトリ名・コンポーネントファイル名はPascalCaseにしてください（例: `Button/Button.tsx`）。
+- SCSSファイルはkebab-caseの CSS Modules にしてください（例: `button.module.scss`）。
+- SCSSファイルは必ずコンポーネントのTSXファイル内でインポートしてください（例: `import styles from "./button.module.scss"`）。インポートがないとブラウザでスタイルが一切適用されません。テストやlintでは検出できないため注意してください。
+- 新規コンポーネントは `src/<カテゴリ>.ts`（例: `src/form.ts`）にexportを追加してください。`src/index.ts` は各カテゴリファイルを re-export しているため、直接編集は不要です。

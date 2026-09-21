@@ -6,7 +6,10 @@ import styles from "./status-content.module.scss";
 /**
  * Props for the StatusContent component.
  */
-export type StatusContentProps = {
+export type StatusContentProps = Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "title" | "children"
+> & {
   /**
    * Main icon representing the status or state.
    */
@@ -37,6 +40,13 @@ export type StatusContentProps = {
    */
   size?: ComponentSize;
   /**
+   * Horizontal alignment of the icon, text, and actions. Start-aligned reads as
+   * part of the surrounding content; use `"center"` only when the status is the
+   * only thing in its region (for example, a full-page empty result).
+   * @default "start"
+   */
+  align?: "start" | "center";
+  /**
    * Custom class name prefix for the root element.
    */
   prefixCls?: string;
@@ -59,11 +69,26 @@ export const StatusContent = ({
   children,
   className,
   size = "md",
+  // 既定は左揃え（T250 ③・2026-09-21）。以前は md / lg で中央揃えに固定されており
+  // （sm だけ左）、空状態をカードや表の中に置くと、そこだけ中央に寄った塊になった。
+  // 中央揃えは「その領域に状態表示しか無い」ときの選択肢として残す。
+  align = "start",
   prefixCls,
+  ...rest
 }: StatusContentProps) => {
   return (
+    // 残りの div 属性（id / role / aria-* など）はルートへ渡す。以前は受け取らずに
+    // 捨てていたので、EmptyState の `{...props}` が型では通るのに効いていなかった。
     <div
-      className={classNames(styles.root, styles[size], prefixCls, className)}
+      {...rest}
+      data-align={align}
+      className={classNames(
+        styles.root,
+        styles[size],
+        align === "center" ? styles.alignCenter : styles.alignStart,
+        prefixCls,
+        className,
+      )}
     >
       <div className={styles.container}>
         {icon && <div className={styles.icon}>{icon}</div>}

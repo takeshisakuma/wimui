@@ -92,9 +92,9 @@
     {
       "id": "colour_means_good_or_bad",
       "ja": "色は「方向」ではなく「良し悪し」で選ぶ",
-      "en": "Pick colour by good/bad, not by direction. `Stats.Trend` ties the arrow and the colour together, so `up` is always the success colour — using it for a metric where up is bad (failures, error rate) renders the bad news as good. Use a colourless form such as `Stats.Description` instead. Don't approximate a meaning the API cannot express.",
+      "en": "Pick colour by good/bad, not by direction. On `Stats.Trend`, `direction` sets the arrow and `intent` sets the colour; without `intent` the colour follows the direction, so `up` is the success colour. For a metric where up is bad (failures, error rate, cost), write `direction=\"up\" intent=\"danger\"` — leaving it out renders the bad news as good. Don't approximate a meaning the API cannot express.",
       "designAnchor": "色は「方向」ではなく「良し悪し」で選ぶ",
-      "judge": "色の意味が実態と合っているか（増えると悪い指標が上昇＝成功色で描かれていたら fail）"
+      "judge": "色の意味が実態と合っているか（増えると悪い指標の上昇が成功色で描かれていたら fail。`Stats.Trend` なら `intent=\"danger\"` の付け忘れ）"
     },
     {
       "id": "quiet_chrome",

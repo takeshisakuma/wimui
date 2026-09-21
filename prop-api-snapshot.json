@@ -3843,6 +3843,13 @@
     "EditableValue.value": {
       "type": "unknown"
     },
+    "EmptyState.align": {
+      "required": false,
+      "values": [
+        "center",
+        "start"
+      ]
+    },
     "EmptyState.description": {
       "required": false,
       "type": "React.ReactNode"
@@ -9819,6 +9826,14 @@
         "down",
         "neutral",
         "up"
+      ]
+    },
+    "Stats.Trend.intent": {
+      "required": false,
+      "values": [
+        "danger",
+        "neutral",
+        "success"
       ]
     },
     "Stats.asChild": {
