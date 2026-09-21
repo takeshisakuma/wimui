@@ -42,6 +42,30 @@ const DONE_STATUS = /^\*\*済|^済/;
 const EVIDENCE = /20\d\d-\d\d-\d\d|#\d{2,}/;
 
 /**
+ * 状態列の分類（2026-09-21）。**どれにも当たらない書き方は落とす。**
+ *
+ * 以前は `OPEN`（`P1` / `未着手` で**始まる**）だけを未完了に数え、それ以外は黙って
+ * 数えから外していた。そのため「**① 済 / ② は判断待ち / ③④ 未着手**」（T250）や
+ * 「**判断待ち**（ユーザー）」（T251）が**未完了 0 件の陰に隠れた** ── 引き継ぎは
+ * 何回も「行として残っている仕事は 0 件」と書き、T250 の ③④ は実装されないまま残った。
+ * 状態列が空の行も `return` で数えから落ちていた。
+ *
+ * 並びは優先順。部分的に済んだ行（「① 済 / ③ 未着手」）は未完了に数える。
+ */
+const CLASSES = [
+  ["done", "済", DONE_STATUS],
+  ["open", "未完了", /P\d|未着手/],
+  ["waiting", "判断待ち", /判断待ち/],
+  ["blocked", "保留", /保留/],
+  ["notPlanned", "対応予定なし", /対応予定なし/],
+];
+/** 状態列を分類する。当たらなければ null。 */
+export function classify(status) {
+  for (const [key, , re] of CLASSES) if (re.test(status)) return key;
+  return null;
+}
+
+/**
  * 行をセルに割る。**`\|`（エスケープ済み）は区切りに数えない。**
  *
  * 列数の検査だけがこの規則を守っていて、**状態列の取り出しは素の `split("|")` の
@@ -69,6 +93,8 @@ function main() {
   const unevidenced = [];
   let checked = 0;
   let open = 0;
+  const counts = { done: 0, open: 0, waiting: 0, blocked: 0, notPlanned: 0 };
+  const unknown = [];
   const malformed = [];
   let headerCols = 0;
   let headerLine = 0;
@@ -94,11 +120,13 @@ function main() {
     }
 
     const status = (splitCells(line)[statusIdx] ?? "").trim();
-    if (!status) return;
     checked += 1;
+    const cls = classify(status);
+    if (cls) counts[cls] += 1;
+    else unknown.push({ line: i + 1, id: m[1], status: status.slice(0, 60) || "（空）" });
+    if (cls === "open") open += 1;
 
     if (OPEN.test(status)) {
-      open += 1;
       if (DONE_IN_BODY.test(line)) {
         contradictions.push({ line: i + 1, id: m[1], status: status.slice(0, 40) });
       }
@@ -150,6 +178,15 @@ function main() {
     );
   }
 
+  if (unknown.length) {
+    failed = true;
+    console.error(`\n✗ 状態列を分類できない行が ${unknown.length} 件（数えから黙って落ちる）:`);
+    for (const u of unknown) console.error(`  - ${FILE}:${u.line}  ${u.id}  状態列='${u.status}'`);
+    console.error(
+      `\n  状態列には次のどれかを含めること: ${CLASSES.map(([, label]) => label).join(" / ")}（未完了は P1〜P3 か 未着手）。`,
+    );
+  }
+
   // 3. 済の行が残っていないか
   const done = findDone(lines);
   if (done.length) {
@@ -184,6 +221,10 @@ function main() {
 
   console.log(
     `✓ IMPROVEMENTS.md の状態列は本文と整合（${checked} 行を照合、未完了 ${open} 件）。`,
+  );
+  console.log(
+    `  済以外の内訳: 未完了 ${counts.open} / 判断待ち ${counts.waiting} / 保留 ${counts.blocked} / 対応予定なし ${counts.notPlanned}` +
+      `（「未完了 0」でも判断待ちと保留は残っている）`,
   );
   console.log(`  次に振る番号: T${max("T") + 1} / CI-${max("CI-") + 1}（退避先 ${LEDGER} の番号も数えている）`);
 }
