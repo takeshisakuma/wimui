@@ -1,7 +1,7 @@
 name: Feature Watchlist (Baseline)
 
 # docs/feature-watchlist.json の機能が Baseline の目標段階（既定: Widely Available）
-# へ昇格したら Issue を自動起票する（IMPROVEMENTS.md T14）。
+# へ昇格したら Issue を自動起票する（docs/history/improvements-ledger.md の T14）。
 on:
   schedule:
     - cron: "0 21 * * 1" # 毎週月曜 21:00 UTC（火曜朝 JST）
