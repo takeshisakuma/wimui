@@ -419,6 +419,7 @@
     "prepare": "husky && node scripts/link-skills.mjs",
     "check:aliases": "node scripts/check-aliases.js",
     "check:improvements": "node scripts/check-improvements-status.js",
+    "maintenance:preview": "node scripts/maintenance-issue.mjs --dry-run",
     "improvements:archive": "node scripts/archive-improvements-done.mjs",
     "check:choice-matrix": "node scripts/check-choice-matrix.js",
     "check:chart-palette": "node scripts/check-chart-palette.js",

@@ -1,0 +1,47 @@
+name: Maintenance Reminder
+
+# MAINTENANCE.md（定期点検＝CI が見ていない・壊れても赤が出ないもの）の、その週にやる
+# 項目をチェックリストにして issue を立てる。本文の組み立ては scripts/maintenance-issue.mjs。
+#
+# 定期点検は「見に行く日を決めていなかっただけ」で放置されてきた。skill は依頼の内容で
+# 発火するので日付では起きない ── だから日付で起こす仕組みをここに置く（2026-09-21）。
+on:
+  schedule:
+    - cron: "0 0 * * 1" # 毎週月曜 00:00 UTC（月曜 09:00 JST）
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "issue を立てずに本文だけログに出す"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    name: Open this week's maintenance issue
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # 依存は要らない（node の標準モジュールと gh だけ）
+      - name: Build and open the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            node scripts/maintenance-issue.mjs --dry-run
+          else
+            node scripts/maintenance-issue.mjs
+          fi
