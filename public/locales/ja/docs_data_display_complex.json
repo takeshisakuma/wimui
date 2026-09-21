@@ -206,6 +206,8 @@
     "stats_title": "重要な指標や統計情報を強調して表示するためのパーツ",
     "stats_trend": "トレンド表示",
     "stats_trend_desc": "`Stats.Trend` を使用して、前月比などの変化率を表示できます。",
+    "stats_trend_intent": "色は良し悪しで決める",
+    "stats_trend_intent_desc": "`direction` は矢印を、`intent` は色を決めます。コストやエラー率のように上昇が悪い知らせになる指標では `direction=\"up\" intent=\"danger\"` と書きます。`intent` を省くと色は向きに従います（上 = 成功）。",
     "stats_trend_props": "StatsTrend プロパティ",
     "stats_usage_desc": "ラベル、値、および補足情報を組み合わせて使用します。",
     "stats_value_props": "StatsValue プロパティ",

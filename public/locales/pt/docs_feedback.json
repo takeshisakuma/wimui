@@ -154,6 +154,8 @@
     "emptystate_design_intent": "O EmptyState funciona como um 'guia' para evitar que os usuários se percam quando não há dados para exibir ou nenhum item corresponde aos critérios. Em vez de apenas declarar friamente 'sem dados', seu objetivo é orientar gentilmente o usuário sobre como fazer os dados aparecerem ou o que fazer a seguir.",
     "emptystate_icons_actions": "Ícones e Ações",
     "emptystate_icons_actions_desc": "Também é possível combinar apenas ícones ou múltiplos botões de ação.",
+    "emptystate_alignment": "Alinhamento",
+    "emptystate_alignment_desc": "Estados vazios ficam alinhados ao início por padrão, para serem lidos como parte do cartão ou da tabela em que estão. Use `align=\"center\"` só quando o estado vazio for a única coisa na região, como um resultado de busca em página inteira.",
     "emptystate_keyboard_desc": "Tab move o foco pelos botões de ação no estado vazio. Enter ou Espaço os ativa.",
     "emptystate_long_desc": "Um componente usado como um marcador de posição no estado inicial, quando os dados estão vazios ou não há resultados de pesquisa. Ele informa ao usuário a situação atual e o incentiva para a próxima ação.",
     "emptystate_scenario_inbox": "Caixa de Entrada Vazia: Celebra que todas as tarefas ou e-mails foram removidos, permitindo que o usuário sinta uma sensação de realização (Inbox Zero).",
