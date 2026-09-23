@@ -52,7 +52,7 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
       data,
       isActive = true,
       barCount = 24,
-      height = 40,
+      height = 40, /* Exception: Structural Logic — 波形の描画領域の高さ。bar の尺度の基準になる座標値 */
       className,
       sentiment = "neutral",
       style,

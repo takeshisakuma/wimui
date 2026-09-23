@@ -31,7 +31,7 @@ export const InfiniteScroll = ({
   loading = false,
   onLoadMore,
   loader,
-  threshold = 250,
+  threshold = 250, /* Exception: Structural Logic — IntersectionObserver の rootMargin。描画される長さではなく「あと何 px で読み足すか」の距離 */
   className,
   container,
 }: InfiniteScrollProps) => {

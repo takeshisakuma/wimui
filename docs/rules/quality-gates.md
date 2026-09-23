@@ -16,6 +16,7 @@
 | prop シグネチャ | `npm run check:prop-api` | prop を足した・変えたとき | シンボル名では見えない prop の破壊（消えた・必須になった・型が狭まった）。**prop を足したときも落ちる**ので `check:prop-api:update` で `prop-api-snapshot.json` を更新してコミットする（2026-09-21 に強化。助言のままだと 18 prop 遅れて `Comment` が丸ごと未収録になり、**未収録の部品は prop を消しても永久に緑**だった）。鳴ることの実証は `npm run prove:prop-api` |
 | ポリモーフィック監査 | `npm run check:aschild` | `asChild` を足したとき | `asChild` 実装と `docs/rules/implementation.md` の必須リスト同期 |
 | トークン漏れ（PX） | `npm run audit:hardcoded` | SCSS を触ったとき | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
+| トークン漏れ（prop の既定値） | `npm run check:numeric-length-defaults` | prop の既定値に数値を置いたとき | **上は `px` という綴りを探すので、`gap = 16` のように単位が後から付く既定値には届かない**（T266。`Group` / `Masonry` / `SimpleGrid` の 3 件が「0 件」の陰にいた）。値が CSS の長さになる証拠（`` `${x}px` `` / `getSpacingValue()` / style の長さプロパティ / 間隔の prop へ転送）を見る。件数のベースラインを持たず**1 件ずつ同一行に注記**させるので、lint-staged が部分集合しか渡さない経路でも判定がぶれない |
 | i18n 整合性 | `npm run i18n:check` | キーを足した・変えたとき | en / ja / pt のキー一致。長文ガイドは en 正本 → `i18n:sync` |
 | Docs・stories の英語直書き | `npm run i18n:check:mdx` / `npm run audit:stories-i18n` | MDX・ストーリーを触ったとき | 翻訳キーを通さずに書いた文言 |
 | i18n の除外指定 | `npm run i18n:check:ignore` | `i18n-ignore` を足したとき | 除外を増やしていないか |

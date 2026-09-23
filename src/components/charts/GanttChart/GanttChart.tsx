@@ -154,7 +154,7 @@ export const GanttChart = ({
   endDate,
   viewMode = "day",
   columnWidth,
-  rowHeight = 40,
+  rowHeight = 40, /* Exception: Structural Logic — チャートの行高。行数×高さで全体の寸法が決まる座標値 */
   onTaskClick,
   className,
   labels,

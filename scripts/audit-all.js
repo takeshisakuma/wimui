@@ -348,6 +348,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 上は px という**綴り**を探すので、`gap = 16` のように**単位が後から付く**
+    // 既定値には届かない（T266。`Group` / `Masonry` / `SimpleGrid` の 3 件が
+    // 「0 件」の陰にいた）。値の流れ先を見る側をここで足す。
+    name: "Numeric prop defaults that become CSS lengths",
+    command: "node scripts/check-numeric-length-defaults.js",
+  },
+  {
+    category: "lib",
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
   },
