@@ -188,7 +188,12 @@ mdxFiles.forEach(file => {
 // doc.table_aschild_desc にした。**Span / Heading / Blockquote の「代替は
 // Paragraph」は実在しない部品を勧めていた**（Card.mdx の Tile と同じ形）ので、
 // 3 言語とも Text に直した。
-const HARDCODED_FILE_BASELINE = 43;
+// 2026-09-23: 43 → 42。外れたのは `stories/data-display/Carousel/Carousel.mdx` の
+// 1 件だけで、増えたものは無い（#657 で操作の置き場を prop 化したときに生英語が
+// 消えた）。**母数は 294 ファイル全量**で、8/28 の 287 から増えている ── 母数が
+// 縮んで件数が減ったのではないことを、8/28 の MDX を取り出して同じ検査に通し、
+// 失敗ファイルの一覧どうしを突き合わせて確かめた。
+const HARDCODED_FILE_BASELINE = 42;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {
