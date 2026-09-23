@@ -8,7 +8,11 @@ import { getSpacingValue } from "../../../utilities/style-utils";
 type SimpleGridProps = React.ComponentPropsWithoutRef<"div"> & {
   /** Number of columns (or a responsive object per breakpoint) */
   cols?: ResponsiveProp<number>;
-  /** Spacing between cells */
+  /**
+   * Spacing between cells: a spacing token name (`"md"`, `"2xl"`, …) or a raw
+   * number of pixels. Prefer the token so the gap follows the theme.
+   * @default "2xl"
+   */
   spacing?: number | string;
   /** Vertical spacing between rows (defaults to `spacing`) */
   verticalSpacing?: number | string;
@@ -20,7 +24,9 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
   (
     {
       cols = 1,
-      spacing = 16,
+      // 間隔の既定はトークンから取る。以前は `16` の直書きで、`--wim-spacing-*` を
+      // 差し替えたテーマでもここだけ 16px のまま残っていた（必須ルール 4）。
+      spacing = "2xl",
       verticalSpacing,
       minChildWidth,
       className,

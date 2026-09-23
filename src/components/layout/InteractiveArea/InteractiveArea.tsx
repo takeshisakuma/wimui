@@ -36,6 +36,14 @@ export type InteractiveAreaProps = Omit<
    */
   size?: ComponentSizeBasic;
   /**
+   * Horizontal alignment of the icon, text and actions. Centred content only reads
+   * as deliberate when the area is the one thing in its region — a drop target or a
+   * whole result page. Inside a card, a table or a column of prose, use `"start"`
+   * so the block lines up with the text around it.
+   * @default "center"
+   */
+  align?: "start" | "center";
+  /**
    * Whether the area is currently in a dragging state (for dropzone)
    */
   isDragging?: boolean;
@@ -73,6 +81,9 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
       variant = "dashed",
       bgVariant = "default",
       size = "md",
+      // 既定は中央のまま（この部品の本来の用途はドロップ領域と結果ページで、
+      // どちらもその領域を丸ごと占める）。`start` は、カードや表の中に置くとき。
+      align = "center",
       isDragging = false,
       isClickable = false,
       disabled = false,
@@ -91,6 +102,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
           localStyles[variant],
           localStyles[bgVariant],
           localStyles[size],
+          align === "center" ? localStyles.alignCenter : localStyles.alignStart,
           isDragging && localStyles.dragging,
           isClickable && !disabled && localStyles.clickable,
           disabled && localStyles.disabled,
@@ -99,6 +111,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
         data-variant={variant}
         data-bg-variant={bgVariant}
         data-size={size}
+        data-align={align}
         data-disabled={disabled}
         data-dragging={isDragging}
         /* 無効時に `role="button"` を出さないのは意図（押せないものを押せる

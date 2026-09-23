@@ -635,6 +635,11 @@ export function RenameWorkspace() {
     - `children: React.ReactNode` (required) — Child content
 - **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
     - `children: React.ReactNode` — Grid items (typically BentoGrid.Item elements)
+    - `columns: 2 | 3 | 4` = 3 — How many columns the grid uses from container width `md` up; below that it is
+always a single column. Pick it from what the tiles hold — three columns is a
+layout decision, not a default to accept, and three equal tiles is the shape
+readers have learnt to skip.
+@default 3
     - `rowHeight: string` — Fixed height of each grid row (`grid-auto-rows`). Any CSS length; defaults to `18rem`. Lower it when tiles hold compact content so they don't read as mostly-empty panels.
 - **Box** — Polymorphic box
     - `as: C` — The component used for the root node. Either a string to use a HTML element or a component.
@@ -757,7 +762,9 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `asChild: boolean` — If true, the group will be rendered as its child, merging its props onto that child.
     - `align: "start" | "center" | "end" | "stretch" | "baseline"` = "center" — Vertical alignment
     - `justify: "start" | "center" | "end" | "between" | "around" | "evenly"` = "start" — Horizontal alignment
-    - `gap: number | string` = 16 — Gap between elements
+    - `gap: number | string` = "2xl" — Gap between elements: a spacing token name (`"md"`, `"2xl"`, …) or a raw
+number of pixels. Prefer the token so the gap follows the theme.
+@default "2xl"
     - `wrap: "nowrap" | "wrap" | "wrap-reverse"` = "wrap" — Whether to wrap children
     - `grow: boolean` = false — Whether items should grow to fill available space
 - **Header** — Upper navigation
@@ -775,13 +782,22 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `variant: "dashed" | "solid" | "none"` = "dashed" — Border variant
     - `bgVariant: "default" | "transparent" | "muted"` = "default" — Background variant
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size variation
+    - `align: "start" | "center"` = "center" — Horizontal alignment of the icon, text and actions. Centred content only reads
+as deliberate when the area is the one thing in its region — a drop target or a
+whole result page. Inside a card, a table or a column of prose, use `"start"`
+so the block lines up with the text around it.
+@default "center"
     - `isDragging: boolean` = false — Whether the area is currently in a dragging state (for dropzone)
     - `isClickable: boolean` = false — Whether the area is clickable
     - `disabled: boolean` = false — Whether the area is disabled
     - `styles: { inner?: string; icon?: string; title?: string; description?: string; content?: string; actions?: string; }` — Custom styles for internal parts
 - **Masonry** — Waterfall grid
-    - `columns: number` = 3 — Number of columns
-    - `spacing: number | string` = 16 — Spacing between items
+    - `columns: number` = 3 — Number of columns. Pick it from how many items there are — three columns
+holding four cards leaves a ragged row that reads as a template, not a choice.
+@default 3
+    - `spacing: number | string` = "2xl" — Gap between items: a spacing token name (`"md"`, `"2xl"`, …) or a raw number
+of pixels. Prefer the token so the gap follows the theme.
+@default "2xl"
 - **Navbar** — Primary navigation
     - `fixed: boolean` — Whether the navbar is fixed to the viewport
     - `sticky: boolean` — Whether the navbar sticks to the top while scrolling
@@ -831,7 +847,9 @@ Set `responsive={false}` to keep the sidebar in flow at every width.
     - `onOverlayClick: () => void` — Callback when overlay is clicked
 - **SimpleGrid** — Responsive fixed grid
     - `cols: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` = 1 — Number of columns (or a responsive object per breakpoint)
-    - `spacing: number | string` = 16 — Spacing between cells
+    - `spacing: number | string` = "2xl" — Spacing between cells: a spacing token name (`"md"`, `"2xl"`, …) or a raw
+number of pixels. Prefer the token so the gap follows the theme.
+@default "2xl"
     - `verticalSpacing: number | string` — Vertical spacing between rows (defaults to `spacing`)
     - `minChildWidth: number | string` — Minimum width of each child; columns wrap automatically to fit
 - **Splitter** — Split and resize panels

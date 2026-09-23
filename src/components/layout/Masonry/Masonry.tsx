@@ -1,11 +1,20 @@
 import React from "react";
 import classNames from "classnames";
+import { getSpacingValue } from "../../../utilities/style-utils";
 import styles from "./masonry.module.scss";
 
 export type MasonryProps = React.ComponentPropsWithoutRef<"div"> & {
-  /** Number of columns */
+  /**
+   * Number of columns. Pick it from how many items there are — three columns
+   * holding four cards leaves a ragged row that reads as a template, not a choice.
+   * @default 3
+   */
   columns?: number;
-  /** Spacing between items */
+  /**
+   * Gap between items: a spacing token name (`"md"`, `"2xl"`, …) or a raw number
+   * of pixels. Prefer the token so the gap follows the theme.
+   * @default "2xl"
+   */
   spacing?: number | string;
 };
 
@@ -15,18 +24,21 @@ export type MasonryProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
   (
-    { columns = 3, spacing = 16, className, style, children, ...props },
+    // 間隔の既定はトークンから取る。以前は `16` の直書きで、`--wim-spacing-*` を
+    // 差し替えたテーマでもここだけ 16px のまま残っていた（必須ルール 4）。
+    // `2xl` = 1rem なので、既定の root font-size では見た目は変わらない。
+    { columns = 3, spacing = "2xl", className, style, children, ...props },
     ref,
   ) => {
     const masonryStyle: React.CSSProperties = {
       columnCount: columns,
-      columnGap: typeof spacing === "number" ? `${spacing}px` : spacing,
+      columnGap: getSpacingValue(spacing),
       ...style,
     };
 
     const itemStyle: React.CSSProperties = {
       breakInside: "avoid",
-      marginBottom: typeof spacing === "number" ? `${spacing}px` : spacing,
+      marginBottom: getSpacingValue(spacing),
     };
 
     return (

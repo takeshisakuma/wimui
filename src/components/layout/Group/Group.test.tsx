@@ -13,6 +13,19 @@ describe("Group", () => {
     expect(screen.getByText("Item 1")).toBeInTheDocument();
   });
 
+  // 既定の gap が px 直書きだと、`--wim-spacing-*` を差し替えたテーマでもここだけ
+  // 16px のまま残る（必須ルール 4）。`2xl` = 1rem なので見た目は変わらない。
+  it("uses a spacing token for the default gap", () => {
+    const { container } = render(
+      <Group>
+        <div>Only child</div>
+      </Group>,
+    );
+    expect((container.firstChild as HTMLElement).style.gap).toBe(
+      "var(--wim-spacing-2xl)",
+    );
+  });
+
   it("applies grow styles to children", () => {
     render(
       <Group grow>

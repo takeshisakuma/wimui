@@ -15,7 +15,7 @@ description: Use BEFORE creating, adding, or scaffolding a new WIM UI component 
 4. 既定値（props の既定・`.module.scss` の既定の面）と `Default` ストーリーは `composition-guidelines` skill の対象。素で置いた姿が禁止パターンなら既定の失敗。
 5. 文字列は `docs/rules/i18n.md`（`public/locales/en/` に足して `npm run i18n:sync`）。ストーリーは `docs/rules/storybook.md`、MDX は `docs/rules/mdx.md`。
 6. 文書の 3 点を更新する: `src/data/components.json`（`docs/componentList.mdx` の実体）/ 個別 MDX / カテゴリの MDX。
-7. 品質ゲートは `AGENTS.md`「品質ゲート・チェックリスト」の表をそのまま通す。**prop を足したので `npm run check:prop-api:update` の結果もコミットに含める**（加算でも赤になる）。公開シンボルが増えるので `check:api:update` も。
+7. 品質ゲートは `docs/rules/quality-gates.md` の表（**正本**。2026-09-21 に `AGENTS.md` から移した）をそのまま通す。**prop を足したので `npm run check:prop-api:update` の結果もコミットに含める**（加算でも赤になる）。公開シンボルが増えるので `check:api:update` も。
 8. **合成（必須）**: カタログ単体では出荷しない。T179 のプローブで他の部品と組み、確かめたら画面は捨てる（`docs/rules/implementation.md`）。
 
 手順の本文はここに複製しない（唯一の情報源は上に挙げた文書）。このファイルの実体は `.agents/skills/` にあり、`.claude/skills/` は `npm install` 時に `prepare` が繋いだリンク。**編集は `.agents/skills/` 側で行う。**

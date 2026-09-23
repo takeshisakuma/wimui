@@ -12,7 +12,11 @@ export type GroupProps = React.ComponentPropsWithoutRef<"div"> & {
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   /** Horizontal alignment */
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
-  /** Gap between elements */
+  /**
+   * Gap between elements: a spacing token name (`"md"`, `"2xl"`, …) or a raw
+   * number of pixels. Prefer the token so the gap follows the theme.
+   * @default "2xl"
+   */
   gap?: number | string;
   /** Whether to wrap children */
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
@@ -28,7 +32,9 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
     {
       align = "center",
       justify = "start",
-      gap = 16,
+      // 間隔の既定はトークンから取る。以前は `16` の直書きで、`--wim-spacing-*` を
+      // 差し替えたテーマでもここだけ 16px のまま残っていた（必須ルール 4）。
+      gap = "2xl",
       wrap = "wrap",
       grow = false,
       children,

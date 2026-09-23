@@ -85,6 +85,29 @@ describe("InteractiveArea", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
+  it("centres by default and switches to start alignment on demand", () => {
+    const { container, rerender } = render(<InteractiveArea title="Title" />);
+    const area = container.firstChild as HTMLElement;
+    expect(area).toHaveAttribute("data-align", "center");
+    expect(area).toHaveClass("alignCenter");
+
+    rerender(<InteractiveArea title="Title" align="start" />);
+    expect(container.firstChild).toHaveAttribute("data-align", "start");
+    expect(container.firstChild).toHaveClass("alignStart");
+  });
+
+  // クラス名は CSS モジュールのプロキシが返すだけなので、**揃えの実体が SCSS に
+  // 在ること**は綴りではなく file を読んで確かめる（`styles.x` は常に "x" を返す）。
+  it("defines both alignments in the stylesheet, and no centring outside them", () => {
+    expect(scss).toMatch(/&\.alignCenter[\s\S]*align-items:\s*center/);
+    expect(scss).toMatch(/&\.alignStart[\s\S]*align-items:\s*flex-start/);
+    // `.inner` / `.text` / `.actions` の既定に揃えを書き戻すと、`align="start"` でも
+    // 中身だけ中央に残る（この部品はそれで中央固定になっていた）。
+    const inner = scss.slice(scss.indexOf("\n  .inner {"), scss.indexOf("\n  .icon {"));
+    expect(inner).not.toMatch(/align-items:\s*center/);
+    expect(inner).not.toMatch(/text-align:\s*center/);
+  });
+
   it("sizes a bare SVG in the icon slot (T198)", () => {
     expect(scss).toMatch(/@layer component/);
     expect(scss).toMatch(/\.icon[\s\S]*& > \*[\s\S]*width:\s*1em/);

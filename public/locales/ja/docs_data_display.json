@@ -314,6 +314,8 @@
     "interactiveArea_anatomy_root_label": "ルートコンテナ",
     "interactiveArea_best_practice_1": "「プレースホルダー」や「ドロップ先」としての機能を示す場合は、破線の枠線を使用してください。",
     "interactiveArea_best_practice_2": "目的を伝えるために、明確なラベル（タイトル/説明）とアイコンを提供してください。",
+    "interactiveArea_best_practice_3": "既定の中央揃えのままにしてよいのは、その領域にこの部品しか無いとき（ドロップ先や結果ページ全体）です。カードや表、文章の列の中に置くときは align=\"start\" を渡し、周りの文字に行頭をそろえてください。",
+    "interactiveArea_best_practice_label_alignment": "揃え",
     "interactiveArea_best_practice_label_clarity": "目的の明確化",
     "interactiveArea_best_practice_label_visual": "視覚的な手がかり",
     "interactiveArea_choice_alt_when": "これを内部で使用している `Dropzone` や `EmptyState` のような、より用途の特定されたコンポーネントが必要な場合。",
