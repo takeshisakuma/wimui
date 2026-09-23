@@ -28,6 +28,18 @@ describe("BentoGrid", () => {
     const grid = container.firstChild?.firstChild as HTMLElement;
     expect(grid.style.getPropertyValue("--wim-bento-row-height")).toBe("");
   });
+
+  it("sets --wim-bento-columns from the columns prop", () => {
+    const { container } = render(<BentoGrid columns={4} />);
+    const grid = container.firstChild?.firstChild as HTMLElement;
+    expect(grid.style.getPropertyValue("--wim-bento-columns")).toBe("4");
+  });
+
+  it("falls back to 3 columns when columns is not given", () => {
+    const { container } = render(<BentoGrid />);
+    const grid = container.firstChild?.firstChild as HTMLElement;
+    expect(grid.style.getPropertyValue("--wim-bento-columns")).toBe("3");
+  });
 });
 
 describe("BentoGridItem", () => {
@@ -65,5 +77,28 @@ describe("BentoGridItem", () => {
     const { container } = render(<BentoGridItem />);
     expect(container.firstChild).toHaveClass("span-1");
     expect(container.firstChild).toHaveClass("row-1");
+  });
+
+  // 列数を超える span は暗黙の列を作ってグリッドを壊す（`Dashboard` で実測した形）。
+  // `columns` を prop にした以上、その事故は**渡せる組み合わせの中**で起きうるので、
+  // 親の列数まで丸める。
+  it("clamps span to the grid's column count", () => {
+    render(
+      <BentoGrid columns={2}>
+        <BentoGridItem span={4} data-testid="tile" />
+      </BentoGrid>,
+    );
+    const item = screen.getByTestId("tile");
+    expect(item).toHaveClass("span-2");
+    expect(item).not.toHaveClass("span-4");
+  });
+
+  it("uses the full span when the grid is wide enough", () => {
+    render(
+      <BentoGrid columns={4}>
+        <BentoGridItem span={4} data-testid="tile" />
+      </BentoGrid>,
+    );
+    expect(screen.getByTestId("tile")).toHaveClass("span-4");
   });
 });

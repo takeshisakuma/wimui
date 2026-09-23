@@ -25,6 +25,15 @@ describe("SimpleGrid", () => {
     });
   });
 
+  // 既定の間隔が px 直書きだと、`--wim-spacing-*` を差し替えたテーマでもここだけ
+  // 16px のまま残る（必須ルール 4）。`2xl` = 1rem なので見た目は変わらない。
+  it("uses a spacing token for the default gap", () => {
+    const { container } = render(<SimpleGrid cols={2} />);
+    const grid = container.querySelector(`.${styles.root}`) as HTMLElement;
+    expect(grid.style.gap).toBe("var(--wim-spacing-2xl)");
+    expect(grid.style.rowGap).toBe("var(--wim-spacing-2xl)");
+  });
+
   it("applies minChildWidth if provided", () => {
     const { container } = render(<SimpleGrid minChildWidth={200} />);
     const grid = container.querySelector(`.${styles.root}`) as HTMLElement;

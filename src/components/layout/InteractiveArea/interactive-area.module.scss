@@ -9,13 +9,50 @@
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     width: 100%;
     padding: var(--ia-padding);
     background-color: var(--_bg);
     border-radius: var(--wim-radius-container);
     transition: all var(--wim-transition-fast);
+
+    /* 揃えは `align` で決める。既定は `center`（ドロップ領域や結果ページのように、
+       その領域にこれしか無い使い方が本来の用途）。**中身がカードや表の一部のときは
+       `start`** ── そこだけ中央に寄った塊は、周りの左揃えの文章から浮く。
+       `StatusContent` / `EmptyState` と同じ形にそろえてある。 */
+    &.alignCenter {
+      align-items: center;
+
+      .inner {
+        align-items: center;
+        text-align: center;
+      }
+
+      .text {
+        align-items: center;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+    }
+
+    &.alignStart {
+      align-items: flex-start;
+
+      .inner {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .text {
+        align-items: flex-start;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+    }
 
     &.dashed {
       border: var(--wim-border-width-thick) dashed var(--wim-color-border);
@@ -87,21 +124,20 @@
     }
   }
 
+  /* 揃え（align-items / text-align）は `.root` の `.alignCenter` / `.alignStart`
+     が持つ。ここに既定を書くと、揃えを切り替えても子だけ中央に残る。 */
   .inner {
     display: flex;
     flex-direction: column;
     gap: var(--ia-stack-gap);
-    align-items: center;
     justify-content: center;
     width: 100%;
-    text-align: center;
   }
 
   .text {
     display: flex;
     flex-direction: column;
     gap: var(--ia-title-gap);
-    align-items: center;
   }
 
   .icon {
@@ -138,6 +174,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--wim-spacing-sm);
-    justify-content: center;
   }
 }

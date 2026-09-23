@@ -954,6 +954,14 @@
       "required": false,
       "type": "React.ReactNode"
     },
+    "BentoGrid.columns": {
+      "required": false,
+      "values": [
+        "2",
+        "3",
+        "4"
+      ]
+    },
     "BentoGrid.rowHeight": {
       "required": false,
       "type": "string"
@@ -971,7 +979,7 @@
       "type": "1 | 2"
     },
     "BentoGridItem.span": {
-      "type": "1 | 2 | 3"
+      "type": "1 | 2 | 3 | 4"
     },
     "BentoGridItem.title": {
       "type": "React.ReactNode"
@@ -5710,6 +5718,13 @@
     "InteractiveArea.actions": {
       "required": false,
       "type": "ReactNode"
+    },
+    "InteractiveArea.align": {
+      "required": false,
+      "values": [
+        "center",
+        "start"
+      ]
     },
     "InteractiveArea.bgVariant": {
       "required": false,

@@ -314,6 +314,8 @@
     "interactiveArea_anatomy_root_label": "Contêiner Raiz",
     "interactiveArea_best_practice_1": "Use bordas tracejadas para áreas que significam funcionalidade de 'espaço reservado' ou 'destino de soltar'.",
     "interactiveArea_best_practice_2": "Forneça rótulos claros (título/descrição) e ícones para comunicar o propósito da área.",
+    "interactiveArea_best_practice_3": "Mantenha o centro padrão apenas quando a área for a única coisa na região, como um destino de soltar ou uma página de resultado inteira. Dentro de um cartão, de uma tabela ou de uma coluna de texto, passe align=\"start\" para o bloco alinhar com o texto ao redor.",
+    "interactiveArea_best_practice_label_alignment": "Alinhamento",
     "interactiveArea_best_practice_label_clarity": "Clarificação de Propósito",
     "interactiveArea_best_practice_label_visual": "Dicas Visuais",
     "interactiveArea_choice_alt_when": "Quando precisar de um componente mais específico como `Dropzone` ou `EmptyState` que já usa este internamente.",
