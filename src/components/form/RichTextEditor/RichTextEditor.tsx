@@ -181,7 +181,7 @@ export const RichTextEditor = ({
   variant = "outline",
   fullWidth = false,
   width,
-  minHeight = 200,
+  minHeight = 200, /* Exception: Structural Logic — 本文が何行分見えるかという編集領域の寸法。間隔の刻みに寄せられない */
   label,
   error,
   required,

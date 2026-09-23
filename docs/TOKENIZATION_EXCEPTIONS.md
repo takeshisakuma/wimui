@@ -57,6 +57,7 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
   - `Markdown` / `StreamingText` / `MarkdownRenderer`: `ul` / `ol`（Renderer は `.list`）の `padding-inline-start: 1.5em` — outside マーカーは font-size に追従する溝が要る。`spacing-xl`（12px）では本文より左へはみ出す。
   - `List`: bordered / hoverable の disc `0.35em` — マーカーは font-size に追従する。
   - `Video`: 音量スライダー展開幅・設定メニュー位置／最小幅／最大高さ。
+  - **prop の既定値として持つ寸法**（TSX 側。2026-09-23 に注記した 5 件）: `Sidebar` の `width = 260`（画面の割り付け）／`RichTextEditor` の `minHeight = 200`（本文が何行見えるか）／`GanttChart` の `rowHeight = 40` と `VoiceVisualizer` の `height = 40`（行数・bar 数と掛け合わせて全体の寸法が決まる座標値）／`InfiniteScroll` の `threshold = 250`（IntersectionObserver の `rootMargin`＝**描画される長さではない**）。いずれも間隔の刻み（最大 2.2rem）に寄せられない。間隔・線の太さとして使う値はここに入れず、トークンにすること（`Divider` の `thickness` は `--wim-border-width-thin` のフォールバックへ移しました）。
 
 ## 4. インタラクションの物理挙動 (Interaction Physics)
 ホバー時やアクティブ時の「感覚的なフィードバック」に使用される数値。
@@ -93,6 +94,19 @@ WIM UI では、保守性と一貫性を高めるためにデザイントーク�
 - カラーコード: 1件でも検出したら即エラー（下記「禁止事項」参照）。
 - px 直書き: 同一行に `Exception:` / `TODO: tokenization` コメントがないものをカウントし、スクリプト内の `PX_BASELINE` を超えたらエラーになります（ラチェット方式）。既存分を注記・トークン化して数を減らしたら、`PX_BASELINE` を実測値まで下げてコミットしてください。増やす方向の変更は認められません。
 - `var(--x, 4px)` のようなトークン/変数参照のフォールバック値は検査対象外です（参照が主体の防御的既定値のため）。
+
+### 3-2. 機械チェック（`npm run check:numeric-length-defaults`）
+上のチェックは **`px` という綴りを探す**ので、**単位が後から付く書き方には届きません**。`gap = 16` と書いて `` `${gap}px` `` で組み立てると、「Unannotated px hardcodes: 0」と報告されたまま通ります（2026-09-23 に `Group` の `gap` / `Masonry` と `SimpleGrid` の `spacing` の 3 件がこの形で見つかりました。T266）。
+
+`scripts/check-numeric-length-defaults.js` は**値の流れ先**を見ます。分解代入の既定値が裸の数値で、かつその変数が同じファイルの中で
+1. `` `${x}px` `` のようにテンプレートで単位を得る
+2. `getSpacingValue(x)` / `getSizeValue(x)` を通る
+3. `style` の長さプロパティ（`gap` / `padding` / `width` …）へ素で渡る
+4. 間隔を表す prop（`<Flex gap={gap}>` など）へ転送される
+
+のいずれかに当たるものを挙げます。**件数のベースラインを持ちません** ── 1 件ずつ同一行に `/* Exception: <カテゴリ> — 理由 */` または `// TODO: tokenization` を書かせる方式です。件数で凍結すると、lint-staged が部分集合しか渡さない経路で判定がぶれます（`check:slop` のラチェットが素通りしていたのと同じ穴）。
+
+過去のコミットのファイルで鳴ることを確かめられます: `node scripts/check-numeric-length-defaults.js --probe <file>`。
 
 ### 4. 禁止事項
 - カラーコード (#hex, rgb, rgba) のハードコード: これらは例外なくデザイントークンを使用してください。テーマ切り替え（ダークモード）に致命的な影響を与えます。

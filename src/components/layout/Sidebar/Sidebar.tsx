@@ -52,7 +52,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       children,
       fixed,
       collapsed,
-      width = 260,
+      width = 260, /* Exception: Structural Logic — サイドバーの幅は間隔ではなく画面の割り付け。間隔の刻み（最大 2.2rem）に寄せられない */
       bordered = true,
       responsive = true,
       mobileOpen,

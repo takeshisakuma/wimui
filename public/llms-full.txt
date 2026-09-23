@@ -733,7 +733,9 @@ under an `h1` needs `2`, one under an `h2` section keeps `3`.
     - `label: string` — Dashboard heading label.
 - **Divider** — Content separator (aka Separator, Horizontal Rule)
     - `orientation: "horizontal" | "vertical"` = "horizontal" — Orientation of the divider
-    - `thickness: number` = 1 — Thickness of the line (px)
+    - `thickness: number` — Thickness of the line, in pixels. Left out, the line is as thick as every
+other hairline in the theme, so a theme that thickens its borders thickens
+this too.
 - **Flex** — Flexible layout
     - `asChild: boolean` = false — If true, the flex will be rendered as its child, merging its props onto that child.
     - `direction: "row" | "row-reverse" | "column" | "column-reverse"` = "row" — Flex direction
