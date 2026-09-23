@@ -21,8 +21,8 @@
     - `npm run check:imports` — peer コンポーネントの import 境界
     - `npm run audit-mdx` — MDX 必須セクション
     - `npm run lint` / `npm run stylelint`
-    - チェックリスト本体: `.github/pull_request_template.md` と `AGENTS.md`「品質ゲート・チェックリスト」
-8.  **合成（必須）**: カタログの単体ストーリーだけでは出荷しない。T179 のプローブで他の部品と組み、置き方・a11y・狭幅を触る。確認が終わったらプローブ画面は捨て、直した部品と Realistic な単体ストーリーを残す。カバー率のために `stories/Patterns/` へ書かない。詳細は `docs/rules/implementation.md` と `DESIGN.md` のコンポジションガイドライン。
+    - チェックリスト本体: `docs/rules/quality-gates.md`（**正本**。2026-09-21 に `AGENTS.md` から移した）。`.github/pull_request_template.md` は PR ごとのチェックボックスで、正本との一致は `npm run check:quality-gates` が見る
+8.  **合成（必須）**: カタログの単体ストーリーだけでは出荷しない。T179 のプローブで他の部品と組み、置き方・a11y・狭幅を触る。確認が終わったらプローブ画面は捨て、直した部品と Realistic な単体ストーリーを残す。カバー率のために `stories/Patterns/` へ書かない。詳細は `docs/rules/implementation.md` と `docs/design/composition.md`（コンポジションガイドライン。`DESIGN.md` からは 2026-09-19 に移した）。
 
 
 ## ディレクトリ構成
