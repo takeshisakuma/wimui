@@ -1,5 +1,11 @@
 # wimui
 
+## 0.32.1
+
+### Patch Changes
+
+- 908c9fa: `Divider` の線の太さの既定を、`1`（px の直書き）からトークンへ移しました。`thickness` を渡さない場合、太さは SCSS のフォールバック `var(--wim-border-width-thin)` から取ります ── **線の太さを変えたテーマに、区切り線も追従するようになります**（既定のテーマでは同じ 1px なので見た目は変わりません）。`thickness` の型と渡し方は変わりません。
+
 ## 0.32.0
 
 ### Minor Changes
