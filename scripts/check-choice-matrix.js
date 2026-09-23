@@ -27,7 +27,10 @@ import { resolveLocale } from "./lib/locale-keys.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOCALE_DIR = "public/locales/en";
-const BASELINE = 146; // 2026-08-11 実測（self 73 + alt 73）。減らすのは歓迎、増やすのは不可。
+// 2026-08-11 実測 146（self 73 + alt 73）→ 2026-09-23 実測 141。減らすのは歓迎、増やすのは不可。
+// **母数も一緒に記録する**（141 / 263 件）── 件数だけ凍結すると、選択資料そのものが
+// 減って件数が下がった場合と、同語反復を直して下がった場合を、次に読む人が区別できない。
+const BASELINE = 141;
 
 /**
  * 軸 4（T223・2026-08-28）: **表の直前に置く導入文が定型文になっていないか。**
