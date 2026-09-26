@@ -9,14 +9,17 @@
     padding: var(--wim-spacing-xs) 0;
     overflow: hidden;
     outline: none;
-    background: var(--wim-color-glass-bg);
-    border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
+
+    // T267-③: 既定の面は不透明なサーフェスと枠（以前は glass-bg ＋ぼかしのすりガラス）。
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
 
     // 影は使わない。ページ内に置くパネルで、輪郭は面と枠が作る（T50）。
     // 実測 2026-08-01: 面↔ページ light 0.0542 / dark 0.0559、枠↔ページ
     // 0.0366 / 0.0836。影の寄与は 0.0122 / 0.0084 で基準 0.015 未満だった。
-    backdrop-filter: blur(var(--wim-tree-blur, var(--wim-blur-sm))); /* component-slop-ok: T267-③ で外す（既定の面をサーフェス階層トークンへ） */
+    // ※ この実測はすりガラス（glass-bg）時代の面で取ったもの。T267-③ で surface / border へ
+    //   替えたあとは測り直していない。
   
     &.dataDriven > .item {
       animation: enter var(--wim-duration-fast) var(--wim-easing-standard) both;
