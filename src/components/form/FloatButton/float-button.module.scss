@@ -16,7 +16,7 @@
     transition:
       background-color var(--wim-transition-fast),
       box-shadow var(--wim-transition-fast),
-      transform var(--wim-transition-spring),
+      transform var(--wim-transition-spring), /* component-slop-ok: T267-④ で外す（浮き上がりは残し、弾みだけ外す） */
       width var(--wim-transition-base),
       padding var(--wim-transition-base);
 

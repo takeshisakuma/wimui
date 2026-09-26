@@ -23,9 +23,15 @@
  *   1. blur-token     `blur(...)` の中身が blur のトークン（`--wim-blur-*` /
  *                     `--wim-color-glass-blur*`）でない。別カテゴリのトークン・生の長さ・
  *                     部品変数の生のフォールバック（`var(--x, 8px)`）はすべて鳴る。
- *   2. bounce-easing  `--wim-easing-out-back`（行き過ぎて戻る）を使っている。
+ *   2. bounce-easing  **行き過ぎて戻る曲線**を使っている。`cubic-bezier()` の y が 0〜1 の
+ *                     外に出るもの（直書き）と、その曲線を値に持つトークン
+ *                     （`--wim-easing-out-back` / `--wim-easing-spring` / `--wim-transition-spring` /
+ *                     `--wim-transition-entrance`…）。トークン名は列挙せず、定義を読んで曲線から
+ *                     判定する ── 最初の版は `out-back` の名前だけを見ていて、同じ種類の曲線の
+ *                     `spring` と、`out-back` を包んだ `transition-entrance` を素通りしていた。
  *   3. hover-lift     `:hover` の中の `transform` で**上へ動かす**（負の translateY。
- *                     中央寄せの `-50%` は除く）か**拡大する**（scale > 1）。
+ *                     中央寄せの `-50%` は除く）か**拡大する**（scale > 1。
+ *                     `scale(var(--x, 1.05))` のようにフォールバックで拡大する形も含む）。
  *   4. default-glass  `backdrop-filter` が**選んだときだけの形**の外にある。セレクタの
  *                     入れ子に opt-in の印（`glass` / `frosted` / `blur-*` / `hasBackdrop`）
  *                     か、背後を覆うための層（`overlay` / `backdrop` / `scrim` / `mask`）
@@ -101,6 +107,53 @@ function blurProblem(arg) {
   return null;
 }
 
+/** `cubic-bezier(x1, y1, x2, y2)` の y が 0〜1 の外 ＝ 行き過ぎて戻る。 */
+const BEZIER_RE = /cubic-bezier\(\s*([-\d.]+)\s*,\s*([-\d.]+)\s*,\s*([-\d.]+)\s*,\s*([-\d.]+)\s*\)/g;
+const overshootBezier = (text) =>
+  [...text.matchAll(BEZIER_RE)].some((m) => [m[2], m[4]].map(Number).some((y) => y < 0 || y > 1));
+
+/**
+ * 行き過ぎる曲線を値に持つトークン名。生成物と手書きの効果トークンの定義を読み、
+ * `var(--wim-…)` の参照は辿る（`transition-entrance` → `easing-out-back`）。
+ * **読めなければ落とす** ── 「読めなかった」を「違反なし」に混ぜない（T54）。
+ */
+function overshootTokens() {
+  const sources = ['src/tokens/generated/_css-vars.scss', 'src/tokens/_effects.scss'];
+  const defs = new Map();
+  for (const src of sources) {
+    if (!fs.existsSync(src)) throw new Error(`トークン定義が読めません: ${src}`);
+    for (const m of fs.readFileSync(src, 'utf8').matchAll(/(--wim-[\w-]+)\s*:\s*([^;]+);/g)) {
+      if (!defs.has(m[1])) defs.set(m[1], m[2]);
+    }
+  }
+  const bad = new Set();
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const [name, value] of defs) {
+      if (bad.has(name)) continue;
+      const refs = [...value.matchAll(/var\(\s*(--wim-[\w-]+)/g)].map((m) => m[1]);
+      if (overshootBezier(value) || refs.some((r) => bad.has(r))) {
+        bad.add(name);
+        grew = true;
+      }
+    }
+  }
+  if (!bad.has('--wim-easing-out-back')) {
+    throw new Error('--wim-easing-out-back を行き過ぎる曲線と判定できませんでした（定義の読み方がずれています）');
+  }
+  return bad;
+}
+const OVERSHOOT_TOKENS = overshootTokens();
+
+function bounceProblem(text) {
+  for (const m of text.matchAll(/--wim-[\w-]+/g)) {
+    if (OVERSHOOT_TOKENS.has(m[0])) return `行き過ぎて戻る曲線（${m[0]}）`;
+  }
+  if (overshootBezier(text)) return '行き過ぎて戻る曲線（cubic-bezier の y が 0〜1 の外）';
+  return null;
+}
+
 function hoverLiftProblem(value) {
   // 上へ動かす: lift トークン（none を除く）か、負の長さ。`-50%` は中央寄せ。
   if (/translateY\(\s*var\(--wim-lift-(?!none)/.test(value)) return '上へ浮かせている（lift トークン）';
@@ -108,6 +161,8 @@ function hoverLiftProblem(value) {
   if (ty) return `上へ浮かせている（${ty[1]}${ty[2]}）`;
   const sc = value.match(/scale\(\s*(\d*\.?\d+)\s*\)/);
   if (sc && Number(sc[1]) > 1) return `拡大している（scale(${sc[1]})）`;
+  const scv = value.match(/scale\(\s*var\(\s*--[\w-]+\s*,\s*(\d*\.?\d+)\s*\)\s*\)/);
+  if (scv && Number(scv[1]) > 1) return `拡大している（フォールバック scale(${scv[1]})）`;
   return null;
 }
 
@@ -185,7 +240,8 @@ export function scan(files, { honourExcuses = true } = {}) {
           const p = blurProblem(arg);
           if (p) push('blur-token', p);
         }
-        if (/--wim-easing-out-back\b/.test(value)) push('bounce-easing', '行き過ぎて戻る easing');
+        const bounce = bounceProblem(value);
+        if (bounce) push('bounce-easing', bounce);
         // `&:not(:hover)` はホバーしていないときなので外す。
         if (prop === 'transform' && /:hover/.test(selectors.replace(/:not\([^)]*\)/g, ''))) {
           const p = hoverLiftProblem(value);
@@ -196,9 +252,10 @@ export function scan(files, { honourExcuses = true } = {}) {
             push('default-glass', `既定の面がすりガラス（${stack[stack.length - 1] ?? '?'}）`);
           }
         }
-      } else if (/--wim-easing-out-back\b/.test(line)) {
+      } else {
         // transition の 2 行目以降（`transform var(--wim-duration-fast) var(--wim-easing-out-back);`）
-        push('bounce-easing', '行き過ぎて戻る easing');
+        const bounce = bounceProblem(line);
+        if (bounce) push('bounce-easing', bounce);
       }
       for (const c of line) {
         if (c === '{') {
