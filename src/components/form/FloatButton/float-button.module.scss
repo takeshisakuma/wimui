@@ -149,7 +149,7 @@
       &:hover {
         background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: translateY(var(--wim-lift-sm));
+        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 
@@ -160,7 +160,7 @@
       &:hover {
         background-color: oklch(from var(--wim-color-danger) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: translateY(var(--wim-lift-sm));
+        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 
@@ -171,7 +171,7 @@
       &:hover {
         background-color: oklch(from var(--wim-color-success) calc(l * 0.9) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: translateY(var(--wim-lift-sm));
+        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 
@@ -183,7 +183,7 @@
       &:hover {
         background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
         box-shadow: var(--wim-shadow-lg);
-        transform: translateY(var(--wim-lift-sm));
+        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 
@@ -192,11 +192,11 @@
       background: var(--wim-color-glass-bg);
       border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
       box-shadow: var(--wim-color-shadow-glass);
-      backdrop-filter: blur(var(--wim-glass-blur, 8px));
+      backdrop-filter: blur(var(--wim-glass-blur, var(--wim-blur-glass)));
 
       &:hover {
         background: oklch(from var(--wim-color-white) l c h / 0.15);
-        transform: translateY(var(--wim-lift-sm));
+        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 
@@ -220,7 +220,7 @@
       transform: translateX(-50%);
 
       &:hover:not(:disabled) {
-        transform: translateX(-50%) scale(1.05);
+        transform: translateX(-50%) scale(1.05); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
 
       &:active:not(:disabled) {

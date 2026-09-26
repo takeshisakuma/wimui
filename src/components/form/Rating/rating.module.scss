@@ -61,7 +61,7 @@
     transition: transform var(--wim-transition-fast);
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.1); /* component-slop-ok: 星が小さく、色の変化だけでは今どの星の上にいるか読み取りにくい */
     }
 
     &.full .foreground {

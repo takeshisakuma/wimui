@@ -94,12 +94,12 @@
     background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
-    backdrop-filter: blur(var(--wim-blur-glass));
+    backdrop-filter: blur(var(--wim-blur-glass)); /* component-slop-ok: 写真の上に置く操作。背後の画に対して読めることが目的 */
     transition: var(--wim-transition-base);
 
     &:hover {
       background: oklch(from var(--wim-color-white) l c h / 0.2);
-      transform: translateY(-1px); /* Exception: Interaction Physics — ホバー時のわずかな浮き上がり */
+      transform: translateY(-1px); /* Exception: Interaction Physics — ホバー時のわずかな浮き上がり */ /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
     }
 
     &:active {
@@ -158,13 +158,13 @@
     background: var(--wim-color-glass-bg);
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
-    backdrop-filter: blur(var(--wim-blur-glass));
+    backdrop-filter: blur(var(--wim-blur-glass)); /* component-slop-ok: 写真の上に置く操作。背後の画に対して読めることが目的 */
     transform: translateY(-50%);
     transition: var(--wim-transition-base);
 
     &:hover {
       background: oklch(from var(--wim-color-white) l c h / 0.2);
-      transform: translateY(-50%) scale(1.05);
+      transform: translateY(-50%) scale(1.05); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
     }
 
     &.prev {

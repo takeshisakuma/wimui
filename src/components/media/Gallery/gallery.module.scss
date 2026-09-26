@@ -136,7 +136,7 @@
     transition: transform var(--wim-duration-base) var(--wim-easing-standard);
 
     .item:hover & {
-      transform: scale(1.04);
+      transform: scale(1.04); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
     }
 
     .item.selected & {

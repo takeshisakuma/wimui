@@ -31,7 +31,7 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-primary) calc(l * 1.1) c h);
-        transform: translateY(-2px); /* Exception: Interaction Physics — hover lift distance */
+        transform: translateY(-2px); /* Exception: Interaction Physics — hover lift distance */ /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
     }
 

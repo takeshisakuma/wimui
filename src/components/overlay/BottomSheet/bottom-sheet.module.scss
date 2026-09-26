@@ -9,7 +9,7 @@
     align-items: flex-end;
     justify-content: center;
     background-color: var(--wim-color-overlay);
-    backdrop-filter: blur(var(--wim-radius-sm));
+    backdrop-filter: blur(var(--wim-blur-2xs));
     animation: overlayShow var(--wim-duration-fast) var(--wim-easing-snap);
   }
   

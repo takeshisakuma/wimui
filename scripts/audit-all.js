@@ -356,6 +356,14 @@ const checks = [
   },
   {
     category: "lib",
+    // `check:slop` が部品 SCSS で見ているのは斜めグラデだけで、質感と動き（ホバーの
+    // 浮き上がり・弾む easing・既定のすりガラス・blur へのトークン流用）はどの基準にも
+    // 映っていなかった（T267）。
+    name: "Component SCSS texture & motion slop (hover lift / bounce / default glass / blur tokens)",
+    command: "node scripts/check-component-slop.js",
+  },
+  {
+    category: "lib",
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
   },
