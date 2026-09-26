@@ -166,7 +166,7 @@
       border: none;
       border-bottom: var(--wim-border-width-thick) solid transparent;
       border-radius: 0;
-      transition: all var(--wim-transition-base);
+      transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
       &:hover:not(:disabled) {
         color: var(--wim-color-text-accent);

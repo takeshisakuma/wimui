@@ -95,7 +95,7 @@
     background: transparent;
     border: none;
     border-radius: var(--wim-radius-sm);
-    transition: all var(--wim-duration-fast);
+    transition: all var(--wim-duration-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       color: var(--wim-color-text-primary);

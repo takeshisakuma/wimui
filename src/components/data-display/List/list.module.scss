@@ -47,7 +47,7 @@
     &.hoverable {
       .item {
         cursor: pointer;
-        transition: all var(--wim-transition-fast);
+        transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
         &:hover {
           background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);

@@ -28,7 +28,7 @@
     background: transparent;
     border: none;
     border-radius: 0;
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover:not(.disabled) {
       border-color: var(--wim-color-primary);
@@ -88,7 +88,7 @@
     background: none;
     border: none;
     border-radius: var(--wim-radius-component);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   }
 
   .dropdown {

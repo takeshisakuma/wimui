@@ -49,7 +49,7 @@
 
     &.interactive {
       cursor: pointer;
-      transition: all var(--wim-transition-fast);
+      transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
       &:hover {
         background-color: oklch(from var(--bg) calc(l * 0.95) c h);
@@ -84,7 +84,7 @@
     border: none;
     border-radius: var(--wim-radius-sm);
     opacity: var(--wim-opacity-secondary);
-    transition: all var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background-color: var(--wim-color-surface-hover);

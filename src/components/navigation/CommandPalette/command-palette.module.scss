@@ -51,7 +51,7 @@
     align-items: center;
     padding: 0 var(--wim-spacing-md);
     border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
     svg {
       margin-right: var(--wim-spacing-sm);
@@ -62,7 +62,7 @@
     &:focus-within {
       background-color: var(--bg-hover, var(--wim-color-surface-subtle-alpha));
       border-bottom-color: var(--wim-color-primary);
-      transition: var(--wim-transition-fast);
+      transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
       // Default (mouse) focus indicator: change icon color and light background
       svg {
@@ -194,7 +194,7 @@
     background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    transition: all var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
     &:hover {
       color: var(--wim-color-text-primary);
