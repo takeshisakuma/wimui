@@ -40,7 +40,7 @@
 
     &:focus {
       outline: none;
-      border-color: var(--wim-color-primary);
+      border-color: var(--wim-color-focus-outline);
       box-shadow: var(--wim-shadow-field-focus);
     }
 

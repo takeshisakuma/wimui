@@ -46,8 +46,8 @@
       box-shadow var(--wim-duration-base) var(--wim-easing-standard);
 
     &:focus {
-      border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.1); /* Exception: Browser Rendering Fixes — keyboard focus halo */
+      border-color: var(--wim-color-focus-outline);
+      box-shadow: 0 0 0 3px oklch(from var(--wim-color-focus-outline) l c h / 0.1); /* Exception: Browser Rendering Fixes — keyboard focus halo */
     }
 
     &::placeholder {

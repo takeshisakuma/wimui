@@ -88,7 +88,7 @@
 
     /* キーボードの居場所を消さない。地の色を塗らないので輪郭で示す。 */
     &:focus-visible {
-      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
       outline-offset: var(--wim-focus-outline-offset);
     }
   }

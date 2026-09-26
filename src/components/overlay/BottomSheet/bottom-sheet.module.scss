@@ -37,7 +37,7 @@
     will-change: transform;
 
     &:focus {
-      outline: none;
+      outline: none; /* focus-indicator-ok: 開いたときにプログラムでフォーカスを置くパネル自体（Tab では止まらない）の枠。中の操作要素は既定の outline を持つ */
     }
 
     @include breakpoints.up(sm) {

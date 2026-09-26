@@ -82,7 +82,7 @@
 
     // Focus state
     &:focus-visible {
-      outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
+      outline: var(--wim-border-width-thick) solid var(--wim-color-focus-outline);
       outline-offset: var(--wim-border-width-thick);
       box-shadow: var(--wim-shadow-focus);
     }

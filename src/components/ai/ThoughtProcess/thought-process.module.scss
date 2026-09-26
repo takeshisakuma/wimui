@@ -68,7 +68,7 @@
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:focus-visible {
-      outline: var(--wim-focus-outline-width) solid var(--wim-color-primary);
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
       outline-offset: calc(-1 * var(--wim-focus-outline-offset));
     }
   }
