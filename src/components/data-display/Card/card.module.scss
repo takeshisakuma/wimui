@@ -23,8 +23,7 @@
       box-shadow: var(--wim-shadow-sm);
   
       &.interactive:hover {
-        box-shadow: var(--wim-shadow-lg);
-        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
+        box-shadow: var(--wim-shadow-md);
       }
     }
   
@@ -33,7 +32,6 @@
   
       &.interactive:hover {
         border-color: var(--wim-color-primary);
-        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
       }
     }
   
@@ -43,7 +41,6 @@
   
       &.interactive:hover {
         background-color: var(--wim-color-border-secondary);
-        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
       }
     }
 
@@ -55,7 +52,6 @@
 
       &.interactive:hover {
         background: oklch(from var(--wim-color-white) l c h / 0.15);
-        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
       }
     }
 

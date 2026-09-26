@@ -58,7 +58,6 @@
 
       &:hover {
         background-color: oklch(from var(--bg, transparent) calc(l * 0.9) c h);
-        transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: T267-④ で外す（ホバーの合図を 1 つに絞る） */
       }
 
       &:active {
