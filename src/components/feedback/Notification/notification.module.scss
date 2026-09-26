@@ -83,7 +83,13 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-base),
+      background-color var(--wim-transition-base),
+      border-color var(--wim-transition-base),
+      box-shadow var(--wim-transition-base),
+      outline-color var(--wim-transition-base),
+      opacity var(--wim-transition-base);
 
     &:hover {
       color: var(--wim-color-text-secondary);
