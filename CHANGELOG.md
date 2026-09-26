@@ -1,5 +1,39 @@
 # wimui
 
+## 0.33.0
+
+### Minor Changes
+
+- 6affd08: `Button` のホバーを静かにしました。以前はホバーのたびに「上へ浮く・大きい影が出る・行き過ぎて戻る easing で弾む」を重ねていて、画面で一番多い部品が跳ねていました。
+
+  - **solid** — 合図は地色を暗くすることだけです。影は静止時と同じ `--wim-shadow-sm` のままになります。ホバーで影を強くしたいテーマは、これまでどおり `--wim-button-shadow-hover` で差し替えられます（既定が `--wim-shadow-lg` から `--wim-shadow-sm` に変わりました）。
+  - **outline** — 地色が変わらないため、影（`--wim-shadow-md`）を合図として残しました。浮き上がりと弾みは外しています。
+  - **ghost** — 合図は地色と枠です。影・浮き上がり・弾みは外しました。
+
+  押したとき（`:active`）の縮みは、押したことの合図なので残しています。props と CSS 変数の名前は変わりません。
+
+- 3428adb: ## 既定値の変更（利用者の画面が黙って変わる）
+
+  ページ内に置く部品と通知が、既定ですりガラス（半透明の面＋背後のぼかし）になっていたのをやめました。すりガラスを既定にすると、それがライブラリの見た目になり、しかも最も没個性な見た目になります。
+
+  - **`Alert` / `Banner`** — intent 無しの既定の面を、半透明（`--wim-color-frosted-bg` / `--wim-color-overlay-soft`）から不透明な `--wim-color-surface` へ変えました。背後のぼかしも外しています。intent 付き（`info` / `success` / `warning` / `danger`）の面は変わりません。
+  - **`TreeView`** — 面を `--wim-color-glass-bg` から `--wim-color-surface` へ、枠を `--wim-color-glass-border` から `--wim-color-border` へ変え、ぼかしを外しました。あわせて部品変数 `--wim-tree-blur` は効かなくなります。
+  - **`Toast`** — 浮く面なので、`Popover` の既定と同じ形（`--wim-color-surface` ＋ `--wim-shadow-overlay`）にしました。以前は `--wim-color-glass-bg` ＋ glass の影＋ぼかしでした。
+  - **`Snackbar`** — 面はもともと不透明だったので、効いていなかったぼかしだけを外しました。部品変数 `--wim-snackbar-blur` は効かなくなります。
+
+  すりガラスが欲しい画面では、これまでどおり `Card` / `Popover` / `Tooltip` の `variant="glass"`、`Header` / `Navbar` / `TabBar` の `glass` prop を使えます。
+
+- 649f129: ## 既定値の変更（利用者の画面が黙って変わる）
+
+  押せる面がホバーで上へ浮く・拡大する動きをやめ、ホバーの合図を 1 つに絞りました。合図が重なると、画面のどこにカーソルを置いても何かが跳ねます。
+
+  - **`Card`（`interactive`）** — どの variant でも浮き上がりを外しました。`elevated` の合図は影で、ホバー時の影を `--wim-shadow-lg` から `--wim-shadow-md` に弱めています。`outline` は枠の色、`flat` / `glass` は面の色が合図です。
+  - **`Badge` / `Tag`（`interactive`）・`Chip`（クリックできるもの）・`InteractiveArea`（`clickable`）** — 浮き上がりを外しました。面の色（`InteractiveArea` は枠の色も）が合図です。
+  - **`Lightbox`** — 上部の操作ボタンの浮き上がりと、前後ボタンの拡大を外しました（面の色が合図）。画像が入ってくる動きは、行き過ぎて戻る曲線から `--wim-easing-emphasized-decelerate` へ替えています。
+  - **`FloatButton`** — 浮いている部品なので、ホバーで浮く動きは残しています。変えたのは、行き過ぎて戻る曲線（`--wim-transition-spring`）を `--wim-transition-base` へ替えた点だけです（長さは同じ 0.25 秒）。
+
+  押したとき（`:active`）の縮みは残しています。props と CSS 変数の名前は変わりません。
+
 ## 0.32.1
 
 ### Patch Changes
