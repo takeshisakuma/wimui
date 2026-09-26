@@ -75,7 +75,7 @@
 
     // Initial state for animation
     opacity: 0;
-    backdrop-filter: blur(var(--wim-snackbar-blur, 8px));
+    backdrop-filter: blur(var(--wim-snackbar-blur, var(--wim-blur-sm))); /* component-slop-ok: T267-③ で外す（既定の面をサーフェス階層トークンへ） */
     transform: translateY(var(--wim-snackbar-lift, 20px)) scale(0.95);
     transition: all var(--wim-duration-slow) var(--wim-easing-standard);
 

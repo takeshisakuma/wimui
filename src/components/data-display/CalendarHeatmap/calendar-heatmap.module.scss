@@ -61,7 +61,7 @@
     &:hover {
       z-index: 1;
       background-color: oklch(from var(--wim-color-ghost-bg) calc(l * 1.2) c h);
-      transform: scale(1.2);
+      transform: scale(1.2); /* component-slop-ok: 小さなセルのどれを指しているかを示す拡大（ツールチップの対象） */
     }
 
     &.level0 { background-color: var(--wim-comp-heatmap-level-0); }

@@ -403,8 +403,10 @@
     "check:prop-vocabulary": "node scripts/check-prop-vocabulary.js",
     "check:color-values": "node scripts/check-color-values.js",
     "check:slop": "node scripts/check-slop.js",
+    "check:component-slop": "node scripts/check-component-slop.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "prove:slop": "node scripts/prove-slop-guard.mjs",
+    "prove:component-slop": "node scripts/prove-component-slop.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
@@ -652,7 +654,8 @@
       "node scripts/check-intent-text-color.js",
       "node scripts/check-contrast-scss.js",
       "node scripts/check-shrinkable-roots.js",
-      "node scripts/check-field-roots.js"
+      "node scripts/check-field-roots.js",
+      "node scripts/check-component-slop.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",

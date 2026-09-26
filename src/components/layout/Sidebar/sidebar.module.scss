@@ -6,7 +6,7 @@
     inset: 0;
     z-index: var(--wim-z-mask);
     background-color: var(--wim-color-overlay-sidebar);
-    backdrop-filter: blur(var(--wim-radius-sm));
+    backdrop-filter: blur(var(--wim-blur-2xs));
   }
 
   .root {

@@ -149,12 +149,12 @@
     // Zoom
     .zoomable & {
       transition:
-        transform var(--wim-image-transition-duration, var(--wim-transition-spring)),
+        transform var(--wim-image-transition-duration, var(--wim-transition-spring)), /* component-slop-ok: zoomable を選んだときだけのズーム */
         filter var(--wim-image-transition-duration, var(--wim-transition-base));
     }
 
     .root:hover .zoomable & {
-      transform: scale(var(--wim-image-zoom-scale, 1.05));
+      transform: scale(var(--wim-image-zoom-scale, 1.05)); /* component-slop-ok: zoomable を選んだときだけのズーム */
     }
 
     // Image Filter

@@ -317,7 +317,7 @@
     background: var(--wim-comp-overlay-menu-bg);
     border-radius: var(--wim-radius-component);
     box-shadow: var(--wim-shadow-overlay);
-    backdrop-filter: blur(var(--wim-blur-glass));
+    backdrop-filter: blur(var(--wim-blur-glass)); /* component-slop-ok: 動画の上に置くメニュー。背後の画に対して読めることが目的 */
   
     .menuTitle {
       display: flex;
