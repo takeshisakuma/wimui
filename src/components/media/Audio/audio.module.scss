@@ -102,6 +102,18 @@
     100% { background-position: -200% 0; }
   }
 
+  /* T270: <audio> の既定の outline は、角丸のために overflow: hidden を持つ .inner に
+     切り取られて見えなかった（Audio は完全に）。フォーカスの表示は .inner 自身に出す ── .inner の
+     outline は自分の角丸に沿い、自分の overflow では切られない。 */
+  .inner:has(.audio:focus-visible) {
+    outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+    outline-offset: var(--wim-focus-outline-offset);
+  }
+
+  .audio:focus-visible {
+    outline: none; /* focus-indicator-ok: 表示は上の .inner:has(.audio:focus-visible) が持つ（ここの outline は .inner に切り取られる） */
+  }
+
   .audio {
     display: block;
     width: 100%; // Fill parent (.inner)

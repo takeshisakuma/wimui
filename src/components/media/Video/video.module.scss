@@ -92,6 +92,18 @@
     100% { background-position: -200% 0; }
   }
   
+  /* T270: <video> の既定の outline は、角丸のために overflow: hidden を持つ .inner に
+     切り取られて見えなかった（Video は縁の細い線だけ）。フォーカスの表示は .inner 自身に出す ── .inner の
+     outline は自分の角丸に沿い、自分の overflow では切られない。 */
+  .inner:has(.video:focus-visible) {
+    outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+    outline-offset: var(--wim-focus-outline-offset);
+  }
+
+  .video:focus-visible {
+    outline: none; /* focus-indicator-ok: 表示は上の .inner:has(.video:focus-visible) が持つ（ここの outline は .inner に切り取られる） */
+  }
+
   .video {
     display: block;
     width: 100%;

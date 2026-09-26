@@ -110,7 +110,10 @@
     &:focus-visible {
       outline: var(--wim-border-width-thick) solid var(--wim-color-focus-outline);
       outline-offset: var(--wim-border-width-thick);
-      box-shadow: var(--wim-shadow-focus);
+
+      /* T270: 以前はここに box-shadow: var(--wim-shadow-focus) もあった。そのトークンが淡いにじみ
+         （白 2px + primary 50%）だった間は outline の下の飾りだったが、T270-② で実線の 2px に
+         したため、同じ色の輪が二重に出ていた。合図は outline だけにする。 */
     }
 
     // Error state

@@ -41,6 +41,8 @@ const CASES = [
   { name: '消すだけ（:focus-visible）', css: '.proveTemp:focus-visible {\n  outline: none;\n}', expect: 'focus-hidden' },
   { name: '淡い色だけ', css: '.proveTemp:focus-visible {\n  outline: none;\n  box-shadow: 0 0 0 3px oklch(from var(--wim-color-focus-outline) l c h / 0.15);\n}', expect: 'focus-faint-only' },
   { name: '淡い色だけ（field-focus）', css: '.proveTemp:focus-visible {\n  outline: none;\n  box-shadow: var(--wim-shadow-field-focus);\n}', expect: 'focus-faint-only' },
+  { name: 'outline と実線の輪の二重', css: '.proveTemp:focus-visible {\n  outline: 2px solid var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-focus);\n}', expect: 'focus-double' },
+  { name: '[鳴らない] outline と淡い赤の輪（エラーの合図）', css: '.proveTemp:focus-visible {\n  outline: 2px solid var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-error-ring);\n}', expect: null },
   { name: '[鳴らない] フォーカス色の outline', css: '.proveTemp:focus-visible {\n  outline: 2px solid var(--wim-color-focus-outline);\n}', expect: null },
   { name: '[鳴らない] マウスのときだけ消す', css: '.proveTemp:focus:not(:focus-visible) {\n  outline: none;\n}', expect: null },
   { name: '[鳴らない] 淡い輪＋フォーカス色の枠', css: '.proveTemp:focus {\n  border-color: var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-field-focus);\n}', expect: null },

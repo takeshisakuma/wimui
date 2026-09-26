@@ -179,3 +179,17 @@
   border: var(--wim-border-width-thin) solid var(--wim-color-border);
   border-radius: var(--wim-radius-component);
 }
+
+/* T270: React Flow の既定は、ノードとエッジのフォーカスで outline を消し、ノードは 0.5px の
+   暗い線（#1a192b）、エッジは線の色を #555 / #727272 に変えるだけだった。dark ではほぼ見えない。
+   React Flow の CSS はレイヤーの外にあるので、ここもレイヤーの外で、それより詳細度を高くする。
+   エッジは SVG の線なので outline ではなく、線そのものをフォーカス色にして太くする。 */
+.root :global(.react-flow__node.selectable:focus-visible) {
+  outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+  outline-offset: var(--wim-focus-outline-offset);
+}
+
+.root :global(.react-flow__edge.selectable:focus-visible .react-flow__edge-path) {
+  stroke: var(--wim-color-focus-outline);
+  stroke-width: var(--wim-border-width-thick);
+}

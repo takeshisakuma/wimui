@@ -16,6 +16,8 @@
  *                        `--wim-color-focus-outline` を使う（テーマごとに 3:1 以上になる色）。
  *   3. focus-faint-only  表示が淡い色だけ（透明度付きの色、`--wim-shadow-field-focus`）。
  *                        枠の色の変化など、はっきりした合図がほかにあれば通す。
+ *   4. focus-double      outline の実線と、実線の輪（`--wim-shadow-focus` / `-ring`）を両方付けて
+ *                        いる。同じ色の輪が二重に出る。
  *
  * **見ないもの**: 部品の本体（フォーカスでないセレクタ）の `outline: none`。その要素が
  * フォーカスできるかをコードから決められないので、全ストーリーで Tab を当てて測る方で補う
@@ -111,6 +113,11 @@ export function scan(files, { honourExcuses = true } = {}) {
             /:not\(:focus-visible\)/.test(b.sel) ||
             (!/:focus-visible/.test(b.sel) && /:focus-visible|:focus-within/.test(fileSource));
           if (outlineNone && alts.length === 0 && !pointerOnly) push('focus-hidden', 'outline を消して、代わりの表示が無い', outlineNone.line);
+          // outline の実線と、実線の輪（--wim-shadow-focus / -ring）を同じブロックで両方付けると、
+          // 同じ色の輪が二重に出る（T270 で Checkbox / Switch / Radio が踏んだ）。
+          const solidOutline = b.decls.find((d) => d.prop === 'outline' && /\bsolid\b/.test(d.value));
+          const solidRing = b.decls.find((d) => d.prop === 'box-shadow' && /--wim-shadow-focus(-ring)?\b/.test(d.value));
+          if (solidOutline && solidRing) push('focus-double', 'outline と実線の輪が二重に出る', solidRing.line);
           if (alts.length > 0 && alts.every((d) => isFaint(d.value))) {
             push('focus-faint-only', '表示が淡い色だけ', alts[0].line);
           }
@@ -149,6 +156,7 @@ if (isMain) {
     console.log('\n  - focus-primary: `--wim-color-focus-outline` を使う（dark の primary は面に対して 1.61:1）。');
     console.log('  - focus-hidden: outline を消すなら、同じブロックに代わりの表示を書く。');
     console.log('  - focus-faint-only: 淡い輪だけにしない。枠の色の変化か、--wim-shadow-focus を足す。');
+    console.log('  - focus-double: outline と実線の輪のどちらか一方にする。');
     console.log(`  どうしても残すなら、同じ行か直上のコメントに \`${EXCUSE} <理由>\` を書くこと。`);
     process.exit(1);
   }
