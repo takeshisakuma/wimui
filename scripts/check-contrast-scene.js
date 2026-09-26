@@ -76,7 +76,9 @@ const LIGHT_TEXT_LUMINANCE = 0.5;
 const HOVER_MEASURED = {
   // dark / danger: 地 #fb7482 に黒文字。hover は oklch(0.650284 0.165115 15.7924)
   // ＝ 比 6.00、シーン込み 6.62（2026-08-20 実測）。resting の 7.92 から下がるが余裕がある。
-  "#fb7482|#000000": 6.62,
+  // 白のシーンは地を明るくするので、暗い文字では比を**上げる**側に効く。T268 で光沢を
+  // 外したあとは素の 6.00 が実際の値になる（どちらを使うかは usesScene で決める）。
+  "#fb7482|#000000": { bare: 6.0, scene: 6.62 },
 };
 
 const toHex = (c) =>
@@ -91,10 +93,18 @@ const must = (value, what) => {
   return value;
 };
 
-// ── シーン: 一番強い白を取る ──────────────────────────────────────────
+// ── シーン: Button が実際に敷いているときだけ、一番強い白を取る ────────────
+// T268 で solid の光沢（`background-image: var(--wim-glass-gradient)`）を外した。
+// **トークンは公開面なので残っている**ため、トークンの有無で判断すると、もう乗って
+// いない白を合成して測り続ける（緑のまま、測っている対象が実物とずれる）。
+// 実際に Button が敷いているかを読み、敷いていなければ素の地で測る。
+const button = fs.readFileSync(BUTTON, "utf-8");
+const usesScene = /background-image:\s*var\(--wim-glass-gradient\)/.test(
+  button.replace(/\/\*[\s\S]*?\*\//g, ""),
+);
 const effects = fs.readFileSync(EFFECTS, "utf-8");
-const gradient = /--wim-glass-gradient:\s*([^;]+);/.exec(effects)?.[1];
-must(gradient, "--wim-glass-gradient");
+const gradient = usesScene ? /--wim-glass-gradient:\s*([^;]+);/.exec(effects)?.[1] : null;
+if (usesScene) must(gradient, "--wim-glass-gradient");
 
 /** `rgb(255 255 255 / 0.08)` 形式の中で一番濃い白を拾う。 */
 const strongestWhite = (() => {
@@ -112,7 +122,6 @@ if (gradient && (strongestWhite === null || strongestWhite === 0)) {
 const scene = strongestWhite ? parseColor(`rgba(255,255,255,${strongestWhite})`) : null;
 
 // ── solid の intent と文字色を Button から読む ────────────────────────
-const button = fs.readFileSync(BUTTON, "utf-8");
 /** `&.default { --solid-bg: var(--wim-color-primary); color: var(--wim-color-text-on-primary); }` */
 const variants = [];
 for (const m of button.matchAll(/&\.([a-zA-Z][\w-]*)\s*\{([\s\S]*?)\n\s{4}\}/g)) {
@@ -143,7 +152,7 @@ if (presets.length === 1) {
 }
 
 // ── 判定 ─────────────────────────────────────────────────────────────
-if (scene) {
+if (!usesScene || scene) {
   for (const [theme, vars] of readThemes()) {
     for (const preset of presets) {
       for (const v of variants) {
@@ -160,7 +169,7 @@ if (scene) {
         // 暗い文字は下がるので、実測台帳に鍵があるかを見る（無ければ測り直させる）。
         if (relativeLuminance(fg) < LIGHT_TEXT_LUMINANCE) {
           const key = `${toHex(bg)}|${toHex(fg)}`;
-          const measured = HOVER_MEASURED[key];
+          const measured = HOVER_MEASURED[key]?.[usesScene ? "scene" : "bare"];
           if (measured === undefined) {
             failures.push(
               `${label}: 暗い文字（${v.fg}）× 地 ${toHex(bg)} の hover が未実測。` +
@@ -168,18 +177,19 @@ if (scene) {
                 `HOVER_MEASURED に鍵 "${key}" で実測値を足すこと（測り方はそのコメント）。`,
             );
           } else if (measured < TEXT_MIN) {
-            failures.push(`${label}: hover + シーンの実測 ${fmt(measured)} が ${TEXT_MIN} を割っている`);
+            failures.push(`${label}: hover${usesScene ? " + シーン" : ""}の実測 ${fmt(measured)} が ${TEXT_MIN} を割っている`);
           } else {
-            rows.push(`${label.padEnd(34)} hover+シーン ${fmt(measured).padStart(6)}（実測台帳）`);
+            rows.push(`${label.padEnd(34)} hover${usesScene ? "+シーン" : ""} ${fmt(measured).padStart(6)}（実測台帳）`);
           }
         }
 
         const bare = contrastRatio(fg, bg);
-        const withScene = contrastRatio(fg, composite(scene, bg));
-        const line =
-          `${label.padEnd(34)} 素 ${fmt(bare).padStart(6)} → シーン込み ${fmt(withScene).padStart(6)}`;
+        const withScene = scene ? contrastRatio(fg, composite(scene, bg)) : bare;
+        const line = scene
+          ? `${label.padEnd(34)} 素 ${fmt(bare).padStart(6)} → シーン込み ${fmt(withScene).padStart(6)}`
+          : `${label.padEnd(34)} 素 ${fmt(bare).padStart(6)}（シーンなし）`;
         if (withScene < TEXT_MIN) {
-          failures.push(`${line}  （要 ${TEXT_MIN}。素では通るのに、白が乗る上側で落ちている）`);
+          failures.push(`${line}  （要 ${TEXT_MIN}${scene ? "。素では通るのに、白が乗る上側で落ちている" : ""}）`);
         } else {
           rows.push(line);
         }
@@ -202,6 +212,6 @@ if (failures.length > 0) {
 
 console.log(
   `check:contrast-scene — OK（solid ${variants.length} intent × テーマ 2 × プリセット ${presets.length}` +
-    ` = ${rows.length} 通り。シーンは白 ${strongestWhite}）`,
+    ` = ${rows.length} 通り。${usesScene ? `シーンは白 ${strongestWhite}` : "Button は光沢を敷いていないので素の地で測った"}）`,
 );
 for (const r of rows) console.log(`  ・${r}`);
