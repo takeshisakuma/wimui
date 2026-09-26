@@ -137,11 +137,14 @@
 
     &:hover:not(:disabled) {
       background-color: oklch(from var(--solid-bg) calc(l * 0.9) c h);
-      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-lg)), var(--wim-inner-highlight);
-      transform: translateY(var(--wim-lift-md)) translateZ(0); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+
+      /* T267-②: ホバーの合図は地色を暗くすることだけ。以前は「浮く（lift-md）＋ shadow-lg ＋
+         光沢＋ out-back で弾む」を重ねていて、画面で一番多い部品がホバーのたびに跳ねていた。
+         影は静止時と同じ。浮かせたいテーマは --wim-button-shadow-hover で影だけ差し替えられる。 */
+      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-sm)), var(--wim-inner-highlight);
       transition:
-        box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
-        transform var(--wim-duration-fast) var(--wim-easing-out-back); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+        background-color var(--wim-duration-fast) var(--wim-easing-standard),
+        box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
     }
 
     &:active:not(:disabled) {
@@ -182,11 +185,9 @@
     }
 
     &:hover:not(:disabled) {
+      /* T267-②: outline は地色が変わらないので、影を合図として残す（浮き上がりと弾みは外した）。 */
       box-shadow: var(--wim-shadow-md);
-      transform: translateY(var(--wim-lift-sm)) translateZ(0); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
-      transition:
-        box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
-        transform var(--wim-duration-fast) var(--wim-easing-out-back); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+      transition: box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
     }
 
     &:active:not(:disabled) {
@@ -230,13 +231,11 @@
     &:hover:not(:disabled) {
       background-color: var(--wim-color-surface-hover);
       border-color: var(--wim-color-ghost-border-hover);
-      box-shadow: var(--wim-shadow-sm);
-      transform: translateY(var(--wim-lift-sm)) translateZ(0); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+
+      /* T267-②: ghost の合図は地色と枠。影・浮き上がり・弾みは外した。 */
       transition:
         background-color var(--wim-duration-fast) var(--wim-easing-standard),
-        border-color var(--wim-duration-fast) var(--wim-easing-standard),
-        box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
-        transform var(--wim-duration-fast) var(--wim-easing-out-back); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+        border-color var(--wim-duration-fast) var(--wim-easing-standard);
     }
 
     /* T132: 破壊的な操作の ghost は、hover の面だけ部品ごとに手作りされ、
@@ -298,6 +297,6 @@
       background-color var(--wim-duration-fast) var(--wim-easing-standard),
       border-color var(--wim-duration-fast) var(--wim-easing-standard),
       box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
-      transform var(--wim-duration-fast) var(--wim-easing-out-back); /* component-slop-ok: T267-② で外す（Button のホバーの合図を色だけにする） */
+      transform var(--wim-duration-fast) var(--wim-easing-standard);
   }
 }
