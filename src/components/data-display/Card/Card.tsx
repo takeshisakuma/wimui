@@ -13,7 +13,7 @@ export type CardProps = {
   asChild?: boolean;
   /** Visual style variant of the card */
   variant?: "elevated" | "outline" | "flat" | "glass";
-  /** Whether to enable hover animation and click effects */
+  /** Whether the card is clickable: shows hover and press feedback and a pointer cursor */
   interactive?: boolean;
   /**
    * Padding size.

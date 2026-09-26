@@ -3,7 +3,7 @@
     "common_vars": "Variáveis Comuns"
   },
   "guide": {
-    "effects_common_vars_guideline": "Priorize o uso de tokens definidos como var(--transition-base) ou var(--easing-spring). Isso garante consistência visual e qualidade de movimento em toda a biblioteca.",
+    "effects_common_vars_guideline": "Priorize o uso de tokens definidos como var(--wim-transition-base) ou var(--wim-easing-standard). Isso garante consistência visual e qualidade de movimento em toda a biblioteca.",
     "effects_desc": "Definições para elevação (sombras) e movimento (animações). Eles transmitem hierarquia e mudanças de estado ao usuário.",
     "effects_interaction_bg_desc": "Ao alterar cores de fundo em estados :hover ou :active, use a sintaxe de cor relativa oklch do CSS Color Level 4 em vez de opacity ou filter: brightness(). Isso produz mudanças de luminosidade perceptivamente uniformes nos modos claro e escuro.",
     "effects_interaction_bg_guideline": "Use oklch(from var(--token) calc(l * 0.9) c h) para escurecer, calc(l * 1.1) para clarear. Armazene fundos dinâmicos em uma variável local --bg.",
@@ -27,7 +27,7 @@
     "effects_motion_guideline": "Define movimentos altamente responsivos. Interações de passar o mouse e clicar são ultra-rápidas (83ms-167ms), enquanto entradas como diálogos apresentam desaceleração natural (250ms-333ms). Priorize o uso de var(--transition-base) ou tokens de suavização específicos.",
     "effects_motion_instant": "Instantâneo (Instant)",
     "effects_motion_out_back": "Out Back",
-    "effects_motion_out_back_desc": "Adiciona ênfase a movimentos como o passar do mouse em botões, ultrapassando ligeiramente antes de estabilizar.",
+    "effects_motion_out_back_desc": "Ultrapassa ligeiramente antes de estabilizar. Mantido como token, mas os componentes não o usam: o check:component-slop falha (T267).",
     "effects_motion_sharp": "Nítido (Sharp)",
     "effects_motion_short": "Curto",
     "effects_motion_slow": "Lento (Slow)",
@@ -36,7 +36,7 @@
     "effects_motion_smooth": "Suave",
     "effects_motion_snap": "Instantâneo (Snap)",
     "effects_motion_spring": "Mola (Spring)",
-    "effects_motion_spring_desc": "Adequado para movimentos naturais e elásticos, como abrir/fechar Acordeões ou Gavetas.",
+    "effects_motion_spring_desc": "Uma curva elástica que ultrapassa o alvo. Mantida como token, mas os componentes não a usam: o check:component-slop falha (T267).",
     "effects_motion_standard": "Padrão (Standard)",
     "effects_motion_ultra_slow": "Ultra Lento",
     "effects_opacity": "Opacidade (Opacity)",

@@ -84,7 +84,7 @@
     "focus_mgmt_title": "フォーカス管理",
     "focus_mgmt_desc": "適切なフォーカスインジケータは、キーボードユーザーにとって不可欠です。",
     "focus_ring_title": "フォーカスリング",
-    "focus_ring_desc": "すべてのインタラクティブな要素には、視認性の高いフォーカスリング（`--wim-shadow-focus`）が適用されます。",
+    "focus_ring_desc": "すべてのインタラクティブな要素は、キーボードでフォーカスすると `--wim-color-focus-outline` の 2px の実線の outline を表示します（どちらのテーマでも面に対して 3:1 以上で、Windows のハイコントラスト表示でも消えません）。",
     "offset_title": "オフセット",
     "offset_desc": "要素とフォーカスリングの間に適切な距離（`--wim-focus-outline-offset`）を保ち、デザインの美しさを損なわずに視認性を向上させます。",
     "focus_trap_title": "フォーカストラップ",

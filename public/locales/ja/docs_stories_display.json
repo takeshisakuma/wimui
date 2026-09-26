@@ -40,7 +40,7 @@
     "card_cancel": "キャンセル",
     "card_default_desc": "variant を指定しないときの姿です。細い枠線だけを持ち、影はありません。",
     "card_default_title": "素のカード",
-    "card_elevated_desc": "やわらかい影が付き、ホバーすると少し浮き上がります。1 つの面だけを手前に見せたいときに使います。",
+    "card_elevated_desc": "やわらかい影が付き、ホバーすると影が少し濃くなります。1 つの面だけを手前に見せたいときに使います。",
     "card_elevated_title": "影付きのカード",
     "card_flat_desc": "背景色のみで影のないカードです。",
     "card_flat_title": "フラットカード",

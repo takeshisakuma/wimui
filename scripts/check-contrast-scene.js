@@ -68,9 +68,11 @@ const LIGHT_TEXT_LUMINANCE = 0.5;
  * 返ってきた `oklch()` リテラルを `scripts/lib/color.js` に食わせて比を出している
  * （エンジンが相対色を、リポジトリの道具が比を担当する）。
  *
- * **色が変われば鍵が外れてこのガードが落ちる**ので、測り直しが強制される。
+ * **色か、暗くする割合が変われば鍵が外れてこのガードが落ちる**ので、測り直しが強制される。
+ * 鍵は `地|文字|l*割合`。割合は button.module.scss の solid の hover から読む ── 以前は
+ * 鍵が `地|文字` だけで、割合を変えても（0.9 → 0.85）古い実測値のまま緑を返した（T272）。
  * 測り直し方:
- *   node -e "…" で Chromium に `oklch(from <bg> calc(l * 0.9) c h)` を
+ *   node -e "…" で Chromium に `oklch(from <bg> calc(l * <割合>) c h)` を
  *   `getComputedStyle` させ、返り値を `contrastRatio` に渡す（シーンを合成した値も見る）。
  */
 const HOVER_MEASURED = {
@@ -78,7 +80,10 @@ const HOVER_MEASURED = {
   // ＝ 比 6.00、シーン込み 6.62（2026-08-20 実測）。resting の 7.92 から下がるが余裕がある。
   // 白のシーンは地を明るくするので、暗い文字では比を**上げる**側に効く。T268 で光沢を
   // 外したあとは素の 6.00 が実際の値になる（どちらを使うかは usesScene で決める）。
-  "#fb7482|#000000": { bare: 6.0, scene: 6.62 },
+  // T272 でホバーを l*0.85 に強めた。Chromium で測り直すと oklch(0.614157 0.165115 15.7924)
+  // = rgb(213,81,98) で黒文字 5.18（2026-09-26 実測。同じ手順で l*0.9 を測ると 5.99 で、上の 6.00 と一致）。
+  // シーン込みは測っていない（光沢は T268 で外したので usesScene は偽）。
+  "#fb7482|#000000|l*0.85": { bare: 5.18 },
 };
 
 const toHex = (c) =>
@@ -120,6 +125,10 @@ if (gradient && (strongestWhite === null || strongestWhite === 0)) {
   failures.push(`--wim-glass-gradient に白の停止点が見つからない: ${gradient.replace(/\s+/g, " ").trim()}`);
 }
 const scene = strongestWhite ? parseColor(`rgba(255,255,255,${strongestWhite})`) : null;
+
+// ── solid の hover で地を暗くする割合を Button から読む（実測台帳の鍵に入れる）──
+const hoverFactor = /&:hover:not\(:disabled\)\s*\{[^}]*?calc\(l \* ([0-9.]+)\)/.exec(button)?.[1];
+must(hoverFactor, "solid の hover の `calc(l * <割合>)`");
 
 // ── solid の intent と文字色を Button から読む ────────────────────────
 /** `&.default { --solid-bg: var(--wim-color-primary); color: var(--wim-color-text-on-primary); }` */
@@ -168,7 +177,7 @@ if (!usesScene || scene) {
         // hover は地を暗くする。明るい文字なら比は上がるので見なくてよい。
         // 暗い文字は下がるので、実測台帳に鍵があるかを見る（無ければ測り直させる）。
         if (relativeLuminance(fg) < LIGHT_TEXT_LUMINANCE) {
-          const key = `${toHex(bg)}|${toHex(fg)}`;
+          const key = `${toHex(bg)}|${toHex(fg)}|l*${hoverFactor}`;
           const measured = HOVER_MEASURED[key]?.[usesScene ? "scene" : "bare"];
           if (measured === undefined) {
             failures.push(

@@ -98,7 +98,7 @@
     "chip_choice_matrix_desc": "実体の表現と必要なインタラクションに応じて選択してください：",
     "chip_choice_self_when": "ユーザー、フィルタ、または選択可能なトークンとしてインタラクティブに扱う場合。",
     "chip_clickable": "クリック可能",
-    "chip_clickable_desc": "クリックイベントを設定するとボタンとして動作し、ホバー効果が適用されます。",
+    "chip_clickable_desc": "クリックイベントを設定するとボタンとして動作します。ホバーで面が暗くなり、押している間は少し縮みます。",
     "chip_deletable": "削除可能",
     "chip_deletable_desc": "onDelete を設定すると削除ボタン（×）が表示されます。",
     "chip_desc": "フィルター/選択トークン",

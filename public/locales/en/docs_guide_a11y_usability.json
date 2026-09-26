@@ -84,7 +84,7 @@
     "focus_mgmt_title": "Focus Management",
     "focus_mgmt_desc": "Proper focus indicators are essential for keyboard users.",
     "focus_ring_title": "Focus Ring",
-    "focus_ring_desc": "A high-visibility focus ring (`--wim-shadow-focus`) is applied to all interactive elements.",
+    "focus_ring_desc": "Every interactive element shows a solid 2px outline in `--wim-color-focus-outline` when focused from the keyboard (at least 3:1 against the surface in both themes, and kept in Windows high-contrast mode).",
     "offset_title": "Offset",
     "offset_desc": "Proper distance (`--wim-focus-outline-offset`) is maintained between the element and the focus ring to improve visibility without compromising design aesthetics.",
     "focus_trap_title": "Focus Trap",

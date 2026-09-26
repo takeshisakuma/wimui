@@ -67,7 +67,7 @@
     "calendar_prop_value": "Data selecionada (controlado)",
     "calendar_prop_weekStartsOn": "Primeiro dia da semana (0 = domingo, 1 = segunda-feira)",
     "card_prop_asChild": "Se verdadeiro, o card será renderizado como seu filho, mesclando suas props nesse filho.",
-    "card_prop_interactive": "Se deve ativar a animação ao passar o mouse e os efeitos de clique",
+    "card_prop_interactive": "Se o cartão é clicável: mostra resposta ao passar o mouse e ao pressionar, e o cursor de ponteiro",
     "card_prop_padding": "Tamanho do padding",
     "card_prop_radius": "Tamanho do raio dos cantos",
     "card_prop_variant": "Variante de estilo visual do card",

@@ -160,11 +160,6 @@ export const Overview: StoryObj = {
             </Box>
             {/* i18n-ignore-end */}
           </ComponentGroup>
-          <ComponentGroup label={t("audit:aesthetics_ambient_glow_label")}>
-            <Text size="sm" color="text-secondary">
-              {t("audit:aesthetics_ambient_glow_desc")}
-            </Text>
-          </ComponentGroup>
         </ComparisonGrid>
 
         {/* Real World Example */}
