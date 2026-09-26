@@ -60,6 +60,11 @@ const INSERTS = [
   { name: '[鳴らない] &.glass の opt-in', css: '.proveTemp { &.glass { backdrop-filter: blur(var(--wim-color-glass-blur)); } }', expect: null },
   { name: '[鳴らない] ホバーでない transform の lift', css: '.proveTemp.dragging { transform: translateY(var(--wim-lift-sm)); }', expect: null },
   { name: '[鳴らない] コメントの中', css: '/* .proveTemp:hover { transform: scale(1.1); } */', expect: null },
+  { name: 'transition: all', css: '.proveTemp { transition: all var(--wim-transition-fast); }', expect: 'transition-all' },
+  { name: 'プロパティ名なしの transition（仕様上 all）', css: '.proveTemp { transition: var(--wim-transition-fast); }', expect: 'transition-all' },
+  { name: '複数項目の 1 つだけプロパティ名なし', css: '.proveTemp { transition: opacity var(--wim-transition-fast), var(--wim-transition-base); }', expect: 'transition-all' },
+  { name: '[鳴らない] プロパティを列挙した transition', css: '.proveTemp { transition: background-color var(--wim-transition-fast), box-shadow 0.2s ease-in-out; }', expect: null },
+  { name: '[鳴らない] transition: none', css: '.proveTemp { transition: none; }', expect: null },
   { name: '[逃がせる] 注記つき', css: '.proveTemp:hover { transform: scale(1.1); /* component-slop-ok: 実証用 */ }', expect: null },
 ];
 
@@ -81,16 +86,31 @@ try {
   fs.writeFileSync(INSERT_FILE, original);
 }
 
-// --- 2. --probe: 注記済みの既知の事例（導入時に見つけた実物）が鳴る ---
+// --- 2. --probe: 直す前の実物（過去のコミットから取り出す）が鳴る ---
+// **今のファイルを指さない。** 最初の版は今のファイルを指していたので、T267 で直した
+// 瞬間に違反が消え、この実証は落ちる（＝「鳴るか」ではなく「まだ直していないか」を
+// 見ていた）。直す前のコミットから取り出せば、直したあとも同じ答えになる。
+//   acec0e4 = #696（T267-①）のマージ。T267-②〜④ の違反が注記つきで残っている
+//   8e894f7 = #701 のマージ。transition: all（T269）を直す前
 const KNOWN = [
-  ['src/components/form/Button/button.module.scss', ['hover-lift', 'bounce-easing']],
-  ['src/components/data-display/TreeView/tree-view.module.scss', ['default-glass']],
-  ['src/components/feedback/Alert/alert.module.scss', ['blur-token', 'default-glass']],
-  ['src/components/data-display/Card/card.module.scss', ['hover-lift']],
+  ['acec0e4', 'src/components/form/Button/button.module.scss', ['hover-lift', 'bounce-easing']],
+  ['acec0e4', 'src/components/data-display/TreeView/tree-view.module.scss', ['default-glass']],
+  ['acec0e4', 'src/components/feedback/Alert/alert.module.scss', ['blur-token', 'default-glass']],
+  ['acec0e4', 'src/components/data-display/Card/card.module.scss', ['hover-lift']],
+  ['8e894f7', 'src/components/data-display/Badge/badge.module.scss', ['transition-all']],
+  ['8e894f7', 'src/components/form/Button/button.module.scss', ['transition-all']],
 ];
-for (const [file, rules] of KNOWN) {
-  const r = run(['--probe', file]);
-  check(`--probe     注記を外すと鳴る: ${path.basename(file)}（${rules.join(' / ')}）`, r.code === 1 && rules.every((x) => r.out.includes(`[${x}]`)), r.out);
+for (const [commit, file, rules] of KNOWN) {
+  const tmpKnown = path.join(os.tmpdir(), `prove-component-slop-${commit}-${path.basename(file)}`);
+  // シェルを通さない（Windows の cmd.exe は `^` や `:` の扱いが違う）。
+  fs.writeFileSync(tmpKnown, execFileSync('git', ['show', `${commit}:${file}`]));
+  const r = run(['--probe', tmpKnown]);
+  fs.rmSync(tmpKnown);
+  check(
+    `--probe     直す前の実物が鳴る: ${commit}:${path.basename(file)}（${rules.join(' / ')}）`,
+    r.code === 1 && rules.every((x) => r.out.includes(`[${x}]`)),
+    r.out,
+  );
 }
 
 // --- 3. --probe: 置き換える前の形（main の Sidebar）が blur-token で鳴る ---

@@ -15,7 +15,7 @@
     width: var(--wim-sidebar-width);
     height: 100%;
     background-color: var(--wim-color-surface);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.fixed {
       position: fixed;

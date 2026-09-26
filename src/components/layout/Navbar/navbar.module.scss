@@ -10,7 +10,7 @@
     height: var(--wim-height-xl);
     padding: 0 var(--wim-spacing-xl);
     background-color: var(--wim-color-surface);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.fixed {
       position: fixed;
@@ -113,7 +113,7 @@
     text-decoration: none;
     cursor: pointer;
     border-radius: var(--wim-radius-sm);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background-color: var(--wim-color-surface-hover);

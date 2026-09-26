@@ -16,7 +16,7 @@
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-line);
     border-radius: var(--wim-radius-component);
-    transition: var(--wim-transition-base);
+    transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
     &:focus-within {
       border-color: var(--wim-color-primary);
@@ -162,7 +162,7 @@
       cursor: pointer;
       border-radius: var(--wim-radius-sm, 4px);
       writing-mode: horizontal-tb;
-      transition: var(--wim-transition-base);
+      transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
       svg {
         width: 16px; /* Exception: Geometric Harmony — ツールバーボタン内の正方形アイコン寸法 */

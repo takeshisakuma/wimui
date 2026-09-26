@@ -14,7 +14,7 @@
     padding: var(--ia-padding);
     background-color: var(--_bg);
     border-radius: var(--wim-radius-container);
-    transition: all var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     /* 揃えは `align` で決める。既定は `center`（ドロップ領域や結果ページのように、
        その領域にこれしか無い使い方が本来の用途）。**中身がカードや表の一部のときは

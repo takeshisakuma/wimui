@@ -31,7 +31,7 @@ $title-font-size: 0.9375rem;
     //   ページ内の面を分けるのはサーフェス階層トークンの役目。
     border: var(--wim-border-width-thin) solid transparent;
     border-radius: var(--wim-radius-overlay);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   }
 
   .icon {
@@ -132,7 +132,7 @@ $title-font-size: 0.9375rem;
     border: none;
     border-radius: var(--wim-radius-component);
     opacity: var(--wim-opacity-ghost);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background: var(--wim-comp-close-hover);

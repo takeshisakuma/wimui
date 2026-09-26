@@ -53,7 +53,7 @@
       cursor: pointer;
       background: none;
       border: none;
-      transition: all var(--wim-transition-base);
+      transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
       &:hover {
         background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);

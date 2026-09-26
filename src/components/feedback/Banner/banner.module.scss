@@ -19,7 +19,7 @@
     // T267-③: 既定の面は不透明なサーフェス（以前は半透明＋ぼかしのすりガラス）。
     background: var(--wim-color-surface);
     border-bottom: var(--wim-border-width-thin) solid transparent;
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   }
 
   .container {

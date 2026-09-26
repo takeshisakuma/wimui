@@ -74,7 +74,7 @@
     container-type: inline-size;
     outline: none;
     border-radius: var(--wim-radius-component);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
     &.selected > .labelContainer {
       color: var(--wim-color-text-on-primary);
@@ -144,7 +144,7 @@
     background: transparent;
     border: none;
     border-radius: var(--wim-radius-sm, 4px);
-    transition: all var(--wim-duration-slow) var(--wim-easing-standard);
+    transition: all var(--wim-duration-slow) var(--wim-easing-standard); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:focus-visible {
       box-shadow: var(--wim-shadow-focus);

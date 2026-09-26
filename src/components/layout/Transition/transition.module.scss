@@ -27,7 +27,7 @@
   .scaleEnterTo {
     opacity: 1;
     transform: scale(1);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: 汎用の遷移部品。利用者が渡す任意のプロパティを動かすための all */
   }
 
   .scaleLeave {
@@ -38,7 +38,7 @@
   .scaleLeaveTo {
     opacity: 0;
     transform: scale(0.95);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: 汎用の遷移部品。利用者が渡す任意のプロパティを動かすための all */
   }
 
   /* Slide - shared transition base */
