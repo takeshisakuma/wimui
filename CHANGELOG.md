@@ -1,5 +1,25 @@
 # wimui
 
+## 0.35.0
+
+### Minor Changes
+
+- 1c3d1a6: ## 既定値の変更（利用者の画面が黙って変わる）
+
+  `Button` の solid から光沢を外しました。静止時は上から白 8% のグラデーション（`--wim-glass-gradient`）と上辺 1px の白いハイライト（`--wim-inner-highlight`）を、ホバー時もハイライトを重ねていました。面の色に意味を足さない装飾だったためです。
+
+  - 面は `intent` の色だけになります。静止時の影（`--wim-shadow-sm`）とホバーで地色を暗くする合図は変わりません。
+  - 押したとき（`:active`）の見た目も変わりません。
+  - `--wim-glass-gradient` / `--wim-inner-highlight` のトークンは残しています。自分の部品で使っている場合も影響はありません。
+
+### Patch Changes
+
+- 65d0812: キーボードのフォーカス表示が見えにくかった部品を直しました。
+
+  - **`ThreadList` の会話項目と削除ボタン、`ThemeToggle` の segmented** — 既定のフォーカス枠を消して、primary 15% の淡い 3px のにじみだけを出していました。面とのコントラストは light 1.27 / dark 1.05 で、ほぼ見えませんでした。ほかの部品と同じ既定のフォーカス表示（`--wim-shadow-focus`）に揃えています。
+  - **`ThemeToggle` の segmented の選択中の項目** — 選択中の項目の影が既定のフォーカス表示を上書きしていて、フォーカスしても何も表示されませんでした。フォーカス中は既定の表示が出るようにしました。
+  - **`Audio` の読み込み中のきらめき** — ここだけ primary の色を使っていたので、`Image` と同じ無彩色（`--wim-color-skeleton-bg` / `--wim-color-skeleton-shine`）に揃えました。
+
 ## 0.34.0
 
 ### Minor Changes

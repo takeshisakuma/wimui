@@ -102,8 +102,10 @@
   .solid {
     --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
-    background-image: var(--wim-glass-gradient);
-    box-shadow: var(--wim-shadow-sm), var(--wim-inner-highlight);
+    /* T268: 光沢（上から白 8% のグラデーション＋上辺 1px の白いハイライト）を外した。
+       生成 UI の定番の質感で、面の色に意味を足していなかった。影は静止時の shadow-sm のまま。
+       --wim-glass-gradient / --wim-inner-highlight のトークン自体は公開面なので残している。 */
+    box-shadow: var(--wim-shadow-sm);
 
     &.default {
       --solid-bg: var(--wim-color-primary);
@@ -141,14 +143,13 @@
       /* T267-②: ホバーの合図は地色を暗くすることだけ。以前は「浮く（lift-md）＋ shadow-lg ＋
          光沢＋ out-back で弾む」を重ねていて、画面で一番多い部品がホバーのたびに跳ねていた。
          影は静止時と同じ。浮かせたいテーマは --wim-button-shadow-hover で影だけ差し替えられる。 */
-      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-sm)), var(--wim-inner-highlight);
+      box-shadow: var(--wim-button-shadow-hover, var(--wim-shadow-sm));
       transition:
         background-color var(--wim-duration-fast) var(--wim-easing-standard),
         box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
     }
 
     &:active:not(:disabled) {
-      background-image: none;
       box-shadow: var(--wim-shadow-xs), var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
       transition: transform var(--wim-duration-ultra-fast) var(--wim-easing-standard);

@@ -273,6 +273,8 @@ const checks = [
     // 上は**塗りとサーフェス**までしか見ない。solid の面にはさらにシーン
     // （`--wim-glass-gradient` の白 0.08）が乗るので、**素では通るのに上側で落ちる**
     // という形が素通りしていた（T214 で 2 件。素の値だけを根拠に色を選んだ帰結）。
+    // T268 で solid の光沢を外したので、今は Button が敷いていればシーン込み、
+    // 敷いていなければ素の地で測る（トークンは公開面として残っているため、有無ではなく使用で判断）。
     name: "Contrast including the scene laid over solid fills",
     command: "node scripts/check-contrast-scene.js",
   },
