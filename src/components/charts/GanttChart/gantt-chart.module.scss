@@ -154,7 +154,7 @@
       background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:focus-visible {
-      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-surface), 0 0 0 var(--wim-spacing-2xs) var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-surface), 0 0 0 var(--wim-spacing-2xs) var(--wim-color-focus-outline);
     }
 
     &.clickable {

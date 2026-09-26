@@ -366,6 +366,13 @@ const checks = [
   },
   {
     category: "lib",
+    // 部品が自前で書くフォーカス表示（T270-③）。既定を outline にしても、部品が :focus で
+    // primary を直書きすると dark では面に対して 1.61:1 しかなく見えない（42 ブロックあった）。
+    name: "Component focus indicators (no primary, not hidden, not faint-only)",
+    command: "node scripts/check-focus-indicator.js",
+  },
+  {
+    category: "lib",
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
   },

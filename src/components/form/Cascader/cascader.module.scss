@@ -35,7 +35,7 @@
     }
 
     &:focus:not(.disabled) {
-      outline: none;
+      outline: none; /* focus-indicator-ok: トリガーの枠。フォーカスの表示は InputBase の :focus-within（--wim-shadow-focus-ring の 2px 実線）が持つ（2026-09-27 に実物で確認） */
     }
 
     &.open {

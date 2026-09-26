@@ -186,7 +186,7 @@
       }
   
       &:focus-visible {
-        outline: var(--wim-border-width-thick) solid var(--wim-color-primary);
+        outline: var(--wim-border-width-thick) solid var(--wim-color-focus-outline);
         outline-offset: 1px; /* Exception: Browser Rendering Fixes — フォーカスリングとボタン縁の描画分離 */
       }
     }
@@ -208,7 +208,7 @@
       // Suppress browser-native focus ring on contentEditable
       &:focus,
       &:focus-visible {
-        outline: none;
+        outline: none; /* focus-indicator-ok: 本文（contentEditable）の枠。フォーカスの表示は外側の :focus-within が持つ（T270 の全量の実測で確認） */
         box-shadow: none;
       }
   

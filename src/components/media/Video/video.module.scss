@@ -266,7 +266,7 @@
       opacity var(--wim-transition-base);
 
     &:focus-visible {
-      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline);
     }
 
     &::-webkit-slider-thumb {

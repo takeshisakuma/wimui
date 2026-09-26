@@ -34,7 +34,7 @@
     }
 
     &:focus {
-      border-color: var(--wim-color-primary);
+      border-color: var(--wim-color-focus-outline);
       box-shadow: var(--wim-shadow-focus-ring);
     }
 
@@ -42,7 +42,7 @@
       border-color: var(--wim-color-line);
 
       &:focus {
-        border-color: var(--wim-color-primary);
+        border-color: var(--wim-color-focus-outline);
       }
     }
 
@@ -56,7 +56,7 @@
 
       &:focus {
         background-color: transparent;
-        border-color: var(--wim-color-primary);
+        border-color: var(--wim-color-focus-outline);
       }
     }
 

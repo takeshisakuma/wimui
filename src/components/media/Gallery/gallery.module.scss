@@ -92,7 +92,7 @@
     transition: box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:focus-visible {
-      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-primary);
+      box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline);
     }
 
     &.selected .imageWrapper {
