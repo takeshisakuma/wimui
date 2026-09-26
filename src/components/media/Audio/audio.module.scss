@@ -81,9 +81,9 @@
       content: "";
       background: linear-gradient(
         90deg,
-        var(--wim-color-surface-variant) 25%,
-        var(--wim-color-primary-fill) 50%,
-        var(--wim-color-surface-variant) 75%
+        var(--wim-color-skeleton-bg) 25%,
+        var(--wim-color-skeleton-shine) 50%,
+        var(--wim-color-skeleton-bg) 75%
       );
       background-size: 200% 100%;
       border-radius: inherit;
