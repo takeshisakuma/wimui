@@ -1,5 +1,40 @@
 # wimui
 
+## 0.37.1
+
+### Patch Changes
+
+- 1f692ce: dark テーマで、部品ごとのフォーカス表示が見えにくかった問題を直しました。
+
+  Tabs・Textarea・Select・Checkbox・Switch・Slider・Radio・Accordion など 36 部品は、キーボードでフォーカスしたときの枠や輪を、自前で primary の色を使って描いていました。dark の面（#393939）に対する primary（#055d87）のコントラストは 1.61:1 しかなく、ほとんど見えませんでした。これらをフォーカス専用の色 `--wim-color-focus-outline` に揃えています。
+
+  - light では、フォーカス色は primary と同じ値なので、見た目は変わりません。
+  - dark では淡い青（`--wim-color-text-accent`・面に対して 6.56:1）になります。
+
+- c6debf3: キーボードのフォーカス表示が見えなかった、または二重に出ていた部品を直しました。
+
+  - **`Audio` / `Video`**: プレーヤーにフォーカスしても、枠が外側の角丸の切り取り（`overflow: hidden`）で隠れて見えませんでした。Audio は完全に、Video は縁の細い線だけが見える状態でした。枠をプレーヤーの外周（角丸に沿う形）に出すようにしています。
+  - **`NodeGraph` / `InteractiveGraph`**: React Flow の既定の CSS が、ノードとエッジのフォーカスの枠を消していました。代わりに出ていたのは、0.5px の暗い線と、線の色のわずかな変化だけでした。ノードにはフォーカス色の枠を、エッジには線をフォーカス色の 2px にする表示を足しています。
+  - **`Checkbox` / `Switch` / `Radio`**: フォーカス時に、同じ色の枠と輪が二重に出ていました。枠だけにしています。
+
+- 869a087: データ表示とナビゲーションの部品で、`transition: all` をやめ、動かすプロパティを列挙しました（24 箇所）。
+
+  対象は Accordion / Badge / Card / Chip / JsonViewer / List / Reaction / Tag / TreeView / BackTop / CommandPalette / Link / Pagination / SpeedDial / Stepper / TabBar / Tabs です。
+
+  - 色・背景・枠・影・outline の色・透明度に加えて、状態で変わるものも列挙しています。押したときの縮小、開閉（Accordion の高さ・SpeedDial の展開・TreeView の矢印の回転）、無効時の `filter` です。
+  - 開閉などの動きはこれまでどおりです。密度を切り替えたときに余白や幅がふわっと動くことは無くなります。
+
+- 2e894d9: フォーム系の部品で、`transition: all` をやめ、動かすプロパティを列挙しました。対象は Button / Input / Textarea / Select / MultiSelect / TreeSelect / Cascader / Transfer / RichTextEditor / QueryBuilder / PhoneInput / OtpInput / InlineEdit / InputBase の 18 箇所です。
+
+  列挙したのは色・背景・枠・影・outline の色・透明度で、必要な箇所だけ `transform` と `fill` も含めています。時間と曲線は変わりません。以前は密度を切り替えたときに、ボタンなどの余白や幅までふわっと動いていましたが、これが止まります。ホバーなどの色の変化は、これまでどおりなめらかに動きます。
+
+- 404ab7b: レイアウト・フィードバック・メディア・文字組みの部品で、`transition: all` をやめ、動かすプロパティを列挙しました（21 箇所）。
+
+  対象は Sidebar / Navbar / Header / Footer / Dashboard / BentoGrid / InteractiveArea / Toast / Snackbar / Notification / Banner / Alert / Lightbox / Spoiler / Blockquote と、リストの行の共通部品です。
+
+  - 色・背景・枠・影・outline の色・透明度に加えて、状態で変わるものも列挙しています。Sidebar の折りたたみの幅、Navbar / Header の固定表示の位置、Snackbar の出入りの `transform`、押したときの縮小です。
+  - これらの動きはこれまでどおりです。密度を切り替えたときに余白や幅がふわっと動くことは無くなります。
+
 ## 0.37.0
 
 ### Minor Changes
