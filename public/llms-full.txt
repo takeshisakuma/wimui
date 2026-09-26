@@ -2272,7 +2272,7 @@ what a scanner would read.
 - **Card** — Information containers
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `variant: "elevated" | "outline" | "flat" | "glass"` = "outline" — Visual style variant of the card
-    - `interactive: boolean` = false — Whether to enable hover animation and click effects
+    - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor
     - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
 
 Derived from the values `card.module.scss` implements, not from
@@ -2569,7 +2569,7 @@ renders inline, next to whatever follows it.
 - **Stats** — A component to highlight key performance indicators and metrics
     - `variant: React.ComponentProps<typeof Card>["variant"]` = "outline" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
-    - `interactive: boolean` = false — Whether to enable hover animation and click effects
+    - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor
     - `padding: (typeof CARD_STYLED_PADDING)[number]` = "md" — Padding size.
 
 Derived from the values `card.module.scss` implements, not from
