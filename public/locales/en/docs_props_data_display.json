@@ -67,7 +67,7 @@
     "calendar_prop_value": "Selected date (controlled)",
     "calendar_prop_weekStartsOn": "First day of the week (0 = Sunday, 1 = Monday)",
     "card_prop_asChild": "If true, the card will be rendered as its child, merging its props onto that child.",
-    "card_prop_interactive": "Whether to enable hover animation and click effects",
+    "card_prop_interactive": "Whether the card is clickable: shows hover and press feedback and a pointer cursor",
     "card_prop_padding": "Padding size",
     "card_prop_radius": "Corner radius size",
     "card_prop_variant": "Visual style variant of the card",

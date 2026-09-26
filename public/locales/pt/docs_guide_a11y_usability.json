@@ -84,7 +84,7 @@
     "focus_mgmt_title": "Gerenciamento de Foco",
     "focus_mgmt_desc": "Indicadores de foco adequados são essenciais para usuários de teclado.",
     "focus_ring_title": "Anel de Foco",
-    "focus_ring_desc": "Um anel de foco de alta visibilidade (`--wim-shadow-focus`) é aplicado a todos os elementos interativos.",
+    "focus_ring_desc": "Todo elemento interativo exibe um contorno sólido de 2px em `--wim-color-focus-outline` ao receber foco pelo teclado (pelo menos 3:1 contra a superfície nos dois temas, e mantido no modo de alto contraste do Windows).",
     "offset_title": "Deslocamento (Offset)",
     "offset_desc": "A distância adequada (`--wim-focus-outline-offset`) é mantida entre o elemento e o anel de foco para melhorar a visibilidade sem comprometer a estética do design.",
     "focus_trap_title": "Focus Trap",

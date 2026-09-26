@@ -40,7 +40,7 @@
     "card_cancel": "Cancelar",
     "card_default_desc": "O que um Card renderiza sozinho, sem variant definido: uma borda fina e nenhuma sombra.",
     "card_default_title": "Cartão simples",
-    "card_elevated_desc": "Uma sombra suave que sobe um pouco ao passar o mouse. Use quando uma superfície precisa ficar acima das demais.",
+    "card_elevated_desc": "Uma sombra suave que se aprofunda ao passar o mouse. Use quando uma superfície precisa ficar acima das demais.",
     "card_elevated_title": "Cartão elevado",
     "card_flat_desc": "Um cartão apenas com cor de fundo e sem sombra.",
     "card_flat_title": "Cartão Plano",

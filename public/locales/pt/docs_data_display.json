@@ -98,7 +98,7 @@
     "chip_choice_matrix_desc": "Selecione o componente mais apropriado com base nos seus requisitos.",
     "chip_choice_self_when": "Quando a funcionalidade de Chip com opções padrão é necessária.",
     "chip_clickable": "Clicável",
-    "chip_clickable_desc": "Quando um evento de clique é definido, ele atua como um botão e efeitos de hover são aplicados.",
+    "chip_clickable_desc": "Quando um evento de clique é definido, ele atua como um botão: a superfície escurece ao passar o mouse e encolhe um pouco enquanto pressionado.",
     "chip_deletable": "Deletável",
     "chip_deletable_desc": "Definir onDelete exibe um botão de exclusão (×).",
     "chip_desc": "Tokens de filtro/seleção",

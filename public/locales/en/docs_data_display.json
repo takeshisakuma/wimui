@@ -98,7 +98,7 @@
     "chip_choice_matrix_desc": "Select based on the representation of the entity and required interactions:",
     "chip_choice_self_when": "When treating items interactively as users, filters, or selectable tokens.",
     "chip_clickable": "Clickable",
-    "chip_clickable_desc": "When a click event is set, it acts as a button and jump-click hover effects are applied.",
+    "chip_clickable_desc": "When a click event is set, it acts as a button: the surface darkens on hover and shrinks slightly while pressed.",
     "chip_deletable": "Deletable",
     "chip_deletable_desc": "Setting onDelete displays a delete button (×).",
     "chip_desc": "Filter/Selection tokens",

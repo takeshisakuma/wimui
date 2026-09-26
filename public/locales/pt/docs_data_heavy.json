@@ -276,7 +276,7 @@
     "treeview_features_4": "Recurso de pesquisa e filtragem",
     "treeview_features_5": "Suporte para navegação pelo teclado",
     "treeview_features_6": "Personalização de ícones",
-    "treeview_features_7": "Design moderno com o esquema Glassmorphism",
+    "treeview_features_7": "Uma superfície opaca com borda, igual aos outros painéis da página",
     "treeview_features_desc": "Recursos principais:",
     "treeview_item_props": "Propriedades de TreeViewItem",
     "treeview_keyboard_desc": "As teclas de seta navegam na hierarquia da árvore. Seta direita expande um nó; Seta esquerda colapsa ou move para o pai. Enter ou Espaço seleciona um item.",

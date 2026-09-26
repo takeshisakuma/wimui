@@ -181,11 +181,11 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | `--wim-easing-standard` | cubic-bezier(0.4, 0, 0.2, 1) | 汎用トランジション |
 | `--wim-easing-entrance` | cubic-bezier(0, 0, 0.2, 1) | 画面に入る |
 | `--wim-easing-exit` | cubic-bezier(0.4, 0, 1, 1) | 画面から出る |
-| `--wim-easing-spring` | cubic-bezier(0.34, 1.56, 0.64, 1) | バウンス効果 |
+| `--wim-easing-spring` | cubic-bezier(0.34, 1.56, 0.64, 1) | バウンス効果。**部品では使わない**（行き過ぎて戻る曲線は `check:component-slop` が落とす。T267） |
 
 ### Lift（浮き上がり）
 
-ホバー時に要素を微妙に浮かせる `translateY` 値。
+ホバー時に要素を微妙に浮かせる `translateY` 値。**部品のホバーでは使わない**（T267 で Button / Card / Badge / Chip / Tag などから外し、`check:component-slop` が落とす）。使ってよいのは、ページから浮いて表示される部品（FloatButton / BackTop）だけ。
 
 | トークン | 値 |
 |----------|-----|

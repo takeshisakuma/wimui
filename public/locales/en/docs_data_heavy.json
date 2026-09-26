@@ -202,7 +202,7 @@
     "treeview_features_4": "Search and filtering features",
     "treeview_features_5": "Keyboard navigation support",
     "treeview_features_6": "Icon customization",
-    "treeview_features_7": "Modern design using Glassmorphism",
+    "treeview_features_7": "An opaque surface with a border, matching other in-page panels",
     "treeview_features_desc": "Key features:",
     "treeview_item_props": "TreeViewItem Props",
     "treeview_keyboard_desc": "Arrow keys navigate the tree hierarchy. Right arrow expands a node; Left arrow collapses it or moves to parent. Enter or Space selects an item.",

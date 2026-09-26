@@ -3,7 +3,7 @@
     "common_vars": "共通変数"
   },
   "guide": {
-    "effects_common_vars_guideline": "var(--transition-base) や var(--easing-spring) といった定義済みトークンの使用を優先してください。これにより、ライブラリ全体で視覚的な一貫性と動きの質が保証されます。",
+    "effects_common_vars_guideline": "var(--wim-transition-base) や var(--wim-easing-standard) といった定義済みトークンの使用を優先してください。これにより、ライブラリ全体で視覚的な一貫性と動きの質が保証されます。",
     "effects_desc": "エレベーション（影）とモーション（アニメーション）の定義です。ユーザーに階層構造や状態の変化を伝えます。",
     "effects_interaction_bg_desc": ":hover や :active で背景色を変化させる場合は、opacity や filter: brightness() を使わず、CSS Color Level 4 の oklch 相対色構文を使ってください。ライト・ダークモードの両方で知覚的に均一な明度変化が得られます。",
     "effects_interaction_bg_guideline": "暗くする場合は oklch(from var(--token) calc(l * 0.9) c h)、明るくする場合は calc(l * 1.1) を使用してください。動的な背景は --bg ローカル変数に格納してください。",
@@ -27,7 +27,7 @@
     "effects_motion_guideline": "ユーザーの操作に対するフィードバックは 0.2s 〜 0.3s 程度が最も自然に感じられます。Accordion や Drawer など、物理的な動きを伴う要素にはスプリング物理（cubic-bezier）を採用し、より自然な手触りを実現しています。",
     "effects_motion_instant": "即時 (Instant)",
     "effects_motion_out_back": "Out Back",
-    "effects_motion_out_back_desc": "ボタンのホバーなど、少し行き過ぎてから収まるような強調したい動きに適しています。",
+    "effects_motion_out_back_desc": "少し行き過ぎてから収まる曲線です。トークンとしては残していますが、部品では使いません（check:component-slop が落とします。T267）。",
     "effects_motion_sharp": "鋭利 (Sharp)",
     "effects_motion_short": "短い (Short)",
     "effects_motion_slow": "遅い (Slow)",
@@ -36,7 +36,7 @@
     "effects_motion_smooth": "滑らか (Smooth)",
     "effects_motion_snap": "俊敏 (Snap)",
     "effects_motion_spring": "スプリング物理 (Spring)",
-    "effects_motion_spring_desc": "Accordion や Drawer の開閉など、自然で弾力のある動きに適しています。",
+    "effects_motion_spring_desc": "行き過ぎて戻る弾力のある曲線です。トークンとしては残していますが、部品では使いません（check:component-slop が落とします。T267）。",
     "effects_motion_standard": "標準 (Standard)",
     "effects_motion_ultra_slow": "超低速 (Ultra Slow)",
     "effects_opacity": "不透明度 (Opacity)",

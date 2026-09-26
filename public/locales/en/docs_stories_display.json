@@ -40,7 +40,7 @@
     "card_cancel": "Cancel",
     "card_default_desc": "What a Card renders on its own, with no variant set: a hairline border and no shadow.",
     "card_default_title": "Plain card",
-    "card_elevated_desc": "A soft shadow that lifts slightly on hover. Reach for it when one surface has to sit above the rest.",
+    "card_elevated_desc": "A soft shadow that deepens on hover. Reach for it when one surface has to sit above the rest.",
     "card_elevated_title": "Elevated card",
     "card_flat_desc": "A card with only a background color and no shadow.",
     "card_flat_title": "Flat Card",

@@ -276,7 +276,7 @@
     "treeview_features_4": "検索・フィルタリング機能",
     "treeview_features_5": "キーボードナビゲーション対応",
     "treeview_features_6": "アイコンのカスタマイズ",
-    "treeview_features_7": "グラスモーフィズムを採用したモダンなデザイン",
+    "treeview_features_7": "ほかのページ内のパネルと同じ、枠付きの不透明な面",
     "treeview_features_desc": "主な特徴：",
     "treeview_item_props": "TreeViewItem プロパティ",
     "treeview_keyboard_desc": "矢印キーでツリー階層を移動します。右矢印でノードを展開、左矢印で折りたたみまたは親に移動します。Enter または Space でアイテムを選択します。",
