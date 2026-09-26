@@ -102,6 +102,7 @@
     "terminal_prop_onClear": "クリアボタンを表示するかどうか。クリック時に onClear を発火します",
     "terminal_prop_prompt": "入力行のプロンプトプレフィックス",
     "terminal_prop_showCopy": "コピーボタンを表示するかどうか",
+    "terminal_prop_showWindowControls": "タイトルバーに 3 つの飾りの丸（ウィンドウ操作ボタンの模倣）を表示するかどうか。何もしない飾りで、特定の OS を模しているため既定では表示しません。",
     "terminal_prop_title": "ヘッダーバーに表示されるウィンドウタイトル",
     "thoughtProcess_prop_children": "表示する思考ステップ（通常は ThoughtStep 要素）。",
     "thoughtProcess_prop_className": "追加の CSS クラス",

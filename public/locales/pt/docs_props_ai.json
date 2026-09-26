@@ -102,6 +102,7 @@
     "terminal_prop_onClear": "Se deve exibir o botão de limpar; dispara onClear quando clicado",
     "terminal_prop_prompt": "Prefixo de prompt para as linhas de entrada",
     "terminal_prop_showCopy": "Se deve exibir o botão de copiar",
+    "terminal_prop_showWindowControls": "Se deve exibir os três pontos decorativos de controle de janela na barra de título. Desativado por padrão: não fazem nada e imitam um sistema operacional específico.",
     "terminal_prop_title": "Título da janela exibido na barra de cabeçalho",
     "thoughtProcess_prop_children": "Etapas de raciocínio a exibir (normalmente elementos ThoughtStep).",
     "thoughtProcess_prop_className": "Classe CSS adicional",

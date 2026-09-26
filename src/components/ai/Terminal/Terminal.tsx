@@ -27,6 +27,8 @@ export interface TerminalProps extends React.ComponentPropsWithoutRef<"div"> {
   prompt?: string;
   /** Whether to show the copy button */
   showCopy?: boolean;
+  /** Whether to show the three decorative window-control dots in the title bar (off by default: they do nothing and imitate one operating system) */
+  showWindowControls?: boolean;
   /** Whether to show the clear button; fires onClear when clicked */
   onClear?: () => void;
   /** Additional CSS class */
@@ -112,6 +114,9 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       autoScroll = true,
       prompt = "$",
       showCopy = true,
+      // 既定は出さない（T271）。押しても何も起きない macOS の信号ボタンの模倣で、
+      // コードブロックを偽の Mac のウィンドウに見せる生成 UI の定番の飾り。
+      showWindowControls = false,
       onClear,
       className,
       style,
@@ -152,9 +157,13 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       >
         {/* aria-hidden はバー全体ではなく装飾ドットのみ（バーには CopyButton などフォーカス可能要素が入る） */}
         <div className={styles.titleBar}>
-          <span className={styles.dot} data-color="red" aria-hidden="true" />
-          <span className={styles.dot} data-color="yellow" aria-hidden="true" />
-          <span className={styles.dot} data-color="green" aria-hidden="true" />
+          {showWindowControls && (
+            <>
+              <span className={styles.dot} data-color="red" aria-hidden="true" />
+              <span className={styles.dot} data-color="yellow" aria-hidden="true" />
+              <span className={styles.dot} data-color="green" aria-hidden="true" />
+            </>
+          )}
           {title && <span className={styles.titleText}>{title}</span>}
           <div className={styles.titleActions}>
             {showCopy && (

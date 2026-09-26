@@ -231,7 +231,7 @@
   "doc.streamingtext_scenario_2": "書かれているそばからスニペットを表示するコード生成ツール。",
   "doc.streamingtext_scenario_3": "オーディオや音声のライブ文字起こし。",
   "doc.terminal_a11y_1": "出力エリアに role=log と aria-live=polite を設定し、スクリーンリーダーが新しい行を読み上げます。",
-  "doc.terminal_a11y_2": "タイトルバーの装飾（信号機ドット）は aria-hidden です。",
+  "doc.terminal_a11y_2": "`showWindowControls` を指定したときにタイトルバーに出る飾りの丸は aria-hidden です。",
   "doc.terminal_a11y_3": "コピー・クリアボタンには説明的な aria-label が付与されています。",
   "doc.terminal_choice_agent": "エージェントのコマンド実行とライブ出力",
   "doc.terminal_choice_codeblock": "静的なコードスニペットの表示",

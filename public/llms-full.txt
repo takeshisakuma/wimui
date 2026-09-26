@@ -3344,6 +3344,7 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `autoScroll: boolean` = true — Scroll to bottom when lines change
     - `prompt: string` = "$" — Prompt prefix for input lines
     - `showCopy: boolean` = true — Whether to show the copy button
+    - `showWindowControls: boolean` = false — Whether to show the three decorative window-control dots in the title bar (off by default: they do nothing and imitate one operating system)
     - `onClear: () => void` — Whether to show the clear button; fires onClear when clicked
     - `className: string` — Additional CSS class
 - **ThoughtProcess** — Visualizes AI reasoning steps and execution states in a timeline format.

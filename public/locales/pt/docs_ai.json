@@ -231,7 +231,7 @@
   "doc.streamingtext_scenario_2": "Ferramenta de geração de código mostrando trechos conforme são escritos.",
   "doc.streamingtext_scenario_3": "Transcrições ao vivo de áudio ou fala.",
   "doc.terminal_a11y_1": "A área de saída tem role=log e aria-live=polite para leitores de tela.",
-  "doc.terminal_a11y_2": "Decorações da barra de título (pontos semáforo) são aria-hidden.",
+  "doc.terminal_a11y_2": "Quando `showWindowControls` está ativado, os pontos decorativos da barra de título são aria-hidden.",
   "doc.terminal_a11y_3": "Botões Copiar e Limpar têm atributos aria-label descritivos.",
   "doc.terminal_choice_agent": "Execução de comandos do agente e saída ao vivo",
   "doc.terminal_choice_codeblock": "Exibição estática de trechos de código",
