@@ -4,7 +4,7 @@
   .root {
     width: 100%;
     padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl);
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.bg-surface {
       color: var(--wim-color-text-primary);

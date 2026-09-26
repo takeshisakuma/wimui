@@ -18,7 +18,7 @@
  *     `check-hardcoded-values.js` は `\d+px` の綴りを探す作りなので、これには構造的に
  *     届かない（T266 と同じ形の穴）。
  *
- * ## 何を見るか（4 種）
+ * ## 何を見るか（5 種）
  *
  *   1. blur-token     `blur(...)` の中身が blur のトークン（`--wim-blur-*` /
  *                     `--wim-color-glass-blur*`）でない。別カテゴリのトークン・生の長さ・
@@ -37,6 +37,12 @@
  *                     か、背後を覆うための層（`overlay` / `backdrop` / `scrim` / `mask`）
  *                     が無いものを鳴らす。背後を覆う層のぼかしは「何が起きたか」を
  *                     伝える機能なので対象外。
+ *   5. transition-all `transition` が**全プロパティ**を動かす（T269）。`all` と書いたものと、
+ *                     プロパティ名を書かないもの（`transition: var(--wim-transition-fast)`。
+ *                     CSS の仕様で `all` と同じ）。テーマや密度を切り替えたときに色・余白・幅まで
+ *                     ふわっと動く。生成された CSS によく出る書き方で、静止画の VRT には映らない。
+ *                     **1 行の宣言だけを見る** ── 複数行に分けた宣言は各行にプロパティ名が
+ *                     あるのが普通なので対象外（そこに `all` が紛れても拾えない）。
  *
  * ## 逃がし方（ベースラインを持たない理由）
  *
@@ -154,6 +160,48 @@ function bounceProblem(text) {
   return null;
 }
 
+/** カンマ区切りを、括弧の中は割らずに分ける。 */
+const splitTopLevel = (text, sep) => {
+  const out = [];
+  let depth = 0;
+  let cur = '';
+  for (const c of text) {
+    if (c === '(') depth += 1;
+    else if (c === ')') depth -= 1;
+    if (c === sep && depth === 0) {
+      out.push(cur);
+      cur = '';
+    } else cur += c;
+  }
+  out.push(cur);
+  return out.map((s) => s.trim()).filter(Boolean);
+};
+
+// transition の 1 項目の中で、プロパティ名ではない語（easing のキーワード）。
+const EASING_WORDS = new Set([
+  'ease', 'linear', 'ease-in', 'ease-out', 'ease-in-out', 'step-start', 'step-end', 'normal', 'allow-discrete',
+]);
+
+/**
+ * `transition` の値が全プロパティを動かすか。1 行で完結した宣言（`;` で終わる）だけを見る。
+ * `none` は動かさないので対象外。
+ */
+function transitionAllProblem(value) {
+  const v = value.trim();
+  if (!v.endsWith(';')) return null; // 複数行の宣言の 1 行目
+  const body = v.slice(0, -1).trim();
+  if (/^none$/i.test(body)) return null;
+  for (const item of splitTopLevel(body, ',')) {
+    const words = splitTopLevel(item, ' ');
+    if (words[0] === 'all') return '全プロパティを動かす（transition: all）';
+    const hasProperty = words.some(
+      (w) => /^-?[a-z][a-z-]*$/.test(w) && !EASING_WORDS.has(w) && w !== 'all',
+    );
+    if (!hasProperty) return 'プロパティ名が無い（CSS の仕様で all と同じ）';
+  }
+  return null;
+}
+
 function hoverLiftProblem(value) {
   // 上へ動かす: lift トークン（none を除く）か、負の長さ。`-50%` は中央寄せ。
   if (/translateY\(\s*var\(--wim-lift-(?!none)/.test(value)) return '上へ浮かせている（lift トークン）';
@@ -242,6 +290,10 @@ export function scan(files, { honourExcuses = true } = {}) {
         }
         const bounce = bounceProblem(value);
         if (bounce) push('bounce-easing', bounce);
+        if (prop === 'transition') {
+          const t = transitionAllProblem(value);
+          if (t) push('transition-all', t);
+        }
         // `&:not(:hover)` はホバーしていないときなので外す。
         if (prop === 'transform' && /:hover/.test(selectors.replace(/:not\([^)]*\)/g, ''))) {
           const p = hoverLiftProblem(value);
@@ -311,10 +363,11 @@ if (isMain) {
     console.log('    浮き上がりは、浮いている部品（FloatButton / BackTop）の opt-in だけにする。');
     console.log('  - default-glass: すりガラスは `&.glass` のような選んだときだけの variant に置き、');
     console.log('    既定の面はサーフェス階層トークンで作る（composition.md 禁止表「量産グラス」）。');
+    console.log("  - transition-all: 動かすプロパティを列挙する（例: `transition: background-color var(--wim-transition-fast), box-shadow var(--wim-transition-fast)`）。");
     console.log(`  どうしても残すなら、同じ行か直上のコメントに \`${EXCUSE} <理由>\` を書くこと。`);
     process.exit(1);
   }
 
   // 「質感と動きに slop はありません」とは言わない。見ているのは上の 4 種だけ。
-  console.log('\n✓ blur のトークン / 弾む easing / ホバーの浮き上がり / 既定のすりガラス は基準内です。');
+  console.log('\n✓ blur のトークン / 弾む easing / ホバーの浮き上がり / 既定のすりガラス / transition: all は基準内です。');
 }

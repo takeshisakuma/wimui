@@ -15,7 +15,7 @@
     cursor: default;
     user-select: none;
     border-radius: var(--wim-radius-full);
-    transition: all var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
   
     &.md {
       height: 2rem;
@@ -133,7 +133,7 @@
     border: none;
     border-radius: var(--wim-radius-full);
     opacity: var(--wim-opacity-disabled);
-    transition: all var(--wim-transition-fast);
+    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background-color: var(--wim-color-ghost-bg-active);

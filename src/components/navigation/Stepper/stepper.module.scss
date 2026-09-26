@@ -290,7 +290,7 @@
       background-color: var(--wim-color-surface);
       border: var(--wim-border-width-thick) solid var(--wim-color-border-secondary);
       border-radius: var(--wim-radius-full);
-      transition: all var(--wim-transition-base);
+      transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
     }
 
     /* Line / Tail */

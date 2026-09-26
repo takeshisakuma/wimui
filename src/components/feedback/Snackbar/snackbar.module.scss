@@ -76,7 +76,7 @@
     // Initial state for animation
     opacity: 0;
     transform: translateY(var(--wim-snackbar-lift, 20px)) scale(0.95);
-    transition: all var(--wim-duration-slow) var(--wim-easing-standard);
+    transition: all var(--wim-duration-slow) var(--wim-easing-standard); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.visible {
       opacity: 1;
@@ -144,7 +144,7 @@
     background: transparent;
     border: none;
     border-radius: var(--wim-radius-full);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       color: var(--wim-color-white);

@@ -149,7 +149,7 @@
     border: none;
     border-radius: var(--wim-radius-component);
     opacity: var(--wim-opacity-ghost);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background: var(--wim-comp-close-hover);

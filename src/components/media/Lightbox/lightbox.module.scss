@@ -11,7 +11,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    transition: var(--wim-transition-base);
+    transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &::after {
       position: absolute;
@@ -95,7 +95,7 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(var(--wim-blur-glass)); /* component-slop-ok: 写真の上に置く操作。背後の画に対して読めることが目的 */
-    transition: var(--wim-transition-base);
+    transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background: oklch(from var(--wim-color-white) l c h / 0.2);
@@ -159,7 +159,7 @@
     border-radius: var(--wim-radius-full, 9999px);
     backdrop-filter: blur(var(--wim-blur-glass)); /* component-slop-ok: 写真の上に置く操作。背後の画に対して読めることが目的 */
     transform: translateY(-50%);
-    transition: var(--wim-transition-base);
+    transition: var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &:hover {
       background: oklch(from var(--wim-color-white) l c h / 0.2);

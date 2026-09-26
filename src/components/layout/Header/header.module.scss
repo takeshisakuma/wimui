@@ -11,7 +11,7 @@
        必須ルール 12「クロームは黙らせる」）。 */
     min-height: var(--wim-header-height, 64px);
     padding: 0;
-    transition: all var(--wim-transition-base);
+    transition: all var(--wim-transition-base); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.fixed {
       position: fixed;

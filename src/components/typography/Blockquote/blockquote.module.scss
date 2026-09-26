@@ -5,7 +5,7 @@
     font-family: inherit;
     font-weight: var(--wim-font-weight-normal);
     line-height: var(--wim-line-height-normal);
-    transition: var(--wim-transition-fast);
+    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
 
     &.border {
       border-left: var(--wim-blockquote-border-width) solid var(--wim-color-text-secondary);
