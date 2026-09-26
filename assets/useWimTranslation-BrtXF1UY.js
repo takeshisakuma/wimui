@@ -1,0 +1,2 @@
+"use client";
+import{i as e,s as t}from"./preload-helper-CT_b8DTk.js";import{t as n}from"./react-DmCNssFd.js";import{_r as r,gr as i,hr as a,mr as o,vr as s}from"./iframe-DkmqI5Zh.js";function c(e){let t=(0,l.useSyncExternalStore)(r,o,o);return{t:(0,l.useCallback)((t,n)=>s(e,t,n),[Array.isArray(e)?e.join(`,`):e]),i18n:{language:t,changeLanguage:i}}}var l,u=e((()=>{l=t(n(),1),a()}));export{c as n,u as t};

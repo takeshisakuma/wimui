@@ -1,0 +1,49 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{ur as t}from"./iframe-DkmqI5Zh.js";import{D as n,h as r,m as i,n as a,u as o}from"./blocks-jTqqf7Mw.js";import{t as s}from"./mdx-react-shim-BJePBizU.js";import{n as c,t as l}from"./T-OCPP2RQh.js";import{n as u,t as d}from"./Docgen-Bz2QGYYl.js";import{Default as f,Flat as p,Outline as m,RisingCost as h,WithTrend as g,n as _,t as v}from"./Stats.stories-CGrCoO4K.js";function y(e){let t={h2:`h2`,h3:`h3`,h4:`h4`,...n(),...e.components};return(0,x.jsxs)(x.Fragment,{children:[(0,x.jsx)(o,{of:v}),`
+`,(0,x.jsx)(i,{}),`
+`,(0,x.jsx)(`p`,{style:{margin:`0 0 16px 0`,fontSize:`var(--wim-font-size-lg)`,lineHeight:`var(--wim-line-height-loose)`,color:`var(--wim-color-text-secondary)`},children:(0,x.jsx)(l,{k:`doc.stats_title`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_long_desc`})}),`
+`,(0,x.jsx)(t.h2,{id:``,children:(0,x.jsx)(l,{k:`doc.usage_examples`})}),`
+`,(0,x.jsx)(t.h3,{id:`-1`,children:(0,x.jsx)(l,{k:`doc.basic_usage`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_usage_desc`})}),`
+`,(0,x.jsx)(a,{of:f}),`
+`,(0,x.jsx)(t.h3,{id:`-2`,children:(0,x.jsx)(l,{k:`doc.stats_trend`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_trend_desc`})}),`
+`,(0,x.jsx)(a,{of:g}),`
+`,(0,x.jsx)(t.h4,{id:`-3`,children:(0,x.jsx)(l,{k:`doc.stats_trend_intent`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_trend_intent_desc`})}),`
+`,(0,x.jsx)(a,{of:h}),`
+`,(0,x.jsx)(t.h3,{id:`-4`,children:(0,x.jsx)(l,{k:`doc.variations`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_variations_desc`})}),`
+`,(0,x.jsx)(t.h4,{id:`-5`,children:(0,x.jsx)(l,{k:`doc.outline`})}),`
+`,(0,x.jsx)(a,{of:m}),`
+`,(0,x.jsx)(t.h4,{id:`-6`,children:(0,x.jsx)(l,{k:`doc.flat`})}),`
+`,(0,x.jsx)(a,{of:p}),`
+`,(0,x.jsx)(t.h2,{id:`-7`,children:(0,x.jsx)(l,{k:`doc.design_intent_title`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats`,section:`anatomy`}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_design_intent`})}),`
+`,(0,x.jsx)(t.h2,{id:`-8`,children:(0,x.jsx)(l,{k:`doc.choice_matrix_title`})}),`
+`,(0,x.jsxs)(`table`,{children:[(0,x.jsx)(`thead`,{children:(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.component`})}),(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.usage_scenario`})})]})}),(0,x.jsxs)(`tbody`,{children:[(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`b`,{children:`Stats`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_choice_self_when`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`b`,{children:`Card`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_choice_alt_when`})})]})]})]}),`
+`,(0,x.jsx)(t.h2,{id:`-9`,children:(0,x.jsx)(l,{k:`doc.a11y_spec_title`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_a11y_desc`})}),`
+`,(0,x.jsx)(t.h2,{id:`-10`,children:(0,x.jsx)(l,{k:`doc.real_world_scenarios_title`})}),`
+`,(0,x.jsxs)(`table`,{children:[(0,x.jsx)(`thead`,{children:(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.usage_scenario`})}),(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.table_header_description`})})]})}),(0,x.jsxs)(`tbody`,{children:[(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`strong`,{children:(0,x.jsx)(l,{k:`doc.scenario_dashboard_title`})})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_scenario_1`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`strong`,{children:(0,x.jsx)(l,{k:`doc.scenario_stats_title`})})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_scenario_2`})})]})]})]}),`
+`,(0,x.jsx)(t.h2,{id:`-11`,children:(0,x.jsx)(l,{k:`doc.best_practices_title`})}),`
+`,(0,x.jsxs)(`table`,{children:[(0,x.jsx)(`thead`,{children:(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.feature`})}),(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.best_practice_label`})})]})}),(0,x.jsxs)(`tbody`,{children:[(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`strong`,{children:(0,x.jsx)(l,{k:`doc.consistency`})})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_best_practice_1`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`strong`,{children:(0,x.jsx)(l,{k:`doc.accessibility`})})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_best_practice_2`})})]})]})]}),`
+`,(0,x.jsx)(t.h2,{id:`-12`,children:(0,x.jsx)(l,{k:`doc.stats_comp`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_comp_desc`})}),`
+`,(0,x.jsxs)(`table`,{children:[(0,x.jsx)(`thead`,{children:(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.component`})}),(0,x.jsx)(`th`,{children:(0,x.jsx)(l,{k:`doc.description`})})]})}),(0,x.jsxs)(`tbody`,{children:[(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`code`,{children:`Stats.Label`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_c_label`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`code`,{children:`Stats.Value`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_c_value`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`code`,{children:`Stats.Description`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_c_desc`})})]}),(0,x.jsxs)(`tr`,{children:[(0,x.jsx)(`td`,{children:(0,x.jsx)(`code`,{children:`Stats.Trend`})}),(0,x.jsx)(`td`,{children:(0,x.jsx)(l,{k:`doc.stats_c_trend`})})]})]})]}),`
+`,(0,x.jsx)(d,{componentName:`Stats`,section:`props`}),`
+`,(0,x.jsx)(t.h3,{id:`-13`,children:(0,x.jsx)(l,{k:`doc.stats_label_props`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats.Label`,section:`props`}),`
+`,(0,x.jsx)(t.h3,{id:`-14`,children:(0,x.jsx)(l,{k:`doc.stats_value_props`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats.Value`,section:`props`}),`
+`,(0,x.jsx)(t.h3,{id:`-15`,children:(0,x.jsx)(l,{k:`doc.stats_desc_props`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats.Description`,section:`props`}),`
+`,(0,x.jsx)(t.h3,{id:`-16`,children:(0,x.jsx)(l,{k:`doc.stats_trend_props`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats.Trend`,section:`props`}),`
+`,(0,x.jsx)(d,{componentName:`Stats`,section:`tokens`}),`
+`,(0,x.jsx)(t.h2,{id:`-17`,children:(0,x.jsx)(l,{k:`doc.keyboard_nav_title`})}),`
+`,(0,x.jsx)(`p`,{children:(0,x.jsx)(l,{k:`doc.stats_keyboard_desc`})}),`
+`,(0,x.jsx)(d,{componentName:`Stats`,section:`i18n`}),`
+`,(0,x.jsx)(d,{componentName:`Stats`,section:`test`})]})}function b(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,x.jsx)(t,{...e,children:(0,x.jsx)(y,{...e})}):y(e)}var x;e((()=>{x=t(),s(),r(),_(),c(),u()}))();export{b as default};

@@ -1,0 +1,2 @@
+"use client";
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{Br as t,Gr as n,Wr as r,a as i,o as a,zr as o}from"./iframe-DkmqI5Zh.js";var s;e((()=>{i(),n(),t(),s=(0,o(a(),1).default)(2)(async(e,t)=>e===!1?t:r(t))}))();export{s as formatter};

@@ -1,0 +1,28 @@
+{
+  "doc": {
+    "comp_prompt_input": "PromptInput",
+    "comp_smart_search_input": "SmartSearchInput",
+    "comp_streaming_text": "StreamingText",
+    "comp_thought_process": "ThoughtProcess",
+    "ai_components_title": "AI コンポーネント一覧",
+    "ai_table_component": "コンポーネント",
+    "ai_table_usage": "用途",
+    "ai_table_props": "主な Props",
+    "prompt_input_usage": "ユーザーが AI へのプロンプトを入力する自動リサイズ入力欄。送信ボタン・添付ボタンを内包し、Enter で送信・Shift+Enter で改行。",
+    "smart_search_input_usage": "標準の検索窓から AI プロンプトへとシームレスに拡張する入力欄。1 行の検索から複数行の対話への移行をサポート。",
+    "streaming_text_usage": "LLM の生成テキストをリアルタイムで Markdown レンダリング。ストリーミング中はカーソルが点滅し、`aria-live` でスクリーンリーダーに通知する。",
+    "thought_process_usage": "AI の推論プロセス（思考ステップ）をタイムライン形式で可視化。折りたたみ可能なコンテナで、各ステップの状態（実行中・完了・エラー）を表示。",
+    "ai_patterns_title": "組み合わせパターン",
+    "ai_patterns_desc": "`PromptInput` と `StreamingText` を組み合わせることで、シンプルな AI チャット UI を構築できます。",
+    "ai_patterns_table_usecase": "ユースケース",
+    "ai_patterns_table_config": "構成",
+    "ai_patterns_chat": "AI チャット",
+    "ai_patterns_search": "AI 検索",
+    "ai_patterns_assistant": "コードアシスタント",
+    "ai_patterns_doc_gen": "ドキュメント生成",
+    "ai_best_practices_title": "ベストプラクティス",
+    "ai_best_practices_loading": "AI が応答を生成中は `PromptInput` の `loading={true}` を設定し、重複送信を防いでください。",
+    "ai_best_practices_streaming": "`StreamingText` はストリーミング完了後に `isStreaming={false}` へ切り替えてください。カーソルが消え、`aria-live` が解除されます。",
+    "ai_best_practices_error": "エラー発生時は `StreamingText` の `content` にエラーメッセージを表示するか、別途 `Alert` コンポーネントを使用してください。"
+  }
+}

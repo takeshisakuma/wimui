@@ -1,0 +1,43 @@
+Web font notice — WIM UI documentation site (Storybook)
+=======================================================
+
+This site serves the web fonts listed below. They are bundled from the
+@fontsource npm packages (dev dependencies of this repository) so that the
+documentation renders and screenshots identically without any request to a
+third-party font host.
+
+The published npm package (`wimui`, `files: ["dist"]`) contains NO font
+binaries. Consumers get their host's fonts unless they opt in — see the
+"Fonts" section of the project README.
+
+Fonts
+-----
+
+1. Noto Sans
+   Source package: @fontsource/noto-sans 5.3.0
+   Subsets served: latin, latin-ext (weights 400 / 500 / 700)
+   License: SIL Open Font License 1.1 — see OFL-Noto-Sans.txt
+   Copyright 2022 The Noto Project Authors
+   (https://github.com/notofonts/latin-greek-cyrillic)
+
+2. Noto Sans JP
+   Source package: @fontsource/noto-sans-jp 5.3.0
+   Subsets served: latin, japanese (weights 400 / 500 / 700)
+   License: SIL Open Font License 1.1 — see OFL-Noto-Sans-JP.txt
+   Upstream notice (google/fonts, ofl/notosansjp/OFL.txt):
+   Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font
+   Name 'Source'. The license file shipped inside the @fontsource package
+   carries the shorter attribution "Google Inc."; both are reproduced here so
+   the notice is not weaker than upstream's.
+
+3. Noto Sans Mono
+   Source package: @fontsource/noto-sans-mono 5.3.0
+   Subsets served: latin, latin-ext (weights 400 / 500 / 700)
+   License: SIL Open Font License 1.1 — see OFL-Noto-Sans-Mono.txt
+   Copyright 2022 The Noto Project Authors
+   (https://github.com/notofonts/latin-greek-cyrillic)
+
+The full OFL 1.1 text accompanies each family in this directory, as required
+by the license when the font software is redistributed (OFL 1.1, condition 2).
+The fonts are unmodified: no subsetting, renaming, or other change was applied
+by this project beyond selecting which of the upstream subset files to serve.
