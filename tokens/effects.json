@@ -115,10 +115,12 @@
         "value": "inset 0 2px 4px oklch(0 0 0 / 0.1)"
       },
       "focus": {
-        "value": "0 0 0 2px {pccs.w}, 0 0 0 4px oklch(from var(--wim-color-primary) l c h / 0.5)"
+        "$comment": "T270: 以前は白 2px ＋ primary 50%。白い面では白の内輪が溶け、外側の primary 50% が 2.39:1 で 3:1 に届かなかった。フォーカス色（テーマごとに 3:1 以上）を透かさずに使う",
+        "value": "0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline)"
       },
       "focus-ring": {
-        "value": "0 0 0 3px oklch(from var(--wim-color-primary) l c h / 0.15)"
+        "$comment": "T270: 以前は primary 15% の 3px のにじみ（面との比 light 1.27 / dark 1.05）。入力欄などが「枠を primary に変える」合図と組み合わせて使っていたが、dark では枠の色も 1.61 でほぼ見えなかった。focus と同じ実線にする",
+        "value": "0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline)"
       },
       "error-ring": {
         "value": "0 0 0 3px oklch(from var(--wim-color-danger) l c h / 0.15)"
