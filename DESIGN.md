@@ -151,7 +151,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | `--wim-shadow-md` | 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12) | モーダル、ポップオーバー |
 | `--wim-shadow-lg` | 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18) | ドロワー、全画面オーバーレイ |
 | `--wim-shadow-inset` | inset 0 2px 4px oklch(0 0 0 / 0.1) | 押し込み効果 |
-| `--wim-shadow-focus` | 0 0 0 2px #fff, 0 0 0 4px oklch(from var(--wim-color-primary) l c h / 0.5) | フォーカス外枠 |
+| `--wim-shadow-focus` | 0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline) | 影でフォーカスを出す部品用（既定は outline。T270） |
 
 ### 透明度
 
@@ -420,9 +420,11 @@ src/types/generated-tokens.ts  TypeScript 型定義（自動生成）
 
 ### フォーカス管理
 
-- フォーカス色: `--wim-color-focus-outline` = Primary カラー
-- フォーカスリング: `--wim-shadow-focus` (2px white + 4px primary 50%)
+- 既定のフォーカス表示: `outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline)`（`base.scss` の `:focus-visible`）。`box-shadow` の輪は Windows のハイコントラスト表示で消え、部品自身の影にも負けるので既定にしない（T270）
+- フォーカス色: `--wim-color-focus-outline` = light は Primary、dark は `--wim-color-text-accent`（light の Primary は dark の面の上で 1.61:1 しかない）。どちらも面に対して 3:1 以上
+- 影でフォーカスを出す部品: `--wim-shadow-focus`（フォーカス色の 2px 実線）
 - フォーカスオフセット: `--wim-focus-outline-offset` = 2px
+- 部品側で `outline: none` を書くと既定のフォーカス表示も消える。書くなら同じ要素か子孫に代わりの表示を必ず用意する
 - モーダル/ドロップダウンではフォーカストラップを実装
 
 ### キーボードナビゲーション
