@@ -96,6 +96,10 @@
         "$comment": "lt16 (#67b1ca) は primary-soft 上 4.46:1 で AA をわずかに割るため 1 段明るいカスタム値",
         "value": "#97cbe0"
       },
+      "focus-outline": {
+        "$comment": "T270: light と同じ primary (#055d87) は dark の surface (#393939) 上で 1.61:1 しかなく、フォーカス表示がほぼ見えなかった。primary と同じ系統で明るい text-accent を使う（surface 6.56 / surface-variant 4.66 / surface-app 8.60。フォーカス表示に求める 3:1 を超える）",
+        "value": "var(--wim-color-text-accent)"
+      },
       "danger": {
         "value": "{pccs.lt2}"
       },

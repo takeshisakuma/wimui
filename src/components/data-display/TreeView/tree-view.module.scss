@@ -8,7 +8,11 @@
     max-width: 100%;
     padding: var(--wim-spacing-xs) 0;
     overflow: hidden;
-    outline: none;
+
+    /* T270: 以前はここに `outline: none` があった。既定のフォーカス表示が box-shadow だった間は
+       効いていなかったが、outline に替えた時点でルートのフォーカス（項目にまだフォーカスが
+       無いときの tabIndex=0）が何も出なくなるので外した。項目のフォーカスは下の
+       `.item:focus-visible > .labelContainer` が --wim-shadow-focus で出している。 */
 
     // T267-③: 既定の面は不透明なサーフェスと枠（以前は glass-bg ＋ぼかしのすりガラス）。
     background: var(--wim-color-surface);

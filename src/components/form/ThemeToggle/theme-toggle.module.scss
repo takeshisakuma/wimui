@@ -74,13 +74,6 @@
       box-shadow: var(--wim-shadow-xs);
     }
 
-    /* 選択中の項目は上の box-shadow（component 層）が base.scss の :focus-visible に勝ち、
-       フォーカスしてもリングが出なかった（レイヤーが違うので詳細度は関係ない）。
-       フォーカスの表示はここで既定と同じ --wim-shadow-focus を明示して取り戻す。
-       .active より後に置くこと（詳細度が同じなので、後に書いたほうが勝つ）。 */
-    &:focus-visible {
-      box-shadow: var(--wim-shadow-focus);
-    }
   }
 
   // Sizes — icon button

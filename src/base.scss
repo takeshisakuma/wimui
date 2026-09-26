@@ -144,10 +144,15 @@
   }
 
   /* フォーカス時�Eアウトライン表示 (アクセシビリチE��向丁E */
+
+  /* T270: 既定のフォーカス表示は outline（実線）。以前は box-shadow の輪（白 2px ＋ primary 50%）で、
+     ① light では白い面に白の内輪が溶けて外側が 2.39:1 しかなく、② Windows のハイコントラスト
+     （forced-colors）では box-shadow が消されて何も出ず、③ 部品が自分の box-shadow を持つと
+     レイヤーで負けて消えていた（ThemeToggle の選択中の項目）。outline はこの 3 つとも起きない。
+     色は --wim-color-focus-outline（light: primary / dark: text-accent。どちらも面に対して 4.6:1 以上）。 */
   :focus-visible {
-    outline: none;
-    border-radius: inherit;
-    box-shadow: var(--wim-shadow-focus);
+    outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+    outline-offset: var(--wim-focus-outline-offset);
   }
 
   /* ユーザー設定によるアニメーションの抑制 */
