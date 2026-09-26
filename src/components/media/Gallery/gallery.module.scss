@@ -135,12 +135,13 @@
     object-fit: cover;
     transition: transform var(--wim-duration-base) var(--wim-easing-standard);
 
+    /* T267: ホバーの合図はこの拡大だけ。枠（overflow: hidden）の中で写真が寄るだけで、
+       タイルの位置も大きさも変わらない。選択中は拡大しない ── 以前は選択中も同じ
+       scale(1.04) で、合図が「枠線＋角丸＋拡大」の 3 重になり、選んでいない写真に
+       カーソルを乗せると写真の部分が選択中と見分けられなかった。選択中の合図は
+       .selectedRing の枠線が持つ。 */
     .item:hover & {
-      transform: scale(1.04); /* component-slop-ok: T267-④ 判断待ち（ホバーの合図がこの拡大しかない。代わりの合図を決めてから外す） */
-    }
-
-    .item.selected & {
-      transform: scale(1.04);
+      transform: scale(1.04); /* component-slop-ok: 写真のサムネイル。合図はこの拡大だけで、タイルは動かない */
     }
   }
 
