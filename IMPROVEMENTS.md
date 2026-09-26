@@ -21,6 +21,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
+| T270 | **キーボードのフォーカス表示が、light / dark のどちらかでほぼ見えない部品がある**（仕組み全体の問題） | 起票 2026-09-26（「見た目の AI slop は他にあるか」の調査で、生成 UI に多い「primary 15% の淡い 3px のにじみ」`--wim-shadow-focus-ring` を追って見つけた）。リポジトリの `scripts/lib/color.js` で面とのコントラストを測った: ① `--wim-shadow-focus-ring`（primary 15%）は **light 1.27 / dark 1.05**。これだけで合図していた箇所（ThreadList の会話項目・削除ボタン、ThemeToggle の segmented）は ① の PR で既定に戻した ② 既定の `--wim-shadow-focus`（白 2px ＋ primary 50%）は dark では内側の白が 11.55 で見えるが、**light では白い面に白の内輪が溶け、外側の primary 50% が 2.39**（フォーカス表示に求める 3:1 に届かない）③ ① のリングは入力欄など **12 部品**が使っていて、多くは「枠を primary に変える」合図と組み合わせている（全部品の組み合わせ方は 1 つずつは確かめていない）。対象（Input / InputBase / Textarea / OtpInput / PhoneInput / PromptInput / ChatUI / ModelSelector / SortableList / ImageCompare / ThreadList の新規ボタン / ThemeToggle のアイコンボタン）。この型は light では枠の色で見えるが、**dark は primary #055d87 と面 #393939 の比が 1.61** でほぼ見えない。④ 部品側が `box-shadow` を持つと base.scss の `:focus-visible` に**レイヤーで**負ける（ThemeToggle の選択中の項目はフォーカスしても何も出なかった。① の PR で直した）。**決めること**: フォーカス専用の色（`--wim-color-focus-outline` は今 primary と同じ）を dark で明るい色にするか、既定を `outline` 方式（2px 実線・offset 2px）へ寄せるか。直すと VRT のフォーカス状態と a11y の結果が動く | **判断待ち**（ユーザー。① 3 部品の淡いリングは PR 作成済み） |
 
 ### npm 公開とセット（公開済み）
 

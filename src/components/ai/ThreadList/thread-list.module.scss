@@ -90,10 +90,6 @@
       background: var(--wim-color-surface-variant);
     }
 
-    &:focus-visible {
-      outline: none;
-      box-shadow: var(--wim-shadow-focus-ring);
-    }
 
     &.active {
       background: var(--wim-color-primary-muted);
@@ -184,8 +180,9 @@
     }
 
     &:focus-visible {
-      outline: none;
-      box-shadow: var(--wim-shadow-focus-ring);
+      /* フォーカスの表示は base.scss の :focus-visible（--wim-shadow-focus）に任せる。
+         以前は outline を消して --wim-shadow-focus-ring（primary 15%）だけを出していて、
+         面とのコントラストが light 1.27 / dark 1.05 でほぼ見えなかった。 */
       opacity: 1;
     }
   }
