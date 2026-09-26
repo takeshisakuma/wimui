@@ -51,7 +51,14 @@
     align-items: center;
     padding: 0 var(--wim-spacing-md);
     border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
-    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast),
+      border-radius var(--wim-transition-fast);
   
     svg {
       margin-right: var(--wim-spacing-sm);
@@ -62,7 +69,14 @@
     &:focus-within {
       background-color: var(--bg-hover, var(--wim-color-surface-subtle-alpha));
       border-bottom-color: var(--wim-color-primary);
-      transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+      transition:
+        color var(--wim-transition-fast),
+        background-color var(--wim-transition-fast),
+        border-color var(--wim-transition-fast),
+        box-shadow var(--wim-transition-fast),
+        outline-color var(--wim-transition-fast),
+        opacity var(--wim-transition-fast),
+        border-radius var(--wim-transition-fast);
   
       // Default (mouse) focus indicator: change icon color and light background
       svg {
@@ -194,7 +208,13 @@
     background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast);
   
     &:hover {
       color: var(--wim-color-text-primary);

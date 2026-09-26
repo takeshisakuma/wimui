@@ -38,7 +38,13 @@
     cursor: pointer;
     background-color: var(--wim-color-surface-hover);
     border: none;
-    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast);
 
     .item.open > & {
       font-weight: var(--wim-font-weight-semibold);
@@ -81,7 +87,14 @@
     overflow: hidden;
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
-    transition: all var(--wim-duration-base) var(--wim-easing-standard); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-duration-base) var(--wim-easing-standard),
+      background-color var(--wim-duration-base) var(--wim-easing-standard),
+      border-color var(--wim-duration-base) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-base) var(--wim-easing-standard),
+      outline-color var(--wim-duration-base) var(--wim-easing-standard),
+      opacity var(--wim-duration-base) var(--wim-easing-standard),
+      grid-template-rows var(--wim-duration-base) var(--wim-easing-standard);
     will-change: grid-template-rows;
 
     &.open {
