@@ -57,7 +57,7 @@
     "task_todo": "Incomplete task"
   },
   "transfer": {
-    "no_data": "No Data",
+    "no_data": "No data",
     "move_to_source": "Move to available",
     "move_to_target": "Move to selected",
     "source": "Available",

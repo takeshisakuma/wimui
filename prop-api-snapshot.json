@@ -10467,6 +10467,10 @@
       "required": false,
       "type": "boolean"
     },
+    "Terminal.showWindowControls": {
+      "required": false,
+      "type": "boolean"
+    },
     "Terminal.title": {
       "required": false,
       "type": "string"
