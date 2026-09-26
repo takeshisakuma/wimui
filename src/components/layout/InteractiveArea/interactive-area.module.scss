@@ -14,7 +14,14 @@
     padding: var(--ia-padding);
     background-color: var(--_bg);
     border-radius: var(--wim-radius-container);
-    transition: all var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast),
+      transform var(--wim-transition-fast);
 
     /* 揃えは `align` で決める。既定は `center`（ドロップ領域や結果ページのように、
        その領域にこれしか無い使い方が本来の用途）。**中身がカードや表の一部のときは
