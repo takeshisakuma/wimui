@@ -30,7 +30,14 @@
 
       /* 色と hover は Button の `intent="danger"` + ghost が持つ（T132）。
          ここで面だけ手作りすると、枠は primary 基準のまま残る。 */
-      transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+      transition:
+        color var(--wim-transition-fast),
+        background-color var(--wim-transition-fast),
+        border-color var(--wim-transition-fast),
+        box-shadow var(--wim-transition-fast),
+        outline-color var(--wim-transition-fast),
+        opacity var(--wim-transition-fast),
+        fill var(--wim-transition-fast);
 
       svg {
         color: inherit;
@@ -61,7 +68,13 @@
     background-color: var(--wim-color-surface-variant);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-container);
-    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast);
 
     &:hover {
       border-color: var(--wim-color-primary);

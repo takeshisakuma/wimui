@@ -51,7 +51,13 @@
     background: transparent;
     border: none;
     border-radius: 0;
-    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast);
 
     &:hover:not(.disabled) {
       border-color: var(--wim-color-primary);
@@ -118,7 +124,13 @@
     background: none;
     border: none;
     border-radius: var(--wim-radius-component);
-    transition: var(--wim-transition-fast); /* component-slop-ok: T269 で直す（動かすプロパティを列挙する） */
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      outline-color var(--wim-transition-fast),
+      opacity var(--wim-transition-fast);
   }
 
   .dropdown {
