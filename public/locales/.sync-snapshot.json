@@ -2519,7 +2519,7 @@
     "doc.streamingtext_scenario_2": "Code generation tool showing snippets as they are written.",
     "doc.streamingtext_scenario_3": "Live transcriptions of audio or speech.",
     "doc.terminal_a11y_1": "The output body has role=log and aria-live=polite so screen readers announce new lines.",
-    "doc.terminal_a11y_2": "Title-bar decorations (traffic-light dots) are aria-hidden.",
+    "doc.terminal_a11y_2": "When `showWindowControls` is on, the decorative dots in the title bar are aria-hidden.",
     "doc.terminal_a11y_3": "Copy and Clear buttons carry descriptive aria-label attributes.",
     "doc.terminal_choice_agent": "Agent command execution and live output",
     "doc.terminal_choice_codeblock": "Static, non-interactive code snippet display",
@@ -13642,7 +13642,7 @@
       "task_todo": "Incomplete task"
     },
     "transfer": {
-      "no_data": "No Data",
+      "no_data": "No data",
       "move_to_source": "Move to available",
       "move_to_target": "Move to selected",
       "source": "Available",
@@ -13804,6 +13804,7 @@
       "terminal_prop_onClear": "Whether to show the clear button; fires onClear when clicked",
       "terminal_prop_prompt": "Prompt prefix for input lines",
       "terminal_prop_showCopy": "Whether to show the copy button",
+      "terminal_prop_showWindowControls": "Whether to show the three decorative window-control dots in the title bar. Off by default: they do nothing and imitate one operating system.",
       "terminal_prop_title": "Window title shown in header bar",
       "thoughtProcess_prop_children": "Reasoning steps to display (typically ThoughtStep elements).",
       "thoughtProcess_prop_className": "Additional CSS class",

@@ -231,7 +231,7 @@
   "doc.streamingtext_scenario_2": "Code generation tool showing snippets as they are written.",
   "doc.streamingtext_scenario_3": "Live transcriptions of audio or speech.",
   "doc.terminal_a11y_1": "The output body has role=log and aria-live=polite so screen readers announce new lines.",
-  "doc.terminal_a11y_2": "Title-bar decorations (traffic-light dots) are aria-hidden.",
+  "doc.terminal_a11y_2": "When `showWindowControls` is on, the decorative dots in the title bar are aria-hidden.",
   "doc.terminal_a11y_3": "Copy and Clear buttons carry descriptive aria-label attributes.",
   "doc.terminal_choice_agent": "Agent command execution and live output",
   "doc.terminal_choice_codeblock": "Static, non-interactive code snippet display",

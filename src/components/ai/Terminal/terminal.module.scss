@@ -25,7 +25,8 @@
     background: var(--wim-color-surface-app);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+
+    /* T271: 影は外した。ページ内に置く面で、輪郭は枠が作る（影と枠の二重にしない）。 */
   }
 
   /* ── Traffic-light title bar ── */

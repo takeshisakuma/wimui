@@ -102,6 +102,7 @@
     "terminal_prop_onClear": "Whether to show the clear button; fires onClear when clicked",
     "terminal_prop_prompt": "Prompt prefix for input lines",
     "terminal_prop_showCopy": "Whether to show the copy button",
+    "terminal_prop_showWindowControls": "Whether to show the three decorative window-control dots in the title bar. Off by default: they do nothing and imitate one operating system.",
     "terminal_prop_title": "Window title shown in header bar",
     "thoughtProcess_prop_children": "Reasoning steps to display (typically ThoughtStep elements).",
     "thoughtProcess_prop_className": "Additional CSS class",
