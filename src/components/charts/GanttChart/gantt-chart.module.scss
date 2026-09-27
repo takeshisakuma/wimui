@@ -122,8 +122,11 @@
   }
 
   .body {
+    // `min-height: 100%` は置かない。百分率はスクロール容器（＝ラベル列と同じ
+    // ヘッダー + 行の高さ）を基準にするので、その上に `.header` が積まれて
+    // **常にヘッダー 1 行分（既定 40px）縦にはみ出し**、行が収まっていても
+    // 縦スクロールが出ていた。本体の高さは行の高さの合計で足りる。
     position: relative;
-    min-height: 100%;
 
     // Vertical and horizontal grid lines
     background-image:

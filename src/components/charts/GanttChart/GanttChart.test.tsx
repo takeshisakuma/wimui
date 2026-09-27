@@ -1,4 +1,5 @@
 import React from "react";
+import { readFileSync } from "node:fs";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { GanttChart } from "./GanttChart";
@@ -286,5 +287,17 @@ describe("GanttChart", () => {
     render(<GanttChart tasks={overflowTask} startDate={today} />);
     const bar = document.querySelector("[data-gantt-progress=\"true\"]");
     expect(bar).toHaveStyle({ width: "100%" });
+  });
+
+  it("does not stretch the body to the scrollport, so the header never adds a vertical scroll", () => {
+    // .body の min-height: 100% はスクロール容器（ヘッダー + 行）を基準にするため、
+    // その上に .header が積まれて常にヘッダー 1 行分はみ出していた。
+    const scss = readFileSync(
+      "src/components/charts/GanttChart/gantt-chart.module.scss",
+      "utf8",
+    );
+    const body = scss.match(/^\s+\.body\s*\{([^}]+)\}/m);
+    expect(body?.[1]).toBeDefined();
+    expect(body?.[1].replace(/\/\/.*$/gm, "")).not.toMatch(/min-height:\s*100%/);
   });
 });
