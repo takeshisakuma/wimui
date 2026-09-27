@@ -35,6 +35,17 @@ const meta: Meta = {
 
 export default meta;
 
+/**
+ * 「Voice pattern analyzed」に渡す分析済みの波形（0–1 の時間領域サンプル）。
+ * data を渡さないと仮の正弦波が 1 周期だけ全幅に引き伸ばされ、広い画面ではほぼ平らな
+ * 線になる。発話らしく振幅が立ち上がって減衰する形を、決まった値で作る（毎回同じ絵）。
+ */
+const ANALYZED_WAVE: readonly number[] = Array.from({ length: 360 }, (_, i) => {
+  const t = i / 359;
+  const envelope = Math.sin(Math.PI * t) * (0.55 + 0.45 * Math.sin(t * 5 * Math.PI) ** 2);
+  return 0.5 + 0.45 * envelope * Math.sin(i * 0.28);
+});
+
 const SAMPLE_CODE = `import { useState } from "react";
 
 export function Counter() {
@@ -263,7 +274,7 @@ export const Overview: StoryObj = {
               </Box>
               <Box>
                 <AgentStatus status="done" message={t("audit:ai_status_voice_analyzed")} style={{ marginBottom: "var(--wim-spacing-xs)" }} />
-                <VoiceVisualizer mode="waveform" height={60} isActive={false} />
+                <VoiceVisualizer mode="waveform" height={60} isActive={false} data={ANALYZED_WAVE} />
               </Box>
             </Stack>
           </ComponentGroup>

@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { VoiceVisualizer } from "./VoiceVisualizer";
@@ -39,6 +40,47 @@ describe("VoiceVisualizer", () => {
     const { container } = render(<VoiceVisualizer isActive />);
     const idleBars = container.querySelectorAll("rect[class*='idle']");
     expect(idleBars.length).toBe(24);
+  });
+
+  it("draws idle bars at full height so the scaleY pulse is visible", () => {
+    // 以前は高さ 10% の仮の棒を scaleY(0.15〜0.65) で縮め、40px の箱で 0.6〜2.6px だった
+    const { container } = render(<VoiceVisualizer height={40} />);
+    const bar = container.querySelector("rect")!;
+    expect(bar).toHaveAttribute("y", "0");
+    expect(bar).toHaveAttribute("height", "40");
+  });
+
+  it("keeps bar width fixed in px instead of stretching with the box", () => {
+    // 以前は viewBox 幅 100 を preserveAspectRatio="none" で横に伸ばし、棒の幅が箱の幅に比例していた
+    const { container } = render(<VoiceVisualizer barCount={4} />);
+    const svg = container.querySelector("svg")!;
+    expect(svg).not.toHaveAttribute("viewBox");
+    expect(svg).not.toHaveAttribute("preserveAspectRatio");
+    const rects = [...container.querySelectorAll("rect")];
+    expect(rects.map((r) => r.getAttribute("x"))).toEqual(["12.500%", "37.500%", "62.500%", "87.500%"]);
+    rects.forEach((r) => {
+      expect(r).toHaveAttribute("width", "4");
+      expect(r).toHaveAttribute("rx", "2");
+    });
+  });
+
+  it("keeps the stretched viewBox for the waveform (stroke is non-scaling)", () => {
+    const { container } = render(<VoiceVisualizer mode="waveform" height={60} />);
+    const svg = container.querySelector("svg")!;
+    expect(svg).toHaveAttribute("viewBox", "0 0 100 60");
+    expect(svg).toHaveAttribute("preserveAspectRatio", "none");
+  });
+
+  it("scales bars from their own box and keeps the muted state still", () => {
+    const scss = readFileSync(
+      "src/components/ai/VoiceVisualizer/voice-visualizer.module.scss",
+      "utf8",
+    ).replace(/\/\/.*$/gm, "");
+    const bar = scss.match(/^\s+\.bar\s*\{([^}]+)/m);
+    expect(bar?.[1]).toMatch(/transform-box:\s*fill-box/);
+    const muted = scss.match(/&\.muted\s*\{([\s\S]*?)\n {4}\}/);
+    expect(muted?.[1]).toBeDefined();
+    expect(muted?.[1]).not.toMatch(/animation/);
   });
 
   it("applies muted class when not active", () => {

@@ -31,8 +31,12 @@ export interface VoiceVisualizerProps extends React.ComponentPropsWithoutRef<"sv
 }
 
 /* SVG coordinate constants */
-const VB_W = 100; // viewBox width units
+const VB_W = 100; // viewBox width units (waveform only)
 const MIN_BAR = 0.05; // minimum visible bar height ratio
+// 棒の幅（px）。以前は viewBox 幅 100 を `preserveAspectRatio="none"` で横にだけ
+// 引き伸ばしていたので、棒の幅が箱の幅に比例し（1244px で 1 本 28px）、角丸も
+// 横長の楕円に歪んでいた。棒モードは viewBox を持たず座標を px にそろえる。
+const BAR_W = 4; /* Exception: Structural Logic — 棒の幅。箱の幅に比例させない固定の座標値 */
 
 /**
  * VoiceVisualizer renders an SVG audio-level indicator.
@@ -66,17 +70,22 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
     const label = ariaLabel ?? (typeof ariaLabelAttr === "string" ? ariaLabelAttr : undefined);
 
     /* ── Bars geometry ── */
-    const barW = useMemo(() => (VB_W / barCount) * 0.55, [barCount]);
-    const barGap = useMemo(() => (VB_W / barCount) * 0.45, [barCount]);
-
+    // 棒は各スロットの中心（百分率）に置き、`<g>` で幅の半分だけ戻す。
+    // 待機中（useIdle）は全高で描き、CSS の scaleY で縮める。以前は高さ 10% の
+    // 仮の棒をさらに scaleY(0.15〜0.65) していたため、40px の箱で 0.6〜2.6px しか
+    // 出ていなかった。
     const bars = useMemo(() => {
       return Array.from({ length: barCount }, (_, i) => {
-        const norm = data ? Math.min(1, Math.max(MIN_BAR, data[i] ?? MIN_BAR)) : MIN_BAR;
+        const norm = useIdle
+          ? 1
+          : data
+            ? Math.min(1, Math.max(MIN_BAR, data[i] ?? MIN_BAR))
+            : MIN_BAR;
         const barH = norm * height;
-        const x = i * (barW + barGap) + barGap / 2;
-        return { x, barH, norm };
+        const cx = `${(((i + 0.5) / barCount) * 100).toFixed(3)}%`;
+        return { cx, barH, norm };
       });
-    }, [data, barCount, height, barW, barGap]);
+    }, [data, barCount, height, useIdle]);
 
     /* ── Waveform points (data-driven) ── */
     const wavePoints = useMemo(() => {
@@ -104,10 +113,10 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
     return (
       <svg
         ref={ref}
-        viewBox={`0 0 ${VB_W} ${height}`}
+        viewBox={mode === "waveform" ? `0 0 ${VB_W} ${height}` : undefined}
         width="100%"
         height={height}
-        preserveAspectRatio="none"
+        preserveAspectRatio={mode === "waveform" ? "none" : undefined}
         className={classNames("wim-voice-visualizer", 
           styles.root,
           styles[mode],
@@ -127,21 +136,22 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         aria-hidden={label ? undefined : true}
       >
         {mode === "bars" &&
-          bars.map(({ x, barH, norm }, i) => (
-            <rect
-              key={i}
-              className={classNames(styles.bar, useIdle && styles.idle)}
-              style={
-                useIdle
-                  ? ({ "--delay": `${((i / barCount) * 0.5).toFixed(3)}s` } as React.CSSProperties)
-                  : undefined
-              }
-              x={x}
-              y={norm > MIN_BAR ? height - barH : height * 0.45}
-              width={barW}
-              height={norm > MIN_BAR ? barH : height * 0.1}
-              rx={barW * 0.5}
-            />
+          bars.map(({ cx, barH, norm }, i) => (
+            <g key={i} transform={`translate(${-BAR_W / 2} 0)`}>
+              <rect
+                className={classNames(styles.bar, useIdle && styles.idle)}
+                style={
+                  useIdle
+                    ? ({ "--delay": `${((i / barCount) * 0.5).toFixed(3)}s` } as React.CSSProperties)
+                    : undefined
+                }
+                x={cx}
+                y={norm > MIN_BAR ? height - barH : height * 0.45}
+                width={BAR_W}
+                height={norm > MIN_BAR ? barH : height * 0.1}
+                rx={BAR_W / 2}
+              />
+            </g>
           ))}
 
         {mode === "waveform" && (

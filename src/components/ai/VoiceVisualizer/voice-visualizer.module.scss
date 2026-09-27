@@ -8,17 +8,15 @@
 
     &.active { opacity: 1; }
     
+    // 非アクティブ（完了・停止）は静止させる。以前は不透明度 0.6〜1 と横幅 ±2% の
+    // 「呼吸」をかけていたが、箱全体が dim（0.4）なので目では気付けず、見えない動きだけが
+    // 残っていた。
     &.muted {
       opacity: var(--wim-opacity-dim, 0.4);
       filter: grayscale(0.5);
 
-      .bar {
-        animation: voice-muted-breath 3s ease-in-out infinite;
-      }
-
       .wave {
         stroke-width: var(--wim-border-width-thin);
-        animation: voice-muted-breath 3s ease-in-out infinite;
       }
     }
 
@@ -33,6 +31,11 @@
   .bar {
     fill: currentcolor;
     transform-origin: center;
+
+    // SVG 要素の transform-box の既定は view-box なので、transform-origin が
+    // **棒ではなく SVG 全体**を基準にしていた（bottom center ＝ SVG の下端中央）。
+    // 縮みながら上下にも動いていたのはこのため。棒自身の箱を基準にする。
+    transform-box: fill-box;
 
     /* Idle: staggered scale-Y pulse */
     &.idle {
@@ -71,18 +74,6 @@
   @keyframes voice-wave-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
-  }
-
-  @keyframes voice-muted-breath {
-    0%, 100% {
-      opacity: 0.6;
-      transform: scaleX(0.98);
-    }
-
-    50% {
-      opacity: 1;
-      transform: scaleX(1.02);
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
