@@ -1,4 +1,5 @@
 import { render, screen, act, fireEvent } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 import { describe, it, expect, vi } from "vitest";
 import { Snackbar, SnackbarProvider, useSnackbar } from "./Snackbar";
 import styles from "./snackbar.module.scss";
@@ -201,5 +202,18 @@ describe("SnackbarProvider and useSnackbar", () => {
     expect(() => render(<BadComponent />)).toThrow(
       "useSnackbar must be used within a SnackbarProvider",
     );
+  });
+
+  it("optically centers the icon on the first message line (T185)", () => {
+    const scss = readFileSync(
+      "src/components/feedback/Snackbar/snackbar.module.scss",
+      "utf8",
+    );
+    const icon = scss.match(/^\s+\.icon\s*\{([^}]+)\}/m);
+    expect(icon?.[1]).toMatch(/font-size:\s*var\(--wim-font-size-sm\)/);
+    expect(icon?.[1]).toMatch(
+      /padding-top:\s*calc\(\(var\(--wim-line-height-normal\) - 1\) \* 1em \/ 2\)/,
+    );
+    expect(icon?.[1]).toMatch(/align-self:\s*flex-start/);
   });
 });
