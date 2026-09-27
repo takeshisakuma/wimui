@@ -39,6 +39,10 @@
 
     /* Idle: staggered scale-Y pulse */
     &.idle {
+      // アニメーションが無いとき（VRT の撮影・静止画）の姿。reduced-motion と同じ
+      // 高さにそろえ、画面に実在する姿にする。無指定だと全高の棒が写り、どの利用者も
+      // 見ない姿がベースラインに残っていた。
+      transform: scaleY(0.25);
       transform-origin: bottom center;
       animation: voice-bar-idle 1.2s var(--wim-easing-standard, ease-in-out) infinite;
       animation-delay: var(--delay, 0s);

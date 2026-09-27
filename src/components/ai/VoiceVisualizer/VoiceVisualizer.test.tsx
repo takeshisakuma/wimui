@@ -57,11 +57,21 @@ describe("VoiceVisualizer", () => {
     expect(svg).not.toHaveAttribute("viewBox");
     expect(svg).not.toHaveAttribute("preserveAspectRatio");
     const rects = [...container.querySelectorAll("rect")];
-    expect(rects.map((r) => r.getAttribute("x"))).toEqual(["12.500%", "37.500%", "62.500%", "87.500%"]);
+    // 棒 4px・間隔 3px の塊（4 本で 25px）を、中心を原点にして並べる
+    expect(rects.map((r) => r.getAttribute("x"))).toEqual(["-12.5", "-5.5", "1.5", "8.5"]);
     rects.forEach((r) => {
       expect(r).toHaveAttribute("width", "4");
       expect(r).toHaveAttribute("rx", "2");
     });
+  });
+
+  it("centers the bars as one cluster instead of spreading them across the box", () => {
+    // 全幅に等間隔で広げると、広い画面では 4px の棒が 50px 以上離れてまばらになる
+    const { container } = render(<VoiceVisualizer barCount={4} height={40} />);
+    const cluster = container.querySelector("svg svg")!;
+    expect(cluster).toHaveAttribute("x", "50%");
+    expect(cluster).toHaveAttribute("overflow", "visible");
+    expect(cluster.querySelectorAll("rect")).toHaveLength(4);
   });
 
   it("keeps the stretched viewBox for the waveform (stroke is non-scaling)", () => {
@@ -78,6 +88,9 @@ describe("VoiceVisualizer", () => {
     ).replace(/\/\/.*$/gm, "");
     const bar = scss.match(/^\s+\.bar\s*\{([^}]+)/m);
     expect(bar?.[1]).toMatch(/transform-box:\s*fill-box/);
+    // アニメーションが無いとき（VRT・静止画）は reduced-motion と同じ高さで止まる
+    const idle = scss.match(/&\.idle\s*\{([^}]+)\}/);
+    expect(idle?.[1]).toMatch(/transform:\s*scaleY\(0\.25\)/);
     const muted = scss.match(/&\.muted\s*\{([\s\S]*?)\n {4}\}/);
     expect(muted?.[1]).toBeDefined();
     expect(muted?.[1]).not.toMatch(/animation/);

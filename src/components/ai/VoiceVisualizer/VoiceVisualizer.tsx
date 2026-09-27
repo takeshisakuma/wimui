@@ -37,6 +37,9 @@ const MIN_BAR = 0.05; // minimum visible bar height ratio
 // 引き伸ばしていたので、棒の幅が箱の幅に比例し（1244px で 1 本 28px）、角丸も
 // 横長の楕円に歪んでいた。棒モードは viewBox を持たず座標を px にそろえる。
 const BAR_W = 4; /* Exception: Structural Logic — 棒の幅。箱の幅に比例させない固定の座標値 */
+// 棒と棒の間隔（px）。間隔も固定し、棒の列を 1 つの塊として箱の中央に置く。全幅に
+// 等間隔で広げると、広い画面では 4px の棒が 50px 以上離れてまばらになるため。
+const BAR_GAP = 3; /* Exception: Structural Logic — 棒の間隔。箱の幅に比例させない固定の座標値 */
 
 /**
  * VoiceVisualizer renders an SVG audio-level indicator.
@@ -70,10 +73,11 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
     const label = ariaLabel ?? (typeof ariaLabelAttr === "string" ? ariaLabelAttr : undefined);
 
     /* ── Bars geometry ── */
-    // 棒は各スロットの中心（百分率）に置き、`<g>` で幅の半分だけ戻す。
+    // 棒の列は塊の中心を原点にして並べ、描画側で箱の中央（x=50%）に置く。
     // 待機中（useIdle）は全高で描き、CSS の scaleY で縮める。以前は高さ 10% の
     // 仮の棒をさらに scaleY(0.15〜0.65) していたため、40px の箱で 0.6〜2.6px しか
     // 出ていなかった。
+    const clusterW = barCount * BAR_W + (barCount - 1) * BAR_GAP;
     const bars = useMemo(() => {
       return Array.from({ length: barCount }, (_, i) => {
         const norm = useIdle
@@ -82,10 +86,10 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
             ? Math.min(1, Math.max(MIN_BAR, data[i] ?? MIN_BAR))
             : MIN_BAR;
         const barH = norm * height;
-        const cx = `${(((i + 0.5) / barCount) * 100).toFixed(3)}%`;
-        return { cx, barH, norm };
+        const x = i * (BAR_W + BAR_GAP) - clusterW / 2;
+        return { x, barH, norm };
       });
-    }, [data, barCount, height, useIdle]);
+    }, [data, barCount, height, useIdle, clusterW]);
 
     /* ── Waveform points (data-driven) ── */
     const wavePoints = useMemo(() => {
@@ -135,24 +139,28 @@ export const VoiceVisualizer = React.forwardRef<SVGSVGElement, VoiceVisualizerPr
         aria-label={label}
         aria-hidden={label ? undefined : true}
       >
-        {mode === "bars" &&
-          bars.map(({ cx, barH, norm }, i) => (
-            <g key={i} transform={`translate(${-BAR_W / 2} 0)`}>
+        {mode === "bars" && (
+          /* 入れ子の svg を箱の中央に置き、その原点を塊の中心にする（幅を測らずに中央寄せ）。
+             width は 0 だと描画されないため 1 にし、はみ出しは overflow で見せる。 */
+          <svg x="50%" y={0} width={1} height={height} overflow="visible">
+            {bars.map(({ x, barH, norm }, i) => (
               <rect
+                key={i}
                 className={classNames(styles.bar, useIdle && styles.idle)}
                 style={
                   useIdle
                     ? ({ "--delay": `${((i / barCount) * 0.5).toFixed(3)}s` } as React.CSSProperties)
                     : undefined
                 }
-                x={cx}
+                x={x}
                 y={norm > MIN_BAR ? height - barH : height * 0.45}
                 width={BAR_W}
                 height={norm > MIN_BAR ? barH : height * 0.1}
                 rx={BAR_W / 2}
               />
-            </g>
-          ))}
+            ))}
+          </svg>
+        )}
 
         {mode === "waveform" && (
           <g
