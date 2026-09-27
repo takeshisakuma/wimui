@@ -168,6 +168,8 @@
   "label_color_input_hex": "Entrada de Cor (HEX)",
   "label_color_picker": "Seletor de Cores",
   "label_combobox": "Combobox",
+  "label_comment": "Comment",
+  "label_comment_thread": "Comment — respostas aninhadas",
   "label_container": "Container",
   "label_container_styles": "Estilos de Container",
   "label_context_menu": "Menu de Contexto",
@@ -612,7 +614,10 @@
   "variant_comparison": "Comparação de Variante",
   "variant_intent_matrix": "Variante × Intenção (todas as 21 combinações)",
   "vertical_spacing_check": "Consistência de Espaçamento Vertical e Margem",
+  "viewport_action_edit": "Editar",
+  "viewport_action_edit_row": "Editar {{name}}",
   "viewport_backlog": "Backlog",
+  "viewport_col_action": "Ação",
   "viewport_col_done": "Concluído",
   "viewport_col_email": "Endereço de E-mail",
   "viewport_col_full_name": "Nome Completo",
@@ -635,7 +640,5 @@
   "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
   "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
   "viz_sparkline_check": "Verificação de Sparkline",
-  "viz_system_load": "Carga do Sistema",
-  "label_comment": "Comment",
-  "label_comment_thread": "Comment — respostas aninhadas"
+  "viz_system_load": "Carga do Sistema"
 }
