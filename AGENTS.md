@@ -1,10 +1,10 @@
 # AGENTS.md
 
-このファイルは、このリポジトリで作業する AI エージェント（Claude Code / Codex / Cursor / Gemini CLI ほか）への指示の**正本**です。`CLAUDE.md` は `@AGENTS.md` の 1 行（Claude Code の import 構文）、Gemini CLI は `.gemini/settings.json` の `context.fileName` でこのファイルを読みます。**写し（旧 `GEMINI.md`）は置きません** ── 写しは必ず腐るためで、2026-09-20 に廃止しました。入口の対応は `npm run check:instructions` が見張ります。
+このファイルは、このリポジトリで作業する AI エージェント（Claude Code / Codex / Cursor / Gemini CLI ほか）への指示の**正本**です。`CLAUDE.md` は `@AGENTS.md` の 1 行（Claude Code の import 構文）、Gemini CLI は `.gemini/settings.json` の `context.fileName` でこのファイルを読みます。**写しは置きません**（写しは必ず腐るため）。入口の対応は `npm run check:instructions` が見張ります。
 
 AI エージェント向けの skill は `.agents/skills/` が実体です（Codex / Cursor などはここを直接読みます）。Claude Code は `.claude/skills/` しか見ないため、`npm install` 時に `prepare` が自動で繋ぎます（`npm run skills:link` / 検証は `npm run check:skills-mirror`）。skill の**形式**は 1 ベンダーの設定ではなく開いた標準（Agent Skills）なので、`npm run check:skills` が `SKILL.md` の frontmatter と `name` がディレクトリ名と一致するかを見ます（実証は `npm run prove:skills-spec`）。
 
-**他所で作られた skill を取り込むときの約束**（2026-09-21）。**skill はエージェントが従う指示**で、`allowed-tools` まで書けます ── 取り込みは依存を 1 つ増やすのと同じで、コードと同じ審査が要ります。仕様の検査は**形式しか見ない**（中身が「テストを消してよい」と書いてあっても通る）ので、次の 3 つを `check:skills` が機械で要求します。
+**他所で作られた skill を取り込むときの約束**。**skill はエージェントが従う指示**で、`allowed-tools` まで書けます ── 取り込みは依存を 1 つ増やすのと同じで、コードと同じ審査が要ります。仕様の検査は**形式しか見ない**（中身が「テストを消してよい」と書いてあっても通る）ので、次の 3 つを `check:skills` が機械で要求します。
 
 - **出所を書く** ── `metadata.origin: vendor` を付け、`metadata.source`（取得元）と `metadata.reviewed`（**中身を読んだ日**・YYYY-MM-DD）を併記する。置き場では分けられません ── skill の探索は `.agents/skills` の**直下**を見る作りなので、`vendor/` のような中間ディレクトリを作ると「SKILL.md が無い skill」として落ちます。
 - **ツール権限は黙って入れない** ── `allowed-tools` を持つ skill は、`metadata.allowed_tools_reason` に理由を書くこと。理由が書けないなら入れない。
@@ -60,27 +60,26 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 - **VRT の workflow_dispatch**（update / compare）。ただし update は「そのブランチへの push がすべて完了してから最後に 1 回」（コミットバックが素の git push のため、途中 push で確実に失敗する）
 - **Dependabot の minor / patch PR のマージ**（`@dependabot rebase` → CI 全緑を確認してから。major は個別判断＝ユーザー確認）
 - **CI の再実行・キャンセル**（スーパーシード済みの古いランの整理を含む）
-- **a11y の赤の扱い**: T12 のバックログは解消済み（2026-07-17、全量全緑）のため、a11y の赤は原則「新規違反」。PR の変更起因なら修正して進めてよい。変更と無関係に見える赤（環境差・フレーク疑い）は、同一ストーリーをローカル axe（スペックと同一設定）で再現確認してから判断し、確信が持てなければ止めて報告
+- **a11y の赤の扱い**: a11y は全量全緑が基準なので、赤は原則「新規違反」。PR の変更起因なら修正して進めてよい。変更と無関係に見える赤（環境差・フレーク疑い）は、同一ストーリーをローカル axe（スペックと同一設定）で再現確認してから判断し、確信が持てなければ止めて報告
 
 必ずユーザー確認が要ること:
 
 - **機能 PR のマージ**（事前に条件付き承認がある場合を除く）
 - **main への直接 push・force-push・履歴書き換え・リポジトリ設定変更**
-- **npm 公開に関わる操作**（`private` 解除・Version PR のマージ・`release` 環境の承認・publish。エージェントは進めない）。**changeset は、利用者向けの変更の PR に同梱してよい**（PR のレビューが確認になる。`RELEASING.md` の分担）── 2026-09-21 に「PR ごとに書く」運用へ切り替えた。以前はリリース直前にまとめて書いていて、0.31.0 では #657 / #659 を取りこぼした。付け忘れは `changeset-reminder` が PR にコメントする（警告のみ）
+- **npm 公開に関わる操作**（`private` 解除・Version PR のマージ・`release` 環境の承認・publish。エージェントは進めない）。**changeset は、利用者向けの変更の PR に同梱してよい**（PR のレビューが確認になる。`RELEASING.md` の分担）。リリース直前にまとめて書くと取りこぼすため、PR ごとに書く。付け忘れは `changeset-reminder` が PR にコメントする（警告のみ）
 - **依存の major 更新のマージ**（互換性根拠を添えて提案まで）
 
 判断に迷う事態・事前条件で判定できない事態は、実行せず報告して止まること。
 
-### 委任時の 2 つの約束（2026-07-26 の実績から）
+### 委任時の 2 つの約束
 
 1. **ガードは「故意に違反を作って落ちること」を、通る経路すべてで実証してから完成とする。**  
-   未実証のガード、および「0 件」という結果は信用しない。**検出すべき既知の事例を過去のコミットで再現して鳴らすこと**が完成条件。同日の実例:
-   - `check:slop` のラチェットは lint-staged 経由だと**部分集合を全体基準と比べるため常に素通り**していた（故意に px 直書きを入れて初めて判明）
-   - `check:llms` は**バイト厳密比較のせいで Windows でだけ落ちる**偽陽性だった（CRLF が 46 行混入。git 的には差分ゼロ）
-   - T33 の検出スキャナは既知ケース（`Card` の `padding="xl"`）を拾えるか自己検証できず結果を破棄した
-   - `check:llms` は**リリース PR を構造的にマージ不能**にしていた。`llms.txt` は `package.json` の version を埋め込むため、`changeset version` の直後は必ず不一致になる（#116 で発生 → #117 でリリース手順側を修正）
+   未実証のガード、および「0 件」という結果は信用しない。**検出すべき既知の事例を過去のコミットで再現して鳴らすこと**が完成条件。入口ごとに実際に起きた穴:
+   - lint-staged: 部分集合を全体基準と比べて常に素通りする
+   - OS 差: バイト厳密比較が Windows の CRLF でだけ落ちる
+   - リリース PR: version を埋め込む生成物が `changeset version` 直後に必ず不一致になる
 
-   **「鳴ること」だけでなく「鳴ってはいけない経路で鳴らないこと」も含めて確認する。** 最低限、そのガードが走るすべての入口を通す: ローカル全量 / lint-staged（部分集合）/ CI（クリーンチェックアウト）/ **リリース PR（バージョンが上がった状態）**。上記 4 件はいずれも、この経路のどれか 1 つを試していなかったために出た。
+   **「鳴ること」だけでなく「鳴ってはいけない経路で鳴らないこと」も含めて確認する。** 最低限、そのガードが走るすべての入口を通す: ローカル全量 / lint-staged（部分集合）/ CI（クリーンチェックアウト）/ **リリース PR（バージョンが上がった状態）**。
 
 2. **合成画面の視覚判定を自己申告しない。**  
    スクリーンショットを見て「問題なし」と報告しないこと。同日、Playground のスクショと computed style を確認したうえで「問題なし」と報告した直後に、ユーザーが**同じ画面から 5 件の欠陥**（カード角のボーダー欠落・View source の padding・table 下の余白・badge の色・Trend の色）を指摘した。画面を書くところまでは委任してよいが、**まず story 化して VRT / a11y / `judge:slop` に載せ、その結果を添えて人間のレビューに出す**。実際 Playground をストーリー化した瞬間、a11y スイートが Switch のラベル欠落（critical）を自動検出している。
@@ -119,7 +118,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 
 ### 1. 必須ゲート（新規コンポーネント / 公開面変更）
 
-**一覧と各ゲートの目的は `docs/rules/quality-gates.md` が正本**（2026-09-21 に移した）。同じ一覧はこのファイル・PR テンプレート・`scaffold` の出力の 3 か所にあって中身が違っていた。PR テンプレートとのずれは `npm run check:quality-gates` が落とし、`scaffold` は正本から読んで出す。
+**一覧と各ゲートの目的は `docs/rules/quality-gates.md` が正本**。PR テンプレートとのずれは `npm run check:quality-gates` が落とし、`scaffold` は正本から読んで出す。
 
 まとめて: `npm run audit:lib`（範囲が広いとき）。短期間に多くのコンポーネントを追加（または一気にリファクタリング）する場合も、すべてパスすること。
 
@@ -129,7 +128,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 これにより以下のボイラープレートが自動適用されます：
 - `forwardRef` + `asChild` (Radix Slot)
 - `@layer component` による SCSS ラップ
-- 15 セクション構成の MDX テンプレート
+- 必須セクション入りの MDX テンプレート（欠落は `npm run audit-mdx` が落とす）
 - `vi.mock("react-i18next")` 済みのテストファイル
 
 ---
@@ -138,7 +137,7 @@ PR 作成時は `.github/pull_request_template.md` の Quality gates に沿っ�
 
 ### エクスポート構成
 
-`src/index.ts` は各カテゴリの `src/<category>.ts` を re-export する。新規コンポーネントは `src/<category>.ts` に追加する。
+新規コンポーネントは `src/<category>.ts` に追加する。ルートの `src/index.ts` は optional peer を eager に import しない部品だけを載せる（`charts` は含めず、`data-display` / `ai` は `*-core.ts` 経由）。peer 依存の部品はカテゴリのサブパスからのみ届く。
 
 カテゴリ対応ファイル: `layout` / `form` / `feedback` / `navigation` / `data-display` / `overlay` / `typography` / `media` / `charts` / `ai`
 
@@ -149,7 +148,7 @@ UI 密度: `data-density="comfortable|compact"` / `setWimDensity` / `WimProvider
 
 ### トークンシステム
 
-`tokens/*.json` → `npm run tokens:build` → `src/tokens/generated/_tokens.scss` の CSS カスタムプロパティ (`--wim-*`) として出力。コンポーネント SCSS はこれらのみ参照する（色・間隔・サイズのハードコード禁止）。
+`tokens/*.json` → `npm run tokens:build` → `src/tokens/generated/` に出力（CSS カスタムプロパティ `--wim-*` は `_css-vars.scss` / `_css-vars-dark.scss`、SCSS 変数は `_tokens.scss`）。コンポーネント SCSS は `--wim-*` のみ参照する（色・間隔・サイズのハードコード禁止）。
 
 ### Docgen 自動化
 
