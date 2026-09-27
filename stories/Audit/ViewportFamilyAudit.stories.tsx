@@ -12,6 +12,7 @@ import {
   TimelineConnector,
   TimelineContent,
   DataGrid,
+  Button,
   Text,
   Box,
 } from "../../src";
@@ -84,7 +85,21 @@ export const Overview: StoryObj = {
       { key: "role", title: "Role", width: 150 },
       { key: "status", title: "Status", width: 120 },
       { key: "lastLogin", title: t("audit:viewport_col_last_login"), width: 200 },
-      { key: "action", title: "Action", width: 100, fixed: "right" as const },
+      {
+        key: "action",
+        title: t("audit:viewport_col_action"),
+        width: 100,
+        fixed: "right" as const,
+        render: (_: unknown, record: Record<string, unknown>) => (
+          <Button
+            size="sm"
+            variant="ghost"
+            aria-label={t("audit:viewport_action_edit_row", { name: record.name })}
+          >
+            {t("audit:viewport_action_edit")}
+          </Button>
+        ),
+      },
     ];
     const gridData = Array.from({ length: 30 }, (_, i) => ({
       id: `USR-${1000 + i}`,
@@ -93,7 +108,6 @@ export const Overview: StoryObj = {
       role: i % 3 === 0 ? "Admin" : "Editor",
       status: i % 2 === 0 ? "Active" : "Inactive",
       lastLogin: "2026-05-05 14:20",
-      action: "Edit",
     }));
 
     return (

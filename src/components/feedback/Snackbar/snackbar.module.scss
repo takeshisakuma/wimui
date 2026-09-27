@@ -111,6 +111,14 @@
     // この `align-self: center` が打ち消すため片方だけでは 1px も動かない
     // （`Alert` で「`align-items` を直したのに動かなかった」のと同じ形）。
     align-self: flex-start;
+
+    // T185 の横展開（Banner と同じ形）: `flex-start` は**箱の上端**を 1 行目に
+    // 揃えるだけで、1em のアイコンは行高 `normal`（1.4）の中心より
+    // `(1.4em - 1em) / 2` 上に来る。実測（アイコン mid − message 1 行目の
+    // 行ボックス mid）: **−2.84px**。1 行も長文の折り返しも同じ。
+    // アイコンと message はともに `sm` + `normal` で固定なので補正が効く。
+    padding-top: calc((var(--wim-line-height-normal) - 1) * 1em / 2);
+    font-size: var(--wim-font-size-sm);
   }
 
   .message {

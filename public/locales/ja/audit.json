@@ -168,6 +168,8 @@
   "label_color_input_hex": "カラー入力 (HEX対応)",
   "label_color_picker": "カラーピッカー",
   "label_combobox": "コンボボックス",
+  "label_comment": "Comment (コメント)",
+  "label_comment_thread": "Comment — 返信の入れ子",
   "label_container": "Container",
   "label_container_styles": "コンテナ・スタイル",
   "label_context_menu": "コンテキストメニュー",
@@ -612,7 +614,10 @@
   "variant_comparison": "バリアント比較",
   "variant_intent_matrix": "バリアント × インテント（全 21 組み合わせ）",
   "vertical_spacing_check": "要素間の垂直マージン・一貫性",
+  "viewport_action_edit": "編集",
+  "viewport_action_edit_row": "{{name}} を編集",
   "viewport_backlog": "バックログ",
+  "viewport_col_action": "操作",
   "viewport_col_done": "完了",
   "viewport_col_email": "メールアドレス",
   "viewport_col_full_name": "氏名",
@@ -635,7 +640,5 @@
   "visualization_oklch_palette_check": "OKLCHカラーパレットの適用確認",
   "visualization_responsive_check": "レスポンシブ挙動と特殊チャート",
   "viz_sparkline_check": "スパークラインチェック",
-  "viz_system_load": "システム負荷",
-  "label_comment": "Comment (コメント)",
-  "label_comment_thread": "Comment — 返信の入れ子"
+  "viz_system_load": "システム負荷"
 }

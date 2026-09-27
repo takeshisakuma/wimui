@@ -27,6 +27,33 @@ const meta: Meta = {
 
 export default meta;
 
+/**
+ * `--wim-layout-transition` は `transition` ショートハンドの値（`all <duration> <easing>`）。
+ * `animation` に渡すと `all` が 2 つ目のアニメーション名と読まれて宣言ごと無効になり、
+ * `animation: none` に戻って動かなかった。本来の使い方どおり、`transition` を当てた要素の
+ * 位置を一定間隔で切り替えて見せる（Audit は VRT の撮影対象外なのでタイマーで揺れない）。
+ */
+const LayoutTransitionDemo = () => {
+  const [atEnd, setAtEnd] = React.useState(false);
+
+  React.useEffect(() => {
+    const id = window.setInterval(() => setAtEnd((prev) => !prev), 1500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <Box className="motion-track">
+      <Box
+        className="motion-ball"
+        style={{
+          left: atEnd ? "calc(100% - 40px)" : 0,
+          transition: "var(--wim-layout-transition)",
+        }}
+      />
+    </Box>
+  );
+};
+
 export const Overview: StoryObj = {
   render: () => {
     const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
@@ -114,9 +141,7 @@ export const Overview: StoryObj = {
 
                 <Box>
                   <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_layout")}</Text>
-                  <Box className="motion-track">
-                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-layout-transition) infinite" }} />
-                  </Box>
+                  <LayoutTransitionDemo />
                 </Box>
 
                 <style>{`
