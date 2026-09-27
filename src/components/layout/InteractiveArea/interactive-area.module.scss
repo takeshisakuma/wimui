@@ -146,7 +146,14 @@
     gap: var(--ia-title-gap);
   }
 
+  /* `display: flex` は、子の `display` を CSS の読み込み順から切り離すため。
+     下の `& > * { display: block }` と Icon の `.root { display: inline-block }` は
+     同じ詳細度・同じレイヤーで、勝ち負けがチャンクの順で決まる。vite 8.3 で
+     InteractiveArea の CSS が Icon より先に読まれるようになり、inline-block が勝って
+     41px の行ボックスが立ち、Dropzone / InteractiveArea が 25px 伸びた（PR #721）。
+     flex アイテムは子の display に関係なくブロック化されるので、順序に依存しない。 */
   .icon {
+    display: flex;
     font-size: var(--ia-icon-size);
     line-height: 1;
     color: var(--wim-color-text-secondary);
