@@ -53,6 +53,11 @@
         "color-contrast"
       ]
     },
+    "audit-listfamily--overview": {
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "audit-mediafamily--overview": {
       "light": [
         "color-contrast"
