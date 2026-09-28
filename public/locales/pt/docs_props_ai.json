@@ -132,12 +132,14 @@
     "usageMeter_prop_used": "Número de tokens usados até agora",
     "usageMeter_prop_warnThreshold": "Fração (0–1) em que o medidor muda para a cor de aviso",
     "voiceVisualizer_prop_ariaLabel": "Rótulo acessível que descreve o áudio; quando omitido, o visualizador fica oculto para tecnologias assistivas",
-    "voiceVisualizer_prop_barCount": "Número de barras — apenas no modo de barras (padrão 24)",
+    "voiceVisualizer_prop_barCount": "Número de barras — apenas no modo de barras. `\"auto\"` encaixa quantas barras a largura permitir (largura e espaçamento das barras são fixos); um número desenha essa quantidade de barras como um grupo centralizado.",
     "voiceVisualizer_prop_className": "Classe CSS adicional",
-    "voiceVisualizer_prop_data": "Valores de amplitude normalizados (0–1) por slot.\nQuando omitido, uma animação ociosa em loop é reproduzida.\nPara barras: um valor por barra. Para forma de onda: amostras no domínio do tempo.",
-    "voiceVisualizer_prop_height": "Altura renderizada em pixels (padrão 40)",
-    "voiceVisualizer_prop_isActive": "Se o componente está em um estado ativo (gravando/reproduzindo)",
+    "voiceVisualizer_prop_data": "Valores de amplitude normalizados (0–1) por slot.\nQuando omitido, uma animação idle em loop é reproduzida.\nPara barras: um valor por barra (com `barCount=\"auto\"` os valores são reamostrados para o número de barras).\nPara forma de onda: amostras no domínio do tempo.",
+    "voiceVisualizer_prop_disabled": "Esmaece o visualizador para mostrar que nenhum áudio pode ser capturado ou reproduzido (por exemplo, sem permissão do microfone)",
+    "voiceVisualizer_prop_height": "Altura renderizada em pixels, ou `\"fill\"` para acompanhar a altura do pai (o pai precisa ter uma altura definida)",
+    "voiceVisualizer_prop_isActive": "Se o áudio está ativo (gravando ou reproduzindo). Quando false, o visualizador fica parado com intensidade total — uma gravação concluída não é esmaecida. Use `disabled` para esmaecê-lo.",
     "voiceVisualizer_prop_mode": "Estilo de visualização",
+    "voiceVisualizer_prop_progress": "Posição de reprodução (0–1) de um clipe gravado. A parte anterior é desenhada na cor do sentimento e o restante em uma cor neutra. Só tem efeito com `data`.",
     "voiceVisualizer_prop_sentiment": "Contexto de sentimento para coloração (padrão 'neutral')"
   }
 }

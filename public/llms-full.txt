@@ -3376,10 +3376,18 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `mode: "bars" | "waveform"` = "bars" — Visualization style
     - `data: unknown` — Normalized amplitude values (0–1) per slot.
 When omitted, a looping idle animation plays.
-For bars: one value per bar. For waveform: time-domain samples.
-    - `isActive: boolean` = true — Whether the component is in an active (recording/playing) state
-    - `barCount: number` = 24 — Number of bars — bars mode only (default 24)
-    - `height: number` = 40 — Rendered height in pixels (default 40)
+For bars: one value per bar (with `barCount="auto"` the values are resampled to the bar count).
+For waveform: time-domain samples.
+    - `isActive: boolean` = true — Whether audio is live (recording or playing). When false the visualizer holds still
+at full strength — a finished recording is not dimmed. Use `disabled` to dim it.
+    - `disabled: boolean` = false — Dims the visualizer to show that no audio can be captured or played
+(e.g. microphone permission not granted)
+    - `progress: number` — Playback position (0–1) of a recorded clip. The part before it is drawn in the
+sentiment color and the rest in a neutral color. Has effect only with `data`.
+    - `barCount: number | "auto"` = "auto" — Number of bars — bars mode only. `"auto"` fits as many bars as the width allows
+(bar width and gap stay fixed); a number draws that many bars as a centered cluster.
+    - `height: number | "fill"` = 40 — Rendered height in pixels, or `"fill"` to follow the parent's height
+(the parent needs a definite height)
     - `className: string` — Additional CSS class
     - `sentiment: "neutral" | "positive" | "caution" | "negative" | "informative"` = "neutral" — Sentiment context for coloring (default 'neutral')
     - `ariaLabel: string` — Accessible label describing the audio; when omitted the visualizer is

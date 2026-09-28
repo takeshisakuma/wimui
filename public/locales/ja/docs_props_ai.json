@@ -132,12 +132,14 @@
     "usageMeter_prop_used": "これまでに使用したトークン数",
     "usageMeter_prop_warnThreshold": "メーターが警告色に変わる割合（0〜1）",
     "voiceVisualizer_prop_ariaLabel": "音声を説明するアクセシブルなラベル。省略するとビジュアライザは支援技術から隠されます",
-    "voiceVisualizer_prop_barCount": "バーの数 — バーモードのみ（デフォルト 24）",
+    "voiceVisualizer_prop_barCount": "バーの数 — バーモードのみ。`\"auto\"` は幅に収まるだけの本数を並べます（バーの幅と間隔は固定）。数を渡すと、その本数を中央にまとめた塊で描きます。",
     "voiceVisualizer_prop_className": "追加の CSS クラス",
-    "voiceVisualizer_prop_data": "スロットごとの正規化された振幅値（0〜1）。\n指定しない場合はループするアイドルアニメーションが再生されます。\nバーの場合: バーごとに1つの値。波形の場合: 時間領域のサンプル。",
-    "voiceVisualizer_prop_height": "レンダリングされる高さ（ピクセル、デフォルト 40）",
-    "voiceVisualizer_prop_isActive": "コンポーネントがアクティブ（録音/再生）状態かどうか",
+    "voiceVisualizer_prop_data": "スロットごとの正規化された振幅値（0〜1）。\n指定しない場合はループするアイドルアニメーションが再生されます。\nバーの場合: バーごとに1つの値（`barCount=\"auto\"` のときはバーの本数に引き直します）。\n波形の場合: 時間領域のサンプル。",
+    "voiceVisualizer_prop_disabled": "音声を取り込めない・再生できないこと（マイクの許可が無いなど）を示すために薄く描きます",
+    "voiceVisualizer_prop_height": "描画する高さ（ピクセル）。`\"fill\"` で親の高さに合わせます（親の高さが決まっている必要があります）",
+    "voiceVisualizer_prop_isActive": "音声が動いている（録音中・再生中）かどうか。false のときは止まった姿を薄くせずに描きます（録音が終わった音声は薄くしません）。薄くするには `disabled` を使います。",
     "voiceVisualizer_prop_mode": "ビジュアライゼーションのスタイル",
+    "voiceVisualizer_prop_progress": "録音済みの音声の再生位置（0〜1）。それより手前をセンチメントの色、後ろを中立色で描きます。`data` があるときだけ効きます。",
     "voiceVisualizer_prop_sentiment": "色付け用のセンチメントコンテキスト（デフォルト 'neutral'）"
   }
 }

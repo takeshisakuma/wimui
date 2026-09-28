@@ -8,10 +8,10 @@
 
     &.active { opacity: 1; }
     
-    // 非アクティブ（完了・停止）は静止させる。以前は不透明度 0.6〜1 と横幅 ±2% の
-    // 「呼吸」をかけていたが、箱全体が dim（0.4）なので目では気付けず、見えない動きだけが
-    // 残っていた。
-    &.muted {
+    // 無効（音声を拾えない・流せない）だけを薄くする。以前は `isActive={false}`（完了・停止）で
+    // 薄くしていたため、分析が済んだ録音の波形まで「使えない」ように見えていた。止まっていることは
+    // 動きが無いことで伝わる。
+    &.disabled {
       opacity: var(--wim-opacity-dim, 0.4);
       filter: grayscale(0.5);
 
@@ -47,6 +47,11 @@
       animation: voice-bar-idle 1.2s var(--wim-easing-standard, ease-in-out) infinite;
       animation-delay: var(--delay, 0s);
     }
+  }
+
+  /* 再生位置（`progress`）より後ろの、まだ再生していない部分。棒も波形も同じ中立色にする。 */
+  .unplayed {
+    color: var(--wim-color-text-disabled);
   }
 
   /* ── Waveform stroke color ── */

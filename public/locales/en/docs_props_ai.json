@@ -132,12 +132,14 @@
     "usageMeter_prop_used": "Number of tokens used so far",
     "usageMeter_prop_warnThreshold": "Fraction (0–1) at which the meter turns to the warning color",
     "voiceVisualizer_prop_ariaLabel": "Accessible label describing the audio; when omitted the visualizer is hidden from assistive tech",
-    "voiceVisualizer_prop_barCount": "Number of bars — bars mode only (default 24)",
+    "voiceVisualizer_prop_barCount": "Number of bars — bars mode only. `\"auto\"` fits as many bars as the width allows\n(bar width and gap stay fixed); a number draws that many bars as a centered cluster.",
     "voiceVisualizer_prop_className": "Additional CSS class",
-    "voiceVisualizer_prop_data": "Normalized amplitude values (0–1) per slot.\nWhen omitted, a looping idle animation plays.\nFor bars: one value per bar. For waveform: time-domain samples.",
-    "voiceVisualizer_prop_height": "Rendered height in pixels (default 40)",
-    "voiceVisualizer_prop_isActive": "Whether the component is in an active (recording/playing) state",
+    "voiceVisualizer_prop_data": "Normalized amplitude values (0–1) per slot.\nWhen omitted, a looping idle animation plays.\nFor bars: one value per bar (with `barCount=\"auto\"` the values are resampled to the bar count).\nFor waveform: time-domain samples.",
+    "voiceVisualizer_prop_disabled": "Dims the visualizer to show that no audio can be captured or played\n(e.g. microphone permission not granted)",
+    "voiceVisualizer_prop_height": "Rendered height in pixels, or `\"fill\"` to follow the parent's height\n(the parent needs a definite height)",
+    "voiceVisualizer_prop_isActive": "Whether audio is live (recording or playing). When false the visualizer holds still\nat full strength — a finished recording is not dimmed. Use `disabled` to dim it.",
     "voiceVisualizer_prop_mode": "Visualization style",
+    "voiceVisualizer_prop_progress": "Playback position (0–1) of a recorded clip. The part before it is drawn in the\nsentiment color and the rest in a neutral color. Has effect only with `data`.",
     "voiceVisualizer_prop_sentiment": "Sentiment context for coloring (default 'neutral')"
   }
 }
