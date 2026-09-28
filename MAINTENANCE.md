@@ -26,7 +26,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
-**最後に実体で確認した日: 2026-09-20**（下の 5 件すべて）。**確認は `npm view <ブロッカー> peerDependencies` で、
+**最後に実体で確認した日: 2026-09-28**（下の 4 件すべて。どれも解けていない ── addon-mcp だけ一部が動いた、行の中を見ること）。**確認は `npm view <ブロッカー> peerDependencies` で、
 宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
 実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
 `^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
@@ -40,10 +40,10 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 | 依存 | 止めている理由 | 再開の判定材料 |
 |---|---|---|
-| `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか |
+| `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか。**2026-09-28（10.6.0）: 一部だけ動いた。** ライブのサーバ（`initializeMCPServer` の `get instructions()`）は今も `buildServerInstructions` の結果だけを返す＝閉じたまま。一方、新しく **`experimental_storybookAi` プリセット**ができ、addon-mcp の実装（`buildStorybookAiMetadata`）は前のプリセットの `existingMetadata.instructions` を `joinInstructions` で**つなぐ**。読むのは Storybook の CLI 側の MCP（`storybook/dist/bin/core.js` の `src/cli/ai/mcp/local-metadata.ts`）。**CLI 経由のエージェントには WIM の合成ルールを届けられる道ができた**が、名前が `experimental_` で、開発サーバの MCP には効かない。T23 を進めるなら、まずこの道で `.storybook/main.ts` から instructions を足して CLI の MCP に出るかを実測する |
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
-| `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
+| `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ。2026-09-28 も latest 10.6.0 は `^3 || ^4` のままで、5 を受けるのは `next` の `11.0.0-alpha.1` だけ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
 
 **解除したもの**:
 
