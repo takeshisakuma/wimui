@@ -54,6 +54,9 @@
       ]
     },
     "audit-listfamily--overview": {
+      "light": [
+        "color-contrast"
+      ],
       "dark": [
         "color-contrast"
       ]
