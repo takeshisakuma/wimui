@@ -303,22 +303,6 @@
         "th-has-data-cells"
       ]
     },
-    "components-data-structures-datagrid--with-fixed-column": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
-    "components-data-structures-datagrid--with-right-fixed-column": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
     "components-data-structures-virtuallist--with-overscan": {
       "light": [
         "color-contrast"
