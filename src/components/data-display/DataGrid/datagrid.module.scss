@@ -92,6 +92,8 @@
       position: static;
       width: auto;
       content: attr(data-label);
+      border: none;
+      border-image: none;
     }
   }
 
@@ -200,16 +202,29 @@
     }
   }
 
+  /* **固定列の影は `background` ではなく `border-image` で描く（T274）。**
+     axe の `color-contrast` は、文字を持つ要素の**先祖すべて**の疑似要素を見て、
+     `position: absolute` で背景（色か画像）を持つ疑似要素の面積が文字の要素の 25% を
+     超えると背景を決めず「要確認（incomplete）」にする。`transform` は見ない。
+     影はセルの外へ `translateX` で出していて文字とは重ならないのに、固定列に
+     ボタンや短い見出しを置くたびに要確認が出ていた（利用者が自分の画面を axe で
+     監査しても出る）。border-image は axe の判定対象外で、画素は変わらない。
+     **影が文字に重なる形へ変えると axe では気づけない**ので、外へ出す形は保つこと。
+     **セル自身の box-shadow では描けない** ── `border-collapse: collapse` の表では、
+     Chrome はセルの外側の box-shadow を 1 画素も描かない（30px の赤で実測）。
+     背景を消すので、Table の境界 1 画素の隙間埋め（T234）の `background` も打ち消している。 */
   .root .container .cellFixedLeftLast {
     &::after {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      width: 10px; /* Exception: Structural Logic — column resize hit target */
+      width: 0;
       pointer-events: none;
       content: "";
-      background: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+      background: none;
+      border-left: 10px solid transparent; /* Exception: Structural Logic — column resize hit target */
+      border-image: linear-gradient(to right, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent) 0 0 0 100% / 0 0 0 10px; /* Exception: Structural Logic — 影の幅（上の border と同じ） */
       transform: translateX(100%);
     }
   }
@@ -220,10 +235,12 @@
       top: 0;
       bottom: 0;
       left: 0;
-      width: 10px; /* Exception: Structural Logic — column resize hit target */
+      width: 0;
       pointer-events: none;
       content: "";
-      background: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent);
+      background: none;
+      border-right: 10px solid transparent; /* Exception: Structural Logic — column resize hit target */
+      border-image: linear-gradient(to left, oklch(from var(--wim-color-text-primary) l c h / 0.1), transparent) 0 100% 0 0 / 0 10px 0 0; /* Exception: Structural Logic — 影の幅（上の border と同じ） */
       transform: translateX(-100%);
     }
   }
