@@ -134,60 +134,71 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     };
 
     const ContentComponent = asChild ? Slot : "div";
+    const contentRef = useRef<HTMLDivElement>(null);
+    const hasActions = leftWidth > 0 || rightWidth > 0;
+
+    // **キーボードで操作ボタンに来たら、その側を開いて見せる（T275）。** 操作ボタンは行の内容の
+    // 裏（z-index が下）にあり、以前は Tab でフォーカスが当たっても内容に完全に覆われて
+    // 見えなかった（WCAG 2.4.11）。スワイプできない利用者は、見えないボタンを押すことになっていた。
+    const reveal = (side: "left" | "right") => {
+      const next = side === "left" ? leftWidth : -rightWidth;
+      if (offset !== next) setOffset(next);
+      listContext?.reportOpen(id);
+    };
+
+    // フォーカスが行の外へ出たら閉じる（開いたまま見えない位置へ置き去りにしない）。
+    const handleBlur = (e: React.FocusEvent) => {
+      const next = e.relatedTarget as Node | null;
+      if (next && containerRef.current?.contains(next)) return;
+      if (offset !== 0 && !swiping) {
+        setOffset(0);
+        listContext?.reportClose(id);
+      }
+    };
+
+    const runAction = (action: SwipeActionItem, e: React.MouseEvent<HTMLButtonElement>) => {
+      action.onClick();
+      if (!closeOnAction) return;
+      setOffset(0);
+      listContext?.reportClose(id);
+      // 閉じると押したボタンは内容の裏へ戻るので、フォーカスをそこに残さず行の内容へ戻す。
+      // 行が操作で消えた（削除など）ときは、要素ごと無くなるので何もしない。
+      if (document.activeElement === e.currentTarget) contentRef.current?.focus();
+    };
+
+    const renderActions = (side: "left" | "right", actions: SwipeActionItem[], width: number) => (
+      <div className={classNames(localStyles.actions, localStyles[side])} style={{ width }}>
+        {actions.map((action, i) => (
+          <button
+            key={i}
+            className={classNames(localStyles.action, action.intent && localStyles[action.intent])}
+            style={{ backgroundColor: action.color }}
+            onFocus={() => reveal(side)}
+            onClick={(e) => runAction(action, e)}
+            type="button"
+          >
+            <Icon name={action.icon} size="md" />
+            <span className={localStyles.label}>{action.label}</span>
+          </button>
+        ))}
+      </div>
+    );
 
     return (
       <Component
         ref={containerRef}
         className={classNames("wim-swipe-action", localStyles.container, className)}
         onMouseLeave={handleEnd}
+        onBlur={handleBlur}
         {...props}
       >
-        {leftWidth > 0 && (
-          <div className={classNames(localStyles.actions, localStyles.left)} style={{ width: leftWidth }}>
-            {leftActions.map((action, i) => (
-              <button
-                key={i}
-                className={classNames(localStyles.action, action.intent && localStyles[action.intent])}
-                style={{ backgroundColor: action.color }}
-                onClick={() => { 
-                  action.onClick(); 
-                  if (closeOnAction) {
-                    setOffset(0);
-                    listContext?.reportClose(id);
-                  }
-                }}
-                type="button"
-              >
-                <Icon name={action.icon} size="md" />
-                <span className={localStyles.label}>{action.label}</span>
-              </button>
-            ))}
-          </div>
-        )}
-        {rightWidth > 0 && (
-          <div className={classNames(localStyles.actions, localStyles.right)} style={{ width: rightWidth }}>
-            {rightActions.map((action, i) => (
-              <button
-                key={i}
-                className={classNames(localStyles.action, action.intent && localStyles[action.intent])}
-                style={{ backgroundColor: action.color }}
-                onClick={() => { 
-                  action.onClick(); 
-                  if (closeOnAction) {
-                    setOffset(0);
-                    listContext?.reportClose(id);
-                  }
-                }}
-                type="button"
-              >
-                <Icon name={action.icon} size="md" />
-                <span className={localStyles.label}>{action.label}</span>
-              </button>
-            ))}
-          </div>
-        )}
+        {/* 内容を先、操作を後に置く。見た目の位置は position / z-index で決まるので変わらない。
+            以前は操作が先にあり、読み上げとフォーカスの順が「削除・編集 → 行の中身」になっていた。 */}
         <ContentComponent
+          ref={contentRef}
           className={localStyles.content}
+          // 操作を押して閉じたときのフォーカスの戻り先。Tab の順には入れない。
+          tabIndex={hasActions ? -1 : undefined}
           style={{
             transform: `translateX(${offset}px)`,
             transition: swiping ? "none" : "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -201,6 +212,8 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         >
           {children}
         </ContentComponent>
+        {leftWidth > 0 && renderActions("left", leftActions, leftWidth)}
+        {rightWidth > 0 && renderActions("right", rightActions, rightWidth)}
       </Component>
     );
   }
