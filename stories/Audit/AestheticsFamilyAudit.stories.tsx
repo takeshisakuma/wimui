@@ -28,12 +28,14 @@ const meta: Meta = {
 export default meta;
 
 /**
- * `--wim-layout-transition` は `transition` ショートハンドの値（`all <duration> <easing>`）。
- * `animation` に渡すと `all` が 2 つ目のアニメーション名と読まれて宣言ごと無効になり、
- * `animation: none` に戻って動かなかった。本来の使い方どおり、`transition` を当てた要素の
- * 位置を一定間隔で切り替えて見せる（Audit は VRT の撮影対象外なのでタイマーで揺れない）。
+ * モーションのトークンはどれも `transition` ショートハンドの値
+ * （`--wim-transition-entrance` / `-exit` は `<duration> <easing>`、`--wim-layout-transition` は
+ * `all <duration> <easing>`）。`animation` に渡すと、Layout は `all` が 2 つ目のアニメーション名と
+ * 読まれて宣言ごと無効になり、Entrance / Exit はトークンの時間が `animation-delay` と読まれて
+ * 曲線しか見えなかった。本来の使い方どおり、`transition` を当てた要素の位置を一定間隔で
+ * 切り替えて見せる（Audit は VRT の撮影対象外なのでタイマーで揺れない）。
  */
-const LayoutTransitionDemo = () => {
+const MotionTokenDemo = ({ transition }: { transition: string }) => {
   const [atEnd, setAtEnd] = React.useState(false);
 
   React.useEffect(() => {
@@ -47,7 +49,7 @@ const LayoutTransitionDemo = () => {
         className="motion-ball"
         style={{
           left: atEnd ? "calc(100% - 40px)" : 0,
-          transition: "var(--wim-layout-transition)",
+          transition,
         }}
       />
     </Box>
@@ -127,21 +129,17 @@ export const Overview: StoryObj = {
              <Stack gap="md">
                 <Box>
                   <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_entrance")}</Text>
-                  <Box className="motion-track">
-                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-entrance) infinite" }} />
-                  </Box>
+                  <MotionTokenDemo transition="var(--wim-transition-entrance)" />
                 </Box>
                 
                 <Box>
                   <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_exit")}</Text>
-                  <Box className="motion-track">
-                    <Box className="motion-ball" style={{ animation: "moveRight 3s var(--wim-transition-exit) infinite" }} />
-                  </Box>
+                  <MotionTokenDemo transition="var(--wim-transition-exit)" />
                 </Box>
 
                 <Box>
                   <Text size="xs" style={{ marginBottom: "var(--wim-spacing-xs)" }}>{t("audit:aesthetics_motion_layout")}</Text>
-                  <LayoutTransitionDemo />
+                  <MotionTokenDemo transition="var(--wim-layout-transition)" />
                 </Box>
 
                 <style>{`
@@ -159,11 +157,6 @@ export const Overview: StoryObj = {
                     width: 40px;
                     background: var(--wim-color-primary);
                     border-radius: 4px;
-                  }
-                  @keyframes moveRight {
-                    0% { left: 0; }
-                    50% { left: calc(100% - 40px); }
-                    100% { left: 0; }
                   }
                 `}</style>
              </Stack>
