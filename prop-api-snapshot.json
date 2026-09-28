@@ -12587,7 +12587,7 @@
     },
     "VoiceVisualizer.barCount": {
       "required": false,
-      "type": "number"
+      "type": "number | \"auto\""
     },
     "VoiceVisualizer.className": {
       "required": false,
@@ -12597,9 +12597,13 @@
       "required": false,
       "type": "unknown"
     },
+    "VoiceVisualizer.disabled": {
+      "required": false,
+      "type": "boolean"
+    },
     "VoiceVisualizer.height": {
       "required": false,
-      "type": "number"
+      "type": "number | \"fill\""
     },
     "VoiceVisualizer.isActive": {
       "required": false,
@@ -12611,6 +12615,10 @@
         "bars",
         "waveform"
       ]
+    },
+    "VoiceVisualizer.progress": {
+      "required": false,
+      "type": "number"
     },
     "VoiceVisualizer.sentiment": {
       "required": false,

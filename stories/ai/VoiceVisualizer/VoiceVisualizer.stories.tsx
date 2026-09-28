@@ -13,10 +13,23 @@ const meta: Meta<typeof VoiceVisualizer> = {
   args: {
     mode: "bars",
     isActive: true,
-    barCount: 24,
     height: 40,
   },
 };
+
+/** 録音済みの音声の振幅（決定的な値。VRT で揺れないように乱数を使わない）。 */
+const RECORDED: readonly number[] = Array.from({ length: 120 }, (_, i) => {
+  const t = i / 119;
+  const envelope = Math.sin(Math.PI * t) * (0.5 + 0.5 * Math.sin(t * 7 * Math.PI) ** 2);
+  return 0.08 + 0.85 * envelope * Math.abs(Math.sin(i * 0.9));
+});
+
+/** 波形モード用の時間領域のサンプル（0.5 が無音）。 */
+const RECORDED_WAVE: readonly number[] = Array.from({ length: 360 }, (_, i) => {
+  const t = i / 359;
+  const envelope = Math.sin(Math.PI * t) * (0.55 + 0.45 * Math.sin(t * 5 * Math.PI) ** 2);
+  return 0.5 + 0.45 * envelope * Math.sin(i * 0.28);
+});
 
 export default meta;
 type Story = StoryObj<typeof VoiceVisualizer>;
@@ -114,11 +127,59 @@ export const WaveformWithData: Story = {
   },
 };
 
+/** 録音が終わった音声。止まっているが、薄くはしない（使えないわけではないため）。 */
 export const Inactive: Story = {
   args: {
     isActive: false,
+    mode: "waveform",
+    data: RECORDED_WAVE,
+    height: 48,
+  },
+};
+
+/** 音声を拾えない・流せない（マイクの許可が無いなど）ときだけ薄くする。 */
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    isActive: false,
     mode: "bars",
   },
+};
+
+/** 録音の再生。`progress` より手前を色付き、後ろを中立色で描く。 */
+export const Playback: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xl)" }}>
+        <VoiceVisualizer
+          mode="bars"
+          isActive={false}
+          data={RECORDED}
+          progress={0.35}
+          height={32}
+          aria-label={t("story.voice_label_playback")}
+        />
+        <VoiceVisualizer
+          mode="waveform"
+          isActive={false}
+          data={RECORDED_WAVE}
+          progress={0.62}
+          height={48}
+          aria-label={t("story.voice_label_playback")}
+        />
+      </div>
+    );
+  },
+};
+
+/** `height="fill"` は親の高さに合わせる（親の高さが決まっていること）。棒の本数は幅から決まる。 */
+export const FillHeight: Story = {
+  render: () => (
+    <div style={{ height: 96, display: "flex" }}>{/* 親の高さ（デモ用の固定値） */}
+      <VoiceVisualizer mode="bars" height="fill" isActive={false} data={RECORDED} />
+    </div>
+  ),
 };
 
 export const LargeHeight: Story = {
