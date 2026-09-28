@@ -22,6 +22,21 @@
     &.right {
       right: 0;
     }
+
+    /* full swipe の側を開いた幅より先へ引いたとき、広がった分は外側の端の操作が受け持つ。
+       ほかの操作は元の幅（--_action-w）のまま（T276）。 */
+    &.stretched .action:not(.outer) {
+      flex: 0 0 var(--_action-w);
+    }
+
+    /* 閾値を越えた（指を離すと外側の端の操作が走る）ことを、その操作が列全体に広がる形で
+       予告する。ほかの操作は畳む。 */
+    &.armed .action:not(.outer) {
+      flex: 0 0 0;
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
   }
 
   .action {
@@ -39,7 +54,8 @@
     cursor: pointer;
     background: var(--bg);
     border: none;
-    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
+    transition: flex-basis var(--wim-duration-fast) var(--wim-easing-standard),
+                background-color var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:hover {
       background-color: oklch(from var(--bg) calc(l * 1.1) c h);

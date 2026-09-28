@@ -2589,6 +2589,9 @@ Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
     - `asChild: boolean` = false — If true, the content div will be rendered as its child
     - `id: string` — Unique ID for the item. Automatically generated if not provided.
     - `closeOnAction: boolean` = true — Whether to automatically close the actions when an action is clicked. Default is true.
+    - `fullSwipe: "left" | "right" | "both"` — Sides where swiping all the way across runs the outermost action without a tap
+(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a
+destructive action is never triggered by momentum; the action stays available as a button.
 - **Table** — Rows and columns for displaying structured data efficiently
     - `asChild: boolean` = false — Whether to render as a child element.
     - `striped: boolean` = false — Whether to show striped (zebra) rows
