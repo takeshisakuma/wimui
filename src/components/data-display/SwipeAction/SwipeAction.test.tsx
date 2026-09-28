@@ -174,4 +174,66 @@ describe("SwipeAction", () => {
     expect(second.style.transform).toBe("translateX(80px)");
     expect(first.style.transform).toBe("translateX(0px)");
   });
+
+  describe("keyboard (T275)", () => {
+    // 以前は操作ボタンが行の内容の裏にあり、Tab でフォーカスが当たっても覆われて見えなかった
+    const renderRow = (onEdit = vi.fn()) =>
+      render(
+        <>
+          <SwipeAction
+            leftActions={[{ icon: "CheckIcon", label: "Done", onClick: vi.fn() }]}
+            rightActions={[{ icon: "EditIcon", label: "Edit", onClick: onEdit }, deleteAction()]}
+          >
+            row
+          </SwipeAction>
+          <button type="button">outside</button>
+        </>,
+      );
+
+    it("reveals the side whose action receives focus", () => {
+      const { container } = renderRow();
+      const content = getContent(container);
+      act(() => screen.getByRole("button", { name: "Done" }).focus());
+      expect(content.style.transform).toBe("translateX(80px)");
+      act(() => screen.getByRole("button", { name: "Delete" }).focus());
+      expect(content.style.transform).toBe("translateX(-160px)");
+    });
+
+    it("closes when focus leaves the row", () => {
+      const { container } = renderRow();
+      const content = getContent(container);
+      act(() => screen.getByRole("button", { name: "Edit" }).focus());
+      expect(content.style.transform).toBe("translateX(-160px)");
+      act(() => screen.getByRole("button", { name: "outside" }).focus());
+      expect(content.style.transform).toBe("translateX(0px)");
+    });
+
+    it("stays open while focus moves between its own actions", () => {
+      const { container } = renderRow();
+      const content = getContent(container);
+      act(() => screen.getByRole("button", { name: "Edit" }).focus());
+      act(() => screen.getByRole("button", { name: "Delete" }).focus());
+      expect(content.style.transform).toBe("translateX(-160px)");
+    });
+
+    it("returns focus to the row content after an action closes it", () => {
+      const onEdit = vi.fn();
+      const { container } = renderRow(onEdit);
+      const content = getContent(container);
+      const edit = screen.getByRole("button", { name: "Edit" });
+      act(() => edit.focus());
+      fireEvent.click(edit);
+      expect(onEdit).toHaveBeenCalled();
+      expect(content.style.transform).toBe("translateX(0px)");
+      // 閉じると押したボタンは内容の裏へ戻るので、フォーカスを残さない
+      expect(document.activeElement).toBe(content);
+      expect(content).toHaveAttribute("tabindex", "-1");
+    });
+
+    it("puts the content before the actions in the reading order", () => {
+      const { container } = renderRow();
+      const root = container.querySelector(".wim-swipe-action")!;
+      expect(root.firstElementChild).toBe(getContent(container));
+    });
+  });
 });
