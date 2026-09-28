@@ -12,9 +12,14 @@ const SwipeableListContext = createContext<SwipeableListContextValue | null>(nul
 export const useSwipeableList = () => useContext(SwipeableListContext);
 
 export interface SwipeableListProps {
+  /** The `SwipeAction` rows to coordinate */
   children: React.ReactNode;
-  /** If true, only one item can be swiped open at a time. */
+  /**
+   * If true (default), only one row can be open at a time — opening a row, by swipe
+   * or by keyboard focus on its actions, closes the others.
+   */
   exclusive?: boolean;
+  /** Additional CSS class */
   className?: string;
 }
 

@@ -310,6 +310,8 @@
     "transfer_i18n_desc": "Full support for localizing labels, placeholders, and status messages.",
     "speed_dial_desc": "Floating action button that expands sub-actions on hover or click.",
     "swipe_action_desc": "Mobile-friendly swipe actions (delete, archive) for list items.",
+    "swipeable_list_desc": "Container for SwipeAction rows that keeps at most one row open at a time.",
+    "swipeable_list_usage": "Wrap the rows in SwipeableList to keep only one row open: opening a row, by swipe or by keyboard focus on its actions, closes the others. Set exclusive={false} to let rows stay open independently. SwipeAction works on its own too; the list only coordinates which row is open.",
     "pull_to_refresh_desc": "Pull-to-refresh utility for enhancing mobile user experience.",
     "json_viewer_desc": "Recursive tree viewer and editor for JSON data.",
     "speed_dial_design_intent": "Provide a space-saving way to display primary actions in a mobile or high-density UI.",
