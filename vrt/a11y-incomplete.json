@@ -77,14 +77,6 @@
         "color-contrast"
       ]
     },
-    "audit-viewportfamily--overview": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
     "audit-visualizationfamily--overview": {
       "light": [
         "color-contrast"
