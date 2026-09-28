@@ -7,7 +7,7 @@
 
 ## 次にやるとよい順
 
-**2026-09-28 時点の順番**: ①**定期点検 #731 の隔週・四半期の項目**（毎週の 2 項目は 9/28 に済・#693 は閉じた）→ ②**T276 → T277 → T278 → T279**（コンポーネント追加の検討。T278 は ⓑ Tiptap に決定）→ ④**changeset の警告の様子見**。0.38.0 まで公開済み。
+**2026-09-28（終業時点）の順番**: ①**#739 のマージ**（SwipeableList の公開。CI の結果を確かめてから。Audit/ListFamily の `color-contrast` の要確認は、閉じた行の裏の操作ボタンによるもので、実測 42 ノードで 4.5:1 割れ 0 を確かめて light / dark とも登録済み）→ ②**T276 の残り＝full swipe を仕上げる**（ブランチ `feat/t276-full-swipe` に実装と単体テスト 7 件まで push 済み・PR は未作成。残りは FullSwipe のストーリー（翻訳キー）・MDX・Props の翻訳 en / ja / pt・changeset（minor）・VRT の新規ベースライン。#739 のマージ後に main を取り込み、T276 を済にする）→ ③**定期点検 #731 の隔週・四半期の項目**（毎週の 2 項目は 9/28 に済・#693 は閉じた）→ ④**T277 → T278 → T279**（T278 は ⓑ Tiptap に決定）→ ⑤**changeset の警告の様子見**。0.38.0 まで公開済み。
 
 **着手前に読むもの**: タスクを済にしたら同じ PR で `npm run improvements:archive`。起票の番号は `npm run check:improvements` の「次に振る番号」（いま T280 / CI-13）。**docs を触ったら `npm run audit:docs` を丸ごと流す**（部分のガードだけでは乖離検査を通せない）。**VRT の撮り直しは `node scripts/vrt-diff-report.js <SHA>` で画素で仕分ける**。**出荷物（`src/` / `tokens/`）を変える PR には changeset を同梱する**（版を上げない変更は `npx changeset --empty`。無いと `changeset-reminder` がコメントする）。
 
