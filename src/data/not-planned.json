@@ -28,6 +28,13 @@
       "ja": "質量・剛性・減衰を prop で受け、rAF ループで解く物理アニメーション基盤。バウンスの曲線自体は `--wim-easing-spring` として既にあり、押下やスワイプの戻りはこれで足りる。基盤を持つと『どのコンポーネントにも渡せる物理パラメータ』が公開契約に増え、CSS で完結していたモーションが JS 依存になる。",
       "en": "A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS.",
       "instead": "--wim-easing-spring"
+    },
+    {
+      "name": "Choropleth Map",
+      "aka": ["Choropleth", "Filled Map", "Region Map", "Geo Map"],
+      "ja": "国や地域を値の濃淡で塗り分ける地図。境界データを同梱すると、サイズ（世界地図の粗いものでも 100KB 前後）と、係争中の国境をどう描くかという政治的な立場を UI ライブラリが負う。また面積の大きい地域ほど目立ち、値の大きさと見た目が一致しない。地域の比較は並べ替えた棒グラフのほうが正確に読める。",
+      "en": "A map shading regions by value. Shipping boundary data would put its size and a political stance on disputed borders into a UI library, and large regions dominate regardless of their values. Regions are compared more accurately in a sorted bar chart.",
+      "instead": "BarChart"
     }
   ]
 }
