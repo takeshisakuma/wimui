@@ -1,5 +1,28 @@
 # wimui
 
+## 0.39.0
+
+### Minor Changes
+
+- 45888c7: `SwipeableList` を公開しました（`wimui` / `wimui/data-display`）。`SwipeAction` の行を包むと、開いている行を常に 1 つまでに保ちます（`exclusive`、既定 `true`）。スワイプで開いても、キーボードで操作にフォーカスして開いても、ほかの行は閉じます。これまでも実装はありましたが、どこからも export されておらず、利用者は使えませんでした。
+
+  ```tsx
+  import { SwipeableList, SwipeAction } from "wimui";
+
+  <SwipeableList>
+    <SwipeAction rightActions={[...]}>...</SwipeAction>
+    <SwipeAction rightActions={[...]}>...</SwipeAction>
+  </SwipeableList>
+  ```
+
+### Patch Changes
+
+- f059197: SwipeAction: キーボードで操作ボタンにフォーカスすると、その側が開いてボタンが見えるようにしました。これまでは、操作ボタンは Tab でフォーカスが当たるのに行の内容に完全に覆われていて、キーボードの利用者には何を押そうとしているのか見えませんでした。
+
+  - フォーカスが行の外へ出ると閉じます（同じ行の操作どうしの移動では閉じません）。
+  - 操作を実行して行が閉じたあとは、隠れたボタンにフォーカスを残さず、行の内容へ戻します。
+  - DOM の順を「行の内容 → 操作」にしました。読み上げが行の中身より先に「削除・編集」を読んでいたためです。見た目は変わりません。
+
 ## 0.38.0
 
 ### Minor Changes
