@@ -447,9 +447,6 @@
     "components-media-audio--premium-features": {
       "light": [
         "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
       ]
     },
     "components-media-audio--rounded": {
@@ -549,6 +546,14 @@
       ]
     },
     "components-utilities-swipeaction--exclusive-list": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-utilities-swipeaction--full-swipe": {
       "light": [
         "color-contrast"
       ],

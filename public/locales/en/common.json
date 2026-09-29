@@ -372,7 +372,9 @@
     "std_column_no": "No",
     "std_column_yes": "Yes",
     "std_header_loading_state": "Loading state",
-    "std_header_unified_sizing": "Unified sizing"
+    "std_header_unified_sizing": "Unified sizing",
+    "swipe_action_full_swipe_title": "Full swipe",
+    "swipe_action_full_swipe_usage": "Set fullSwipe to \"left\", \"right\" or \"both\" to run the outermost action when a row is dragged all the way across: leftActions[0] on the left, the last of rightActions on the right. Past the threshold the outer action widens to fill the row, so the user sees what will run before letting go; releasing outside the row cancels it. It is off by default. Only pair it with an action the user can undo, and keep the same action as a button, since keyboard and screen reader users reach it that way."
   },
   "error": {
     "boundary_hide_details": "Hide details",
