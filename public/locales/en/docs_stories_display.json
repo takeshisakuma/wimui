@@ -425,6 +425,7 @@
     "radar_subject_testing": "Testing",
     "radar_subject_review": "Code review",
     "radar_subject_docs": "Docs",
-    "radar_subject_mentoring": "Mentoring"
+    "radar_subject_mentoring": "Mentoring",
+    "stats_open_alerts": "Open Alerts"
   }
 }

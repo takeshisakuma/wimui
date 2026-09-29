@@ -234,6 +234,7 @@
     "transition_hide_slide": "Close Slide",
     "transition_show_content": "Show Content",
     "transition_show_slide": "Expand Slide Content",
-    "transition_slide_content": "Slide!"
+    "transition_slide_content": "Slide!",
+    "overlay_variant_glass": "Glass"
   }
 }

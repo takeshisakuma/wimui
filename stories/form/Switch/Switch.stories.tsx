@@ -50,6 +50,17 @@ export const Small: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Large: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Switch {...args}>{t("story.switch_airplane")}</Switch>;
+  },
+  args: {
+    size: "lg",
+  },
+};
+
 export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

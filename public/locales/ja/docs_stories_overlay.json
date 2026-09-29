@@ -234,6 +234,7 @@
     "transition_hide_slide": "スライドを閉じる",
     "transition_show_content": "コンテンツを表示する",
     "transition_show_slide": "スライドコンテンツを展開",
-    "transition_slide_content": "スライド！"
+    "transition_slide_content": "スライド！",
+    "overlay_variant_glass": "ガラス"
   }
 }

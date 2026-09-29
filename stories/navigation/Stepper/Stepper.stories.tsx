@@ -87,6 +87,20 @@ export const ErrorStatus: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Intents: Story = {
+  render: function Render(args) {
+    const steps = useDefaultSteps();
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-2xl)" }}>
+        {(["wait", "process", "finish", "error"] as const).map((intent) => (
+          <Stepper key={intent} {...args} steps={steps} current={1} intent={intent} />
+        ))}
+      </div>
+    );
+  },
+};
+
 export const CustomIcons: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -234,6 +234,7 @@
     "transition_hide_slide": "Fechar Slide",
     "transition_show_content": "Mostrar Conteúdo",
     "transition_show_slide": "Expandir Conteúdo do Slide",
-    "transition_slide_content": "Deslizar!"
+    "transition_slide_content": "Deslizar!",
+    "overlay_variant_glass": "Vidro"
   }
 }

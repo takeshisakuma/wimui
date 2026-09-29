@@ -425,6 +425,7 @@
     "radar_subject_testing": "テスト",
     "radar_subject_review": "コードレビュー",
     "radar_subject_docs": "ドキュメント",
-    "radar_subject_mentoring": "メンタリング"
+    "radar_subject_mentoring": "メンタリング",
+    "stats_open_alerts": "未対応のアラート"
   }
 }
