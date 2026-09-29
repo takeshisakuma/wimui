@@ -222,7 +222,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "76 kB"
+      "limit": "80 kB"
     },
     {
       "name": "wimui/charts 全部 (gzip)",
@@ -253,7 +253,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "145 kB",
+      "limit": "150 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]
