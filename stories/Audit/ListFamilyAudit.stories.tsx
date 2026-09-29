@@ -8,6 +8,8 @@ import {
   ListItem,
   VirtualList,
   SortableList,
+  SwipeAction,
+  SwipeableList,
   DescriptionList,
   DescriptionListItem,
   DescriptionListTerm,
@@ -135,6 +137,24 @@ export const Overview: StoryObj = {
                   </Box>
                 )}
               />
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_swipeable_list")}>
+            {/* 開いている行は常に 1 つ。キーボードで操作にフォーカスしても開く（T275） */}
+            <Box style={{ width: "100%", maxWidth: "400px" }}>
+              <SwipeableList>
+                {sortableItems.map((item) => (
+                  <SwipeAction
+                    key={item.id}
+                    leftActions={[{ icon: "CheckIcon", label: t("common.done"), onClick: () => {}, intent: "success" }]}
+                    rightActions={[{ icon: "TrashIcon", label: t("action.delete"), onClick: () => {}, intent: "danger" }]}
+                  >
+                    <Box px="md" py="md">
+                      <Text>{item.content}</Text>
+                    </Box>
+                  </SwipeAction>
+                ))}
+              </SwipeableList>
             </Box>
           </ComponentGroup>
         </ComparisonGrid>

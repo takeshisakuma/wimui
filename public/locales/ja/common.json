@@ -363,6 +363,8 @@
     "swipe_action_content_guideline_1": "ラベルは短く簡潔に保ってください。",
     "swipe_action_content_guideline_2": "削除は赤、成功は緑など、セマンティックな色を使用してください。",
     "swipe_action_desc": "リストアイテムに対するモバイル向けの左右スワイプアクション（削除・アーカイブなど）。",
+    "swipeable_list_desc": "SwipeAction の行をまとめ、開いている行を常に 1 つまでに保つ器。",
+    "swipeable_list_usage": "行を SwipeableList で包むと、開いている行を 1 つに保ちます。スワイプでもキーボードで操作にフォーカスしても、ある行を開くと他の行は閉じます。exclusive={false} で、行ごとに独立して開いたままにできます。SwipeAction は単体でも動きます。この器が担うのは、どの行が開いているかの調整だけです。",
     "swipe_action_design_intent": "リストアイテムに対して、モバイルネイティブなジェスチャーベースのクイックアクションを提供します。",
     "swipe_action_i18n_desc": "アクションのラベルは翻訳キーを介してローカライズされます。",
     "swipe_action_keyboard_desc": "Tab で行の内容、続いてアクションへ進みます。アクションにフォーカスすると表示されます。Enter / Space で実行します。アクションで行が閉じたあとは、隠れたボタンにフォーカスを残さず、行の内容へ戻します。",

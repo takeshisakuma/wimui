@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.38.0 — a React 19 component library: 225 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.39.0 — a React 19 component library: 226 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2581,6 +2581,11 @@ fails if the list stops matching the SCSS.
 
 Same derivation as `padding`. There is no `--wim-radius-xs` / `-3xl` /
 `-4xl` / `-5xl` token, so those values had nothing they could have meant.
+- **SwipeableList** — Container for SwipeAction rows that keeps at most one row open at a time. (aka Swipeable List)
+    - `children: React.ReactNode` (required) — The `SwipeAction` rows to coordinate
+    - `exclusive: boolean` = true — If true (default), only one row can be open at a time — opening a row, by swipe
+or by keyboard focus on its actions, closes the others.
+    - `className: string` — Additional CSS class
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
     - `as: React.ElementType` = "div" — The element to render as the root container. Default is 'div'.
     - `leftActions: SwipeActionItem[]` = [] — Actions revealed when swiping from left to right
