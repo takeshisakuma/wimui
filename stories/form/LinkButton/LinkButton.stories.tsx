@@ -31,7 +31,7 @@ export const Variants: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
         {(["solid", "outline", "ghost"] as const).map((variant) => (
           <LinkButton key={variant} {...args} variant={variant} href="https://google.com" target="_blank" icon="ExternalLinkIcon" iconPosition="right">
             {t("story.linkbutton_google")}
@@ -46,7 +46,7 @@ export const Sizes: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
         {(["sm", "md", "lg"] as const).map((size) => (
           <LinkButton key={size} {...args} size={size} href="https://google.com" target="_blank" icon="ExternalLinkIcon" iconPosition="right">
             {t("story.linkbutton_google")}
