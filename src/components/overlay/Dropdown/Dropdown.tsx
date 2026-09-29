@@ -78,7 +78,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     },
     ref,
   ) => {
-    // 開閉の契約は `Popover` / `HoverCard`（`useFloatingElement`）に合わせる ──
+    // 開閉の契約は `Popover`（`useFloatingElement`）/ `HoverCard` に合わせる ──
     // `open` が来ていれば外が持ち主、来ていなければ自分で持つ。T264 まで内部状態しか
     // 無かったので、**メニューが開いた姿を VRT が一度も撮れていなかった**（撮れないものは
     // 壊れても差分にならない）し、使う側も行の操作から開くことができなかった。
