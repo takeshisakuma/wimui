@@ -419,9 +419,15 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 下限は「**CI で検証している非 EOL の LTS**」に保つ。いまは `>=22`。**次の見直しは Node 22 の EOL（2027-04）前**。
 
+**2026-09-29 の確認**: `engines` は `>=22.0.0`、CI は 25 か所とも Node 22。Node 22 の EOL は 2027-04-30（nodejs/Release の schedule.json）。Node 24 は 2026-10-20 に maintenance、Node 26 は 2026-10-28 に LTS。変更なし。
+
 ### 11. GitHub Actions の runner image と actions の major
 
 `ubuntu-24.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
+
+**`ubuntu-latest` の中身が変わる予告も見る**（actions/runner-images の issue に `ubuntu-latest` の移行予告が立つ）。描画を測るワークフロー（Playwright を使う 6 本）は `ubuntu-24.04` に固定してあり（T281）、**ほかは `ubuntu-latest` のまま**。固定した OS の廃止予告が出たら、1 本の PR で意図して移る（手順は T281）。
+
+**2026-09-29 の実測**: actions は 6 種類とも最新の major（checkout v7 / setup-node v7 / upload-artifact v7 / download-artifact v8 / changesets v2 / actions-gh-pages v4）。runner の実体は ubuntu-24.04（イメージ 20260920.314）。**`ubuntu-latest` が 2026-10-19〜11-19 に 26.04 へ移る予告（#14748）を見つけ、描画を測る 6 本を固定した（T281）**。
 
 ### 11-2. Playwright を上げたら、VRT の比較器がまだ生きているか確かめる（T238）
 
@@ -511,5 +517,7 @@ ls vrt/vrt.spec.ts-snapshots/*.png | wc -l
 ls vrt/vrt.spec.ts-snapshots/ | sed 's/.*-\(chromium-[a-z0-9]*\)\.png/\1/' | sort | uniq -c
 ls vrt/vrt.spec.ts-snapshots/ | grep -c '^light-'; ls vrt/vrt.spec.ts-snapshots/ | grep -c '^dark-'
 ```
+
+**2026-09-29 時点**: 2082 枚すべて `chromium-linux`、light 1041 / dark 1041 で名前も対称。`check:vrt-orphans` は孤児 0（index のストーリー 1099 件と照合）。
 
 **2026-08-07 時点**: 1990 枚すべて `chromium-linux`、light 995 / dark 995 で対称。かつては CI 未使用の `chromium-win32` が 2,942 枚、削除済みストーリーの orphan が 80 枚あった（T11）。
