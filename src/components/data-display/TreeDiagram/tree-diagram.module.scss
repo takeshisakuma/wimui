@@ -6,7 +6,10 @@
   .root {
     display: block;
     max-width: 100%;
-    padding: var(--wim-spacing-md);
+
+    // 開閉ボタンはカードの縁から半分はみ出す。余白をその半分に揃えないと、
+    // 下端・右端のボタンが padding を越えてスクロールになる。
+    padding: calc(var(--wim-tap-target-min) / 2);
     overflow: auto;
   }
 
@@ -102,14 +105,16 @@
     color: var(--wim-color-text-tertiary);
   }
 
-  // 開閉のボタン: 子のある側の縁の中央に重ねる。閉じているときは隠れている人数を出す
+  // 開閉のボタン: 子のある側の縁の中央に重ねる。閉じているときは隠れている人数を出す。
+  // 当たり判定は WCAG 2.5.8（AA）の 24×24。16px（spacing-2xl）では届かず Tap Target が落ちた
   .toggle {
     position: absolute;
+    box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--wim-spacing-2xl);
-    height: var(--wim-spacing-2xl);
+    min-width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
     padding-inline: var(--wim-spacing-2xs);
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-medium);
