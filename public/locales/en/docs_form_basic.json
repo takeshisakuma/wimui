@@ -473,6 +473,9 @@
     "themetoggle_scenario_1_desc": "The compact icon variant sits in the top bar and cycles light and dark with one click.",
     "themetoggle_scenario_1_title": "App header",
     "themetoggle_scenario_2_desc": "The segmented variant offers light, dark, and system as an explicit, discoverable choice.",
-    "themetoggle_scenario_2_title": "Settings screen"
+    "themetoggle_scenario_2_title": "Settings screen",
+    "searchinput_choice_alt": "Alternative",
+    "taginput_controlled_desc": "Managing tags via external state.",
+    "taginput_maximum_tags_desc": "Limit the number of tags that can be added."
   }
 }

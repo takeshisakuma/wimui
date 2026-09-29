@@ -438,6 +438,7 @@
     "swipe_full_deleted": "Deleted \"{{subject}}\".",
     "swipe_full_undo": "Undo",
     "swipe_full_empty": "No messages left.",
-    "stats_open_alerts": "Open Alerts"
+    "stats_open_alerts": "Open Alerts",
+    "tag_large": "Large"
   }
 }

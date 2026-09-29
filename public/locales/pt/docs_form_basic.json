@@ -473,6 +473,9 @@
     "themetoggle_scenario_1_desc": "A variante de ícone compacta fica na barra superior e alterna claro e escuro com um clique.",
     "themetoggle_scenario_1_title": "Cabeçalho do app",
     "themetoggle_scenario_2_desc": "A variante segmentada oferece claro, escuro e sistema como uma escolha explícita e descobrível.",
-    "themetoggle_scenario_2_title": "Tela de configurações"
+    "themetoggle_scenario_2_title": "Tela de configurações",
+    "searchinput_choice_alt": "Alternativa",
+    "taginput_controlled_desc": "Gerenciando tags por meio de estado externo.",
+    "taginput_maximum_tags_desc": "Limite o número de tags que podem ser adicionadas."
   }
 }

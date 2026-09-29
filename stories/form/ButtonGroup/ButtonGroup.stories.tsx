@@ -112,3 +112,21 @@ export const PriorityOverride: Story = {
     );
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Variants: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-md)", alignItems: "flex-start" }}>
+        {(["solid", "outline", "ghost"] as const).map((variant) => (
+          <ButtonGroup key={variant} {...args} variant={variant}>
+            <Button size="md">{t("story.button_click_me")}</Button>
+            <Button size="md">{t("story.button_click_me")}</Button>
+            <Button size="md">{t("story.button_click_me")}</Button>
+          </ButtonGroup>
+        ))}
+      </div>
+    );
+  },
+};

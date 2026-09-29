@@ -302,6 +302,7 @@
     "splitbutton_scenario_1": "O rodapé de um formulário onde Salvar é o que quase todos querem, mas Salvar como rascunho e Salvar e fechar precisam ficar a um clique.",
     "splitbutton_scenario_2": "Um botão de implantação em que Implantar em produção é o padrão e os demais ambientes ficam atrás da alternância.",
     "splitbutton_best_practice_1": "Coloque a ação mais usada na metade principal. Se não conseguir escolher uma, use Dropdown — um split button com padrão arbitrário é pior do que um menu simples.",
-    "splitbutton_best_practice_2": "Mantenha o menu curto. Passando de alguns poucos itens, ele é um menu com um botão grudado, não um split button."
+    "splitbutton_best_practice_2": "Mantenha o menu curto. Passando de alguns poucos itens, ele é um menu com um botão grudado, não um split button.",
+    "buttongroup_choice_single": "Botão único"
   }
 }

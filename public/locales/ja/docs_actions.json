@@ -302,6 +302,7 @@
     "splitbutton_scenario_1": "フォームのフッター。ほとんどの人が押すのは「保存」だが、「下書きとして保存」「保存して閉じる」も 1 クリックで届かせたい場面。",
     "splitbutton_scenario_2": "デプロイボタン。「本番へデプロイ」が既定で、他の環境はトグルの奥に置く。",
     "splitbutton_best_practice_1": "最もよく使う操作を主側に置いてください。1 つに絞れないなら Dropdown を使うべきです。既定が恣意的な split button は、素直なメニューより分かりにくくなります。",
-    "splitbutton_best_practice_2": "メニューは短く保ってください。項目が数個を超えたら、それは「ボタンがくっついたメニュー」であって split button ではありません。"
+    "splitbutton_best_practice_2": "メニューは短く保ってください。項目が数個を超えたら、それは「ボタンがくっついたメニュー」であって split button ではありません。",
+    "buttongroup_choice_single": "単独のボタン"
   }
 }

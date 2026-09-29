@@ -193,7 +193,13 @@ mdxFiles.forEach(file => {
 // 消えた）。**母数は 294 ファイル全量**で、8/28 の 287 から増えている ── 母数が
 // 縮んで件数が減ったのではないことを、8/28 の MDX を取り出して同じ検査に通し、
 // 失敗ファイルの一覧どうしを突き合わせて確かめた。
-const HARDCODED_FILE_BASELINE = 42;
+// 2026-09-29: 42 → 38。T280 でストーリーを足した MDX を lint-staged が 1 件ずつ見て、
+// 既存の生英語（ButtonGroup の「Single Button」・SearchInput の「Alternative」・
+// TagInput の説明 2 つ）で落ちたので、3 ファイルともキーにした。残り 1 件は
+// `stories/ai/VoiceVisualizer/VoiceVisualizer.mdx`（#734 で消えていた）。増えたものは無い
+// ── 42 にしたコミット（7cd1d2b9）を worktree に出して同じ検査に通し、失敗ファイルの
+// 一覧どうしを突き合わせた。
+const HARDCODED_FILE_BASELINE = 38;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

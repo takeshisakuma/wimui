@@ -2291,7 +2291,8 @@
       "splitbutton_scenario_1": "A form footer where Save is what almost everyone wants, but Save as draft and Save and close must stay one click away.",
       "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
       "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
-      "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button."
+      "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button.",
+      "buttongroup_choice_single": "Single Button"
     }
   },
   "docs_ai": {
@@ -5757,7 +5758,10 @@
       "themetoggle_scenario_1_desc": "The compact icon variant sits in the top bar and cycles light and dark with one click.",
       "themetoggle_scenario_1_title": "App header",
       "themetoggle_scenario_2_desc": "The segmented variant offers light, dark, and system as an explicit, discoverable choice.",
-      "themetoggle_scenario_2_title": "Settings screen"
+      "themetoggle_scenario_2_title": "Settings screen",
+      "searchinput_choice_alt": "Alternative",
+      "taginput_controlled_desc": "Managing tags via external state.",
+      "taginput_maximum_tags_desc": "Limit the number of tags that can be added."
     }
   },
   "docs_form_pickers": {
@@ -11311,7 +11315,8 @@
       "swipe_full_deleted": "Deleted \"{{subject}}\".",
       "swipe_full_undo": "Undo",
       "swipe_full_empty": "No messages left.",
-      "stats_open_alerts": "Open Alerts"
+      "stats_open_alerts": "Open Alerts",
+      "tag_large": "Large"
     }
   },
   "docs_stories_feedback": {

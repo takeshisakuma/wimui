@@ -87,6 +87,17 @@ export const Sizes: Story = {
   ),
 };
 
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: "var(--wim-spacing-lg)", alignItems: "center" }}>
+      <FloatButton iconName="CircleIcon" position="inline" />
+      <FloatButton iconName="CircleIcon" variant="outline" position="inline" />
+      <FloatButton iconName="CircleIcon" variant="glass" position="inline" />
+    </div>
+  ),
+};
+
 export const ExtendedSizes: Story = {
   render: () => {
     const { t } = useTranslation(ALL_NAMESPACES);
