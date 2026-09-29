@@ -140,6 +140,82 @@ export const MultipleActions: Story = {
   },
 };
 
+/**
+ * 引き切ると外側の端の操作（左は `leftActions[0]`、右は `rightActions` の最後）が
+ * ボタンを押さずに走る。消した行は「元に戻す」で戻せる ── 勢いで消えても取り返せる形にしておく。
+ */
+export const FullSwipe: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const initial = [1, 2, 3, 4].map((i) => ({ id: i, subject: t(`story.swipe_full_msg_${i}`) }));
+    const [messages, setMessages] = useState(initial);
+    const [starred, setStarred] = useState<number[]>([]);
+    const [last, setLast] = useState<{ kind: "archived" | "deleted"; item: (typeof initial)[number]; index: number } | null>(null);
+
+    const remove = (kind: "archived" | "deleted", id: number) => {
+      const index = messages.findIndex((m) => m.id === id);
+      if (index < 0) return;
+      setLast({ kind, item: messages[index], index });
+      setMessages(messages.filter((m) => m.id !== id));
+    };
+
+    const undo = () => {
+      if (!last) return;
+      const next = [...messages];
+      next.splice(last.index, 0, last.item);
+      setMessages(next);
+      setLast(null);
+    };
+
+    return (
+      <Stack gap="md">
+        <SwipeableList>
+          <List>
+            {messages.map((m) => (
+              <SwipeAction
+                key={m.id}
+                as="li"
+                fullSwipe="both"
+                leftActions={[
+                  { icon: "EmailIcon", label: t("story.swipe_full_archive"), intent: "success", onClick: () => remove("archived", m.id) },
+                ]}
+                rightActions={[
+                  {
+                    icon: "StarIcon",
+                    label: t("story.swipe_full_star"),
+                    intent: "warning",
+                    onClick: () => setStarred((s) => (s.includes(m.id) ? s.filter((x) => x !== m.id) : [...s, m.id])),
+                  },
+                  { icon: "TrashIcon", label: t("action.delete"), intent: "danger", onClick: () => remove("deleted", m.id) },
+                ]}
+              >
+                <ListItem
+                  title={m.subject}
+                  subtitle={t(starred.includes(m.id) ? "story.swipe_full_starred" : "story.swipe_full_subtitle")}
+                />
+              </SwipeAction>
+            ))}
+          </List>
+        </SwipeableList>
+
+        <Stack direction="row" gap="sm" align="center" aria-live="polite">
+          {last && (
+            <>
+              <Text size="sm">
+                {t(last.kind === "archived" ? "story.swipe_full_archived" : "story.swipe_full_deleted", { subject: last.item.subject })}
+              </Text>
+              <Button size="sm" variant="ghost" onClick={undo}>
+                {t("story.swipe_full_undo")}
+              </Button>
+            </>
+          )}
+          {!last && messages.length === 0 && <Text size="sm">{t("story.swipe_full_empty")}</Text>}
+        </Stack>
+      </Stack>
+    );
+  },
+};
+
 export const ExclusiveList: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);

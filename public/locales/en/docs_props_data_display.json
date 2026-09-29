@@ -391,6 +391,7 @@
     "rangeCalendar_prop_minDate": "Earliest selectable date.",
     "rangeCalendar_prop_onChange": "Callback when the range changes.",
     "rangeCalendar_prop_value": "Currently selected range [start, end].",
-    "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0."
+    "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0.",
+    "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button."
   }
 }

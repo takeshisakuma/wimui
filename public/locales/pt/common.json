@@ -379,7 +379,9 @@
     "transition": "Transição",
     "usage": "Uso",
     "usage_scenario": "Cenário de Uso",
-    "danger": "Perigo"
+    "danger": "Perigo",
+    "swipe_action_full_swipe_title": "Deslizar até o fim (full swipe)",
+    "swipe_action_full_swipe_usage": "Defina fullSwipe como \"left\", \"right\" ou \"both\" para executar a ação mais externa quando a linha é arrastada até o fim: leftActions[0] à esquerda, a última de rightActions à direita. Depois do limite, a ação externa se expande até ocupar a linha, então o usuário vê o que será executado antes de soltar; soltar fora da linha cancela. Fica desativado por padrão. Use somente com uma ação que o usuário possa desfazer e mantenha a mesma ação como botão, pois é por ele que usuários de teclado e de leitor de tela a acessam."
   },
   "error": {
     "boundary_hide_details": "Ocultar detalhes",
