@@ -438,6 +438,8 @@
     "swipe_full_deleted": "Deleted \"{{subject}}\".",
     "swipe_full_undo": "Undo",
     "swipe_full_empty": "No messages left.",
+    "stats_open_alerts": "Open Alerts",
+    "tag_large": "Large",
     "treediagram_role_ceo": "Chief Executive Officer",
     "treediagram_role_cto": "Head of Engineering",
     "treediagram_role_backend": "Backend Engineer",

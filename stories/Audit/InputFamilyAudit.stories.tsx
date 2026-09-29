@@ -24,6 +24,7 @@ import {
   DatePicker,
   InlineEdit,
   CounterTextarea,
+  InputMask,
   Button,
   Stack,
 } from "../../src";
@@ -71,6 +72,14 @@ export const Overview: StoryObj = {
             <ComponentGroup key={variant} label={t("audit:label_variant", { variant })} align="stretch" maxWidth="var(--wim-width-md)">
               <Input label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:sample_name_placeholder")} />
               <Textarea label={t("audit:label_variant", { variant })} variant={variant} placeholder={t("audit:sample_textarea_placeholder")} />
+              {/* T280: 以下は variant を持つのに、ghost がどのストーリーにも描かれていなかった */}
+              <SearchInput label={t("audit:label_search_input")} variant={variant} placeholder={t("audit:sample_search_placeholder")} />
+              <PasswordInput label={t("audit:label_password_input")} variant={variant} />
+              <TagInput label={t("audit:label_tag_input_freeform")} variant={variant} defaultValue={[t("audit:sample_tag_a")]} placeholder={t("audit:sample_tag_input_placeholder")} />
+              <ColorInput label={t("audit:label_color_input_hex")} variant={variant} fullWidth />
+              <CreditCardInput label={t("audit:label_credit_card")} variant={variant} placeholder={t("audit:sample_credit_card_placeholder")} />
+              <InputMask aria-label={t("audit:label_input_mask")} variant={variant} mask="999-9999" placeholder="000-0000" />
+              <CounterTextarea label={t("audit:label_counter_textarea")} variant={variant} maxLength={100} placeholder={t("audit:sample_textarea_placeholder")} />
               {variant === "ghost" && (
                 <InlineEdit label={t("audit:label_inline_edit_comparison")} defaultValue={t("audit:sample_inline_edit_placeholder")} />
               )}

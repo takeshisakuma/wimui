@@ -273,7 +273,8 @@
     "charts_color_evidence_col_metric": "Separação",
     "charts_color_evidence_row_normal": "Par mais próximo, visão normal (OKLab ΔE ×100)",
     "charts_color_evidence_row_cvd": "Par mais próximo simulado como protan/deutan",
-    "charts_color_evidence_row_surface": "Superfície contra a qual o contraste é medido"
+    "charts_color_evidence_row_surface": "Superfície contra a qual o contraste é medido",
+    "chatui_avatar_tones": "Tons do avatar"
   },
   "doc.jsondiff_intro": "JsonDiffViewer compara dois valores JSON lado a lado ou em forma unificada, com destaque de diff em nível de linha. Serializa ambos os valores com JSON.stringify e delega a renderização ao CodeDiffViewer.",
   "doc.jsondiff_design_intent": "Otimizado para comparar respostas de API, payloads de webhook e objetos de configuração. Ao delegar ao CodeDiffViewer com language=json, herda todos os controles de diff mantendo sua própria API mínima.",

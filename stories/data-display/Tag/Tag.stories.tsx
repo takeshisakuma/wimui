@@ -139,6 +139,9 @@ export const Sizes: Story = {
         <Tag {...args} size="md">
           {t("docs_stories_display:story.tag_medium")}
         </Tag>
+        <Tag {...args} size="lg">
+          {t("docs_stories_display:story.tag_large")}
+        </Tag>
       </div>
     );
   },

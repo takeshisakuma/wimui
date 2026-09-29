@@ -438,6 +438,8 @@
     "swipe_full_deleted": "「{{subject}}」を削除しました。",
     "swipe_full_undo": "元に戻す",
     "swipe_full_empty": "メッセージはありません。",
+    "stats_open_alerts": "未対応のアラート",
+    "tag_large": "大 (Large)",
     "treediagram_role_ceo": "代表取締役",
     "treediagram_role_cto": "開発部長",
     "treediagram_role_backend": "バックエンドエンジニア",

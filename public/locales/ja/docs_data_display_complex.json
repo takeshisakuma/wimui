@@ -273,7 +273,8 @@
     "charts_color_evidence_col_metric": "分離",
     "charts_color_evidence_row_normal": "最も近い組（正常色覚・OKLab ΔE ×100）",
     "charts_color_evidence_row_cvd": "最も近い組（protan / deutan で見たとき）",
-    "charts_color_evidence_row_surface": "対比を測っている地"
+    "charts_color_evidence_row_surface": "対比を測っている地",
+    "chatui_avatar_tones": "アバターの色"
   },
   "doc.jsondiff_intro": "JsonDiffViewer は、2つのJSON値を並列または統合ビューで比較し、行単位で差分をハイライト表示します。両方の値をJSON.stringifyでシリアライズし、CodeDiffViewerに描画を委譲します。",
   "doc.jsondiff_design_intent": "APIレスポンス、Webhookペイロード、設定オブジェクトの比較に最適化されています。language=jsonでCodeDiffViewerに委譲することで、すべての差分コントロールを継承しながら独自のAPIを最小限に保ちます。",

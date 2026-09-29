@@ -88,3 +88,9 @@ export const CustomMask: Story = {
     placeholder: "ABCD-1234-X",
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Ghost: Story = {
+  ...ZipCode,
+  args: { ...ZipCode.args, variant: "ghost" },
+};

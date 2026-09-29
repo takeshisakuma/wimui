@@ -642,6 +642,8 @@
   "visualization_responsive_check": "レスポンシブ挙動と特殊チャート",
   "viz_sparkline_check": "スパークラインチェック",
   "viz_system_load": "システム負荷",
+  "label_password_input": "パスワード入力",
+  "label_input_mask": "入力マスク",
   "label_tree_diagram": "ツリー図",
   "sample_sitemap_home": "ホーム",
   "sample_sitemap_products": "製品",

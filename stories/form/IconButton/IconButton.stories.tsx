@@ -43,3 +43,30 @@ export const Close: Story = {
     variant: "ghost",
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Variants: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+        {(["solid", "outline", "ghost"] as const).map((variant) => (
+          <IconButton key={variant} {...args} variant={variant} iconName="SearchIcon" aria-label={t("story.iconbutton_search")} />
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Sizes: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <IconButton key={size} {...args} size={size} iconName="SearchIcon" aria-label={t("story.iconbutton_search")} />
+        ))}
+      </div>
+    );
+  },
+};

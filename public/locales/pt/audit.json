@@ -642,6 +642,8 @@
   "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
   "viz_sparkline_check": "Verificação de Sparkline",
   "viz_system_load": "Carga do Sistema",
+  "label_password_input": "Entrada de Senha",
+  "label_input_mask": "Máscara de Entrada",
   "label_tree_diagram": "Diagrama de árvore",
   "sample_sitemap_home": "Início",
   "sample_sitemap_products": "Produtos",

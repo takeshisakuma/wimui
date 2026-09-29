@@ -222,6 +222,7 @@
     "transfer_type_timestamp": "日時",
     "transfer_type_money": "金額",
     "transfer_type_number": "数値",
-    "transfer_type_flag": "はい / いいえ"
+    "transfer_type_flag": "はい / いいえ",
+    "tabnav_size_label": "タブ（サイズ {{size}}）"
   }
 }

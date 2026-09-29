@@ -33,6 +33,27 @@ export const Default: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const FullWidth: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Fieldset {...args}>
+        <Legend label={t("story.fieldset_basic")} />
+        <Label label={t("story.fieldset_name")}>
+          <Input placeholder={t("story.fieldset_name_placeholder")} />
+        </Label>
+        <Label label={t("story.header_contact")}>
+          <Input type="email" placeholder="example@wim.ui" />
+        </Label>
+      </Fieldset>
+    );
+  },
+  args: {
+    variant: "full-width",
+  },
+};
+
 export const WithCheckboxGroup: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -222,6 +222,7 @@
     "transfer_type_timestamp": "Data e hora",
     "transfer_type_money": "Valor",
     "transfer_type_number": "Número",
-    "transfer_type_flag": "Sim / Não"
+    "transfer_type_flag": "Sim / Não",
+    "tabnav_size_label": "Abas, tamanho {{size}}"
   }
 }

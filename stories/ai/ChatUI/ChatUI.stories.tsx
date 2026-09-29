@@ -315,6 +315,17 @@ export const AvatarSizes: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const AvatarTones: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--wim-spacing-md)", padding: "var(--wim-spacing-xl)" }}>
+      {(["s1", "s3", "s5", "s7", "s10", "s12", "s14", "s16", "s18", "s20", "s22", "s24"] as const).map((tone, i) => (
+        <ChatAvatar key={tone} tone={tone} fallback={String.fromCharCode(65 + i)} />
+      ))}
+    </div>
+  ),
+};
+
 export const AiAssistantIntegration: Story = {
   render: () => {
     const t = useChatT();

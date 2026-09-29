@@ -9,6 +9,7 @@ import {
   CopyButton,
   FloatButton,
   SplitButton,
+  ButtonGroup,
   Stack,
   Box,
 } from "../../src";
@@ -58,6 +59,14 @@ export const Overview: StoryObj = {
               </Button>
               <IconButton size="md" variant="solid" intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" aria-label={t("audit:demo_circle")} />
               <FloatButton intent={intent as "default" | "danger" | "success"} iconName="CircleIcon" position="inline" />
+              {/* T280: SplitButton の danger / success はどのストーリーにも描かれていなかった */}
+              <SplitButton
+                intent={intent as "default" | "danger" | "success"}
+                toggleLabel={t("audit:sample_split_toggle")}
+                actions={[{ label: t("action.copy") }, { label: t("action.delete") }]}
+              >
+                {t("action.save")}
+              </SplitButton>
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -73,6 +82,11 @@ export const Overview: StoryObj = {
               <LinkButton size="md" variant={variant}>
                 {t("audit:label_link")}
               </LinkButton>
+              {/* T280: ButtonGroup の variant は outline がどのストーリーにも描かれていなかった */}
+              <ButtonGroup variant={variant} aria-label={t("audit:label_button_group")}>
+                <Button size="md">{t("action.back")}</Button>
+                <Button size="md">{t("action.next")}</Button>
+              </ButtonGroup>
             </ComponentGroup>
           ))}
         </ComparisonGrid>
@@ -86,6 +100,8 @@ export const Overview: StoryObj = {
           <ComponentGroup label={t("audit:label_float_button")} direction="row" align="center" wrap>
             <FloatButton iconName="PlusIcon" position="inline" />
             <FloatButton iconName="ChevronUpIcon" variant="outline" position="inline" />
+            {/* T280: glass はどのストーリーにも描かれていなかった */}
+            <FloatButton iconName="StarIcon" variant="glass" position="inline" aria-label={t("audit:label_float_button")} />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_split_button")} direction="row" align="center" wrap>
             <SplitButton

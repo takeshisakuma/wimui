@@ -473,6 +473,9 @@
     "themetoggle_scenario_1_desc": "コンパクトなアイコン版をトップバーに置き、ワンクリックでライトとダークを切り替える。",
     "themetoggle_scenario_1_title": "アプリのヘッダー",
     "themetoggle_scenario_2_desc": "セグメント版で、ライト・ダーク・システムを明示的で見つけやすい選択肢として提示する。",
-    "themetoggle_scenario_2_title": "設定画面"
+    "themetoggle_scenario_2_title": "設定画面",
+    "searchinput_choice_alt": "代わりの手段",
+    "taginput_controlled_desc": "タグを外部の状態で管理します。",
+    "taginput_maximum_tags_desc": "追加できるタグの数を制限します。"
   }
 }

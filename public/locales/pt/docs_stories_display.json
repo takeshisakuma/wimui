@@ -438,6 +438,8 @@
     "swipe_full_deleted": "\"{{subject}}\" excluído.",
     "swipe_full_undo": "Desfazer",
     "swipe_full_empty": "Nenhuma mensagem.",
+    "stats_open_alerts": "Alertas em aberto",
+    "tag_large": "Grande",
     "treediagram_role_ceo": "Diretora executiva",
     "treediagram_role_cto": "Chefe de engenharia",
     "treediagram_role_backend": "Engenheira de back-end",

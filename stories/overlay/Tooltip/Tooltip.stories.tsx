@@ -40,6 +40,25 @@ export const Default: Story = {
   },
 };
 
+/** 開いた状態で既定と glass を並べる（T280: 面そのものがどのストーリーにも写っていなかった）。 */
+export const Variants: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-5xl)", padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl) var(--wim-spacing-xl)" }}>
+        {(["default", "glass"] as const).map((variant) => (
+          <Tooltip key={variant} open variant={variant} placement="top">
+            <TooltipTrigger asChild>
+              <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
+            </TooltipTrigger>
+            <TooltipContent>{t("story.tooltip_text")}</TooltipContent>
+          </Tooltip>
+        ))}
+      </div>
+    );
+  },
+};
+
 export const Top: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -222,6 +222,7 @@
     "transfer_type_timestamp": "Timestamp",
     "transfer_type_money": "Money",
     "transfer_type_number": "Number",
-    "transfer_type_flag": "Yes / No"
+    "transfer_type_flag": "Yes / No",
+    "tabnav_size_label": "Tabs, size {{size}}"
   }
 }

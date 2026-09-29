@@ -65,6 +65,24 @@ export const Default: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Sizes: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xl)" }}>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <TabNavigation key={size} {...args} size={size} aria-label={t("story.tabnav_size_label", { size })}>
+            <TabNavigation.Item active href="#">{t("story.tabnav_overview")}</TabNavigation.Item>
+            <TabNavigation.Item href="#">{t("story.tabnav_integrations")}</TabNavigation.Item>
+            <TabNavigation.Item href="#">{t("story.tabnav_activity")}</TabNavigation.Item>
+          </TabNavigation>
+        ))}
+      </div>
+    );
+  },
+};
+
 export const Pills: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
