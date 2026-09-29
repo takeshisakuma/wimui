@@ -641,5 +641,11 @@
   "visualization_oklch_palette_check": "Consistência da Paleta OKLCH",
   "visualization_responsive_check": "Comportamento Responsivo e Gráficos Especializados",
   "viz_sparkline_check": "Verificação de Sparkline",
-  "viz_system_load": "Carga do Sistema"
+  "viz_system_load": "Carga do Sistema",
+  "label_tree_diagram": "Diagrama de árvore",
+  "sample_sitemap_home": "Início",
+  "sample_sitemap_products": "Produtos",
+  "sample_sitemap_pricing": "Preços",
+  "sample_sitemap_support": "Suporte",
+  "sample_sitemap_docs": "Documentação"
 }

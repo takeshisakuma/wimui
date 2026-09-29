@@ -392,6 +392,17 @@
     "virtualList_prop_items": "表示するアイテムの配列",
     "virtualList_prop_overscan": "表示範囲外に追加でレンダリングするアイテム数",
     "virtualList_prop_renderItem": "各アイテムのレンダリング関数",
-    "virtualList_prop_role": "リスト全体の役割 (アクセシビリティ用)"
+    "virtualList_prop_role": "リスト全体の役割 (アクセシビリティ用)",
+    "treeDiagram_prop_nodes": "木の根。根が複数あるときは横に並べます。",
+    "treeDiagram_prop_orientation": "`vertical` は上から下へ伸びます（組織図）。`horizontal` は左から右へ伸び、深い木や幅の狭い置き場に向きます。",
+    "treeDiagram_prop_expandedValues": "開いているノード（制御）。含まれないノードは、自分だけを表示します。",
+    "treeDiagram_prop_defaultExpandedValues": "最初に開いておくノード（非制御）。省略すると、子を持つノードをすべて開きます。",
+    "treeDiagram_prop_onExpandedChange": "ノードを開閉したとき、開いているノードの新しい一覧を受け取ります。",
+    "treeDiagram_prop_selectedValue": "選択中のノード（制御）。選択なしは `null`。",
+    "treeDiagram_prop_onSelect": "クリック・Enter・Space でノードが選ばれたときに呼ばれます。これを渡したときだけノードを選べ、渡さなければ図は読み取り専用です。",
+    "treeDiagram_prop_renderNode": "既定のカードの中身（名前・説明・アバター）を差し替えます。カードの枠は残ります。",
+    "treeDiagram_prop_nodeWidth": "カードの幅（px）。すべてのカードを同じ大きさにして、何かを測る前に配置を決めます。長い文字は省略し、支援技術には全文を読み上げます。",
+    "treeDiagram_prop_nodeHeight": "カードの高さ（px）。",
+    "treeDiagram_prop_labels": "開閉ボタンの読み上げ名。組み込みの翻訳が合わないときに使います。"
   }
 }

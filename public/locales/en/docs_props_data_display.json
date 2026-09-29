@@ -392,6 +392,17 @@
     "rangeCalendar_prop_onChange": "Callback when the range changes.",
     "rangeCalendar_prop_value": "Currently selected range [start, end].",
     "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0.",
-    "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button."
+    "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button.",
+    "treeDiagram_prop_nodes": "The roots of the tree. Several roots are laid out side by side.",
+    "treeDiagram_prop_orientation": "`vertical` grows from top to bottom (an org chart). `horizontal` grows from left to\nright, which suits deep trees and narrow containers.",
+    "treeDiagram_prop_expandedValues": "Expanded nodes (controlled). A node that is not listed shows only itself.",
+    "treeDiagram_prop_defaultExpandedValues": "Expanded nodes on first render (uncontrolled). Defaults to every node that has children.",
+    "treeDiagram_prop_onExpandedChange": "Called with the new list of expanded nodes when a node is expanded or collapsed.",
+    "treeDiagram_prop_selectedValue": "Selected node (controlled). Pass `null` for none.",
+    "treeDiagram_prop_onSelect": "Called when a node is chosen by click, Enter or Space. Nodes are only selectable when\nthis is given; without it the diagram is read-only.",
+    "treeDiagram_prop_renderNode": "Replaces the default card (label, description, avatar). The card frame stays.",
+    "treeDiagram_prop_nodeWidth": "Card width in px. Every card has the same size so the layout is decided before\nanything is measured; long text is truncated and read in full by assistive technology.",
+    "treeDiagram_prop_nodeHeight": "Card height in px.",
+    "treeDiagram_prop_labels": "Accessible names of the collapse / expand button, for when the built-in translations do not fit."
   }
 }

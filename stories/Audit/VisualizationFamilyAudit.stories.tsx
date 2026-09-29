@@ -6,6 +6,7 @@ import {
   CalendarHeatmap,
   Box,
   Stack,
+  TreeDiagram,
 } from "../../src";
 import { AreaChart, BarChart, BoxPlot, CandlestickChart, LineChart, PieChart, RadarChart, ScatterChart, SankeyChart, Treemap, GaugeChart, FunnelChart, Heatmap, Sparkline, WaterfallChart } from "../../src/charts";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
@@ -186,6 +187,27 @@ export const Overview: StoryObj = {
               data={treemapData[0].children} 
               dataKey="value" 
               height={250}
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_tree_diagram")} align="stretch">
+            <TreeDiagram
+              aria-label={t("audit:label_tree_diagram")}
+              nodes={[
+                {
+                  value: "home",
+                  label: t("audit:sample_sitemap_home"),
+                  children: [
+                    {
+                      value: "products",
+                      label: t("audit:sample_sitemap_products"),
+                      children: [{ value: "pricing", label: t("audit:sample_sitemap_pricing") }],
+                    },
+                    { value: "support", label: t("audit:sample_sitemap_support"), children: [{ value: "docs", label: t("audit:sample_sitemap_docs") }] },
+                  ],
+                },
+              ]}
+              nodeWidth={160}
+              nodeHeight={48}
             />
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_sankey_chart")} align="stretch">

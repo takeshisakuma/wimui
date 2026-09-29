@@ -52,7 +52,8 @@
     "nodegraph_usage": "Interactively edit and display node-based directed graphs such as approval flows and AI pipelines.",
     "nodegraph_data": "Directed Acyclic Graphs (DAG), workflows, dependency diagrams.",
     "scheduleview_usage": "View, create, and move appointments on a calendar with a timeline (week, day, month views).",
-    "scheduleview_data": "Time-series event data, shifts, bookings, schedules."
+    "scheduleview_data": "Time-series event data, shifts, bookings, schedules.",
+    "treediagram_data_desc": "A tree: every item has one parent. Sizes are not compared (use Treemap for that)."
   },
   "guide": {
     "visualization_title": "Visualization Component Selection Guide",

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.39.0 — a React 19 component library: 226 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.39.0 — a React 19 component library: 227 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -368,6 +368,7 @@ export function BillingOverview() {
 - **Table** — Rows and columns for displaying structured data efficiently
 - **Tag** — Compact visual descriptors used for labeling or categorizing content
 - **Timeline** — A vertical list mapping events or history in chronological order
+- **TreeDiagram** — Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees. (aka Org Chart, Tree Chart, Hierarchy Diagram)
 - **TreeView** — Hierarchical data (aka Outline View)
 - **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
 

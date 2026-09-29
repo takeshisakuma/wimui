@@ -132,7 +132,8 @@
     "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
     "presence_desc": "Shows whether a person is online, away, busy, or offline.",
     "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode.",
-    "comment_desc": "Shows one comment in a discussion, with its actions and nested replies."
+    "comment_desc": "Shows one comment in a discussion, with its actions and nested replies.",
+    "treeDiagram_desc": "Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees."
   },
   "cat": {
     "ai": "AI"
@@ -653,5 +654,10 @@
   },
   "colorinput": {
     "swatch": "Pick a colour"
+  },
+  "treediagram": {
+    "aria": "Tree diagram",
+    "collapse": "Collapse {{label}}",
+    "expand": "Expand {{label}}"
   }
 }

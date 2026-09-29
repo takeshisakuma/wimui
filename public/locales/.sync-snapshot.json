@@ -642,7 +642,13 @@
     "viz_sparkline_check": "Sparkline Check",
     "viz_system_load": "System Load",
     "label_comment": "Comment",
-    "label_comment_thread": "Comment — nested replies"
+    "label_comment_thread": "Comment — nested replies",
+    "label_tree_diagram": "Tree Diagram",
+    "sample_sitemap_home": "Home",
+    "sample_sitemap_products": "Products",
+    "sample_sitemap_pricing": "Pricing",
+    "sample_sitemap_support": "Support",
+    "sample_sitemap_docs": "Documentation"
   },
   "common": {
     "a11y": {
@@ -1449,7 +1455,8 @@
       "segmentedcontrol_choice_alt_when": "When the choice is a value you keep (formatting, a setting, a filter) — that is ToggleGroup. For moving between pages, Tabs.",
       "presence_desc": "Shows whether a person is online, away, busy, or offline.",
       "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode.",
-      "comment_desc": "Shows one comment in a discussion, with its actions and nested replies."
+      "comment_desc": "Shows one comment in a discussion, with its actions and nested replies.",
+      "treeDiagram_desc": "Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees."
     },
     "cat": {
       "ai": "AI"
@@ -1970,6 +1977,11 @@
     },
     "colorinput": {
       "swatch": "Pick a colour"
+    },
+    "treediagram": {
+      "aria": "Tree diagram",
+      "collapse": "Collapse {{label}}",
+      "expand": "Expand {{label}}"
     }
   },
   "data-display": {
@@ -4357,7 +4369,38 @@
       "scheduleview_scenario_resource": "Resource allocation",
       "scheduleview_scenario_resource_desc": "Manage room bookings or staff shifts on a 24-hour timeline.",
       "scheduleview_scenario_tv": "TV schedule",
-      "scheduleview_scenario_tv_desc": "Visualize broadcast schedules across multiple channels and time slots."
+      "scheduleview_scenario_tv_desc": "Visualize broadcast schedules across multiple channels and time slots.",
+      "treediagram_desc": "Lays out a tree — an org chart, a site map, a taxonomy — from the data alone. You pass the nodes and their children; no coordinates. Parents sit centred over their children, sibling subtrees never overlap, and subtrees can be collapsed.",
+      "treediagram_design_intent": "The shape of a hierarchy is the information: who reports to whom, how wide each team is, how deep the chain goes. TreeDiagram draws that shape without asking you to place anything. Every card has the same size so the layout is decided before anything is measured, and the diagram scrolls inside its own box instead of stretching the page. It is read-only by default; pass onSelect to let people choose a node. Only trees are supported: a person with two parents (a family tree) is a different layout problem.",
+      "treediagram_choice_shape": "Show the shape of a hierarchy (reporting lines, a site map)",
+      "treediagram_choice_browse": "Browse, search or pick items in a deep hierarchy",
+      "treediagram_choice_graph": "Relations that are not a tree (cycles, several parents), edited by hand",
+      "treediagram_choice_size": "Compare the size of each part of a hierarchy",
+      "treediagram_a11y_tree": "The diagram is a tree (role=\"tree\") and each card a treeitem with its level, position among siblings and expanded state, so a screen reader announces where it is. The name of a card is its label and description only; the collapse button inside it is not read as part of the name.",
+      "treediagram_a11y_focus": "Only one card is in the tab order at a time. When a subtree is collapsed while focus is inside it, focus moves to the nearest visible ancestor instead of being lost.",
+      "treediagram_a11y_truncate": "Long names are truncated to keep every card the same size. The full text stays in the accessible name and in the tooltip on hover.",
+      "treediagram_scenario_org": "Org chart",
+      "treediagram_scenario_org_desc": "Who reports to whom in a team of a few dozen people, with large departments collapsed until needed.",
+      "treediagram_scenario_sitemap": "Site map",
+      "treediagram_scenario_sitemap_desc": "The pages of a site and where each one lives, drawn left to right so deep sections stay readable.",
+      "treediagram_best_size": "Pick nodeWidth for the longest name you expect, not the average; truncation is a fallback, not the plan.",
+      "treediagram_best_collapse": "For more than a screenful of people, open only the top levels with defaultExpandedValues and let readers expand the rest.",
+      "treediagram_best_unique": "Give every node a value that is unique across the whole diagram; it drives expansion, selection and focus.",
+      "treediagram_horizontal": "Left to right",
+      "treediagram_horizontal_desc": "orientation=\"horizontal\" grows to the right. Deep trees and narrow containers read better this way.",
+      "treediagram_collapsed": "Collapsed subtrees",
+      "treediagram_collapsed_desc": "A collapsed node shows how many people it hides on its button.",
+      "treediagram_selectable": "Selecting a node",
+      "treediagram_avatars": "With avatars",
+      "treediagram_key_updown": "Up / Down",
+      "treediagram_key_updown_desc": "Move to the previous / next visible node in reading order.",
+      "treediagram_key_right": "Right",
+      "treediagram_key_right_desc": "Expand a collapsed node, or move to its first child.",
+      "treediagram_key_left": "Left",
+      "treediagram_key_left_desc": "Collapse an expanded node, or move to its parent.",
+      "treediagram_key_homeend": "Home / End",
+      "treediagram_key_homeend_desc": "Move to the first / last visible node.",
+      "treediagram_key_select_desc": "Select the node (only when onSelect is given)."
     }
   },
   "docs_feedback": {
@@ -6589,7 +6632,9 @@
       "guide_scatter_title": "Scatter Chart",
       "guide_title": "Chart Selection Guide",
       "guide_treemap_desc": "Represents proportions of hierarchical data using varying area sizes.",
-      "guide_treemap_title": "Treemap"
+      "guide_treemap_title": "Treemap",
+      "guide_treediagram_title": "TreeDiagram",
+      "guide_treediagram_desc": "The shape of a hierarchy: who reports to whom, how wide and how deep each branch is."
     },
     "guide": {
       "display_std_affected_components": "Affected Components",
@@ -8145,7 +8190,8 @@
       "nodegraph_usage": "Interactively edit and display node-based directed graphs such as approval flows and AI pipelines.",
       "nodegraph_data": "Directed Acyclic Graphs (DAG), workflows, dependency diagrams.",
       "scheduleview_usage": "View, create, and move appointments on a calendar with a timeline (week, day, month views).",
-      "scheduleview_data": "Time-series event data, shifts, bookings, schedules."
+      "scheduleview_data": "Time-series event data, shifts, bookings, schedules.",
+      "treediagram_data_desc": "A tree: every item has one parent. Sizes are not compared (use Treemap for that)."
     },
     "guide": {
       "visualization_title": "Visualization Component Selection Guide",
@@ -11306,7 +11352,16 @@
       "swipe_full_archived": "Archived \"{{subject}}\".",
       "swipe_full_deleted": "Deleted \"{{subject}}\".",
       "swipe_full_undo": "Undo",
-      "swipe_full_empty": "No messages left."
+      "swipe_full_empty": "No messages left.",
+      "treediagram_role_ceo": "Chief Executive Officer",
+      "treediagram_role_cto": "Head of Engineering",
+      "treediagram_role_backend": "Backend Engineer",
+      "treediagram_role_frontend": "Frontend Engineer",
+      "treediagram_role_design": "Product Designer",
+      "treediagram_role_operations": "Head of Operations",
+      "treediagram_role_support": "Customer Support",
+      "treediagram_role_finance": "Accountant",
+      "treediagram_selected": "Selected: {{name}}, {{role}}"
     }
   },
   "docs_stories_feedback": {
@@ -14355,7 +14410,18 @@
       "rangeCalendar_prop_onChange": "Callback when the range changes.",
       "rangeCalendar_prop_value": "Currently selected range [start, end].",
       "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0.",
-      "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button."
+      "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button.",
+      "treeDiagram_prop_nodes": "The roots of the tree. Several roots are laid out side by side.",
+      "treeDiagram_prop_orientation": "`vertical` grows from top to bottom (an org chart). `horizontal` grows from left to\nright, which suits deep trees and narrow containers.",
+      "treeDiagram_prop_expandedValues": "Expanded nodes (controlled). A node that is not listed shows only itself.",
+      "treeDiagram_prop_defaultExpandedValues": "Expanded nodes on first render (uncontrolled). Defaults to every node that has children.",
+      "treeDiagram_prop_onExpandedChange": "Called with the new list of expanded nodes when a node is expanded or collapsed.",
+      "treeDiagram_prop_selectedValue": "Selected node (controlled). Pass `null` for none.",
+      "treeDiagram_prop_onSelect": "Called when a node is chosen by click, Enter or Space. Nodes are only selectable when\nthis is given; without it the diagram is read-only.",
+      "treeDiagram_prop_renderNode": "Replaces the default card (label, description, avatar). The card frame stays.",
+      "treeDiagram_prop_nodeWidth": "Card width in px. Every card has the same size so the layout is decided before\nanything is measured; long text is truncated and read in full by assistive technology.",
+      "treeDiagram_prop_nodeHeight": "Card height in px.",
+      "treeDiagram_prop_labels": "Accessible names of the collapse / expand button, for when the built-in translations do not fit."
     }
   },
   "docs_props_feedback": {

@@ -392,6 +392,17 @@
     "virtualList_prop_items": "Array de itens a exibir",
     "virtualList_prop_overscan": "Número de itens extras renderizados fora da faixa visível",
     "virtualList_prop_renderItem": "Função de renderização de cada item",
-    "virtualList_prop_role": "Papel (role) da lista inteira (para acessibilidade)"
+    "virtualList_prop_role": "Papel (role) da lista inteira (para acessibilidade)",
+    "treeDiagram_prop_nodes": "As raízes da árvore. Várias raízes são dispostas lado a lado.",
+    "treeDiagram_prop_orientation": "`vertical` cresce de cima para baixo (um organograma). `horizontal` cresce da esquerda para a direita, o que convém a árvores profundas e contêineres estreitos.",
+    "treeDiagram_prop_expandedValues": "Nós expandidos (controlado). Um nó que não está na lista mostra apenas a si mesmo.",
+    "treeDiagram_prop_defaultExpandedValues": "Nós expandidos na primeira renderização (não controlado). Por padrão, todos os nós que têm filhos.",
+    "treeDiagram_prop_onExpandedChange": "Chamado com a nova lista de nós expandidos quando um nó é expandido ou recolhido.",
+    "treeDiagram_prop_selectedValue": "Nó selecionado (controlado). Passe `null` para nenhum.",
+    "treeDiagram_prop_onSelect": "Chamado quando um nó é escolhido por clique, Enter ou Espaço. Os nós só podem ser selecionados quando isto é informado; sem isso, o diagrama é somente leitura.",
+    "treeDiagram_prop_renderNode": "Substitui o conteúdo padrão do cartão (rótulo, descrição, avatar). A moldura do cartão permanece.",
+    "treeDiagram_prop_nodeWidth": "Largura do cartão em px. Todos os cartões têm o mesmo tamanho para que o layout seja decidido antes de qualquer medição; textos longos são truncados e lidos por completo pela tecnologia assistiva.",
+    "treeDiagram_prop_nodeHeight": "Altura do cartão em px.",
+    "treeDiagram_prop_labels": "Nomes acessíveis do botão de recolher / expandir, para quando as traduções embutidas não servirem."
   }
 }
