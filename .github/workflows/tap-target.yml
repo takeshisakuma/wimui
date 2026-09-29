@@ -64,7 +64,7 @@ concurrency:
 jobs:
   measure:
     name: Measure (${{ matrix.shard }}/4)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
     timeout-minutes: 60
     strategy:
       fail-fast: false

@@ -81,7 +81,7 @@ concurrency:
 jobs:
   vrt:
     name: VRT ${{ github.event.inputs.update_snapshots == 'true' && 'update' || 'compare' }} (${{ matrix.shard }}/4)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
     # 993 stories × 2 themes を 1 ジョブで回すと 6h 上限に達するためシャーディング必須
     timeout-minutes: 90
     strategy:
@@ -181,7 +181,7 @@ jobs:
     # [skip ci] のチェックレス head として main にすり抜ける（2026-07-18 T10 で実発生）。
     name: Update gate (lint & audit)
     if: ${{ github.event.inputs.update_snapshots == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
@@ -207,7 +207,7 @@ jobs:
     name: Commit updated snapshots
     if: ${{ github.event.inputs.update_snapshots == 'true' }}
     needs: [vrt, update-gate]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
     timeout-minutes: 15
     permissions:
       contents: write
