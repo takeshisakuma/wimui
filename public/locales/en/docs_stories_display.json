@@ -439,6 +439,15 @@
     "swipe_full_undo": "Undo",
     "swipe_full_empty": "No messages left.",
     "stats_open_alerts": "Open Alerts",
-    "tag_large": "Large"
+    "tag_large": "Large",
+    "treediagram_role_ceo": "Chief Executive Officer",
+    "treediagram_role_cto": "Head of Engineering",
+    "treediagram_role_backend": "Backend Engineer",
+    "treediagram_role_frontend": "Frontend Engineer",
+    "treediagram_role_design": "Product Designer",
+    "treediagram_role_operations": "Head of Operations",
+    "treediagram_role_support": "Customer Support",
+    "treediagram_role_finance": "Accountant",
+    "treediagram_selected": "Selected: {{name}}, {{role}}"
   }
 }

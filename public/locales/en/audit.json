@@ -643,5 +643,11 @@
   "label_comment": "Comment",
   "label_comment_thread": "Comment — nested replies",
   "label_password_input": "Password Input",
-  "label_input_mask": "Input Mask"
+  "label_input_mask": "Input Mask",
+  "label_tree_diagram": "Tree Diagram",
+  "sample_sitemap_home": "Home",
+  "sample_sitemap_products": "Products",
+  "sample_sitemap_pricing": "Pricing",
+  "sample_sitemap_support": "Support",
+  "sample_sitemap_docs": "Documentation"
 }

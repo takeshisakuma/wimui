@@ -52,7 +52,8 @@
     "nodegraph_usage": "承認フロー・AIパイプラインなどのノードベースの有向グラフを対話的に編集・表示する",
     "nodegraph_data": "有向非巡回グラフ（DAG）、ワークフロー、依存関係図",
     "scheduleview_usage": "時間軸のあるカレンダー（週・日・月ビュー）で予定の閲覧・作成・移動を行う",
-    "scheduleview_data": "時系列イベントデータ、シフト・予約・スケジュール"
+    "scheduleview_data": "時系列イベントデータ、シフト・予約・スケジュール",
+    "treediagram_data_desc": "木（どの項目も親は 1 つ）。大きさは比べない（比べるなら Treemap）。"
   },
   "guide": {
     "visualization_title": "可視化コンポーネントの使い分けガイド",

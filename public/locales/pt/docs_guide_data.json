@@ -21,7 +21,9 @@
     "guide_scatter_title": "Gráfico de Dispersão",
     "guide_title": "Guia de Seleção de Gráfico",
     "guide_treemap_desc": "Representa proporções de dados hierárquicos usando tamanhos de área variados.",
-    "guide_treemap_title": "Treemap"
+    "guide_treemap_title": "Treemap",
+    "guide_treediagram_title": "TreeDiagram",
+    "guide_treediagram_desc": "A forma de uma hierarquia: quem se reporta a quem, a largura e a profundidade de cada ramo."
   },
   "guide": {
     "display_std_affected_components": "Componentes Afetados",

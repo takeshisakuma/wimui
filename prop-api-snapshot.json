@@ -11500,6 +11500,85 @@
       "required": false,
       "type": "boolean"
     },
+    "TreeDiagram.defaultExpandedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "TreeDiagram.expandedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "TreeDiagram.labels": {
+      "required": false,
+      "type": "{ /** Accessible name of the collapse / expand button. */ expand?: (label: string) => string; collapse?: (label: string) => string; }",
+      "shape": {
+        "collapse": {
+          "required": false,
+          "type": "(label: string) => string"
+        },
+        "expand": {
+          "required": false,
+          "type": "(label: string) => string"
+        }
+      }
+    },
+    "TreeDiagram.nodeHeight": {
+      "required": false,
+      "type": "number"
+    },
+    "TreeDiagram.nodeWidth": {
+      "required": false,
+      "type": "number"
+    },
+    "TreeDiagram.nodes": {
+      "required": true,
+      "type": "TreeDiagramNode[]",
+      "shape": {
+        "avatar": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "children": {
+          "required": false,
+          "type": "TreeDiagramNode[]"
+        },
+        "description": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "TreeDiagram.onExpandedChange": {
+      "required": false,
+      "type": "(values: string[]) => void"
+    },
+    "TreeDiagram.onSelect": {
+      "required": false,
+      "type": "(value: string) => void"
+    },
+    "TreeDiagram.orientation": {
+      "required": false,
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "TreeDiagram.renderNode": {
+      "required": false,
+      "type": "(node: TreeDiagramNode, state: TreeDiagramNodeState) => React.ReactNode"
+    },
+    "TreeDiagram.selectedValue": {
+      "required": false,
+      "type": "string | null"
+    },
     "TreeSelect.allowClear": {
       "required": false,
       "type": "boolean"

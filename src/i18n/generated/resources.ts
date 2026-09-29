@@ -236,6 +236,11 @@ export const wimResources: WimResources = {
       },
       "colorinput": {
         "swatch": "Pick a colour"
+      },
+      "treediagram": {
+        "aria": "Tree diagram",
+        "collapse": "Collapse {{label}}",
+        "expand": "Expand {{label}}"
       }
     },
     "data-display": {
@@ -572,6 +577,11 @@ export const wimResources: WimResources = {
       },
       "colorinput": {
         "swatch": "色を選ぶ"
+      },
+      "treediagram": {
+        "aria": "ツリー図",
+        "collapse": "{{label}} を折りたたむ",
+        "expand": "{{label}} を展開"
       }
     },
     "data-display": {
@@ -908,6 +918,11 @@ export const wimResources: WimResources = {
       },
       "colorinput": {
         "swatch": "Escolher uma cor"
+      },
+      "treediagram": {
+        "aria": "Diagrama de árvore",
+        "collapse": "Recolher {{label}}",
+        "expand": "Expandir {{label}}"
       }
     },
     "data-display": {

@@ -1,0 +1,116 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as TreeDiagramStories from "./TreeDiagram.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={TreeDiagramStories} />
+
+<Title />
+
+<T k="docs_data_heavy:doc.treediagram_desc" />
+
+<Docgen componentName="TreeDiagram" section="import" />
+
+<Canvas of={TreeDiagramStories.Default} />
+<Controls of={TreeDiagramStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<T k="docs_data_heavy:doc.treediagram_design_intent" />
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_choice_shape" /></td><td>TreeDiagram</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_choice_browse" /></td><td>TreeView</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_choice_graph" /></td><td>NodeGraph</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_choice_size" /></td><td>Treemap</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="TreeDiagram" section="anatomy" />
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_data_heavy:doc.treediagram_a11y_tree" /></li>
+  <li><T k="docs_data_heavy:doc.treediagram_a11y_focus" /></li>
+  <li><T k="docs_data_heavy:doc.treediagram_a11y_truncate" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common:doc.scenario" /></th>
+      <th><T k="common:doc.summary" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.treediagram_scenario_org" /></strong></td>
+      <td><T k="docs_data_heavy:doc.treediagram_scenario_org_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.treediagram_scenario_sitemap" /></strong></td>
+      <td><T k="docs_data_heavy:doc.treediagram_scenario_sitemap_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_data_heavy:doc.treediagram_best_size" /></li>
+  <li><T k="docs_data_heavy:doc.treediagram_best_collapse" /></li>
+  <li><T k="docs_data_heavy:doc.treediagram_best_unique" /></li>
+</ul>
+
+<Docgen componentName="TreeDiagram" section="props" />
+
+## <T k="docs_data_heavy:doc.treediagram_horizontal" />
+
+<T k="docs_data_heavy:doc.treediagram_horizontal_desc" />
+
+<Canvas of={TreeDiagramStories.Horizontal} />
+
+## <T k="docs_data_heavy:doc.treediagram_collapsed" />
+
+<T k="docs_data_heavy:doc.treediagram_collapsed_desc" />
+
+<Canvas of={TreeDiagramStories.Collapsed} />
+
+## <T k="docs_data_heavy:doc.treediagram_selectable" />
+
+<Canvas of={TreeDiagramStories.Selectable} />
+
+## <T k="docs_data_heavy:doc.treediagram_avatars" />
+
+<Canvas of={TreeDiagramStories.WithAvatars} />
+
+<Docgen componentName="TreeDiagram" section="tokens" />
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common.name" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_tab" /></td><td><T k="docs_data_heavy:doc.treediagram_a11y_focus" /></td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_key_updown" /></td><td><T k="docs_data_heavy:doc.treediagram_key_updown_desc" /></td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_key_right" /></td><td><T k="docs_data_heavy:doc.treediagram_key_right_desc" /></td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_key_left" /></td><td><T k="docs_data_heavy:doc.treediagram_key_left_desc" /></td></tr>
+    <tr><td><T k="docs_data_heavy:doc.treediagram_key_homeend" /></td><td><T k="docs_data_heavy:doc.treediagram_key_homeend_desc" /></td></tr>
+    <tr><td><T k="docs_guide_a11y_usability:table.key_enter" /> / <T k="docs_guide_a11y_usability:table.key_space" /></td><td><T k="docs_data_heavy:doc.treediagram_key_select_desc" /></td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="TreeDiagram" section="i18n" />
+
+<Docgen componentName="TreeDiagram" section="test" />

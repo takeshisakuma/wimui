@@ -21,7 +21,9 @@
     "guide_scatter_title": "散布図 (Scatter Chart)",
     "guide_title": "チャートの使い分け (Chart Selection)",
     "guide_treemap_desc": "階層構造を持つデータの割合を面積で表現します。",
-    "guide_treemap_title": "ツリーマップ (Treemap)"
+    "guide_treemap_title": "ツリーマップ (Treemap)",
+    "guide_treediagram_title": "TreeDiagram",
+    "guide_treediagram_desc": "階層の形 ── 誰が誰に報告するか、各枝の幅と深さ。"
   },
   "guide": {
     "display_std_affected_components": "対象コンポーネント",

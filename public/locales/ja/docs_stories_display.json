@@ -439,6 +439,15 @@
     "swipe_full_undo": "元に戻す",
     "swipe_full_empty": "メッセージはありません。",
     "stats_open_alerts": "未対応のアラート",
-    "tag_large": "大 (Large)"
+    "tag_large": "大 (Large)",
+    "treediagram_role_ceo": "代表取締役",
+    "treediagram_role_cto": "開発部長",
+    "treediagram_role_backend": "バックエンドエンジニア",
+    "treediagram_role_frontend": "フロントエンドエンジニア",
+    "treediagram_role_design": "プロダクトデザイナー",
+    "treediagram_role_operations": "業務部長",
+    "treediagram_role_support": "カスタマーサポート",
+    "treediagram_role_finance": "経理",
+    "treediagram_selected": "選択中: {{name}}（{{role}}）"
   }
 }

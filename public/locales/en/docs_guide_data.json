@@ -21,7 +21,9 @@
     "guide_scatter_title": "Scatter Chart",
     "guide_title": "Chart Selection Guide",
     "guide_treemap_desc": "Represents proportions of hierarchical data using varying area sizes.",
-    "guide_treemap_title": "Treemap"
+    "guide_treemap_title": "Treemap",
+    "guide_treediagram_title": "TreeDiagram",
+    "guide_treediagram_desc": "The shape of a hierarchy: who reports to whom, how wide and how deep each branch is."
   },
   "guide": {
     "display_std_affected_components": "Affected Components",

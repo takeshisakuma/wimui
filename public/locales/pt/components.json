@@ -204,7 +204,8 @@
     "segmentedcontrol_choice_alt_when": "Quando a escolha é um valor que você mantém (formatação, configuração, filtro) — isso é ToggleGroup. Para navegar entre páginas, Tabs.",
     "presence_desc": "Mostra se uma pessoa está online, ausente, ocupada ou offline.",
     "barcode_desc": "Desenha um código de barras Code 128 ou EAN-13 legível por leitores.",
-    "comment_desc": "Mostra um comentário de uma discussão, com suas ações e respostas aninhadas."
+    "comment_desc": "Mostra um comentário de uma discussão, com suas ações e respostas aninhadas.",
+    "treeDiagram_desc": "Organiza uma árvore, como um organograma, apenas a partir dos dados, com os pais centralizados sobre os filhos e subárvores recolhíveis."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"
@@ -653,5 +654,10 @@
   },
   "colorinput": {
     "swatch": "Escolher uma cor"
+  },
+  "treediagram": {
+    "aria": "Diagrama de árvore",
+    "collapse": "Recolher {{label}}",
+    "expand": "Expandir {{label}}"
   }
 }
