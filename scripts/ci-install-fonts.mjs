@@ -23,7 +23,7 @@
  *
  * ── 冪等・非 Linux では何もしない ────────────────────────────────────
  * `fc-cache` が無い環境（ローカルの Windows / macOS）では黙って抜ける。CI の
- * ubuntu-latest だけが対象。
+ * Linux ランナー（ubuntu-24.04 に固定・T281）だけが対象。
  */
 import fs from "fs";
 import os from "os";

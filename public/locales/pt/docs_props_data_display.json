@@ -300,6 +300,7 @@
     "swipeAction_prop_asChild": "Se verdadeiro, a div de conteúdo será renderizada como seu filho",
     "swipeAction_prop_children": "O conteúdo a ser envolvido e deslizado",
     "swipeAction_prop_closeOnAction": "Se deve fechar automaticamente as ações quando uma ação é clicada. O padrão é true.",
+    "swipeAction_prop_fullSwipe": "Lados em que deslizar até o fim executa a ação mais externa sem toque\n(`leftActions[0]` / a última de `rightActions`), como no Mail do iOS. Desativado por padrão para que\numa ação destrutiva nunca seja disparada por impulso; a ação continua disponível como botão.",
     "swipeAction_prop_id": "ID único para o item. Gerado automaticamente se não for fornecido.",
     "swipeAction_prop_leftActions": "Ações reveladas ao deslizar da esquerda para a direita",
     "swipeAction_prop_rightActions": "Ações reveladas ao deslizar da direita para a esquerda",

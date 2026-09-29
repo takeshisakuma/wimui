@@ -9961,6 +9961,14 @@
       "required": false,
       "type": "boolean"
     },
+    "SwipeAction.fullSwipe": {
+      "required": false,
+      "values": [
+        "both",
+        "left",
+        "right"
+      ]
+    },
     "SwipeAction.id": {
       "required": false,
       "type": "string"

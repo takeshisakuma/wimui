@@ -34,6 +34,12 @@ export interface SwipeActionProps extends React.HTMLAttributes<HTMLDivElement> {
   id?: string;
   /** Whether to automatically close the actions when an action is clicked. Default is true. */
   closeOnAction?: boolean;
+  /**
+   * Sides where swiping all the way across runs the outermost action without a tap
+   * (`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a
+   * destructive action is never triggered by momentum; the action stays available as a button.
+   */
+  fullSwipe?: "left" | "right" | "both";
 }
 
 export interface SwipeActionRef {
@@ -49,7 +55,7 @@ export interface SwipeActionRef {
  * - Scroll lock: No (allows vertical scrolling)
  */
 export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
-  ({ as: Component = "div", leftActions = [], rightActions = [], children, asChild = false, id: propsId, closeOnAction = true, className, ...props }, ref) => {
+  ({ as: Component = "div", leftActions = [], rightActions = [], children, asChild = false, id: propsId, closeOnAction = true, fullSwipe, className, ...props }, ref) => {
     const generatedId = useId();
     const id = propsId || generatedId;
     const listContext = useSwipeableList();
@@ -93,6 +99,20 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     const leftWidth = leftActions.length * actionWidth;
     const rightWidth = rightActions.length * actionWidth;
 
+    // **full swipe（T276）。** 引き切ったら外側の端の操作を実行する。閾値は「開いた幅 + 余白」と
+    // 「行の幅の半分」の大きいほう ── 開いた位置の少し先で誤って越えないように。
+    const fullLeft = leftWidth > 0 && (fullSwipe === "left" || fullSwipe === "both");
+    const fullRight = rightWidth > 0 && (fullSwipe === "right" || fullSwipe === "both");
+    const FULL_SWIPE_MARGIN = 40; /* Exception: Structural Logic — 開いた幅から閾値までの余白（px） */
+    const rowWidth = containerRef.current?.offsetWidth ?? 0;
+    const threshold = (sideWidth: number) => Math.max(sideWidth + FULL_SWIPE_MARGIN, rowWidth / 2);
+    const armedSide: "left" | "right" | null =
+      swiping && fullLeft && offset >= threshold(leftWidth)
+        ? "left"
+        : swiping && fullRight && -offset >= threshold(rightWidth)
+          ? "right"
+          : null;
+
     const handleStart = (e: React.TouchEvent | React.MouseEvent) => {
       startX.current = "touches" in e ? e.touches[0].clientX : e.clientX;
       currentOffset.current = offset;
@@ -110,16 +130,30 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         listContext?.reportOpen(id);
       }
 
-      // Rubber banding
-      if (newOffset > leftWidth) newOffset = leftWidth + (newOffset - leftWidth) * 0.3;
-      if (newOffset < -rightWidth) newOffset = -rightWidth + (newOffset + rightWidth) * 0.3;
+      // Rubber banding（full swipe を有効にした側は、指について行く）
+      if (newOffset > leftWidth && !fullLeft) newOffset = leftWidth + (newOffset - leftWidth) * 0.3;
+      if (newOffset < -rightWidth && !fullRight) newOffset = -rightWidth + (newOffset + rightWidth) * 0.3;
 
       setOffset(newOffset);
     };
 
-    const handleEnd = () => {
+    // commit=false はポインタが行の外へ出た場合。引き切った状態でも実行しない
+    // （指やマウスが離れたかどうかが分からないまま、削除を走らせない）。
+    const handleEnd = (commit = true) => {
       if (!swiping) return;
       setSwiping(false);
+
+      if (armedSide) {
+        const outer = armedSide === "left" ? leftActions[0] : rightActions[rightActions.length - 1];
+        if (commit) {
+          runAction(outer);
+          if (!closeOnAction) {
+            setOffset(armedSide === "left" ? leftWidth : -rightWidth);
+            listContext?.reportOpen(id);
+          }
+          return;
+        }
+      }
 
       if (offset > leftWidth / 2) {
         setOffset(leftWidth);
@@ -156,25 +190,43 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       }
     };
 
-    const runAction = (action: SwipeActionItem, e: React.MouseEvent<HTMLButtonElement>) => {
+    // target はボタンを押したときだけ渡る（full swipe はボタンを経由しない）。
+    const runAction = (action: SwipeActionItem, target?: HTMLElement) => {
       action.onClick();
       if (!closeOnAction) return;
       setOffset(0);
       listContext?.reportClose(id);
       // 閉じると押したボタンは内容の裏へ戻るので、フォーカスをそこに残さず行の内容へ戻す。
       // 行が操作で消えた（削除など）ときは、要素ごと無くなるので何もしない。
-      if (document.activeElement === e.currentTarget) contentRef.current?.focus();
+      if (target && document.activeElement === target) contentRef.current?.focus();
     };
 
-    const renderActions = (side: "left" | "right", actions: SwipeActionItem[], width: number) => (
-      <div className={classNames(localStyles.actions, localStyles[side])} style={{ width }}>
+    const renderActions = (side: "left" | "right", actions: SwipeActionItem[], width: number) => {
+      // full swipe の側は、引いた分だけ列を広げて外側の端の操作で埋める（隙間に背景を見せない）。
+      const full = side === "left" ? fullLeft : fullRight;
+      const pulled = side === "left" ? Math.max(0, offset) : Math.max(0, -offset);
+      const outerIndex = side === "left" ? 0 : actions.length - 1;
+      return (
+      <div
+        className={classNames(
+          localStyles.actions,
+          localStyles[side],
+          full && pulled > width && localStyles.stretched,
+          armedSide === side && localStyles.armed,
+        )}
+        style={{ width: full ? Math.max(width, pulled) : width, "--_action-w": `${actionWidth}px` } as React.CSSProperties}
+      >
         {actions.map((action, i) => (
           <button
             key={i}
-            className={classNames(localStyles.action, action.intent && localStyles[action.intent])}
+            className={classNames(
+              localStyles.action,
+              action.intent && localStyles[action.intent],
+              full && i === outerIndex && localStyles.outer,
+            )}
             style={{ backgroundColor: action.color }}
             onFocus={() => reveal(side)}
-            onClick={(e) => runAction(action, e)}
+            onClick={(e) => runAction(action, e.currentTarget)}
             type="button"
           >
             <Icon name={action.icon} size="md" />
@@ -182,13 +234,14 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
           </button>
         ))}
       </div>
-    );
+      );
+    };
 
     return (
       <Component
         ref={containerRef}
         className={classNames("wim-swipe-action", localStyles.container, className)}
-        onMouseLeave={handleEnd}
+        onMouseLeave={() => handleEnd(false)}
         onBlur={handleBlur}
         {...props}
       >
@@ -205,10 +258,10 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
           }}
           onTouchStart={handleStart}
           onTouchMove={handleMove}
-          onTouchEnd={handleEnd}
+          onTouchEnd={() => handleEnd()}
           onMouseDown={handleStart}
           onMouseMove={handleMove}
-          onMouseUp={handleEnd}
+          onMouseUp={() => handleEnd()}
         >
           {children}
         </ContentComponent>

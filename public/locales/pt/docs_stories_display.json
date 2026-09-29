@@ -426,6 +426,18 @@
     "radar_subject_review": "Revisão de código",
     "radar_subject_docs": "Documentação",
     "radar_subject_mentoring": "Mentoria",
+    "swipe_full_msg_1": "A fatura nº 2041 está pronta para download",
+    "swipe_full_msg_2": "Seu pedido foi enviado",
+    "swipe_full_msg_3": "A reunião da equipe foi para quinta-feira",
+    "swipe_full_msg_4": "Sua senha foi alterada",
+    "swipe_full_subtitle": "Deslize até o fim para arquivar ou excluir",
+    "swipe_full_starred": "Com estrela",
+    "swipe_full_archive": "Arquivar",
+    "swipe_full_star": "Estrela",
+    "swipe_full_archived": "\"{{subject}}\" arquivado.",
+    "swipe_full_deleted": "\"{{subject}}\" excluído.",
+    "swipe_full_undo": "Desfazer",
+    "swipe_full_empty": "Nenhuma mensagem.",
     "stats_open_alerts": "Alertas em aberto"
   }
 }

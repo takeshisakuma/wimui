@@ -300,6 +300,7 @@
     "swipeAction_prop_asChild": "true の場合、コンテンツの div は子要素としてレンダリングされます",
     "swipeAction_prop_children": "ラップしてスワイプされるコンテンツ",
     "swipeAction_prop_closeOnAction": "アクションがクリックされた時に自動でアクションを閉じるかどうか。デフォルトは true です。",
+    "swipeAction_prop_fullSwipe": "端まで引き切ったときに、タップせずに外側の端の操作（`leftActions[0]` / `rightActions` の最後）を実行する側。iOS のメールと同じ動きです。勢いで破壊的な操作が走らないよう既定では無効で、操作はボタンとしても残ります。",
     "swipeAction_prop_id": "項目の一意な ID。指定しない場合は自動生成されます。",
     "swipeAction_prop_leftActions": "左から右へスワイプした時に表示されるアクション",
     "swipeAction_prop_rightActions": "右から左へスワイプした時に表示されるアクション",

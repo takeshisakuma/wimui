@@ -379,7 +379,9 @@
     "transfer_i18n_desc": "ラベル、プレースホルダー、ステータスメッセージのローカライズを完全にサポートします。",
     "transition": "トランジション",
     "usage": "使用法",
-    "usage_scenario": "利用シナリオ"
+    "usage_scenario": "利用シナリオ",
+    "swipe_action_full_swipe_title": "端まで引いて実行する（full swipe）",
+    "swipe_action_full_swipe_usage": "fullSwipe に \"left\" / \"right\" / \"both\" を渡すと、行を端まで引き切ったときに外側の端の操作が走ります（左は leftActions[0]、右は rightActions の最後）。閾値を越えると外側の操作が行いっぱいに広がり、指を離す前に何が走るかが分かります。行の外で離すと取り消されます。既定では無効です。元に戻せる操作とだけ組み合わせ、同じ操作をボタンとしても残してください。キーボードやスクリーンリーダーの利用者はボタンから操作します。"
   },
   "error": {
     "boundary_hide_details": "詳細を非表示",

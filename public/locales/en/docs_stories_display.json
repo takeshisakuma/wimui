@@ -426,6 +426,18 @@
     "radar_subject_review": "Code review",
     "radar_subject_docs": "Docs",
     "radar_subject_mentoring": "Mentoring",
+    "swipe_full_msg_1": "Invoice #2041 is ready to download",
+    "swipe_full_msg_2": "Your order has shipped",
+    "swipe_full_msg_3": "Team sync moved to Thursday",
+    "swipe_full_msg_4": "Your password was changed",
+    "swipe_full_subtitle": "Swipe all the way to archive or delete",
+    "swipe_full_starred": "Starred",
+    "swipe_full_archive": "Archive",
+    "swipe_full_star": "Star",
+    "swipe_full_archived": "Archived \"{{subject}}\".",
+    "swipe_full_deleted": "Deleted \"{{subject}}\".",
+    "swipe_full_undo": "Undo",
+    "swipe_full_empty": "No messages left.",
     "stats_open_alerts": "Open Alerts"
   }
 }

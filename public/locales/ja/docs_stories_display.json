@@ -426,6 +426,18 @@
     "radar_subject_review": "コードレビュー",
     "radar_subject_docs": "ドキュメント",
     "radar_subject_mentoring": "メンタリング",
+    "swipe_full_msg_1": "請求書 #2041 をダウンロードできます",
+    "swipe_full_msg_2": "ご注文の商品を発送しました",
+    "swipe_full_msg_3": "定例ミーティングを木曜に移しました",
+    "swipe_full_msg_4": "パスワードが変更されました",
+    "swipe_full_subtitle": "端まで引くとアーカイブ・削除します",
+    "swipe_full_starred": "スター付き",
+    "swipe_full_archive": "アーカイブ",
+    "swipe_full_star": "スター",
+    "swipe_full_archived": "「{{subject}}」をアーカイブしました。",
+    "swipe_full_deleted": "「{{subject}}」を削除しました。",
+    "swipe_full_undo": "元に戻す",
+    "swipe_full_empty": "メッセージはありません。",
     "stats_open_alerts": "未対応のアラート"
   }
 }

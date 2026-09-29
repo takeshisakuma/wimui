@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { createRef } from "react";
-import { SwipeAction, SwipeActionRef, SwipeActionItem } from "./SwipeAction";
+import { SwipeAction, SwipeActionRef, SwipeActionItem, SwipeActionProps } from "./SwipeAction";
 import { SwipeableList } from "./SwipeableList";
 import styles from "./swipe-action.module.scss";
 
@@ -173,6 +173,79 @@ describe("SwipeAction", () => {
     swipe(second, 0, 50);
     expect(second.style.transform).toBe("translateX(80px)");
     expect(first.style.transform).toBe("translateX(0px)");
+  });
+
+  describe("full swipe (T276)", () => {
+    // jsdom では行の幅が 0 なので、閾値は「開いた幅 + 40px」になる（右 2 つなら 200px）
+    const renderRow = (props: Partial<SwipeActionProps> = {}) => {
+      const edit = vi.fn();
+      const del = vi.fn();
+      const done = vi.fn();
+      const utils = render(
+        <SwipeAction
+          leftActions={[{ icon: "CheckIcon", label: "Done", onClick: done }]}
+          rightActions={[{ icon: "EditIcon", label: "Edit", onClick: edit }, { ...deleteAction(del) }]}
+          {...props}
+        >
+          row
+        </SwipeAction>,
+      );
+      return { ...utils, edit, del, done, content: getContent(utils.container) };
+    };
+
+    it("runs the outermost right action when swiped all the way", () => {
+      const { content, edit, del } = renderRow({ fullSwipe: "right" });
+      swipe(content, 300, 60); // -240px
+      expect(del).toHaveBeenCalledTimes(1);
+      expect(edit).not.toHaveBeenCalled();
+      expect(content.style.transform).toBe("translateX(0px)");
+    });
+
+    it("runs the outermost left action on the left side", () => {
+      const { content, done } = renderRow({ fullSwipe: "left" });
+      swipe(content, 0, 200);
+      expect(done).toHaveBeenCalledTimes(1);
+    });
+
+    it("does nothing past the open width when fullSwipe is off (default)", () => {
+      const { content, del } = renderRow();
+      swipe(content, 300, 60);
+      expect(del).not.toHaveBeenCalled();
+      // 以前どおり、開いた位置で止まる
+      expect(content.style.transform).toBe("translateX(-160px)");
+    });
+
+    it("only arms the sides that are enabled", () => {
+      const { content, done } = renderRow({ fullSwipe: "right" });
+      swipe(content, 0, 200);
+      expect(done).not.toHaveBeenCalled();
+    });
+
+    it("opens normally below the threshold", () => {
+      const { content, del } = renderRow({ fullSwipe: "right" });
+      swipe(content, 300, 130); // -170px < 200px
+      expect(del).not.toHaveBeenCalled();
+      expect(content.style.transform).toBe("translateX(-160px)");
+    });
+
+    it("previews the armed action before release, and cancels when the pointer leaves", () => {
+      const { container, content, del } = renderRow({ fullSwipe: "right" });
+      fireEvent.mouseDown(content, { clientX: 300 });
+      fireEvent.mouseMove(content, { clientX: 60 });
+      const right = container.querySelector(`.${styles.right}`)!;
+      expect(right).toHaveClass(styles.armed);
+      expect(right.querySelector(`.${styles.outer}`)).toHaveTextContent("Delete");
+      // ポインタが行の外へ出たら、引き切っていても実行しない
+      fireEvent.mouseLeave(container.querySelector(".wim-swipe-action")!);
+      expect(del).not.toHaveBeenCalled();
+    });
+
+    it("stays open after the action when closeOnAction is false", () => {
+      const { content, del } = renderRow({ fullSwipe: "right", closeOnAction: false });
+      swipe(content, 300, 60);
+      expect(del).toHaveBeenCalledTimes(1);
+      expect(content.style.transform).toBe("translateX(-160px)");
+    });
   });
 
   describe("keyboard (T275)", () => {

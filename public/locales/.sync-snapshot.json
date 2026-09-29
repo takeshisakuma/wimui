@@ -1020,7 +1020,9 @@
       "std_column_no": "No",
       "std_column_yes": "Yes",
       "std_header_loading_state": "Loading state",
-      "std_header_unified_sizing": "Unified sizing"
+      "std_header_unified_sizing": "Unified sizing",
+      "swipe_action_full_swipe_title": "Full swipe",
+      "swipe_action_full_swipe_usage": "Set fullSwipe to \"left\", \"right\" or \"both\" to run the outermost action when a row is dragged all the way across: leftActions[0] on the left, the last of rightActions on the right. Past the threshold the outer action widens to fill the row, so the user sees what will run before letting go; releasing outside the row cancels it. It is off by default. Only pair it with an action the user can undo, and keep the same action as a button, since keyboard and screen reader users reach it that way."
     },
     "error": {
       "boundary_hide_details": "Hide details",
@@ -11297,6 +11299,18 @@
       "radar_subject_review": "Code review",
       "radar_subject_docs": "Docs",
       "radar_subject_mentoring": "Mentoring",
+      "swipe_full_msg_1": "Invoice #2041 is ready to download",
+      "swipe_full_msg_2": "Your order has shipped",
+      "swipe_full_msg_3": "Team sync moved to Thursday",
+      "swipe_full_msg_4": "Your password was changed",
+      "swipe_full_subtitle": "Swipe all the way to archive or delete",
+      "swipe_full_starred": "Starred",
+      "swipe_full_archive": "Archive",
+      "swipe_full_star": "Star",
+      "swipe_full_archived": "Archived \"{{subject}}\".",
+      "swipe_full_deleted": "Deleted \"{{subject}}\".",
+      "swipe_full_undo": "Undo",
+      "swipe_full_empty": "No messages left.",
       "stats_open_alerts": "Open Alerts"
     }
   },
@@ -14346,7 +14360,8 @@
       "rangeCalendar_prop_minDate": "Earliest selectable date.",
       "rangeCalendar_prop_onChange": "Callback when the range changes.",
       "rangeCalendar_prop_value": "Currently selected range [start, end].",
-      "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0."
+      "rangeCalendar_prop_weekStartsOn": "First day of the week. 0 = Sunday, 1 = Monday. Default 0.",
+      "swipeAction_prop_fullSwipe": "Sides where swiping all the way across runs the outermost action without a tap\n(`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a\ndestructive action is never triggered by momentum; the action stays available as a button."
     }
   },
   "docs_props_feedback": {
