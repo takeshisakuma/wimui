@@ -28,6 +28,9 @@ export * from "./components/data-display/FAQSection/FAQSection";
 export * from "./components/data-display/InfiniteScroll/InfiniteScroll";
 export * from "./components/data-display/SortableList/SortableList";
 export * from "./components/data-display/SwipeAction/SwipeAction";
+// 器だけを公開する。`useSwipeableList` は SwipeAction が内部で読む文脈なので出さない（hooks 単体は公開しない方針）。
+export { SwipeableList } from "./components/data-display/SwipeAction/SwipeableList";
+export type { SwipeableListProps } from "./components/data-display/SwipeAction/SwipeableList";
 export * from "./components/data-display/PullToRefresh/PullToRefresh";
 export * from "./components/data-display/JsonViewer/JsonViewer";
 export * from "./components/data-display/CalendarHeatmap/CalendarHeatmap";

@@ -53,7 +53,6 @@
     "stories/data-display/ScheduleView/ScheduleView.stories.tsx::Interactive",
     "stories/data-display/SortableList/SortableList.stories.tsx::Disabled",
     "stories/data-display/Stats/Stats.stories.tsx::NegativeTrend",
-    "stories/data-display/SwipeAction/SwipeAction.stories.tsx::ExclusiveList",
     "stories/data-display/SwipeAction/SwipeAction.stories.tsx::MultipleActions",
     "stories/data-display/Table/Table.stories.tsx::HiddenScrollbar",
     "stories/data-display/Table/Table.stories.tsx::MobileCard",

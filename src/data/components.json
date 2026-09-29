@@ -1361,6 +1361,15 @@
         "mobile": true
       },
       {
+        "name": "SwipeableList",
+        "descKey": "doc.swipeable_list_desc",
+        "pc": false,
+        "mobile": true,
+        "aliases": [
+          "Swipeable List"
+        ]
+      },
+      {
         "name": "PullToRefresh",
         "descKey": "doc.pull_to_refresh_desc",
         "pc": false,
