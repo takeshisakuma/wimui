@@ -60,6 +60,7 @@ export const Sizes: Story = {
       <Spinner {...args} size="sm" />
       <Spinner {...args} size="md" />
       <Spinner {...args} size="lg" />
+      <Spinner {...args} size="xl" />
     </div>
   ),
 };

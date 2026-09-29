@@ -102,23 +102,26 @@ export const Sizes: Story = {
         <Loader {...args} variant="bars" size="sm" />
         <Loader {...args} variant="bars" size="md" />
         <Loader {...args} variant="bars" size="lg" />
+        <Loader {...args} variant="bars" size="xl" />
       </div>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
         <Loader {...args} variant="dots" size="sm" />
         <Loader {...args} variant="dots" size="md" />
         <Loader {...args} variant="dots" size="lg" />
+        <Loader {...args} variant="dots" size="xl" />
       </div>
       <div
         style={{
           display: "flex",
           gap: "24px",
           alignItems: "center",
-          height: "48px",
+          minHeight: "48px",
         }}
       >
         <Loader {...args} variant="pulse" size="sm" />
         <Loader {...args} variant="pulse" size="md" />
         <Loader {...args} variant="pulse" size="lg" />
+        <Loader {...args} variant="pulse" size="xl" />
       </div>
     </div>
   ),

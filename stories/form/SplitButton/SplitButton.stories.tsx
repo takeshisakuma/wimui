@@ -111,3 +111,21 @@ export const Disabled: Story = {
     );
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Intents: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const actions = useActions();
+    const toggleLabel = t("story.splitbutton_toggle");
+    return (
+      <Group gap="lg" align="center">
+        {(["default", "danger", "success"] as const).map((intent) => (
+          <SplitButton key={intent} {...args} intent={intent} actions={actions} toggleLabel={toggleLabel}>
+            {t("story.splitbutton_main")}
+          </SplitButton>
+        ))}
+      </Group>
+    );
+  },
+};

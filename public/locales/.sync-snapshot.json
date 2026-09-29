@@ -642,7 +642,9 @@
     "viz_sparkline_check": "Sparkline Check",
     "viz_system_load": "System Load",
     "label_comment": "Comment",
-    "label_comment_thread": "Comment — nested replies"
+    "label_comment_thread": "Comment — nested replies",
+    "label_password_input": "Password Input",
+    "label_input_mask": "Input Mask"
   },
   "common": {
     "a11y": {
@@ -2289,7 +2291,8 @@
       "splitbutton_scenario_1": "A form footer where Save is what almost everyone wants, but Save as draft and Save and close must stay one click away.",
       "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
       "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
-      "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button."
+      "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button.",
+      "buttongroup_choice_single": "Single Button"
     }
   },
   "docs_ai": {
@@ -4037,7 +4040,8 @@
       "charts_color_evidence_col_metric": "Separation",
       "charts_color_evidence_row_normal": "Closest pair, normal vision (OKLab ΔE ×100)",
       "charts_color_evidence_row_cvd": "Closest pair simulated as protan/deutan",
-      "charts_color_evidence_row_surface": "Surface the contrast is measured against"
+      "charts_color_evidence_row_surface": "Surface the contrast is measured against",
+      "chatui_avatar_tones": "Avatar tones"
     },
     "doc.jsondiff_intro": "JsonDiffViewer compares two JSON values side-by-side or in unified form, with line-level diff highlighting. It serializes both values with JSON.stringify and delegates rendering to CodeDiffViewer.",
     "doc.jsondiff_design_intent": "Optimized for comparing API responses, webhook payloads, and configuration objects. By delegating to CodeDiffViewer with language=json, it inherits all diff controls while keeping its own API minimal.",
@@ -5754,7 +5758,10 @@
       "themetoggle_scenario_1_desc": "The compact icon variant sits in the top bar and cycles light and dark with one click.",
       "themetoggle_scenario_1_title": "App header",
       "themetoggle_scenario_2_desc": "The segmented variant offers light, dark, and system as an explicit, discoverable choice.",
-      "themetoggle_scenario_2_title": "Settings screen"
+      "themetoggle_scenario_2_title": "Settings screen",
+      "searchinput_choice_alt": "Alternative",
+      "taginput_controlled_desc": "Managing tags via external state.",
+      "taginput_maximum_tags_desc": "Limit the number of tags that can be added."
     }
   },
   "docs_form_pickers": {
@@ -10864,7 +10871,8 @@
       "transfer_type_timestamp": "Timestamp",
       "transfer_type_money": "Money",
       "transfer_type_number": "Number",
-      "transfer_type_flag": "Yes / No"
+      "transfer_type_flag": "Yes / No",
+      "tabnav_size_label": "Tabs, size {{size}}"
     }
   },
   "docs_stories_display": {
@@ -11306,7 +11314,9 @@
       "swipe_full_archived": "Archived \"{{subject}}\".",
       "swipe_full_deleted": "Deleted \"{{subject}}\".",
       "swipe_full_undo": "Undo",
-      "swipe_full_empty": "No messages left."
+      "swipe_full_empty": "No messages left.",
+      "stats_open_alerts": "Open Alerts",
+      "tag_large": "Large"
     }
   },
   "docs_stories_feedback": {
@@ -12262,7 +12272,8 @@
       "transition_hide_slide": "Close Slide",
       "transition_show_content": "Show Content",
       "transition_show_slide": "Expand Slide Content",
-      "transition_slide_content": "Slide!"
+      "transition_slide_content": "Slide!",
+      "overlay_variant_glass": "Glass"
     }
   },
   "docs_stories_recipes": {

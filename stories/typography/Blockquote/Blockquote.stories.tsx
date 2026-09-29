@@ -58,6 +58,15 @@ export const Large = {
   args: { size: "lg" }
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Small = {
+  render: (args: React.ComponentProps<typeof Blockquote>) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Blockquote {...args} content={t('story.quote_work')} cite="Steve Jobs" />;
+  },
+  args: { size: "sm" }
+};
+
 export const NoBorder = {
   render: (args: React.ComponentProps<typeof Blockquote>) => {
     const { t } = useTranslation(ALL_NAMESPACES);

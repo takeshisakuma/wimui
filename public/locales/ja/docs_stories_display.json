@@ -437,6 +437,8 @@
     "swipe_full_archived": "「{{subject}}」をアーカイブしました。",
     "swipe_full_deleted": "「{{subject}}」を削除しました。",
     "swipe_full_undo": "元に戻す",
-    "swipe_full_empty": "メッセージはありません。"
+    "swipe_full_empty": "メッセージはありません。",
+    "stats_open_alerts": "未対応のアラート",
+    "tag_large": "大 (Large)"
   }
 }

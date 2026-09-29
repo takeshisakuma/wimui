@@ -36,6 +36,17 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Sizes = {
+  render: () => (
+    <div style={{ display: "flex", alignItems: "end", gap: "var(--wim-spacing-lg)" }}>
+      {(["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"] as const).map((size) => (
+        <Icon key={size} name="SquareIcon" size={size} color="primary" />
+      ))}
+    </div>
+  ),
+};
+
 export const MediumSquareIcon = {
   args: {
     name: "SquareIcon",

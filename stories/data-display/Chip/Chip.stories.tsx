@@ -143,3 +143,17 @@ export const Variants: Story = {
     );
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Sizes: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <Chip key={size} {...args} size={size}>{t("docs_stories_display:story.chip_default")}</Chip>
+        ))}
+      </div>
+    );
+  },
+};

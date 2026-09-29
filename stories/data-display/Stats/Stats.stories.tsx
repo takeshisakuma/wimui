@@ -73,6 +73,21 @@ export const RisingCost: Story = {
   },
 };
 
+// T280: 「下がると良い」指標。direction と intent を分けた書き方（T250 ④）が、
+// どのストーリーにも描かれていなかった。
+export const FallingAlerts: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Stats {...args}>
+        <Stats.Label>{t("story.stats_open_alerts")}</Stats.Label>
+        <Stats.Value>14</Stats.Value>
+        <Stats.Trend direction="down" intent="success">-32%</Stats.Trend>
+      </Stats>
+    );
+  },
+};
+
 export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

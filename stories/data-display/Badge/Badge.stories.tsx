@@ -133,3 +133,27 @@ export const IconOnly: Story = {
     intent: "primary",
   },
 };
+
+// T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
+export const Solid: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <Badge {...args} content={t("story.badge_content")} />;
+  },
+  args: {
+    variant: "solid",
+  },
+};
+
+export const Sizes: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-md)", alignItems: "center" }}>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <Badge key={size} {...args} size={size} content={t("story.badge_content")} />
+        ))}
+      </div>
+    );
+  },
+};

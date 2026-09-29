@@ -437,6 +437,8 @@
     "swipe_full_archived": "\"{{subject}}\" arquivado.",
     "swipe_full_deleted": "\"{{subject}}\" excluído.",
     "swipe_full_undo": "Desfazer",
-    "swipe_full_empty": "Nenhuma mensagem."
+    "swipe_full_empty": "Nenhuma mensagem.",
+    "stats_open_alerts": "Alertas em aberto",
+    "tag_large": "Grande"
   }
 }

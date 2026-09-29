@@ -641,5 +641,7 @@
   "viz_sparkline_check": "Sparkline Check",
   "viz_system_load": "System Load",
   "label_comment": "Comment",
-  "label_comment_thread": "Comment — nested replies"
+  "label_comment_thread": "Comment — nested replies",
+  "label_password_input": "Password Input",
+  "label_input_mask": "Input Mask"
 }

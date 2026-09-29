@@ -302,6 +302,7 @@
     "splitbutton_scenario_1": "A form footer where Save is what almost everyone wants, but Save as draft and Save and close must stay one click away.",
     "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
     "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
-    "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button."
+    "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button.",
+    "buttongroup_choice_single": "Single Button"
   }
 }

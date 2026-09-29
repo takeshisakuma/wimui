@@ -76,6 +76,31 @@ export const Default: Story = {
   },
 };
 
+/** 開いた状態で既定と glass を並べる（T280: 面そのものがどのストーリーにも写っていなかった）。 */
+export const Variants: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const headingId = React.useId();
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-5xl)", paddingBottom: "calc(var(--wim-spacing-5xl) * 3)" }}>
+        {(["default", "glass"] as const).map((variant) => (
+          <Popover key={variant} open variant={variant}>
+            <PopoverTrigger asChild>
+              <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
+            </PopoverTrigger>
+            <PopoverContent side="bottom" aria-labelledby={`${headingId}${variant}`}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
+                <h4 id={`${headingId}${variant}`} style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
+                <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>{t("story.popover_set_dim")}</p>
+              </div>
+            </PopoverContent>
+          </Popover>
+        ))}
+      </div>
+    );
+  },
+};
+
 export const Interactive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

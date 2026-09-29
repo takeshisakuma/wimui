@@ -30,6 +30,26 @@ export const Default: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Variants: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-lg)" }}>
+        {(["dashed", "solid", "none"] as const).map((variant) => (
+          <InteractiveArea
+            key={variant}
+            variant={variant}
+            icon={<Icon name="DocumentIcon" />}
+            title={t("doc.ia_empty_title")}
+            description={t("doc.ia_empty_desc")}
+          />
+        ))}
+      </div>
+    );
+  },
+};
+
 export const Clickable: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

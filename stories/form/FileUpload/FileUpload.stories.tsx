@@ -45,6 +45,24 @@ export const Default: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Small: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <FileUpload
+        {...args}
+        label={t("story.fileupload_label_profile")}
+        buttonLabel={t("story.fileupload_btn_image")}
+        noFileLabel={t("story.fileupload_no_file")}
+      />
+    );
+  },
+  args: {
+    size: "sm",
+  },
+};
+
 export const Multiple: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

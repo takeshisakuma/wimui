@@ -27,6 +27,14 @@ export const Small: Story = {
   },
 };
 
+// T280: この値はどのストーリーにも描かれていなかった（変えても VRT が赤を出さない）。
+export const Large: Story = {
+  args: {
+    children: "K",
+    size: "lg",
+  },
+};
+
 export const Combined: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "var(--wim-spacing-xs)", alignItems: "center" }}>
