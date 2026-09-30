@@ -75,7 +75,7 @@ concurrency:
 jobs:
   a11y:
     name: WCAG 2.1 AA (axe-core) (${{ matrix.shard }}/4)
-    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
+    runs-on: ubuntu-26.04 # T281: 描画を測るので OS を固定（latest の段階移行で OS が混ざらないよう、版は明示して意図して上げる）
     # 単一ジョブだと約35分かかるためシャーディング（VRT と同構成）
     timeout-minutes: 30
     strategy:
@@ -159,7 +159,7 @@ jobs:
     name: Commit updated incomplete baseline
     if: ${{ github.event.inputs.update_incomplete == 'true' }}
     needs: [a11y]
-    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
+    runs-on: ubuntu-26.04 # T281: 描画を測るので OS を固定（latest の段階移行で OS が混ざらないよう、版は明示して意図して上げる）
     timeout-minutes: 20
     permissions:
       contents: write
