@@ -10482,6 +10482,7 @@
       "popconfirm_title": "Confirmation overlay",
       "popconfirm_usage_desc": "Clicking the button displays a confirmation dialog popup, asking the user to confirm before execution.",
       "popover_a11y_focus": "It is recommended to move focus to the first input field when the popover opens and trap focus within the overlay.",
+      "popover_a11y_name": "The open content has role=\"dialog\" and is named by the trigger's text by default (aria-labelledby points at the trigger). Pass aria-label or aria-labelledby on PopoverContent when a heading inside names it better; the name you pass wins.",
       "popover_anatomy_arrow": "Visually points to the element from which the popover originated (optional).",
       "popover_anatomy_arrow_label": "Arrow",
       "popover_anatomy_content": "The floating container that houses forms, lists, or rich text.",

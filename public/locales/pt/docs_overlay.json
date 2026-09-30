@@ -443,6 +443,7 @@
     "popconfirm_title": "Popconfirm",
     "popconfirm_usage_desc": "Clicar no botão exibe um popup de diálogo de confirmação, solicitando a confirmação do usuário antes da execução.",
     "popover_a11y_focus": "Recomenda-se mover o foco para o primeiro campo de entrada quando o popover abrir e prender o foco dentro do overlay.",
+    "popover_a11y_name": "O conteúdo aberto tem role=\"dialog\" e, por padrão, é nomeado pelo texto do gatilho (aria-labelledby aponta para o gatilho). Passe aria-label ou aria-labelledby em PopoverContent quando um título interno o nomear melhor; o nome passado tem prioridade.",
     "popover_anatomy_arrow": "Aponta visualmente para o elemento de origem do popover (opcional).",
     "popover_anatomy_arrow_label": "Arrow",
     "popover_anatomy_content": "O contêiner flutuante que abriga formulários, listas ou texto rico.",
