@@ -109,6 +109,8 @@ export default defineConfig(({ mode }) => {
               index: path.resolve(__dirname, "src/index.ts"),
               layout: path.resolve(__dirname, "src/layout.ts"),
               form: path.resolve(__dirname, "src/form.ts"),
+              // Peer-dependent form component as a dedicated subpath (T278: Tiptap)
+              "form/rich-text-editor": path.resolve(__dirname, "src/form/rich-text-editor.ts"),
               feedback: path.resolve(__dirname, "src/feedback.ts"),
               navigation: path.resolve(__dirname, "src/navigation.ts"),
               "data-display": path.resolve(__dirname, "src/data-display.ts"),
@@ -158,6 +160,13 @@ export default defineConfig(({ mode }) => {
           "@hookform/resolvers",
           "@hookform/resolvers/zod",
           "zod",
+          // T278: RichTextEditor（wimui/form/rich-text-editor）の optional peer。@tiptap/pm は state / view などのサブパスで import される
+          "@tiptap/core",
+          "@tiptap/extensions",
+          "@tiptap/pm",
+          /^@tiptap\/pm\//,
+          "@tiptap/react",
+          "@tiptap/starter-kit",
         ],
         output: isUMD
           ? {

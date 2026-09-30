@@ -1513,9 +1513,9 @@ so the unit does not have to be repeated in the label.
     - `labels: { star?: (count: number) => string; readonly?: (value: number, max: number) => string; }` = {} — Labels for internationalization
     - `asChild: boolean` = false — Whether to render as a child element.
 - **RichTextEditor** — WYSIWYG rich text editor
-    - `value: string` — HTML content (controlled)
+    - `value: string` — HTML content (controlled). An empty editor is reported as "".
     - `defaultValue: string` = "" — Initial HTML content (uncontrolled)
-    - `onChange: (value: string) => void` — Callback when the content changes
+    - `onChange: (value: string) => void` — Callback when the content changes. Receives HTML that only contains the tags and attributes the editor's schema allows.
     - `placeholder: string` — Placeholder shown when the editor is empty
     - `disabled: boolean` — Whether the editor is disabled
     - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
@@ -1547,7 +1547,7 @@ so the unit does not have to be repeated in the label.
   "separator",
   "removeFormat",
 ] — Toolbar items to display, in order
-    - `labels: { bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }` = {} — Labels for internationalization
+    - `labels: { bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; }` = {} — Labels for internationalization
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the editor
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar)

@@ -102,7 +102,7 @@
       .content {
         color: inherit;
 
-        &:empty::before {
+        p:global(.is-editor-empty):first-child::before {
           color: inherit;
         }
       }
@@ -204,7 +204,15 @@
     }
   
     // ---- Content (editable area) ----
-  
+
+    // EditorContent の外枠（Tiptap が描く）。中の .content を縦いっぱいに伸ばす
+    .contentHost {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-width: 0;
+    }
+
     .content {
       box-sizing: border-box;
       flex: 1;
@@ -224,8 +232,10 @@
         box-shadow: none;
       }
   
-      // Placeholder via CSS
-      &:empty::before {
+      // Placeholder（T278: Tiptap は空でも <p></p> を持つので、Placeholder 拡張が付ける is-editor-empty で出す）
+      p:global(.is-editor-empty):first-child::before {
+        float: left;
+        height: 0;
         color: var(--wim-color-text-tertiary);
         pointer-events: none;
         content: attr(data-placeholder);
@@ -254,6 +264,11 @@
         margin: 0.25em 0;
       }
   
+      // Tiptap のリスト項目は中身を <p> で包む。p の上下の余白が項目ごとに付いて行間が開くので、項目の中では消す
+      li > p {
+        margin: 0;
+      }
+
       ul {
         padding-left: 1.5em;
         margin: 0.25em 0;

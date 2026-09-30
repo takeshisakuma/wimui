@@ -89,6 +89,13 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.a11y_spec_title" />
 <p><T k="doc.richTextEditor_a11y_desc" /></p>
 
+## <T k="doc.richtexteditor_sanitize_title" />
+<ul>
+  <li><T k="doc.richtexteditor_sanitize_schema" /></li>
+  <li><T k="doc.richtexteditor_sanitize_links" /></li>
+  <li><T k="doc.richtexteditor_sanitize_boundary" /></li>
+</ul>
+
 ## <T k="doc.real_world_scenarios_title" />
 <table>
   <thead>
@@ -133,12 +140,20 @@ import { Docgen } from "../../Docgen";
   </tbody>
 </table>
 
+## <T k="doc.richtexteditor_install_title" />
+
+<p><T k="doc.richtexteditor_install_desc" /></p>
+
+```bash
+npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions
+```
+
 ## <T k="doc.basic_usage" />
 
 <Canvas of={RichTextEditorStories.Basic} />
 
 ```tsx
-import { RichTextEditor } from "wimui";
+import { RichTextEditor } from "wimui/form/rich-text-editor";
 
 // Uncontrolled
 <RichTextEditor

@@ -19,6 +19,7 @@
       "wimui": ["./src/index.ts"],
       "wimui/layout": ["./src/layout.ts"],
       "wimui/form": ["./src/form.ts"],
+      "wimui/form/rich-text-editor": ["./src/form/rich-text-editor.ts"],
       "wimui/rhf": ["./src/rhf.ts"],
       "wimui/feedback": ["./src/feedback.ts"],
       "wimui/navigation": ["./src/navigation.ts"],

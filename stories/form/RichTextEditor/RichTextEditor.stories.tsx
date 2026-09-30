@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { RichTextEditor } from "wimui";
+import { RichTextEditor } from "wimui/form/rich-text-editor";
 
 const meta: Meta<typeof RichTextEditor> = {
   title: "Components/Basic Inputs/RichTextEditor",

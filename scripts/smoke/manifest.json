@@ -18,6 +18,7 @@
   "peerDependent": [
     "./charts",
     "./rhf",
+    "./form/rich-text-editor",
     "./data-display/markdown",
     "./data-display/qr-code",
     "./data-display/node-graph",

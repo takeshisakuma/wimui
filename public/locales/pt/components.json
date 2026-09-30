@@ -15,6 +15,7 @@
     "rte_link_prompt": "Digite a URL",
     "rte_link_apply": "Aplicar",
     "rte_link_cancel": "Cancelar",
+    "rte_link_invalid": "Informe uma URL que comece com http://, https:// ou mailto:, ou um caminho relativo.",
     "rte_ol": "Lista numerada",
     "rte_remove_format": "Remover formatação",
     "rte_strikethrough": "Tachado",

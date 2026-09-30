@@ -27,7 +27,7 @@ const selectInEditor = (page: import("@playwright/test").Page, start: number, en
     [start, end],
   );
 
-test.describe("RichTextEditor (execCommand-free command layer)", () => {
+test.describe("RichTextEditor (Tiptap)", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(STORY_URL(WITH_DEFAULT_STORY));
     await page.waitForLoadState("networkidle");
@@ -114,9 +114,89 @@ test.describe("RichTextEditor (execCommand-free command layer)", () => {
     await editor.pressSequentially("Hello");
     await expect(editor).toContainText("Hello");
 
-    // デバウンス確定を待ってから undo
-    await page.waitForTimeout(500);
+    // 入力の履歴は間が空いたところで区切られる（ProseMirror の newGroupDelay）ので、区切りを待ってから undo
+    await page.waitForTimeout(600);
     await page.keyboard.press("ControlOrMeta+z");
     await expect(editor).not.toContainText("Hello");
+  });
+});
+
+// ---- T278: 日本語の変換（IME）── contentEditable を自前で操作する実装が最もつまずく所 ----
+// Playwright のキーボード API は変換中の状態を作れないので、Chrome の DevTools Protocol で作る。
+test.describe("RichTextEditor IME composition", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(STORY_URL(BASIC_STORY));
+    await page.waitForLoadState("networkidle");
+    await page.locator(editorLocator).click();
+  });
+
+  test("commits the converted text once, without the reading", async ({ page }) => {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: "にほん", selectionStart: 3, selectionEnd: 3 });
+    await cdp.send("Input.imeSetComposition", { text: "日本", selectionStart: 2, selectionEnd: 2 });
+    await cdp.send("Input.insertText", { text: "日本" });
+    const editor = page.locator(editorLocator);
+    await expect(editor).toHaveText("日本");
+    expect(await editor.innerHTML()).toBe("<p>日本</p>");
+  });
+
+  test("cancelling the composition leaves nothing behind", async ({ page }) => {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: "にほん", selectionStart: 3, selectionEnd: 3 });
+    await cdp.send("Input.imeSetComposition", { text: "", selectionStart: 0, selectionEnd: 0 });
+    const editor = page.locator(editorLocator);
+    await expect(editor).toHaveText("");
+    await expect(editor.locator("p")).toHaveCount(1);
+  });
+
+  test("Enter that commits a composition does not start a new paragraph", async ({ page }) => {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: "にほん", selectionStart: 3, selectionEnd: 3 });
+    // 変換中の Enter は IME の確定に使われる（keyCode 229 の keydown として届く）
+    await cdp.send("Input.dispatchKeyEvent", { type: "rawKeyDown", key: "Enter", code: "Enter", windowsVirtualKeyCode: 229 });
+    await cdp.send("Input.insertText", { text: "日本" });
+    await cdp.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Enter", code: "Enter", windowsVirtualKeyCode: 13 });
+    const editor = page.locator(editorLocator);
+    await expect(editor).toHaveText("日本");
+    await expect(editor.locator("p")).toHaveCount(1);
+  });
+
+  test("text typed after a commit continues the same paragraph and undo removes it", async ({ page }) => {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: "にほん", selectionStart: 3, selectionEnd: 3 });
+    await cdp.send("Input.insertText", { text: "日本" });
+    await page.keyboard.type("go");
+    const editor = page.locator(editorLocator);
+    await expect(editor).toHaveText("日本go");
+    await page.waitForTimeout(600);
+    await page.keyboard.press("ControlOrMeta+z");
+    await expect(editor).toHaveText("");
+  });
+});
+
+// ---- T278: 貼り付けた HTML もスキーマに通る ── script / on* / javascript: は残らない ----
+test.describe("RichTextEditor paste sanitizing", () => {
+  test("pasted HTML keeps allowed formatting and drops everything else", async ({ page }) => {
+    await page.goto(STORY_URL(BASIC_STORY));
+    await page.waitForLoadState("networkidle");
+    const editor = page.locator(editorLocator);
+    await editor.click();
+    await page.evaluate(() => {
+      const target = document.querySelector('[contenteditable="true"]') as HTMLElement;
+      const data = new DataTransfer();
+      data.setData(
+        "text/html",
+        '<p onclick="window.__pwned=1"><strong>kept</strong><script>window.__pwned=2</script>' +
+          '<img src="x" onerror="window.__pwned=3"><a href="javascript:window.__pwned=4">bad</a> ' +
+          '<a href="https://ok.example/">good</a><iframe src="https://evil.example"></iframe></p>',
+      );
+      data.setData("text/plain", "kept bad good");
+      target.dispatchEvent(new ClipboardEvent("paste", { clipboardData: data, bubbles: true, cancelable: true }));
+    });
+    await expect(editor.locator("strong")).toHaveText("kept");
+    const html = await editor.innerHTML();
+    expect(html).not.toMatch(/<script|<img|<iframe|onclick|onerror|javascript:/i);
+    expect(html).toContain('<a href="https://ok.example/">good</a>');
+    expect(await page.evaluate(() => (window as unknown as { __pwned?: number }).__pwned)).toBeUndefined();
   });
 });

@@ -8285,7 +8285,7 @@
     },
     "RichTextEditor.labels": {
       "required": false,
-      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; }",
+      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; }",
       "shape": {
         "bold": {
           "required": false,
@@ -8316,6 +8316,10 @@
           "type": "string"
         },
         "linkCancel": {
+          "required": false,
+          "type": "string"
+        },
+        "linkInvalid": {
           "required": false,
           "type": "string"
         },
@@ -11168,6 +11172,9 @@
     "ToolbarButton.active": {
       "type": "boolean"
     },
+    "ToolbarButton.buttonRef": {
+      "type": "(el: HTMLButtonElement | null) => void"
+    },
     "ToolbarButton.children": {
       "type": "React.ReactNode"
     },
@@ -11176,6 +11183,12 @@
     },
     "ToolbarButton.onClick": {
       "type": "() => void"
+    },
+    "ToolbarButton.onFocus": {
+      "type": "() => void"
+    },
+    "ToolbarButton.tabIndex": {
+      "type": "number"
     },
     "ToolbarButton.title": {
       "type": "string"

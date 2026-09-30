@@ -160,7 +160,8 @@ export const wimResources: WimResources = {
         "rte_remove_format": "Remove formatting",
         "rte_link_prompt": "Enter URL",
         "rte_link_apply": "Apply",
-        "rte_link_cancel": "Cancel"
+        "rte_link_cancel": "Cancel",
+        "rte_link_invalid": "Enter a URL that starts with http://, https:// or mailto:, or a relative path."
       },
       "signature": {
         "clear": "Clear"
@@ -494,6 +495,7 @@ export const wimResources: WimResources = {
         "rte_link_prompt": "URLを入力してください",
         "rte_link_apply": "適用",
         "rte_link_cancel": "キャンセル",
+        "rte_link_invalid": "http:// / https:// / mailto: で始まる URL か、相対パスを入力してください。",
         "rte_ol": "番号付きリスト",
         "rte_remove_format": "書式をクリア",
         "rte_strikethrough": "取り消し線",
@@ -835,6 +837,7 @@ export const wimResources: WimResources = {
         "rte_link_prompt": "Digite a URL",
         "rte_link_apply": "Aplicar",
         "rte_link_cancel": "Cancelar",
+        "rte_link_invalid": "Informe uma URL que comece com http://, https:// ou mailto:, ou um caminho relativo.",
         "rte_ol": "Lista numerada",
         "rte_remove_format": "Remover formatação",
         "rte_strikethrough": "Tachado",

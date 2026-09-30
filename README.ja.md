@@ -298,10 +298,11 @@ import { Button } from "wimui/form"; // カテゴリ別サブパス
 
 以下のコンポーネントを使う場合のみ、対応するサブパスから import し、peer を追加してください。使わない場合は不要です。
 
-peer 依存コンポーネントは**コンポーネント別の専用サブパス**を持ち、名前で必要 peer が分かります。カテゴリバレル（`wimui/data-display` / `wimui/ai`）は peer-free です。
+peer 依存コンポーネントは**コンポーネント別の専用サブパス**を持ち、名前で必要 peer が分かります。カテゴリバレル（`wimui/form` / `wimui/data-display` / `wimui/ai`）は peer-free です。
 
 | コンポーネント | import | 必要なパッケージ |
 |---|---|---|
+| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` (`^3`) |
 | AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
