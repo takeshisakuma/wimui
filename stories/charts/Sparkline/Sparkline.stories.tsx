@@ -63,3 +63,29 @@ export const Inline: Story = {
     </span>
   ),
 };
+
+/**
+ * 既定の幅（T287）。`width` を渡さないと `width="100%"` になり、`ResponsiveContainer` が置き場の幅を測って合わせる
+ * （数値を渡したときとは別の経路）。この経路はほかのストーリーに写っていなかった ── 以前は撮影のときだけ 100px に
+ * 固定されて実物と食い違っていたことがあり、壊れても赤が出ない形だった。幅の決まった置き場 2 つに置いて、潰れず
+ * 置き場いっぱいに描かれることを絵で見せる。
+ */
+export const FillContainer: Story = {
+  args: { width: undefined },
+  parameters: { layout: "padded" },
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-2xl)" }}>
+      <div
+        style={{
+          width: "20rem",
+          padding: "var(--wim-spacing-md)",
+          border: "var(--wim-border-width-thin) solid var(--wim-color-border)",
+          borderRadius: "var(--wim-radius-md)",
+        }}
+      >
+        <Sparkline {...args} data={TREND} type="area" color="var(--wim-color-success)" showLastDot />
+      </div>
+      <Sparkline {...args} data={VOLATILE} type="line" />
+    </div>
+  ),
+};
