@@ -1,5 +1,57 @@
 # wimui
 
+## 0.43.0
+
+### Minor Changes
+
+- 9f6ef05: `RichTextEditor`（`wimui/form/rich-text-editor`）に画像の埋め込みを足しました。
+
+  - ツールバーに `"image"` を足すと、URL と代替テキストで画像を挿入できます。画像のボタンは既定のツールバーには入れていないので、今の画面の見た目は変わりません。
+  - `onImageUpload?: (file: File) => Promise<string>` を渡すと、画像のダイアログに「ファイルを選ぶ」が出て、エディタに貼り付け・ドロップした画像ファイルもアップロードして挿入します。エディタはアップロード先を持たず、返ってきた URL だけを入れます。
+  - 画像の URL は `http:` / `https:` と相対 URL に限ります。`data:` / `blob:` / `javascript:` などの `src` を持つ画像は、読み込み時（`defaultValue` / `value` / 貼り付け）に取り除かれ、ダイアログとアップロードではエラーになります。
+  - 新しい optional peer: `@tiptap/extension-image`（`^3`）。`wimui/form/rich-text-editor` を使っている場合は追加してください。
+
+  ```bash
+  npm install @tiptap/extension-image
+  ```
+
+- c0017ee: `RichTextEditor`（`wimui/form/rich-text-editor`）に Markdown の入出力を足しました。
+
+  - `format="markdown"` を渡すと、`value` / `defaultValue` / `onChange` が HTML ではなく Markdown になります。既定は `"html"` で、今の使い方は変わりません。
+  - 出力に出るのはツールバーで作れるものだけです。Markdown には下線の記法が無いので、Markdown の形式では下線を持ちません（下線のボタンは出さず、`<u>` や貼り付けた下線は本文だけが残ります）。`<u>` で書くと、生の HTML を描かない表示（wimui の `Markdown` を含む）でタグが文字のまま出るためです。
+  - Markdown の入力も HTML と同じスキーマと URL の規則を通ります。`javascript:` のリンク、`data:` の画像、スキーマが許さない生の HTML は取り除かれます。ツールバーで作れない構造（コード・表・引用・h4 以下の見出し・タスクリスト）は本文を段落として残します。`++文字++` は下線として読みません（`C++` が壊れないように）。
+  - `format` はエディタを作るときに読みます。後から変えても中身は変換されません。
+  - 新しい optional peer: `@tiptap/markdown`（`^3`）と `marked`（`^17`。エディタごとに独立した marked を使い、同じページのほかの Tiptap エディタが共有の marked に足した記法の影響を受けないようにするため）。`wimui/form/rich-text-editor` を使っている場合は追加してください。`format="markdown"` を使わない場合も必要です。
+
+  ```bash
+  npm install @tiptap/markdown marked
+  ```
+
+- 185365a: **破壊的変更: `RichTextEditor` の import 元が `wimui/form/rich-text-editor` に変わりました。** 中身を自前の contentEditable から Tiptap（ProseMirror）に置き換えたためです。Tiptap は optional peer なので、`wimui` / `wimui/form` からは外しています（peer を入れていない利用者でも、ルートや `wimui/form` の import が壊れないようにするため）。
+
+  移行は import の書き換えと、Tiptap のパッケージの追加だけです。props は変わりません。
+
+  ```diff
+  - import { RichTextEditor } from "wimui";
+  + import { RichTextEditor } from "wimui/form/rich-text-editor";
+  ```
+
+  ```bash
+  npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions
+  ```
+
+  変わったこと:
+
+  - **日本語の変換（IME）・元に戻す / やり直す・貼り付けを Tiptap が担います。** 変換を確定する Enter で段落が増えることはなく、Ctrl+Z / Ctrl+Y は書式の操作も入力も 1 つの履歴で戻せます。
+  - **入力はすべてスキーマに通して組み立て直します。** `defaultValue` / `value` / 貼り付けた HTML から、`script` / `style` / `iframe` / `img`・`on*` 属性・許可していないタグや属性は取り除かれます。リンクの URL は `http:` / `https:` / `mailto:` と相対 URL に限り、リンクのダイアログはそれ以外の URL をエラーにします（ラベルは `labels.linkInvalid` で変えられます）。
+  - **空のエディタは `""` を返します**（Tiptap の既定の `<p></p>` ではなく）。
+  - **ツールバーがキーボードで届くようになりました。** これまでボタンはすべて `tabIndex={-1}` で、キーボードではツールバーに入れませんでした。Tab で 1 回だけ止まり、矢印キーと Home / End でボタンを移ります（WAI-ARIA の toolbar）。
+  - 出力の HTML は、これまでと同じタグ（`<p>` / `<h1>`〜`<h3>` / `<strong>` / `<em>` / `<u>` / `<s>` / `<ul>` / `<ol>` / `<a href>`）です。
+
+### Patch Changes
+
+- 7eab7f2: `Snackbar` の左右の余白をそろえました。閉じるボタンが無いときも右だけ 16px（左は 8px）空いていたのを、左と同じ 8px にしています。閉じるボタンがあるときの右 28.8px（ボタンの置き場）は変わりません。
+
 ## 0.42.0
 
 ### Minor Changes
