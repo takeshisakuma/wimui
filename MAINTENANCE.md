@@ -423,9 +423,9 @@ npm run check:readme && npm run check:examples && npm run check:llms && npm run 
 
 ### 11. GitHub Actions の runner image と actions の major
 
-`ubuntu-24.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
+`ubuntu-26.04` の更新、`actions/*` の major。**これらを差し替える PR は `vrt.yml` / `a11y.yml` 自身を書き換える**ので、T92 で `paths` に自分自身を足してある（足す前は VRT も a11y も走らなかった）。
 
-**`ubuntu-latest` の中身が変わる予告も見る**（actions/runner-images の issue に `ubuntu-latest` の移行予告が立つ）。描画を測るワークフロー（Playwright を使う 6 本）は `ubuntu-24.04` に固定してあり（T281）、**ほかは `ubuntu-latest` のまま**。固定した OS の廃止予告が出たら、1 本の PR で意図して移る（手順は T281）。
+**`ubuntu-latest` の中身が変わる予告も見る**（actions/runner-images の issue に `ubuntu-latest` の移行予告が立つ）。描画を測るワークフロー（Playwright を使う 6 本）は `ubuntu-26.04` に固定してあり（T281。2026-09-30 に 24.04 から意図して移った ── 試しのランで VRT・a11y とも差分ゼロ）、**ほかは `ubuntu-latest` のまま**。固定した OS の廃止予告が出たら、1 本の PR で意図して移る（手順は T281）。
 
 **2026-09-29 の実測**: actions は 6 種類とも最新の major（checkout v7 / setup-node v7 / upload-artifact v7 / download-artifact v8 / changesets v2 / actions-gh-pages v4）。runner の実体は ubuntu-24.04（イメージ 20260920.314）。**`ubuntu-latest` が 2026-10-19〜11-19 に 26.04 へ移る予告（#14748）を見つけ、描画を測る 6 本を固定した（T281）**。
 
