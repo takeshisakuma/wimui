@@ -7,6 +7,7 @@ import {
 import { Node as PMNode, type Schema } from "@tiptap/pm/model";
 // 名前付きで読む（extension-image と同じ理由: CJS の出力では default の相互運用が崩れる）
 import { Markdown } from "@tiptap/markdown";
+import { Marked, type marked } from "marked";
 
 // ---- スキーマに無い Markdown の構造 ----
 // ツールバーで作れない構造（コード・表）はスキーマに無い。@tiptap/markdown は受け皿の無いトークンを
@@ -99,9 +100,17 @@ const InitialMarkdown = Extension.create<{ content: string | undefined }>({
   },
 });
 
-/** Markdown の読み書きに要る拡張。`initialMarkdown` を渡すと、それを初期値として読む。 */
+/**
+ * Markdown の読み書きに要る拡張。`initialMarkdown` を渡すと、それを初期値として読む。
+ *
+ * marked はエディタごとに独立したインスタンスを渡す。@tiptap/markdown は既定では marked のモジュール共有の
+ * インスタンスに記法を `use()` で足すので、同じページにある利用者自身の Tiptap エディタ（下線＋Markdown 拡張）が
+ * `++` を登録すると、このエディタでも `C++ and C++` が下線として読まれる（単体テストで再現）。
+ */
 export const createMarkdownExtensions = (initialMarkdown: string | undefined) => [
-  Markdown,
+  // 型は共有の `marked`（関数）だが、@tiptap/markdown が使うのは setOptions / Lexer / defaults / use / lexer だけで、
+  // どれも Marked のインスタンスにある（3.31.3 の dist で確認）
+  Markdown.configure({ marked: new Marked() as unknown as typeof marked }),
   CodeBlockAsParagraph,
   CodeSpanAsText,
   TableAsParagraphs,

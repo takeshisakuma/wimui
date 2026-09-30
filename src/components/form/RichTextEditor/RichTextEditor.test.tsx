@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
-import type { Editor as TiptapEditor } from "@tiptap/core";
+import { Editor as TiptapCore, type Editor as TiptapEditor } from "@tiptap/core";
+import { StarterKit } from "@tiptap/starter-kit";
+import { Markdown } from "@tiptap/markdown";
 import { describe, it, expect, vi } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
 import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
@@ -466,6 +468,18 @@ describe("RichTextEditor", () => {
       );
       expect((await screen.findByRole("textbox", { name: "html" })).innerHTML).toBe("<p><u>u</u></p>");
       expect((await screen.findByRole("textbox", { name: "md" })).innerHTML).toBe("<p>C++ and C++</p>");
+    });
+
+    // 利用者自身の Tiptap エディタ（下線＋Markdown 拡張）は共有の marked に `++` を足す。部品はエディタごとに
+    // 独立した marked を使うので、それにも影響されないこと
+    it("is not affected by the consumer's own Tiptap editor that registers ++ on the shared marked", async () => {
+      const foreign = new TiptapCore({ extensions: [StarterKit, Markdown] });
+      try {
+        render(<RichTextEditor format="markdown" defaultValue="C++ and C++" />);
+        expect((await findEditor()).innerHTML).toBe("<p>C++ and C++</p>");
+      } finally {
+        foreign.destroy();
+      }
     });
 
     it("keeps the text of structures the editor has no toolbar for", async () => {
