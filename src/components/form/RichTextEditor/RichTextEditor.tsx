@@ -2,6 +2,7 @@ import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { useEditor, useEditorState, EditorContent, type Editor } from "@tiptap/react";
+import { createDocument } from "@tiptap/core";
 import { StarterKit } from "@tiptap/starter-kit";
 import { Placeholder } from "@tiptap/extensions";
 // 名前付きで読む: CJS の出力では default の相互運用が崩れ、Image.extend が関数でなくなる（tgz の smoke --full で実測）
@@ -472,8 +473,12 @@ export const RichTextEditor = ({
   React.useEffect(() => {
     if (!editor || editor.isDestroyed || value === undefined) return;
     if (value === lastValueRef.current || value === toValue(editor, initialFormat)) return;
-    editor.commands.setContent(toContent(editor, value, initialFormat), { emitUpdate: false });
     lastValueRef.current = value;
+    // 文字列が違っても文書として同じなら置き換えない。利用者が onChange の値を整形して返す（末尾の改行など）と、
+    // 文書全体の置き換えになってキャレットが末尾へ飛ぶため（単体テストで再現）。
+    const next = createDocument(toContent(editor, value, initialFormat), editor.schema);
+    if (next.eq(editor.state.doc)) return;
+    editor.commands.setContent(next.toJSON(), { emitUpdate: false });
   }, [editor, value, initialFormat]);
 
   const activeFormats = useEditorState({

@@ -1,4 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import React from "react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
+import type { Editor as TiptapEditor } from "@tiptap/core";
 import { describe, it, expect, vi } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
 import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
@@ -96,6 +98,28 @@ describe("RichTextEditor", () => {
       expect(editor.innerHTML).toBe("<p>One</p>");
       rerender(<RichTextEditor value="<p>Two</p>" />);
       await waitFor(() => expect(editor.innerHTML).toBe("<p>Two</p>"));
+    });
+
+    // 利用者が onChange の値を整形して返しても（末尾の改行など）、文書が同じなら置き換えない。
+    // 置き換えると文書全体の置換になり、キャレットが末尾へ飛ぶ。キャレットは Tiptap が編集領域の DOM に載せる
+    // エディタから直接読む（jsdom ではツールバーのクリックの focus でも選択が動くため、ボタンの状態では測れない）。
+    it.each([
+      ["html", "<p>abc def</p>"],
+      ["markdown", "abc def"],
+    ] as const)("keeps the caret when the parent echoes an equivalent %s value", async (format, initial) => {
+      const Normalizing = () => {
+        const [value, setValue] = React.useState<string>(initial);
+        return <RichTextEditor format={format} value={value} onChange={(v) => setValue(`${v}\n`)} />;
+      };
+      render(<Normalizing />);
+      const { editor: ed } = (await findEditor()) as HTMLElement & { editor: TiptapEditor };
+      // 「abc」の後ろ（段落の頭が 1）にキャレットを置いて 1 文字入れる → onChange → 親が "\n" を足して返す
+      act(() => {
+        ed.commands.setTextSelection(4);
+        ed.commands.insertContent("X");
+      });
+      await waitFor(() => expect(ed.getText()).toBe("abcX def"));
+      expect(ed.state.selection.from).toBe(5);
     });
 
     it("does not call onChange when the controlled value is set from outside", async () => {

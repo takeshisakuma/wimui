@@ -356,7 +356,7 @@
     "treeselect_scenario_1": "Seleção de departamento numa grande empresa com várias subdivisões.",
     "treeselect_scenario_2": "Atribuição de tarefas a arquivos específicos dentro de uma árvore de diretórios aninhada.",
     "richtexteditor_markdown_title": "Markdown",
-    "richtexteditor_markdown_desc": "Com format=\"markdown\", value, defaultValue e onChange usam Markdown em vez de HTML. O editor em si não muda: a saída contém apenas o que a barra de ferramentas consegue criar, e o sublinhado, que não tem sintaxe em Markdown, é escrito como <u>…</u> (um renderizador que não renderiza HTML bruto mantém o texto sem o sublinhado).",
+    "richtexteditor_markdown_desc": "Com format=\"markdown\", value, defaultValue e onChange usam Markdown em vez de HTML. O editor em si não muda: a saída contém apenas o que a barra de ferramentas consegue criar, e o sublinhado, que não tem sintaxe em Markdown, é escrito como <u>…</u>. Um renderizador que não renderiza HTML bruto mostra as tags como texto, e o Markdown do wimui também, então evite o sublinhado se for exibir a saída nele.",
     "richtexteditor_markdown_input": "A entrada em Markdown passa pelo mesmo schema e pelas mesmas regras de URL que o HTML: URLs inseguras de links e imagens e HTML bruto que o schema não permite são removidos. Estruturas que a barra de ferramentas não cria (código, tabelas, citações, títulos abaixo de h3, listas de tarefas) mantêm o texto como parágrafos simples. ++texto++ não é lido como sublinhado, então textos como C++ ficam como foram digitados.",
     "richtexteditor_markdown_fixed": "format é lido quando o editor é criado. Alterá-lo depois não converte o conteúdo; para trocar de formato, monte um novo editor (por exemplo, mudando a key)."
   }

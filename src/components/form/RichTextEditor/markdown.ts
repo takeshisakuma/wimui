@@ -13,7 +13,7 @@ import { Markdown } from "@tiptap/markdown";
 // StarterKit の Underline をこの定義に差し替える。HTML の読み書きは同じで、Markdown だけが違う:
 // - 読み: Tiptap 既定の `++下線++` を下線として読まない。`C++ と C++` の間が下線になるため（実測）。
 // - 書き: `++…++` は Tiptap だけの記法で、ほかの Markdown の表示では `++` がそのまま出る。
-//   CommonMark が許す生の HTML `<u>…</u>` で書く（HTML を描かない表示でも本文は残る）。
+//   CommonMark が許す生の HTML `<u>…</u>` で書く。生の HTML を描かない表示（wimui の Markdown を含む）ではタグが文字のまま出る（実測）。
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     wimUnderline: {
