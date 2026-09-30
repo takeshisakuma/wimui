@@ -5,6 +5,7 @@
     "buttonGroup_prop_className": "追加のクラス名",
     "buttonGroup_prop_gap": "ボタン間の間隔（joined の場合は無視される）",
     "buttonGroup_prop_joined": "ボタンを連結して1つのユニットにするかどうか",
+    "buttonGroup_prop_justify": "行の中でのボタンの寄せ方。`start`（既定）はグループの幅をボタンの幅に合わせ、ほかの内容と揃います。`center` / `end` / `stretch` は行を丸ごと取ります（`stretch` はすべてのボタンを伸ばして行を分け合います）。",
     "buttonGroup_prop_variant": "すべての子ボタンに適用するバリアント",
     "button_prop_animateWidth": "ラベル変更時に幅の変化をアニメーションするかどうか",
     "button_prop_asChild": "true の場合、ボタンは子要素としてレンダリングされ、props がその子要素にマージされます。\nLink コンポーネント（例: React Router や Next.js）にボタンスタイルを適用する際に便利です。",

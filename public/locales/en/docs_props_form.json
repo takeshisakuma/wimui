@@ -5,6 +5,7 @@
     "buttonGroup_prop_className": "Additional class names",
     "buttonGroup_prop_gap": "Gap between buttons (ignored when joined)",
     "buttonGroup_prop_joined": "Whether to join the buttons into a single connected unit",
+    "buttonGroup_prop_justify": "Where the buttons sit on the row. `start` keeps the group as wide as its buttons, so it lines up with other content; `center` / `end` / `stretch` take the full row (`stretch` grows every button to share it).",
     "buttonGroup_prop_variant": "Variant applied to all child buttons",
     "button_prop_animateWidth": "Whether to animate the width change when label changes",
     "button_prop_asChild": "If true, the button will be rendered as its child, merging its props onto that child.\nUseful for using the button styles with Link components (e.g. from React Router or Next.js).",
