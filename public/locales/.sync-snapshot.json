@@ -532,6 +532,7 @@
     "sfx_circle_radius_full": "circle (radius-full)",
     "sfx_collapsed": "collapsed",
     "sfx_default": "default",
+    "sfx_default_width": "default width (fills the container)",
     "sfx_expanded": "expanded",
     "sfx_fallbacks": "fallbacks",
     "sfx_icon": "Icon",

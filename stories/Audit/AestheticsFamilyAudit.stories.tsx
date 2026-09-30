@@ -34,6 +34,10 @@ export default meta;
  * 読まれて宣言ごと無効になり、Entrance / Exit はトークンの時間が `animation-delay` と読まれて
  * 曲線しか見えなかった。本来の使い方どおり、`transition` を当てた要素の位置を一定間隔で
  * 切り替えて見せる（Audit は VRT の撮影対象外なのでタイマーで揺れない）。
+ *
+ * T285: 時間は一定なので、溝を幅いっぱいにすると移動距離が画面の幅に比例し、PC では約 1,200px を
+ * 0.25 秒で動いて違いが見えなかった。溝は実際の移動（オーバーレイ・カードの数十〜百数十 px）に近い
+ * 長さで固定し、終点を溝の端から離して Entrance の行き過ぎて戻る動き（out-back）が切り取られないようにする。
  */
 const MotionTokenDemo = ({ transition }: { transition: string }) => {
   const [atEnd, setAtEnd] = React.useState(false);
@@ -48,7 +52,7 @@ const MotionTokenDemo = ({ transition }: { transition: string }) => {
       <Box
         className="motion-ball"
         style={{
-          left: atEnd ? "calc(100% - 40px)" : 0,
+          left: atEnd ? "var(--motion-travel)" : 0,
           transition,
         }}
       />
@@ -144,8 +148,10 @@ export const Overview: StoryObj = {
 
                 <style>{`
                   .motion-track {
+                    --motion-travel: 12.5rem; /* 移動距離 200px（PC とスマホで同じ） */
                     height: 8px;
-                    width: 100%;
+                    width: 17.5rem; /* 280px ＝ 移動 200px ＋ 玉 40px ＋ 行き過ぎの余白 40px */
+                    max-width: 100%;
                     background: var(--wim-color-surface-variant);
                     border-radius: 4px;
                     position: relative;
