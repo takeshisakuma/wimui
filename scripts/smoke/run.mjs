@@ -21,7 +21,7 @@
  * 環境変数 SMOKE_KEEP=1 で失敗調査用に一時ディレクトリを残す。
  */
 import { execSync } from "node:child_process";
-import { mkdtempSync, cpSync, writeFileSync, rmSync, existsSync } from "node:fs";
+import { mkdtempSync, cpSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -46,38 +46,24 @@ if (!existsSync(join(repoRoot, "dist", "index.js"))) {
   process.exit(1);
 }
 
-const barePeers = ["react@^19", "react-dom@^19"];
-const optionalPeers = [
-  "recharts",
-  "react-markdown",
-  "remark-gfm",
-  "react-hook-form",
-  "zod",
-  "@hookform/resolvers",
-  "@xyflow/react",
-  "@fullcalendar/core",
-  "@fullcalendar/react",
-  "@fullcalendar/daygrid",
-  "@fullcalendar/timegrid",
-  "@fullcalendar/interaction",
-  "music-metadata",
-  "qrcode.react",
-  "diff",
-  "@tiptap/core",
-  "@tiptap/pm",
-  "@tiptap/react",
-  "@tiptap/starter-kit",
-  "@tiptap/extensions",
-  "@tiptap/extension-image",
-  "@tiptap/markdown",
-  "marked",
-];
+// peer は package.json の宣言から、**レンジ付きで**入れる（T289）。以前は optional peer を手書きの一覧から版の指定なしで
+// 入れていた。FullCalendar の core / react だけ latest が 7 になったとき、pnpm は宣言（^6）を見ずに core 7 を入れて
+// timegrid 6 と組み合わせ、schedule-view の import が落ちた（npm は宣言に合わせて 6 を選ぶので通っていた）。
+// 利用者は宣言どおりに入れるので、検査も宣言どおりに入れる。宣言から読むので、peer を足したときに一覧の更新も要らない。
+const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8"));
+const peerSpecs = (optional) =>
+  Object.entries(pkg.peerDependencies)
+    .filter(([name]) => !!pkg.peerDependenciesMeta?.[name]?.optional === optional)
+    .map(([name, range]) => `${name}@${range}`);
+const barePeers = peerSpecs(false);
+const optionalPeers = peerSpecs(true);
 const peers = profile === "full" ? [...barePeers, ...optionalPeers] : barePeers;
 
 // パッケージマネージャごとの install コマンド。pnpm/yarn はローカル未導入でも
 // npx 経由で取得して実行できる（CI では setup アクション不要）。
 function installCmd(tarball, pkgs) {
-  const list = `"${tarball}" ${pkgs.join(" ")}`;
+  // レンジは `>=9.0.0`（リダイレクト）や `^3.25.0 || ^4.0.0`（空白とパイプ）を含むので、1 つずつ引用符で囲む
+  const list = [tarball, ...pkgs].map((spec) => `"${spec}"`).join(" ");
   switch (pm) {
     case "pnpm":
       // strict-peer-dependencies は既定 false のまま（optional peer 不在で落とさない）。

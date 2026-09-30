@@ -305,7 +305,7 @@ Each peer-dependent component has its **own subpath** whose name documents its p
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
 | NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` |
-| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` (`^6`. Install them with @6: FullCalendar 7 is not supported, and pnpm installs the latest core and react (7) unless you pin them) |
 | JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
 | StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
 | MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |

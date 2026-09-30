@@ -307,7 +307,7 @@ peer 依存コンポーネントは**コンポーネント別の専用サブパ�
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
 | NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` |
-| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` |
+| ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction`（`^6`。@6 を付けて入れてください。FullCalendar 7 には対応しておらず、pnpm は版を指定しないと core と react の最新（7）を入れます） |
 | JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
 | StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
 | MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |

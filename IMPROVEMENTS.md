@@ -21,7 +21,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
-| T289 | **pnpm で optional peer をすべて入れると、`wimui/data-display/schedule-view` の import が落ちる（main でも再現）** | 起票 2026-10-01（T278 ③ の追補 #763 で `node scripts/smoke/run.mjs --full --pm pnpm` を流していて判明。CI の pnpm の smoke は bare なので赤が出ていない）。**原因**: FullCalendar の `core` / `react` は `latest` が **7.1.0**、`daygrid` / `timegrid` / `interaction` は **6.1.21** のまま（peer は `@fullcalendar/core ~6.1.21`）。smoke は peer を**版の指定なし**で入れるので、pnpm は `latest` の core 7 を入れ、timegrid 6 と組み合わせる → `Package subpath './index.js' is not defined by "exports"`（`@fullcalendar/core` 7 の exports は `.` と `./protected-api` だけ。T246 で実測済み）。npm は wimui の peer 宣言（`^6.0.0`）に合わせて 6 を選ぶので通る。**利用者への影響（未検証）**: README の peer 表で ScheduleView の行だけ版の指定が無い（ほかの行は `(^3)` など）。表のとおりに pnpm で入れると同じ組み合わせになるはず ── まず素の pnpm の利用者の手順で再現を取る。**直し方の候補**: ①smoke が peer を `package.json` の `peerDependencies` のレンジ付き（`@fullcalendar/core@^6.0.0`）で入れる（契約どおりに入れて検査する。宣言と検査のずれが原因なので、ここが本筋）②README の ScheduleView の行に `(^6)` を足す ③CI の pnpm の smoke に full を足すか（所要時間と、上流の新版で無関係な PR が赤くなる問題を T246 の `check:peer-majors` と同じ考え方で決める）。**関連**: T246（7 では動かないのでレンジを `^6.0.0` に狭めた・済）の漏れ ── レンジは直したが、検査と README が「版の指定なし」のままだった | **未着手**（P2） |
 
 ### npm 公開とセット（公開済み）
 
