@@ -5,6 +5,7 @@
     "buttonGroup_prop_className": "Nomes de classe adicionais",
     "buttonGroup_prop_gap": "Espaçamento entre os botões (ignorado quando joined)",
     "buttonGroup_prop_joined": "Se deve unir os botões em uma única unidade conectada",
+    "buttonGroup_prop_justify": "Onde os botões ficam na linha. `start` (padrão) mantém o grupo com a largura dos botões, alinhado ao restante do conteúdo; `center` / `end` / `stretch` ocupam a linha inteira (`stretch` estica todos os botões para dividi-la).",
     "buttonGroup_prop_variant": "Variante aplicada a todos os botões filhos",
     "button_prop_animateWidth": "Se deve animar a mudança de largura quando o rótulo muda",
     "button_prop_asChild": "Se verdadeiro, o botão será renderizado como seu filho, mesclando suas props nesse filho.\nÚtil para usar os estilos de botão com componentes Link (ex.: do React Router ou Next.js).",

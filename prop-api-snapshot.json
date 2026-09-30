@@ -1425,6 +1425,15 @@
       "required": false,
       "type": "boolean"
     },
+    "ButtonGroup.justify": {
+      "required": false,
+      "values": [
+        "center",
+        "end",
+        "start",
+        "stretch"
+      ]
+    },
     "ButtonGroup.variant": {
       "required": false,
       "values": [
