@@ -245,6 +245,11 @@
     "transfer_short_desc": "Short Description",
     "transfer_short_title": "Short Title",
     "signaturepad_wide_field": "Signature (inside a full-width field)",
-    "rating_wide_field": "Rating (inside a full-width field)"
+    "rating_wide_field": "Rating (inside a full-width field)",
+    "rte_markdown_label": "Release notes",
+    "rte_markdown_heading": "What changed",
+    "rte_markdown_item1": "Images can be embedded",
+    "rte_markdown_item2": "Content can be saved as Markdown",
+    "rte_markdown_output_label": "Markdown output:"
   }
 }

@@ -164,6 +164,7 @@ export default defineConfig(({ mode }) => {
           "@tiptap/core",
           "@tiptap/extensions",
           "@tiptap/extension-image",
+          "@tiptap/markdown",
           "@tiptap/pm",
           /^@tiptap\/pm\//,
           "@tiptap/react",

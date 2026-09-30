@@ -1513,9 +1513,12 @@ so the unit does not have to be repeated in the label.
     - `labels: { star?: (count: number) => string; readonly?: (value: number, max: number) => string; }` = {} — Labels for internationalization
     - `asChild: boolean` = false — Whether to render as a child element.
 - **RichTextEditor** — WYSIWYG rich text editor
-    - `value: string` — HTML content (controlled). An empty editor is reported as "".
-    - `defaultValue: string` = "" — Initial HTML content (uncontrolled)
-    - `onChange: (value: string) => void` — Callback when the content changes. Receives HTML that only contains the tags and attributes the editor's schema allows.
+    - `value: string` — Content (controlled), in the format given by `format`. An empty editor is reported as "".
+    - `defaultValue: string` = "" — Initial content (uncontrolled), in the format given by `format`
+    - `onChange: (value: string) => void` — Callback when the content changes, in the format given by `format`. The content only contains what the editor's schema
+allows, whichever format is used.
+    - `format: "html" | "markdown"` = "html" — Format of `value`, `defaultValue` and `onChange`. `"markdown"` reads and writes Markdown (underline is written as `<u>…</u>`,
+since Markdown has no syntax for it). Read when the editor is created; changing it later does not convert the content.
     - `placeholder: string` — Placeholder shown when the editor is empty
     - `disabled: boolean` — Whether the editor is disabled
     - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)

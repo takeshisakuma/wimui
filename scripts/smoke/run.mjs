@@ -69,6 +69,7 @@ const optionalPeers = [
   "@tiptap/starter-kit",
   "@tiptap/extensions",
   "@tiptap/extension-image",
+  "@tiptap/markdown",
 ];
 const peers = profile === "full" ? [...barePeers, ...optionalPeers] : barePeers;
 

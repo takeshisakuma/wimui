@@ -1,4 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import React from "react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
+import type { Editor as TiptapEditor } from "@tiptap/core";
 import { describe, it, expect, vi } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
 import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
@@ -96,6 +98,28 @@ describe("RichTextEditor", () => {
       expect(editor.innerHTML).toBe("<p>One</p>");
       rerender(<RichTextEditor value="<p>Two</p>" />);
       await waitFor(() => expect(editor.innerHTML).toBe("<p>Two</p>"));
+    });
+
+    // 利用者が onChange の値を整形して返しても（末尾の改行など）、文書が同じなら置き換えない。
+    // 置き換えると文書全体の置換になり、キャレットが末尾へ飛ぶ。キャレットは Tiptap が編集領域の DOM に載せる
+    // エディタから直接読む（jsdom ではツールバーのクリックの focus でも選択が動くため、ボタンの状態では測れない）。
+    it.each([
+      ["html", "<p>abc def</p>"],
+      ["markdown", "abc def"],
+    ] as const)("keeps the caret when the parent echoes an equivalent %s value", async (format, initial) => {
+      const Normalizing = () => {
+        const [value, setValue] = React.useState<string>(initial);
+        return <RichTextEditor format={format} value={value} onChange={(v) => setValue(`${v}\n`)} />;
+      };
+      render(<Normalizing />);
+      const { editor: ed } = (await findEditor()) as HTMLElement & { editor: TiptapEditor };
+      // 「abc」の後ろ（段落の頭が 1）にキャレットを置いて 1 文字入れる → onChange → 親が "\n" を足して返す
+      act(() => {
+        ed.commands.setTextSelection(4);
+        ed.commands.insertContent("X");
+      });
+      await waitFor(() => expect(ed.getText()).toBe("abcX def"));
+      expect(ed.state.selection.from).toBe(5);
     });
 
     it("does not call onChange when the controlled value is set from outside", async () => {
@@ -364,6 +388,98 @@ describe("RichTextEditor", () => {
       rerender(<RichTextEditor value={'<p><a href="JaVaScRiPt:alert(1)">x</a><iframe src="https://evil"></iframe></p>'} />);
       await waitFor(() => expect(editor.textContent).toBe("x"));
       expect(editor.innerHTML).not.toMatch(/<a|<iframe|javascript:/i);
+    });
+  });
+
+  describe('format="markdown"', () => {
+    it("reads Markdown into the same structure as HTML", async () => {
+      render(
+        <RichTextEditor
+          format="markdown"
+          defaultValue={"# Title\n\n**b** *i* ~~s~~ <u>u</u> [link](https://ok.example)\n\n- a\n- b\n\n1. c"}
+        />,
+      );
+      expect((await findEditor()).innerHTML).toBe(
+        '<h1>Title</h1><p><strong>b</strong> <em>i</em> <s>s</s> <u>u</u> <a href="https://ok.example">link</a></p>' +
+          "<ul><li><p>a</p></li><li><p>b</p></li></ul><ol><li><p>c</p></li></ol>",
+      );
+    });
+
+    it("reports Markdown on change, and writes underline as <u>", async () => {
+      const onChange = vi.fn();
+      render(<RichTextEditor format="markdown" defaultValue="<u>under</u> and **bold**" toolbar={["h2"]} onChange={onChange} />);
+      await findEditor();
+      fireEvent.click(screen.getByRole("button", { name: /heading 2/i }));
+      await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("## <u>under</u> and **bold**"));
+    });
+
+    it("round-trips its own output", async () => {
+      const markdown =
+        "# T\n\n**b** *i* ~~s~~ <u>u</u> [l](https://ok.example) a\\*b\n\n![A chart](https://ok.example/a.png)\n\n- a\n- b\n\n1. c";
+      const onChange = vi.fn();
+      render(<RichTextEditor format="markdown" defaultValue={markdown} toolbar={["h1"]} onChange={onChange} />);
+      await findEditor();
+      // 見出しを付けて外すと文書は元に戻る。そのときの出力が読んだ Markdown と一致する
+      fireEvent.click(screen.getByRole("button", { name: /heading 1/i }));
+      fireEvent.click(screen.getByRole("button", { name: /heading 1/i }));
+      await waitFor(() => expect(onChange).toHaveBeenCalledTimes(2));
+      expect(onChange).toHaveBeenLastCalledWith(markdown);
+    });
+
+    it("does not read ++ as underline (C++ stays text)", async () => {
+      render(<RichTextEditor format="markdown" defaultValue="C++ and C++" />);
+      expect((await findEditor()).innerHTML).toBe("<p>C++ and C++</p>");
+    });
+
+    it("keeps the text of structures the editor has no toolbar for", async () => {
+      render(
+        <RichTextEditor
+          format="markdown"
+          defaultValue={
+            "> quote\n\n```js\nconst a = 1;\nconst b = 2;\n```\n\n`inline` text\n\n#### h4\n\n" +
+            "| a | *b* |\n|---|---|\n| 1 | 2 |\n\n---\n\n- [ ] task"
+          }
+        />,
+      );
+      expect((await findEditor()).innerHTML).toBe(
+        "<p>quote</p><p>const a = 1;<br>const b = 2;</p><p>inline text</p><p>h4</p>" +
+          "<p>a | <em>b</em></p><p>1 | 2</p><ul><li><p>task</p></li></ul>",
+      );
+    });
+
+    it("applies the same URL rules as HTML (links, images) and drops raw HTML the schema does not allow", async () => {
+      render(
+        <RichTextEditor
+          format="markdown"
+          defaultValue={
+            "[bad](javascript:alert(1)) [good](https://ok.example)\n\n" +
+            "![js](javascript:alert(1)) ![inline](data:image/png;base64,iVBORw0KGgo=) ![ok](https://ok.example/a.png)\n\n" +
+            '<script>alert(1)</script>\n\n<img src="x" onerror="alert(2)">\n\n<a href="javascript:alert(3)">raw</a>'
+          }
+        />,
+      );
+      const editor = await findEditor();
+      const html = editor.innerHTML;
+      expect(html).not.toMatch(/<script|onerror|javascript:|data:/i);
+      expect(html).toContain('<a href="https://ok.example">good</a>');
+      expect(html).toContain("bad");
+      expect(html).toContain("raw");
+      expect(Array.from(editor.querySelectorAll("img")).map((img) => img.getAttribute("src"))).toEqual([
+        "https://ok.example/a.png",
+        "x",
+      ]);
+      // 画像はブロックとして置く（段落の中に入らない）
+      expect(editor.querySelector("p img")).toBeNull();
+    });
+
+    it("syncs a controlled Markdown value, sanitized, without calling onChange", async () => {
+      const onChange = vi.fn();
+      const { rerender } = render(<RichTextEditor format="markdown" value="One" onChange={onChange} />);
+      const editor = await findEditor();
+      expect(editor.innerHTML).toBe("<p>One</p>");
+      rerender(<RichTextEditor format="markdown" value={"## Two\n\n[x](javascript:alert(1))"} onChange={onChange} />);
+      await waitFor(() => expect(editor.innerHTML).toBe("<h2>Two</h2><p>x</p>"));
+      expect(onChange).not.toHaveBeenCalled();
     });
   });
 });

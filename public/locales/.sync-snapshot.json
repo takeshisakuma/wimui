@@ -5343,7 +5343,11 @@
       "richtexteditor_sanitize_boundary": "The guarantee covers the HTML that onChange returns. If you store it and render it somewhere else later (for example with dangerouslySetInnerHTML on another page), sanitize it again there: the stored string can be changed after it leaves the editor.",
       "richtexteditor_images_title": "Images",
       "richtexteditor_images_desc": "Add \"image\" to the toolbar to let people insert an image by URL with alternative text. The image button is not in the default toolbar.",
-      "richtexteditor_images_upload": "The editor does not upload files. Pass onImageUpload(file) that uploads the file to your storage and resolves to its URL: the image dialog then offers a file picker, and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back, and refuses a URL outside http:, https: and relative URLs (so do not return blob: or data: URLs)."
+      "richtexteditor_images_upload": "The editor does not upload files. Pass onImageUpload(file) that uploads the file to your storage and resolves to its URL: the image dialog then offers a file picker, and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back, and refuses a URL outside http:, https: and relative URLs (so do not return blob: or data: URLs).",
+      "richtexteditor_markdown_title": "Markdown",
+      "richtexteditor_markdown_desc": "With format=\"markdown\", value, defaultValue and onChange use Markdown instead of HTML. The editor itself does not change: the output contains only what the toolbar can make, and underline, which has no Markdown syntax, is written as <u>…</u>. A renderer that does not render raw HTML shows the tags as text, and so does wimui's Markdown, so avoid underline if you display the output there.",
+      "richtexteditor_markdown_input": "Markdown input goes through the same schema and URL rules as HTML: unsafe link and image URLs and raw HTML the schema does not allow are dropped. Structures the toolbar cannot make (code, tables, quotes, headings below h3, task lists) keep their text as plain paragraphs. ++text++ is not read as underline, so text such as C++ stays as typed.",
+      "richtexteditor_markdown_fixed": "format is read when the editor is created. Changing it later does not convert the content; to switch formats, mount a new editor (for example by changing its key)."
     }
   },
   "docs_form_basic": {
@@ -11748,7 +11752,12 @@
       "transfer_short_desc": "Short Description",
       "transfer_short_title": "Short Title",
       "signaturepad_wide_field": "Signature (inside a full-width field)",
-      "rating_wide_field": "Rating (inside a full-width field)"
+      "rating_wide_field": "Rating (inside a full-width field)",
+      "rte_markdown_label": "Release notes",
+      "rte_markdown_heading": "What changed",
+      "rte_markdown_item1": "Images can be embedded",
+      "rte_markdown_item2": "Content can be saved as Markdown",
+      "rte_markdown_output_label": "Markdown output:"
     }
   },
   "docs_stories_layout": {

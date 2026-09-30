@@ -245,6 +245,11 @@
     "transfer_short_desc": "Descrição Curta",
     "transfer_short_title": "Título Curto",
     "signaturepad_wide_field": "Assinatura (dentro de um campo de largura total)",
-    "rating_wide_field": "Avaliação (dentro de um campo de largura total)"
+    "rating_wide_field": "Avaliação (dentro de um campo de largura total)",
+    "rte_markdown_label": "Notas de versão",
+    "rte_markdown_heading": "O que mudou",
+    "rte_markdown_item1": "Agora é possível incorporar imagens",
+    "rte_markdown_item2": "O conteúdo pode ser salvo em Markdown",
+    "rte_markdown_output_label": "Saída Markdown:"
   }
 }
