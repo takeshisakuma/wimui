@@ -60,8 +60,11 @@
     justify-content: space-between;
     min-width: var(--wim-snackbar-min-width, 288px);
     max-width: var(--wim-snackbar-max-width, 560px);
-    padding: var(--wim-spacing-sm) var(--wim-spacing-2xl) var(--wim-spacing-sm) var(--wim-spacing-md);
 
+    // 左右は同じ（T284）。右だけ 2xl だった理由は見当たらず、右端の ghost のアクションは自分の内側にも余白を持つので、右の空きが倍以上に見えていた。
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+
+    // 閉じるボタンは右上に絶対配置（右端から xs ＋ 幅 tap-target-min ＝ 4xl）なので、その場所だけ空ける。
     &.hasCloseButton {
       padding-right: var(--wim-spacing-4xl);
     }
