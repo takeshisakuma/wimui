@@ -36,6 +36,24 @@ describe("ButtonGroup", () => {
     expect(group.style.gap).toBe("");
   });
 
+  it("defaults justify to start", () => {
+    render(
+      <ButtonGroup>
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByRole("button").parentElement).toHaveAttribute("data-justify", "start");
+  });
+
+  it.each(["center", "end", "stretch"] as const)("reflects justify=%s", (justify) => {
+    render(
+      <ButtonGroup justify={justify}>
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByRole("button").parentElement).toHaveAttribute("data-justify", justify);
+  });
+
   it("applies variant to child elements", () => {
     render(
       <ButtonGroup variant="solid">

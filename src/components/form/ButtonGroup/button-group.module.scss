@@ -6,8 +6,28 @@
     flex-wrap: wrap;
     row-gap: var(--wim-spacing-sm);
     align-items: center;
-    justify-content: center;
-    width: 100%;
+
+    // 既定（start）は内容の幅で左に寄る ── ほかのボタンと同じ行に並び、画面の揃え（左が基本）から浮かない。
+    // center / end / stretch は寄せる余白が要るので、行を丸ごと取る。
+    justify-content: flex-start;
+
+    &[data-justify="center"],
+    &[data-justify="end"],
+    &[data-justify="stretch"] {
+      width: 100%;
+    }
+
+    &[data-justify="center"] {
+      justify-content: center;
+    }
+
+    &[data-justify="end"] {
+      justify-content: flex-end;
+    }
+
+    &[data-justify="stretch"] > * {
+      flex: 1 1 0;
+    }
 
     &.joined {
       gap: 0;
@@ -46,7 +66,10 @@
         }
       }
 
+      // 狭い幅では縦に積んで 1 本の面にする。積んだ面は揃えの値にかかわらず行を丸ごと取る。
       @include down(sm) {
+        width: 100%;
+
         & > * {
           flex: 1 1 100%;
 
