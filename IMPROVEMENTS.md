@@ -7,9 +7,9 @@
 
 ## 次にやるとよい順
 
-**2026-09-30 の順番**: #739（SwipeableList の公開）・#742（T276 full swipe）・#743（T281 runner の固定）・#746（四半期の点検）はマージ済み。**0.39.0 まで公開済み**（#742 の minor は Version PR #745 に入っている）。**定期点検 #731 は全項目済**。①**#744（T280）のマージ**（VRT が撮るストーリーに値を載せ直した。CI 全緑）→ ②**#747（T277 TreeDiagram）のマージ**（新規公開。VRT の新規ベースラインは #747 で撮る）→ ③**T282**（開いた `Popover` に読み上げの名前が無い・P2。#744 で見つけた。直し方の第一候補はトリガーを既定の名前にすること）→ ④**T279**（T278 は #756 / #759 / #762 / #763 で済）→ ⑤**T281 の残り**（26.04 へ意図して移る。24.04 の廃止予告が出るまでに）→ ⑥**changeset の警告の様子見**。
+**2026-10-01 の順番**: 9/30〜10/01 に T277（TreeDiagram）・T280〜T288・**T278（RichTextEditor の 3 本: #756 / #759 / #762 / #763）**・T289 が済み、**0.43.0 まで公開済み**（0.42.0: `ButtonGroup` の `justify`・開いた `Popover` の名前 / 0.43.0: RichTextEditor の `wimui/form/rich-text-editor` への移設（破壊）・画像・Markdown・Snackbar の余白）。**開いている PR は 0 件**（この PR を除く）。①**T279**（Pivot Table の描画部分・P3・規模大。設計は #758 で決定済み。着手前に PR の分け方を決める）→ ②**README の ScheduleView の行（T289）を npm のページに出すか**（#767 は 0.43.0 の後に着地し、changeset は空。次の公開で自然に出る。急ぐなら patch の changeset を 1 つ足して公開）→ ③**changeset の警告の様子見**。待ち: T23（上流待ち）/ T258（再発待ち）。**運用**: Version PR が出てこないときは、`release` 環境の承認待ち（`status=waiting`）の Release のランが concurrency の枠を塞いでいないかを先に見る（0.42.0 が 5 時間残って後ろを止めた）。
 
-**着手前に読むもの**: タスクを済にしたら同じ PR で `npm run improvements:archive`。起票の番号は `npm run check:improvements` の「次に振る番号」（いま T287 / CI-13）。**docs を触ったら `npm run audit:docs` を丸ごと流す**（部分のガードだけでは乖離検査を通せない）。**VRT の撮り直しは `node scripts/vrt-diff-report.js <SHA>` で画素で仕分ける**。**出荷物（`src/` / `tokens/`）を変える PR には changeset を同梱する**（版を上げない変更は `npx changeset --empty`。無いと `changeset-reminder` がコメントする）。
+**着手前に読むもの**: タスクを済にしたら同じ PR で `npm run improvements:archive`。起票の番号は `npm run check:improvements` の「次に振る番号」（いま T290 / CI-13）。**docs を触ったら `npm run audit:docs` を丸ごと流す**（部分のガードだけでは乖離検査を通せない）。**VRT の撮り直しは `node scripts/vrt-diff-report.js <SHA>` で画素で仕分ける**。**出荷物（`src/` / `tokens/`）を変える PR には changeset を同梱する**（版を上げない変更は `npx changeset --empty`。無いと `changeset-reminder` がコメントする）。
 
 （それ以前の「次にやるとよい順」は `docs/history/improvements-archive.md`。）
 
