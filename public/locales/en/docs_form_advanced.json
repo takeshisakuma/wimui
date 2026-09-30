@@ -349,8 +349,11 @@
     "richtexteditor_install_title": "Installation",
     "richtexteditor_install_desc": "RichTextEditor is built on Tiptap, so it is imported from wimui/form/rich-text-editor (it is not in wimui or wimui/form). Install the Tiptap packages next to wimui:",
     "richtexteditor_sanitize_title": "What the editor sanitizes",
-    "richtexteditor_sanitize_schema": "Every input (defaultValue, value and pasted HTML) is rebuilt through the editor's schema. Only paragraphs, headings (h1 to h3), bold, italic, underline, strikethrough, lists, line breaks and links survive. script, style, iframe, img, event-handler attributes (on*) and any other tag or attribute are dropped.",
-    "richtexteditor_sanitize_links": "Link URLs are limited to http:, https:, mailto: and relative URLs. javascript:, data: and every other scheme are removed from links, and the link dialog refuses them with an error.",
-    "richtexteditor_sanitize_boundary": "The guarantee covers the HTML that onChange returns. If you store it and render it somewhere else later (for example with dangerouslySetInnerHTML on another page), sanitize it again there: the stored string can be changed after it leaves the editor."
+    "richtexteditor_sanitize_schema": "Every input (defaultValue, value and pasted HTML) is rebuilt through the editor's schema. Only paragraphs, headings (h1 to h3), bold, italic, underline, strikethrough, lists, line breaks, links and images survive. script, style, iframe, event-handler attributes (on*) and any other tag or attribute are dropped.",
+    "richtexteditor_sanitize_links": "Link URLs are limited to http:, https:, mailto: and relative URLs, and image URLs to http:, https: and relative URLs. javascript:, data:, blob: and every other scheme are dropped, and the link and image dialogs refuse them with an error.",
+    "richtexteditor_sanitize_boundary": "The guarantee covers the HTML that onChange returns. If you store it and render it somewhere else later (for example with dangerouslySetInnerHTML on another page), sanitize it again there: the stored string can be changed after it leaves the editor.",
+    "richtexteditor_images_title": "Images",
+    "richtexteditor_images_desc": "Add \"image\" to the toolbar to let people insert an image by URL with alternative text. The image button is not in the default toolbar.",
+    "richtexteditor_images_upload": "The editor does not upload files. Pass onImageUpload(file) that uploads the file to your storage and resolves to its URL: the image dialog then offers a file picker, and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back, and refuses a URL outside http:, https: and relative URLs (so do not return blob: or data: URLs)."
   }
 }

@@ -300,7 +300,7 @@ Each peer-dependent component has its **own subpath** whose name documents its p
 
 | Component | import | Required packages |
 |---|---|---|
-| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` (`^3`) |
+| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` `@tiptap/extension-image` (`^3`) |
 | AreaChart, BarChart, etc. | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |

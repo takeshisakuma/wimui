@@ -74,6 +74,25 @@ import { Docgen } from "../../Docgen";
 
 <Canvas of={RichTextEditorStories.MinimalToolbar} />
 
+## <T k="doc.richtexteditor_images_title" />
+
+<p><T k="doc.richtexteditor_images_desc" /></p>
+<p><T k="doc.richtexteditor_images_upload" /></p>
+
+<Canvas of={RichTextEditorStories.WithImages} />
+
+```tsx
+<RichTextEditor
+  toolbar={["bold", "italic", "separator", "link", "image"]}
+  onImageUpload={async (file) => {
+    const body = new FormData();
+    body.append("file", file);
+    const res = await fetch("/api/uploads", { method: "POST", body });
+    return (await res.json()).url; // http(s) or relative URL
+  }}
+/>
+```
+
 ## <T k="doc.richtexteditor_controlled" />
 
 <Canvas of={RichTextEditorStories.Controlled} />
@@ -145,7 +164,7 @@ import { Docgen } from "../../Docgen";
 <p><T k="doc.richtexteditor_install_desc" /></p>
 
 ```bash
-npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions
+npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions @tiptap/extension-image
 ```
 
 ## <T k="doc.basic_usage" />

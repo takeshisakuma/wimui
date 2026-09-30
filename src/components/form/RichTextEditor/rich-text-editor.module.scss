@@ -295,6 +295,43 @@
       i {
         font-style: italic;
       }
+
+      // 画像（T278）。置き場の幅を超えない。選んだ画像は、フォーカスと同じ色の枠で示す
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0.25em 0;
+        border-radius: var(--wim-radius-sm);
+      }
+
+      // stylelint-disable-next-line selector-class-pattern -- ProseMirror が選んだノードに付けるクラス名。こちらの命名規則には合わせられない
+      img:global(.ProseMirror-selectednode) {
+        outline: var(--wim-border-width-thick) solid var(--wim-color-focus-outline);
+        outline-offset: 2px; /* Exception: Browser Rendering Fixes — 選択枠を画像の縁から離して描く */
+      }
     }
+
+    // 貼り付け・ドロップした画像のアップロードに失敗したとき
+    .uploadError {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+      margin: 0;
+      font-size: var(--wim-font-size-sm);
+      color: var(--wim-color-text-danger);
+    }
+  }
+
+  // 画像ダイアログ（Portal でエディタの外に描かれるので、.root の外に置く）
+  .imageForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+    align-items: flex-start;
+  }
+
+  .imageHint {
+    margin: var(--wim-spacing-xs) 0 0;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
   }
 }

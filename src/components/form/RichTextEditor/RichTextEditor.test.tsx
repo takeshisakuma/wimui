@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
-import { isSafeLinkUrl } from "./safeUrl";
+import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
 import styles from "./rich-text-editor.module.scss";
 
 // jsdom は Range / Element の矩形を持たない。ProseMirror はコマンドの後にキャレットを画面内へ
@@ -203,6 +203,99 @@ describe("RichTextEditor", () => {
     });
   });
 
+  describe("image", () => {
+    const openImageDialog = async () => {
+      await findEditor();
+      fireEvent.click(screen.getByRole("button", { name: /insert image/i }));
+      return screen.findByRole("dialog");
+    };
+
+    it("is not in the default toolbar", () => {
+      render(<RichTextEditor />);
+      expect(screen.queryByRole("button", { name: /insert image/i })).not.toBeInTheDocument();
+    });
+
+    it("inserts an image with alternative text from the dialog", async () => {
+      const onChange = vi.fn();
+      render(<RichTextEditor toolbar={["image"]} onChange={onChange} />);
+      await openImageDialog();
+      fireEvent.change(screen.getByLabelText("Image URL"), { target: { value: "https://ok.example/chart.png" } });
+      const alt = screen.getByLabelText("Alternative text");
+      expect(alt).toHaveAccessibleDescription(/decorative/i);
+      fireEvent.change(alt, { target: { value: "Sales by month" } });
+      fireEvent.click(screen.getByRole("button", { name: /apply/i }));
+      await waitFor(() =>
+        expect(onChange).toHaveBeenLastCalledWith('<img src="https://ok.example/chart.png" alt="Sales by month">'),
+      );
+    });
+
+    it("refuses a URL that is not allowed for images", async () => {
+      const onChange = vi.fn();
+      render(<RichTextEditor toolbar={["image"]} onChange={onChange} labels={{ imageInvalid: "Bad image URL" }} />);
+      await openImageDialog();
+      fireEvent.change(screen.getByLabelText("Image URL"), { target: { value: "data:image/png;base64,AAAA" } });
+      fireEvent.click(screen.getByRole("button", { name: /apply/i }));
+      expect(await screen.findByText("Bad image URL")).toBeInTheDocument();
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("offers a file picker only with onImageUpload, and fills the URL with the uploaded one", async () => {
+      const { unmount } = render(<RichTextEditor toolbar={["image"]} />);
+      await openImageDialog();
+      expect(screen.queryByRole("button", { name: /choose a file/i })).not.toBeInTheDocument();
+      unmount();
+
+      const onImageUpload = vi.fn().mockResolvedValue("https://cdn.example/up.png");
+      const { container } = render(<RichTextEditor toolbar={["image"]} onImageUpload={onImageUpload} />);
+      await openImageDialog();
+      expect(screen.getByRole("button", { name: /choose a file/i })).toBeInTheDocument();
+      const file = new File(["x"], "photo.png", { type: "image/png" });
+      const input = document.body.querySelector<HTMLInputElement>('input[type="file"]')!;
+      expect(container.contains(input) || document.body.contains(input)).toBe(true);
+      fireEvent.change(input, { target: { files: [file] } });
+      await waitFor(() => expect(screen.getByLabelText("Image URL")).toHaveValue("https://cdn.example/up.png"));
+      expect(onImageUpload).toHaveBeenCalledWith(file);
+    });
+
+    it("shows an error when the upload fails or returns a URL that is not allowed", async () => {
+      const onImageUpload = vi.fn().mockResolvedValue("javascript:alert(1)");
+      render(<RichTextEditor toolbar={["image"]} onImageUpload={onImageUpload} labels={{ imageUploadFailed: "Upload failed" }} />);
+      await openImageDialog();
+      const input = document.body.querySelector<HTMLInputElement>('input[type="file"]')!;
+      fireEvent.change(input, { target: { files: [new File(["x"], "a.png", { type: "image/png" })] } });
+      expect(await screen.findByText("Upload failed")).toBeInTheDocument();
+      expect(screen.getByLabelText("Image URL")).toHaveValue("");
+    });
+
+    it("uploads and inserts image files pasted into the editor", async () => {
+      const onChange = vi.fn();
+      const onImageUpload = vi.fn().mockResolvedValue("https://cdn.example/pasted.png");
+      const { rerender } = render(<RichTextEditor onImageUpload={onImageUpload} onChange={onChange} />);
+      const editor = await findEditor();
+      // 属性が変わる再描画（setOptions）を挟んでも、貼り付けの処理が効き続けることを見る
+      rerender(<RichTextEditor onImageUpload={onImageUpload} onChange={onChange} error="Check the image" />);
+      await waitFor(() => expect(editor).toHaveAttribute("aria-invalid", "true"));
+      const file = new File(["x"], "shot.png", { type: "image/png" });
+      const event = new Event("paste", { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "clipboardData", { value: { files: [file], getData: () => "", types: ["Files"] } });
+      editor.dispatchEvent(event);
+      await waitFor(() => expect(onChange).toHaveBeenLastCalledWith(expect.stringContaining('<img src="https://cdn.example/pasted.png"')));
+      expect(onImageUpload).toHaveBeenCalledWith(file);
+      expect(event.defaultPrevented).toBe(true);
+    });
+
+    it("leaves pasted files alone without onImageUpload", async () => {
+      render(<RichTextEditor />);
+      const editor = await findEditor();
+      const event = new Event("paste", { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "clipboardData", {
+        value: { files: [new File(["x"], "shot.png", { type: "image/png" })], getData: () => "", types: ["Files"] },
+      });
+      editor.dispatchEvent(event);
+      expect(editor.querySelector("img")).toBeNull();
+    });
+  });
+
   describe("toolbar keyboard (roving tabindex)", () => {
     it("puts only one button in the tab order and moves with the arrow keys, Home and End", () => {
       render(<RichTextEditor toolbar={["bold", "separator", "italic", "underline"]} />);
@@ -240,10 +333,29 @@ describe("RichTextEditor", () => {
         />,
       );
       const html = (await findEditor()).innerHTML;
-      expect(html).not.toMatch(/<script|<img|<style|onclick|onerror|javascript:|data:/i);
+      expect(html).not.toMatch(/<script|<style|onclick|onerror|javascript:|data:/i);
       expect(html).toContain('<a href="https://ok.example">good</a>');
       expect(html).toContain("bad");
       expect(html).toContain("data");
+      // 画像そのものは許可しているので、安全な src の img は on* だけ落として残る
+      expect(html).toMatch(/<img src="x"/);
+    });
+
+    it("keeps images with an allowed src and drops the others", async () => {
+      render(
+        <RichTextEditor
+          defaultValue={
+            '<p>a</p><img src="https://ok.example/a.png" alt="A chart">' +
+            '<img src="/relative/b.png" alt="">' +
+            '<img src="javascript:alert(1)" alt="js">' +
+            '<img src="data:image/png;base64,iVBORw0KGgo=" alt="inline">' +
+            '<img src="blob:https://ok.example/123" alt="blob">'
+          }
+        />,
+      );
+      const images = Array.from((await findEditor()).querySelectorAll("img"));
+      expect(images.map((img) => img.getAttribute("src"))).toEqual(["https://ok.example/a.png", "/relative/b.png"]);
+      expect(images[0]).toHaveAttribute("alt", "A chart");
     });
 
     it("sanitizes a controlled value the same way", async () => {
@@ -285,5 +397,26 @@ describe("isSafeLinkUrl", () => {
     "   ",
   ])("refuses %j", (url) => {
     expect(isSafeLinkUrl(url)).toBe(false);
+  });
+});
+
+describe("isSafeImageUrl", () => {
+  it.each(["https://example.com/a.png", "http://example.com/a.png", "/img/a.png", "a.png", "//cdn.example.com/a.png"])(
+    "allows %s",
+    (url) => {
+      expect(isSafeImageUrl(url)).toBe(true);
+    },
+  );
+
+  it.each([
+    "javascript:alert(1)",
+    "data:image/png;base64,iVBORw0KGgo=",
+    "blob:https://example.com/123",
+    "mailto:someone@example.com",
+    "",
+    null,
+    undefined,
+  ])("refuses %j", (url) => {
+    expect(isSafeImageUrl(url)).toBe(false);
   });
 });

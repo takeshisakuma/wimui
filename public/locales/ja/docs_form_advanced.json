@@ -349,8 +349,11 @@
     "richtexteditor_install_title": "導入",
     "richtexteditor_install_desc": "RichTextEditor は Tiptap の上に作られているので、wimui/form/rich-text-editor から import します（wimui / wimui/form には含まれません）。wimui と一緒に Tiptap のパッケージを入れてください:",
     "richtexteditor_sanitize_title": "エディタが無害化する範囲",
-    "richtexteditor_sanitize_schema": "入力（defaultValue・value・貼り付けた HTML）はすべてエディタのスキーマに通して組み立て直します。残るのは段落・見出し（h1〜h3）・太字・斜体・下線・取り消し線・リスト・改行・リンクだけで、script / style / iframe / img・イベントハンドラの属性（on*）・それ以外のタグや属性は取り除かれます。",
-    "richtexteditor_sanitize_links": "リンクの URL は http: / https: / mailto: と相対 URL に限ります。javascript: / data: などほかのスキームはリンクから取り除かれ、リンクのダイアログではエラーを出して受け付けません。",
-    "richtexteditor_sanitize_boundary": "保証するのは onChange が返す HTML までです。保存した HTML を後で別の場所に描く（別の画面で dangerouslySetInnerHTML に渡すなど）ときは、そこでもう一度無害化してください。保存された文字列は、エディタを離れた後に書き換えられている可能性があります。"
+    "richtexteditor_sanitize_schema": "入力（defaultValue・value・貼り付けた HTML）はすべてエディタのスキーマに通して組み立て直します。残るのは段落・見出し（h1〜h3）・太字・斜体・下線・取り消し線・リスト・改行・リンク・画像だけで、script / style / iframe・イベントハンドラの属性（on*）・それ以外のタグや属性は取り除かれます。",
+    "richtexteditor_sanitize_links": "リンクの URL は http: / https: / mailto: と相対 URL、画像の URL は http: / https: と相対 URL に限ります。javascript: / data: / blob: などほかのスキームは取り除かれ、リンクと画像のダイアログではエラーを出して受け付けません。",
+    "richtexteditor_sanitize_boundary": "保証するのは onChange が返す HTML までです。保存した HTML を後で別の場所に描く（別の画面で dangerouslySetInnerHTML に渡すなど）ときは、そこでもう一度無害化してください。保存された文字列は、エディタを離れた後に書き換えられている可能性があります。",
+    "richtexteditor_images_title": "画像",
+    "richtexteditor_images_desc": "ツールバーに \"image\" を足すと、URL と代替テキストで画像を挿入できます。画像のボタンは既定のツールバーには入っていません。",
+    "richtexteditor_images_upload": "エディタはファイルをアップロードしません。ファイルを利用者の保存先に上げて URL を返す onImageUpload(file) を渡すと、画像のダイアログに「ファイルを選ぶ」が出て、エディタに貼り付け・ドロップした画像ファイルもアップロードして挿入されます。エディタが持つのは返ってきた URL だけで、http: / https: / 相対 URL 以外は受け付けません（blob: や data: の URL を返さないでください）。"
   }
 }

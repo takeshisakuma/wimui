@@ -1547,9 +1547,11 @@ so the unit does not have to be repeated in the label.
   "separator",
   "removeFormat",
 ] — Toolbar items to display, in order
-    - `labels: { bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; }` = {} — Labels for internationalization
+    - `labels: { bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; /** Title of the image button and the image dialog. */ image?: string; /** Label of the image URL field. */ imageUrl?: string; /** Label of the alternative text field. */ imageAlt?: string; /** Hint under the alternative text field. */ imageAltHint?: string; /** Label of the button that picks a file (shown only with onImageUpload). */ imageUpload?: string; /** Error shown when onImageUpload rejects or returns a URL that is not allowed. */ imageUploadFailed?: string; /** Error shown in the image dialog when the URL is not allowed (only http, https and relative URLs are). */ imageInvalid?: string; }` = {} — Labels for internationalization
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the editor
+    - `onImageUpload: (file: File) => Promise<string>` — Uploads an image file and resolves to its URL (http, https or relative). When given, the image dialog offers a file picker
+and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back.
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar)
     - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
