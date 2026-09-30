@@ -217,7 +217,8 @@
         "@tiptap/pm",
         "@tiptap/react",
         "@tiptap/starter-kit",
-        "@tiptap/extensions"
+        "@tiptap/extensions",
+        "@tiptap/extension-image"
       ],
       "gzip": true,
       "limit": "26 kB"
@@ -521,6 +522,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.4",
     "@tiptap/core": "3.31.3",
+    "@tiptap/extension-image": "3.31.3",
     "@tiptap/extensions": "3.31.3",
     "@tiptap/pm": "3.31.3",
     "@tiptap/react": "3.31.3",
@@ -594,6 +596,7 @@
     "@fullcalendar/timegrid": "^6.0.0",
     "@hookform/resolvers": "^5.1.0",
     "@tiptap/core": "^3.0.0",
+    "@tiptap/extension-image": "^3.0.0",
     "@tiptap/extensions": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
     "@tiptap/react": "^3.0.0",
@@ -669,6 +672,9 @@
       "optional": true
     },
     "@tiptap/starter-kit": {
+      "optional": true
+    },
+    "@tiptap/extension-image": {
       "optional": true
     }
   },

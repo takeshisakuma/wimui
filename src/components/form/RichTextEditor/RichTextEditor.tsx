@@ -2,8 +2,10 @@ import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { useEditor, useEditorState, EditorContent, type Editor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { StarterKit } from "@tiptap/starter-kit";
 import { Placeholder } from "@tiptap/extensions";
+// 名前付きで読む: CJS の出力では default の相互運用が崩れ、Image.extend が関数でなくなる（tgz の smoke --full で実測）
+import { Image } from "@tiptap/extension-image";
 import { FieldTemplate } from "../FieldTemplate";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
@@ -20,6 +22,7 @@ import {
   LinkIcon,
   UnlinkIcon,
   EraserIcon,
+  ImageIcon,
 } from "@/icon";
 import {
   Dialog,
@@ -30,7 +33,7 @@ import {
   DialogClose,
 } from "../../overlay/Dialog/Dialog";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
-import { isSafeLinkUrl } from "./safeUrl";
+import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Types ----
@@ -47,6 +50,7 @@ export type RichTextEditorToolbarItem =
   | "ol"
   | "link"
   | "unlink"
+  | "image"
   | "removeFormat"
   | "separator";
 
@@ -88,6 +92,20 @@ export type RichTextEditorLabels = {
   linkCancel?: string;
   /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */
   linkInvalid?: string;
+  /** Title of the image button and the image dialog. */
+  image?: string;
+  /** Label of the image URL field. */
+  imageUrl?: string;
+  /** Label of the alternative text field. */
+  imageAlt?: string;
+  /** Hint under the alternative text field. */
+  imageAltHint?: string;
+  /** Label of the button that picks a file (shown only with onImageUpload). */
+  imageUpload?: string;
+  /** Error shown when onImageUpload rejects or returns a URL that is not allowed. */
+  imageUploadFailed?: string;
+  /** Error shown in the image dialog when the URL is not allowed (only http, https and relative URLs are). */
+  imageInvalid?: string;
 };
 
 export type RichTextEditorProps = {
@@ -131,14 +149,30 @@ export type RichTextEditorProps = {
   "aria-label"?: string;
   /** ID of the element that labels the editor */
   "aria-labelledby"?: string;
+  /**
+   * Uploads an image file and resolves to its URL (http, https or relative). When given, the image dialog offers a file picker
+   * and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back.
+   */
+  onImageUpload?: (file: File) => Promise<string>;
 };
 
-type FormatKey = Exclude<RichTextEditorToolbarItem, "separator" | "link" | "unlink" | "removeFormat"> | "link";
+type FormatKey = Exclude<RichTextEditorToolbarItem, "separator" | "link" | "unlink" | "removeFormat">;
 
 // ---- Editor extensions ----
 // 無害化はスキーマが担う（T278）: 入力（初期値・制御値・貼り付け）は ProseMirror のスキーマに通して組み立て直すので、
-// ここで許可していないタグ・属性（script / style / on* / img など）は出力に残らない。スキーマの外に残る危険は
-// リンクの URL だけなので、isAllowedUri で http / https / mailto / 相対に絞る。
+// ここで許可していないタグ・属性（script / style / iframe / on* など）は出力に残らない。スキーマの外に残る危険は
+// リンクの href と画像の src だけなので、それぞれ許可リストに絞る（safeUrl.ts）。
+const SafeImage = Image.extend({
+  parseHTML() {
+    return [
+      {
+        tag: "img[src]",
+        getAttrs: (element) => (isSafeImageUrl((element as HTMLElement).getAttribute("src")) ? null : false),
+      },
+    ];
+  },
+});
+
 const createExtensions = (placeholder: string) => [
   StarterKit.configure({
     heading: { levels: [1, 2, 3] },
@@ -158,6 +192,9 @@ const createExtensions = (placeholder: string) => [
       HTMLAttributes: { target: null, rel: null },
     },
   }),
+  // 画像は src が許可リストに合うものだけスキーマに入れる（合わない img は読み込み時に落ちる）。
+  // ブロックとして置く（段落の中に埋めない）── 文の途中の画像は、読み上げでも折り返しでも扱いにくい。
+  SafeImage.configure({ inline: false, allowBase64: false }),
   Placeholder.configure({ placeholder }),
 ];
 
@@ -224,6 +261,7 @@ export const RichTextEditor = ({
   labels = {},
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
+  onImageUpload,
 }: RichTextEditorProps) => {
   const { t } = useWimTranslation("components");
   const {
@@ -244,6 +282,13 @@ export const RichTextEditor = ({
     linkApply = t("a11y.rte_link_apply"),
     linkCancel = t("a11y.rte_link_cancel"),
     linkInvalid = t("a11y.rte_link_invalid"),
+    image = t("a11y.rte_image"),
+    imageUrl: imageUrlLabel = t("a11y.rte_image_url"),
+    imageAlt: imageAltLabel = t("a11y.rte_image_alt"),
+    imageAltHint = t("a11y.rte_image_alt_hint"),
+    imageUpload = t("a11y.rte_image_upload"),
+    imageUploadFailed = t("a11y.rte_image_upload_failed"),
+    imageInvalid = t("a11y.rte_image_invalid"),
   } = labels;
 
   const generatedId = React.useId();
@@ -293,13 +338,76 @@ export const RichTextEditor = ({
     return attrs;
   }, [id, minHeight, isDisabled, ariaLabel, label, ariaLabelledby, labelId, currentIntent, errorId, required, placeholder, t]);
 
+  // ---- 画像の貼り付け・ドロップ（onImageUpload があるときだけ） ----
+  const onImageUploadRef = React.useRef(onImageUpload);
+  React.useEffect(() => {
+    onImageUploadRef.current = onImageUpload;
+  }, [onImageUpload]);
+  const [uploadError, setUploadError] = React.useState<string | undefined>(undefined);
+  const imageUploadFailedRef = React.useRef(imageUploadFailed);
+  React.useEffect(() => {
+    imageUploadFailedRef.current = imageUploadFailed;
+  }, [imageUploadFailed]);
+
+  /** ファイルを上げて、返ってきた URL を pos（無ければ選択位置）に画像として置く。 */
+  const uploadAndInsert = React.useCallback(async (ed: Editor, files: File[], pos?: number) => {
+    const upload = onImageUploadRef.current;
+    if (!upload) return;
+    setUploadError(undefined);
+    for (const file of files) {
+      try {
+        const src = await upload(file);
+        if (!isSafeImageUrl(src)) throw new Error("URL not allowed");
+        if (ed.isDestroyed) return;
+        const chain = ed.chain().focus();
+        (pos === undefined ? chain : chain.setTextSelection(pos)).setImage({ src, alt: "" }).run();
+      } catch {
+        setUploadError(imageUploadFailedRef.current);
+      }
+    }
+  }, []);
+
+  const imageFilesOf = (list: FileList | null | undefined) =>
+    Array.from(list ?? []).filter((file) => file.type.startsWith("image/"));
+
+  const editorPropsRef = React.useRef<{ ed: Editor | null }>({ ed: null });
+  const handlePaste = React.useCallback(
+    (_view: unknown, event: ClipboardEvent) => {
+      const files = imageFilesOf(event.clipboardData?.files);
+      const ed = editorPropsRef.current.ed;
+      if (!onImageUploadRef.current || files.length === 0 || !ed) return false;
+      event.preventDefault();
+      void uploadAndInsert(ed, files);
+      return true;
+    },
+    [uploadAndInsert],
+  );
+  const handleDrop = React.useCallback(
+    (view: { posAtCoords: (c: { left: number; top: number }) => { pos: number } | null }, event: DragEvent, _slice: unknown, moved: boolean) => {
+      const files = imageFilesOf(event.dataTransfer?.files);
+      const ed = editorPropsRef.current.ed;
+      if (moved || !onImageUploadRef.current || files.length === 0 || !ed) return false;
+      event.preventDefault();
+      const at = view.posAtCoords({ left: event.clientX, top: event.clientY });
+      void uploadAndInsert(ed, files, at?.pos);
+      return true;
+    },
+    [uploadAndInsert],
+  );
+
+  // 編集領域に渡す props を 1 か所にまとめる（作成時と setOptions の両方で同じものを渡す）
+  const editorProps = React.useMemo(
+    () => ({ attributes: contentAttributes, handlePaste, handleDrop }),
+    [contentAttributes, handlePaste, handleDrop],
+  );
+
   const editor = useEditor({
     extensions: createExtensions(placeholder ?? ""),
     content: value ?? defaultValue,
     editable: !isDisabled,
     // SSR では描かず、マウント後に作る（Tiptap の推奨。ハイドレーションの不一致を避ける）
     immediatelyRender: false,
-    editorProps: { attributes: contentAttributes },
+    editorProps,
     onUpdate: ({ editor: ed }) => {
       const html = toValue(ed);
       if (html === lastValueRef.current) return;
@@ -311,8 +419,12 @@ export const RichTextEditor = ({
   // 属性・編集可否は作り直さずに反映する
   React.useEffect(() => {
     if (!editor || editor.isDestroyed) return;
-    editor.setOptions({ editorProps: { attributes: contentAttributes } });
-  }, [editor, contentAttributes]);
+    editor.setOptions({ editorProps });
+  }, [editor, editorProps]);
+
+  React.useEffect(() => {
+    editorPropsRef.current.ed = editor;
+  }, [editor]);
 
   React.useEffect(() => {
     if (!editor || editor.isDestroyed) return;
@@ -348,7 +460,7 @@ export const RichTextEditor = ({
       h3: !!ed?.isActive("heading", { level: 3 }),
       ul: !!ed?.isActive("bulletList"),
       ol: !!ed?.isActive("orderedList"),
-      link: !!ed?.isActive("link"),
+      image: !!ed?.isActive("image"),
     }),
   });
 
@@ -411,6 +523,58 @@ export const RichTextEditor = ({
     });
   }, [linkUrl, linkInvalid, run]);
 
+  // ---- 画像ダイアログ ----
+  const [imageDialogOpen, setImageDialogOpen] = React.useState(false);
+  const [imageSrc, setImageSrc] = React.useState("");
+  const [imageAltText, setImageAltText] = React.useState("");
+  const [imageError, setImageError] = React.useState<string | undefined>(undefined);
+  const [imageUploading, setImageUploading] = React.useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const imageAltHintId = `${id}-image-alt-hint`;
+
+  const handleOpenImage = React.useCallback(() => {
+    if (isDisabled || !editor) return;
+    const current = editor.isActive("image") ? editor.getAttributes("image") : {};
+    setImageSrc((current.src as string | undefined) ?? "");
+    setImageAltText((current.alt as string | undefined) ?? "");
+    setImageError(undefined);
+    setImageDialogOpen(true);
+  }, [editor, isDisabled]);
+
+  const handleApplyImage = React.useCallback(() => {
+    const src = imageSrc.trim();
+    if (!src) {
+      setImageDialogOpen(false);
+      return;
+    }
+    if (!isSafeImageUrl(src)) {
+      setImageError(imageInvalid);
+      return;
+    }
+    setImageDialogOpen(false);
+    run((ed) => ed.chain().focus().setImage({ src, alt: imageAltText.trim() }).run());
+  }, [imageSrc, imageAltText, imageInvalid, run]);
+
+  const handlePickFile = React.useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      e.target.value = "";
+      if (!file || !onImageUpload) return;
+      setImageUploading(true);
+      setImageError(undefined);
+      try {
+        const src = await onImageUpload(file);
+        if (!isSafeImageUrl(src)) throw new Error("URL not allowed");
+        setImageSrc(src);
+      } catch {
+        setImageError(imageUploadFailed);
+      } finally {
+        setImageUploading(false);
+      }
+    },
+    [onImageUpload, imageUploadFailed],
+  );
+
   // ---- ツールバー: roving tabindex（Tab で 1 回だけ止まり、矢印キーで項目を移る。WAI-ARIA toolbar） ----
   const buttonRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
   const [focusIndex, setFocusIndex] = React.useState(0);
@@ -458,6 +622,7 @@ export const RichTextEditor = ({
     ol: { title: ol, icon: <Icon component={ListOrderedIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleOrderedList().run()) },
     link: { title: link, icon: <Icon component={LinkIcon} size="sm" />, onClick: handleInsertLink },
     unlink: { title: unlink, icon: <Icon component={UnlinkIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().extendMarkRange("link").unsetLink().run()) },
+    image: { title: image, icon: <Icon component={ImageIcon} size="sm" />, onClick: handleOpenImage },
     removeFormat: { title: removeFormat, icon: <Icon component={EraserIcon} size="sm" />, onClick: handleRemoveFormat },
   };
 
@@ -530,6 +695,12 @@ export const RichTextEditor = ({
         {/* Editor */}
         <EditorContent editor={editor} className={styles.contentHost} />
 
+        {uploadError && (
+          <p role="alert" className={styles.uploadError}>
+            {uploadError}
+          </p>
+        )}
+
         {/* リンク挿入ダイアログ（window.prompt はブラウザモーダルで UX/a11y 難のため不使用） */}
         <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
           <DialogContent>
@@ -560,6 +731,75 @@ export const RichTextEditor = ({
                   </Button>
                 </DialogClose>
                 <Button variant="solid" type="submit">
+                  {linkApply}
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+
+        {/* 画像ダイアログ。URL を受ける（アップロード先は持たず、onImageUpload が返した URL を入れる） */}
+        <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{image}</DialogTitle>
+            </DialogHeader>
+            <form
+              className={styles.imageForm}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleApplyImage();
+              }}
+            >
+              <Input
+                label={imageUrlLabel}
+                type="url"
+                value={imageSrc}
+                error={imageError}
+                onChange={(e) => {
+                  setImageSrc(e.target.value);
+                  setImageError(undefined);
+                }}
+                fullWidth
+              />
+              {onImageUpload && (
+                <>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handlePickFile}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    loading={imageUploading}
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    {imageUpload}
+                  </Button>
+                </>
+              )}
+              <div>
+                <Input
+                  label={imageAltLabel}
+                  aria-describedby={imageAltHintId}
+                  value={imageAltText}
+                  onChange={(e) => setImageAltText(e.target.value)}
+                  fullWidth
+                />
+                <p id={imageAltHintId} className={styles.imageHint}>
+                  {imageAltHint}
+                </p>
+              </div>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="ghost" type="button">
+                    {linkCancel}
+                  </Button>
+                </DialogClose>
+                <Button variant="solid" type="submit" disabled={imageUploading}>
                   {linkApply}
                 </Button>
               </DialogFooter>

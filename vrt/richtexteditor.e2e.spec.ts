@@ -195,8 +195,68 @@ test.describe("RichTextEditor paste sanitizing", () => {
     });
     await expect(editor.locator("strong")).toHaveText("kept");
     const html = await editor.innerHTML();
-    expect(html).not.toMatch(/<script|<img|<iframe|onclick|onerror|javascript:/i);
+    expect(html).not.toMatch(/<script|<iframe|onclick|onerror|javascript:/i);
+    // 画像そのものは許可している（2 本目）ので、安全な src の img は on* だけ落として残る
+    expect(html).toMatch(/<img src="x"/);
     expect(html).toContain('<a href="https://ok.example/">good</a>');
     expect(await page.evaluate(() => (window as unknown as { __pwned?: number }).__pwned)).toBeUndefined();
+  });
+});
+
+// ---- T278 2 本目: 画像の埋め込み（URL を受ける・アップロードは onImageUpload に任せる） ----
+test.describe("RichTextEditor images", () => {
+  const IMAGES_STORY = "components-basic-inputs-richtexteditor--with-images";
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto(STORY_URL(IMAGES_STORY));
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator(editorLocator)).toBeVisible();
+  });
+
+  test("renders the default image with its alternative text, and it loads", async ({ page }) => {
+    const img = page.locator(`${editorLocator} img`).first();
+    await expect(img).toHaveAttribute("alt", /north wall/i);
+    await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
+  });
+
+  test("inserts an image from the dialog and refuses a javascript: URL", async ({ page }) => {
+    const editor = page.locator(editorLocator);
+    await editor.locator("p").first().click();
+    await page.getByRole("button", { name: "Insert image" }).click();
+    const dialog = page.getByRole("dialog");
+    await dialog.getByLabel("Image URL").fill("javascript:alert(1)");
+    await dialog.getByRole("button", { name: "Apply" }).click();
+    await expect(dialog.getByText(/http:\/\/ or https:\/\//)).toBeVisible();
+
+    await dialog.getByLabel("Image URL").fill("https://example.com/plan.png");
+    await dialog.getByLabel("Alternative text").fill("Floor plan of the second floor");
+    await dialog.getByRole("button", { name: "Apply" }).click();
+    await expect(editor.locator('img[src="https://example.com/plan.png"]')).toHaveAttribute("alt", "Floor plan of the second floor");
+  });
+
+  test("uploads and inserts an image file that is pasted", async ({ page }) => {
+    const editor = page.locator(editorLocator);
+    await expect(editor.locator("img")).toHaveCount(1);
+    await editor.locator("p").first().click();
+    await page.evaluate(() => {
+      const target = document.querySelector('[contenteditable="true"]') as HTMLElement;
+      const data = new DataTransfer();
+      data.items.add(new File([new Uint8Array([137, 80, 78, 71])], "shot.png", { type: "image/png" }));
+      target.dispatchEvent(new ClipboardEvent("paste", { clipboardData: data, bubbles: true, cancelable: true }));
+    });
+    await expect(editor.locator("img")).toHaveCount(2);
+  });
+
+  test("uploads and inserts an image file that is dropped", async ({ page }) => {
+    const editor = page.locator(editorLocator);
+    await expect(editor.locator("img")).toHaveCount(1);
+    const box = (await editor.locator("p").first().boundingBox())!;
+    await page.evaluate(({ x, y }) => {
+      const target = document.querySelector('[contenteditable="true"]') as HTMLElement;
+      const data = new DataTransfer();
+      data.items.add(new File([new Uint8Array([137, 80, 78, 71])], "drop.png", { type: "image/png" }));
+      target.dispatchEvent(new DragEvent("drop", { dataTransfer: data, clientX: x, clientY: y, bubbles: true, cancelable: true }));
+    }, { x: box.x + box.width / 2, y: box.y + box.height / 2 });
+    await expect(editor.locator("img")).toHaveCount(2);
   });
 });
