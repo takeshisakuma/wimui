@@ -163,6 +163,7 @@ export default defineConfig(({ mode }) => {
           // T278: RichTextEditor（wimui/form/rich-text-editor）の optional peer。@tiptap/pm は state / view などのサブパスで import される
           "@tiptap/core",
           "@tiptap/extensions",
+          "@tiptap/extension-image",
           "@tiptap/pm",
           /^@tiptap\/pm\//,
           "@tiptap/react",

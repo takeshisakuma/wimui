@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { RichTextEditor } from "wimui/form/rich-text-editor";
+// ?no-inline: Vite は小さな素材を data: URL に埋め込むが、エディタは data: の画像を許可しない（保存した HTML で使えない）
+import sceneLandscape from "@/media/scene_landscape.svg?no-inline";
 
 const meta: Meta<typeof RichTextEditor> = {
   title: "Components/Basic Inputs/RichTextEditor",
@@ -162,6 +164,27 @@ export const MinimalToolbar: Story = {
         label={t("story.rte_label_comment")}
         toolbar={["bold", "italic", "underline", "separator", "link"]}
         placeholder={t("story.rte_placeholder_comment")}
+      />
+    );
+  },
+};
+
+/**
+ * 画像（T278）。ツールバーに `image` を足した形。`onImageUpload` を渡すと、ダイアログに「ファイルを選ぶ」が出て、
+ * 画像ファイルの貼り付け・ドロップもアップロードして入る。部品はアップロード先を持たず、返ってきた URL だけを入れる。
+ * ここでは実際には送らず、手元の素材の URL を返してアップロード済みの形を見せる。
+ */
+export const WithImages: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const uploadDemo = React.useCallback(async () => sceneLandscape, []);
+    return (
+      <RichTextEditor
+        {...args}
+        label={t("story.rte_image_label")}
+        toolbar={["bold", "italic", "separator", "ul", "ol", "separator", "link", "image"]}
+        defaultValue={`<p>${t("story.rte_image_body")}</p><img src="${sceneLandscape}" alt="${t("story.rte_image_alt")}">`}
+        onImageUpload={uploadDemo}
       />
     );
   },

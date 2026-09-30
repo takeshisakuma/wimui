@@ -8285,7 +8285,7 @@
     },
     "RichTextEditor.labels": {
       "required": false,
-      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; }",
+      "type": "{ bold?: string; italic?: string; underline?: string; strikethrough?: string; h1?: string; h2?: string; h3?: string; ul?: string; ol?: string; link?: string; unlink?: string; removeFormat?: string; toolbar?: string; linkPrompt?: string; linkApply?: string; linkCancel?: string; /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */ linkInvalid?: string; /** Title of the image button and the image dialog. */ image?: string; /** Label of the image URL field. */ imageUrl?: string; /** Label of the alternative text field. */ imageAlt?: string; /** Hint under the alternative text field. */ imageAltHint?: string; /** Label of the button that picks a file (shown only with onImageUpload). */ imageUpload?: string; /** Error shown when onImageUpload rejects or returns a URL that is not allowed. */ imageUploadFailed?: string; /** Error shown in the image dialog when the URL is not allowed (only http, https and relative URLs are). */ imageInvalid?: string; }",
       "shape": {
         "bold": {
           "required": false,
@@ -8300,6 +8300,34 @@
           "type": "string"
         },
         "h3": {
+          "required": false,
+          "type": "string"
+        },
+        "image": {
+          "required": false,
+          "type": "string"
+        },
+        "imageAlt": {
+          "required": false,
+          "type": "string"
+        },
+        "imageAltHint": {
+          "required": false,
+          "type": "string"
+        },
+        "imageInvalid": {
+          "required": false,
+          "type": "string"
+        },
+        "imageUpload": {
+          "required": false,
+          "type": "string"
+        },
+        "imageUploadFailed": {
+          "required": false,
+          "type": "string"
+        },
+        "imageUrl": {
           "required": false,
           "type": "string"
         },
@@ -8371,6 +8399,10 @@
     "RichTextEditor.onChange": {
       "required": false,
       "type": "(value: string) => void"
+    },
+    "RichTextEditor.onImageUpload": {
+      "required": false,
+      "type": "(file: File) => Promise<string>"
     },
     "RichTextEditor.placeholder": {
       "required": false,
