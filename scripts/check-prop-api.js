@@ -212,6 +212,35 @@ function resolvedType(tsType, depth = 0) {
   return (tsType.raw ?? tsType.name ?? null)?.replace(/\s+/g, ' ').trim() ?? null;
 }
 
+/**
+ * 型の文字列の中の `{ … }`（オブジェクトの中身）を伏せる（T288）。
+ *
+ * メンバーまで展開できた型（`shape`）は、中身をメンバー単位で比べている（T94）。
+ * それなのに型全体の文字列も比べていたので、インラインのオブジェクト型に**任意の
+ * メンバーを 1 つ足すだけ**で文字列が変わり（JSDoc のコメントも文字列に入る）、
+ * 加算と判定した同じ変更を「型が変わりました」と破壊にも数えていた
+ * （#756 / #759 の `RichTextEditor.labels` で実測）。
+ *
+ * 比較そのものはやめない。`shape` は union の枝や配列の要素からも取り出すので、
+ * `Foo | string` → `Foo` のように**外側が狭まった変更**は、中身が同じでも破壊として
+ * 拾う必要がある。伏せるのは括弧の中だけで、外側の形は残す。
+ */
+function maskObjectLiterals(type) {
+  let out = '';
+  let depth = 0;
+  for (const ch of type ?? '') {
+    if (ch === '{') {
+      if (depth === 0) out += '{…}';
+      depth += 1;
+    } else if (ch === '}') {
+      depth = Math.max(0, depth - 1);
+    } else if (depth === 0) {
+      out += ch;
+    }
+  }
+  return out;
+}
+
 let requiredUnknown = 0;
 function collect() {
   requiredUnknown = 0;
@@ -324,7 +353,11 @@ for (const [key, was] of Object.entries(before)) {
     breaking.push(`${key}: 値を列挙できる型ではなくなりました（${now.type}）。狭まっていないか確認してください`);
   } else if (!was.values && now.values) {
     additive.push(`${key}: 値を列挙できる型になりました`);
-  } else if (was.type !== now.type) {
+  } else if (
+    was.shape && now.shape
+      ? maskObjectLiterals(was.type) !== maskObjectLiterals(now.type)
+      : was.type !== now.type
+  ) {
     breaking.push(`${key}: 型が変わりました\n      旧: ${was.type}\n      新: ${now.type}`);
   }
 
